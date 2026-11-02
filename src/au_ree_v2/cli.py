@@ -134,10 +134,15 @@ def execute(args):
         for eid in {r['entity_id'] for r in census}:
             kind=next(r['kind'] for r in census if r['entity_id']==eid)
             by_kind[kind]=by_kind.get(kind,0)+1
+        registered_keys={source['key'] for source in registry['sources']}
+        selected_keys={snapshot['key'] for snapshot in snapshots}
         summary={'run_id':run_id,'status':'COMPLETED','cutoff':args.as_of,'module':args.module,
             'code':version,'configuration_sha256':digest(configuration),'snapshot_sha256':digest(snapshots),
             'logical_database_sha256':digest(dump),'source_count':len(snapshots),'census_by_kind':by_kind,
             'unresolved_census_candidate_records':len(candidates),
+            'source_registry_coverage':{'registered_count':len(registered_keys),
+                                        'selected_snapshot_count':len(selected_keys),
+                                        'missing_or_cutoff_excluded':sorted(registered_keys-selected_keys)},
             'gis_validated_distances':{kind:sum(r['variable']==kind for r in gis_rows) for kind in sorted({r['variable'] for r in gis_rows})},
             'resource_defined_n':len(resources),'development_n':sum(c['development'] for c in prepared['coverage']),
             'full_evidence_n':sum(c['full_evidence'] for c in prepared['coverage']),
