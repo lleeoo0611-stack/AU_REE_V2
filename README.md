@@ -54,6 +54,35 @@ One [workflow](.github/workflows/research.yml) runs clean reconstruction and reg
 with manual/weekly source refresh and retained artifacts. Source failures leave the frozen evidence available.
 Known-document refresh is implemented; discovery of new announcements is still to be added.
 
+## Automated official-source expansion (in progress)
+
+The source registry now includes Geoscience Australia's TOPO250K 2WD road classes,
+operational railway/siding lines and mapped >=66 kV power lines, plus the Australian
+Government **Resources and Energy Major Projects 2025** XLSX listing. Run
+`au-ree-v2 acquire` and then `au-ree-v2 all --as-of YYYY-MM-DD` to reconstruct
+the extended source set; archived `data/manifest.json` snapshots remain the only
+inputs used in a normal offline replay. The new entries in `config/sources.json`
+are registered acquisition targets, **not yet frozen evidence** until their live
+bytes and checksums have been retained as snapshots.
+
+Spatial line features are queried through complete ArcGIS object-ID inventories in
+project-scoped EPSG:3577 search windows. A distance is released only if the source
+window covers the selected project coordinate and the nearest line is strictly
+inside the registered radius. Road distance is not a vehicle route, operational
+rail geometry is not a freight service commitment, and a mapped power line is
+not proof of connection capacity. Coordinates are cutoff-filtered to prevent
+historical runs from reading later source records. `gis_metrics.csv` exposes
+metric, query boundary, layer hash and coordinate-source hash.
+
+The REMP workbook is an **additional, non-exhaustive project discovery source**
+(the official list omits earlier exploration and projects below its cost threshold).
+Rows containing REE terminology are ingested as stable per-snapshot
+`SOURCE_RECORD` entities, never silently promoted into `PROJECT` entities.
+`census_candidates.csv` exposes every matched source row with sheet, line number
+and source SHA; `deposit_type_summary.csv` summarizes the existing official
+deposit entities. Matching these records to independent, stable mining projects
+remains part of the national Census expansion.
+
 See [migration decisions and unfinished acceptance scope](docs/migration.md).
 
 The [frozen real-source pilot results](results/pilot-2026-11-02/README.md) include directly readable
