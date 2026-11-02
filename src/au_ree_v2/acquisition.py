@@ -6,6 +6,7 @@ import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 from .store import canonical, digest, filehash
+from .spatial import project_windows
 
 def request(url, params=None, headers=None, timeout=25):
     if params:
@@ -14,31 +15,53 @@ def request(url, params=None, headers=None, timeout=25):
     with urllib.request.urlopen(req, timeout=timeout) as response:
         return response.read(), dict(response.headers)
 
-def arcgis(url, where='1=1'):
+def arcgis(url, where='1=1', windows=None):
+    """Inventory-complete retrieval, globally or within each registered project AOI."""
     def query(params):
         raw, _ = request(url.rstrip('/') + '/query', {'f': 'json', **params})
         data = json.loads(raw)
         if 'error' in data:
             raise ValueError(canonical(data['error']))
         return data
-    ids = query({'where': where, 'returnIdsOnly': 'true'})
-    if 'objectIds' not in ids or not ids.get('objectIdFieldName'):
-        raise ValueError('Missing ArcGIS ID inventory')
-    expected = sorted(set(ids['objectIds'] or []))
-    field = ids['objectIdFieldName']
-    features = []
-    for start in range(0, len(expected), 150):
-        page = query({'objectIds': ','.join(map(str, expected[start:start+150])),
-                      'outFields': '*', 'outSR': 4326, 'returnGeometry': 'true'})
-        if page.get('exceededTransferLimit'):
-            raise ValueError('ArcGIS truncated response')
-        features.extend(page.get('features', []))
-    returned = [f['attributes'][field] for f in features]
-    if len(returned) != len(expected) or sorted(returned) != expected:
-        raise ValueError('Incomplete or duplicate ArcGIS IDs')
-    return {'features': sorted(features, key=lambda f: f['attributes'][field]),
-            'spatialReference': {'wkid': 4326},
-            'inventory': {'where': where, 'objectIdFieldName': field, 'count': len(expected), 'complete': True}}
+    all_features = {}
+    inventories = []
+    oid_field = None
+    for window in (windows if windows is not None else [None]):
+        spatial = {}
+        if window is not None:
+            spatial = {'geometry': ','.join(map(str, window['bbox'])),
+                       'geometryType':'esriGeometryEnvelope',
+                       'inSR':4326, 'spatialRel':'esriSpatialRelIntersects'}
+        ids = query({'where':where, 'returnIdsOnly':'true', **spatial})
+        if 'objectIds' not in ids or not ids.get('objectIdFieldName'):
+            raise ValueError('Missing ArcGIS ID inventory')
+        field = ids['objectIdFieldName']
+        if oid_field is not None and field != oid_field:
+            raise ValueError('ArcGIS object ID field changed between windows')
+        oid_field = field
+        expected = sorted(set(ids['objectIds'] or []))
+        seen = []
+        for start in range(0,len(expected),150):
+            page = query({'objectIds': ','.join(map(str,expected[start:start+150])),
+                          'outFields':'*', 'outSR':4326, 'returnGeometry':'true'})
+            if page.get('exceededTransferLimit'):
+                raise ValueError('ArcGIS truncated response')
+            for feature in page.get('features',[]):
+                key = feature['attributes'][field]
+                seen.append(key)
+                all_features[key] = feature
+        if len(seen) != len(expected) or sorted(seen) != expected:
+            raise ValueError('Incomplete or duplicate ArcGIS IDs')
+        if window is not None:
+            inventories.append({**window,'id_count':len(expected),'complete':True})
+    if oid_field is None:
+        raise ValueError('Missing ArcGIS inventory scope')
+    scope = 'registered_project_aoi' if windows is not None else 'global'
+    return {'features':[all_features[k] for k in sorted(all_features)],
+            'spatialReference':{'wkid':4326},
+            'inventory':{'where':where, 'objectIdFieldName':oid_field,
+                         'count':len(all_features), 'complete':True,
+                         'scope':scope, 'queries':inventories}}
 
 def refresh(root, registry):
     """A failed source is recorded and does not discard any existing snapshot."""
@@ -51,7 +74,8 @@ def refresh(root, registry):
             previous = [s for s in manifest['snapshots'] if s['key']==source['key']]
             latest = max(previous,key=lambda s:s['acquired_at']) if previous else {}
             if source['kind'] in ('arcgis_census', 'arcgis_gis'):
-                raw = (canonical(arcgis(source['url'], source.get('where', '1=1'))) + '\n').encode()
+                windows = project_windows(root, manifest, source['aoi_radius_km']) if source.get('aoi_radius_km') else None
+                raw = (canonical(arcgis(source['url'], source.get('where', '1=1'), windows=windows)) + '\n').encode()
                 headers={}
             else:
                 conditional={}
