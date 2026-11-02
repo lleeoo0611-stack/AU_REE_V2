@@ -18,6 +18,10 @@ class NationalSelectedTests(unittest.TestCase):
                 snaps=select_snapshots(ROOT,CUTOFF)
                 ingest_sources(db,ROOT,snaps)
                 source_shas={s["sha256"] for s in snaps}
+                archive=next(s for s in snaps if s['key']=='legacy_national_e1_20261029')
+                raw=(ROOT/archive['path']).read_text(encoding='utf-8')
+                self.assertNotIn('access_token=',raw)
+                self.assertEqual('714ae3649f1d7c9e5c9c0109241e7ebed5a7c83046fcc8d452c52b2e48b08643',archive['origin_selected_sha256'])
                 rows=national_candidate_rows(db,source_shas)
                 self.assertEqual(339,len(rows))
                 self.assertEqual(2,db.execute("SELECT COUNT(*) FROM records WHERE raw LIKE '%NOT_SINGLE_LOCATION%'").fetchone()[0])

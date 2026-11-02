@@ -190,3 +190,11 @@ association between government-described development stage and resource-only
 screen rank. Stage is an external descriptor absent from this score matrix,
 so the output is not a mechanical criterion correlation; selection bias,
 confounding and small stage-group sizes prohibit causal inference.
+
+**Security of historical selection:** one historical public-document URL in the
+legacy selected-feature archive contained an access query parameter. The V2
+committed snapshot is a deterministic redacted derivative; its own SHA-256 and
+the immutable upstream original selection SHA-256 are both retained. The
+redacted selection preserves feature identity, attributes, coordinates and
+original government chunk hashes, while the original query parameter is never
+republished in current database snapshots or result exports.
