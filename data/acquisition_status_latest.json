@@ -3,12 +3,12 @@
   "sources": [
     {
       "key": "ga_aimr",
-      "status": "ADDED",
+      "status": "UNCHANGED",
       "sha256": "41347cefdf736db20dde9184f0f0a84e0d75b5a5f2a8ab93dd526f163d9ce4c9"
     },
     {
       "key": "ga_ports",
-      "status": "ADDED",
+      "status": "UNCHANGED",
       "sha256": "d0d65f02e79161f79b71d5ec644ae497904c78c56fe557f9c3d5e412065ea148"
     },
     {
@@ -23,23 +23,33 @@
     },
     {
       "key": "ga_roads_250k",
-      "status": "ADDED",
+      "status": "UNCHANGED",
       "sha256": "a7b39ab878b12485ed537f9a982c68ede50cc47a1bfc91de23d9db463efabf88"
     },
     {
       "key": "ga_rail_operational",
-      "status": "ADDED",
+      "status": "UNCHANGED",
       "sha256": "90459d7fbeeaf37c8e397dab7d15e77f3c8e705d4383611df4cbf1ba4a7195f3"
     },
     {
       "key": "ga_power_lines",
-      "status": "ADDED",
+      "status": "UNCHANGED",
       "sha256": "d4b57aaf676da0603db26a3d92a0e4352bbe1381d5674578c8c99c77ac60dcb5"
     },
     {
       "key": "disr_remp_2025",
       "status": "UNAVAILABLE",
       "reason": "The read operation timed out"
+    },
+    {
+      "key": "wa_dmpe_ree_2026_table",
+      "status": "MANAGED_TRANSCRIPTION_VERIFIED",
+      "sha256": "ae76952cae874b34aa01430e042b5e85b0a983699f584383583bf9f2f4e1a56b"
+    },
+    {
+      "key": "wa_dmpe_ree_2026_pdf",
+      "status": "ADDED",
+      "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb"
     }
   ]
 }
