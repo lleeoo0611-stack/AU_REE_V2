@@ -38,7 +38,7 @@ jobs:
         run: au-ree-v2 all --as-of 2026-11-02 --work work/frozen
       - name: Incremental public update (isolated live-source smoke)
         id: live
-        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh) || (github.event_name == 'push' && github.ref_name == 'feat/reproducible-research-core')
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
         continue-on-error: true
         timeout-minutes: 15
         run: |
@@ -75,7 +75,7 @@ jobs:
       - name: Scan publication payload
         run: python tools/check_publication.py
       - name: Archive verified public snapshot bytes to research branch
-        if: github.event_name == 'push' && github.ref_name == 'feat/reproducible-research-core' && steps.live.outcome == 'success'
+        if: (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)) && steps.live.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
