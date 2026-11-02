@@ -30,10 +30,10 @@ GIS metric invariants and independent R numerical invariants. CI execution is co
 
 ## Remaining scope
 
-- Add national/state Project discovery and evidenced parent/child/merge/split decisions; schema supports dated relations but no automated legal entity adjudication is claimed.
+- Extend official REMP workbook source-record discovery and GA deposits with state registries, ASX/issuer project evidence, machine-resolved cross-source identities and stable project IDs. REMP candidates are not automatically counted as Projects; no full national Census yet.
 - Discover new issuer/ASX announcements (current registry refreshes known document URLs only), bind new table extractions to new SHA versions and extend event timelines.
 - Expand same-scope composition, recovery/mineralogy/NORM, development, approvals, financing and offtake evidence. No geological type is substituted for processing difficulty.
-- Add versioned roads, operational rail and power layers with complete spatial queries. Only port proximity is currently integrated.
+- GA road, operational rail and power layers now have versioned source definitions and complete project-scoped ArcGIS retrieval with distance/coverage checks; actual national coverage is pending first durable layer snapshots. Existing offline pilot still contains ports only.
 - Expand beyond the two-scope pilot, freeze comparable six-domain cohorts and document expert AHP judgments if actually obtained.
 - Measurement uncertainty requires source-supported bounds; the existing rounding experiment is not a measurement-error model.
 - Cohort deletion returns no numerical result with n=2; external Aim C inference is explicitly incomplete until independent predictors and adequate samples exist.
