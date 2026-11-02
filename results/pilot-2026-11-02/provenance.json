@@ -1,0 +1,55 @@
+{
+  "run_id": "20261102T120424-6e163b40",
+  "status": "COMPLETED",
+  "cutoff": "2026-11-02",
+  "module": "all",
+  "code": {
+    "package": "0.1.0",
+    "commit": "6b8239344104213b9c8ed173726d7771da51f41e",
+    "content_sha256": "c59288fd728f93329b2cf454f7905aa3f97ea08040b6a5b9ea6a1b1675c1460e"
+  },
+  "configuration_sha256": "19431610bc926dc54f316074c6c4b9ae20236d623cb7e012ae24f3fd9513c1d7",
+  "snapshot_sha256": "6419c32f738ca4dbb4e4985b8c851126e3db96673644bb07d861bf66eec5f73c",
+  "logical_database_sha256": "b366249538d136c49a772a266a2c935c38c58806af0cd8d336c097e850928820",
+  "source_count": 4,
+  "census_by_kind": {
+    "DEPOSIT": 149,
+    "PROJECT": 2
+  },
+  "resource_defined_n": 2,
+  "development_n": 0,
+  "full_evidence_n": 0,
+  "r_results": {
+    "resource_infrastructure_pilot": {
+      "status": "COMPLETED",
+      "n": 2,
+      "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES"
+    }
+  },
+  "r_skipped": false,
+  "acquisition": [],
+  "aim_a": "RESOURCE_INFRASTRUCTURE_PILOT_ONLY",
+  "aim_b": "WEIGHTS_ROUNDING_METHOD_FUNCTION_PILOT",
+  "cohort_sensitivity": "NOT_ESTIMABLE_AFTER_DELETION_N_LT_2",
+  "aim_c": "EXTERNAL_INFERENCE_NOT_COMPLETED_INSUFFICIENT_SAMPLE_AND_PREDICTORS",
+  "open_review_issues": 0,
+  "limitations": [
+    "Pilot is not a six-domain development-potential ranking",
+    "Source reports have different effective dates; cutoff is availability, not common measurement date",
+    "No claim of latest resource completeness until source discovery covers each issuer",
+    "GIS centroid proximity is not transport feasibility",
+    "Aim C external inference requires adequate sample size and independent predictors"
+  ],
+  "independent_human_approval": "NOT_CLAIMED",
+  "files": {
+    "cohort_coverage.csv": "8494c3bb215cfec279dc8a08b4f758f0517cc8541b4a12eb928facffeefb442f",
+    "leave_out.csv": "bbf3096cbdc0990270278256511f8bafaf26fe3ab47e7ccfda366703a545d985",
+    "partial_order.csv": "564eceabbd348c7133052a92c1c70b157a2e2d0ad3e31d3b2d1988a2a61e2e0b",
+    "ranking.csv": "d605efdb2890e5bd9cc3f139abd9f907f8e07ff52478bc69177a608071669877",
+    "resources.csv": "a094d8452c3010fff62aa876b2c69a78c25782f3838dbf4b498924f7b84dec03",
+    "rounding_uncertainty.csv": "80b0a8950ad4934a3ab742389a964eb6ad1fdb8869385e8e72c0d3acc40ef6d0",
+    "snapshot_lock.json": "eef160122d03c4ecc4662b5e756fd2216764c63d5801a3c7b39d4c5037032b47",
+    "value_trace.csv": "f0f84cec8b51a319777abe9c2ced9c9abd4ca6d44365c4937113ef3b85dbcb38",
+    "weight_uncertainty.csv": "3235b14f4ebb5509b8c8e0522d7cac164f96e03104df30b70fb1c6cc04659e4e"
+  }
+}

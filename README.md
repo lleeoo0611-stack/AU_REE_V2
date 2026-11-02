@@ -55,3 +55,7 @@ with manual/weekly source refresh and retained artifacts. Source failures leave 
 Known-document refresh is implemented; discovery of new announcements is still to be added.
 
 See [migration decisions and unfinished acceptance scope](docs/migration.md).
+
+The [frozen real-source pilot results](results/pilot-2026-11-02/README.md) include directly readable
+ranking, sensitivity, source-level trace and exact replay inputs. They are limited scientific outputs,
+not acceptance of all V2 research requirements.

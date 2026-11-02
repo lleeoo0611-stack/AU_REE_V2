@@ -104,6 +104,7 @@ def execute(args):
             'r_results':results,'r_skipped':args.skip_r,'acquisition':acquisition,
             'aim_a': 'RESOURCE_INFRASTRUCTURE_PILOT_ONLY' if results else 'COVERAGE_ONLY',
             'aim_b': 'WEIGHTS_ROUNDING_METHOD_FUNCTION_PILOT' if results else 'NOT_RUN',
+            'cohort_sensitivity': 'NOT_ESTIMABLE_AFTER_DELETION_N_LT_2' if len(resources)<3 else 'LEAVE_ONE_PROJECT_OUT',
             'aim_c': 'EXTERNAL_INFERENCE_NOT_COMPLETED_INSUFFICIENT_SAMPLE_AND_PREDICTORS',
             'open_review_issues':len(issues),'limitations':config['limitations'],
             'independent_human_approval':'NOT_CLAIMED','output_dir':str(out)}

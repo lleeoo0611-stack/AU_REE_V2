@@ -2,6 +2,7 @@
 import json
 import urllib.parse
 import urllib.request
+import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 from .store import canonical, digest, filehash
@@ -47,10 +48,22 @@ def refresh(root, registry):
     outcomes = []
     for source in registry['sources']:
         try:
+            previous = [s for s in manifest['snapshots'] if s['key']==source['key']]
+            latest = max(previous,key=lambda s:s['acquired_at']) if previous else {}
             if source['kind'] in ('arcgis_census', 'arcgis_gis'):
                 raw = (canonical(arcgis(source['url'], source.get('where', '1=1'))) + '\n').encode()
+                headers={}
             else:
-                raw, _ = request(source['url'])
+                conditional={}
+                if latest.get('etag'):conditional['If-None-Match']=latest['etag']
+                if latest.get('last_modified'):conditional['If-Modified-Since']=latest['last_modified']
+                try:
+                    raw, headers = request(source['url'],headers=conditional)
+                except urllib.error.HTTPError as exc:
+                    if exc.code==304 and latest:
+                        outcomes.append({'key':source['key'],'status':'UNCHANGED_HTTP_304','sha256':latest['sha256']})
+                        continue
+                    raise
                 if source['kind'] == 'pdf' and not raw.startswith(b'%PDF'):
                     raise ValueError('Not a PDF response')
             import hashlib
@@ -64,7 +77,8 @@ def refresh(root, registry):
             path.write_bytes(raw)
             now = datetime.now(timezone.utc).isoformat()
             entry = {**source, 'sha256': sha, 'path': path.relative_to(root).as_posix(),
-                     'acquired_at': now, 'available_date': now[:10]}
+                     'acquired_at': now, 'available_date': now[:10],
+                     'etag':headers.get('ETag'),'last_modified':headers.get('Last-Modified')}
             manifest['snapshots'].append(entry)
             outcomes.append({'key': source['key'], 'status': 'ADDED', 'sha256': sha})
         except Exception as exc:

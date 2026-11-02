@@ -1,4 +1,5 @@
 import copy
+import hashlib
 import json
 import math
 import os
@@ -90,6 +91,39 @@ class CoreTests(unittest.TestCase):
         result=resource_values(db,CUTOFF,{s['sha256'] for s in snapshots})
         self.assertEqual(1,len(result));self.assertNotIn(original,result)
         self.assertGreater(db.execute('SELECT COUNT(*) FROM review_queue').fetchone()[0],0)
+
+    def test_new_document_version_retains_history_and_requires_new_extraction(self):
+        shutil.copytree(ROOT/'data',self.work/'data')
+        db=self.db();original=select_snapshots(self.work,CUTOFF)
+        ingest_sources(db,self.work,original);ingest_claims(db,self.work,original,CUTOFF)
+        before_ids={r[0] for r in db.execute('SELECT entity_id FROM entities')}
+        path=self.work/'data/manifest.json';manifest=json.loads(path.read_text())
+        source=next(s for s in manifest['snapshots'] if s['key']=='mt_weld_2024')
+        revised=copy.deepcopy(source)
+        raw=(self.work/source['path']).read_bytes()+b'\n% synthetic revised-byte test only\n'
+        revised.update(path='data/snapshots/test-revised.pdf',sha256=hashlib.sha256(raw).hexdigest(),acquired_at='2026-11-02T23:59:59+00:00')
+        (self.work/revised['path']).write_bytes(raw)
+        manifest['snapshots'].append(revised);path.write_text(json.dumps(manifest))
+        selected=select_snapshots(self.work,CUTOFF)
+        ingest_sources(db,self.work,selected);ingest_claims(db,self.work,selected,CUTOFF)
+        self.assertEqual(before_ids,{r[0] for r in db.execute('SELECT entity_id FROM entities')})
+        self.assertEqual(5,db.execute('SELECT COUNT(*) FROM sources').fetchone()[0])
+        result=resource_values(db,CUTOFF,{s['sha256'] for s in selected})
+        self.assertEqual(1,len(result))
+        self.assertGreater(db.execute("SELECT COUNT(*) FROM review_queue WHERE reason='EXTRACTION_VERSION_MISMATCH'").fetchone()[0],0)
+
+    def test_unreadable_one_pdf_does_not_block_other_project(self):
+        db=self.db();snapshots=select_snapshots(ROOT,CUTOFF)
+        ingest_sources(db,ROOT,snapshots)
+        from pypdf import PdfReader
+        def read(path):
+            if 'mt_weld' in str(path):raise OSError('one unavailable document')
+            return PdfReader(path)
+        with patch('pypdf.PdfReader',side_effect=read):
+            ingest_claims(db,ROOT,snapshots,CUTOFF)
+        result=resource_values(db,CUTOFF,{s['sha256'] for s in snapshots})
+        self.assertEqual(1,len(result))
+        self.assertGreater(db.execute("SELECT COUNT(*) FROM review_queue WHERE reason='EXTRACTION_READ_FAILED'").fetchone()[0],0)
 
     def test_arcgis_partial_or_duplicate_response_refused(self):
         replies=[{'objectIds':[1,2],'objectIdFieldName':'OBJECTID'},

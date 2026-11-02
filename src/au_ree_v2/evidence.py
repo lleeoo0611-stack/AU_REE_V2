@@ -94,9 +94,12 @@ def ingest_claims(db, root, snapshots, cutoff, project=None):
                 reasons.append('EXTRACTION_VERSION_MISMATCH')
             if s['kind']=='pdf' and o.get('pdf_page'):
                 from pypdf import PdfReader
-                text = PdfReader(Path(root)/s['path']).pages[o['pdf_page']-1].extract_text()
-                if not all(marker in text for marker in o.get('page_markers', [])):
-                    reasons.append('EXTRACTION_PAGE_CHECK_FAILED')
+                try:
+                    text = PdfReader(Path(root)/s['path']).pages[o['pdf_page']-1].extract_text()
+                    if not all(marker in text for marker in o.get('page_markers', [])):
+                        reasons.append('EXTRACTION_PAGE_CHECK_FAILED')
+                except Exception:
+                    reasons.append('EXTRACTION_READ_FAILED')
             obsid = digest([eid, s['sha256'], o])
             db.execute('INSERT OR IGNORE INTO observations VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
                        (obsid, eid, o['variable'], o.get('value'), o.get('unit'), o.get('basis'),

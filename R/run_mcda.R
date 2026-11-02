@@ -35,7 +35,9 @@ for(scenario in unique(weights$scenario)) {
   }
   summarize<-function(M,label)data.frame(scenario,project_id=d$project_id,uncertainty=label,
       median=apply(M,1,median),q05=apply(M,1,quantile,.05),q95=apply(M,1,quantile,.95),
-      frequency_top3=rowMeans(M<=3),frequency_top5=rowMeans(M<=5),
+      frequency_first=rowMeans(M==1),
+      frequency_top3=if(nrow(X)>=3)rowMeans(M<=3) else NA_real_,
+      frequency_top5=if(nrow(X)>=5)rowMeans(M<=5) else NA_real_,
       interpretation='Preference/model frequency; not development success probability')
   all_weight[[scenario]]<-summarize(W,'WEIGHTS_ONLY')
   all_rounding[[scenario]]<-summarize(D,'SOURCE_ROUNDING_ONLY_NOT_MEASUREMENT_UNCERTAINTY')
