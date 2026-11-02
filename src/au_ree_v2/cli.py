@@ -68,6 +68,21 @@ def execute(args):
         gis_values={}
         if args.module in ('all','gis','analyze','rebuild'):
             gis_values=run_gis(db,root,snapshots,run_id,resources)
+        gis_rows=[]
+        for eid,metrics in sorted(gis_values.items()):
+            for variable,v in sorted(metrics.items()):
+                gis_rows.append({'entity_id':eid,'variable':variable,'distance_km':v['value'],
+                                 'layer_sha256':v['layer_sha256'],
+                                 'coordinate_source_sha256':v['coordinate_source_sha256'],
+                                 'method':v['method'],
+                                 'coverage_scope':v['coverage_scope'],
+                                 'radius_km':v['radius_km'],
+                                 'source_where':v['source_where'],
+                                 'limitation':v['limitation']})
+        write_csv(out/'gis_metrics.csv',gis_rows,
+                  ['entity_id','variable','distance_km','layer_sha256',
+                   'coordinate_source_sha256','method','coverage_scope',
+                   'radius_km','source_where','limitation'])
         results={};prepared={'panels':{},'coverage':[]}
         if args.module in ('all','analyze','rebuild'):
             prepared=prepare(db,args.as_of,snapshots,resources,gis_values,config,out,args.project)
@@ -100,6 +115,7 @@ def execute(args):
         summary={'run_id':run_id,'status':'COMPLETED','cutoff':args.as_of,'module':args.module,
             'code':version,'configuration_sha256':digest(configuration),'snapshot_sha256':digest(snapshots),
             'logical_database_sha256':digest(dump),'source_count':len(snapshots),'census_by_kind':by_kind,
+            'gis_validated_distances':{kind:sum(r['variable']==kind for r in gis_rows) for kind in sorted({r['variable'] for r in gis_rows})},
             'resource_defined_n':len(resources),'development_n':sum(c['development'] for c in prepared['coverage']),
             'full_evidence_n':sum(c['full_evidence'] for c in prepared['coverage']),
             'r_results':results,'r_skipped':args.skip_r,'acquisition':acquisition,
