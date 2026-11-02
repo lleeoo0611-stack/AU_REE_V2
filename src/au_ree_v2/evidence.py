@@ -1,6 +1,7 @@
 """Explicit basis and scope checks, no inference of independent approval."""
 import json
 import math
+import re
 from pathlib import Path
 from .store import canonical, digest, entity, issue
 from .census import ingest_workbook
@@ -29,6 +30,8 @@ def ingest_sources(db, root, snapshots):
         raw = json.loads((Path(root) / s['path']).read_text(encoding='utf-8'))
         for feature in raw['features']:
             a = feature['attributes']
+            if s.get('commodity_pattern') and not re.search(s['commodity_pattern'],str(a.get(s['commodity_field'],'')),re.I):
+                continue
             native = a.get(s['id_field'])
             if native is None:
                 issue(db, None, s['sha256'], 'MISSING_NATIVE_ID', canonical(a))
@@ -43,7 +46,7 @@ def ingest_sources(db, root, snapshots):
                 lon = lat = None
             db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
                        (eid, s['sha256'], a[s['name_field']], a.get('state'), lon, lat,
-                        a.get('mineraldeposittype'), a.get('currentstatus'), canonical(a)))
+                        a.get('mineraldeposittype'), a.get(s.get('activity_field','currentstatus')), canonical(a)))
 
 def normalize(observation):
     """Mt × % -> kt = Mt × percent × 10; Mt × ppm -> kt = Mt × ppm / 1000."""
@@ -67,7 +70,7 @@ def normalize(observation):
     if o.get('category') in ('EXPLORATION_TARGET', 'RESERVE') and o['variable'] in ('ore_mt', 'grade'):
         reasons.append('NOT_MINERAL_RESOURCE')
     if o['variable'] in ('ore_mt', 'grade','contained_treo_kt') and o.get('category') not in (
-        'MEASURED','INDICATED','INFERRED','MEASURED_INDICATED_INFERRED_TOTAL','MEASURED_INDICATED_TOTAL'):
+        'MEASURED','INDICATED','INFERRED','MEASURED_INDICATED_INFERRED_TOTAL','MEASURED_INDICATED_TOTAL','INDICATED_INFERRED_TOTAL'):
         reasons.append('UNSUPPORTED_RESOURCE_CATEGORY')
     if o.get('review_required'):
         reasons.append('SCIENTIFIC_REVIEW_REQUIRED')
@@ -82,7 +85,7 @@ def ingest_claims(db, root, snapshots, cutoff, project=None):
         source = by_key.get(p['identity_source'])
         if not source:
             continue
-        eid = entity(db, 'project_registry_v1', p['id'], 'PROJECT')
+        eid = entity(db, p.get('entity_namespace','project_registry_v1'), p['id'], 'PROJECT')
         db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
                    (eid, source['sha256'], p['name'], p['state'], p.get('longitude'), p.get('latitude'),
                     p.get('deposit_type'), None, canonical(p)))

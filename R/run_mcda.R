@@ -103,5 +103,19 @@ if('official_status' %in% names(d)) {
   }
   writeout(do.call(rbind,associations),'aim_c_stage_rank_association')
 }
+if('deposit_type' %in% names(d)) {
+  hostrows<-list()
+  for(nm in names(all_ranks)) {
+    rr<-all_ranks[[nm]]
+    for(host in unique(d$deposit_type[!is.na(d$deposit_type) & nzchar(d$deposit_type)])) {
+      idx<-which(d$deposit_type==host)
+      hostrows[[paste(nm,host)]]<-data.frame(scenario=nm,deposit_type=host,n=length(idx),
+        median_rank=median(rr$promethee_rank[idx]),min_rank=min(rr$promethee_rank[idx]),
+        max_rank=max(rr$promethee_rank[idx]),sample_n=nrow(d),
+        interpretation='External host-type descriptive contrast; small selected sample, no significance or causal claim')
+    }
+  }
+  if(length(hostrows))writeout(do.call(rbind,hostrows),'aim_c_host_type_description')
+}
 writeout(data.frame(R_version=R.version.string,seed,reps,threshold=p,concentration),'runtime')
 cat('Completed',nrow(X),'resource-scoped alternatives;',length(codes),'criteria.\n')

@@ -5,7 +5,8 @@ import subprocess
 import sys
 import uuid
 import platform
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timezone, timedelta
+from .hierarchy import build as build_hierarchy
 from pathlib import Path
 from . import __version__
 from .acquisition import refresh, select_snapshots
@@ -30,7 +31,7 @@ def execute(args):
     config=json.loads((root/'config/research.json').read_text(encoding='utf-8'))
     registry=json.loads((root/'config/sources.json').read_text(encoding='utf-8'))
     date.fromisoformat(args.as_of)
-    if args.as_of > datetime.now(timezone.utc).date().isoformat():
+    if args.as_of > datetime.now(timezone(timedelta(hours=8))).date().isoformat():
         raise ValueError('Future cutoff is not supported')
     if args.snapshot_lock and args.refresh:
         raise ValueError('--snapshot-lock cannot be combined with --refresh')
@@ -67,6 +68,8 @@ def execute(args):
         if args.module!='bootstrap':
             ingest_claims(db,root,snapshots,args.as_of,args.project)
         resources=resource_values(db,args.as_of,{s['sha256'] for s in snapshots})
+        hierarchy=build_hierarchy(db,snapshots)
+        write_csv(out/'entity_hierarchy.csv',hierarchy,['parent_id','parent_kind','child_id','child_kind','relation','effective_date','source_sha','locator'])
         gis_values={}
         if args.module in ('all','gis','analyze','rebuild'):
             gis_values=run_gis(db,root,snapshots,run_id,resources)
@@ -134,7 +137,7 @@ def execute(args):
                   ['project_id','project_name','state','owner','strategic_evidence',
                    'technical_evidence','development_evidence','commercial_evidence',
                    'source_sha256','locator','status','source_url'])
-        dimension_rows=domain_evidence_coverage(db,inventory,resources,gis_values,national_inventory)
+        dimension_rows=domain_evidence_coverage(db,inventory,resources,gis_values,national_inventory,source_shas)
         write_csv(out/'project_domain_evidence.csv',dimension_rows,
                   ['project_id','project_name','domain','evidence_state','evidence_reference','scorable'])
         candidates=[]
@@ -209,7 +212,7 @@ def execute(args):
             'resource_defined_n':len(resources),'development_n':sum(c['development'] for c in prepared['coverage']),
             'full_evidence_n':sum(c['full_evidence'] for c in prepared['coverage']),
             'r_results':results,'r_skipped':args.skip_r,'acquisition':acquisition,
-            'aim_a': ('TWO_ISSUER_SCOPED_PROJECTS_PLUS_WA_20_SOURCE_SUMMARY_SCREEN_NOT_FULL_DEVELOPMENT_MCDA' if results.get('official_wa_resource_screen',{}).get('status')=='COMPLETED' else 'RESOURCE_INFRASTRUCTURE_PILOT_OR_COVERAGE_ONLY'),
+            'aim_a': ('ISSUER_SCOPED_RESOURCE_INFRASTRUCTURE_AND_SEPARATE_WA_SUMMARY_SCREEN_NOT_SIX_DOMAIN' if results else 'COVERAGE_ONLY'),
             'aim_b': ('SCENARIO_METHOD_WEIGHT_ROUNDING_COHORT_SCREEN_20_AND_PILOT' if results.get('official_wa_resource_screen',{}).get('status')=='COMPLETED' else 'NOT_RUN'),
             'cohort_sensitivity': 'NOT_ESTIMABLE_AFTER_DELETION_N_LT_2' if len(resources)<3 else 'LEAVE_ONE_PROJECT_OUT',
             'aim_c': ('NATIONAL_DEPOSIT_GEOGRAPHY_AND_WA_STATUS_SCORE_ASSOCIATION_DESCRIPTIVE_NOT_CAUSAL'

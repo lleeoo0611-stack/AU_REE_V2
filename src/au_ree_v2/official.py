@@ -135,9 +135,11 @@ def exact_deposit_candidates(db, inventory, selected_shas):
                         "status":"UNVERIFIED_LINK_NO_GIS_RELEASE"})
     return out
 
-def domain_evidence_coverage(db, inventory, resources, gis_values, prospectus=None):
+def domain_evidence_coverage(db, inventory, resources, gis_values, prospectus=None, selected_shas=None):
     """Descriptive source facts must not silently become six-domain scored values."""
     project_ids={r[0] for r in db.execute("SELECT entity_id FROM entities WHERE kind='PROJECT'")}
+    if selected_shas is not None:
+        project_ids &= {r['entity_id'] for r in db.execute('SELECT entity_id,source_sha FROM records') if r['source_sha'] in selected_shas}
     listed={r["project_id"]:r for r in inventory}
     profiles={r["project_id"]:r for r in (prospectus or [])}
     rows=[]
@@ -163,9 +165,17 @@ def domain_evidence_coverage(db, inventory, resources, gis_values, prospectus=No
             if state=="MISSING" and description_key and profile.get(description_key):
                 state="AUSTRADE_DESCRIPTIVE_ONLY"
                 evidence=profile[description_key]
-            rows.append({"project_id":eid,"project_name":listed_row.get("project_name") or profile.get("project_name"),
+            variables={'Strategic':('magnet_reo_share_pct','ndpr_share_pct'),
+                       'Technical':('recovery_pct','uranium_ppm','thorium_ppm'),
+                       'Development':('study_maturity_ord',),
+                       'Commercial':('conditional_senior_debt_usd_m','offtake_nameplate_pct','financing_ord')}.get(domain,())
+            observations=[dict(o) for o in db.execute("SELECT variable,source_sha,locator FROM observations WHERE entity_id=? AND status='AUTO_VALIDATED'",(eid,)) if o['variable'] in variables and (selected_shas is None or o['source_sha'] in selected_shas)]
+            if observations:
+                state='PRIMARY_SCOPED_OBSERVATIONS';evidence=canonical(observations)
+            name=db.execute('SELECT name FROM records WHERE entity_id=? ORDER BY source_sha LIMIT 1',(eid,)).fetchone()[0]
+            rows.append({"project_id":eid,"project_name":listed_row.get("project_name") or profile.get("project_name") or name,
                          "domain":domain,"evidence_state":state,"evidence_reference":evidence,
-                         "scorable":int((domain=="Resource" and state=="SCOPED_RESOURCE_VALIDATED") or
+                         "scorable":int(any(o['variable'] in {'Strategic':('magnet_reo_share_pct',),'Technical':('recovery_pct',),'Development':('study_maturity_ord',),'Commercial':('financing_ord',)}.get(domain,()) for o in observations) or (domain=="Resource" and state=="SCOPED_RESOURCE_VALIDATED") or
                                         (domain=="Infrastructure" and state=="OFFICIAL_DISTANCE_AVAILABLE"))})
     return rows
 

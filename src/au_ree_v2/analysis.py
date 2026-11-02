@@ -127,7 +127,10 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
         for panel, codes in config['panels'].items():
             if not all(c in scored for c in codes) or (panel=='six_domain' and not is_full):
                 continue
-            row={'project_id':eid,'project_name':name,'scope':resource['scope']}
+            host=next((r for r in db.execute('''SELECT r.deposit_type,r.source_sha FROM relations rel JOIN records r
+                ON r.entity_id=rel.child_id AND r.source_sha=rel.source_sha WHERE rel.parent_id=?
+                AND rel.relation='REPRESENTATIVE_POINT_NOT_ENTITY_EQUIVALENCE' ORDER BY r.source_sha''',(eid,)) if r['deposit_type'] and r['source_sha'] in selected_shas),None)
+            row={'project_id':eid,'project_name':name,'scope':resource['scope'],'deposit_type':host[0] if host else None}
             for code in codes:
                 c=criteria[code]; raw=values[c['variable']]
                 row[code]=scored[code]
@@ -149,7 +152,7 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
             continue
         codes=config['panels'][panel]
         folder=out/panel
-        write_csv(folder/'matrix.csv',rows,['project_id','project_name','scope',*[key for code in codes for key in (code,code+'_alt',code+'_lower',code+'_upper')]])
+        write_csv(folder/'matrix.csv',rows,['project_id','project_name','scope','deposit_type',*[key for code in codes for key in (code,code+'_alt',code+'_lower',code+'_upper')]])
         write_csv(folder/'criteria.csv',[criteria[c] for c in codes],['code','domain','direction','low','high','function'])
         weights=[]
         for scenario, domain_weights in config['scenarios'].items():

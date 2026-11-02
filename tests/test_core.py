@@ -148,11 +148,11 @@ class CoreTests(unittest.TestCase):
         self.assertTrue(10<nearest(120.1,-25.1,[point])<20)
         with self.assertRaises(ValueError):nearest(120,-25,[])
 
-    def test_project_aois_use_two_official_anchors_and_are_conservative(self):
+    def test_project_aois_use_official_anchors_and_are_conservative(self):
         manifest=json.loads((ROOT/'data/manifest.json').read_text(encoding='utf-8'))
         windows=project_windows(ROOT,manifest,160)
-        self.assertEqual(['browns-range','mt-weld'],[w['project_id'] for w in windows])
-        self.assertEqual(2,len(windows))
+        self.assertEqual(['browns-range','mount-ridley-mia','mt-weld','nolans-rare-earths-project','yttria'],[w['project_id'] for w in windows])
+        self.assertEqual(5,len(windows))
         for window in windows:
             self.assertEqual(160,window['radius_km'])
             lon,lat=window['longitude'],window['latitude']

@@ -155,6 +155,319 @@
           "rounding_half_width": null
         }
       ]
+    },
+    {
+      "id": "nolans-rare-earths-project",
+      "name": "Nolans Project",
+      "state": "NT",
+      "identity_source": "nolans_ar2025",
+      "entity_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "identity_locator": "PDF page 15",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 334715,
+      "coordinate_role": "Government representative deposit point, not project footprint",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 56,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2017-06-07",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2017-06-07",
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "locator": "physical PDF p.15; resource table / stated event",
+          "pdf_page": 15,
+          "page_markers": [
+            "TOTAL 56 2.6",
+            "26.4"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "grade",
+          "value": 2.6,
+          "unit": "%",
+          "basis": "TREO",
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2017-06-07",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2017-06-07",
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "locator": "physical PDF p.15; resource table / stated event",
+          "pdf_page": 15,
+          "page_markers": [
+            "TOTAL 56 2.6",
+            "26.4"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "ndpr_share_pct",
+          "value": 26.4,
+          "unit": "%",
+          "basis": "NdPr_REO_DIV_TREO",
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2017-06-07",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2017-06-07",
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "locator": "physical PDF p.15; resource table / stated event",
+          "pdf_page": 15,
+          "page_markers": [
+            "TOTAL 56 2.6",
+            "26.4"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        },
+        {
+          "variable": "offtake_nameplate_pct",
+          "value": 66,
+          "unit": "%",
+          "basis": "BINDING_NDPR_OFFTAKE_SHARE",
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2025-06-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "locator": "physical PDF p.7; resource table / stated event",
+          "pdf_page": 7,
+          "page_markers": [
+            "66 per cent"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        },
+        {
+          "variable": "conditional_senior_debt_usd_m",
+          "value": 775,
+          "unit": "USD million",
+          "basis": "CONDITIONAL_NOT_DRAWN",
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2025-06-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "locator": "physical PDF p.20; resource table / stated event",
+          "pdf_page": 20,
+          "page_markers": [
+            "US$775 million",
+            "conditional"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        },
+        {
+          "variable": "study_maturity_ord",
+          "value": 4,
+          "unit": "ordinal",
+          "basis": "DATED_DFS_REAFFIRMED",
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2025-06-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "locator": "physical PDF p.17; resource table / stated event",
+          "pdf_page": 17,
+          "page_markers": [
+            "7 February 2019",
+            "Definitive Feasibility Study"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        }
+      ],
+      "deposit_type": "Apatite/carbonatite"
+    },
+    {
+      "id": "mount-ridley-mia",
+      "name": "Mount Ridley Project — Central Mia scope",
+      "state": "WA",
+      "identity_source": "mia_ar2024",
+      "entity_namespace": "project_registry_v1",
+      "identity_locator": "PDF page 13",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 923795,
+      "coordinate_role": "Government representative deposit point, not project footprint",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 168,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Central Mia only; excludes later Grass Patch scope",
+          "statement_id": "mount-ridley-mia-2024-09-20",
+          "category": "INFERRED",
+          "effective_date": "2024-09-20",
+          "source_key": "mia_ar2024",
+          "source_sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95",
+          "locator": "physical PDF p.13; resource table / stated event",
+          "pdf_page": 13,
+          "page_markers": [
+            "Mia Inferred 168",
+            "1,201"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "grade",
+          "value": 1201,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "Central Mia only; excludes later Grass Patch scope",
+          "statement_id": "mount-ridley-mia-2024-09-20",
+          "category": "INFERRED",
+          "effective_date": "2024-09-20",
+          "source_key": "mia_ar2024",
+          "source_sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95",
+          "locator": "physical PDF p.13; resource table / stated event",
+          "pdf_page": 13,
+          "page_markers": [
+            "Mia Inferred 168",
+            "1,201"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "magnet_reo_share_pct",
+          "value": 25,
+          "unit": "%",
+          "basis": "PrNdDyTb_REO_DIV_TREO",
+          "scope": "Central Mia only; excludes later Grass Patch scope",
+          "statement_id": "mount-ridley-mia-2024-09-20",
+          "category": "INFERRED",
+          "effective_date": "2024-09-20",
+          "source_key": "mia_ar2024",
+          "source_sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95",
+          "locator": "physical PDF p.13; resource table / stated event",
+          "pdf_page": 13,
+          "page_markers": [
+            "Mia Inferred 168",
+            "1,201"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        }
+      ],
+      "deposit_type": "Clay/regolith"
+    },
+    {
+      "id": "yttria",
+      "name": "Yttria REE Project",
+      "state": "WA",
+      "identity_source": "yttria_2025",
+      "entity_namespace": "project_registry_v1",
+      "identity_locator": "PDF page 14",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 923836,
+      "coordinate_role": "Government representative deposit point, not project footprint",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 15,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Yttria REE resource; excludes other Asra projects",
+          "statement_id": "yttria-2025-06-30",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "yttria_2025",
+          "source_sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+          "locator": "physical PDF p.14; resource table / stated event",
+          "pdf_page": 14,
+          "page_markers": [
+            "Total 15.0 490",
+            "22.5%"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "grade",
+          "value": 490,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "Yttria REE resource; excludes other Asra projects",
+          "statement_id": "yttria-2025-06-30",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "yttria_2025",
+          "source_sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+          "locator": "physical PDF p.14; resource table / stated event",
+          "pdf_page": 14,
+          "page_markers": [
+            "Total 15.0 490",
+            "22.5%"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "magnet_reo_share_pct",
+          "value": 22.5,
+          "unit": "%",
+          "basis": "PrNdDyTb_REO_DIV_TREO",
+          "scope": "Yttria REE resource; excludes other Asra projects",
+          "statement_id": "yttria-2025-06-30",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "yttria_2025",
+          "source_sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+          "locator": "physical PDF p.14; resource table / stated event",
+          "pdf_page": 14,
+          "page_markers": [
+            "Total 15.0 490",
+            "22.5%"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        },
+        {
+          "variable": "uranium_ppm",
+          "value": 0.6,
+          "unit": "ppm",
+          "basis": "U_ELEMENT",
+          "scope": "Yttria REE resource; excludes other Asra projects",
+          "statement_id": "yttria-2025-06-30",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "yttria_2025",
+          "source_sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+          "locator": "physical PDF p.14; resource table / stated event",
+          "pdf_page": 14,
+          "page_markers": [
+            "Total 15.0 490",
+            "22.5%"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        },
+        {
+          "variable": "thorium_ppm",
+          "value": 1,
+          "unit": "ppm",
+          "basis": "Th_ELEMENT",
+          "scope": "Yttria REE resource; excludes other Asra projects",
+          "statement_id": "yttria-2025-06-30",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "yttria_2025",
+          "source_sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+          "locator": "physical PDF p.14; resource table / stated event",
+          "pdf_page": 14,
+          "page_markers": [
+            "Total 15.0 490",
+            "22.5%"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        }
+      ],
+      "deposit_type": "Clay/regolith"
     }
   ]
 }

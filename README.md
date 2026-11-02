@@ -1,5 +1,10 @@
 # AU_REE_V2
 
+Latest: [Phase 2 primary-evidence expansion](docs/phase2-primary-expansion.md) adds five issuer-scoped
+resource cases, archived road/operational rail/high-voltage power metrics, Project–resource-scope–Site
+relations and separate resource/composition analysis. [Frozen outputs](results/phase2-primary-2026-11-03/)
+retain explicit missing six-domain evidence and distinguish 203 native deposit records from unique projects.
+
 Independent Python / SQLite / R research system for Australian rare-earth projects.
 The first working slice reconstructs real public evidence, computes official GIS port distances,
 and runs a **resource/infrastructure pilot**, with full provenance and explicit limits.

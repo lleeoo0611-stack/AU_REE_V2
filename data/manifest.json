@@ -205,6 +205,107 @@
         "original_selection_sha256": "714ae3649f1d7c9e5c9c0109241e7ebed5a7c83046fcc8d452c52b2e48b08643",
         "previously_redacted_snapshot_sha256": "2bfa0b8b66697fcb8c53fdd216509262a2275e766425dbe97b4d5f451e721dd8"
       }
+    },
+    {
+      "key": "nolans_ar2025",
+      "url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
+      "kind": "pdf",
+      "publication_date": "2025-09",
+      "sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+      "path": "data/snapshots/d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f.pdf",
+      "acquired_at": "2026-11-02T16:40:58.702003+00:00",
+      "available_date": "2026-11-03",
+      "publication_date_precision": "month"
+    },
+    {
+      "key": "mia_ar2024",
+      "url": "https://announcements.asx.com.au/asxpdf/20240920/pdf/068421026p0kt4.pdf",
+      "kind": "pdf",
+      "publication_date": "2024-09-20",
+      "sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95",
+      "path": "data/snapshots/59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95.pdf",
+      "acquired_at": "2026-11-02T16:40:58.714764+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "yttria_2025",
+      "url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mdccyq4dppkh.pdf",
+      "kind": "pdf",
+      "publication_date": "2025-07-31",
+      "sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+      "path": "data/snapshots/eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668.pdf",
+      "acquired_at": "2026-11-02T16:40:58.722644+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "ga_critical",
+      "url": "https://services.ga.gov.au/gis/rest/services/AustralianCriticalMineralsOperatingMinesAndDeposits/MapServer/7",
+      "kind": "arcgis_census",
+      "publication_date": "",
+      "namespace": "GA_CRITICAL_OBJECTID_2025",
+      "id_field": "objectid",
+      "name_field": "projectname",
+      "entity_kind": "DEPOSIT",
+      "commodity_field": "commodities",
+      "commodity_pattern": "rare earth|REE|lanthan",
+      "activity_field": "status",
+      "where": "1=1",
+      "sha256": "5753752265081bac43e71eebd9307b1cc8431fcfee513e7e49b43739d0c798f7",
+      "path": "data/snapshots/5753752265081bac43e71eebd9307b1cc8431fcfee513e7e49b43739d0c798f7.json",
+      "acquired_at": "2026-11-02T16:40:58.724887+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "ga_power",
+      "url": "https://services.ga.gov.au/gis/rest/services/Electricity_Infrastructure/MapServer/2",
+      "kind": "arcgis_gis",
+      "publication_date": "",
+      "layer": "power",
+      "where": "1=1",
+      "definition": "Complete national mapped power lines, includes all reported voltage/status classes; proximity only",
+      "sha256": "3cf1eb46a0069794a26d91431c3a0569c3292191df315c2536d3a873e2f1a9a2",
+      "path": "data/snapshots/3cf1eb46a0069794a26d91431c3a0569c3292191df315c2536d3a873e2f1a9a2.json",
+      "acquired_at": "2026-11-02T16:40:58.789768+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "ga_roads_250k",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Topographic_Base_Map/MapServer/434",
+      "layer": "road",
+      "where": "class IN ('Dual Carriageway','Principal Road','Secondary Road','Minor Road')",
+      "aoi_radius_km": 160,
+      "definition": "GA TOPO250K maintained 2WD road classes; source-anchored 160 km AOI, straight-line geometry proximity; excludes tracks, not route or legal site access",
+      "sha256": "2d810adcd4b453a9d0cb977b4c010e0c73ee6868be1ddcfa42fb60e57ddef1a7",
+      "path": "data/snapshots/2d810adcd4b453a9d0cb977b4c010e0c73ee6868be1ddcfa42fb60e57ddef1a7.json",
+      "available_date": "2026-11-03",
+      "acquired_at": "2026-11-02T16:44:17.637372+00:00"
+    },
+    {
+      "key": "ga_rail_operational",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Foundation_Rail_Infrastructure/MapServer/1",
+      "layer": "rail",
+      "where": "operational_status IN ('Operational','Fully capable of operation.') AND featuresubtype IN (90015,90016)",
+      "aoi_radius_km": 500,
+      "definition": "GA foundation rail infrastructure; operational railway/siding lines only, 500 km project AOI; straight-line geometry proximity, not freight access",
+      "sha256": "bb8e1afc14c3ea818be7395a83168c432d00b2c33dd09aa362a1fd6e2382fa19",
+      "path": "data/snapshots/bb8e1afc14c3ea818be7395a83168c432d00b2c33dd09aa362a1fd6e2382fa19.json",
+      "available_date": "2026-11-03",
+      "acquired_at": "2026-11-02T16:44:17.655060+00:00"
+    },
+    {
+      "key": "ga_power_lines",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Electricity_Infrastructure/MapServer/2",
+      "layer": "power",
+      "where": "capacity_kv >= 66",
+      "aoi_radius_km": 500,
+      "definition": "GA mapped power lines >=66kV, 500 km project AOI; status, grid capacity and connection availability not independently verified",
+      "sha256": "ef6f12b5650a2f8dff4999a70134fe7ee6d4d5b8d4896dc81c6a1af79826a6b1",
+      "path": "data/snapshots/ef6f12b5650a2f8dff4999a70134fe7ee6d4d5b8d4896dc81c6a1af79826a6b1.json",
+      "available_date": "2026-11-03",
+      "acquired_at": "2026-11-02T16:44:17.674393+00:00"
     }
   ]
 }

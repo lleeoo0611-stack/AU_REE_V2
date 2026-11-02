@@ -1,5 +1,5 @@
 {
-  "version": "research-v2-multi-cohort",
+  "version": "research-v3-primary-national-hierarchy",
   "frozen_before_scoring": true,
   "cohorts": {
     "full_census": "All available source entities; counts must be stratified by entity kind. Not a complete national project census.",
@@ -20,6 +20,17 @@
       "D1",
       "I4",
       "C1"
+    ],
+    "issuer_resource_infrastructure": [
+      "R1",
+      "I1",
+      "I2",
+      "I3",
+      "I4"
+    ],
+    "issuer_resource_composition": [
+      "R1",
+      "S1"
     ]
   },
   "criteria": [
@@ -102,6 +113,39 @@
       "unit": "% TREO",
       "function": "linear",
       "interpretation": "Published WA government summary TREO grade. Mathematically related to ore tonnes and contained TREO; redundancy acknowledged. Screen only."
+    },
+    {
+      "code": "I1",
+      "variable": "road_distance_km",
+      "domain": "Infrastructure",
+      "direction": "MIN",
+      "low": 0,
+      "high": 200,
+      "unit": "km",
+      "function": "linear",
+      "interpretation": "Official geometry proximity; not access, capacity or connection cost"
+    },
+    {
+      "code": "I2",
+      "variable": "rail_distance_km",
+      "domain": "Infrastructure",
+      "direction": "MIN",
+      "low": 0,
+      "high": 1000,
+      "unit": "km",
+      "function": "linear",
+      "interpretation": "Official geometry proximity; not access, capacity or connection cost"
+    },
+    {
+      "code": "I3",
+      "variable": "power_distance_km",
+      "domain": "Infrastructure",
+      "direction": "MIN",
+      "low": 0,
+      "high": 500,
+      "unit": "km",
+      "function": "linear",
+      "interpretation": "Official geometry proximity; not access, capacity or connection cost"
     }
   ],
   "scenarios": {

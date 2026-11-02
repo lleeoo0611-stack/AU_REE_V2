@@ -36,6 +36,8 @@ jobs:
         run: Rscript tests/test_methods.R
       - name: Frozen research reconstruction
         run: au-ree-v2 all --as-of 2026-11-02 --work work/frozen
+      - name: Primary-evidence expansion and infrastructure reconstruction
+        run: au-ree-v2 all --as-of 2026-11-03 --work work/primary
       - name: Incremental public update (isolated live-source smoke)
         id: live
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
@@ -102,6 +104,7 @@ jobs:
           name: research-${{ github.sha }}-${{ github.run_id }}
           path: |
             work/frozen/runs/
+            work/primary/runs/
             work/updated/runs/
             work/acquisition_status.json
             data/manifest.json
