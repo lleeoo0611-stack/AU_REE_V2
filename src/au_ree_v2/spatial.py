@@ -47,6 +47,8 @@ def project_windows(root, manifest, radius_km):
             native = attrs.get(s['id_field'])
             if native is None:
                 continue
+            if isinstance(native, float) and native.is_integer():
+                native=int(native)
             g = f.get('geometry') or {}
             lon = attrs.get('longitude', g.get('x'))
             lat = attrs.get('latitude', g.get('y'))
