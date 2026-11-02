@@ -36,8 +36,10 @@ jobs:
         run: Rscript tests/test_methods.R
       - name: Frozen research reconstruction
         run: au-ree-v2 all --as-of 2026-11-02 --work work/frozen
-      - name: Incremental public update
-        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
+      - name: Incremental public update (isolated live-source smoke)
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh) || (github.event_name == 'push' && github.ref_name == 'feat/reproducible-research-core')
+        continue-on-error: true
+        timeout-minutes: 15
         run: |
           au-ree-v2 acquire > work/acquisition_status.json
           au-ree-v2 all --work work/updated
