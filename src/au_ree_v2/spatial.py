@@ -62,7 +62,11 @@ def project_windows(root, manifest, radius_km):
                     'radius_km':radius_km, 'bbox':bounding_window(lon, lat, radius_km),
                     'coordinate_source_sha256':sha})
     if not out:
-        raise ValueError('No source-anchored registered project coordinates; AOI acquisition refused')
+        raise ValueError('No source-anchored registered project coordinates; AOI acquisition refused: ' +
+                         repr({'available':list(available),'position_count':len(positions),
+                               'position_sample':list(positions)[:3],
+                               'requested':[(p.get('coordinate_source'), str(p.get('coordinate_native_id')))
+                                            for p in claims['projects']]}))
     return out
 
 def covered_project(inventory, project_id, lon, lat):
