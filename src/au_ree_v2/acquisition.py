@@ -90,12 +90,14 @@ def refresh(root, registry):
                     raise
                 if source['kind'] == 'pdf' and not raw.startswith(b'%PDF'):
                     raise ValueError('Not a PDF response')
+                if source['kind'] == 'xlsx_census' and not raw.startswith(b'PK\\x03\\x04'):
+                    raise ValueError('Not an OOXML workbook response')
             import hashlib
             sha = hashlib.sha256(raw).hexdigest()
             if any(s['sha256'] == sha and s['key'] == source['key'] for s in manifest['snapshots']):
                 outcomes.append({'key': source['key'], 'status': 'UNCHANGED', 'sha256': sha})
                 continue
-            suffix = '.pdf' if source['kind'] == 'pdf' else '.json'
+            suffix = '.pdf' if source['kind'] == 'pdf' else '.xlsx' if source['kind'] == 'xlsx_census' else '.json'
             path = root / 'data/snapshots' / (sha + suffix)
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(raw)
