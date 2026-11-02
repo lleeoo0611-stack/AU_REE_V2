@@ -1,9 +1,62 @@
 {
-  "version": "sources-v1",
+  "version": "sources-v2-aoi",
   "sources": [
-    {"key":"ga_aimr", "kind":"arcgis_census", "url":"https://services.ga.gov.au/gis/rest/services/AustraliasIdentifiedMineralResources/MapServer/52", "namespace":"GA_ENO", "id_field":"eno", "name_field":"entity_id", "entity_kind":"DEPOSIT", "where":"1=1"},
-    {"key":"ga_ports", "kind":"arcgis_gis", "url":"https://services.ga.gov.au/gis/rest/services/Maritime_Facilities/MapServer/0", "layer":"port", "where":"1=1", "definition":"GA National Major Ports; straight-line proximity, not route access"},
-    {"key":"mt_weld_2024", "kind":"pdf", "url":"https://wcsecure.weblink.com.au/pdf/LYC/02835257.pdf", "publication_date":"2024-08-05"},
-    {"key":"browns_range_2025", "kind":"pdf", "url":"https://announcements.asx.com.au/asxpdf/20250915/pdf/06p6zt0hxtpg01.pdf", "publication_date":"2025-09-15"}
+    {
+      "key": "ga_aimr",
+      "kind": "arcgis_census",
+      "url": "https://services.ga.gov.au/gis/rest/services/AustraliasIdentifiedMineralResources/MapServer/52",
+      "namespace": "GA_ENO",
+      "id_field": "eno",
+      "name_field": "entity_id",
+      "entity_kind": "DEPOSIT",
+      "where": "1=1"
+    },
+    {
+      "key": "ga_ports",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Maritime_Facilities/MapServer/0",
+      "layer": "port",
+      "where": "1=1",
+      "definition": "GA National Major Ports; straight-line proximity, not route access"
+    },
+    {
+      "key": "mt_weld_2024",
+      "kind": "pdf",
+      "url": "https://wcsecure.weblink.com.au/pdf/LYC/02835257.pdf",
+      "publication_date": "2024-08-05"
+    },
+    {
+      "key": "browns_range_2025",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20250915/pdf/06p6zt0hxtpg01.pdf",
+      "publication_date": "2025-09-15"
+    },
+    {
+      "key": "ga_roads_250k",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Topographic_Base_Map/MapServer/434",
+      "layer": "road",
+      "where": "class IN ('Dual Carriageway','Principal Road','Secondary Road','Minor Road')",
+      "aoi_radius_km": 160,
+      "definition": "GA TOPO250K maintained 2WD road classes; source-anchored 160 km AOI, straight-line geometry proximity; excludes tracks, not route or legal site access"
+    },
+    {
+      "key": "ga_rail_operational",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Foundation_Rail_Infrastructure/MapServer/1",
+      "layer": "rail",
+      "where": "operational_status IN ('Operational','Fully capable of operation.') AND featuresubtype IN (90015,90016)",
+      "aoi_radius_km": 500,
+      "definition": "GA foundation rail infrastructure; operational railway/siding lines only, 500 km project AOI; straight-line geometry proximity, not freight access"
+    },
+    {
+      "key": "ga_power_lines",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Electricity_Infrastructure/MapServer/2",
+      "layer": "power",
+      "where": "capacity_kv >= 66",
+      "aoi_radius_km": 500,
+      "definition": "GA mapped power lines >=66kV, 500 km project AOI; status, grid capacity and connection availability not independently verified"
+    }
   ]
 }
