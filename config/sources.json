@@ -1,5 +1,5 @@
 {
-  "version": "sources-v2-aoi",
+  "version": "sources-v3-aoi-remp",
   "sources": [
     {
       "key": "ga_aimr",
@@ -57,6 +57,13 @@
       "where": "capacity_kv >= 66",
       "aoi_radius_km": 500,
       "definition": "GA mapped power lines >=66kV, 500 km project AOI; status, grid capacity and connection availability not independently verified"
+    },
+    {
+      "key": "disr_remp_2025",
+      "kind": "xlsx_census",
+      "url": "https://www.industry.gov.au/sites/default/files/2025-12/resources-and-energy-major-projects-2025-data.xlsx",
+      "publication_date": "2025-12-01",
+      "definition": "Office of the Chief Economist 2025 major projects list, A$50m+; candidate source records only, not a complete REE project census"
     }
   ]
 }
