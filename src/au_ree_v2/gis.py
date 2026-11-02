@@ -96,3 +96,83 @@ def run(db, root, snapshots, run_id, project_ids):
             except Exception as exc:
                 issue(db,eid,s['sha256'],'GIS_FAILED',str(exc))
     return output
+
+
+def national_deposit_port_distances(db, root, snapshots, run_id):
+    """Descriptive national GA *deposit* GIS only, never a Project score.
+
+    The GA ports layer is global with a verified complete ID inventory; project
+    scoped road/rail/power AOIs cannot be reused for national deposit distances.
+    """
+    selected={s["key"]:s for s in snapshots}
+    deposits=selected.get("ga_aimr")
+    ports=selected.get("ga_ports")
+    if not deposits or not ports:
+        return []
+    data=json.loads((Path(root)/ports["path"]).read_text(encoding="utf-8"))
+    inv=data.get("inventory",{})
+    if not (inv.get("complete") and inv.get("scope","global")=="global"
+            and data.get("spatialReference",{}).get("wkid")==4326):
+        issue(db,None,ports["sha256"],"DEPOSIT_PORT_GLOBAL_INVENTORY_MISSING",ports["key"])
+        return []
+    try:
+        if not data.get("features"):
+            raise ValueError("Empty verified global port layer")
+        geometries=[]
+        for f in data["features"]:
+            g=geometry(f)
+            if g.is_empty or not g.is_valid:
+                raise ValueError("Invalid port geometry")
+            geometries.append(transform(PROJECT,g))
+    except (ValueError,KeyError,TypeError) as exc:
+        issue(db,None,ports["sha256"],"DEPOSIT_PORT_GEOMETRY_INVALID",str(exc))
+        return []
+    rows=[]
+    for r in db.execute("""SELECT e.entity_id,r.name,r.state,r.deposit_type,
+                                  r.longitude,r.latitude,r.source_sha
+                           FROM records r JOIN entities e USING(entity_id)
+                           WHERE e.kind='DEPOSIT' AND r.source_sha=?
+                           ORDER BY e.entity_id""",(deposits["sha256"],)):
+        d=dict(r)
+        output={"deposit_id":d["entity_id"],"deposit_name":d["name"],
+                "state":d["state"],"deposit_type":d["deposit_type"],
+                "longitude":d["longitude"],"latitude":d["latitude"],
+                "deposit_source_sha256":d["source_sha"],
+                "port_source_sha256":ports["sha256"],"distance_km":None,
+                "status":"MISSING_OR_INVALID_COORDINATE",
+                "method":"EPSG:3577 Euclidean deposit-point-to-port km",
+                "interpretation":"Deposit locality only; not a Project entity or transport route"}
+        if (d["longitude"] is not None and d["latitude"] is not None
+            and 110<=d["longitude"]<=155 and -45<=d["latitude"]<=-9):
+            p=transform(PROJECT,Point(d["longitude"],d["latitude"]))
+            value=min(p.distance(g)/1000 for g in geometries)
+            if value>=0 and value<float("inf"):
+                output["distance_km"]=value
+                output["status"]="OFFICIAL_DEPOSIT_GEOMETRY_DISTANCE"
+                provenance={"deposit_source_sha256":d["source_sha"],
+                            "port_source_sha256":ports["sha256"],
+                            "method":output["method"],"source_kind":"DEPOSIT",
+                            "limitation":output["interpretation"]}
+                db.execute("INSERT OR REPLACE INTO derived VALUES(?,?,?,?,?)",
+                           (run_id,d["entity_id"],"deposit_port_distance_km",value,canonical(provenance)))
+        rows.append(output)
+    return rows
+
+def deposit_type_port_summary(rows):
+    """Cross-sectional descriptive Aim C covariates; no geological inference."""
+    from statistics import median
+    grouped={}
+    for r in rows:
+        key=(r["state"] or "UNKNOWN",r["deposit_type"] or "UNKNOWN")
+        grouped.setdefault(key,[]).append(r)
+    output=[]
+    for (state,deposit_type),group in sorted(grouped.items()):
+        valid=sorted(r["distance_km"] for r in group if r["distance_km"] is not None)
+        output.append({"state":state,"deposit_type":deposit_type,
+                       "deposits_total":len(group),"deposits_with_port_distance":len(valid),
+                       "median_port_distance_km":median(valid) if valid else None,
+                       "min_port_distance_km":valid[0] if valid else None,
+                       "max_port_distance_km":valid[-1] if valid else None,
+                       "unit_of_analysis":"GA_DEPOSIT_NOT_MCDA_PROJECT",
+                       "inference":"DESCRIPTIVE_ONLY_NO_RANK_DRIVER_TEST"})
+    return output

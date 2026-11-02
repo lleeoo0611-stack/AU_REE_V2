@@ -131,3 +131,16 @@ national_prospectus_evidence.csv and more informative project_domain_evidence.cs
 Raw Austrade PDF acquisition is registered independently from the
 SHA-256-addressed table transcription. The 2026 prospectus is an investment
 selection, not a national Census closure or complete six-domain evidence panel.
+
+## Nationwide deposit geography (descriptive Aim C)
+
+Every official GA deposit position in the selected 2025 AIMR layer can be
+compared to the complete GA major-port point layer, independently of the 25
+registered Project entities. Outputs `deposit_port_distances.csv` and
+`aim_c_deposit_type_port_summary.csv` give per-deposit EPSG:3577 proximity and
+state/deposit-type medians; every row preserves exact source hashes and geographic
+unit. Missing/invalid coordinates are reported as missing, never zero or
+silently removed from population counts. This is nationwide **DEPOSIT**
+descriptive GIS, *not* 149 independent projects, an end-to-end transport route,
+or Aim C's proposed project ranking driver inference. Project-scoped road,
+rail and power snapshots are never extrapolated to these deposits.

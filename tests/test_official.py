@@ -67,6 +67,32 @@ class OfficialSourceTests(unittest.TestCase):
                 self.assertEqual(0,db.execute("SELECT COUNT(*) FROM entities WHERE kind='PROJECT' AND native_id='browns-range-heavy-rare-earths-hre'").fetchone()[0])
             finally:db.close()
 
+
+    def test_global_deposit_port_distances_are_not_project_scores(self):
+        from au_ree_v2.gis import national_deposit_port_distances, deposit_type_port_summary
+        with tempfile.TemporaryDirectory() as tmp:
+            db=connect(Path(tmp)/"deposit_gis.sqlite")
+            try:
+                snapshots=select_snapshots(ROOT,CUTOFF)
+                ingest_sources(db,ROOT,snapshots)
+                db.execute("INSERT INTO runs VALUES(?,?,?,?,?,?,?,?)",
+                           ("ga-descriptive","2026-11-02",CUTOFF,"{}","config","snapshot","RUNNING",None))
+                rows=national_deposit_port_distances(db,ROOT,snapshots,"ga-descriptive")
+                self.assertEqual(149,len(rows))
+                self.assertTrue(all(r["distance_km"] is None or r["distance_km"]>=0 for r in rows))
+                self.assertGreaterEqual(sum(r["distance_km"] is not None for r in rows),140)
+                self.assertTrue(all(r["interpretation"].startswith("Deposit locality") for r in rows))
+                categories=deposit_type_port_summary(rows)
+                self.assertEqual(149,sum(g["deposits_total"] for g in categories))
+                self.assertTrue(all(g["unit_of_analysis"]=="GA_DEPOSIT_NOT_MCDA_PROJECT" for g in categories))
+                self.assertEqual(0,db.execute("SELECT COUNT(*) FROM derived WHERE variable='port_distance_km'").fetchone()[0])
+                self.assertGreater(db.execute("SELECT COUNT(*) FROM derived WHERE variable='deposit_port_distance_km'").fetchone()[0],0)
+                db.execute("DELETE FROM derived")
+                missing=national_deposit_port_distances(db,ROOT,
+                         [s for s in snapshots if s["key"]!="ga_ports"],"ga-descriptive")
+                self.assertEqual([],missing)
+            finally:db.close()
+
     def test_transcription_tamper_and_invalid_input_cannot_promote_resource(self):
         with tempfile.TemporaryDirectory() as tmp:
             db=connect(Path(tmp)/"test.sqlite")

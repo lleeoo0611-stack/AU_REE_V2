@@ -71,3 +71,14 @@ receive distinct stable IDs. Status/flow-sheets/financing/approvals/offtake
 remain literal source-described observations, never fabricated ordinal scores.
 PDF archival remains a separate reproducibility step; a text transcription
 with original page locators is not the native PDF byte snapshot.
+
+### Aim C preliminary geographic covariates
+
+To expand real, nationwide exploratory outputs beyond the two scored resource
+scopes without manufacturing eligibility, the nationally complete GA port layer
+is applied to each of the 149 GA deposit points in EPSG:3577. Raw per-deposit
+metrics and state-by-type descriptives are exported with two source hashes;
+output unit stays `DEPOSIT`. This analysis cannot estimate causal influence on
+Project rankings because no Project-Deposit identity is inferred and most
+Project C1 panels remain incomplete. Project AOI road/rail/power metrics do not
+support nationwide extrapolation.

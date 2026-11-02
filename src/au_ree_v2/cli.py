@@ -11,7 +11,7 @@ from . import __version__
 from .acquisition import refresh, select_snapshots
 from .analysis import prepare, run_r, write_csv
 from .evidence import ingest_sources, ingest_claims, resource_values
-from .gis import run as run_gis
+from .gis import run as run_gis, national_deposit_port_distances, deposit_type_port_summary
 from .official import official_inventory, exact_deposit_candidates, domain_evidence_coverage, national_prospectus_inventory
 from .store import canonical, connect, digest, filehash, logical_dump
 
@@ -69,6 +69,18 @@ def execute(args):
         gis_values={}
         if args.module in ('all','gis','analyze','rebuild'):
             gis_values=run_gis(db,root,snapshots,run_id,resources)
+        deposit_gis=[]
+        if args.module in ('all','gis','analyze','rebuild'):
+            deposit_gis=national_deposit_port_distances(db,root,snapshots,run_id)
+        write_csv(out/'deposit_port_distances.csv',deposit_gis,
+                  ['deposit_id','deposit_name','state','deposit_type','longitude','latitude',
+                   'deposit_source_sha256','port_source_sha256','distance_km','status',
+                   'method','interpretation'])
+        deposit_by_type=deposit_type_port_summary(deposit_gis)
+        write_csv(out/'aim_c_deposit_type_port_summary.csv',deposit_by_type,
+                  ['state','deposit_type','deposits_total','deposits_with_port_distance',
+                   'median_port_distance_km','min_port_distance_km','max_port_distance_km',
+                   'unit_of_analysis','inference'])
         gis_rows=[]
         for eid,metrics in sorted(gis_values.items()):
             for variable,v in sorted(metrics.items()):
@@ -171,13 +183,17 @@ def execute(args):
                                         'selected_snapshot_count':len(selected_keys),
                                         'missing_or_cutoff_excluded':sorted(registered_keys-selected_keys)},
             'gis_validated_distances':{kind:sum(r['variable']==kind for r in gis_rows) for kind in sorted({r['variable'] for r in gis_rows})},
+            'national_ga_deposit_port_distances_n':sum(r['distance_km'] is not None for r in deposit_gis),
+            'national_ga_deposit_port_scope_n':len(deposit_gis),
+            'aim_c_deposit_type_groups_n':len(deposit_by_type),
             'resource_defined_n':len(resources),'development_n':sum(c['development'] for c in prepared['coverage']),
             'full_evidence_n':sum(c['full_evidence'] for c in prepared['coverage']),
             'r_results':results,'r_skipped':args.skip_r,'acquisition':acquisition,
             'aim_a': 'RESOURCE_INFRASTRUCTURE_PILOT_ONLY' if results else 'COVERAGE_ONLY',
             'aim_b': 'WEIGHTS_ROUNDING_METHOD_FUNCTION_PILOT' if results else 'NOT_RUN',
             'cohort_sensitivity': 'NOT_ESTIMABLE_AFTER_DELETION_N_LT_2' if len(resources)<3 else 'LEAVE_ONE_PROJECT_OUT',
-            'aim_c': 'EXTERNAL_INFERENCE_NOT_COMPLETED_INSUFFICIENT_SAMPLE_AND_PREDICTORS',
+            'aim_c': ('NATIONAL_DEPOSIT_GEOGRAPHY_DESCRIPTIVE_ONLY_NO_PROJECT_RANK_DRIVER_INFERENCE'
+                      if deposit_gis else 'EXTERNAL_INFERENCE_NOT_COMPLETED_INSUFFICIENT_SAMPLE_AND_PREDICTORS'),
             'open_review_issues':len(issues),'limitations':config['limitations'],
             'independent_human_approval':'NOT_CLAIMED','output_dir':str(out)}
         import shapely, pyproj, pypdf
