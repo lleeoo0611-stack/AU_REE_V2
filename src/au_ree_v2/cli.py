@@ -92,6 +92,28 @@ def execute(args):
         census=[dict(r) for r in db.execute('''SELECT e.entity_id,e.kind,r.* FROM entities e
             JOIN records r USING(entity_id) ORDER BY e.entity_id,r.source_sha''') if r['source_sha'] in source_shas]
         write_csv(out/'census.csv',census,['entity_id','kind','name','state','longitude','latitude','deposit_type','activity','source_sha'])
+        candidates=[]
+        for row in census:
+            if row['kind']!='SOURCE_RECORD':
+                continue
+            detail=json.loads(row['raw'])
+            candidates.append({'entity_id':row['entity_id'],'source_sha256':row['source_sha'],
+                               'sheet':detail.get('sheet'),'source_row':detail.get('row_number'),
+                               'cells':canonical(detail.get('cells',[])),
+                               'classification':detail.get('classification'),
+                               'rule':detail.get('match_rule')})
+        write_csv(out/'census_candidates.csv',candidates,
+                  ['entity_id','source_sha256','sheet','source_row','cells','classification','rule'])
+        deposit_summary={}
+        for row in census:
+            if row['kind']!='DEPOSIT':
+                continue
+            key=(row.get('state') or 'UNKNOWN',row.get('deposit_type') or 'UNKNOWN')
+            deposit_summary.setdefault(key,set()).add(row['entity_id'])
+        write_csv(out/'deposit_type_summary.csv',
+                  [{'state':state,'deposit_type':dtype,'deposit_records':len(ids)}
+                   for (state,dtype),ids in sorted(deposit_summary.items())],
+                  ['state','deposit_type','deposit_records'])
         # Export points with evidence, suitable for QGIS without proprietary software.
         points=[]
         seen=set()
@@ -115,6 +137,7 @@ def execute(args):
         summary={'run_id':run_id,'status':'COMPLETED','cutoff':args.as_of,'module':args.module,
             'code':version,'configuration_sha256':digest(configuration),'snapshot_sha256':digest(snapshots),
             'logical_database_sha256':digest(dump),'source_count':len(snapshots),'census_by_kind':by_kind,
+            'unresolved_census_candidate_records':len(candidates),
             'gis_validated_distances':{kind:sum(r['variable']==kind for r in gis_rows) for kind in sorted({r['variable'] for r in gis_rows})},
             'resource_defined_n':len(resources),'development_n':sum(c['development'] for c in prepared['coverage']),
             'full_evidence_n':sum(c['full_evidence'] for c in prepared['coverage']),
