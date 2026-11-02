@@ -3,12 +3,16 @@ import json
 import math
 from pathlib import Path
 from .store import canonical, digest, entity, issue
+from .census import ingest_workbook
 
 def ingest_sources(db, root, snapshots):
     for s in snapshots:
         db.execute('INSERT OR IGNORE INTO sources VALUES(?,?,?,?,?,?,?,?)',
                    (s['sha256'], s['key'], s['url'], s.get('publication_date'),
                     s['acquired_at'], s['path'], s['kind'], canonical(s)))
+        if s['kind'] == 'xlsx_census':
+            ingest_workbook(db,root,s)
+            continue
         if s['kind'] != 'arcgis_census':
             continue
         raw = json.loads((Path(root) / s['path']).read_text(encoding='utf-8'))
