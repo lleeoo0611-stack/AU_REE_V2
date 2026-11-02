@@ -24,7 +24,7 @@ class OfficialSourceTests(unittest.TestCase):
                 self.assertEqual(25,db.execute("SELECT COUNT(*) FROM entities WHERE kind='PROJECT'").fetchone()[0])
                 inventory=official_inventory(db,{s["sha256"] for s in snap})
                 self.assertEqual(20,len(inventory))
-                self.assertEqual(27,db.execute("SELECT COUNT(*) FROM entities WHERE kind='SOURCE_RECORD'").fetchone()[0])
+                self.assertEqual(366,db.execute("SELECT COUNT(*) FROM entities WHERE kind='SOURCE_RECORD'").fetchone()[0])
                 self.assertEqual(60,db.execute("SELECT COUNT(*) FROM observations WHERE status='OFFICIAL_SUMMARY_SCOPE_UNVERIFIED'").fetchone()[0])
                 self.assertEqual({},resource_values(db,CUTOFF,{s["sha256"] for s in snap}))
                 self.assertEqual(4649,next(r for r in inventory if r["project_name"]=="Mt Weld")["contained_treo_kt"])

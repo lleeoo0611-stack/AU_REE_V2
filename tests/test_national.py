@@ -20,6 +20,7 @@ class NationalSelectedTests(unittest.TestCase):
                 source_shas={s["sha256"] for s in snaps}
                 rows=national_candidate_rows(db,source_shas)
                 self.assertEqual(339,len(rows))
+                self.assertEqual(2,db.execute("SELECT COUNT(*) FROM records WHERE raw LIKE '%MULTI_FEATURE%'").fetchone()[0])
                 self.assertEqual(317,sum(r["screening_status"]=="SCREENED_OFFICIAL_SOURCE_RECORD" for r in rows))
                 self.assertEqual(22,sum(r["screening_status"]=="LEGACY_ONLY_NOT_OFFICIAL" for r in rows))
                 self.assertEqual(366,db.execute("SELECT COUNT(*) FROM entities WHERE kind='SOURCE_RECORD'").fetchone()[0])

@@ -74,8 +74,8 @@ def ingest_legacy_e1(db,root,source):
             if not isinstance(target,str) or not target or target in seen:
                 raise ValueError("duplicate or missing frozen source row identity")
             selected=row.get("features") or []
-            if len(selected)>1:
-                raise ValueError("unexpected multi-feature original selection")
+            if len(selected)>1 and not all(isinstance(f,dict) for f in selected):
+                raise ValueError("unexpected multi-feature selection payload")
             feature=selected[0] if selected else {}
             attrs=feature.get("attributes",{}) or {}
             if not isinstance(attrs,dict):
@@ -86,7 +86,9 @@ def ingest_legacy_e1(db,root,source):
             if family and (not row.get("native_id") or not feature.get("original_chunk_sha256")
                             or not feature.get("locator") or not feature.get("source_path")):
                 raise ValueError("incomplete official original feature provenance")
-            if target.startswith("LEGACY:") != (family==""):
+            # LEGACY target IDs can also have independently preserved government
+            # source features; an ID prefix does not override source provenance.
+            if not family and not target.startswith("LEGACY:"):
                 raise ValueError("historical legacy-only source family mismatch")
             if family and not re.fullmatch(r"[a-f0-9]{64}",feature["original_chunk_sha256"]):
                 raise ValueError("invalid source chunk hash")
@@ -102,7 +104,9 @@ def ingest_legacy_e1(db,root,source):
         if not name:
             name=str(native).strip() if native else target
         state=str(attrs.get("state") or attrs.get("STATE") or STATE_BY_SOURCE.get(family) or "").strip().upper() or None
-        lon,lat=_coordinate(attrs,feature.get("geometry"))
+        # A selected target may reference multiple original native features.
+        # Keep the bundle intact, and refuse a fabricated single coordinate.
+        lon,lat=_coordinate(attrs,feature.get("geometry")) if len(selected)==1 else (None,None)
         category="LEGACY_ONLY_NOT_OFFICIAL" if not family else "SCREENED_OFFICIAL_SOURCE_RECORD"
         payload={"source_kind":"LEGACY_NATIONAL_E1_SELECTED_FEATURE",
                  "screening_status":category,"source_key":family,
@@ -112,13 +116,16 @@ def ingest_legacy_e1(db,root,source):
                  "original_source_path":feature.get("source_path"),
                  "original_selection_sha256":source["sha256"],
                  "original_attributes":attrs,
-                 "original_geometry":feature.get("geometry"),
+                 "original_geometry":feature.get("geometry") if len(selected)==1 else None,
+                 "selected_feature_count":len(selected),
+                 "all_selected_features":selected if len(selected)>1 else None,
+                 "multi_feature_scope":"NOT_SINGLE_LOCATION" if len(selected)>1 else None,
                  "parent_project_hint":attrs.get("proj_code"),
                  "role":"SOURCE_RECORD_ONLY_NOT_PROJECT"}
         db.execute("INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)",
                    (entity_id,source["sha256"],name,state,lon,lat,None,None,canonical(payload)))
         # Shared GA ENO is a verified *deposit source* native ID, not a Project identity.
-        if family=="GA_AIMR_REE_2026":
+        if family=="GA_AIMR_REE_2026" and len(selected)==1:
             eno=attrs.get("eno")
             if isinstance(eno,(int,float)) and float(eno).is_integer():
                 dep=db.execute("""SELECT entity_id FROM entities
