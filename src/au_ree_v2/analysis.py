@@ -144,6 +144,9 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
     write_csv(out/'value_trace.csv',traces,['entity_id','criterion','raw_value','score','config_version','source','scoring'])
     write_csv(out/'resources.csv',list(resources.values()),['entity_id','scope','date','ore_mt','grade_pct','contained_treo_kt','calculated_from_rounded_inputs_kt','rounding_bounds_kt','source_sha','obs_ids','interpretation'])
     for panel, rows in matrices.items():
+        if panel in config.get('screen_panels', {}):
+            # Screen matrices and scenario weights are generated separately.
+            continue
         codes=config['panels'][panel]
         folder=out/panel
         write_csv(folder/'matrix.csv',rows,['project_id','project_name','scope',*[key for code in codes for key in (code,code+'_alt',code+'_lower',code+'_upper')]])
@@ -182,5 +185,5 @@ def run_r(root, out, prepared, config, rscript=None):
             raise RuntimeError('R output contract incomplete')
         results[panel]={'status':'COMPLETED','n':n,'weight_status':config['weight_status'],
                         'evidence_status':config['screen_evidence_policy']['status'] if panel=='official_wa_resource_screen' else 'ISSUER_SCOPE_VALIDATED',
-                        'formal_eligibility':False if panel=='official_wa_resource_screen' else True}
+                        'full_evidence_eligibility':panel=='six_domain'}
     return results
