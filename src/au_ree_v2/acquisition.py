@@ -82,7 +82,7 @@ def refresh(root, registry):
                 if latest.get('etag'):conditional['If-None-Match']=latest['etag']
                 if latest.get('last_modified'):conditional['If-Modified-Since']=latest['last_modified']
                 try:
-                    raw, headers = request(source['url'],headers=conditional)
+                    raw, headers = request(source['url'],headers=conditional,timeout=source.get('timeout_seconds',25))
                 except urllib.error.HTTPError as exc:
                     if exc.code==304 and latest:
                         outcomes.append({'key':source['key'],'status':'UNCHANGED_HTTP_304','sha256':latest['sha256']})
