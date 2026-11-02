@@ -9,7 +9,7 @@ from pathlib import Path
 from openpyxl import load_workbook
 from .store import canonical, entity, issue
 
-REE = re.compile(r'rare[\\s\\-]*earth|\\bTREO\\b|\\bREEs?\\b',re.IGNORECASE)
+REE = re.compile(r'rare[\s\-]*earth|\bTREO\b|\bREEs?\b',re.IGNORECASE)
 STATES = {'WA','SA','NT','NSW','QLD','VIC','TAS','ACT'}
 
 def ingest_workbook(db, root, source):
