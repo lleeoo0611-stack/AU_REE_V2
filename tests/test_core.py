@@ -15,7 +15,8 @@ from unittest.mock import patch
 from au_ree_v2.acquisition import arcgis, select_snapshots, refresh
 from au_ree_v2.analysis import score
 from au_ree_v2.evidence import normalize, ingest_sources, ingest_claims, resource_values
-from au_ree_v2.gis import nearest
+from au_ree_v2.gis import nearest, representative_coordinate, run as run_gis
+from au_ree_v2.spatial import bounding_window, project_windows, covered_project
 from au_ree_v2.store import connect, digest, entity, logical_dump
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -144,6 +145,71 @@ class CoreTests(unittest.TestCase):
         self.assertAlmostEqual(0,nearest(120,-25,[point]))
         self.assertTrue(10<nearest(120.1,-25.1,[point])<20)
         with self.assertRaises(ValueError):nearest(120,-25,[])
+
+    def test_project_aois_use_two_official_anchors_and_are_conservative(self):
+        manifest=json.loads((ROOT/'data/manifest.json').read_text(encoding='utf-8'))
+        windows=project_windows(ROOT,manifest,160)
+        self.assertEqual(['browns-range','mt-weld'],[w['project_id'] for w in windows])
+        self.assertEqual(2,len(windows))
+        for window in windows:
+            self.assertEqual(160,window['radius_km'])
+            lon,lat=window['longitude'],window['latitude']
+            x1,y1,x2,y2=window['bbox']
+            self.assertTrue(x1<lon<x2 and y1<lat<y2)
+            self.assertEqual(window,covered_project({'queries':windows},window['project_id'],lon,lat))
+            self.assertIsNone(covered_project({'queries':windows},window['project_id'],lon+.1,lat))
+        with self.assertRaises(ValueError):bounding_window(0,0,160)
+
+    def test_arcgis_scoped_inventories_and_deduplicated_union(self):
+        windows=[{'project_id':'a','bbox':[119,-26,121,-24],'longitude':120,'latitude':-25,'radius_km':100},
+                 {'project_id':'b','bbox':[120,-26,122,-24],'longitude':121,'latitude':-25,'radius_km':100}]
+        feature=lambda oid:{'attributes':{'OBJECTID':oid},'geometry':{'x':120,'y':-25}}
+        replies=[{'objectIds':[1,2],'objectIdFieldName':'OBJECTID'},
+                 {'features':[feature(1),feature(2)]},
+                 {'objectIds':[2,3],'objectIdFieldName':'OBJECTID'},
+                 {'features':[feature(2),feature(3)]}]
+        calls=[]
+        def mocked(url,params=None,**kwargs):
+            calls.append(params)
+            return json.dumps(replies[len(calls)-1]).encode(),{}
+        with patch('au_ree_v2.acquisition.request',side_effect=mocked):
+            data=arcgis('https://example.gov.au/0',windows=windows)
+        self.assertEqual(3,len(data['features']))
+        self.assertEqual('registered_project_aoi',data['inventory']['scope'])
+        self.assertEqual(2,len(data['inventory']['queries']))
+        self.assertEqual([2,2],[q['id_count'] for q in data['inventory']['queries']])
+        self.assertIn('geometry',calls[0]);self.assertIn('geometry',calls[2])
+
+    def test_gis_refuses_uncovered_project_and_reused_future_coordinate(self):
+        db=self.db();snapshots=select_snapshots(ROOT,CUTOFF)
+        ingest_sources(db,ROOT,snapshots);ingest_claims(db,ROOT,snapshots,CUTOFF)
+        resources=resource_values(db,CUTOFF,{s['sha256'] for s in snapshots})
+        names={r['native_id']:r['entity_id'] for r in db.execute(
+            "SELECT native_id,entity_id FROM entities WHERE kind='PROJECT'")}
+        eid=names['mt-weld']
+        real=representative_coordinate(db,eid,{s['sha256'] for s in snapshots})
+        self.assertIsNotNone(real)
+        db.execute('INSERT INTO sources VALUES(?,?,?,?,?,?,?,?)',
+                   ('future','new','https://example.org','2027-01-01','2027-01-01','future.json','pdf','{}'))
+        db.execute('INSERT INTO records VALUES(?,?,?,?,?,?,?,?,?)',
+                   (eid,'future','Future relocation','WA',150,-10,None,None,'{}'))
+        self.assertEqual(real,representative_coordinate(db,eid,{s['sha256'] for s in snapshots}))
+        db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?,?)',
+                   ('scoped','2026-11-02',CUTOFF,'{}','x','y','RUNNING',None))
+        data={'features':[{'geometry':{'x':real['longitude'],'y':real['latitude']}}],
+              'spatialReference':{'wkid':4326},
+              'inventory':{'complete':True,'where':'1=1','scope':'registered_project_aoi',
+                           'queries':[{'project_id':'mt-weld','longitude':real['longitude'],
+                                       'latitude':real['latitude'],'radius_km':100}]}}
+        (self.work/'scoped.json').write_text(json.dumps(data),encoding='utf-8')
+        live={'key':'scoped','kind':'arcgis_gis','sha256':'scope-sha','layer':'rail',
+              'path':'scoped.json'}
+        output=run_gis(db,self.work,[*filter(lambda s:s['kind']!='arcgis_gis',snapshots),live],
+                       'scoped',resources)
+        self.assertEqual([eid],list(output))
+        self.assertAlmostEqual(0,output[eid]['rail_distance_km']['value'])
+        self.assertEqual(1,db.execute(
+            "SELECT COUNT(*) FROM review_queue WHERE reason='GIS_AOI_NOT_COVERED'").fetchone()[0])
 
     def test_fixed_anchors_no_cohort_rescaling(self):
         c=json.loads((ROOT/'config/research.json').read_text())['criteria'][0]
