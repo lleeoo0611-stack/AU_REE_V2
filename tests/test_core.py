@@ -87,7 +87,7 @@ class CoreTests(unittest.TestCase):
     def test_conflict_does_not_block_other_project(self):
         db=self.db();snapshots=select_snapshots(ROOT,CUTOFF)
         ingest_sources(db,ROOT,snapshots);ingest_claims(db,ROOT,snapshots,CUTOFF)
-        row=dict(db.execute("SELECT * FROM observations WHERE variable='ore_mt' LIMIT 1").fetchone())
+        row=dict(db.execute("SELECT * FROM observations WHERE variable='ore_mt' AND status='AUTO_VALIDATED' LIMIT 1").fetchone())
         original=row['entity_id'];row['obs_id']='conflict';row['value']+=2
         db.execute('INSERT INTO observations VALUES('+','.join('?'*16)+')',tuple(row.values()))
         ingest_claims(db,ROOT,snapshots,CUTOFF)
