@@ -90,7 +90,7 @@ def refresh(root, registry):
                     raise
                 if source['kind'] == 'pdf' and not raw.startswith(b'%PDF'):
                     raise ValueError('Not a PDF response')
-                if source['kind'] == 'xlsx_census' and not raw.startswith(b'PK\\x03\\x04'):
+                if source['kind'] == 'xlsx_census' and not raw.startswith(b'PK\x03\x04'):
                     raise ValueError('Not an OOXML workbook response')
             import hashlib
             sha = hashlib.sha256(raw).hexdigest()
