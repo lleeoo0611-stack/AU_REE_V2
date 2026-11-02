@@ -80,7 +80,7 @@ class CoreTests(unittest.TestCase):
         values=resource_values(db,CUTOFF,{s['sha256'] for s in snapshots})
         self.assertEqual(2,len(values))
         self.assertEqual([70.5,4389],sorted(r['contained_treo_kt'] for r in values.values()))
-        self.assertEqual(2,db.execute('SELECT COUNT(*) FROM relations').fetchone()[0])
+        self.assertEqual(2,db.execute("SELECT COUNT(*) FROM relations WHERE relation='REPRESENTATIVE_POINT_NOT_ENTITY_EQUIVALENCE'").fetchone()[0])
         # Explicit published totals are retained; rounded input products are not substituted.
         self.assertTrue(all(v['contained_treo_kt']!=v['calculated_from_rounded_inputs_kt'] for v in values.values()))
 
@@ -258,7 +258,8 @@ class CoreTests(unittest.TestCase):
             outputs.append(json.loads(result.stdout))
         self.assertEqual(outputs[0]['logical_database_sha256'],outputs[1]['logical_database_sha256'])
         self.assertEqual(149,outputs[0]['census_by_kind']['DEPOSIT'])
-        self.assertEqual(2,outputs[0]['census_by_kind']['PROJECT'])
+        self.assertEqual(20,outputs[0]['census_by_kind']['PROJECT'])
+        self.assertEqual(20,outputs[0]['official_government_ree_resource_rows'])
         if rscript:
             self.assertEqual('COMPLETED',outputs[0]['r_results']['resource_infrastructure_pilot']['status'])
             for key,value in outputs[0]['output_hashes'].items():

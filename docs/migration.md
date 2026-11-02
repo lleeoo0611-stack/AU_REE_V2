@@ -40,3 +40,21 @@ GIS metric invariants and independent R numerical invariants. CI execution is co
 - Scheduled new snapshots persist as Actions artifacts (90 days), not automatic commits. Promote reviewed artifacts into the managed manifest to retain them permanently.
 
 These are unfinished research requirements, not acceptance PASS claims.
+
+## Phase 2 official resource table ingestion (2026-11-02)
+
+Government of Western Australia, Department of Mines, Petroleum and Exploration,
+*Rare Earth Elements: Investment Opportunities*, February 2026, physical PDF page 1,
+'Projects with REE resources ... as at January 2026'. Original:
+https://www.wa.gov.au/media/159141/download?inline=
+
+Twenty WA project rows have preserved reported resource values, dates, owner,
+development status, PDF table row number and SHA-256-addressed transcription.
+The PDF is registered separately for raw-byte acquisition: a CSV derived from a
+public PDF is **not** an original-source snapshot. Two existing project IDs are
+preserved; 18 WA-listed project identities are added. No automatic resource-scope
+promotion, no cross-record resource summation, and no inferred six-domain scores.
+Exact matched deposit names/states create link candidates only. Project-domain
+coverage is exported for all listed projects so unavailable evidence remains
+explicit. Other states, issuer crosschecks, additional evidence and full C1 gate
+reconstruction remain unfinished.

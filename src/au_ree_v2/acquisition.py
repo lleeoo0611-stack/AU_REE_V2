@@ -73,6 +73,14 @@ def refresh(root, registry):
         try:
             previous = [s for s in manifest['snapshots'] if s['key']==source['key']]
             latest = max(previous,key=lambda s:s['acquired_at']) if previous else {}
+            if source['kind'] == 'official_table_transcription':
+                if not latest:
+                    raise ValueError('Managed table snapshot absent')
+                if filehash(root/latest['path']) != latest['sha256']:
+                    raise ValueError('Managed table snapshot checksum mismatch')
+                outcomes.append({'key':source['key'],'status':'MANAGED_TRANSCRIPTION_VERIFIED',
+                                 'sha256':latest['sha256']})
+                continue
             if source['kind'] in ('arcgis_census', 'arcgis_gis'):
                 windows = project_windows(root, manifest, source['aoi_radius_km']) if source.get('aoi_radius_km') else None
                 raw = (canonical(arcgis(source['url'], source.get('where', '1=1'), windows=windows)) + '\n').encode()

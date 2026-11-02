@@ -88,3 +88,30 @@ See [migration decisions and unfinished acceptance scope](docs/migration.md).
 The [frozen real-source pilot results](results/pilot-2026-11-02/README.md) include directly readable
 ranking, sensitivity, source-level trace and exact replay inputs. They are limited scientific outputs,
 not acceptance of all V2 research requirements.
+
+## Phase 2: official WA resource listing (2026)
+
+The Western Australian Government DMPE February 2026 REE investment flyer (physical
+PDF page 1, resource table as at January 2026) supplies **20** government-listed
+projects with dated ore Mt, TREO grade, reported contained TREO, named owner and
+qualitative development status. A frozen, SHA-256-addressed CSV transcription and
+row-level source locators are in the same canonical SQLite database; the original
+PDF URL is in the source registry, with an independent raw-PDF acquisition target.
+Do not mistake the CSV transcription for the original PDF snapshot.
+
+Two explicitly linked project identities (Mt Weld and Browns Range) retain their
+original stable IDs; 18 new WA-government-list IDs are distinct PROJECT entities.
+They are a **partial WA expansion**, not a complete all-Australia Census. The source
+rows are also kept as SOURCE_RECORD entities with dated LISTED_AS_PROJECT relations.
+The government resource figures have status OFFICIAL_SUMMARY_SCOPE_UNVERIFIED
+because the table does not define JORC categories or reconcile each project/deposit
+resource scope. They are never substituted for the two existing, PDF-checked
+resource claims in formal MCDA. Official status and owner are descriptive data;
+missing Strategic, Technical, financing and approvals scores remain missing.
+
+Each run now outputs official_resource_inventory.csv, project_domain_evidence.csv,
+and census_link_candidates.csv. Exact-name/state GA deposit hits are **candidate
+links only**: no entity merger, inferred project footprint or GIS release.
+Geoscience Australia's national deposit collection and the WA project list must
+not be added together as a count of unique Australian projects. Aim A/B full-panel
+ranking and Aim C statistical inference remain blocked by incomplete evidence.

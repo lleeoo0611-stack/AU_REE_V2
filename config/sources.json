@@ -1,5 +1,5 @@
 {
-  "version": "sources-v3-aoi-remp",
+  "version": "sources-v4-wa-official",
   "sources": [
     {
       "key": "ga_aimr",
@@ -66,6 +66,23 @@
       "definition": "Office of the Chief Economist 2025 major projects list, A$50m+; candidate source records only, not a complete REE project census",
       "publication_date_precision": "month",
       "timeout_seconds": 100
+    },
+    {
+      "key": "wa_dmpe_ree_2026_table",
+      "kind": "official_table_transcription",
+      "url": "https://www.wa.gov.au/media/159141/download?inline=",
+      "publication_date": "2026-02-01",
+      "publication_date_precision": "month",
+      "source_page": 1,
+      "definition": "Government of Western Australia DMPE February 2026 rare-earth resources table (20 listed projects); versioned transcription of PDF page 1, NOT original PDF bytes or an issuer-level JORC claim."
+    },
+    {
+      "key": "wa_dmpe_ree_2026_pdf",
+      "kind": "pdf",
+      "url": "https://www.wa.gov.au/media/159141/download?inline=",
+      "publication_date": "2026-02-01",
+      "publication_date_precision": "month",
+      "definition": "Official DMPE source PDF; when acquired independently, retain raw bytes for full-source audit."
     }
   ]
 }

@@ -12,6 +12,7 @@ from .acquisition import refresh, select_snapshots
 from .analysis import prepare, run_r, write_csv
 from .evidence import ingest_sources, ingest_claims, resource_values
 from .gis import run as run_gis
+from .official import official_inventory, exact_deposit_candidates, domain_evidence_coverage
 from .store import canonical, connect, digest, filehash, logical_dump
 
 def code_version(root):
@@ -92,6 +93,18 @@ def execute(args):
         census=[dict(r) for r in db.execute('''SELECT e.entity_id,e.kind,r.* FROM entities e
             JOIN records r USING(entity_id) ORDER BY e.entity_id,r.source_sha''') if r['source_sha'] in source_shas]
         write_csv(out/'census.csv',census,['entity_id','kind','name','state','longitude','latitude','deposit_type','activity','source_sha'])
+        inventory=official_inventory(db,source_shas)
+        write_csv(out/'official_resource_inventory.csv',inventory,
+                  ['project_id','project_name','state','official_status','listed_owner','ore_mt',
+                   'grade_pct','contained_treo_kt','resource_date','basis','category',
+                   'source_sha256','locator','confidence','pdf_url'])
+        candidate_links=exact_deposit_candidates(db,inventory,source_shas)
+        write_csv(out/'census_link_candidates.csv',candidate_links,
+                  ['project_id','project_name','deposit_id','deposit_source_sha256',
+                   'project_source_sha256','candidate_count','match_rule','status'])
+        dimension_rows=domain_evidence_coverage(db,inventory,resources,gis_values)
+        write_csv(out/'project_domain_evidence.csv',dimension_rows,
+                  ['project_id','project_name','domain','evidence_state','evidence_reference','scorable'])
         candidates=[]
         for row in census:
             if row['kind']!='SOURCE_RECORD':
@@ -101,9 +114,13 @@ def execute(args):
                                'sheet':detail.get('sheet'),'source_row':detail.get('row_number'),
                                'cells':canonical(detail.get('cells',[])),
                                'classification':detail.get('classification'),
-                               'rule':detail.get('match_rule')})
+                               'rule':detail.get('match_rule'),
+                               'project_name':detail.get('project_name'),
+                               'matched_project_id':detail.get('project_id'),
+                               'source_locator':detail.get('locator')})
         write_csv(out/'census_candidates.csv',candidates,
-                  ['entity_id','source_sha256','sheet','source_row','cells','classification','rule'])
+                  ['entity_id','source_sha256','sheet','source_row','cells','classification','rule',
+                   'project_name','matched_project_id','source_locator'])
         deposit_summary={}
         for row in census:
             if row['kind']!='DEPOSIT':
@@ -139,7 +156,11 @@ def execute(args):
         summary={'run_id':run_id,'status':'COMPLETED','cutoff':args.as_of,'module':args.module,
             'code':version,'configuration_sha256':digest(configuration),'snapshot_sha256':digest(snapshots),
             'logical_database_sha256':digest(dump),'source_count':len(snapshots),'census_by_kind':by_kind,
-            'unresolved_census_candidate_records':len(candidates),
+            'unresolved_census_candidate_records':sum(c['classification']=='UNRESOLVED_PROJECT_CANDIDATE_SOURCE_RECORD' for c in candidates),
+            'official_government_ree_resource_rows':len(inventory),
+            'provisional_deposit_link_candidates':len(candidate_links),
+            'project_domain_evidence_states':{state:sum(r['evidence_state']==state for r in dimension_rows)
+                                               for state in sorted({r['evidence_state'] for r in dimension_rows})},
             'source_registry_coverage':{'registered_count':len(registered_keys),
                                         'selected_snapshot_count':len(selected_keys),
                                         'missing_or_cutoff_excluded':sorted(registered_keys-selected_keys)},

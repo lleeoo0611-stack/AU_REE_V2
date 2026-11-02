@@ -4,12 +4,16 @@ import math
 from pathlib import Path
 from .store import canonical, digest, entity, issue
 from .census import ingest_workbook
+from .official import ingest_official_table
 
 def ingest_sources(db, root, snapshots):
     for s in snapshots:
         db.execute('INSERT OR IGNORE INTO sources VALUES(?,?,?,?,?,?,?,?)',
                    (s['sha256'], s['key'], s['url'], s.get('publication_date'),
                     s['acquired_at'], s['path'], s['kind'], canonical(s)))
+        if s['kind'] == 'official_table_transcription':
+            ingest_official_table(db,root,s)
+            continue
         if s['kind'] == 'xlsx_census':
             ingest_workbook(db,root,s)
             continue
@@ -114,11 +118,11 @@ def ingest_claims(db, root, snapshots, cutoff, project=None):
                 issue(db, eid, s['sha256'], reason, obsid)
     # Conflicting same-date, same-scope values are never resolved by insertion order.
     groups = db.execute('''SELECT entity_id,variable,scope,effective_date,COUNT(DISTINCT value) n
-        FROM observations GROUP BY entity_id,variable,scope,effective_date HAVING n>1''').fetchall()
+        FROM observations WHERE status='AUTO_VALIDATED' GROUP BY entity_id,variable,scope,effective_date HAVING n>1''').fetchall()
     for g in groups:
         params = tuple(g[k] for k in ('entity_id', 'variable', 'scope', 'effective_date'))
         db.execute('''UPDATE observations SET status='REVIEW' WHERE entity_id=? AND variable=?
-                      AND scope=? AND effective_date=?''', params)
+                      AND scope=? AND effective_date=? AND status='AUTO_VALIDATED' ''', params)
         issue(db, g['entity_id'], None, 'SOURCE_CONFLICT', canonical(dict(g)))
 
 def resource_values(db, cutoff, snapshot_shas):
