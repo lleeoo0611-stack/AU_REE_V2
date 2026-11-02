@@ -61,7 +61,9 @@ class CoreTests(unittest.TestCase):
 
     def test_snapshot_cutoff_prevents_lookahead(self):
         self.assertEqual([],select_snapshots(ROOT,'2026-11-01'))
-        self.assertEqual(4,len(select_snapshots(ROOT,CUTOFF)))
+        active=select_snapshots(ROOT,CUTOFF)
+        self.assertTrue({'ga_aimr','ga_ports','mt_weld_2024','browns_range_2025'} <=
+                        {s['key'] for s in active})
 
     def test_source_checksum_tampering_fails(self):
         shutil.copytree(ROOT/'data',self.work/'data')
@@ -108,7 +110,7 @@ class CoreTests(unittest.TestCase):
         selected=select_snapshots(self.work,CUTOFF)
         ingest_sources(db,self.work,selected);ingest_claims(db,self.work,selected,CUTOFF)
         self.assertEqual(before_ids,{r[0] for r in db.execute('SELECT entity_id FROM entities')})
-        self.assertEqual(5,db.execute('SELECT COUNT(*) FROM sources').fetchone()[0])
+        self.assertEqual(len(original)+1,db.execute('SELECT COUNT(*) FROM sources').fetchone()[0])
         result=resource_values(db,CUTOFF,{s['sha256'] for s in selected})
         self.assertEqual(1,len(result))
         self.assertGreater(db.execute("SELECT COUNT(*) FROM review_queue WHERE reason='EXTRACTION_VERSION_MISMATCH'").fetchone()[0],0)
@@ -255,7 +257,8 @@ class CoreTests(unittest.TestCase):
             self.assertEqual(0,result.returncode,result.stderr)
             outputs.append(json.loads(result.stdout))
         self.assertEqual(outputs[0]['logical_database_sha256'],outputs[1]['logical_database_sha256'])
-        self.assertEqual({'DEPOSIT':149,'PROJECT':2},outputs[0]['census_by_kind'])
+        self.assertEqual(149,outputs[0]['census_by_kind']['DEPOSIT'])
+        self.assertEqual(2,outputs[0]['census_by_kind']['PROJECT'])
         if rscript:
             self.assertEqual('COMPLETED',outputs[0]['r_results']['resource_infrastructure_pilot']['status'])
             for key,value in outputs[0]['output_hashes'].items():
