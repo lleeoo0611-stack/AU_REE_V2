@@ -144,3 +144,24 @@ silently removed from population counts. This is nationwide **DEPOSIT**
 descriptive GIS, *not* 149 independent projects, an end-to-end transport route,
 or Aim C's proposed project ranking driver inference. Project-scoped road,
 rail and power snapshots are never extrapolated to these deposits.
+
+## Legacy national E1 source selections (frozen cross-state evidence)
+
+The independent 2026-10-29 AU_REE national screening archive contains **339
+selected records**: 317 records copied from official-source feature selections
+and 22 legacy-only historical ledger entries. These are loaded into the same
+SQLite store as SOURCE_RECORD, never promoted to PROJECT, with the original
+source family/native ID, raw selected attributes, geometry, locator, original
+chunk SHA-256 and pinned old-repository commit. The selected-feature snapshot
+is hash-locked and committed. It represents a subset of the prior 1006 raw
+screening candidates, not the complete national project census or the original
+full government-source download. In V2, 83 GA AIMR-selected records can be
+linked to already registered official GA DEPOSIT native IDs; these links are
+geological source relations only, not project/deposit identity assumptions.
+
+Outputs: national_e1_candidates.csv, national_e1_coverage.csv and
+national_e1_port_distances.csv. GIS describes SOURCE_RECORD point locations
+using a globally complete official port layer; it does not release project
+logistics scores. The old project/occurrence records remain separate from
+25 source-backed named PROJECT identities. External issuer corroboration and
+new nationwide discovery remain open.

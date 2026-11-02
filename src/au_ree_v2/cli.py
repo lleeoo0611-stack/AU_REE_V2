@@ -13,6 +13,7 @@ from .analysis import prepare, run_r, write_csv
 from .evidence import ingest_sources, ingest_claims, resource_values
 from .gis import run as run_gis, national_deposit_port_distances, deposit_type_port_summary
 from .official import official_inventory, exact_deposit_candidates, domain_evidence_coverage, national_prospectus_inventory
+from .national import national_candidate_rows, national_source_coverage, candidate_port_distances
 from .store import canonical, connect, digest, filehash, logical_dump
 
 def code_version(root):
@@ -81,6 +82,20 @@ def execute(args):
                   ['state','deposit_type','deposits_total','deposits_with_port_distance',
                    'median_port_distance_km','min_port_distance_km','max_port_distance_km',
                    'unit_of_analysis','inference'])
+        legacy_candidates=national_candidate_rows(db,{s['sha256'] for s in snapshots})
+        write_csv(out/'national_e1_candidates.csv',legacy_candidates,
+                  ['entity_id','source_key','native_id','legacy_target_id','name','state','longitude','latitude',
+                   'source_sha256','original_chunk_sha256','original_locator','original_source_path',
+                   'screening_status','record_kind','project_parent_hint'])
+        national_coverage=national_source_coverage(legacy_candidates)
+        write_csv(out/'national_e1_coverage.csv',national_coverage,
+                  ['state','source_key','source_records','coordinate_records','source_record_not_project'])
+        candidate_ports=[]
+        if args.module in ('all','gis','analyze','rebuild'):
+            candidate_ports=candidate_port_distances(db,root,snapshots,run_id)
+        write_csv(out/'national_e1_port_distances.csv',candidate_ports,
+                  ['entity_id','source_key','state','name','distance_km','coordinate_source_sha256',
+                   'port_source_sha256','status','unit_of_analysis','limitation'])
         gis_rows=[]
         for eid,metrics in sorted(gis_values.items()):
             for variable,v in sorted(metrics.items()):
@@ -176,6 +191,10 @@ def execute(args):
             'unresolved_census_candidate_records':sum(c['classification']=='UNRESOLVED_PROJECT_CANDIDATE_SOURCE_RECORD' for c in candidates),
             'official_government_ree_resource_rows':len(inventory),
             'national_advanced_ree_profile_rows':len(national_inventory),
+            'national_selected_e1_source_rows':len(legacy_candidates),
+            'national_selected_e1_coordinate_rows':sum(r['longitude'] is not None and r['latitude'] is not None for r in legacy_candidates),
+            'national_selected_e1_port_distances_n':sum(r['distance_km'] is not None for r in candidate_ports),
+            'national_e1_coverage_groups':len(national_coverage),
             'provisional_deposit_link_candidates':len(candidate_links),
             'project_domain_evidence_states':{state:sum(r['evidence_state']==state for r in dimension_rows)
                                                for state in sorted({r['evidence_state'] for r in dimension_rows})},

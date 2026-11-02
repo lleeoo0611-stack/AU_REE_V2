@@ -180,6 +180,24 @@
       "available_date": "2026-11-02",
       "etag": "\"0x8DE8AB6E631677C\"",
       "last_modified": "Wed, 25 Mar 2026 21:38:48 GMT"
+    },
+    {
+      "key": "legacy_national_e1_20261029",
+      "kind": "historical_e1_candidates",
+      "url": "https://raw.githubusercontent.com/lleeoo0611-stack/AU_REE/093d724cc25fc319725bf347fc4d8ab196aadaf3/data/source_snapshots/2026-10-29_p2_p3_p4_selected_features.jsonl",
+      "publication_date": "2026-10-29",
+      "definition": "Archived selection of 339 source candidates, 317 official source feature selections plus 22 legacy-only historical rows. Not the complete 1006 national source screening, not the original government API chunk bytes, and not independent Projects.",
+      "upstream_repo": "lleeoo0611-stack/AU_REE",
+      "upstream_commit": "093d724cc25fc319725bf347fc4d8ab196aadaf3",
+      "selection_locator": "data/source_snapshots/2026-10-29_p2_p3_p4_selected_features.jsonl",
+      "original_raw_manifest_sha256": "5057e25f1711232a0057889d413913fd8f4a227cbe42235dc279e98bfbce4dc1",
+      "original_selected_target_count": 339,
+      "sha256": "714ae3649f1d7c9e5c9c0109241e7ebed5a7c83046fcc8d452c52b2e48b08643",
+      "path": "data/snapshots/714ae3649f1d7c9e5c9c0109241e7ebed5a7c83046fcc8d452c52b2e48b08643.jsonl",
+      "acquired_at": "2026-11-02T16:07:58.628Z",
+      "available_date": "2026-11-02",
+      "source_qualification": "VERSIONED_DERIVED_SELECTION_NOT_ORIGINAL_GOVERNMENT_CHUNKS",
+      "selected_count": 339
     }
   ]
 }

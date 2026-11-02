@@ -1,5 +1,5 @@
 {
-  "version": "sources-v5-multistate-official-prospectus",
+  "version": "sources-v6-legacy-national-selection",
   "sources": [
     {
       "key": "ga_aimr",
@@ -100,6 +100,18 @@
       "publication_date": "2026-03-01",
       "publication_date_precision": "month",
       "definition": "Raw government prospectus PDF for source preservation; catalogue remains distinct from original issuer reports."
+    },
+    {
+      "key": "legacy_national_e1_20261029",
+      "kind": "historical_e1_candidates",
+      "url": "https://raw.githubusercontent.com/lleeoo0611-stack/AU_REE/093d724cc25fc319725bf347fc4d8ab196aadaf3/data/source_snapshots/2026-10-29_p2_p3_p4_selected_features.jsonl",
+      "publication_date": "2026-10-29",
+      "definition": "Archived selection of 339 source candidates, 317 official source feature selections plus 22 legacy-only historical rows. Not the complete 1006 national source screening, not the original government API chunk bytes, and not independent Projects.",
+      "upstream_repo": "lleeoo0611-stack/AU_REE",
+      "upstream_commit": "093d724cc25fc319725bf347fc4d8ab196aadaf3",
+      "selection_locator": "data/source_snapshots/2026-10-29_p2_p3_p4_selected_features.jsonl",
+      "original_raw_manifest_sha256": "5057e25f1711232a0057889d413913fd8f4a227cbe42235dc279e98bfbce4dc1",
+      "original_selected_target_count": 339
     }
   ]
 }

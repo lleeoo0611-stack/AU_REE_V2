@@ -73,7 +73,7 @@ def refresh(root, registry):
         try:
             previous = [s for s in manifest['snapshots'] if s['key']==source['key']]
             latest = max(previous,key=lambda s:s['acquired_at']) if previous else {}
-            if source['kind'] in ('official_table_transcription','official_project_catalogue_transcription'):
+            if source['kind'] in ('official_table_transcription','official_project_catalogue_transcription','historical_e1_candidates'):
                 if not latest:
                     raise ValueError('Managed table snapshot absent')
                 if filehash(root/latest['path']) != latest['sha256']:

@@ -5,12 +5,16 @@ from pathlib import Path
 from .store import canonical, digest, entity, issue
 from .census import ingest_workbook
 from .official import ingest_official_table, ingest_prospectus
+from .national import ingest_legacy_e1
 
 def ingest_sources(db, root, snapshots):
     for s in snapshots:
         db.execute('INSERT OR IGNORE INTO sources VALUES(?,?,?,?,?,?,?,?)',
                    (s['sha256'], s['key'], s['url'], s.get('publication_date'),
                     s['acquired_at'], s['path'], s['kind'], canonical(s)))
+        if s['kind'] == 'historical_e1_candidates':
+            ingest_legacy_e1(db,root,s)
+            continue
         if s['kind'] == 'official_project_catalogue_transcription':
             ingest_prospectus(db,root,s)
             continue
