@@ -211,6 +211,25 @@ class CoreTests(unittest.TestCase):
         self.assertEqual(1,db.execute(
             "SELECT COUNT(*) FROM review_queue WHERE reason='GIS_AOI_NOT_COVERED'").fetchone()[0])
 
+    def test_official_workbook_discovery_does_not_fabricate_projects(self):
+        from openpyxl import Workbook
+        from au_ree_v2.census import ingest_workbook
+        book=Workbook();sheet=book.active;sheet.title='Project listing'
+        sheet.append(['Project','Commodity','State'])
+        sheet.append(['Example REE Project','Rare earth elements','WA'])
+        sheet.append(['Other metal','Iron ore','QLD'])
+        loc=self.work/'official.xlsx';book.save(loc);book.close()
+        snapshot={'key':'official','kind':'xlsx_census','url':'https://example.gov.au/off.xlsx',
+                  'acquired_at':'2026-11-02T12:00:00+00:00','path':'official.xlsx',
+                  'sha256':hashlib.sha256(loc.read_bytes()).hexdigest()}
+        db=self.db();ingest_sources(db,self.work,[snapshot])
+        self.assertEqual(1,db.execute("SELECT COUNT(*) FROM entities WHERE kind='SOURCE_RECORD'").fetchone()[0])
+        self.assertEqual(0,db.execute("SELECT COUNT(*) FROM entities WHERE kind='PROJECT'").fetchone()[0])
+        self.assertEqual(1,db.execute('SELECT COUNT(*) FROM records').fetchone()[0])
+        original=digest(logical_dump(db))
+        ingest_sources(db,self.work,[snapshot])
+        self.assertEqual(original,digest(logical_dump(db)))
+
     def test_fixed_anchors_no_cohort_rescaling(self):
         c=json.loads((ROOT/'config/research.json').read_text())['criteria'][0]
         self.assertEqual(0,score(0,c));self.assertEqual(1,score(5000,c))
