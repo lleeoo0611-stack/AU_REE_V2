@@ -258,7 +258,8 @@ class CoreTests(unittest.TestCase):
             outputs.append(json.loads(result.stdout))
         self.assertEqual(outputs[0]['logical_database_sha256'],outputs[1]['logical_database_sha256'])
         self.assertEqual(149,outputs[0]['census_by_kind']['DEPOSIT'])
-        self.assertEqual(20,outputs[0]['census_by_kind']['PROJECT'])
+        self.assertEqual(25,outputs[0]['census_by_kind']['PROJECT'])
+        self.assertEqual(7,outputs[0]['national_advanced_ree_profile_rows'])
         self.assertEqual(20,outputs[0]['official_government_ree_resource_rows'])
         if rscript:
             self.assertEqual('COMPLETED',outputs[0]['r_results']['resource_infrastructure_pilot']['status'])

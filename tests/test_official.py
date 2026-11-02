@@ -21,10 +21,10 @@ class OfficialSourceTests(unittest.TestCase):
                 snap=select_snapshots(ROOT,CUTOFF)
                 ingest_sources(db,ROOT,snap)
                 self.assertEqual(149,db.execute("SELECT COUNT(*) FROM entities WHERE kind='DEPOSIT'").fetchone()[0])
-                self.assertEqual(20,db.execute("SELECT COUNT(*) FROM entities WHERE kind='PROJECT'").fetchone()[0])
+                self.assertEqual(25,db.execute("SELECT COUNT(*) FROM entities WHERE kind='PROJECT'").fetchone()[0])
                 inventory=official_inventory(db,{s["sha256"] for s in snap})
                 self.assertEqual(20,len(inventory))
-                self.assertEqual(20,db.execute("SELECT COUNT(*) FROM entities WHERE kind='SOURCE_RECORD'").fetchone()[0])
+                self.assertEqual(27,db.execute("SELECT COUNT(*) FROM entities WHERE kind='SOURCE_RECORD'").fetchone()[0])
                 self.assertEqual(60,db.execute("SELECT COUNT(*) FROM observations WHERE status='OFFICIAL_SUMMARY_SCOPE_UNVERIFIED'").fetchone()[0])
                 self.assertEqual({},resource_values(db,CUTOFF,{s["sha256"] for s in snap}))
                 self.assertEqual(4649,next(r for r in inventory if r["project_name"]=="Mt Weld")["contained_treo_kt"])
@@ -39,12 +39,32 @@ class OfficialSourceTests(unittest.TestCase):
                 self.assertEqual(2,db.execute("SELECT COUNT(*) FROM relations WHERE relation='REPRESENTATIVE_POINT_NOT_ENTITY_EQUIVALENCE'").fetchone()[0])
                 self.assertEqual(20,db.execute("SELECT COUNT(*) FROM relations WHERE relation='LISTED_AS_PROJECT_NOT_DEPOSIT_EQUIVALENCE'").fetchone()[0])
                 coverage=domain_evidence_coverage(db,inventory,resources,{})
-                self.assertEqual(120,len(coverage))
+                self.assertEqual(150,len(coverage))
                 self.assertEqual(0,sum(x["scorable"] for x in coverage if x["domain"] in ("Strategic","Technical","Development","Commercial")))
                 self.assertEqual(18,sum(x["evidence_state"]=="OFFICIAL_SUMMARY_ONLY" for x in coverage))
                 candidates=exact_deposit_candidates(db,inventory,{s["sha256"] for s in snap})
                 self.assertGreaterEqual(len(candidates),5)
                 self.assertTrue(all(x["status"]=="UNVERIFIED_LINK_NO_GIS_RELEASE" for x in candidates))
+            finally:db.close()
+
+
+    def test_national_official_profiles_cross_state_and_ownership(self):
+        from au_ree_v2.official import national_prospectus_inventory
+        with tempfile.TemporaryDirectory() as tmp:
+            db=connect(Path(tmp)/"profiles.sqlite")
+            try:
+                snap=select_snapshots(ROOT,CUTOFF)
+                ingest_sources(db,ROOT,snap)
+                profiles=national_prospectus_inventory(db,{s["sha256"] for s in snap})
+                self.assertEqual(7,len(profiles))
+                self.assertEqual({"WA","VIC","NSW","NT"},{r["state"] for r in profiles})
+                self.assertEqual(25,db.execute("SELECT COUNT(*) FROM entities WHERE kind='PROJECT'").fetchone()[0])
+                self.assertEqual(7,db.execute("SELECT COUNT(*) FROM relations WHERE relation='LISTED_IN_NATIONAL_PROSPECTUS'").fetchone()[0])
+                self.assertEqual(0,db.execute("SELECT COUNT(*) FROM observations WHERE transform_version='austrade-v1'").fetchone()[0])
+                coverage=domain_evidence_coverage(db,official_inventory(db,{s["sha256"] for s in snap}),{}, {},profiles)
+                self.assertTrue(any(r["domain"]=="Technical" and r["evidence_state"]=="AUSTRADE_DESCRIPTIVE_ONLY" for r in coverage))
+                self.assertTrue(all(r["scorable"]==0 for r in coverage))
+                self.assertEqual(0,db.execute("SELECT COUNT(*) FROM entities WHERE kind='PROJECT' AND native_id='browns-range-heavy-rare-earths-hre'").fetchone()[0])
             finally:db.close()
 
     def test_transcription_tamper_and_invalid_input_cannot_promote_resource(self):

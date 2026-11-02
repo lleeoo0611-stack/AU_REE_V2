@@ -58,3 +58,16 @@ Exact matched deposit names/states create link candidates only. Project-domain
 coverage is exported for all listed projects so unavailable evidence remains
 explicit. Other states, issuer crosschecks, additional evidence and full C1 gate
 reconstruction remain unfinished.
+
+### National profile coverage
+
+Austrade, *Australian Critical Minerals Prospectus*, March 2026,
+printed pp. 5, 31-37 (7 REE upstream profiles),
+https://international.austrade.gov.au/content/dam/austrade-assets/international/documents/reports/critical-minerals/australian-critical-minerals-prospectus-march-2026.pdf
+
+Added 7 dated descriptive project profiles for WA, VIC, NSW and NT. The explicit
+Browns Range and Yangibana crosswalk retains prior IDs; the other 5 projects
+receive distinct stable IDs. Status/flow-sheets/financing/approvals/offtake
+remain literal source-described observations, never fabricated ordinal scores.
+PDF archival remains a separate reproducibility step; a text transcription
+with original page locators is not the native PDF byte snapshot.

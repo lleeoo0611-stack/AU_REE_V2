@@ -115,3 +115,19 @@ links only**: no entity merger, inferred project footprint or GIS release.
 Geoscience Australia's national deposit collection and the WA project list must
 not be added together as a count of unique Australian projects. Aim A/B full-panel
 ranking and Aim C statistical inference remain blocked by incomplete evidence.
+
+## Multi-state national project profiles (Austrade 2026)
+
+Seven REE upstream projects from Austrade's March 2026 *Australian Critical
+Minerals Prospectus* (printed pp. 5 and 31-37) are retained as national
+SOURCE_RECORDs and linked to PROJECT identities, including five new stable
+project identities across VIC, NSW and NT. Existing Browns Range and Yangibana
+entities are reused through explicit aliases, not name-only fuzzy matching.
+Profiles carry source-anchored descriptions of strategic products, process
+routes, study milestones and financing/approvals/offtake. These are **descriptive
+reporting-date facts**, not validated recovery rates, funds available, confirmed
+permits for other projects or C1 MCDA scores. The same schema exports
+national_prospectus_evidence.csv and more informative project_domain_evidence.csv.
+Raw Austrade PDF acquisition is registered independently from the
+SHA-256-addressed table transcription. The 2026 prospectus is an investment
+selection, not a national Census closure or complete six-domain evidence panel.

@@ -1,5 +1,5 @@
 {
-  "version": "sources-v4-wa-official",
+  "version": "sources-v5-multistate-official-prospectus",
   "sources": [
     {
       "key": "ga_aimr",
@@ -83,6 +83,23 @@
       "publication_date": "2026-02-01",
       "publication_date_precision": "month",
       "definition": "Official DMPE source PDF; when acquired independently, retain raw bytes for full-source audit."
+    },
+    {
+      "key": "austrade_2026_ree_catalogue",
+      "kind": "official_project_catalogue_transcription",
+      "url": "https://international.austrade.gov.au/content/dam/austrade-assets/international/documents/reports/critical-minerals/australian-critical-minerals-prospectus-march-2026.pdf",
+      "publication_date": "2026-03-01",
+      "publication_date_precision": "month",
+      "source_pages": "printed pp 5 and 31-37",
+      "definition": "Austrade March 2026 investment prospectus: seven REE upstream projects, source-referenced technical/development/commercial statements; official catalogue summary, not original issuer JORC."
+    },
+    {
+      "key": "austrade_2026_prospectus_pdf",
+      "kind": "pdf",
+      "url": "https://international.austrade.gov.au/content/dam/austrade-assets/international/documents/reports/critical-minerals/australian-critical-minerals-prospectus-march-2026.pdf",
+      "publication_date": "2026-03-01",
+      "publication_date_precision": "month",
+      "definition": "Raw government prospectus PDF for source preservation; catalogue remains distinct from original issuer reports."
     }
   ]
 }

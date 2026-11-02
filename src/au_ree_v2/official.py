@@ -135,13 +135,15 @@ def exact_deposit_candidates(db, inventory, selected_shas):
                         "status":"UNVERIFIED_LINK_NO_GIS_RELEASE"})
     return out
 
-def domain_evidence_coverage(db, inventory, resources, gis_values):
+def domain_evidence_coverage(db, inventory, resources, gis_values, prospectus=None):
     """Descriptive source facts must not silently become six-domain scored values."""
     project_ids={r[0] for r in db.execute("SELECT entity_id FROM entities WHERE kind='PROJECT'")}
     listed={r["project_id"]:r for r in inventory}
+    profiles={r["project_id"]:r for r in (prospectus or [])}
     rows=[]
     for eid in sorted(project_ids):
         listed_row=listed.get(eid,{})
+        profile=profiles.get(eid,{})
         for domain in ("Resource","Strategic","Technical","Development","Infrastructure","Commercial"):
             state="MISSING"
             evidence=None
@@ -156,8 +158,98 @@ def domain_evidence_coverage(db, inventory, resources, gis_values):
                 state="DESCRIPTIVE_STATUS_ONLY";evidence=listed_row["official_status"]
             elif domain=="Commercial" and listed_row.get("listed_owner"):
                 state="DESCRIPTIVE_OWNER_ONLY";evidence=listed_row["listed_owner"]
-            rows.append({"project_id":eid,"project_name":listed_row.get("project_name"),
+            description_key={"Strategic":"strategic_evidence", "Technical":"technical_evidence",
+                             "Development":"development_evidence", "Commercial":"commercial_evidence"}.get(domain)
+            if state=="MISSING" and description_key and profile.get(description_key):
+                state="AUSTRADE_DESCRIPTIVE_ONLY"
+                evidence=profile[description_key]
+            rows.append({"project_id":eid,"project_name":listed_row.get("project_name") or profile.get("project_name"),
                          "domain":domain,"evidence_state":state,"evidence_reference":evidence,
                          "scorable":int((domain=="Resource" and state=="SCOPED_RESOURCE_VALIDATED") or
                                         (domain=="Infrastructure" and state=="OFFICIAL_DISTANCE_AVAILABLE"))})
     return rows
+
+# National Austrade source records preserve distinct upstream PROJECT identities.
+# The explicit aliases below only concern two already identified WA projects.
+AUSTRADE_CROSSWALK = {
+    "browns-range-heavy-rare-earths-hre": ("project_registry_v1","browns-range"),
+    "yangibana-rare-earths-niobium-project": ("WA_DMPE_REE_2026_PROJECT","yangibana"),
+}
+AUSTRADE_STATES = {"WA","NSW","VIC","NT","SA","QLD","TAS","ACT"}
+AUSTRADE_FIELDS = ("row","project","owner","state","printed_page",
+                   "strategic_evidence","technical_evidence",
+                   "development_evidence","commercial_evidence")
+
+def ingest_prospectus(db, root, source):
+    path=Path(root)/source["path"]
+    if filehash(path) != source["sha256"]:
+        raise ValueError("Austrade catalogue checksum mismatch")
+    count=0
+    seen=set()
+    with path.open(encoding="utf-8",newline="") as f:
+        reader=csv.DictReader(f,delimiter="\t")
+        if reader.fieldnames is None or set(reader.fieldnames) != set(AUSTRADE_FIELDS):
+            raise ValueError("Austrade catalogue schema mismatch")
+        for csvline,row in enumerate(reader,start=2):
+            key=slug(row["project"])
+            try:
+                if not key or key in seen or int(row["row"]) != csvline-1:
+                    raise ValueError("duplicate or invalid source row")
+                if row["state"] not in AUSTRADE_STATES or not row["owner"].strip():
+                    raise ValueError("missing authoritative state/owner")
+                page=int(row["printed_page"])
+                if page < 1 or not all(row[f].strip() for f in AUSTRADE_FIELDS):
+                    raise ValueError("missing page or descriptive evidence")
+            except (TypeError,ValueError) as exc:
+                issue(db,None,source["sha256"],"AUSTRADE_ROW_INVALID",
+                      canonical({"line":csvline,"reason":str(exc),"row":row}))
+                continue
+            seen.add(key)
+            namespace,native=AUSTRADE_CROSSWALK.get(key,("AUSTRADE_2026_REE_PROJECT",key))
+            eid=entity(db,namespace,native,"PROJECT")
+            record=entity(db,"AUSTRADE_2026_REE_ROW",key,"SOURCE_RECORD")
+            locator="Austrade March 2026 Critical Minerals Prospectus, printed p. "+str(page)
+            payload={"source_kind":"AUSTRADE_2026_NATIONAL_PROJECT_PROFILE",
+                     "classification":"OFFICIAL_PROFILE_NOT_JORC_VERIFICATION",
+                     "project_id":eid,"project_name":row["project"],
+                     "state":row["state"],"owner":row["owner"],
+                     "source_sha256":source["sha256"],"source_url":source["url"],
+                     "index_locator":"Austrade Prospectus, printed p. 5",
+                     "locator":locator,"printed_page":page,
+                     "strategic_evidence":row["strategic_evidence"],
+                     "technical_evidence":row["technical_evidence"],
+                     "development_evidence":row["development_evidence"],
+                     "commercial_evidence":row["commercial_evidence"],
+                     "observation_class":"SOURCE_DESCRIPTIVE_UNVERIFIED_NOT_SCORED"}
+            for target in (eid,record):
+                db.execute("INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)",
+                           (target,source["sha256"],row["project"],row["state"],
+                            None,None,None,None,canonical(payload)))
+            db.execute("INSERT OR IGNORE INTO relations VALUES(?,?,?,?,?,?,?)",
+                       (digest([eid,record,"AUSTRADE_LISTING"]),eid,record,
+                        "LISTED_IN_NATIONAL_PROSPECTUS",
+                        "2026-03-01",source["sha256"],locator))
+            count+=1
+    if count==0:
+        issue(db,None,source["sha256"],"AUSTRADE_NO_VALID_ROWS",str(path))
+    return count
+
+def national_prospectus_inventory(db, selected_shas):
+    rows=[]
+    for r in db.execute("""SELECT r.raw,r.source_sha FROM records r JOIN entities e USING(entity_id)
+                            WHERE e.kind='SOURCE_RECORD'"""):
+        if r["source_sha"] not in selected_shas:
+            continue
+        d=json.loads(r["raw"])
+        if d.get("source_kind")!="AUSTRADE_2026_NATIONAL_PROJECT_PROFILE":
+            continue
+        rows.append({"project_id":d["project_id"],"project_name":d["project_name"],
+                     "state":d["state"],"owner":d["owner"],
+                     "strategic_evidence":d["strategic_evidence"],
+                     "technical_evidence":d["technical_evidence"],
+                     "development_evidence":d["development_evidence"],
+                     "commercial_evidence":d["commercial_evidence"],
+                     "source_sha256":r["source_sha"],"locator":d["locator"],
+                     "status":"DESCRIPTIVE_ONLY_NO_NUMERIC_C1_SCORING",
+                     "source_url":d["source_url"]})
+    return sorted(rows,key=lambda x:x["project_name"])

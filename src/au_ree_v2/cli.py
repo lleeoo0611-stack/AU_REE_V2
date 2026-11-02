@@ -12,7 +12,7 @@ from .acquisition import refresh, select_snapshots
 from .analysis import prepare, run_r, write_csv
 from .evidence import ingest_sources, ingest_claims, resource_values
 from .gis import run as run_gis
-from .official import official_inventory, exact_deposit_candidates, domain_evidence_coverage
+from .official import official_inventory, exact_deposit_candidates, domain_evidence_coverage, national_prospectus_inventory
 from .store import canonical, connect, digest, filehash, logical_dump
 
 def code_version(root):
@@ -102,7 +102,12 @@ def execute(args):
         write_csv(out/'census_link_candidates.csv',candidate_links,
                   ['project_id','project_name','deposit_id','deposit_source_sha256',
                    'project_source_sha256','candidate_count','match_rule','status'])
-        dimension_rows=domain_evidence_coverage(db,inventory,resources,gis_values)
+        national_inventory=national_prospectus_inventory(db,source_shas)
+        write_csv(out/'national_prospectus_evidence.csv',national_inventory,
+                  ['project_id','project_name','state','owner','strategic_evidence',
+                   'technical_evidence','development_evidence','commercial_evidence',
+                   'source_sha256','locator','status','source_url'])
+        dimension_rows=domain_evidence_coverage(db,inventory,resources,gis_values,national_inventory)
         write_csv(out/'project_domain_evidence.csv',dimension_rows,
                   ['project_id','project_name','domain','evidence_state','evidence_reference','scorable'])
         candidates=[]
@@ -158,6 +163,7 @@ def execute(args):
             'logical_database_sha256':digest(dump),'source_count':len(snapshots),'census_by_kind':by_kind,
             'unresolved_census_candidate_records':sum(c['classification']=='UNRESOLVED_PROJECT_CANDIDATE_SOURCE_RECORD' for c in candidates),
             'official_government_ree_resource_rows':len(inventory),
+            'national_advanced_ree_profile_rows':len(national_inventory),
             'provisional_deposit_link_candidates':len(candidate_links),
             'project_domain_evidence_states':{state:sum(r['evidence_state']==state for r in dimension_rows)
                                                for state in sorted({r['evidence_state'] for r in dimension_rows})},
