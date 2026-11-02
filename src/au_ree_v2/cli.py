@@ -205,13 +205,14 @@ def execute(args):
             'national_ga_deposit_port_distances_n':sum(r['distance_km'] is not None for r in deposit_gis),
             'national_ga_deposit_port_scope_n':len(deposit_gis),
             'aim_c_deposit_type_groups_n':len(deposit_by_type),
+            'official_summary_screen_n':prepared.get('government_screen_n',0),
             'resource_defined_n':len(resources),'development_n':sum(c['development'] for c in prepared['coverage']),
             'full_evidence_n':sum(c['full_evidence'] for c in prepared['coverage']),
             'r_results':results,'r_skipped':args.skip_r,'acquisition':acquisition,
-            'aim_a': 'RESOURCE_INFRASTRUCTURE_PILOT_ONLY' if results else 'COVERAGE_ONLY',
-            'aim_b': 'WEIGHTS_ROUNDING_METHOD_FUNCTION_PILOT' if results else 'NOT_RUN',
+            'aim_a': ('TWO_ISSUER_SCOPED_PROJECTS_PLUS_WA_20_SOURCE_SUMMARY_SCREEN_NOT_FULL_DEVELOPMENT_MCDA' if results.get('official_wa_resource_screen',{}).get('status')=='COMPLETED' else 'RESOURCE_INFRASTRUCTURE_PILOT_OR_COVERAGE_ONLY'),
+            'aim_b': ('SCENARIO_METHOD_WEIGHT_ROUNDING_COHORT_SCREEN_20_AND_PILOT' if results.get('official_wa_resource_screen',{}).get('status')=='COMPLETED' else 'NOT_RUN'),
             'cohort_sensitivity': 'NOT_ESTIMABLE_AFTER_DELETION_N_LT_2' if len(resources)<3 else 'LEAVE_ONE_PROJECT_OUT',
-            'aim_c': ('NATIONAL_DEPOSIT_GEOGRAPHY_DESCRIPTIVE_ONLY_NO_PROJECT_RANK_DRIVER_INFERENCE'
+            'aim_c': ('NATIONAL_DEPOSIT_GEOGRAPHY_AND_WA_STATUS_SCORE_ASSOCIATION_DESCRIPTIVE_NOT_CAUSAL'
                       if deposit_gis else 'EXTERNAL_INFERENCE_NOT_COMPLETED_INSUFFICIENT_SAMPLE_AND_PREDICTORS'),
             'open_review_issues':len(issues),'limitations':config['limitations'],
             'independent_human_approval':'NOT_CLAIMED','output_dir':str(out)}
@@ -224,7 +225,10 @@ def execute(args):
         (out/'summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
         report=['# AU_REE_V2 research run',f"Cutoff: {args.as_of}",f"Run: {run_id}",
                 '## Verified coverage',canonical(by_kind),f'Resource-defined sample: {len(resources)}',
-                f"Full-evidence sample: {summary['full_evidence_n']}",'## Research interpretation',
+                f"Full-evidence sample: {summary['full_evidence_n']}",
+                f"WA government resource screen (exploratory): {summary['official_summary_screen_n']}",
+                'The WA government screen uses two related resource variables, not a six-domain C1 ranking.',
+                '## Research interpretation',
                 summary['aim_a'],summary['aim_b'],summary['aim_c'],
                 'Weight scenarios are researcher assumptions. Rank frequencies are not development success probabilities.',
                 'Each compared resource scope is explicit. The pilot does not establish latest project totals or a national ranking.',

@@ -77,5 +77,31 @@ writeout(bind(all_ahp,data.frame()),'ahp_audit')
 pairs<-list()
 for(i in seq_len(nrow(X)))for(j in seq_len(nrow(X)))if(i!=j)pairs[[paste(i,j)]]<-data.frame(a=d$project_id[i],b=d$project_id[j],dominates=all(X[i,]>=X[j,])&&any(X[i,]>X[j,]))
 writeout(do.call(rbind,pairs),'partial_order')
+
+# An external descriptive factor for the exploratory WA resource-only ranking.
+# Development stage is not in the two scoring criteria. Its association is
+# cross-sectional, source-selected and cannot be interpreted causally.
+if('official_status' %in% names(d)) {
+  stopifnot(all(c('raw_contained_treo_kt','raw_grade_pct','source_sha256','source_locator') %in% names(d)))
+  stage_code<-c(Exploration=1,Scoping=2,Feasibility=3,Operating=4)
+  ordinal<-as.numeric(stage_code[as.character(d$official_status)])
+  stopifnot(!anyNA(ordinal))
+  associations<-list()
+  for(nm in names(all_ranks)) {
+    rr<-all_ranks[[nm]]
+    stopifnot(identical(as.character(rr$project_id),as.character(d$project_id)))
+    rho<-if(length(unique(ordinal))<2 || sd(rr$promethee_rank)==0) NA_real_
+         else cor(ordinal,-rr$promethee_rank,method='spearman')
+    associations[[nm]]<-data.frame(scenario=nm,project_id=d$project_id,
+      project_name=d$project_name,official_stage=d$official_status,
+      stage_ordinal=ordinal,rank=rr$promethee_rank,
+      source_treo_kt=d$raw_contained_treo_kt,
+      source_grade_pct=d$raw_grade_pct,
+      source_sha256=d$source_sha256,locator=d$source_locator,
+      stage_rank_spearman_rho=rho,
+      interpretation='Descriptive external stage association with resource-only screen; no causal or development-success inference')
+  }
+  writeout(do.call(rbind,associations),'aim_c_stage_rank_association')
+}
 writeout(data.frame(R_version=R.version.string,seed,reps,threshold=p,concentration),'runtime')
 cat('Completed',nrow(X),'resource-scoped alternatives;',length(codes),'criteria.\n')

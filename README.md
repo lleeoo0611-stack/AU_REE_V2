@@ -165,3 +165,28 @@ using a globally complete official port layer; it does not release project
 logistics scores. The old project/occurrence records remain separate from
 25 source-backed named PROJECT identities. External issuer corroboration and
 new nationwide discovery remain open.
+
+## WA resource-only exploratory MCDA (n=20, separate from validated resource cohort)
+
+An independently labelled `official_wa_resource_screen` is computed from 20
+rows in one Western Australian government February 2026 project resource table.
+It uses reported **contained TREO (R1)** and **TREO grade (R2)** with fixed,
+versioned physical score anchors; both quantities have an algebraic dependence
+through ore tonnage, so this is a resource-screening trade-off, not a six-domain
+independent-criteria assessment. Three transparent researcher *assumption*
+preferences (80/20 inventory, 20/80 grade, 50/50) run the existing R AHP
+consistency, PROMETHEE II, SAW, TOPSIS, weight and rounding experiments,
+leave-criterion-out, cohort removal, dominance pairs, and cross-method tests.
+The rounding experiment covers only the reporting precision (±0.5 kt TREO,
+±0.005 percentage points grade), not geological/measurement uncertainty.
+The matrix retains each original raw value, source SHA, table locator, stage
+and explicit `OFFICIAL_SUMMARY_SCOPE_UNVERIFIED` status. **None of these 20
+observations pass the issuer-JORC resource-defined gate, and a government-only
+screen is not a development-potential ranking.** The original 2 issuer-verified
+resource/port pilot and separate six-domain cohorts remain unaffected.
+
+R also exports `aim_c_stage_rank_association.csv`: an exploratory Spearman
+association between government-described development stage and resource-only
+screen rank. Stage is an external descriptor absent from this score matrix,
+so the output is not a mechanical criterion correlation; selection bias,
+confounding and small stage-group sizes prohibit causal inference.

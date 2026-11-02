@@ -93,6 +93,32 @@ class OfficialSourceTests(unittest.TestCase):
                 self.assertEqual([],missing)
             finally:db.close()
 
+
+    def test_wa_government_resource_screen_has_20_true_rows_not_formal_eligibility(self):
+        from au_ree_v2.analysis import prepare
+        config=json.loads((ROOT/'config/research.json').read_text(encoding='utf-8'))
+        with tempfile.TemporaryDirectory() as tmp:
+            db=connect(Path(tmp)/"screen.sqlite")
+            try:
+                snapshots=select_snapshots(ROOT,CUTOFF)
+                ingest_sources(db,ROOT,snapshots)
+                resources=resource_values(db,CUTOFF,{s["sha256"] for s in snapshots})
+                self.assertEqual(0,len(resources))
+                out=Path(tmp)/"out"
+                prepared=prepare(db,CUTOFF,snapshots,resources,{},config,out)
+                self.assertEqual(20,prepared["government_screen_n"])
+                self.assertEqual(20,prepared["panels"]["official_wa_resource_screen"])
+                self.assertEqual(0,len(prepared["coverage"]))
+                import csv
+                with (out/"official_wa_resource_screen"/"matrix.csv").open(encoding="utf-8") as f:
+                    rows=list(csv.DictReader(f))
+                self.assertEqual(20,len(rows))
+                self.assertTrue(all(r["evidence_status"]=="OFFICIAL_SUMMARY_SCOPE_UNVERIFIED" for r in rows))
+                self.assertTrue(all(r["scope"]=="WA_GOVERNMENT_RESOURCE_SUMMARY_NOT_ISSUER_HARMONIZED" for r in rows))
+                self.assertTrue(all(float(r["R1_lower"])<=float(r["R1"])<=float(r["R1_upper"]) for r in rows))
+                self.assertTrue(all(float(r["R2_lower"])<=float(r["R2"])<=float(r["R2_upper"]) for r in rows))
+            finally:db.close()
+
     def test_transcription_tamper_and_invalid_input_cannot_promote_resource(self):
         with tempfile.TemporaryDirectory() as tmp:
             db=connect(Path(tmp)/"test.sqlite")

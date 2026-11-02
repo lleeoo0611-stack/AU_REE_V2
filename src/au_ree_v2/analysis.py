@@ -26,6 +26,74 @@ def score(value, criterion, alternative=False):
     val = max(0., min(1., val))
     return 1-val if criterion['direction']=='MIN' else val
 
+
+def _official_wa_resource_screen(db,cutoff,snapshots,config,criteria,out,project):
+    """Exploratory resource-only screen of one government source, never C1.
+
+    Unknown JORC/resource scope remains explicit. Units and reported TREO basis
+    must come from the same printed government table. No missing-value fill.
+    """
+    from .official import official_inventory
+    selected_shas={s['sha256'] for s in snapshots}
+    policy=config['screen_evidence_policy']
+    rows=[];traces=[]
+    codes=config['screen_panels']['official_wa_resource_screen']
+    by_key={s['key']:s for s in snapshots}
+    if policy['source_key'] not in by_key:
+        return rows,traces
+    source=by_key[policy['source_key']]
+    for rec in official_inventory(db,selected_shas):
+        if rec['source_sha256'] != source['sha256'] or rec['resource_date']>cutoff:
+            continue
+        if project:
+            native=db.execute('SELECT native_id FROM entities WHERE entity_id=?',
+                              (rec['project_id'],)).fetchone()
+            if native is None or native['native_id']!=project:
+                continue
+        if rec['basis']!='TREO' or rec['category']!='UNSPECIFIED_MINERAL_RESOURCE' or rec['confidence']!='OFFICIAL_SUMMARY_ONLY_NOT_C1':
+            raise ValueError('Government screen accidentally admitted verified C1 or incompatible basis')
+        variables={'R1':rec['contained_treo_kt'],'R2':rec['grade_pct']}
+        row={'project_id':rec['project_id'],'project_name':rec['project_name'],
+             'scope':'WA_GOVERNMENT_RESOURCE_SUMMARY_NOT_ISSUER_HARMONIZED',
+             'official_status':rec['official_status'],
+             'raw_contained_treo_kt':rec['contained_treo_kt'],
+             'raw_grade_pct':rec['grade_pct'],
+             'source_sha256':rec['source_sha256'],
+             'source_locator':rec['locator'],'effective_date':rec['resource_date'],
+             'evidence_status':policy['status']}
+        for code in codes:
+            val=variables[code]
+            c=criteria[code]
+            half=policy['rounding_half_width'][code]
+            row[code]=score(val,c)
+            row[code+'_alt']=score(val,c,alternative=True)
+            row[code+'_lower']=score(max(val-half,0),c)
+            row[code+'_upper']=score(val+half,c)
+            traces.append({'entity_id':rec['project_id'],'criterion':code,
+                           'raw_value':val,'score':row[code],
+                           'config_version':config['version'],
+                           'source':canonical({'source_sha256':rec['source_sha256'],
+                                               'locator':rec['locator'],
+                                               'evidence_status':policy['status'],
+                                               'effective_date':rec['resource_date'],
+                                               'source_scope':'government_project_summary_not_JORC_harmonized'}),
+                           'scoring':canonical(c)})
+        rows.append(row)
+    folder=Path(out)/'official_wa_resource_screen'
+    write_csv(folder/'matrix.csv',rows,
+              ['project_id','project_name','scope','official_status','raw_contained_treo_kt',
+               'raw_grade_pct','source_sha256','source_locator','effective_date','evidence_status',
+               *[key for code in codes for key in (code,code+'_alt',code+'_lower',code+'_upper')]])
+    write_csv(folder/'criteria.csv',[criteria[c] for c in codes],
+              ['code','domain','direction','low','high','function'])
+    weights=[{'scenario':name,'criterion':code,'weight':w[code]}
+             for name,w in config['screen_scenarios'].items() for code in codes]
+    for name,w in config['screen_scenarios'].items():
+        if set(w)!=set(codes) or not all(v>0 for v in w.values()) or abs(sum(w.values())-1)>1e-10:
+            raise ValueError('Invalid frozen screen preference weights: '+name)
+    write_csv(folder/'weights.csv',weights,['scenario','criterion','weight'])
+    return rows,traces
+
 def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=None):
     out = Path(out)
     criteria = {c['code']:c for c in config['criteria']}
@@ -69,6 +137,9 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
                 row[code+'_lower']=min(score(v,c) for v in bounds)
                 row[code+'_upper']=max(score(v,c) for v in bounds)
             matrices.setdefault(panel,[]).append(row)
+    screen_rows,screen_traces=_official_wa_resource_screen(db,cutoff,snapshots,config,criteria,out,project)
+    traces.extend(screen_traces)
+    matrices['official_wa_resource_screen']=screen_rows
     write_csv(out/'cohort_coverage.csv',coverage,['entity_id','project_name','scope','resource_defined','development','full_evidence',*criteria])
     write_csv(out/'value_trace.csv',traces,['entity_id','criterion','raw_value','score','config_version','source','scoring'])
     write_csv(out/'resources.csv',list(resources.values()),['entity_id','scope','date','ore_mt','grade_pct','contained_treo_kt','calculated_from_rounded_inputs_kt','rounding_bounds_kt','source_sha','obs_ids','interpretation'])
@@ -86,7 +157,8 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
                 count=sum(criteria[c]['domain']==domain for c in codes)
                 weights.append({'scenario':scenario,'criterion':code,'weight':domain_weights[domain]/total/count})
         write_csv(folder/'weights.csv',weights,['scenario','criterion','weight'])
-    return {'coverage':coverage,'panels':{p:len(v) for p,v in matrices.items()},'trace_values':len(traces)}
+    return {'coverage':coverage,'panels':{p:len(v) for p,v in matrices.items()},
+            'trace_values':len(traces),'government_screen_n':len(screen_rows)}
 
 def run_r(root, out, prepared, config, rscript=None):
     executable = rscript or shutil.which('Rscript')
@@ -108,5 +180,7 @@ def run_r(root, out, prepared, config, rscript=None):
                   'method_comparison.csv','function_sensitivity.csv','cohort_sensitivity.csv','ahp_audit.csv')
         if not all((folder/p).is_file() for p in expected):
             raise RuntimeError('R output contract incomplete')
-        results[panel]={'status':'COMPLETED','n':n,'weight_status':config['weight_status']}
+        results[panel]={'status':'COMPLETED','n':n,'weight_status':config['weight_status'],
+                        'evidence_status':config['screen_evidence_policy']['status'] if panel=='official_wa_resource_screen' else 'ISSUER_SCOPE_VALIDATED',
+                        'formal_eligibility':False if panel=='official_wa_resource_screen' else True}
     return results
