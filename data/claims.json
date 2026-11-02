@@ -1,0 +1,160 @@
+{
+  "version": "claims-v1",
+  "projects": [
+    {
+      "id": "mt-weld",
+      "name": "Mt Weld Project",
+      "state": "WA",
+      "identity_source": "mt_weld_2024",
+      "identity_locator": "physical PDF page 2",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 335557,
+      "coordinate_role": "Representative government deposit point, not legal project footprint",
+      "deposit_type": "Carbonatite/weathered",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 106.6,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Mt Weld Mineral Resource",
+          "statement_id": "mt-weld-2024-06-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2024-06-30",
+          "source_key": "mt_weld_2024",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "locator": "physical PDF page 2; Table 1 and preceding narrative",
+          "pdf_page": 2,
+          "page_markers": [
+            "106.6",
+            "4.12",
+            "4,389"
+          ],
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "grade",
+          "value": 4.12,
+          "unit": "%",
+          "basis": "TREO",
+          "scope": "Mt Weld Mineral Resource",
+          "statement_id": "mt-weld-2024-06-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2024-06-30",
+          "source_key": "mt_weld_2024",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "locator": "physical PDF page 2; Table 1 and preceding narrative",
+          "pdf_page": 2,
+          "page_markers": [
+            "106.6",
+            "4.12",
+            "4,389"
+          ],
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "contained_treo_kt",
+          "value": 4389,
+          "unit": "kt TREO",
+          "basis": "TREO",
+          "scope": "Mt Weld Mineral Resource",
+          "statement_id": "mt-weld-2024-06-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2024-06-30",
+          "source_key": "mt_weld_2024",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "locator": "physical PDF page 2; Table 1 and preceding narrative",
+          "pdf_page": 2,
+          "page_markers": [
+            "106.6",
+            "4.12",
+            "4,389"
+          ],
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": null
+        }
+      ]
+    },
+    {
+      "id": "browns-range",
+      "name": "Browns Range Project — Wolverine scope",
+      "state": "WA",
+      "identity_source": "browns_range_2025",
+      "identity_locator": "physical PDF page 13",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 570090,
+      "coordinate_role": "Representative government deposit point, not legal project footprint",
+      "deposit_type": "Xenotime hard rock",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 7.3,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+          "statement_id": "browns-range-2025-01-15",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-01-15",
+          "source_key": "browns_range_2025",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "locator": "physical PDF page 13; Table 5 Wolverine subtotal",
+          "pdf_page": 13,
+          "page_markers": [
+            "Wolverine",
+            "7.3",
+            "0.96",
+            "70,500"
+          ],
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "grade",
+          "value": 0.96,
+          "unit": "%",
+          "basis": "TREO",
+          "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+          "statement_id": "browns-range-2025-01-15",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-01-15",
+          "source_key": "browns_range_2025",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "locator": "physical PDF page 13; Table 5 Wolverine subtotal",
+          "pdf_page": 13,
+          "page_markers": [
+            "Wolverine",
+            "7.3",
+            "0.96",
+            "70,500"
+          ],
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "contained_treo_kt",
+          "value": 70.5,
+          "unit": "kt TREO",
+          "basis": "TREO",
+          "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+          "statement_id": "browns-range-2025-01-15",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-01-15",
+          "source_key": "browns_range_2025",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "locator": "physical PDF page 13; Table 5 Wolverine subtotal",
+          "pdf_page": 13,
+          "page_markers": [
+            "Wolverine",
+            "7.3",
+            "0.96",
+            "70,500"
+          ],
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": null
+        }
+      ]
+    }
+  ]
+}

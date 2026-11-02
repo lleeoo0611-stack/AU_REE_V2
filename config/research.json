@@ -1,0 +1,33 @@
+{
+  "version": "research-v1-pilot",
+  "frozen_before_scoring": true,
+  "cohorts": {
+    "full_census": "All available source entities; counts must be stratified by entity kind. Not a complete national project census.",
+    "resource_defined": "PROJECT with one latest complete same-scope TREO Mineral Resource statement. No stage requirement.",
+    "development": "Resource-defined plus source-supported study maturity and recovery observations.",
+    "full_evidence": "Development cohort plus a valid scored observation in every one of the six domains."
+  },
+  "panels": {
+    "resource_infrastructure_pilot": ["R1", "I4"],
+    "six_domain": ["R1", "S1", "T1", "D1", "I4", "C1"]
+  },
+  "criteria": [
+    {"code":"R1", "variable":"contained_treo_kt", "domain":"Resource", "direction":"MAX", "low":0, "high":5000, "unit":"kt TREO", "function":"log1p", "interpretation":"In-situ reported inventory; not recoverable product or success probability"},
+    {"code":"S1", "variable":"magnet_reo_share_pct", "domain":"Strategic", "direction":"MAX", "low":0, "high":100, "unit":"%", "function":"linear"},
+    {"code":"T1", "variable":"recovery_pct", "domain":"Technical", "direction":"MAX", "low":0, "high":100, "unit":"%", "function":"linear"},
+    {"code":"D1", "variable":"study_maturity_ord", "domain":"Development", "direction":"MAX", "low":1, "high":6, "unit":"ordinal", "function":"linear", "meaning":{"1":"MRE", "2":"Scoping", "3":"PFS", "4":"DFS", "5":"Construction", "6":"Production"}},
+    {"code":"I4", "variable":"port_distance_km", "domain":"Infrastructure", "direction":"MIN", "low":0, "high":2000, "unit":"km", "function":"linear"},
+    {"code":"C1", "variable":"financing_ord", "domain":"Commercial", "direction":"MAX", "low":0, "high":4, "unit":"ordinal", "function":"linear"}
+  ],
+  "scenarios": {
+    "resource_assumption": {"Resource":0.50,"Strategic":0.15,"Technical":0.10,"Development":0.10,"Infrastructure":0.10,"Commercial":0.05},
+    "development_assumption": {"Resource":0.10,"Strategic":0.10,"Technical":0.20,"Development":0.25,"Infrastructure":0.20,"Commercial":0.15},
+    "strategic_assumption": {"Resource":0.20,"Strategic":0.40,"Technical":0.10,"Development":0.10,"Infrastructure":0.10,"Commercial":0.10}
+  },
+  "weight_status":"RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES",
+  "pilot_weight_policy":"Restrict scenario domain weights to active panel, then normalize; different panels are different scales.",
+  "promethee_threshold":0.20,
+  "monte_carlo":{"seed":20261102,"reps":1000,"dirichlet_concentration":30},
+  "data_uncertainty":"Only explicit source bounds. Rounding bounds are reported separately from measurement uncertainty.",
+  "limitations":["Pilot is not a six-domain development-potential ranking", "Source reports have different effective dates; cutoff is availability, not common measurement date", "No claim of latest resource completeness until source discovery covers each issuer", "GIS centroid proximity is not transport feasibility", "Aim C external inference requires adequate sample size and independent predictors"]
+}
