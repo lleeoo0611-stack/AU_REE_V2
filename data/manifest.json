@@ -192,17 +192,18 @@
       "selection_locator": "data/source_snapshots/2026-10-29_p2_p3_p4_selected_features.jsonl",
       "original_raw_manifest_sha256": "5057e25f1711232a0057889d413913fd8f4a227cbe42235dc279e98bfbce4dc1",
       "original_selected_target_count": 339,
-      "sha256": "2bfa0b8b66697fcb8c53fdd216509262a2275e766425dbe97b4d5f451e721dd8",
-      "path": "data/snapshots/2bfa0b8b66697fcb8c53fdd216509262a2275e766425dbe97b4d5f451e721dd8.jsonl",
+      "sha256": "9c99edc3db4ffe679a284ffabd959fbf97d96c2b4aa329dcb3ba83395ae5dd93",
+      "path": "data/snapshots/9c99edc3db4ffe679a284ffabd959fbf97d96c2b4aa329dcb3ba83395ae5dd93.jsonl",
       "acquired_at": "2026-11-02T16:07:58.628Z",
       "available_date": "2026-11-02",
       "source_qualification": "CREDENTIAL_REDACTED_DERIVED_SELECTION_WITH_ORIGINAL_SHA_ATTESTATION",
       "selected_count": 339,
       "origin_selected_sha256": "714ae3649f1d7c9e5c9c0109241e7ebed5a7c83046fcc8d452c52b2e48b08643",
       "redaction": {
-        "rule": "REMOVE_PUBLIC_DOCUMENT_ACCESS_QUERY_PARAMETER_V1",
-        "redacted_parameter_occurrences": 1,
-        "original_selection_sha256": "714ae3649f1d7c9e5c9c0109241e7ebed5a7c83046fcc8d452c52b2e48b08643"
+        "rule": "REMOVE_ALL_HISTORICAL_ACCESS_QUERY_PARAMETER_ENCODINGS_V2",
+        "redacted_parameter_occurrences": 7,
+        "original_selection_sha256": "714ae3649f1d7c9e5c9c0109241e7ebed5a7c83046fcc8d452c52b2e48b08643",
+        "previously_redacted_snapshot_sha256": "2bfa0b8b66697fcb8c53fdd216509262a2275e766425dbe97b4d5f451e721dd8"
       }
     }
   ]

@@ -198,3 +198,8 @@ the immutable upstream original selection SHA-256 are both retained. The
 redacted selection preserves feature identity, attributes, coordinates and
 original government chunk hashes, while the original query parameter is never
 republished in current database snapshots or result exports.
+
+The historical selection snapshot also contained escaped-newline encodings of
+this same access parameter. V2 sanitization now removes all seven occurrences
+before inclusion in the current source manifest. The original upstream hash
+remains as an attestation, not a redistributed unredacted payload.
