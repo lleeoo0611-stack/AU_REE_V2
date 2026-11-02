@@ -1,12 +1,12 @@
 {
-  "run_id": "20261102T120424-6e163b40",
+  "run_id": "20261102T120710-2fc14f79",
   "status": "COMPLETED",
   "cutoff": "2026-11-02",
   "module": "all",
   "code": {
     "package": "0.1.0",
-    "commit": "6b8239344104213b9c8ed173726d7771da51f41e",
-    "content_sha256": "c59288fd728f93329b2cf454f7905aa3f97ea08040b6a5b9ea6a1b1675c1460e"
+    "commit": "bcbaa3bee4aedfe679d7b9715a94fe2c974cfae4",
+    "content_sha256": "5e4d6c4bd55133f6e8211abe42db3f14f7567fc217dd4ba95e4f870ff7fd2420"
   },
   "configuration_sha256": "19431610bc926dc54f316074c6c4b9ae20236d623cb7e012ae24f3fd9513c1d7",
   "snapshot_sha256": "6419c32f738ca4dbb4e4985b8c851126e3db96673644bb07d861bf66eec5f73c",
@@ -41,15 +41,23 @@
     "Aim C external inference requires adequate sample size and independent predictors"
   ],
   "independent_human_approval": "NOT_CLAIMED",
+  "environment": {
+    "python": "3.13.12",
+    "shapely": "2.1.2",
+    "pyproj": "3.7.2",
+    "PROJ": "9.5.1",
+    "pypdf": "6.10.0"
+  },
   "files": {
+    "resources.csv": "a094d8452c3010fff62aa876b2c69a78c25782f3838dbf4b498924f7b84dec03",
     "cohort_coverage.csv": "8494c3bb215cfec279dc8a08b4f758f0517cc8541b4a12eb928facffeefb442f",
+    "value_trace.csv": "7a274ab8c7c3a3a4ad8369cea1bfe1b0bbdeb64972bf35ea8ce5a1b111fa4b92",
+    "snapshot_lock.json": "eef160122d03c4ecc4662b5e756fd2216764c63d5801a3c7b39d4c5037032b47",
+    "ranking.csv": "9bb2e909db04fd9f8fa455f665e3f9ecc822b8f53e7d060ade67d2e2cdcaaa06",
+    "weight_uncertainty.csv": "3235b14f4ebb5509b8c8e0522d7cac164f96e03104df30b70fb1c6cc04659e4e",
+    "rounding_uncertainty.csv": "80b0a8950ad4934a3ab742389a964eb6ad1fdb8869385e8e72c0d3acc40ef6d0",
     "leave_out.csv": "bbf3096cbdc0990270278256511f8bafaf26fe3ab47e7ccfda366703a545d985",
     "partial_order.csv": "564eceabbd348c7133052a92c1c70b157a2e2d0ad3e31d3b2d1988a2a61e2e0b",
-    "ranking.csv": "d605efdb2890e5bd9cc3f139abd9f907f8e07ff52478bc69177a608071669877",
-    "resources.csv": "a094d8452c3010fff62aa876b2c69a78c25782f3838dbf4b498924f7b84dec03",
-    "rounding_uncertainty.csv": "80b0a8950ad4934a3ab742389a964eb6ad1fdb8869385e8e72c0d3acc40ef6d0",
-    "snapshot_lock.json": "eef160122d03c4ecc4662b5e756fd2216764c63d5801a3c7b39d4c5037032b47",
-    "value_trace.csv": "f0f84cec8b51a319777abe9c2ced9c9abd4ca6d44365c4937113ef3b85dbcb38",
-    "weight_uncertainty.csv": "3235b14f4ebb5509b8c8e0522d7cac164f96e03104df30b70fb1c6cc04659e4e"
+    "runtime.csv": "a962fad22470f89945119d00beec9e0d21a60271eec71baa4ff4bbcfbb39ed02"
   }
 }

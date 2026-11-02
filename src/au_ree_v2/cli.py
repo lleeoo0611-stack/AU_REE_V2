@@ -4,6 +4,7 @@ import json
 import subprocess
 import sys
 import uuid
+import platform
 from datetime import date, datetime, timezone
 from pathlib import Path
 from . import __version__
@@ -108,6 +109,10 @@ def execute(args):
             'aim_c': 'EXTERNAL_INFERENCE_NOT_COMPLETED_INSUFFICIENT_SAMPLE_AND_PREDICTORS',
             'open_review_issues':len(issues),'limitations':config['limitations'],
             'independent_human_approval':'NOT_CLAIMED','output_dir':str(out)}
+        import shapely, pyproj, pypdf
+        summary['environment']={'python':platform.python_version(),'shapely':shapely.__version__,
+                                'pyproj':pyproj.__version__,'PROJ':pyproj.proj_version_str,
+                                'pypdf':pypdf.__version__}
         output_hashes={p.relative_to(out).as_posix():filehash(p) for p in sorted(out.rglob('*')) if p.is_file()}
         summary['output_hashes']=output_hashes
         (out/'summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
