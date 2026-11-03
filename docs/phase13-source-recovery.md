@@ -85,4 +85,6 @@ Rscript tests/test_methods.R
 
 實際測試、SQLite、SHA與clean replay見 `data/phase13_research_summary.json`；CI以本階段PR checks為準。凍結run的Git commit欄是開發時parent97ea5e8，實作位元組由content SHA綁定，不把parent稱為Phase13實作commit。Phase5–12凍結輸出未改。
 
+發布後CI發現公開checkout缺少已聲明不發布的舊原始HTML：新版安全頁面取代舊去識別頁後，驗證器只從最新版本找原件對應。後續相容性修正從所有可見歷史衍生版本保留聲明，仍驗證每份可見衍生檔SHA；未聲明的缺檔、損壞的歷史衍生檔仍失敗。沒有發布含憑證原件、改動來源或凍結研究輸出。原研究commit為25ef88d、code SHA為d69d49c…；發布修正的code SHA另記於summary的`release_code_content_sha256`，不混稱同一位元組版本。
+
 剩餘瓶頸：429／403／terms、CLI無一般網搜API、低解析度影像、多層表格、未分類文件、試驗代表性與不同cutoff的比較政策。完成本階段後停止，不啟動下一階段。

@@ -275,7 +275,10 @@ def select_snapshots(root, cutoff, keys=None, acquired_through=None):
             continue
         if s['key'] not in selected or s['acquired_at'] > selected[s['key']]['acquired_at']:
             selected[s['key']] = s
-    private={s['unpublished_original_sha256'] for s in selected.values() if s.get('publication_derivative')}
+    # A later safe capture must not erase an earlier declared redaction link.
+    # All visible derivative bytes are still checksum-verified below.
+    private={s['unpublished_original_sha256'] for s in manifest['snapshots']
+             if (not keys or s['key'] in keys) and visible(s) and s.get('publication_derivative')}
     # Every available historical file remains checksum-checked. Only an explicitly
     # declared unpublished original can be absent from a public derivative replay.
     for s in manifest['snapshots']:

@@ -174,5 +174,32 @@ class Phase13Tests(unittest.TestCase):
             discover(root,cfg,fetch)
             self.assertEqual(['https://issuer.test/archive'],urls)
 
+    def test_new_safe_capture_keeps_historical_public_derivative_proof(self):
+        import hashlib
+        with tempfile.TemporaryDirectory(dir=ROOT/'work') as tmp:
+            root=Path(tmp);(root/'data/snapshots').mkdir(parents=True)
+            private='a'*64
+            def source(raw,date,**extra):
+                sha=hashlib.sha256(raw).hexdigest();path=root/'data/snapshots'/(sha+'.html');path.write_bytes(raw)
+                return dict(key='issuer_page',kind='discovery_html',url='https://issuer.test/',sha256=sha,path=path.relative_to(root).as_posix(),available_date='2026-11-03',acquired_at=date,**extra)
+            old=dict(key='issuer_page',kind='discovery_html',url='https://issuer.test/',sha256=private,path='data/snapshots/'+private+'.html',available_date='2026-11-03',acquired_at='2026-11-03T01:00:00Z')
+            derivative=source(b'public derivative','2026-11-03T02:00:00Z',publication_derivative=True,unpublished_original_sha256=private)
+            safe=source(b'later safe content','2026-11-03T03:00:00Z')
+            manifest=root/'data/manifest.json';manifest.write_text(json.dumps(dict(snapshots=[old,derivative,safe])))
+            self.assertEqual([safe],acquisition.select_snapshots(root,'2026-11-03'))
+            # Corrupt historical public bytes still fail, even with a valid latest capture.
+            (root/derivative['path']).write_bytes(b'changed')
+            with self.assertRaisesRegex(ValueError,'checksum mismatch'):acquisition.select_snapshots(root,'2026-11-03')
+            (root/derivative['path']).write_bytes(b'public derivative')
+            manifest.write_text(json.dumps(dict(snapshots=[old,safe])))
+            with self.assertRaisesRegex(ValueError,'checksum mismatch'):acquisition.select_snapshots(root,'2026-11-03')
+        snapshots=json.loads((ROOT/'data/manifest.json').read_text())['snapshots']
+        private_paths={ROOT/s['path'] for s in snapshots if any(d.get('unpublished_original_sha256')==s['sha256'] for d in snapshots)}
+        expected={s['sha256'] for s in acquisition.select_snapshots(ROOT,'2026-11-03')}
+        exists=Path.exists
+        with patch.object(Path,'exists',lambda path:False if path in private_paths else exists(path)):
+            public={s['sha256'] for s in acquisition.select_snapshots(ROOT,'2026-11-03')}
+        self.assertEqual(expected,public)
+
 
 if __name__=='__main__':unittest.main()

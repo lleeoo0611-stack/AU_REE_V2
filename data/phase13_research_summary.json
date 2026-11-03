@@ -1072,6 +1072,18 @@
     "phase13_pinned_fixture_tests": {
       "tests": 16,
       "status": "PASSED"
+    },
+    "release_code_content_sha256": "dacedd6d23b6d68aba851dfea1d4c7462aa81bb74ed9cdd438891cc77761b11f",
+    "publication_compatibility_fix": {
+      "original_study_commit": "25ef88d458fc91f9c024c84f1c5e7b24b910b294",
+      "original_study_code_sha256": "d69d49c05cf2e201f88cf16d4cd8f82524ec059520131782b240b0aada6cf858",
+      "release_parent_commit": "25ef88d458fc91f9c024c84f1c5e7b24b910b294",
+      "scope": "Only historical declared-public-derivative lookup; no source bytes, frozen outputs, selection or MCDA definitions changed",
+      "first_ci_failure": "Six public-checkout tests could not find an explicitly unpublished historical HTML when newer safe capture superseded the public derivative; all visible derivative bytes still verified."
+    },
+    "public_checkout_regression_tests": {
+      "tests": 17,
+      "status": "PASSED"
     }
   },
   "limitations": [
