@@ -446,3 +446,12 @@ def capture_pages(root, source, pages, tessdata=None):
         except Exception as exc:outcomes.append(dict(page=page,status='UNAVAILABLE',reason=type(exc).__name__))
     path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
     return outcomes
+
+
+def narrative_context_issues(candidate,page):
+    """Definitions/abbreviations are reference text, never project events."""
+    if candidate.get('kind')!='SCOPED_TEXT_DISCLOSURE':return []
+    header=' '.join(page.get('text','').split())[:500]
+    if re.search(r'(?i)glossary|abbreviations and defined terms|definition of terms',header):
+        return ['SOURCE_GLOSSARY_NOT_PROJECT_DISCLOSURE']
+    return []

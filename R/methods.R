@@ -28,3 +28,36 @@ ahp <- function(A) {
 }
 rank_score <- function(v) rank(-v,ties.method='average')
 safe_cor <- function(a,b) if(length(a)<3 || sd(a)==0 || sd(b)==0) NA_real_ else cor(a,b,method='spearman')
+
+# Versioned identity streams: each semantic key owns a L'Ecuyer stream. No
+# dependency on matrix size/order or the caller's RNG state. Length-prefixing
+# prevents ambiguous concatenations. Six modular lanes initialize the native
+# R generator (not a cryptographic hash); draw index is position in the stream.
+keyed_uniform <- function(n,version,seed,scenario,family,project,criterion) {
+  parts<-enc2utf8(as.character(c(version,seed,scenario,family,project,criterion)))
+  key<-paste0(nchar(parts,type='bytes'),':',parts,collapse='|')
+  bytes<-as.integer(charToRaw(key))
+  lanes<-vapply(seq_len(6),function(lane) {
+    h<-as.double(lane*104729)
+    for(b in bytes)h<-(h*(131+lane*2)+b+1)%%2147483562
+    as.integer(h+1)
+  },integer(1))
+  oldkind<-RNGkind();had<-exists('.Random.seed',envir=.GlobalEnv,inherits=FALSE)
+  if(had)oldseed<-get('.Random.seed',envir=.GlobalEnv)
+  on.exit({do.call(RNGkind,as.list(oldkind));if(had)assign('.Random.seed',oldseed,envir=.GlobalEnv)
+           else if(exists('.Random.seed',envir=.GlobalEnv,inherits=FALSE))rm('.Random.seed',envir=.GlobalEnv)})
+  RNGkind("L'Ecuyer-CMRG",'Inversion','Rejection')
+  assign('.Random.seed',c(10407L,lanes),envir=.GlobalEnv)
+  runif(n)
+}
+
+keyed_inputs <- function(ids,codes,w,reps,version,seed,scenario,concentration) {
+  U<-array(NA_real_,c(length(ids),length(codes),reps))
+  G<-matrix(NA_real_,length(codes),reps)
+  for(j in seq_along(codes)) {
+    G[j,]<-qgamma(keyed_uniform(reps,version,seed,scenario,'WEIGHTS','',codes[j]),
+                 shape=pmax(w[j]*concentration,1e-9))
+    for(i in seq_along(ids))U[i,j,]<-keyed_uniform(reps,version,seed,scenario,'SOURCE_ROUNDING',ids[i],codes[j])
+  }
+  list(rounding=U,weights=sweep(G,2,colSums(G),'/'))
+}

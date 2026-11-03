@@ -309,6 +309,8 @@ def run_r(root, out, prepared, config, rscript=None):
         command=[str(executable),str(Path(root)/'R/run_mcda.R'),str(folder),
                  str(config['monte_carlo']['seed']),str(config['monte_carlo']['reps']),str(config['promethee_threshold']),
                  str(config['monte_carlo']['dirichlet_concentration'])]
+        if config['monte_carlo'].get('method_version'):
+            command.append(config['monte_carlo']['method_version'])
         result=subprocess.run(command,capture_output=True,text=True,timeout=300)
         (folder/'R.log').write_text(result.stdout+'\n'+result.stderr,encoding='utf-8')
         if result.returncode:
@@ -326,3 +328,54 @@ def run_r(root, out, prepared, config, rscript=None):
             if panel in config['evidence_resolution']['panels']:
                 results[panel]['evidence_status']='EXPLORATORY_CANDIDATE_CRITERIA_NOT_FORMAL_C1'
     return results
+
+
+def research_readiness(selection,out):
+    """Descriptive views reuse resolved evidence and ranks, without new scores."""
+    from .selection import commercial_evidence
+    from collections import Counter
+    out=Path(out);events=commercial_evidence(selection)
+    if events:write_csv(out/'commercial_event_semantics.csv',events,list(events[0]))
+    projects=[];features=[]
+    technical=selection.get('technical_comparability',[])
+    ranks={}
+    for file in sorted(out.glob('*/ranking.csv')):
+        for r in csv.DictReader(file.open(encoding='utf-8')):
+            ranks.setdefault(r['project_id'],[]).append(dict(panel=file.parent.name,scenario=r['scenario'],rank=r['promethee_rank']))
+    for pid in sorted(selection['projects']):
+        valid=[r for r in events if r['project_id']==pid and r['qualified_project_event']]
+        finance=selection['values'].get(pid,{}).get('C1');offtake=[r for r in valid if r['event_type']=='OFFTAKE']
+        projects.append(dict(project_id=pid,financing_milestone=None if not finance else finance['value'],
+            offtake_evidence=len(offtake),conditions_known=sum(r['conditions_status']!='UNKNOWN' for r in valid),
+            conditions_satisfied=sum(r['conditions_status']=='SATISFIED' for r in valid),
+            financial_close_evidence=sum(r['financial_close']=='EVIDENCED' for r in valid),drawdown_evidence=sum(r['drawdown']=='EVIDENCED' for r in valid),
+            joint_financing_offtake=int(finance is not None and bool(offtake)),
+            commercial_complete=int(bool(finance) and bool(offtake) and all(r['counterparty'] and r['valid_to'] and r['conditions_status']!='UNKNOWN' for r in valid)),
+            interpretation='DISCLOSURE_COVERAGE_NOT_ABSENCE_CURRENT_FUNDS_OR_FORMAL_C1'))
+        tr=[r for r in technical if r['project_id']==pid]
+        if tr:
+            counts=Counter(r['comparability_status'] for r in tr)
+            features.append(dict(project_id=pid,independent_projects=1,source_scope_keys_n=len({r['case_id'] for r in tr}),
+                engineering_study_cases_n=len({c['case_id'] for c in selection['inventory'] if c['project_id']==pid and c['origin']=='STUDY_PARAMETER' and not c.get('reason')}),
+                source_shas=canonical(sorted({r['source_sha256'] for r in tr})),
+                process_descriptions=canonical(sorted({c['process'] for c in selection['inventory'] if c['project_id']==pid and c.get('process') and not c.get('reason')})),
+                mineralogy_processing=sum(r['semantic_class']=='A_MINERALOGY_PROCESSING' for r in tr),
+                performance=sum(r['semantic_class']=='B_PROCESS_PERFORMANCE' for r in tr),quality=sum(r['semantic_class']=='C_EVIDENCE_QUALITY' for r in tr),
+                comparable=counts['NUMERIC_COMPARABLE'],descriptive=counts['DESCRIPTIVE_ONLY'],not_comparable=counts['NOT_COMPARABLE'],
+                endpoints=canonical(sorted({r['endpoint'] for r in tr if r['endpoint']})),
+                scales=canonical(sorted({r['scale'] for r in tr if r['scale']})),
+                missingness_reasons=canonical(dict(sorted(Counter(reason for r in tr for reason in r['reason_codes']).items()))),
+                rank_links=canonical(ranks.get(pid,[])),
+                interpretation='PROJECT_UNIT_NOT_TEST_ROWS;SELECTED_DISCLOSURE_MISSINGNESS_NOT_MCAR_OR_CAUSAL_INFERENCE'))
+    write_csv(out/'commercial_project_coverage.csv',projects,list(projects[0]) if projects else ['project_id'])
+    write_csv(out/'aim_c_technical_features.csv',features,list(features[0]) if features else ['project_id'])
+    return projects
+
+
+def canonicalize_interchange(out):
+    """Stable interchange for v2 only; legacy frozen CSV order is untouched."""
+    for name,keys in [('matrix.csv',('project_id',)),('criteria.csv',('code',)),('weights.csv',('scenario','criterion'))]:
+        for path in sorted(Path(out).glob('*/'+name)):
+            with path.open(encoding='utf-8',newline='') as stream:
+                reader=csv.DictReader(stream);fields=reader.fieldnames;rows=list(reader)
+            write_csv(path,sorted(rows,key=lambda r:tuple(r[k] for k in keys)),fields)

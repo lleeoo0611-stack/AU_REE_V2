@@ -1,0 +1,947 @@
+{
+  "version": "phase11-evidence-gap-execution-v1",
+  "evidence_cutoff": "2026-11-03",
+  "release_date_asia_taipei": "2026-11-04",
+  "runs": [
+    {
+      "execution": 1,
+      "status": "COMPLETED_WITH_SOURCE_STATUS",
+      "sources": [],
+      "discovery": {
+        "version": "discovery-v4-evidence-gaps",
+        "sources": [
+          {
+            "seed_key": "gcm_fingerboards",
+            "status": "UNAVAILABLE",
+            "reason": "URLError"
+          },
+          {
+            "seed_key": "astron_current",
+            "status": "UNAVAILABLE",
+            "reason": "URLError"
+          },
+          {
+            "seed_key": "gap_donald_ar2024",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "sha256": "993f28ea1716b0a1e233eb2f37f7281d0ea4f0ef73a02d3af0a5f57d2bc9da58"
+          }
+        ],
+        "documents": [
+          {
+            "candidate_id": "ee36d9bc1dbd2a5e3e3a114dc08169b2415a798614a951e77a74eb58b28f9ff6",
+            "url": "https://www.astronlimited.com.au/wp-content/uploads/2024/11/Astron_Limited_Annual_Report_2024_ASX-1.pdf",
+            "seed_key": "gap_donald_ar2024",
+            "document_sha256": "993f28ea1716b0a1e233eb2f37f7281d0ea4f0ef73a02d3af0a5f57d2bc9da58",
+            "source_key": "donald_ar2024",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "project_id": "AU-2fc429d0556dfa0b95c4"
+          }
+        ],
+        "search_tasks": [
+          {
+            "project_id": "AU-2fc429d0556dfa0b95c4",
+            "project_name": "Donald Rare Earth and Mineral Sands Project",
+            "aliases": [
+              "Donald"
+            ],
+            "company": null,
+            "asx_code": null,
+            "source_key": "donald_ar2024",
+            "source_url": "https://www.astronlimited.com.au/wp-content/uploads/2024/11/Astron_Limited_Annual_Report_2024_ASX-1.pdf",
+            "queries": [
+              "Donald Resource R1"
+            ],
+            "seed_keys": [
+              "astron_current"
+            ],
+            "status": "BOUNDED_ISSUER_SEARCH_TASK",
+            "domain": "Resource",
+            "criterion": "R1",
+            "gap_state": "SOURCE_ACQUIRED_EXTRACTION_OR_SEARCH_INCOMPLETE",
+            "existing_evidence_shas": [
+              "993f28ea1716b0a1e233eb2f37f7281d0ea4f0ef73a02d3af0a5f57d2bc9da58"
+            ],
+            "selection_reason": "",
+            "extraction_failures": [],
+            "prior_search_failures": [],
+            "expected_document_types": [
+              "JORC_RESOURCE"
+            ],
+            "priority": 100,
+            "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+            "reusable_documents": [
+              {
+                "key": "donald_ar2024",
+                "url": "https://www.astronlimited.com.au/wp-content/uploads/2024/11/Astron_Limited_Annual_Report_2024_ASX-1.pdf",
+                "sha256": "993f28ea1716b0a1e233eb2f37f7281d0ea4f0ef73a02d3af0a5f57d2bc9da58",
+                "publication_date": "2024-11"
+              }
+            ]
+          },
+          {
+            "project_id": "AU-2fc429d0556dfa0b95c4",
+            "project_name": "Donald Rare Earth and Mineral Sands Project",
+            "aliases": [
+              "Donald"
+            ],
+            "company": null,
+            "asx_code": null,
+            "source_key": "donald_ar2024",
+            "source_url": "https://www.astronlimited.com.au/wp-content/uploads/2024/11/Astron_Limited_Annual_Report_2024_ASX-1.pdf",
+            "queries": [
+              "Donald Resource R2"
+            ],
+            "seed_keys": [
+              "astron_current"
+            ],
+            "status": "BOUNDED_ISSUER_SEARCH_TASK",
+            "domain": "Resource",
+            "criterion": "R2",
+            "gap_state": "SOURCE_ACQUIRED_EXTRACTION_OR_SEARCH_INCOMPLETE",
+            "existing_evidence_shas": [
+              "993f28ea1716b0a1e233eb2f37f7281d0ea4f0ef73a02d3af0a5f57d2bc9da58"
+            ],
+            "selection_reason": "",
+            "extraction_failures": [],
+            "prior_search_failures": [],
+            "expected_document_types": [
+              "JORC_RESOURCE"
+            ],
+            "priority": 100,
+            "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+            "reusable_documents": [
+              {
+                "key": "donald_ar2024",
+                "url": "https://www.astronlimited.com.au/wp-content/uploads/2024/11/Astron_Limited_Annual_Report_2024_ASX-1.pdf",
+                "sha256": "993f28ea1716b0a1e233eb2f37f7281d0ea4f0ef73a02d3af0a5f57d2bc9da58",
+                "publication_date": "2024-11"
+              }
+            ]
+          },
+          {
+            "project_id": "AU-7537d9555628040fab40",
+            "project_name": "Fingerboards",
+            "aliases": [
+              "Fingerboards"
+            ],
+            "company": null,
+            "asx_code": null,
+            "source_key": "fingerboards_project2026",
+            "source_url": "https://www.gippslandcriticalminerals.com/project-overview/",
+            "queries": [
+              "Fingerboards Resource R1"
+            ],
+            "seed_keys": [
+              "gcm_fingerboards"
+            ],
+            "status": "BOUNDED_ISSUER_SEARCH_TASK",
+            "domain": "Resource",
+            "criterion": "R1",
+            "gap_state": "SOURCE_ACQUIRED_EXTRACTION_OR_SEARCH_INCOMPLETE",
+            "existing_evidence_shas": [
+              "197602220b4e8fc3ea4f4fe18fd2dcbaffdcf2f63dc774c4c2abe5d8f0f43a7d"
+            ],
+            "selection_reason": "",
+            "extraction_failures": [],
+            "prior_search_failures": [],
+            "expected_document_types": [
+              "JORC_RESOURCE"
+            ],
+            "priority": 100,
+            "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+            "reusable_documents": []
+          }
+        ]
+      },
+      "document_recognition": [
+        {
+          "source_key": "donald_ar2024",
+          "source_sha256": "993f28ea1716b0a1e233eb2f37f7281d0ea4f0ef73a02d3af0a5f57d2bc9da58",
+          "status": "CAPTURED",
+          "sha256": "9cd94848d18cf2a1610b069d3c3be4af3b09c2d681fba84f08bc44c89f166730",
+          "pages": 116,
+          "tables": 0,
+          "candidates": 31,
+          "labels": []
+        }
+      ]
+    },
+    {
+      "execution": 2,
+      "status": "COMPLETED_WITH_SOURCE_STATUS",
+      "sources": [],
+      "discovery": {
+        "version": "discovery-v4-evidence-gaps",
+        "sources": [
+          {
+            "seed_key": "marquee_redlings",
+            "status": "UNAVAILABLE",
+            "reason": "URLError"
+          },
+          {
+            "seed_key": "gap_nolans_ar2025",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f"
+          },
+          {
+            "seed_key": "gap_redlings_quarter2025",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f"
+          },
+          {
+            "seed_key": "gap_discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00"
+          },
+          {
+            "seed_key": "gap_jupiter_scoping2026",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a"
+          }
+        ],
+        "documents": [
+          {
+            "candidate_id": "2eb2de9968aeb21ed0075b479b26ed560e3f75f5325df7067d8c93415d6096e4",
+            "url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
+            "seed_key": "gap_nolans_ar2025",
+            "document_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+            "source_key": "nolans_ar2025",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "project_id": "AU-1345edd8165c10930e94"
+          },
+          {
+            "candidate_id": "ddd50ed3517db429c31ce6b7cf94bd24b9fc1320386880070131243a263c885d",
+            "url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
+            "seed_key": "gap_redlings_quarter2025",
+            "document_sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+            "source_key": "redlings_quarter2025",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "project_id": "AU-12cc237ae66c7a6508ca"
+          },
+          {
+            "candidate_id": "4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
+            "seed_key": "gap_discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "document_sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
+            "source_key": "discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "project_id": "AU-12cc237ae66c7a6508ca"
+          },
+          {
+            "candidate_id": "7b5711f8d3849d68d7962d15016711af08842864b1506b9d5613e14ae748056f",
+            "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+            "seed_key": "gap_jupiter_scoping2026",
+            "document_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "source_key": "jupiter_scoping2026",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "project_id": "AU-dac3c8e40326b8244cdb"
+          }
+        ],
+        "search_tasks": [
+          {
+            "project_id": "AU-1345edd8165c10930e94",
+            "project_name": "Nolans Project",
+            "aliases": [
+              "Nolans"
+            ],
+            "company": null,
+            "asx_code": null,
+            "source_key": "nolans_ar2025",
+            "source_url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
+            "queries": [
+              "Nolans Technical T1"
+            ],
+            "seed_keys": [],
+            "status": "SEARCH_ENDPOINT_NOT_CONFIGURED_UNKNOWN",
+            "domain": "Technical",
+            "criterion": "T1",
+            "gap_state": "SOURCE_ACQUIRED_EXTRACTION_OR_SEARCH_INCOMPLETE",
+            "existing_evidence_shas": [
+              "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f"
+            ],
+            "selection_reason": "NO_COMPATIBLE_EVIDENCE",
+            "extraction_failures": [],
+            "prior_search_failures": [],
+            "expected_document_types": [
+              "METALLURGICAL",
+              "DFS",
+              "PFS"
+            ],
+            "priority": 95,
+            "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+            "reusable_documents": [
+              {
+                "key": "nolans_ar2025",
+                "url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
+                "sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+                "publication_date": "2025-09"
+              }
+            ]
+          },
+          {
+            "project_id": "AU-12cc237ae66c7a6508ca",
+            "project_name": "Redlings Rare Earth Project",
+            "aliases": [
+              "Redlings"
+            ],
+            "company": null,
+            "asx_code": null,
+            "source_key": "redlings_quarter2025",
+            "source_url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
+            "queries": [
+              "Redlings Technical T1"
+            ],
+            "seed_keys": [
+              "marquee_redlings"
+            ],
+            "status": "BOUNDED_ISSUER_SEARCH_TASK",
+            "domain": "Technical",
+            "criterion": "T1",
+            "gap_state": "OBSERVATION_EXTRACTED_NOT_VALIDATED",
+            "existing_evidence_shas": [
+              "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+              "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00"
+            ],
+            "selection_reason": "NO_COMPATIBLE_EVIDENCE",
+            "extraction_failures": [
+              "SOURCE_OBSERVATION_NOT_VALIDATED"
+            ],
+            "prior_search_failures": [],
+            "expected_document_types": [
+              "METALLURGICAL",
+              "DFS",
+              "PFS"
+            ],
+            "priority": 85,
+            "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+            "reusable_documents": [
+              {
+                "key": "redlings_quarter2025",
+                "url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
+                "sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+                "publication_date": "2025-07-31"
+              },
+              {
+                "key": "discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+                "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
+                "sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
+                "publication_date": null
+              }
+            ]
+          },
+          {
+            "project_id": "AU-dac3c8e40326b8244cdb",
+            "project_name": "Jupiter development study within Brothers",
+            "aliases": [
+              "Jupiter"
+            ],
+            "company": null,
+            "asx_code": null,
+            "source_key": "jupiter_scoping2026",
+            "source_url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+            "queries": [
+              "Jupiter Technical T1"
+            ],
+            "seed_keys": [],
+            "status": "SEARCH_ENDPOINT_NOT_CONFIGURED_UNKNOWN",
+            "domain": "Technical",
+            "criterion": "T1",
+            "gap_state": "SCOPE_OR_BASIS_INCOMPATIBLE",
+            "existing_evidence_shas": [
+              "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a"
+            ],
+            "selection_reason": "RAW_EVIDENCE_SCOPE_BASIS_ENDPOINT_SCALE_OR_VALIDITY_INCOMPATIBLE",
+            "extraction_failures": [],
+            "prior_search_failures": [],
+            "expected_document_types": [
+              "METALLURGICAL",
+              "DFS",
+              "PFS"
+            ],
+            "priority": 85,
+            "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+            "reusable_documents": [
+              {
+                "key": "jupiter_scoping2026",
+                "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+                "sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+                "publication_date": "2026-10-20"
+              }
+            ]
+          }
+        ]
+      },
+      "document_recognition": [
+        {
+          "source_key": "discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+          "source_sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
+          "status": "REUSED_VERIFIED_EXTRACTION",
+          "sha256": "6e7283f44a2518402bdc4610e82d0c5ecd7f1a79535efe34eda7f67397a41c3f"
+        },
+        {
+          "source_key": "jupiter_scoping2026",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "status": "CAPTURED",
+          "sha256": "fa09902dfdc2487b7eabc11dfeadeb40d85449b4a794342bcbba39334c62c8ba",
+          "pages": 55,
+          "tables": 0,
+          "candidates": 205,
+          "labels": [
+            "JORC_RESOURCE",
+            "SCOPING",
+            "METALLURGICAL"
+          ]
+        },
+        {
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "status": "CAPTURED",
+          "sha256": "7009db5ead271a3b8f764fc3891c6ace2e6c83369a373fa77aa183a884c8f9a1",
+          "pages": 95,
+          "tables": 2,
+          "candidates": 64,
+          "labels": [
+            "ANNUAL_REPORT"
+          ]
+        },
+        {
+          "source_key": "redlings_quarter2025",
+          "source_sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+          "status": "CAPTURED",
+          "sha256": "758b16a8919831404ff21aad8594d100eba9ed37d7ec68d93e4ce24e581e5ef7",
+          "pages": 16,
+          "tables": 0,
+          "candidates": 1,
+          "labels": [
+            "QUARTERLY"
+          ]
+        }
+      ]
+    },
+    {
+      "execution": 3,
+      "status": "COMPLETED_WITH_SOURCE_STATUS",
+      "sources": [],
+      "discovery": {
+        "version": "discovery-v4-evidence-gaps",
+        "sources": [
+          {
+            "seed_key": "marquee_redlings",
+            "status": "PARSED",
+            "links_found": 1,
+            "links_attempted": 1,
+            "sha256": "e0c912a4aad7775dcb4b30198c913b3041b0a47bb0f5fb61d98b09946be1009f",
+            "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+          },
+          {
+            "seed_key": "gap_nolans_ar2025",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f"
+          },
+          {
+            "seed_key": "gap_discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00"
+          },
+          {
+            "seed_key": "gap_redlings_quarter2025",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f"
+          },
+          {
+            "seed_key": "gap_jupiter_scoping2026",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a"
+          }
+        ],
+        "documents": [
+          {
+            "candidate_id": "4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
+            "title": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
+            "seed_key": "marquee_redlings",
+            "publication_date": null,
+            "status": "SNAPSHOT_REQUIRES_DATED_SCOPE_EXTRACTION",
+            "project_id": null,
+            "identity_status": "SOURCE_CONTEXT_ONLY_NOT_EQUIVALENCE",
+            "discovery_sha256": "e0c912a4aad7775dcb4b30198c913b3041b0a47bb0f5fb61d98b09946be1009f",
+            "document_sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
+            "physical_pages": 14,
+            "text_quality": "REQUIRES_PAGE_VALIDATION_NO_AUTOMATIC_NUMERIC_EXTRACTION"
+          },
+          {
+            "candidate_id": "2eb2de9968aeb21ed0075b479b26ed560e3f75f5325df7067d8c93415d6096e4",
+            "url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
+            "seed_key": "gap_nolans_ar2025",
+            "document_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+            "source_key": "nolans_ar2025",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "project_id": "AU-1345edd8165c10930e94"
+          },
+          {
+            "candidate_id": "4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
+            "seed_key": "gap_discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "document_sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
+            "source_key": "discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "project_id": "AU-12cc237ae66c7a6508ca"
+          },
+          {
+            "candidate_id": "ddd50ed3517db429c31ce6b7cf94bd24b9fc1320386880070131243a263c885d",
+            "url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
+            "seed_key": "gap_redlings_quarter2025",
+            "document_sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+            "source_key": "redlings_quarter2025",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "project_id": "AU-12cc237ae66c7a6508ca"
+          },
+          {
+            "candidate_id": "7b5711f8d3849d68d7962d15016711af08842864b1506b9d5613e14ae748056f",
+            "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+            "seed_key": "gap_jupiter_scoping2026",
+            "document_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "source_key": "jupiter_scoping2026",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "project_id": "AU-dac3c8e40326b8244cdb"
+          }
+        ],
+        "search_tasks": [
+          {
+            "project_id": "AU-1345edd8165c10930e94",
+            "project_name": "Nolans Project",
+            "aliases": [
+              "Nolans"
+            ],
+            "company": null,
+            "asx_code": null,
+            "source_key": "nolans_ar2025",
+            "source_url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
+            "queries": [
+              "Nolans Technical T1"
+            ],
+            "seed_keys": [],
+            "status": "SEARCH_ENDPOINT_NOT_CONFIGURED_UNKNOWN",
+            "domain": "Technical",
+            "criterion": "T1",
+            "gap_state": "SOURCE_ACQUIRED_EXTRACTION_OR_SEARCH_INCOMPLETE",
+            "existing_evidence_shas": [
+              "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f"
+            ],
+            "selection_reason": "NO_COMPATIBLE_EVIDENCE",
+            "extraction_failures": [],
+            "prior_search_failures": [],
+            "expected_document_types": [
+              "METALLURGICAL",
+              "DFS",
+              "PFS"
+            ],
+            "priority": 95,
+            "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+            "reusable_documents": [
+              {
+                "key": "nolans_ar2025",
+                "url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
+                "sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+                "publication_date": "2025-09"
+              }
+            ]
+          },
+          {
+            "project_id": "AU-12cc237ae66c7a6508ca",
+            "project_name": "Redlings Rare Earth Project",
+            "aliases": [
+              "Redlings"
+            ],
+            "company": null,
+            "asx_code": null,
+            "source_key": "redlings_quarter2025",
+            "source_url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
+            "queries": [
+              "Redlings Technical T1"
+            ],
+            "seed_keys": [
+              "marquee_redlings"
+            ],
+            "status": "BOUNDED_ISSUER_SEARCH_TASK",
+            "domain": "Technical",
+            "criterion": "T1",
+            "gap_state": "OBSERVATION_EXTRACTED_NOT_VALIDATED",
+            "existing_evidence_shas": [
+              "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+              "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00"
+            ],
+            "selection_reason": "NO_COMPATIBLE_EVIDENCE",
+            "extraction_failures": [
+              "SOURCE_OBSERVATION_NOT_VALIDATED"
+            ],
+            "prior_search_failures": [
+              {
+                "seed_key": "marquee_redlings",
+                "status": "UNAVAILABLE",
+                "reason": "URLError"
+              }
+            ],
+            "expected_document_types": [
+              "METALLURGICAL",
+              "DFS",
+              "PFS"
+            ],
+            "priority": 85,
+            "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+            "reusable_documents": [
+              {
+                "key": "discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+                "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
+                "sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
+                "publication_date": null
+              },
+              {
+                "key": "redlings_quarter2025",
+                "url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
+                "sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+                "publication_date": "2025-07-31"
+              }
+            ]
+          },
+          {
+            "project_id": "AU-dac3c8e40326b8244cdb",
+            "project_name": "Jupiter development study within Brothers",
+            "aliases": [
+              "Jupiter"
+            ],
+            "company": null,
+            "asx_code": null,
+            "source_key": "jupiter_scoping2026",
+            "source_url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+            "queries": [
+              "Jupiter Technical T1"
+            ],
+            "seed_keys": [],
+            "status": "SEARCH_ENDPOINT_NOT_CONFIGURED_UNKNOWN",
+            "domain": "Technical",
+            "criterion": "T1",
+            "gap_state": "SCOPE_OR_BASIS_INCOMPATIBLE",
+            "existing_evidence_shas": [
+              "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a"
+            ],
+            "selection_reason": "RAW_EVIDENCE_SCOPE_BASIS_ENDPOINT_SCALE_OR_VALIDITY_INCOMPATIBLE",
+            "extraction_failures": [],
+            "prior_search_failures": [],
+            "expected_document_types": [
+              "METALLURGICAL",
+              "DFS",
+              "PFS"
+            ],
+            "priority": 85,
+            "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+            "reusable_documents": [
+              {
+                "key": "jupiter_scoping2026",
+                "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+                "sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+                "publication_date": "2026-10-20"
+              }
+            ]
+          }
+        ]
+      },
+      "document_recognition": [
+        {
+          "source_key": "discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+          "source_sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
+          "status": "REUSED_VERIFIED_EXTRACTION",
+          "sha256": "6e7283f44a2518402bdc4610e82d0c5ecd7f1a79535efe34eda7f67397a41c3f"
+        },
+        {
+          "source_key": "jupiter_scoping2026",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "status": "REUSED_VERIFIED_EXTRACTION",
+          "sha256": "fa09902dfdc2487b7eabc11dfeadeb40d85449b4a794342bcbba39334c62c8ba"
+        },
+        {
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "status": "REUSED_VERIFIED_EXTRACTION",
+          "sha256": "7009db5ead271a3b8f764fc3891c6ace2e6c83369a373fa77aa183a884c8f9a1"
+        },
+        {
+          "source_key": "redlings_quarter2025",
+          "source_sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+          "status": "REUSED_VERIFIED_EXTRACTION",
+          "sha256": "758b16a8919831404ff21aad8594d100eba9ed37d7ec68d93e4ce24e581e5ef7"
+        }
+      ]
+    },
+    {
+      "execution": 4,
+      "status": "COMPLETED_WITH_SOURCE_STATUS",
+      "sources": [],
+      "discovery": {
+        "version": "discovery-v4-evidence-gaps",
+        "sources": [
+          {
+            "seed_key": "marquee_redlings",
+            "status": "PARSED",
+            "links_found": 1,
+            "links_attempted": 1,
+            "sha256": "e0c912a4aad7775dcb4b30198c913b3041b0a47bb0f5fb61d98b09946be1009f",
+            "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+          },
+          {
+            "seed_key": "gap_nolans_ar2025",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f"
+          },
+          {
+            "seed_key": "gap_discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00"
+          },
+          {
+            "seed_key": "gap_redlings_quarter2025",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f"
+          },
+          {
+            "seed_key": "gap_jupiter_scoping2026",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a"
+          }
+        ],
+        "documents": [
+          {
+            "candidate_id": "4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
+            "title": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
+            "seed_key": "marquee_redlings",
+            "publication_date": null,
+            "status": "SNAPSHOT_REQUIRES_DATED_SCOPE_EXTRACTION",
+            "project_id": null,
+            "identity_status": "SOURCE_CONTEXT_ONLY_NOT_EQUIVALENCE",
+            "discovery_sha256": "e0c912a4aad7775dcb4b30198c913b3041b0a47bb0f5fb61d98b09946be1009f",
+            "document_sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
+            "physical_pages": 14,
+            "text_quality": "REQUIRES_PAGE_VALIDATION_NO_AUTOMATIC_NUMERIC_EXTRACTION"
+          },
+          {
+            "candidate_id": "2eb2de9968aeb21ed0075b479b26ed560e3f75f5325df7067d8c93415d6096e4",
+            "url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
+            "seed_key": "gap_nolans_ar2025",
+            "document_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+            "source_key": "nolans_ar2025",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "project_id": "AU-1345edd8165c10930e94"
+          },
+          {
+            "candidate_id": "4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
+            "seed_key": "gap_discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "document_sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
+            "source_key": "discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "project_id": "AU-12cc237ae66c7a6508ca"
+          },
+          {
+            "candidate_id": "ddd50ed3517db429c31ce6b7cf94bd24b9fc1320386880070131243a263c885d",
+            "url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
+            "seed_key": "gap_redlings_quarter2025",
+            "document_sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+            "source_key": "redlings_quarter2025",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "project_id": "AU-12cc237ae66c7a6508ca"
+          },
+          {
+            "candidate_id": "7b5711f8d3849d68d7962d15016711af08842864b1506b9d5613e14ae748056f",
+            "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+            "seed_key": "gap_jupiter_scoping2026",
+            "document_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "source_key": "jupiter_scoping2026",
+            "status": "REUSED_VERIFIED_ORIGINAL",
+            "project_id": "AU-dac3c8e40326b8244cdb"
+          }
+        ],
+        "search_tasks": [
+          {
+            "project_id": "AU-1345edd8165c10930e94",
+            "project_name": "Nolans Project",
+            "aliases": [
+              "Nolans"
+            ],
+            "company": null,
+            "asx_code": null,
+            "source_key": "nolans_ar2025",
+            "source_url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
+            "queries": [
+              "Nolans Technical T1"
+            ],
+            "seed_keys": [],
+            "status": "SEARCH_ENDPOINT_NOT_CONFIGURED_UNKNOWN",
+            "domain": "Technical",
+            "criterion": "T1",
+            "gap_state": "SOURCE_ACQUIRED_EXTRACTION_OR_SEARCH_INCOMPLETE",
+            "existing_evidence_shas": [
+              "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f"
+            ],
+            "selection_reason": "NO_COMPATIBLE_EVIDENCE",
+            "extraction_failures": [],
+            "prior_search_failures": [],
+            "expected_document_types": [
+              "METALLURGICAL",
+              "DFS",
+              "PFS"
+            ],
+            "priority": 95,
+            "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+            "reusable_documents": [
+              {
+                "key": "nolans_ar2025",
+                "url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
+                "sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+                "publication_date": "2025-09"
+              }
+            ]
+          },
+          {
+            "project_id": "AU-12cc237ae66c7a6508ca",
+            "project_name": "Redlings Rare Earth Project",
+            "aliases": [
+              "Redlings"
+            ],
+            "company": null,
+            "asx_code": null,
+            "source_key": "redlings_quarter2025",
+            "source_url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
+            "queries": [
+              "Redlings Technical T1"
+            ],
+            "seed_keys": [
+              "marquee_redlings"
+            ],
+            "status": "BOUNDED_ISSUER_SEARCH_TASK",
+            "domain": "Technical",
+            "criterion": "T1",
+            "gap_state": "OBSERVATION_EXTRACTED_NOT_VALIDATED",
+            "existing_evidence_shas": [
+              "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+              "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00"
+            ],
+            "selection_reason": "NO_COMPATIBLE_EVIDENCE",
+            "extraction_failures": [
+              "SOURCE_OBSERVATION_NOT_VALIDATED"
+            ],
+            "prior_search_failures": [],
+            "expected_document_types": [
+              "METALLURGICAL",
+              "DFS",
+              "PFS"
+            ],
+            "priority": 85,
+            "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+            "reusable_documents": [
+              {
+                "key": "discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+                "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
+                "sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
+                "publication_date": null
+              },
+              {
+                "key": "redlings_quarter2025",
+                "url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
+                "sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+                "publication_date": "2025-07-31"
+              }
+            ]
+          },
+          {
+            "project_id": "AU-dac3c8e40326b8244cdb",
+            "project_name": "Jupiter development study within Brothers",
+            "aliases": [
+              "Jupiter"
+            ],
+            "company": null,
+            "asx_code": null,
+            "source_key": "jupiter_scoping2026",
+            "source_url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+            "queries": [
+              "Jupiter Technical T1"
+            ],
+            "seed_keys": [],
+            "status": "SEARCH_ENDPOINT_NOT_CONFIGURED_UNKNOWN",
+            "domain": "Technical",
+            "criterion": "T1",
+            "gap_state": "SCOPE_OR_BASIS_INCOMPATIBLE",
+            "existing_evidence_shas": [
+              "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a"
+            ],
+            "selection_reason": "RAW_EVIDENCE_SCOPE_BASIS_ENDPOINT_SCALE_OR_VALIDITY_INCOMPATIBLE",
+            "extraction_failures": [],
+            "prior_search_failures": [],
+            "expected_document_types": [
+              "METALLURGICAL",
+              "DFS",
+              "PFS"
+            ],
+            "priority": 85,
+            "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+            "reusable_documents": [
+              {
+                "key": "jupiter_scoping2026",
+                "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+                "sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+                "publication_date": "2026-10-20"
+              }
+            ]
+          }
+        ],
+        "execution_metrics": {
+          "elapsed_seconds": 2.724,
+          "search_pages": 5,
+          "downloaded_documents": 1,
+          "reused_originals": 4,
+          "failures": 0,
+          "scope": "BOUNDED_SOURCE_ATTEMPTS_NOT_EXHAUSTIVE_SEARCH"
+        }
+      },
+      "document_recognition": [
+        {
+          "source_key": "discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+          "source_sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
+          "status": "REUSED_VERIFIED_EXTRACTION",
+          "sha256": "6e7283f44a2518402bdc4610e82d0c5ecd7f1a79535efe34eda7f67397a41c3f"
+        },
+        {
+          "source_key": "jupiter_scoping2026",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "status": "REUSED_VERIFIED_EXTRACTION",
+          "sha256": "fa09902dfdc2487b7eabc11dfeadeb40d85449b4a794342bcbba39334c62c8ba"
+        },
+        {
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "status": "REUSED_VERIFIED_EXTRACTION",
+          "sha256": "7009db5ead271a3b8f764fc3891c6ace2e6c83369a373fa77aa183a884c8f9a1"
+        },
+        {
+          "source_key": "redlings_quarter2025",
+          "source_sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+          "status": "REUSED_VERIFIED_EXTRACTION",
+          "sha256": "758b16a8919831404ff21aad8594d100eba9ed37d7ec68d93e4ce24e581e5ef7"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "new_original_pdfs": 0,
+    "new_extraction_snapshots": 4,
+    "validated_text_observations_added": 86,
+    "new_numeric_statements": 0,
+    "new_independent_mcda_projects": 0,
+    "final_repeat_all_extractions_reused": true
+  },
+  "limitations": [
+    "BOUNDED_SOURCE_SEARCH_NOT_EXHAUSTIVE",
+    "FIRST_THREE_ENDPOINT_ATTEMPTS_FAILED_UNDER_ENVIRONMENT_PROXY",
+    "DOWNLOADED_PDF_TRANSFER_REUSED_EXISTING_CONTENT_SHA"
+  ]
+}

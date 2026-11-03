@@ -48,12 +48,16 @@ def research_configuration(root, snapshot_lock=None):
             policy=json.loads(policy_path.read_text(encoding='utf-8'))
             config={**config,'evidence_resolution':policy,'version':config['version']+'+'+policy['version'],
                     'panels':{**config['panels'],**policy['panels']}}
+    if not snapshot_lock and (root/'config/eligibility_compatibility.json').exists():
+        config['eligibility_evidence']=json.loads((root/'config/eligibility_compatibility.json').read_text())
     return config
 
 
 def execute(args):
     root=Path(args.root).resolve()
     config=research_configuration(root,args.snapshot_lock)
+    if config.get('research_evidence_cutoff'):args.as_of=min(args.as_of,config['research_evidence_cutoff'])
+    acquired_through=config.get('acquisition_through') if args.as_of==config.get('research_evidence_cutoff') else None
     registry=json.loads((root/'config/sources.json').read_text(encoding='utf-8'))
     date.fromisoformat(args.as_of)
     if args.as_of > datetime.now(timezone(timedelta(hours=8))).date().isoformat():
@@ -74,7 +78,7 @@ def execute(args):
     acquisition=[]
     if args.module=='discover':
         from .discovery import discover
-        return discover(root,json.loads((root/'config/discovery.json').read_text(encoding='utf-8')))
+        return discover(root,json.loads((root/'config/discovery.json').read_text(encoding='utf-8')),diagnostics=getattr(args,'gap_report',None),task_limit=getattr(args,'task_limit',3))
     if args.module=='acquire' or args.refresh:
         from .discovery import discover
         if args.source_key:
@@ -84,19 +88,23 @@ def execute(args):
             discovery={'status':'TARGETED_SOURCE_UPDATE'}
         else:
             chosen=registry['sources']
-            discovery=discover(root,json.loads((root/'config/discovery.json').read_text(encoding='utf-8')))
+            discovery=discover(root,json.loads((root/'config/discovery.json').read_text(encoding='utf-8')),diagnostics=getattr(args,'gap_report',None),task_limit=getattr(args,'task_limit',3))
+            if getattr(args,'gap_report',None):chosen=[]
         acquisition=refresh(root,dict(registry,sources=chosen))
         recognized=[]
         if config.get('evidence_resolution',{}).get('document_pipeline'):
             from .pdf_extract import capture_documents
-            recognized=capture_documents(root,select_snapshots(root,args.as_of),tessdata=args.tessdata,only_missing=True)
+            recognition_snapshots=select_snapshots(root,args.as_of,acquired_through=acquired_through)
+            wanted={d.get('document_sha256') for d in discovery.get('documents',[])} if getattr(args,'gap_report',None) else None
+            if wanted is not None:recognition_snapshots=[s for s in recognition_snapshots if s['sha256'] in wanted]
+            recognized=capture_documents(root,recognition_snapshots,tessdata=args.tessdata,only_missing=True)
         if args.module=='acquire':
             return {'status':'COMPLETED_WITH_SOURCE_STATUS','sources':acquisition,'discovery':discovery,'document_recognition':recognized}
-    snapshots=select_snapshots(root,args.as_of)
+    snapshots=select_snapshots(root,args.as_of,acquired_through=acquired_through)
     if args.snapshot_lock:
         snapshots=json.loads(Path(args.snapshot_lock).read_text(encoding='utf-8'))
         for s in snapshots:
-            if s['available_date']>args.as_of or s.get('publication_date','')>args.as_of:
+            if s['available_date']>(acquired_through or args.as_of) or s.get('publication_date','')>args.as_of:
                 raise ValueError('Snapshot lock contains evidence after cutoff')
             if filehash(root/s['path'])!=s['sha256']:
                 raise ValueError('Locked snapshot checksum mismatch')
@@ -137,7 +145,7 @@ def execute(args):
         recognition=[]
         if config.get('evidence_resolution',{}).get('document_pipeline') and args.module!='bootstrap':
             from .evidence import ingest_recognized
-            recognition=ingest_recognized(db,root,snapshots,args.as_of,config['evidence_resolution']['document_pipeline'])
+            recognition=ingest_recognized(db,root,snapshots,args.as_of,config['evidence_resolution']['document_pipeline'],acquired_through)
             (out/'document_ingestion.json').write_text(canonical(recognition)+'\n',encoding='utf-8')
             from .evidence import document_report
             document_report(root,snapshots,recognition,out,shared_comparability=bool(config['evidence_resolution'].get('technical_comparability')))
@@ -215,14 +223,21 @@ def execute(args):
         if args.module in ('all','analyze','rebuild'):
             if config.get('evidence_resolution'):
                 from .selection import resolve as select_evidence,export as export_selection
-                selection=select_evidence(db,snapshots,args.as_of,resources,cases,identity['mapping'],config['evidence_resolution'],root)
+                selection=select_evidence(db,snapshots,args.as_of,resources,cases,identity['mapping'],config['evidence_resolution'],root,acquired_through)
                 export_selection(selection,out)
             prepared=prepare(db,args.as_of,snapshots,resources,gis_values,config,out,args.project,identity['mapping'],cases,selection)
+            if config['monte_carlo'].get('method_version')=='entity-keyed-rng-v2':
+                from .analysis import canonicalize_interchange
+                canonicalize_interchange(out)
             if config.get('evidence_resolution',{}).get('document_pipeline') and selection:
                 from .selection import diagnostics
                 diagnostics(selection,prepared,snapshots,config['criteria'],root,out)
+            if config.get('research_utilization') and selection:
+                from .analysis import research_readiness
+                research_readiness(selection,out)
             if not args.skip_r:
                 results=run_r(root,out,prepared,config,args.rscript)
+            if config.get('research_utilization') and selection:research_readiness(selection,out)
         source_shas={s['sha256'] for s in snapshots}
         from .national import raw_domain_coverage
         raw_domains=raw_domain_coverage(db,source_shas)
@@ -285,7 +300,7 @@ def execute(args):
                            'properties':{k:r[k] for k in ('entity_id','kind','name','state','source_sha')}})
         (out/'census.geojson').write_text(canonical({'type':'FeatureCollection','features':points})+'\n',encoding='utf-8')
         from .eligibility import audit
-        audit_summary=audit(db,out,identity,technical_rows,prepared,config,args.as_of,snapshots)
+        audit_summary=audit(db,out,identity,technical_rows,prepared,config,args.as_of,snapshots,root)
         from .security import public_export
         dump=public_export(logical_dump(db))
         (out/'logical_database.json').write_text(canonical(dump)+'\n',encoding='utf-8')
@@ -393,6 +408,8 @@ def main():
     parser.add_argument('--snapshot-lock',help='Exact immutable snapshot_lock.json from a prior run')
     parser.add_argument('--compare-to',help='Frozen prior run/results folder for coverage and rank comparison')
     parser.add_argument('--source-key');parser.add_argument('--pages',default='1');parser.add_argument('--tessdata')
+    parser.add_argument('--gap-report',help='Existing evidence_pipeline_diagnostics.csv for bounded acquisition')
+    parser.add_argument('--task-limit',type=int,default=3)
     parser.add_argument('--before');parser.add_argument('--after')
     args=parser.parse_args()
     try:

@@ -1,0 +1,80 @@
+{
+  "version": "phase11-exact-replay-v1",
+  "canonical_run": "20261103T171204-a46eda8b",
+  "published_code_content_sha256": "e8ee8422399f0d5646944ebc5563bfef83f834ab95bd6a204f5b92ffeffe4bd2",
+  "method_version": "entity-keyed-rng-v2",
+  "seed": 20261102,
+  "reps": 1000,
+  "canonical_vs_clean": {
+    "status": "EXACT",
+    "panel_csv_files": 127,
+    "evidence_exports": 4,
+    "numeric_tolerance": 0,
+    "runtime_exception": "R_version descriptive string only; RNG settings exact",
+    "before": "results\\phase11-2026-11-04",
+    "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase11-clean-f\\runs\\20261103T171206-21870488"
+  },
+  "independent_clean_pair": {
+    "status": "EXACT",
+    "panel_csv_files": 127,
+    "evidence_exports": 4,
+    "numeric_tolerance": 0,
+    "runtime_exception": "R_version descriptive string only; RNG settings exact",
+    "before": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase11-clean-e\\runs\\20261103T170914-cba0fa86",
+    "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase11-clean-f\\runs\\20261103T171206-21870488"
+  },
+  "runtime": {
+    "python": "3.13.12",
+    "shapely": "2.1.2",
+    "pyproj": "3.7.2",
+    "PROJ": "9.5.1",
+    "pypdf": "6.10.0"
+  },
+  "historical_point_science": {
+    "5": 24,
+    "6": 24,
+    "7": 31,
+    "8": 36,
+    "9": 36,
+    "10": 36
+  },
+  "local_python_full": {
+    "passed": 157,
+    "log": "work/phase11-python-verified.log"
+  },
+  "local_phase11_focused": {
+    "passed": 11,
+    "log": "work/phase11-focused-verified.log"
+  },
+  "R_analytical_and_identity_invariants": "PASSED",
+  "entity_ids": {
+    "before": 7554,
+    "after": 7554,
+    "unchanged": true
+  },
+  "sqlite_integrity": "ok",
+  "foreign_key_violations": 0,
+  "schema_changes": 0,
+  "generated_artifacts_verified": 201,
+  "execution_eligibility_policy_snapshot": "data/snapshots/2ab61344425601bfc71b0b2af1cb8d83968afcd499277a0f07d1b94a40353e17.json",
+  "failed_early_attempts": [
+    {
+      "work": "phase11-clean-a",
+      "status": "FAILED_EMPTY_EXCEPTION_TEXT",
+      "exception_type": "NOT_PRESERVED_BY_LEGACY_CLI_HANDLER",
+      "retry": "clean-e/clean-f PASSED"
+    },
+    {
+      "work": "phase11-replay7",
+      "status": "FAILED_EMPTY_EXCEPTION_TEXT",
+      "exception_type": "NOT_PRESERVED_BY_LEGACY_CLI_HANDLER",
+      "retry": "phase11-replay7-retry MATCHED31"
+    }
+  ],
+  "limitations": [
+    "SOURCE_ROUNDING_NOT_MEASUREMENT_UNCERTAINTY",
+    "NO_WHOLE_OPERATIONAL_HISTORY_BYTE_EQUIVALENCE_CLAIM",
+    "R_VERSION_PLATFORM_STRING_EXCLUDED_FROM_EXACT_COMPARISON_ONLY",
+    "NO_NEW_MCDA_PROJECT_OR_FORMAL_C1"
+  ]
+}

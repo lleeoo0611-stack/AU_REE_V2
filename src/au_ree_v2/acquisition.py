@@ -218,14 +218,23 @@ def refresh(root, registry):
     manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     return outcomes
 
-def select_snapshots(root, cutoff, keys=None):
+def select_snapshots(root, cutoff, keys=None, acquired_through=None):
     manifest = json.loads((Path(root) / 'data/manifest.json').read_text(encoding='utf-8'))
     selected = {}
+    def visible(s):
+        if s.get('publication_date', '')>cutoff:return False
+        if s['available_date']<=cutoff:return True
+        # Retrospective acquisition is explicit and limited to dated documents
+        # and their extraction artifacts; never backdate live GIS/government rows.
+        if not acquired_through or s['available_date']>acquired_through:return False
+        if s['kind'] not in ('pdf','html','document_extraction','pdf_page_extraction'):return False
+        if s['kind'] in ('pdf','html'):return bool(s.get('publication_date'))
+        return any(o['sha256']==s.get('source_sha256') and o.get('publication_date') and o['publication_date']<=cutoff for o in manifest['snapshots'])
     for s in manifest['snapshots']:
         if keys and s['key'] not in keys:
             continue
         # Never backdate a current live response to an earlier analysis cutoff.
-        if s['available_date'] > cutoff or s.get('publication_date', '') > cutoff:
+        if not visible(s):
             continue
         if s['key'] not in selected or s['acquired_at'] > selected[s['key']]['acquired_at']:
             selected[s['key']] = s
@@ -234,7 +243,7 @@ def select_snapshots(root, cutoff, keys=None):
     # declared unpublished original can be absent from a public derivative replay.
     for s in manifest['snapshots']:
         if keys and s['key'] not in keys:continue
-        if s['available_date']>cutoff or s.get('publication_date','')>cutoff:continue
+        if not visible(s):continue
         path=Path(root)/s['path']
         if not path.exists() and s['sha256'] in private:continue
         if not path.exists() or filehash(path)!=s['sha256']:raise ValueError('Snapshot checksum mismatch: '+s['path'])

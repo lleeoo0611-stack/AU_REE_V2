@@ -1,11 +1,19 @@
 args<-commandArgs(trailingOnly=TRUE)
-if(length(args)!=5)stop('Require folder seed reps threshold concentration')
+if(!length(args) %in% c(5,6))stop('Require folder seed reps threshold concentration')
+version<-if(length(args)==6)args[6] else 'legacy-position-rng-v1'
+stopifnot(version %in% c('legacy-position-rng-v1','entity-keyed-rng-v2'))
+deterministic<-version=='entity-keyed-rng-v2'
 folder<-args[1];seed<-as.integer(args[2]);reps<-as.integer(args[3]);p<-as.numeric(args[4]);concentration<-as.numeric(args[5])
 stopifnot(reps>=1,reps<=100000,concentration>0,is.finite(concentration))
 script<-sub('^--file=','',grep('^--file=',commandArgs(),value=TRUE)[1])
 source(file.path(dirname(script),'methods.R'))
 d<-read.csv(file.path(folder,'matrix.csv'),check.names=FALSE)
 criteria<-read.csv(file.path(folder,'criteria.csv'));weights<-read.csv(file.path(folder,'weights.csv'))
+if(deterministic) {
+  d<-d[order(d$project_id,method='radix'),,drop=FALSE]
+  criteria<-criteria[order(criteria$code,method='radix'),,drop=FALSE]
+  weights<-weights[order(weights$scenario,weights$criterion,method='radix'),,drop=FALSE]
+}
 codes<-criteria$code;X<-as.matrix(d[,codes,drop=FALSE]);storage.mode(X)<-'double'
 stopifnot(!anyDuplicated(d$project_id),!anyNA(X))
 if('canonical_project_id' %in% names(d))stopifnot(!anyDuplicated(d$canonical_project_id))
@@ -24,14 +32,15 @@ for(scenario in unique(weights$scenario)) {
       topsis=topsis(X,w),topsis_rank=rank_score(topsis(X,w)))
   set.seed(seed);W<-matrix(NA_real_,nrow(X),reps);D<-W
   lower<-as.matrix(d[,paste0(codes,'_lower'),drop=FALSE]);upper<-as.matrix(d[,paste0(codes,'_upper'),drop=FALSE])
+  inputs<-if(deterministic)keyed_inputs(d$project_id,codes,w,reps,version,seed,scenario,concentration) else NULL
   for(k in seq_len(reps)) {
-    wt<-rgamma(length(w),shape=pmax(w*concentration,1e-9));wt<-wt/sum(wt)
+    wt<-if(deterministic)inputs$weights[,k] else rgamma(length(w),shape=pmax(w*concentration,1e-9));wt<-wt/sum(wt)
     W[,k]<-rank_score(promethee(X,wt,p))
   }
   # Independent RNG stream; keeps source rounding distinct from weight uncertainty.
   set.seed(seed+1)
   for(k in seq_len(reps)) {
-    XD<-matrix(runif(length(X),as.vector(lower),as.vector(upper)),nrow=nrow(X))
+    XD<-if(deterministic)lower+inputs$rounding[,,k]*(upper-lower) else matrix(runif(length(X),as.vector(lower),as.vector(upper)),nrow=nrow(X))
     D[,k]<-rank_score(promethee(XD,w,p))
   }
   summarize<-function(M,label)data.frame(scenario,project_id=d$project_id,uncertainty=label,
@@ -69,6 +78,31 @@ for(scenario in unique(weights$scenario)) {
     all_cohorts[[paste(scenario,i)]]<-data.frame(scenario,removed_project=d$project_id[i],project_id=d$project_id[idx],rank=rank_score(promethee(X[idx,,drop=FALSE],w,p)))
   }
 }
+# Independent preference sweep on the existing R1/C1 candidate panel.
+# Offtake filters evidence coverage only; it is never a score or zero fill.
+if(deterministic && setequal(codes,c('R1','C1'))) {
+  coverage<-read.csv(file.path(folder,'..','commercial_project_coverage.csv'))
+  has_offtake<-coverage$offtake_evidence[match(d$project_id,coverage$project_id)]>0
+  cohorts<-list(FINANCING_DISCLOSURE=seq_len(nrow(X)),FINANCING_AND_OFFTAKE=which(has_offtake))
+  sweep_rows<-thresholds<-list()
+  for(cohort in names(cohorts)) {
+    idx<-cohorts[[cohort]];if(length(idx)<2)next
+    Z<-X[idx,,drop=FALSE]
+    for(cw in sort(unique(c(0,1/11,.1386,.14,seq(.05,.95,.05),1)))) {
+      ww<-ifelse(codes=='C1',cw,1-cw)
+      scores<-list(SAW=saw(Z,ww),PROMETHEE_II=promethee(Z,ww,p),TOPSIS=topsis(Z,ww))
+      for(method in names(scores))sweep_rows[[length(sweep_rows)+1]]<-data.frame(cohort,n=length(idx),commercial_weight=cw,method,project_id=d$project_id[idx],project_name=d$project_name[idx],score=scores[[method]],rank=rank_score(scores[[method]]))
+    }
+    for(i in seq_len(nrow(Z)-1))for(j in seq.int(i+1,nrow(Z))) {
+      dr<-Z[i,'R1']-Z[j,'R1'];dc<-Z[i,'C1']-Z[j,'C1']
+      cross<-if(dr==dc)NA_real_ else dr/(dr-dc)
+      if(!is.na(cross) && cross>=0 && cross<=1)thresholds[[length(thresholds)+1]]<-data.frame(cohort,a=d$project_id[idx[i]],a_name=d$project_name[idx[i]],b=d$project_id[idx[j]],b_name=d$project_name[idx[j]],saw_crossing_commercial_weight=cross,interpretation='PAIRWISE_EQUALITY_NOT_RECOMMENDED_WEIGHT_OR_GLOBAL_WINNER_GUARANTEE')
+    }
+  }
+  writeout(do.call(rbind,sweep_rows),'commercial_weight_sensitivity')
+  if(length(thresholds))writeout(do.call(rbind,thresholds),'commercial_saw_crossings')
+}
+
 bind<-function(x,empty)if(length(x))do.call(rbind,x) else empty
 writeout(bind(all_ranks,data.frame()),'ranking')
 writeout(bind(all_weight,data.frame()),'weight_uncertainty')
@@ -122,5 +156,7 @@ if('deposit_type' %in% names(d)) {
   }
   if(length(hostrows))writeout(do.call(rbind,hostrows),'aim_c_host_type_description')
 }
-writeout(data.frame(R_version=R.version.string,seed,reps,threshold=p,concentration),'runtime')
+runtime<-data.frame(R_version=R.version.string,seed,reps,threshold=p,concentration)
+if(deterministic)runtime<-cbind(runtime,method_version=version,RNG_kind="L'Ecuyer-CMRG",normal_kind='Inversion',sample_kind='Rejection',identity='version|seed|scenario|family|project_id|criterion_id|draw_index',rounding='SOURCE_ROUNDING_NOT_MEASUREMENT')
+writeout(runtime,'runtime')
 cat('Completed',nrow(X),'alternatives on the frozen panel;',length(codes),'criteria.\n')

@@ -1,0 +1,52 @@
+{
+  "$schema_version": "1.0",
+  "policy_id": "C0_F1F2_COHORT_C1C2_V1_20261031",
+  "source_asof": "2026-10-29",
+  "decision_date": "2026-10-31",
+  "decision_status": "ACCEPTED_COHORT_BOUNDARIES",
+  "statistical_unit": "INDEPENDENT_VERIFIED_PROJECT",
+  "cohorts": {
+    "C0": "RAW_SOURCE_CENSUS_NOT_MCDA",
+    "C1": "SIX_INDEPENDENT_GATES_PASSED_PRE_FID_PROJECT",
+    "C2": "PROJECT_ID_AND_REE_PRODUCT_ROLE_INDEPENDENTLY_SIGNED_BUT_OTHER_C1_GATES_INCOMPLETE",
+    "C3": "PUBLISHED_AS_OF_HISTORICAL_EVALUATION_NOT_PRE_FID_MAINLINE"
+  },
+  "C1_required_gates": [
+    "ID",
+    "ROLE",
+    "WINDOW",
+    "JORC",
+    "PANEL",
+    "GIS_RELEASE"
+  ],
+  "JORC_allowed_REO_basis": [
+    "TREO",
+    "REO_SCOPED_BREAKDOWN"
+  ],
+  "C1_stage": "AUSTRALIA_ACTIVE_PUBLISHED_SCOPING_PFS_DFS_BFS_FEASIBILITY_AS_OF_CUTOFF_PRE_FID",
+  "C1_criteria_panel_status": "NOT_SELECTED_12_AND_9_STILL_CANDIDATE",
+  "C1_gate_signed_source_required": true,
+  "C2_required_gates": [
+    "ID",
+    "ROLE"
+  ],
+  "C2_identity_approval_requires": [
+    "verified_project_id",
+    "project_identity_scope",
+    "project_footprint_ref",
+    "ree_product_role_ref"
+  ],
+  "duplicate_P1_case_policy": "P1_13_RECORDS_SEPARATE_FROM_39_PROJECT_GROUPS_UNTIL_APPROVED_CROSSWALK",
+  "approvals": {
+    "gates": "inputs/review_decisions/c1_c2_project_gate_signoffs_v1.csv",
+    "project_metadata": "inputs/review_decisions/c1_c2_project_identity_metadata_v1.csv"
+  },
+  "release_policy": "NO_FORMAL_MCDA_C1_RESULTS_UNTIL_GATE_SIGNOFF_AND_FIXED_PANEL",
+  "forbidden": [
+    "RESOURCE_ONLY_TO_C1",
+    "HM_THM_TO_TREO_AUTOCONVERSION",
+    "EES_SCOPING_TO_ECONOMIC_SCOPING",
+    "C2_PROJECT_ID_FROM_NAME_MATCH",
+    "C2_COMBINED_WITH_C1_RANKING_WITHOUT_SEPARATE_SCENARIO"
+  ]
+}

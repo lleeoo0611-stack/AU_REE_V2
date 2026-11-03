@@ -41,11 +41,11 @@ def date_end(value):
     return value
 
 
-def source_check(source, cutoff, root=None):
+def source_check(source, cutoff, root=None, acquired_through=None):
     if not source:
         return 'SOURCE_NOT_SELECTED'
     try:
-        if any(date_end(source[k]) > cutoff for k in ('publication_date', 'available_date') if source.get(k)):
+        if any(date_end(source[k]) > (acquired_through or cutoff if k=='available_date' else cutoff) for k in ('publication_date', 'available_date') if source.get(k)):
             return 'SOURCE_AFTER_CUTOFF'
         if root is not None and filehash(root / source['path']) != source['sha256']:
             return 'SOURCE_HASH_MISMATCH'
@@ -223,8 +223,8 @@ def technical_comparability(inventory, policy):
     return sorted(result,key=lambda r:canonical([r.get(k) for k in identity_keys]))
 
 
-def _valid_candidate(c, sources, cutoff, root):
-    reason = source_check(sources.get(c['source_sha256']), cutoff, root)
+def _valid_candidate(c, sources, cutoff, root, acquired_through=None):
+    reason = source_check(sources.get(c['source_sha256']), cutoff, root, acquired_through)
     if reason:
         return reason
     try:
@@ -245,10 +245,10 @@ def _valid_candidate(c, sources, cutoff, root):
     return None
 
 
-def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None):
+def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None, acquired_through=None):
     """One immutable input contract, one selection result for all consumers."""
     sources = {s['sha256']: s for s in snapshots}
-    source_errors = {sha: source_check(s, cutoff, root) for sha, s in sources.items()}
+    source_errors = {sha: source_check(s, cutoff, root, acquired_through) for sha, s in sources.items()}
     selected_by_key = {s['key']: s['sha256'] for s in snapshots}
     inventory, decisions, values = [], [], defaultdict(dict)
     names = {r['entity_id']: r['name'] for r in db.execute('SELECT * FROM records ORDER BY source_sha') if r['source_sha'] in sources}
@@ -258,12 +258,14 @@ def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None)
             continue
         raw = json.loads(row['raw'])
         if not observation_visible(raw,sources):continue
+        validation=policy.get('document_pipeline',{}).get('validation_version')
+        if raw.get('parser_version') and validation and raw.get('validation_version')!=validation:continue
         c = dict(raw, evidence_id=row['obs_id'], entity_id=row['entity_id'],
                  project_id=mapping.get(row['entity_id'], row['entity_id']),
                  variable=row['variable'], value=row['value'], unit=row['unit'], basis=row['basis'],
                  scope=row['scope'], effective_date=row['effective_date'], source_sha256=row['source_sha'],
                  locator=row['locator'], status=row['status'], origin='OBSERVATION', raw=raw)
-        c['reason'] = source_errors[c['source_sha256']] or _valid_candidate(c, sources, cutoff, None)
+        c['reason'] = source_errors[c['source_sha256']] or _valid_candidate(c, sources, cutoff, None, acquired_through)
         if c['variable'] == 'magnet_reo_share_pct':
             explicit = c['basis'] == 'PrNdDyTb_OXIDES_OVER_TREO'
             defined_legacy = c['basis'] == 'TREO' and (raw.get('composition_definition') or raw.get('transform', {}).get('rule') == 'RATIO_PPM_PERCENT')
@@ -290,7 +292,7 @@ def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None)
                      endpoint=case['endpoint'], scale=case['scale'], feed=case.get('recovery_feed'),
                      role=contract.get('role', 'UNCLASSIFIED_PARAMETER'), domain=contract.get('domain', 'Technical'),
                      process=case['process'], raw=case)
-            c['reason'] = source_errors.get(c['source_sha256']) or _valid_candidate(c, sources, cutoff, None)
+            c['reason'] = source_errors.get(c['source_sha256']) or _valid_candidate(c, sources, cutoff, None, acquired_through)
             if not contract:
                 c['reason'] = c['reason'] or 'PARAMETER_CONTRACT_NOT_DEFINED'
             inventory.append(c)
@@ -486,3 +488,41 @@ def diagnostics(selection, prepared, snapshots, criteria, root, out):
     write_csv(Path(out)/'evidence_pipeline_diagnostics.csv',rows,
               ['project_id','domain','criterion','status','raw_evidence','automatic_evidence','selection_reason','source_shas','exclusion_reasons','search_completeness','confirmed_stage','interpretation'])
     return rows
+
+
+def commercial_evidence(selection):
+    """Typed dated events remain distinct even when their milestone is equal.
+
+    Only the latest version of each explicit instrument/contract is current in
+    this evidence set. Unknown expiry/counterparties/CPs stay Unknown, not cash.
+    """
+    events=[dict(c) for c in selection['inventory'] if c['variable']=='commercial_event']
+    latest={}
+    for c in events:
+        key=(c['project_id'],c.get('facility_id') or c.get('contract_id') or c.get('event_id'))
+        latest[key]=max(latest.get(key,''),date_end(c['effective_date']))
+    rows=[]
+    for c in sorted(events,key=lambda c:(c['project_id'],c['effective_date'],c['evidence_id'])):
+        key=(c['project_id'],c.get('facility_id') or c.get('contract_id') or c.get('event_id'))
+        current=date_end(c['effective_date'])==latest[key]
+        valid=not c.get('reason') and c.get('attribution')=='PROJECT' and current
+        rows.append(dict(project_id=c['project_id'],evidence_id=c['evidence_id'],event_id=c.get('event_id'),event_type=c.get('event_type'),
+            instrument_id=key[-1],instrument_type=c.get('instrument_type') or _instrument_type(c),finance_state=c.get('finance_state'),
+            agreement_state=c.get('agreement_state'),conditions=c.get('conditions'),conditions_status=c.get('conditions_status','UNKNOWN'),
+            counterparty=c.get('counterparty'),attribution=c.get('attribution'),scope=c['scope'],
+            financial_close='EVIDENCED' if valid and not c.get('finance_reason') and c.get('finance_state')=='FINANCIAL_CLOSE' else 'NOT_ESTABLISHED_BY_THIS_EVENT',
+            drawdown='EVIDENCED' if valid and not c.get('finance_reason') and c.get('finance_state')=='DRAWN' else 'NOT_ESTABLISHED_BY_THIS_EVENT',
+            effective_date=c['effective_date'],valid_from=c.get('valid_from'),valid_to=c.get('valid_to'),expiry_status=c.get('expiry_status','UNKNOWN'),
+            current_version=int(current),qualified_project_event=int(valid),reason=c.get('reason') or c.get('finance_reason') or 'VALID_DATED_EVENT_NOT_CASH',
+            terms_status=c.get('comparison_status') or c.get('terms_conflict') or 'NO_CONFLICT_RECORDED_NOT_LEGAL_CERTIFICATION',
+            source_sha256=c['source_sha256'],pdf_page=c.get('pdf_page'),locator=c['locator'],currentness=c.get('currentness'),
+            original_event=canonical(c['raw'])))
+    return rows
+
+
+def _instrument_type(event):
+    """Descriptive literal classification, independently of ordinal maturity."""
+    text=' '.join(str(event.get(k) or '') for k in ('agreement_state','scope','conditions')).lower()
+    for words,label in [(('convertible','note'),'CONVERTIBLE_NOTE'),(('earn-in',),'JV_EARN_IN'),(('credit approval',),'CREDIT_APPROVAL'),(('subscription',),'SUBSCRIPTION'),(('equity',),'EQUITY'),(('loan',),'LOAN')]:
+        if all(w in text for w in words):return label
+    return 'OFFTAKE' if event.get('event_type')=='OFFTAKE' else 'UNKNOWN_NOT_INFERRED_FROM_ORDINAL'

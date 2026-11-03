@@ -111,7 +111,7 @@ def ingest_events(db, root, snapshots, cutoff):
             issue(db, eid, source['sha256'], 'COMMERCIAL_EVENT_INVALID', canonical([event['event_id'], reason]))
 
 
-def ingest_recognized(db, root, snapshots, cutoff, policy):
+def ingest_recognized(db, root, snapshots, cutoff, policy, acquired_through=None):
     """Automatic raw observations reuse the canonical table and shared checks.
 
     Resource-table observations retain a reported_ prefix until a compatible
@@ -124,10 +124,10 @@ def ingest_recognized(db, root, snapshots, cutoff, policy):
     for artifact in snapshots:
         if artifact['kind']!='document_extraction':continue
         try:
-            if source_check(artifact,cutoff,root):raise ValueError('EXTRACTION_ARTIFACT_INVALID')
+            if source_check(artifact,cutoff,root,acquired_through):raise ValueError('EXTRACTION_ARTIFACT_INVALID')
             data=json.loads((root/artifact['path']).read_text(encoding='utf-8'))
             source=sources.get(data['source_sha256'])
-            if source_check(source,cutoff,root):raise ValueError('ORIGINAL_SOURCE_INVALID_OR_OUTSIDE_LOCK')
+            if source_check(source,cutoff,root,acquired_through):raise ValueError('ORIGINAL_SOURCE_INVALID_OR_OUTSIDE_LOCK')
             if artifact['source_sha256']!=source['sha256'] or data['version'] not in policy.get('parser_versions',[policy['parser_version']]):
                 raise ValueError('PARSER_OR_SOURCE_VERSION_MISMATCH')
             pages={p['physical_page']:p for p in data['pages']}
@@ -137,6 +137,9 @@ def ingest_recognized(db, root, snapshots, cutoff, policy):
                 page=pages.get(c['physical_page'])
                 if not page or re.sub(r'\s+',' ',c['raw_text']) not in re.sub(r'\s+',' ',page['text']):
                     reasons.append('PAGE_TEXT_BINDING_FAILED')
+                if policy.get('validation_version') and page:
+                    from .pdf_extract import narrative_context_issues
+                    reasons.extend(narrative_context_issues(c,page))
                 if c['source_sha256']!=source['sha256']:reasons.append('SOURCE_BINDING_FAILED')
                 if not pid or not db.execute("SELECT 1 FROM entities WHERE entity_id=? AND kind='PROJECT'",(pid,)).fetchone():
                     outcomes.append(dict(candidate_id=c['candidate_id'],source_key=source['key'],
@@ -178,6 +181,7 @@ def ingest_recognized(db, root, snapshots, cutoff, policy):
                          locator='physical page '+str(c['physical_page'])+'; row/paragraph '+str(c['row_index']),
                          extraction_artifact_sha256=artifact['sha256'],statement_id=c['candidate_id'],
                          domain=c['domain'],role='AUTOMATIC_RAW_OBSERVATION_NOT_CRITERION_APPROVAL')
+                if policy.get('validation_version'):c['validation_version']=policy['validation_version']
                 status='REVIEW' if reasons else 'AUTO_VALIDATED'
                 for variable,(value,unit) in values.items():
                     raw=dict(c,variable=variable,value=value,unit=unit)

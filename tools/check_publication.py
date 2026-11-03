@@ -16,7 +16,7 @@ roots=[ROOT/d for d in ('src','R','config','data','docs','results','tests','tool
 files=set(p for base in roots for p in base.rglob('*') if p.is_file())
 files.update(p for p in ROOT.iterdir() if p.is_file())
 paths=[p for p in sorted(files) if p.suffix.lower() in
-       ('.json','.jsonl','.csv','.md','.yml','.yaml','.py','.r','.toml','.geojson','.html','.response')]
+       ('.json','.jsonl','.csv','.md','.yml','.yaml','.py','.r','.toml','.geojson','.html','.response','.upstream')]
 found=[]
 manifest_data=json.loads((ROOT/'data/manifest.json').read_text(encoding='utf-8'))
 escaped_originals={ROOT/s['path'] for s in manifest_data['snapshots'] if s.get('encoding_errors')=='backslashreplace'}

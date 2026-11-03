@@ -65,6 +65,13 @@ jobs:
           python tools/evaluate_documents.py work/technical_benchmark.json
           python -c "import json; assert json.load(open('work/technical_benchmark.json')) == json.load(open('data/phase10_document_benchmark.json'))"
           python -c "import json,pathlib; p=pathlib.Path(json.load(open('work/technical/latest.json'))['output_dir']); assert (p/'technical_comparability.csv').read_bytes()==pathlib.Path('results/phase10-2026-11-03/technical_comparability.csv').read_bytes()"
+      - name: Phase 11 deterministic independent clean reconstructions
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase11-2026-11-04/snapshot_lock.json --work work/deterministic-a
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase11-2026-11-04/snapshot_lock.json --work work/deterministic-b
+          python tools/check_replay.py results/phase10-2026-11-03 work/deterministic-a/latest.json
+          python tools/check_phase11.py work/deterministic-a/latest.json work/deterministic-b/latest.json
+          python tools/check_phase11.py results/phase11-2026-11-04 work/deterministic-a/latest.json
       - name: Incremental public update (isolated live-source smoke)
         id: live
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
@@ -101,6 +108,8 @@ jobs:
             work/document_benchmark.json
             work/technical/runs/
             work/technical_benchmark.json
+            work/deterministic-a/runs/
+            work/deterministic-b/runs/
             work/updated/runs/
             work/acquisition_status.json
             data/manifest.json

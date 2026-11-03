@@ -10,3 +10,16 @@ tie<-matrix(.5,3,2)
 stopifnot(all(promethee(tie,w)==0),all(topsis(tie,w)==.5))
 stopifnot(inherits(try(promethee(matrix(NA_real_,2,2),w),silent=TRUE),'try-error'))
 cat('R analytical invariants passed\n')
+
+# Identity-keyed uniforms survive both permutations and cohort changes.
+a<-keyed_inputs(c('a','b','c'),c('R1','C1'),c(.7,.3),20,'entity-keyed-rng-v2',42,'s',30)
+b<-keyed_inputs(c('c','a','b'),c('C1','R1'),c(.3,.7),20,'entity-keyed-rng-v2',42,'s',30)
+stopifnot(identical(a$rounding,b$rounding[c(2,3,1),c(2,1),,drop=FALSE]))
+stopifnot(identical(a$weights,b$weights[c(2,1),,drop=FALSE]))
+c<-keyed_inputs(c('b','d'),c('R1','C1'),c(.7,.3),20,'entity-keyed-rng-v2',42,'s',30)
+stopifnot(identical(a$rounding[2,,],c$rounding[1,,]))
+set.seed(123);state<-.Random.seed
+u<-keyed_uniform(10,'v',1,'s','SOURCE_ROUNDING','p','c')
+stopifnot(identical(state,.Random.seed),identical(u,keyed_uniform(10,'v',1,'s','SOURCE_ROUNDING','p','c')))
+stopifnot(!identical(u,keyed_uniform(10,'v',1,'s','WEIGHTS','p','c')))
+cat('Identity RNG invariants passed\n')
