@@ -10,6 +10,7 @@ from pathlib import Path
 from urllib.parse import urljoin, urlsplit, urldefrag, quote
 from .acquisition import request
 from .security import sensitive_reference
+from .store import filehash
 
 
 class Links(HTMLParser):
@@ -50,6 +51,7 @@ def discover(root, registry, fetch=request):
         meta={**meta,**redaction}
         sha=hashlib.sha256(raw).hexdigest(); dest=root/'data/snapshots'/(sha+suffix)
         if not dest.exists():dest.write_bytes(raw)
+        if filehash(dest)!=sha:raise ValueError('IMMUTABLE_SNAPSHOT_CONTENT_MISMATCH')
         now=datetime.now(timezone.utc).isoformat()
         entry={**meta,'sha256':sha,'path':dest.relative_to(root).as_posix(),'acquired_at':now,'available_date':now[:10]}
         if not any(s['key']==entry['key'] and s['sha256']==sha for s in manifest['snapshots']):manifest['snapshots'].append(entry)
@@ -78,6 +80,11 @@ def discover(root, registry, fetch=request):
                 url=urldefrag(urljoin(seed['url'],href))[0]
                 if urlsplit(url).scheme=='https' and urlsplit(url).hostname in seed['allowed_hosts'] and not sensitive_reference(url) and (re.search(r'next|older',label,re.I) or re.search(r'/page/\d|[?&]page=',url)):
                     queue.append(dict(seed,url=url,key=family+'_page_'+hashlib.sha256(url.encode()).hexdigest()[:12],pagination_family=family,queries=[]))
+                elif (seed.get('detail_pattern') and urlsplit(url).scheme=='https'
+                      and urlsplit(url).hostname in seed['allowed_hosts'] and not sensitive_reference(url)
+                      and re.search(seed['detail_pattern'],url)
+                      and any(k.casefold() in (label+' '+url).casefold() for k in seed.get('keywords',[]))):
+                    queue.append(dict(seed,url=url,key=family+'_detail_'+hashlib.sha256(url.encode()).hexdigest()[:12],pagination_family=family,queries=[]))
             rows=candidates(raw,seed)
             rows=[r for r in rows if r['url'] not in seen_documents]
             rows.sort(key=lambda row:row['url'] in captured_urls)

@@ -10,6 +10,24 @@ from .national import ingest_legacy_e1
 from .screen_index import ingest as ingest_screen_index
 
 
+def html_text(root, source):
+    """Decode an advertised static article payload without executing JavaScript."""
+    from html.parser import HTMLParser
+    text = (Path(root)/source['path']).read_text(encoding='utf-8')
+    if source.get('text_contract') == 'LSE_ARTICLE_BODY_JS_STRING_V1':
+        payload = re.findall(r'var articleBody="((?:\\.|[^"\\])*)";', text)
+        if len(payload) != 1:
+            raise ValueError('ARTICLE_BODY_MISSING_OR_AMBIGUOUS')
+        encoded = re.sub(r'\\x([0-9a-fA-F]{2})', r'\\u00\1', payload[0])
+        text = json.loads('"'+encoded+'"')
+        text = re.sub(r'<(script|style)\b[^>]*>.*?</\1\s*>', '', text, flags=re.I|re.S)
+    class Text(HTMLParser):
+        def __init__(self):super().__init__();self.parts=[]
+        def handle_data(self,value):self.parts.append(value)
+    parser=Text();parser.feed(text)
+    return re.sub(r'\s+', ' ', ' '.join(parser.parts))
+
+
 def validate_pages(root, source, evidence, snapshots, cache=None):
     """One hash/page/marker contract for event and engineering evidence.
 
@@ -27,6 +45,11 @@ def validate_pages(root, source, evidence, snapshots, cache=None):
         raise ValueError(cache[key])
     if evidence['source_sha256'] != source['sha256']:
         raise ValueError('EXTRACTION_VERSION_MISMATCH')
+    if source['kind'] == 'html':
+        markers=evidence.get('source_markers')
+        if not markers or not all(m in html_text(root,source) for m in markers):
+            raise ValueError('EXTRACTION_HTML_MARKER_CHECK_FAILED')
+        return
     bindings = [dict(page=evidence['pdf_page'], markers=evidence['page_markers'])]
     bindings += evidence.get('context_evidence', [])
     if evidence.get('finance_evidence'):
@@ -77,7 +100,7 @@ def ingest_events(db, root, snapshots, cutoff):
                 raise ValueError('INVALID_COMMERCIAL_EVENT_CONTRACT')
         except (ValueError, KeyError, IndexError, OSError, TypeError) as exc:
             reasons.append(str(exc) or type(exc).__name__)
-        raw = dict(event, variable='commercial_event', domain='Commercial', value=None)
+        raw = dict(event, variable='commercial_event', domain=event.get('domain','Commercial'), value=None)
         obsid = digest([eid, source['sha256'], raw])
         db.execute('INSERT OR IGNORE INTO observations VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
                    (obsid, eid, 'commercial_event', None, None, 'DATED_COMMERCIAL_DISCLOSURE',
@@ -234,14 +257,12 @@ def ingest_claims(db, root, snapshots, cutoff, project=None, conflict_selection=
             if o['source_sha256'] != s['sha256']:
                 reasons.append('EXTRACTION_VERSION_MISMATCH')
             if s['kind']=='html':
-                from html.parser import HTMLParser
-                class Text(HTMLParser):
-                    def __init__(self):super().__init__();self.parts=[]
-                    def handle_data(self,value):self.parts.append(value)
-                parser=Text();parser.feed((Path(root)/s['path']).read_text(encoding='utf-8'))
-                text=re.sub(r'\s+',' ',' '.join(parser.parts))
-                if not o.get('source_markers') or not all(marker in text for marker in o['source_markers']):
-                    reasons.append('EXTRACTION_HTML_MARKER_CHECK_FAILED')
+                try:
+                    text=html_text(root,s)
+                    if not o.get('source_markers') or not all(marker in text for marker in o['source_markers']):
+                        reasons.append('EXTRACTION_HTML_MARKER_CHECK_FAILED')
+                except (ValueError,OSError):
+                    reasons.append('EXTRACTION_HTML_READ_FAILED')
             if s['kind']=='pdf' and o.get('pdf_page'):
                 try:
                     validate_pages(root,s,o,snapshots,page_text)

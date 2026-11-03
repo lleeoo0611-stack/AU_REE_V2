@@ -70,7 +70,8 @@ class Phase6NationalTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.folder=ROOT/'work/tests'/uuid.uuid4().hex;cls.folder.mkdir(parents=True)
-        cls.db=connect(cls.folder/'canonical.sqlite');cls.snaps=select_snapshots(ROOT,'2026-11-03');cls.shas={s['sha256'] for s in cls.snaps}
+        # This is a Phase6 regression, not an assertion that future data cannot grow.
+        cls.db=connect(cls.folder/'canonical.sqlite');cls.snaps=json.loads((ROOT/'results/phase6-2026-11-03/snapshot_lock.json').read_text());cls.shas={s['sha256'] for s in cls.snaps}
         ingest_sources(cls.db,ROOT,cls.snaps);ingest_claims(cls.db,ROOT,cls.snaps,'2026-11-03')
         cls.cases=ingest_studies(cls.db,ROOT,cls.snaps,'2026-11-03');cls.resources=resource_values(cls.db,'2026-11-03',cls.shas);build(cls.db,cls.snaps);cls.ids=resolve(cls.db,ROOT,cls.snaps)
     @classmethod

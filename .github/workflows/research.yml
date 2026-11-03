@@ -48,6 +48,10 @@ jobs:
         run: |
           au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase7-2026-11-03/snapshot_lock.json --compare-to results/phase6-2026-11-03 --work work/consolidated
           python tools/check_replay.py results/phase7-2026-11-03 work/consolidated/latest.json
+      - name: Phase 8 coverage and comparable endpoint reconstruction
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase8-2026-11-03/snapshot_lock.json --compare-to results/phase7-2026-11-03 --work work/coverage
+          python tools/check_replay.py results/phase8-2026-11-03 work/coverage/latest.json
       - name: Incremental public update (isolated live-source smoke)
         id: live
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
@@ -79,6 +83,7 @@ jobs:
             work/primary/runs/
             work/national/runs/
             work/consolidated/runs/
+            work/coverage/runs/
             work/updated/runs/
             work/acquisition_status.json
             data/manifest.json

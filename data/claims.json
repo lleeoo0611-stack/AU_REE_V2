@@ -717,7 +717,117 @@
       "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
       "identity_source": "yangibana_quarter2026",
       "identity_locator": "Primary PDF identifies the named project",
-      "observations": []
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 29.93,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Yangibana total JORC 2012 Mineral Resource, 100% JV basis; annual reaffirmation of October2023 estimate",
+          "statement_id": "yangibana-mre-reaffirmed20260630",
+          "effective_date": "2026-06-30",
+          "source_key": "yangibana_ar2026",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "locator": "Physical PDF p14",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "rounding_half_width": 0.005,
+          "original_estimate_date": "2023-10",
+          "ownership_basis": "100% PROJECT; not 40% issuer interest",
+          "cutoff_status": "Consult original 2023 estimate for deposit cutoffs",
+          "pdf_page": 14,
+          "page_markers": [
+            "TOTAL 29.93 0.93  0.32 276,955",
+            "100% Yangibana Project basis"
+          ]
+        },
+        {
+          "variable": "grade",
+          "value": 0.93,
+          "unit": "%",
+          "basis": "TREO",
+          "scope": "Yangibana total JORC 2012 Mineral Resource, 100% JV basis; annual reaffirmation of October2023 estimate",
+          "statement_id": "yangibana-mre-reaffirmed20260630",
+          "effective_date": "2026-06-30",
+          "source_key": "yangibana_ar2026",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "locator": "Physical PDF p14",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "rounding_half_width": 0.005,
+          "original_estimate_date": "2023-10",
+          "ownership_basis": "100% PROJECT; not 40% issuer interest",
+          "cutoff_status": "Consult original 2023 estimate for deposit cutoffs",
+          "pdf_page": 14,
+          "page_markers": [
+            "TOTAL 29.93 0.93  0.32 276,955",
+            "100% Yangibana Project basis"
+          ]
+        },
+        {
+          "variable": "contained_treo_kt",
+          "value": 276.955,
+          "unit": "kt TREO",
+          "basis": "TREO",
+          "scope": "Yangibana total JORC 2012 Mineral Resource, 100% JV basis; annual reaffirmation of October2023 estimate",
+          "statement_id": "yangibana-mre-reaffirmed20260630",
+          "effective_date": "2026-06-30",
+          "source_key": "yangibana_ar2026",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "locator": "Physical PDF p14",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "rounding_half_width": 0.0005,
+          "original_estimate_date": "2023-10",
+          "ownership_basis": "100% PROJECT; not 40% issuer interest",
+          "cutoff_status": "Consult original 2023 estimate for deposit cutoffs",
+          "pdf_page": 14,
+          "page_markers": [
+            "TOTAL 29.93 0.93  0.32 276,955",
+            "100% Yangibana Project basis"
+          ]
+        },
+        {
+          "variable": "reported_ndpr_grade_pct",
+          "value": 0.32,
+          "unit": "%",
+          "basis": "Nd2O3_PLUS_Pr6O11",
+          "scope": "Yangibana total JORC 2012 Mineral Resource, 100% JV basis; annual reaffirmation of October2023 estimate",
+          "statement_id": "yangibana-mre-reaffirmed20260630",
+          "effective_date": "2026-06-30",
+          "source_key": "yangibana_ar2026",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "locator": "Physical PDF p14",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Strategic",
+          "interpretation": "No Dy/Tb; not full magnet share",
+          "pdf_page": 14,
+          "page_markers": [
+            "TOTAL 29.93 0.93  0.32 276,955",
+            "100% Yangibana Project basis"
+          ]
+        },
+        {
+          "variable": "study_maturity_ord",
+          "value": 4,
+          "unit": "ordinal",
+          "basis": "DATED_DFS_REAFFIRMED",
+          "scope": "Yangibana Stage1 DFS concentrate route, 100% JV; not Thailand",
+          "statement_id": "yangibana-dfs-reaffirmed20261030",
+          "effective_date": "2026-10-30",
+          "source_key": "yangibana_quarter2026",
+          "source_sha256": "188f2437560f2ec98af07e444782bd40a7612450b51c988bbe97c3e412dccd70",
+          "locator": "Physical PDF p5",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Development",
+          "interpretation": "Dated study completion, care-and-maintenance activity retained separately",
+          "pdf_page": 5,
+          "page_markers": [
+            "85.7%",
+            "27% TREO"
+          ]
+        }
+      ]
     },
     {
       "id": "donald-rare-earth-mineral-sands-project",
@@ -1708,6 +1818,66 @@
             "41.6 0.20 0.17 0.35 0.02 0.11 0.86"
           ],
           "extraction_method": "PRIMARY_TABLE_VISUALLY_VALIDATED_RAW_BASIS_NOT_BULK_RESOURCE_SCORE"
+        },
+        {
+          "variable": "ore_mt",
+          "value": 41.6,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Brockman main Project Inferred Resource, 700ppm Nb2O5 cutoff; excludes Southern Extension",
+          "statement_id": "brockman-main-reaffirmed20260630",
+          "effective_date": "2026-06-30",
+          "source_key": "yangibana_ar2026",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "locator": "Physical PDF p14",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "category": "INFERRED",
+          "rounding_half_width": 0.05,
+          "cutoff_grade": "700ppm Nb2O5",
+          "original_estimate_date": "2021-01",
+          "context_evidence": [
+            {
+              "page": 14,
+              "markers": [
+                "2012"
+              ]
+            }
+          ],
+          "pdf_page": 14,
+          "page_markers": [
+            "Inferred M Tonnes",
+            "41.6 0.20 0.17 0.35 0.02 0.11 0.86"
+          ]
+        },
+        {
+          "variable": "grade",
+          "value": 0.2,
+          "unit": "%",
+          "basis": "TREO",
+          "scope": "Brockman main Project Inferred Resource, 700ppm Nb2O5 cutoff; excludes Southern Extension",
+          "statement_id": "brockman-main-reaffirmed20260630",
+          "effective_date": "2026-06-30",
+          "source_key": "yangibana_ar2026",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "locator": "Physical PDF p14",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "category": "INFERRED",
+          "rounding_half_width": 0.005,
+          "cutoff_grade": "700ppm Nb2O5",
+          "original_estimate_date": "2021-01",
+          "context_evidence": [
+            {
+              "page": 14,
+              "markers": [
+                "2012"
+              ]
+            }
+          ],
+          "pdf_page": 14,
+          "page_markers": [
+            "Inferred M Tonnes",
+            "41.6 0.20 0.17 0.35 0.02 0.11 0.86"
+          ]
         }
       ]
     },
@@ -2744,6 +2914,297 @@
           "locator": "physicalPDF p3; Global Koppamurra JORC2012 M+I+I MRE as reaffirmed25June2026; includesY; excludes26MtOreReserve subset and Exploration Target; not a sum with reserve or186Mtoldergovernmentversion"
         }
       ]
+    },
+    {
+      "id": "1123290",
+      "entity_namespace": "SA_MINING_PROJECT_SITE_NO",
+      "name": "Wudinna Rare Earths Project",
+      "state": "SA",
+      "identity_source": "wudinna_mre2026",
+      "identity_locator": "Primary named Project scope",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 150,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Wudinna Boland and Head combined Garford and Pidinga MRE; in situ, undiluted",
+          "statement_id": "wudinna-20261022",
+          "effective_date": "2026-10-22",
+          "source_key": "wudinna_mre2026",
+          "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+          "locator": "RNS 4065A: Highlights / Table 1 and Notes / Mineral Resource Statement",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "rounding_half_width": 0.5,
+          "cutoff_grade": "200ppm TREO-Ce open pit; ISR economic cut-over US$5.27/t",
+          "reo_definition": "15 RE oxides including Y2O3; cut-off excludes Ce but reported TREO includes Ce",
+          "original_reported_value": 150,
+          "original_reported_unit": "Mt",
+          "source_markers": [
+            "Total 150 470 101 10 112",
+            "Effective Date of 22 October, 2026",
+            "Mineral Resources are classified as Indicated and Inferred"
+          ],
+          "extraction_version": "phase8-lse-body-v1"
+        },
+        {
+          "variable": "grade",
+          "value": 470,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "Wudinna Boland and Head combined Garford and Pidinga MRE; in situ, undiluted",
+          "statement_id": "wudinna-20261022",
+          "effective_date": "2026-10-22",
+          "source_key": "wudinna_mre2026",
+          "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+          "locator": "RNS 4065A: Highlights / Table 1 and Notes / Mineral Resource Statement",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "rounding_half_width": 0.5,
+          "cutoff_grade": "200ppm TREO-Ce open pit; ISR economic cut-over US$5.27/t",
+          "reo_definition": "15 RE oxides including Y2O3; cut-off excludes Ce but reported TREO includes Ce",
+          "original_reported_value": 470,
+          "original_reported_unit": "ppm",
+          "source_markers": [
+            "Total 150 470 101 10 112",
+            "Effective Date of 22 October, 2026",
+            "Mineral Resources are classified as Indicated and Inferred"
+          ],
+          "extraction_version": "phase8-lse-body-v1"
+        },
+        {
+          "variable": "contained_treo_kt",
+          "value": 70.4,
+          "unit": "kt TREO",
+          "basis": "TREO",
+          "scope": "Wudinna Boland and Head combined Garford and Pidinga MRE; in situ, undiluted",
+          "statement_id": "wudinna-20261022",
+          "effective_date": "2026-10-22",
+          "source_key": "wudinna_mre2026",
+          "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+          "locator": "RNS 4065A: Highlights / Table 1 and Notes / Mineral Resource Statement",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "rounding_half_width": 0.05,
+          "cutoff_grade": "200ppm TREO-Ce open pit; ISR economic cut-over US$5.27/t",
+          "reo_definition": "15 RE oxides including Y2O3; cut-off excludes Ce but reported TREO includes Ce",
+          "original_reported_value": 70400,
+          "original_reported_unit": "t TREO",
+          "source_markers": [
+            "Total 150 470 101 10 112",
+            "Effective Date of 22 October, 2026",
+            "Mineral Resources are classified as Indicated and Inferred"
+          ],
+          "extraction_version": "phase8-lse-body-v1"
+        },
+        {
+          "variable": "reported_magnet_oxide_ppm",
+          "value": 112,
+          "unit": "ppm",
+          "basis": "PrNdDyTb_OXIDES",
+          "scope": "Wudinna Boland and Head combined Garford and Pidinga MRE; in situ, undiluted",
+          "statement_id": "wudinna-20261022",
+          "effective_date": "2026-10-22",
+          "source_key": "wudinna_mre2026",
+          "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+          "locator": "RNS 4065A: Highlights / Table 1 and Notes / Mineral Resource Statement",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Strategic",
+          "composition_definition": "Source MREO explicitly Nd Pr Dy Tb oxides; rounded group, not sum of individually rounded entries",
+          "source_markers": [
+            "Total 150 470 101 10 112",
+            "Effective Date of 22 October, 2026",
+            "Mineral Resources are classified as Indicated and Inferred"
+          ],
+          "extraction_version": "phase8-lse-body-v1"
+        },
+        {
+          "variable": "magnet_reo_share_pct",
+          "value": 23.829787234042556,
+          "unit": "%",
+          "basis": "PrNdDyTb_OXIDES_OVER_TREO",
+          "scope": "Wudinna Boland and Head combined Garford and Pidinga MRE; in situ, undiluted",
+          "statement_id": "wudinna-20261022",
+          "effective_date": "2026-10-22",
+          "source_key": "wudinna_mre2026",
+          "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+          "locator": "RNS 4065A: Highlights / Table 1 and Notes / Mineral Resource Statement",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Strategic",
+          "transform": {
+            "rule": "RATIO_PPM_PERCENT",
+            "inputs": [
+              "reported_magnet_oxide_ppm",
+              "grade"
+            ]
+          },
+          "rounding_bounds": [
+            23.69819341126461,
+            23.961661341853034
+          ],
+          "source_markers": [
+            "Total 150 470 101 10 112",
+            "Effective Date of 22 October, 2026",
+            "Mineral Resources are classified as Indicated and Inferred"
+          ],
+          "extraction_version": "phase8-lse-body-v1"
+        },
+        {
+          "variable": "reported_ndpr_oxide_ppm",
+          "value": 101,
+          "unit": "ppm",
+          "basis": "NdPr_OXIDES",
+          "scope": "Wudinna Boland and Head combined Garford and Pidinga MRE; in situ, undiluted",
+          "statement_id": "wudinna-20261022",
+          "effective_date": "2026-10-22",
+          "source_key": "wudinna_mre2026",
+          "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+          "locator": "RNS 4065A: Highlights / Table 1 and Notes / Mineral Resource Statement",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Strategic",
+          "source_markers": [
+            "Total 150 470 101 10 112",
+            "Effective Date of 22 October, 2026",
+            "Mineral Resources are classified as Indicated and Inferred"
+          ],
+          "extraction_version": "phase8-lse-body-v1"
+        },
+        {
+          "variable": "reported_dytb_oxide_ppm",
+          "value": 10,
+          "unit": "ppm",
+          "basis": "DyTb_OXIDES",
+          "scope": "Wudinna Boland and Head combined Garford and Pidinga MRE; in situ, undiluted",
+          "statement_id": "wudinna-20261022",
+          "effective_date": "2026-10-22",
+          "source_key": "wudinna_mre2026",
+          "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+          "locator": "RNS 4065A: Highlights / Table 1 and Notes / Mineral Resource Statement",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Strategic",
+          "source_markers": [
+            "Total 150 470 101 10 112",
+            "Effective Date of 22 October, 2026",
+            "Mineral Resources are classified as Indicated and Inferred"
+          ],
+          "extraction_version": "phase8-lse-body-v1"
+        }
+      ]
+    },
+    {
+      "id": "1130520",
+      "entity_namespace": "SA_MINING_PROJECT_SITE_NO",
+      "name": "Kalkaroo",
+      "state": "SA",
+      "identity_source": "kalkaroo_ree2020",
+      "identity_locator": "Primary named Project scope",
+      "observations": [
+        {
+          "variable": "reported_technical_sample_max_treyo_ppm",
+          "value": 8482,
+          "unit": "ppm",
+          "basis": "TREY_OXIDE_SAMPLE_MAXIMUM",
+          "scope": "Kalkaroo geochemical sample suite in Collerson technical review; not MRE or recoverable product",
+          "statement_id": "kalkaroo-geochemistry20200219",
+          "effective_date": "2020-02-19",
+          "source_key": "kalkaroo_ree2020",
+          "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5",
+          "locator": "Physical PDF p7",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "sample_scope": "Non-resource geochemical review samples; size/uncertainty definition not established; no recovery inferred",
+          "pdf_page": 7,
+          "page_markers": [
+            "Kalkaroo (8482 ppm)",
+            "mean La/Yb ratio of 49.7",
+            "319"
+          ]
+        },
+        {
+          "variable": "reported_technical_sample_mean_hree_ppm",
+          "value": 319,
+          "unit": "ppm",
+          "basis": "ELEMENT_HREE_Gd_TO_Lu",
+          "scope": "Kalkaroo geochemical sample suite in Collerson technical review; not MRE or recoverable product",
+          "statement_id": "kalkaroo-geochemistry20200219",
+          "effective_date": "2020-02-19",
+          "source_key": "kalkaroo_ree2020",
+          "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5",
+          "locator": "Physical PDF p7",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "sample_scope": "Non-resource geochemical review samples; size/uncertainty definition not established; no recovery inferred",
+          "pdf_page": 7,
+          "page_markers": [
+            "Kalkaroo (8482 ppm)",
+            "mean La/Yb ratio of 49.7",
+            "319"
+          ]
+        },
+        {
+          "variable": "reported_technical_sample_hree_dispersion_ppm",
+          "value": 134,
+          "unit": "ppm",
+          "basis": "REPORTED_PLUS_MINUS_UNSPECIFIED_NOT_MEASUREMENT_ERROR",
+          "scope": "Kalkaroo geochemical sample suite in Collerson technical review; not MRE or recoverable product",
+          "statement_id": "kalkaroo-geochemistry20200219",
+          "effective_date": "2020-02-19",
+          "source_key": "kalkaroo_ree2020",
+          "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5",
+          "locator": "Physical PDF p7",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "sample_scope": "Non-resource geochemical review samples; size/uncertainty definition not established; no recovery inferred",
+          "pdf_page": 7,
+          "page_markers": [
+            "Kalkaroo (8482 ppm)",
+            "mean La/Yb ratio of 49.7",
+            "319"
+          ]
+        },
+        {
+          "variable": "reported_technical_sample_mean_la_yb_ratio",
+          "value": 49.7,
+          "unit": "ratio",
+          "basis": "ELEMENT_La_DIV_Yb",
+          "scope": "Kalkaroo geochemical sample suite in Collerson technical review; not MRE or recoverable product",
+          "statement_id": "kalkaroo-geochemistry20200219",
+          "effective_date": "2020-02-19",
+          "source_key": "kalkaroo_ree2020",
+          "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5",
+          "locator": "Physical PDF p7",
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_PRIMARY_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "sample_scope": "Non-resource geochemical review samples; size/uncertainty definition not established; no recovery inferred",
+          "pdf_page": 7,
+          "page_markers": [
+            "Kalkaroo (8482 ppm)",
+            "mean La/Yb ratio of 49.7",
+            "319"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wudinna-boland",
+      "entity_namespace": "ISSUER_DOCUMENTED_PROSPECT",
+      "entity_kind": "PROSPECT",
+      "name": "Boland prospect within Wudinna",
+      "state": "SA",
+      "identity_source": "wudinna_mre2026",
+      "identity_locator": "RNS4065A: maiden MRE undertaken across Boland and Head prospects",
+      "observations": []
+    },
+    {
+      "id": "wudinna-head",
+      "entity_namespace": "ISSUER_DOCUMENTED_PROSPECT",
+      "entity_kind": "PROSPECT",
+      "name": "Head prospect within Wudinna",
+      "state": "SA",
+      "identity_source": "wudinna_mre2026",
+      "identity_locator": "RNS4065A: maiden MRE undertaken across Boland and Head prospects",
+      "observations": []
     }
   ],
   "events": [
@@ -3083,6 +3544,182 @@
       "amount": 1.5,
       "amount_unit": "AUD million",
       "date_precision": "month"
+    },
+    {
+      "project_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "project_native_id": "nolans-rare-earths-project",
+      "source_key": "nolans_quarter202610",
+      "source_sha256": "1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2",
+      "pdf_page": 6,
+      "locator": "Physical PDF p6; Project funding and offtake, as disclosed 30October2026",
+      "effective_date": "2026-10-30",
+      "scope": "Nolans Project funding, dated quarterly status",
+      "attribution": "PROJECT",
+      "currentness": "DATED_DISCLOSURE_NOT_CURRENT_AVAILABLE_CASH",
+      "valid_from": null,
+      "valid_to": null,
+      "event_id": "nolans-senior-debt-status20261030",
+      "event_type": "FINANCING",
+      "finance_state": "CONDITIONAL_COMMITMENT",
+      "facility_id": "nolans-senior-credit-approvals",
+      "conditions_status": "PENDING_FINAL_CREDIT_AND_CONTRACTUAL_CLOSE",
+      "agreement_state": "COMMITTED_DEBT_FINAL_CREDIT_APPROVALS_PROGRESSING_NOT_CLOSE",
+      "conditions": "Final credit approvals and contractual close progressing; no disbursement established",
+      "page_markers": [
+        "progressing with final credit approvals",
+        "contractual close on the project"
+      ]
+    },
+    {
+      "project_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "project_native_id": "nolans-rare-earths-project",
+      "source_key": "nolans_quarter202610",
+      "source_sha256": "1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2",
+      "pdf_page": 6,
+      "locator": "Physical PDF p6; Project funding and offtake, as disclosed 30October2026",
+      "effective_date": "2026-10-30",
+      "scope": "Nolans Project funding, dated quarterly status",
+      "attribution": "PROJECT",
+      "currentness": "DATED_DISCLOSURE_NOT_CURRENT_AVAILABLE_CASH",
+      "valid_from": null,
+      "valid_to": null,
+      "event_id": "nolans-efa-subscription-status20261030",
+      "event_type": "FINANCING",
+      "finance_state": "CONDITIONAL_COMMITMENT",
+      "facility_id": "nolans-efa-cornerstone-subscription",
+      "conditions_status": "CONDITIONS_PRECEDENT_PROGRESSING_NOT_COMPLETED",
+      "agreement_state": "BINDING_SUBSCRIPTION_SHAREHOLDER_APPROVAL_RENEWED",
+      "conditions": "Renewed shareholder approval22October2026; remaining CPs progressing, completion expected parallel with debt close",
+      "amount_million": 100,
+      "currency": "USD",
+      "page_markers": [
+        "binding subscription agreements",
+        "expects completion in parallel to contractual close"
+      ]
+    },
+    {
+      "project_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "project_native_id": "nolans-rare-earths-project",
+      "source_key": "nolans_quarter202610",
+      "source_sha256": "1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2",
+      "pdf_page": 6,
+      "locator": "Physical PDF p6; Project funding and offtake, as disclosed 30October2026",
+      "effective_date": "2026-10-30",
+      "scope": "Nolans Project funding, dated quarterly status",
+      "attribution": "PROJECT",
+      "currentness": "DATED_DISCLOSURE_NOT_CURRENT_AVAILABLE_CASH",
+      "valid_from": null,
+      "valid_to": null,
+      "event_id": "nolans-grmf-subscription-status20261030",
+      "event_type": "FINANCING",
+      "finance_state": "CONDITIONAL_COMMITMENT",
+      "facility_id": "nolans-grmf-cornerstone-subscription",
+      "conditions_status": "CONDITIONS_PRECEDENT_PROGRESSING_NOT_COMPLETED",
+      "agreement_state": "BINDING_SUBSCRIPTION_SHAREHOLDER_APPROVAL_RENEWED",
+      "conditions": "Renewed shareholder approval22October2026; remaining CPs progressing, completion expected parallel with debt close",
+      "amount_million": 50,
+      "currency": "EUR",
+      "page_markers": [
+        "binding subscription agreements",
+        "expects completion in parallel to contractual close"
+      ]
+    },
+    {
+      "project_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "project_native_id": "nolans-rare-earths-project",
+      "source_key": "nolans_quarter202610",
+      "source_sha256": "1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2",
+      "pdf_page": 6,
+      "locator": "Physical PDF p6; Project funding and offtake, as disclosed 30October2026",
+      "effective_date": "2026-09-18",
+      "scope": "Nolans existing wind OEM 500tpa NdPr offtake extension",
+      "attribution": "PROJECT",
+      "currentness": "DATED_DISCLOSURE_NOT_CURRENT_AVAILABLE_CASH",
+      "valid_from": null,
+      "valid_to": null,
+      "event_id": "nolans-oem-offtake-extension20260918",
+      "event_type": "OFFTAKE",
+      "contract_id": "nolans-undisclosed-wind-oem500",
+      "agreement_state": "EXISTING_AGREEMENT_EXTENDED",
+      "conditions": "Delivery terms retained; pricing revised to seaborne index; counterparty not disclosed",
+      "annual_volume_t": 500,
+      "payment_terms": "REVISED_SEABORNE_INDEX",
+      "page_markers": [
+        "18 September 2026",
+        "500tpa offtake agreement",
+        "seaborne price index"
+      ]
+    },
+    {
+      "project_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "project_native_id": "nolans-rare-earths-project",
+      "source_key": "nolans_quarter202610",
+      "source_sha256": "1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2",
+      "pdf_page": 6,
+      "locator": "Physical PDF p6; Project funding and offtake, as disclosed 30October2026",
+      "effective_date": "2026-10-30",
+      "scope": "Nolans US trading group five-year NdPr offtake; after quarter end, exact signing day not disclosed",
+      "attribution": "PROJECT",
+      "currentness": "DATED_DISCLOSURE_NOT_CURRENT_AVAILABLE_CASH",
+      "valid_from": null,
+      "valid_to": null,
+      "event_id": "nolans-us-offtake-quarter20261030",
+      "event_type": "OFFTAKE",
+      "contract_id": "nolans-us-trading850",
+      "agreement_state": "BINDING",
+      "conditions": "Volumes ramp up to850tpa once nameplate production reached; exact signing date unreported, evidence available30October2026",
+      "annual_volume_t": 850,
+      "term_years": 5,
+      "page_markers": [
+        "binding offtake agreement",
+        "850tpa",
+        "850tpa"
+      ]
+    },
+    {
+      "project_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "project_native_id": "nolans-rare-earths-project",
+      "source_key": "nolans_quarter202610",
+      "source_sha256": "1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2",
+      "pdf_page": 1,
+      "locator": "Physical PDF p6; Project funding and offtake, as disclosed 30October2026",
+      "effective_date": "2026-09-30",
+      "scope": "Nolans early site access and mobilisation; not full financing close",
+      "attribution": "PROJECT",
+      "currentness": "DATED_DISCLOSURE_NOT_CURRENT_AVAILABLE_CASH",
+      "valid_from": null,
+      "valid_to": null,
+      "event_id": "nolans-early-construction-quarter20260930",
+      "event_type": "DEVELOPMENT",
+      "domain": "Development",
+      "development_state": "EARLY_CONSTRUCTION_COMMENCED",
+      "page_markers": [
+        "Construction activity commenced during the quarter",
+        "early site access works"
+      ],
+      "conditions": "Early enabling works; not production, full construction progress or funding close"
+    },
+    {
+      "project_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "project_native_id": "nolans-rare-earths-project",
+      "source_key": "nolans_quarter202610",
+      "source_sha256": "1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2",
+      "pdf_page": 4,
+      "locator": "Physical PDF p6; Project funding and offtake, as disclosed 30October2026",
+      "effective_date": "2026-09-30",
+      "scope": "Nolans lenders ESAP contractual-close corrective actions only; not all mining approvals",
+      "attribution": "PROJECT",
+      "currentness": "DATED_DISCLOSURE_NOT_CURRENT_AVAILABLE_CASH",
+      "valid_from": null,
+      "valid_to": null,
+      "event_id": "nolans-esap-quarter20260930",
+      "event_type": "APPROVAL",
+      "agreement_state": "INDEPENDENT_ES_CONSULTANT_SIGNOFF_REPORTED",
+      "page_markers": [
+        "All contractual close corrective actions",
+        "Tetra Tech Coffey"
+      ],
+      "conditions": "ESAP tranche/action signoff is not contractual funding close or environmental mining licence grant"
     }
   ]
 }

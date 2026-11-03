@@ -1,10 +1,10 @@
 # AU_REE_V2
 
-Latest: [Phase 7 evidence integration](docs/phase7-evidence-integration.md) shares source-, scope-, endpoint- and date-aware selection across the existing Evidence Database, Study Cases, Criteria and coverage outputs. The SQLite schema, stable IDs, Python CLI and R MCDA methods are retained.
+Latest: [Phase 8 evidence coverage](docs/phase8-evidence-coverage.md) adds source-verified resources and typed events through the existing shared selection, SQLite store, Python CLI and R engine. The schema and stable Project IDs are retained.
 
-Current frozen evidence: **31 canonical Project groups, 19 comparable resource cases, 712 government REE native records, 76 selected snapshots and 12 typed commercial events**. Candidate financing milestones have six eligible groups and a four-case resource intersection. Formal C1, strict Development and full six-domain samples remain zero. A dated financing milestone does not establish available cash.
+Current frozen evidence: **31 canonical Project groups, 22 comparable resource cases, 132 validated numeric statements, 712 government REE native entities and 19 typed events**. The 5,522 new QLD Tenements are counted separately. Resource/concentrate and resource/financing exploratory intersections now have two/five alternatives. Formal C1, strict Development and full six-domain samples remain zero. A dated financing milestone does not establish available cash.
 
-[Phase 7 outputs](results/phase7-2026-11-03/README.md), [Phase 6 national originals](docs/phase6-national-database.md), [Phase 5 primary evidence](docs/phase5-primary-evidence.md), [Phase 3 identity/studies](docs/phase3-identity-and-studies.md), and [Phase 2 expansion](docs/phase2-primary-expansion.md) retain separate historical results.
+[Phase 8 outputs](results/phase8-2026-11-03/README.md), [Phase 7 integration](docs/phase7-evidence-integration.md), [Phase 6 national originals](docs/phase6-national-database.md), [Phase 5 primary evidence](docs/phase5-primary-evidence.md), [Phase 3 identity/studies](docs/phase3-identity-and-studies.md), and [Phase 2 expansion](docs/phase2-primary-expansion.md) retain separate historical results.
 
 One Python / SQLite / R research system for Australian rare-earth evidence, official GIS and explicitly scoped exploratory MCDA. Government source records, deposits and registry groups are not interchangeable independent Projects. No national completeness or six-domain development ranking is claimed.
 

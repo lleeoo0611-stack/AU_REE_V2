@@ -47,6 +47,9 @@ def compare_runs(before, after):
             result['validated_statement_values']=len(unique)
             result['validated_structured_events']=len(events)
         cov=read(folder,'cohort_coverage.csv')
+        relations=read(folder,'government_identity_candidates.csv')
+        result['government_unconfirmed_relation_candidates']=None if relations is None else sum(r['status'].startswith('CANDIDATE') for r in relations)
+        result['government_confirmed_representative_site_relations']=None if relations is None else sum(r['status'].startswith('CONFIRMED_REPRESENTATIVE') for r in relations)
         for key in ('development','full_evidence'):result[key]=None if cov is None else sum(int(r[key]) for r in cov)
         membership=read(folder,'canonical_membership.csv') or []
         canonical_ids={r['entity_id']:r['canonical_id'] for r in membership}

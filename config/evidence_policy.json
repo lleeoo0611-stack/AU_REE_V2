@@ -1,5 +1,5 @@
 {
-  "version": "evidence-resolution-v1",
+  "version": "evidence-resolution-v2-phase8",
   "main_codes": [
     "R1",
     "S1",
@@ -114,6 +114,10 @@
     "issuer_resource_financing_milestone": [
       "R1",
       "C1"
+    ],
+    "issuer_resource_concentrate_recovery": [
+      "R1",
+      "TC1"
     ]
   },
   "financing_codebook": {
@@ -138,6 +142,14 @@
     "processing_complexity": {
       "status": "DESCRIPTIVE_ONLY_NO_ORDINAL_OR_SCIENTIFIC_ORDER_ADOPTED",
       "reason": "Number of operations cannot establish process difficulty; cost, energy, reagent intensity, mineral liberation and NORM handling differ. Preserve flowsheet text, endpoints and mineralogy. No substitution for recovery."
+    },
+    "endpoint_alternative": {
+      "criterion": "TC1",
+      "status": "EXPLORATORY_NOT_REPLACEMENT_FOR_T1",
+      "definition": "Whole ore TREO-including-Y recovery to mineral concentrate, DFS model only",
+      "scientific_basis": "Mass fraction of feed TREO reporting to a defined first-stage mineral concentrate; excludes leach solution, selected-composite assays, MREC and separated oxides",
+      "limitations": "Engineering forecast, not measured operating recovery; different mine plans; downstream losses and impurity burden not assessed",
+      "development_overlap": "Numeric recovery and study-stage are different variables, but DFS-only eligibility conditions on maturity. Compare only within this maturity; do not claim independent maturity effect."
     }
   },
   "study_parameters": {
@@ -331,5 +343,6 @@
       "unit": "t/year",
       "domain": "Technical"
     }
-  }
+  },
+  "identity_rule_version": "document-native-extension-phase8-v1"
 }

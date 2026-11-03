@@ -1,5 +1,5 @@
 {
-  "version": "source-registry-v8-phase7",
+  "version": "source-registry-v9-phase8",
   "sources": [
     {
       "key": "ga_aimr",
@@ -545,6 +545,88 @@
       "where": "1=1",
       "geological_kind_field": "site_type",
       "inventory_scope": "All MINOCC mines and mineral occurrences by status; overlaps layer17; count distinct namespace/site_no"
+    },
+    {
+      "key": "yangibana_ar2026",
+      "kind": "pdf",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7763164.pdf?v=63957978608",
+      "publication_date": "2026-09-30"
+    },
+    {
+      "key": "kalkaroo_ree2020",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20200219/pdf/44f780ww5n6tbj.pdf",
+      "publication_date": "2020-02-19"
+    },
+    {
+      "key": "wudinna_mre2026",
+      "kind": "html",
+      "url": "https://www.londonstockexchange.com/en/news/article/COBR/maiden-rare-earth-mineral-resource-estimate/637e-cb-eb-9d-8e-465a87",
+      "publication_date": "2026-10-26",
+      "failed_primary_url": "https://investors.cobraplc.com/announcements/VQ0lGG-cobra-resources-plc-maiden-rare-earth-mineral-resource-estimate",
+      "fallback_reason": "Issuer HTTP 429 after three transient retries; same primary RNS 4065A from London Stock Exchange",
+      "text_contract": "LSE_ARTICLE_BODY_JS_STRING_V1"
+    },
+    {
+      "key": "qld_epm_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Economy/CurrentQldResourceAuthorities/MapServer/40",
+      "national_government": true,
+      "state": "QLD",
+      "namespace": "QLD_RESOURCE_AUTHORITY",
+      "id_field": "permitid",
+      "name_field": "displayname",
+      "commodity_fields": [
+        "permitminerals"
+      ],
+      "entity_kind": "TENEMENT",
+      "where": "1=1",
+      "inventory_scope": "Complete official EPM inventory; REE designation is permit commodity, not Project identity",
+      "timeout_seconds": 80,
+      "record_filter": "ALL_TENURE_RECORDS"
+    },
+    {
+      "key": "qld_mdl_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Economy/CurrentQldResourceAuthorities/MapServer/80",
+      "national_government": true,
+      "state": "QLD",
+      "namespace": "QLD_RESOURCE_AUTHORITY",
+      "id_field": "permitid",
+      "name_field": "displayname",
+      "commodity_fields": [
+        "permitminerals"
+      ],
+      "entity_kind": "TENEMENT",
+      "where": "1=1",
+      "inventory_scope": "Complete official MDL inventory; REE designation is permit commodity, not Project identity",
+      "timeout_seconds": 80,
+      "record_filter": "ALL_TENURE_RECORDS"
+    },
+    {
+      "key": "qld_ml_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Economy/CurrentQldResourceAuthorities/MapServer/120",
+      "national_government": true,
+      "state": "QLD",
+      "namespace": "QLD_RESOURCE_AUTHORITY",
+      "id_field": "permitid",
+      "name_field": "displayname",
+      "commodity_fields": [
+        "permitminerals"
+      ],
+      "entity_kind": "TENEMENT",
+      "where": "1=1",
+      "inventory_scope": "Complete official ML inventory; REE designation is permit commodity, not Project identity",
+      "timeout_seconds": 80,
+      "record_filter": "ALL_TENURE_RECORDS"
+    },
+    {
+      "key": "nolans_quarter202610",
+      "kind": "pdf",
+      "url": "https://cdn.financialreports.eu/financialreports/media/filings/64425/2026/RNS/64425_rns_2026-10-30_04faeca9-e33e-4783-b0c9-9583aebf843a.pdf",
+      "publication_date": "2026-10-30",
+      "definition": "Issuer-authored ASX original PDF retained from public filing mirror; host is not ASX; cross-check issuer title, date, authorisation and project scope"
     }
   ]
 }

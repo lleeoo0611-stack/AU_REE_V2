@@ -18,7 +18,7 @@ def native(value):
 def normalized(name):
     return re.sub(r'\W+',' ',unicodedata.normalize('NFKC',name).casefold().replace('mt.','mount ').replace('mt ','mount ')).strip()
 
-def resolve(db,root,snapshots,cutoff=None):
+def resolve(db,root,snapshots,cutoff=None,rule_version=None):
     selected={s['sha256'] for s in snapshots};by_key={s['key']:s for s in snapshots}
     path=Path(root)/'data/identity_links.json'
     cutoff=cutoff or max((s['available_date'] for s in snapshots),default='0001-01-01')
@@ -74,6 +74,7 @@ def resolve(db,root,snapshots,cutoff=None):
                            native_id=payload['original_native_id'],resolved_entities=canonical(sorted(set(targets))),status=status,source_sha256=r['source_sha']))
     # Explicit primary-supported equivalences. Invalid links are isolated in Review Queue.
     for decision in (json.loads(path.read_text(encoding='utf8'))['links'] if path.exists() else []):
+        if decision.get('rule_version') and decision['rule_version']!=rule_version:continue
         if decision['effective_date']>cutoff:continue
         source=by_key.get(decision['source_key'])
         if not source or source['sha256']!=decision['source_sha256']:continue
@@ -117,12 +118,18 @@ def resolve(db,root,snapshots,cutoff=None):
         if not source or source['sha256']!=relation['source_sha256'] or relation['effective_date']>cutoff:continue
         try:
             from .pdf_extract import extract_page
-            text=extract_page(Path(root)/source['path'],relation['pdf_page'])['text']
+            if source['kind']=='html':
+                from .evidence import html_text
+                text=html_text(root,source)
+            else:text=extract_page(Path(root)/source['path'],relation['pdf_page'])['text']
             text=re.sub(r'\s+',' ',text)
             if not all(x in text for x in relation['page_markers']):raise ValueError('RELATION_PRIMARY_PAGE_MARKER_MISMATCH')
             nodes=[db.execute('SELECT * FROM entities WHERE native_namespace=? AND native_id=?',tuple(relation[k])).fetchone() for k in ('left','right')]
-            if any(n is None or n['kind']!='PROJECT' for n in nodes):raise ValueError('RELATION_SOURCE_PROJECT_ID_MISSING')
-            if relation['relation']!='CONTAINS_DOCUMENTED_REE_SCOPE_NOT_IDENTITY_EQUIVALENCE':raise ValueError('UNSUPPORTED_TYPED_RELATION')
+            contracts={'CONTAINS_DOCUMENTED_REE_SCOPE_NOT_IDENTITY_EQUIVALENCE':('PROJECT','PROJECT'),
+                       'CONTAINS_ISSUER_DOCUMENTED_PROSPECT_NOT_RESOURCE_SUM':('PROJECT','PROSPECT')}
+            kinds=contracts.get(relation['relation'])
+            if not kinds:raise ValueError('UNSUPPORTED_TYPED_RELATION')
+            if any(n is None or n['kind']!=kind for n,kind in zip(nodes,kinds)):raise ValueError('RELATION_ENTITY_KIND_OR_NATIVE_ID_MISMATCH')
             link(db,nodes[0]['entity_id'],nodes[1]['entity_id'],relation['relation'],source['sha256'],relation['locator'])
         except Exception as exc:issue(db,None,source['sha256'],'DOCUMENTED_RELATION_REVIEW',canonical({'relation':relation,'reason':str(exc)}))
     # Conflicting canonical anchors and cycles are rejected rather than resolved by row order.

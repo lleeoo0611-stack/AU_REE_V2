@@ -151,6 +151,7 @@ def refresh(root, registry):
                 sha=hashlib.sha256(raw).hexdigest()
                 path=root/'data/snapshots'/(sha+'.response')
                 if not path.exists():path.write_bytes(raw)
+                if filehash(path)!=sha:raise ValueError('ORIGINAL_RESPONSE_CONTENT_MISMATCH')
                 pages.append({'sha256':sha,'path':path.relative_to(root).as_posix()})
             previous = [s for s in manifest['snapshots'] if s['key']==source['key']]
             latest = max(previous,key=lambda s:s['acquired_at']) if previous else {}
@@ -190,6 +191,8 @@ def refresh(root, registry):
             sha = hashlib.sha256(raw).hexdigest()
             changes=government_changes(root,source,latest,raw) if source.get('national_government') else None
             if any(s['sha256'] == sha and s['key'] == source['key'] for s in manifest['snapshots']):
+                existing=next(s for s in manifest['snapshots'] if s['sha256']==sha and s['key']==source['key'])
+                if filehash(root/existing['path'])!=sha:raise ValueError('IMMUTABLE_SNAPSHOT_CONTENT_MISMATCH')
                 outcomes.append({'key': source['key'], 'status': 'UNCHANGED', 'sha256': sha,
                                  **({'native_changes':changes} if changes else {}),
                                  **({'original_responses':pages} if pages else {})})
@@ -197,7 +200,8 @@ def refresh(root, registry):
             suffix = '.pdf' if source['kind'] == 'pdf' else '.xlsx' if source['kind'] == 'xlsx_census' else '.csv' if source['kind']=='government_csv' else '.html' if source['kind']=='html' else '.json'
             path = root / 'data/snapshots' / (sha + suffix)
             path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_bytes(raw)
+            if not path.exists():path.write_bytes(raw)
+            if filehash(path)!=sha:raise ValueError('IMMUTABLE_SNAPSHOT_CONTENT_MISMATCH')
             now = datetime.now(timezone.utc).isoformat()
             entry = {**source, 'sha256': sha, 'path': path.relative_to(root).as_posix(),
                      'acquired_at': now, 'available_date': now[:10],

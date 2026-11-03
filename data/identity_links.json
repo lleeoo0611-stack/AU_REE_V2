@@ -318,6 +318,57 @@
       "locator": "Primary KoppamurraPFS p1 + officialnativeIDs/name/state/coincidentpoints; notProject/deposit equivalence",
       "effective_date": "2026-11-03",
       "basis": "PRIMARY_NAMED_SCOPE_PLUS_OFFICIAL_RECORDS"
+    },
+    {
+      "left": [
+        "WA_MINDEX_SITE_DEPOSIT",
+        "S0002531"
+      ],
+      "right": [
+        "GA_ENO",
+        "335930"
+      ],
+      "canonical": [
+        "GA_ENO",
+        "335930"
+      ],
+      "relation": "SAME_DEPOSIT_IDENTITY",
+      "source_key": "cummins_mre2023",
+      "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+      "pdf_page": 2,
+      "page_markers": [
+        "Cummins Range"
+      ],
+      "locator": "Primary Cummins MRE p2 + WA native deposit S0002531 and GA ENO335930; identical named deposit/state, 202.122m representatives; not Project equivalence",
+      "effective_date": "2026-11-03",
+      "basis": "PRIMARY_NAMED_SCOPE_PLUS_TWO_OFFICIAL_NATIVE_RECORDS_NAME_STATE_LOCATION",
+      "rule_version": "document-native-extension-phase8-v1"
+    },
+    {
+      "left": [
+        "SA_MINDEP_SITE_DEPOSIT",
+        "11871"
+      ],
+      "right": [
+        "GA_ENO",
+        "806972"
+      ],
+      "canonical": [
+        "GA_ENO",
+        "806972"
+      ],
+      "relation": "SAME_DEPOSIT_IDENTITY",
+      "source_key": "koppamurra_pfs2026",
+      "source_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "pdf_page": 1,
+      "page_markers": [
+        "Koppamurra",
+        "South Australia"
+      ],
+      "locator": "Primary Koppamurra PFS p1 + SA MINDEP11871 and GA ENO806972; identical named deposit/state, 324.848m representative points; not Project equivalence",
+      "effective_date": "2026-11-03",
+      "basis": "PRIMARY_NAMED_SCOPE_PLUS_OFFICIAL_RECORDS",
+      "rule_version": "document-native-extension-phase8-v1"
     }
   ],
   "effective_date": "2026-11-03",
@@ -365,6 +416,46 @@
       "required_source_keys": [
         "phase6_jupiter_brothers_page2"
       ]
+    },
+    {
+      "left": [
+        "SA_MINING_PROJECT_SITE_NO",
+        "1123290"
+      ],
+      "right": [
+        "ISSUER_DOCUMENTED_PROSPECT",
+        "wudinna-boland"
+      ],
+      "relation": "CONTAINS_ISSUER_DOCUMENTED_PROSPECT_NOT_RESOURCE_SUM",
+      "source_key": "wudinna_mre2026",
+      "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+      "pdf_page": null,
+      "page_markers": [
+        "Wudinna",
+        "Boland and Head prospects"
+      ],
+      "locator": "RNS4065A: Maiden Mineral Resource Estimate, 91sonic core holes across Boland and Head; MRE combined once",
+      "effective_date": "2026-10-26"
+    },
+    {
+      "left": [
+        "SA_MINING_PROJECT_SITE_NO",
+        "1123290"
+      ],
+      "right": [
+        "ISSUER_DOCUMENTED_PROSPECT",
+        "wudinna-head"
+      ],
+      "relation": "CONTAINS_ISSUER_DOCUMENTED_PROSPECT_NOT_RESOURCE_SUM",
+      "source_key": "wudinna_mre2026",
+      "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+      "pdf_page": null,
+      "page_markers": [
+        "Wudinna",
+        "Boland and Head prospects"
+      ],
+      "locator": "RNS4065A: Maiden Mineral Resource Estimate, 91sonic core holes across Boland and Head; MRE combined once",
+      "effective_date": "2026-10-26"
     }
   ]
 }

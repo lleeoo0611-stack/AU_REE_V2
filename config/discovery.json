@@ -1,5 +1,5 @@
 {
-  "version": "discovery-v3-national-and-issuer",
+  "version": "discovery-v4-bounded-announcement-details",
   "max_documents_per_seed": 3,
   "seeds": [
     {
@@ -137,6 +137,90 @@
       "keywords": [
         "circle",
         "rare earth"
+      ]
+    },
+    {
+      "key": "hastings_current",
+      "url": "https://hastingstechmetals.com/announcements",
+      "allowed_hosts": [
+        "hastingstechmetals.com",
+        "hermes-cdn.investorhub.com"
+      ],
+      "keywords": [
+        "Annual Report",
+        "Quarterly"
+      ],
+      "detail_pattern": "/announcements/[^/?]+"
+    },
+    {
+      "key": "cobra_current",
+      "url": "https://investors.cobraplc.com/announcements",
+      "allowed_hosts": [
+        "investors.cobraplc.com",
+        "hermes-cdn.investorhub.com"
+      ],
+      "keywords": [
+        "Mineral Resource",
+        "Technical",
+        "Quarterly"
+      ],
+      "detail_pattern": "/announcements/[^/?]+"
+    },
+    {
+      "key": "arafura_current",
+      "url": "https://www.arultd.com/investor/asx-announcements/asx-announcements-2026/",
+      "allowed_hosts": [
+        "www.arultd.com",
+        "announcements.asx.com.au",
+        "wcsecure.weblink.com.au"
+      ],
+      "keywords": [
+        "quarter",
+        "financ",
+        "offtake"
+      ]
+    },
+    {
+      "key": "critica_current",
+      "url": "https://www.critica.com.au/asx-announcements/",
+      "allowed_hosts": [
+        "www.critica.com.au",
+        "critica.com.au",
+        "announcements.asx.com.au",
+        "api.investi.com.au"
+      ],
+      "keywords": [
+        "quarter",
+        "financ",
+        "scoping"
+      ]
+    },
+    {
+      "key": "astron_current",
+      "url": "https://astronlimited.com.au/investor-centre/asx-announcements/",
+      "allowed_hosts": [
+        "astronlimited.com.au",
+        "announcements.asx.com.au"
+      ],
+      "keywords": [
+        "quarter",
+        "annual",
+        "donald"
+      ]
+    },
+    {
+      "key": "vhm_current",
+      "url": "https://www.vhmltd.com.au/investors/asx-announcements/",
+      "allowed_hosts": [
+        "www.vhmltd.com.au",
+        "vhmltd.com.au",
+        "announcements.asx.com.au",
+        "wcsecure.weblink.com.au"
+      ],
+      "keywords": [
+        "quarter",
+        "financ",
+        "goschen"
       ]
     }
   ],

@@ -120,7 +120,7 @@ def execute(args):
                   ['entity_id','kind','namespace','native_id','name','state','longitude','latitude',
                    'source_key','source_sha256','locator','source_role','original_attributes'])
         write_csv(out/'government_source_coverage.csv',live_coverage,
-                  ['state','source_key','raw_records','ree_native_entities','explicit_project_parents',
+                  ['state','source_key','raw_records','ree_native_entities','tenement_entities','explicit_project_parents',
                    'project_records','source_sha256','status'])
         screen_rows=screen_index_rows(db,{s['sha256'] for s in snapshots})
         write_csv(out/'national_screen_index.csv',screen_rows,['candidate_id','source_key','native_label','native_label_role','state','tier','source_ref','selection_entity_id','parent_candidate_id','source_sha','verification','raw'])
@@ -137,8 +137,8 @@ def execute(args):
             from .evidence import ingest_events
             ingest_events(db,root,snapshots,args.as_of)
         hierarchy=build_hierarchy(db,snapshots)
-        identity=resolve(db,root,snapshots,args.as_of)
-        live_candidates=government_link_candidates(db,snapshots)
+        identity=resolve(db,root,snapshots,args.as_of,config.get('evidence_resolution',{}).get('identity_rule_version'))
+        live_candidates=government_link_candidates(db,snapshots,identity['mapping'] if config.get('evidence_resolution',{}).get('identity_rule_version') else None)
         write_csv(out/'government_identity_candidates.csv',live_candidates,
                   ['a','b','name','state','distance_m','status','source_a','source_b'])
         technical_rows=technical_coverage(db,identity,resources,cases,{s['sha256'] for s in snapshots})

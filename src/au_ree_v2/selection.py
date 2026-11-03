@@ -280,7 +280,7 @@ def export(selection, out):
         versions = [c for c in selection['inventory'] if c.get('domain') == domain]
         # Extraction metadata revisions remain queryable, but must not inflate
         # the scientific evidence count or label SITE/ISSUER rows as Projects.
-        identity=lambda c:canonical([c.get(k) for k in ('origin','entity_id','variable','value','unit','basis','scope','statement_id','case_id','effective_date','source_sha256')])
+        identity=lambda c:canonical([c.get(k) for k in ('origin','entity_id','variable','value','unit','basis','scope','statement_id','case_id','event_id','facility_id','contract_id','effective_date','source_sha256')])
         raw=list({identity(c):c for c in versions}.values())
         codes = [k for k, v in selection['policy']['criteria'].items() if v['domain'] == domain]
         for code in codes:

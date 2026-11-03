@@ -249,7 +249,8 @@ def ingest_government(db,root,source):
         a=f.get('attributes',f.get('properties',{}));key=a.get(source['id_field'])
         native=str(int(key)) if isinstance(key,(float,int)) and float(key).is_integer() else str(key or '').strip()
         terms='; '.join(str(a.get(k) or '') for k in source['commodity_fields'])
-        if not REE_TERMS.search(terms):continue
+        tenure=source.get('record_filter')=='ALL_TENURE_RECORDS' and source.get('entity_kind')=='TENEMENT'
+        if not tenure and not REE_TERMS.search(terms):continue
         if not native or native in seen or counts[native]>1:
             issue(db,None,source['sha256'],'GOVERNMENT_NATIVE_ID_MISSING_OR_DUPLICATE',canonical({'row':index,'native':native}))
             continue
@@ -260,10 +261,10 @@ def ingest_government(db,root,source):
         lon,lat=_coordinate(a,f.get('geometry'))
         if lon is None:
             lon,lat=_coordinate({'longitude':a.get('longda94'),'latitude':a.get('latgda94')},None)
-        raw={'source_kind':'LIVE_GOVERNMENT_NATIVE_RECORD','source_key':source['key'],
+        raw={'source_kind':'LIVE_GOVERNMENT_TENURE_RECORD' if tenure else 'LIVE_GOVERNMENT_NATIVE_RECORD','source_key':source['key'],
              'native_id':native,'original_attributes':a,'original_geometry':f.get('geometry'),
              'locator':('CSV physical row '+str(index+2)) if source['kind']=='government_csv' else 'features['+str(index)+']',
-             'ree_rule':'REE_COMMODITY_FIELDS_V1','matched_commodity_text':terms,
+             'ree_rule':'ALL_TITLES_NO_REE_OR_PROJECT_INFERENCE' if tenure else 'REE_COMMODITY_FIELDS_V1','matched_commodity_text':terms,
              'interpretation':'GOVERNMENT_RECORDED_'+kind+'_NOT_INDEPENDENT_PHYSICAL_PROJECT_COUNT'}
         db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
                    (eid,source['sha256'],name,source['state'],lon,lat,
@@ -280,12 +281,12 @@ def ingest_government(db,root,source):
                         canonical(dict(raw,source_kind='LIVE_GOVERNMENT_GEOLOGICAL_ENTITY',
                                        entity_level=geo_kind,entity_level_evidence=source.get('geological_kind_field') or 'official layer definition'))))
             link(db,gid,eid,'HAS_GOVERNMENT_REPRESENTATIVE_SITE_NOT_FOOTPRINT',source['sha256'],raw['locator']+'; source entity classification')
-        fields={
+        fields=({'Commercial':['authorisedholdername','authorisedholderid','permitstatus','permitstate','approvedate','expirydate','previouspermits']} if tenure else {
             'Resource':['RESOURCE_SUMMARY','RESOURCES','resources'],
             'Technical':['LITHOLOGY','ORE_DESCRIPTION','hostGeologicUnit','hostrocks','host_lith','mineralDepositModel','DEPOSIT_CLASS','dep_ty_gen','dep_ty_sp','min_ass'],
             'Development':['site_stage','OPERATIONAL_STATUS','DEVELOPMENT_STATUS','mineralOccurrenceType','PROJECT_STATUS'],
             'Commercial':['OPERATING_COMPANY','ASX_CODE'],
-            'Strategic':source['commodity_fields']}
+            'Strategic':source['commodity_fields']})
         for domain,names in fields.items():
             for field in names:
                 text=a.get(field)
@@ -343,13 +344,14 @@ def live_government_coverage(root,snapshots,rows):
             total=None;status='SOURCE_INVALID: '+str(exc)
         out.append({'state':s['state'],'source_key':s['key'],'raw_records':total,
                     'ree_native_entities':len({r['entity_id'] for r in current if r['source_role']=='LIVE_GOVERNMENT_NATIVE_RECORD'}),
+                    'tenement_entities':len({r['entity_id'] for r in current if r['kind']=='TENEMENT'}),
                     'explicit_project_parents':len({r['entity_id'] for r in current if r['source_role']=='LIVE_GOVERNMENT_PROJECT_PARENT'}),
                     'project_records':len({r['entity_id'] for r in current if r['kind']=='PROJECT'}),
                     'source_sha256':s['sha256'],'status':status})
     return out
 
 
-def government_link_candidates(db,snapshots):
+def government_link_candidates(db,snapshots,mapping=None):
     """Source-location hints only; a name or proximity can never confirm identity."""
     from .resolution import normalized,GEO
     shas={s['sha256'] for s in snapshots};live=live_government_inventory(db,snapshots)
@@ -370,6 +372,13 @@ def government_link_candidates(db,snapshots):
                     distance=GEO.inv(a['longitude'],a['latitude'],b['longitude'],b['latitude'])[2]
                 pairs.setdefault(key,dict(a=key[0],b=key[1],name=name,state=state,distance_m=distance,
                     status='CANDIDATE_NAME_STATE_ONLY_NO_IDENTITY_EQUIVALENCE',source_a=a['source_sha256'],source_b=b['source_sha256']))
+    if mapping is not None:
+        represented={(mapping.get(r['parent_id'],r['parent_id']),r['child_id']) for r in db.execute(
+            "SELECT parent_id,child_id,source_sha FROM relations WHERE relation='HAS_GOVERNMENT_REPRESENTATIVE_SITE_NOT_FOOTPRINT'") if r['source_sha'] in shas}
+        for row in pairs.values():
+            a,b=row['a'],row['b']
+            if (mapping.get(a,a),b) in represented or (mapping.get(b,b),a) in represented:
+                row['status']='CONFIRMED_REPRESENTATIVE_SITE_RELATION_NOT_IDENTITY'
     return [pairs[k] for k in sorted(pairs)]
 
 

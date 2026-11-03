@@ -2,105 +2,80 @@
   "version": "discovery-v2",
   "sources": [
     {
-      "seed_key": "vhm_goschen",
-      "status": "PARSED",
-      "links_found": 9,
-      "links_attempted": 1,
-      "sha256": "5c74be9d218ffb6e29a8b3f80211bcea2131f0e3b939b58808f0f7d448dfa84d",
-      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+      "seed_key": "hastings_current",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError"
     },
     {
-      "seed_key": "lanthanein_reports",
-      "status": "PARSED",
-      "links_found": 0,
-      "links_attempted": 0,
-      "sha256": "7be807ce68ee0061db4ca434c8918a77436fa7fcf652669302ffba3f4cf5fb53",
-      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+      "seed_key": "cobra_current",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError"
     },
     {
-      "seed_key": "gcm_fingerboards",
-      "status": "PARSED",
-      "links_found": 1,
-      "links_attempted": 1,
-      "sha256": "197602220b4e8fc3ea4f4fe18fd2dcbaffdcf2f63dc774c4c2abe5d8f0f43a7d",
-      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
-    },
-    {
-      "seed_key": "meeka_search",
+      "seed_key": "arafura_current",
       "status": "PARSED",
       "links_found": 0,
       "links_attempted": 0,
-      "sha256": "dbfcbea42ca8e427edab5e216b41c3c0ccf539eb3440552d04c74bd86e12c3b3",
+      "sha256": "5d61364493d926ad574afb4f4a3f0d6082ce2d339577f5fb8116f484c92a0404",
       "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     },
     {
-      "seed_key": "vhm_goschen_page_ca402ed236d8",
+      "seed_key": "critica_current",
+      "status": "UNAVAILABLE_LOCAL_SNAPSHOT_INTEGRITY_NOT_ACCEPTED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT",
+      "reason": "Saved HTML failed subsequent SHA/read verification; no observation extracted; original local bytes retained unpublished",
+      "expected_sha256": "3743fe97306d2919425d6d2aa81ddee8ae0a35702c7bd3631ee3797810248b05"
+    },
+    {
+      "seed_key": "astron_current",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError"
+    },
+    {
+      "seed_key": "vhm_current",
       "status": "PARSED",
       "links_found": 0,
       "links_attempted": 0,
-      "sha256": "c18a129392623340f7bbe12a99c2c1bc7c1dbeee42943a6e69d68c75b8caf1e3",
+      "sha256": "5f11f0716f9edbb729ba14702882b215f084380c101c908ec444c99eefe1bc7b",
       "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     },
     {
-      "seed_key": "lanthanein_reports_page_1512bbef231a",
+      "seed_key": "arafura_current_page_4a61d8729200",
       "status": "PARSED",
       "links_found": 0,
       "links_attempted": 0,
-      "sha256": "66811885f3bf5df25c45d5f0aa8bd964bb23af7f692c31d8ae31bbe5196de1bc",
+      "sha256": "867ec95e6c0c149940b3d6d17f336e0fb3db49a0cbab71ca116c9673d2f6ecb9",
       "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     },
     {
-      "seed_key": "lanthanein_reports_page_3ebae993bf18",
-      "status": "DIRECT_PDF_CAPTURED",
-      "sha256": "c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4"
+      "seed_key": "arafura_current_page_39e155d3e7dc",
+      "status": "PARSED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "sha256": "0172f336df1e0c70963bd77b189c26aad9c70b2da60d38de3424fe2038824032",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     },
     {
-      "seed_key": "vhm_goschen_page_9bcab19acfc8",
+      "seed_key": "vhm_current_page_ca402ed236d8",
+      "status": "PARSED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "sha256": "ae9b48e644d05893a3ece81119ec1813ef59bd38725c13662930b9dd6f44ff08",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+    },
+    {
+      "seed_key": "vhm_current_page_9bcab19acfc8",
       "status": "DIRECT_PDF_CAPTURED",
       "sha256": "9259d4a149afef29e471c92e3cc11d512659a07bc4026780488e57ae69d36ef5"
     }
   ],
   "documents": [
     {
-      "candidate_id": "341a11fe2298b921aed434699701ad26243776df81b8d5404ee566c3e15f6d58",
-      "url": "https://www.vhmltd.com.au/wp-content/uploads/2026/10/VHM_Goschen_Project_Community_Update_-_October_2026.pdf",
-      "title": "Project Update – October 2026",
-      "seed_key": "vhm_goschen",
-      "publication_date": null,
-      "status": "SNAPSHOT_REQUIRES_DATED_SCOPE_EXTRACTION",
-      "project_id": null,
-      "identity_status": "SOURCE_CONTEXT_ONLY_NOT_EQUIVALENCE",
-      "discovery_sha256": "5c74be9d218ffb6e29a8b3f80211bcea2131f0e3b939b58808f0f7d448dfa84d",
-      "document_sha256": "50235857d1f2b3e376414ba26a545f32cb628a970f98c91ab8acc8c172420a45",
-      "physical_pages": 4,
-      "text_quality": "REQUIRES_PAGE_VALIDATION_NO_AUTOMATIC_NUMERIC_EXTRACTION"
-    },
-    {
-      "candidate_id": "3069a0564cd0a2281b08fe40eed82b1cf112693c9325ea1349008505f168fc06",
-      "url": "https://www.gippslandcriticalminerals.com/wp-content/uploads/2025/11/Ecology-Study-Summary-November-2025.pdf",
-      "title": "You can read the scope of those studies here.",
-      "seed_key": "gcm_fingerboards",
-      "publication_date": null,
-      "status": "SNAPSHOT_REQUIRES_DATED_SCOPE_EXTRACTION",
-      "project_id": null,
-      "identity_status": "SOURCE_CONTEXT_ONLY_NOT_EQUIVALENCE",
-      "discovery_sha256": "197602220b4e8fc3ea4f4fe18fd2dcbaffdcf2f63dc774c4c2abe5d8f0f43a7d",
-      "document_sha256": "01a88645ccdb8c36a7fc385168bf796b30ea5d76da9ba8dedbead81b409d9810",
-      "physical_pages": 2,
-      "text_quality": "REQUIRES_PAGE_VALIDATION_NO_AUTOMATIC_NUMERIC_EXTRACTION"
-    },
-    {
-      "candidate_id": "3ebae993bf186dfcc7f57db977039219cae5a4dd78cb6a3de49a8d566725e72a",
-      "url": "https://wcsecure.weblink.com.au/clients/fortunametals/headline.aspx?headlineid=61344787",
-      "seed_key": "lanthanein_reports_page_3ebae993bf18",
-      "publication_date": null,
-      "document_sha256": "c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4",
-      "status": "DIRECT_PDF_REQUIRES_DATED_SCOPE_EXTRACTION"
-    },
-    {
       "candidate_id": "9bcab19acfc8e1e5ca11a50d7ea15a8ff0b887d1005fc7a8a7d3a431f7acbf0c",
       "url": "https://www.vhmltd.com.au/wp-content/uploads/2022/06/VHM-Notice-of-Meeting-of-2021-Noteholders-Chapter-2E-final.pdf",
-      "seed_key": "vhm_goschen_page_9bcab19acfc8",
+      "seed_key": "vhm_current_page_9bcab19acfc8",
       "publication_date": null,
       "document_sha256": "9259d4a149afef29e471c92e3cc11d512659a07bc4026780488e57ae69d36ef5",
       "status": "DIRECT_PDF_REQUIRES_DATED_SCOPE_EXTRACTION"

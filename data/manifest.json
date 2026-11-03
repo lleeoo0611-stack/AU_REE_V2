@@ -2188,6 +2188,266 @@
         "baseline": "FIRST_CAPTURE",
         "current_native_id_groups": 21380
       }
+    },
+    {
+      "key": "yangibana_ar2026",
+      "kind": "pdf",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7763164.pdf?v=63957978608",
+      "publication_date": "2026-09-30",
+      "sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+      "path": "data/snapshots/a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb.pdf",
+      "acquired_at": "2026-11-03T12:13:08.012262+00:00",
+      "available_date": "2026-11-03",
+      "etag": "\"efead2bfa29b98c195f42dceb2b4265d\"",
+      "last_modified": "Wed, 30 Sep 2026 09:10:08 GMT"
+    },
+    {
+      "key": "kalkaroo_ree2020",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20200219/pdf/44f780ww5n6tbj.pdf",
+      "publication_date": "2020-02-19",
+      "sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5",
+      "path": "data/snapshots/bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5.pdf",
+      "acquired_at": "2026-11-03T12:13:15.607265+00:00",
+      "available_date": "2026-11-03",
+      "etag": "\"-CJre44jB3/0CEAE=\"",
+      "last_modified": "Thu, 16 Mar 2023 03:29:22 GMT"
+    },
+    {
+      "key": "wudinna_mre2026",
+      "kind": "html",
+      "url": "https://www.londonstockexchange.com/en/news/article/COBR/maiden-rare-earth-mineral-resource-estimate/637e-cb-eb-9d-8e-465a87",
+      "publication_date": "2026-10-26",
+      "failed_primary_url": "https://investors.cobraplc.com/announcements/VQ0lGG-cobra-resources-plc-maiden-rare-earth-mineral-resource-estimate",
+      "fallback_reason": "Issuer HTTP 429 after three transient retries; same primary RNS 4065A from London Stock Exchange",
+      "sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+      "path": "data/snapshots/e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950.html",
+      "acquired_at": "2026-11-03T12:15:10.660967+00:00",
+      "available_date": "2026-11-03",
+      "etag": "W/\"5270a-65f5e35b57ef6\"",
+      "last_modified": "Tue, 03 Nov 2026 12:14:52 GMT",
+      "text_contract": "LSE_ARTICLE_BODY_JS_STRING_V1"
+    },
+    {
+      "key": "qld_epm_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Economy/CurrentQldResourceAuthorities/MapServer/40",
+      "national_government": true,
+      "state": "QLD",
+      "namespace": "QLD_RESOURCE_AUTHORITY",
+      "id_field": "permitid",
+      "name_field": "displayname",
+      "commodity_fields": [
+        "permitminerals"
+      ],
+      "entity_kind": "TENEMENT",
+      "where": "1=1",
+      "inventory_scope": "Complete official EPM inventory; REE designation is permit commodity, not Project identity",
+      "timeout_seconds": 80,
+      "sha256": "e106c9de3486ddf9dc2d4953972a864a2b8b06fd88d349cf4f4cbbbe239d4427",
+      "path": "data/snapshots/e106c9de3486ddf9dc2d4953972a864a2b8b06fd88d349cf4f4cbbbe239d4427.json",
+      "acquired_at": "2026-11-03T12:16:39.977450+00:00",
+      "available_date": "2026-11-03",
+      "etag": null,
+      "last_modified": null,
+      "original_responses": [
+        {
+          "sha256": "1be9252eee6d111e2dfb175291de60afc659cd97767d7eddc0b2697b68c9f0b5",
+          "path": "data/snapshots/1be9252eee6d111e2dfb175291de60afc659cd97767d7eddc0b2697b68c9f0b5.response"
+        },
+        {
+          "sha256": "a28190835fec84c1eeb04406666c0062a5067f5e5686be0982fac2dd1c94877e",
+          "path": "data/snapshots/a28190835fec84c1eeb04406666c0062a5067f5e5686be0982fac2dd1c94877e.response"
+        },
+        {
+          "sha256": "1f9aa71fc20ddf44c74353e4ea311fc9108a57837b331dc3e4869e3dd7317738",
+          "path": "data/snapshots/1f9aa71fc20ddf44c74353e4ea311fc9108a57837b331dc3e4869e3dd7317738.response"
+        },
+        {
+          "sha256": "af6f3daf359de801c00cf24703952a4dbd1d911d39710b799b9106a2e43bcb60",
+          "path": "data/snapshots/af6f3daf359de801c00cf24703952a4dbd1d911d39710b799b9106a2e43bcb60.response"
+        },
+        {
+          "sha256": "1ab48f09a55fc0253eb84c1dca6dc0175dc5ea2e4bdaa1347d1d0292faf14ef3",
+          "path": "data/snapshots/1ab48f09a55fc0253eb84c1dca6dc0175dc5ea2e4bdaa1347d1d0292faf14ef3.response"
+        },
+        {
+          "sha256": "710715d64c44e129f43a204be586b8d46fc3e1c7cae9d545072ceea8744c3de8",
+          "path": "data/snapshots/710715d64c44e129f43a204be586b8d46fc3e1c7cae9d545072ceea8744c3de8.response"
+        },
+        {
+          "sha256": "76caff244786b121bbb132819c124007d50fa2c0c6f7ac5eb8f1f8b8e9f7f3f5",
+          "path": "data/snapshots/76caff244786b121bbb132819c124007d50fa2c0c6f7ac5eb8f1f8b8e9f7f3f5.response"
+        }
+      ],
+      "native_changes": {
+        "baseline": "FIRST_CAPTURE",
+        "current_native_id_groups": 2816
+      },
+      "record_filter": "ALL_TENURE_RECORDS"
+    },
+    {
+      "key": "qld_mdl_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Economy/CurrentQldResourceAuthorities/MapServer/80",
+      "national_government": true,
+      "state": "QLD",
+      "namespace": "QLD_RESOURCE_AUTHORITY",
+      "id_field": "permitid",
+      "name_field": "displayname",
+      "commodity_fields": [
+        "permitminerals"
+      ],
+      "entity_kind": "TENEMENT",
+      "where": "1=1",
+      "inventory_scope": "Complete official MDL inventory; REE designation is permit commodity, not Project identity",
+      "timeout_seconds": 80,
+      "sha256": "9b944d7442cfeec25813a5f28891bb8f500674b64a702e38101aa51a56cdc1eb",
+      "path": "data/snapshots/9b944d7442cfeec25813a5f28891bb8f500674b64a702e38101aa51a56cdc1eb.json",
+      "acquired_at": "2026-11-03T12:16:44.839200+00:00",
+      "available_date": "2026-11-03",
+      "etag": null,
+      "last_modified": null,
+      "original_responses": [
+        {
+          "sha256": "876c1f12692a3810faba34308c9ae1d5a2df45c4fc1106628545db2fe6914533",
+          "path": "data/snapshots/876c1f12692a3810faba34308c9ae1d5a2df45c4fc1106628545db2fe6914533.response"
+        },
+        {
+          "sha256": "fcc5bd295b3a2de51057500a0e4cf3e3d7baef5c403893e1d505ce024acacf61",
+          "path": "data/snapshots/fcc5bd295b3a2de51057500a0e4cf3e3d7baef5c403893e1d505ce024acacf61.response"
+        }
+      ],
+      "native_changes": {
+        "baseline": "FIRST_CAPTURE",
+        "current_native_id_groups": 201
+      },
+      "record_filter": "ALL_TENURE_RECORDS"
+    },
+    {
+      "key": "qld_ml_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Economy/CurrentQldResourceAuthorities/MapServer/120",
+      "national_government": true,
+      "state": "QLD",
+      "namespace": "QLD_RESOURCE_AUTHORITY",
+      "id_field": "permitid",
+      "name_field": "displayname",
+      "commodity_fields": [
+        "permitminerals"
+      ],
+      "entity_kind": "TENEMENT",
+      "where": "1=1",
+      "inventory_scope": "Complete official ML inventory; REE designation is permit commodity, not Project identity",
+      "timeout_seconds": 80,
+      "sha256": "21df4471980b38a5eec4a5bb0f2d89aed2af7a0c8144328459dc36d42fa4661e",
+      "path": "data/snapshots/21df4471980b38a5eec4a5bb0f2d89aed2af7a0c8144328459dc36d42fa4661e.json",
+      "acquired_at": "2026-11-03T12:17:35.246262+00:00",
+      "available_date": "2026-11-03",
+      "etag": null,
+      "last_modified": null,
+      "original_responses": [
+        {
+          "sha256": "50209216d70fa621f075bffa6fdb10c69bc03f3439ac3090f64201ec46f090a7",
+          "path": "data/snapshots/50209216d70fa621f075bffa6fdb10c69bc03f3439ac3090f64201ec46f090a7.response"
+        },
+        {
+          "sha256": "90c25f27752d47936e3fa1b3e45b3a7641e3e80c1689cec4c6a4c36fe6680afc",
+          "path": "data/snapshots/90c25f27752d47936e3fa1b3e45b3a7641e3e80c1689cec4c6a4c36fe6680afc.response"
+        },
+        {
+          "sha256": "bbbaa5d243ed1ad5b6c070cce6ffcb67004267369f0270e89edb0aca36a1a9fe",
+          "path": "data/snapshots/bbbaa5d243ed1ad5b6c070cce6ffcb67004267369f0270e89edb0aca36a1a9fe.response"
+        },
+        {
+          "sha256": "89d0880435418961876bb1da508d806b23a2870f3eb3a30dfc2c93683e8942ee",
+          "path": "data/snapshots/89d0880435418961876bb1da508d806b23a2870f3eb3a30dfc2c93683e8942ee.response"
+        },
+        {
+          "sha256": "cf9c6e8c76c9cc37c412ad88fc7245f9e05da380c54b0ba9f7dc8e57f3ef732b",
+          "path": "data/snapshots/cf9c6e8c76c9cc37c412ad88fc7245f9e05da380c54b0ba9f7dc8e57f3ef732b.response"
+        },
+        {
+          "sha256": "f023ccf6e1bd148375f2fc7cd38ef81a66fb1b88ff7f8d7173fa88ec35c943a3",
+          "path": "data/snapshots/f023ccf6e1bd148375f2fc7cd38ef81a66fb1b88ff7f8d7173fa88ec35c943a3.response"
+        },
+        {
+          "sha256": "92f82c1f3bc0d551557e1c5d63aeefd604ba7623413f75e91ac6db50e8309b92",
+          "path": "data/snapshots/92f82c1f3bc0d551557e1c5d63aeefd604ba7623413f75e91ac6db50e8309b92.response"
+        }
+      ],
+      "native_changes": {
+        "baseline": "FIRST_CAPTURE",
+        "current_native_id_groups": 2505
+      },
+      "record_filter": "ALL_TENURE_RECORDS"
+    },
+    {
+      "key": "nolans_quarter202610",
+      "kind": "pdf",
+      "url": "https://cdn.financialreports.eu/financialreports/media/filings/64425/2026/RNS/64425_rns_2026-10-30_04faeca9-e33e-4783-b0c9-9583aebf843a.pdf",
+      "publication_date": "2026-10-30",
+      "definition": "Issuer-authored ASX original PDF retained from public filing mirror; host is not ASX; cross-check issuer title, date, authorisation and project scope",
+      "sha256": "1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2",
+      "path": "data/snapshots/1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2.pdf",
+      "acquired_at": "2026-11-03T12:18:23.343384+00:00",
+      "available_date": "2026-11-03",
+      "etag": "\"a583d5423b9e83887b70bb2783773761\"",
+      "last_modified": "Fri, 30 Oct 2026 00:31:31 GMT"
+    },
+    {
+      "key": "discovery_arafura_current",
+      "url": "https://www.arultd.com/investor/asx-announcements/asx-announcements-2026/",
+      "kind": "discovery_html",
+      "sha256": "5d61364493d926ad574afb4f4a3f0d6082ce2d339577f5fb8116f484c92a0404",
+      "path": "data/snapshots/5d61364493d926ad574afb4f4a3f0d6082ce2d339577f5fb8116f484c92a0404.html",
+      "acquired_at": "2026-11-03T12:23:25.377654+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "discovery_vhm_current",
+      "url": "https://www.vhmltd.com.au/investors/asx-announcements/",
+      "kind": "discovery_html",
+      "sha256": "5f11f0716f9edbb729ba14702882b215f084380c101c908ec444c99eefe1bc7b",
+      "path": "data/snapshots/5f11f0716f9edbb729ba14702882b215f084380c101c908ec444c99eefe1bc7b.html",
+      "acquired_at": "2026-11-03T12:23:32.610130+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "discovery_arafura_current_page_4a61d8729200",
+      "url": "https://www.arultd.com/investor/shareholder-meetings/",
+      "kind": "discovery_html",
+      "sha256": "867ec95e6c0c149940b3d6d17f336e0fb3db49a0cbab71ca116c9673d2f6ecb9",
+      "path": "data/snapshots/867ec95e6c0c149940b3d6d17f336e0fb3db49a0cbab71ca116c9673d2f6ecb9.html",
+      "acquired_at": "2026-11-03T12:23:34.050530+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "discovery_arafura_current_page_39e155d3e7dc",
+      "url": "https://www.arultd.com/investor/shareholder-communications/",
+      "kind": "discovery_html",
+      "sha256": "0172f336df1e0c70963bd77b189c26aad9c70b2da60d38de3424fe2038824032",
+      "path": "data/snapshots/0172f336df1e0c70963bd77b189c26aad9c70b2da60d38de3424fe2038824032.html",
+      "acquired_at": "2026-11-03T12:23:35.686696+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "discovery_vhm_current_page_ca402ed236d8",
+      "url": "https://www.vhmltd.com.au/investors/shareholder-meetings/",
+      "kind": "discovery_html",
+      "sha256": "ae9b48e644d05893a3ece81119ec1813ef59bd38725c13662930b9dd6f44ff08",
+      "path": "data/snapshots/ae9b48e644d05893a3ece81119ec1813ef59bd38725c13662930b9dd6f44ff08.html",
+      "acquired_at": "2026-11-03T12:23:37.568459+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "discovery_vhm_current_page_9bcab19acfc8",
+      "url": "https://www.vhmltd.com.au/wp-content/uploads/2022/06/VHM-Notice-of-Meeting-of-2021-Noteholders-Chapter-2E-final.pdf",
+      "kind": "pdf",
+      "sha256": "9259d4a149afef29e471c92e3cc11d512659a07bc4026780488e57ae69d36ef5",
+      "path": "data/snapshots/9259d4a149afef29e471c92e3cc11d512659a07bc4026780488e57ae69d36ef5.pdf",
+      "acquired_at": "2026-11-03T12:23:39.727119+00:00",
+      "available_date": "2026-11-03"
     }
   ]
 }
