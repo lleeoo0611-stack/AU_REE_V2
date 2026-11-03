@@ -11,6 +11,7 @@ from pypdf import PdfReader
 from .store import filehash,canonical
 
 DOCUMENT_VERSION = 'document-recognition-v1'
+RESOURCE_LAYOUT_VERSION = 'positioned-resource-columns-v2'
 NUMBER = r'(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?'
 
 
@@ -85,11 +86,12 @@ def candidate_value_issues(candidate):
                 return ['ROW_TOKEN_VALUE_MISMATCH']
         elif c['kind']=='RESOURCE_TABLE_TOTAL':
             tokens=re.findall(NUMBER,re.sub(r'^\s*(?:Grand Total|Total)\s+','',c['raw_text'],flags=re.I))
-            if c['values']['ore_mt']!=_number(tokens[0]) or c['values']['grade']!=_number(tokens[1]):
+            indices=c.get('row_token_indices',{'ore_mt':0,'grade':1})
+            if any(c['values'][k]!=_number(tokens[indices[k]]) for k in ('ore_mt','grade')):
                 return ['ROW_TOKEN_VALUE_MISMATCH']
             if c['values'].get('contained_treo_kt') is not None:
                 factor=1 if re.search(r'000|\bkt\b',c['header'],re.I) else .001
-                if c['values']['contained_treo_kt']!=_number(tokens[2])*factor:return ['ROW_TOKEN_VALUE_MISMATCH']
+                if c['values']['contained_treo_kt']!=_number(tokens[indices.get('contained_treo_kt',2)])*factor:return ['ROW_TOKEN_VALUE_MISMATCH']
         return []
     except (ValueError,KeyError,IndexError,TypeError):return ['ROW_TOKEN_CONTRACT_INCOMPLETE']
 
@@ -159,6 +161,57 @@ def resource_rows(text, page, registry):
                            cutoff=cutoff or None,rounding_bounds_kt=bounds,issues=sorted(set(reasons)),
                            column_labels=column_labels,extra_values=extra_values,row_index=index))
     return result
+
+
+def positioned_resource_columns(candidates, tables, text, registry):
+    """Repair columns only when native cell values and exact headers align.
+
+    No document-specific values, density skipping by position, or cross-table
+    addition. A continuation without tonnage/TREO headers remains unresolved.
+    Missing REO definitions and other scientific validation issues remain held.
+    """
+    for c in candidates:
+        if c['kind']!='RESOURCE_TABLE_TOTAL':continue
+        if not any(x in c['issues'] for x in ('TABLE_COLUMN_OR_UNIT_UNRESOLVED','PROJECT_ATTRIBUTION_AMBIGUOUS')):continue
+        tokens=c['original_tokens'];matches=[]
+        for table in tables:
+            for ri,row in enumerate(table['cells']):
+                if not row or not re.fullmatch(r'\s*(?:Grand Total|Total)\s*',row[0] or '',re.I):continue
+                numeric=[(j,v.strip()) for j,v in enumerate(row) if v and re.fullmatch(NUMBER,v.strip())]
+                if [v for j,v in numeric]!=tokens:continue
+                first_data=next((i for i,r in enumerate(table['cells']) if re.match(r'^(?:Measured|Indicated|Inferred|Subtotal|Total)\b',r[0] or '',re.I)),ri)
+                headers=[' '.join(str(r[j] or '') for r in table['cells'][:first_data]) for j in range(len(row))]
+                # A visually separate header table is usable only with the same
+                # columns and horizontal bounds, immediately above this table.
+                if not any(re.search(r'Tonnage|Tonnes|Material',h,re.I) for h in headers):
+                    prior=[t for t in tables if t['bbox'][3]<=table['bbox'][1] and len(t['cells'][0])==len(row)
+                           and abs(t['bbox'][0]-table['bbox'][0])<2 and abs(t['bbox'][2]-table['bbox'][2])<2]
+                    if prior:
+                        previous=max(prior,key=lambda t:t['bbox'][3])
+                        headers=[' '.join(str(r[j] or '') for r in previous['cells']) for j in range(len(row))]
+                ton=[j for j,h in enumerate(headers) if re.search(r'Tonnage|Tonnes|Material',h,re.I) and re.search(r'\bMt\b',h)]
+                grade=[j for j,h in enumerate(headers) if re.fullmatch(r'\s*TREO\s*(?:%|ppm)\s*',h,re.I)]
+                if len(ton)!=1 or len(grade)!=1:continue
+                positions={j:i for i,(j,v) in enumerate(numeric)}
+                if ton[0] not in positions or grade[0] not in positions:continue
+                matches.append((headers,positions[ton[0]],positions[grade[0]],table['bbox']))
+        if len(matches)!=1:continue
+        headers,ti,gi,bbox=matches[0]
+        c['values']={'ore_mt':_number(tokens[ti]),'grade':_number(tokens[gi])}
+        c['units']={'ore_mt':'Mt','grade':'%' if '%' in headers[next(j for j,h in enumerate(headers) if re.fullmatch(r'\s*TREO\s*(?:%|ppm)\s*',h,re.I))] else 'ppm'}
+        c['row_token_indices']={'ore_mt':ti,'grade':gi}
+        c['positioned_column_evidence']=dict(headers=headers,bbox=bbox,method=RESOURCE_LAYOUT_VERSION)
+        c['header']=' | '.join(headers)
+        c['extra_values']=[];c['column_labels']=[]
+        c['issues']=[x for x in c['issues'] if x not in ('TABLE_COLUMN_OR_UNIT_UNRESOLVED','REPORTED_CONTAINED_CONFLICT')]
+        if not c['project_id']:
+            hits=_matches(text,registry)
+            if len(hits)==1:
+                c['project_id']=hits[0]['entity_id'];c['issues']=[x for x in c['issues'] if x!='PROJECT_ATTRIBUTION_AMBIGUOUS']
+        factor=10 if c['units']['grade']=='%' else .001
+        c['rounding_bounds_kt']=[(_number(tokens[ti])-_half(tokens[ti]))*(_number(tokens[gi])-_half(tokens[gi]))*factor,
+                                 (_number(tokens[ti])+_half(tokens[ti]))*(_number(tokens[gi])+_half(tokens[gi]))*factor]
+    return candidates
 
 
 def narrative_candidates(text, page, registry):
@@ -263,12 +316,15 @@ def recognize_document(root, source, registry, tessdata=None):
             if relevant:
                 recognized=resource_rows(text,n,registry)+leach_tables(text,n,registry)+narrative_candidates(text,n,registry)
                 if doc and any(c['kind'] in ('RESOURCE_TABLE_TOTAL','LEACH_TABLE_ROW') for c in recognized):
+                    page_tables=[]
                     try:
                         for i,t in enumerate(doc[n-1].find_tables().tables):
                             table=dict(physical_page=n,table_index=i,bbox=list(t.bbox),cells=t.extract(),
                                        header=t.header.names,external_header=t.header.external)
                             tables.append(table);page['tables'].append(i)
+                            page_tables.append(table)
                     except Exception as exc:page['table_error']=type(exc).__name__
+                    positioned_resource_columns(recognized,page_tables,text,registry)
                 for c in recognized:
                     c.update(source_sha256=source['sha256'],source_key=source['key'],
                              publication_date=source.get('publication_date'),effective_date=None,
@@ -291,7 +347,7 @@ def recognize_document(root, source, registry, tessdata=None):
             previous=[t for t in tables if t['physical_page']==table['physical_page']-1 and t['header']==table['header'] and any(t['header'])]
             if len(previous)==1:
                 table['continuation_candidate']=dict(physical_page=previous[0]['physical_page'],table_index=previous[0]['table_index'],status='HEADER_MATCH_ONLY_NOT_SCOPE_EQUIVALENCE')
-        return dict(version=DOCUMENT_VERSION,observation_contract='automatic-observation-v1-element-basis',source_sha256=source['sha256'],source_key=source['key'],
+        return dict(version=DOCUMENT_VERSION,resource_layout_version=RESOURCE_LAYOUT_VERSION,observation_contract='automatic-observation-v1-element-basis',source_sha256=source['sha256'],source_key=source['key'],
                     source_url=source['url'],publication_date=source.get('publication_date') or publication_date(texts[0]),
                     labels=classify(texts[0]),mentioned_labels=sorted({v for p in pages for v in p['labels']}),pages=pages,tables=tables,candidates=candidates,
                     backend_version=pymupdf.VersionBind,registry_identity_sha256=__import__('hashlib').sha256(canonical(registry).encode()).hexdigest(),
@@ -317,6 +373,7 @@ def capture_documents(root, snapshots, keys=None, tessdata=None, only_missing=Fa
                     if filehash(root/latest['path'])!=latest['sha256']:raise ValueError('IMMUTABLE_EXTRACTION_MISMATCH')
                     cached=json.loads((root/latest['path']).read_text(encoding='utf-8'))
                     if (cached['version']==DOCUMENT_VERSION and cached.get('observation_contract')=='automatic-observation-v1-element-basis'
+                            and cached.get('resource_layout_version')==RESOURCE_LAYOUT_VERSION
                             and cached['registry_identity_sha256']==hashlib.sha256(canonical(registry).encode()).hexdigest()):
                         outcomes.append(dict(source_key=source['key'],source_sha256=source['sha256'],status='REUSED_VERIFIED_EXTRACTION',sha256=latest['sha256']))
                         continue

@@ -103,6 +103,126 @@ def select_cases(cases, canonical_ids, group):
     return selected, excluded
 
 
+def technical_record(c, policy):
+    """A view of existing evidence, never a second store or inferred recovery.
+
+    Case identity excludes the oxide/parameter. Missing test conditions stay
+    missing; an engineering design is explicitly distinguished from testwork.
+    """
+    raw=c.get('raw',{});variable=c['variable']
+    role=policy.get('study_parameters',{}).get(variable,{}).get('role',c.get('role'))
+    if raw.get('kind')=='LEACH_TABLE_ROW' or ('extraction' in variable and c.get('unit')=='%'):role='LEACH_EXTRACTION'
+    performance=role in policy['technical_comparability']['performance_roles']
+    quality=role in policy['technical_comparability']['quality_roles']
+    category='B_PROCESS_PERFORMANCE' if performance else 'C_EVIDENCE_QUALITY' if quality else 'A_MINERALOGY_PROCESSING'
+    model=c.get('origin')=='STUDY_PARAMETER' and c.get('scale') in ('DFS_MODEL','PFS_MODEL','SCOPING_MODEL')
+    case_id=c.get('case_id') or raw.get('statement_id') or c['evidence_id']
+    parameters=raw.get('parameters',{})
+    population=raw.get('sample_population') or raw.get('sample_id')
+    count=parameters.get('selected_composites_n',parameters.get('composites_n'))
+    if population is None and count is not None:population='SOURCE_COMPOSITES_N='+str(count)
+    statistic=raw.get('statistic') or ('ENGINEERING_DESIGN' if model else None)
+    if statistic is None and '_average_' in variable:statistic='SOURCE_REPORTED_MEAN'
+    if statistic is None and '_max_' in variable:statistic='SOURCE_REPORTED_MAXIMUM'
+    return dict(project_id=c['project_id'],case_id=case_id,evidence_id=c['evidence_id'],
+                source_sha256=c['source_sha256'],pdf_page=c.get('pdf_page'),locator=c.get('locator'),
+                variable=variable,value=c.get('value'),unit=c.get('unit'),basis=c.get('basis'),
+                scope=c.get('scope'),feed=c.get('feed'),endpoint=c.get('endpoint'),scale=c.get('scale'),
+                process_stage=role,semantic_class=category,study_date=c.get('effective_date'),
+                sample_population=population,
+                sample_interval=raw.get('sample_interval'),statistic=statistic,
+                reagent=raw.get('reagent') or ('HCl' if 'hcl_concentration_pct' in parameters else None),
+                temperature_c=raw.get('temperature_c',parameters.get('temperature_c')),
+                residence_hours=raw.get('residence_hours',parameters.get('leach_time_hours')),
+                acid_concentration=raw.get('acid_concentration',parameters.get('hcl_concentration_pct')),
+                pressure=raw.get('pressure'),evidence_reason=c.get('reason'),
+                evidence_mode='ENGINEERING_MODEL' if model else 'TESTWORK_OR_DISCLOSURE',
+                scope_kind='CASE_MINE_PLAN' if model else 'SOURCE_SPECIFIC_SAMPLE_OR_DISCLOSURE',
+                representativeness='MINE_PLAN_DESIGN_NOT_OPERATING_MEASUREMENT' if model else 'RESOURCE_REPRESENTATIVENESS_NOT_ESTABLISHED')
+
+
+def technical_compare(record, contract, assumptions=()):
+    """Single comparison gate used by criteria and the technical audit output.
+
+    A contract describes a quantity, not merely a percentage. Design forecasts
+    may compare only under explicit mine-plan/model assumptions; no sequence of
+    recoveries is multiplied here. Conditions are compulsory for measured tests.
+    """
+    r=record;reasons=[]
+    if r.get('evidence_reason'):reasons.append('EVIDENCE_NOT_VALIDATED')
+    if r.get('variable') not in contract.get('variables',[]):reasons.append('QUANTITY_MISMATCH')
+    if r.get('unit')!=contract.get('unit'):reasons.append('UNIT_MISMATCH')
+    if contract.get('basis') and r.get('basis') not in contract['basis']:reasons.append('REO_BASIS_MISMATCH')
+    labels={'endpoint':'ENDPOINT_MISMATCH','feed':'FEED_MISMATCH','scale':'TEST_SCALE_MISMATCH'}
+    for key,value in contract.get('requires',{}).items():
+        if r.get(key)!=value:reasons.append(labels.get(key,'SCOPE_MISMATCH'))
+    if not r.get('scope') or not r.get('study_date') or not r.get('case_id'):reasons.append('SCOPE_MISMATCH')
+    if r.get('evidence_mode')=='ENGINEERING_MODEL':
+        if not assumptions:reasons.append('MODEL_ASSUMPTIONS_NOT_DEFINED')
+    else:
+        if r.get('representativeness')!='REPRESENTATIVE_WITH_SOURCE':reasons.append('SAMPLE_REPRESENTATIVENESS_LIMITATION')
+        if any(r.get(k) is None for k in ('sample_population','statistic','reagent','temperature_c','residence_hours','acid_concentration','pressure')):
+            reasons.append('MISSING_CONDITIONS')
+    value=r.get('value')
+    if not isinstance(value,(int,float)) or isinstance(value,bool) or not math.isfinite(value):reasons.append('NO_FINITE_NUMERIC_VALUE')
+    elif r.get('unit')=='%' and not 0<=value<=100:reasons.append('PERCENT_OUT_OF_RANGE')
+    return sorted(set(reasons))
+
+
+def technical_comparability(inventory, policy):
+    """One row per scientific observation; duplicates corroborate, not new cases."""
+    definition=policy['technical_comparability'];rows=[]
+    for c in inventory:
+        if c.get('domain')!='Technical':continue
+        r=technical_record(c,policy)
+        matching=[code for code in definition['candidate_criteria'] if not technical_compare(r,policy['criteria'][code],definition['model_assumptions'])]
+        if matching:
+            group=matching[0];reasons=[];status='NUMERIC_COMPARABLE'
+        elif r['value'] is None and not r['evidence_reason']:
+            group='DESCRIPTIVE';reasons=['NO_NUMERIC_COMPARISON'];status='DESCRIPTIVE_ONLY'
+        elif r['semantic_class']!='B_PROCESS_PERFORMANCE' and not r['evidence_reason']:
+            group='DESCRIPTIVE';reasons=['NO_ADOPTED_NUMERIC_CONTRACT'];status='DESCRIPTIVE_ONLY'
+        else:
+            # Explain incompatibility relative to the declared recovery screen;
+            # never relabel a source-specific assay as a comparable plant value.
+            group='RAW-'+digest([r.get(k) for k in ('variable','endpoint','feed','basis','scale','sample_population','statistic','reagent','temperature_c','residence_hours','acid_concentration','pressure')])[:16]
+            reasons=technical_compare(r,policy['criteria'][definition['reference_criterion']],definition['model_assumptions'])
+            status='NOT_COMPARABLE'
+        rows.append(dict(r,comparison_group=group,comparability_status=status,reason_codes=reasons,
+                         assumptions=definition['model_assumptions'] if matching else [],
+                         allowed_analysis='DESCRIPTIVE_ONLY',contract_version=definition['version']))
+    # An observation version is not an independent replicate. Conflicting
+    # values at the same case/quantity/date/conditions fail regardless of order.
+    groups=defaultdict(list)
+    identity_keys=('project_id','case_id','variable','unit','basis','scope','feed','endpoint','scale','sample_population','sample_interval','statistic','reagent','temperature_c','residence_hours','acid_concentration','pressure','study_date')
+    for r in rows:groups[canonical([r.get(k) for k in identity_keys])].append(r)
+    result=[]
+    for group in groups.values():
+        valid=[x for x in group if not x['evidence_reason']]
+        r=dict(sorted(valid or group,key=canonical)[0]);r['evidence_ids']=sorted({x['evidence_id'] for x in group})
+        r['source_shas']=sorted({x['source_sha256'] for x in group})
+        r['source_locators']=sorted({canonical([x['source_sha256'],x['pdf_page'],x['locator']]) for x in group})
+        if len({canonical(x['value']) for x in group if not x['evidence_reason']})>1:
+            r.update(value=None,comparability_status='NOT_COMPARABLE',reason_codes=['CONFLICTING_EVIDENCE'])
+        result.append(r)
+    qualified_groups=defaultdict(list)
+    for x in result:
+        if x['comparability_status']=='NUMERIC_COMPARABLE':qualified_groups[x['comparison_group']].append(x)
+    for r in result:
+        qualified=qualified_groups[r['comparison_group']]
+        r['independent_projects']=len({x['project_id'] for x in qualified})
+        r['independent_cases']=len({(x['project_id'],x['case_id']) for x in qualified})
+        if r['comparability_status']=='NUMERIC_COMPARABLE':
+            # More than one study in a Project needs a scope choice, never an
+            # arbitrary latest-case or highest-value selection.
+            cases={x['case_id'] for x in qualified if x['project_id']==r['project_id']}
+            if len(cases)>1:
+                r.update(comparability_status='NOT_COMPARABLE',reason_codes=['SCOPE_MISMATCH','MULTIPLE_CASES_REQUIRE_DEFINITION'])
+            elif r['independent_projects']>=2:r['allowed_analysis']='EXPLORATORY_CONTRACT_PANEL_NOT_FORMAL_C1'
+            else:r['reason_codes']=['SINGLE_INDEPENDENT_PROJECT'];r['allowed_analysis']='WITHIN_CASE_DESCRIPTION_ONLY'
+    return sorted(result,key=lambda r:canonical([r.get(k) for k in identity_keys]))
+
+
 def _valid_candidate(c, sources, cutoff, root):
     reason = source_check(sources.get(c['source_sha256']), cutoff, root)
     if reason:
@@ -175,6 +295,10 @@ def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None)
                 c['reason'] = c['reason'] or 'PARAMETER_CONTRACT_NOT_DEFINED'
             inventory.append(c)
     inventory=list({digest(c):c for c in inventory}.values())
+    technical=technical_comparability(inventory,policy) if policy.get('technical_comparability') else None
+    compatible_ids=defaultdict(set)
+    for r in technical or []:
+        if r['comparability_status']=='NUMERIC_COMPARABLE':compatible_ids[r['comparison_group']].update(r['evidence_ids'])
     # Project-level commercial milestones are typed events, never inferred
     # from CAPEX, company cash or the numerical magnitude of a credit line.
     events = [c for c in inventory if c['variable'] == 'commercial_event']
@@ -216,12 +340,19 @@ def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None)
             for c in inventory:
                 if c['project_id'] != pid or c['variable'] not in contract.get('variables', []) or c['reason']:
                     continue
-                if contract.get('unit') != c['unit']:
-                    continue
-                if contract.get('basis') and c['basis'] not in contract['basis']:
-                    continue
-                if any(c.get(k) != v for k, v in contract.get('requires', {}).items()):
-                    continue
+                if technical is not None and code in policy['technical_comparability']['candidate_criteria']:
+                    if c['evidence_id'] not in compatible_ids[code]:
+                        continue
+                else:
+                    # Frozen criteria, including T1/D1/C1, retain their original
+                    # definitions. Candidate technical contracts were checked
+                    # once above and are consumed without reinterpreting them.
+                    if contract.get('unit') != c['unit']:
+                        continue
+                    if contract.get('basis') and c['basis'] not in contract['basis']:
+                        continue
+                    if any(c.get(k) != v for k, v in contract.get('requires', {}).items()):
+                        continue
                 # Composition must belong to the selected resource statement;
                 # a study's product composition cannot substitute for it.
                 rr = next((r for eid, r in resources.items() if mapping.get(eid, eid) == pid), None)
@@ -265,11 +396,22 @@ def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None)
                                   value=None if found is None else found['value'], status=reason,
                                   evidence_ids=canonical([] if found is None else found['evidence_ids']),
                                   provenance=canonical(found), policy_version=policy['version']))
-    return dict(inventory=inventory, decisions=decisions, values=dict(values), policy=policy, mapping=mapping, projects=projects)
+    result=dict(inventory=inventory, decisions=decisions, values=dict(values), policy=policy, mapping=mapping, projects=projects)
+    if technical is not None:result['technical_comparability']=technical
+    return result
 
 
 def export(selection, out):
     from .analysis import write_csv
+    if 'technical_comparability' in selection:
+        fields=['project_id','case_id','evidence_id','evidence_ids','source_sha256','source_shas','pdf_page','locator','source_locators',
+                'variable','value','unit','basis','scope','feed','endpoint','scale','process_stage','semantic_class',
+                'study_date','sample_population','sample_interval','statistic','reagent','temperature_c','residence_hours',
+                'acid_concentration','pressure','evidence_mode','scope_kind','representativeness','evidence_reason',
+                'comparison_group','comparability_status','reason_codes','assumptions','allowed_analysis',
+                'independent_projects','independent_cases','contract_version']
+        write_csv(out/'technical_comparability.csv',
+                  [{k:canonical(v) if isinstance(v,(dict,list)) else v for k,v in r.items()} for r in selection['technical_comparability']],fields)
     rows = []
     for c in selection['inventory']:
         rows.append(dict(c, reason=c['reason'] or c.get('finance_reason') or 'VALID_RAW_EVIDENCE',

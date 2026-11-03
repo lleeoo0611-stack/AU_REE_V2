@@ -140,7 +140,7 @@ def execute(args):
             recognition=ingest_recognized(db,root,snapshots,args.as_of,config['evidence_resolution']['document_pipeline'])
             (out/'document_ingestion.json').write_text(canonical(recognition)+'\n',encoding='utf-8')
             from .evidence import document_report
-            document_report(root,snapshots,recognition,out)
+            document_report(root,snapshots,recognition,out,shared_comparability=bool(config['evidence_resolution'].get('technical_comparability')))
             from .resolution import document_relations
             write_csv(out/'document_entity_relations.csv',document_relations(db,root,snapshots,args.as_of),
                       ['parent_id','child_id','relation','source_sha256','locator','rule','status'])

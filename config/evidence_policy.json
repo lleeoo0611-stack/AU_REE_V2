@@ -1,5 +1,5 @@
 {
-  "version": "evidence-resolution-v3-phase9",
+  "version": "evidence-resolution-v4-phase10",
   "main_codes": [
     "R1",
     "S1",
@@ -349,5 +349,47 @@
     "parser_version": "document-recognition-v1",
     "role": "RAW_SCOPED_DISCLOSURES_NOT_AUTOMATIC_FORMAL_CRITERIA",
     "resource_promotion": "REPORTED_VARIABLES_ONLY_UNTIL_EFFECTIVE_DATE_AND_SCOPE_COMPATIBLE"
+  },
+  "technical_comparability": {
+    "version": "technical-comparability-v1-phase10",
+    "candidate_criteria": [
+      "TC1",
+      "TC2"
+    ],
+    "reference_criterion": "TC1",
+    "model_assumptions": [
+      "Independent dated mine-plan designs, not common resource-scope or measured operating recoveries",
+      "DFS engineering forecasts are compared only at the same feed, REO basis and mineral-concentrate endpoint; reagent conditions not used as matched laboratory controls",
+      "No claim of sample representativeness, independent maturity effect, downstream recovery or actual production"
+    ],
+    "performance_roles": [
+      "BENEFICIATION_RECOVERY",
+      "INTERMEDIATE_PRODUCT_GRADE",
+      "MODELLED_INTERMEDIATE_PRODUCT_RECOVERY",
+      "ALTERNATIVE_PROCESS_DESIGN_RECOVERY",
+      "OVERALL_TO_CALCINED_MIXED_REO",
+      "ZONE_LEACH_EXTRACTION",
+      "POST_LEACH_LOSS",
+      "SELECTED_COMPOSITES_LEACH_EXTRACTION",
+      "BENCH_LEACH_AVERAGE",
+      "BENCH_LEACH_MAXIMUM",
+      "BENCH_MAGNET_LEACH_AVERAGE",
+      "BENCH_MAGNET_LEACH_MAXIMUM",
+      "REAGENT_INTENSITY",
+      "TEST_FEED_GRADE",
+      "PRODUCT_COMPOSITION_NOT_RESOURCE",
+      "PRODUCT_IMPURITY",
+      "LEACH_EXTRACTION"
+    ],
+    "quality_roles": [
+      "TEST_POPULATION",
+      "TEST_SCALE",
+      "TEST_FEED_GRADE_MIN",
+      "TEST_FEED_GRADE_MAX",
+      "SIZING_MASS_NOT_RECOVERY"
+    ],
+    "quality_scoring": "NO_WEIGHTED_SCORE",
+    "measured_contract_status": "NO_CROSS_PROJECT_MEASURED_CONTRACT_ADOPTED",
+    "historical_compatibility": "Opt-in only; frozen Phase5-9 policies retain their semantics"
   }
 }

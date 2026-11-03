@@ -58,7 +58,8 @@ def prepare(cases,config,out,canonical_ids,selection=None):
                                    source_sha256=c['source_sha256'],locator=c['locator']))
     write_csv(out/'study_cases.csv',rows,['case_id','project_id','canonical_project_id','scope','stage','process','finance_state','currentness','activity','endpoint','element','scale','comparability_group','source_sha256','locator','parameters'])
     write_csv(out/'study_parameter_evidence.csv',parameters,['case_id','project_id','variable','value','scope','endpoint','element','scale','source_sha256','locator'])
-    write_csv(out/'recovery_comparability.csv',[dict(group=k,case_count=len(v),cases=canonical([c['case_id'] for c in v]),status='MATCHED_ENDPOINT_SCREEN_ONLY' if len(v)>1 else 'SINGLE_CASE_NO_CROSS_PROJECT_RECOVERY_RANK') for k,v in sorted(groups.items())],['group','case_count','cases','status'])
+    if selection is None or 'technical_comparability' not in selection:
+        write_csv(out/'recovery_comparability.csv',[dict(group=k,case_count=len(v),cases=canonical([c['case_id'] for c in v]),status='MATCHED_ENDPOINT_SCREEN_ONLY' if len(v)>1 else 'SINGLE_CASE_NO_CROSS_PROJECT_RECOVERY_RANK') for k,v in sorted(groups.items())],['group','case_count','cases','status'])
     # Candidate endpoint cohort is frozen before execution, independent of the outcome.
     definition=config.get('case_panels',{}).get('beneficiation_concentrate_screen')
     if not definition:return {},[]

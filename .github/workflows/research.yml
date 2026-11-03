@@ -56,8 +56,15 @@ jobs:
         run: |
           au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase9-2026-11-03/snapshot_lock.json --compare-to results/phase8-2026-11-03 --work work/documents
           python tools/check_replay.py results/phase9-2026-11-03 work/documents/latest.json
-          python tools/evaluate_documents.py work/document_benchmark.json
+          python tools/evaluate_documents.py work/document_benchmark.json --phase9
           python -c "import json; assert json.load(open('work/document_benchmark.json')) == json.load(open('data/phase9_document_benchmark.json'))"
+      - name: Phase 10 shared technical comparability reconstruction
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase10-2026-11-03/snapshot_lock.json --compare-to results/phase9-2026-11-03 --work work/technical
+          python tools/check_replay.py results/phase10-2026-11-03 work/technical/latest.json
+          python tools/evaluate_documents.py work/technical_benchmark.json
+          python -c "import json; assert json.load(open('work/technical_benchmark.json')) == json.load(open('data/phase10_document_benchmark.json'))"
+          python -c "import json,pathlib; p=pathlib.Path(json.load(open('work/technical/latest.json'))['output_dir']); assert (p/'technical_comparability.csv').read_bytes()==pathlib.Path('results/phase10-2026-11-03/technical_comparability.csv').read_bytes()"
       - name: Incremental public update (isolated live-source smoke)
         id: live
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
@@ -92,6 +99,8 @@ jobs:
             work/coverage/runs/
             work/documents/runs/
             work/document_benchmark.json
+            work/technical/runs/
+            work/technical_benchmark.json
             work/updated/runs/
             work/acquisition_status.json
             data/manifest.json

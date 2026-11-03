@@ -6,8 +6,8 @@ from collections import Counter
 from au_ree_v2.acquisition import select_snapshots
 
 
-def evaluate(root):
-    root=Path(root);snapshots=select_snapshots(root,'2026-11-03')
+def evaluate(root, legacy=False):
+    root=Path(root);snapshots=json.loads((root/'results/phase9-2026-11-03/snapshot_lock.json').read_text()) if legacy else select_snapshots(root,'2026-11-03')
     artifacts={s['source_sha256']:json.loads((root/s['path']).read_text(encoding='utf-8'))
                for s in snapshots if s['kind']=='document_extraction'}
     by_key={s['key']:s for s in snapshots}
@@ -36,13 +36,14 @@ def evaluate(root):
         for variable,value in expected.items():
             actual=found.get(variable)
             expected_unit='%' if row_label.startswith('Avg:') else ('Mt' if variable=='ore_mt' else 'kt TREO' if variable=='contained_treo_kt' else '%' if key=='mt_weld_2024' else 'ppm')
+            if not legacy and key=='browns_range_2025' and variable=='grade':expected_unit='%'
             actual_unit=(rows[0].get('unit') or rows[0].get('units',{}).get(variable) or next((e['unit'] for e in rows[0].get('extra_values',[]) if e['label']==variable),None)) if len(rows)==1 else None
             if actual==value and actual_unit==expected_unit:
                 tp+=1;unit_correct+=1;located+=bool(rows[0]['physical_page'] and rows[0]['source_sha256']);status='EXACT'
             elif actual is None:fn+=1;status='NOT_VALIDATED_LAYOUT_OR_SCOPE'
             else:fp+=1;fn+=1;status='VALUE_OR_COLUMN_ERROR'
             cells.append(dict(source_key=key,physical_page=page,row_label=row_label,variable=variable,expected=value,actual=actual,expected_unit=expected_unit,actual_unit=actual_unit,status=status))
-    return dict(version='rendered-cell-benchmark-v1',scope='SELECTED_CELLS_SIX_TABLE_SCOPES_FIVE_DOCUMENTS_NOT_CORPUS_WIDE',
+    return dict(version='rendered-cell-benchmark-v1' if legacy else 'rendered-cell-benchmark-v2-corrected-wolverine-unit',scope='SELECTED_CELLS_SIX_TABLE_SCOPES_FIVE_DOCUMENTS_NOT_CORPUS_WIDE',
                 cells=len(cells),true_positive=tp,false_positive=fp,false_negative=fn,
                 precision=tp/(tp+fp) if tp+fp else None,recall=tp/(tp+fn) if tp+fn else None,
                 unit_contract='Mt_or_percent_or_ppm_as_printed; element columns kept separate',
@@ -51,6 +52,6 @@ def evaluate(root):
 
 
 if __name__=='__main__':
-    result=evaluate('.')
+    result=evaluate('.',legacy='--phase9' in sys.argv)
     Path(sys.argv[1]).write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({k:v for k,v in result.items() if k!='results'},indent=2))

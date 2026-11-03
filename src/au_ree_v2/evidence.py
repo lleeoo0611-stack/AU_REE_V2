@@ -128,7 +128,7 @@ def ingest_recognized(db, root, snapshots, cutoff, policy):
             data=json.loads((root/artifact['path']).read_text(encoding='utf-8'))
             source=sources.get(data['source_sha256'])
             if source_check(source,cutoff,root):raise ValueError('ORIGINAL_SOURCE_INVALID_OR_OUTSIDE_LOCK')
-            if artifact['source_sha256']!=source['sha256'] or data['version']!=policy['parser_version']:
+            if artifact['source_sha256']!=source['sha256'] or data['version'] not in policy.get('parser_versions',[policy['parser_version']]):
                 raise ValueError('PARSER_OR_SOURCE_VERSION_MISMATCH')
             pages={p['physical_page']:p for p in data['pages']}
             for candidate in data['candidates']:
@@ -198,7 +198,7 @@ def ingest_recognized(db, root, snapshots, cutoff, policy):
     return outcomes
 
 
-def document_report(root, snapshots, outcomes, out):
+def document_report(root, snapshots, outcomes, out, shared_comparability=False):
     """Measured acquisition/extraction inventory; never count tables as Projects."""
     from .analysis import write_csv
     from collections import Counter
@@ -244,7 +244,7 @@ def document_report(root, snapshots, outcomes, out):
     dimensions=('statistic','endpoint','feed','scale','basis','reagent','temperature_c','residence_hours','acid_concentration','pressure')
     for row in process:
         if row['project_id']:groups.setdefault(canonical([row[k] for k in dimensions]),[]).append(row)
-    write_csv(out/'document_recovery_groups.csv',
+    if not shared_comparability:write_csv(out/'document_recovery_groups.csv',
               [dict(comparison_contract=key,projects=len({r['project_id'] for r in group}),test_rows=len(group),
                     status='CONDITIONS_INCOMPLETE_NO_COMMON_SCORE' if any(r[k] is None for r in group for k in ('acid_concentration','pressure')) else 'SINGLE_PROJECT_NO_RANK',
                     source_shas=canonical(sorted({r['source_sha256'] for r in group}))) for key,group in sorted(groups.items())],

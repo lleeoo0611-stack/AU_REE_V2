@@ -16,7 +16,7 @@ class DocumentRecognitionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.registry=project_registry(ROOT)
-        cls.snapshots=select_snapshots(ROOT,'2026-11-03')
+        cls.snapshots=json.loads((ROOT/'results/phase9-2026-11-03/snapshot_lock.json').read_text())
         cls.artifacts={s['source_sha256']:json.loads((ROOT/s['path']).read_text(encoding='utf-8'))
                        for s in cls.snapshots if s['kind']=='document_extraction'}
 
@@ -121,11 +121,13 @@ class DocumentRecognitionTests(unittest.TestCase):
         folder=ROOT/'work/tests'/uuid.uuid4().hex;(folder/'data/snapshots').mkdir(parents=True)
         source=next(s for s in self.snapshots if s['key']=='yttria_maiden2024')
         artifact=next(s for s in self.snapshots if s.get('source_sha256')==source['sha256'] and s['kind']=='document_extraction')
+        # The historical fixture is v1; test reuse with its original layout
+        # contract. Phase10 separately tests upgrade invalidation.
         shutil.copyfile(ROOT/source['path'],folder/source['path'])
         shutil.copyfile(ROOT/artifact['path'],folder/artifact['path'])
         shutil.copyfile(ROOT/'data/claims.json',folder/'data/claims.json')
         (folder/'data/manifest.json').write_text(json.dumps({'snapshots':[source,artifact]}))
-        with patch('au_ree_v2.pdf_extract.recognize_document',side_effect=AssertionError('unchanged document must not be parsed')):
+        with patch('au_ree_v2.pdf_extract.RESOURCE_LAYOUT_VERSION',None), patch('au_ree_v2.pdf_extract.recognize_document',side_effect=AssertionError('unchanged document must not be parsed')):
             rows=capture_documents(folder,[source],only_missing=True)
         self.assertEqual('REUSED_VERIFIED_EXTRACTION',rows[0]['status'])
 
@@ -135,7 +137,7 @@ class AutomaticIngestionTests(unittest.TestCase):
     def setUpClass(cls):
         cls.folder=ROOT/'work/tests'/uuid.uuid4().hex;cls.folder.mkdir(parents=True)
         cls.db=connect(cls.folder/'canonical.sqlite')
-        cls.snaps=select_snapshots(ROOT,'2026-11-03')
+        cls.snaps=json.loads((ROOT/'results/phase9-2026-11-03/snapshot_lock.json').read_text())
         ingest_sources(cls.db,ROOT,cls.snaps);ingest_claims(cls.db,ROOT,cls.snaps,'2026-11-03',conflict_selection=True)
         cls.before=resource_values(cls.db,'2026-11-03',{s['sha256'] for s in cls.snaps},strict=True)
         cls.result=ingest_recognized(cls.db,ROOT,cls.snaps,'2026-11-03',{'parser_version':'document-recognition-v1'})

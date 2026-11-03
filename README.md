@@ -1,10 +1,10 @@
 # AU_REE_V2
 
-Latest: [Phase 9 automatic document evidence](docs/phase9-document-pipeline.md) integrates discovery, page/table recognition and scientific validation with the existing shared selection, SQLite store, Python CLI and R engine. The schema and stable Project IDs are retained.
+Latest: [Phase 10 technical comparability](docs/phase10-technical-comparability.md) connects automatic observations and engineering cases to one comparison contract in the existing Selection. The SQLite schema, stable Project IDs, formal criteria and Python/R engines are retained.
 
-Current frozen evidence: **31 canonical Project groups, 22 comparable resource cases, 263 selected validated numeric statements, 712 government REE native entities and 19 typed events**. New automatic parsing adds131numeric source fields, including112laboratory extraction values, without forcing additional comparable MCDA alternatives. The5,522QLD Tenements are separate. Resource/concentrate and resource/financing exploratory intersections retain two/five alternatives. Formal C1, strict Development and full six-domain samples remain zero. A dated financing milestone does not establish available cash.
+Current evidence: **31 canonical Project groups, 22 comparable resource cases, 265 selected validated numeric statements, 712 government REE native entities and 19 typed events**. Phase10 verifies two additional Wolverine table values, separates technical descriptions/performance/quality, and retains two independent DFS concentrate cases. The33-cell selected benchmark improves29→31verified cells with zero false positives; two Koppamurra cells remain held for missing REO definition. All125existing panel CSVs remain unchanged. Formal C1, strict Development and full six-domain samples remain zero. A dated financing milestone does not establish available cash.
 
-[Phase 9 outputs](results/phase9-2026-11-03/README.md), [Phase 8 coverage](docs/phase8-evidence-coverage.md), [Phase 7 integration](docs/phase7-evidence-integration.md), [Phase 6 national originals](docs/phase6-national-database.md), [Phase 5 primary evidence](docs/phase5-primary-evidence.md), [Phase 3 identity/studies](docs/phase3-identity-and-studies.md), and [Phase 2 expansion](docs/phase2-primary-expansion.md) retain separate historical results.
+[Phase 10 outputs](results/phase10-2026-11-03/README.md), [Phase 9 outputs](results/phase9-2026-11-03/README.md), [Phase 8 coverage](docs/phase8-evidence-coverage.md), [Phase 7 integration](docs/phase7-evidence-integration.md), [Phase 6 national originals](docs/phase6-national-database.md), [Phase 5 primary evidence](docs/phase5-primary-evidence.md), [Phase 3 identity/studies](docs/phase3-identity-and-studies.md), and [Phase 2 expansion](docs/phase2-primary-expansion.md) retain separate historical results.
 
 One Python / SQLite / R research system for Australian rare-earth evidence, official GIS and explicitly scoped exploratory MCDA. Government source records, deposits and registry groups are not interchangeable independent Projects. No national completeness or six-domain development ranking is claimed.
 
@@ -43,7 +43,7 @@ value-level provenance, review issues, R ranking comparison, weight-only and sou
 Monte Carlo intervals, leave-criterion/domain-out, scoring/threshold sensitivity, cohort sensitivity,
 partial dominance and AHP consistency audit. Data missing from a criterion stays missing.
 
-Resource, Development and Full-evidence cohorts are separate; the current resource-defined sample is 19.
+Resource, Development and Full-evidence cohorts are separate; the current resource-defined sample is 22.
 The original November2 pilot compared
 Mt Weld's reported Mineral Resource with Browns Range's **Wolverine-only** Mineral Resource,
 not total Browns Range project inventory. Reported contained totals are retained after rounding checks.
