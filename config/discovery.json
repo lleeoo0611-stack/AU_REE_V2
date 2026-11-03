@@ -1,5 +1,5 @@
 {
-  "version": "discovery-v5-registry-derived",
+  "version": "discovery-v6-executed-tasks",
   "max_documents_per_seed": 3,
   "seeds": [
     {
@@ -8,7 +8,9 @@
       "allowed_hosts": [
         "www.astronlimited.com.au",
         "astronlimited.com.au"
-      ]
+      ],
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "authority": "ISSUER"
     },
     {
       "key": "asm_reports",
@@ -17,7 +19,9 @@
         "asm-au.com",
         "announcements.asx.com.au",
         "wcsecure.weblink.com.au"
-      ]
+      ],
+      "project_id": "AU-2cfeb25aefee0c4f95fb",
+      "authority": "ISSUER"
     },
     {
       "key": "ga_critical",
@@ -25,7 +29,8 @@
       "allowed_hosts": [
         "www.ga.gov.au",
         "d28rz98at9flks.cloudfront.net"
-      ]
+      ],
+      "authority": "GOVERNMENT"
     },
     {
       "key": "asm_company_reports",
@@ -34,7 +39,9 @@
         "asm-au.com",
         "announcements.asx.com.au",
         "wcsecure.weblink.com.au"
-      ]
+      ],
+      "project_id": "AU-2cfeb25aefee0c4f95fb",
+      "authority": "ISSUER"
     },
     {
       "key": "marquee_redlings",
@@ -49,7 +56,9 @@
       "keywords": [
         "redlings",
         "resource"
-      ]
+      ],
+      "project_id": "AU-12cc237ae66c7a6508ca",
+      "authority": "ISSUER"
     },
     {
       "key": "krakatoa_tower",
@@ -63,7 +72,9 @@
         "tower",
         "clere",
         "resource"
-      ]
+      ],
+      "project_id": "AU-a8258e4989c7bd95b7af",
+      "authority": "ISSUER"
     },
     {
       "key": "dreadnought_search",
@@ -81,7 +92,9 @@
       "keywords": [
         "yin",
         "mangaroon"
-      ]
+      ],
+      "project_id": "AU-8f3fe174a998d20ee4cf",
+      "authority": "ISSUER"
     },
     {
       "key": "vhm_goschen",
@@ -97,7 +110,9 @@
         "goschen",
         "licence",
         "work plan"
-      ]
+      ],
+      "project_id": "AU-6d807eb7caec9db0f35e",
+      "authority": "ISSUER"
     },
     {
       "key": "lanthanein_reports",
@@ -110,7 +125,9 @@
       "keywords": [
         "report",
         "lyons"
-      ]
+      ],
+      "project_id": "AU-7c198d219aa1db3e291f",
+      "authority": "ISSUER"
     },
     {
       "key": "gcm_fingerboards",
@@ -123,7 +140,9 @@
         "fingerboards",
         "project",
         "study"
-      ]
+      ],
+      "project_id": "AU-7537d9555628040fab40",
+      "authority": "ISSUER"
     },
     {
       "key": "meeka_search",
@@ -137,7 +156,9 @@
       "keywords": [
         "circle",
         "rare earth"
-      ]
+      ],
+      "project_id": "AU-785536db5ff12c25350d",
+      "authority": "ISSUER"
     },
     {
       "key": "hastings_current",
@@ -150,7 +171,9 @@
         "Annual Report",
         "Quarterly"
       ],
-      "detail_pattern": "/announcements/[^/?]+"
+      "detail_pattern": "/announcements/[^/?]+",
+      "project_id": "AU-908fd6f4461622e89548",
+      "authority": "ISSUER"
     },
     {
       "key": "cobra_current",
@@ -164,7 +187,9 @@
         "Technical",
         "Quarterly"
       ],
-      "detail_pattern": "/announcements/[^/?]+"
+      "detail_pattern": "/announcements/[^/?]+",
+      "project_id": "AU-0098e17a63e7c05c213f",
+      "authority": "ISSUER"
     },
     {
       "key": "arafura_current",
@@ -178,7 +203,9 @@
         "quarter",
         "financ",
         "offtake"
-      ]
+      ],
+      "project_id": "AU-1345edd8165c10930e94",
+      "authority": "ISSUER"
     },
     {
       "key": "critica_current",
@@ -193,7 +220,9 @@
         "quarter",
         "financ",
         "scoping"
-      ]
+      ],
+      "project_id": "AU-dac3c8e40326b8244cdb",
+      "authority": "ISSUER"
     },
     {
       "key": "astron_current",
@@ -206,7 +235,9 @@
         "quarter",
         "annual",
         "donald"
-      ]
+      ],
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "authority": "ISSUER"
     },
     {
       "key": "vhm_current",
@@ -221,7 +252,9 @@
         "quarter",
         "financ",
         "goschen"
-      ]
+      ],
+      "project_id": "AU-6d807eb7caec9db0f35e",
+      "authority": "ISSUER"
     },
     {
       "key": "ar3_issuer",
@@ -239,7 +272,8 @@
       ],
       "detail_pattern": "/announcements/[^/?]+",
       "pattern": "\\.pdf(?:\\?|$)",
-      "project_id": "AU-49b538453133bd968e8d"
+      "project_id": "AU-49b538453133bd968e8d",
+      "authority": "ISSUER"
     },
     {
       "key": "ar3_pilot_detail",
@@ -248,7 +282,8 @@
         "ar3.com.au",
         "hermes-cdn.investorhub.com"
       ],
-      "pattern": "\\.pdf(?:\\?|$)"
+      "pattern": "\\.pdf(?:\\?|$)",
+      "authority": "ISSUER"
     },
     {
       "key": "ar3_quarter_detail",
@@ -260,7 +295,8 @@
       "pattern": "\\.pdf(?:\\?|$)",
       "fallback_urls": [
         "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7813831.pdf?v=63960528980"
-      ]
+      ],
+      "authority": "ISSUER"
     },
     {
       "key": "asra_primary_met",
@@ -272,11 +308,12 @@
       "project_id": "AU-ee5ca893d12883df35f1",
       "fallback_urls": [
         "https://www.aspecthuntley.com.au/asxdata/20240402/pdf/02790601.pdf"
-      ]
+      ],
+      "authority": "ISSUER"
     },
     {
       "key": "rarex_cummins_scoping",
-      "url": "https://rarex.com.au/announcements/4396391",
+      "url": "https://rarex.com.au/announcements",
       "allowed_hosts": [
         "rarex.com.au",
         "hermes-cdn.investorhub.com"
@@ -286,11 +323,12 @@
         "Cummins"
       ],
       "project_id": "AU-9b667066e6eb66753005",
-      "publication_date": "2023-08-22"
+      "authority": "ISSUER",
+      "detail_pattern": "/announcements/[^/?]+"
     },
     {
       "key": "victory_north_stanmore",
-      "url": "https://investors.victorymetalsaustralia.com/announcements/vvn2Wa-quarterly-activities-appendix-5b-cash-flow-report",
+      "url": "https://investors.victorymetalsaustralia.com/announcements",
       "allowed_hosts": [
         "investors.victorymetalsaustralia.com",
         "hermes-cdn.investorhub.com"
@@ -301,10 +339,17 @@
         "North Stanmore"
       ],
       "project_id": "AU-216d0983f6892f9b58f9",
-      "publication_date": "2026-10-30"
+      "authority": "ISSUER",
+      "detail_pattern": "/announcements/[^/?]+"
     }
   ],
   "max_pages_per_seed": 3,
   "registry_tasks": true,
-  "gap_priority_version": "evidence-yield-v1"
+  "gap_priority_version": "evidence-yield-v1",
+  "task_execution_version": "bounded-registry-search-v1",
+  "max_queries_per_seed": 2,
+  "official_archive_template": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode={code}&timeframe=Y&year=2026",
+  "max_official_archives": 10,
+  "public_mirror_index_template": "https://financialfilings.com/companies/{company_slug}/2026/",
+  "max_mirror_indexes": 2
 }

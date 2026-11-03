@@ -52,6 +52,7 @@ def verify(before,after,reference=False):
     if not checked:raise ValueError('No panel outputs')
     evidence=['technical_comparability.csv','commercial_project_coverage.csv','aim_c_technical_features.csv','formal_gate_compatibility.csv']
     if (a/'cohort_missingness_description.csv').exists():evidence+=['cohort_missingness_description.csv','cohort_coverage.csv']
+    if (a/'source_document_coverage.csv').exists():evidence+=['source_document_coverage.csv']
     for name in evidence:
         if csv_bytes(a/name)!=csv_bytes(b/name):raise ValueError('Evidence export differs: '+name)
     return dict(status='REFERENCE_POINT_EQUIVALENT_RANKS_AND_MONTE_CARLO_EXACT' if reference else 'EXACT',panel_csv_files=len(checked),evidence_exports=len(evidence),numeric_tolerance='Unchanged check_replay point tolerance1e-12; ranks/stochastic0' if reference else 0,platform_differences=platform_differences,

@@ -54,7 +54,7 @@ def evaluate(root, legacy=False):
                 unit_accuracy_of_validated=unit_correct/tp if tp else None,results=cells)
 
 
-def evaluate_phase12(root, validation_version='scientific-context-v4-column-binding'):
+def evaluate_phase12(root, validation_version='scientific-context-v4-column-binding', parser_version='document-recognition-v2-mineralogy', numeric_cases=None, decision_cases=None):
     """Selected original-page evaluation, separate from production ingestion.
 
     The labels below were checked on rendered originals. They are evaluation
@@ -119,6 +119,8 @@ def evaluate_phase12(root, validation_version='scientific-context-v4-column-bind
         common=dict(key='cummins_mre2023',page=2,pattern=row,kind='RESOURCE_TABLE_TOTAL',project='cummins-range')
         decisions.append(dict(common,label='Cummins_'+label+'_correct_TREO_column',accept=True,required_values={'ore_mt':ore,'grade':treo}))
         decisions.append(dict(common,label='Cummins_'+label+'_P2O5_not_TREO',accept=False,forbidden_grade=phosphate))
+    if numeric_cases is not None:numeric=numeric_cases
+    if decision_cases is not None:decisions=decision_cases
     requested={(c['key'],c['page']) for c in numeric+decisions}
     cache={};documents={};verified=[]
     try:
@@ -131,12 +133,12 @@ def evaluate_phase12(root, validation_version='scientific-context-v4-column-bind
                                  physical_pages=sorted(p for k,p in requested if k==key)))
         for key,number in sorted(requested):
             page=documents[key][number-1];text=page.get_text(sort=True)
-            rows=resource_rows(text,number,registry)+leach_tables(text,number,registry)+narrative_candidates(text,number,registry,parser_version=DOCUMENT_VERSION)
+            rows=resource_rows(text,number,registry)+leach_tables(text,number,registry)+narrative_candidates(text,number,registry,parser_version=parser_version)
             tables=[]
             if any(c['kind']=='RESOURCE_TABLE_TOTAL' for c in rows):
                 for i,t in enumerate(page.find_tables().tables):
                     tables.append(dict(physical_page=number,table_index=i,bbox=list(t.bbox),cells=t.extract(),header=t.header.names,external_header=t.header.external))
-                positioned_resource_columns(rows,tables,text,registry)
+                positioned_resource_columns(rows,tables,text,registry,version='positioned-resource-columns-v3' if parser_version=='document-recognition-v3-bound-quantities' else 'positioned-resource-columns-v2')
             for c in rows:
                 c['source_sha256']=sources[key]['sha256']
                 c['issues']=sorted(set(c['issues']+candidate_value_issues(c)+
@@ -191,7 +193,7 @@ def evaluate_phase12(root, validation_version='scientific-context-v4-column-bind
         return dict(true_positive=tp,false_positive=fp,false_negative=fn,precision=tp/(tp+fp) if tp+fp else None,recall=tp/(tp+fn) if tp+fn else None)
     return dict(version='selected-original-page-benchmark-v4-column-controls',
                 scope='PURPOSIVE_RENDERED_PAGE_SAMPLE_NOT_BLIND_HOLDOUT_OR_NATIONAL_ACCURACY',
-                validation_version=validation_version,parser_version=DOCUMENT_VERSION,documents=len(documents),physical_pages=len(requested),
+                validation_version=validation_version,parser_version=parser_version,documents=len(documents),physical_pages=len(requested),
                 numeric_cells=len(cells),numeric_metrics=dict(**rates(counts),
                     scope_accuracy_of_emitted=scope_correct/accepted_n if accepted_n else None,
                     unit_accuracy_of_emitted=unit_correct/accepted_n if accepted_n else None,
@@ -204,7 +206,51 @@ def evaluate_phase12(root, validation_version='scientific-context-v4-column-bind
                 sources=verified,numeric_results=cells,acceptance_results=classification)
 
 
+def evaluate_phase13(root):
+    """Separate development set, additional document check and semantic controls.
+
+    Additional pages were labelled after the initial general parser was frozen;
+    these are a small non-blind document-disjoint check, not national accuracy.
+    No benchmark labels are imported by production.
+    """
+    import re
+    from au_ree_v2.pdf_extract import narrative_candidates,project_registry
+    from au_ree_v2.store import filehash
+    root=Path(root);version='document-recognition-v3-bound-quantities'
+    development=evaluate_phase12(root,parser_version=version)
+    numeric=[dict(key='salazar_mre2024',page=7,row=r'^TOTAL\s+230\b',project='salazar',scope=r'Salazar|Newmont',
+        values=dict(ore_mt=230.,grade=1178.,Pr6O11=55.,Nd2O3=193.,Dy2O3=22.,Tb4O7=4.),
+        units=dict(ore_mt='Mt',grade='ppm',Pr6O11='ppm',Nd2O3='ppm',Dy2O3='ppm',Tb4O7='ppm'))]
+    decisions=[dict(label='kaolin_mass_not_bulk_TREO_resource',key='burracoppin_maiden2023',page=2,
+        pattern=r'^TOTAL\s+62,751,000',kind='RESOURCE_TABLE_TOTAL',project='burracoppin',accept=False)]
+    additional=evaluate_phase12(root,parser_version=version,numeric_cases=numeric,decision_cases=decisions)
+    additional['scope']='DOCUMENT_DISJOINT_SMALL_POST_DEVELOPMENT_CHECK_NOT_BLIND_NATIONAL_VALIDATION'
+    additional['independence']='Salazar and Burracoppin were not used in the Phase12 benchmark or to tune this column repair. Corpus was already available; this is not an independent human-labelled blind test.'
+    sources={s['key']:s for s in json.loads((root/'data/manifest.json').read_text())['snapshots']}
+    registry=project_registry(root);controls=[]
+    for key,page,value in [('wudinna_mre2026',1,13.3),('mt_weld_2024',4,7.3),('mt_weld_2024',21,7.3)]:
+        source=sources[key]
+        if filehash(root/source['path'])!=source['sha256']:raise ValueError('BENCHMARK_ORIGINAL_SHA_MISMATCH')
+        if source['kind']=='html':
+            from au_ree_v2.evidence import html_text
+            text=html_text(root,source)
+        else:
+            import pymupdf
+            with pymupdf.open(root/source['path']) as doc:text=doc[page-1].get_text(sort=True)
+        versions=[]
+        for parser in ['document-recognition-v2-mineralogy',version]:
+            candidates=narrative_candidates(text,page,registry,parser_version=parser)
+            emitted=[c for c in candidates if any(n['value']==value and n.get('quantity_role') for n in c['numbers'])]
+            versions.append(dict(parser_version=parser,false_extraction_candidates=len(emitted),
+                                 raw_text=[c['raw_text'] for c in emitted]))
+        controls.append(dict(source_key=key,source_sha256=source['sha256'],physical_page=page,value=value,
+                             expected_extraction=False,results=versions))
+    return dict(version='phase13-document-recovery-v1',baseline=evaluate_phase12(root),
+                development_set=development,additional_documents=additional,semantic_controls=controls,
+                limitation='Development recall and document-disjoint check reported separately; no pooled or national accuracy claim.')
+
+
 if __name__=='__main__':
-    result=evaluate_phase12('.') if '--phase12' in sys.argv else evaluate('.',legacy='--phase9' in sys.argv)
+    result=evaluate_phase13('.') if '--phase13' in sys.argv else evaluate_phase12('.') if '--phase12' in sys.argv else evaluate('.',legacy='--phase9' in sys.argv)
     Path(sys.argv[1]).write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({k:v for k,v in result.items() if k not in ('results','numeric_results','acceptance_results','sources')},indent=2))

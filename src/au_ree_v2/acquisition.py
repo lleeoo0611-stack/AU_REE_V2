@@ -4,24 +4,59 @@ import urllib.parse
 import urllib.request
 import urllib.error
 import time
+import socket
+from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone
 from pathlib import Path
 from .store import canonical, digest, filehash
 from .spatial import project_windows
 
+_last_request = {}
+
+
+def failure_details(exc):
+    """One public failure vocabulary for refresh and discovery; absence is unknown."""
+    code=getattr(exc,'code',None)
+    cause=getattr(exc,'reason',exc)
+    state=({429:'HTTP_429_RATE_LIMITED',403:'HTTP_403_RESTRICTED',404:'HTTP_404_NOT_FOUND_AT_URL'}
+           .get(code,'HTTP_'+str(code) if code else
+                'TIMEOUT' if isinstance(cause,(TimeoutError,socket.timeout)) else
+                'NON_PDF_RESPONSE' if str(exc) in ('NOT_PDF','Not a PDF response') else
+                'TERMS_INTERSTITIAL_NOT_ACCEPTED' if str(exc)=='TERMS_INTERSTITIAL_NOT_ACCEPTED' else type(exc).__name__))
+    return dict(failure_status=state,http_status=code,attempts=getattr(exc,'request_attempts',1),
+                retry_after_seconds=getattr(exc,'retry_after_seconds',None),
+                reason=type(exc).__name__+('_'+str(code) if code else ''),
+                interpretation='URL_FAILURE_NOT_DOCUMENT_ABSENCE')
+
+
 def request(url, params=None, headers=None, timeout=25):
     if params:
-        url += '?' + urllib.parse.urlencode(params)
+        url += ('&' if '?' in url else '?') + urllib.parse.urlencode(params)
     req = urllib.request.Request(url, headers={'User-Agent': 'AU_REE_V2/0.1 public research', **(headers or {})})
     for attempt in range(3):
+        host=urllib.parse.urlsplit(url).netloc
+        pause=.25-(time.monotonic()-_last_request.get(host,0))
+        if pause>0:time.sleep(pause)
+        _last_request[host]=time.monotonic()
         try:
             with urllib.request.urlopen(req, timeout=timeout) as response:
                 return response.read(), dict(response.headers)
         except urllib.error.HTTPError as exc:
-            if exc.code not in (408,429,500,502,503,504) or attempt==2:raise
-        except (urllib.error.URLError,TimeoutError):
+            exc.request_attempts=attempt+1
+            delay=exc.headers.get('Retry-After') if exc.headers else None
+            try:
+                delay=max(0,float(delay))
+            except (TypeError,ValueError):
+                try:delay=max(0,(parsedate_to_datetime(delay)-datetime.now(timezone.utc)).total_seconds())
+                except (TypeError,ValueError,OverflowError):delay=None
+            exc.retry_after_seconds=delay
+            # A long Retry-After is deferred, never capped then retried early.
+            if exc.code not in (408,429,500,502,503,504) or attempt==2 or (delay is not None and delay>30):raise
+            time.sleep(max(.5*(2**attempt),delay or 0))
+        except (urllib.error.URLError,TimeoutError) as exc:
+            exc.request_attempts=attempt+1
             if attempt==2:raise
-        time.sleep(0.5*(2**attempt))
+            time.sleep(.5*(2**attempt))
 
 def arcgis(url, where='1=1', windows=None, archive=None):
     """Inventory-complete retrieval, globally or within each registered project AOI."""
@@ -214,6 +249,7 @@ def refresh(root, registry):
             outcomes.append({'key': source['key'], 'status': 'ADDED', 'sha256': sha})
         except Exception as exc:
             outcomes.append({'key': source['key'], 'status': 'UNAVAILABLE', 'reason': str(exc),
+                             **failure_details(exc),
                              **({'original_responses':pages} if pages else {})})
     manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     return outcomes
@@ -227,6 +263,7 @@ def select_snapshots(root, cutoff, keys=None, acquired_through=None):
         # Retrospective acquisition is explicit and limited to dated documents
         # and their extraction artifacts; never backdate live GIS/government rows.
         if not acquired_through or s['available_date']>acquired_through:return False
+        if s['kind']=='discovery_receipt':return True  # Acquisition diagnostics, never observations.
         if s['kind'] not in ('pdf','html','document_extraction','pdf_page_extraction'):return False
         if s['kind'] in ('pdf','html'):return bool(s.get('publication_date'))
         return any(o['sha256']==s.get('source_sha256') and o.get('publication_date') and o['publication_date']<=cutoff for o in manifest['snapshots'])
@@ -238,7 +275,10 @@ def select_snapshots(root, cutoff, keys=None, acquired_through=None):
             continue
         if s['key'] not in selected or s['acquired_at'] > selected[s['key']]['acquired_at']:
             selected[s['key']] = s
-    private={s['unpublished_original_sha256'] for s in selected.values() if s.get('publication_derivative')}
+    # A later safe capture must not erase an earlier declared redaction link.
+    # All visible derivative bytes are still checksum-verified below.
+    private={s['unpublished_original_sha256'] for s in manifest['snapshots']
+             if (not keys or s['key'] in keys) and visible(s) and s.get('publication_derivative')}
     # Every available historical file remains checksum-checked. Only an explicitly
     # declared unpublished original can be absent from a public derivative replay.
     for s in manifest['snapshots']:
