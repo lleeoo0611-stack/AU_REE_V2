@@ -1,0 +1,278 @@
+{
+  "version": "research-v4-identity-study-endpoints",
+  "frozen_before_scoring": true,
+  "cohorts": {
+    "full_census": "All available source entities; counts must be stratified by entity kind. Not a complete national project census.",
+    "resource_defined": "PROJECT with one latest complete same-scope TREO Mineral Resource statement. No stage requirement.",
+    "development": "Resource-defined plus source-supported study maturity and recovery observations.",
+    "full_evidence": "Development cohort plus a valid scored observation in every one of the six domains.",
+    "official_summary_resource_screen": "Government published 2026 WA table of 20 project resource summaries. Exploratory R1/R2 ranking only: JORC categories and project scopes are not issuer-harmonized. Separate from official resource-defined, development and full-evidence cohorts."
+  },
+  "panels": {
+    "resource_infrastructure_pilot": [
+      "R1",
+      "I4"
+    ],
+    "six_domain": [
+      "R1",
+      "S1",
+      "T1",
+      "D1",
+      "I4",
+      "C1"
+    ],
+    "issuer_resource_infrastructure": [
+      "R1",
+      "I1",
+      "I2",
+      "I3",
+      "I4"
+    ],
+    "issuer_resource_composition": [
+      "R1",
+      "S1"
+    ],
+    "issuer_resource_study": [
+      "R1",
+      "D1"
+    ]
+  },
+  "criteria": [
+    {
+      "code": "R1",
+      "variable": "contained_treo_kt",
+      "domain": "Resource",
+      "direction": "MAX",
+      "low": 0,
+      "high": 5000,
+      "unit": "kt TREO",
+      "function": "log1p",
+      "interpretation": "In-situ reported inventory; not recoverable product or success probability"
+    },
+    {
+      "code": "S1",
+      "variable": "magnet_reo_share_pct",
+      "domain": "Strategic",
+      "direction": "MAX",
+      "low": 0,
+      "high": 100,
+      "unit": "%",
+      "function": "linear"
+    },
+    {
+      "code": "T1",
+      "variable": "recovery_pct",
+      "domain": "Technical",
+      "direction": "MAX",
+      "low": 0,
+      "high": 100,
+      "unit": "%",
+      "function": "linear"
+    },
+    {
+      "code": "D1",
+      "variable": "study_maturity_ord",
+      "domain": "Development",
+      "direction": "MAX",
+      "low": 1,
+      "high": 6,
+      "unit": "ordinal",
+      "function": "linear",
+      "meaning": {
+        "1": "MRE",
+        "2": "Scoping",
+        "3": "PFS",
+        "4": "DFS",
+        "5": "Construction",
+        "6": "Production"
+      }
+    },
+    {
+      "code": "I4",
+      "variable": "port_distance_km",
+      "domain": "Infrastructure",
+      "direction": "MIN",
+      "low": 0,
+      "high": 2000,
+      "unit": "km",
+      "function": "linear"
+    },
+    {
+      "code": "C1",
+      "variable": "financing_ord",
+      "domain": "Commercial",
+      "direction": "MAX",
+      "low": 0,
+      "high": 4,
+      "unit": "ordinal",
+      "function": "linear"
+    },
+    {
+      "code": "R2",
+      "variable": "grade_pct",
+      "domain": "Resource",
+      "direction": "MAX",
+      "low": 0,
+      "high": 10,
+      "unit": "% TREO",
+      "function": "linear",
+      "interpretation": "Published WA government summary TREO grade. Mathematically related to ore tonnes and contained TREO; redundancy acknowledged. Screen only."
+    },
+    {
+      "code": "I1",
+      "variable": "road_distance_km",
+      "domain": "Infrastructure",
+      "direction": "MIN",
+      "low": 0,
+      "high": 200,
+      "unit": "km",
+      "function": "linear",
+      "interpretation": "Official geometry proximity; not access, capacity or connection cost"
+    },
+    {
+      "code": "I2",
+      "variable": "rail_distance_km",
+      "domain": "Infrastructure",
+      "direction": "MIN",
+      "low": 0,
+      "high": 1000,
+      "unit": "km",
+      "function": "linear",
+      "interpretation": "Official geometry proximity; not access, capacity or connection cost"
+    },
+    {
+      "code": "I3",
+      "variable": "power_distance_km",
+      "domain": "Infrastructure",
+      "direction": "MIN",
+      "low": 0,
+      "high": 500,
+      "unit": "km",
+      "function": "linear",
+      "interpretation": "Official geometry proximity; not access, capacity or connection cost"
+    },
+    {
+      "code": "TC1",
+      "variable": "whole_ore_concentrate_recovery_pct",
+      "domain": "Technical",
+      "direction": "MAX",
+      "low": 0,
+      "high": 100,
+      "unit": "%",
+      "function": "linear",
+      "interpretation": "DFS-model whole-ore TREO to mineral-concentrate comparison only; not overall project potential or operating result"
+    },
+    {
+      "code": "TC2",
+      "variable": "concentrate_treo_grade_pct",
+      "domain": "Technical",
+      "direction": "MAX",
+      "low": 0,
+      "high": 100,
+      "unit": "%",
+      "function": "linear",
+      "interpretation": "DFS-model whole-ore TREO to mineral-concentrate comparison only; not overall project potential or operating result"
+    }
+  ],
+  "scenarios": {
+    "resource_assumption": {
+      "Resource": 0.5,
+      "Strategic": 0.15,
+      "Technical": 0.1,
+      "Development": 0.1,
+      "Infrastructure": 0.1,
+      "Commercial": 0.05
+    },
+    "development_assumption": {
+      "Resource": 0.1,
+      "Strategic": 0.1,
+      "Technical": 0.2,
+      "Development": 0.25,
+      "Infrastructure": 0.2,
+      "Commercial": 0.15
+    },
+    "strategic_assumption": {
+      "Resource": 0.2,
+      "Strategic": 0.4,
+      "Technical": 0.1,
+      "Development": 0.1,
+      "Infrastructure": 0.1,
+      "Commercial": 0.1
+    }
+  },
+  "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES",
+  "pilot_weight_policy": "Restrict scenario domain weights to active panel, then normalize; different panels are different scales.",
+  "promethee_threshold": 0.2,
+  "monte_carlo": {
+    "seed": 20261102,
+    "reps": 1000,
+    "dirichlet_concentration": 30,
+    "method_version": "entity-keyed-rng-v2"
+  },
+  "data_uncertainty": "Only explicit source bounds. Rounding bounds are reported separately from measurement uncertainty.",
+  "limitations": [
+    "Pilot is not a six-domain development-potential ranking",
+    "Source reports have different effective dates; cutoff is availability, not common measurement date",
+    "No claim of latest resource completeness until source discovery covers each issuer",
+    "GIS centroid proximity is not transport feasibility",
+    "Aim C external inference requires adequate sample size and independent predictors",
+    "20-project WA government-only resource screen has unverified JORC classification/project scope and is not a six-domain development ranking"
+  ],
+  "screen_panels": {
+    "official_wa_resource_screen": [
+      "R1",
+      "R2"
+    ]
+  },
+  "screen_scenarios": {
+    "inventory_priority_assumption": {
+      "R1": 0.8,
+      "R2": 0.2
+    },
+    "grade_priority_assumption": {
+      "R1": 0.2,
+      "R2": 0.8
+    },
+    "balanced_resource_assumption": {
+      "R1": 0.5,
+      "R2": 0.5
+    }
+  },
+  "screen_evidence_policy": {
+    "source_key": "wa_dmpe_ree_2026_table",
+    "status": "OFFICIAL_SUMMARY_SCOPE_UNVERIFIED",
+    "role": "EXPLORATORY_GOVERNMENT_SUMMARY_NOT_FORMAL_JORC_ELIGIBILITY",
+    "rounding_half_width": {
+      "R1": 0.5,
+      "R2": 0.005
+    },
+    "uncertainty_type": "PRINTED_TABLE_ROUNDING_ONLY_NOT_MEASUREMENT_ERROR",
+    "redundancy_note": "Contained TREO, ore Mt and grade share an algebraic relationship; only reported contained TREO and grade enter exploratory screen and coefficients have no expert elicitation."
+  },
+  "case_panels": {
+    "beneficiation_concentrate_screen": {
+      "comparability_group": "WHOLE_ORE|TREO_INCLUDING_Y|MINERAL_CONCENTRATE|DFS_MODEL",
+      "codes": [
+        "TC1",
+        "TC2"
+      ],
+      "scenarios": {
+        "recovery_priority_assumption": {
+          "TC1": 0.8,
+          "TC2": 0.2
+        },
+        "grade_priority_assumption": {
+          "TC1": 0.2,
+          "TC2": 0.8
+        },
+        "balanced_process_assumption": {
+          "TC1": 0.5,
+          "TC2": 0.5
+        }
+      }
+    }
+  },
+  "acquisition_through": "2026-11-04",
+  "research_evidence_cutoff": "2026-11-03",
+  "research_utilization": "phase11-descriptive-and-commercial-sensitivity-v1"
+}

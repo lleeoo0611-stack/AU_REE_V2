@@ -1,0 +1,396 @@
+{
+  "version": "evidence-resolution-v5-phase11",
+  "main_codes": [
+    "R1",
+    "S1",
+    "T1",
+    "D1",
+    "I1",
+    "I2",
+    "I3",
+    "I4",
+    "C1"
+  ],
+  "cohorts": {
+    "development": {
+      "version": "coverage-development-v1-compatible",
+      "requires": [
+        "D1",
+        "T1"
+      ],
+      "interpretation": "Unchanged resource plus study and comparable overall recovery; case-specific TC1 is not T1"
+    }
+  },
+  "criteria": {
+    "S1": {
+      "domain": "Strategic",
+      "variables": [
+        "magnet_reo_share_pct"
+      ],
+      "unit": "%",
+      "basis": [
+        "PrNdDyTb_REO_DIV_TREO"
+      ],
+      "resource_scope": true
+    },
+    "D1": {
+      "domain": "Development",
+      "variables": [
+        "study_maturity_ord"
+      ],
+      "unit": "ordinal",
+      "basis": [
+        "DATED_DFS_REAFFIRMED",
+        "ROUTE_SPECIFIC_SCOPING",
+        "DATED_PFS_COMPLETED",
+        "DATED_PFS_COMPLETION_NOT_CURRENT_OPERATING_STATUS"
+      ]
+    },
+    "T1": {
+      "domain": "Technical",
+      "variables": [
+        "recovery_pct",
+        "modelled_mrec_recovery_pct",
+        "whole_ore_concentrate_recovery_pct",
+        "resource_to_final_mreo_recovery_pct",
+        "treo_leach_average_pct",
+        "magnet_extraction_to_leach_pct",
+        "nd_west_leach_pct"
+      ],
+      "unit": "%",
+      "basis": [
+        "TREO_INCLUDING_Y"
+      ],
+      "requires": {
+        "endpoint": "FINAL_SEPARATED_REO",
+        "feed": "WHOLE_ORE",
+        "scale": "VALIDATED_PLANT_DESIGN"
+      }
+    },
+    "TC1": {
+      "domain": "Technical",
+      "variables": [
+        "whole_ore_concentrate_recovery_pct"
+      ],
+      "unit": "%",
+      "basis": [
+        "TREO_INCLUDING_Y"
+      ],
+      "requires": {
+        "endpoint": "MINERAL_CONCENTRATE",
+        "feed": "WHOLE_ORE",
+        "scale": "DFS_MODEL"
+      }
+    },
+    "TC2": {
+      "domain": "Technical",
+      "variables": [
+        "concentrate_treo_grade_pct"
+      ],
+      "unit": "%",
+      "basis": [
+        "TREO_INCLUDING_Y"
+      ],
+      "requires": {
+        "endpoint": "MINERAL_CONCENTRATE",
+        "feed": "WHOLE_ORE",
+        "scale": "DFS_MODEL"
+      }
+    },
+    "C1": {
+      "domain": "Commercial",
+      "variables": [
+        "commercial_event"
+      ],
+      "unit": "ordinal"
+    }
+  },
+  "panels": {
+    "issuer_resource_concentrate": [
+      "R1",
+      "TC1",
+      "TC2"
+    ],
+    "issuer_resource_financing_milestone": [
+      "R1",
+      "C1"
+    ],
+    "issuer_resource_concentrate_recovery": [
+      "R1",
+      "TC1"
+    ]
+  },
+  "financing_codebook": {
+    "version": "project-disclosed-finance-milestone-candidate-v1",
+    "status": "EXPLORATORY_NOT_FORMAL_C1_NOT_EXPERT_VALIDATED",
+    "states": {
+      "EXPLICIT_NO_FINANCING": 0,
+      "PLANNED_OR_NONBINDING": 1,
+      "CONDITIONAL_COMMITMENT": 2,
+      "FINANCIAL_CLOSE": 3,
+      "DRAWN": 4
+    },
+    "interpretation": "Highest disclosed project-attributed financing milestone, not percentage funded, financial viability, probability or available cash. Conditional credit approval and conditional signed facilities both map to 2 but retain agreement_state separately. No comparison of monetary amounts.",
+    "temporal_rule": "Latest within facility_id only; distinct facilities remain separate. Use explicit expiry/termination if disclosed. Undisclosed expiry remains unknown; a dated milestone never certifies current availability.",
+    "aggregation": "At least one qualifying project instrument at milestone; 3 requires full project financial close; 4 requires documented drawdown. Explicit no-financing vs positive commitment conflict blocks scoring. CAPEX/offtake/corporate cash never establishes financing."
+  },
+  "technical_definitions": {
+    "version": "technical-taxonomy-v1",
+    "legacy_T1": "PROCESSING_COMPLEXITY_IN_UPSTREAM_RESEARCH_NOT_EQUIVALENT_TO_RECOVERY",
+    "v2_T1": "RECOVERY_ONLY; explicit comparable feed/REO basis/endpoint/scale required",
+    "T1_contract_status": "CONSERVATIVE_EXPLORATORY_COMPATIBILITY_CONTRACT_NOT_APPROVED_FORMAL_PANEL",
+    "processing_complexity": {
+      "status": "DESCRIPTIVE_ONLY_NO_ORDINAL_OR_SCIENTIFIC_ORDER_ADOPTED",
+      "reason": "Number of operations cannot establish process difficulty; cost, energy, reagent intensity, mineral liberation and NORM handling differ. Preserve flowsheet text, endpoints and mineralogy. No substitution for recovery."
+    },
+    "endpoint_alternative": {
+      "criterion": "TC1",
+      "status": "EXPLORATORY_NOT_REPLACEMENT_FOR_T1",
+      "definition": "Whole ore TREO-including-Y recovery to mineral concentrate, DFS model only",
+      "scientific_basis": "Mass fraction of feed TREO reporting to a defined first-stage mineral concentrate; excludes leach solution, selected-composite assays, MREC and separated oxides",
+      "limitations": "Engineering forecast, not measured operating recovery; different mine plans; downstream losses and impurity burden not assessed",
+      "development_overlap": "Numeric recovery and study-stage are different variables, but DFS-only eligibility conditions on maturity. Compare only within this maturity; do not claim independent maturity effect."
+    }
+  },
+  "study_parameters": {
+    "whole_ore_concentrate_recovery_pct": {
+      "role": "BENEFICIATION_RECOVERY",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "concentrate_treo_grade_pct": {
+      "role": "INTERMEDIATE_PRODUCT_GRADE",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "modelled_mrec_recovery_pct": {
+      "role": "MODELLED_INTERMEDIATE_PRODUCT_RECOVERY",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "process_design_recovery_pct": {
+      "role": "ALTERNATIVE_PROCESS_DESIGN_RECOVERY",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "resource_to_final_mreo_recovery_pct": {
+      "role": "OVERALL_TO_CALCINED_MIXED_REO",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "nd_west_leach_pct": {
+      "role": "ZONE_LEACH_EXTRACTION",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "nd_central_leach_pct": {
+      "role": "ZONE_LEACH_EXTRACTION",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "nd_east_leach_pct": {
+      "role": "ZONE_LEACH_EXTRACTION",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "post_leach_impurity_loss_pct": {
+      "role": "POST_LEACH_LOSS",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "magnet_extraction_to_leach_pct": {
+      "role": "SELECTED_COMPOSITES_LEACH_EXTRACTION",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "treo_leach_average_pct": {
+      "role": "BENCH_LEACH_AVERAGE",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "treo_leach_max_pct": {
+      "role": "BENCH_LEACH_MAXIMUM",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "magnet_leach_average_pct": {
+      "role": "BENCH_MAGNET_LEACH_AVERAGE",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "magnet_leach_max_pct": {
+      "role": "BENCH_MAGNET_LEACH_MAXIMUM",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "stage1_capex_aud_m": {
+      "role": "CAPEX_NOT_FUNDS",
+      "unit": "AUD million",
+      "domain": "Commercial"
+    },
+    "capex_aud_m": {
+      "role": "CAPEX_NOT_FUNDS",
+      "unit": "AUD million",
+      "domain": "Commercial"
+    },
+    "initial_capex_aud_m": {
+      "role": "CAPEX_NOT_FUNDS",
+      "unit": "AUD million",
+      "domain": "Commercial"
+    },
+    "jv_earn_in_aud_m": {
+      "role": "CONDITIONAL_JV_CONTRIBUTION_NOT_CASH",
+      "unit": "AUD million",
+      "domain": "Commercial"
+    },
+    "partner_target_share_pct": {
+      "role": "JV_EARN_IN_TARGET",
+      "unit": "%",
+      "domain": "Commercial"
+    },
+    "reec_offtake_pct": {
+      "role": "OFFTAKE_VOLUME_SHARE",
+      "unit": "%",
+      "domain": "Commercial"
+    },
+    "selected_composites_n": {
+      "role": "TEST_POPULATION",
+      "unit": "count",
+      "domain": "Technical"
+    },
+    "composites_n": {
+      "role": "TEST_POPULATION",
+      "unit": "count",
+      "domain": "Technical"
+    },
+    "undersize_mass_pct": {
+      "role": "SIZING_MASS_NOT_RECOVERY",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "acid_32pct_hcl_kg_per_t_feed": {
+      "role": "REAGENT_INTENSITY",
+      "unit": "kg/t feed",
+      "domain": "Technical"
+    },
+    "feed_treo_ppm": {
+      "role": "TEST_FEED_GRADE",
+      "unit": "ppm",
+      "domain": "Technical"
+    },
+    "mrec_treo_grade_pct": {
+      "role": "INTERMEDIATE_PRODUCT_GRADE",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "product_magnet_share_pct": {
+      "role": "PRODUCT_COMPOSITION_NOT_RESOURCE",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "product_impurity_pct": {
+      "role": "PRODUCT_IMPURITY",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "blend_mass_kg": {
+      "role": "TEST_SCALE",
+      "unit": "kg",
+      "domain": "Technical"
+    },
+    "head_treo_min_ppm": {
+      "role": "TEST_FEED_GRADE_MIN",
+      "unit": "ppm",
+      "domain": "Technical"
+    },
+    "head_treo_max_ppm": {
+      "role": "TEST_FEED_GRADE_MAX",
+      "unit": "ppm",
+      "domain": "Technical"
+    },
+    "hcl_concentration_pct": {
+      "role": "TEST_REAGENT_CONCENTRATION",
+      "unit": "%",
+      "domain": "Technical"
+    },
+    "leach_time_hours": {
+      "role": "RESIDENCE_TIME",
+      "unit": "hours",
+      "domain": "Technical"
+    },
+    "temperature_c": {
+      "role": "TEMPERATURE",
+      "unit": "C",
+      "domain": "Technical"
+    },
+    "processing_mtpa": {
+      "role": "DESIGN_THROUGHPUT",
+      "unit": "Mtpa",
+      "domain": "Technical"
+    },
+    "life_years": {
+      "role": "MINE_PLAN_LIFE",
+      "unit": "years",
+      "domain": "Technical"
+    },
+    "average_treo_feed_grade_ppm": {
+      "role": "MINE_PLAN_FEED_GRADE",
+      "unit": "ppm",
+      "domain": "Technical"
+    },
+    "average_annual_treo_product_t": {
+      "role": "MODELLED_PRODUCTION",
+      "unit": "t/year",
+      "domain": "Technical"
+    }
+  },
+  "identity_rule_version": "document-native-extension-phase8-v1",
+  "document_pipeline": {
+    "parser_version": "document-recognition-v1",
+    "role": "RAW_SCOPED_DISCLOSURES_NOT_AUTOMATIC_FORMAL_CRITERIA",
+    "resource_promotion": "REPORTED_VARIABLES_ONLY_UNTIL_EFFECTIVE_DATE_AND_SCOPE_COMPATIBLE",
+    "validation_version": "page-context-v2"
+  },
+  "technical_comparability": {
+    "version": "technical-comparability-v1-phase10",
+    "candidate_criteria": [
+      "TC1",
+      "TC2"
+    ],
+    "reference_criterion": "TC1",
+    "model_assumptions": [
+      "Independent dated mine-plan designs, not common resource-scope or measured operating recoveries",
+      "DFS engineering forecasts are compared only at the same feed, REO basis and mineral-concentrate endpoint; reagent conditions not used as matched laboratory controls",
+      "No claim of sample representativeness, independent maturity effect, downstream recovery or actual production"
+    ],
+    "performance_roles": [
+      "BENEFICIATION_RECOVERY",
+      "INTERMEDIATE_PRODUCT_GRADE",
+      "MODELLED_INTERMEDIATE_PRODUCT_RECOVERY",
+      "ALTERNATIVE_PROCESS_DESIGN_RECOVERY",
+      "OVERALL_TO_CALCINED_MIXED_REO",
+      "ZONE_LEACH_EXTRACTION",
+      "POST_LEACH_LOSS",
+      "SELECTED_COMPOSITES_LEACH_EXTRACTION",
+      "BENCH_LEACH_AVERAGE",
+      "BENCH_LEACH_MAXIMUM",
+      "BENCH_MAGNET_LEACH_AVERAGE",
+      "BENCH_MAGNET_LEACH_MAXIMUM",
+      "REAGENT_INTENSITY",
+      "TEST_FEED_GRADE",
+      "PRODUCT_COMPOSITION_NOT_RESOURCE",
+      "PRODUCT_IMPURITY",
+      "LEACH_EXTRACTION"
+    ],
+    "quality_roles": [
+      "TEST_POPULATION",
+      "TEST_SCALE",
+      "TEST_FEED_GRADE_MIN",
+      "TEST_FEED_GRADE_MAX",
+      "SIZING_MASS_NOT_RECOVERY"
+    ],
+    "quality_scoring": "NO_WEIGHTED_SCORE",
+    "measured_contract_status": "NO_CROSS_PROJECT_MEASURED_CONTRACT_ADOPTED",
+    "historical_compatibility": "Opt-in only; frozen Phase5-9 policies retain their semantics"
+  }
+}

@@ -1,0 +1,632 @@
+{
+  "version": "source-registry-v9-phase8",
+  "sources": [
+    {
+      "key": "ga_aimr",
+      "kind": "arcgis_census",
+      "url": "https://services.ga.gov.au/gis/rest/services/AustraliasIdentifiedMineralResources/MapServer/52",
+      "namespace": "GA_ENO",
+      "id_field": "eno",
+      "name_field": "entity_id",
+      "entity_kind": "DEPOSIT",
+      "where": "1=1"
+    },
+    {
+      "key": "ga_ports",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Maritime_Facilities/MapServer/0",
+      "layer": "port",
+      "where": "1=1",
+      "definition": "GA National Major Ports; straight-line proximity, not route access"
+    },
+    {
+      "key": "mt_weld_2024",
+      "kind": "pdf",
+      "url": "https://wcsecure.weblink.com.au/pdf/LYC/02835257.pdf",
+      "publication_date": "2024-08-05"
+    },
+    {
+      "key": "browns_range_2025",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20250915/pdf/06p6zt0hxtpg01.pdf",
+      "publication_date": "2025-09-15"
+    },
+    {
+      "key": "ga_roads_250k",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Topographic_Base_Map/MapServer/434",
+      "layer": "road",
+      "where": "class IN ('Dual Carriageway','Principal Road','Secondary Road','Minor Road')",
+      "aoi_radius_km": 160,
+      "definition": "GA TOPO250K maintained 2WD road classes; source-anchored 160 km AOI, straight-line geometry proximity; excludes tracks, not route or legal site access"
+    },
+    {
+      "key": "ga_rail_operational",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Foundation_Rail_Infrastructure/MapServer/1",
+      "layer": "rail",
+      "where": "operational_status IN ('Operational','Fully capable of operation.') AND featuresubtype IN (90015,90016)",
+      "aoi_radius_km": 500,
+      "definition": "GA foundation rail infrastructure; operational railway/siding lines only, 500 km project AOI; straight-line geometry proximity, not freight access"
+    },
+    {
+      "key": "ga_power_lines",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Electricity_Infrastructure/MapServer/2",
+      "layer": "power",
+      "where": "capacity_kv >= 66",
+      "aoi_radius_km": 500,
+      "definition": "GA mapped power lines >=66kV, 500 km project AOI; status, grid capacity and connection availability not independently verified"
+    },
+    {
+      "key": "disr_remp_2025",
+      "kind": "xlsx_census",
+      "url": "https://www.industry.gov.au/sites/default/files/2025-12/resources-and-energy-major-projects-2025-data.xlsx",
+      "publication_date": "2025-12",
+      "definition": "Office of the Chief Economist 2025 major projects list, A$50m+; candidate source records only, not a complete REE project census",
+      "publication_date_precision": "month",
+      "timeout_seconds": 100
+    },
+    {
+      "key": "wa_dmpe_ree_2026_table",
+      "kind": "official_table_transcription",
+      "url": "https://www.wa.gov.au/media/159141/download?inline=",
+      "publication_date": "2026-02-01",
+      "publication_date_precision": "month",
+      "source_page": 1,
+      "definition": "Government of Western Australia DMPE February 2026 rare-earth resources table (20 listed projects); versioned transcription of PDF page 1, NOT original PDF bytes or an issuer-level JORC claim."
+    },
+    {
+      "key": "wa_dmpe_ree_2026_pdf",
+      "kind": "pdf",
+      "url": "https://www.wa.gov.au/media/159141/download?inline=",
+      "publication_date": "2026-02-01",
+      "publication_date_precision": "month",
+      "definition": "Official DMPE source PDF; when acquired independently, retain raw bytes for full-source audit."
+    },
+    {
+      "key": "austrade_2026_ree_catalogue",
+      "kind": "official_project_catalogue_transcription",
+      "url": "https://international.austrade.gov.au/content/dam/austrade-assets/international/documents/reports/critical-minerals/australian-critical-minerals-prospectus-march-2026.pdf",
+      "publication_date": "2026-03-01",
+      "publication_date_precision": "month",
+      "source_pages": "printed pp 5 and 31-37",
+      "definition": "Austrade March 2026 investment prospectus: seven REE upstream projects, source-referenced technical/development/commercial statements; official catalogue summary, not original issuer JORC."
+    },
+    {
+      "key": "austrade_2026_prospectus_pdf",
+      "kind": "pdf",
+      "url": "https://international.austrade.gov.au/content/dam/austrade-assets/international/documents/reports/critical-minerals/australian-critical-minerals-prospectus-march-2026.pdf",
+      "publication_date": "2026-03-01",
+      "publication_date_precision": "month",
+      "definition": "Raw government prospectus PDF for source preservation; catalogue remains distinct from original issuer reports."
+    },
+    {
+      "key": "legacy_national_e1_20261029",
+      "kind": "historical_e1_candidates",
+      "url": "https://raw.githubusercontent.com/lleeoo0611-stack/AU_REE/093d724cc25fc319725bf347fc4d8ab196aadaf3/data/source_snapshots/2026-10-29_p2_p3_p4_selected_features.jsonl",
+      "publication_date": "2026-10-29",
+      "definition": "Archived selection of 339 source candidates, 317 official source feature selections plus 22 legacy-only historical rows. Not the complete 1006 national source screening, not the original government API chunk bytes, and not independent Projects.",
+      "upstream_repo": "lleeoo0611-stack/AU_REE",
+      "upstream_commit": "093d724cc25fc319725bf347fc4d8ab196aadaf3",
+      "selection_locator": "data/source_snapshots/2026-10-29_p2_p3_p4_selected_features.jsonl",
+      "original_raw_manifest_sha256": "5057e25f1711232a0057889d413913fd8f4a227cbe42235dc279e98bfbce4dc1",
+      "original_selected_target_count": 339
+    },
+    {
+      "key": "nolans_ar2025",
+      "url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
+      "kind": "pdf",
+      "publication_date": "2025-09",
+      "publication_date_precision": "month"
+    },
+    {
+      "key": "mia_ar2024",
+      "url": "https://announcements.asx.com.au/asxpdf/20240920/pdf/068421026p0kt4.pdf",
+      "kind": "pdf",
+      "publication_date": "2024-09-20"
+    },
+    {
+      "key": "yttria_2025",
+      "url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mdccyq4dppkh.pdf",
+      "kind": "pdf",
+      "publication_date": "2025-07-31"
+    },
+    {
+      "key": "ga_critical",
+      "url": "https://services.ga.gov.au/gis/rest/services/AustralianCriticalMineralsOperatingMinesAndDeposits/MapServer/7",
+      "kind": "arcgis_census",
+      "publication_date": "",
+      "namespace": "GA_CRITICAL_OBJECTID_2025",
+      "id_field": "objectid",
+      "name_field": "projectname",
+      "entity_kind": "DEPOSIT",
+      "commodity_field": "commodities",
+      "commodity_pattern": "rare earth|REE|lanthan",
+      "activity_field": "status",
+      "where": "1=1"
+    },
+    {
+      "key": "ga_power",
+      "url": "https://services.ga.gov.au/gis/rest/services/Electricity_Infrastructure/MapServer/2",
+      "kind": "arcgis_gis",
+      "publication_date": "",
+      "layer": "power",
+      "where": "1=1",
+      "definition": "Complete national mapped power lines, includes all reported voltage/status classes; proximity only"
+    },
+    {
+      "key": "dubbo_scoping2025",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+      "publication_date": "2025-07-11",
+      "definition": "Primary issuer study/report; scoped evidence, not independent approval"
+    },
+    {
+      "key": "jupiter_scoping2026",
+      "kind": "pdf",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+      "publication_date": "2026-10-20",
+      "definition": "Primary issuer study/report; scoped evidence, not independent approval"
+    },
+    {
+      "key": "yangibana_quarter2026",
+      "kind": "pdf",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7814729.pdf?v=63960562204",
+      "publication_date": "2026-10-30",
+      "definition": "Primary issuer study/report; scoped evidence, not independent approval"
+    },
+    {
+      "key": "donald_ar2024",
+      "kind": "pdf",
+      "url": "https://www.astronlimited.com.au/wp-content/uploads/2024/11/Astron_Limited_Annual_Report_2024_ASX-1.pdf",
+      "publication_date": "2024-11",
+      "definition": "Primary issuer study/report; scoped evidence, not independent approval"
+    },
+    {
+      "key": "legacy_national_screen_1006",
+      "kind": "legacy_screen_index",
+      "url": "https://raw.githubusercontent.com/lleeoo0611-stack/AU_REE/093d724cc25fc319725bf347fc4d8ab196aadaf3/inputs/reconstructed_cohort_selection/all_1006_evidence_decisions.csv",
+      "publication_date": "2026-10-29",
+      "definition": "Pinned national 1006-row screening index, not original government raw bytes and not independently verified Projects",
+      "upstream_commit": "093d724cc25fc319725bf347fc4d8ab196aadaf3",
+      "expected_rows": 1006,
+      "upstream_original_sha256": "73223553f09a180d8abc687830c680a98d2f048921338ec8ab52ba2214cb301c",
+      "redaction_rule": "WHOLE_CREDENTIAL_BEARING_REFERENCE_CELL_REMOVED_AFTER_8_DECODE_CHECK",
+      "redacted_cells": [
+        {
+          "candidate_id": "C-cd6c59c62aa7acbfe73e94",
+          "column": "context_excerpt"
+        },
+        {
+          "candidate_id": "C-137e5d7c0dccf189a6b0a1",
+          "column": "context_excerpt"
+        }
+      ]
+    },
+    {
+      "key": "cummins_mre2023",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20230501/pdf/05p7grkh7l8j7v.pdf",
+      "publication_date": "2023-05-01"
+    },
+    {
+      "key": "splinter_presentation2026",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20260420/pdf/06yn1rhry98mw3.pdf",
+      "publication_date": "2026-04-20"
+    },
+    {
+      "key": "north_stanmore_mre2025",
+      "kind": "pdf",
+      "url": "https://victorymetalsaustralia.com/wp-content/uploads/2025/11/02976976.pdf",
+      "publication_date": "2025-08-11"
+    },
+    {
+      "key": "redlings_quarter2025",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
+      "publication_date": "2025-07-31"
+    },
+    {
+      "key": "salazar_mre2024",
+      "kind": "pdf",
+      "url": "https://api.investi.com.au/api/announcements/wc1/ea9172ff-a94.pdf",
+      "publication_date": "2024-10-08"
+    },
+    {
+      "key": "mangaroon_mre2023",
+      "kind": "pdf",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/5449464.pdf?v=63941956896",
+      "publication_date": "2023-11-30"
+    },
+    {
+      "key": "cowalinya_ar2024",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20240930/pdf/068jx9r9284599.pdf",
+      "publication_date": "2024-09-30"
+    },
+    {
+      "key": "tower_quarter2023",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20230808/pdf/05sf46x92l83s0.pdf",
+      "publication_date": "2023-08-08"
+    },
+    {
+      "key": "wa_dmpe_ree2026_original",
+      "kind": "pdf",
+      "url": "https://www.wa.gov.au/media/159141/download?inline=",
+      "publication_date": "2026-02",
+      "definition": "Original government flyer; resource table physical p2; some published grades differ tenfold from issuer originals; not JORC harmonization"
+    },
+    {
+      "key": "brockman_ar2025",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20250930/pdf/06pxy5r49ssw7y.pdf",
+      "publication_date": "2025-09-30",
+      "definition": "Primary Brockman JORC table at physical p17; Y oxide inclusion requires basis review before common resource panel"
+    },
+    {
+      "key": "discovered_a74257c9c2a2cd0a8adf6a42ae48e471b22849bc206573d10fbccc8204a04b07",
+      "url": "https://asm-au.com/wp-content/uploads/2026/09/ASM-Group-2026-Financial-Report-Final_with-audit-reports-FINAL.pdf",
+      "kind": "pdf"
+    },
+    {
+      "key": "asm_ar2026_page_4",
+      "kind": "pdf_page_extraction",
+      "url": "https://asm-au.com/wp-content/uploads/2026/09/ASM-Group-2026-Financial-Report-Final_with-audit-reports-FINAL.pdf",
+      "publication_date": "2026-09-25",
+      "source_sha256": "4c1bc8edc6d26b0c5eaf16e385c0e95534c071092624e9d14c338d2783002eb7",
+      "physical_page": 4
+    },
+    {
+      "key": "asm_ar2026_page_6",
+      "kind": "pdf_page_extraction",
+      "url": "https://asm-au.com/wp-content/uploads/2026/09/ASM-Group-2026-Financial-Report-Final_with-audit-reports-FINAL.pdf",
+      "publication_date": "2026-09-25",
+      "source_sha256": "4c1bc8edc6d26b0c5eaf16e385c0e95534c071092624e9d14c338d2783002eb7",
+      "physical_page": 6
+    },
+    {
+      "key": "yttria_maiden2024",
+      "kind": "pdf",
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739",
+      "publication_date": "2024-04-16"
+    },
+    {
+      "key": "burracoppin_maiden2023",
+      "kind": "pdf",
+      "url": "https://assets.birdsoftware.io/wp-content/uploads/2023/05/01-06-2023-Burracoppin-Project-96Mt-Mineral-Resource-Estimate.pdf",
+      "publication_date": "2023-06-01"
+    },
+    {
+      "key": "mons_mre2025",
+      "kind": "pdf",
+      "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3ANIM%3A6A1296587/pdf/inline/extremely-highgrade-gallium-and-rare-earths-resource",
+      "publication_date": "2025-11-12"
+    },
+    {
+      "key": "wa_minedex_live",
+      "kind": "government_arcgis",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/0",
+      "national_government": true,
+      "state": "WA",
+      "namespace": "WA_MINDEX_SITE",
+      "id_field": "site_code",
+      "name_field": "site_title",
+      "commodity_fields": [
+        "site_commo",
+        "target_com",
+        "commodity"
+      ],
+      "alias_fields": [
+        "short_name"
+      ],
+      "parent_id_field": "proj_code",
+      "parent_name_field": "proj_title",
+      "where": "1=1",
+      "geological_kind_field": "site_type_"
+    },
+    {
+      "key": "qld_minocc_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/GeoscientificInformation/MiningResources/MapServer/17",
+      "national_government": true,
+      "state": "QLD",
+      "namespace": "QLD_MINOCC_SITE",
+      "id_field": "site_no",
+      "name_field": "occur_name",
+      "commodity_fields": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "where": "1=1",
+      "documented_layer_kind": "OCCURRENCE"
+    },
+    {
+      "key": "tas_mrt_live",
+      "kind": "government_arcgis",
+      "url": "https://data.stategrowth.tas.gov.au/ags/rest/services/MRT/GeoscienceWFS/MapServer/3",
+      "national_government": true,
+      "state": "TAS",
+      "namespace": "TAS_MRT_SITE",
+      "id_field": "DEPOSIT_ID",
+      "name_field": "DEPOSIT_NAME",
+      "commodity_fields": [
+        "COMMODITIES",
+        "DESCRIPTION",
+        "ORE_DESCRIPTION"
+      ],
+      "alias_fields": [
+        "ALIAS"
+      ],
+      "where": "1=1",
+      "geological_kind_field": "DEPOSIT_TYPE"
+    },
+    {
+      "key": "nsw_metindex_live",
+      "kind": "government_wfs",
+      "url": "https://public-gs.geoscience.nsw.gov.au/geoserver/ows",
+      "national_government": true,
+      "state": "NSW",
+      "type_name": "mineral-occurrence:mineral_occurrence",
+      "namespace": "NSW_METINDEX_SITE",
+      "id_field": "occurrence_id",
+      "name_field": "deposit_name",
+      "commodity_fields": [
+        "major_comm",
+        "minor_comm",
+        "ore_min",
+        "gangue_min",
+        "summary_desc"
+      ],
+      "page_size": 1000,
+      "documented_layer_kind": "OCCURRENCE"
+    },
+    {
+      "key": "vic_minsite_live",
+      "kind": "government_wfs",
+      "url": "https://opendata.maps.vic.gov.au/geoserver/wfs",
+      "national_government": true,
+      "state": "VIC",
+      "type_name": "open-data-platform:minsite",
+      "namespace": "VIC_MINSITE_SITE",
+      "id_field": "siteid",
+      "name_field": "mine_name",
+      "commodity_fields": [
+        "pri_comm",
+        "sec_comm",
+        "min_ass",
+        "prod_comm"
+      ],
+      "page_size": 1000
+    },
+    {
+      "key": "nt_modat_live",
+      "kind": "government_wfs",
+      "url": "https://geology.data.nt.gov.au/geoserver/wfs",
+      "national_government": true,
+      "state": "NT",
+      "type_name": "erl:MineralOccurrenceView",
+      "namespace": "NT_MODAT_SITE",
+      "id_field": "identifier",
+      "name_field": "name",
+      "commodity_fields": [
+        "commodity",
+        "representativeCommodity_uri"
+      ],
+      "page_size": 1000,
+      "documented_layer_kind": "OCCURRENCE"
+    },
+    {
+      "key": "sa_mindep_live",
+      "kind": "government_csv",
+      "url": "https://dem-sdp.s3-ap-southeast-2.amazonaws.com/sarig_md_details_exp.csv",
+      "national_government": true,
+      "state": "SA",
+      "namespace": "SA_MINDEP_SITE",
+      "id_field": "MINERAL_DEPOSIT_NO",
+      "name_field": "DEPOSIT_NAME",
+      "commodity_fields": [
+        "COMMODITIES",
+        "DEPOSIT_SUMMARY"
+      ],
+      "timeout_seconds": 100,
+      "encoding": "utf-8-sig",
+      "encoding_errors": "backslashreplace",
+      "text_decode_policy": "Invalid UTF8 bytes retained as literal hex escapes, never guessed CP1252 replacements; original CSV bytes immutable",
+      "geological_kind_field": "DEPOSIT_CLASS"
+    },
+    {
+      "key": "sa_developing_live",
+      "kind": "government_wfs",
+      "url": "https://services.sarig.sa.gov.au/vector/south_australia_mining_projects/wfs",
+      "national_government": true,
+      "state": "SA",
+      "namespace": "SA_MINING_PROJECT_SITE_NO",
+      "entity_kind": "PROJECT",
+      "id_field": "SITE_NO",
+      "name_field": "PROJECT_NAME",
+      "commodity_fields": [
+        "COMMODITIES",
+        "PROJECT_DESCRIPTION"
+      ],
+      "type_name": "south_australia_mining_projects:developing_projects___minerals",
+      "wfs_version": "1.1.0",
+      "page_size": 1000
+    },
+    {
+      "key": "sa_major_live",
+      "kind": "government_wfs",
+      "url": "https://services.sarig.sa.gov.au/vector/south_australia_mining_projects/wfs",
+      "national_government": true,
+      "state": "SA",
+      "namespace": "SA_MINING_PROJECT_SITE_NO",
+      "entity_kind": "PROJECT",
+      "id_field": "SITE_NO",
+      "name_field": "PROJECT_NAME",
+      "commodity_fields": [
+        "COMMODITIES",
+        "PROJECT_DESCRIPTION"
+      ],
+      "type_name": "south_australia_mining_projects:major_mines___minerals",
+      "wfs_version": "1.1.0",
+      "page_size": 1000
+    },
+    {
+      "key": "goschen_mre2025",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20251015/pdf/06qkvvhp20rxx2.pdf",
+      "publication_date": "2025-10-15"
+    },
+    {
+      "key": "lyons_mre2023",
+      "kind": "pdf",
+      "url": "https://wcsecure.weblink.com.au/pdf/LNR/02729838.pdf",
+      "publication_date": "2023-10-25"
+    },
+    {
+      "key": "circle_met2022",
+      "kind": "pdf",
+      "url": "https://assets.ctfassets.net/tpcqj4q45rlx/1ykWDllcGKP5Hm40Js55vV/064c5054260f786d59c023c5a8b60ab8/MEK_Positive_Rare_Earth_Metallurgical_Testwork_and_Forward_Plan.pdf",
+      "publication_date": "2022-07-25"
+    },
+    {
+      "key": "phase6_jupiter_brothers_page2",
+      "kind": "pdf_page_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+      "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+      "physical_page": 2
+    },
+    {
+      "key": "fingerboards_project2026",
+      "kind": "html",
+      "url": "https://www.gippslandcriticalminerals.com/project-overview/"
+    },
+    {
+      "key": "narraburra_ar2023",
+      "kind": "pdf",
+      "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/g/ASX_GRL_2023.pdf",
+      "publication_date_precision": "month",
+      "hosting_role": "Original issuer annual report served by AnnualReports mirror",
+      "publication_date": "2023-09"
+    },
+    {
+      "key": "iluka_vhm2026",
+      "kind": "pdf",
+      "url": "https://www.iluka.com/media/c33deodq/2jul26-rare-earth-concentrate-supply-agreement-with-vhm-ltd.pdf",
+      "publication_date": "2026-07-02"
+    },
+    {
+      "key": "goschen_iluka2026",
+      "kind": "pdf",
+      "url": "https://wcsecure.weblink.com.au/pdf/VHM/03106645.pdf",
+      "publication_date": "2026-07-02"
+    },
+    {
+      "key": "koppamurra_pfs2026",
+      "kind": "pdf",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7600073.pdf?v=63949564086",
+      "publication_date": "2026-06-25"
+    },
+    {
+      "key": "qld_minocc_status_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/GeoscientificInformation/MiningResources/MapServer/12",
+      "national_government": true,
+      "state": "QLD",
+      "namespace": "QLD_MINOCC_SITE",
+      "id_field": "site_no",
+      "name_field": "occur_name",
+      "commodity_fields": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "where": "1=1",
+      "geological_kind_field": "site_type",
+      "inventory_scope": "All MINOCC mines and mineral occurrences by status; overlaps layer17; count distinct namespace/site_no"
+    },
+    {
+      "key": "yangibana_ar2026",
+      "kind": "pdf",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7763164.pdf?v=63957978608",
+      "publication_date": "2026-09-30"
+    },
+    {
+      "key": "kalkaroo_ree2020",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20200219/pdf/44f780ww5n6tbj.pdf",
+      "publication_date": "2020-02-19"
+    },
+    {
+      "key": "wudinna_mre2026",
+      "kind": "html",
+      "url": "https://www.londonstockexchange.com/en/news/article/COBR/maiden-rare-earth-mineral-resource-estimate/637e-cb-eb-9d-8e-465a87",
+      "publication_date": "2026-10-26",
+      "failed_primary_url": "https://investors.cobraplc.com/announcements/VQ0lGG-cobra-resources-plc-maiden-rare-earth-mineral-resource-estimate",
+      "fallback_reason": "Issuer HTTP 429 after three transient retries; same primary RNS 4065A from London Stock Exchange",
+      "text_contract": "LSE_ARTICLE_BODY_JS_STRING_V1"
+    },
+    {
+      "key": "qld_epm_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Economy/CurrentQldResourceAuthorities/MapServer/40",
+      "national_government": true,
+      "state": "QLD",
+      "namespace": "QLD_RESOURCE_AUTHORITY",
+      "id_field": "permitid",
+      "name_field": "displayname",
+      "commodity_fields": [
+        "permitminerals"
+      ],
+      "entity_kind": "TENEMENT",
+      "where": "1=1",
+      "inventory_scope": "Complete official EPM inventory; REE designation is permit commodity, not Project identity",
+      "timeout_seconds": 80,
+      "record_filter": "ALL_TENURE_RECORDS"
+    },
+    {
+      "key": "qld_mdl_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Economy/CurrentQldResourceAuthorities/MapServer/80",
+      "national_government": true,
+      "state": "QLD",
+      "namespace": "QLD_RESOURCE_AUTHORITY",
+      "id_field": "permitid",
+      "name_field": "displayname",
+      "commodity_fields": [
+        "permitminerals"
+      ],
+      "entity_kind": "TENEMENT",
+      "where": "1=1",
+      "inventory_scope": "Complete official MDL inventory; REE designation is permit commodity, not Project identity",
+      "timeout_seconds": 80,
+      "record_filter": "ALL_TENURE_RECORDS"
+    },
+    {
+      "key": "qld_ml_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Economy/CurrentQldResourceAuthorities/MapServer/120",
+      "national_government": true,
+      "state": "QLD",
+      "namespace": "QLD_RESOURCE_AUTHORITY",
+      "id_field": "permitid",
+      "name_field": "displayname",
+      "commodity_fields": [
+        "permitminerals"
+      ],
+      "entity_kind": "TENEMENT",
+      "where": "1=1",
+      "inventory_scope": "Complete official ML inventory; REE designation is permit commodity, not Project identity",
+      "timeout_seconds": 80,
+      "record_filter": "ALL_TENURE_RECORDS"
+    },
+    {
+      "key": "nolans_quarter202610",
+      "kind": "pdf",
+      "url": "https://cdn.financialreports.eu/financialreports/media/filings/64425/2026/RNS/64425_rns_2026-10-30_04faeca9-e33e-4783-b0c9-9583aebf843a.pdf",
+      "publication_date": "2026-10-30",
+      "definition": "Issuer-authored ASX original PDF retained from public filing mirror; host is not ASX; cross-check issuer title, date, authorisation and project scope"
+    }
+  ]
+}

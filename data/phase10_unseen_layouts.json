@@ -1,0 +1,76 @@
+[
+  {
+    "source_key": "burracoppin_maiden2023",
+    "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+    "physical_page": 2,
+    "candidate_rows": 1,
+    "validated_rows": 0,
+    "rows": [
+      {
+        "values": {
+          "ore_mt": 62751000.0,
+          "grade": 96008000.0
+        },
+        "issues": [
+          "REO_DEFINITION_NOT_LOCATED",
+          "TABLE_COLUMN_OR_UNIT_UNRESOLVED"
+        ],
+        "scope": "Table 2. Burracoppin Inferred Mineral Resource Estimate of Halloysite and Kaolinite bearing material using an ISO-B cut-off of 70"
+      }
+    ]
+  },
+  {
+    "source_key": "brockman_ar2025",
+    "source_sha256": "4b622bb6796fc414c55a0c81f89e4186468a95bca99076969d3989335f2713b2",
+    "physical_page": 17,
+    "candidate_rows": 4,
+    "validated_rows": 0,
+    "rows": [
+      {
+        "values": {
+          "ore_mt": 29.93,
+          "grade": 0.93
+        },
+        "issues": [
+          "REO_DEFINITION_NOT_LOCATED",
+          "TABLE_COLUMN_OR_UNIT_UNRESOLVED"
+        ],
+        "scope": "Table 2: Total Yangibana Project JORC Code (2012) Mineral Resource October 2023"
+      },
+      {
+        "values": {
+          "ore_mt": 6.74,
+          "grade": 5465.0
+        },
+        "issues": [
+          "REO_DEFINITION_NOT_LOCATED",
+          "TABLE_COLUMN_OR_UNIT_UNRESOLVED"
+        ],
+        "scope": "Table 3: Updated JORC Code (2012) Yangibana Project Mineral Resources. Nb2O5"
+      },
+      {
+        "values": {
+          "ore_mt": 41.6,
+          "grade": 0.2
+        },
+        "issues": [
+          "REO_DEFINITION_NOT_LOCATED",
+          "TABLE_COLUMN_OR_UNIT_UNRESOLVED"
+        ],
+        "scope": "Table 4: Updated JORC Code (2012) Brockman Project Mineral Resources. Lower cut-offuse        grade is 700 ppm Nb2O5."
+      },
+      {
+        "values": {
+          "ore_mt": 20.93,
+          "grade": 0.9
+        },
+        "issues": [
+          "REO_DEFINITION_NOT_LOCATED",
+          "RESERVE_SUBSET_NOT_RESOURCE",
+          "TABLE_COLUMN_OR_UNIT_UNRESOLVED"
+        ],
+        "scope": "Table 5: Total Yangibana Project\u2019s Ore Reserves by deposit (January 2023)"
+      }
+    ]
+  }
+]

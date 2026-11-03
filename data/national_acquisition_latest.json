@@ -1,0 +1,105 @@
+[
+  {
+    "key": "wa_minedex_live",
+    "status": "ADDED",
+    "sha256": "f3a419502e1c5fb30cb918ba4fb82912ea93ebf7b974214f27bbf4d213b14439"
+  },
+  {
+    "key": "qld_minocc_live",
+    "status": "ADDED",
+    "sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4"
+  },
+  {
+    "key": "tas_mrt_live",
+    "status": "ADDED",
+    "sha256": "54e30333740532118fdb742f2ada2e1faa3da34bf611646e0ef3d39eb43176ab"
+  },
+  {
+    "key": "nsw_metindex_live",
+    "status": "ADDED",
+    "sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2"
+  },
+  {
+    "key": "vic_minsite_live",
+    "status": "ADDED",
+    "sha256": "71a08e4ba1b92724dbbdf8c0b592ca191a90031457868ee9448be15f2fb7deb6"
+  },
+  {
+    "key": "nt_modat_live",
+    "status": "UNCHANGED",
+    "sha256": "a1a15d7d639aac6c79e2b4b6c37088824ccab4bcfa7750cc2519e3f993697974",
+    "native_changes": {
+      "previous_sha256": "a1a15d7d639aac6c79e2b4b6c37088824ccab4bcfa7750cc2519e3f993697974",
+      "current_native_id_groups": 2105,
+      "added_native_id_groups": 0,
+      "removed_native_id_groups": 0,
+      "changed_native_id_groups": 0,
+      "unchanged_native_id_groups": 2105,
+      "unit": "SOURCE_NATIVE_ID_GROUPS_NOT_PROJECTS"
+    },
+    "original_responses": [
+      {
+        "sha256": "028bb7f2ff1bc7c5bf6fba92dcbf42b9ccfb352cd1237a1dca64973cc3738c39",
+        "path": "data/snapshots/028bb7f2ff1bc7c5bf6fba92dcbf42b9ccfb352cd1237a1dca64973cc3738c39.response"
+      },
+      {
+        "sha256": "4fb843b0fbe027c107208e679746c5ca6fcbd648ec395ac9fd29d489596e3ade",
+        "path": "data/snapshots/4fb843b0fbe027c107208e679746c5ca6fcbd648ec395ac9fd29d489596e3ade.response"
+      },
+      {
+        "sha256": "5d35e6efb3746c155ff3cf9485355f2fb3b6b857a376aa7c4438415348f52648",
+        "path": "data/snapshots/5d35e6efb3746c155ff3cf9485355f2fb3b6b857a376aa7c4438415348f52648.response"
+      },
+      {
+        "sha256": "369dddfcb8892e0573a0d49d16e9243aeec1802da59a7272d66082d88c8bbcc4",
+        "path": "data/snapshots/369dddfcb8892e0573a0d49d16e9243aeec1802da59a7272d66082d88c8bbcc4.response"
+      }
+    ],
+    "first_capture": {
+      "key": "nt_modat_live",
+      "status": "ADDED",
+      "sha256": "a1a15d7d639aac6c79e2b4b6c37088824ccab4bcfa7750cc2519e3f993697974"
+    }
+  },
+  {
+    "key": "sa_mindep_live",
+    "status": "ADDED",
+    "sha256": "5b604c62d614a5c5a3937d99d06fd59b4260489af5d1900b60b23cc7739940d7"
+  },
+  {
+    "key": "sa_developing_live",
+    "status": "ADDED",
+    "sha256": "dda7bf8f8e2d4d3e8adaf11e0ccc12e777026a30746f319549ff91fdd2a394bf",
+    "previous_attempt": {
+      "key": "sa_developing_live",
+      "status": "UNAVAILABLE",
+      "reason": "Expecting value: line 1 column 1 (char 0)"
+    },
+    "subsequent_update_attempt": {
+      "key": "sa_developing_live",
+      "status": "UNAVAILABLE",
+      "reason": "HTTP Error 502: Bad Gateway"
+    },
+    "retained_last_good_snapshot": true
+  },
+  {
+    "key": "sa_major_live",
+    "status": "ADDED",
+    "sha256": "60a4439018f6b97f700954d767196f49e20ea8de137ab468b24ea57d3c831be3",
+    "previous_attempt": {
+      "key": "sa_major_live",
+      "status": "UNAVAILABLE",
+      "reason": "Expecting value: line 1 column 1 (char 0)"
+    }
+  },
+  {
+    "key": "ga_aimr",
+    "status": "UNCHANGED",
+    "sha256": "41347cefdf736db20dde9184f0f0a84e0d75b5a5f2a8ab93dd526f163d9ce4c9"
+  },
+  {
+    "key": "ga_critical",
+    "status": "ADDED",
+    "sha256": "4dccc56d364a22c8fd2920d8db7e8179171b26a838199044b59a16e5bb6747f3"
+  }
+]

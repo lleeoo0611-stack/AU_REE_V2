@@ -1,0 +1,280 @@
+{
+  "version": "discovery-v5-registry-derived",
+  "max_documents_per_seed": 3,
+  "seeds": [
+    {
+      "key": "astron_reports",
+      "url": "https://astronlimited.com.au/investor-centre/investor-resources/",
+      "allowed_hosts": [
+        "www.astronlimited.com.au",
+        "astronlimited.com.au"
+      ]
+    },
+    {
+      "key": "asm_reports",
+      "url": "https://asm-au.com/investors/asx-announcements/",
+      "allowed_hosts": [
+        "asm-au.com",
+        "announcements.asx.com.au",
+        "wcsecure.weblink.com.au"
+      ]
+    },
+    {
+      "key": "ga_critical",
+      "url": "https://www.ga.gov.au/scientific-topics/minerals/critical-minerals",
+      "allowed_hosts": [
+        "www.ga.gov.au",
+        "d28rz98at9flks.cloudfront.net"
+      ]
+    },
+    {
+      "key": "asm_company_reports",
+      "url": "https://asm-au.com/investors/company-reports/",
+      "allowed_hosts": [
+        "asm-au.com",
+        "announcements.asx.com.au",
+        "wcsecure.weblink.com.au"
+      ]
+    },
+    {
+      "key": "marquee_redlings",
+      "url": "https://www.marqueeresources.com.au/redlings-rare-earths-project",
+      "allowed_hosts": [
+        "www.marqueeresources.com.au",
+        "api.investi.com.au",
+        "data-api.marketindex.com.au",
+        "cdn-api.markitdigital.com"
+      ],
+      "pattern": "\\.pdf|/pdf/inline/|/api/announcements/",
+      "keywords": [
+        "redlings",
+        "resource"
+      ]
+    },
+    {
+      "key": "krakatoa_tower",
+      "url": "https://ktaresources.com/projects/mt-clere/",
+      "allowed_hosts": [
+        "ktaresources.com",
+        "announcements.asx.com.au",
+        "www.asx.com.au"
+      ],
+      "keywords": [
+        "tower",
+        "clere",
+        "resource"
+      ]
+    },
+    {
+      "key": "dreadnought_search",
+      "url": "https://dreadnoughtresources.com.au/",
+      "allowed_hosts": [
+        "dreadnoughtresources.com.au",
+        "hermes-cdn.investorhub.com",
+        "announcements.asx.com.au"
+      ],
+      "search_url_template": "https://dreadnoughtresources.com.au/?s={query}",
+      "queries": [
+        "Yin",
+        "Mangaroon"
+      ],
+      "keywords": [
+        "yin",
+        "mangaroon"
+      ]
+    },
+    {
+      "key": "vhm_goschen",
+      "url": "https://www.vhmltd.com.au/projects/the-goschen-project/",
+      "allowed_hosts": [
+        "www.vhmltd.com.au",
+        "vhmltd.com.au",
+        "announcements.asx.com.au",
+        "wcsecure.weblink.com.au"
+      ],
+      "keywords": [
+        "resource",
+        "goschen",
+        "licence",
+        "work plan"
+      ]
+    },
+    {
+      "key": "lanthanein_reports",
+      "url": "https://lanthanein.com/financial-and-quarterly-reports/",
+      "allowed_hosts": [
+        "lanthanein.com",
+        "wcsecure.weblink.com.au",
+        "announcements.asx.com.au"
+      ],
+      "keywords": [
+        "report",
+        "lyons"
+      ]
+    },
+    {
+      "key": "gcm_fingerboards",
+      "url": "https://www.gippslandcriticalminerals.com/project-overview/",
+      "allowed_hosts": [
+        "www.gippslandcriticalminerals.com",
+        "www.planning.vic.gov.au"
+      ],
+      "keywords": [
+        "fingerboards",
+        "project",
+        "study"
+      ]
+    },
+    {
+      "key": "meeka_search",
+      "url": "https://meekametals.com.au/",
+      "allowed_hosts": [
+        "meekametals.com.au",
+        "assets.ctfassets.net",
+        "api.investi.com.au",
+        "announcements.asx.com.au"
+      ],
+      "keywords": [
+        "circle",
+        "rare earth"
+      ]
+    },
+    {
+      "key": "hastings_current",
+      "url": "https://hastingstechmetals.com/announcements",
+      "allowed_hosts": [
+        "hastingstechmetals.com",
+        "hermes-cdn.investorhub.com"
+      ],
+      "keywords": [
+        "Annual Report",
+        "Quarterly"
+      ],
+      "detail_pattern": "/announcements/[^/?]+"
+    },
+    {
+      "key": "cobra_current",
+      "url": "https://investors.cobraplc.com/announcements",
+      "allowed_hosts": [
+        "investors.cobraplc.com",
+        "hermes-cdn.investorhub.com"
+      ],
+      "keywords": [
+        "Mineral Resource",
+        "Technical",
+        "Quarterly"
+      ],
+      "detail_pattern": "/announcements/[^/?]+"
+    },
+    {
+      "key": "arafura_current",
+      "url": "https://www.arultd.com/investor/asx-announcements/asx-announcements-2026/",
+      "allowed_hosts": [
+        "www.arultd.com",
+        "announcements.asx.com.au",
+        "wcsecure.weblink.com.au"
+      ],
+      "keywords": [
+        "quarter",
+        "financ",
+        "offtake"
+      ]
+    },
+    {
+      "key": "critica_current",
+      "url": "https://www.critica.com.au/asx-announcements/",
+      "allowed_hosts": [
+        "www.critica.com.au",
+        "critica.com.au",
+        "announcements.asx.com.au",
+        "api.investi.com.au"
+      ],
+      "keywords": [
+        "quarter",
+        "financ",
+        "scoping"
+      ]
+    },
+    {
+      "key": "astron_current",
+      "url": "https://astronlimited.com.au/investor-centre/asx-announcements/",
+      "allowed_hosts": [
+        "astronlimited.com.au",
+        "announcements.asx.com.au"
+      ],
+      "keywords": [
+        "quarter",
+        "annual",
+        "donald"
+      ]
+    },
+    {
+      "key": "vhm_current",
+      "url": "https://www.vhmltd.com.au/investors/asx-announcements/",
+      "allowed_hosts": [
+        "www.vhmltd.com.au",
+        "vhmltd.com.au",
+        "announcements.asx.com.au",
+        "wcsecure.weblink.com.au"
+      ],
+      "keywords": [
+        "quarter",
+        "financ",
+        "goschen"
+      ]
+    },
+    {
+      "key": "ar3_issuer",
+      "url": "https://ar3.com.au/announcements",
+      "allowed_hosts": [
+        "ar3.com.au",
+        "hermes-cdn.investorhub.com"
+      ],
+      "keywords": [
+        "Koppamurra",
+        "pilot",
+        "quarter",
+        "metallurg",
+        "resource"
+      ],
+      "detail_pattern": "/announcements/[^/?]+",
+      "pattern": "\\.pdf(?:\\?|$)",
+      "project_id": "AU-49b538453133bd968e8d"
+    },
+    {
+      "key": "ar3_pilot_detail",
+      "url": "https://ar3.com.au/announcements/466lpl-pilot-plant-moves-to-mixed-rare-earth-hydroxide-production",
+      "allowed_hosts": [
+        "ar3.com.au",
+        "hermes-cdn.investorhub.com"
+      ],
+      "pattern": "\\.pdf(?:\\?|$)"
+    },
+    {
+      "key": "ar3_quarter_detail",
+      "url": "https://ar3.com.au/announcements/d6LALL-quarterly-activities-appendix-5b-cash-flow-report",
+      "allowed_hosts": [
+        "ar3.com.au",
+        "hermes-cdn.investorhub.com"
+      ],
+      "pattern": "\\.pdf(?:\\?|$)",
+      "fallback_urls": [
+        "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7813831.pdf?v=63960528980"
+      ]
+    },
+    {
+      "key": "asra_primary_met",
+      "url": "https://wcsecure.weblink.com.au/pdf/ASR/02790601.pdf",
+      "allowed_hosts": [
+        "wcsecure.weblink.com.au",
+        "www.aspecthuntley.com.au"
+      ],
+      "project_id": "AU-ee5ca893d12883df35f1",
+      "fallback_urls": [
+        "https://www.aspecthuntley.com.au/asxdata/20240402/pdf/02790601.pdf"
+      ]
+    }
+  ],
+  "max_pages_per_seed": 3,
+  "registry_tasks": true
+}
