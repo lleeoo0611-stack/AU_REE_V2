@@ -273,8 +273,38 @@
       "fallback_urls": [
         "https://www.aspecthuntley.com.au/asxdata/20240402/pdf/02790601.pdf"
       ]
+    },
+    {
+      "key": "rarex_cummins_scoping",
+      "url": "https://rarex.com.au/announcements/4396391",
+      "allowed_hosts": [
+        "rarex.com.au",
+        "hermes-cdn.investorhub.com"
+      ],
+      "keywords": [
+        "Scoping",
+        "Cummins"
+      ],
+      "project_id": "AU-9b667066e6eb66753005",
+      "publication_date": "2023-08-22"
+    },
+    {
+      "key": "victory_north_stanmore",
+      "url": "https://investors.victorymetalsaustralia.com/announcements/vvn2Wa-quarterly-activities-appendix-5b-cash-flow-report",
+      "allowed_hosts": [
+        "investors.victorymetalsaustralia.com",
+        "hermes-cdn.investorhub.com"
+      ],
+      "keywords": [
+        "Announcement PDF",
+        "PFS",
+        "North Stanmore"
+      ],
+      "project_id": "AU-216d0983f6892f9b58f9",
+      "publication_date": "2026-10-30"
     }
   ],
   "max_pages_per_seed": 3,
-  "registry_tasks": true
+  "registry_tasks": true,
+  "gap_priority_version": "evidence-yield-v1"
 }

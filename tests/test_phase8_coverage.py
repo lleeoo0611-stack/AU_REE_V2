@@ -6,7 +6,7 @@ import unittest
 import uuid
 from pathlib import Path
 from au_ree_v2.acquisition import select_snapshots
-from au_ree_v2.evidence import html_text, ingest_sources, ingest_claims, ingest_events, resource_values, validate_pages
+from au_ree_v2.evidence import html_text, ingest_sources, ingest_claims, ingest_events, resource_values, validate_pages, load_claims
 from au_ree_v2.store import connect, digest, logical_dump
 from au_ree_v2.hierarchy import build
 from au_ree_v2.resolution import resolve as identity
@@ -25,10 +25,12 @@ class Phase8EvidenceTests(unittest.TestCase):
         current=select_snapshots(ROOT,'2026-11-03')
         cls.snaps=baseline+[s for s in current if s['key'] in ('yangibana_ar2026','wudinna_mre2026','kalkaroo_ree2020','nolans_quarter202610')]
         cls.policy=json.loads((ROOT/'config/evidence_policy.json').read_text())
+        config=json.loads((ROOT/'results/phase8-2026-11-03/configuration.json').read_text())
+        cls.claims=load_claims(ROOT,config['claims_sha256'])[0]
         ingest_sources(cls.db,ROOT,cls.snaps)
         cls.original={r['entity_id']:dict(r) for r in cls.db.execute('SELECT * FROM entities')}
-        ingest_claims(cls.db,ROOT,cls.snaps,'2026-11-03',conflict_selection=True)
-        ingest_events(cls.db,ROOT,cls.snaps,'2026-11-03');build(cls.db,cls.snaps)
+        ingest_claims(cls.db,ROOT,cls.snaps,'2026-11-03',conflict_selection=True,claims_data=cls.claims)
+        ingest_events(cls.db,ROOT,cls.snaps,'2026-11-03',claims_data=cls.claims);build(cls.db,cls.snaps)
         cls.resources=resource_values(cls.db,'2026-11-03',{s['sha256'] for s in cls.snaps},strict=True)
         cls.identity=identity(cls.db,ROOT,cls.snaps,'2026-11-03',cls.policy['identity_rule_version'])
         from au_ree_v2.studies import ingest
@@ -106,8 +108,8 @@ class Phase8EvidenceTests(unittest.TestCase):
 
     def test_ingestion_is_idempotent(self):
         before=digest(logical_dump(self.db))
-        ingest_claims(self.db,ROOT,self.snaps,'2026-11-03',conflict_selection=True)
-        ingest_events(self.db,ROOT,self.snaps,'2026-11-03')
+        ingest_claims(self.db,ROOT,self.snaps,'2026-11-03',conflict_selection=True,claims_data=self.claims)
+        ingest_events(self.db,ROOT,self.snaps,'2026-11-03',claims_data=self.claims)
         self.assertEqual(before,digest(logical_dump(self.db)))
 
 

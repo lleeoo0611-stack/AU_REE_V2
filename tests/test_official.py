@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 from au_ree_v2.acquisition import select_snapshots
-from au_ree_v2.evidence import ingest_sources, ingest_claims, resource_values
+from au_ree_v2.evidence import ingest_sources, ingest_claims, resource_values, load_claims
 from au_ree_v2.official import ingest_official_table, official_inventory, exact_deposit_candidates, domain_evidence_coverage
 from au_ree_v2.store import connect, digest, logical_dump
 
@@ -31,7 +31,11 @@ class OfficialSourceTests(unittest.TestCase):
                 before=digest(logical_dump(db))
                 ingest_sources(db,ROOT,snap)
                 self.assertEqual(before,digest(logical_dump(db)))
-                ingest_claims(db,ROOT,snap,CUTOFF)
+                # The original two-case government-inventory regression must
+                # not pick up later transcriptions of those same source PDFs.
+                config=json.loads((ROOT/'results/phase2-2026-11-02/configuration.json').read_text())
+                claims=load_claims(ROOT,config['claims_sha256'])[0]
+                ingest_claims(db,ROOT,snap,CUTOFF,claims_data=claims)
                 resources=resource_values(db,CUTOFF,{s["sha256"] for s in snap})
                 self.assertEqual(2,len(resources))
                 self.assertEqual([70.5,4389],sorted(x["contained_treo_kt"] for x in resources.values()))

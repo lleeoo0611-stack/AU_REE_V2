@@ -35,6 +35,11 @@ def search_tasks(root, registry, diagnostics=None):
     if diagnostics is None:return tasks
     import csv
     with Path(diagnostics).open(encoding='utf-8',newline='') as stream:gaps=list(csv.DictReader(stream))
+    coverage={}
+    shared_sources={}
+    for g in gaps:
+        coverage.setdefault(g['project_id'],{})[g['criterion']]=g['status']=='VALID_SCORABLE_EVIDENCE'
+        for sha in json.loads(g['source_shas']):shared_sources.setdefault(sha,set()).add((g['project_id'],g['criterion']))
     prior=Path(root)/'data/discovery_latest.json'
     failures=json.loads(prior.read_text()).get('sources',[]) if prior.exists() else []
     versions={s.get('source_sha256') for s in manifest if s['kind']=='document_extraction'}
@@ -47,11 +52,27 @@ def search_tasks(root, registry, diagnostics=None):
         docs=sorted({s['sha256']:s for s in docs}.values(),key=lambda s:(s['sha256'] in versions,s['key']))
         score={'Resource':90,'Strategic':80,'Technical':85,'Commercial':75,'Infrastructure':65,'Development':70}.get(g['domain'],60)
         score+=10 if g['raw_evidence']=='0' else 0
+        components=None
+        if registry.get('gap_priority_version')=='evidence-yield-v1':
+            # These are transparent search-budget heuristics, not confidence,
+            # geological quality, admission or probabilities of successful yield.
+            unparsed=sum(s['sha256'] not in versions for s in docs)
+            scope=coverage.get(g['project_id'],{})
+            joint=bool(scope.get('R1') and g['criterion'] in ('S1','D1','TC1','TC2','C1','I1','I2','I3','I4'))
+            prior_failures=sum(f.get('seed_key') in t['seed_keys'] and f['status']=='UNAVAILABLE' for f in failures)
+            reuse=len(set().union(*(shared_sources.get(s['sha256'],set()) for s in docs))) if docs else 0
+            components=dict(domain_gap=score,unparsed_original=25*min(unparsed,2),
+                potential_resource_panel_gain=30*int(joint),shared_source_gaps=2*min(reuse,10),
+                registered_primary_document=10*int(bool(docs)),search_endpoint=5*int(bool(t['seed_keys'])),
+                repeated_failure_cost=-5*min(prior_failures,3))
+            score=sum(components.values())
         jobs.append(dict(t,domain=g['domain'],criterion=g['criterion'],gap_state=g['status'],
             existing_evidence_shas=shas,selection_reason=g['selection_reason'],extraction_failures=json.loads(g['exclusion_reasons']),
             prior_search_failures=[f for f in failures if f.get('seed_key') in t['seed_keys'] and f['status']=='UNAVAILABLE'],
             expected_document_types={'Resource':['JORC_RESOURCE'],'Technical':['METALLURGICAL','DFS','PFS'],'Commercial':['FINANCING','OFFTAKE','QUARTERLY']}.get(g['domain'],['DATED_PRIMARY_DOCUMENT']),
-            priority=score,priority_basis='DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION',
+            priority=score,priority_basis='EVIDENCE_YIELD_HEURISTIC_NOT_PREDICTED_SUCCESS_OR_FORMAL_ADMISSION' if components else 'DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION',
+            **({'priority_components':components,'cost_model':'EXISTING_BYTES_BEFORE_NETWORK;FAILURES_PENALIZED_NOT_PERMANENTLY_BLOCKED',
+                'potential_joint_sample_gain':int(joint),'unparsed_originals':unparsed} if components else {}),
             queries=[a+' '+g['domain']+' '+g['criterion'] for a in t['aliases']],
             reusable_documents=[dict(key=s['key'],url=s['url'],sha256=s['sha256'],publication_date=s.get('publication_date')) for s in docs]))
     return sorted(jobs,key=lambda t:(-t['priority'],t['project_id'],t['criterion']))

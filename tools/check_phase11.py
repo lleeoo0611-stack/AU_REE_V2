@@ -25,7 +25,7 @@ def verify(before,after,reference=False):
             # every numerical scientific output must still match exactly.
             if {k:v for k,v in x.items() if k!='R_version'}!={k:v for k,v in y.items() if k!='R_version'}:
                 raise ValueError('Runtime method contract differs: '+str(relative))
-        elif reference and f.name in ('matrix.csv','ranking.csv','ahp_audit.csv'):
+        elif reference and f.name in ('matrix.csv','ranking.csv','ahp_audit.csv','criterion_contributions.csv','evidence_cohort_sensitivity.csv'):
             # Reference portability uses the unchanged historical point-science
             # comparison. Same-environment replay above/below remains exact.
             # Rank and every stochastic statistic are always exact, in both modes.
@@ -40,15 +40,21 @@ def verify(before,after,reference=False):
                     # Only computed matrix scores, fixed-method scores and AHP
                     # diagnostics may use the pre-existing point comparison.
                     allowed=(f.name=='matrix.csv' and (key.endswith(('_alt','_lower','_upper')) or key in ('R1','R2','S1','T1','TC1','TC2','D1','C1','I1','I2','I3','I4'))) or (f.name=='ranking.csv' and key in ('saw','promethee','topsis')) or (f.name=='ahp_audit.csv' and key=='CR')
+                    # New Phase12 deterministic decompositions use the same
+                    # static point-science policy. No rank, count, weight or
+                    # simulation field acquires a numerical tolerance.
+                    allowed=allowed or (f.name=='criterion_contributions.csv' and key in ('criterion_score','saw_contribution','promethee_net_flow_contribution')) or (f.name=='evidence_cohort_sensitivity.csv' and key in ('broad_shared_score','common_shared_score','cohort_reference_score_change','common_target_score'))
                     if not allowed or not equivalent(left[key],right[key]):raise ValueError('Reference scientific field differs: '+str(relative)+':'+key)
                     platform_differences.append(dict(file=relative.as_posix(),row=index,column=key,reference=left[key],rebuilt=right[key],absolute_difference=abs(float(left[key])-float(right[key]))))
         elif csv_bytes(f)!=csv_bytes(b/relative):
             raise ValueError('Exact scientific replay differs: '+str(relative))
         checked.append(str(relative))
     if not checked:raise ValueError('No panel outputs')
-    for name in ('technical_comparability.csv','commercial_project_coverage.csv','aim_c_technical_features.csv','formal_gate_compatibility.csv'):
+    evidence=['technical_comparability.csv','commercial_project_coverage.csv','aim_c_technical_features.csv','formal_gate_compatibility.csv']
+    if (a/'cohort_missingness_description.csv').exists():evidence+=['cohort_missingness_description.csv','cohort_coverage.csv']
+    for name in evidence:
         if csv_bytes(a/name)!=csv_bytes(b/name):raise ValueError('Evidence export differs: '+name)
-    return dict(status='REFERENCE_POINT_EQUIVALENT_RANKS_AND_MONTE_CARLO_EXACT' if reference else 'EXACT',panel_csv_files=len(checked),evidence_exports=4,numeric_tolerance='Unchanged check_replay point tolerance1e-12; ranks/stochastic0' if reference else 0,platform_differences=platform_differences,
+    return dict(status='REFERENCE_POINT_EQUIVALENT_RANKS_AND_MONTE_CARLO_EXACT' if reference else 'EXACT',panel_csv_files=len(checked),evidence_exports=len(evidence),numeric_tolerance='Unchanged check_replay point tolerance1e-12; ranks/stochastic0' if reference else 0,platform_differences=platform_differences,
                 runtime_exception='R_version platform string and CSV CRLF/LF only; all values/RNG settings exact',before=str(a),after=str(b))
 
 

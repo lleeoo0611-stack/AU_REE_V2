@@ -23,7 +23,12 @@ def compare_runs(before, after):
     def read(folder,name):
         path=folder/name
         if not path.exists():return None
-        with path.open(encoding='utf-8-sig',newline='') as stream:return list(csv.DictReader(stream))
+        # Source-bound diagnostic cells can contain many scoped disclosures.
+        # Keep a bounded reader limit and restore the caller's CSV contract.
+        previous=csv.field_size_limit(16*1024*1024)
+        try:
+            with path.open(encoding='utf-8-sig',newline='') as stream:return list(csv.DictReader(stream))
+        finally:csv.field_size_limit(previous)
     def measures(folder):
         result={}
         for key,name in [('unresolved_pairs','unresolved_identity_pairs.csv'),('primary_scope_gaps','primary_scope_gaps.csv'),('resource_defined','resources.csv')]:
@@ -37,11 +42,14 @@ def compare_runs(before, after):
         result['validated_structured_events']=None
         if database.exists() and snapshots is not None:
             locked={s['key']:s['sha256'] for s in snapshots};selected=set(locked.values());unique=set();events=set()
+            configuration=folder/'configuration.json'
+            validation=None
+            if configuration.exists():validation=json.loads(configuration.read_text(encoding='utf-8'))['research'].get('evidence_resolution',{}).get('document_pipeline',{}).get('validation_version')
             for observation in json.loads(database.read_text(encoding='utf-8'))['observations']:
                 if observation['status']!='AUTO_VALIDATED' or observation['source_sha'] not in selected:continue
                 raw=json.loads(observation['raw'])
                 from .selection import observation_visible
-                if not observation_visible(raw,selected):continue
+                if not observation_visible(raw,selected,validation):continue
                 if raw.get('page_extraction_key') and locked.get(raw['page_extraction_key'])!=raw.get('page_extraction_sha256'):continue
                 if observation['variable']=='commercial_event':events.add(observation['obs_id'])
                 if observation['value'] is None:continue
@@ -242,9 +250,16 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
         dev_codes=selection['policy']['cohorts']['development']['requires'] if selection is not None else ['D1','T1']
         is_dev = all(code in scored for code in dev_codes)
         is_full = is_dev and all(code in scored for code in config['panels']['six_domain'])
+        currentness={}
+        if config.get('research_analysis_version')=='evidence-cohort-v1' and selection is not None:
+            newer=[c for c in selection['inventory'] if c['project_id']==canonical_ids.get(eid,eid) and
+                   c.get('domain')=='Resource' and c.get('basis')=='UNHARMONIZED_SOURCE_REPORTED_TREO' and
+                   c.get('effective_date','')>resource['date']]
+            currentness=dict(resource_currentness='NEWER_UNHARMONIZED_DISCLOSURE_EARLIER_VERIFIED_SCOPE_RETAINED' if newer else 'LATEST_COMPLETENESS_NOT_CERTIFIED',
+                            newer_unharmonized_evidence_ids=canonical(sorted(c['evidence_id'] for c in newer)))
         coverage.append({'entity_id':eid,'canonical_project_id':canonical_ids.get(eid,eid),'project_name':name,'scope':resource['scope'],
                          'resource_defined':1,'development':int(is_dev),'full_evidence':int(is_full),
-                         **{code:int(code in scored) for code in criteria}})
+                         **{code:int(code in scored) for code in criteria},**currentness})
         for code, val in scored.items():
             c=criteria[code]
             traces.append({'entity_id':eid,'criterion':code,'raw_value':values[c['variable']],
@@ -274,7 +289,11 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
     from .studies import prepare as prepare_cases
     case_panels,case_traces=prepare_cases(cases or [],config,out,canonical_ids,selection)
     traces.extend(case_traces)
-    write_csv(out/'cohort_coverage.csv',coverage,['entity_id','canonical_project_id','project_name','scope','resource_defined','development','full_evidence',*criteria])
+    coverage_columns=['entity_id','canonical_project_id','project_name','scope','resource_defined','development','full_evidence',*criteria]
+    if config.get('research_analysis_version')=='evidence-cohort-v1':
+        coverage_columns+=['resource_currentness','newer_unharmonized_evidence_ids']
+        coverage.sort(key=lambda r:r['canonical_project_id'])
+    write_csv(out/'cohort_coverage.csv',coverage,coverage_columns)
     write_csv(out/'value_trace.csv',traces,['entity_id','criterion','raw_value','score','config_version','source','scoring'])
     write_csv(out/'resources.csv',list(resources.values()),['entity_id','scope','date','ore_mt','grade_pct','contained_treo_kt','calculated_from_rounded_inputs_kt','rounding_bounds_kt','source_sha','obs_ids','interpretation'])
     for panel, rows in matrices.items():
@@ -311,6 +330,10 @@ def run_r(root, out, prepared, config, rscript=None):
                  str(config['monte_carlo']['dirichlet_concentration'])]
         if config['monte_carlo'].get('method_version'):
             command.append(config['monte_carlo']['method_version'])
+        if config.get('research_analysis_version'):
+            if not config['monte_carlo'].get('method_version'):
+                raise ValueError('Research analysis requires an explicit MCDA method version')
+            command.append(config['research_analysis_version'])
         result=subprocess.run(command,capture_output=True,text=True,timeout=300)
         (folder/'R.log').write_text(result.stdout+'\n'+result.stderr,encoding='utf-8')
         if result.returncode:
@@ -330,7 +353,7 @@ def run_r(root, out, prepared, config, rscript=None):
     return results
 
 
-def research_readiness(selection,out):
+def research_readiness(selection,out,analysis_version=None):
     """Descriptive views reuse resolved evidence and ranks, without new scores."""
     from .selection import commercial_evidence
     from collections import Counter
@@ -368,6 +391,40 @@ def research_readiness(selection,out):
                 rank_links=canonical(ranks.get(pid,[])),
                 interpretation='PROJECT_UNIT_NOT_TEST_ROWS;SELECTED_DISCLOSURE_MISSINGNESS_NOT_MCAR_OR_CAUSAL_INFERENCE'))
     write_csv(out/'commercial_project_coverage.csv',projects,list(projects[0]) if projects else ['project_id'])
+    if analysis_version=='evidence-cohort-v1':
+        import re
+        minerals=('monazite','xenotime','apatite','churchite','rhabdophane','kaolinite','bastnaesite','bastn\u00e4site')
+        for row in features:
+            observations=[c for c in selection['inventory'] if c['project_id']==row['project_id'] and
+                          c.get('domain')=='Technical' and not c.get('reason')]
+            mentions=[]
+            for c in observations:
+                text=' '.join(str(c.get('raw',{}).get(k,'')) for k in ('raw_text','process','scope'))
+                found=[m for m in minerals if re.search(r'\b'+re.escape(m)+r'\b',text,re.I)]
+                if found:mentions.append(dict(minerals=found,evidence_id=c['evidence_id'],source_sha256=c['source_sha256'],
+                    locator=c.get('locator'),scope=c.get('scope'),feed=c.get('feed'),endpoint=c.get('endpoint'),
+                    interpretation='LITERAL_SOURCE_MENTION_NOT_RESOURCE_WIDE_HOST_OR_MECHANISM_CERTIFICATION'))
+            row['mineral_mentions']=canonical(mentions)
+            row['scorable_criteria']=canonical(sorted(selection['values'].get(row['project_id'],{})))
+        # Observable selection patterns only: one independent Project per row,
+        # not a missing-data mechanism test or inferential model.
+        coverage_file=out/'cohort_coverage.csv'
+        if coverage_file.exists():
+            coverage=list(csv.DictReader(coverage_file.open(encoding='utf-8')))
+            if len({r['canonical_project_id'] for r in coverage})!=len(coverage):
+                raise ValueError('Cohort description requires unique canonical Projects')
+            resources={r['entity_id']:float(r['contained_treo_kt']) for r in csv.DictReader((out/'resources.csv').open(encoding='utf-8'))}
+            import statistics
+            patterns=[]
+            for code in ('S1','T1','D1','I1','I2','I3','I4','C1','TC1','TC2'):
+                for available in (0,1):
+                    group=[r for r in coverage if int(r.get(code,0))==available]
+                    vals=[resources[r['entity_id']] for r in group if r['entity_id'] in resources]
+                    patterns.append(dict(criterion=code,scorable=available,projects=len(group),
+                        median_contained_treo_kt=statistics.median(vals) if vals else None,
+                        project_ids=canonical(sorted(r['canonical_project_id'] for r in group)),
+                        interpretation='OBSERVED_RESOURCE_COHORT_SELECTION_PATTERN_NOT_MCAR_MAR_MNAR_OR_CAUSAL_TEST'))
+            write_csv(out/'cohort_missingness_description.csv',patterns,list(patterns[0]))
     write_csv(out/'aim_c_technical_features.csv',features,list(features[0]) if features else ['project_id'])
     return projects
 

@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 from au_ree_v2.acquisition import wfs,select_snapshots,government_changes
 from au_ree_v2.store import connect,digest,logical_dump,filehash
-from au_ree_v2.evidence import ingest_sources,ingest_claims,resource_values
+from au_ree_v2.evidence import ingest_sources,ingest_claims,resource_values,load_claims
 from au_ree_v2.national import ingest_government,live_government_inventory,live_government_coverage,government_link_candidates,resource_quality_checks,raw_domain_coverage
 from au_ree_v2.resolution import resolve,technical_coverage
 from au_ree_v2.hierarchy import build
@@ -72,7 +72,9 @@ class Phase6NationalTests(unittest.TestCase):
         cls.folder=ROOT/'work/tests'/uuid.uuid4().hex;cls.folder.mkdir(parents=True)
         # This is a Phase6 regression, not an assertion that future data cannot grow.
         cls.db=connect(cls.folder/'canonical.sqlite');cls.snaps=json.loads((ROOT/'results/phase6-2026-11-03/snapshot_lock.json').read_text());cls.shas={s['sha256'] for s in cls.snaps}
-        ingest_sources(cls.db,ROOT,cls.snaps);ingest_claims(cls.db,ROOT,cls.snaps,'2026-11-03')
+        config=json.loads((ROOT/'results/phase6-2026-11-03/configuration.json').read_text())
+        cls.claims=load_claims(ROOT,config['claims_sha256'])[0]
+        ingest_sources(cls.db,ROOT,cls.snaps);ingest_claims(cls.db,ROOT,cls.snaps,'2026-11-03',claims_data=cls.claims)
         cls.cases=ingest_studies(cls.db,ROOT,cls.snaps,'2026-11-03');cls.resources=resource_values(cls.db,'2026-11-03',cls.shas);build(cls.db,cls.snaps);cls.ids=resolve(cls.db,ROOT,cls.snaps)
     @classmethod
     def tearDownClass(cls):cls.db.close()
@@ -89,7 +91,7 @@ class Phase6NationalTests(unittest.TestCase):
         self.assertFalse(any(r['reason']=='GOVERNMENT_SOURCE_INGEST_FAILED' for r in self.db.execute('SELECT reason FROM review_queue')))
 
     def test_idempotence_and_existing_stable_ids(self):
-        before=digest(logical_dump(self.db));ingest_sources(self.db,ROOT,self.snaps);ingest_claims(self.db,ROOT,self.snaps,'2026-11-03');ingest_studies(self.db,ROOT,self.snaps,'2026-11-03');build(self.db,self.snaps);resolve(self.db,ROOT,self.snaps)
+        before=digest(logical_dump(self.db));ingest_sources(self.db,ROOT,self.snaps);ingest_claims(self.db,ROOT,self.snaps,'2026-11-03',claims_data=self.claims);ingest_studies(self.db,ROOT,self.snaps,'2026-11-03');build(self.db,self.snaps);resolve(self.db,ROOT,self.snaps)
         self.assertEqual(before,digest(logical_dump(self.db)))
         old=json.loads((ROOT/'results/phase5-2026-11-03/logical_database.json').read_text(encoding='utf8'))
         for e in old['entities']:
@@ -138,7 +140,9 @@ class Phase6NationalTests(unittest.TestCase):
 
     def test_frozen_phase5_reconstructs_16_scopes_and_six_gaps(self):
         db=connect(self.folder/'frozen.sqlite');snaps=json.loads((ROOT/'results/phase5-2026-11-03/snapshot_lock.json').read_text(encoding='utf8'));shas={s['sha256'] for s in snaps}
-        ingest_sources(db,ROOT,snaps);ingest_claims(db,ROOT,snaps,'2026-11-03');resources=resource_values(db,'2026-11-03',shas);cases=ingest_studies(db,ROOT,snaps,'2026-11-03');ids=resolve(db,ROOT,snaps)
+        config=json.loads((ROOT/'results/phase5-2026-11-03/configuration.json').read_text())
+        claims=load_claims(ROOT,config['claims_sha256'])[0]
+        ingest_sources(db,ROOT,snaps);ingest_claims(db,ROOT,snaps,'2026-11-03',claims_data=claims);resources=resource_values(db,'2026-11-03',shas);cases=ingest_studies(db,ROOT,snaps,'2026-11-03');ids=resolve(db,ROOT,snaps)
         self.assertEqual(16,len(resources));self.assertEqual(6,sum(r['status']=='NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET' for r in technical_coverage(db,ids,resources,cases,shas)));self.assertEqual([],live_government_inventory(db,snaps));db.close()
 
 if __name__=='__main__':unittest.main()

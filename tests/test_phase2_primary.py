@@ -1,7 +1,7 @@
 import json,unittest,uuid
 from pathlib import Path
 from au_ree_v2.store import connect,digest,logical_dump
-from au_ree_v2.evidence import ingest_sources,ingest_claims,resource_values
+from au_ree_v2.evidence import ingest_sources,ingest_claims,resource_values,load_claims
 from au_ree_v2.acquisition import select_snapshots
 from au_ree_v2.hierarchy import build
 from au_ree_v2.gis import run
@@ -14,7 +14,9 @@ class PrimaryExpansionTests(unittest.TestCase):
         db=connect(work/'canonical.sqlite')
         try:
             snaps=json.loads((ROOT/'results/phase2-primary-2026-11-03/snapshot_lock.json').read_text());shas={s['sha256'] for s in snaps}
-            ingest_sources(db,ROOT,snaps);ingest_claims(db,ROOT,snaps,'2026-11-03')
+            config=json.loads((ROOT/'results/phase2-primary-2026-11-03/configuration.json').read_text())
+            claims=load_claims(ROOT,config['claims_sha256'])[0]
+            ingest_sources(db,ROOT,snaps);ingest_claims(db,ROOT,snaps,'2026-11-03',claims_data=claims)
             values=resource_values(db,'2026-11-03',shas)
             self.assertEqual(5,len(values))
             for expected,actual in zip([7.35,70.5,201.768,1456.,4389.],sorted(v['contained_treo_kt'] for v in values.values())):

@@ -6,7 +6,7 @@ import unittest
 import uuid
 from pathlib import Path
 from au_ree_v2.store import connect, digest, logical_dump, canonical
-from au_ree_v2.evidence import ingest_sources, ingest_claims, ingest_events, resource_values
+from au_ree_v2.evidence import ingest_sources, ingest_claims, ingest_events, resource_values, load_claims
 from au_ree_v2.studies import ingest, prepare as prepare_cases
 from au_ree_v2.resolution import resolve as resolve_identity
 from au_ree_v2.selection import resolve, choose, select_cases, date_end, source_check
@@ -86,10 +86,14 @@ class Phase7IntegrationTests(unittest.TestCase):
         cls.db = connect(cls.work/'canonical.sqlite')
         cls.snaps = json.loads((ROOT/'results/phase6-2026-11-03/snapshot_lock.json').read_text())
         cls.policy = json.loads((ROOT/'config/evidence_policy.json').read_text())
+        # Phase7 adds typed events to the Phase6 source set; pin that exact
+        # extraction contract instead of allowing later transcriptions to leak.
+        config = json.loads((ROOT/'results/phase7-2026-11-03/configuration.json').read_text())
+        cls.claims = load_claims(ROOT, config['claims_sha256'])[0]
         ingest_sources(cls.db, ROOT, cls.snaps)
-        ingest_claims(cls.db, ROOT, cls.snaps, '2026-11-03')
+        ingest_claims(cls.db, ROOT, cls.snaps, '2026-11-03', claims_data=cls.claims)
         cls.cases = ingest(cls.db, ROOT, cls.snaps, '2026-11-03')
-        ingest_events(cls.db, ROOT, cls.snaps, '2026-11-03')
+        ingest_events(cls.db, ROOT, cls.snaps, '2026-11-03', claims_data=cls.claims)
         build(cls.db, cls.snaps)
         cls.identity = resolve_identity(cls.db, ROOT, cls.snaps)
         cls.resources = resource_values(cls.db, '2026-11-03', {s['sha256'] for s in cls.snaps})
@@ -116,7 +120,7 @@ class Phase7IntegrationTests(unittest.TestCase):
 
     def test_events_idempotent_and_original_ids_unchanged(self):
         before = digest(logical_dump(self.db))
-        ingest_events(self.db, ROOT, self.snaps, '2026-11-03')
+        ingest_events(self.db, ROOT, self.snaps, '2026-11-03', claims_data=self.claims)
         self.assertEqual(before, digest(logical_dump(self.db)))
         original = json.loads((ROOT/'results/phase6-2026-11-03/logical_database.json').read_text(encoding='utf8'))
         self.assertEqual(original['entities'], logical_dump(self.db)['entities'])

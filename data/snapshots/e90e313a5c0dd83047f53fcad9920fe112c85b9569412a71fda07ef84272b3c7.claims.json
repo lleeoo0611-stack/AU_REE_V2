@@ -1,0 +1,1768 @@
+{
+  "version": "claims-v1",
+  "projects": [
+    {
+      "id": "mt-weld",
+      "name": "Mt Weld Project",
+      "state": "WA",
+      "identity_source": "mt_weld_2024",
+      "identity_locator": "physical PDF page 2",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 335557,
+      "coordinate_role": "Representative government deposit point, not legal project footprint",
+      "deposit_type": "Carbonatite/weathered",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 106.6,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Mt Weld Mineral Resource",
+          "statement_id": "mt-weld-2024-06-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2024-06-30",
+          "source_key": "mt_weld_2024",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "locator": "physical PDF page 2; Table 1 and preceding narrative",
+          "pdf_page": 2,
+          "page_markers": [
+            "106.6",
+            "4.12",
+            "4,389"
+          ],
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "grade",
+          "value": 4.12,
+          "unit": "%",
+          "basis": "TREO",
+          "scope": "Mt Weld Mineral Resource",
+          "statement_id": "mt-weld-2024-06-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2024-06-30",
+          "source_key": "mt_weld_2024",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "locator": "physical PDF page 2; Table 1 and preceding narrative",
+          "pdf_page": 2,
+          "page_markers": [
+            "106.6",
+            "4.12",
+            "4,389"
+          ],
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "contained_treo_kt",
+          "value": 4389,
+          "unit": "kt TREO",
+          "basis": "TREO",
+          "scope": "Mt Weld Mineral Resource",
+          "statement_id": "mt-weld-2024-06-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2024-06-30",
+          "source_key": "mt_weld_2024",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "locator": "physical PDF page 2; Table 1 and preceding narrative",
+          "pdf_page": 2,
+          "page_markers": [
+            "106.6",
+            "4.12",
+            "4,389"
+          ],
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": null
+        }
+      ]
+    },
+    {
+      "id": "browns-range",
+      "name": "Browns Range Project — Wolverine scope",
+      "state": "WA",
+      "identity_source": "browns_range_2025",
+      "identity_locator": "physical PDF page 13",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 570090,
+      "coordinate_role": "Representative government deposit point, not legal project footprint",
+      "deposit_type": "Xenotime hard rock",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 7.3,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+          "statement_id": "browns-range-2025-01-15",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-01-15",
+          "source_key": "browns_range_2025",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "locator": "physical PDF page 13; Table 5 Wolverine subtotal",
+          "pdf_page": 13,
+          "page_markers": [
+            "Wolverine",
+            "7.3",
+            "0.96",
+            "70,500"
+          ],
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "grade",
+          "value": 0.96,
+          "unit": "%",
+          "basis": "TREO",
+          "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+          "statement_id": "browns-range-2025-01-15",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-01-15",
+          "source_key": "browns_range_2025",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "locator": "physical PDF page 13; Table 5 Wolverine subtotal",
+          "pdf_page": 13,
+          "page_markers": [
+            "Wolverine",
+            "7.3",
+            "0.96",
+            "70,500"
+          ],
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "contained_treo_kt",
+          "value": 70.5,
+          "unit": "kt TREO",
+          "basis": "TREO",
+          "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+          "statement_id": "browns-range-2025-01-15",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-01-15",
+          "source_key": "browns_range_2025",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "locator": "physical PDF page 13; Table 5 Wolverine subtotal",
+          "pdf_page": 13,
+          "page_markers": [
+            "Wolverine",
+            "7.3",
+            "0.96",
+            "70,500"
+          ],
+          "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": null
+        }
+      ]
+    },
+    {
+      "id": "nolans-rare-earths-project",
+      "name": "Nolans Project",
+      "state": "NT",
+      "identity_source": "nolans_ar2025",
+      "entity_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "identity_locator": "PDF page 15",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 334715,
+      "coordinate_role": "Government representative deposit point, not project footprint",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 56,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2017-06-07",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2017-06-07",
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "locator": "physical PDF p.15; resource table / stated event",
+          "pdf_page": 15,
+          "page_markers": [
+            "TOTAL 56 2.6",
+            "26.4"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "grade",
+          "value": 2.6,
+          "unit": "%",
+          "basis": "TREO",
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2017-06-07",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2017-06-07",
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "locator": "physical PDF p.15; resource table / stated event",
+          "pdf_page": 15,
+          "page_markers": [
+            "TOTAL 56 2.6",
+            "26.4"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "ndpr_share_pct",
+          "value": 26.4,
+          "unit": "%",
+          "basis": "NdPr_REO_DIV_TREO",
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2017-06-07",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2017-06-07",
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "locator": "physical PDF p.15; resource table / stated event",
+          "pdf_page": 15,
+          "page_markers": [
+            "TOTAL 56 2.6",
+            "26.4"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        },
+        {
+          "variable": "offtake_nameplate_pct",
+          "value": 66,
+          "unit": "%",
+          "basis": "BINDING_NDPR_OFFTAKE_SHARE",
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2025-06-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "locator": "physical PDF p.7; resource table / stated event",
+          "pdf_page": 7,
+          "page_markers": [
+            "66 per cent"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        },
+        {
+          "variable": "conditional_senior_debt_usd_m",
+          "value": 775,
+          "unit": "USD million",
+          "basis": "CONDITIONAL_NOT_DRAWN",
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2025-06-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "locator": "physical PDF p.20; resource table / stated event",
+          "pdf_page": 20,
+          "page_markers": [
+            "US$775 million",
+            "conditional"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        },
+        {
+          "variable": "study_maturity_ord",
+          "value": 4,
+          "unit": "ordinal",
+          "basis": "DATED_DFS_REAFFIRMED",
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2025-06-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "nolans_ar2025",
+          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+          "locator": "physical PDF p.17; resource table / stated event",
+          "pdf_page": 17,
+          "page_markers": [
+            "7 February 2019",
+            "Definitive Feasibility Study"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        }
+      ],
+      "deposit_type": "Apatite/carbonatite"
+    },
+    {
+      "id": "mount-ridley-mia",
+      "name": "Mount Ridley Project — Central Mia scope",
+      "state": "WA",
+      "identity_source": "mia_ar2024",
+      "entity_namespace": "project_registry_v1",
+      "identity_locator": "PDF page 13",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 923795,
+      "coordinate_role": "Government representative deposit point, not project footprint",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 168,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Central Mia only; excludes later Grass Patch scope",
+          "statement_id": "mount-ridley-mia-2024-09-20",
+          "category": "INFERRED",
+          "effective_date": "2024-09-20",
+          "source_key": "mia_ar2024",
+          "source_sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95",
+          "locator": "physical PDF p.13; resource table / stated event",
+          "pdf_page": 13,
+          "page_markers": [
+            "Mia Inferred 168",
+            "1,201"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "grade",
+          "value": 1201,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "Central Mia only; excludes later Grass Patch scope",
+          "statement_id": "mount-ridley-mia-2024-09-20",
+          "category": "INFERRED",
+          "effective_date": "2024-09-20",
+          "source_key": "mia_ar2024",
+          "source_sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95",
+          "locator": "physical PDF p.13; resource table / stated event",
+          "pdf_page": 13,
+          "page_markers": [
+            "Mia Inferred 168",
+            "1,201"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "magnet_reo_share_pct",
+          "value": 25,
+          "unit": "%",
+          "basis": "PrNdDyTb_REO_DIV_TREO",
+          "scope": "Central Mia only; excludes later Grass Patch scope",
+          "statement_id": "mount-ridley-mia-2024-09-20",
+          "category": "INFERRED",
+          "effective_date": "2024-09-20",
+          "source_key": "mia_ar2024",
+          "source_sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95",
+          "locator": "physical PDF p.13; resource table / stated event",
+          "pdf_page": 13,
+          "page_markers": [
+            "Mia Inferred 168",
+            "1,201"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        }
+      ],
+      "deposit_type": "Clay/regolith"
+    },
+    {
+      "id": "yttria",
+      "name": "Yttria REE Project",
+      "state": "WA",
+      "identity_source": "yttria_2025",
+      "entity_namespace": "project_registry_v1",
+      "identity_locator": "PDF page 14",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 923836,
+      "coordinate_role": "Government representative deposit point, not project footprint",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 15,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Yttria REE resource; excludes other Asra projects",
+          "statement_id": "yttria-2025-06-30",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "yttria_2025",
+          "source_sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+          "locator": "physical PDF p.14; resource table / stated event",
+          "pdf_page": 14,
+          "page_markers": [
+            "Total 15.0 490",
+            "22.5%"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "grade",
+          "value": 490,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "Yttria REE resource; excludes other Asra projects",
+          "statement_id": "yttria-2025-06-30",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "yttria_2025",
+          "source_sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+          "locator": "physical PDF p.14; resource table / stated event",
+          "pdf_page": 14,
+          "page_markers": [
+            "Total 15.0 490",
+            "22.5%"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "magnet_reo_share_pct",
+          "value": 22.5,
+          "unit": "%",
+          "basis": "PrNdDyTb_REO_DIV_TREO",
+          "scope": "Yttria REE resource; excludes other Asra projects",
+          "statement_id": "yttria-2025-06-30",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "yttria_2025",
+          "source_sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+          "locator": "physical PDF p.14; resource table / stated event",
+          "pdf_page": 14,
+          "page_markers": [
+            "Total 15.0 490",
+            "22.5%"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        },
+        {
+          "variable": "uranium_ppm",
+          "value": 0.6,
+          "unit": "ppm",
+          "basis": "U_ELEMENT",
+          "scope": "Yttria REE resource; excludes other Asra projects",
+          "statement_id": "yttria-2025-06-30",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "yttria_2025",
+          "source_sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+          "locator": "physical PDF p.14; resource table / stated event",
+          "pdf_page": 14,
+          "page_markers": [
+            "Total 15.0 490",
+            "22.5%"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        },
+        {
+          "variable": "thorium_ppm",
+          "value": 1,
+          "unit": "ppm",
+          "basis": "Th_ELEMENT",
+          "scope": "Yttria REE resource; excludes other Asra projects",
+          "statement_id": "yttria-2025-06-30",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "effective_date": "2025-06-30",
+          "source_key": "yttria_2025",
+          "source_sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+          "locator": "physical PDF p.14; resource table / stated event",
+          "pdf_page": 14,
+          "page_markers": [
+            "Total 15.0 490",
+            "22.5%"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        }
+      ],
+      "deposit_type": "Clay/regolith"
+    },
+    {
+      "id": "dubbo-project",
+      "name": "Dubbo Project",
+      "state": "NSW",
+      "entity_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "identity_source": "dubbo_scoping2025",
+      "identity_locator": "Primary PDF identifies the named project",
+      "observations": [
+        {
+          "variable": "reported_lanthanide_oxide_ppm",
+          "value": 7400,
+          "unit": "ppm",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 26,
+          "page_markers": [
+            "75.18",
+            "7,400",
+            "1,400",
+            "1,660"
+          ],
+          "locator": "physical PDF p.26",
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "effective_date": "2017-09-19",
+          "statement_id": "dubbo-project-2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "basis": "LANTHANIDE_OXIDES",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION"
+        },
+        {
+          "variable": "reported_y2o3_ppm",
+          "value": 1400,
+          "unit": "ppm",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 26,
+          "page_markers": [
+            "75.18",
+            "7,400",
+            "1,400",
+            "1,660"
+          ],
+          "locator": "physical PDF p.26",
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "effective_date": "2017-09-19",
+          "statement_id": "dubbo-project-2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "basis": "Y2O3",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION"
+        },
+        {
+          "variable": "reported_magnet_oxide_ppm",
+          "value": 1660,
+          "unit": "ppm",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 26,
+          "page_markers": [
+            "75.18",
+            "7,400",
+            "1,400",
+            "1,660"
+          ],
+          "locator": "physical PDF p.26",
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "effective_date": "2017-09-19",
+          "statement_id": "dubbo-project-2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "basis": "PrNdDyTb_OXIDES",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION"
+        },
+        {
+          "variable": "ore_mt",
+          "value": 75.18,
+          "unit": "Mt",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 26,
+          "page_markers": [
+            "Total 75.18"
+          ],
+          "locator": "physical PDF p.26",
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "effective_date": "2017-09-19",
+          "statement_id": "dubbo-project-2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "basis": "TREO",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "grade",
+          "value": 8800,
+          "unit": "ppm",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 26,
+          "page_markers": [
+            "7,400",
+            "1,400"
+          ],
+          "locator": "physical PDF p.26",
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "effective_date": "2017-09-19",
+          "statement_id": "dubbo-project-2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "basis": "TREO",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION",
+          "rounding_half_width": 100,
+          "transform": {
+            "rule": "SUM_OXIDE_PPM",
+            "inputs": [
+              "reported_lanthanide_oxide_ppm",
+              "reported_y2o3_ppm"
+            ]
+          }
+        },
+        {
+          "variable": "magnet_reo_share_pct",
+          "value": 18.863636363636363,
+          "unit": "%",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 26,
+          "page_markers": [
+            "1,660"
+          ],
+          "locator": "physical PDF p.26",
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "effective_date": "2017-09-19",
+          "statement_id": "dubbo-project-2017-09-19",
+          "category": "NOT_APPLICABLE",
+          "basis": "PrNdDyTb_REO_DIV_TREO",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION",
+          "transform": {
+            "rule": "RATIO_PPM_PERCENT",
+            "inputs": [
+              "reported_magnet_oxide_ppm",
+              "grade"
+            ]
+          }
+        },
+        {
+          "variable": "study_maturity_ord",
+          "value": 2,
+          "unit": "ordinal",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 24,
+          "page_markers": [
+            "differs materially",
+            "Scoping Study"
+          ],
+          "locator": "physical PDF p.24",
+          "scope": "Dubbo Heap Leach Option 2025; not earlier multi-product OFS",
+          "effective_date": "2025-07-11",
+          "statement_id": "dubbo-project-2025-07-11",
+          "category": "NOT_APPLICABLE",
+          "basis": "ROUTE_SPECIFIC_SCOPING",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION"
+        }
+      ],
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 335050,
+      "coordinate_role": "Named government deposit representative point, not legal footprint"
+    },
+    {
+      "id": "jupiter",
+      "name": "Jupiter development study within Brothers",
+      "state": "WA",
+      "entity_namespace": "project_registry_v1",
+      "identity_source": "jupiter_scoping2026",
+      "identity_locator": "Primary PDF identifies the named project",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 1700,
+          "unit": "Mt",
+          "source_key": "jupiter_scoping2026",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "pdf_page": 14,
+          "page_markers": [
+            "1.7 Bt",
+            "1,000 ppm"
+          ],
+          "locator": "physical PDF p.14",
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "effective_date": "2026-10-12",
+          "statement_id": "jupiter-2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "basis": "TREO",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION",
+          "rounding_half_width": 50,
+          "transform": {
+            "rule": "BT_TO_MT",
+            "original_value": 1.7,
+            "original_unit": "Bt"
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 1700,
+          "unit": "ppm",
+          "source_key": "jupiter_scoping2026",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "pdf_page": 14,
+          "page_markers": [
+            "1,700 ppm"
+          ],
+          "locator": "physical PDF p.14",
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "effective_date": "2026-10-12",
+          "statement_id": "jupiter-2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "basis": "TREO",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION",
+          "rounding_half_width": 50
+        },
+        {
+          "variable": "study_maturity_ord",
+          "value": 2,
+          "unit": "ordinal",
+          "source_key": "jupiter_scoping2026",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "pdf_page": 3,
+          "page_markers": [
+            "preliminary technical and economic study"
+          ],
+          "locator": "physical PDF p.3",
+          "scope": "Jupiter Scoping Study Base Case 107 Mt scheduled plant feed",
+          "effective_date": "2026-10-20",
+          "statement_id": "jupiter-2026-10-20",
+          "category": "NOT_APPLICABLE",
+          "basis": "ROUTE_SPECIFIC_SCOPING",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION"
+        }
+      ],
+      "coordinate_source": "ga_critical",
+      "coordinate_native_id": 2613,
+      "coordinate_role": "Named government deposit representative point, not legal footprint"
+    },
+    {
+      "id": "yangibana",
+      "name": "Yangibana Rare Earths and Niobium Project",
+      "state": "WA",
+      "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "identity_source": "yangibana_quarter2026",
+      "identity_locator": "Primary PDF identifies the named project",
+      "observations": []
+    },
+    {
+      "id": "donald-rare-earth-mineral-sands-project",
+      "name": "Donald Rare Earth and Mineral Sands Project",
+      "state": "VIC",
+      "entity_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "identity_source": "donald_ar2024",
+      "identity_locator": "Primary PDF identifies the named project",
+      "observations": []
+    },
+    {
+      "id": "mons",
+      "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "name": "Mons Project — Block3 East resource scope",
+      "state": "WA",
+      "identity_source": "mons_mre2025",
+      "identity_locator": "Physical PDF p7",
+      "coordinate_source": "ga_critical",
+      "coordinate_native_id": 2590,
+      "coordinate_role": "Government representative deposit point; not legal site or Project footprint; resource scope explicitly separate",
+      "deposit_type": "Regolith/oxide-transition",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 7.23,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Block3East within Mons; oxide+transition in70g/tGa2O3 model only; TREO byproduct includesY; model October2025 reported12Nov2025; excludes Exploration Targets",
+          "statement_id": "mons-2025-10",
+          "effective_date": "2025-10",
+          "category": "INFERRED",
+          "source_key": "mons_mre2025",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "locator": "physical PDF p7; source resource table; Block3East within Mons; oxide+transition in70g/tGa2O3 model only; TREO byproduct includesY; model October2025 reported12Nov2025; excludes Exploration Targets",
+          "pdf_page": 7,
+          "page_markers": [
+            "7.23",
+            "538",
+            "Inferred",
+            "Block 3"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "grade",
+          "value": 538,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "Block3East within Mons; oxide+transition in70g/tGa2O3 model only; TREO byproduct includesY; model October2025 reported12Nov2025; excludes Exploration Targets",
+          "statement_id": "mons-2025-10",
+          "effective_date": "2025-10",
+          "category": "INFERRED",
+          "source_key": "mons_mre2025",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "locator": "physical PDF p7; source resource table; Block3East within Mons; oxide+transition in70g/tGa2O3 model only; TREO byproduct includesY; model October2025 reported12Nov2025; excludes Exploration Targets",
+          "pdf_page": 7,
+          "page_markers": [
+            "7.23",
+            "538",
+            "Inferred",
+            "Block 3"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        }
+      ]
+    },
+    {
+      "id": "cummins-range",
+      "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "name": "Cummins Range Rare Earths-Phosphate Project",
+      "state": "WA",
+      "identity_source": "cummins_mre2023",
+      "identity_locator": "Physical PDF p2",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 335930,
+      "coordinate_role": "Government representative deposit point; not legal site or Project footprint; resource scope explicitly separate",
+      "deposit_type": "Carbonatite/monazite",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 519.3,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+          "statement_id": "cummins-range-2023-05-01",
+          "effective_date": "2023-05-01",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "cummins_mre2023",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "locator": "physical PDF p2; source resource table; Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 519.3",
+            "3170",
+            "COMBINED"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "grade",
+          "value": 3170,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+          "statement_id": "cummins-range-2023-05-01",
+          "effective_date": "2023-05-01",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "cummins_mre2023",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "locator": "physical PDF p2; source resource table; Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 519.3",
+            "3170",
+            "COMBINED"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        }
+      ]
+    },
+    {
+      "id": "splinter-rock",
+      "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "name": "Splinter Rock Rare Earth Project",
+      "state": "WA",
+      "identity_source": "splinter_presentation2026",
+      "identity_locator": "Physical PDF p44",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 922842,
+      "coordinate_role": "Government representative deposit point; not legal site or Project footprint; resource scope explicitly separate",
+      "deposit_type": "Regolith/clay",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 682,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Splinter Rock six prospect resource at 1000ppm TREO cutoff; I+I; reaffirmed April2026",
+          "statement_id": "splinter-rock-2024-05-29",
+          "effective_date": "2024-05-29",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "splinter_presentation2026",
+          "source_sha256": "7e80a7f29787898f9c422bde35d14337651c5975c3e7e6cda06968721bff2a79",
+          "locator": "physical PDF p44; source resource table; Splinter Rock six prospect resource at 1000ppm TREO cutoff; I+I; reaffirmed April2026",
+          "pdf_page": 44,
+          "page_markers": [
+            "Total I+I 682",
+            "1,338",
+            "22.9%"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "grade",
+          "value": 1338,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "Splinter Rock six prospect resource at 1000ppm TREO cutoff; I+I; reaffirmed April2026",
+          "statement_id": "splinter-rock-2024-05-29",
+          "effective_date": "2024-05-29",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "splinter_presentation2026",
+          "source_sha256": "7e80a7f29787898f9c422bde35d14337651c5975c3e7e6cda06968721bff2a79",
+          "locator": "physical PDF p44; source resource table; Splinter Rock six prospect resource at 1000ppm TREO cutoff; I+I; reaffirmed April2026",
+          "pdf_page": 44,
+          "page_markers": [
+            "Total I+I 682",
+            "1,338",
+            "22.9%"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "magnet_reo_share_pct",
+          "value": 22.9,
+          "unit": "%",
+          "basis": "TREO",
+          "scope": "Splinter Rock six prospect resource at 1000ppm TREO cutoff; I+I; reaffirmed April2026",
+          "statement_id": "splinter-rock-2024-05-29",
+          "effective_date": "2024-05-29",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "splinter_presentation2026",
+          "source_sha256": "7e80a7f29787898f9c422bde35d14337651c5975c3e7e6cda06968721bff2a79",
+          "locator": "physical PDF p44; source resource table; Splinter Rock six prospect resource at 1000ppm TREO cutoff; I+I; reaffirmed April2026",
+          "pdf_page": 44,
+          "page_markers": [
+            "Total I+I 682",
+            "1,338",
+            "22.9%"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.05,
+          "composition_definition": "Pr6O11+Nd2O3+Tb4O7+Dy2O3 / TREO including Y2O3"
+        }
+      ]
+    },
+    {
+      "id": "north-stanmore",
+      "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "name": "North Stanmore Heavy Rare Earth Project",
+      "state": "WA",
+      "identity_source": "north_stanmore_mre2025",
+      "identity_locator": "Physical PDF p6",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 923577,
+      "coordinate_role": "Government representative deposit point; not legal site or Project footprint; resource scope explicitly separate",
+      "deposit_type": "Regolith/clay",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 320.64,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "North Stanmore HGMIN+MIN resource; cutoff330ppm TREO+Sc2O3; grade486ppm TREO EXCLUDES Sc2O3; not510ppm combined oxide",
+          "statement_id": "north-stanmore-2025-08-11",
+          "effective_date": "2025-08-11",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "north_stanmore_mre2025",
+          "source_sha256": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84",
+          "locator": "physical PDF p6; source resource table; North Stanmore HGMIN+MIN resource; cutoff330ppm TREO+Sc2O3; grade486ppm TREO EXCLUDES Sc2O3; not510ppm combined oxide",
+          "pdf_page": 6,
+          "page_markers": [
+            "TOTAL 320,640,000",
+            "510 486",
+            "TREO"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.0005
+        },
+        {
+          "variable": "grade",
+          "value": 486,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "North Stanmore HGMIN+MIN resource; cutoff330ppm TREO+Sc2O3; grade486ppm TREO EXCLUDES Sc2O3; not510ppm combined oxide",
+          "statement_id": "north-stanmore-2025-08-11",
+          "effective_date": "2025-08-11",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "north_stanmore_mre2025",
+          "source_sha256": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84",
+          "locator": "physical PDF p6; source resource table; North Stanmore HGMIN+MIN resource; cutoff330ppm TREO+Sc2O3; grade486ppm TREO EXCLUDES Sc2O3; not510ppm combined oxide",
+          "pdf_page": 6,
+          "page_markers": [
+            "TOTAL 320,640,000",
+            "510 486",
+            "TREO"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_treo_sc_oxide_ppm",
+          "value": 510,
+          "unit": "ppm",
+          "basis": "TREO_PLUS_SC2O3_NOT_COMPARABLE_GRADE",
+          "scope": "North Stanmore HGMIN+MIN resource; cutoff330ppm TREO+Sc2O3; grade486ppm TREO EXCLUDES Sc2O3; not510ppm combined oxide",
+          "statement_id": "north-stanmore-2025-08-11",
+          "effective_date": "2025-08-11",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "north_stanmore_mre2025",
+          "source_sha256": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84",
+          "locator": "physical PDF p6; source resource table; North Stanmore HGMIN+MIN resource; cutoff330ppm TREO+Sc2O3; grade486ppm TREO EXCLUDES Sc2O3; not510ppm combined oxide",
+          "pdf_page": 6,
+          "page_markers": [
+            "TOTAL 320,640,000",
+            "510 486",
+            "TREO"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE"
+        }
+      ]
+    },
+    {
+      "id": "redlings",
+      "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "name": "Redlings Rare Earth Project",
+      "state": "WA",
+      "identity_source": "redlings_quarter2025",
+      "identity_locator": "Physical PDF p4",
+      "coordinate_source": "ga_critical",
+      "coordinate_native_id": 2589,
+      "coordinate_role": "Government representative deposit point; not legal site or Project footprint; resource scope explicitly separate",
+      "deposit_type": "Regolith/granite",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 11,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Redlings five prospects MRE; 800ppm TREO cutoff; excludes 204-306Mt Exploration Target",
+          "statement_id": "redlings-2025-01-22",
+          "effective_date": "2025-01-22",
+          "category": "INFERRED",
+          "source_key": "redlings_quarter2025",
+          "source_sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+          "locator": "physical PDF p4; source resource table; Redlings five prospects MRE; 800ppm TREO cutoff; excludes 204-306Mt Exploration Target",
+          "pdf_page": 4,
+          "page_markers": [
+            "11Mt at 1,130",
+            "12,430",
+            "E37/1311"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "grade",
+          "value": 1130,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "Redlings five prospects MRE; 800ppm TREO cutoff; excludes 204-306Mt Exploration Target",
+          "statement_id": "redlings-2025-01-22",
+          "effective_date": "2025-01-22",
+          "category": "INFERRED",
+          "source_key": "redlings_quarter2025",
+          "source_sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+          "locator": "physical PDF p4; source resource table; Redlings five prospects MRE; 800ppm TREO cutoff; excludes 204-306Mt Exploration Target",
+          "pdf_page": 4,
+          "page_markers": [
+            "11Mt at 1,130",
+            "12,430",
+            "E37/1311"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_magnetic_oxide_ppm",
+          "value": 211,
+          "unit": "ppm",
+          "basis": "SOURCE_MREO_DEFINITION_NOT_HARMONIZED",
+          "scope": "Redlings five prospects MRE; 800ppm TREO cutoff; excludes 204-306Mt Exploration Target",
+          "statement_id": "redlings-2025-01-22",
+          "effective_date": "2025-01-22",
+          "category": "INFERRED",
+          "source_key": "redlings_quarter2025",
+          "source_sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+          "locator": "physical PDF p4; source resource table; Redlings five prospects MRE; 800ppm TREO cutoff; excludes 204-306Mt Exploration Target",
+          "pdf_page": 4,
+          "page_markers": [
+            "11Mt at 1,130",
+            "12,430",
+            "E37/1311"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE"
+        }
+      ]
+    },
+    {
+      "id": "salazar",
+      "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "name": "Salazar Critical Minerals Project",
+      "state": "WA",
+      "identity_source": "salazar_mre2024",
+      "identity_locator": "Physical PDF p7",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 923581,
+      "coordinate_role": "Government representative deposit point; not legal site or Project footprint; resource scope explicitly separate",
+      "deposit_type": "Regolith/clay",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 230,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "statement_id": "salazar-2024-10-08",
+          "effective_date": "2024-10-08",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "salazar_mre2024",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "locator": "physical PDF p7; source resource table; Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "pdf_page": 7,
+          "page_markers": [
+            "230 1178 55 193 22 4.0",
+            "Newmont",
+            "O’Connor"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "grade",
+          "value": 1178,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "statement_id": "salazar-2024-10-08",
+          "effective_date": "2024-10-08",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "salazar_mre2024",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "locator": "physical PDF p7; source resource table; Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "pdf_page": 7,
+          "page_markers": [
+            "230 1178 55 193 22 4.0",
+            "Newmont",
+            "O’Connor"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_pr6o11_ppm",
+          "value": 55,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "scope": "Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "statement_id": "salazar-2024-10-08",
+          "effective_date": "2024-10-08",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "salazar_mre2024",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "locator": "physical PDF p7; source resource table; Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "pdf_page": 7,
+          "page_markers": [
+            "230 1178 55 193 22 4.0",
+            "Newmont",
+            "O’Connor"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_nd2o3_ppm",
+          "value": 193,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "scope": "Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "statement_id": "salazar-2024-10-08",
+          "effective_date": "2024-10-08",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "salazar_mre2024",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "locator": "physical PDF p7; source resource table; Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "pdf_page": 7,
+          "page_markers": [
+            "230 1178 55 193 22 4.0",
+            "Newmont",
+            "O’Connor"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_dy2o3_ppm",
+          "value": 22,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "scope": "Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "statement_id": "salazar-2024-10-08",
+          "effective_date": "2024-10-08",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "salazar_mre2024",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "locator": "physical PDF p7; source resource table; Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "pdf_page": 7,
+          "page_markers": [
+            "230 1178 55 193 22 4.0",
+            "Newmont",
+            "O’Connor"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_tb4o7_ppm",
+          "value": 4.0,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "scope": "Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "statement_id": "salazar-2024-10-08",
+          "effective_date": "2024-10-08",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "salazar_mre2024",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "locator": "physical PDF p7; source resource table; Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "pdf_page": 7,
+          "page_markers": [
+            "230 1178 55 193 22 4.0",
+            "Newmont",
+            "O’Connor"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "reported_treo_ppm",
+          "value": 1178,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "statement_id": "salazar-2024-10-08",
+          "effective_date": "2024-10-08",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "salazar_mre2024",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "locator": "physical PDF p7; source resource table; Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "pdf_page": 7,
+          "page_markers": [
+            "230 1178 55 193 22 4.0",
+            "Newmont",
+            "O’Connor"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE"
+        },
+        {
+          "variable": "reported_magnet_oxide_ppm",
+          "value": 274,
+          "unit": "ppm",
+          "basis": "PrNdDyTb_OXIDES",
+          "scope": "Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "statement_id": "salazar-2024-10-08",
+          "effective_date": "2024-10-08",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "salazar_mre2024",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "locator": "physical PDF p7; source resource table; Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "pdf_page": 7,
+          "page_markers": [
+            "230 1178 55 193 22 4.0",
+            "Newmont",
+            "O’Connor"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "transform": {
+            "rule": "SUM_MAGNET_OXIDE_PPM",
+            "inputs": [
+              "reported_pr6o11_ppm",
+              "reported_nd2o3_ppm",
+              "reported_dy2o3_ppm",
+              "reported_tb4o7_ppm"
+            ]
+          }
+        },
+        {
+          "variable": "magnet_reo_share_pct",
+          "value": 23.2597623089983,
+          "unit": "%",
+          "basis": "TREO",
+          "scope": "Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "statement_id": "salazar-2024-10-08",
+          "effective_date": "2024-10-08",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "salazar_mre2024",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "locator": "physical PDF p7; source resource table; Salazar Newmont+OConnor REE resource; 600ppm TREO cutoff; excludes separate Ga Sc Ti and Al resources",
+          "pdf_page": 7,
+          "page_markers": [
+            "230 1178 55 193 22 4.0",
+            "Newmont",
+            "O’Connor"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "transform": {
+            "rule": "RATIO_PPM_PERCENT",
+            "inputs": [
+              "reported_magnet_oxide_ppm",
+              "reported_treo_ppm"
+            ]
+          },
+          "rounding_bounds": [
+            23.118370810352143,
+            23.401273885350317
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mangaroon",
+      "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "name": "Mangaroon Project — Yin resource scope",
+      "state": "WA",
+      "identity_source": "mangaroon_mre2023",
+      "identity_locator": "Physical PDF p1",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 896662,
+      "coordinate_role": "Government representative deposit point; not legal site or Project footprint; resource scope explicitly separate",
+      "deposit_type": "Ironstone",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 29.98,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Yin ironstone complex ONLY at 0.20% TREO cutoff; excludes Gifford Creek resource and all Exploration Targets",
+          "statement_id": "mangaroon-2023-11-30",
+          "effective_date": "2023-11-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "source_key": "mangaroon_mre2023",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "locator": "physical PDF p1; source resource table; Yin ironstone complex ONLY at 0.20% TREO cutoff; excludes Gifford Creek resource and all Exploration Targets",
+          "pdf_page": 1,
+          "page_markers": [
+            "29.98",
+            "1.04",
+            "Yin"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "grade",
+          "value": 1.04,
+          "unit": "%",
+          "basis": "TREO",
+          "scope": "Yin ironstone complex ONLY at 0.20% TREO cutoff; excludes Gifford Creek resource and all Exploration Targets",
+          "statement_id": "mangaroon-2023-11-30",
+          "effective_date": "2023-11-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "source_key": "mangaroon_mre2023",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "locator": "physical PDF p1; source resource table; Yin ironstone complex ONLY at 0.20% TREO cutoff; excludes Gifford Creek resource and all Exploration Targets",
+          "pdf_page": 1,
+          "page_markers": [
+            "29.98",
+            "1.04",
+            "Yin"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "ndpr_share_pct",
+          "value": 29,
+          "unit": "%",
+          "basis": "NdPr_OXIDES_OVER_TREO_NOT_FULL_MAGNET_SHARE",
+          "scope": "Yin ironstone complex ONLY at 0.20% TREO cutoff; excludes Gifford Creek resource and all Exploration Targets",
+          "statement_id": "mangaroon-2023-11-30",
+          "effective_date": "2023-11-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "source_key": "mangaroon_mre2023",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "locator": "physical PDF p1; source resource table; Yin ironstone complex ONLY at 0.20% TREO cutoff; excludes Gifford Creek resource and all Exploration Targets",
+          "pdf_page": 1,
+          "page_markers": [
+            "29.98",
+            "1.04",
+            "Yin"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE"
+        }
+      ]
+    },
+    {
+      "id": "cowalinya",
+      "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "name": "Cowalinya Rare Earth Project",
+      "state": "WA",
+      "identity_source": "cowalinya_ar2024",
+      "identity_locator": "Physical PDF p4",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 896660,
+      "coordinate_role": "Government representative deposit point; not legal site or Project footprint; resource scope explicitly separate",
+      "deposit_type": "Regolith/clay",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 159,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Cowalinya saprolite resource at400ppm TREO-CeO2 cutoff; 2023MRE reaffirmed annualreport2024",
+          "statement_id": "cowalinya-2023-10-03",
+          "effective_date": "2023-10-03",
+          "category": "INFERRED",
+          "source_key": "cowalinya_ar2024",
+          "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+          "locator": "physical PDF p4; source resource table; Cowalinya saprolite resource at400ppm TREO-CeO2 cutoff; 2023MRE reaffirmed annualreport2024",
+          "pdf_page": 4,
+          "page_markers": [
+            "Inferred 159 870 242 28%",
+            "400 ppm",
+            "Magnet REOs"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "grade",
+          "value": 870,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "Cowalinya saprolite resource at400ppm TREO-CeO2 cutoff; 2023MRE reaffirmed annualreport2024",
+          "statement_id": "cowalinya-2023-10-03",
+          "effective_date": "2023-10-03",
+          "category": "INFERRED",
+          "source_key": "cowalinya_ar2024",
+          "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+          "locator": "physical PDF p4; source resource table; Cowalinya saprolite resource at400ppm TREO-CeO2 cutoff; 2023MRE reaffirmed annualreport2024",
+          "pdf_page": 4,
+          "page_markers": [
+            "Inferred 159 870 242 28%",
+            "400 ppm",
+            "Magnet REOs"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "magnet_reo_share_pct",
+          "value": 28,
+          "unit": "%",
+          "basis": "TREO",
+          "scope": "Cowalinya saprolite resource at400ppm TREO-CeO2 cutoff; 2023MRE reaffirmed annualreport2024",
+          "statement_id": "cowalinya-2023-10-03",
+          "effective_date": "2023-10-03",
+          "category": "INFERRED",
+          "source_key": "cowalinya_ar2024",
+          "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+          "locator": "physical PDF p4; source resource table; Cowalinya saprolite resource at400ppm TREO-CeO2 cutoff; 2023MRE reaffirmed annualreport2024",
+          "pdf_page": 4,
+          "page_markers": [
+            "Inferred 159 870 242 28%",
+            "400 ppm",
+            "Magnet REOs"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5,
+          "composition_definition": "Pr6O11+Nd2O3+Tb4O7+Dy2O3 / TREO including Y2O3"
+        },
+        {
+          "variable": "reported_magnet_oxide_ppm",
+          "value": 242,
+          "unit": "ppm",
+          "basis": "PrNdDyTb_OXIDES",
+          "scope": "Cowalinya saprolite resource at400ppm TREO-CeO2 cutoff; 2023MRE reaffirmed annualreport2024",
+          "statement_id": "cowalinya-2023-10-03",
+          "effective_date": "2023-10-03",
+          "category": "INFERRED",
+          "source_key": "cowalinya_ar2024",
+          "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+          "locator": "physical PDF p4; source resource table; Cowalinya saprolite resource at400ppm TREO-CeO2 cutoff; 2023MRE reaffirmed annualreport2024",
+          "pdf_page": 4,
+          "page_markers": [
+            "Inferred 159 870 242 28%",
+            "400 ppm",
+            "Magnet REOs"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE"
+        }
+      ]
+    },
+    {
+      "id": "mt-clere",
+      "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "name": "Mt Clere Project — Tower resource scope",
+      "state": "WA",
+      "identity_source": "tower_quarter2023",
+      "identity_locator": "Physical PDF p7",
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 896658,
+      "coordinate_role": "Government representative deposit point; not legal site or Project footprint; resource scope explicitly separate",
+      "deposit_type": "Regolith/clay",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 101,
+          "unit": "Mt",
+          "basis": "TREO",
+          "scope": "Tower resource within Mt Clere; 300ppm TREO-CeO2 cutoff; excludes exploration target",
+          "statement_id": "mt-clere-2022-11-21",
+          "effective_date": "2022-11-21",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "tower_quarter2023",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "locator": "physical PDF p7; source resource table; Tower resource within Mt Clere; 300ppm TREO-CeO2 cutoff; excludes exploration target",
+          "pdf_page": 7,
+          "page_markers": [
+            "Total(1) 101 840",
+            "21 November 2022",
+            "JORC 2012"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "grade",
+          "value": 840,
+          "unit": "ppm",
+          "basis": "TREO",
+          "scope": "Tower resource within Mt Clere; 300ppm TREO-CeO2 cutoff; excludes exploration target",
+          "statement_id": "mt-clere-2022-11-21",
+          "effective_date": "2022-11-21",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "tower_quarter2023",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "locator": "physical PDF p7; source resource table; Tower resource within Mt Clere; 300ppm TREO-CeO2 cutoff; excludes exploration target",
+          "pdf_page": 7,
+          "page_markers": [
+            "Total(1) 101 840",
+            "21 November 2022",
+            "JORC 2012"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "uranium_oxide_ppm",
+          "value": 2,
+          "unit": "ppm",
+          "basis": "U3O8",
+          "scope": "Tower resource within Mt Clere; 300ppm TREO-CeO2 cutoff; excludes exploration target",
+          "statement_id": "mt-clere-2022-11-21",
+          "effective_date": "2022-11-21",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "tower_quarter2023",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "locator": "physical PDF p7; source resource table; Tower resource within Mt Clere; 300ppm TREO-CeO2 cutoff; excludes exploration target",
+          "pdf_page": 7,
+          "page_markers": [
+            "Total(1) 101 840",
+            "21 November 2022",
+            "JORC 2012"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE"
+        },
+        {
+          "variable": "thorium_oxide_ppm",
+          "value": 32,
+          "unit": "ppm",
+          "basis": "ThO2",
+          "scope": "Tower resource within Mt Clere; 300ppm TREO-CeO2 cutoff; excludes exploration target",
+          "statement_id": "mt-clere-2022-11-21",
+          "effective_date": "2022-11-21",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_key": "tower_quarter2023",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "locator": "physical PDF p7; source resource table; Tower resource within Mt Clere; 300ppm TREO-CeO2 cutoff; excludes exploration target",
+          "pdf_page": 7,
+          "page_markers": [
+            "Total(1) 101 840",
+            "21 November 2022",
+            "JORC 2012"
+          ],
+          "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE"
+        }
+      ]
+    },
+    {
+      "id": "burracoppin",
+      "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "name": "Burracoppin Project",
+      "state": "WA",
+      "identity_source": "burracoppin_maiden2023",
+      "observations": [
+        {
+          "variable": "reported_bulk_ore_mt",
+          "value": 35.709,
+          "unit": "Mt",
+          "basis": "BULK",
+          "scope": "Inferred REO within minus45um fraction; bulk35.709Mt and fine14.731Mt are NOT interchangeable",
+          "statement_id": "burracoppin_maiden2023",
+          "effective_date": "2023-06-01",
+          "source_key": "burracoppin_maiden2023",
+          "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+          "locator": "Physical PDF p2; source table; noncomparable basis retained",
+          "pdf_page": 2,
+          "page_markers": [
+            "35,709,000",
+            "14,731,000",
+            "1356.4",
+            "20,000"
+          ],
+          "extraction_method": "PRIMARY_TABLE_VISUALLY_VALIDATED_RAW_BASIS_NOT_BULK_RESOURCE_SCORE"
+        },
+        {
+          "variable": "reported_fine_fraction_ore_mt",
+          "value": 14.731,
+          "unit": "Mt",
+          "basis": "MINUS45UM",
+          "scope": "Inferred REO within minus45um fraction; bulk35.709Mt and fine14.731Mt are NOT interchangeable",
+          "statement_id": "burracoppin_maiden2023",
+          "effective_date": "2023-06-01",
+          "source_key": "burracoppin_maiden2023",
+          "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+          "locator": "Physical PDF p2; source table; noncomparable basis retained",
+          "pdf_page": 2,
+          "page_markers": [
+            "35,709,000",
+            "14,731,000",
+            "1356.4",
+            "20,000"
+          ],
+          "extraction_method": "PRIMARY_TABLE_VISUALLY_VALIDATED_RAW_BASIS_NOT_BULK_RESOURCE_SCORE"
+        },
+        {
+          "variable": "reported_fine_fraction_grade_ppm",
+          "value": 1356.4,
+          "unit": "ppm",
+          "basis": "TREO_MINUS45UM",
+          "scope": "Inferred REO within minus45um fraction; bulk35.709Mt and fine14.731Mt are NOT interchangeable",
+          "statement_id": "burracoppin_maiden2023",
+          "effective_date": "2023-06-01",
+          "source_key": "burracoppin_maiden2023",
+          "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+          "locator": "Physical PDF p2; source table; noncomparable basis retained",
+          "pdf_page": 2,
+          "page_markers": [
+            "35,709,000",
+            "14,731,000",
+            "1356.4",
+            "20,000"
+          ],
+          "extraction_method": "PRIMARY_TABLE_VISUALLY_VALIDATED_RAW_BASIS_NOT_BULK_RESOURCE_SCORE"
+        },
+        {
+          "variable": "reported_fine_fraction_contained_kt",
+          "value": 20,
+          "unit": "kt",
+          "basis": "TREO_MINUS45UM",
+          "scope": "Inferred REO within minus45um fraction; bulk35.709Mt and fine14.731Mt are NOT interchangeable",
+          "statement_id": "burracoppin_maiden2023",
+          "effective_date": "2023-06-01",
+          "source_key": "burracoppin_maiden2023",
+          "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+          "locator": "Physical PDF p2; source table; noncomparable basis retained",
+          "pdf_page": 2,
+          "page_markers": [
+            "35,709,000",
+            "14,731,000",
+            "1356.4",
+            "20,000"
+          ],
+          "extraction_method": "PRIMARY_TABLE_VISUALLY_VALIDATED_RAW_BASIS_NOT_BULK_RESOURCE_SCORE"
+        }
+      ]
+    },
+    {
+      "id": "brockman",
+      "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "name": "Brockman Project",
+      "state": "WA",
+      "identity_source": "brockman_ar2025",
+      "observations": [
+        {
+          "variable": "reported_resource_ore_mt",
+          "value": 41.6,
+          "unit": "Mt",
+          "basis": "BULK",
+          "scope": "January2021 JORC2012 main Brockman resource reaffirmed2025; Y inclusion not harmonized",
+          "statement_id": "brockman_ar2025",
+          "effective_date": "2021-01",
+          "source_key": "brockman_ar2025",
+          "source_sha256": "4b622bb6796fc414c55a0c81f89e4186468a95bca99076969d3989335f2713b2",
+          "locator": "Physical PDF p17; source table; noncomparable basis retained",
+          "pdf_page": 17,
+          "page_markers": [
+            "41.6 0.20 0.17 0.35 0.02 0.11 0.86"
+          ],
+          "extraction_method": "PRIMARY_TABLE_VISUALLY_VALIDATED_RAW_BASIS_NOT_BULK_RESOURCE_SCORE"
+        },
+        {
+          "variable": "reported_resource_treo_grade_pct",
+          "value": 0.2,
+          "unit": "%",
+          "basis": "SOURCE_TREO_Y_INCLUSION_REQUIRES_REVIEW",
+          "scope": "January2021 JORC2012 main Brockman resource reaffirmed2025; Y inclusion not harmonized",
+          "statement_id": "brockman_ar2025",
+          "effective_date": "2021-01",
+          "source_key": "brockman_ar2025",
+          "source_sha256": "4b622bb6796fc414c55a0c81f89e4186468a95bca99076969d3989335f2713b2",
+          "locator": "Physical PDF p17; source table; noncomparable basis retained",
+          "pdf_page": 17,
+          "page_markers": [
+            "41.6 0.20 0.17 0.35 0.02 0.11 0.86"
+          ],
+          "extraction_method": "PRIMARY_TABLE_VISUALLY_VALIDATED_RAW_BASIS_NOT_BULK_RESOURCE_SCORE"
+        },
+        {
+          "variable": "reported_resource_y2o3_grade_pct",
+          "value": 0.11,
+          "unit": "%",
+          "basis": "Y2O3",
+          "scope": "January2021 JORC2012 main Brockman resource reaffirmed2025; Y inclusion not harmonized",
+          "statement_id": "brockman_ar2025",
+          "effective_date": "2021-01",
+          "source_key": "brockman_ar2025",
+          "source_sha256": "4b622bb6796fc414c55a0c81f89e4186468a95bca99076969d3989335f2713b2",
+          "locator": "Physical PDF p17; source table; noncomparable basis retained",
+          "pdf_page": 17,
+          "page_markers": [
+            "41.6 0.20 0.17 0.35 0.02 0.11 0.86"
+          ],
+          "extraction_method": "PRIMARY_TABLE_VISUALLY_VALIDATED_RAW_BASIS_NOT_BULK_RESOURCE_SCORE"
+        }
+      ]
+    },
+    {
+      "id": "asm",
+      "entity_kind": "COMPANY",
+      "entity_namespace": "issuer_v1",
+      "name": "Australian Strategic Materials Limited",
+      "state": null,
+      "identity_source": "discovered_a74257c9c2a2cd0a8adf6a42ae48e471b22849bc206573d10fbccc8204a04b07",
+      "required_source_keys": [
+        "asm_ar2026_page_6"
+      ],
+      "observations": [
+        {
+          "variable": "issuer_equity_raised_aud_m",
+          "value": 24.9,
+          "unit": "AUD million",
+          "basis": "CORPORATE_GROSS_EQUITY_NOT_PROJECT_FINANCING",
+          "scope": "ASM corporate capital raising before costs; no assertion of project allocation or available cash",
+          "statement_id": "asm-july2025-equity",
+          "effective_date": "2025-07-28",
+          "source_key": "discovered_a74257c9c2a2cd0a8adf6a42ae48e471b22849bc206573d10fbccc8204a04b07",
+          "source_sha256": "4c1bc8edc6d26b0c5eaf16e385c0e95534c071092624e9d14c338d2783002eb7",
+          "locator": "Annual Financial Report2026 physical p6, visually verified OCR",
+          "pdf_page": 6,
+          "page_markers": [
+            "$24.9 million",
+            "28 July 2025"
+          ],
+          "page_extraction_key": "asm_ar2026_page_6",
+          "page_extraction_sha256": "f303f19e97c84ca53be19adc870dc1a92124ddd1ebb276056e1888b623ed4b26",
+          "extraction_method": "SELECTED_PAGE_OCR_VISUALLY_CHECKED_NOT_PROJECT_FINANCE_ORDINAL"
+        },
+        {
+          "variable": "issuer_equity_raised_aud_m",
+          "value": 55,
+          "unit": "AUD million",
+          "basis": "CORPORATE_GROSS_EQUITY_NOT_PROJECT_FINANCING",
+          "scope": "ASM corporate capital raising before costs; no assertion of project allocation or available cash",
+          "statement_id": "asm-oct2025-equity",
+          "effective_date": "2025-10-20",
+          "source_key": "discovered_a74257c9c2a2cd0a8adf6a42ae48e471b22849bc206573d10fbccc8204a04b07",
+          "source_sha256": "4c1bc8edc6d26b0c5eaf16e385c0e95534c071092624e9d14c338d2783002eb7",
+          "locator": "Annual Financial Report2026 physical p6, visually verified OCR",
+          "pdf_page": 6,
+          "page_markers": [
+            "$55 million",
+            "October 2025"
+          ],
+          "page_extraction_key": "asm_ar2026_page_6",
+          "page_extraction_sha256": "f303f19e97c84ca53be19adc870dc1a92124ddd1ebb276056e1888b623ed4b26",
+          "extraction_method": "SELECTED_PAGE_OCR_VISUALLY_CHECKED_NOT_PROJECT_FINANCE_ORDINAL"
+        }
+      ]
+    }
+  ]
+}

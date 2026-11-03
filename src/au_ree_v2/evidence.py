@@ -77,12 +77,49 @@ def validate_pages(root, source, evidence, snapshots, cache=None):
             raise ValueError('EXTRACTION_PAGE_CHECK_FAILED')
 
 
-def ingest_events(db, root, snapshots, cutoff):
+def load_claims(root, expected_sha=None, freeze=False):
+    """Resolve the existing configuration's immutable extraction contract.
+
+    Source PDFs alone cannot freeze later transcriptions of those same pages.
+    Old configurations already record this SHA; never substitute live claims
+    when reconstructing a historical result.
+    """
+    from .store import filehash
+    root=Path(root);live=root/'data/claims.json'
+    sha=expected_sha or filehash(live)
+    archive=root/'data/snapshots'/(sha+'.claims.json')
+    path=live if filehash(live)==sha else archive
+    if not path.exists() or filehash(path)!=sha:
+        raise ValueError('FROZEN_CLAIMS_UNAVAILABLE_OR_HASH_MISMATCH: '+sha)
+    if freeze:
+        if not archive.exists():archive.write_bytes(path.read_bytes())
+        if filehash(archive)!=sha:raise ValueError('IMMUTABLE_CLAIMS_MISMATCH')
+    return json.loads(path.read_text(encoding='utf-8')),sha
+
+
+def claim_evidence_ids(claims):
+    """Existing observation identities belonging to one extraction contract.
+
+    Historical rows remain in SQLite. This set is a selection boundary, not
+    an update, deletion, new identity scheme or latest-date overwrite.
+    """
+    active=set()
+    for p in claims['projects']:
+        eid='AU-'+digest([p.get('entity_namespace','project_registry_v1'),str(p['id'])])[:20]
+        for o in p['observations']:active.add(digest([eid,o['source_sha256'],o]))
+    for event in claims.get('events',[]):
+        eid='AU-'+digest([event['project_namespace'],str(event['project_native_id'])])[:20]
+        raw=dict(event,variable='commercial_event',domain=event.get('domain','Commercial'),value=None)
+        active.add(digest([eid,event['source_sha256'],raw]))
+    return active
+
+
+def ingest_events(db, root, snapshots, cutoff, claims_data=None):
     """Typed disclosures in the existing observation store; numeric value NULL."""
     from .selection import date_end
     sources = {s['key']: s for s in snapshots}
     cache = {}
-    events = json.loads((Path(root)/'data/claims.json').read_text(encoding='utf-8')).get('events', [])
+    events = (claims_data if claims_data is not None else json.loads((Path(root)/'data/claims.json').read_text(encoding='utf-8'))).get('events', [])
     for event in events:
         source = sources.get(event['source_key'])
         if not source:
@@ -139,7 +176,7 @@ def ingest_recognized(db, root, snapshots, cutoff, policy, acquired_through=None
                     reasons.append('PAGE_TEXT_BINDING_FAILED')
                 if policy.get('validation_version') and page:
                     from .pdf_extract import narrative_context_issues
-                    reasons.extend(narrative_context_issues(c,page))
+                    reasons.extend(narrative_context_issues(c,page,version=policy['validation_version']))
                 if c['source_sha256']!=source['sha256']:reasons.append('SOURCE_BINDING_FAILED')
                 if not pid or not db.execute("SELECT 1 FROM entities WHERE entity_id=? AND kind='PROJECT'",(pid,)).fetchone():
                     outcomes.append(dict(candidate_id=c['candidate_id'],source_key=source['key'],
@@ -372,10 +409,10 @@ def transformation_issues(o, siblings, depth=0):
     except (AssertionError,KeyError,TypeError,ValueError,ZeroDivisionError):return ['TRANSFORMATION_CONTRACT_FAILED']
     return []
 
-def ingest_claims(db, root, snapshots, cutoff, project=None, conflict_selection=False):
+def ingest_claims(db, root, snapshots, cutoff, project=None, conflict_selection=False, claims_data=None):
     by_key = {s['key']: s for s in snapshots}
     readers={};page_text={}
-    claims = json.loads((Path(root) / 'data/claims.json').read_text(encoding='utf-8'))
+    claims = claims_data if claims_data is not None else json.loads((Path(root) / 'data/claims.json').read_text(encoding='utf-8'))
     for p in claims['projects']:
         if project and p['id'] != project:
             continue
@@ -439,14 +476,15 @@ def ingest_claims(db, root, snapshots, cutoff, project=None, conflict_selection=
                       AND scope=? AND effective_date=? AND status='AUTO_VALIDATED' ''', params)
         issue(db, g['entity_id'], None, 'SOURCE_CONFLICT', canonical(dict(g)))
 
-def resource_values(db, cutoff, snapshot_shas, strict=False):
+def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=None):
     """Pick latest complete statement per scope; competing scopes require review."""
     result = {}
     projects = [r[0] for r in db.execute("SELECT entity_id FROM entities WHERE kind='PROJECT'")]
     for eid in projects:
         rows = [dict(r) for r in db.execute('''SELECT * FROM observations
             WHERE entity_id=? AND effective_date<=? AND status='AUTO_VALIDATED'
-            ORDER BY effective_date,obs_id''', (eid, cutoff)) if r['source_sha'] in snapshot_shas]
+            ORDER BY effective_date,obs_id''', (eid, cutoff)) if r['source_sha'] in snapshot_shas and
+                (active_claim_ids is None or r['transform_version']!='normalization-v1' or r['obs_id'] in active_claim_ids)]
         statements = {}
         for r in rows:
             key=(r['statement_id'], r['scope'], r['effective_date'])

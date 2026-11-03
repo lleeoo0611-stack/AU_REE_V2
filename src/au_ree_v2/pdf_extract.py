@@ -10,7 +10,7 @@ from pathlib import Path
 from pypdf import PdfReader
 from .store import filehash,canonical
 
-DOCUMENT_VERSION = 'document-recognition-v1'
+DOCUMENT_VERSION = 'document-recognition-v2-mineralogy'
 RESOURCE_LAYOUT_VERSION = 'positioned-resource-columns-v2'
 NUMBER = r'(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?'
 
@@ -214,7 +214,7 @@ def positioned_resource_columns(candidates, tables, text, registry):
     return candidates
 
 
-def narrative_candidates(text, page, registry):
+def narrative_candidates(text, page, registry, parser_version='document-recognition-v1'):
     """Keep scoped technical and commercial facts, without guessing endpoints.
 
     Clauses are candidates until attribution, numeric token and semantic context
@@ -224,7 +224,9 @@ def narrative_candidates(text, page, registry):
     sentences=re.split(r'(?<=[.;])\s+(?=[A-Z])',flat)
     for i,sentence in enumerate(sentences):
         if len(sentence)<25:continue
-        domain='Technical' if re.search(r'(?i)\b(?:recover\w*|extract\w*|leach\w*|reagent|thorium|uranium|NORM)\b',sentence) else ('Commercial' if re.search(r'(?i)\b(?:financing|offtake|off-take|financial close|drawdown|credit approval|grant|funding|cash position)\b',sentence) else ('Development' if re.search(r'(?i)\b(?:scoping study|PFS|DFS|care and maintenance|construction commenced)\b',sentence) else None))
+        technical=r'(?i)\b(?:recover\w*|extract\w*|leach\w*|reagent|thorium|uranium|NORM)\b'
+        if parser_version=='document-recognition-v2-mineralogy':technical=r'(?i)\b(?:recover\w*|extract\w*|leach\w*|reagent|thorium|uranium|NORM|mineralog\w*|monazite|xenotime|rhabdophane|churchite|gangue)\b'
+        domain='Technical' if re.search(technical,sentence) else ('Commercial' if re.search(r'(?i)\b(?:financing|offtake|off-take|financial close|drawdown|credit approval|grant|funding|cash position)\b',sentence) else ('Development' if re.search(r'(?i)\b(?:scoping study|PFS|DFS|care and maintenance|construction commenced)\b',sentence) else None))
         if not domain:continue
         context=' '.join(sentences[max(0,i-1):i+2])
         hits=_matches(sentence if domain=='Commercial' else context,registry)
@@ -294,9 +296,12 @@ def leach_tables(text, page, registry):
     return rows
 
 
-def recognize_document(root, source, registry, tessdata=None):
+def recognize_document(root, source, registry, tessdata=None, parser_version=None):
     """Scan every page once, then extract tables/OCR only relevant pages."""
     import pymupdf
+    parser_version=parser_version or DOCUMENT_VERSION
+    if parser_version not in ('document-recognition-v1','document-recognition-v2-mineralogy'):
+        raise ValueError('UNSUPPORTED_DOCUMENT_PARSER_VERSION')
     root=Path(root);path=root/source['path']
     if filehash(path)!=source['sha256']:raise ValueError('SOURCE_HASH_MISMATCH')
     pages=[];candidates=[];tables=[]
@@ -314,7 +319,7 @@ def recognize_document(root, source, registry, tessdata=None):
             page=dict(physical_page=n,method=method,labels=labels,relevant=relevant,text=text,
                       status='EXTRACTED' if readable(text) else 'UNREADABLE',tables=[])
             if relevant:
-                recognized=resource_rows(text,n,registry)+leach_tables(text,n,registry)+narrative_candidates(text,n,registry)
+                recognized=resource_rows(text,n,registry)+leach_tables(text,n,registry)+narrative_candidates(text,n,registry,parser_version)
                 if doc and any(c['kind'] in ('RESOURCE_TABLE_TOTAL','LEACH_TABLE_ROW') for c in recognized):
                     page_tables=[]
                     try:
@@ -329,7 +334,7 @@ def recognize_document(root, source, registry, tessdata=None):
                     c.update(source_sha256=source['sha256'],source_key=source['key'],
                              publication_date=source.get('publication_date'),effective_date=None,
                              date_role='PUBLICATION_DATE_ONLY_EFFECTIVE_DATE_NOT_INFERRED',
-                             extraction_method=method,parser_version=DOCUMENT_VERSION)
+                             extraction_method=method,parser_version=parser_version)
                     # Word coordinates bind the row/paragraph to the physical page.
                     if doc:
                         needles=c['raw_text'].split()
@@ -347,7 +352,7 @@ def recognize_document(root, source, registry, tessdata=None):
             previous=[t for t in tables if t['physical_page']==table['physical_page']-1 and t['header']==table['header'] and any(t['header'])]
             if len(previous)==1:
                 table['continuation_candidate']=dict(physical_page=previous[0]['physical_page'],table_index=previous[0]['table_index'],status='HEADER_MATCH_ONLY_NOT_SCOPE_EQUIVALENCE')
-        return dict(version=DOCUMENT_VERSION,resource_layout_version=RESOURCE_LAYOUT_VERSION,observation_contract='automatic-observation-v1-element-basis',source_sha256=source['sha256'],source_key=source['key'],
+        return dict(version=parser_version,resource_layout_version=RESOURCE_LAYOUT_VERSION,observation_contract='automatic-observation-v1-element-basis',source_sha256=source['sha256'],source_key=source['key'],
                     source_url=source['url'],publication_date=source.get('publication_date') or publication_date(texts[0]),
                     labels=classify(texts[0]),mentioned_labels=sorted({v for p in pages for v in p['labels']}),pages=pages,tables=tables,candidates=candidates,
                     backend_version=pymupdf.VersionBind,registry_identity_sha256=__import__('hashlib').sha256(canonical(registry).encode()).hexdigest(),
@@ -448,10 +453,28 @@ def capture_pages(root, source, pages, tessdata=None):
     return outcomes
 
 
-def narrative_context_issues(candidate,page):
+def narrative_context_issues(candidate,page,version='page-context-v2'):
     """Definitions/abbreviations are reference text, never project events."""
+    if version=='scientific-context-v4-column-binding' and candidate.get('kind')=='RESOURCE_TABLE_TOTAL':
+        import unicodedata
+        header=unicodedata.normalize('NFKC',candidate.get('header',''))
+        # Matching row tokens proves transcription, not what their columns mean.
+        # Extra quantities between tonnes and TREO require positioned binding.
+        if not candidate.get('positioned_column_evidence'):
+            for match in re.finditer(r'(?:Tonnes|Tonnage|Material)\b(.*?)\bTREO',header,re.I|re.S):
+                if re.search(r'\b(?:P\s*2\s*O\s*5|Nb\s*2\s*O\s*5|THM|BD|density|Fe\s*2\s*O\s*3|Zr\s*O\s*2)\b',match.group(1),re.I):
+                    return ['RESOURCE_NUMERIC_COLUMN_BINDING_NOT_ESTABLISHED']
     if candidate.get('kind')!='SCOPED_TEXT_DISCLOSURE':return []
     header=' '.join(page.get('text','').split())[:500]
     if re.search(r'(?i)glossary|abbreviations and defined terms|definition of terms',header):
         return ['SOURCE_GLOSSARY_NOT_PROJECT_DISCLOSURE']
+    if version in ('scientific-context-v3','scientific-context-v4-column-binding'):
+        text=candidate.get('raw_text','')
+        reasons=[]
+        if re.search(r'(?i)forward[- ]looking statements? (?:include|are|may)|terms of any future funding|no assurance (?:that|can)',text):
+            reasons.append('CAUTION_OR_HYPOTHETICAL_TERMS_NOT_PROJECT_EVENT')
+        if candidate.get('domain')=='Commercial' and re.search(r'(?i)\b(?:cash position|cash balance|cash at bank|cash equivalents)\b',text):
+            if not re.search(r'(?i)(?:restricted|ring[- ]fenced|dedicated).*\bproject\b',text):
+                reasons.append('COMPANY_CASH_NOT_PROJECT_ATTRIBUTED')
+        return reasons
     return []

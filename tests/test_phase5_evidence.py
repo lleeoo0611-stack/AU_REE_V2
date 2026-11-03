@@ -2,7 +2,7 @@ import csv,json,unittest,uuid,copy,tempfile
 from pathlib import Path
 from au_ree_v2.store import connect,digest,logical_dump,filehash
 from au_ree_v2.acquisition import select_snapshots
-from au_ree_v2.evidence import ingest_sources,ingest_claims,resource_values,transformation_issues
+from au_ree_v2.evidence import ingest_sources,ingest_claims,resource_values,transformation_issues,load_claims
 from au_ree_v2.resolution import resolve,technical_coverage
 from au_ree_v2.studies import ingest
 from au_ree_v2.pdf_extract import extract_page,capture_pages,readable
@@ -17,7 +17,9 @@ class Phase5Tests(unittest.TestCase):
     def setUpClass(cls):
         cls.work=ROOT/'work/tests'/uuid.uuid4().hex;cls.work.mkdir(parents=True)
         cls.db=connect(cls.work/'canonical.sqlite');cls.snaps=json.loads((ROOT/'results/phase5-2026-11-03/snapshot_lock.json').read_text(encoding='utf-8'));cls.shas={s['sha256'] for s in cls.snaps}
-        ingest_sources(cls.db,ROOT,cls.snaps);ingest_claims(cls.db,ROOT,cls.snaps,'2026-11-03')
+        config=json.loads((ROOT/'results/phase5-2026-11-03/configuration.json').read_text())
+        cls.claims=load_claims(ROOT,config['claims_sha256'])[0]
+        ingest_sources(cls.db,ROOT,cls.snaps);ingest_claims(cls.db,ROOT,cls.snaps,'2026-11-03',claims_data=cls.claims)
         cls.resources=resource_values(cls.db,'2026-11-03',cls.shas);cls.cases=ingest(cls.db,ROOT,cls.snaps,'2026-11-03');cls.ids=resolve(cls.db,ROOT,cls.snaps)
     @classmethod
     def tearDownClass(cls):cls.db.close()
@@ -75,14 +77,14 @@ class Phase5Tests(unittest.TestCase):
         self.assertTrue(all(9.9<float(r['grade_ratio'])<10.1 for r in exclusions))
 
     def test_magnet_sum_is_scope_bound(self):
-        p=next(p for p in json.loads((ROOT/'data/claims.json').read_text())['projects'] if p['id']=='salazar')
+        p=next(p for p in self.claims['projects'] if p['id']=='salazar')
         o=next(o for o in p['observations'] if o['variable']=='magnet_reo_share_pct')
         self.assertAlmostEqual(100*274/1178,o['value']);self.assertEqual([],transformation_issues(o,p['observations']))
         altered=copy.deepcopy(p['observations']);next(v for v in altered if v['variable']=='reported_dy2o3_ppm')['scope']='other deposit'
         self.assertTrue(transformation_issues(o,altered))
 
     def test_reingestion_is_idempotent(self):
-        before=digest(logical_dump(self.db));ingest_sources(self.db,ROOT,self.snaps);ingest_claims(self.db,ROOT,self.snaps,'2026-11-03');ingest(self.db,ROOT,self.snaps,'2026-11-03');resolve(self.db,ROOT,self.snaps)
+        before=digest(logical_dump(self.db));ingest_sources(self.db,ROOT,self.snaps);ingest_claims(self.db,ROOT,self.snaps,'2026-11-03',claims_data=self.claims);ingest(self.db,ROOT,self.snaps,'2026-11-03');resolve(self.db,ROOT,self.snaps)
         self.assertEqual(before,digest(logical_dump(self.db)))
 
     def test_discovery_follows_bounded_pages_and_deduplicates(self):
