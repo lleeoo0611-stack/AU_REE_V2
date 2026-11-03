@@ -3,6 +3,7 @@ import json
 import urllib.parse
 import urllib.request
 import urllib.error
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from .store import canonical, digest, filehash
@@ -12,8 +13,15 @@ def request(url, params=None, headers=None, timeout=25):
     if params:
         url += '?' + urllib.parse.urlencode(params)
     req = urllib.request.Request(url, headers={'User-Agent': 'AU_REE_V2/0.1 public research', **(headers or {})})
-    with urllib.request.urlopen(req, timeout=timeout) as response:
-        return response.read(), dict(response.headers)
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as response:
+                return response.read(), dict(response.headers)
+        except urllib.error.HTTPError as exc:
+            if exc.code not in (408,429,500,502,503,504) or attempt==2:raise
+        except (urllib.error.URLError,TimeoutError):
+            if attempt==2:raise
+        time.sleep(0.5*(2**attempt))
 
 def arcgis(url, where='1=1', windows=None):
     """Inventory-complete retrieval, globally or within each registered project AOI."""

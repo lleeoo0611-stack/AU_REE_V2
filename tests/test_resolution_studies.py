@@ -120,3 +120,13 @@ class ResolutionStudyTests(unittest.TestCase):
             self.assertEqual(2,len(result['ledger']));self.assertTrue(all(r['status']=='NATIVE_ID_NONUNIQUE_REVIEW' for r in result['ledger']))
             self.assertEqual(0,db.execute("SELECT COUNT(*) FROM entities WHERE kind='SITE'").fetchone()[0])
         finally:db.close()
+
+    def test_rebuild_gap_audit_and_formal_policy_separation(self):
+        from au_ree_v2.resolution import technical_coverage
+        from au_ree_v2.eligibility import audit
+        technical=technical_coverage(self.db,self.resolved,resource_values(self.db,'2026-11-03',{s['sha256'] for s in self.snapshots}),self.cases,{s['sha256'] for s in self.snapshots})
+        out=self.work/'audit';out.mkdir(exist_ok=True)
+        a=audit(self.db,out,self.resolved,technical,{'coverage':[]},{},'2026-11-03',self.snapshots)
+        b=audit(self.db,out,self.resolved,technical,{'coverage':[]},{},'2026-11-03',self.snapshots)
+        self.assertEqual(a,b);self.assertEqual(38,a['unresolved_pairs']);self.assertEqual(18,a['primary_scope_gaps'])
+        self.assertEqual(0,a['formal_c1_evaluated']);self.assertEqual(27,a['registry_groups'])

@@ -213,3 +213,5 @@ The historical selection snapshot also contained escaped-newline encodings of
 this same access parameter. V2 sanitization now removes all seven occurrences
 before inclusion in the current source manifest. The original upstream hash
 remains as an attestation, not a redistributed unredacted payload.
+
+Latest increment: [source discovery and C1 compatibility](docs/phase4-discovery-eligibility.md), [frozen outputs](results/phase4-2026-11-03/README.md).

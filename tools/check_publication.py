@@ -15,7 +15,7 @@ roots += list((ROOT/'work').glob('*/runs'))+[ROOT/'work/runs']
 files=set(p for base in roots for p in base.rglob('*') if p.is_file())
 files.update(p for p in ROOT.iterdir() if p.is_file())
 paths=[p for p in sorted(files) if p.suffix.lower() in
-       ('.json','.jsonl','.csv','.md','.yml','.yaml','.py','.r','.toml','.geojson')]
+       ('.json','.jsonl','.csv','.md','.yml','.yaml','.py','.r','.toml','.geojson','.html')]
 found=[]
 for path in paths:
     if sensitive_reference(path.read_text(encoding='utf-8-sig')):

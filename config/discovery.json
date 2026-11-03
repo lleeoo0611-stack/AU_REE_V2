@@ -1,0 +1,40 @@
+{
+  "version": "discovery-v1",
+  "max_documents_per_seed": 3,
+  "seeds": [
+    {
+      "key": "astron_reports",
+      "url": "https://astronlimited.com.au/investor-centre/investor-resources/",
+      "allowed_hosts": [
+        "www.astronlimited.com.au",
+        "astronlimited.com.au"
+      ]
+    },
+    {
+      "key": "asm_reports",
+      "url": "https://asm-au.com/investors/asx-announcements/",
+      "allowed_hosts": [
+        "asm-au.com",
+        "announcements.asx.com.au",
+        "wcsecure.weblink.com.au"
+      ]
+    },
+    {
+      "key": "ga_critical",
+      "url": "https://www.ga.gov.au/scientific-topics/minerals/critical-minerals",
+      "allowed_hosts": [
+        "www.ga.gov.au",
+        "d28rz98at9flks.cloudfront.net"
+      ]
+    },
+    {
+      "key": "asm_company_reports",
+      "url": "https://asm-au.com/investors/company-reports/",
+      "allowed_hosts": [
+        "asm-au.com",
+        "announcements.asx.com.au",
+        "wcsecure.weblink.com.au"
+      ]
+    }
+  ]
+}

@@ -42,10 +42,15 @@ def execute(args):
         return {'status':'DRY_RUN','module':args.module,'cutoff':args.as_of,'root':str(root),
                 'snapshot_count':len(select_snapshots(root,args.as_of)), 'writes':False}
     acquisition=[]
+    if args.module=='discover':
+        from .discovery import discover
+        return discover(root,json.loads((root/'config/discovery.json').read_text(encoding='utf-8')))
     if args.module=='acquire' or args.refresh:
+        from .discovery import discover
+        discovery=discover(root,json.loads((root/'config/discovery.json').read_text(encoding='utf-8')))
         acquisition=refresh(root,registry)
         if args.module=='acquire':
-            return {'status':'COMPLETED_WITH_SOURCE_STATUS','sources':acquisition}
+            return {'status':'COMPLETED_WITH_SOURCE_STATUS','sources':acquisition,'discovery':discovery}
     snapshots=select_snapshots(root,args.as_of)
     if args.snapshot_lock:
         snapshots=json.loads(Path(args.snapshot_lock).read_text(encoding='utf-8'))
@@ -64,6 +69,7 @@ def execute(args):
     configuration={'research':config,'sources':registry,'claims_sha256':filehash(root/'data/claims.json')}
     for name in ('identity_links.json','study_cases.json'):
         if (root/'data'/name).exists():configuration[name+'_sha256']=filehash(root/'data'/name)
+    configuration['eligibility_policy_sha256']=filehash(root/'config/eligibility_compatibility.json')
     db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?,?)',
         (run_id,datetime.now(timezone.utc).isoformat(),args.as_of,canonical(version),digest(configuration),
          digest(snapshots),'RUNNING',None))
@@ -192,6 +198,8 @@ def execute(args):
             points.append({'type':'Feature','geometry':{'type':'Point','coordinates':[r['longitude'],r['latitude']]},
                            'properties':{k:r[k] for k in ('entity_id','kind','name','state','source_sha')}})
         (out/'census.geojson').write_text(canonical({'type':'FeatureCollection','features':points})+'\n',encoding='utf-8')
+        from .eligibility import audit
+        audit_summary=audit(db,out,identity,technical_rows,prepared,config,args.as_of,snapshots)
         dump=logical_dump(db)
         (out/'logical_database.json').write_text(canonical(dump)+'\n',encoding='utf-8')
         (out/'snapshot_lock.json').write_text(canonical(snapshots)+'\n',encoding='utf-8')
@@ -206,7 +214,7 @@ def execute(args):
         selected_keys={snapshot['key'] for snapshot in snapshots}
         summary={'run_id':run_id,'status':'COMPLETED','cutoff':args.as_of,'module':args.module,
             'code':version,'configuration_sha256':digest(configuration),'snapshot_sha256':digest(snapshots),
-            'logical_database_sha256':digest(dump),'source_count':len(snapshots),'census_by_kind':by_kind,
+            'logical_database_sha256':digest(dump),'eligibility_audit':audit_summary,'source_count':len(snapshots),'census_by_kind':by_kind,
             'unresolved_census_candidate_records':sum(c['classification']=='UNRESOLVED_PROJECT_CANDIDATE_SOURCE_RECORD' for c in candidates),
             'unresolved_census_candidate_records_scope':'REMP_WORKBOOK_ONLY_NOT_GLOBAL_CENSUS',
             'official_government_ree_resource_rows':len(inventory),
@@ -275,7 +283,7 @@ def execute(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff'])
+    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover'])
     parser.add_argument('--root',default='.')
     parser.add_argument('--work')
     parser.add_argument('--as-of',default=datetime.now(timezone.utc).date().isoformat())
