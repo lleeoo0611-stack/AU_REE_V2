@@ -51,8 +51,15 @@ def execute(args):
         return discover(root,json.loads((root/'config/discovery.json').read_text(encoding='utf-8')))
     if args.module=='acquire' or args.refresh:
         from .discovery import discover
-        discovery=discover(root,json.loads((root/'config/discovery.json').read_text(encoding='utf-8')))
-        acquisition=refresh(root,registry)
+        if args.source_key:
+            keys=set(args.source_key.split(','))
+            chosen=[s for s in registry['sources'] if s['key'] in keys]
+            if keys!={s['key'] for s in chosen}:raise ValueError('Unknown acquisition source key')
+            discovery={'status':'TARGETED_SOURCE_UPDATE'}
+        else:
+            chosen=registry['sources']
+            discovery=discover(root,json.loads((root/'config/discovery.json').read_text(encoding='utf-8')))
+        acquisition=refresh(root,dict(registry,sources=chosen))
         if args.module=='acquire':
             return {'status':'COMPLETED_WITH_SOURCE_STATUS','sources':acquisition,'discovery':discovery}
     snapshots=select_snapshots(root,args.as_of)
@@ -63,6 +70,8 @@ def execute(args):
                 raise ValueError('Snapshot lock contains evidence after cutoff')
             if filehash(root/s['path'])!=s['sha256']:
                 raise ValueError('Locked snapshot checksum mismatch')
+            for page in s.get('original_responses',[]):
+                if filehash(root/page['path'])!=page['sha256']:raise ValueError('Locked original response checksum mismatch')
     work=Path(args.work).resolve() if args.work else root/'work'
     work.mkdir(parents=True,exist_ok=True)
     run_id=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'-'+uuid.uuid4().hex[:8]
@@ -80,14 +89,33 @@ def execute(args):
     db.commit()
     try:
         ingest_sources(db,root,snapshots)
+        from .national import government_explicit_relations
+        government_explicit_relations(db,snapshots)
+        from .national import live_government_inventory,live_government_coverage,government_link_candidates
+        live_rows=live_government_inventory(db,snapshots)
+        live_coverage=live_government_coverage(root,snapshots,live_rows)
+        write_csv(out/'government_native_entities.csv',live_rows,
+                  ['entity_id','kind','namespace','native_id','name','state','longitude','latitude',
+                   'source_key','source_sha256','locator','source_role','original_attributes'])
+        write_csv(out/'government_source_coverage.csv',live_coverage,
+                  ['state','source_key','raw_records','ree_native_entities','explicit_project_parents',
+                   'project_records','source_sha256','status'])
         screen_rows=screen_index_rows(db,{s['sha256'] for s in snapshots})
         write_csv(out/'national_screen_index.csv',screen_rows,['candidate_id','source_key','native_label','native_label_role','state','tier','source_ref','selection_entity_id','parent_candidate_id','source_sha','verification','raw'])
         if args.module!='bootstrap':
             ingest_claims(db,root,snapshots,args.as_of,args.project)
         resources=resource_values(db,args.as_of,{s['sha256'] for s in snapshots})
+        from .national import resource_quality_checks
+        resource_qa=resource_quality_checks(db,{s['sha256'] for s in snapshots})
+        write_csv(out/'resource_statement_quality.csv',resource_qa,
+                  ['entity_id','statement_id','scope','effective_date','source_sha256','basis',
+                   'calculated_contained_kt','reported_contained_kt','rounding_lower_kt','rounding_upper_kt','status','interpretation'])
         cases=ingest_cases(db,root,snapshots,args.as_of) if args.module!='bootstrap' else []
         hierarchy=build_hierarchy(db,snapshots)
         identity=resolve(db,root,snapshots,args.as_of)
+        live_candidates=government_link_candidates(db,snapshots)
+        write_csv(out/'government_identity_candidates.csv',live_candidates,
+                  ['a','b','name','state','distance_m','status','source_a','source_b'])
         technical_rows=technical_coverage(db,identity,resources,cases,{s['sha256'] for s in snapshots})
         write_csv(out/'technical_project_coverage.csv',technical_rows,['canonical_project_id','member_entity_ids','status','resource_scopes','study_case_ids','other_stage_evidence','shared_resource_context','unverified_or_other_scope_claims','interpretation'])
         hierarchy=build_hierarchy(db,snapshots)
@@ -146,6 +174,10 @@ def execute(args):
             if not args.skip_r:
                 results=run_r(root,out,prepared,config,args.rscript)
         source_shas={s['sha256'] for s in snapshots}
+        from .national import raw_domain_coverage
+        raw_domains=raw_domain_coverage(db,source_shas)
+        write_csv(out/'database_domain_coverage.csv',raw_domains,
+                  ['domain','evidence_status','distinct_statement_values','entities','sources','numeric_values','interpretation'])
         census=[dict(r) for r in db.execute('''SELECT e.entity_id,e.kind,r.* FROM entities e
             JOIN records r USING(entity_id) ORDER BY e.entity_id,r.source_sha''') if r['source_sha'] in source_shas]
         write_csv(out/'census.csv',census,['entity_id','kind','name','state','longitude','latitude','deposit_type','activity','source_sha'])
@@ -204,7 +236,8 @@ def execute(args):
         (out/'census.geojson').write_text(canonical({'type':'FeatureCollection','features':points})+'\n',encoding='utf-8')
         from .eligibility import audit
         audit_summary=audit(db,out,identity,technical_rows,prepared,config,args.as_of,snapshots)
-        dump=logical_dump(db)
+        from .security import public_export
+        dump=public_export(logical_dump(db))
         (out/'logical_database.json').write_text(canonical(dump)+'\n',encoding='utf-8')
         (out/'snapshot_lock.json').write_text(canonical(snapshots)+'\n',encoding='utf-8')
         (out/'configuration.json').write_text(canonical(configuration)+'\n',encoding='utf-8')
@@ -217,6 +250,14 @@ def execute(args):
         registered_keys={source['key'] for source in registry['sources']}
         selected_keys={snapshot['key'] for snapshot in snapshots}
         summary={'run_id':run_id,'status':'COMPLETED','cutoff':args.as_of,'module':args.module,
+            'live_government_sources_n':len(live_coverage),
+            'live_government_raw_records_n':sum(r['raw_records'] for r in live_coverage if r['raw_records'] is not None),
+            'live_government_native_entities_n':len({r['entity_id'] for r in live_rows if r['source_role']=='LIVE_GOVERNMENT_NATIVE_RECORD'}),
+            'live_government_project_parents_n':len({r['entity_id'] for r in live_rows if r['source_role']=='LIVE_GOVERNMENT_PROJECT_PARENT'}),
+            'live_government_project_records_n':len({r['entity_id'] for r in live_rows if r['kind']=='PROJECT'}),
+            'live_government_candidate_pairs_n':len(live_candidates),
+            'logical_database_export':'PUBLIC_DERIVATIVE_CREDENTIAL_REFERENCES_REMOVED_ORIGINAL_CANONICAL_DB_RETAINED_LOCALLY',
+            'database_domain_evidence':raw_domains,
             'code':version,'configuration_sha256':digest(configuration),'snapshot_sha256':digest(snapshots),
             'logical_database_sha256':digest(dump),'eligibility_audit':audit_summary,'source_count':len(snapshots),'census_by_kind':by_kind,
             'unresolved_census_candidate_records':sum(c['classification']=='UNRESOLVED_PROJECT_CANDIDATE_SOURCE_RECORD' for c in candidates),

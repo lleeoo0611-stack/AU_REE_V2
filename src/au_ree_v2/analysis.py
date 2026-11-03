@@ -54,6 +54,31 @@ def compare_runs(before, after):
     a,b=measures(before),measures(after)
     metrics=[dict(metric=k,before=a[k],after=b[k],change=None if a[k] is None or b[k] is None else b[k]-a[k]) for k in a]
     cohorts=[];ranks=[];inputs={}
+    # A larger source census can discover new candidates while resolving old ones.
+    old_pairs=read(before,'unresolved_identity_pairs.csv');new_pairs=read(after,'unresolved_identity_pairs.csv')
+    members=read(after,'canonical_membership.csv')
+    if old_pairs is not None and new_pairs is not None and members is not None:
+        mapping={r['entity_id']:r['canonical_id'] for r in members}
+        pair_key=lambda r:tuple(sorted((r['a'],r['b'])))
+        old_keys={pair_key(r) for r in old_pairs};current={pair_key(r):r for r in new_pairs}
+        follow=[]
+        for row in old_pairs:
+            confirmed=row['a'] in mapping and row['b'] in mapping and mapping[row['a']]==mapping[row['b']]
+            status='DOCUMENT_SUPPORTED_EQUIVALENCE' if confirmed else current.get(pair_key(row),{}).get('reason','UNRESOLVED_NOT_CURRENT_CANDIDATE')
+            follow.append(dict(a=row['a'],b=row['b'],name=row['name'],state=row['state'],baseline_reason=row.get('reason'),current_status=status))
+        write_csv(after/'comparison_identity_followup.csv',follow,['a','b','name','state','baseline_reason','current_status'])
+        remaining=sum(r['current_status']!='DOCUMENT_SUPPORTED_EQUIVALENCE' for r in follow)
+        metrics.extend([dict(metric='baseline_unresolved_pairs_remaining',before=len(old_pairs),after=remaining,change=remaining-len(old_pairs)),
+                        dict(metric='new_unresolved_pairs_since_baseline',before=0,after=len(set(current)-old_keys),change=len(set(current)-old_keys))])
+    old_gaps=read(before,'primary_scope_gaps.csv');new_gaps=read(after,'primary_scope_gaps.csv');technical=read(after,'technical_project_coverage.csv')
+    if old_gaps is not None and new_gaps is not None and technical is not None:
+        now={r['canonical_project_id']:r for r in technical};old_ids={r['canonical_project_id'] for r in old_gaps}
+        follow=[dict(canonical_project_id=r['canonical_project_id'],project_names=r['project_names'],
+                     current_status=now.get(r['canonical_project_id'],{}).get('status','NOT_PRESENT_UNKNOWN')) for r in old_gaps]
+        write_csv(after/'comparison_primary_gap_followup.csv',follow,['canonical_project_id','project_names','current_status'])
+        remaining=sum(r['current_status'] in ('NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET','NOT_PRESENT_UNKNOWN') for r in follow)
+        metrics.extend([dict(metric='baseline_primary_gaps_remaining',before=len(old_gaps),after=remaining,change=remaining-len(old_gaps)),
+                        dict(metric='new_primary_gap_groups',before=0,after=sum(r['canonical_project_id'] not in old_ids for r in new_gaps),change=sum(r['canonical_project_id'] not in old_ids for r in new_gaps))])
     for matrix in sorted(after.glob('*/matrix.csv')):
         panel=matrix.parent.name;old=read(before,panel+'/matrix.csv');new=read(after,panel+'/matrix.csv')
         cohorts.append(dict(panel=panel,before_n=None if old is None else len(old),after_n=len(new)))
@@ -70,7 +95,9 @@ def compare_runs(before, after):
     write_csv(after/'comparison_cohorts.csv',cohorts,['panel','before_n','after_n'])
     write_csv(after/'comparison_ranks.csv',ranks,['panel','scenario','project_id','project_name','method','before_rank','after_rank','rank_change','cohort_state'])
     for folder,label in ((before,'before'),(after,'after')):
-        if (folder/'snapshot_lock.json').exists():inputs[label+'/snapshot_lock.json']=filehash(folder/'snapshot_lock.json')
+        for name in ('snapshot_lock.json','unresolved_identity_pairs.csv','primary_scope_gaps.csv','technical_project_coverage.csv',
+                     'canonical_membership.csv','resources.csv','cohort_coverage.csv','project_domain_evidence.csv','logical_database.json'):
+            if (folder/name).exists():inputs[label+'/'+name]=filehash(folder/name)
     (after/'comparison_provenance.json').write_text(json.dumps({'inputs':inputs,'interpretation':'COHORT_AND_EVIDENCE_CHANGE_NOT_TEMPORAL_PROJECT_DEVELOPMENT_OR_CAUSAL_EFFECT'},indent=2)+'\n',encoding='utf-8')
     return {'before':a,'after':b,'cohorts':cohorts}
 

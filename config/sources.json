@@ -1,5 +1,5 @@
 {
-  "version": "sources-v6-legacy-national-selection",
+  "version": "sources-v7-live-national-government",
   "sources": [
     {
       "key": "ga_aimr",
@@ -304,6 +304,230 @@
       "kind": "pdf",
       "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3ANIM%3A6A1296587/pdf/inline/extremely-highgrade-gallium-and-rare-earths-resource",
       "publication_date": "2025-11-12"
+    },
+    {
+      "key": "wa_minedex_live",
+      "kind": "government_arcgis",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/0",
+      "national_government": true,
+      "state": "WA",
+      "namespace": "WA_MINDEX_SITE",
+      "id_field": "site_code",
+      "name_field": "site_title",
+      "commodity_fields": [
+        "site_commo",
+        "target_com",
+        "commodity"
+      ],
+      "alias_fields": [
+        "short_name"
+      ],
+      "parent_id_field": "proj_code",
+      "parent_name_field": "proj_title",
+      "where": "1=1",
+      "geological_kind_field": "site_type_"
+    },
+    {
+      "key": "qld_minocc_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/GeoscientificInformation/MiningResources/MapServer/17",
+      "national_government": true,
+      "state": "QLD",
+      "namespace": "QLD_MINOCC_SITE",
+      "id_field": "site_no",
+      "name_field": "occur_name",
+      "commodity_fields": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "where": "1=1",
+      "documented_layer_kind": "OCCURRENCE"
+    },
+    {
+      "key": "tas_mrt_live",
+      "kind": "government_arcgis",
+      "url": "https://data.stategrowth.tas.gov.au/ags/rest/services/MRT/GeoscienceWFS/MapServer/3",
+      "national_government": true,
+      "state": "TAS",
+      "namespace": "TAS_MRT_SITE",
+      "id_field": "DEPOSIT_ID",
+      "name_field": "DEPOSIT_NAME",
+      "commodity_fields": [
+        "COMMODITIES",
+        "DESCRIPTION",
+        "ORE_DESCRIPTION"
+      ],
+      "alias_fields": [
+        "ALIAS"
+      ],
+      "where": "1=1",
+      "geological_kind_field": "DEPOSIT_TYPE"
+    },
+    {
+      "key": "nsw_metindex_live",
+      "kind": "government_wfs",
+      "url": "https://public-gs.geoscience.nsw.gov.au/geoserver/ows",
+      "national_government": true,
+      "state": "NSW",
+      "type_name": "mineral-occurrence:mineral_occurrence",
+      "namespace": "NSW_METINDEX_SITE",
+      "id_field": "occurrence_id",
+      "name_field": "deposit_name",
+      "commodity_fields": [
+        "major_comm",
+        "minor_comm",
+        "ore_min",
+        "gangue_min",
+        "summary_desc"
+      ],
+      "page_size": 1000,
+      "documented_layer_kind": "OCCURRENCE"
+    },
+    {
+      "key": "vic_minsite_live",
+      "kind": "government_wfs",
+      "url": "https://opendata.maps.vic.gov.au/geoserver/wfs",
+      "national_government": true,
+      "state": "VIC",
+      "type_name": "open-data-platform:minsite",
+      "namespace": "VIC_MINSITE_SITE",
+      "id_field": "siteid",
+      "name_field": "mine_name",
+      "commodity_fields": [
+        "pri_comm",
+        "sec_comm",
+        "min_ass",
+        "prod_comm"
+      ],
+      "page_size": 1000
+    },
+    {
+      "key": "nt_modat_live",
+      "kind": "government_wfs",
+      "url": "https://geology.data.nt.gov.au/geoserver/wfs",
+      "national_government": true,
+      "state": "NT",
+      "type_name": "erl:MineralOccurrenceView",
+      "namespace": "NT_MODAT_SITE",
+      "id_field": "identifier",
+      "name_field": "name",
+      "commodity_fields": [
+        "commodity",
+        "representativeCommodity_uri"
+      ],
+      "page_size": 1000,
+      "documented_layer_kind": "OCCURRENCE"
+    },
+    {
+      "key": "sa_mindep_live",
+      "kind": "government_csv",
+      "url": "https://dem-sdp.s3-ap-southeast-2.amazonaws.com/sarig_md_details_exp.csv",
+      "national_government": true,
+      "state": "SA",
+      "namespace": "SA_MINDEP_SITE",
+      "id_field": "MINERAL_DEPOSIT_NO",
+      "name_field": "DEPOSIT_NAME",
+      "commodity_fields": [
+        "COMMODITIES",
+        "DEPOSIT_SUMMARY"
+      ],
+      "timeout_seconds": 100,
+      "encoding": "utf-8-sig",
+      "encoding_errors": "backslashreplace",
+      "text_decode_policy": "Invalid UTF8 bytes retained as literal hex escapes, never guessed CP1252 replacements; original CSV bytes immutable",
+      "geological_kind_field": "DEPOSIT_CLASS"
+    },
+    {
+      "key": "sa_developing_live",
+      "kind": "government_wfs",
+      "url": "https://services.sarig.sa.gov.au/vector/south_australia_mining_projects/wfs",
+      "national_government": true,
+      "state": "SA",
+      "namespace": "SA_MINING_PROJECT_SITE_NO",
+      "entity_kind": "PROJECT",
+      "id_field": "SITE_NO",
+      "name_field": "PROJECT_NAME",
+      "commodity_fields": [
+        "COMMODITIES",
+        "PROJECT_DESCRIPTION"
+      ],
+      "type_name": "south_australia_mining_projects:developing_projects___minerals",
+      "wfs_version": "1.1.0",
+      "page_size": 1000
+    },
+    {
+      "key": "sa_major_live",
+      "kind": "government_wfs",
+      "url": "https://services.sarig.sa.gov.au/vector/south_australia_mining_projects/wfs",
+      "national_government": true,
+      "state": "SA",
+      "namespace": "SA_MINING_PROJECT_SITE_NO",
+      "entity_kind": "PROJECT",
+      "id_field": "SITE_NO",
+      "name_field": "PROJECT_NAME",
+      "commodity_fields": [
+        "COMMODITIES",
+        "PROJECT_DESCRIPTION"
+      ],
+      "type_name": "south_australia_mining_projects:major_mines___minerals",
+      "wfs_version": "1.1.0",
+      "page_size": 1000
+    },
+    {
+      "key": "goschen_mre2025",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20251015/pdf/06qkvvhp20rxx2.pdf",
+      "publication_date": "2025-10-15"
+    },
+    {
+      "key": "lyons_mre2023",
+      "kind": "pdf",
+      "url": "https://wcsecure.weblink.com.au/pdf/LNR/02729838.pdf",
+      "publication_date": "2023-10-25"
+    },
+    {
+      "key": "circle_met2022",
+      "kind": "pdf",
+      "url": "https://assets.ctfassets.net/tpcqj4q45rlx/1ykWDllcGKP5Hm40Js55vV/064c5054260f786d59c023c5a8b60ab8/MEK_Positive_Rare_Earth_Metallurgical_Testwork_and_Forward_Plan.pdf",
+      "publication_date": "2022-07-25"
+    },
+    {
+      "key": "phase6_jupiter_brothers_page2",
+      "kind": "pdf_page_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+      "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+      "physical_page": 2
+    },
+    {
+      "key": "fingerboards_project2026",
+      "kind": "html",
+      "url": "https://www.gippslandcriticalminerals.com/project-overview/"
+    },
+    {
+      "key": "narraburra_ar2023",
+      "kind": "pdf",
+      "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/g/ASX_GRL_2023.pdf",
+      "publication_date_precision": "month",
+      "hosting_role": "Original issuer annual report served by AnnualReports mirror",
+      "publication_date": "2023-09"
+    },
+    {
+      "key": "iluka_vhm2026",
+      "kind": "pdf",
+      "url": "https://www.iluka.com/media/c33deodq/2jul26-rare-earth-concentrate-supply-agreement-with-vhm-ltd.pdf",
+      "publication_date": "2026-07-02"
+    },
+    {
+      "key": "goschen_iluka2026",
+      "kind": "pdf",
+      "url": "https://wcsecure.weblink.com.au/pdf/VHM/03106645.pdf",
+      "publication_date": "2026-07-02"
+    },
+    {
+      "key": "koppamurra_pfs2026",
+      "kind": "pdf",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7600073.pdf?v=63949564086",
+      "publication_date": "2026-06-25"
     }
   ]
 }

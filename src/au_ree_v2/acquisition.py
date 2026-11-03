@@ -23,10 +23,11 @@ def request(url, params=None, headers=None, timeout=25):
             if attempt==2:raise
         time.sleep(0.5*(2**attempt))
 
-def arcgis(url, where='1=1', windows=None):
+def arcgis(url, where='1=1', windows=None, archive=None):
     """Inventory-complete retrieval, globally or within each registered project AOI."""
     def query(params):
         raw, _ = request(url.rstrip('/') + '/query', {'f': 'json', **params})
+        if archive is not None:archive(raw)
         data = json.loads(raw)
         if 'error' in data:
             raise ValueError(canonical(data['error']))
@@ -71,6 +72,71 @@ def arcgis(url, where='1=1', windows=None):
                          'count':len(all_features), 'complete':True,
                          'scope':scope, 'queries':inventories}}
 
+
+def wfs(source, archive=None):
+    """Count-bound, native-ID checked WFS paging; never accept a partial inventory."""
+    import xml.etree.ElementTree as ET
+    base={'service':'WFS','version':source.get('wfs_version','2.0.0'),
+          'request':'GetFeature','typeName':source['type_name'],
+          'typeNames':source['type_name'],'srsName':'EPSG:4326'}
+    hit,_=request(source['url'],{**base,'resultType':'hits'})
+    if archive is not None:archive(hit)
+    node=ET.fromstring(hit)
+    total=node.get('numberMatched',node.get('numberOfFeatures'))
+    if total is None or not str(total).isdigit():raise ValueError('WFS count not disclosed')
+    total=int(total);features=[];seen=set();size=source.get('page_size',1000)
+    if total>source.get('max_records',200000):raise ValueError('WFS inventory exceeds configured bound')
+    while len(features)<total:
+        params={**base,'outputFormat':'application/json','count':size,'maxFeatures':size}
+        # SARIG WFS1.1 rejects even startIndex=0 on views without a declared PK.
+        if len(features) or total>size:params['startIndex']=len(features)
+        if source.get('sort_by'):params['sortBy']=source['sort_by']
+        raw,_=request(source['url'],params)
+        if archive is not None:archive(raw)
+        if raw.lstrip().startswith(b'<'):
+            raise ValueError('WFS service exception: '+' '.join(ET.fromstring(raw).itertext())[:800])
+        data=json.loads(raw)
+        page=data.get('features')
+        if data.get('type')!='FeatureCollection' or not isinstance(page,list) or not page:
+            raise ValueError('WFS missing page/FeatureCollection')
+        for f in page:
+            key=f.get('properties',{}).get(source['id_field'])
+            if key is None or str(key) in seen:raise ValueError('WFS missing/duplicate native ID; unstable paging')
+            seen.add(str(key));features.append(f)
+        matched=data.get('numberMatched',data.get('totalFeatures'))
+        if matched is not None and str(matched).isdigit() and int(matched)!=total:
+            raise ValueError('WFS inventory changed during paging')
+    if len(features)!=total:raise ValueError('WFS count mismatch')
+    return {'type':'FeatureCollection','features':features,
+            'inventory':{'complete':True,'count':total,'scope':'global','type_name':source['type_name'],
+                         'id_field':source['id_field'],'srsName':'EPSG:4326','page_size':size}}
+
+
+def government_changes(root,source,previous,raw):
+    """Compare complete inventories by native ID; changes never mutate older bytes."""
+    import csv,io
+    def index(data):
+        if source['kind']=='government_csv':
+            rows=[{'attributes':r} for r in csv.DictReader(io.StringIO(data.decode(source.get('encoding','utf-8-sig'),errors=source.get('encoding_errors','strict'))))]
+        else:rows=json.loads(data)['features']
+        result={}
+        for row in rows:
+            attrs=row.get('attributes',row.get('properties',{}));key=attrs.get(source['id_field'])
+            if key is None:raise ValueError('Version comparison missing native ID')
+            # Some WFS views generate a new response FID on every request.
+            # Native attributes and geometry define the data change, not that envelope FID.
+            result.setdefault(str(key),set()).add(digest({'attributes':attrs,'geometry':row.get('geometry')}))
+        return result
+    current=index(raw)
+    if not previous:return {'baseline':'FIRST_CAPTURE','current_native_id_groups':len(current)}
+    old=index((Path(root)/previous['path']).read_bytes())
+    shared=old.keys()&current.keys()
+    return {'previous_sha256':previous['sha256'],'current_native_id_groups':len(current),
+            'added_native_id_groups':len(current.keys()-old.keys()),'removed_native_id_groups':len(old.keys()-current.keys()),
+            'changed_native_id_groups':sum(old[k]!=current[k] for k in shared),
+            'unchanged_native_id_groups':sum(old[k]==current[k] for k in shared),
+            'unit':'SOURCE_NATIVE_ID_GROUPS_NOT_PROJECTS'}
+
 def refresh(root, registry):
     """A failed source is recorded and does not discard any existing snapshot."""
     root = Path(root)
@@ -79,6 +145,13 @@ def refresh(root, registry):
     outcomes = []
     for source in registry['sources']:
         try:
+            pages=[]
+            def archive(raw):
+                import hashlib
+                sha=hashlib.sha256(raw).hexdigest()
+                path=root/'data/snapshots'/(sha+'.response')
+                if not path.exists():path.write_bytes(raw)
+                pages.append({'sha256':sha,'path':path.relative_to(root).as_posix()})
             previous = [s for s in manifest['snapshots'] if s['key']==source['key']]
             latest = max(previous,key=lambda s:s['acquired_at']) if previous else {}
             if source['kind'] in ('official_table_transcription','official_project_catalogue_transcription','historical_e1_candidates','legacy_screen_index','pdf_page_extraction'):
@@ -89,9 +162,12 @@ def refresh(root, registry):
                 outcomes.append({'key':source['key'],'status':'MANAGED_TRANSCRIPTION_VERIFIED',
                                  'sha256':latest['sha256']})
                 continue
-            if source['kind'] in ('arcgis_census', 'arcgis_gis'):
+            if source['kind']=='government_wfs':
+                raw=(canonical(wfs(source,archive))+'\n').encode();headers={}
+            elif source['kind'] in ('arcgis_census', 'arcgis_gis','government_arcgis'):
                 windows = project_windows(root, manifest, source['aoi_radius_km']) if source.get('aoi_radius_km') else None
-                raw = (canonical(arcgis(source['url'], source.get('where', '1=1'), windows=windows)) + '\n').encode()
+                raw = (canonical(arcgis(source['url'], source.get('where', '1=1'), windows=windows,
+                                       archive=archive if source['kind']=='government_arcgis' else None)) + '\n').encode()
                 headers={}
             else:
                 conditional={}
@@ -109,11 +185,16 @@ def refresh(root, registry):
                 if source['kind'] == 'xlsx_census' and not raw.startswith(b'PK\x03\x04'):
                     raise ValueError('Not an OOXML workbook response')
             import hashlib
+            from .security import public_snapshot
+            raw,redaction=public_snapshot(root,raw,'.csv' if source['kind']=='government_csv' else '.json')
             sha = hashlib.sha256(raw).hexdigest()
+            changes=government_changes(root,source,latest,raw) if source.get('national_government') else None
             if any(s['sha256'] == sha and s['key'] == source['key'] for s in manifest['snapshots']):
-                outcomes.append({'key': source['key'], 'status': 'UNCHANGED', 'sha256': sha})
+                outcomes.append({'key': source['key'], 'status': 'UNCHANGED', 'sha256': sha,
+                                 **({'native_changes':changes} if changes else {}),
+                                 **({'original_responses':pages} if pages else {})})
                 continue
-            suffix = '.pdf' if source['kind'] == 'pdf' else '.xlsx' if source['kind'] == 'xlsx_census' else '.json'
+            suffix = '.pdf' if source['kind'] == 'pdf' else '.xlsx' if source['kind'] == 'xlsx_census' else '.csv' if source['kind']=='government_csv' else '.html' if source['kind']=='html' else '.json'
             path = root / 'data/snapshots' / (sha + suffix)
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(raw)
@@ -121,11 +202,15 @@ def refresh(root, registry):
             entry = {**source, 'sha256': sha, 'path': path.relative_to(root).as_posix(),
                      'acquired_at': now, 'available_date': now[:10],
                      'etag':headers.get('ETag'),'last_modified':headers.get('Last-Modified')}
+            entry.update(redaction)
+            if pages:entry['original_responses']=pages
+            if changes:entry['native_changes']=changes
             manifest['snapshots'].append(entry)
             manifest_path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
             outcomes.append({'key': source['key'], 'status': 'ADDED', 'sha256': sha})
         except Exception as exc:
-            outcomes.append({'key': source['key'], 'status': 'UNAVAILABLE', 'reason': str(exc)})
+            outcomes.append({'key': source['key'], 'status': 'UNAVAILABLE', 'reason': str(exc),
+                             **({'original_responses':pages} if pages else {})})
     manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     return outcomes
 
@@ -138,8 +223,17 @@ def select_snapshots(root, cutoff, keys=None):
         # Never backdate a current live response to an earlier analysis cutoff.
         if s['available_date'] > cutoff or s.get('publication_date', '') > cutoff:
             continue
-        if filehash(Path(root) / s['path']) != s['sha256']:
-            raise ValueError('Snapshot checksum mismatch: ' + s['path'])
         if s['key'] not in selected or s['acquired_at'] > selected[s['key']]['acquired_at']:
             selected[s['key']] = s
+    private={s['unpublished_original_sha256'] for s in selected.values() if s.get('publication_derivative')}
+    # Every available historical file remains checksum-checked. Only an explicitly
+    # declared unpublished original can be absent from a public derivative replay.
+    for s in manifest['snapshots']:
+        if keys and s['key'] not in keys:continue
+        if s['available_date']>cutoff or s.get('publication_date','')>cutoff:continue
+        path=Path(root)/s['path']
+        if not path.exists() and s['sha256'] in private:continue
+        if not path.exists() or filehash(path)!=s['sha256']:raise ValueError('Snapshot checksum mismatch: '+s['path'])
+        for page in s.get('original_responses',[]):
+            if filehash(Path(root)/page['path'])!=page['sha256']:raise ValueError('Original service response checksum mismatch: '+page['path'])
     return [selected[k] for k in sorted(selected)]

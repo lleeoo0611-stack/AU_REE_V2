@@ -2,114 +2,108 @@
   "version": "discovery-v2",
   "sources": [
     {
-      "seed_key": "astron_reports",
+      "seed_key": "vhm_goschen",
       "status": "PARSED",
-      "links_found": 0,
-      "links_attempted": 0,
-      "sha256": "5ea49789bcb0efb33f27a076837cc9a05baf9fa1add3b5c7cb48dc877d286727",
+      "links_found": 9,
+      "links_attempted": 1,
+      "sha256": "5c74be9d218ffb6e29a8b3f80211bcea2131f0e3b939b58808f0f7d448dfa84d",
       "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     },
     {
-      "seed_key": "asm_reports",
+      "seed_key": "lanthanein_reports",
       "status": "PARSED",
       "links_found": 0,
       "links_attempted": 0,
-      "sha256": "92b08c11126a2a6dc182654107f7504781e5db778720b3abf3a4e3e8e9cbf4c1",
+      "sha256": "7be807ce68ee0061db4ca434c8918a77436fa7fcf652669302ffba3f4cf5fb53",
       "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     },
     {
-      "seed_key": "ga_critical",
-      "status": "PARSED",
-      "links_found": 0,
-      "links_attempted": 0,
-      "sha256": "4dcca82045efda332719b6e064c78349a562dd4f9946c15493460af5fbbe7ded",
-      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
-    },
-    {
-      "seed_key": "asm_company_reports",
+      "seed_key": "gcm_fingerboards",
       "status": "PARSED",
       "links_found": 1,
       "links_attempted": 1,
-      "sha256": "e73698fefa95549da6bb7d6529c59e2bac8dba664f4384ac66e3cd0cd819bcd6",
+      "sha256": "197602220b4e8fc3ea4f4fe18fd2dcbaffdcf2f63dc774c4c2abe5d8f0f43a7d",
       "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     },
     {
-      "seed_key": "marquee_redlings",
-      "status": "PARSED",
-      "links_found": 1,
-      "links_attempted": 1,
-      "sha256": "e0c912a4aad7775dcb4b30198c913b3041b0a47bb0f5fb61d98b09946be1009f",
-      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
-    },
-    {
-      "seed_key": "krakatoa_tower",
-      "status": "DIRECT_PDF_TYPE_CORRECTED_AFTER_CAPTURE",
-      "links_found": 0,
-      "links_attempted": 0,
-      "sha256": "f627d400c3b9c8652403ce025ad4e6c0d97b844d0a3fbc8b515f07c418a01056",
-      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT",
-      "format_correction": "PDF_MAGIC_VERIFIED_ORIGINAL_BYTES_UNCHANGED"
-    },
-    {
-      "seed_key": "dreadnought_search",
-      "status": "UNAVAILABLE",
-      "reason": "HTTPError"
-    },
-    {
-      "seed_key": "dreadnought_search_search_a0c4f3f697ca",
-      "status": "UNAVAILABLE",
-      "reason": "HTTPError"
-    },
-    {
-      "seed_key": "dreadnought_search_search_d89403207b61",
-      "status": "UNAVAILABLE",
-      "reason": "HTTPError"
-    },
-    {
-      "seed_key": "asm_reports_page_247a9b3033bc",
+      "seed_key": "meeka_search",
       "status": "PARSED",
       "links_found": 0,
       "links_attempted": 0,
-      "sha256": "871cfb6171b0ea1290dbdfd5165383d9d7ca21a13b6e73c516fb16b855d99920",
+      "sha256": "dbfcbea42ca8e427edab5e216b41c3c0ccf539eb3440552d04c74bd86e12c3b3",
       "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     },
     {
-      "seed_key": "asm_reports_page_0e2df174c42c",
+      "seed_key": "vhm_goschen_page_ca402ed236d8",
       "status": "PARSED",
       "links_found": 0,
       "links_attempted": 0,
-      "sha256": "fc7315bb7650597a4e2602d88699cf47f8ee03c6fde6dc47d794b76b4c06f4be",
+      "sha256": "c18a129392623340f7bbe12a99c2c1bc7c1dbeee42943a6e69d68c75b8caf1e3",
       "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+    },
+    {
+      "seed_key": "lanthanein_reports_page_1512bbef231a",
+      "status": "PARSED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "sha256": "66811885f3bf5df25c45d5f0aa8bd964bb23af7f692c31d8ae31bbe5196de1bc",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+    },
+    {
+      "seed_key": "lanthanein_reports_page_3ebae993bf18",
+      "status": "DIRECT_PDF_CAPTURED",
+      "sha256": "c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4"
+    },
+    {
+      "seed_key": "vhm_goschen_page_9bcab19acfc8",
+      "status": "DIRECT_PDF_CAPTURED",
+      "sha256": "9259d4a149afef29e471c92e3cc11d512659a07bc4026780488e57ae69d36ef5"
     }
   ],
   "documents": [
     {
-      "candidate_id": "a74257c9c2a2cd0a8adf6a42ae48e471b22849bc206573d10fbccc8204a04b07",
-      "url": "https://asm-au.com/wp-content/uploads/2026/09/ASM-Group-2026-Financial-Report-Final_with-audit-reports-FINAL.pdf",
-      "title": "25/09/2026Annual Financial Report 2026",
-      "seed_key": "asm_company_reports",
+      "candidate_id": "341a11fe2298b921aed434699701ad26243776df81b8d5404ee566c3e15f6d58",
+      "url": "https://www.vhmltd.com.au/wp-content/uploads/2026/10/VHM_Goschen_Project_Community_Update_-_October_2026.pdf",
+      "title": "Project Update – October 2026",
+      "seed_key": "vhm_goschen",
       "publication_date": null,
       "status": "SNAPSHOT_REQUIRES_DATED_SCOPE_EXTRACTION",
       "project_id": null,
       "identity_status": "SOURCE_CONTEXT_ONLY_NOT_EQUIVALENCE",
-      "discovery_sha256": "e73698fefa95549da6bb7d6529c59e2bac8dba664f4384ac66e3cd0cd819bcd6",
-      "document_sha256": "4c1bc8edc6d26b0c5eaf16e385c0e95534c071092624e9d14c338d2783002eb7",
-      "physical_pages": 43,
+      "discovery_sha256": "5c74be9d218ffb6e29a8b3f80211bcea2131f0e3b939b58808f0f7d448dfa84d",
+      "document_sha256": "50235857d1f2b3e376414ba26a545f32cb628a970f98c91ab8acc8c172420a45",
+      "physical_pages": 4,
       "text_quality": "REQUIRES_PAGE_VALIDATION_NO_AUTOMATIC_NUMERIC_EXTRACTION"
     },
     {
-      "candidate_id": "4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
-      "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
-      "title": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
-      "seed_key": "marquee_redlings",
+      "candidate_id": "3069a0564cd0a2281b08fe40eed82b1cf112693c9325ea1349008505f168fc06",
+      "url": "https://www.gippslandcriticalminerals.com/wp-content/uploads/2025/11/Ecology-Study-Summary-November-2025.pdf",
+      "title": "You can read the scope of those studies here.",
+      "seed_key": "gcm_fingerboards",
       "publication_date": null,
       "status": "SNAPSHOT_REQUIRES_DATED_SCOPE_EXTRACTION",
       "project_id": null,
       "identity_status": "SOURCE_CONTEXT_ONLY_NOT_EQUIVALENCE",
-      "discovery_sha256": "e0c912a4aad7775dcb4b30198c913b3041b0a47bb0f5fb61d98b09946be1009f",
-      "document_sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
-      "physical_pages": 14,
+      "discovery_sha256": "197602220b4e8fc3ea4f4fe18fd2dcbaffdcf2f63dc774c4c2abe5d8f0f43a7d",
+      "document_sha256": "01a88645ccdb8c36a7fc385168bf796b30ea5d76da9ba8dedbead81b409d9810",
+      "physical_pages": 2,
       "text_quality": "REQUIRES_PAGE_VALIDATION_NO_AUTOMATIC_NUMERIC_EXTRACTION"
+    },
+    {
+      "candidate_id": "3ebae993bf186dfcc7f57db977039219cae5a4dd78cb6a3de49a8d566725e72a",
+      "url": "https://wcsecure.weblink.com.au/clients/fortunametals/headline.aspx?headlineid=61344787",
+      "seed_key": "lanthanein_reports_page_3ebae993bf18",
+      "publication_date": null,
+      "document_sha256": "c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4",
+      "status": "DIRECT_PDF_REQUIRES_DATED_SCOPE_EXTRACTION"
+    },
+    {
+      "candidate_id": "9bcab19acfc8e1e5ca11a50d7ea15a8ff0b887d1005fc7a8a7d3a431f7acbf0c",
+      "url": "https://www.vhmltd.com.au/wp-content/uploads/2022/06/VHM-Notice-of-Meeting-of-2021-Noteholders-Chapter-2E-final.pdf",
+      "seed_key": "vhm_goschen_page_9bcab19acfc8",
+      "publication_date": null,
+      "document_sha256": "9259d4a149afef29e471c92e3cc11d512659a07bc4026780488e57ae69d36ef5",
+      "status": "DIRECT_PDF_REQUIRES_DATED_SCOPE_EXTRACTION"
     }
   ]
 }

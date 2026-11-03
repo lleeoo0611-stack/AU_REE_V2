@@ -16,7 +16,7 @@ class Phase5Tests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.work=ROOT/'work/tests'/uuid.uuid4().hex;cls.work.mkdir(parents=True)
-        cls.db=connect(cls.work/'canonical.sqlite');cls.snaps=select_snapshots(ROOT,'2026-11-03');cls.shas={s['sha256'] for s in cls.snaps}
+        cls.db=connect(cls.work/'canonical.sqlite');cls.snaps=json.loads((ROOT/'results/phase5-2026-11-03/snapshot_lock.json').read_text(encoding='utf-8'));cls.shas={s['sha256'] for s in cls.snaps}
         ingest_sources(cls.db,ROOT,cls.snaps);ingest_claims(cls.db,ROOT,cls.snaps,'2026-11-03')
         cls.resources=resource_values(cls.db,'2026-11-03',cls.shas);cls.cases=ingest(cls.db,ROOT,cls.snaps,'2026-11-03');cls.ids=resolve(cls.db,ROOT,cls.snaps)
     @classmethod

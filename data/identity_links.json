@@ -243,6 +243,81 @@
       "locator": "Primary MRE p2 named Burracoppin + official native IDs/name/state/27.7m coordinates; no bulk-grade equivalence inferred",
       "effective_date": "2026-11-03",
       "basis": "PRIMARY_NAMED_SCOPE_PLUS_OFFICIAL_RECORDS"
+    },
+    {
+      "left": [
+        "GA_ENO",
+        "923579"
+      ],
+      "right": [
+        "GA_CRITICAL_OBJECTID_2025",
+        "2475"
+      ],
+      "canonical": [
+        "GA_ENO",
+        "923579"
+      ],
+      "relation": "SAME_DEPOSIT_IDENTITY",
+      "source_key": "circle_met2022",
+      "source_sha256": "b65a525000fb8d74d87024056f7c001df5ee466eb4cf4a8ccf9d6fd5ae08ce19",
+      "pdf_page": 1,
+      "page_markers": [
+        "Circle Valley",
+        "805ppm TREO"
+      ],
+      "locator": "Primary Circle Valley composites document p1 + both official deposit native IDs, names/state and4.814m; no Project/deposit equivalence",
+      "effective_date": "2026-11-03",
+      "basis": "PRIMARY_NAMED_SCOPE_PLUS_OFFICIAL_RECORDS"
+    },
+    {
+      "left": [
+        "GA_ENO",
+        "436544"
+      ],
+      "right": [
+        "GA_CRITICAL_OBJECTID_2025",
+        "2186"
+      ],
+      "canonical": [
+        "GA_ENO",
+        "436544"
+      ],
+      "relation": "SAME_DEPOSIT_IDENTITY",
+      "source_key": "narraburra_ar2023",
+      "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+      "pdf_page": 94,
+      "page_markers": [
+        "Narraburra",
+        "738.95"
+      ],
+      "locator": "Primary Narraburra resource table physicalp94 + officialnativeIDs/name/state/coincidentpoints; no Project/deposit equivalence",
+      "effective_date": "2026-11-03",
+      "basis": "PRIMARY_NAMED_SCOPE_PLUS_OFFICIAL_RECORDS"
+    },
+    {
+      "left": [
+        "GA_ENO",
+        "806972"
+      ],
+      "right": [
+        "GA_CRITICAL_OBJECTID_2025",
+        "2308"
+      ],
+      "canonical": [
+        "GA_ENO",
+        "806972"
+      ],
+      "relation": "SAME_DEPOSIT_IDENTITY",
+      "source_key": "koppamurra_pfs2026",
+      "source_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "pdf_page": 1,
+      "page_markers": [
+        "Koppamurra",
+        "South Australia"
+      ],
+      "locator": "Primary KoppamurraPFS p1 + officialnativeIDs/name/state/coincidentpoints; notProject/deposit equivalence",
+      "effective_date": "2026-11-03",
+      "basis": "PRIMARY_NAMED_SCOPE_PLUS_OFFICIAL_RECORDS"
     }
   ],
   "effective_date": "2026-11-03",
@@ -266,6 +341,30 @@
       ],
       "effective_date": "2026-11-03",
       "locator": "Maiden Yttria MRE physical p1: Yttria deposit located on Mt Stirling Project; shared scope not additive resource"
+    },
+    {
+      "left": [
+        "WA_DMPE_REE_2026_PROJECT",
+        "greater-brothers"
+      ],
+      "right": [
+        "project_registry_v1",
+        "jupiter"
+      ],
+      "relation": "CONTAINS_DOCUMENTED_REE_SCOPE_NOT_IDENTITY_EQUIVALENCE",
+      "source_key": "jupiter_scoping2026",
+      "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+      "pdf_page": 2,
+      "page_markers": [
+        "Brothers Project",
+        "one of six rare earth discoveries",
+        "less than 3%"
+      ],
+      "locator": "PhysicalPDF p2 + WA official GreaterBrothers label; Jupiter resource is child scope, never additive",
+      "effective_date": "2026-11-03",
+      "required_source_keys": [
+        "phase6_jupiter_brothers_page2"
+      ]
     }
   ]
 }

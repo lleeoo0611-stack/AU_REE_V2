@@ -14,6 +14,11 @@ def ingest_sources(db, root, snapshots):
         db.execute('INSERT OR IGNORE INTO sources VALUES(?,?,?,?,?,?,?,?)',
                    (s['sha256'], s['key'], s['url'], s.get('publication_date'),
                     s['acquired_at'], s['path'], s['kind'], canonical(s)))
+        if s.get('national_government'):
+            from .national import ingest_government
+            try:ingest_government(db,root,s)
+            except Exception as exc:issue(db,None,s['sha256'],'GOVERNMENT_SOURCE_INGEST_FAILED',str(exc))
+            continue
         if s['kind']=='legacy_screen_index':
             ingest_screen_index(db,root,s)
             continue
@@ -116,6 +121,7 @@ def transformation_issues(o, siblings, depth=0):
 
 def ingest_claims(db, root, snapshots, cutoff, project=None):
     by_key = {s['key']: s for s in snapshots}
+    readers={};page_text={}
     claims = json.loads((Path(root) / 'data/claims.json').read_text(encoding='utf-8'))
     for p in claims['projects']:
         if project and p['id'] != project:
@@ -149,10 +155,23 @@ def ingest_claims(db, root, snapshots, cutoff, project=None):
             # Claim binding prevents silently applying old extraction to a changed PDF.
             if o['source_sha256'] != s['sha256']:
                 reasons.append('EXTRACTION_VERSION_MISMATCH')
+            if s['kind']=='html':
+                from html.parser import HTMLParser
+                class Text(HTMLParser):
+                    def __init__(self):super().__init__();self.parts=[]
+                    def handle_data(self,value):self.parts.append(value)
+                parser=Text();parser.feed((Path(root)/s['path']).read_text(encoding='utf-8'))
+                text=re.sub(r'\s+',' ',' '.join(parser.parts))
+                if not o.get('source_markers') or not all(marker in text for marker in o['source_markers']):
+                    reasons.append('EXTRACTION_HTML_MARKER_CHECK_FAILED')
             if s['kind']=='pdf' and o.get('pdf_page'):
                 from pypdf import PdfReader
                 try:
-                    text = PdfReader(Path(root)/s['path']).pages[o['pdf_page']-1].extract_text()
+                    page_key=(s['sha256'],o['pdf_page'])
+                    if page_key not in page_text:
+                        if s['sha256'] not in readers:readers[s['sha256']]=PdfReader(Path(root)/s['path'])
+                        page_text[page_key]=readers[s['sha256']].pages[o['pdf_page']-1].extract_text()
+                    text=page_text[page_key]
                     if o.get('page_extraction_key'):
                         artifact=by_key[o['page_extraction_key']]
                         if artifact['sha256']!=o['page_extraction_sha256']:raise ValueError('Page artifact version mismatch')

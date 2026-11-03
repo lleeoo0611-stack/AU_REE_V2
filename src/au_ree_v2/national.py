@@ -211,3 +211,229 @@ def candidate_port_distances(db,root,snapshots,run_id):
                        "status":status,"unit_of_analysis":"SOURCE_RECORD_NOT_PROJECT",
                        "limitation":"Geological source locality; no confirmed Project boundary/route"})
     return output
+
+# Current official inventories share this evidence store with the historical index.
+REE_TERMS = re.compile(r'(?<![A-Za-z])(?:REEs?|REO|TREO|HREE|LREE|NdPr|rare[\s-]*earths?(?:\s*elements?)?|neodymium|praseodymium|dysprosium|terbium|yttrium|monazite|xenotime)(?![A-Za-z])', re.I)
+
+
+def government_features(root, source):
+    """Read retained originals; filtering is applied only after completeness checks."""
+    import csv, io
+    path=Path(root)/source['path']
+    if filehash(path)!=source['sha256']:raise ValueError('Government snapshot SHA mismatch')
+    for page in source.get('original_responses',[]):
+        if filehash(Path(root)/page['path'])!=page['sha256']:raise ValueError('Government original page SHA mismatch')
+    if source['kind']=='government_csv':
+        text=path.read_bytes().decode(source.get('encoding','utf-8-sig'),errors=source.get('encoding_errors','strict'))
+        reader=csv.DictReader(io.StringIO(text))
+        if not reader.fieldnames or source['id_field'] not in reader.fieldnames:
+            raise ValueError('Government CSV missing native ID column')
+        return [{'attributes':dict(row)} for row in reader]
+    data=json.loads(path.read_text(encoding='utf-8'))
+    inventory=data.get('inventory',{})
+    if not inventory.get('complete') or inventory.get('count')!=len(data.get('features',[])):
+        raise ValueError('Government inventory incomplete')
+    return data['features']
+
+
+def ingest_government(db,root,source):
+    """Government native locations and explicit parent codes, never name-based Projects."""
+    from .hierarchy import link
+    seen=set();count=0
+    features=government_features(root,source)
+    # A local nonunique business ID must not block unrelated, valid native keys.
+    from collections import Counter
+    keys=[str(f.get('attributes',f.get('properties',{})).get(source['id_field']) or '').strip() for f in features]
+    counts=Counter(keys)
+    for index,f in enumerate(features):
+        a=f.get('attributes',f.get('properties',{}));key=a.get(source['id_field'])
+        native=str(int(key)) if isinstance(key,(float,int)) and float(key).is_integer() else str(key or '').strip()
+        terms='; '.join(str(a.get(k) or '') for k in source['commodity_fields'])
+        if not REE_TERMS.search(terms):continue
+        if not native or native in seen or counts[native]>1:
+            issue(db,None,source['sha256'],'GOVERNMENT_NATIVE_ID_MISSING_OR_DUPLICATE',canonical({'row':index,'native':native}))
+            continue
+        seen.add(native)
+        kind=source.get('entity_kind','SITE')
+        eid=entity(db,source['namespace'],native,kind)
+        name=str(a.get(source['name_field']) or native).strip()
+        lon,lat=_coordinate(a,f.get('geometry'))
+        if lon is None:
+            lon,lat=_coordinate({'longitude':a.get('longda94'),'latitude':a.get('latgda94')},None)
+        raw={'source_kind':'LIVE_GOVERNMENT_NATIVE_RECORD','source_key':source['key'],
+             'native_id':native,'original_attributes':a,'original_geometry':f.get('geometry'),
+             'locator':('CSV physical row '+str(index+2)) if source['kind']=='government_csv' else 'features['+str(index)+']',
+             'ree_rule':'REE_COMMODITY_FIELDS_V1','matched_commodity_text':terms,
+             'interpretation':'GOVERNMENT_RECORDED_'+kind+'_NOT_INDEPENDENT_PHYSICAL_PROJECT_COUNT'}
+        db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
+                   (eid,source['sha256'],name,source['state'],lon,lat,
+                    a.get('DEPOSIT_CLASS') or a.get('mineralDepositModel') or a.get('dep_ty_gen'),
+                    a.get('site_stage') or a.get('OPERATIONAL_STATUS') or a.get('DEVELOPMENT_STATUS'),canonical(raw)))
+        label=str(a.get(source.get('geological_kind_field','')) or '').strip().casefold()
+        geo_kind={'deposit':'DEPOSIT','prospect':'PROSPECT','occurrence':'OCCURRENCE',
+                  'mineral occurrence':'OCCURRENCE'}.get(label,source.get('documented_layer_kind'))
+        if kind=='SITE' and geo_kind:
+            gid=entity(db,source['namespace']+'_'+geo_kind,native,geo_kind)
+            db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
+                       (gid,source['sha256'],name,source['state'],lon,lat,
+                        a.get(source.get('geological_kind_field','')),None,
+                        canonical(dict(raw,source_kind='LIVE_GOVERNMENT_GEOLOGICAL_ENTITY',
+                                       entity_level=geo_kind,entity_level_evidence=source.get('geological_kind_field') or 'official layer definition'))))
+            link(db,gid,eid,'HAS_GOVERNMENT_REPRESENTATIVE_SITE_NOT_FOOTPRINT',source['sha256'],raw['locator']+'; source entity classification')
+        fields={
+            'Resource':['RESOURCE_SUMMARY','RESOURCES','resources'],
+            'Technical':['LITHOLOGY','ORE_DESCRIPTION','hostGeologicUnit','hostrocks','host_lith','mineralDepositModel','DEPOSIT_CLASS','dep_ty_gen','dep_ty_sp','min_ass'],
+            'Development':['site_stage','OPERATIONAL_STATUS','DEVELOPMENT_STATUS','mineralOccurrenceType','PROJECT_STATUS'],
+            'Commercial':['OPERATING_COMPANY','ASX_CODE'],
+            'Strategic':source['commodity_fields']}
+        for domain,names in fields.items():
+            for field in names:
+                text=a.get(field)
+                if text is None or not str(text).strip() or str(text).strip() in ('-999','Unknown','N/A'):continue
+                variable='government_'+field.lower()
+                payload={'domain':domain,'original_value':text,'original_field':field,
+                         'original_unit':'SOURCE_TEXT_NOT_NORMALIZED','source_key':source['key'],
+                         'effective_date_status':'NOT_DISCLOSED_UNLESS_PRESENT_IN_ORIGINAL_ATTRIBUTES',
+                         'captured_on':source['available_date'],'scorable':False}
+                db.execute('INSERT OR IGNORE INTO observations VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                    (digest([eid,source['sha256'],variable]),eid,variable,None,None,'GOVERNMENT_SOURCE_TEXT',
+                     'Native '+source['namespace']+'/'+native,source['key']+'/'+native,None,
+                     source['available_date'],source['sha256'],raw['locator']+' / '+field,
+                     'DOCUMENTED_GOVERNMENT_RAW','[]',canonical(payload),'government-native-v1'))
+        parent=a.get(source.get('parent_id_field',''))
+        if parent:
+            # Existing WA parent IDs and their established kind stay stable.
+            pid=entity(db,'WA_MINDEX_PROJECT',str(parent),'PROJECT_CANDIDATE')
+            db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
+                       (pid,source['sha256'],str(a.get(source['parent_name_field']) or parent),source['state'],
+                        None,None,None,None,canonical({'source_kind':'LIVE_GOVERNMENT_PROJECT_PARENT',
+                        'project_code':parent,'original_attributes':a,'role':'EXPLICIT_SOURCE_PARENT_NOT_TECHNICAL_SCOPE_EQUIVALENCE'})))
+            link(db,pid,eid,'GOVERNMENT_PROJECT_SITE_MEMBERSHIP',source['sha256'],
+                 source['parent_id_field']+'='+str(parent)+'; '+source['id_field']+'='+native)
+            if geo_kind:
+                link(db,pid,gid,'GOVERNMENT_PROJECT_CONTAINS_'+geo_kind,source['sha256'],
+                     source['parent_id_field']+'='+str(parent)+'; '+source['id_field']+'='+native)
+        count+=1
+    return {'raw_records':len(features),'ree_native_records':count}
+
+
+def live_government_inventory(db,snapshots):
+    """Separate current source records, native entities, parents and registry Projects."""
+    selected={s['sha256']:s for s in snapshots if s.get('national_government')}
+    rows=[]
+    for r in db.execute('SELECT e.*,r.* FROM entities e JOIN records r USING(entity_id) ORDER BY e.entity_id,r.source_sha'):
+        if r['source_sha'] not in selected:continue
+        raw=json.loads(r['raw']);s=selected[r['source_sha']]
+        rows.append({'entity_id':r['entity_id'],'kind':r['kind'],'namespace':r['native_namespace'],
+                     'native_id':r['native_id'],'name':r['name'],'state':r['state'],
+                     'longitude':r['longitude'],'latitude':r['latitude'],'source_key':s['key'],
+                     'source_sha256':r['source_sha'],'locator':raw.get('locator'),
+                     'source_role':raw.get('source_kind'),'original_attributes':canonical(raw.get('original_attributes',{}))})
+    return rows
+
+
+def live_government_coverage(root,snapshots,rows):
+    out=[]
+    for s in snapshots:
+        if not s.get('national_government'):continue
+        current=[r for r in rows if r['source_sha256']==s['sha256']]
+        try:
+            total=len(government_features(root,s));status='COMPLETE_SOURCE_INVENTORY_NOT_COMPLETE_NATIONAL_PROJECT_CENSUS'
+        except Exception as exc:
+            total=None;status='SOURCE_INVALID: '+str(exc)
+        out.append({'state':s['state'],'source_key':s['key'],'raw_records':total,
+                    'ree_native_entities':len({r['entity_id'] for r in current if r['source_role']=='LIVE_GOVERNMENT_NATIVE_RECORD'}),
+                    'explicit_project_parents':len({r['entity_id'] for r in current if r['source_role']=='LIVE_GOVERNMENT_PROJECT_PARENT'}),
+                    'project_records':len({r['entity_id'] for r in current if r['kind']=='PROJECT'}),
+                    'source_sha256':s['sha256'],'status':status})
+    return out
+
+
+def government_link_candidates(db,snapshots):
+    """Source-location hints only; a name or proximity can never confirm identity."""
+    from .resolution import normalized,GEO
+    shas={s['sha256'] for s in snapshots};live=live_government_inventory(db,snapshots)
+    groups={}
+    for r in live:
+        if r['source_role']=='LIVE_GOVERNMENT_NATIVE_RECORD':groups.setdefault((r['state'],normalized(r['name'])),[]).append(r)
+    for r in db.execute("SELECT e.entity_id,e.kind,e.native_namespace namespace,r.* FROM entities e JOIN records r USING(entity_id) WHERE e.kind IN ('DEPOSIT','PROJECT')"):
+        if r['source_sha'] in shas:
+            groups.setdefault((r['state'],normalized(r['name'])),[]).append(dict(r,source_sha256=r['source_sha']))
+    pairs={}
+    for (state,name),members in groups.items():
+        for i,a in enumerate(members):
+            for b in members[i+1:]:
+                if a['entity_id']==b['entity_id'] or a['namespace']==b['namespace'] or a['source_sha256']==b['source_sha256']:continue
+                key=tuple(sorted((a['entity_id'],b['entity_id'])))
+                distance=None
+                if all(r.get('longitude') is not None and r.get('latitude') is not None for r in (a,b)):
+                    distance=GEO.inv(a['longitude'],a['latitude'],b['longitude'],b['latitude'])[2]
+                pairs.setdefault(key,dict(a=key[0],b=key[1],name=name,state=state,distance_m=distance,
+                    status='CANDIDATE_NAME_STATE_ONLY_NO_IDENTITY_EQUIVALENCE',source_a=a['source_sha256'],source_b=b['source_sha256']))
+    return [pairs[k] for k in sorted(pairs)]
+
+
+def raw_domain_coverage(db,snapshot_shas):
+    """Validated numeric statements and typed government text are separate evidence classes."""
+    groups={}
+    for r in db.execute('SELECT o.*,e.kind FROM observations o JOIN entities e USING(entity_id)'):
+        if r['source_sha'] not in snapshot_shas:continue
+        raw=json.loads(r['raw']);v=r['variable'];domain=raw.get('domain')
+        if not domain:
+            if v in ('ore_mt','grade','contained_treo_kt') or v.startswith(('reported_resource_','reported_reserve_','reported_bulk_','reported_fine_fraction_')):domain='Resource'
+            elif v.startswith(('reported_technical_','uranium','thorium')) or 'recovery' in v:domain='Technical'
+            elif 'share_pct' in v or v.startswith(('reported_magnet','reported_dy','reported_tb','reported_nd','reported_pr')):domain='Strategic'
+            elif v=='study_maturity_ord':domain='Development'
+            elif any(w in v for w in ('equity','financ','offtake','debt','capex','convertible','note_')):domain='Commercial'
+        if domain not in ('Resource','Strategic','Technical','Development','Infrastructure','Commercial'):continue
+        key=(domain,r['status']);g=groups.setdefault(key,{'observations':set(),'entities':set(),'sources':set(),'numeric':set()})
+        ident=(r['entity_id'],r['variable'],r['source_sha'],r['statement_id'],r['scope'],r['value'])
+        g['observations'].add(ident);g['entities'].add(r['entity_id']);g['sources'].add(r['source_sha'])
+        if r['value'] is not None:g['numeric'].add(ident)
+    return [dict(domain=d,evidence_status=s,distinct_statement_values=len(g['observations']),
+                 entities=len(g['entities']),sources=len(g['sources']),numeric_values=len(g['numeric']),
+                 interpretation='RAW_EVIDENCE_COUNTS_NOT_COMMON_SCORABLE_PROJECTS') for (d,s),g in sorted(groups.items())]
+
+
+def resource_quality_checks(db,snapshot_shas):
+    """Same-statement arithmetic, preserving reported basis and rounding intervals."""
+    from .store import issue
+    statements={}
+    aliases={'ore_mt':'ore','grade':'grade','contained_treo_kt':'contained',
+             'reported_resource_ore_mt':'ore','reported_resource_grade_pct':'grade',
+             'reported_resource_contained_kt':'contained'}
+    for r in db.execute("SELECT * FROM observations WHERE status='AUTO_VALIDATED'"):
+        if r['source_sha'] not in snapshot_shas or r['variable'] not in aliases:continue
+        key=tuple(r[k] for k in ('entity_id','statement_id','scope','effective_date','source_sha','basis'))
+        statements.setdefault(key,{})[aliases[r['variable']]]=dict(r)
+    output=[]
+    for key,values in statements.items():
+        if not {'ore','grade','contained'}<=values.keys():continue
+        ore,grade,contained=[values[k] for k in ('ore','grade','contained')]
+        if ore['unit']!='Mt' or grade['unit'] not in ('%','ppm') or contained['unit']!='kt':continue
+        factor=10 if grade['unit']=='%' else .001
+        oh=json.loads(ore['raw']).get('rounding_half_width',0);gh=json.loads(grade['raw']).get('rounding_half_width',0);ch=json.loads(contained['raw']).get('rounding_half_width',0)
+        lo=(ore['value']-oh)*(grade['value']-gh)*factor;hi=(ore['value']+oh)*(grade['value']+gh)*factor
+        reported=contained['value'];bad=reported+ch<lo or reported-ch>hi
+        row=dict(entity_id=key[0],statement_id=key[1],scope=key[2],effective_date=key[3],source_sha256=key[4],basis=key[5],
+                 calculated_contained_kt=ore['value']*grade['value']*factor,reported_contained_kt=reported,
+                 rounding_lower_kt=lo,rounding_upper_kt=hi,status='SOURCE_ARITHMETIC_CONFLICT' if bad else 'ROUNDING_COMPATIBLE',
+                 interpretation='SOURCE_INTERNAL_ARITHMETIC_ONLY_NOT_BASIS_HARMONIZATION')
+        output.append(row)
+        if bad:issue(db,key[0],key[4],'SOURCE_RESOURCE_ARITHMETIC_CONFLICT',canonical(row))
+    return sorted(output,key=canonical)
+
+
+def government_explicit_relations(db,snapshots):
+    """Cross-layer relations require an advertised foreign native ID, never proximity."""
+    from .hierarchy import link
+    shas={s['sha256'] for s in snapshots}
+    for r in db.execute("SELECT r.* FROM records r JOIN entities e USING(entity_id) WHERE e.native_namespace='SA_MINING_PROJECT_SITE_NO'").fetchall():
+        if r['source_sha'] not in shas:continue
+        data=json.loads(r['raw']);attrs=data.get('original_attributes',{})
+        native=attrs.get('MINERAL_DEPOSIT_NUMBER')
+        if not native:continue
+        for target in db.execute("SELECT e.entity_id,r.source_sha FROM entities e JOIN records r USING(entity_id) WHERE e.native_namespace IN ('SA_MINDEP_SITE','SA_MINDEP_SITE_DEPOSIT','SA_MINDEP_SITE_PROSPECT','SA_MINDEP_SITE_OCCURRENCE') AND e.native_id=?",(str(native),)).fetchall():
+            if target['source_sha'] in shas:
+                link(db,r['entity_id'],target['entity_id'],'OFFICIAL_PROJECT_REFERENCES_MINERAL_DEPOSIT_NATIVE_ID',r['source_sha'],
+                     'MINERAL_DEPOSIT_NUMBER='+str(native)+'; target_source_sha256='+target['source_sha'])

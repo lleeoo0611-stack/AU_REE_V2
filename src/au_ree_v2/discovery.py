@@ -37,13 +37,17 @@ def candidates(raw, seed):
         rows[key]={'candidate_id':key,'url':url,'title':label.strip(),'seed_key':seed['key'],
                    'publication_date':None,'status':'DISCOVERED_NOT_OBSERVATION',
                    'project_id':seed.get('project_id'),'identity_status':'SOURCE_CONTEXT_ONLY_NOT_EQUIVALENCE'}
-    return [rows[k] for k in sorted(rows)]
+    return list(rows.values())  # Preserve issuer feed order; hashes are not chronology.
 
 
 def discover(root, registry, fetch=request):
     root=Path(root); path=root/'data/manifest.json'
     manifest=json.loads(path.read_text(encoding='utf-8')); outcomes=[]; found=[]
+    captured_urls={s['url'] for s in manifest['snapshots'] if s['kind']=='pdf'}
     def save(raw, meta, suffix):
+        from .security import public_snapshot
+        raw,redaction=public_snapshot(root,raw,suffix)
+        meta={**meta,**redaction}
         sha=hashlib.sha256(raw).hexdigest(); dest=root/'data/snapshots'/(sha+suffix)
         if not dest.exists():dest.write_bytes(raw)
         now=datetime.now(timezone.utc).isoformat()
@@ -76,6 +80,7 @@ def discover(root, registry, fetch=request):
                     queue.append(dict(seed,url=url,key=family+'_page_'+hashlib.sha256(url.encode()).hexdigest()[:12],pagination_family=family,queries=[]))
             rows=candidates(raw,seed)
             rows=[r for r in rows if r['url'] not in seen_documents]
+            rows.sort(key=lambda row:row['url'] in captured_urls)
             budget=max(0,registry.get('max_documents_per_seed',10)-document_counts.get(family,0))
             for row in rows[:budget]:
                 document_counts[family]=document_counts.get(family,0)+1

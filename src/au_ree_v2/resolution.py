@@ -112,6 +112,7 @@ def resolve(db,root,snapshots,cutoff=None):
             issue(db,None,source['sha256'],'IDENTITY_DECISION_REVIEW',canonical({'decision':decision,'reason':str(exc) or type(exc).__name__}))
     # Typed document relations retain both source Project IDs and never imply equivalence.
     for relation in (json.loads(path.read_text(encoding='utf8')).get('relations',[]) if path.exists() else []):
+        if any(k not in by_key for k in relation.get('required_source_keys',[])):continue
         source=by_key.get(relation['source_key'])
         if not source or source['sha256']!=relation['source_sha256'] or relation['effective_date']>cutoff:continue
         try:
@@ -174,6 +175,9 @@ def technical_coverage(db,resolution,resources,cases,snapshot_shas):
         other=[dict(r) for eid in members for r in db.execute("SELECT obs_id,variable,value,basis,scope,effective_date,source_sha,status FROM observations WHERE entity_id=? AND variable IN ('ore_mt','grade','contained_treo_kt')",(eid,)) if r['source_sha'] in snapshot_shas and r['obs_id'] not in scoped_obs]
         primary_raw=[dict(r) for eid in members for r in db.execute("SELECT o.obs_id,o.variable,o.value,o.basis,o.scope,o.effective_date,o.source_sha,o.status FROM observations o JOIN sources s ON o.source_sha=s.sha WHERE o.entity_id=? AND o.status='AUTO_VALIDATED' AND s.kind='pdf' AND (o.variable LIKE 'reported_fine_fraction_%' OR o.variable LIKE 'reported_resource_%' OR o.variable='reported_bulk_ore_mt')",(eid,)) if r['source_sha'] in snapshot_shas]
         if status=='NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET' and primary_raw:status='PRIMARY_RESOURCE_BASIS_OR_FRACTION_NOT_COMPARABLE'
+        raw_process=[dict(r) for eid in members for r in db.execute("SELECT o.obs_id,o.variable,o.value,o.basis,o.scope,o.effective_date,o.source_sha,o.status FROM observations o JOIN sources s ON o.source_sha=s.sha WHERE o.entity_id=? AND o.status='AUTO_VALIDATED' AND s.kind IN ('pdf','html','discovery_html') AND o.variable LIKE 'reported_technical_%'",(eid,)) if r['source_sha'] in snapshot_shas]
+        if status=='NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET' and raw_process:status='PRIMARY_PROCESS_EVIDENCE_ONLY_NOT_COMPARABLE_RESOURCE'
         other.extend(primary_raw)
+        other.extend(raw_process)
         output.append(dict(canonical_project_id=cid,member_entity_ids=canonical(sorted(members)),status=status,resource_scopes=canonical(scopes),study_case_ids=canonical(studies),other_stage_evidence=canonical(stages),shared_resource_context=canonical(shared),unverified_or_other_scope_claims=canonical(other),interpretation='SOURCE_DEFINED_SCOPES_NOT_LATEST_PROJECT_TOTAL_CERTIFICATION'))
     return output

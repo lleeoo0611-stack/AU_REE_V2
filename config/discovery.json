@@ -1,5 +1,5 @@
 {
-  "version": "discovery-v2",
+  "version": "discovery-v3-national-and-issuer",
   "max_documents_per_seed": 3,
   "seeds": [
     {
@@ -81,6 +81,62 @@
       "keywords": [
         "yin",
         "mangaroon"
+      ]
+    },
+    {
+      "key": "vhm_goschen",
+      "url": "https://www.vhmltd.com.au/projects/the-goschen-project/",
+      "allowed_hosts": [
+        "www.vhmltd.com.au",
+        "vhmltd.com.au",
+        "announcements.asx.com.au",
+        "wcsecure.weblink.com.au"
+      ],
+      "keywords": [
+        "resource",
+        "goschen",
+        "licence",
+        "work plan"
+      ]
+    },
+    {
+      "key": "lanthanein_reports",
+      "url": "https://lanthanein.com/financial-and-quarterly-reports/",
+      "allowed_hosts": [
+        "lanthanein.com",
+        "wcsecure.weblink.com.au",
+        "announcements.asx.com.au"
+      ],
+      "keywords": [
+        "report",
+        "lyons"
+      ]
+    },
+    {
+      "key": "gcm_fingerboards",
+      "url": "https://www.gippslandcriticalminerals.com/project-overview/",
+      "allowed_hosts": [
+        "www.gippslandcriticalminerals.com",
+        "www.planning.vic.gov.au"
+      ],
+      "keywords": [
+        "fingerboards",
+        "project",
+        "study"
+      ]
+    },
+    {
+      "key": "meeka_search",
+      "url": "https://meekametals.com.au/",
+      "allowed_hosts": [
+        "meekametals.com.au",
+        "assets.ctfassets.net",
+        "api.investi.com.au",
+        "announcements.asx.com.au"
+      ],
+      "keywords": [
+        "circle",
+        "rare earth"
       ]
     }
   ],

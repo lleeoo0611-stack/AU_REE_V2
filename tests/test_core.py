@@ -27,6 +27,18 @@ class CoreTests(unittest.TestCase):
         self.work=ROOT/'work/tests'/uuid.uuid4().hex
         self.work.mkdir(parents=True)
 
+    def copy_data(self):
+        # November2 fixtures do not need hundreds of MB of later government captures.
+        manifest=json.loads((ROOT/'data/manifest.json').read_text(encoding='utf8'))
+        allowed=set()
+        for s in manifest['snapshots']:
+            if s['available_date']<=CUTOFF and s.get('publication_date','')<=CUTOFF:
+                allowed.add(Path(s['path']).name)
+                allowed.update(Path(p['path']).name for p in s.get('original_responses',[]))
+        def ignore(folder,names):
+            return [n for n in names if n not in allowed] if Path(folder)==ROOT/'data/snapshots' else []
+        shutil.copytree(ROOT/'data',self.work/'data',ignore=ignore)
+
     def db(self):
         db=connect(self.work/'test.sqlite');self.addCleanup(db.close);return db
 
@@ -66,7 +78,7 @@ class CoreTests(unittest.TestCase):
                         {s['key'] for s in active})
 
     def test_source_checksum_tampering_fails(self):
-        shutil.copytree(ROOT/'data',self.work/'data')
+        self.copy_data()
         manifest=json.loads((self.work/'data/manifest.json').read_text())
         (self.work/manifest['snapshots'][0]['path']).write_text('corrupted')
         with self.assertRaisesRegex(ValueError,'checksum'):select_snapshots(self.work,CUTOFF)
@@ -96,7 +108,7 @@ class CoreTests(unittest.TestCase):
         self.assertGreater(db.execute('SELECT COUNT(*) FROM review_queue').fetchone()[0],0)
 
     def test_new_document_version_retains_history_and_requires_new_extraction(self):
-        shutil.copytree(ROOT/'data',self.work/'data')
+        self.copy_data()
         db=self.db();original=select_snapshots(self.work,CUTOFF)
         ingest_sources(db,self.work,original);ingest_claims(db,self.work,original,CUTOFF)
         before_ids={r[0] for r in db.execute('SELECT entity_id FROM entities')}
@@ -135,7 +147,7 @@ class CoreTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'Incomplete'):arcgis('https://example.gov.au/0')
 
     def test_offline_update_failure_keeps_snapshots(self):
-        shutil.copytree(ROOT/'data',self.work/'data')
+        self.copy_data()
         before=(self.work/'data/manifest.json').read_bytes()
         with patch('au_ree_v2.acquisition.request',side_effect=OSError('offline')):
             result=refresh(self.work,{'sources':[{'key':'test','url':'https://example.gov.au','kind':'pdf'}]})
@@ -151,8 +163,8 @@ class CoreTests(unittest.TestCase):
     def test_project_aois_use_official_anchors_and_are_conservative(self):
         manifest=json.loads((ROOT/'data/manifest.json').read_text(encoding='utf-8'))
         windows=project_windows(ROOT,manifest,160)
-        self.assertEqual(['browns-range','cowalinya','cummins-range','dubbo-project','jupiter','mangaroon','mons','mount-ridley-mia','mt-clere','mt-weld','nolans-rare-earths-project','north-stanmore','redlings','salazar','splinter-rock','yttria'],[w['project_id'] for w in windows])
-        self.assertEqual(16,len(windows))
+        self.assertEqual(['2298466','browns-range','circle-valley','cowalinya','cummins-range','dubbo-project','goschen','jupiter','lyons','mangaroon','mons','mount-ridley-mia','mt-clere','mt-weld','narraburra','nolans-rare-earths-project','north-stanmore','redlings','salazar','splinter-rock','yttria'],[w['project_id'] for w in windows])
+        self.assertEqual(21,len(windows))
         for window in windows:
             self.assertEqual(160,window['radius_km'])
             lon,lat=window['longitude'],window['latitude']

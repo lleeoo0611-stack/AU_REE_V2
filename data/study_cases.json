@@ -235,6 +235,81 @@
         "product_impurity_pct": 8.4,
         "blend_mass_kg": 1
       }
+    },
+    {
+      "case_id": "circle-valley-ansto-five-composites2022",
+      "project_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "project_native_id": "circle-valley",
+      "source_key": "circle_met2022",
+      "source_sha256": "b65a525000fb8d74d87024056f7c001df5ee466eb4cf4a8ccf9d6fd5ae08ce19",
+      "effective_date": "2022-07-25",
+      "effective_date_role": "ANNOUNCEMENT_DATE_TESTS_MAY_JUNE2022",
+      "scope": "Five Circle Valley bench composites only; 805–1386ppmTREO feed; not a Mineral Resource recovery estimate",
+      "stage": 1,
+      "process": "10% hydrochloric acid; 6h at50C; ANSTO selected-composite leach",
+      "finance_state": "NOT_REPORTED_NOT_INFERRED",
+      "pdf_page": 1,
+      "page_markers": [
+        "805ppm TREO",
+        "1,386ppm TREO",
+        "6-hour leach time at 50"
+      ],
+      "locator": "physical PDF p1",
+      "parameters": {
+        "composites_n": 5,
+        "head_treo_min_ppm": 805,
+        "head_treo_max_ppm": 1386,
+        "treo_leach_average_pct": 76,
+        "treo_leach_max_pct": 82,
+        "magnet_leach_average_pct": 82,
+        "magnet_leach_max_pct": 86,
+        "hcl_concentration_pct": 10,
+        "leach_time_hours": 6,
+        "temperature_c": 50
+      },
+      "element": "SOURCE_MAGNET_REES_AND_TREO_NOT_SHARED_PLANT_BASIS",
+      "endpoint": "LEACH_SOLUTION",
+      "scale": "BENCH_FIVE_COMPOSITES",
+      "recovery_feed": "SELECTED_COMPOSITES_NOT_RESOURCE_AVERAGE"
+    },
+    {
+      "case_id": "koppamurra-pfs2026-resource-to-mreo",
+      "project_namespace": "SA_MINING_PROJECT_SITE_NO",
+      "project_native_id": "2298466",
+      "source_key": "koppamurra_pfs2026",
+      "source_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "effective_date": "2026-06-25",
+      "scope": "Koppamurra12yrPFS mine plan;71%ProbableReserve+29%Inferred; wholeore to finalMREO incloffsitecalcination, notglobal243Mtresource-average performance",
+      "stage": 3,
+      "process": "Screen/agglomerate heapleach with diluteH2SO4+MgSO4, impurityremoval,oxalateprecipitation,offsitecalcination",
+      "finance_state": "FUNDING_AND_OFFTAKE_DISCUSSIONS_NOT_CLOSED",
+      "pdf_page": 11,
+      "page_markers": [
+        "TREO recovery of 68%",
+        "final MREO product"
+      ],
+      "context_evidence": [
+        {
+          "page": 3,
+          "markers": [
+            "Initial CAPEX A$M 178",
+            "Processing Capacity Mtpa 3"
+          ]
+        }
+      ],
+      "locator": "physicalPDF pp3,11",
+      "parameters": {
+        "resource_to_final_mreo_recovery_pct": 68,
+        "initial_capex_aud_m": 178,
+        "processing_mtpa": 3,
+        "life_years": 12,
+        "average_treo_feed_grade_ppm": 924,
+        "average_annual_treo_product_t": 1860
+      },
+      "element": "TREO_INCLUDING_Y",
+      "endpoint": "CALCINED_MIXED_REO",
+      "scale": "PFS_MODEL",
+      "recovery_feed": "WHOLE_ORE_PFS_MINE_PLAN"
     }
   ]
 }
