@@ -2,25 +2,21 @@
 import json,math
 from pathlib import Path
 from collections import defaultdict
-from pypdf import PdfReader
 from .store import entity,canonical,issue,digest
 from .analysis import write_csv,score
 from .hierarchy import link
 
 def ingest(db,root,snapshots,cutoff):
+    from .evidence import validate_pages
     path=Path(root)/'data/study_cases.json'
     if not path.exists():return []
-    sources={s['key']:s for s in snapshots};rows=[]
+    sources={s['key']:s for s in snapshots};rows=[];cache={}
     for c in json.loads(path.read_text(encoding='utf8'))['cases']:
         source=sources.get(c['source_key'])
         if not source or c['effective_date']>cutoff:continue
         try:
             assert c['source_sha256']==source['sha256'] and c['stage'] in (1,2,3,4,5,6)
-            reader=PdfReader(Path(root)/source['path']);text=reader.pages[c['pdf_page']-1].extract_text()
-            assert all(x in text for x in c['page_markers'])
-            if c.get('finance_evidence'):
-                f=c['finance_evidence'];assert all(x in reader.pages[f['page']-1].extract_text() for x in f['markers'])
-            for f in c.get('context_evidence',[]):assert all(x in reader.pages[f['page']-1].extract_text() for x in f['markers'])
+            validate_pages(root,source,c,snapshots,cache)
             for key,val in c['parameters'].items():
                 assert isinstance(val,(int,float)) and not isinstance(val,bool) and math.isfinite(val) and val>=0
                 if key.endswith('_pct'):assert val<=100
@@ -46,7 +42,7 @@ def ingest(db,root,snapshots,cutoff):
             issue(db,None,source['sha256'],'STUDY_CASE_REVIEW',canonical({'case_id':c.get('case_id'),'reason':type(exc).__name__}))
     return sorted(rows,key=lambda x:x['case_id'])
 
-def prepare(cases,config,out,canonical_ids):
+def prepare(cases,config,out,canonical_ids,selection=None):
     """Only frozen, explicitly compatible endpoints enter a shared numerical panel."""
     out=Path(out);rows=[];parameters=[];groups=defaultdict(list)
     for c in cases:
@@ -70,10 +66,16 @@ def prepare(cases,config,out,canonical_ids):
     candidates={};excluded=[]
     for c in groups.get(definition['comparability_group'],[]):candidates.setdefault(canonical_ids.get(c['project_id'],c['project_id']),[]).append(c)
     selected=[]
-    for pid,options in candidates.items():
-        date=max(c['effective_date'] for c in options);latest=[c for c in options if c['effective_date']==date]
-        if len(latest)!=1:excluded.append(dict(canonical_project_id=pid,reason='CONCURRENT_CASES_REQUIRE_SCOPE_DECISION',case_ids=canonical([c['case_id'] for c in latest])))
-        else:selected.append(latest[0])
+    if selection is not None:
+        from .selection import select_cases
+        selected,excluded=select_cases(cases,canonical_ids,definition['comparability_group'])
+        selected=[c for c in selected if all(selection['values'].get(canonical_ids.get(c['project_id'],c['project_id']),{}).get(k,{}).get('case_id')==c['case_id'] for k in codes)]
+    else:
+        # Frozen pre-Phase7 policy retained for historical reconstruction.
+        for pid,options in candidates.items():
+            date=max(c['effective_date'] for c in options);latest=[c for c in options if c['effective_date']==date]
+            if len(latest)!=1:excluded.append(dict(canonical_project_id=pid,reason='CONCURRENT_CASES_REQUIRE_SCOPE_DECISION',case_ids=canonical([c['case_id'] for c in latest])))
+            else:selected.append(latest[0])
     write_csv(out/'study_cohort_exclusions.csv',excluded,['canonical_project_id','reason','case_ids'])
     for c in selected:
         if not all(criteria[k]['variable'] in c['parameters'] for k in codes):continue

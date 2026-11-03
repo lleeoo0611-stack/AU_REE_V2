@@ -29,9 +29,31 @@ def code_version(root):
     return {'package':__version__,'commit':commit,
             'content_sha256':digest({p.relative_to(root).as_posix():filehash(p) for p in files})}
 
+def research_configuration(root, snapshot_lock=None):
+    """Load current policy or the SHA-checked semantics accompanying a lock."""
+    config=json.loads((root/'config/research.json').read_text(encoding='utf-8'))
+    # A lock's adjacent configuration freezes research semantics as well as
+    # source bytes. Old Phase5/6 locks retain their original selection policy.
+    frozen_config=Path(snapshot_lock).parent/'configuration.json' if snapshot_lock else None
+    if frozen_config and frozen_config.exists():
+        summary=frozen_config.parent/'summary.json'
+        if summary.exists():
+            expected=json.loads(summary.read_text(encoding='utf-8')).get('output_hashes',{}).get('configuration.json')
+            if expected and filehash(frozen_config)!=expected:
+                raise ValueError('Locked research configuration checksum mismatch')
+        config=json.loads(frozen_config.read_text(encoding='utf-8'))['research']
+    elif not snapshot_lock:
+        policy_path=root/'config/evidence_policy.json'
+        if policy_path.exists():
+            policy=json.loads(policy_path.read_text(encoding='utf-8'))
+            config={**config,'evidence_resolution':policy,'version':config['version']+'+'+policy['version'],
+                    'panels':{**config['panels'],**policy['panels']}}
+    return config
+
+
 def execute(args):
     root=Path(args.root).resolve()
-    config=json.loads((root/'config/research.json').read_text(encoding='utf-8'))
+    config=research_configuration(root,args.snapshot_lock)
     registry=json.loads((root/'config/sources.json').read_text(encoding='utf-8'))
     date.fromisoformat(args.as_of)
     if args.as_of > datetime.now(timezone(timedelta(hours=8))).date().isoformat():
@@ -103,14 +125,17 @@ def execute(args):
         screen_rows=screen_index_rows(db,{s['sha256'] for s in snapshots})
         write_csv(out/'national_screen_index.csv',screen_rows,['candidate_id','source_key','native_label','native_label_role','state','tier','source_ref','selection_entity_id','parent_candidate_id','source_sha','verification','raw'])
         if args.module!='bootstrap':
-            ingest_claims(db,root,snapshots,args.as_of,args.project)
-        resources=resource_values(db,args.as_of,{s['sha256'] for s in snapshots})
+            ingest_claims(db,root,snapshots,args.as_of,args.project,conflict_selection=bool(config.get('evidence_resolution')))
+        resources=resource_values(db,args.as_of,{s['sha256'] for s in snapshots},strict=bool(config.get('evidence_resolution')))
         from .national import resource_quality_checks
         resource_qa=resource_quality_checks(db,{s['sha256'] for s in snapshots})
         write_csv(out/'resource_statement_quality.csv',resource_qa,
                   ['entity_id','statement_id','scope','effective_date','source_sha256','basis',
                    'calculated_contained_kt','reported_contained_kt','rounding_lower_kt','rounding_upper_kt','status','interpretation'])
         cases=ingest_cases(db,root,snapshots,args.as_of) if args.module!='bootstrap' else []
+        if config.get('evidence_resolution') and args.module!='bootstrap':
+            from .evidence import ingest_events
+            ingest_events(db,root,snapshots,args.as_of)
         hierarchy=build_hierarchy(db,snapshots)
         identity=resolve(db,root,snapshots,args.as_of)
         live_candidates=government_link_candidates(db,snapshots)
@@ -168,9 +193,13 @@ def execute(args):
                   ['entity_id','variable','distance_km','layer_sha256',
                    'coordinate_source_sha256','method','coverage_scope',
                    'radius_km','source_where','limitation'])
-        results={};prepared={'panels':{},'coverage':[]}
+        results={};prepared={'panels':{},'coverage':[]};selection=None
         if args.module in ('all','analyze','rebuild'):
-            prepared=prepare(db,args.as_of,snapshots,resources,gis_values,config,out,args.project,identity['mapping'],cases)
+            if config.get('evidence_resolution'):
+                from .selection import resolve as select_evidence,export as export_selection
+                selection=select_evidence(db,snapshots,args.as_of,resources,cases,identity['mapping'],config['evidence_resolution'],root)
+                export_selection(selection,out)
+            prepared=prepare(db,args.as_of,snapshots,resources,gis_values,config,out,args.project,identity['mapping'],cases,selection)
             if not args.skip_r:
                 results=run_r(root,out,prepared,config,args.rscript)
         source_shas={s['sha256'] for s in snapshots}
@@ -195,9 +224,9 @@ def execute(args):
                   ['project_id','project_name','state','owner','strategic_evidence',
                    'technical_evidence','development_evidence','commercial_evidence',
                    'source_sha256','locator','status','source_url'])
-        dimension_rows=domain_evidence_coverage(db,inventory,resources,gis_values,national_inventory,source_shas)
+        dimension_rows=domain_evidence_coverage(db,inventory,resources,gis_values,national_inventory,source_shas,selection,prepared,config['criteria'])
         write_csv(out/'project_domain_evidence.csv',dimension_rows,
-                  ['project_id','project_name','domain','evidence_state','evidence_reference','scorable'])
+                  ['project_id','project_name','domain','evidence_state','evidence_reference','scorable']+(['exploratory_scorable','selection_policy'] if selection else []))
         candidates=[]
         for row in census:
             if row['kind']!='SOURCE_RECORD':

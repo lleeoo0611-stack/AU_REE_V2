@@ -138,7 +138,7 @@ def exact_deposit_candidates(db, inventory, selected_shas):
                         "status":"UNVERIFIED_LINK_NO_GIS_RELEASE"})
     return out
 
-def domain_evidence_coverage(db, inventory, resources, gis_values, prospectus=None, selected_shas=None):
+def domain_evidence_coverage(db, inventory, resources, gis_values, prospectus=None, selected_shas=None, selection=None, prepared=None, criteria=None):
     """Descriptive source facts must not silently become six-domain scored values."""
     project_ids={r[0] for r in db.execute("SELECT entity_id FROM entities WHERE kind='PROJECT'")}
     if selected_shas is not None:
@@ -180,6 +180,20 @@ def domain_evidence_coverage(db, inventory, resources, gis_values, prospectus=No
                          "domain":domain,"evidence_state":state,"evidence_reference":evidence,
                          "scorable":int(any(o['variable'] in {'Strategic':('magnet_reo_share_pct',),'Technical':('recovery_pct',),'Development':('study_maturity_ord',),'Commercial':('financing_ord',)}.get(domain,()) for o in observations) or (domain=="Resource" and state=="SCOPED_RESOURCE_VALIDATED") or
                                         (domain=="Infrastructure" and state=="OFFICIAL_DISTANCE_AVAILABLE"))})
+    if selection is not None:
+        # Scorability comes from the exact matrix selection, rather than an
+        # independent list of raw variable names. Raw descriptions stay intact.
+        definitions={c['code']:c for c in criteria}
+        main=set(selection['policy']['main_codes'])
+        for row in rows:
+            codes=[k for k,c in definitions.items() if c['domain']==row['domain']]
+            eid=row['project_id'];pid=selection['mapping'].get(eid,eid)
+            selected=set(selection['values'].get(pid,{}))
+            if eid in resources:selected.add('R1')
+            selected.update(k for k,c in definitions.items() if c['variable'] in gis_values.get(eid,{}))
+            row['scorable']=int(any(k in selected for k in codes if k in main))
+            row['exploratory_scorable']=int(any(k in selected for k in codes))
+            row['selection_policy']=selection['policy']['version']
     return rows
 
 # National Austrade source records preserve distinct upstream PROJECT identities.

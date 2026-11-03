@@ -1,23 +1,16 @@
 # AU_REE_V2
 
-Latest: [Phase 3 identity and study-case evidence](docs/phase3-identity-and-studies.md) restores the
-1,006-row national discovery index, adds non-destructive canonical IDs and explicit review leads,
-and expands to seven resource scopes and five process/development/finance cases. Endpoint-specific
-partial panels retain missing evidence and do not imply national identity or six-domain completion.
+Latest: [Phase 7 evidence integration](docs/phase7-evidence-integration.md) shares source-, scope-, endpoint- and date-aware selection across the existing Evidence Database, Study Cases, Criteria and coverage outputs. The SQLite schema, stable IDs, Python CLI and R MCDA methods are retained.
 
-Previous phase: [Phase 2 primary-evidence expansion](docs/phase2-primary-expansion.md) adds five issuer-scoped
-resource cases, archived road/operational rail/high-voltage power metrics, Project–resource-scope–Site
-relations and separate resource/composition analysis. [Frozen outputs](results/phase2-primary-2026-11-03/)
-retain explicit missing six-domain evidence and distinguish 203 native deposit records from unique projects.
+Current frozen evidence: **31 canonical Project groups, 19 comparable resource cases, 712 government REE native records, 76 selected snapshots and 12 typed commercial events**. Candidate financing milestones have six eligible groups and a four-case resource intersection. Formal C1, strict Development and full six-domain samples remain zero. A dated financing milestone does not establish available cash.
 
-Independent Python / SQLite / R research system for Australian rare-earth projects.
-The first working slice reconstructs real public evidence, computes official GIS port distances,
-and runs a **resource/infrastructure pilot**, with full provenance and explicit limits.
-It does not claim a complete national Project Census or a six-domain development-potential ranking.
+[Phase 7 outputs](results/phase7-2026-11-03/README.md), [Phase 6 national originals](docs/phase6-national-database.md), [Phase 5 primary evidence](docs/phase5-primary-evidence.md), [Phase 3 identity/studies](docs/phase3-identity-and-studies.md), and [Phase 2 expansion](docs/phase2-primary-expansion.md) retain separate historical results.
+
+One Python / SQLite / R research system for Australian rare-earth evidence, official GIS and explicitly scoped exploratory MCDA. Government source records, deposits and registry groups are not interchangeable independent Projects. No national completeness or six-domain development ranking is claimed.
 
 ```sh
 python -m pip install .
-au-ree-v2 all --as-of 2026-11-02
+au-ree-v2 all --as-of 2026-11-03
 python -m unittest discover -s tests -v
 Rscript tests/test_methods.R
 ```
@@ -49,8 +42,8 @@ value-level provenance, review issues, R ranking comparison, weight-only and sou
 Monte Carlo intervals, leave-criterion/domain-out, scoring/threshold sensitivity, cohort sensitivity,
 partial dominance and AHP consistency audit. Data missing from a criterion stays missing.
 
-Resource, Development and Full-evidence cohorts are separate. Two registered project scopes have
-dated TREO Mineral Resources; six-domain coverage is currently incomplete. The pilot compares
+Resource, Development and Full-evidence cohorts are separate; the current resource-defined sample is 19.
+The original November2 pilot compared
 Mt Weld's reported Mineral Resource with Browns Range's **Wolverine-only** Mineral Resource,
 not total Browns Range project inventory. Reported contained totals are retained after rounding checks.
 Government representative deposit points are not legal project footprints or proof of transport access.
@@ -62,18 +55,16 @@ inference remains incomplete; model sensitivity is not evidence of geological ca
 
 One [workflow](.github/workflows/research.yml) runs clean reconstruction and regression tests on pushes/PRs,
 with manual/weekly source refresh and retained artifacts. Source failures leave the frozen evidence available.
-Known-document refresh is implemented; discovery of new announcements is still to be added.
+Source discovery includes bounded issuer pagination, unseen-document priority and PDF recognition. Government adapters retain original responses, complete native-ID inventories and incremental versions.
 
-## Automated official-source expansion (in progress)
+## Source and GIS acquisition
 
 The source registry now includes Geoscience Australia's TOPO250K 2WD road classes,
 operational railway/siding lines and mapped >=66 kV power lines, plus the Australian
 Government **Resources and Energy Major Projects 2025** XLSX listing. Run
 `au-ree-v2 acquire` and then `au-ree-v2 all --as-of YYYY-MM-DD` to reconstruct
 the extended source set; archived `data/manifest.json` snapshots remain the only
-inputs used in a normal offline replay. The new entries in `config/sources.json`
-are registered acquisition targets, **not yet frozen evidence** until their live
-bytes and checksums have been retained as snapshots.
+inputs used in a normal offline replay. Registered targets become evidence only after original bytes/checksums are retained. Phase6/7 contain frozen state inventories and GIS layers; the latest REMP2025 workbook update remains unavailable after timeout.
 
 Spatial line features are queried through complete ArcGIS object-ID inventories in
 project-scoped EPSG:3577 search windows. A distance is released only if the source
@@ -99,7 +90,7 @@ The [frozen real-source pilot results](results/pilot-2026-11-02/README.md) inclu
 ranking, sensitivity, source-level trace and exact replay inputs. They are limited scientific outputs,
 not acceptance of all V2 research requirements.
 
-## Phase 2: official WA resource listing (2026)
+## Historical Phase 2: official WA resource listing (2026)
 
 The Western Australian Government DMPE February 2026 REE investment flyer (physical
 PDF page 1, resource table as at January 2026) supplies **20** government-listed
@@ -145,8 +136,7 @@ selection, not a national Census closure or complete six-domain evidence panel.
 ## Nationwide deposit geography (descriptive Aim C)
 
 Every official GA deposit position in the selected 2025 AIMR layer can be
-compared to the complete GA major-port point layer, independently of the 25
-registered Project entities. Outputs `deposit_port_distances.csv` and
+compared to the complete GA major-port point layer, independently of the Project registry. Outputs `deposit_port_distances.csv` and
 `aim_c_deposit_type_port_summary.csv` give per-deposit EPSG:3577 proximity and
 state/deposit-type medians; every row preserves exact source hashes and geographic
 unit. Missing/invalid coordinates are reported as missing, never zero or

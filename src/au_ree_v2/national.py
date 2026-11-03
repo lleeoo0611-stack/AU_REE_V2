@@ -375,16 +375,11 @@ def government_link_candidates(db,snapshots):
 
 def raw_domain_coverage(db,snapshot_shas):
     """Validated numeric statements and typed government text are separate evidence classes."""
+    from .selection import evidence_domain
     groups={}
     for r in db.execute('SELECT o.*,e.kind FROM observations o JOIN entities e USING(entity_id)'):
         if r['source_sha'] not in snapshot_shas:continue
-        raw=json.loads(r['raw']);v=r['variable'];domain=raw.get('domain')
-        if not domain:
-            if v in ('ore_mt','grade','contained_treo_kt') or v.startswith(('reported_resource_','reported_reserve_','reported_bulk_','reported_fine_fraction_')):domain='Resource'
-            elif v.startswith(('reported_technical_','uranium','thorium')) or 'recovery' in v:domain='Technical'
-            elif 'share_pct' in v or v.startswith(('reported_magnet','reported_dy','reported_tb','reported_nd','reported_pr')):domain='Strategic'
-            elif v=='study_maturity_ord':domain='Development'
-            elif any(w in v for w in ('equity','financ','offtake','debt','capex','convertible','note_')):domain='Commercial'
+        raw=json.loads(r['raw']);v=r['variable'];domain=evidence_domain(v,raw)
         if domain not in ('Resource','Strategic','Technical','Development','Infrastructure','Commercial'):continue
         key=(domain,r['status']);g=groups.setdefault(key,{'observations':set(),'entities':set(),'sources':set(),'numeric':set()})
         ident=(r['entity_id'],r['variable'],r['source_sha'],r['statement_id'],r['scope'],r['value'])

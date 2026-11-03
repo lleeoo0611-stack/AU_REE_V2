@@ -34,14 +34,18 @@ def compare_runs(before, after):
         result['pdf_snapshots']=None if snapshots is None else sum(s['kind']=='pdf' for s in snapshots)
         database=folder/'logical_database.json'
         result['validated_statement_values']=None
+        result['validated_structured_events']=None
         if database.exists() and snapshots is not None:
-            locked={s['key']:s['sha256'] for s in snapshots};selected=set(locked.values());unique=set()
+            locked={s['key']:s['sha256'] for s in snapshots};selected=set(locked.values());unique=set();events=set()
             for observation in json.loads(database.read_text(encoding='utf-8'))['observations']:
                 if observation['status']!='AUTO_VALIDATED' or observation['source_sha'] not in selected:continue
                 raw=json.loads(observation['raw'])
                 if raw.get('page_extraction_key') and locked.get(raw['page_extraction_key'])!=raw.get('page_extraction_sha256'):continue
+                if observation['variable']=='commercial_event':events.add(observation['obs_id'])
+                if observation['value'] is None:continue
                 unique.add(canonical({k:observation[k] for k in ('entity_id','variable','value','unit','basis','scope','statement_id','effective_date','source_sha')}))
             result['validated_statement_values']=len(unique)
+            result['validated_structured_events']=len(events)
         cov=read(folder,'cohort_coverage.csv')
         for key in ('development','full_evidence'):result[key]=None if cov is None else sum(int(r[key]) for r in cov)
         membership=read(folder,'canonical_membership.csv') or []
@@ -193,7 +197,7 @@ def _official_wa_resource_screen(db,cutoff,snapshots,config,criteria,out,project
     write_csv(folder/'weights.csv',weights,['scenario','criterion','weight'])
     return rows,traces
 
-def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=None, canonical_ids=None, cases=None):
+def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=None, canonical_ids=None, cases=None, selection=None):
     out = Path(out)
     criteria = {c['code']:c for c in config['criteria']}
     selected_shas = {s['sha256'] for s in snapshots}
@@ -215,14 +219,23 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
         name = db.execute('SELECT name FROM records WHERE entity_id=? ORDER BY source_sha LIMIT 1',(eid,)).fetchone()[0]
         values = {'contained_treo_kt':resource['contained_treo_kt']}
         provenance = {'contained_treo_kt':resource}
-        for r in db.execute("SELECT * FROM observations WHERE entity_id=? AND status='AUTO_VALIDATED' AND effective_date<=? ORDER BY effective_date",(eid,cutoff)):
-            if r['source_sha'] in selected_shas and r['variable'] not in ('contained_treo_kt','ore_mt','grade'):
-                values[r['variable']] = r['value']
-                provenance[r['variable']] = {'obs_ids':[r['obs_id']], 'source_sha':r['source_sha'],'raw':json.loads(r['raw'])}
+        if selection is not None:
+            resolved=selection['values'].get(canonical_ids.get(eid,eid),{})
+            for code,evidence in resolved.items():
+                if code in criteria:
+                    variable=criteria[code]['variable']
+                    values[variable]=evidence['value'];provenance[variable]=evidence
+        else:
+            # Preserve the pre-Phase7 selection policy only for frozen runs.
+            for r in db.execute("SELECT * FROM observations WHERE entity_id=? AND status='AUTO_VALIDATED' AND effective_date<=? ORDER BY effective_date",(eid,cutoff)):
+                if r['source_sha'] in selected_shas and r['variable'] not in ('contained_treo_kt','ore_mt','grade'):
+                    values[r['variable']] = r['value']
+                    provenance[r['variable']] = {'obs_ids':[r['obs_id']], 'source_sha':r['source_sha'],'raw':json.loads(r['raw'])}
         for key, v in gis_values.get(eid,{}).items():
             values[key]=v['value'];provenance[key]=v
         scored={code:score(values[c['variable']],c) for code,c in criteria.items() if c['variable'] in values}
-        is_dev = all(v in values for v in ('study_maturity_ord','recovery_pct'))
+        dev_codes=selection['policy']['cohorts']['development']['requires'] if selection is not None else ['D1','T1']
+        is_dev = all(code in scored for code in dev_codes)
         is_full = is_dev and all(code in scored for code in config['panels']['six_domain'])
         coverage.append({'entity_id':eid,'canonical_project_id':canonical_ids.get(eid,eid),'project_name':name,'scope':resource['scope'],
                          'resource_defined':1,'development':int(is_dev),'full_evidence':int(is_full),
@@ -254,7 +267,7 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
     traces.extend(screen_traces)
     matrices['official_wa_resource_screen']=screen_rows
     from .studies import prepare as prepare_cases
-    case_panels,case_traces=prepare_cases(cases or [],config,out,canonical_ids)
+    case_panels,case_traces=prepare_cases(cases or [],config,out,canonical_ids,selection)
     traces.extend(case_traces)
     write_csv(out/'cohort_coverage.csv',coverage,['entity_id','canonical_project_id','project_name','scope','resource_defined','development','full_evidence',*criteria])
     write_csv(out/'value_trace.csv',traces,['entity_id','criterion','raw_value','score','config_version','source','scoring'])
@@ -302,4 +315,9 @@ def run_r(root, out, prepared, config, rscript=None):
         results[panel]={'status':'COMPLETED','n':n,'weight_status':config['weight_status'],
                         'evidence_status':('PRIMARY_ENDPOINT_MATCHED_DFS_CASES_NOT_OPERATING_RESULTS' if panel in config.get('case_panels',{}) else config['screen_evidence_policy']['status'] if panel=='official_wa_resource_screen' else 'ISSUER_SCOPE_VALIDATED'),
                         'full_evidence_eligibility':panel=='six_domain'}
+        if config.get('evidence_resolution'):
+            results[panel]['formal_c1_eligibility']=False
+            results[panel]['criteria_policy']=config['evidence_resolution']['version']
+            if panel in config['evidence_resolution']['panels']:
+                results[panel]['evidence_status']='EXPLORATORY_CANDIDATE_CRITERIA_NOT_FORMAL_C1'
     return results

@@ -1,5 +1,5 @@
 {
-  "version": "sources-v7-live-national-government",
+  "version": "source-registry-v8-phase7",
   "sources": [
     {
       "key": "ga_aimr",
@@ -528,6 +528,23 @@
       "kind": "pdf",
       "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7600073.pdf?v=63949564086",
       "publication_date": "2026-06-25"
+    },
+    {
+      "key": "qld_minocc_status_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/GeoscientificInformation/MiningResources/MapServer/12",
+      "national_government": true,
+      "state": "QLD",
+      "namespace": "QLD_MINOCC_SITE",
+      "id_field": "site_no",
+      "name_field": "occur_name",
+      "commodity_fields": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "where": "1=1",
+      "geological_kind_field": "site_type",
+      "inventory_scope": "All MINOCC mines and mineral occurrences by status; overlaps layer17; count distinct namespace/site_no"
     }
   ]
 }

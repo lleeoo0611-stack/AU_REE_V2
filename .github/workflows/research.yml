@@ -40,6 +40,14 @@ jobs:
         run: au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase5-2026-11-03/snapshot_lock.json --compare-to results/phase4-2026-11-03 --work work/primary
       - name: Phase 6 national database and partial MCDA reconstruction
         run: au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase6-2026-11-03/snapshot_lock.json --compare-to results/phase5-2026-11-03 --work work/national
+      - name: Verify frozen Phase 5 and Phase 6 scientific results
+        run: |
+          python tools/check_replay.py results/phase5-2026-11-03 work/primary/latest.json
+          python tools/check_replay.py results/phase6-2026-11-03 work/national/latest.json
+      - name: Phase 7 consolidated evidence and commercial integration
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase7-2026-11-03/snapshot_lock.json --compare-to results/phase6-2026-11-03 --work work/consolidated
+          python tools/check_replay.py results/phase7-2026-11-03 work/consolidated/latest.json
       - name: Incremental public update (isolated live-source smoke)
         id: live
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
@@ -70,6 +78,7 @@ jobs:
             work/frozen/runs/
             work/primary/runs/
             work/national/runs/
+            work/consolidated/runs/
             work/updated/runs/
             work/acquisition_status.json
             data/manifest.json

@@ -9,6 +9,84 @@ from .official import ingest_official_table, ingest_prospectus
 from .national import ingest_legacy_e1
 from .screen_index import ingest as ingest_screen_index
 
+
+def validate_pages(root, source, evidence, snapshots, cache=None):
+    """One hash/page/marker contract for event and engineering evidence.
+
+    Existing selective extraction artifacts remain SHA-bound; no OCR is run
+    implicitly while interpreting a financial or engineering observation.
+    """
+    from .selection import source_check
+    from pypdf import PdfReader
+    root = Path(root)
+    cache = cache if cache is not None else {}
+    key = ('hash', source['sha256'])
+    if key not in cache:
+        cache[key] = source_check(source, '9999-12-31', root)
+    if cache[key]:
+        raise ValueError(cache[key])
+    if evidence['source_sha256'] != source['sha256']:
+        raise ValueError('EXTRACTION_VERSION_MISMATCH')
+    bindings = [dict(page=evidence['pdf_page'], markers=evidence['page_markers'])]
+    bindings += evidence.get('context_evidence', [])
+    if evidence.get('finance_evidence'):
+        bindings.append(evidence['finance_evidence'])
+    for binding in bindings:
+        page = binding['page']
+        if not isinstance(page, int) or page < 1 or not binding['markers']:
+            raise ValueError('MISSING_PHYSICAL_PAGE_OR_MARKERS')
+        key = (source['sha256'], page)
+        if key not in cache:
+            reader_key = ('reader', source['sha256'])
+            if reader_key not in cache:
+                cache[reader_key] = PdfReader(root/source['path'])
+            cache[key] = cache[reader_key].pages[page-1].extract_text() or ''
+        text = cache[key]
+        if evidence.get('page_extraction_key') and page == evidence['pdf_page']:
+            artifact = next(s for s in snapshots if s['key'] == evidence['page_extraction_key'])
+            if artifact['sha256'] != evidence['page_extraction_sha256']:
+                raise ValueError('PAGE_ARTIFACT_VERSION_MISMATCH')
+            data = json.loads((root/artifact['path']).read_text(encoding='utf-8'))
+            if data['source_sha256'] != source['sha256'] or data['physical_page'] != page or data['status'] != 'EXTRACTED_REQUIRES_SCOPE_VALIDATION':
+                raise ValueError('PAGE_ARTIFACT_BINDING_FAILED')
+            text = data['text']
+        if not all(marker in text for marker in binding['markers']):
+            raise ValueError('EXTRACTION_PAGE_CHECK_FAILED')
+
+
+def ingest_events(db, root, snapshots, cutoff):
+    """Typed disclosures in the existing observation store; numeric value NULL."""
+    from .selection import date_end
+    sources = {s['key']: s for s in snapshots}
+    cache = {}
+    events = json.loads((Path(root)/'data/claims.json').read_text(encoding='utf-8')).get('events', [])
+    for event in events:
+        source = sources.get(event['source_key'])
+        if not source:
+            continue
+        eid = 'AU-' + digest([event['project_namespace'], str(event['project_native_id'])])[:20]
+        if not db.execute('SELECT 1 FROM entities WHERE entity_id=?', (eid,)).fetchone():
+            issue(db, eid, source['sha256'], 'EVENT_PROJECT_NOT_REGISTERED', event['event_id'])
+            continue
+        reasons = []
+        try:
+            if date_end(event['effective_date']) > cutoff:
+                continue
+            validate_pages(root, source, event, snapshots, cache)
+            if event.get('attribution') not in ('PROJECT', 'COMPANY') or not event.get('scope') or not event.get('event_id'):
+                raise ValueError('INVALID_COMMERCIAL_EVENT_CONTRACT')
+        except (ValueError, KeyError, IndexError, OSError, TypeError) as exc:
+            reasons.append(str(exc) or type(exc).__name__)
+        raw = dict(event, variable='commercial_event', domain='Commercial', value=None)
+        obsid = digest([eid, source['sha256'], raw])
+        db.execute('INSERT OR IGNORE INTO observations VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                   (obsid, eid, 'commercial_event', None, None, 'DATED_COMMERCIAL_DISCLOSURE',
+                    event['scope'], event['event_id'], None, event['effective_date'], source['sha256'],
+                    event['locator'], 'AUTO_VALIDATED' if not reasons else 'REVIEW', canonical(reasons),
+                    canonical(raw), 'commercial-event-v1'))
+        for reason in reasons:
+            issue(db, eid, source['sha256'], 'COMMERCIAL_EVENT_INVALID', canonical([event['event_id'], reason]))
+
 def ingest_sources(db, root, snapshots):
     for s in snapshots:
         db.execute('INSERT OR IGNORE INTO sources VALUES(?,?,?,?,?,?,?,?)',
@@ -119,7 +197,7 @@ def transformation_issues(o, siblings, depth=0):
     except (AssertionError,KeyError,TypeError,ValueError,ZeroDivisionError):return ['TRANSFORMATION_CONTRACT_FAILED']
     return []
 
-def ingest_claims(db, root, snapshots, cutoff, project=None):
+def ingest_claims(db, root, snapshots, cutoff, project=None, conflict_selection=False):
     by_key = {s['key']: s for s in snapshots}
     readers={};page_text={}
     claims = json.loads((Path(root) / 'data/claims.json').read_text(encoding='utf-8'))
@@ -165,21 +243,8 @@ def ingest_claims(db, root, snapshots, cutoff, project=None):
                 if not o.get('source_markers') or not all(marker in text for marker in o['source_markers']):
                     reasons.append('EXTRACTION_HTML_MARKER_CHECK_FAILED')
             if s['kind']=='pdf' and o.get('pdf_page'):
-                from pypdf import PdfReader
                 try:
-                    page_key=(s['sha256'],o['pdf_page'])
-                    if page_key not in page_text:
-                        if s['sha256'] not in readers:readers[s['sha256']]=PdfReader(Path(root)/s['path'])
-                        page_text[page_key]=readers[s['sha256']].pages[o['pdf_page']-1].extract_text()
-                    text=page_text[page_key]
-                    if o.get('page_extraction_key'):
-                        artifact=by_key[o['page_extraction_key']]
-                        if artifact['sha256']!=o['page_extraction_sha256']:raise ValueError('Page artifact version mismatch')
-                        data=json.loads((Path(root)/artifact['path']).read_text(encoding='utf-8'))
-                        if data['source_sha256']!=s['sha256'] or data['physical_page']!=o['pdf_page'] or data['status']!='EXTRACTED_REQUIRES_SCOPE_VALIDATION':raise ValueError('Page extraction source/page/status mismatch')
-                        text=data['text']
-                    if not all(marker in text for marker in o.get('page_markers', [])):
-                        reasons.append('EXTRACTION_PAGE_CHECK_FAILED')
+                    validate_pages(root,s,o,snapshots,page_text)
                 except Exception:
                     reasons.append('EXTRACTION_READ_FAILED')
             obsid = digest([eid, s['sha256'], o])
@@ -191,6 +256,8 @@ def ingest_claims(db, root, snapshots, cutoff, project=None):
             for reason in reasons:
                 issue(db, eid, s['sha256'], reason, obsid)
     # Conflicting same-date, same-scope values are never resolved by insertion order.
+    if conflict_selection:
+        return  # Current selection records conflicts without mutating originals.
     groups = db.execute('''SELECT entity_id,variable,scope,effective_date,COUNT(DISTINCT value) n
         FROM observations WHERE status='AUTO_VALIDATED' GROUP BY entity_id,variable,scope,effective_date HAVING n>1''').fetchall()
     for g in groups:
@@ -199,7 +266,7 @@ def ingest_claims(db, root, snapshots, cutoff, project=None):
                       AND scope=? AND effective_date=? AND status='AUTO_VALIDATED' ''', params)
         issue(db, g['entity_id'], None, 'SOURCE_CONFLICT', canonical(dict(g)))
 
-def resource_values(db, cutoff, snapshot_shas):
+def resource_values(db, cutoff, snapshot_shas, strict=False):
     """Pick latest complete statement per scope; competing scopes require review."""
     result = {}
     projects = [r[0] for r in db.execute("SELECT entity_id FROM entities WHERE kind='PROJECT'")]
@@ -209,9 +276,12 @@ def resource_values(db, cutoff, snapshot_shas):
             ORDER BY effective_date,obs_id''', (eid, cutoff)) if r['source_sha'] in snapshot_shas]
         statements = {}
         for r in rows:
-            statements.setdefault((r['statement_id'], r['scope'], r['effective_date']), {})[r['variable']] = r
+            key=(r['statement_id'], r['scope'], r['effective_date'])
+            if strict:key=(*key,r['source_sha'])
+            statements.setdefault(key, {})[r['variable']] = r
         valid = []
-        for (sid, scope, date), values in statements.items():
+        for key, values in statements.items():
+            sid, scope, date=key[:3]
             if not {'ore_mt', 'grade'} <= values.keys():
                 continue
             ore, grade = values['ore_mt'], values['grade']
@@ -236,6 +306,17 @@ def resource_values(db, cutoff, snapshot_shas):
                           'source_sha': ore['source_sha'], 'basis': 'TREO',
                           'interpretation': 'IN_SITU_RESOURCE_NOT_RECOVERABLE_PRODUCT'})
         if not valid:
+            continue
+        if strict:
+            from .selection import choose
+            candidates=[dict(v,evidence_id=digest(v),source_sha256=v['source_sha'],effective_date=v['date'],
+                             value={k:v[k] for k in ('ore_mt','grade_pct','contained_treo_kt')}) for v in valid]
+            chosen,reason=choose(candidates,('scope','basis'))
+            if chosen is None:
+                issue(db,eid,None,'RESOURCE_SCOPE_AMBIGUITY',reason)
+                continue
+            selected=next(v for v in valid if digest(v)==chosen['evidence_id'])
+            result[eid]=selected
             continue
         latest = max(v['date'] for v in valid)
         active = [v for v in valid if v['date'] == latest]

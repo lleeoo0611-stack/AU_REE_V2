@@ -103,7 +103,7 @@ class ResolutionStudyTests(unittest.TestCase):
         tmp=connect(self.work/'isolated.sqlite')
         try:
             ingest_sources(tmp,ROOT,self.snapshots)
-            with patch('au_ree_v2.studies.PdfReader',side_effect=reader):rows=ingest(tmp,ROOT,self.snapshots,'2026-11-03')
+            with patch('pypdf.PdfReader',side_effect=reader):rows=ingest(tmp,ROOT,self.snapshots,'2026-11-03')
             self.assertEqual(4,len(rows))
         finally:tmp.close()
 
