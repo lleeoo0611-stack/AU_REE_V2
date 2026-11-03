@@ -1,5 +1,5 @@
 {
-  "version": "discovery-v4-bounded-announcement-details",
+  "version": "discovery-v5-registry-derived",
   "max_documents_per_seed": 3,
   "seeds": [
     {
@@ -222,7 +222,59 @@
         "financ",
         "goschen"
       ]
+    },
+    {
+      "key": "ar3_issuer",
+      "url": "https://ar3.com.au/announcements",
+      "allowed_hosts": [
+        "ar3.com.au",
+        "hermes-cdn.investorhub.com"
+      ],
+      "keywords": [
+        "Koppamurra",
+        "pilot",
+        "quarter",
+        "metallurg",
+        "resource"
+      ],
+      "detail_pattern": "/announcements/[^/?]+",
+      "pattern": "\\.pdf(?:\\?|$)",
+      "project_id": "AU-49b538453133bd968e8d"
+    },
+    {
+      "key": "ar3_pilot_detail",
+      "url": "https://ar3.com.au/announcements/466lpl-pilot-plant-moves-to-mixed-rare-earth-hydroxide-production",
+      "allowed_hosts": [
+        "ar3.com.au",
+        "hermes-cdn.investorhub.com"
+      ],
+      "pattern": "\\.pdf(?:\\?|$)"
+    },
+    {
+      "key": "ar3_quarter_detail",
+      "url": "https://ar3.com.au/announcements/d6LALL-quarterly-activities-appendix-5b-cash-flow-report",
+      "allowed_hosts": [
+        "ar3.com.au",
+        "hermes-cdn.investorhub.com"
+      ],
+      "pattern": "\\.pdf(?:\\?|$)",
+      "fallback_urls": [
+        "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7813831.pdf?v=63960528980"
+      ]
+    },
+    {
+      "key": "asra_primary_met",
+      "url": "https://wcsecure.weblink.com.au/pdf/ASR/02790601.pdf",
+      "allowed_hosts": [
+        "wcsecure.weblink.com.au",
+        "www.aspecthuntley.com.au"
+      ],
+      "project_id": "AU-ee5ca893d12883df35f1",
+      "fallback_urls": [
+        "https://www.aspecthuntley.com.au/asxdata/20240402/pdf/02790601.pdf"
+      ]
     }
   ],
-  "max_pages_per_seed": 3
+  "max_pages_per_seed": 3,
+  "registry_tasks": true
 }

@@ -11,6 +11,11 @@ from datetime import date
 from .store import canonical, digest, filehash
 
 
+def observation_visible(raw, selected_shas):
+    """Extraction versions must be in the lock, as well as their original PDF."""
+    return not raw.get('extraction_artifact_sha256') or raw['extraction_artifact_sha256'] in selected_shas
+
+
 def evidence_domain(variable, raw):
     """Shared raw-domain taxonomy; a domain assignment never grants a score."""
     if raw.get('domain'):
@@ -132,6 +137,7 @@ def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None)
         if row['source_sha'] not in sources:
             continue
         raw = json.loads(row['raw'])
+        if not observation_visible(raw,sources):continue
         c = dict(raw, evidence_id=row['obs_id'], entity_id=row['entity_id'],
                  project_id=mapping.get(row['entity_id'], row['entity_id']),
                  variable=row['variable'], value=row['value'], unit=row['unit'], basis=row['basis'],
@@ -297,3 +303,44 @@ def export(selection, out):
                                                            for s in sorted({d['status'] for d in selection['decisions'] if d['criterion'] == code and d['value'] is None})})))
     write_csv(out / 'technical_commercial_coverage.csv', coverage,
               ['domain', 'criterion', 'raw_evidence', 'raw_versions', 'raw_entities', 'raw_project_groups', 'raw_observations', 'study_parameters', 'validated_events', 'qualified_projects', 'role', 'missing_reasons'])
+
+
+def diagnostics(selection, prepared, snapshots, criteria, root, out):
+    """Separate acquisition/extraction/semantic failures from scoring eligibility.
+
+    A bounded search is never evidence of absence. Not-disclosed and
+    not-applicable require explicit checked-scope/stage rules, which this
+    release does not invent.
+    """
+    from .analysis import write_csv
+    from .pdf_extract import project_registry
+    from pathlib import Path
+    by_project=defaultdict(list)
+    for c in selection['inventory']:by_project[c['project_id']].append(c)
+    by_coverage={r['canonical_project_id']:r for r in prepared['coverage']}
+    registry=project_registry(root);sources={s['key']:s for s in snapshots}
+    identity_sources={selection['mapping'].get(p['entity_id'],p['entity_id']):sources.get(p['identity_source']) for p in registry}
+    rows=[]
+    for pid in sorted(selection['projects']):
+        raw=by_project[pid];source=identity_sources.get(pid)
+        for criterion in criteria:
+            code=criterion['code'];domain=criterion['domain'];evidence=[c for c in raw if c.get('domain')==domain]
+            scored=bool(by_coverage.get(pid,{}).get(code)) or code in selection['values'].get(pid,{})
+            automatic=[c for c in evidence if c['raw'].get('parser_version')]
+            decision=next((d for d in selection['decisions'] if d['canonical_project_id']==pid and d['criterion']==code),None)
+            if scored:state='VALID_SCORABLE_EVIDENCE'
+            elif automatic and all(c.get('reason') for c in automatic):state='OBSERVATION_EXTRACTED_NOT_VALIDATED'
+            elif decision and 'INCOMPATIBLE' in decision['status']:state='SCOPE_OR_BASIS_INCOMPATIBLE'
+            elif evidence:state='SCOPED_RAW_EVIDENCE_CRITERION_NOT_ESTABLISHED'
+            elif source:state='SOURCE_ACQUIRED_EXTRACTION_OR_SEARCH_INCOMPLETE'
+            else:state='SOURCE_NOT_DISCOVERED'
+            rows.append(dict(project_id=pid,domain=domain,criterion=code,status=state,
+                             raw_evidence=len(evidence),automatic_evidence=len(automatic),
+                             selection_reason=decision['status'] if decision else None,
+                             source_shas=canonical(sorted({c['source_sha256'] for c in evidence}|({source['sha256']} if source else set()))),
+                             exclusion_reasons=canonical(sorted({c['reason'] for c in evidence if c.get('reason')})),
+                             search_completeness='BOUNDED_NOT_EXHAUSTIVE_UNKNOWN',confirmed_stage=None,
+                             interpretation='NO_ABSENCE_OR_STAGE_INAPPLICABILITY_INFERRED'))
+    write_csv(Path(out)/'evidence_pipeline_diagnostics.csv',rows,
+              ['project_id','domain','criterion','status','raw_evidence','automatic_evidence','selection_reason','source_shas','exclusion_reasons','search_completeness','confirmed_stage','interpretation'])
+    return rows

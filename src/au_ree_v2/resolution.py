@@ -18,6 +18,41 @@ def native(value):
 def normalized(name):
     return re.sub(r'\W+',' ',unicodedata.normalize('NFKC',name).casefold().replace('mt.','mount ').replace('mt ','mount ')).strip()
 
+
+def document_relations(db, root, snapshots, cutoff):
+    """An explicit deposit-within-project sentence adds hierarchy, never identity.
+
+    Both endpoints must already be registered uniquely. Representative points,
+    fuzzy names and proximity cannot satisfy this rule.
+    """
+    from .selection import source_check
+    from .pdf_extract import project_registry, _matches
+    sources={s['sha256']:s for s in snapshots};registry=project_registry(root);decisions=[]
+    names={}
+    for r in db.execute("SELECT r.name,e.entity_id FROM records r JOIN entities e USING(entity_id) WHERE e.kind='PROJECT' AND r.source_sha IN ("+','.join('?' for _ in sources)+')',tuple(sources)):
+        name=re.sub(r'\s+(?:REE|Project)$','',r['name'],flags=re.I)
+        names.setdefault(normalized(name),set()).add(r['entity_id'])
+    for artifact in snapshots:
+        if artifact['kind']!='document_extraction':continue
+        if source_check(artifact,cutoff,Path(root)):continue
+        data=json.loads((Path(root)/artifact['path']).read_text(encoding='utf-8'))
+        source=sources.get(data['source_sha256'])
+        if source_check(source,cutoff,Path(root)):continue
+        for page in data['pages']:
+            text=re.sub(r'\s+',' ',page['text'])
+            pattern=r'\b([A-Z][A-Za-z]+)\s+Rare Earth Elements?\s*\(REE\)\s+[Dd]eposit,?\s+located on its\s+([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+){0,2})\s+Project'
+            for m in re.finditer(pattern,text):
+                children=_matches(m.group(1),registry);parents=names.get(normalized(m.group(2)),set())
+                if len(children)!=1 or len(parents)!=1:continue
+                child=children[0]['entity_id'];parent=next(iter(parents))
+                if child==parent:continue
+                relation='CONTAINS_DOCUMENTED_DEPOSIT_PROJECT_CASE_NOT_IDENTITY'
+                locator='physical page '+str(page['physical_page'])+'; '+m.group(0)
+                link(db,parent,child,relation,source['sha256'],locator)
+                decisions.append(dict(parent_id=parent,child_id=child,relation=relation,source_sha256=source['sha256'],locator=locator,
+                                      rule='EXPLICIT_LOCATED_ON_ITS_PROJECT_V1',status='CONFIRMED_HIERARCHY_NOT_CANONICAL_MERGE'))
+    return decisions
+
 def resolve(db,root,snapshots,cutoff=None,rule_version=None):
     selected={s['sha256'] for s in snapshots};by_key={s['key']:s for s in snapshots}
     path=Path(root)/'data/identity_links.json'
@@ -168,6 +203,13 @@ def resolve(db,root,snapshots,cutoff=None,rule_version=None):
     return dict(ledger=ledger,accepted=valid,membership=membership,candidates=pairs,mapping={x['entity_id']:x['canonical_id'] for x in membership})
 
 def technical_coverage(db,resolution,resources,cases,snapshot_shas):
+    from .selection import observation_visible
+    def active_raw(sql,eid):
+        rows=[]
+        for record in db.execute(sql,(eid,)):
+            r=dict(record);raw=json.loads(r.pop('raw'))
+            if r['source_sha'] in snapshot_shas and observation_visible(raw,snapshot_shas):rows.append(r)
+        return rows
     groups={}
     for row in resolution['membership']:
         if row['kind']=='PROJECT':groups.setdefault(row['canonical_id'],[]).append(row['entity_id'])
@@ -180,9 +222,9 @@ def technical_coverage(db,resolution,resources,cases,snapshot_shas):
         status=('PRIMARY_RESOURCE_AND_STUDY_EVIDENCE' if scopes and (studies or stages) else 'PRIMARY_RESOURCE_SCOPE_ONLY' if scopes else 'PRIMARY_STUDY_CASE_ONLY' if studies else 'PRIMARY_SHARED_RESOURCE_CONTEXT_ONLY_NO_ADDITIVE_RESOURCE' if shared else 'NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET')
         scoped_obs={obs for eid,r in resources.items() if eid in members for obs in r['obs_ids']}
         other=[dict(r) for eid in members for r in db.execute("SELECT obs_id,variable,value,basis,scope,effective_date,source_sha,status FROM observations WHERE entity_id=? AND variable IN ('ore_mt','grade','contained_treo_kt')",(eid,)) if r['source_sha'] in snapshot_shas and r['obs_id'] not in scoped_obs]
-        primary_raw=[dict(r) for eid in members for r in db.execute("SELECT o.obs_id,o.variable,o.value,o.basis,o.scope,o.effective_date,o.source_sha,o.status FROM observations o JOIN sources s ON o.source_sha=s.sha WHERE o.entity_id=? AND o.status='AUTO_VALIDATED' AND s.kind='pdf' AND (o.variable LIKE 'reported_fine_fraction_%' OR o.variable LIKE 'reported_resource_%' OR o.variable='reported_bulk_ore_mt')",(eid,)) if r['source_sha'] in snapshot_shas]
+        primary_raw=[r for eid in members for r in active_raw("SELECT o.obs_id,o.variable,o.value,o.basis,o.scope,o.effective_date,o.source_sha,o.status,o.raw FROM observations o JOIN sources s ON o.source_sha=s.sha WHERE o.entity_id=? AND o.status='AUTO_VALIDATED' AND s.kind='pdf' AND (o.variable LIKE 'reported_fine_fraction_%' OR o.variable LIKE 'reported_resource_%' OR o.variable='reported_bulk_ore_mt')",eid)]
         if status=='NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET' and primary_raw:status='PRIMARY_RESOURCE_BASIS_OR_FRACTION_NOT_COMPARABLE'
-        raw_process=[dict(r) for eid in members for r in db.execute("SELECT o.obs_id,o.variable,o.value,o.basis,o.scope,o.effective_date,o.source_sha,o.status FROM observations o JOIN sources s ON o.source_sha=s.sha WHERE o.entity_id=? AND o.status='AUTO_VALIDATED' AND s.kind IN ('pdf','html','discovery_html') AND o.variable LIKE 'reported_technical_%'",(eid,)) if r['source_sha'] in snapshot_shas]
+        raw_process=[r for eid in members for r in active_raw("SELECT o.obs_id,o.variable,o.value,o.basis,o.scope,o.effective_date,o.source_sha,o.status,o.raw FROM observations o JOIN sources s ON o.source_sha=s.sha WHERE o.entity_id=? AND o.status='AUTO_VALIDATED' AND s.kind IN ('pdf','html','discovery_html') AND o.variable LIKE 'reported_technical_%'",eid)]
         if status=='NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET' and raw_process:status='PRIMARY_PROCESS_EVIDENCE_ONLY_NOT_COMPARABLE_RESOURCE'
         other.extend(primary_raw)
         other.extend(raw_process)

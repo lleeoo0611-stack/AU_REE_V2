@@ -110,6 +110,154 @@ def ingest_events(db, root, snapshots, cutoff):
         for reason in reasons:
             issue(db, eid, source['sha256'], 'COMMERCIAL_EVENT_INVALID', canonical([event['event_id'], reason]))
 
+
+def ingest_recognized(db, root, snapshots, cutoff, policy):
+    """Automatic raw observations reuse the canonical table and shared checks.
+
+    Resource-table observations retain a reported_ prefix until a compatible
+    resource scope/effective date is established. Text disclosures have NULL
+    numerical values and cannot accidentally satisfy an MCDA criterion.
+    """
+    from .selection import source_check, date_end
+    from .store import filehash
+    root=Path(root);sources={s['sha256']:s for s in snapshots};outcomes=[]
+    for artifact in snapshots:
+        if artifact['kind']!='document_extraction':continue
+        try:
+            if source_check(artifact,cutoff,root):raise ValueError('EXTRACTION_ARTIFACT_INVALID')
+            data=json.loads((root/artifact['path']).read_text(encoding='utf-8'))
+            source=sources.get(data['source_sha256'])
+            if source_check(source,cutoff,root):raise ValueError('ORIGINAL_SOURCE_INVALID_OR_OUTSIDE_LOCK')
+            if artifact['source_sha256']!=source['sha256'] or data['version']!=policy['parser_version']:
+                raise ValueError('PARSER_OR_SOURCE_VERSION_MISMATCH')
+            pages={p['physical_page']:p for p in data['pages']}
+            for candidate in data['candidates']:
+                from .pdf_extract import candidate_value_issues
+                c=dict(candidate);reasons=list(c['issues'])+candidate_value_issues(c);pid=c.get('project_id')
+                page=pages.get(c['physical_page'])
+                if not page or re.sub(r'\s+',' ',c['raw_text']) not in re.sub(r'\s+',' ',page['text']):
+                    reasons.append('PAGE_TEXT_BINDING_FAILED')
+                if c['source_sha256']!=source['sha256']:reasons.append('SOURCE_BINDING_FAILED')
+                if not pid or not db.execute("SELECT 1 FROM entities WHERE entity_id=? AND kind='PROJECT'",(pid,)).fetchone():
+                    outcomes.append(dict(candidate_id=c['candidate_id'],source_key=source['key'],
+                                         status='OBSERVATION_EXTRACTED_NOT_VALIDATED',issues=canonical(sorted(set(reasons+['PROJECT_NOT_REGISTERED'])))))
+                    continue
+                reported_date=source.get('publication_date') or data.get('publication_date')
+                if not reported_date:
+                    reasons.append('PUBLICATION_DATE_NOT_ESTABLISHED')
+                date=reported_date or source['available_date']
+                if date_end(date)>cutoff:continue
+                values={};component_basis={}
+                if c['kind']=='RESOURCE_TABLE_TOTAL':
+                    for variable,value in c['values'].items():
+                        original=dict(variable=variable,value=value,unit=c['units'][variable],basis=c['basis'],
+                                      scope=c['scope'],locator='physical page '+str(c['physical_page']),
+                                      statement_id=c['candidate_id'],category=c.get('category'))
+                        reasons.extend(normalize(original))
+                        values['reported_resource_'+variable]=(value,c['units'][variable])
+                elif c['kind']=='LEACH_TABLE_ROW':
+                    for element,value in c['values'].items():
+                        if not isinstance(value,(int,float)) or not 0<=value<=100:
+                            reasons.append('PERCENT_OUT_OF_RANGE')
+                        variable='reported_technical_extraction_'+element.lower()+'_pct'
+                        values[variable]=(value,'%');component_basis[variable]=element
+                else:
+                    values['reported_'+c['domain'].lower()+'_disclosure']=(None,None)
+                    if c['domain']=='Technical':
+                        for i,number in enumerate(c.get('numbers',[])):
+                            if number.get('quantity_role') and 0<=number['value']<=100:
+                                values['reported_technical_'+number['quantity_role'].lower()+'_'+str(i)+'_pct']=(number['value'],'%')
+                for extra in c.get('extra_values',[]):
+                    if extra['unit']!='ppm':continue
+                    domain='Technical' if extra['label'] in ('U','Th') else 'Strategic'
+                    variable='reported_'+domain.lower()+'_'+extra['label'].lower()+'_ppm'
+                    values[variable]=(extra['value'],'ppm');component_basis[variable]=extra['label']
+                c.update(effective_date=date,date_role='DISCLOSURE_DATE_NOT_RESOURCE_EFFECTIVE_DATE',
+                         source_key=source['key'],source_sha256=source['sha256'],
+                         pdf_page=c['physical_page'] if source['kind']=='pdf' else None,
+                         locator='physical page '+str(c['physical_page'])+'; row/paragraph '+str(c['row_index']),
+                         extraction_artifact_sha256=artifact['sha256'],statement_id=c['candidate_id'],
+                         domain=c['domain'],role='AUTOMATIC_RAW_OBSERVATION_NOT_CRITERION_APPROVAL')
+                status='REVIEW' if reasons else 'AUTO_VALIDATED'
+                for variable,(value,unit) in values.items():
+                    raw=dict(c,variable=variable,value=value,unit=unit)
+                    if variable in component_basis:
+                        raw['source_total_basis']=raw.get('basis');raw['basis']=component_basis[variable]
+                    if variable.startswith('reported_strategic_'):raw['domain']='Strategic'
+                    elif variable.startswith('reported_technical_'):raw['domain']='Technical'
+                    obsid=digest([pid,source['sha256'],raw])
+                    db.execute('INSERT OR IGNORE INTO observations VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                               (obsid,pid,variable,value,unit,raw.get('basis'),c['scope'],c['candidate_id'],
+                                c.get('category'),date,source['sha256'],c['locator'],status,
+                                canonical(sorted(set(reasons))),canonical(raw),data['version']))
+                outcomes.append(dict(candidate_id=c['candidate_id'],source_key=source['key'],project_id=pid,
+                                     status=status,observations=len(values),issues=canonical(sorted(set(reasons)))))
+        except (ValueError,KeyError,TypeError,OSError) as exc:
+            issue(db,None,artifact['sha256'],'DOCUMENT_EXTRACTION_INVALID',str(exc))
+            outcomes.append(dict(source_key=artifact['key'],status='EXTRACTION_FAILED',issues=str(exc)))
+    return outcomes
+
+
+def document_report(root, snapshots, outcomes, out):
+    """Measured acquisition/extraction inventory; never count tables as Projects."""
+    from .analysis import write_csv
+    from collections import Counter
+    root=Path(root);out=Path(out);documents=[];candidates=[];process=[]
+    for artifact in snapshots:
+        if artifact['kind']!='document_extraction':continue
+        data=json.loads((root/artifact['path']).read_text(encoding='utf-8'))
+        documents.append(dict(source_key=data['source_key'],source_sha256=data['source_sha256'],
+                              extraction_sha256=artifact['sha256'],parser_version=data['version'],
+                              publication_date=data.get('publication_date'),labels=canonical(data['labels']),
+                              pages=len(data['pages']),relevant_pages=sum(p['relevant'] for p in data['pages']),
+                              unreadable_pages=sum(p['status']=='UNREADABLE' for p in data['pages']),
+                              tables=len(data['tables']),candidates=len(data['candidates']),
+                              source_url=data['source_url']))
+        for c in data['candidates']:
+            candidates.append(dict(candidate_id=c['candidate_id'],source_key=data['source_key'],
+                                   source_sha256=data['source_sha256'],project_id=c.get('project_id'),
+                                   domain=c['domain'],kind=c['kind'],physical_page=c['physical_page'],
+                                   scope=c['scope'],issues=canonical(c['issues']),raw_text=c['raw_text']))
+            if c['kind']=='LEACH_TABLE_ROW':
+                process.append({k:c.get(k) for k in ('candidate_id','project_id','source_sha256','physical_page','scope','sample_id','sample_interval','statistic','endpoint','feed','scale','basis','reagent','temperature_c','residence_hours','acid_concentration','pressure')})
+    write_csv(out/'document_inventory.csv',documents,
+              ['source_key','source_sha256','extraction_sha256','parser_version','publication_date','labels','pages','relevant_pages','unreadable_pages','tables','candidates','source_url'])
+    write_csv(out/'document_candidates.csv',candidates,
+              ['candidate_id','source_key','source_sha256','project_id','domain','kind','physical_page','scope','issues','raw_text'])
+    # "Latest related report" is a discovery aid, not a scope replacement.
+    related=[]
+    for project in sorted({c['project_id'] for c in candidates if c['project_id']}):
+        relevant={c['source_sha256'] for c in candidates if c['project_id']==project}
+        for label in sorted({v for d in documents if d['source_sha256'] in relevant for v in json.loads(d['labels'])}):
+            family=[d for d in documents if d['source_sha256'] in relevant and label in json.loads(d['labels'])]
+            dated=[d for d in family if d['publication_date']]
+            latest=max((d['publication_date'] for d in dated),default=None)
+            for d in family:
+                related.append(dict(project_id=project,document_type_mention=label,source_sha256=d['source_sha256'],
+                                    publication_date=d['publication_date'],latest_related_disclosure=d['publication_date']==latest if latest else None,
+                                    replaces_source_sha256=None,replacement_status='NOT_ESTABLISHED_DIFFERENT_SCOPE_OR_DATE_NOT_SUFFICIENT'))
+    write_csv(out/'document_versions.csv',related,
+              ['project_id','document_type_mention','source_sha256','publication_date','latest_related_disclosure','replaces_source_sha256','replacement_status'])
+    write_csv(out/'document_process_variables.csv',process,
+              ['candidate_id','project_id','source_sha256','physical_page','scope','sample_id','sample_interval','statistic','endpoint','feed','scale','basis','reagent','temperature_c','residence_hours','acid_concentration','pressure'])
+    groups={}
+    dimensions=('statistic','endpoint','feed','scale','basis','reagent','temperature_c','residence_hours','acid_concentration','pressure')
+    for row in process:
+        if row['project_id']:groups.setdefault(canonical([row[k] for k in dimensions]),[]).append(row)
+    write_csv(out/'document_recovery_groups.csv',
+              [dict(comparison_contract=key,projects=len({r['project_id'] for r in group}),test_rows=len(group),
+                    status='CONDITIONS_INCOMPLETE_NO_COMMON_SCORE' if any(r[k] is None for r in group for k in ('acid_concentration','pressure')) else 'SINGLE_PROJECT_NO_RANK',
+                    source_shas=canonical(sorted({r['source_sha256'] for r in group}))) for key,group in sorted(groups.items())],
+              ['comparison_contract','projects','test_rows','status','source_shas'])
+    counts=Counter(c['status'] for c in outcomes)
+    report=dict(documents=len(documents),pages=sum(d['pages'] for d in documents),
+                relevant_pages=sum(d['relevant_pages'] for d in documents),tables=sum(d['tables'] for d in documents),
+                candidates=len(candidates),candidate_statuses=dict(counts),
+                validated_observations=sum(c.get('observations',0) for c in outcomes if c['status']=='AUTO_VALIDATED'),
+                limitations=['RAW_VALIDATION_IS_NOT_FORMAL_CRITERION_APPROVAL','NO_CORPUS_WIDE_RECALL_CLAIM'])
+    (out/'document_pipeline_summary.json').write_text(canonical(report)+'\n',encoding='utf-8')
+    return report
+
 def ingest_sources(db, root, snapshots):
     for s in snapshots:
         db.execute('INSERT OR IGNORE INTO sources VALUES(?,?,?,?,?,?,?,?)',

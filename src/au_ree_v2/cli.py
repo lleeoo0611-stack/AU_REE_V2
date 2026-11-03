@@ -67,6 +67,10 @@ def execute(args):
         from .pdf_extract import capture_pages
         source=next(s for s in select_snapshots(root,args.as_of) if s['key']==args.source_key)
         return {'pages':capture_pages(root,source,[int(p) for p in args.pages.split(',')],args.tessdata)}
+    if args.module=='recognize':
+        from .pdf_extract import capture_documents
+        keys=set(args.source_key.split(',')) if args.source_key else None
+        return {'documents':capture_documents(root,select_snapshots(root,args.as_of),keys,args.tessdata)}
     acquisition=[]
     if args.module=='discover':
         from .discovery import discover
@@ -82,8 +86,12 @@ def execute(args):
             chosen=registry['sources']
             discovery=discover(root,json.loads((root/'config/discovery.json').read_text(encoding='utf-8')))
         acquisition=refresh(root,dict(registry,sources=chosen))
+        recognized=[]
+        if config.get('evidence_resolution',{}).get('document_pipeline'):
+            from .pdf_extract import capture_documents
+            recognized=capture_documents(root,select_snapshots(root,args.as_of),tessdata=args.tessdata,only_missing=True)
         if args.module=='acquire':
-            return {'status':'COMPLETED_WITH_SOURCE_STATUS','sources':acquisition,'discovery':discovery}
+            return {'status':'COMPLETED_WITH_SOURCE_STATUS','sources':acquisition,'discovery':discovery,'document_recognition':recognized}
     snapshots=select_snapshots(root,args.as_of)
     if args.snapshot_lock:
         snapshots=json.loads(Path(args.snapshot_lock).read_text(encoding='utf-8'))
@@ -126,6 +134,16 @@ def execute(args):
         write_csv(out/'national_screen_index.csv',screen_rows,['candidate_id','source_key','native_label','native_label_role','state','tier','source_ref','selection_entity_id','parent_candidate_id','source_sha','verification','raw'])
         if args.module!='bootstrap':
             ingest_claims(db,root,snapshots,args.as_of,args.project,conflict_selection=bool(config.get('evidence_resolution')))
+        recognition=[]
+        if config.get('evidence_resolution',{}).get('document_pipeline') and args.module!='bootstrap':
+            from .evidence import ingest_recognized
+            recognition=ingest_recognized(db,root,snapshots,args.as_of,config['evidence_resolution']['document_pipeline'])
+            (out/'document_ingestion.json').write_text(canonical(recognition)+'\n',encoding='utf-8')
+            from .evidence import document_report
+            document_report(root,snapshots,recognition,out)
+            from .resolution import document_relations
+            write_csv(out/'document_entity_relations.csv',document_relations(db,root,snapshots,args.as_of),
+                      ['parent_id','child_id','relation','source_sha256','locator','rule','status'])
         resources=resource_values(db,args.as_of,{s['sha256'] for s in snapshots},strict=bool(config.get('evidence_resolution')))
         from .national import resource_quality_checks
         resource_qa=resource_quality_checks(db,{s['sha256'] for s in snapshots})
@@ -200,6 +218,9 @@ def execute(args):
                 selection=select_evidence(db,snapshots,args.as_of,resources,cases,identity['mapping'],config['evidence_resolution'],root)
                 export_selection(selection,out)
             prepared=prepare(db,args.as_of,snapshots,resources,gis_values,config,out,args.project,identity['mapping'],cases,selection)
+            if config.get('evidence_resolution',{}).get('document_pipeline') and selection:
+                from .selection import diagnostics
+                diagnostics(selection,prepared,snapshots,config['criteria'],root,out)
             if not args.skip_r:
                 results=run_r(root,out,prepared,config,args.rscript)
         source_shas={s['sha256'] for s in snapshots}
@@ -360,7 +381,7 @@ def execute(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract'])
+    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize'])
     parser.add_argument('--root',default='.')
     parser.add_argument('--work')
     parser.add_argument('--as-of',default=datetime.now(timezone.utc).date().isoformat())

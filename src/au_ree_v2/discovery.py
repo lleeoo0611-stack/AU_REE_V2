@@ -13,6 +13,28 @@ from .security import sensitive_reference
 from .store import filehash
 
 
+def search_tasks(root, registry):
+    """Registry-derived jobs reuse issuer endpoints; missing endpoints stay unknown.
+
+    Aliases and company/ASX identifiers are discovery context, never entity
+    equivalence or authority to attribute company funds to a project.
+    """
+    from .pdf_extract import project_registry
+    manifest=json.loads((Path(root)/'data/manifest.json').read_text(encoding='utf-8'))['snapshots']
+    sources={s['key']:s for s in manifest};tasks=[]
+    for p in project_registry(root):
+        source=sources.get(p['identity_source'],{})
+        matches=[s for s in registry['seeds'] if s.get('project_id')==p['entity_id'] or
+                 any(a.casefold() in json.dumps(s).casefold() for a in p['aliases'])]
+        tasks.append(dict(project_id=p['entity_id'],project_name=p['name'],aliases=p['aliases'],
+                          company=source.get('company'),asx_code=source.get('asx_code'),
+                          source_key=p['identity_source'],source_url=source.get('url'),
+                          queries=[a+' '+kind for a in p['aliases'] for kind in ('mineral resource','metallurgical','feasibility','financing')],
+                          seed_keys=[s['key'] for s in matches],
+                          status='BOUNDED_ISSUER_SEARCH_TASK' if matches else 'SEARCH_ENDPOINT_NOT_CONFIGURED_UNKNOWN'))
+    return tasks
+
+
 class Links(HTMLParser):
     def __init__(self):
         super().__init__(); self.links=[]; self.current=None
@@ -56,10 +78,18 @@ def discover(root, registry, fetch=request):
         entry={**meta,'sha256':sha,'path':dest.relative_to(root).as_posix(),'acquired_at':now,'available_date':now[:10]}
         if not any(s['key']==entry['key'] and s['sha256']==sha for s in manifest['snapshots']):manifest['snapshots'].append(entry)
         return sha
+    tasks=search_tasks(root,registry) if registry.get('registry_tasks') else []
     queue=[]
     for seed in registry['seeds']:
         queue.append(dict(seed))
-        for query in seed.get('queries',[]):
+        for url in seed.get('fallback_urls',[]):
+            if urlsplit(url).scheme=='https' and urlsplit(url).hostname in seed['allowed_hosts'] and not sensitive_reference(url):
+                queue.append(dict(seed,url=url,key=seed['key']+'_alternative_'+hashlib.sha256(url.encode()).hexdigest()[:12],
+                                  fallback_urls=[],original_discovery_url=seed['url']))
+        queries=list(seed.get('queries',[]))
+        if seed.get('search_url_template'):
+            queries += [q for t in tasks if seed['key'] in t['seed_keys'] for q in t['queries']]
+        for query in sorted(set(queries)):
             if seed.get('search_url_template'):queue.append(dict(seed,url=seed['search_url_template'].format(query=quote(query)),key=seed['key']+'_search_'+hashlib.sha256(query.encode()).hexdigest()[:12]))
     seen_pages=set();seen_documents=set();page_counts={};document_counts={}
     for seed in queue:
@@ -107,11 +137,12 @@ def discover(root, registry, fetch=request):
                             with pymupdf.open(stream=doc,filetype='pdf') as reader:row['physical_pages']=len(reader)
                             row['text_quality']='NATIVE_PYPDF_UNAVAILABLE_MUPDF_READABLE_REQUIRES_PAGE_VALIDATION'
                         except Exception:row['status']='SNAPSHOT_PDF_PARSE_FAILED'
-                except Exception as exc:row['status']='DOWNLOAD_UNAVAILABLE';row['reason']=type(exc).__name__
+                except Exception as exc:row['status']='DOWNLOAD_UNAVAILABLE';row['reason']=type(exc).__name__+('_'+str(exc.code) if hasattr(exc,'code') else '')
                 found.append(row)
             outcomes.append({'seed_key':seed['key'],'status':'PARSED','links_found':len(rows),'links_attempted':min(len(rows),budget),'sha256':sha,'limitation':'BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT'})
-        except Exception as exc:outcomes.append({'seed_key':seed['key'],'status':'UNAVAILABLE','reason':type(exc).__name__})
+        except Exception as exc:outcomes.append({'seed_key':seed['key'],'status':'UNAVAILABLE','reason':type(exc).__name__+('_'+str(exc.code) if hasattr(exc,'code') else '')})
     path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
-    result={'version':'discovery-v2','sources':outcomes,'documents':found}
+    result={'version':'discovery-v3-registry-tasks' if tasks else 'discovery-v2','sources':outcomes,'documents':found}
+    if tasks:result['search_tasks']=tasks
     (root/'data/discovery_latest.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
     return result

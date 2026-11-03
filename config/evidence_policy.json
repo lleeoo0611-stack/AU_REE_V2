@@ -1,5 +1,5 @@
 {
-  "version": "evidence-resolution-v2-phase8",
+  "version": "evidence-resolution-v3-phase9",
   "main_codes": [
     "R1",
     "S1",
@@ -344,5 +344,10 @@
       "domain": "Technical"
     }
   },
-  "identity_rule_version": "document-native-extension-phase8-v1"
+  "identity_rule_version": "document-native-extension-phase8-v1",
+  "document_pipeline": {
+    "parser_version": "document-recognition-v1",
+    "role": "RAW_SCOPED_DISCLOSURES_NOT_AUTOMATIC_FORMAL_CRITERIA",
+    "resource_promotion": "REPORTED_VARIABLES_ONLY_UNTIL_EFFECTIVE_DATE_AND_SCOPE_COMPATIBLE"
+  }
 }

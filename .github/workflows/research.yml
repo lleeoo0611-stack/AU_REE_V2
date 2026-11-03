@@ -52,6 +52,12 @@ jobs:
         run: |
           au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase8-2026-11-03/snapshot_lock.json --compare-to results/phase7-2026-11-03 --work work/coverage
           python tools/check_replay.py results/phase8-2026-11-03 work/coverage/latest.json
+      - name: Phase 9 automatic document evidence reconstruction
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase9-2026-11-03/snapshot_lock.json --compare-to results/phase8-2026-11-03 --work work/documents
+          python tools/check_replay.py results/phase9-2026-11-03 work/documents/latest.json
+          python tools/evaluate_documents.py work/document_benchmark.json
+          python -c "import json; assert json.load(open('work/document_benchmark.json')) == json.load(open('data/phase9_document_benchmark.json'))"
       - name: Incremental public update (isolated live-source smoke)
         id: live
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
@@ -84,6 +90,8 @@ jobs:
             work/national/runs/
             work/consolidated/runs/
             work/coverage/runs/
+            work/documents/runs/
+            work/document_benchmark.json
             work/updated/runs/
             work/acquisition_status.json
             data/manifest.json

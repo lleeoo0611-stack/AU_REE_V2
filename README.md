@@ -1,10 +1,10 @@
 # AU_REE_V2
 
-Latest: [Phase 8 evidence coverage](docs/phase8-evidence-coverage.md) adds source-verified resources and typed events through the existing shared selection, SQLite store, Python CLI and R engine. The schema and stable Project IDs are retained.
+Latest: [Phase 9 automatic document evidence](docs/phase9-document-pipeline.md) integrates discovery, page/table recognition and scientific validation with the existing shared selection, SQLite store, Python CLI and R engine. The schema and stable Project IDs are retained.
 
-Current frozen evidence: **31 canonical Project groups, 22 comparable resource cases, 132 validated numeric statements, 712 government REE native entities and 19 typed events**. The 5,522 new QLD Tenements are counted separately. Resource/concentrate and resource/financing exploratory intersections now have two/five alternatives. Formal C1, strict Development and full six-domain samples remain zero. A dated financing milestone does not establish available cash.
+Current frozen evidence: **31 canonical Project groups, 22 comparable resource cases, 263 selected validated numeric statements, 712 government REE native entities and 19 typed events**. New automatic parsing adds131numeric source fields, including112laboratory extraction values, without forcing additional comparable MCDA alternatives. The5,522QLD Tenements are separate. Resource/concentrate and resource/financing exploratory intersections retain two/five alternatives. Formal C1, strict Development and full six-domain samples remain zero. A dated financing milestone does not establish available cash.
 
-[Phase 8 outputs](results/phase8-2026-11-03/README.md), [Phase 7 integration](docs/phase7-evidence-integration.md), [Phase 6 national originals](docs/phase6-national-database.md), [Phase 5 primary evidence](docs/phase5-primary-evidence.md), [Phase 3 identity/studies](docs/phase3-identity-and-studies.md), and [Phase 2 expansion](docs/phase2-primary-expansion.md) retain separate historical results.
+[Phase 9 outputs](results/phase9-2026-11-03/README.md), [Phase 8 coverage](docs/phase8-evidence-coverage.md), [Phase 7 integration](docs/phase7-evidence-integration.md), [Phase 6 national originals](docs/phase6-national-database.md), [Phase 5 primary evidence](docs/phase5-primary-evidence.md), [Phase 3 identity/studies](docs/phase3-identity-and-studies.md), and [Phase 2 expansion](docs/phase2-primary-expansion.md) retain separate historical results.
 
 One Python / SQLite / R research system for Australian rare-earth evidence, official GIS and explicitly scoped exploratory MCDA. Government source records, deposits and registry groups are not interchangeable independent Projects. No national completeness or six-domain development ranking is claimed.
 
@@ -25,6 +25,7 @@ refreshed, while committed source snapshots allow offline reconstruction.
 au-ree-v2 all --dry-run
 au-ree-v2 acquire
 au-ree-v2 all --refresh
+au-ree-v2 recognize --source-key SOURCE_KEY
 au-ree-v2 evidence --project mt-weld
 au-ree-v2 gis --as-of 2026-11-02
 au-ree-v2 rebuild --as-of 2026-11-02 --work work/replay --snapshot-lock work/runs/RUN_ID/snapshot_lock.json

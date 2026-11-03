@@ -40,6 +40,8 @@ def compare_runs(before, after):
             for observation in json.loads(database.read_text(encoding='utf-8'))['observations']:
                 if observation['status']!='AUTO_VALIDATED' or observation['source_sha'] not in selected:continue
                 raw=json.loads(observation['raw'])
+                from .selection import observation_visible
+                if not observation_visible(raw,selected):continue
                 if raw.get('page_extraction_key') and locked.get(raw['page_extraction_key'])!=raw.get('page_extraction_sha256'):continue
                 if observation['variable']=='commercial_event':events.add(observation['obs_id'])
                 if observation['value'] is None:continue
