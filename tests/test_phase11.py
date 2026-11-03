@@ -115,3 +115,35 @@ class Phase11Tests(unittest.TestCase):
             if f.name in ('matrix.csv','criteria.csv','weights.csv'):continue
             self.assertEqual(f.read_bytes(),(folders[1]/f.name).read_bytes(),f.name)
             self.assertEqual(f.read_bytes(),(folders[2]/f.name).read_bytes(),f.name)
+
+
+class ReplayReferenceTests(unittest.TestCase):
+    def fixture(self):
+        root=ROOT/'work/tests'/('reference-'+uuid.uuid4().hex)
+        for name in ('a','b'):
+            folder=root/name;(folder/'panel').mkdir(parents=True)
+            (folder/'panel/ranking.csv').write_text('scenario,project_id,saw,saw_rank\ns,p,0.5,1\n')
+            (folder/'panel/weight_uncertainty.csv').write_text('scenario,project_id,frequency_first\ns,p,0.5\n')
+            for file in ('technical_comparability.csv','commercial_project_coverage.csv','aim_c_technical_features.csv','formal_gate_compatibility.csv'):
+                (folder/file).write_text('project_id\np\n')
+        return root
+
+    def check(self,root,reference):
+        import sys
+        return subprocess.run([sys.executable,str(ROOT/'tools/check_phase11.py'),str(root/'a'),str(root/'b'),*(['--reference'] if reference else [])],capture_output=True,text=True)
+
+    def test_reference_records_float_drift_without_modifying_inputs(self):
+        root=self.fixture();file=root/'b/panel/ranking.csv'
+        file.write_text(file.read_text().replace('0.5,1','0.5000000000000001,1'));before=file.read_bytes()
+        self.assertNotEqual(0,self.check(root,False).returncode)
+        p=self.check(root,True);self.assertEqual(0,p.returncode,p.stderr)
+        report=json.loads(p.stdout);self.assertEqual(1,len(report['platform_differences']))
+        self.assertEqual(before,file.read_bytes())
+
+    def test_reference_rejects_rank_and_even_tiny_frequency_changes(self):
+        root=self.fixture();file=root/'b/panel/weight_uncertainty.csv'
+        file.write_text(file.read_text().replace('0.5','0.5000000000000001'))
+        self.assertNotEqual(0,self.check(root,True).returncode)
+        file.write_text((root/'a/panel/weight_uncertainty.csv').read_text())
+        rank=root/'b/panel/ranking.csv';rank.write_text(rank.read_text().replace('0.5,1','0.5,2'))
+        self.assertNotEqual(0,self.check(root,True).returncode)

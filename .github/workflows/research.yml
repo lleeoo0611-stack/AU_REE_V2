@@ -71,7 +71,7 @@ jobs:
           au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase11-2026-11-04/snapshot_lock.json --work work/deterministic-b
           python tools/check_replay.py results/phase10-2026-11-03 work/deterministic-a/latest.json
           python tools/check_phase11.py work/deterministic-a/latest.json work/deterministic-b/latest.json
-          python tools/check_phase11.py results/phase11-2026-11-04 work/deterministic-a/latest.json
+          python tools/check_phase11.py results/phase11-2026-11-04 work/deterministic-a/latest.json --reference
       - name: Incremental public update (isolated live-source smoke)
         id: live
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)

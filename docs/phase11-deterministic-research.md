@@ -94,3 +94,10 @@ SAW 的 Jupiter／Nolans pairwise equality 為 **13.8599128249766%**。不是推
 歷史 Phase 5–10 延用舊版 replay checker；新方法不覆寫凍結的模擬。獨立重建只使用 `work/` 下的拋棄式驗證資料庫；正式操作仍只有原 canonical SQLite。完整 observation-version history 與 clean bootstrap 的版本數不是 byte-equivalence 契約；不將科學輸出一致宣稱為全部歷史資料庫位元組相等。
 
 仍缺共同實測 technical endpoint、樣本代表性、明確試驗條件、完整商業條件及正式准入證據。36 個 deposit pairs、112 個政府關係候選及 Splinter 技術原件缺口未因本階段自動消失；本階段沒有新的 National Census Project 增量。
+
+
+### 跨平台比較的實測界線
+
+首輪 Linux CI 已通過158項 Python、R、Phase5–10及兩個 Linux clean builds（127面板CSV＋4證據匯出完全一致）。對 Windows 凍結檔的額外嚴格比較發現9格末位浮點差異：2個 matrix 下界、4個 SAW 分數、3個 AHP CR；最大9.992×10⁻¹⁶。所有排名、Monte Carlo 分位數與 Top-k 頻率跨平台也完全一致。完整逐格值及 artifact SHA 保留於 reproducibility receipt。
+
+未對原始資料、評分輸出或凍結結果做四捨五入以隱藏差異。同環境的 `check_phase11.py` 預設契約仍為零容差；跨平台 `--reference` 僅對這類靜態矩陣／分數／CR 使用既有 `check_replay` 的1e-12規則，並逐格輸出差異。Rank、所有模擬統計與其餘欄位仍須精確相同。沒有提高既有 point-science 容差，也不宣稱不同 Python／R平台的每個浮點 bit 都相同。另有回歸測試確認即使1e-16的頻率差或任何排名差，reference模式仍會失敗，且不修改輸入。

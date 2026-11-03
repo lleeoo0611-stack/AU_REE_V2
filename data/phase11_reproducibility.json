@@ -43,8 +43,8 @@
     "log": "work/phase11-python-verified.log"
   },
   "local_phase11_focused": {
-    "passed": 11,
-    "log": "work/phase11-focused-verified.log"
+    "passed": 13,
+    "log": "work/phase11-reference-tests.log"
   },
   "R_analytical_and_identity_invariants": "PASSED",
   "entity_ids": {
@@ -76,5 +76,96 @@
     "NO_WHOLE_OPERATIONAL_HISTORY_BYTE_EQUIVALENCE_CLAIM",
     "R_VERSION_PLATFORM_STRING_EXCLUDED_FROM_EXACT_COMPARISON_ONLY",
     "NO_NEW_MCDA_PROJECT_OR_FORMAL_C1"
-  ]
+  ],
+  "cross_platform_reference": {
+    "status": "REFERENCE_POINT_EQUIVALENT_RANKS_AND_MONTE_CARLO_EXACT",
+    "panel_csv_files": 127,
+    "evidence_exports": 4,
+    "numeric_tolerance": "Unchanged check_replay point tolerance1e-12; ranks/stochastic0",
+    "platform_differences": [
+      {
+        "file": "issuer_resource_composition/matrix.csv",
+        "row": 0,
+        "column": "R1_lower",
+        "reference": "0.5007818454538046",
+        "rebuilt": "0.5007818454538044",
+        "absolute_difference": 1.1102230246251565e-16
+      },
+      {
+        "file": "issuer_resource_concentrate/ahp_audit.csv",
+        "row": 3,
+        "column": "CR",
+        "reference": "0",
+        "rebuilt": "-3.82835525732813e-16",
+        "absolute_difference": 3.82835525732813e-16
+      },
+      {
+        "file": "issuer_resource_concentrate/ahp_audit.csv",
+        "row": 4,
+        "column": "CR",
+        "reference": "0",
+        "rebuilt": "-3.82835525732813e-16",
+        "absolute_difference": 3.82835525732813e-16
+      },
+      {
+        "file": "issuer_resource_concentrate/ahp_audit.csv",
+        "row": 5,
+        "column": "CR",
+        "reference": "0",
+        "rebuilt": "-3.82835525732813e-16",
+        "absolute_difference": 3.82835525732813e-16
+      },
+      {
+        "file": "issuer_resource_concentrate_recovery/ranking.csv",
+        "row": 5,
+        "column": "saw",
+        "reference": "0.614194384265162",
+        "rebuilt": "0.614194384265163",
+        "absolute_difference": 9.992007221626409e-16
+      },
+      {
+        "file": "issuer_resource_infrastructure/ranking.csv",
+        "row": 0,
+        "column": "saw",
+        "reference": "0.817084595252213",
+        "rebuilt": "0.817084595252214",
+        "absolute_difference": 9.992007221626409e-16
+      },
+      {
+        "file": "issuer_resource_study/ranking.csv",
+        "row": 9,
+        "column": "saw",
+        "reference": "0.813047421672635",
+        "rebuilt": "0.813047421672636",
+        "absolute_difference": 9.992007221626409e-16
+      },
+      {
+        "file": "resource_infrastructure_pilot/matrix.csv",
+        "row": 0,
+        "column": "R1_lower",
+        "reference": "0.5007818454538046",
+        "rebuilt": "0.5007818454538044",
+        "absolute_difference": 1.1102230246251565e-16
+      },
+      {
+        "file": "resource_infrastructure_pilot/ranking.csv",
+        "row": 23,
+        "column": "saw",
+        "reference": "0.631278849493389",
+        "rebuilt": "0.631278849493388",
+        "absolute_difference": 9.992007221626409e-16
+      }
+    ],
+    "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+    "before": "results\\phase11-2026-11-04",
+    "after": "work\\phase11-linux",
+    "artifact_id": 13253587237,
+    "workflow_run_id": 41682700995,
+    "downloaded_artifact_sha256": "5fc725f61a111f7712a2105fa2c3294bd3ecf961622edf50b96696baed295be7",
+    "interpretation": "Same-environment all127CSVs exact; cross-platform nine recorded static float cells; all ranks/MonteCarlo statistics exact; no source value/output rounding or new numeric tolerance"
+  },
+  "first_published_ci_python_tests": {
+    "passed": 158,
+    "workflow_run_id": 41682700995
+  }
 }
