@@ -21,7 +21,7 @@
 
 新增五份 PDF 中，**兩份是本次實際補入研究證據的主文件**：Cummins Range 2023 enhanced Scoping Study（ASX 原公告）及 North Stanmore 2026-10-30 季報（發行人公告 PDF）。另三份 VHM 網頁連結文件未形成新的可評分證據；不把下載數當作有效技術文獻數。其他既有原件新增辨識／解析快照，無政府 Census Project 或實體配對增量。
 
-**29 筆人工定位、由現有程式驗證的數值候選中，27 筆有效、2 筆 REVIEW；沒有新增可靠的自動數值格。** 27 筆為 Development 4、Strategic 1、Technical 22。文件管線增加71筆通過現行驗證的文字觀測；文字 NULL 值不代表新增 recovery 或融資款項。來源、SHA、頁碼、原始語句、scope、日期角色與轉換／驗證版本保留於既有 claims、Selection 和輸出。
+**由兩份新文件及三份既有原件補錄的29筆人工定位、由現有程式驗證的數值候選中，27 筆有效、2 筆 REVIEW；沒有新增可靠的自動數值格。** 27 筆為 Development 4、Strategic 1、Technical 22。文件管線增加71筆通過現行驗證的文字觀測；文字 NULL 值不代表新增 recovery 或融資款項。來源、SHA、頁碼、原始語句、scope、日期角色與轉換／驗證版本保留於既有 claims、Selection 和輸出。
 
 - Browns Range、Goschen：新增已完成 DFS／歷史 DFS 再確認，保留設計或 Area1 範圍與日期；不是目前施工／生產的認定。
 - Cummins Range：完成的三階段 Scoping Study；Stage2a／2b／3 的9筆 feed grade、recovery、product grade，以及6筆分產品 NORM 值。這是 Scoping 模型，不是 DFS 或操作實測。
@@ -80,7 +80,7 @@ R可選第七參數`evidence-cohort-v1`；舊五／六參數路徑不變。`evid
 
 - `evidence.py`使用既有configuration的`claims_sha256`讀取不可變契約；從Git原blob恢復六個歷史版本，SHA逐一相符。無需修改既有凍結輸出。
 - Current合同的observation ID集合隔離舊metadata，SQLite保留所有歷史列；不刪除／重編Project或source IDs。自動觀測的artifact與validation版本由同一`observation_visible`規則選取，Coverage及差異計數不混入已淘汰的AUTO版本。
-- `discovery.py`在原任務加上未解析原件、shared gaps、potential resource-panel gain、可靠來源／endpoint及失敗成本的可解釋優先級；是預算heuristic，不是yield成功率。一次16個有界來源嘗試中6個HTTP429失敗，其他原件仍處理；既有重試與不可變SHA重用保留。
+- `discovery.py`在原任務加上未解析原件、shared gaps、potential resource-panel gain、可靠來源／endpoint及失敗成本的可解釋優先級；是預算heuristic，不是yield成功率。一次16項有界來源處理（含6項原件重用）中6項HTTP429失敗，其他原件仍處理；既有重試與不可變SHA重用保留。
 - `pdf_extract.py`明示v1／v2 parser；v1候選可精確重建。Targeted acquisition只解析選定source keys。沒有新增production module、正式資料表、MCDA引擎、永久queue或人工簽核。
 - 原canonical SQLite保留；獨立clean／歷史測試DB均位於可丟棄`work/`。共7,554個entity IDs不變。Census groups31，未聲稱全澳完整。
 - 正式186個Gate cells仍無formal admission；72格有部分客觀source facts。沒有新增簽名、crosswalk或正式Panel核准。
