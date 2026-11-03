@@ -1,6 +1,11 @@
 # AU_REE_V2
 
-Latest: [Phase 2 primary-evidence expansion](docs/phase2-primary-expansion.md) adds five issuer-scoped
+Latest: [Phase 3 identity and study-case evidence](docs/phase3-identity-and-studies.md) restores the
+1,006-row national discovery index, adds non-destructive canonical IDs and explicit review leads,
+and expands to seven resource scopes and five process/development/finance cases. Endpoint-specific
+partial panels retain missing evidence and do not imply national identity or six-domain completion.
+
+Previous phase: [Phase 2 primary-evidence expansion](docs/phase2-primary-expansion.md) adds five issuer-scoped
 resource cases, archived road/operational rail/high-voltage power metrics, Project–resource-scope–Site
 relations and separate resource/composition analysis. [Frozen outputs](results/phase2-primary-2026-11-03/)
 retain explicit missing six-domain evidence and distinguish 203 native deposit records from unique projects.

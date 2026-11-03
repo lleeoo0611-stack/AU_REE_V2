@@ -1,0 +1,151 @@
+"""Non-destructive, cutoff-bound national identity resolution and candidate census."""
+import json,re,unicodedata,math
+from pathlib import Path
+from pyproj import Geod
+from pypdf import PdfReader
+from .store import entity,digest,canonical,issue
+from .hierarchy import link
+from .national import NAME_FIELDS
+
+SITE_FIELDS={'STATE_WA_MINDEX':('site_code','WA_MINDEX_SITE'),
+ 'STATE_QLD_MINOCC':('site_no','QLD_MINOCC_SITE'),'STATE_TAS_MRT':('DEPOSIT_ID','TAS_MRT_SITE'),
+ 'NT_MODAT_WFS':('identifier','NT_MODAT_SITE'),'NSW_METINDEX':('occurrence_id','NSW_METINDEX_SITE'),
+ 'VIC_MINSITE':('siteid','VIC_MINSITE_SITE'),'SA_GEODATA_MINDEP':('MINERAL_DEPOSIT_NO','SA_MINDEP_SITE'),
+ 'SA_CRITICAL_REE':('MINERAL_DEPOSIT_NO','SA_CRITICAL_SITE')}
+GEO=Geod(ellps='GRS80')
+def native(value):
+    return str(int(value)) if isinstance(value,(float,int)) and not isinstance(value,bool) and float(value).is_integer() else str(value)
+def normalized(name):
+    return re.sub(r'\W+',' ',unicodedata.normalize('NFKC',name).casefold().replace('mt.','mount ').replace('mt ','mount ')).strip()
+
+def resolve(db,root,snapshots,cutoff=None):
+    selected={s['sha256'] for s in snapshots};by_key={s['key']:s for s in snapshots}
+    path=Path(root)/'data/identity_links.json'
+    cutoff=cutoff or max((s['available_date'] for s in snapshots),default='0001-01-01')
+    if not snapshots or max(s['available_date'] for s in snapshots)<'2026-11-03':
+        members={r['entity_id']:dict(entity_id=r['entity_id'],kind=r['kind'],canonical_id=r['entity_id'],status='EARLIER_POLICY_RETAINED_SOURCE_ID') for r in db.execute('SELECT e.entity_id,e.kind,r.source_sha FROM entities e JOIN records r USING(entity_id)') if r['source_sha'] in selected}
+        return dict(ledger=[],accepted=[],membership=list(members.values()),candidates=[],mapping={k:k for k in members})
+    ledger=[];accepted=[]
+    native_labels={}
+    for row in db.execute("SELECT raw,name,source_sha FROM records r JOIN entities e USING(entity_id) WHERE e.kind='SOURCE_RECORD'"):
+        if row['source_sha'] not in selected:continue
+        raw=json.loads(row['raw']);family=raw.get('source_key')
+        if raw.get('source_kind')!='LEGACY_NATIONAL_E1_SELECTED_FEATURE' or family not in SITE_FIELDS:continue
+        field,_=SITE_FIELDS[family]
+        for f in raw.get('all_selected_features') or [{'attributes':raw.get('original_attributes',{})}]:
+            a=f.get('attributes',{});value=a.get(field)
+            if value is None:continue
+            label=next((str(a[k]) for k in NAME_FIELDS.get(family,()) if a.get(k)),row['name'])
+            native_labels.setdefault((family,native(value)),set()).add(normalized(label))
+    for r in db.execute("SELECT r.* FROM records r JOIN entities e USING(entity_id) WHERE e.kind='SOURCE_RECORD' ORDER BY entity_id").fetchall():
+        if r['source_sha'] not in selected:continue
+        payload=json.loads(r['raw'])
+        if payload.get('source_kind')!='LEGACY_NATIONAL_E1_SELECTED_FEATURE':continue
+        family=payload['source_key'];attrs=payload['original_attributes'];targets=[];status='UNRESOLVED_NATIVE_ID'
+        if family in SITE_FIELDS:
+            field,namespace=SITE_FIELDS[family]
+            features=payload.get('all_selected_features') or [{'attributes':attrs}]
+            for f in features:
+                a=f.get('attributes',{});value=a.get(field)
+                if value is None:continue  # Never search arbitrary attributes for a matching ID.
+                if len(native_labels.get((family,native(value)),set()))>1:
+                    issue(db,r['entity_id'],r['source_sha'],'DESIGNATED_NATIVE_ID_NONUNIQUE',canonical({'source':family,'native_id':native(value),'labels':sorted(native_labels[(family,native(value))])}))
+                    continue
+                sid=entity(db,namespace,native(value),'SITE')
+                db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',(sid,r['source_sha'],r['name'],r['state'],None,None,None,None,canonical({'role':'NATIVE_GOVERNMENT_RECORDED_LOCATION_NOT_MINING_FOOTPRINT','source':family,'native_field':field,'native_id':value})))
+                link(db,sid,r['entity_id'],'SAME_NATIVE_SITE_SOURCE_RECORD',r['source_sha'],field+'='+native(value))
+                targets.append(sid)
+            ambiguous=any(len(native_labels.get((family,native(f.get('attributes',{}).get(field))),set()))>1 for f in features)
+            status='NATIVE_ID_NONUNIQUE_REVIEW' if ambiguous else 'NATIVE_SITE_LINKED_NOT_PROJECT' if targets else 'DESIGNATED_NATIVE_FIELD_MISSING'
+        elif family in ('GA_AIMR_REE_2026','GA_CRITICAL_DEPOSITS_2025'):
+            namespace,field=('GA_ENO','eno') if family=='GA_AIMR_REE_2026' else ('GA_CRITICAL_OBJECTID_2025','objectid')
+            value=attrs.get(field)
+            candidates=[] if value is None else db.execute('''SELECT e.entity_id,r.name,r.state FROM entities e JOIN records r USING(entity_id)
+                WHERE e.native_namespace=? AND e.native_id=?''',(namespace,native(value))).fetchall()
+            for candidate in candidates:
+                if candidate['entity_id'] in targets:continue
+                # Native ID plus consistent advertised name/state prevents accidental OID reuse.
+                if candidate['state']==r['state'] and normalized(candidate['name'])==normalized(r['name']):
+                    targets.append(candidate['entity_id'])
+                    link(db,candidate['entity_id'],r['entity_id'],'SAME_NATIVE_DEPOSIT_SOURCE_RECORD',r['source_sha'],field+'='+native(value))
+            status='EXACT_NATIVE_DEPOSIT_LINK' if targets else 'NATIVE_ID_OR_VERSION_CONFLICT_REVIEW'
+        elif not family:status='LEGACY_ONLY_NO_OFFICIAL_ID'
+        ledger.append(dict(source_record_id=r['entity_id'],target_id=payload['legacy_target_id'],state=r['state'],source_key=family,
+                           native_id=payload['original_native_id'],resolved_entities=canonical(sorted(set(targets))),status=status,source_sha256=r['source_sha']))
+    # Explicit primary-supported equivalences. Invalid links are isolated in Review Queue.
+    for decision in (json.loads(path.read_text(encoding='utf8'))['links'] if path.exists() else []):
+        if decision['effective_date']>cutoff:continue
+        source=by_key.get(decision['source_key'])
+        if not source or source['sha256']!=decision['source_sha256']:continue
+        try:
+            nodes=[]
+            for namespace,identifier in (decision['left'],decision['right'],decision['canonical']):
+                row=db.execute('SELECT * FROM entities WHERE native_namespace=? AND native_id=?',(namespace,identifier)).fetchone()
+                assert row is not None;nodes.append(dict(row))
+            a,b,c=nodes
+            assert a['kind']==b['kind']==c['kind'] and c['entity_id'] in (a['entity_id'],b['entity_id'])
+            assert a['kind'] in ('PROJECT','DEPOSIT','SITE')
+            text=PdfReader(Path(root)/source['path']).pages[decision['pdf_page']-1].extract_text()
+            assert all(marker in text for marker in decision['page_markers'])
+            states=[{r['state'] for r in db.execute('SELECT state,source_sha FROM records WHERE entity_id=?',(n['entity_id'],)) if r['source_sha'] in selected and r['state']} for n in (a,b)]
+            assert states[0] and states[0]==states[1]
+            if a['kind']=='DEPOSIT':
+                positions=[]
+                for n in (a,b):
+                    position=next(r for r in db.execute('SELECT longitude,latitude,source_sha,name FROM records WHERE entity_id=?',(n['entity_id'],)) if r['source_sha'] in selected and r['longitude'] is not None)
+                    positions.append(position)
+                assert normalized(positions[0]['name'])==normalized(positions[1]['name'])
+                assert GEO.inv(positions[0]['longitude'],positions[0]['latitude'],positions[1]['longitude'],positions[1]['latitude'])[2]<=500
+            alias=b['entity_id'] if c['entity_id']==a['entity_id'] else a['entity_id']
+            accepted.append(dict(alias_id=alias,canonical_id=c['entity_id'],kind=a['kind'],status='DOCUMENT_SUPPORTED_RULE_NOT_INDEPENDENT_APPROVAL',source_sha256=source['sha256'],locator=decision['locator']))
+        except (AssertionError,KeyError,TypeError,ValueError,IndexError,StopIteration,OSError) as exc:
+            issue(db,None,source['sha256'],'IDENTITY_DECISION_REVIEW',canonical({'decision':decision,'reason':type(exc).__name__}))
+    # Conflicting canonical anchors and cycles are rejected rather than resolved by row order.
+    proposals={}
+    for a in accepted:proposals.setdefault(a['alias_id'],set()).add(a['canonical_id'])
+    mapping={k:next(iter(v)) for k,v in proposals.items() if len(v)==1}
+    invalid=set(k for k,v in proposals.items() if len(v)!=1)
+    for start in mapping:
+        seen=set();cursor=start
+        while cursor in mapping:
+            if cursor in seen:invalid.update(seen);break
+            seen.add(cursor);cursor=mapping[cursor]
+    for key in invalid:
+        mapping.pop(key,None);issue(db,key,None,'CANONICAL_ID_CONFLICT_OR_CYCLE','Equivalence excluded')
+    valid=[]
+    for a in accepted:
+        if a['alias_id'] not in mapping:continue
+        link(db,a['canonical_id'],a['alias_id'],'DOCUMENT_SUPPORTED_SAME_'+a['kind'],a['source_sha256'],a['locator']);valid.append(a)
+    membership=[]
+    for r in db.execute('SELECT e.*,r.source_sha FROM entities e JOIN records r USING(entity_id) ORDER BY e.entity_id'):
+        if r['source_sha'] not in selected or any(x['entity_id']==r['entity_id'] for x in membership):continue
+        target=r['entity_id'];seen=set()
+        while target in mapping and target not in seen:seen.add(target);target=mapping[target]
+        membership.append(dict(entity_id=r['entity_id'],kind=r['kind'],canonical_id=target,status='DOCUMENT_SUPPORTED_ALIAS' if seen else 'RETAINED_SOURCE_ID_NOT_ASSUMED_UNIQUE_PHYSICAL_ENTITY'))
+    # A complete candidate ledger: proximity/name is a review lead, never automatic equivalence.
+    deposits=[]
+    for r in db.execute("SELECT e.entity_id,e.native_namespace,r.* FROM entities e JOIN records r USING(entity_id) WHERE e.kind='DEPOSIT' ORDER BY e.entity_id,r.source_sha"):
+        if r['source_sha'] in selected and not any(x['entity_id']==r['entity_id'] for x in deposits):deposits.append(dict(r))
+    pairs=[]
+    for i,a in enumerate(deposits):
+        for b in deposits[i+1:]:
+            if a['native_namespace']==b['native_namespace'] or a['state']!=b['state'] or normalized(a['name'])!=normalized(b['name']):continue
+            dist=None if any(r[k] is None for r in (a,b) for k in ('longitude','latitude')) else GEO.inv(a['longitude'],a['latitude'],b['longitude'],b['latitude'])[2]
+            ca=next(x['canonical_id'] for x in membership if x['entity_id']==a['entity_id']);cb=next(x['canonical_id'] for x in membership if x['entity_id']==b['entity_id'])
+            pairs.append(dict(a=a['entity_id'],b=b['entity_id'],name=a['name'],state=a['state'],distance_m=dist,status='DOCUMENT_SUPPORTED_EQUIVALENCE' if ca==cb else 'LOCATION_CONFLICT_REVIEW' if dist is not None and dist>500 else 'TECHNICAL_IDENTITY_REVIEW_REQUIRED',source_a=a['source_sha'],source_b=b['source_sha']))
+    return dict(ledger=ledger,accepted=valid,membership=membership,candidates=pairs,mapping={x['entity_id']:x['canonical_id'] for x in membership})
+
+def technical_coverage(db,resolution,resources,cases,snapshot_shas):
+    groups={}
+    for row in resolution['membership']:
+        if row['kind']=='PROJECT':groups.setdefault(row['canonical_id'],[]).append(row['entity_id'])
+    output=[]
+    for cid,members in sorted(groups.items()):
+        scopes=[dict(source_entity_id=eid,scope=r['scope'],date=r['date'],source_sha256=r['source_sha']) for eid,r in resources.items() if eid in members]
+        studies=[c['case_id'] for c in cases if c['project_id'] in members]
+        stages=[dict(r) for eid in members for r in db.execute("SELECT obs_id,source_sha,locator FROM observations WHERE entity_id=? AND variable='study_maturity_ord' AND status='AUTO_VALIDATED'",(eid,)) if r['source_sha'] in snapshot_shas]
+        status=('PRIMARY_RESOURCE_AND_STUDY_EVIDENCE' if scopes and (studies or stages) else 'PRIMARY_RESOURCE_SCOPE_ONLY' if scopes else 'PRIMARY_STUDY_CASE_ONLY' if studies else 'NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET')
+        scoped_obs={obs for eid,r in resources.items() if eid in members for obs in r['obs_ids']}
+        other=[dict(r) for eid in members for r in db.execute("SELECT obs_id,variable,value,basis,scope,effective_date,source_sha,status FROM observations WHERE entity_id=? AND variable IN ('ore_mt','grade','contained_treo_kt')",(eid,)) if r['source_sha'] in snapshot_shas and r['obs_id'] not in scoped_obs]
+        output.append(dict(canonical_project_id=cid,member_entity_ids=canonical(sorted(members)),status=status,resource_scopes=canonical(scopes),study_case_ids=canonical(studies),other_stage_evidence=canonical(stages),unverified_or_other_scope_claims=canonical(other),interpretation='SOURCE_DEFINED_SCOPES_NOT_LATEST_PROJECT_TOTAL_CERTIFICATION'))
+    return output

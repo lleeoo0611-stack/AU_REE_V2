@@ -13,7 +13,7 @@ class PrimaryExpansionTests(unittest.TestCase):
         work=ROOT/'work/tests'/uuid.uuid4().hex;work.mkdir(parents=True)
         db=connect(work/'canonical.sqlite')
         try:
-            snaps=select_snapshots(ROOT,'2026-11-03');shas={s['sha256'] for s in snaps}
+            snaps=json.loads((ROOT/'results/phase2-primary-2026-11-03/snapshot_lock.json').read_text());shas={s['sha256'] for s in snaps}
             ingest_sources(db,ROOT,snaps);ingest_claims(db,ROOT,snaps,'2026-11-03')
             values=resource_values(db,'2026-11-03',shas)
             self.assertEqual(5,len(values))

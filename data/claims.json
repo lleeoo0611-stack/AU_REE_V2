@@ -468,6 +468,265 @@
         }
       ],
       "deposit_type": "Clay/regolith"
+    },
+    {
+      "id": "dubbo-project",
+      "name": "Dubbo Project",
+      "state": "NSW",
+      "entity_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "identity_source": "dubbo_scoping2025",
+      "identity_locator": "Primary PDF identifies the named project",
+      "observations": [
+        {
+          "variable": "reported_lanthanide_oxide_ppm",
+          "value": 7400,
+          "unit": "ppm",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 26,
+          "page_markers": [
+            "75.18",
+            "7,400",
+            "1,400",
+            "1,660"
+          ],
+          "locator": "physical PDF p.26",
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "effective_date": "2017-09-19",
+          "statement_id": "dubbo-project-2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "basis": "LANTHANIDE_OXIDES",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION"
+        },
+        {
+          "variable": "reported_y2o3_ppm",
+          "value": 1400,
+          "unit": "ppm",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 26,
+          "page_markers": [
+            "75.18",
+            "7,400",
+            "1,400",
+            "1,660"
+          ],
+          "locator": "physical PDF p.26",
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "effective_date": "2017-09-19",
+          "statement_id": "dubbo-project-2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "basis": "Y2O3",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION"
+        },
+        {
+          "variable": "reported_magnet_oxide_ppm",
+          "value": 1660,
+          "unit": "ppm",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 26,
+          "page_markers": [
+            "75.18",
+            "7,400",
+            "1,400",
+            "1,660"
+          ],
+          "locator": "physical PDF p.26",
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "effective_date": "2017-09-19",
+          "statement_id": "dubbo-project-2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "basis": "PrNdDyTb_OXIDES",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION"
+        },
+        {
+          "variable": "ore_mt",
+          "value": 75.18,
+          "unit": "Mt",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 26,
+          "page_markers": [
+            "Total 75.18"
+          ],
+          "locator": "physical PDF p.26",
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "effective_date": "2017-09-19",
+          "statement_id": "dubbo-project-2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "basis": "TREO",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "grade",
+          "value": 8800,
+          "unit": "ppm",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 26,
+          "page_markers": [
+            "7,400",
+            "1,400"
+          ],
+          "locator": "physical PDF p.26",
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "effective_date": "2017-09-19",
+          "statement_id": "dubbo-project-2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "basis": "TREO",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION",
+          "rounding_half_width": 100,
+          "transform": {
+            "rule": "SUM_OXIDE_PPM",
+            "inputs": [
+              "reported_lanthanide_oxide_ppm",
+              "reported_y2o3_ppm"
+            ]
+          }
+        },
+        {
+          "variable": "magnet_reo_share_pct",
+          "value": 18.863636363636363,
+          "unit": "%",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 26,
+          "page_markers": [
+            "1,660"
+          ],
+          "locator": "physical PDF p.26",
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "effective_date": "2017-09-19",
+          "statement_id": "dubbo-project-2017-09-19",
+          "category": "NOT_APPLICABLE",
+          "basis": "PrNdDyTb_REO_DIV_TREO",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION",
+          "transform": {
+            "rule": "RATIO_PPM_PERCENT",
+            "inputs": [
+              "reported_magnet_oxide_ppm",
+              "grade"
+            ]
+          }
+        },
+        {
+          "variable": "study_maturity_ord",
+          "value": 2,
+          "unit": "ordinal",
+          "source_key": "dubbo_scoping2025",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "pdf_page": 24,
+          "page_markers": [
+            "differs materially",
+            "Scoping Study"
+          ],
+          "locator": "physical PDF p.24",
+          "scope": "Dubbo Heap Leach Option 2025; not earlier multi-product OFS",
+          "effective_date": "2025-07-11",
+          "statement_id": "dubbo-project-2025-07-11",
+          "category": "NOT_APPLICABLE",
+          "basis": "ROUTE_SPECIFIC_SCOPING",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION"
+        }
+      ],
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": 335050,
+      "coordinate_role": "Named government deposit representative point, not legal footprint"
+    },
+    {
+      "id": "jupiter",
+      "name": "Jupiter development study within Brothers",
+      "state": "WA",
+      "entity_namespace": "project_registry_v1",
+      "identity_source": "jupiter_scoping2026",
+      "identity_locator": "Primary PDF identifies the named project",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 1700,
+          "unit": "Mt",
+          "source_key": "jupiter_scoping2026",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "pdf_page": 14,
+          "page_markers": [
+            "1.7 Bt",
+            "1,000 ppm"
+          ],
+          "locator": "physical PDF p.14",
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "effective_date": "2026-10-12",
+          "statement_id": "jupiter-2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "basis": "TREO",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION",
+          "rounding_half_width": 50,
+          "transform": {
+            "rule": "BT_TO_MT",
+            "original_value": 1.7,
+            "original_unit": "Bt"
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 1700,
+          "unit": "ppm",
+          "source_key": "jupiter_scoping2026",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "pdf_page": 14,
+          "page_markers": [
+            "1,700 ppm"
+          ],
+          "locator": "physical PDF p.14",
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "effective_date": "2026-10-12",
+          "statement_id": "jupiter-2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "basis": "TREO",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION",
+          "rounding_half_width": 50
+        },
+        {
+          "variable": "study_maturity_ord",
+          "value": 2,
+          "unit": "ordinal",
+          "source_key": "jupiter_scoping2026",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "pdf_page": 3,
+          "page_markers": [
+            "preliminary technical and economic study"
+          ],
+          "locator": "physical PDF p.3",
+          "scope": "Jupiter Scoping Study Base Case 107 Mt scheduled plant feed",
+          "effective_date": "2026-10-20",
+          "statement_id": "jupiter-2026-10-20",
+          "category": "NOT_APPLICABLE",
+          "basis": "ROUTE_SPECIFIC_SCOPING",
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION"
+        }
+      ],
+      "coordinate_source": "ga_critical",
+      "coordinate_native_id": 2613,
+      "coordinate_role": "Named government deposit representative point, not legal footprint"
+    },
+    {
+      "id": "yangibana",
+      "name": "Yangibana Rare Earths and Niobium Project",
+      "state": "WA",
+      "entity_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "identity_source": "yangibana_quarter2026",
+      "identity_locator": "Primary PDF identifies the named project",
+      "observations": []
+    },
+    {
+      "id": "donald-rare-earth-mineral-sands-project",
+      "name": "Donald Rare Earth and Mineral Sands Project",
+      "state": "VIC",
+      "entity_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "identity_source": "donald_ar2024",
+      "identity_locator": "Primary PDF identifies the named project",
+      "observations": []
     }
   ]
 }

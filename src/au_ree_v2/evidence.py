@@ -7,12 +7,16 @@ from .store import canonical, digest, entity, issue
 from .census import ingest_workbook
 from .official import ingest_official_table, ingest_prospectus
 from .national import ingest_legacy_e1
+from .screen_index import ingest as ingest_screen_index
 
 def ingest_sources(db, root, snapshots):
     for s in snapshots:
         db.execute('INSERT OR IGNORE INTO sources VALUES(?,?,?,?,?,?,?,?)',
                    (s['sha256'], s['key'], s['url'], s.get('publication_date'),
                     s['acquired_at'], s['path'], s['kind'], canonical(s)))
+        if s['kind']=='legacy_screen_index':
+            ingest_screen_index(db,root,s)
+            continue
         if s['kind'] == 'historical_e1_candidates':
             ingest_legacy_e1(db,root,s)
             continue
@@ -58,6 +62,10 @@ def normalize(observation):
         reasons.append('MISSING_OR_NONFINITE')
     elif value < 0:
         reasons.append('NEGATIVE_VALUE')
+    if numeric and o.get('unit')=='%' and value>100:reasons.append('PERCENT_OUT_OF_RANGE')
+    if numeric and o['variable'] in ('ore_mt','grade','contained_treo_kt') and value<=0:reasons.append('NONPOSITIVE_RESOURCE_VALUE')
+    if o['variable'].startswith('reported_') and o['variable'].endswith('_ppm') and (o.get('unit')!='ppm' or (numeric and value>1000000)):
+        reasons.append('INVALID_OXIDE_PPM_COMPONENT')
     if o.get('basis') != 'TREO' and o['variable'] in ('ore_mt', 'grade', 'contained_treo_kt'):
         reasons.append('NONCOMPARABLE_BASIS')
     if o['variable'] == 'grade':
@@ -70,11 +78,38 @@ def normalize(observation):
     if o.get('category') in ('EXPLORATION_TARGET', 'RESERVE') and o['variable'] in ('ore_mt', 'grade'):
         reasons.append('NOT_MINERAL_RESOURCE')
     if o['variable'] in ('ore_mt', 'grade','contained_treo_kt') and o.get('category') not in (
-        'MEASURED','INDICATED','INFERRED','MEASURED_INDICATED_INFERRED_TOTAL','MEASURED_INDICATED_TOTAL','INDICATED_INFERRED_TOTAL'):
+        'MEASURED','INDICATED','INFERRED','MEASURED_INDICATED_INFERRED_TOTAL','MEASURED_INDICATED_TOTAL','INDICATED_INFERRED_TOTAL','MEASURED_INFERRED_TOTAL'):
         reasons.append('UNSUPPORTED_RESOURCE_CATEGORY')
     if o.get('review_required'):
         reasons.append('SCIENTIFIC_REVIEW_REQUIRED')
     return sorted(set(reasons))
+
+def transformation_issues(o, siblings, depth=0):
+    """Explicit oxide-basis reconciliation; same statement, scope, date and source only."""
+    t=o.get('transform')
+    if not t:return []
+    if depth>3:return ['TRANSFORMATION_CYCLE_OR_DEPTH']
+    try:
+        if t['rule']=='BT_TO_MT':
+            assert t['original_unit']=='Bt' and o['unit']=='Mt' and math.isclose(o['value'],t['original_value']*1000)
+        else:
+            inputs=[]
+            for var in t['inputs']:
+                matches=[x for x in siblings if x['variable']==var and all(x.get(k)==o.get(k) for k in ('scope','statement_id','effective_date','source_key','source_sha256'))]
+                assert len(matches)==1
+                x=matches[0]
+                assert not normalize(x) and not transformation_issues(x,siblings,depth+1) and x['unit']=='ppm'
+                inputs.append(x)
+            if t['rule']=='SUM_OXIDE_PPM':
+                assert len(inputs)==2 and {x['basis'] for x in inputs}=={'LANTHANIDE_OXIDES','Y2O3'} and o['basis']=='TREO' and o['unit']=='ppm'
+                expected=sum(x['value'] for x in inputs)
+            elif t['rule']=='RATIO_PPM_PERCENT':
+                assert len(inputs)==2 and inputs[0]['basis']=='PrNdDyTb_OXIDES' and inputs[1]['basis']=='TREO' and inputs[1]['value']>0 and o['unit']=='%'
+                expected=100*inputs[0]['value']/inputs[1]['value']
+            else:return ['UNSUPPORTED_TRANSFORMATION']
+            assert math.isclose(o['value'],expected,rel_tol=1e-10)
+    except (AssertionError,KeyError,TypeError,ValueError,ZeroDivisionError):return ['TRANSFORMATION_CONTRACT_FAILED']
+    return []
 
 def ingest_claims(db, root, snapshots, cutoff, project=None):
     by_key = {s['key']: s for s in snapshots}
@@ -106,7 +141,7 @@ def ingest_claims(db, root, snapshots, cutoff, project=None):
             s = by_key.get(o['source_key'])
             if not s or o['effective_date'] > cutoff:
                 continue
-            reasons = normalize(o)
+            reasons = normalize(o)+transformation_issues(o,p['observations'])
             # Claim binding prevents silently applying old extraction to a changed PDF.
             if o['source_sha256'] != s['sha256']:
                 reasons.append('EXTRACTION_VERSION_MISMATCH')

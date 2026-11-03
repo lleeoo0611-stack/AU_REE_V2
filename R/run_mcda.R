@@ -8,6 +8,7 @@ d<-read.csv(file.path(folder,'matrix.csv'),check.names=FALSE)
 criteria<-read.csv(file.path(folder,'criteria.csv'));weights<-read.csv(file.path(folder,'weights.csv'))
 codes<-criteria$code;X<-as.matrix(d[,codes,drop=FALSE]);storage.mode(X)<-'double'
 stopifnot(!anyDuplicated(d$project_id),!anyNA(X))
+if('canonical_project_id' %in% names(d))stopifnot(!anyDuplicated(d$canonical_project_id))
 writeout<-function(rows,name)write.csv(rows,file.path(folder,paste0(name,'.csv')),row.names=FALSE,na='')
 all_ranks<-all_weight<-all_rounding<-all_leave<-all_methods<-all_functions<-all_cohorts<-all_ahp<-list()
 for(scenario in unique(weights$scenario)) {
@@ -41,6 +42,10 @@ for(scenario in unique(weights$scenario)) {
       interpretation='Preference/model frequency; not development success probability')
   all_weight[[scenario]]<-summarize(W,'WEIGHTS_ONLY')
   all_rounding[[scenario]]<-summarize(D,'SOURCE_ROUNDING_ONLY_NOT_MEASUREMENT_UNCERTAINTY')
+  if('uncertainty_kind' %in% names(d) && all(d$uncertainty_kind=='NO_SOURCE_BOUNDS')) {
+    all_rounding[[scenario]]$uncertainty<-'NOT_QUANTIFIED_NO_SOURCE_BOUNDS'
+    for(column in c('median','q05','q95','frequency_first','frequency_top3','frequency_top5'))all_rounding[[scenario]][[column]]<-NA_real_
+  }
   for(j in seq_along(codes)) {
     idx<-setdiff(seq_along(codes),j)
     if(!length(idx)||sum(w[idx])<=0)next
@@ -118,4 +123,4 @@ if('deposit_type' %in% names(d)) {
   if(length(hostrows))writeout(do.call(rbind,hostrows),'aim_c_host_type_description')
 }
 writeout(data.frame(R_version=R.version.string,seed,reps,threshold=p,concentration),'runtime')
-cat('Completed',nrow(X),'resource-scoped alternatives;',length(codes),'criteria.\n')
+cat('Completed',nrow(X),'alternatives on the frozen panel;',length(codes),'criteria.\n')

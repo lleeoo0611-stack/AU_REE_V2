@@ -41,6 +41,15 @@ CREATE TABLE IF NOT EXISTS derived(
  run_id TEXT REFERENCES runs, entity_id TEXT REFERENCES entities,
  variable TEXT NOT NULL, value REAL, provenance TEXT NOT NULL,
  PRIMARY KEY(run_id,entity_id,variable));
+CREATE TABLE IF NOT EXISTS study_cases(
+ case_id TEXT PRIMARY KEY,project_id TEXT REFERENCES entities,source_sha TEXT REFERENCES sources,
+ effective_date TEXT NOT NULL,scope TEXT NOT NULL,stage INTEGER NOT NULL,
+ endpoint TEXT NOT NULL,element TEXT NOT NULL,scale TEXT NOT NULL,
+ status TEXT NOT NULL,raw TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS census_screen_index(
+ candidate_id TEXT NOT NULL,source_sha TEXT REFERENCES sources,source_key TEXT NOT NULL,
+ native_label TEXT,state TEXT,tier TEXT,source_ref TEXT,selection_entity_id TEXT REFERENCES entities,
+ parent_candidate_id TEXT REFERENCES entities,raw TEXT NOT NULL,PRIMARY KEY(candidate_id,source_sha));
 '''
 
 def canonical(value):
@@ -75,5 +84,5 @@ def issue(db, eid, sha, reason, details):
                (digest([eid, sha, reason, details]), eid, sha, reason, details, 'OPEN'))
 
 def logical_dump(db):
-    tables = ('sources', 'entities', 'records', 'relations', 'observations', 'review_queue')
+    tables = ('sources', 'entities', 'records', 'relations', 'observations', 'review_queue','study_cases','census_screen_index')
     return {t: sorted([dict(r) for r in db.execute('SELECT * FROM ' + t)], key=canonical) for t in tables}

@@ -1,5 +1,5 @@
 {
-  "version": "research-v3-primary-national-hierarchy",
+  "version": "research-v4-identity-study-endpoints",
   "frozen_before_scoring": true,
   "cohorts": {
     "full_census": "All available source entities; counts must be stratified by entity kind. Not a complete national project census.",
@@ -31,6 +31,10 @@
     "issuer_resource_composition": [
       "R1",
       "S1"
+    ],
+    "issuer_resource_study": [
+      "R1",
+      "D1"
     ]
   },
   "criteria": [
@@ -146,6 +150,28 @@
       "unit": "km",
       "function": "linear",
       "interpretation": "Official geometry proximity; not access, capacity or connection cost"
+    },
+    {
+      "code": "TC1",
+      "variable": "whole_ore_concentrate_recovery_pct",
+      "domain": "Technical",
+      "direction": "MAX",
+      "low": 0,
+      "high": 100,
+      "unit": "%",
+      "function": "linear",
+      "interpretation": "DFS-model whole-ore TREO to mineral-concentrate comparison only; not overall project potential or operating result"
+    },
+    {
+      "code": "TC2",
+      "variable": "concentrate_treo_grade_pct",
+      "domain": "Technical",
+      "direction": "MAX",
+      "low": 0,
+      "high": 100,
+      "unit": "%",
+      "function": "linear",
+      "interpretation": "DFS-model whole-ore TREO to mineral-concentrate comparison only; not overall project potential or operating result"
     }
   ],
   "scenarios": {
@@ -221,5 +247,28 @@
     },
     "uncertainty_type": "PRINTED_TABLE_ROUNDING_ONLY_NOT_MEASUREMENT_ERROR",
     "redundancy_note": "Contained TREO, ore Mt and grade share an algebraic relationship; only reported contained TREO and grade enter exploratory screen and coefficients have no expert elicitation."
+  },
+  "case_panels": {
+    "beneficiation_concentrate_screen": {
+      "comparability_group": "WHOLE_ORE|TREO_INCLUDING_Y|MINERAL_CONCENTRATE|DFS_MODEL",
+      "codes": [
+        "TC1",
+        "TC2"
+      ],
+      "scenarios": {
+        "recovery_priority_assumption": {
+          "TC1": 0.8,
+          "TC2": 0.2
+        },
+        "grade_priority_assumption": {
+          "TC1": 0.2,
+          "TC2": 0.8
+        },
+        "balanced_process_assumption": {
+          "TC1": 0.5,
+          "TC2": 0.5
+        }
+      }
+    }
   }
 }

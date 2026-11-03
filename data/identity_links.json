@@ -1,0 +1,80 @@
+{
+  "version": "identity-links-v1",
+  "links": [
+    {
+      "left": [
+        "project_registry_v1",
+        "mount-ridley-mia"
+      ],
+      "right": [
+        "WA_DMPE_REE_2026_PROJECT",
+        "mount-ridley"
+      ],
+      "canonical": [
+        "WA_DMPE_REE_2026_PROJECT",
+        "mount-ridley"
+      ],
+      "relation": "SAME_PROJECT_IDENTITY",
+      "source_key": "mia_ar2024",
+      "source_sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95",
+      "pdf_page": 13,
+      "page_markers": [
+        "Mount Ridley Project",
+        "Mia Prospect"
+      ],
+      "locator": "PDF p13 Figure5 and Table1; same parent Project, Mia resource remains a separate scope",
+      "effective_date": "2026-11-03",
+      "basis": "DOCUMENTED_PARENT_PROJECT_IDENTITY_NOT_RESOURCE_SUM"
+    },
+    {
+      "left": [
+        "GA_CRITICAL_OBJECTID_2025",
+        "2452"
+      ],
+      "right": [
+        "GA_ENO",
+        "923795"
+      ],
+      "canonical": [
+        "GA_ENO",
+        "923795"
+      ],
+      "relation": "SAME_DEPOSIT_IDENTITY",
+      "source_key": "mia_ar2024",
+      "source_sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95",
+      "pdf_page": 13,
+      "page_markers": [
+        "Mia Prospect",
+        "Mount Ridley Project"
+      ],
+      "locator": "PDF p13: Central Mia resource and project map",
+      "effective_date": "2026-11-03",
+      "basis": "PRIMARY_NAMED_SCOPE_AND_OFFICIAL_SAME_NAME_STATE_WITHIN_500M_NOT_LEGAL_FOOTPRINT"
+    },
+    {
+      "left": [
+        "GA_CRITICAL_OBJECTID_2025",
+        "2516"
+      ],
+      "right": [
+        "GA_ENO",
+        "923836"
+      ],
+      "canonical": [
+        "GA_ENO",
+        "923836"
+      ],
+      "relation": "SAME_DEPOSIT_IDENTITY",
+      "source_key": "yttria_2025",
+      "source_sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+      "pdf_page": 14,
+      "page_markers": [
+        "Yttria REE Mineral Resource"
+      ],
+      "locator": "PDF p14: Yttria resource table",
+      "effective_date": "2026-11-03",
+      "basis": "PRIMARY_NAMED_SCOPE_AND_OFFICIAL_SAME_NAME_STATE_WITHIN_500M_NOT_LEGAL_FOOTPRINT"
+    }
+  ],
+  "effective_date": "2026-11-03"
+}

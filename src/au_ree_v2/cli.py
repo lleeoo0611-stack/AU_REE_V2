@@ -7,6 +7,9 @@ import uuid
 import platform
 from datetime import date, datetime, timezone, timedelta
 from .hierarchy import build as build_hierarchy
+from .resolution import resolve,technical_coverage
+from .studies import ingest as ingest_cases
+from .screen_index import rows as screen_index_rows
 from pathlib import Path
 from . import __version__
 from .acquisition import refresh, select_snapshots
@@ -59,16 +62,29 @@ def execute(args):
     db=connect(work/'canonical.sqlite')
     version=code_version(root)
     configuration={'research':config,'sources':registry,'claims_sha256':filehash(root/'data/claims.json')}
+    for name in ('identity_links.json','study_cases.json'):
+        if (root/'data'/name).exists():configuration[name+'_sha256']=filehash(root/'data'/name)
     db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?,?)',
         (run_id,datetime.now(timezone.utc).isoformat(),args.as_of,canonical(version),digest(configuration),
          digest(snapshots),'RUNNING',None))
     db.commit()
     try:
         ingest_sources(db,root,snapshots)
+        screen_rows=screen_index_rows(db,{s['sha256'] for s in snapshots})
+        write_csv(out/'national_screen_index.csv',screen_rows,['candidate_id','source_key','native_label','native_label_role','state','tier','source_ref','selection_entity_id','parent_candidate_id','source_sha','verification','raw'])
         if args.module!='bootstrap':
             ingest_claims(db,root,snapshots,args.as_of,args.project)
         resources=resource_values(db,args.as_of,{s['sha256'] for s in snapshots})
+        cases=ingest_cases(db,root,snapshots,args.as_of) if args.module!='bootstrap' else []
         hierarchy=build_hierarchy(db,snapshots)
+        identity=resolve(db,root,snapshots,args.as_of)
+        technical_rows=technical_coverage(db,identity,resources,cases,{s['sha256'] for s in snapshots})
+        write_csv(out/'technical_project_coverage.csv',technical_rows,['canonical_project_id','member_entity_ids','status','resource_scopes','study_case_ids','other_stage_evidence','unverified_or_other_scope_claims','interpretation'])
+        hierarchy=build_hierarchy(db,snapshots)
+        write_csv(out/'native_identity_ledger.csv',identity['ledger'],['source_record_id','target_id','state','source_key','native_id','resolved_entities','status','source_sha256'])
+        write_csv(out/'canonical_membership.csv',identity['membership'],['entity_id','kind','canonical_id','status'])
+        write_csv(out/'identity_decisions.csv',identity['accepted'],['alias_id','canonical_id','kind','status','source_sha256','locator'])
+        write_csv(out/'deposit_identity_review.csv',identity['candidates'],['a','b','name','state','distance_m','status','source_a','source_b'])
         write_csv(out/'entity_hierarchy.csv',hierarchy,['parent_id','parent_kind','child_id','child_kind','relation','effective_date','source_sha','locator'])
         gis_values={}
         if args.module in ('all','gis','analyze','rebuild'):
@@ -116,7 +132,7 @@ def execute(args):
                    'radius_km','source_where','limitation'])
         results={};prepared={'panels':{},'coverage':[]}
         if args.module in ('all','analyze','rebuild'):
-            prepared=prepare(db,args.as_of,snapshots,resources,gis_values,config,out,args.project)
+            prepared=prepare(db,args.as_of,snapshots,resources,gis_values,config,out,args.project,identity['mapping'],cases)
             if not args.skip_r:
                 results=run_r(root,out,prepared,config,args.rscript)
         source_shas={s['sha256'] for s in snapshots}
@@ -192,6 +208,7 @@ def execute(args):
             'code':version,'configuration_sha256':digest(configuration),'snapshot_sha256':digest(snapshots),
             'logical_database_sha256':digest(dump),'source_count':len(snapshots),'census_by_kind':by_kind,
             'unresolved_census_candidate_records':sum(c['classification']=='UNRESOLVED_PROJECT_CANDIDATE_SOURCE_RECORD' for c in candidates),
+            'unresolved_census_candidate_records_scope':'REMP_WORKBOOK_ONLY_NOT_GLOBAL_CENSUS',
             'official_government_ree_resource_rows':len(inventory),
             'national_advanced_ree_profile_rows':len(national_inventory),
             'national_selected_e1_source_rows':len(legacy_candidates),
@@ -210,9 +227,15 @@ def execute(args):
             'aim_c_deposit_type_groups_n':len(deposit_by_type),
             'official_summary_screen_n':prepared.get('government_screen_n',0),
             'resource_defined_n':len(resources),'development_n':sum(c['development'] for c in prepared['coverage']),
+            'canonical_projects_n':len({r['canonical_id'] for r in identity['membership'] if r['kind']=='PROJECT'}),
+            'canonical_project_count_interpretation':'REGISTRY_GROUPS_AFTER_DOCUMENT_SUPPORTED_ALIASES_NOT_CERTIFIED_NATIONAL_PHYSICAL_PROJECT_COUNT',
+            'fully_verified_national_census':False,
+            'national_screen_index_n':len(screen_rows),'screen_index_linked_selections_n':sum(r['selection_entity_id'] is not None for r in screen_rows),
+            'native_identity_statuses':{s:sum(r['status']==s for r in identity['ledger']) for s in sorted({r['status'] for r in identity['ledger']})},
+            'document_supported_identity_links':len(identity['accepted']),'primary_study_cases_n':len(cases),
             'full_evidence_n':sum(c['full_evidence'] for c in prepared['coverage']),
             'r_results':results,'r_skipped':args.skip_r,'acquisition':acquisition,
-            'aim_a': ('ISSUER_SCOPED_RESOURCE_INFRASTRUCTURE_AND_SEPARATE_WA_SUMMARY_SCREEN_NOT_SIX_DOMAIN' if results else 'COVERAGE_ONLY'),
+            'aim_a': ('SEPARATE_RESOURCE_INFRASTRUCTURE_STUDY_AND_ENDPOINT_CASE_PANELS_NOT_SIX_DOMAIN' if results else 'COVERAGE_ONLY'),
             'aim_b': ('SCENARIO_METHOD_WEIGHT_ROUNDING_COHORT_SCREEN_20_AND_PILOT' if results.get('official_wa_resource_screen',{}).get('status')=='COMPLETED' else 'NOT_RUN'),
             'cohort_sensitivity': 'NOT_ESTIMABLE_AFTER_DELETION_N_LT_2' if len(resources)<3 else 'LEAVE_ONE_PROJECT_OUT',
             'aim_c': ('NATIONAL_DEPOSIT_GEOGRAPHY_AND_WA_STATUS_SCORE_ASSOCIATION_DESCRIPTIVE_NOT_CAUSAL'

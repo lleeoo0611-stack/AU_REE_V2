@@ -1,0 +1,175 @@
+{
+  "version": "study-cases-v1",
+  "cases": [
+    {
+      "case_id": "browns-dfs2025",
+      "project_namespace": "project_registry_v1",
+      "project_native_id": "browns-range",
+      "source_key": "browns_range_2025",
+      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "effective_date": "2025-09-15",
+      "scope": "2025 DFS mine plan including BRPP stockpile; not Wolverine-only resource",
+      "stage": 4,
+      "process": "Ore crushing/grinding, WHIMS, flotation to xenotime mineral concentrate",
+      "finance_state": "SUPPLY_AGREEMENT_NOT_FINANCE_CLOSE",
+      "pdf_page": 116,
+      "page_markers": [
+        "Average TREO recovery to concentrate % 84",
+        "Concentrate grade % TREO 25"
+      ],
+      "locator": "physical PDF p.116",
+      "parameters": {
+        "whole_ore_concentrate_recovery_pct": 84,
+        "concentrate_treo_grade_pct": 25
+      },
+      "element": "TREO_INCLUDING_Y",
+      "endpoint": "MINERAL_CONCENTRATE",
+      "scale": "DFS_MODEL",
+      "recovery_feed": "WHOLE_ORE"
+    },
+    {
+      "case_id": "yangibana-stage1-dfs2026",
+      "project_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "project_native_id": "yangibana",
+      "source_key": "yangibana_quarter2026",
+      "source_sha256": "188f2437560f2ec98af07e444782bd40a7612450b51c988bbe97c3e412dccd70",
+      "effective_date": "2026-10-30",
+      "scope": "Updated Stage 1 DFS, 100% JV basis, not downstream Thailand plant",
+      "stage": 4,
+      "process": "Whole-of-ore flotation to 27% TREO concentrate",
+      "finance_state": "NO_BINDING_FINANCING_REPORTED",
+      "pdf_page": 5,
+      "page_markers": [
+        "85.7%",
+        "27% TREO"
+      ],
+      "locator": "physical PDF p.5",
+      "parameters": {
+        "whole_ore_concentrate_recovery_pct": 85.7,
+        "concentrate_treo_grade_pct": 27,
+        "stage1_capex_aud_m": 333.4
+      },
+      "element": "TREO_INCLUDING_Y",
+      "endpoint": "MINERAL_CONCENTRATE",
+      "scale": "DFS_MODEL",
+      "recovery_feed": "WHOLE_ORE",
+      "finance_evidence": {
+        "page": 7,
+        "markers": [
+          "No binding financing arrangements"
+        ]
+      },
+      "activity": "CARE_AND_MAINTENANCE_NOT_ACTIVE_DEVELOPMENT",
+      "context_evidence": [
+        {
+          "page": 8,
+          "markers": [
+            "care and maintenance",
+            "No mining production or development"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "jupiter-scoping-base2026",
+      "project_namespace": "project_registry_v1",
+      "project_native_id": "jupiter",
+      "source_key": "jupiter_scoping2026",
+      "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+      "effective_date": "2026-10-20",
+      "scope": "107 Mt scheduled plant feed; not full 1.7Bt resource",
+      "stage": 2,
+      "process": "Beneficiation and hydrometallurgy to MREC",
+      "finance_state": "PROJECT_FUNDING_NOT_SECURED",
+      "pdf_page": 25,
+      "page_markers": [
+        "58%",
+        "63%"
+      ],
+      "locator": "physical PDF p.25",
+      "parameters": {
+        "modelled_mrec_recovery_pct": 58,
+        "process_design_recovery_pct": 63
+      },
+      "element": "TREO_INCLUDING_Y",
+      "endpoint": "MREC",
+      "scale": "SCOPING_MODEL",
+      "recovery_feed": "WHOLE_ORE",
+      "finance_evidence": {
+        "page": 3,
+        "markers": [
+          "not secured any of the funding"
+        ]
+      }
+    },
+    {
+      "case_id": "dubbo-heap-scoping2025",
+      "project_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "project_native_id": "dubbo-project",
+      "source_key": "dubbo_scoping2025",
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "effective_date": "2025-07-11",
+      "scope": "Heap Leach Option measured-resource mine plan; three modelled mining zones",
+      "stage": 2,
+      "process": "Heap leach, impurity removal, purification/separation to separated RE oxides",
+      "finance_state": "FUNDING_STRATEGY_NOT_COMMITTED_FINANCE",
+      "pdf_page": 51,
+      "page_markers": [
+        "79.9%",
+        "68.7%",
+        "75.9%",
+        "5% of rare earths leached"
+      ],
+      "locator": "physical PDF p.51",
+      "parameters": {
+        "nd_west_leach_pct": 79.9,
+        "nd_central_leach_pct": 68.7,
+        "nd_east_leach_pct": 75.9,
+        "post_leach_impurity_loss_pct": 5,
+        "capex_aud_m": 740
+      },
+      "element": "Nd",
+      "endpoint": "LEACH_SOLUTION",
+      "scale": "SCOPING_TESTWORK_INPUT",
+      "recovery_feed": "ZONE_COMPOSITE"
+    },
+    {
+      "case_id": "donald-phase1-2024",
+      "project_namespace": "AUSTRADE_2026_REE_PROJECT",
+      "project_native_id": "donald-rare-earth-mineral-sands-project",
+      "source_key": "donald_ar2024",
+      "source_sha256": "993f28ea1716b0a1e233eb2f37f7281d0ea4f0ef73a02d3af0a5f57d2bc9da58",
+      "effective_date": "2024-11",
+      "scope": "Donald deposit MIN5532 Phase1; RL2002 Phase2 and Jackson separate",
+      "stage": 4,
+      "process": "Wet concentration then flotation to REEC; downstream White Mesa is separate",
+      "finance_state": "CONDITIONAL_JV_EARN_IN_NOT_FULL_FINANCE",
+      "pdf_page": 20,
+      "page_markers": [
+        "$183 million",
+        "49%",
+        "MIN5532"
+      ],
+      "locator": "physical PDF p.20",
+      "parameters": {
+        "jv_earn_in_aud_m": 183,
+        "partner_target_share_pct": 49,
+        "reec_offtake_pct": 100
+      },
+      "element": "UNSPECIFIED",
+      "endpoint": "REEC",
+      "scale": "DFS_REFERENCED",
+      "recovery_feed": "WHOLE_ORE",
+      "currentness": "HISTORICAL_2024_REAFFIRMATION_REQUIRED",
+      "date_precision": "month",
+      "context_evidence": [
+        {
+          "page": 9,
+          "markers": [
+            "A$183m"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -94,12 +94,21 @@ def _official_wa_resource_screen(db,cutoff,snapshots,config,criteria,out,project
     write_csv(folder/'weights.csv',weights,['scenario','criterion','weight'])
     return rows,traces
 
-def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=None):
+def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=None, canonical_ids=None, cases=None):
     out = Path(out)
     criteria = {c['code']:c for c in config['criteria']}
     selected_shas = {s['sha256'] for s in snapshots}
     coverage, traces, matrices = [], [], {}
     project_ids = list(resources)
+    canonical_ids=canonical_ids or {}
+    groups={}
+    for eid in project_ids:groups.setdefault(canonical_ids.get(eid,eid),[]).append(eid)
+    exclusions=[]
+    for canonical_id,ids in groups.items():
+        if len(ids)>1:
+            for eid in ids:exclusions.append(dict(entity_id=eid,canonical_project_id=canonical_id,reason='MULTIPLE_RESOURCE_SCOPES_REQUIRE_COHORT_DECISION_NOT_AUTOMATIC_SUM'))
+    project_ids=[eid for eid in project_ids if not any(r['entity_id']==eid for r in exclusions)]
+    write_csv(out/'cohort_exclusions.csv',exclusions,['entity_id','canonical_project_id','reason'])
     if project:
         project_ids = [eid for eid in project_ids if db.execute('SELECT native_id FROM entities WHERE entity_id=?',(eid,)).fetchone()[0]==project]
     for eid in project_ids:
@@ -116,7 +125,7 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
         scored={code:score(values[c['variable']],c) for code,c in criteria.items() if c['variable'] in values}
         is_dev = all(v in values for v in ('study_maturity_ord','recovery_pct'))
         is_full = is_dev and all(code in scored for code in config['panels']['six_domain'])
-        coverage.append({'entity_id':eid,'project_name':name,'scope':resource['scope'],
+        coverage.append({'entity_id':eid,'canonical_project_id':canonical_ids.get(eid,eid),'project_name':name,'scope':resource['scope'],
                          'resource_defined':1,'development':int(is_dev),'full_evidence':int(is_full),
                          **{code:int(code in scored) for code in criteria}})
         for code, val in scored.items():
@@ -130,7 +139,7 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
             host=next((r for r in db.execute('''SELECT r.deposit_type,r.source_sha FROM relations rel JOIN records r
                 ON r.entity_id=rel.child_id AND r.source_sha=rel.source_sha WHERE rel.parent_id=?
                 AND rel.relation='REPRESENTATIVE_POINT_NOT_ENTITY_EQUIVALENCE' ORDER BY r.source_sha''',(eid,)) if r['deposit_type'] and r['source_sha'] in selected_shas),None)
-            row={'project_id':eid,'project_name':name,'scope':resource['scope'],'deposit_type':host[0] if host else None}
+            row={'project_id':eid,'canonical_project_id':canonical_ids.get(eid,eid),'project_name':name,'scope':resource['scope'],'deposit_type':host[0] if host else None}
             for code in codes:
                 c=criteria[code]; raw=values[c['variable']]
                 row[code]=scored[code]
@@ -143,7 +152,10 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
     screen_rows,screen_traces=_official_wa_resource_screen(db,cutoff,snapshots,config,criteria,out,project)
     traces.extend(screen_traces)
     matrices['official_wa_resource_screen']=screen_rows
-    write_csv(out/'cohort_coverage.csv',coverage,['entity_id','project_name','scope','resource_defined','development','full_evidence',*criteria])
+    from .studies import prepare as prepare_cases
+    case_panels,case_traces=prepare_cases(cases or [],config,out,canonical_ids)
+    traces.extend(case_traces)
+    write_csv(out/'cohort_coverage.csv',coverage,['entity_id','canonical_project_id','project_name','scope','resource_defined','development','full_evidence',*criteria])
     write_csv(out/'value_trace.csv',traces,['entity_id','criterion','raw_value','score','config_version','source','scoring'])
     write_csv(out/'resources.csv',list(resources.values()),['entity_id','scope','date','ore_mt','grade_pct','contained_treo_kt','calculated_from_rounded_inputs_kt','rounding_bounds_kt','source_sha','obs_ids','interpretation'])
     for panel, rows in matrices.items():
@@ -152,7 +164,7 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
             continue
         codes=config['panels'][panel]
         folder=out/panel
-        write_csv(folder/'matrix.csv',rows,['project_id','project_name','scope','deposit_type',*[key for code in codes for key in (code,code+'_alt',code+'_lower',code+'_upper')]])
+        write_csv(folder/'matrix.csv',rows,['project_id','canonical_project_id','project_name','scope','deposit_type',*[key for code in codes for key in (code,code+'_alt',code+'_lower',code+'_upper')]])
         write_csv(folder/'criteria.csv',[criteria[c] for c in codes],['code','domain','direction','low','high','function'])
         weights=[]
         for scenario, domain_weights in config['scenarios'].items():
@@ -163,7 +175,7 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
                 count=sum(criteria[c]['domain']==domain for c in codes)
                 weights.append({'scenario':scenario,'criterion':code,'weight':domain_weights[domain]/total/count})
         write_csv(folder/'weights.csv',weights,['scenario','criterion','weight'])
-    return {'coverage':coverage,'panels':{p:len(v) for p,v in matrices.items()},
+    return {'coverage':coverage,'panels':{**{p:len(v) for p,v in matrices.items()},**case_panels},
             'trace_values':len(traces),'government_screen_n':len(screen_rows)}
 
 def run_r(root, out, prepared, config, rscript=None):
@@ -187,6 +199,6 @@ def run_r(root, out, prepared, config, rscript=None):
         if not all((folder/p).is_file() for p in expected):
             raise RuntimeError('R output contract incomplete')
         results[panel]={'status':'COMPLETED','n':n,'weight_status':config['weight_status'],
-                        'evidence_status':config['screen_evidence_policy']['status'] if panel=='official_wa_resource_screen' else 'ISSUER_SCOPE_VALIDATED',
+                        'evidence_status':('PRIMARY_ENDPOINT_MATCHED_DFS_CASES_NOT_OPERATING_RESULTS' if panel in config.get('case_panels',{}) else config['screen_evidence_policy']['status'] if panel=='official_wa_resource_screen' else 'ISSUER_SCOPE_VALIDATED'),
                         'full_evidence_eligibility':panel=='six_domain'}
     return results
