@@ -96,6 +96,8 @@ def execute(args):
             from .pdf_extract import capture_documents
             recognition_snapshots=select_snapshots(root,args.as_of,acquired_through=acquired_through)
             wanted={d.get('document_sha256') for d in discovery.get('documents',[])} if getattr(args,'gap_report',None) else None
+            if args.source_key:
+                wanted={s['sha256'] for s in recognition_snapshots if s['key'] in keys}
             if wanted is not None:recognition_snapshots=[s for s in recognition_snapshots if s['sha256'] in wanted]
             recognized=capture_documents(root,recognition_snapshots,tessdata=args.tessdata,only_missing=True)
         if args.module=='acquire':
@@ -117,7 +119,15 @@ def execute(args):
     out.mkdir(parents=True)
     db=connect(work/'canonical.sqlite')
     version=code_version(root)
-    configuration={'research':config,'sources':registry,'claims_sha256':filehash(root/'data/claims.json')}
+    from .evidence import load_claims,claim_evidence_ids
+    frozen_claims_sha=None
+    if args.snapshot_lock:
+        frozen_configuration=Path(args.snapshot_lock).parent/'configuration.json'
+        if frozen_configuration.exists():
+            frozen_claims_sha=json.loads(frozen_configuration.read_text(encoding='utf-8')).get('claims_sha256')
+    claims_data,claims_sha=load_claims(root,frozen_claims_sha,freeze=not args.snapshot_lock)
+    active_claim_ids=claim_evidence_ids(claims_data)
+    configuration={'research':config,'sources':registry,'claims_sha256':claims_sha}
     for name in ('identity_links.json','study_cases.json'):
         if (root/'data'/name).exists():configuration[name+'_sha256']=filehash(root/'data'/name)
     configuration['eligibility_policy_sha256']=filehash(root/'config/eligibility_compatibility.json')
@@ -141,7 +151,7 @@ def execute(args):
         screen_rows=screen_index_rows(db,{s['sha256'] for s in snapshots})
         write_csv(out/'national_screen_index.csv',screen_rows,['candidate_id','source_key','native_label','native_label_role','state','tier','source_ref','selection_entity_id','parent_candidate_id','source_sha','verification','raw'])
         if args.module!='bootstrap':
-            ingest_claims(db,root,snapshots,args.as_of,args.project,conflict_selection=bool(config.get('evidence_resolution')))
+            ingest_claims(db,root,snapshots,args.as_of,args.project,conflict_selection=bool(config.get('evidence_resolution')),claims_data=claims_data)
         recognition=[]
         if config.get('evidence_resolution',{}).get('document_pipeline') and args.module!='bootstrap':
             from .evidence import ingest_recognized
@@ -152,7 +162,7 @@ def execute(args):
             from .resolution import document_relations
             write_csv(out/'document_entity_relations.csv',document_relations(db,root,snapshots,args.as_of),
                       ['parent_id','child_id','relation','source_sha256','locator','rule','status'])
-        resources=resource_values(db,args.as_of,{s['sha256'] for s in snapshots},strict=bool(config.get('evidence_resolution')))
+        resources=resource_values(db,args.as_of,{s['sha256'] for s in snapshots},strict=bool(config.get('evidence_resolution')),active_claim_ids=active_claim_ids)
         from .national import resource_quality_checks
         resource_qa=resource_quality_checks(db,{s['sha256'] for s in snapshots})
         write_csv(out/'resource_statement_quality.csv',resource_qa,
@@ -161,7 +171,7 @@ def execute(args):
         cases=ingest_cases(db,root,snapshots,args.as_of) if args.module!='bootstrap' else []
         if config.get('evidence_resolution') and args.module!='bootstrap':
             from .evidence import ingest_events
-            ingest_events(db,root,snapshots,args.as_of)
+            ingest_events(db,root,snapshots,args.as_of,claims_data=claims_data)
         hierarchy=build_hierarchy(db,snapshots)
         identity=resolve(db,root,snapshots,args.as_of,config.get('evidence_resolution',{}).get('identity_rule_version'))
         live_candidates=government_link_candidates(db,snapshots,identity['mapping'] if config.get('evidence_resolution',{}).get('identity_rule_version') else None)
@@ -223,7 +233,7 @@ def execute(args):
         if args.module in ('all','analyze','rebuild'):
             if config.get('evidence_resolution'):
                 from .selection import resolve as select_evidence,export as export_selection
-                selection=select_evidence(db,snapshots,args.as_of,resources,cases,identity['mapping'],config['evidence_resolution'],root,acquired_through)
+                selection=select_evidence(db,snapshots,args.as_of,resources,cases,identity['mapping'],config['evidence_resolution'],root,acquired_through,active_claim_ids=active_claim_ids)
                 export_selection(selection,out)
             prepared=prepare(db,args.as_of,snapshots,resources,gis_values,config,out,args.project,identity['mapping'],cases,selection)
             if config['monte_carlo'].get('method_version')=='entity-keyed-rng-v2':
@@ -234,13 +244,15 @@ def execute(args):
                 diagnostics(selection,prepared,snapshots,config['criteria'],root,out)
             if config.get('research_utilization') and selection:
                 from .analysis import research_readiness
-                research_readiness(selection,out)
+                research_readiness(selection,out,config.get('research_analysis_version'))
             if not args.skip_r:
                 results=run_r(root,out,prepared,config,args.rscript)
-            if config.get('research_utilization') and selection:research_readiness(selection,out)
+            if config.get('research_utilization') and selection:research_readiness(selection,out,config.get('research_analysis_version'))
         source_shas={s['sha256'] for s in snapshots}
         from .national import raw_domain_coverage
-        raw_domains=raw_domain_coverage(db,source_shas)
+        if config.get('research_analysis_version')=='evidence-cohort-v1':
+            raw_domains=raw_domain_coverage(db,source_shas,config['evidence_resolution']['document_pipeline'].get('validation_version'),active_claim_ids)
+        else:raw_domains=raw_domain_coverage(db,source_shas)
         write_csv(out/'database_domain_coverage.csv',raw_domains,
                   ['domain','evidence_status','distinct_statement_values','entities','sources','numeric_values','interpretation'])
         census=[dict(r) for r in db.execute('''SELECT e.entity_id,e.kind,r.* FROM entities e

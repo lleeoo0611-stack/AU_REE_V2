@@ -6,7 +6,7 @@ from pathlib import Path
 from au_ree_v2.acquisition import select_snapshots
 from au_ree_v2.pdf_extract import (project_registry, resource_rows, leach_tables,
     narrative_candidates, publication_date, recognize_document)
-from au_ree_v2.evidence import ingest_sources, ingest_claims, ingest_recognized, resource_values
+from au_ree_v2.evidence import ingest_sources, ingest_claims, ingest_recognized, resource_values, load_claims
 from au_ree_v2.store import connect, digest, logical_dump
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -17,6 +17,8 @@ class DocumentRecognitionTests(unittest.TestCase):
     def setUpClass(cls):
         cls.registry=project_registry(ROOT)
         cls.snapshots=json.loads((ROOT/'results/phase9-2026-11-03/snapshot_lock.json').read_text())
+        config=json.loads((ROOT/'results/phase9-2026-11-03/configuration.json').read_text())
+        cls.claims=load_claims(ROOT,config['claims_sha256'])[0]
         cls.artifacts={s['source_sha256']:json.loads((ROOT/s['path']).read_text(encoding='utf-8'))
                        for s in cls.snapshots if s['kind']=='document_extraction'}
 
@@ -84,8 +86,7 @@ class DocumentRecognitionTests(unittest.TestCase):
         self.assertTrue(rows);self.assertTrue(rows[0]['issues'])
 
     def test_no_manual_claims_for_newly_acquired_documents(self):
-        claims=json.loads((ROOT/'data/claims.json').read_text())
-        used={o['source_sha256'] for p in claims['projects'] for o in p['observations']}
+        used={o['source_sha256'] for p in self.claims['projects'] for o in p['observations']}
         for key in ('discovery_asra_primary_met_alternative_530e7a5f3d94','discovery_ar3_quarter_detail_alternative_615bb4ec1725'):
             data=self.artifact(key);self.assertNotIn(data['source_sha256'],used)
             self.assertEqual(data['source_sha256'],next(s['sha256'] for s in self.snapshots if s['key']==key))
@@ -93,7 +94,7 @@ class DocumentRecognitionTests(unittest.TestCase):
     def test_fresh_parse_of_new_primary_documents_reproduces_frozen_candidates(self):
         for key in ('discovery_asra_primary_met_alternative_530e7a5f3d94','discovery_ar3_quarter_detail_alternative_615bb4ec1725'):
             source=next(s for s in self.snapshots if s['key']==key)
-            fresh=recognize_document(ROOT,source,self.registry)
+            fresh=recognize_document(ROOT,source,self.registry,parser_version=self.artifact(key)['version'])
             self.assertEqual(self.artifact(key)['candidates'],fresh['candidates'])
             self.assertEqual(self.artifact(key)['publication_date'],fresh['publication_date'])
 
@@ -125,11 +126,23 @@ class DocumentRecognitionTests(unittest.TestCase):
         # contract. Phase10 separately tests upgrade invalidation.
         shutil.copyfile(ROOT/source['path'],folder/source['path'])
         shutil.copyfile(ROOT/artifact['path'],folder/artifact['path'])
-        shutil.copyfile(ROOT/'data/claims.json',folder/'data/claims.json')
+        (folder/'data/claims.json').write_text(json.dumps(self.claims),encoding='utf-8')
         (folder/'data/manifest.json').write_text(json.dumps({'snapshots':[source,artifact]}))
-        with patch('au_ree_v2.pdf_extract.RESOURCE_LAYOUT_VERSION',None), patch('au_ree_v2.pdf_extract.recognize_document',side_effect=AssertionError('unchanged document must not be parsed')):
+        with patch('au_ree_v2.pdf_extract.DOCUMENT_VERSION',self.artifact('yttria_maiden2024')['version']), patch('au_ree_v2.pdf_extract.RESOURCE_LAYOUT_VERSION',None), patch('au_ree_v2.pdf_extract.recognize_document',side_effect=AssertionError('unchanged document must not be parsed')):
             rows=capture_documents(folder,[source],only_missing=True)
         self.assertEqual('REUSED_VERIFIED_EXTRACTION',rows[0]['status'])
+        # Conversely, a parser upgrade cannot silently reuse a v1 derivative.
+        # The sentinel proves extraction was attempted; its deliberate failure
+        # remains local and does not overwrite either immutable source artifact.
+        original_bytes=(folder/source['path']).read_bytes()
+        artifact_bytes=(folder/artifact['path']).read_bytes()
+        with patch('au_ree_v2.pdf_extract.DOCUMENT_VERSION','new-parser-version'), patch('au_ree_v2.pdf_extract.RESOURCE_LAYOUT_VERSION',None), patch('au_ree_v2.pdf_extract.recognize_document',side_effect=RuntimeError('EXPECTED_NEW_PARSER_ATTEMPT')) as parser:
+            rows=capture_documents(folder,[source],only_missing=True)
+        parser.assert_called_once()
+        self.assertEqual('EXTRACTION_FAILED',rows[0]['status'])
+        self.assertEqual('EXPECTED_NEW_PARSER_ATTEMPT',rows[0]['reason'])
+        self.assertEqual(original_bytes,(folder/source['path']).read_bytes())
+        self.assertEqual(artifact_bytes,(folder/artifact['path']).read_bytes())
 
 
 class AutomaticIngestionTests(unittest.TestCase):
@@ -138,7 +151,9 @@ class AutomaticIngestionTests(unittest.TestCase):
         cls.folder=ROOT/'work/tests'/uuid.uuid4().hex;cls.folder.mkdir(parents=True)
         cls.db=connect(cls.folder/'canonical.sqlite')
         cls.snaps=json.loads((ROOT/'results/phase9-2026-11-03/snapshot_lock.json').read_text())
-        ingest_sources(cls.db,ROOT,cls.snaps);ingest_claims(cls.db,ROOT,cls.snaps,'2026-11-03',conflict_selection=True)
+        config=json.loads((ROOT/'results/phase9-2026-11-03/configuration.json').read_text())
+        cls.claims=load_claims(ROOT,config['claims_sha256'])[0]
+        ingest_sources(cls.db,ROOT,cls.snaps);ingest_claims(cls.db,ROOT,cls.snaps,'2026-11-03',conflict_selection=True,claims_data=cls.claims)
         cls.before=resource_values(cls.db,'2026-11-03',{s['sha256'] for s in cls.snaps},strict=True)
         cls.result=ingest_recognized(cls.db,ROOT,cls.snaps,'2026-11-03',{'parser_version':'document-recognition-v1'})
 

@@ -382,13 +382,16 @@ def government_link_candidates(db,snapshots,mapping=None):
     return [pairs[k] for k in sorted(pairs)]
 
 
-def raw_domain_coverage(db,snapshot_shas):
+def raw_domain_coverage(db,snapshot_shas,validation_version=None,active_claim_ids=None):
     """Validated numeric statements and typed government text are separate evidence classes."""
-    from .selection import evidence_domain
+    from .selection import evidence_domain,observation_visible
     groups={}
     for r in db.execute('SELECT o.*,e.kind FROM observations o JOIN entities e USING(entity_id)'):
         if r['source_sha'] not in snapshot_shas:continue
-        raw=json.loads(r['raw']);v=r['variable'];domain=evidence_domain(v,raw)
+        if active_claim_ids is not None and r['transform_version'] in ('normalization-v1','commercial-event-v1') and r['obs_id'] not in active_claim_ids:continue
+        raw=json.loads(r['raw'])
+        if validation_version and not observation_visible(raw,snapshot_shas,validation_version):continue
+        v=r['variable'];domain=evidence_domain(v,raw)
         if domain not in ('Resource','Strategic','Technical','Development','Infrastructure','Commercial'):continue
         key=(domain,r['status']);g=groups.setdefault(key,{'observations':set(),'entities':set(),'sources':set(),'numeric':set()})
         ident=(r['entity_id'],r['variable'],r['source_sha'],r['statement_id'],r['scope'],r['value'])

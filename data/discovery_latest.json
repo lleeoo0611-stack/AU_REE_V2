@@ -2,150 +2,223 @@
   "version": "discovery-v4-evidence-gaps",
   "sources": [
     {
-      "seed_key": "marquee_redlings",
+      "seed_key": "dreadnought_search",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError_429"
+    },
+    {
+      "seed_key": "dreadnought_search_search_d89403207b61",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError_429"
+    },
+    {
+      "seed_key": "dreadnought_search_search_37c76b0d4b49",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError_429"
+    },
+    {
+      "seed_key": "dreadnought_search_search_a0c4f3f697ca",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError_429"
+    },
+    {
+      "seed_key": "vhm_goschen",
       "status": "PARSED",
-      "links_found": 1,
-      "links_attempted": 1,
-      "sha256": "e0c912a4aad7775dcb4b30198c913b3041b0a47bb0f5fb61d98b09946be1009f",
+      "links_found": 9,
+      "links_attempted": 3,
+      "sha256": "199b96fb1d60cec88cd036bd766dd8c473bd2a70513bcd408e603ff49305e2af",
       "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     },
     {
-      "seed_key": "gap_nolans_ar2025",
-      "status": "REUSED_VERIFIED_ORIGINAL",
-      "sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f"
+      "seed_key": "vhm_current",
+      "status": "PARSED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "sha256": "4e506ad89cdf7d6611d3e4254d870468641069749c3ec4a2cdc6a1cb98411530",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     },
     {
-      "seed_key": "gap_discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
-      "status": "REUSED_VERIFIED_ORIGINAL",
-      "sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00"
+      "seed_key": "rarex_cummins_scoping",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError_429"
     },
     {
-      "seed_key": "gap_redlings_quarter2025",
-      "status": "REUSED_VERIFIED_ORIGINAL",
-      "sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f"
+      "seed_key": "victory_north_stanmore",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError_429"
     },
     {
-      "seed_key": "gap_jupiter_scoping2026",
+      "seed_key": "gap_yangibana_ar2026",
       "status": "REUSED_VERIFIED_ORIGINAL",
-      "sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a"
+      "sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb"
+    },
+    {
+      "seed_key": "gap_yangibana_quarter2026",
+      "status": "REUSED_VERIFIED_ORIGINAL",
+      "sha256": "188f2437560f2ec98af07e444782bd40a7612450b51c988bbe97c3e412dccd70"
+    },
+    {
+      "seed_key": "gap_north_stanmore_mre2025",
+      "status": "REUSED_VERIFIED_ORIGINAL",
+      "sha256": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84"
+    },
+    {
+      "seed_key": "gap_goschen_mre2025",
+      "status": "REUSED_VERIFIED_ORIGINAL",
+      "sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0"
+    },
+    {
+      "seed_key": "gap_mangaroon_mre2023",
+      "status": "REUSED_VERIFIED_ORIGINAL",
+      "sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5"
+    },
+    {
+      "seed_key": "gap_cummins_mre2023",
+      "status": "REUSED_VERIFIED_ORIGINAL",
+      "sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053"
+    },
+    {
+      "seed_key": "vhm_goschen_page_ca402ed236d8",
+      "status": "PARSED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "sha256": "3c86b0c61bcc9595d1133913fb00b3aec5e4309da21276a11837c43231734e2f",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+    },
+    {
+      "seed_key": "vhm_goschen_page_9bcab19acfc8",
+      "status": "DIRECT_PDF_CAPTURED",
+      "sha256": "9259d4a149afef29e471c92e3cc11d512659a07bc4026780488e57ae69d36ef5"
     }
   ],
   "documents": [
     {
-      "candidate_id": "4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
-      "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
-      "title": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
-      "seed_key": "marquee_redlings",
+      "candidate_id": "81a61a6073e3b82d5af01dba25142bf68b91732b4357267abc9a7f092821f299",
+      "url": "https://www.vhmltd.com.au/wp-content/uploads/2026/04/2026-04-01-VHM-Goschen-Issue-9-Final.pdf",
+      "title": "Project Update – April 2026",
+      "seed_key": "vhm_goschen",
       "publication_date": null,
       "status": "SNAPSHOT_REQUIRES_DATED_SCOPE_EXTRACTION",
       "project_id": null,
       "identity_status": "SOURCE_CONTEXT_ONLY_NOT_EQUIVALENCE",
-      "discovery_sha256": "e0c912a4aad7775dcb4b30198c913b3041b0a47bb0f5fb61d98b09946be1009f",
-      "document_sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
-      "physical_pages": 14,
+      "discovery_sha256": "199b96fb1d60cec88cd036bd766dd8c473bd2a70513bcd408e603ff49305e2af",
+      "document_sha256": "727dc79a22e32e6c3897aee71e7523b18265e64c476d03dfa122f9e2b0dd5f08",
+      "physical_pages": 3,
       "text_quality": "REQUIRES_PAGE_VALIDATION_NO_AUTOMATIC_NUMERIC_EXTRACTION"
     },
     {
-      "candidate_id": "2eb2de9968aeb21ed0075b479b26ed560e3f75f5325df7067d8c93415d6096e4",
-      "url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
-      "seed_key": "gap_nolans_ar2025",
-      "document_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
-      "source_key": "nolans_ar2025",
-      "status": "REUSED_VERIFIED_ORIGINAL",
-      "project_id": "AU-1345edd8165c10930e94"
+      "candidate_id": "949bb9b5dece5137a7c7b104216fa8db564848c509edc3e96801644c003a74ab",
+      "url": "https://www.vhmltd.com.au/wp-content/uploads/2025/12/Q2-Goschen-Project-Newsletter-2025.pdf",
+      "title": "Project Update – July 2025",
+      "seed_key": "vhm_goschen",
+      "publication_date": null,
+      "status": "SNAPSHOT_REQUIRES_DATED_SCOPE_EXTRACTION",
+      "project_id": null,
+      "identity_status": "SOURCE_CONTEXT_ONLY_NOT_EQUIVALENCE",
+      "discovery_sha256": "199b96fb1d60cec88cd036bd766dd8c473bd2a70513bcd408e603ff49305e2af",
+      "document_sha256": "34a612c7e04d21d0fd8b09f675c6c2444b63a7baab5a0e1d8ed6a9afc0a93163",
+      "physical_pages": 2,
+      "text_quality": "REQUIRES_PAGE_VALIDATION_NO_AUTOMATIC_NUMERIC_EXTRACTION"
     },
     {
-      "candidate_id": "4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
-      "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
-      "seed_key": "gap_discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
-      "document_sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
-      "source_key": "discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
-      "status": "REUSED_VERIFIED_ORIGINAL",
-      "project_id": "AU-12cc237ae66c7a6508ca"
+      "candidate_id": "4d9c6500091a6ca08327e5e3face29233cf80c94bf8460b01576cace12dcae0f",
+      "url": "https://www.vhmltd.com.au/wp-content/uploads/2025/07/Fact-Sheet-Soil-and-Land-Resource.pdf",
+      "title": "Soil and land resource",
+      "seed_key": "vhm_goschen",
+      "publication_date": null,
+      "status": "SNAPSHOT_REQUIRES_DATED_SCOPE_EXTRACTION",
+      "project_id": null,
+      "identity_status": "SOURCE_CONTEXT_ONLY_NOT_EQUIVALENCE",
+      "discovery_sha256": "199b96fb1d60cec88cd036bd766dd8c473bd2a70513bcd408e603ff49305e2af",
+      "document_sha256": "dd16a89ffe3b04a43faa55956190c6c40323cd7af9004e8ed8ecaef27bd1f942",
+      "physical_pages": 1,
+      "text_quality": "REQUIRES_PAGE_VALIDATION_NO_AUTOMATIC_NUMERIC_EXTRACTION"
     },
     {
-      "candidate_id": "ddd50ed3517db429c31ce6b7cf94bd24b9fc1320386880070131243a263c885d",
-      "url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
-      "seed_key": "gap_redlings_quarter2025",
-      "document_sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
-      "source_key": "redlings_quarter2025",
+      "candidate_id": "fa6915a2b1b494e356f2a3be783186737f16bf2cf8392347fad67b36da01a9f5",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7763164.pdf?v=63957978608",
+      "seed_key": "gap_yangibana_ar2026",
+      "document_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+      "source_key": "yangibana_ar2026",
       "status": "REUSED_VERIFIED_ORIGINAL",
-      "project_id": "AU-12cc237ae66c7a6508ca"
+      "project_id": "AU-908fd6f4461622e89548"
     },
     {
-      "candidate_id": "7b5711f8d3849d68d7962d15016711af08842864b1506b9d5613e14ae748056f",
-      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
-      "seed_key": "gap_jupiter_scoping2026",
-      "document_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
-      "source_key": "jupiter_scoping2026",
+      "candidate_id": "8e838de2f720770849e5c86174f2cdd04a0f4070397965aaa0fdbf4d879433f1",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7814729.pdf?v=63960562204",
+      "seed_key": "gap_yangibana_quarter2026",
+      "document_sha256": "188f2437560f2ec98af07e444782bd40a7612450b51c988bbe97c3e412dccd70",
+      "source_key": "yangibana_quarter2026",
       "status": "REUSED_VERIFIED_ORIGINAL",
-      "project_id": "AU-dac3c8e40326b8244cdb"
+      "project_id": "AU-908fd6f4461622e89548"
+    },
+    {
+      "candidate_id": "6e178cebb84f01c875c9678ee55817faa6962700fcfc4ad779ee598c02b5836b",
+      "url": "https://victorymetalsaustralia.com/wp-content/uploads/2025/11/02976976.pdf",
+      "seed_key": "gap_north_stanmore_mre2025",
+      "document_sha256": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84",
+      "source_key": "north_stanmore_mre2025",
+      "status": "REUSED_VERIFIED_ORIGINAL",
+      "project_id": "AU-216d0983f6892f9b58f9"
+    },
+    {
+      "candidate_id": "50ec7babc2038894a2904191b1b5ff550319856c4ae632da2d9a8ccc56647f7d",
+      "url": "https://announcements.asx.com.au/asxpdf/20251015/pdf/06qkvvhp20rxx2.pdf",
+      "seed_key": "gap_goschen_mre2025",
+      "document_sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
+      "source_key": "goschen_mre2025",
+      "status": "REUSED_VERIFIED_ORIGINAL",
+      "project_id": "AU-6d807eb7caec9db0f35e"
+    },
+    {
+      "candidate_id": "a6cd0f36b87fea47aa0da4cb964574f6cce6f14c834fd818f22fc01464b167a6",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/5449464.pdf?v=63941956896",
+      "seed_key": "gap_mangaroon_mre2023",
+      "document_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+      "source_key": "mangaroon_mre2023",
+      "status": "REUSED_VERIFIED_ORIGINAL",
+      "project_id": "AU-8f3fe174a998d20ee4cf"
+    },
+    {
+      "candidate_id": "9b5721079677fe98cb0b37211b6763dee9a865f8b3bfa76f8c8b62fdc7929317",
+      "url": "https://announcements.asx.com.au/asxpdf/20230501/pdf/05p7grkh7l8j7v.pdf",
+      "seed_key": "gap_cummins_mre2023",
+      "document_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+      "source_key": "cummins_mre2023",
+      "status": "REUSED_VERIFIED_ORIGINAL",
+      "project_id": "AU-9b667066e6eb66753005"
+    },
+    {
+      "candidate_id": "9bcab19acfc8e1e5ca11a50d7ea15a8ff0b887d1005fc7a8a7d3a431f7acbf0c",
+      "url": "https://www.vhmltd.com.au/wp-content/uploads/2022/06/VHM-Notice-of-Meeting-of-2021-Noteholders-Chapter-2E-final.pdf",
+      "seed_key": "vhm_goschen_page_9bcab19acfc8",
+      "publication_date": null,
+      "document_sha256": "9259d4a149afef29e471c92e3cc11d512659a07bc4026780488e57ae69d36ef5",
+      "status": "DIRECT_PDF_REQUIRES_DATED_SCOPE_EXTRACTION"
     }
   ],
   "search_tasks": [
     {
-      "project_id": "AU-1345edd8165c10930e94",
-      "project_name": "Nolans Project",
+      "project_id": "AU-908fd6f4461622e89548",
+      "project_name": "Yangibana Rare Earths and Niobium Project",
       "aliases": [
-        "Nolans"
+        "Yangibana"
       ],
       "company": null,
       "asx_code": null,
-      "source_key": "nolans_ar2025",
-      "source_url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
+      "source_key": "yangibana_quarter2026",
+      "source_url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7814729.pdf?v=63960562204",
       "queries": [
-        "Nolans Technical T1"
+        "Yangibana Strategic S1"
       ],
       "seed_keys": [],
       "status": "SEARCH_ENDPOINT_NOT_CONFIGURED_UNKNOWN",
-      "domain": "Technical",
-      "criterion": "T1",
-      "gap_state": "SOURCE_ACQUIRED_EXTRACTION_OR_SEARCH_INCOMPLETE",
+      "domain": "Strategic",
+      "criterion": "S1",
+      "gap_state": "SCOPED_RAW_EVIDENCE_CRITERION_NOT_ESTABLISHED",
       "existing_evidence_shas": [
-        "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f"
-      ],
-      "selection_reason": "NO_COMPATIBLE_EVIDENCE",
-      "extraction_failures": [],
-      "prior_search_failures": [],
-      "expected_document_types": [
-        "METALLURGICAL",
-        "DFS",
-        "PFS"
-      ],
-      "priority": 95,
-      "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
-      "reusable_documents": [
-        {
-          "key": "nolans_ar2025",
-          "url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
-          "sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
-          "publication_date": "2025-09"
-        }
-      ]
-    },
-    {
-      "project_id": "AU-12cc237ae66c7a6508ca",
-      "project_name": "Redlings Rare Earth Project",
-      "aliases": [
-        "Redlings"
-      ],
-      "company": null,
-      "asx_code": null,
-      "source_key": "redlings_quarter2025",
-      "source_url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
-      "queries": [
-        "Redlings Technical T1"
-      ],
-      "seed_keys": [
-        "marquee_redlings"
-      ],
-      "status": "BOUNDED_ISSUER_SEARCH_TASK",
-      "domain": "Technical",
-      "criterion": "T1",
-      "gap_state": "OBSERVATION_EXTRACTED_NOT_VALIDATED",
-      "existing_evidence_shas": [
-        "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
-        "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00"
+        "188f2437560f2ec98af07e444782bd40a7612450b51c988bbe97c3e412dccd70",
+        "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb"
       ],
       "selection_reason": "NO_COMPATIBLE_EVIDENCE",
       "extraction_failures": [
@@ -153,49 +226,61 @@
       ],
       "prior_search_failures": [],
       "expected_document_types": [
-        "METALLURGICAL",
-        "DFS",
-        "PFS"
+        "DATED_PRIMARY_DOCUMENT"
       ],
-      "priority": 85,
-      "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+      "priority": 190,
+      "priority_basis": "EVIDENCE_YIELD_HEURISTIC_NOT_PREDICTED_SUCCESS_OR_FORMAL_ADMISSION",
+      "priority_components": {
+        "domain_gap": 80,
+        "unparsed_original": 50,
+        "potential_resource_panel_gain": 30,
+        "shared_source_gaps": 20,
+        "registered_primary_document": 10,
+        "search_endpoint": 0,
+        "repeated_failure_cost": 0
+      },
+      "cost_model": "EXISTING_BYTES_BEFORE_NETWORK;FAILURES_PENALIZED_NOT_PERMANENTLY_BLOCKED",
+      "potential_joint_sample_gain": 1,
+      "unparsed_originals": 2,
       "reusable_documents": [
         {
-          "key": "discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
-          "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
-          "sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
-          "publication_date": null
+          "key": "yangibana_ar2026",
+          "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7763164.pdf?v=63957978608",
+          "sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "publication_date": "2026-09-30"
         },
         {
-          "key": "redlings_quarter2025",
-          "url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
-          "sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
-          "publication_date": "2025-07-31"
+          "key": "yangibana_quarter2026",
+          "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7814729.pdf?v=63960562204",
+          "sha256": "188f2437560f2ec98af07e444782bd40a7612450b51c988bbe97c3e412dccd70",
+          "publication_date": "2026-10-30"
         }
       ]
     },
     {
-      "project_id": "AU-dac3c8e40326b8244cdb",
-      "project_name": "Jupiter development study within Brothers",
+      "project_id": "AU-216d0983f6892f9b58f9",
+      "project_name": "North Stanmore Heavy Rare Earth Project",
       "aliases": [
-        "Jupiter"
+        "North Stanmore"
       ],
       "company": null,
       "asx_code": null,
-      "source_key": "jupiter_scoping2026",
-      "source_url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+      "source_key": "north_stanmore_mre2025",
+      "source_url": "https://victorymetalsaustralia.com/wp-content/uploads/2025/11/02976976.pdf",
       "queries": [
-        "Jupiter Technical T1"
+        "North Stanmore Technical TC1"
       ],
-      "seed_keys": [],
-      "status": "SEARCH_ENDPOINT_NOT_CONFIGURED_UNKNOWN",
+      "seed_keys": [
+        "victory_north_stanmore"
+      ],
+      "status": "BOUNDED_ISSUER_SEARCH_TASK",
       "domain": "Technical",
-      "criterion": "T1",
-      "gap_state": "SCOPE_OR_BASIS_INCOMPATIBLE",
+      "criterion": "TC1",
+      "gap_state": "SOURCE_ACQUIRED_EXTRACTION_OR_SEARCH_INCOMPLETE",
       "existing_evidence_shas": [
-        "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a"
+        "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84"
       ],
-      "selection_reason": "RAW_EVIDENCE_SCOPE_BASIS_ENDPOINT_SCALE_OR_VALIDITY_INCOMPATIBLE",
+      "selection_reason": "NO_COMPATIBLE_EVIDENCE",
       "extraction_failures": [],
       "prior_search_failures": [],
       "expected_document_types": [
@@ -203,24 +288,199 @@
         "DFS",
         "PFS"
       ],
-      "priority": 85,
-      "priority_basis": "DOMAIN_GAP_AND_EXISTING_EVIDENCE_REUSE_NOT_FORMAL_ADMISSION",
+      "priority": 185,
+      "priority_basis": "EVIDENCE_YIELD_HEURISTIC_NOT_PREDICTED_SUCCESS_OR_FORMAL_ADMISSION",
+      "priority_components": {
+        "domain_gap": 95,
+        "unparsed_original": 25,
+        "potential_resource_panel_gain": 30,
+        "shared_source_gaps": 20,
+        "registered_primary_document": 10,
+        "search_endpoint": 5,
+        "repeated_failure_cost": 0
+      },
+      "cost_model": "EXISTING_BYTES_BEFORE_NETWORK;FAILURES_PENALIZED_NOT_PERMANENTLY_BLOCKED",
+      "potential_joint_sample_gain": 1,
+      "unparsed_originals": 1,
       "reusable_documents": [
         {
-          "key": "jupiter_scoping2026",
-          "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
-          "sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
-          "publication_date": "2026-10-20"
+          "key": "north_stanmore_mre2025",
+          "url": "https://victorymetalsaustralia.com/wp-content/uploads/2025/11/02976976.pdf",
+          "sha256": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84",
+          "publication_date": "2025-08-11"
+        }
+      ]
+    },
+    {
+      "project_id": "AU-6d807eb7caec9db0f35e",
+      "project_name": "Goschen — Area 1 resource scope",
+      "aliases": [
+        "Goschen"
+      ],
+      "company": null,
+      "asx_code": null,
+      "source_key": "goschen_mre2025",
+      "source_url": "https://announcements.asx.com.au/asxpdf/20251015/pdf/06qkvvhp20rxx2.pdf",
+      "queries": [
+        "Goschen Technical TC1"
+      ],
+      "seed_keys": [
+        "vhm_goschen",
+        "vhm_current"
+      ],
+      "status": "BOUNDED_ISSUER_SEARCH_TASK",
+      "domain": "Technical",
+      "criterion": "TC1",
+      "gap_state": "SOURCE_ACQUIRED_EXTRACTION_OR_SEARCH_INCOMPLETE",
+      "existing_evidence_shas": [
+        "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0"
+      ],
+      "selection_reason": "NO_COMPATIBLE_EVIDENCE",
+      "extraction_failures": [],
+      "prior_search_failures": [],
+      "expected_document_types": [
+        "METALLURGICAL",
+        "DFS",
+        "PFS"
+      ],
+      "priority": 185,
+      "priority_basis": "EVIDENCE_YIELD_HEURISTIC_NOT_PREDICTED_SUCCESS_OR_FORMAL_ADMISSION",
+      "priority_components": {
+        "domain_gap": 95,
+        "unparsed_original": 25,
+        "potential_resource_panel_gain": 30,
+        "shared_source_gaps": 20,
+        "registered_primary_document": 10,
+        "search_endpoint": 5,
+        "repeated_failure_cost": 0
+      },
+      "cost_model": "EXISTING_BYTES_BEFORE_NETWORK;FAILURES_PENALIZED_NOT_PERMANENTLY_BLOCKED",
+      "potential_joint_sample_gain": 1,
+      "unparsed_originals": 1,
+      "reusable_documents": [
+        {
+          "key": "goschen_mre2025",
+          "url": "https://announcements.asx.com.au/asxpdf/20251015/pdf/06qkvvhp20rxx2.pdf",
+          "sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
+          "publication_date": "2025-10-15"
+        }
+      ]
+    },
+    {
+      "project_id": "AU-8f3fe174a998d20ee4cf",
+      "project_name": "Mangaroon Project — Yin resource scope",
+      "aliases": [
+        "Mangaroon"
+      ],
+      "company": null,
+      "asx_code": null,
+      "source_key": "mangaroon_mre2023",
+      "source_url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/5449464.pdf?v=63941956896",
+      "queries": [
+        "Mangaroon Technical TC1"
+      ],
+      "seed_keys": [
+        "dreadnought_search"
+      ],
+      "status": "BOUNDED_ISSUER_SEARCH_TASK",
+      "domain": "Technical",
+      "criterion": "TC1",
+      "gap_state": "SOURCE_ACQUIRED_EXTRACTION_OR_SEARCH_INCOMPLETE",
+      "existing_evidence_shas": [
+        "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5"
+      ],
+      "selection_reason": "NO_COMPATIBLE_EVIDENCE",
+      "extraction_failures": [],
+      "prior_search_failures": [],
+      "expected_document_types": [
+        "METALLURGICAL",
+        "DFS",
+        "PFS"
+      ],
+      "priority": 185,
+      "priority_basis": "EVIDENCE_YIELD_HEURISTIC_NOT_PREDICTED_SUCCESS_OR_FORMAL_ADMISSION",
+      "priority_components": {
+        "domain_gap": 95,
+        "unparsed_original": 25,
+        "potential_resource_panel_gain": 30,
+        "shared_source_gaps": 20,
+        "registered_primary_document": 10,
+        "search_endpoint": 5,
+        "repeated_failure_cost": 0
+      },
+      "cost_model": "EXISTING_BYTES_BEFORE_NETWORK;FAILURES_PENALIZED_NOT_PERMANENTLY_BLOCKED",
+      "potential_joint_sample_gain": 1,
+      "unparsed_originals": 1,
+      "reusable_documents": [
+        {
+          "key": "mangaroon_mre2023",
+          "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/5449464.pdf?v=63941956896",
+          "sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "publication_date": "2023-11-30"
+        }
+      ]
+    },
+    {
+      "project_id": "AU-9b667066e6eb66753005",
+      "project_name": "Cummins Range Rare Earths-Phosphate Project",
+      "aliases": [
+        "Cummins Range"
+      ],
+      "company": null,
+      "asx_code": null,
+      "source_key": "cummins_mre2023",
+      "source_url": "https://announcements.asx.com.au/asxpdf/20230501/pdf/05p7grkh7l8j7v.pdf",
+      "queries": [
+        "Cummins Range Technical TC1"
+      ],
+      "seed_keys": [
+        "rarex_cummins_scoping"
+      ],
+      "status": "BOUNDED_ISSUER_SEARCH_TASK",
+      "domain": "Technical",
+      "criterion": "TC1",
+      "gap_state": "SOURCE_ACQUIRED_EXTRACTION_OR_SEARCH_INCOMPLETE",
+      "existing_evidence_shas": [
+        "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053"
+      ],
+      "selection_reason": "NO_COMPATIBLE_EVIDENCE",
+      "extraction_failures": [],
+      "prior_search_failures": [],
+      "expected_document_types": [
+        "METALLURGICAL",
+        "DFS",
+        "PFS"
+      ],
+      "priority": 185,
+      "priority_basis": "EVIDENCE_YIELD_HEURISTIC_NOT_PREDICTED_SUCCESS_OR_FORMAL_ADMISSION",
+      "priority_components": {
+        "domain_gap": 95,
+        "unparsed_original": 25,
+        "potential_resource_panel_gain": 30,
+        "shared_source_gaps": 20,
+        "registered_primary_document": 10,
+        "search_endpoint": 5,
+        "repeated_failure_cost": 0
+      },
+      "cost_model": "EXISTING_BYTES_BEFORE_NETWORK;FAILURES_PENALIZED_NOT_PERMANENTLY_BLOCKED",
+      "potential_joint_sample_gain": 1,
+      "unparsed_originals": 1,
+      "reusable_documents": [
+        {
+          "key": "cummins_mre2023",
+          "url": "https://announcements.asx.com.au/asxpdf/20230501/pdf/05p7grkh7l8j7v.pdf",
+          "sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "publication_date": "2023-05-01"
         }
       ]
     }
   ],
   "execution_metrics": {
-    "elapsed_seconds": 2.724,
-    "search_pages": 5,
-    "downloaded_documents": 1,
-    "reused_originals": 4,
-    "failures": 0,
+    "elapsed_seconds": 30.97,
+    "search_pages": 16,
+    "downloaded_documents": 4,
+    "reused_originals": 6,
+    "failures": 6,
     "scope": "BOUNDED_SOURCE_ATTEMPTS_NOT_EXHAUSTIVE_SEARCH"
   }
 }

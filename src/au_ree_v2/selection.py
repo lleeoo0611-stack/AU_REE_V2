@@ -11,9 +11,10 @@ from datetime import date
 from .store import canonical, digest, filehash
 
 
-def observation_visible(raw, selected_shas):
+def observation_visible(raw, selected_shas, validation_version=None):
     """Extraction versions must be in the lock, as well as their original PDF."""
-    return not raw.get('extraction_artifact_sha256') or raw['extraction_artifact_sha256'] in selected_shas
+    return (not raw.get('extraction_artifact_sha256') or raw['extraction_artifact_sha256'] in selected_shas) and (
+        not validation_version or not raw.get('parser_version') or raw.get('validation_version')==validation_version)
 
 
 def evidence_domain(variable, raw):
@@ -115,7 +116,9 @@ def technical_record(c, policy):
     performance=role in policy['technical_comparability']['performance_roles']
     quality=role in policy['technical_comparability']['quality_roles']
     category='B_PROCESS_PERFORMANCE' if performance else 'C_EVIDENCE_QUALITY' if quality else 'A_MINERALOGY_PROCESSING'
-    model=c.get('origin')=='STUDY_PARAMETER' and c.get('scale') in ('DFS_MODEL','PFS_MODEL','SCOPING_MODEL')
+    model=c.get('scale') in ('DFS_MODEL','PFS_MODEL','SCOPING_MODEL') and (
+        c.get('origin')=='STUDY_PARAMETER' or
+        (raw.get('statistic')=='ENGINEERING_DESIGN' and raw.get('evidence_mode')=='ENGINEERING_MODEL'))
     case_id=c.get('case_id') or raw.get('statement_id') or c['evidence_id']
     parameters=raw.get('parameters',{})
     population=raw.get('sample_population') or raw.get('sample_id')
@@ -245,7 +248,7 @@ def _valid_candidate(c, sources, cutoff, root, acquired_through=None):
     return None
 
 
-def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None, acquired_through=None):
+def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None, acquired_through=None, active_claim_ids=None):
     """One immutable input contract, one selection result for all consumers."""
     sources = {s['sha256']: s for s in snapshots}
     source_errors = {sha: source_check(s, cutoff, root, acquired_through) for sha, s in sources.items()}
@@ -256,10 +259,11 @@ def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None,
     for row in db.execute('SELECT * FROM observations ORDER BY obs_id'):
         if row['source_sha'] not in sources:
             continue
+        if active_claim_ids is not None and row['transform_version'] in ('normalization-v1','commercial-event-v1') and row['obs_id'] not in active_claim_ids:
+            continue
         raw = json.loads(row['raw'])
-        if not observation_visible(raw,sources):continue
         validation=policy.get('document_pipeline',{}).get('validation_version')
-        if raw.get('parser_version') and validation and raw.get('validation_version')!=validation:continue
+        if not observation_visible(raw,sources,validation):continue
         c = dict(raw, evidence_id=row['obs_id'], entity_id=row['entity_id'],
                  project_id=mapping.get(row['entity_id'], row['entity_id']),
                  variable=row['variable'], value=row['value'], unit=row['unit'], basis=row['basis'],

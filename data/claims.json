@@ -153,6 +153,29 @@
           ],
           "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
           "rounding_half_width": null
+        },
+        {
+          "variable": "study_maturity_ord",
+          "value": 4,
+          "unit": "ordinal",
+          "basis": "DATED_DFS_REAFFIRMED",
+          "scope": "Browns Range commercial-scale DFS; Wolverine-based mine plan including BRPP stockpiles; completed study, not construction or production",
+          "statement_id": "browns-range-dfs-completed20250915",
+          "effective_date": "2025-09-15",
+          "source_key": "browns_range_2025",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "locator": "physical PDF p7; Introduction: completion of DFS; Wolverine forms study basis",
+          "pdf_page": 7,
+          "page_markers": [
+            "announce the completion of a DFS",
+            "Wolverine, forms the basis of the DFS"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "category": "NOT_APPLICABLE",
+          "domain": "Development",
+          "date_role": "DATED_DISCLOSURE_OF_COMPLETED_DFS",
+          "completion_by_date": "2025-09-15",
+          "current_stage_certification": false
         }
       ]
     },
@@ -704,6 +727,47 @@
           "category": "NOT_APPLICABLE",
           "basis": "ROUTE_SPECIFIC_SCOPING",
           "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION"
+        },
+        {
+          "variable": "magnet_reo_share_pct",
+          "value": 23,
+          "unit": "%",
+          "basis": "PrNdDyTb_OXIDES_OVER_TREO",
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "source_key": "jupiter_scoping2026",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "locator": "physical PDF p7; Magnet rare earth composition of updated Jupiter Mineral Resource; approximate source precision",
+          "pdf_page": 7,
+          "page_markers": [
+            "all four principal",
+            "neodymium, praseodymium, dysprosium and terbium",
+            "approximately 23% of TREO in the updated Jupiter Mineral Resource"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "domain": "Strategic",
+          "reported_qualifier": "APPROXIMATELY",
+          "uncertainty_kind": "UNQUANTIFIED_APPROXIMATION_NO_BOUND_DISCLOSED",
+          "composition_definition": "Source p27 explicitly defines MREO=Pr6O11+Nd2O3+Tb4O7+Dy2O3; p7 reports approximately23% of TREO for updated full Mineral Resource. No composition reconstructed from differently rounded category rows.",
+          "context_evidence": [
+            {
+              "page": 14,
+              "markers": [
+                "1.7 Bt",
+                "1,700 ppm"
+              ]
+            },
+            {
+              "page": 27,
+              "markers": [
+                "Notes: MREO = Pr₆O₁₁ + Nd₂O₃ + Tb₄O₇ + Dy₂O₃.",
+                "1,000 ppm TREO lower cut-off is used for headline Mineral Resource reporting"
+              ]
+            }
+          ],
+          "uncertainty_note": "Approximate23 is a reported point disclosure, not a guaranteed22.5-23.5interval. No credible bound is disclosed, so it is held fixed in reporting-rounding simulations; this does not assert zero measurement or estimation error."
         }
       ],
       "coordinate_source": "ga_critical",
@@ -949,6 +1013,540 @@
           ],
           "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
           "rounding_half_width": 0.5
+        },
+        {
+          "variable": "study_maturity_ord",
+          "value": 2,
+          "unit": "ordinal",
+          "basis": "ROUTE_SPECIFIC_SCOPING",
+          "scope": "Cummins Range completed enhanced three-stage Scoping Study: Stage1 phosphate DSO, Stage2 regolith beneficiation, Stage3 fresh-rock beneficiation; NOT completed planned DFS/PFS",
+          "statement_id": "cummins-range-enhanced-scoping20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p1; Completed Scoping Study, distinguished from future Stage1 DFS / Stage2 PFS",
+          "pdf_page": 1,
+          "page_markers": [
+            "22 August 2023",
+            "completion of an enhanced",
+            "3-Stage"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "category": "NOT_APPLICABLE",
+          "domain": "Development",
+          "date_role": "DATED_DISCLOSURE_OF_COMPLETED_SCOPING_STUDY",
+          "completion_by_date": "2023-08-22",
+          "current_stage_certification": false,
+          "context_evidence": [
+            {
+              "page": 3,
+              "markers": [
+                "approve the commencement of a Definitive Feasibility Study",
+                "for Stage 2 which will commence in Q3 2023"
+              ]
+            }
+          ]
+        },
+        {
+          "variable": "reported_scoping_beneficiation_recovery_pct",
+          "value": 60.5,
+          "unit": "%",
+          "basis": "SOURCE_REPORTED_TREO_NO_FURTHER_BASIS_HARMONIZATION",
+          "scope": "Cummins Range Scoping Study Stage2a regolith beneficiation mine-plan model to phosphate-REE mineral concentrate; not global MRE, DFS design, laboratory or operating recovery",
+          "statement_id": "cummins-range-scoping-stage2a-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p57; Table10-2; Stage2a column; reported_scoping_beneficiation_recovery_pct",
+          "pdf_page": 57,
+          "page_markers": [
+            "Table 10-2",
+            "Stage 2a Stage 2b",
+            "60.5"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "role": "BENEFICIATION_RECOVERY",
+          "domain": "Technical",
+          "scale": "SCOPING_MODEL",
+          "feed": "STAGE_SPECIFIC_WHOLE_ORE",
+          "endpoint": "PHOSPHATE_REE_MINERAL_CONCENTRATE",
+          "statistic": "ENGINEERING_DESIGN",
+          "evidence_mode": "ENGINEERING_MODEL",
+          "stage": "2a",
+          "model_limitations": "Theoretical model from better-performing tests; limited deposit variability testing, oxidation/mineralogy/head-grade responses not defined; source p49",
+          "context_evidence": [
+            {
+              "page": 49,
+              "markers": [
+                "theoretical models for P2O5 and TREO",
+                "limited variability testing"
+              ]
+            }
+          ],
+          "rounding_half_width": 0.05,
+          "scope_kind": "CASE_MINE_PLAN",
+          "representativeness": "SCOPING_MINE_PLAN_MODEL_WITH_LIMITED_VARIABILITY_TESTING_NOT_OPERATING_MEASUREMENT"
+        },
+        {
+          "variable": "reported_scoping_feed_treo_grade_pct",
+          "value": 1.4,
+          "unit": "%",
+          "basis": "SOURCE_REPORTED_TREO_NO_FURTHER_BASIS_HARMONIZATION",
+          "scope": "Cummins Range Scoping Study Stage2a regolith beneficiation mine-plan model to phosphate-REE mineral concentrate; not global MRE, DFS design, laboratory or operating recovery",
+          "statement_id": "cummins-range-scoping-stage2a-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p57; Table10-2; Stage2a column; reported_scoping_feed_treo_grade_pct",
+          "pdf_page": 57,
+          "page_markers": [
+            "Table 10-2",
+            "Stage 2a Stage 2b",
+            "60.5"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "role": "TEST_FEED_GRADE",
+          "domain": "Technical",
+          "scale": "SCOPING_MODEL",
+          "feed": "STAGE_SPECIFIC_WHOLE_ORE",
+          "endpoint": "PHOSPHATE_REE_MINERAL_CONCENTRATE",
+          "statistic": "ENGINEERING_DESIGN",
+          "evidence_mode": "ENGINEERING_MODEL",
+          "stage": "2a",
+          "model_limitations": "Theoretical model from better-performing tests; limited deposit variability testing, oxidation/mineralogy/head-grade responses not defined; source p49",
+          "context_evidence": [
+            {
+              "page": 49,
+              "markers": [
+                "theoretical models for P2O5 and TREO",
+                "limited variability testing"
+              ]
+            }
+          ],
+          "rounding_half_width": 0.05,
+          "scope_kind": "CASE_MINE_PLAN",
+          "representativeness": "SCOPING_MINE_PLAN_MODEL_WITH_LIMITED_VARIABILITY_TESTING_NOT_OPERATING_MEASUREMENT"
+        },
+        {
+          "variable": "reported_scoping_concentrate_treo_grade_pct",
+          "value": 2.5,
+          "unit": "%",
+          "basis": "SOURCE_REPORTED_TREO_NO_FURTHER_BASIS_HARMONIZATION",
+          "scope": "Cummins Range Scoping Study Stage2a regolith beneficiation mine-plan model to phosphate-REE mineral concentrate; not global MRE, DFS design, laboratory or operating recovery",
+          "statement_id": "cummins-range-scoping-stage2a-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p57; Table10-2; Stage2a column; reported_scoping_concentrate_treo_grade_pct",
+          "pdf_page": 57,
+          "page_markers": [
+            "Table 10-2",
+            "Stage 2a Stage 2b",
+            "60.5"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "role": "INTERMEDIATE_PRODUCT_GRADE",
+          "domain": "Technical",
+          "scale": "SCOPING_MODEL",
+          "feed": "STAGE_SPECIFIC_WHOLE_ORE",
+          "endpoint": "PHOSPHATE_REE_MINERAL_CONCENTRATE",
+          "statistic": "ENGINEERING_DESIGN",
+          "evidence_mode": "ENGINEERING_MODEL",
+          "stage": "2a",
+          "model_limitations": "Theoretical model from better-performing tests; limited deposit variability testing, oxidation/mineralogy/head-grade responses not defined; source p49",
+          "context_evidence": [
+            {
+              "page": 49,
+              "markers": [
+                "theoretical models for P2O5 and TREO",
+                "limited variability testing"
+              ]
+            }
+          ],
+          "rounding_half_width": 0.05,
+          "scope_kind": "CASE_MINE_PLAN",
+          "representativeness": "SCOPING_MINE_PLAN_MODEL_WITH_LIMITED_VARIABILITY_TESTING_NOT_OPERATING_MEASUREMENT"
+        },
+        {
+          "variable": "reported_scoping_beneficiation_recovery_pct",
+          "value": 57.8,
+          "unit": "%",
+          "basis": "SOURCE_REPORTED_TREO_NO_FURTHER_BASIS_HARMONIZATION",
+          "scope": "Cummins Range Scoping Study Stage2b regolith beneficiation mine-plan model to phosphate-REE mineral concentrate; not global MRE, DFS design, laboratory or operating recovery",
+          "statement_id": "cummins-range-scoping-stage2b-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p57; Table10-2; Stage2b column; reported_scoping_beneficiation_recovery_pct",
+          "pdf_page": 57,
+          "page_markers": [
+            "Table 10-2",
+            "Stage 2a Stage 2b",
+            "57.8"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "role": "BENEFICIATION_RECOVERY",
+          "domain": "Technical",
+          "scale": "SCOPING_MODEL",
+          "feed": "STAGE_SPECIFIC_WHOLE_ORE",
+          "endpoint": "PHOSPHATE_REE_MINERAL_CONCENTRATE",
+          "statistic": "ENGINEERING_DESIGN",
+          "evidence_mode": "ENGINEERING_MODEL",
+          "stage": "2b",
+          "model_limitations": "Theoretical model from better-performing tests; limited deposit variability testing, oxidation/mineralogy/head-grade responses not defined; source p49",
+          "context_evidence": [
+            {
+              "page": 49,
+              "markers": [
+                "theoretical models for P2O5 and TREO",
+                "limited variability testing"
+              ]
+            }
+          ],
+          "rounding_half_width": 0.05,
+          "scope_kind": "CASE_MINE_PLAN",
+          "representativeness": "SCOPING_MINE_PLAN_MODEL_WITH_LIMITED_VARIABILITY_TESTING_NOT_OPERATING_MEASUREMENT"
+        },
+        {
+          "variable": "reported_scoping_feed_treo_grade_pct",
+          "value": 0.4,
+          "unit": "%",
+          "basis": "SOURCE_REPORTED_TREO_NO_FURTHER_BASIS_HARMONIZATION",
+          "scope": "Cummins Range Scoping Study Stage2b regolith beneficiation mine-plan model to phosphate-REE mineral concentrate; not global MRE, DFS design, laboratory or operating recovery",
+          "statement_id": "cummins-range-scoping-stage2b-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p57; Table10-2; Stage2b column; reported_scoping_feed_treo_grade_pct",
+          "pdf_page": 57,
+          "page_markers": [
+            "Table 10-2",
+            "Stage 2a Stage 2b",
+            "57.8"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "role": "TEST_FEED_GRADE",
+          "domain": "Technical",
+          "scale": "SCOPING_MODEL",
+          "feed": "STAGE_SPECIFIC_WHOLE_ORE",
+          "endpoint": "PHOSPHATE_REE_MINERAL_CONCENTRATE",
+          "statistic": "ENGINEERING_DESIGN",
+          "evidence_mode": "ENGINEERING_MODEL",
+          "stage": "2b",
+          "model_limitations": "Theoretical model from better-performing tests; limited deposit variability testing, oxidation/mineralogy/head-grade responses not defined; source p49",
+          "context_evidence": [
+            {
+              "page": 49,
+              "markers": [
+                "theoretical models for P2O5 and TREO",
+                "limited variability testing"
+              ]
+            }
+          ],
+          "rounding_half_width": 0.05,
+          "scope_kind": "CASE_MINE_PLAN",
+          "representativeness": "SCOPING_MINE_PLAN_MODEL_WITH_LIMITED_VARIABILITY_TESTING_NOT_OPERATING_MEASUREMENT"
+        },
+        {
+          "variable": "reported_scoping_concentrate_treo_grade_pct",
+          "value": 2.3,
+          "unit": "%",
+          "basis": "SOURCE_REPORTED_TREO_NO_FURTHER_BASIS_HARMONIZATION",
+          "scope": "Cummins Range Scoping Study Stage2b regolith beneficiation mine-plan model to phosphate-REE mineral concentrate; not global MRE, DFS design, laboratory or operating recovery",
+          "statement_id": "cummins-range-scoping-stage2b-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p57; Table10-2; Stage2b column; reported_scoping_concentrate_treo_grade_pct",
+          "pdf_page": 57,
+          "page_markers": [
+            "Table 10-2",
+            "Stage 2a Stage 2b",
+            "57.8"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "role": "INTERMEDIATE_PRODUCT_GRADE",
+          "domain": "Technical",
+          "scale": "SCOPING_MODEL",
+          "feed": "STAGE_SPECIFIC_WHOLE_ORE",
+          "endpoint": "PHOSPHATE_REE_MINERAL_CONCENTRATE",
+          "statistic": "ENGINEERING_DESIGN",
+          "evidence_mode": "ENGINEERING_MODEL",
+          "stage": "2b",
+          "model_limitations": "Theoretical model from better-performing tests; limited deposit variability testing, oxidation/mineralogy/head-grade responses not defined; source p49",
+          "context_evidence": [
+            {
+              "page": 49,
+              "markers": [
+                "theoretical models for P2O5 and TREO",
+                "limited variability testing"
+              ]
+            }
+          ],
+          "rounding_half_width": 0.05,
+          "scope_kind": "CASE_MINE_PLAN",
+          "representativeness": "SCOPING_MINE_PLAN_MODEL_WITH_LIMITED_VARIABILITY_TESTING_NOT_OPERATING_MEASUREMENT"
+        },
+        {
+          "variable": "reported_scoping_beneficiation_recovery_pct",
+          "value": 67.2,
+          "unit": "%",
+          "basis": "SOURCE_REPORTED_TREO_NO_FURTHER_BASIS_HARMONIZATION",
+          "scope": "Cummins Range Scoping Study Stage3 fresh-rock beneficiation mine-plan model to phosphate-REE mineral concentrate; not global MRE, DFS design, laboratory or operating recovery",
+          "statement_id": "cummins-range-scoping-stage3-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p61; Table10-4; Stage3 column; reported_scoping_beneficiation_recovery_pct",
+          "pdf_page": 61,
+          "page_markers": [
+            "Table 10-4",
+            "TREO recovery % 67.2"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "role": "BENEFICIATION_RECOVERY",
+          "domain": "Technical",
+          "scale": "SCOPING_MODEL",
+          "feed": "STAGE_SPECIFIC_WHOLE_ORE",
+          "endpoint": "PHOSPHATE_REE_MINERAL_CONCENTRATE",
+          "statistic": "ENGINEERING_DESIGN",
+          "evidence_mode": "ENGINEERING_MODEL",
+          "stage": "3",
+          "model_limitations": "Theoretical model from better-performing tests; limited deposit variability testing, oxidation/mineralogy/head-grade responses not defined; source p49",
+          "context_evidence": [
+            {
+              "page": 49,
+              "markers": [
+                "theoretical models for P2O5 and TREO",
+                "limited variability testing"
+              ]
+            }
+          ],
+          "rounding_half_width": 0.05,
+          "scope_kind": "CASE_MINE_PLAN",
+          "representativeness": "SCOPING_MINE_PLAN_MODEL_WITH_LIMITED_VARIABILITY_TESTING_NOT_OPERATING_MEASUREMENT"
+        },
+        {
+          "variable": "reported_scoping_feed_treo_grade_pct",
+          "value": 0.4,
+          "unit": "%",
+          "basis": "SOURCE_REPORTED_TREO_NO_FURTHER_BASIS_HARMONIZATION",
+          "scope": "Cummins Range Scoping Study Stage3 fresh-rock beneficiation mine-plan model to phosphate-REE mineral concentrate; not global MRE, DFS design, laboratory or operating recovery",
+          "statement_id": "cummins-range-scoping-stage3-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p61; Table10-4; Stage3 column; reported_scoping_feed_treo_grade_pct",
+          "pdf_page": 61,
+          "page_markers": [
+            "Table 10-4",
+            "TREO recovery % 67.2"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "role": "TEST_FEED_GRADE",
+          "domain": "Technical",
+          "scale": "SCOPING_MODEL",
+          "feed": "STAGE_SPECIFIC_WHOLE_ORE",
+          "endpoint": "PHOSPHATE_REE_MINERAL_CONCENTRATE",
+          "statistic": "ENGINEERING_DESIGN",
+          "evidence_mode": "ENGINEERING_MODEL",
+          "stage": "3",
+          "model_limitations": "Theoretical model from better-performing tests; limited deposit variability testing, oxidation/mineralogy/head-grade responses not defined; source p49",
+          "context_evidence": [
+            {
+              "page": 49,
+              "markers": [
+                "theoretical models for P2O5 and TREO",
+                "limited variability testing"
+              ]
+            }
+          ],
+          "rounding_half_width": 0.05,
+          "scope_kind": "CASE_MINE_PLAN",
+          "representativeness": "SCOPING_MINE_PLAN_MODEL_WITH_LIMITED_VARIABILITY_TESTING_NOT_OPERATING_MEASUREMENT"
+        },
+        {
+          "variable": "reported_scoping_concentrate_treo_grade_pct",
+          "value": 1.6,
+          "unit": "%",
+          "basis": "SOURCE_REPORTED_TREO_NO_FURTHER_BASIS_HARMONIZATION",
+          "scope": "Cummins Range Scoping Study Stage3 fresh-rock beneficiation mine-plan model to phosphate-REE mineral concentrate; not global MRE, DFS design, laboratory or operating recovery",
+          "statement_id": "cummins-range-scoping-stage3-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p61; Table10-4; Stage3 column; reported_scoping_concentrate_treo_grade_pct",
+          "pdf_page": 61,
+          "page_markers": [
+            "Table 10-4",
+            "TREO recovery % 67.2"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "role": "INTERMEDIATE_PRODUCT_GRADE",
+          "domain": "Technical",
+          "scale": "SCOPING_MODEL",
+          "feed": "STAGE_SPECIFIC_WHOLE_ORE",
+          "endpoint": "PHOSPHATE_REE_MINERAL_CONCENTRATE",
+          "statistic": "ENGINEERING_DESIGN",
+          "evidence_mode": "ENGINEERING_MODEL",
+          "stage": "3",
+          "model_limitations": "Theoretical model from better-performing tests; limited deposit variability testing, oxidation/mineralogy/head-grade responses not defined; source p49",
+          "context_evidence": [
+            {
+              "page": 49,
+              "markers": [
+                "theoretical models for P2O5 and TREO",
+                "limited variability testing"
+              ]
+            }
+          ],
+          "rounding_half_width": 0.05,
+          "scope_kind": "CASE_MINE_PLAN",
+          "representativeness": "SCOPING_MINE_PLAN_MODEL_WITH_LIMITED_VARIABILITY_TESTING_NOT_OPERATING_MEASUREMENT"
+        },
+        {
+          "variable": "reported_norm_uranium_ppm",
+          "value": 150,
+          "unit": "ppm",
+          "basis": "U_ELEMENT",
+          "scope": "Cummins Range DSO_ROCK: source-reported average from chemical assays/mine schedule or flotation testwork; not full resource or operating plant",
+          "statement_id": "cummins-range-norm-dso_rock-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p63; Section10.4 stream-specific uranium/thorium and reported specific activity; no conversion performed",
+          "pdf_page": 63,
+          "page_markers": [
+            "Radiation Management",
+            "150 ppm and 40 ppm",
+            "2.04 Bq/g"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "role": "NORM_ASSAY_OR_DESIGN_CONTEXT",
+          "statistic": "SOURCE_REPORTED_AVERAGE_OR_EQUIVALENT_ACTIVITY",
+          "scale": "SCOPING_ASSAY_AND_MINE_SCHEDULE_CONTEXT",
+          "endpoint": "DSO_ROCK"
+        },
+        {
+          "variable": "reported_norm_thorium_ppm",
+          "value": 40,
+          "unit": "ppm",
+          "basis": "Th_ELEMENT",
+          "scope": "Cummins Range DSO_ROCK: source-reported average from chemical assays/mine schedule or flotation testwork; not full resource or operating plant",
+          "statement_id": "cummins-range-norm-dso_rock-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p63; Section10.4 stream-specific uranium/thorium and reported specific activity; no conversion performed",
+          "pdf_page": 63,
+          "page_markers": [
+            "Radiation Management",
+            "150 ppm and 40 ppm",
+            "2.04 Bq/g"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "role": "NORM_ASSAY_OR_DESIGN_CONTEXT",
+          "statistic": "SOURCE_REPORTED_AVERAGE_OR_EQUIVALENT_ACTIVITY",
+          "scale": "SCOPING_ASSAY_AND_MINE_SCHEDULE_CONTEXT",
+          "endpoint": "DSO_ROCK"
+        },
+        {
+          "variable": "reported_norm_specific_activity_bq_g",
+          "value": 2.04,
+          "unit": "Bq/g",
+          "basis": "SOURCE_REPORTED_ACTIVITY_NO_NEW_CONVERSION",
+          "scope": "Cummins Range DSO_ROCK: source-reported average from chemical assays/mine schedule or flotation testwork; not full resource or operating plant",
+          "statement_id": "cummins-range-norm-dso_rock-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p63; Section10.4 stream-specific uranium/thorium and reported specific activity; no conversion performed",
+          "pdf_page": 63,
+          "page_markers": [
+            "Radiation Management",
+            "150 ppm and 40 ppm",
+            "2.04 Bq/g"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "role": "NORM_ASSAY_OR_DESIGN_CONTEXT",
+          "statistic": "SOURCE_REPORTED_AVERAGE_OR_EQUIVALENT_ACTIVITY",
+          "scale": "SCOPING_ASSAY_AND_MINE_SCHEDULE_CONTEXT",
+          "endpoint": "DSO_ROCK"
+        },
+        {
+          "variable": "reported_norm_uranium_ppm",
+          "value": 30,
+          "unit": "ppm",
+          "basis": "U_ELEMENT",
+          "scope": "Cummins Range PHOSPHATE_REE_MINERAL_CONCENTRATE: source-reported average from chemical assays/mine schedule or flotation testwork; not full resource or operating plant",
+          "statement_id": "cummins-range-norm-phosphate_ree_mineral_concentrate-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p63; Section10.4 stream-specific uranium/thorium and reported specific activity; no conversion performed",
+          "pdf_page": 63,
+          "page_markers": [
+            "Radiation Management",
+            "30 ppm and 70 ppm",
+            "0.66 Bq/g"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "role": "NORM_ASSAY_OR_DESIGN_CONTEXT",
+          "statistic": "SOURCE_REPORTED_AVERAGE_OR_EQUIVALENT_ACTIVITY",
+          "scale": "SCOPING_ASSAY_AND_MINE_SCHEDULE_CONTEXT",
+          "endpoint": "PHOSPHATE_REE_MINERAL_CONCENTRATE"
+        },
+        {
+          "variable": "reported_norm_thorium_ppm",
+          "value": 70,
+          "unit": "ppm",
+          "basis": "Th_ELEMENT",
+          "scope": "Cummins Range PHOSPHATE_REE_MINERAL_CONCENTRATE: source-reported average from chemical assays/mine schedule or flotation testwork; not full resource or operating plant",
+          "statement_id": "cummins-range-norm-phosphate_ree_mineral_concentrate-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p63; Section10.4 stream-specific uranium/thorium and reported specific activity; no conversion performed",
+          "pdf_page": 63,
+          "page_markers": [
+            "Radiation Management",
+            "30 ppm and 70 ppm",
+            "0.66 Bq/g"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "role": "NORM_ASSAY_OR_DESIGN_CONTEXT",
+          "statistic": "SOURCE_REPORTED_AVERAGE_OR_EQUIVALENT_ACTIVITY",
+          "scale": "SCOPING_ASSAY_AND_MINE_SCHEDULE_CONTEXT",
+          "endpoint": "PHOSPHATE_REE_MINERAL_CONCENTRATE"
+        },
+        {
+          "variable": "reported_norm_specific_activity_bq_g",
+          "value": 0.66,
+          "unit": "Bq/g",
+          "basis": "SOURCE_REPORTED_ACTIVITY_NO_NEW_CONVERSION",
+          "scope": "Cummins Range PHOSPHATE_REE_MINERAL_CONCENTRATE: source-reported average from chemical assays/mine schedule or flotation testwork; not full resource or operating plant",
+          "statement_id": "cummins-range-norm-phosphate_ree_mineral_concentrate-20230822",
+          "effective_date": "2023-08-22",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "locator": "physical PDF p63; Section10.4 stream-specific uranium/thorium and reported specific activity; no conversion performed",
+          "pdf_page": 63,
+          "page_markers": [
+            "Radiation Management",
+            "30 ppm and 70 ppm",
+            "0.66 Bq/g"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "role": "NORM_ASSAY_OR_DESIGN_CONTEXT",
+          "statistic": "SOURCE_REPORTED_AVERAGE_OR_EQUIVALENT_ACTIVITY",
+          "scale": "SCOPING_ASSAY_AND_MINE_SCHEDULE_CONTEXT",
+          "endpoint": "PHOSPHATE_REE_MINERAL_CONCENTRATE"
         }
       ]
     },
@@ -1103,6 +1701,276 @@
             "TREO"
           ],
           "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE"
+        },
+        {
+          "variable": "study_maturity_ord",
+          "value": 3,
+          "unit": "ordinal",
+          "basis": "DATED_PFS_COMPLETED",
+          "scope": "North Stanmore 2026 PFS to heavy rare earth-enriched mineral concentrate; 47.0Mt Probable Ore Reserve underpins production target; not all 278.8Mt updated MRE or earlier 2025 MRE",
+          "statement_id": "north-stanmore-pfs20260818-reaffirmed20261030",
+          "effective_date": "2026-10-30",
+          "source_key": "north_stanmore_quarter202610",
+          "source_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+          "locator": "physical PDF p1; Quarterly report dates released PFS to18Aug2026; full primary PFS not acquired",
+          "pdf_page": 1,
+          "page_markers": [
+            "On 18 August 2026",
+            "Feasibility Study ( PFS)",
+            "North Stanmore"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "category": "NOT_APPLICABLE",
+          "domain": "Development",
+          "date_role": "PFS_COMPLETION_REAFFIRMATION_DISCLOSURE_DATE",
+          "study_completion_date": "2026-08-18",
+          "current_stage_certification": false,
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "production target is underpinned entirely by the Probable Ore Reserve",
+                "excludes Inferred Mineral Resources and Exploration Targets"
+              ]
+            }
+          ]
+        },
+        {
+          "variable": "reported_resource_ore_mt",
+          "value": 278.8,
+          "unit": "Mt",
+          "basis": "UNHARMONIZED_SOURCE_REPORTED_TREO",
+          "scope": "North Stanmore updated2026 full MRE as reported in quarterly summary; not47.0Mt Probable Reserve or53.3Mt high-grade domain; full primary classification/basis table unavailable",
+          "statement_id": "north-stanmore-reported-updated-mre20260818",
+          "effective_date": "2026-08-18",
+          "source_key": "north_stanmore_quarter202610",
+          "source_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+          "locator": "physical PDF p2; Updated Mineral Resource Estimate paragraph; REVIEW only, no canonical resource overwrite",
+          "pdf_page": 2,
+          "page_markers": [
+            "updated MRE totals 278.8 Mt at 483 ppm TREO",
+            "70.7"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "category": "REPORTED_TOTAL_CLASSIFICATION_TABLE_NOT_VERIFIED",
+          "domain": "Resource",
+          "review_required": true,
+          "review_reason": "PRIMARY_20260818_RESOURCE_TABLE_UNAVAILABLE;REO_COMPONENT_DEFINITION_AND_CURRENT_CLASSIFICATION_NOT_HARMONIZED;PRESERVE_EARLIER_VERIFIED_RESOURCE_SEPARATELY",
+          "date_role": "QUARTER_REAFFIRMS_RESOURCE_RELEASED20260818",
+          "publication_date": "2026-10-30"
+        },
+        {
+          "variable": "reported_resource_treo_grade_ppm",
+          "value": 483,
+          "unit": "ppm",
+          "basis": "UNHARMONIZED_SOURCE_REPORTED_TREO",
+          "scope": "North Stanmore updated2026 full MRE as reported in quarterly summary; not47.0Mt Probable Reserve or53.3Mt high-grade domain; full primary classification/basis table unavailable",
+          "statement_id": "north-stanmore-reported-updated-mre20260818",
+          "effective_date": "2026-08-18",
+          "source_key": "north_stanmore_quarter202610",
+          "source_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+          "locator": "physical PDF p2; Updated Mineral Resource Estimate paragraph; REVIEW only, no canonical resource overwrite",
+          "pdf_page": 2,
+          "page_markers": [
+            "updated MRE totals 278.8 Mt at 483 ppm TREO",
+            "70.7"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "category": "REPORTED_TOTAL_CLASSIFICATION_TABLE_NOT_VERIFIED",
+          "domain": "Resource",
+          "review_required": true,
+          "review_reason": "PRIMARY_20260818_RESOURCE_TABLE_UNAVAILABLE;REO_COMPONENT_DEFINITION_AND_CURRENT_CLASSIFICATION_NOT_HARMONIZED;PRESERVE_EARLIER_VERIFIED_RESOURCE_SEPARATELY",
+          "date_role": "QUARTER_REAFFIRMS_RESOURCE_RELEASED20260818",
+          "publication_date": "2026-10-30"
+        },
+        {
+          "variable": "reported_tima_dy_secondary_phosphate_deportment_pct",
+          "value": 86,
+          "unit": "%",
+          "basis": "ELEMENT_DEPORTMENT_IN_PILOT_CONCENTRATE_NOT_REO_RECOVERY",
+          "scope": "North Stanmore TIMA pilot-concentrate composite:33air-core samples/18holes within Indicated areas; combined churchite/rhabdophane/interphase host groups; not resource-wide distribution or leach recovery",
+          "statement_id": "north-stanmore-tima20260730-reaffirmed20261030",
+          "effective_date": "2026-10-30",
+          "source_key": "north_stanmore_quarter202610",
+          "source_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+          "locator": "physical PDF p5; Table2 host deportment; expressly not leach recovery, reagent consumption or final conditions",
+          "pdf_page": 5,
+          "page_markers": [
+            "Table 2. Indicative deportment",
+            "86",
+            "does not by itself"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "role": "MINERAL_HOST_DEPORTMENT",
+          "scale": "PILOT_CONCENTRATE_CHARACTERIZATION",
+          "endpoint": "MINERAL_HOST_FRACTION",
+          "statistic": "INDICATIVE_MINERAL_HOST_DEPORTMENT",
+          "sample_population": "Composite of33air-core samples from18drillholes within Indicated MRE areas",
+          "mineral_host": "CHURCHITE_AND_SIMILAR",
+          "source_uncertainty": "VERY_HIGH",
+          "uncertainty_limits": "Source:high uncertainty Pr/Nd and very high Tb/Dy; recommends LA-ICP-MS; no numeric error range inferred",
+          "date_role": "QUARTER_REAFFIRMS_30JUL2026_TIMA_RERELEASED4AUG2026"
+        },
+        {
+          "variable": "reported_tima_tb_secondary_phosphate_deportment_pct",
+          "value": 82,
+          "unit": "%",
+          "basis": "ELEMENT_DEPORTMENT_IN_PILOT_CONCENTRATE_NOT_REO_RECOVERY",
+          "scope": "North Stanmore TIMA pilot-concentrate composite:33air-core samples/18holes within Indicated areas; combined churchite/rhabdophane/interphase host groups; not resource-wide distribution or leach recovery",
+          "statement_id": "north-stanmore-tima20260730-reaffirmed20261030",
+          "effective_date": "2026-10-30",
+          "source_key": "north_stanmore_quarter202610",
+          "source_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+          "locator": "physical PDF p5; Table2 host deportment; expressly not leach recovery, reagent consumption or final conditions",
+          "pdf_page": 5,
+          "page_markers": [
+            "Table 2. Indicative deportment",
+            "82",
+            "does not by itself"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "role": "MINERAL_HOST_DEPORTMENT",
+          "scale": "PILOT_CONCENTRATE_CHARACTERIZATION",
+          "endpoint": "MINERAL_HOST_FRACTION",
+          "statistic": "INDICATIVE_MINERAL_HOST_DEPORTMENT",
+          "sample_population": "Composite of33air-core samples from18drillholes within Indicated MRE areas",
+          "mineral_host": "CHURCHITE_AND_SIMILAR",
+          "source_uncertainty": "VERY_HIGH",
+          "uncertainty_limits": "Source:high uncertainty Pr/Nd and very high Tb/Dy; recommends LA-ICP-MS; no numeric error range inferred",
+          "date_role": "QUARTER_REAFFIRMS_30JUL2026_TIMA_RERELEASED4AUG2026"
+        },
+        {
+          "variable": "reported_tima_y_secondary_phosphate_deportment_pct",
+          "value": 96,
+          "unit": "%",
+          "basis": "ELEMENT_DEPORTMENT_IN_PILOT_CONCENTRATE_NOT_REO_RECOVERY",
+          "scope": "North Stanmore TIMA pilot-concentrate composite:33air-core samples/18holes within Indicated areas; combined churchite/rhabdophane/interphase host groups; not resource-wide distribution or leach recovery",
+          "statement_id": "north-stanmore-tima20260730-reaffirmed20261030",
+          "effective_date": "2026-10-30",
+          "source_key": "north_stanmore_quarter202610",
+          "source_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+          "locator": "physical PDF p5; Table2 host deportment; expressly not leach recovery, reagent consumption or final conditions",
+          "pdf_page": 5,
+          "page_markers": [
+            "Table 2. Indicative deportment",
+            "96",
+            "does not by itself"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "role": "MINERAL_HOST_DEPORTMENT",
+          "scale": "PILOT_CONCENTRATE_CHARACTERIZATION",
+          "endpoint": "MINERAL_HOST_FRACTION",
+          "statistic": "INDICATIVE_MINERAL_HOST_DEPORTMENT",
+          "sample_population": "Composite of33air-core samples from18drillholes within Indicated MRE areas",
+          "mineral_host": "COMBINED_SECONDARY_PHOSPHATES",
+          "source_uncertainty": "NOT_SPECIFIED",
+          "uncertainty_limits": "Source:high uncertainty Pr/Nd and very high Tb/Dy; recommends LA-ICP-MS; no numeric error range inferred",
+          "date_role": "QUARTER_REAFFIRMS_30JUL2026_TIMA_RERELEASED4AUG2026"
+        },
+        {
+          "variable": "reported_tima_pr_secondary_phosphate_deportment_pct",
+          "value": 88,
+          "unit": "%",
+          "basis": "ELEMENT_DEPORTMENT_IN_PILOT_CONCENTRATE_NOT_REO_RECOVERY",
+          "scope": "North Stanmore TIMA pilot-concentrate composite:33air-core samples/18holes within Indicated areas; combined churchite/rhabdophane/interphase host groups; not resource-wide distribution or leach recovery",
+          "statement_id": "north-stanmore-tima20260730-reaffirmed20261030",
+          "effective_date": "2026-10-30",
+          "source_key": "north_stanmore_quarter202610",
+          "source_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+          "locator": "physical PDF p5; Table2 host deportment; expressly not leach recovery, reagent consumption or final conditions",
+          "pdf_page": 5,
+          "page_markers": [
+            "Table 2. Indicative deportment",
+            "88",
+            "does not by itself"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "role": "MINERAL_HOST_DEPORTMENT",
+          "scale": "PILOT_CONCENTRATE_CHARACTERIZATION",
+          "endpoint": "MINERAL_HOST_FRACTION",
+          "statistic": "INDICATIVE_MINERAL_HOST_DEPORTMENT",
+          "sample_population": "Composite of33air-core samples from18drillholes within Indicated MRE areas",
+          "mineral_host": "RHABDOPHANE_AND_SIMILAR",
+          "source_uncertainty": "HIGH",
+          "uncertainty_limits": "Source:high uncertainty Pr/Nd and very high Tb/Dy; recommends LA-ICP-MS; no numeric error range inferred",
+          "date_role": "QUARTER_REAFFIRMS_30JUL2026_TIMA_RERELEASED4AUG2026"
+        },
+        {
+          "variable": "reported_tima_nd_secondary_phosphate_deportment_pct",
+          "value": 91,
+          "unit": "%",
+          "basis": "ELEMENT_DEPORTMENT_IN_PILOT_CONCENTRATE_NOT_REO_RECOVERY",
+          "scope": "North Stanmore TIMA pilot-concentrate composite:33air-core samples/18holes within Indicated areas; combined churchite/rhabdophane/interphase host groups; not resource-wide distribution or leach recovery",
+          "statement_id": "north-stanmore-tima20260730-reaffirmed20261030",
+          "effective_date": "2026-10-30",
+          "source_key": "north_stanmore_quarter202610",
+          "source_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+          "locator": "physical PDF p5; Table2 host deportment; expressly not leach recovery, reagent consumption or final conditions",
+          "pdf_page": 5,
+          "page_markers": [
+            "Table 2. Indicative deportment",
+            "91",
+            "does not by itself"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "role": "MINERAL_HOST_DEPORTMENT",
+          "scale": "PILOT_CONCENTRATE_CHARACTERIZATION",
+          "endpoint": "MINERAL_HOST_FRACTION",
+          "statistic": "INDICATIVE_MINERAL_HOST_DEPORTMENT",
+          "sample_population": "Composite of33air-core samples from18drillholes within Indicated MRE areas",
+          "mineral_host": "RHABDOPHANE_AND_SIMILAR",
+          "source_uncertainty": "HIGH",
+          "uncertainty_limits": "Source:high uncertainty Pr/Nd and very high Tb/Dy; recommends LA-ICP-MS; no numeric error range inferred",
+          "date_role": "QUARTER_REAFFIRMS_30JUL2026_TIMA_RERELEASED4AUG2026"
+        },
+        {
+          "variable": "reported_tima_samples_n",
+          "value": 33,
+          "unit": "samples",
+          "basis": "TIMA_PILOT_COMPOSITE_POPULATION",
+          "scope": "North Stanmore single TIMA pilot-concentrate composite; sample/drillhole counts are not independent Project replicates",
+          "statement_id": "north-stanmore-tima20260730-reaffirmed20261030",
+          "effective_date": "2026-10-30",
+          "source_key": "north_stanmore_quarter202610",
+          "source_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+          "locator": "physical PDF p5; TIMA population paragraph; evidence quality only, not development score",
+          "pdf_page": 5,
+          "page_markers": [
+            "composite of 33",
+            "samples from 18 drill holes"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "role": "TEST_POPULATION",
+          "scale": "PILOT_CONCENTRATE_CHARACTERIZATION",
+          "sample_population": "One composite from33air-core samples/18drillholes; one Project"
+        },
+        {
+          "variable": "reported_tima_drillholes_n",
+          "value": 18,
+          "unit": "drillholes",
+          "basis": "TIMA_PILOT_COMPOSITE_POPULATION",
+          "scope": "North Stanmore single TIMA pilot-concentrate composite; sample/drillhole counts are not independent Project replicates",
+          "statement_id": "north-stanmore-tima20260730-reaffirmed20261030",
+          "effective_date": "2026-10-30",
+          "source_key": "north_stanmore_quarter202610",
+          "source_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+          "locator": "physical PDF p5; TIMA population paragraph; evidence quality only, not development score",
+          "pdf_page": 5,
+          "page_markers": [
+            "composite of 33",
+            "samples from 18 drill holes"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "domain": "Technical",
+          "role": "TEST_POPULATION",
+          "scale": "PILOT_CONCENTRATE_CHARACTERIZATION",
+          "sample_population": "One composite from33air-core samples/18drillholes; one Project"
         }
       ]
     },
@@ -2223,6 +3091,29 @@
           "finance_state": "CONDITIONAL_NOT_DISBURSED",
           "conditions": "Tranche1: LR7.1 shareholder approval+customary; Tranche2: shareholder approval, equitysubstantiallyspent,FID,fullyfunded,financialclose,Ilukaduediligence; offtake: FID,funding,approvals,production,Ilukafinancierapproval; possiblepricesuspension",
           "terms_conflict": "Iluka AppendixA says take-or-pay; VHM describes take-and-pay; retain source terms pending executed contract"
+        },
+        {
+          "variable": "study_maturity_ord",
+          "value": 4,
+          "unit": "ordinal",
+          "basis": "DATED_DFS_REAFFIRMED",
+          "scope": "Goschen Area 1 DFS completed in 2023, reaffirmed in 2025 MRE; does not describe current project activity, Area3 or Cannie",
+          "statement_id": "goschen-area1-dfs2023-reaffirmed20251015",
+          "effective_date": "2025-10-15",
+          "source_key": "goschen_mre2025",
+          "source_sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
+          "locator": "physical PDF p8; Cut-off grades: source explicitly identifies completed 2023 Area1 DFS",
+          "pdf_page": 8,
+          "page_markers": [
+            "2023 Definitive Feasibility Study completed for Area 1 by VHM"
+          ],
+          "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
+          "category": "NOT_APPLICABLE",
+          "domain": "Development",
+          "date_role": "REPORTED_DFS_COMPLETION_REAFFIRMATION_DATE",
+          "study_completion_date": "2023",
+          "completion_date_precision": "YEAR",
+          "current_stage_certification": false
         }
       ],
       "coordinate_source": "ga_aimr",
@@ -3720,6 +4611,71 @@
         "Tetra Tech Coffey"
       ],
       "conditions": "ESAP tranche/action signoff is not contractual funding close or environmental mining licence grant"
+    },
+    {
+      "event_id": "cummins-range-proposed-funding20230822",
+      "project_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "project_native_id": "cummins-range",
+      "source_key": "cummins_scoping2023",
+      "pdf_page": 6,
+      "page_markers": [
+        "funding is",
+        "proposed through a combination of grant, debt, and equity",
+        "no pending applications"
+      ],
+      "locator": "physical PDF p6; funding-proposal and no-pending-applications paragraphs",
+      "event_type": "FINANCING",
+      "attribution": "PROJECT",
+      "scope": "Cummins Range enhanced Scoping Study project funding proposal; named government schemes are possible routes, not awards/approved loans; Stage CAPEX not financing amount",
+      "effective_date": "2023-08-22",
+      "date_role": "DATED_FINANCING_PLAN_DISCLOSURE",
+      "valid_from": null,
+      "valid_to": null,
+      "currentness": "DATED_DISCLOSURE_NOT_CERTIFICATION_OF_CURRENT_AVAILABILITY",
+      "finance_state": "PLANNED_OR_NONBINDING",
+      "facility_id": "cummins-range-scoping-funding-plan",
+      "conditions_status": "NO_COMMITMENT_RECORDED",
+      "agreement_state": "PROPOSED_NO_APPLICATIONS_REPORTED",
+      "conditions": "Source states no pending applications for listed government initiatives; grant/debt/equity only proposed; no loan approval, agreement, financial close or drawdown established",
+      "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07"
+    },
+    {
+      "event_id": "north-stanmore-exim-loi-reaffirmed20261030",
+      "project_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "project_native_id": "north-stanmore",
+      "source_key": "north_stanmore_quarter202610",
+      "pdf_page": 3,
+      "page_markers": [
+        "US EXIM Letter of Interest for up to US$190 million",
+        "project debt, strategic equity"
+      ],
+      "context_evidence": [
+        {
+          "page": 2,
+          "markers": [
+            "Funding options under re view include the non-binding"
+          ]
+        }
+      ],
+      "locator": "physical PDF pp2-3; Next steps funding options paragraph continued across page boundary",
+      "event_type": "FINANCING",
+      "attribution": "PROJECT",
+      "scope": "North Stanmore project:non-binding US EXIM LOI remains funding option under review; not approved project finance, company cash, executed agreement or available funds",
+      "effective_date": "2026-10-30",
+      "date_role": "QUARTERLY_REAFFIRMATION_OF_NONBINDING_LOI_ORIGINAL_ISSUE_DATE_NOT_ESTABLISHED",
+      "valid_from": null,
+      "valid_to": null,
+      "currentness": "DATED_DISCLOSURE_NOT_CERTIFICATION_OF_CURRENT_AVAILABILITY",
+      "finance_state": "PLANNED_OR_NONBINDING",
+      "facility_id": "north-stanmore-exim-loi",
+      "conditions_status": "UNKNOWN_NO_COMMITMENT",
+      "agreement_state": "NON_BINDING_LETTER_OF_INTEREST",
+      "counterparty": "Export-Import Bank of the United States",
+      "conditions": "Funding options under review; non-binding letter of interest only. No conditions satisfaction, loan agreement, approval, financial close or drawdown evidenced",
+      "amount": 190,
+      "amount_unit": "USD million",
+      "amount_kind": "UP_TO_NONBINDING_INDICATIVE_LIMIT_NOT_COMMITTED_OR_DISBURSED",
+      "source_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c"
     }
   ]
 }
