@@ -41,6 +41,10 @@ def execute(args):
     if args.dry_run:
         return {'status':'DRY_RUN','module':args.module,'cutoff':args.as_of,'root':str(root),
                 'snapshot_count':len(select_snapshots(root,args.as_of)), 'writes':False}
+    if args.module=='pdf-extract':
+        from .pdf_extract import capture_pages
+        source=next(s for s in select_snapshots(root,args.as_of) if s['key']==args.source_key)
+        return {'pages':capture_pages(root,source,[int(p) for p in args.pages.split(',')],args.tessdata)}
     acquisition=[]
     if args.module=='discover':
         from .discovery import discover
@@ -85,7 +89,7 @@ def execute(args):
         hierarchy=build_hierarchy(db,snapshots)
         identity=resolve(db,root,snapshots,args.as_of)
         technical_rows=technical_coverage(db,identity,resources,cases,{s['sha256'] for s in snapshots})
-        write_csv(out/'technical_project_coverage.csv',technical_rows,['canonical_project_id','member_entity_ids','status','resource_scopes','study_case_ids','other_stage_evidence','unverified_or_other_scope_claims','interpretation'])
+        write_csv(out/'technical_project_coverage.csv',technical_rows,['canonical_project_id','member_entity_ids','status','resource_scopes','study_case_ids','other_stage_evidence','shared_resource_context','unverified_or_other_scope_claims','interpretation'])
         hierarchy=build_hierarchy(db,snapshots)
         write_csv(out/'native_identity_ledger.csv',identity['ledger'],['source_record_id','target_id','state','source_key','native_id','resolved_entities','status','source_sha256'])
         write_csv(out/'canonical_membership.csv',identity['membership'],['entity_id','kind','canonical_id','status'])
@@ -248,12 +252,15 @@ def execute(args):
             'cohort_sensitivity': 'NOT_ESTIMABLE_AFTER_DELETION_N_LT_2' if len(resources)<3 else 'LEAVE_ONE_PROJECT_OUT',
             'aim_c': ('NATIONAL_DEPOSIT_GEOGRAPHY_AND_WA_STATUS_SCORE_ASSOCIATION_DESCRIPTIVE_NOT_CAUSAL'
                       if deposit_gis else 'EXTERNAL_INFERENCE_NOT_COMPLETED_INSUFFICIENT_SAMPLE_AND_PREDICTORS'),
-            'open_review_issues':len(issues),'limitations':config['limitations'],
+            'open_review_issues':sum(r['status']=='OPEN' for r in issues),'limitations':config['limitations'],
             'independent_human_approval':'NOT_CLAIMED','output_dir':str(out)}
         import shapely, pyproj, pypdf
         summary['environment']={'python':platform.python_version(),'shapely':shapely.__version__,
                                 'pyproj':pyproj.__version__,'PROJ':pyproj.proj_version_str,
                                 'pypdf':pypdf.__version__}
+        if args.compare_to:
+            from .analysis import compare_runs
+            summary['comparison']=compare_runs(args.compare_to,out)
         output_hashes={p.relative_to(out).as_posix():filehash(p) for p in sorted(out.rglob('*')) if p.is_file()}
         summary['output_hashes']=output_hashes
         (out/'summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
@@ -283,7 +290,7 @@ def execute(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover'])
+    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract'])
     parser.add_argument('--root',default='.')
     parser.add_argument('--work')
     parser.add_argument('--as-of',default=datetime.now(timezone.utc).date().isoformat())
@@ -293,6 +300,8 @@ def main():
     parser.add_argument('--skip-r',action='store_true')
     parser.add_argument('--rscript')
     parser.add_argument('--snapshot-lock',help='Exact immutable snapshot_lock.json from a prior run')
+    parser.add_argument('--compare-to',help='Frozen prior run/results folder for coverage and rank comparison')
+    parser.add_argument('--source-key');parser.add_argument('--pages',default='1');parser.add_argument('--tessdata')
     parser.add_argument('--before');parser.add_argument('--after')
     args=parser.parse_args()
     try:

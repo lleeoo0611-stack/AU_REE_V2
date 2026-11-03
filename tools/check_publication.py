@@ -18,7 +18,12 @@ paths=[p for p in sorted(files) if p.suffix.lower() in
        ('.json','.jsonl','.csv','.md','.yml','.yaml','.py','.r','.toml','.geojson','.html')]
 found=[]
 for path in paths:
-    if sensitive_reference(path.read_text(encoding='utf-8-sig')):
+    raw=path.read_bytes()
+    if raw.startswith(b'%PDF'):
+        import pymupdf
+        with pymupdf.open(stream=raw,filetype='pdf') as doc:content='\n'.join(page.get_text() for page in doc)
+    else:content=raw.decode('utf-8-sig')
+    if sensitive_reference(content):
         found.append(path.relative_to(ROOT).as_posix())
 if found:raise SystemExit('Credential-like URL parameters: '+', '.join(found))
 for manifest in (ROOT/'results').glob('*/provenance.json'):

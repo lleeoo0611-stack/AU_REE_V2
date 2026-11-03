@@ -112,6 +112,9 @@ def official_inventory(db, selected_shas):
                        "source_sha256":r["source_sha"],"locator":payload["locator"],
                        "confidence":"OFFICIAL_SUMMARY_ONLY_NOT_C1",
                        "pdf_url":payload["pdf_url"]})
+    original=next((r for r in db.execute("SELECT sha FROM sources WHERE source_key='wa_dmpe_ree2026_original'") if selected_shas is None or r['sha'] in selected_shas),None)
+    if original:
+        for row in output:row['locator']=row['locator'].replace('physical PDF page 1','original physical PDF page 2')+'; original PDF SHA256='+original['sha']+'; legacy transcription retained'
     return sorted(output,key=lambda r:r["project_name"])
 
 def exact_deposit_candidates(db, inventory, selected_shas):

@@ -103,6 +103,9 @@ def transformation_issues(o, siblings, depth=0):
             if t['rule']=='SUM_OXIDE_PPM':
                 assert len(inputs)==2 and {x['basis'] for x in inputs}=={'LANTHANIDE_OXIDES','Y2O3'} and o['basis']=='TREO' and o['unit']=='ppm'
                 expected=sum(x['value'] for x in inputs)
+            elif t['rule']=='SUM_MAGNET_OXIDE_PPM':
+                assert len(inputs)==4 and {x['basis'] for x in inputs}=={'Pr6O11','Nd2O3','Tb4O7','Dy2O3'} and o['basis']=='PrNdDyTb_OXIDES' and o['unit']=='ppm'
+                expected=sum(x['value'] for x in inputs)
             elif t['rule']=='RATIO_PPM_PERCENT':
                 assert len(inputs)==2 and inputs[0]['basis']=='PrNdDyTb_OXIDES' and inputs[1]['basis']=='TREO' and inputs[1]['value']>0 and o['unit']=='%'
                 expected=100*inputs[0]['value']/inputs[1]['value']
@@ -117,10 +120,11 @@ def ingest_claims(db, root, snapshots, cutoff, project=None):
     for p in claims['projects']:
         if project and p['id'] != project:
             continue
+        if any(key not in by_key for key in p.get('required_source_keys',[])):continue
         source = by_key.get(p['identity_source'])
         if not source:
             continue
-        eid = entity(db, p.get('entity_namespace','project_registry_v1'), p['id'], 'PROJECT')
+        eid = entity(db, p.get('entity_namespace','project_registry_v1'), p['id'], p.get('entity_kind','PROJECT'))
         db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
                    (eid, source['sha256'], p['name'], p['state'], p.get('longitude'), p.get('latitude'),
                     p.get('deposit_type'), None, canonical(p)))
@@ -149,6 +153,12 @@ def ingest_claims(db, root, snapshots, cutoff, project=None):
                 from pypdf import PdfReader
                 try:
                     text = PdfReader(Path(root)/s['path']).pages[o['pdf_page']-1].extract_text()
+                    if o.get('page_extraction_key'):
+                        artifact=by_key[o['page_extraction_key']]
+                        if artifact['sha256']!=o['page_extraction_sha256']:raise ValueError('Page artifact version mismatch')
+                        data=json.loads((Path(root)/artifact['path']).read_text(encoding='utf-8'))
+                        if data['source_sha256']!=s['sha256'] or data['physical_page']!=o['pdf_page'] or data['status']!='EXTRACTED_REQUIRES_SCOPE_VALIDATION':raise ValueError('Page extraction source/page/status mismatch')
+                        text=data['text']
                     if not all(marker in text for marker in o.get('page_markers', [])):
                         reasons.append('EXTRACTION_PAGE_CHECK_FAILED')
                 except Exception:

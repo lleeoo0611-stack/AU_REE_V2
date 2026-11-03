@@ -37,7 +37,7 @@ jobs:
       - name: Frozen research reconstruction
         run: au-ree-v2 all --as-of 2026-11-02 --work work/frozen
       - name: Primary-evidence expansion and infrastructure reconstruction
-        run: au-ree-v2 all --as-of 2026-11-03 --work work/primary
+        run: au-ree-v2 all --as-of 2026-11-03 --compare-to results/phase4-2026-11-03 --work work/primary
       - name: Incremental public update (isolated live-source smoke)
         id: live
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)

@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from shapely.geometry import shape, Point
 from shapely.ops import transform
+from shapely.strtree import STRtree
 from pyproj import Transformer
 from .store import canonical, issue
 from .spatial import covered_project
@@ -59,6 +60,12 @@ def run(db, root, snapshots, run_id, project_ids):
         if inventory.get('scope','global') not in ('global','registered_project_aoi'):
             issue(db,None,s['sha256'],'GIS_UNKNOWN_COVERAGE_SCOPE',s['key'])
             continue
+        try:
+            geoms=[geometry(f) for f in data['features']]
+            if not geoms or any(g.is_empty or not g.is_valid for g in geoms):raise ValueError('Empty or invalid layer geometry')
+            projected=[transform(PROJECT,g) for g in geoms];tree=STRtree(projected)
+        except Exception as exc:
+            issue(db,None,s['sha256'],'GIS_FAILED',str(exc));continue
         for eid in project_ids:
             record = representative_coordinate(db,eid,source_shas)
             if record is None:
@@ -76,7 +83,8 @@ def run(db, root, snapshots, run_id, project_ids):
                     continue
                 radius=coverage['radius_km']
             try:
-                distance = nearest(record['longitude'], record['latitude'],data['features'])
+                point=transform(PROJECT,Point(record['longitude'],record['latitude']))
+                distance=point.distance(projected[int(tree.nearest(point))])/1000
                 # AOI inventory proves only distances strictly inside the source radius.
                 if radius is not None and distance >= radius - 0.0001:
                     issue(db,eid,s['sha256'],'GIS_NEAREST_OUTSIDE_AOI_RADIUS',

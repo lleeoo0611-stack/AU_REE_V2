@@ -15,6 +15,65 @@ def write_csv(path, rows, columns):
         writer.writeheader()
         writer.writerows(rows)
 
+
+def compare_runs(before, after):
+    """Compare frozen evidence coverage and ranks without pooling their cohorts."""
+    from .store import filehash
+    before,after=Path(before),Path(after)
+    def read(folder,name):
+        path=folder/name
+        if not path.exists():return None
+        with path.open(encoding='utf-8-sig',newline='') as stream:return list(csv.DictReader(stream))
+    def measures(folder):
+        result={}
+        for key,name in [('unresolved_pairs','unresolved_identity_pairs.csv'),('primary_scope_gaps','primary_scope_gaps.csv'),('resource_defined','resources.csv')]:
+            rows=read(folder,name);result[key]=None if rows is None else len(rows)
+        path=folder/'snapshot_lock.json'
+        snapshots=json.loads(path.read_text()) if path.exists() else None
+        result['source_snapshots']=None if snapshots is None else len(snapshots)
+        result['pdf_snapshots']=None if snapshots is None else sum(s['kind']=='pdf' for s in snapshots)
+        database=folder/'logical_database.json'
+        result['validated_statement_values']=None
+        if database.exists() and snapshots is not None:
+            locked={s['key']:s['sha256'] for s in snapshots};selected=set(locked.values());unique=set()
+            for observation in json.loads(database.read_text(encoding='utf-8'))['observations']:
+                if observation['status']!='AUTO_VALIDATED' or observation['source_sha'] not in selected:continue
+                raw=json.loads(observation['raw'])
+                if raw.get('page_extraction_key') and locked.get(raw['page_extraction_key'])!=raw.get('page_extraction_sha256'):continue
+                unique.add(canonical({k:observation[k] for k in ('entity_id','variable','value','unit','basis','scope','statement_id','effective_date','source_sha')}))
+            result['validated_statement_values']=len(unique)
+        cov=read(folder,'cohort_coverage.csv')
+        for key in ('development','full_evidence'):result[key]=None if cov is None else sum(int(r[key]) for r in cov)
+        membership=read(folder,'canonical_membership.csv') or []
+        canonical_ids={r['entity_id']:r['canonical_id'] for r in membership}
+        result['canonical_registry_groups']=len({r['canonical_id'] for r in membership if r['kind']=='PROJECT'}) if membership else None
+        domains=read(folder,'project_domain_evidence.csv')
+        for domain in ('Resource','Strategic','Technical','Development','Infrastructure','Commercial'):
+            result['scorable_'+domain]=None if domains is None else len({canonical_ids.get(r['project_id'],r['project_id']) for r in domains if r['domain']==domain and r['scorable']=='1'})
+        return result
+    a,b=measures(before),measures(after)
+    metrics=[dict(metric=k,before=a[k],after=b[k],change=None if a[k] is None or b[k] is None else b[k]-a[k]) for k in a]
+    cohorts=[];ranks=[];inputs={}
+    for matrix in sorted(after.glob('*/matrix.csv')):
+        panel=matrix.parent.name;old=read(before,panel+'/matrix.csv');new=read(after,panel+'/matrix.csv')
+        cohorts.append(dict(panel=panel,before_n=None if old is None else len(old),after_n=len(new)))
+        old_r=read(before,panel+'/ranking.csv');new_r=read(after,panel+'/ranking.csv')
+        if old_r is None or new_r is None:continue
+        for folder,label in ((before,'before'),(after,'after')):inputs[label+'/'+panel+'/ranking.csv']=filehash(folder/panel/'ranking.csv')
+        old_by_key={(r['scenario'],r['project_id']):r for r in old_r}
+        for row in new_r:
+            prior=old_by_key.get((row['scenario'],row['project_id']))
+            for method in ('promethee','saw','topsis'):
+                rank=method+'_rank'
+                ranks.append(dict(panel=panel,scenario=row['scenario'],project_id=row['project_id'],project_name=row['project_name'],method=method,before_rank=None if prior is None else prior[rank],after_rank=row[rank],rank_change=None if prior is None else float(row[rank])-float(prior[rank]),cohort_state='NEW_ALTERNATIVE' if prior is None else 'COMMON_ALTERNATIVE_COHORT_AND_EVIDENCE_MAY_CHANGE'))
+    write_csv(after/'comparison_metrics.csv',metrics,['metric','before','after','change'])
+    write_csv(after/'comparison_cohorts.csv',cohorts,['panel','before_n','after_n'])
+    write_csv(after/'comparison_ranks.csv',ranks,['panel','scenario','project_id','project_name','method','before_rank','after_rank','rank_change','cohort_state'])
+    for folder,label in ((before,'before'),(after,'after')):
+        if (folder/'snapshot_lock.json').exists():inputs[label+'/snapshot_lock.json']=filehash(folder/'snapshot_lock.json')
+    (after/'comparison_provenance.json').write_text(json.dumps({'inputs':inputs,'interpretation':'COHORT_AND_EVIDENCE_CHANGE_NOT_TEMPORAL_PROJECT_DEVELOPMENT_OR_CAUSAL_EFFECT'},indent=2)+'\n',encoding='utf-8')
+    return {'before':a,'after':b,'cohorts':cohorts}
+
 def score(value, criterion, alternative=False):
     low, high = criterion['low'], criterion['high']
     if not math.isfinite(value) or high <= low:
@@ -42,6 +101,10 @@ def _official_wa_resource_screen(db,cutoff,snapshots,config,criteria,out,project
     if policy['source_key'] not in by_key:
         return rows,traces
     source=by_key[policy['source_key']]
+    from .evidence import resource_values
+    from .store import issue
+    primary=resource_values(db,cutoff,selected_shas) if 'wa_dmpe_ree2026_original' in by_key else {}
+    excluded=[]
     for rec in official_inventory(db,selected_shas):
         if rec['source_sha256'] != source['sha256'] or rec['resource_date']>cutoff:
             continue
@@ -52,6 +115,14 @@ def _official_wa_resource_screen(db,cutoff,snapshots,config,criteria,out,project
                 continue
         if rec['basis']!='TREO' or rec['category']!='UNSPECIFIED_MINERAL_RESOURCE' or rec['confidence']!='OFFICIAL_SUMMARY_ONLY_NOT_C1':
             raise ValueError('Government screen accidentally admitted verified C1 or incompatible basis')
+        matched=primary.get(rec['project_id'])
+        primary_source=next((s for s in snapshots if matched and s['sha256']==matched['source_sha']),{})
+        same_statement=matched and (matched['date']==rec['resource_date'] or primary_source.get('publication_date')==rec['resource_date'])
+        if matched and same_statement and abs(matched['ore_mt']-rec['ore_mt'])<=.001*rec['ore_mt']:
+            ratio=rec['grade_pct']/matched['grade_pct']
+            if ratio>2 or ratio<.5:
+                detail=dict(project_id=rec['project_id'],project_name=rec['project_name'],government_original_pdf_sha256=by_key['wa_dmpe_ree2026_original']['sha256'],government_original_pdf_page=2,government_grade_pct=rec['grade_pct'],primary_grade_pct=matched['grade_pct'],grade_ratio=ratio,government_sha256=rec['source_sha256'],primary_sha256=matched['source_sha'],reason='SAME_DATE_TONNAGE_PRIMARY_GRADE_DISAGREEMENT_NOT_CORRECTED_BY_IMPUTATION')
+                excluded.append(detail);issue(db,rec['project_id'],rec['source_sha256'],'OFFICIAL_PRIMARY_GRADE_CONFLICT',canonical(detail));continue
         variables={'R1':rec['contained_treo_kt'],'R2':rec['grade_pct']}
         row={'project_id':rec['project_id'],'project_name':rec['project_name'],
              'scope':'WA_GOVERNMENT_RESOURCE_SUMMARY_NOT_ISSUER_HARMONIZED',
@@ -79,6 +150,7 @@ def _official_wa_resource_screen(db,cutoff,snapshots,config,criteria,out,project
                                                'source_scope':'government_project_summary_not_JORC_harmonized'}),
                            'scoring':canonical(c)})
         rows.append(row)
+    write_csv(Path(out)/'official_summary_exclusions.csv',excluded,['project_id','project_name','government_original_pdf_sha256','government_original_pdf_page','government_grade_pct','primary_grade_pct','grade_ratio','government_sha256','primary_sha256','reason'])
     folder=Path(out)/'official_wa_resource_screen'
     write_csv(folder/'matrix.csv',rows,
               ['project_id','project_name','scope','official_status','raw_contained_treo_kt',
@@ -119,7 +191,7 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
         for r in db.execute("SELECT * FROM observations WHERE entity_id=? AND status='AUTO_VALIDATED' AND effective_date<=? ORDER BY effective_date",(eid,cutoff)):
             if r['source_sha'] in selected_shas and r['variable'] not in ('contained_treo_kt','ore_mt','grade'):
                 values[r['variable']] = r['value']
-                provenance[r['variable']] = {'obs_ids':[r['obs_id']], 'source_sha':r['source_sha']}
+                provenance[r['variable']] = {'obs_ids':[r['obs_id']], 'source_sha':r['source_sha'],'raw':json.loads(r['raw'])}
         for key, v in gis_values.get(eid,{}).items():
             values[key]=v['value'];provenance[key]=v
         scored={code:score(values[c['variable']],c) for code,c in criteria.items() if c['variable'] in values}
@@ -145,7 +217,9 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
                 row[code]=scored[code]
                 row[code+'_alt']=score(raw,c,alternative=True)
                 # These are source rounding intervals, not geological uncertainty.
-                bounds=resource['rounding_bounds_kt'] if code=='R1' else [raw,raw]
+                evidence=provenance.get(c['variable'],{}).get('raw',{})
+                half=evidence.get('rounding_half_width',0)
+                bounds=resource['rounding_bounds_kt'] if code=='R1' else evidence.get('rounding_bounds',[raw-half,raw+half])
                 row[code+'_lower']=min(score(v,c) for v in bounds)
                 row[code+'_upper']=max(score(v,c) for v in bounds)
             matrices.setdefault(panel,[]).append(row)

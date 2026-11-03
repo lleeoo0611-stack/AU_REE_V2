@@ -1,33 +1,85 @@
 {
-  "version": "discovery-v1",
+  "version": "discovery-v2",
   "sources": [
     {
       "seed_key": "astron_reports",
       "status": "PARSED",
       "links_found": 0,
       "links_attempted": 0,
-      "sha256": "6bd002aae769abe38012339558e3c9dc77e6e1815d7dcc77119b3da0c38d59be"
+      "sha256": "5ea49789bcb0efb33f27a076837cc9a05baf9fa1add3b5c7cb48dc877d286727",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     },
     {
       "seed_key": "asm_reports",
       "status": "PARSED",
       "links_found": 0,
       "links_attempted": 0,
-      "sha256": "92b08c11126a2a6dc182654107f7504781e5db778720b3abf3a4e3e8e9cbf4c1"
+      "sha256": "92b08c11126a2a6dc182654107f7504781e5db778720b3abf3a4e3e8e9cbf4c1",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     },
     {
       "seed_key": "ga_critical",
       "status": "PARSED",
       "links_found": 0,
       "links_attempted": 0,
-      "sha256": "4dcca82045efda332719b6e064c78349a562dd4f9946c15493460af5fbbe7ded"
+      "sha256": "4dcca82045efda332719b6e064c78349a562dd4f9946c15493460af5fbbe7ded",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     },
     {
       "seed_key": "asm_company_reports",
       "status": "PARSED",
       "links_found": 1,
       "links_attempted": 1,
-      "sha256": "e73698fefa95549da6bb7d6529c59e2bac8dba664f4384ac66e3cd0cd819bcd6"
+      "sha256": "e73698fefa95549da6bb7d6529c59e2bac8dba664f4384ac66e3cd0cd819bcd6",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+    },
+    {
+      "seed_key": "marquee_redlings",
+      "status": "PARSED",
+      "links_found": 1,
+      "links_attempted": 1,
+      "sha256": "e0c912a4aad7775dcb4b30198c913b3041b0a47bb0f5fb61d98b09946be1009f",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+    },
+    {
+      "seed_key": "krakatoa_tower",
+      "status": "DIRECT_PDF_TYPE_CORRECTED_AFTER_CAPTURE",
+      "links_found": 0,
+      "links_attempted": 0,
+      "sha256": "f627d400c3b9c8652403ce025ad4e6c0d97b844d0a3fbc8b515f07c418a01056",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT",
+      "format_correction": "PDF_MAGIC_VERIFIED_ORIGINAL_BYTES_UNCHANGED"
+    },
+    {
+      "seed_key": "dreadnought_search",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError"
+    },
+    {
+      "seed_key": "dreadnought_search_search_a0c4f3f697ca",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError"
+    },
+    {
+      "seed_key": "dreadnought_search_search_d89403207b61",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError"
+    },
+    {
+      "seed_key": "asm_reports_page_247a9b3033bc",
+      "status": "PARSED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "sha256": "871cfb6171b0ea1290dbdfd5165383d9d7ca21a13b6e73c516fb16b855d99920",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+    },
+    {
+      "seed_key": "asm_reports_page_0e2df174c42c",
+      "status": "PARSED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "sha256": "fc7315bb7650597a4e2602d88699cf47f8ee03c6fde6dc47d794b76b4c06f4be",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
     }
   ],
   "documents": [
@@ -43,6 +95,20 @@
       "discovery_sha256": "e73698fefa95549da6bb7d6529c59e2bac8dba664f4384ac66e3cd0cd819bcd6",
       "document_sha256": "4c1bc8edc6d26b0c5eaf16e385c0e95534c071092624e9d14c338d2783002eb7",
       "physical_pages": 43,
+      "text_quality": "REQUIRES_PAGE_VALIDATION_NO_AUTOMATIC_NUMERIC_EXTRACTION"
+    },
+    {
+      "candidate_id": "4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+      "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
+      "title": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
+      "seed_key": "marquee_redlings",
+      "publication_date": null,
+      "status": "SNAPSHOT_REQUIRES_DATED_SCOPE_EXTRACTION",
+      "project_id": null,
+      "identity_status": "SOURCE_CONTEXT_ONLY_NOT_EQUIVALENCE",
+      "discovery_sha256": "e0c912a4aad7775dcb4b30198c913b3041b0a47bb0f5fb61d98b09946be1009f",
+      "document_sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
+      "physical_pages": 14,
       "text_quality": "REQUIRES_PAGE_VALIDATION_NO_AUTOMATIC_NUMERIC_EXTRACTION"
     }
   ]

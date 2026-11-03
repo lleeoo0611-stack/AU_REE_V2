@@ -49,8 +49,8 @@ def arcgis(url, where='1=1', windows=None):
         oid_field = field
         expected = sorted(set(ids['objectIds'] or []))
         seen = []
-        for start in range(0,len(expected),150):
-            page = query({'objectIds': ','.join(map(str,expected[start:start+150])),
+        for start in range(0,len(expected),500):
+            page = query({'objectIds': ','.join(map(str,expected[start:start+500])),
                           'outFields':'*', 'outSR':4326, 'returnGeometry':'true'})
             if page.get('exceededTransferLimit'):
                 raise ValueError('ArcGIS truncated response')
@@ -81,7 +81,7 @@ def refresh(root, registry):
         try:
             previous = [s for s in manifest['snapshots'] if s['key']==source['key']]
             latest = max(previous,key=lambda s:s['acquired_at']) if previous else {}
-            if source['kind'] in ('official_table_transcription','official_project_catalogue_transcription','historical_e1_candidates','legacy_screen_index'):
+            if source['kind'] in ('official_table_transcription','official_project_catalogue_transcription','historical_e1_candidates','legacy_screen_index','pdf_page_extraction'):
                 if not latest:
                     raise ValueError('Managed table snapshot absent')
                 if filehash(root/latest['path']) != latest['sha256']:
@@ -122,6 +122,7 @@ def refresh(root, registry):
                      'acquired_at': now, 'available_date': now[:10],
                      'etag':headers.get('ETag'),'last_modified':headers.get('Last-Modified')}
             manifest['snapshots'].append(entry)
+            manifest_path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
             outcomes.append({'key': source['key'], 'status': 'ADDED', 'sha256': sha})
         except Exception as exc:
             outcomes.append({'key': source['key'], 'status': 'UNAVAILABLE', 'reason': str(exc)})

@@ -448,6 +448,263 @@
       "path": "data/snapshots/6bd002aae769abe38012339558e3c9dc77e6e1815d7dcc77119b3da0c38d59be.html",
       "acquired_at": "2026-11-03T05:22:54.402980+00:00",
       "available_date": "2026-11-03"
+    },
+    {
+      "key": "ga_roads_250k",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Topographic_Base_Map/MapServer/434",
+      "layer": "road",
+      "where": "class IN ('Dual Carriageway','Principal Road','Secondary Road','Minor Road')",
+      "aoi_radius_km": 160,
+      "definition": "GA TOPO250K maintained 2WD road classes; source-anchored 160 km AOI, straight-line geometry proximity; excludes tracks, not route or legal site access",
+      "sha256": "a8c30cda74ec4a19062019abacb92c45732307613e4c120d188f3881cf1d34bd",
+      "path": "data/snapshots/a8c30cda74ec4a19062019abacb92c45732307613e4c120d188f3881cf1d34bd.json",
+      "acquired_at": "2026-11-03T06:22:58.597817+00:00",
+      "available_date": "2026-11-03",
+      "etag": null,
+      "last_modified": null
+    },
+    {
+      "key": "ga_rail_operational",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Foundation_Rail_Infrastructure/MapServer/1",
+      "layer": "rail",
+      "where": "operational_status IN ('Operational','Fully capable of operation.') AND featuresubtype IN (90015,90016)",
+      "aoi_radius_km": 500,
+      "definition": "GA foundation rail infrastructure; operational railway/siding lines only, 500 km project AOI; straight-line geometry proximity, not freight access",
+      "sha256": "d04bea4a5c3895eff0f7347ace9f7aa7c6c10ede7c1d3a34f15d1f4508195599",
+      "path": "data/snapshots/d04bea4a5c3895eff0f7347ace9f7aa7c6c10ede7c1d3a34f15d1f4508195599.json",
+      "acquired_at": "2026-11-03T06:39:01.241411+00:00",
+      "available_date": "2026-11-03",
+      "etag": null,
+      "last_modified": null
+    },
+    {
+      "key": "ga_power_lines",
+      "kind": "arcgis_gis",
+      "url": "https://services.ga.gov.au/gis/rest/services/Electricity_Infrastructure/MapServer/2",
+      "layer": "power",
+      "where": "capacity_kv >= 66",
+      "aoi_radius_km": 500,
+      "definition": "GA mapped power lines >=66kV, 500 km project AOI; status, grid capacity and connection availability not independently verified",
+      "sha256": "42ee8028788c4be661cfb382a74b288fc7742775528d2ab2d7ecf6ef67b3ce41",
+      "path": "data/snapshots/42ee8028788c4be661cfb382a74b288fc7742775528d2ab2d7ecf6ef67b3ce41.json",
+      "acquired_at": "2026-11-03T06:42:43.126087+00:00",
+      "available_date": "2026-11-03",
+      "etag": null,
+      "last_modified": null
+    },
+    {
+      "key": "cummins_mre2023",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20230501/pdf/05p7grkh7l8j7v.pdf",
+      "publication_date": "2023-05-01",
+      "sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+      "path": "data/snapshots/e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053.pdf",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "splinter_presentation2026",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20260420/pdf/06yn1rhry98mw3.pdf",
+      "publication_date": "2026-04-20",
+      "sha256": "7e80a7f29787898f9c422bde35d14337651c5975c3e7e6cda06968721bff2a79",
+      "path": "data/snapshots/7e80a7f29787898f9c422bde35d14337651c5975c3e7e6cda06968721bff2a79.pdf",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "north_stanmore_mre2025",
+      "kind": "pdf",
+      "url": "https://victorymetalsaustralia.com/wp-content/uploads/2025/11/02976976.pdf",
+      "publication_date": "2025-08-11",
+      "sha256": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84",
+      "path": "data/snapshots/c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84.pdf",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "redlings_quarter2025",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
+      "publication_date": "2025-07-31",
+      "sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+      "path": "data/snapshots/749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f.pdf",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "salazar_mre2024",
+      "kind": "pdf",
+      "url": "https://api.investi.com.au/api/announcements/wc1/ea9172ff-a94.pdf",
+      "publication_date": "2024-10-08",
+      "sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+      "path": "data/snapshots/6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e.pdf",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "mangaroon_mre2023",
+      "kind": "pdf",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/5449464.pdf?v=63941956896",
+      "publication_date": "2023-11-30",
+      "sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+      "path": "data/snapshots/eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5.pdf",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "cowalinya_ar2024",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20240930/pdf/068jx9r9284599.pdf",
+      "publication_date": "2024-09-30",
+      "sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "path": "data/snapshots/7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513.pdf",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "tower_quarter2023",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20230808/pdf/05sf46x92l83s0.pdf",
+      "publication_date": "2023-08-08",
+      "sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+      "path": "data/snapshots/0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63.pdf",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "yttria_maiden2024",
+      "kind": "pdf",
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739",
+      "publication_date": "2024-04-16",
+      "sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+      "path": "data/snapshots/73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51.pdf",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "burracoppin_maiden2023",
+      "kind": "pdf",
+      "url": "https://assets.birdsoftware.io/wp-content/uploads/2023/05/01-06-2023-Burracoppin-Project-96Mt-Mineral-Resource-Estimate.pdf",
+      "publication_date": "2023-06-01",
+      "sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+      "path": "data/snapshots/fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c.pdf",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "wa_dmpe_ree2026_original",
+      "kind": "pdf",
+      "url": "https://www.wa.gov.au/media/159141/download?inline=",
+      "publication_date": "2026-02",
+      "definition": "Original government flyer; resource table physical p2; some published grades differ tenfold from issuer originals; not JORC harmonization",
+      "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "path": "data/snapshots/a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb.pdf",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "brockman_ar2025",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20250930/pdf/06pxy5r49ssw7y.pdf",
+      "publication_date": "2025-09-30",
+      "definition": "Primary Brockman JORC table at physical p17; Y oxide inclusion requires basis review before common resource panel",
+      "sha256": "4b622bb6796fc414c55a0c81f89e4186468a95bca99076969d3989335f2713b2",
+      "path": "data/snapshots/4b622bb6796fc414c55a0c81f89e4186468a95bca99076969d3989335f2713b2.pdf",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "asm_ar2026_page_4",
+      "kind": "pdf_page_extraction",
+      "url": "https://asm-au.com/wp-content/uploads/2026/09/ASM-Group-2026-Financial-Report-Final_with-audit-reports-FINAL.pdf",
+      "publication_date": "2026-09-25",
+      "source_sha256": "4c1bc8edc6d26b0c5eaf16e385c0e95534c071092624e9d14c338d2783002eb7",
+      "physical_page": 4,
+      "sha256": "cc48ad5bb0eb5405cbfe5a68d5ecd462a0f5574d534c2ef5a240b0bb3270fb36",
+      "path": "data/snapshots/cc48ad5bb0eb5405cbfe5a68d5ecd462a0f5574d534c2ef5a240b0bb3270fb36.json",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "asm_ar2026_page_6",
+      "kind": "pdf_page_extraction",
+      "url": "https://asm-au.com/wp-content/uploads/2026/09/ASM-Group-2026-Financial-Report-Final_with-audit-reports-FINAL.pdf",
+      "publication_date": "2026-09-25",
+      "source_sha256": "4c1bc8edc6d26b0c5eaf16e385c0e95534c071092624e9d14c338d2783002eb7",
+      "physical_page": 6,
+      "sha256": "f303f19e97c84ca53be19adc870dc1a92124ddd1ebb276056e1888b623ed4b26",
+      "path": "data/snapshots/f303f19e97c84ca53be19adc870dc1a92124ddd1ebb276056e1888b623ed4b26.json",
+      "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "discovery_astron_reports",
+      "url": "https://astronlimited.com.au/investor-centre/investor-resources/",
+      "kind": "discovery_html",
+      "sha256": "5ea49789bcb0efb33f27a076837cc9a05baf9fa1add3b5c7cb48dc877d286727",
+      "path": "data/snapshots/5ea49789bcb0efb33f27a076837cc9a05baf9fa1add3b5c7cb48dc877d286727.html",
+      "acquired_at": "2026-11-03T06:54:04.820378+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "discovery_marquee_redlings",
+      "url": "https://www.marqueeresources.com.au/redlings-rare-earths-project",
+      "kind": "discovery_html",
+      "sha256": "e0c912a4aad7775dcb4b30198c913b3041b0a47bb0f5fb61d98b09946be1009f",
+      "path": "data/snapshots/e0c912a4aad7775dcb4b30198c913b3041b0a47bb0f5fb61d98b09946be1009f.html",
+      "acquired_at": "2026-11-03T06:54:34.710741+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c",
+      "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AMQR%3A6A1320527/pdf/inline/mqr-redlings-ree-and-ornl-nearest-investor-presentation",
+      "kind": "pdf",
+      "discovery_sha256": "e0c912a4aad7775dcb4b30198c913b3041b0a47bb0f5fb61d98b09946be1009f",
+      "sha256": "aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00",
+      "path": "data/snapshots/aa28c16c63d96c2dcfd6029234be61fc2cc3a8caeedfda729633a34014032e00.pdf",
+      "acquired_at": "2026-11-03T06:54:37.940532+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "discovery_krakatoa_tower",
+      "url": "https://ktaresources.com/projects/mt-clere/",
+      "kind": "discovery_html",
+      "sha256": "f627d400c3b9c8652403ce025ad4e6c0d97b844d0a3fbc8b515f07c418a01056",
+      "path": "data/snapshots/f627d400c3b9c8652403ce025ad4e6c0d97b844d0a3fbc8b515f07c418a01056.html",
+      "acquired_at": "2026-11-03T06:54:40.047080+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "discovery_asm_reports_page_247a9b3033bc",
+      "url": "https://asm-au.com/investors/shareholder-information/",
+      "kind": "discovery_html",
+      "sha256": "871cfb6171b0ea1290dbdfd5165383d9d7ca21a13b6e73c516fb16b855d99920",
+      "path": "data/snapshots/871cfb6171b0ea1290dbdfd5165383d9d7ca21a13b6e73c516fb16b855d99920.html",
+      "acquired_at": "2026-11-03T06:54:52.069903+00:00",
+      "available_date": "2026-11-03"
+    },
+    {
+      "key": "discovery_asm_reports_page_0e2df174c42c",
+      "url": "https://wcsecure.weblink.com.au/clients/australianstrategicmaterials/headline.aspx?headlineid=61318259",
+      "kind": "pdf",
+      "sha256": "fc7315bb7650597a4e2602d88699cf47f8ee03c6fde6dc47d794b76b4c06f4be",
+      "path": "data/snapshots/fc7315bb7650597a4e2602d88699cf47f8ee03c6fde6dc47d794b76b4c06f4be.pdf",
+      "acquired_at": "2026-11-03T06:54:59.424082+00:00",
+      "available_date": "2026-11-03",
+      "format_correction": "PDF_MAGIC_RESPONSE_FROM_DISCOVERY_ENTRY_URL"
+    },
+    {
+      "key": "mons_mre2025",
+      "kind": "pdf",
+      "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3ANIM%3A6A1296587/pdf/inline/extremely-highgrade-gallium-and-rare-earths-resource",
+      "publication_date": "2025-11-12",
+      "sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+      "path": "data/snapshots/395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91.pdf",
+      "acquired_at": "2026-11-03T07:00:59.045714+00:00",
+      "available_date": "2026-11-03"
     }
   ]
 }

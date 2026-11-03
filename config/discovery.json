@@ -1,5 +1,5 @@
 {
-  "version": "discovery-v1",
+  "version": "discovery-v2",
   "max_documents_per_seed": 3,
   "seeds": [
     {
@@ -35,6 +35,54 @@
         "announcements.asx.com.au",
         "wcsecure.weblink.com.au"
       ]
+    },
+    {
+      "key": "marquee_redlings",
+      "url": "https://www.marqueeresources.com.au/redlings-rare-earths-project",
+      "allowed_hosts": [
+        "www.marqueeresources.com.au",
+        "api.investi.com.au",
+        "data-api.marketindex.com.au",
+        "cdn-api.markitdigital.com"
+      ],
+      "pattern": "\\.pdf|/pdf/inline/|/api/announcements/",
+      "keywords": [
+        "redlings",
+        "resource"
+      ]
+    },
+    {
+      "key": "krakatoa_tower",
+      "url": "https://ktaresources.com/projects/mt-clere/",
+      "allowed_hosts": [
+        "ktaresources.com",
+        "announcements.asx.com.au",
+        "www.asx.com.au"
+      ],
+      "keywords": [
+        "tower",
+        "clere",
+        "resource"
+      ]
+    },
+    {
+      "key": "dreadnought_search",
+      "url": "https://dreadnoughtresources.com.au/",
+      "allowed_hosts": [
+        "dreadnoughtresources.com.au",
+        "hermes-cdn.investorhub.com",
+        "announcements.asx.com.au"
+      ],
+      "search_url_template": "https://dreadnoughtresources.com.au/?s={query}",
+      "queries": [
+        "Yin",
+        "Mangaroon"
+      ],
+      "keywords": [
+        "yin",
+        "mangaroon"
+      ]
     }
-  ]
+  ],
+  "max_pages_per_seed": 3
 }

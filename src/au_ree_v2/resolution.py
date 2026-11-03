@@ -81,25 +81,49 @@ def resolve(db,root,snapshots,cutoff=None):
             nodes=[]
             for namespace,identifier in (decision['left'],decision['right'],decision['canonical']):
                 row=db.execute('SELECT * FROM entities WHERE native_namespace=? AND native_id=?',(namespace,identifier)).fetchone()
-                assert row is not None;nodes.append(dict(row))
+                if row is None:raise ValueError('SOURCE_NATIVE_ENTITY_NOT_FOUND')
+                nodes.append(dict(row))
             a,b,c=nodes
-            assert a['kind']==b['kind']==c['kind'] and c['entity_id'] in (a['entity_id'],b['entity_id'])
-            assert a['kind'] in ('PROJECT','DEPOSIT','SITE')
+            if not (a['kind']==b['kind']==c['kind'] and c['entity_id'] in (a['entity_id'],b['entity_id'])):raise ValueError('ENTITY_KIND_OR_CANONICAL_ENDPOINT_MISMATCH')
+            if a['kind'] not in ('PROJECT','DEPOSIT','SITE'):raise ValueError('UNSUPPORTED_EQUIVALENCE_KIND')
             text=PdfReader(Path(root)/source['path']).pages[decision['pdf_page']-1].extract_text()
-            assert all(marker in text for marker in decision['page_markers'])
+            if not all(marker in text for marker in decision['page_markers']):raise ValueError('PRIMARY_PAGE_MARKER_MISMATCH')
             states=[{r['state'] for r in db.execute('SELECT state,source_sha FROM records WHERE entity_id=?',(n['entity_id'],)) if r['source_sha'] in selected and r['state']} for n in (a,b)]
-            assert states[0] and states[0]==states[1]
+            if not states[0] or states[0]!=states[1]:raise ValueError('OFFICIAL_STATE_MISMATCH_OR_MISSING')
             if a['kind']=='DEPOSIT':
                 positions=[]
                 for n in (a,b):
                     position=next(r for r in db.execute('SELECT longitude,latitude,source_sha,name FROM records WHERE entity_id=?',(n['entity_id'],)) if r['source_sha'] in selected and r['longitude'] is not None)
                     positions.append(position)
-                assert normalized(positions[0]['name'])==normalized(positions[1]['name'])
-                assert GEO.inv(positions[0]['longitude'],positions[0]['latitude'],positions[1]['longitude'],positions[1]['latitude'])[2]<=500
+                if normalized(positions[0]['name'])!=normalized(positions[1]['name']):raise ValueError('OFFICIAL_DEPOSIT_NAMES_DIFFER')
+                distance=GEO.inv(positions[0]['longitude'],positions[0]['latitude'],positions[1]['longitude'],positions[1]['latitude'])[2]
+                if distance>500:raise ValueError('DEPOSIT_REPRESENTATIVE_POINTS_DIFFER_'+format(distance,'.3f')+'_METRES_EXCEEDS_500M_NO_FOOTPRINT_RECONCILIATION')
             alias=b['entity_id'] if c['entity_id']==a['entity_id'] else a['entity_id']
+            for previous in db.execute("SELECT issue_id,details FROM review_queue WHERE reason='IDENTITY_DECISION_REVIEW' AND status='OPEN'").fetchall():
+                detail=json.loads(previous['details']);old=detail.get('decision',{})
+                if old.get('left')==decision['left'] and old.get('right')==decision['right'] and old.get('source_key')==decision['source_key']:
+                    db.execute("UPDATE review_queue SET status='RESOLVED_BY_CURRENT_DOCUMENT_RULE' WHERE issue_id=?",(previous['issue_id'],))
             accepted.append(dict(alias_id=alias,canonical_id=c['entity_id'],kind=a['kind'],status='DOCUMENT_SUPPORTED_RULE_NOT_INDEPENDENT_APPROVAL',source_sha256=source['sha256'],locator=decision['locator']))
         except (AssertionError,KeyError,TypeError,ValueError,IndexError,StopIteration,OSError) as exc:
-            issue(db,None,source['sha256'],'IDENTITY_DECISION_REVIEW',canonical({'decision':decision,'reason':type(exc).__name__}))
+            for previous in db.execute("SELECT issue_id,details FROM review_queue WHERE reason='IDENTITY_DECISION_REVIEW' AND status='OPEN'").fetchall():
+                detail=json.loads(previous['details']);old=detail.get('decision',{})
+                if detail.get('reason')=='AssertionError' and old.get('left')==decision['left'] and old.get('right')==decision['right']:
+                    db.execute("UPDATE review_queue SET status='SUPERSEDED_BY_SPECIFIC_DIAGNOSTIC' WHERE issue_id=?",(previous['issue_id'],))
+            issue(db,None,source['sha256'],'IDENTITY_DECISION_REVIEW',canonical({'decision':decision,'reason':str(exc) or type(exc).__name__}))
+    # Typed document relations retain both source Project IDs and never imply equivalence.
+    for relation in (json.loads(path.read_text(encoding='utf8')).get('relations',[]) if path.exists() else []):
+        source=by_key.get(relation['source_key'])
+        if not source or source['sha256']!=relation['source_sha256'] or relation['effective_date']>cutoff:continue
+        try:
+            from .pdf_extract import extract_page
+            text=extract_page(Path(root)/source['path'],relation['pdf_page'])['text']
+            text=re.sub(r'\s+',' ',text)
+            if not all(x in text for x in relation['page_markers']):raise ValueError('RELATION_PRIMARY_PAGE_MARKER_MISMATCH')
+            nodes=[db.execute('SELECT * FROM entities WHERE native_namespace=? AND native_id=?',tuple(relation[k])).fetchone() for k in ('left','right')]
+            if any(n is None or n['kind']!='PROJECT' for n in nodes):raise ValueError('RELATION_SOURCE_PROJECT_ID_MISSING')
+            if relation['relation']!='CONTAINS_DOCUMENTED_REE_SCOPE_NOT_IDENTITY_EQUIVALENCE':raise ValueError('UNSUPPORTED_TYPED_RELATION')
+            link(db,nodes[0]['entity_id'],nodes[1]['entity_id'],relation['relation'],source['sha256'],relation['locator'])
+        except Exception as exc:issue(db,None,source['sha256'],'DOCUMENTED_RELATION_REVIEW',canonical({'relation':relation,'reason':str(exc)}))
     # Conflicting canonical anchors and cycles are rejected rather than resolved by row order.
     proposals={}
     for a in accepted:proposals.setdefault(a['alias_id'],set()).add(a['canonical_id'])
@@ -144,8 +168,12 @@ def technical_coverage(db,resolution,resources,cases,snapshot_shas):
         scopes=[dict(source_entity_id=eid,scope=r['scope'],date=r['date'],source_sha256=r['source_sha']) for eid,r in resources.items() if eid in members]
         studies=[c['case_id'] for c in cases if c['project_id'] in members]
         stages=[dict(r) for eid in members for r in db.execute("SELECT obs_id,source_sha,locator FROM observations WHERE entity_id=? AND variable='study_maturity_ord' AND status='AUTO_VALIDATED'",(eid,)) if r['source_sha'] in snapshot_shas]
-        status=('PRIMARY_RESOURCE_AND_STUDY_EVIDENCE' if scopes and (studies or stages) else 'PRIMARY_RESOURCE_SCOPE_ONLY' if scopes else 'PRIMARY_STUDY_CASE_ONLY' if studies else 'NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET')
+        shared=[dict(r) for eid in members for r in db.execute("SELECT child_id,source_sha,locator FROM relations WHERE parent_id=? AND relation='CONTAINS_DOCUMENTED_REE_SCOPE_NOT_IDENTITY_EQUIVALENCE'",(eid,)) if r['source_sha'] in snapshot_shas]
+        status=('PRIMARY_RESOURCE_AND_STUDY_EVIDENCE' if scopes and (studies or stages) else 'PRIMARY_RESOURCE_SCOPE_ONLY' if scopes else 'PRIMARY_STUDY_CASE_ONLY' if studies else 'PRIMARY_SHARED_RESOURCE_CONTEXT_ONLY_NO_ADDITIVE_RESOURCE' if shared else 'NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET')
         scoped_obs={obs for eid,r in resources.items() if eid in members for obs in r['obs_ids']}
         other=[dict(r) for eid in members for r in db.execute("SELECT obs_id,variable,value,basis,scope,effective_date,source_sha,status FROM observations WHERE entity_id=? AND variable IN ('ore_mt','grade','contained_treo_kt')",(eid,)) if r['source_sha'] in snapshot_shas and r['obs_id'] not in scoped_obs]
-        output.append(dict(canonical_project_id=cid,member_entity_ids=canonical(sorted(members)),status=status,resource_scopes=canonical(scopes),study_case_ids=canonical(studies),other_stage_evidence=canonical(stages),unverified_or_other_scope_claims=canonical(other),interpretation='SOURCE_DEFINED_SCOPES_NOT_LATEST_PROJECT_TOTAL_CERTIFICATION'))
+        primary_raw=[dict(r) for eid in members for r in db.execute("SELECT o.obs_id,o.variable,o.value,o.basis,o.scope,o.effective_date,o.source_sha,o.status FROM observations o JOIN sources s ON o.source_sha=s.sha WHERE o.entity_id=? AND o.status='AUTO_VALIDATED' AND s.kind='pdf' AND (o.variable LIKE 'reported_fine_fraction_%' OR o.variable LIKE 'reported_resource_%' OR o.variable='reported_bulk_ore_mt')",(eid,)) if r['source_sha'] in snapshot_shas]
+        if status=='NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET' and primary_raw:status='PRIMARY_RESOURCE_BASIS_OR_FRACTION_NOT_COMPARABLE'
+        other.extend(primary_raw)
+        output.append(dict(canonical_project_id=cid,member_entity_ids=canonical(sorted(members)),status=status,resource_scopes=canonical(scopes),study_case_ids=canonical(studies),other_stage_evidence=canonical(stages),shared_resource_context=canonical(shared),unverified_or_other_scope_claims=canonical(other),interpretation='SOURCE_DEFINED_SCOPES_NOT_LATEST_PROJECT_TOTAL_CERTIFICATION'))
     return output

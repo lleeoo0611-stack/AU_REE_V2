@@ -14,7 +14,7 @@ class ResolutionStudyTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.work=ROOT/'work/tests'/uuid.uuid4().hex;cls.work.mkdir(parents=True)
-        cls.db=connect(cls.work/'canonical.sqlite');cls.snapshots=select_snapshots(ROOT,'2026-11-03')
+        cls.db=connect(cls.work/'canonical.sqlite');cls.snapshots=json.loads((ROOT/'results/phase4-2026-11-03/snapshot_lock.json').read_text())
         ingest_sources(cls.db,ROOT,cls.snapshots);ingest_claims(cls.db,ROOT,cls.snapshots,'2026-11-03')
         cls.cases=ingest(cls.db,ROOT,cls.snapshots,'2026-11-03');build(cls.db,cls.snapshots)
         cls.resolved=resolve(cls.db,ROOT,cls.snapshots)

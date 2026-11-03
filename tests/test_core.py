@@ -151,8 +151,8 @@ class CoreTests(unittest.TestCase):
     def test_project_aois_use_official_anchors_and_are_conservative(self):
         manifest=json.loads((ROOT/'data/manifest.json').read_text(encoding='utf-8'))
         windows=project_windows(ROOT,manifest,160)
-        self.assertEqual(['browns-range','dubbo-project','jupiter','mount-ridley-mia','mt-weld','nolans-rare-earths-project','yttria'],[w['project_id'] for w in windows])
-        self.assertEqual(7,len(windows))
+        self.assertEqual(['browns-range','cowalinya','cummins-range','dubbo-project','jupiter','mangaroon','mons','mount-ridley-mia','mt-clere','mt-weld','nolans-rare-earths-project','north-stanmore','redlings','salazar','splinter-rock','yttria'],[w['project_id'] for w in windows])
+        self.assertEqual(16,len(windows))
         for window in windows:
             self.assertEqual(160,window['radius_km'])
             lon,lat=window['longitude'],window['latitude']

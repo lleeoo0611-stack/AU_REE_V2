@@ -170,6 +170,71 @@
           ]
         }
       ]
+    },
+    {
+      "project_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "project_native_id": "cowalinya",
+      "source_key": "cowalinya_ar2024",
+      "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "effective_date": "2024-06-30",
+      "stage": 1,
+      "finance_state": "NOT_ESTABLISHED_BY_THIS_TESTWORK_SOURCE",
+      "pdf_page": 9,
+      "locator": "Annual Report2024 physical p9; diagnostic leaching table4 and 1kg MREC concept test; dated reporting cutoff, not exact test day",
+      "activity": "EXPLORATION_AND_TESTWORK_REPORTED_2024_NOT_CURRENT_STATUS",
+      "currentness": "HISTORICAL_TESTWORK_REPORT_NOT_CURRENT_DEVELOPMENT_CERTIFICATION",
+      "case_id": "cowalinya-preferred45-diagnostic2024",
+      "scope": "45 preferred composites selected for >75% magnet leach extraction and <40kg/t 32%HCl; not unbiased resource-average or whole-ore recovery",
+      "process": "Sizing to undersize feed then diagnostic hydrochloric-acid leach; selected material types only",
+      "endpoint": "LEACH_SOLUTION",
+      "element": "PrNdDyTb_OXIDES",
+      "scale": "BENCH_DIAGNOSTIC_SELECTED_COMPOSITES",
+      "recovery_feed": "SELECTED_UNDERSIZE_LEACH_FEED",
+      "page_markers": [
+        "32.3%",
+        "84.9%",
+        "24.8",
+        "45 composites"
+      ],
+      "parameters": {
+        "selected_composites_n": 45,
+        "undersize_mass_pct": 32.3,
+        "magnet_extraction_to_leach_pct": 84.9,
+        "acid_32pct_hcl_kg_per_t_feed": 24.8
+      }
+    },
+    {
+      "project_namespace": "WA_DMPE_REE_2026_PROJECT",
+      "project_native_id": "cowalinya",
+      "source_key": "cowalinya_ar2024",
+      "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "effective_date": "2024-06-30",
+      "stage": 1,
+      "finance_state": "NOT_ESTABLISHED_BY_THIS_TESTWORK_SOURCE",
+      "pdf_page": 9,
+      "locator": "Annual Report2024 physical p9; diagnostic leaching table4 and 1kg MREC concept test; dated reporting cutoff, not exact test day",
+      "activity": "EXPLORATION_AND_TESTWORK_REPORTED_2024_NOT_CURRENT_STATUS",
+      "currentness": "HISTORICAL_TESTWORK_REPORT_NOT_CURRENT_DEVELOPMENT_CERTIFICATION",
+      "case_id": "cowalinya-mrec-1kg-concept2024",
+      "scope": "1kg blend of screened undersize from 4 of13 composites; first-pass MREC; impurity above commercial specification; overall recovery not reported",
+      "process": "Acid leach, purification, precipitation to MREC; separate one-kilogram blend, not45-composite population",
+      "endpoint": "MREC",
+      "element": "TREO_INCLUDING_Y",
+      "scale": "BENCH_CONCEPT_ONE_KG",
+      "recovery_feed": "FOUR_COMPOSITE_UNDERSIZE_BLEND",
+      "page_markers": [
+        "1 kg blend",
+        "51.8% TREO",
+        "31.2%",
+        "8.4%"
+      ],
+      "parameters": {
+        "feed_treo_ppm": 2595,
+        "mrec_treo_grade_pct": 51.8,
+        "product_magnet_share_pct": 31.2,
+        "product_impurity_pct": 8.4,
+        "blend_mass_kg": 1
+      }
     }
   ]
 }

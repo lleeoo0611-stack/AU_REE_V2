@@ -215,3 +215,5 @@ before inclusion in the current source manifest. The original upstream hash
 remains as an attestation, not a redistributed unredacted payload.
 
 Latest increment: [source discovery and C1 compatibility](docs/phase4-discovery-eligibility.md), [frozen outputs](results/phase4-2026-11-03/README.md).
+
+Latest evidence increment: [Phase 5 sources and research results](docs/phase5-primary-evidence.md), [frozen comparison](results/phase5-2026-11-03/README.md).
