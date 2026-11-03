@@ -74,7 +74,7 @@ def execute(args):
     if args.module=='recognize':
         from .pdf_extract import capture_documents
         keys=set(args.source_key.split(',')) if args.source_key else None
-        return {'documents':capture_documents(root,select_snapshots(root,args.as_of),keys,args.tessdata)}
+        return {'documents':capture_documents(root,select_snapshots(root,args.as_of,acquired_through=acquired_through),keys,args.tessdata)}
     acquisition=[]
     if args.module=='discover':
         from .discovery import discover
@@ -242,6 +242,9 @@ def execute(args):
             if config.get('evidence_resolution',{}).get('document_pipeline') and selection:
                 from .selection import diagnostics
                 diagnostics(selection,prepared,snapshots,config['criteria'],root,out)
+                if config.get('source_coverage_version')=='bounded-document-stages-v1':
+                    from .discovery import source_coverage
+                    source_coverage(root,snapshots,selection,prepared,out)
             if config.get('research_utilization') and selection:
                 from .analysis import research_readiness
                 research_readiness(selection,out,config.get('research_analysis_version'))

@@ -10,7 +10,7 @@ from pathlib import Path
 from pypdf import PdfReader
 from .store import filehash,canonical
 
-DOCUMENT_VERSION = 'document-recognition-v2-mineralogy'
+DOCUMENT_VERSION = 'document-recognition-v3-bound-quantities'
 RESOURCE_LAYOUT_VERSION = 'positioned-resource-columns-v2'
 NUMBER = r'(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?'
 
@@ -163,24 +163,33 @@ def resource_rows(text, page, registry):
     return result
 
 
-def positioned_resource_columns(candidates, tables, text, registry):
+def positioned_resource_columns(candidates, tables, text, registry, version='positioned-resource-columns-v2'):
     """Repair columns only when native cell values and exact headers align.
 
     No document-specific values, density skipping by position, or cross-table
     addition. A continuation without tonnage/TREO headers remains unresolved.
     Missing REO definitions and other scientific validation issues remain held.
     """
+    modern=version=='positioned-resource-columns-v3'
+    import unicodedata
+    def header_text(value):
+        return re.sub(r'\s+',' ',unicodedata.normalize('NFKC',str(value or ''))).strip()
+    def grade_header(value):
+        return bool(re.fullmatch(r'TREO\s*(?:\+\s*Y2O3\s*)?\(?(?:%|ppm)\)?',value,re.I))
     for c in candidates:
         if c['kind']!='RESOURCE_TABLE_TOTAL':continue
-        if not any(x in c['issues'] for x in ('TABLE_COLUMN_OR_UNIT_UNRESOLVED','PROJECT_ATTRIBUTION_AMBIGUOUS')):continue
+        if not modern and not any(x in c['issues'] for x in ('TABLE_COLUMN_OR_UNIT_UNRESOLVED','PROJECT_ATTRIBUTION_AMBIGUOUS')):continue
         tokens=c['original_tokens'];matches=[]
         for table in tables:
             for ri,row in enumerate(table['cells']):
-                if not row or not re.fullmatch(r'\s*(?:Grand Total|Total)\s*',row[0] or '',re.I):continue
+                if not row:continue
+                label=next((v for v in row if v and str(v).strip()),'') if modern else (row[0] or '') if row else ''
+                if not row or not re.fullmatch(r'\s*(?:Grand Total|Total)\s*',label,re.I):continue
                 numeric=[(j,v.strip()) for j,v in enumerate(row) if v and re.fullmatch(NUMBER,v.strip())]
                 if [v for j,v in numeric]!=tokens:continue
-                first_data=next((i for i,r in enumerate(table['cells']) if re.match(r'^(?:Measured|Indicated|Inferred|Subtotal|Total)\b',r[0] or '',re.I)),ri)
+                first_data=next((i for i,r in enumerate(table['cells']) if re.match(r'^(?:Measured|Indicated|Inferred|Subtotal|Total)\b',next((v for v in r if v and str(v).strip()),'') if modern else r[0] or '',re.I)),ri)
                 headers=[' '.join(str(r[j] or '') for r in table['cells'][:first_data]) for j in range(len(row))]
+                if modern:headers=[header_text(h) for h in headers]
                 # A visually separate header table is usable only with the same
                 # columns and horizontal bounds, immediately above this table.
                 if not any(re.search(r'Tonnage|Tonnes|Material',h,re.I) for h in headers):
@@ -190,20 +199,31 @@ def positioned_resource_columns(candidates, tables, text, registry):
                         previous=max(prior,key=lambda t:t['bbox'][3])
                         headers=[' '.join(str(r[j] or '') for r in previous['cells']) for j in range(len(row))]
                 ton=[j for j,h in enumerate(headers) if re.search(r'Tonnage|Tonnes|Material',h,re.I) and re.search(r'\bMt\b',h)]
-                grade=[j for j,h in enumerate(headers) if re.fullmatch(r'\s*TREO\s*(?:%|ppm)\s*',h,re.I)]
+                grade=[j for j,h in enumerate(headers) if grade_header(h)] if modern else [j for j,h in enumerate(headers) if re.fullmatch(r'\s*TREO\s*(?:%|ppm)\s*',h,re.I)]
                 if len(ton)!=1 or len(grade)!=1:continue
                 positions={j:i for i,(j,v) in enumerate(numeric)}
                 if ton[0] not in positions or grade[0] not in positions:continue
-                matches.append((headers,positions[ton[0]],positions[grade[0]],table['bbox']))
+                section=' '.join(headers[:ton[0]]) if modern else None
+                matches.append((headers,positions[ton[0]],positions[grade[0]],table['bbox'],section))
         if len(matches)!=1:continue
-        headers,ti,gi,bbox=matches[0]
+        headers,ti,gi,bbox,section=matches[0]
         c['values']={'ore_mt':_number(tokens[ti]),'grade':_number(tokens[gi])}
-        c['units']={'ore_mt':'Mt','grade':'%' if '%' in headers[next(j for j,h in enumerate(headers) if re.fullmatch(r'\s*TREO\s*(?:%|ppm)\s*',h,re.I))] else 'ppm'}
+        c['units']={'ore_mt':'Mt','grade':'%' if '%' in headers[next(j for j,h in enumerate(headers) if grade_header(h))] else 'ppm'}
         c['row_token_indices']={'ore_mt':ti,'grade':gi}
-        c['positioned_column_evidence']=dict(headers=headers,bbox=bbox,method=RESOURCE_LAYOUT_VERSION)
+        c['positioned_column_evidence']=dict(headers=headers,bbox=bbox,method=version)
         c['header']=' | '.join(headers)
         c['extra_values']=[];c['column_labels']=[]
         c['issues']=[x for x in c['issues'] if x not in ('TABLE_COLUMN_OR_UNIT_UNRESOLVED','REPORTED_CONTAINED_CONFLICT')]
+        if modern:
+            # Require an explicit on-page oxide definition; location is retained.
+            definition=[line.strip() for line in text.splitlines() if re.search(r'TREO.*(?:includes?:|defined|=)',line,re.I)]
+            if definition:
+                c['basis_definition']=' '.join(definition)
+                c['issues']=[x for x in c['issues'] if x!='REO_DEFINITION_NOT_LOCATED']
+            # Named sections in separate native tables remain separate scopes.
+            section=re.sub(r'Classification|Category|Deposit','',section or '',flags=re.I).strip()
+            if re.fullmatch(r'Mineral\s+Resource',section,re.I):section=None
+            if section and section not in c['scope']:c['scope']+=' | '+section
         if not c['project_id']:
             hits=_matches(text,registry)
             if len(hits)==1:
@@ -225,7 +245,7 @@ def narrative_candidates(text, page, registry, parser_version='document-recognit
     for i,sentence in enumerate(sentences):
         if len(sentence)<25:continue
         technical=r'(?i)\b(?:recover\w*|extract\w*|leach\w*|reagent|thorium|uranium|NORM)\b'
-        if parser_version=='document-recognition-v2-mineralogy':technical=r'(?i)\b(?:recover\w*|extract\w*|leach\w*|reagent|thorium|uranium|NORM|mineralog\w*|monazite|xenotime|rhabdophane|churchite|gangue)\b'
+        if parser_version in ('document-recognition-v2-mineralogy','document-recognition-v3-bound-quantities'):technical=r'(?i)\b(?:recover\w*|extract\w*|leach\w*|reagent|thorium|uranium|NORM|mineralog\w*|monazite|xenotime|rhabdophane|churchite|gangue)\b'
         domain='Technical' if re.search(technical,sentence) else ('Commercial' if re.search(r'(?i)\b(?:financing|offtake|off-take|financial close|drawdown|credit approval|grant|funding|cash position)\b',sentence) else ('Development' if re.search(r'(?i)\b(?:scoping study|PFS|DFS|care and maintenance|construction commenced)\b',sentence) else None))
         if not domain:continue
         context=' '.join(sentences[max(0,i-1):i+2])
@@ -242,6 +262,21 @@ def narrative_candidates(text, page, registry, parser_version='document-recognit
             number['quantity_role']=('MAXIMUM_EXTRACTION' if re.search(r'up to\s*$',prefix,re.I) else
                                      'AVERAGE_EXTRACTION' if re.search(r'averag(?:e|ing)\s*(?:of\s*)?$',prefix,re.I) else None)
             if not re.search(r'extract|recover|leach',sentence,re.I):number['quantity_role']=None
+            if parser_version=='document-recognition-v3-bound-quantities':
+                suffix=sentence[number['start']+len(number['token']):number['start']+len(number['token'])+65]
+                local=prefix[-35:]+' '+number['token']+' '+suffix[:35]
+                coordinated_mean=bool(re.search(r'(?:extraction|recovery|recoveries)\s+(?:achieved\s+)?up to\s+'+NUMBER+r'\s*%\s*,\s*averaging\s*$',sentence[:number['start']],re.I))
+                bound=bool(coordinated_mean or re.search(r'(?:extraction|recovery|recoveries)\s*(?:achieved\s*|of\s*|averag(?:e|ing)\s*|up to\s*)*$',prefix,re.I) or
+                           re.match(r'\s*(?:TREO\s+|rare earth\s+)?(?:extraction|recovery|recoveries)\b',suffix,re.I))
+                # Numeric narrative promotion stays restricted to the existing
+                # explicit maximum/mean forms. Nearby graphic axis labels are
+                # not sufficient to introduce a new generic percentage parser.
+                if not number['quantity_role'] or not bound or re.search(r'moisture|deportment|\bgrade\b|\bTREO\s*[.,;]',local,re.I):number['quantity_role']=None
+                else:
+                    quantity='RECOVERY' if re.search(r'recover',prefix[-45:]+suffix[:25],re.I) else 'EXTRACTION'
+                    if quantity=='RECOVERY' and re.search(r'mining\s+recovery',local,re.I):quantity='MINING_RECOVERY'
+                    qualifier='MAXIMUM' if re.search(r'up to\s*$',prefix,re.I) else 'AVERAGE' if re.search(r'averag(?:e|ing)',prefix[-40:],re.I) else 'REPORTED'
+                    number['quantity_role']=qualifier+'_'+quantity
         # Text observations are valid disclosures, not numerical project scores.
         reasons=[]
         if not pid:reasons.append('PROJECT_ATTRIBUTION_AMBIGUOUS')
@@ -296,11 +331,11 @@ def leach_tables(text, page, registry):
     return rows
 
 
-def recognize_document(root, source, registry, tessdata=None, parser_version=None):
+def recognize_document(root, source, registry, tessdata=None, parser_version=None, table_cache=None):
     """Scan every page once, then extract tables/OCR only relevant pages."""
     import pymupdf
     parser_version=parser_version or DOCUMENT_VERSION
-    if parser_version not in ('document-recognition-v1','document-recognition-v2-mineralogy'):
+    if parser_version not in ('document-recognition-v1','document-recognition-v2-mineralogy','document-recognition-v3-bound-quantities'):
         raise ValueError('UNSUPPORTED_DOCUMENT_PARSER_VERSION')
     root=Path(root);path=root/source['path']
     if filehash(path)!=source['sha256']:raise ValueError('SOURCE_HASH_MISMATCH')
@@ -323,13 +358,17 @@ def recognize_document(root, source, registry, tessdata=None, parser_version=Non
                 if doc and any(c['kind'] in ('RESOURCE_TABLE_TOTAL','LEACH_TABLE_ROW') for c in recognized):
                     page_tables=[]
                     try:
-                        for i,t in enumerate(doc[n-1].find_tables().tables):
-                            table=dict(physical_page=n,table_index=i,bbox=list(t.bbox),cells=t.extract(),
-                                       header=t.header.names,external_header=t.header.external)
+                        native=(table_cache[n] if table_cache is not None and n in table_cache else
+                            [dict(physical_page=n,table_index=i,bbox=list(t.bbox),cells=t.extract(),header=t.header.names,external_header=t.header.external)
+                             for i,t in enumerate(doc[n-1].find_tables().tables)])
+                        for table in native:
+                            i=table['table_index'];table=dict(table)
+                            table.pop('continuation_candidate',None)
                             tables.append(table);page['tables'].append(i)
                             page_tables.append(table)
                     except Exception as exc:page['table_error']=type(exc).__name__
-                    positioned_resource_columns(recognized,page_tables,text,registry)
+                    positioned_resource_columns(recognized,page_tables,text,registry,
+                        version='positioned-resource-columns-v3' if parser_version=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION)
                 for c in recognized:
                     c.update(source_sha256=source['sha256'],source_key=source['key'],
                              publication_date=source.get('publication_date'),effective_date=None,
@@ -352,7 +391,7 @@ def recognize_document(root, source, registry, tessdata=None, parser_version=Non
             previous=[t for t in tables if t['physical_page']==table['physical_page']-1 and t['header']==table['header'] and any(t['header'])]
             if len(previous)==1:
                 table['continuation_candidate']=dict(physical_page=previous[0]['physical_page'],table_index=previous[0]['table_index'],status='HEADER_MATCH_ONLY_NOT_SCOPE_EQUIVALENCE')
-        return dict(version=parser_version,resource_layout_version=RESOURCE_LAYOUT_VERSION,observation_contract='automatic-observation-v1-element-basis',source_sha256=source['sha256'],source_key=source['key'],
+        return dict(version=parser_version,resource_layout_version='positioned-resource-columns-v3' if parser_version=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION,observation_contract='automatic-observation-v1-element-basis',source_sha256=source['sha256'],source_key=source['key'],
                     source_url=source['url'],publication_date=source.get('publication_date') or publication_date(texts[0]),
                     labels=classify(texts[0]),mentioned_labels=sorted({v for p in pages for v in p['labels']}),pages=pages,tables=tables,candidates=candidates,
                     backend_version=pymupdf.VersionBind,registry_identity_sha256=__import__('hashlib').sha256(canonical(registry).encode()).hexdigest(),
@@ -378,11 +417,22 @@ def capture_documents(root, snapshots, keys=None, tessdata=None, only_missing=Fa
                     if filehash(root/latest['path'])!=latest['sha256']:raise ValueError('IMMUTABLE_EXTRACTION_MISMATCH')
                     cached=json.loads((root/latest['path']).read_text(encoding='utf-8'))
                     if (cached['version']==DOCUMENT_VERSION and cached.get('observation_contract')=='automatic-observation-v1-element-basis'
-                            and cached.get('resource_layout_version')==RESOURCE_LAYOUT_VERSION
+                            and cached.get('resource_layout_version')==('positioned-resource-columns-v3' if DOCUMENT_VERSION=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION)
                             and cached['registry_identity_sha256']==hashlib.sha256(canonical(registry).encode()).hexdigest()):
                         outcomes.append(dict(source_key=source['key'],source_sha256=source['sha256'],status='REUSED_VERIFIED_EXTRACTION',sha256=latest['sha256']))
                         continue
-            data=recognize_document(root,source,registry,tessdata)
+            native_cache=None
+            if DOCUMENT_VERSION=='document-recognition-v3-bound-quantities':
+                import pymupdf
+                prior=[s for s in manifest['snapshots'] if s['kind']=='document_extraction' and s.get('source_sha256')==source['sha256']]
+                if prior:
+                    latest=max(prior,key=lambda s:s['acquired_at'])
+                    if filehash(root/latest['path'])!=latest['sha256']:raise ValueError('IMMUTABLE_EXTRACTION_MISMATCH')
+                    previous=json.loads((root/latest['path']).read_text(encoding='utf-8'))
+                    if previous.get('source_sha256')==source['sha256'] and previous.get('backend_version')==pymupdf.VersionBind:
+                        native_cache={p['physical_page']:[t for t in previous['tables'] if t['physical_page']==p['physical_page']]
+                                      for p in previous['pages'] if 'table_error' not in p and p['status']=='EXTRACTED'}
+            data=recognize_document(root,source,registry,tessdata,table_cache=native_cache)
             raw=(canonical(data)+'\n').encode();sha=hashlib.sha256(raw).hexdigest()
             target=root/'data/snapshots'/(sha+'.json')
             if not target.exists():target.write_bytes(raw)
@@ -405,7 +455,7 @@ def readable(text):
     return bool(chars) and sum(32<=ord(c)<127 for c in chars)/len(chars)>.88
 
 
-def extract_page(path, number, tessdata=None, markers=()):
+def extract_page(path, number, tessdata=None, markers=(), ocr_dpi=200, ocr_clip=None):
     import pymupdf
     path=Path(path)
     with pymupdf.open(path) as doc:
@@ -420,18 +470,30 @@ def extract_page(path, number, tessdata=None, markers=()):
         if not good(text):method='MUPDF_POSITIONED';text=alternate
         model_sha=None
         if not good(text) and tessdata:
+            if ocr_dpi not in (200,400,600):raise ValueError('UNSUPPORTED_SELECTIVE_OCR_DPI')
             model=Path(tessdata)/'eng.traineddata'
             model_sha=filehash(model)
-            tp=page.get_textpage_ocr(language='eng',dpi=200,full=True,tessdata=str(Path(tessdata).resolve()))
-            text=page.get_text(textpage=tp);method='MUPDF_TESSERACT_200DPI_SELECTED_PAGE'
-        return {'source_sha256':filehash(path),'physical_page':number,'version':'pdf-page-v1',
+            method='MUPDF_TESSERACT_'+str(ocr_dpi)+'DPI_SELECTED_PAGE'
+            if ocr_clip:
+                clip=pymupdf.Rect(ocr_clip)
+                if clip.is_empty or not page.rect.contains(clip):raise ValueError('OCR_CLIP_OUTSIDE_SOURCE_PAGE')
+                pix=page.get_pixmap(matrix=pymupdf.Matrix(ocr_dpi/72,ocr_dpi/72),clip=clip)
+                with pymupdf.open(stream=pix.pdfocr_tobytes(language='eng',tessdata=str(Path(tessdata).resolve())),filetype='pdf') as region:
+                    text=region[0].get_text()
+                method=method.replace('SELECTED_PAGE','SELECTED_REGION')
+            else:
+                tp=page.get_textpage_ocr(language='eng',dpi=ocr_dpi,full=True,tessdata=str(Path(tessdata).resolve()))
+                text=page.get_text(textpage=tp)
+        result={'source_sha256':filehash(path),'physical_page':number,'version':'pdf-page-v1',
                 'method':method,'backend_version':pymupdf.VersionBind,'model_sha256':model_sha,
                 'native_error':native_error,'native_text':native,'positioned_text':alternate,'text':text,
                 'status':'EXTRACTED_REQUIRES_SCOPE_VALIDATION' if good(text) else 'UNREADABLE',
                 'transformations':['NATIVE_AND_POSITIONED_TEXT_ATTEMPTED','NO_GUESSED_CHARACTER_OR_NUMERIC_SUBSTITUTION']}
+        if ocr_clip:result['ocr_clip']=list(ocr_clip)
+        return result
 
 
-def capture_pages(root, source, pages, tessdata=None):
+def capture_pages(root, source, pages, tessdata=None, markers_by_page=None, ocr_dpi=200, ocr_clips_by_page=None):
     """One source manifest, content-addressed derivatives, per-page isolation."""
     import hashlib
     root=Path(root);path=root/'data/manifest.json'
@@ -439,7 +501,9 @@ def capture_pages(root, source, pages, tessdata=None):
     if filehash(root/source['path'])!=source['sha256']:raise ValueError('PDF source checksum mismatch')
     for page in sorted(set(pages)):
         try:
-            result=extract_page(root/source['path'],page,tessdata)
+            markers=(markers_by_page or {}).get(page,())
+            result=extract_page(root/source['path'],page,tessdata,markers=markers,ocr_dpi=ocr_dpi,ocr_clip=(ocr_clips_by_page or {}).get(page))
+            if markers:result['requested_markers']=list(markers)
             raw=(canonical(result)+'\n').encode();sha=hashlib.sha256(raw).hexdigest()
             target=root/'data/snapshots'/(sha+'.json')
             if not target.exists():target.write_bytes(raw)

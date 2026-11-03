@@ -1,0 +1,1084 @@
+{
+  "version": "phase13-source-recovery-v1",
+  "baseline_commit": "97ea5e84add91e35e4c6c879e7a4c5c730abc7f7",
+  "branch": "feat/phase13-source-recovery",
+  "base_branch": "feat/phase12-evidence-yield",
+  "parent_pr": 2,
+  "canonical_run": "20261103T215333-45fab3f3",
+  "code": {
+    "package": "0.1.0",
+    "commit": "97ea5e84add91e35e4c6c879e7a4c5c730abc7f7",
+    "content_sha256": "d69d49c05cf2e201f88cf16d4cd8f82524ec059520131782b240b0aada6cf858"
+  },
+  "configuration_sha256": "558789f812a7e7ebdd9e141526dcabc1346920fc6d12ebe32e1e951b82f6f7a3",
+  "snapshot_sha256": "474eb3ec672041c6335f5b85f36d6a79084918c6f3ea406b4c862cb4389990c0",
+  "cutoffs": {
+    "research": "2026-11-03",
+    "acquisition_through": "2026-11-04",
+    "formal": "2026-10-29"
+  },
+  "before": {
+    "unresolved_pairs": 36,
+    "primary_scope_gaps": 1,
+    "resource_defined": 22,
+    "source_snapshots": 121,
+    "pdf_snapshots": 49,
+    "validated_statement_values": 292,
+    "validated_structured_events": 21,
+    "government_unconfirmed_relation_candidates": 112,
+    "government_confirmed_representative_site_relations": 4,
+    "development": 0,
+    "full_evidence": 0,
+    "canonical_registry_groups": 31,
+    "scorable_Resource": 22,
+    "scorable_Strategic": 10,
+    "scorable_Technical": 0,
+    "scorable_Development": 9,
+    "scorable_Infrastructure": 20,
+    "scorable_Commercial": 8
+  },
+  "after": {
+    "unresolved_pairs": 36,
+    "primary_scope_gaps": 1,
+    "resource_defined": 21,
+    "source_snapshots": 204,
+    "pdf_snapshots": 54,
+    "validated_statement_values": 315,
+    "validated_structured_events": 21,
+    "government_unconfirmed_relation_candidates": 112,
+    "government_confirmed_representative_site_relations": 4,
+    "development": 0,
+    "full_evidence": 0,
+    "canonical_registry_groups": 31,
+    "scorable_Resource": 21,
+    "scorable_Strategic": 10,
+    "scorable_Technical": 0,
+    "scorable_Development": 9,
+    "scorable_Infrastructure": 19,
+    "scorable_Commercial": 8
+  },
+  "cohorts": [
+    {
+      "panel": "beneficiation_concentrate_screen",
+      "before_n": 2,
+      "after_n": 2
+    },
+    {
+      "panel": "issuer_resource_composition",
+      "before_n": 10,
+      "after_n": 10
+    },
+    {
+      "panel": "issuer_resource_concentrate",
+      "before_n": 2,
+      "after_n": 2
+    },
+    {
+      "panel": "issuer_resource_concentrate_recovery",
+      "before_n": 2,
+      "after_n": 2
+    },
+    {
+      "panel": "issuer_resource_financing_milestone",
+      "before_n": 7,
+      "after_n": 6
+    },
+    {
+      "panel": "issuer_resource_infrastructure",
+      "before_n": 7,
+      "after_n": 7
+    },
+    {
+      "panel": "issuer_resource_study",
+      "before_n": 9,
+      "after_n": 8
+    },
+    {
+      "panel": "official_wa_resource_screen",
+      "before_n": 17,
+      "after_n": 17
+    },
+    {
+      "panel": "resource_infrastructure_pilot",
+      "before_n": 20,
+      "after_n": 19
+    }
+  ],
+  "numeric_yield": {
+    "gross_verified_additions": 25,
+    "source_located_ai_assisted_transcriptions": 16,
+    "automatic_raw_numeric_additions": 9,
+    "recovered_from_existing_documents": 8,
+    "new_document_historical_disclosure": 1,
+    "previous_misclassified_percentages_excluded": 2,
+    "net_selected_increase": 23,
+    "recovered_cells": "Cummins MRE p2 six values in Rare Dyke/Phos Dyke/Combined; Browns DFS+stockpile resource p55 two values",
+    "historical_disclosure": "Cummins July2026 p2 cites BTMR up-to48.74 percent flotation recovery, historical test not current overall recovery",
+    "removed": "Wudinna moisture13.3 and MtWeld tailings grade7.3 retained in source text, excluded as extraction",
+    "new_scorable_project_criteria": 0,
+    "new_joint_mcda_projects": 0
+  },
+  "original_pdf_snapshots": {
+    "before_entries": 49,
+    "after_entries": 54,
+    "before_distinct_shas": 47,
+    "after_distinct_shas": 52,
+    "new_distinct_pdfs": [
+      {
+        "key": "discovered_90b6f0d65454f15a6164bd920d23ab92ab9424598c052be0bbf65b4d7514b48d",
+        "sha256": "b41ad6d07b309d25775e9b53f8793bf054906bd4d6c4baed9b247f9bef67d9ae",
+        "url": "https://www.vhmltd.com.au/wp-content/uploads/2023/11/Technical-Report-M_Soil-and-land-resource_Exhibition.pdf",
+        "publication_date": null,
+        "authority": "ISSUER_LINKED_DELIVERY_NOT_CONTENT_VERIFIED"
+      },
+      {
+        "key": "discovered_e139d3c8a8810685151b874b24dc95bc3e91b533c87d47deff26e24f4f97e4c7",
+        "sha256": "679db0efa4e405e7c93b5b5b259c13b0e48e40c3349a8af28c2dc239beb2f657",
+        "url": "https://www.vhmltd.com.au/wp-content/uploads/2023/11/Attachment-II_Development-licence-application_Exhibition.pdf",
+        "publication_date": null,
+        "authority": "ISSUER_LINKED_DELIVERY_NOT_CONTENT_VERIFIED"
+      },
+      {
+        "key": "discovered_e6693c83948ff7e8a62057e89785064ee716bad74d4bad7df10e357a4c849103",
+        "sha256": "5368738986164f729768fd479ce65e43b6529bd3557aa95e4bd843b6bd4081b4",
+        "url": "https://www.vhmltd.com.au/wp-content/uploads/2023/11/Goschen-Environment-Effects-Statement-Summary_16pp_WEB.pdf",
+        "publication_date": null,
+        "authority": "ISSUER_LINKED_DELIVERY_NOT_CONTENT_VERIFIED"
+      },
+      {
+        "key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+        "sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+        "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7629289.pdf?v=63951121196",
+        "publication_date": "2026-07-13",
+        "authority": null
+      },
+      {
+        "key": "north_stanmore_pfs2026",
+        "sha256": "de5b5c737eb582bb2092d84bb900ecb7a27fb321fe7ecd58d38f2b5c834a5831",
+        "url": "https://cdn.financialreports.eu/financialreports/media/filings/66026/2026/RNS/66026_rns_2026-08-18_945f843e-1282-40b7-9382-0f85251f5650.pdf",
+        "publication_date": "2026-08-18",
+        "authority": "ISSUER_AUTHORED_REPORT_PUBLIC_MIRROR_NOT_ISSUER_HOST"
+      }
+    ],
+    "useful_for_new_evidence": 2,
+    "unparsed_environmental_or_permitting_pdfs": 3
+  },
+  "document_pipeline": {
+    "candidate_statuses": {
+      "AUTO_VALIDATED": 411,
+      "OBSERVATION_EXTRACTED_NOT_VALIDATED": 1152,
+      "REVIEW": 198
+    },
+    "candidates": 1761,
+    "documents": 27,
+    "limitations": [
+      "RAW_VALIDATION_IS_NOT_FORMAL_CRITERION_APPROVAL",
+      "NO_CORPUS_WIDE_RECALL_CLAIM"
+    ],
+    "pages": 1364,
+    "relevant_pages": 700,
+    "tables": 81,
+    "validated_observations": 528
+  },
+  "technical_inventory": {
+    "before": {
+      "DESCRIPTIVE_ONLY": 202,
+      "NOT_COMPARABLE": 543,
+      "NUMERIC_COMPARABLE": 4
+    },
+    "after": {
+      "NOT_COMPARABLE": 573,
+      "DESCRIPTIVE_ONLY": 274,
+      "NUMERIC_COMPARABLE": 4
+    }
+  },
+  "source_coverage": {
+    "all_rows": 279,
+    "registry_groups": 31,
+    "phase12_resource_projects": 22,
+    "phase12_resource_project_type_rows": 198,
+    "document_types": [
+      "DFS",
+      "FINANCING",
+      "JORC_RESOURCE",
+      "METALLURGICAL",
+      "MINERALOGY",
+      "NORM",
+      "OFFTAKE",
+      "PFS",
+      "SCOPING"
+    ],
+    "stages": {
+      "VERIFIED_NOT_CURRENTLY_COMPARABLE": 48,
+      "SEARCHED_NO_CANDIDATE_IN_BOUNDED_COVERAGE": 61,
+      "PARSED_NO_VALIDATED_OBSERVATION": 15,
+      "PARSED_VALUES_OR_SCOPE_NOT_VALIDATED": 6,
+      "VERIFIED_USABLE_FOR_SPECIFIED_ANALYSIS": 29,
+      "NOT_SEARCHED_OR_ENDPOINT_NOT_CONFIGURED": 38,
+      "DISCOVERED_DOWNLOAD_FAILED": 1
+    },
+    "bounded_source_attempt_projects": 17,
+    "interpretation": "Requests are deduplicated URLs over locked receipts; terms pages/reused originals are not counted as search pages. No absence inferred."
+  },
+  "source_attempts": {
+    "initial_live": {
+      "elapsed_seconds": 131.991,
+      "search_pages": 84,
+      "downloaded_documents": 3,
+      "reused_originals": 39,
+      "failures": 10,
+      "scope": "BOUNDED_SOURCE_ATTEMPTS_NOT_EXHAUSTIVE_SEARCH"
+    },
+    "final_fixed_budget_replay": {
+      "elapsed_seconds": 3.086,
+      "source_items": 38,
+      "search_pages": 10,
+      "downloaded_documents": 0,
+      "document_attempts": 24,
+      "reused_originals": 28,
+      "failures": 0,
+      "scope": "BOUNDED_SOURCE_ATTEMPTS_NOT_EXHAUSTIVE_SEARCH"
+    },
+    "limitations": [
+      "Initial live search_pages84 included reused source items and16 terms interstitials; use source records and final fixed-page replay, not84 useful search pages.",
+      "Issuer sites429, mirror indexes403 and distributor URL guesses404. Unverified ASX-ID/distributor mapping removed after unsuccessful trial.",
+      "Two successful primary document recoveries used actual tool-assisted public search; no generic web-search API integrated into CLI.",
+      "ASX terms were not accepted and hidden protected links were not used. Public issuer-linked PDF and independent mirror URL fetched normally."
+    ]
+  },
+  "stable_ids": {
+    "before": 7554,
+    "after": 7555,
+    "retained_existing": 7554,
+    "removed": [],
+    "added": [
+      {
+        "entity_id": "AU-9bfc9f0e131cffd670a0",
+        "kind": "DEPOSIT_SCOPE",
+        "native_namespace": "PRIMARY_RESOURCE_SCOPE",
+        "native_id": "north-stanmore-global-mre-202608-primary|North Stanmore August2026 global MRE; >=300ppm TREO cutoff excludingSc; Measured+Indicated+Inferred; includes high-grade subset and Ore Reserve; dry basis"
+      }
+    ]
+  },
+  "sqlite": {
+    "schema_changed": false,
+    "schema_sha256": "5c7768024bd5a639c208ff49492c6eaf97499f9d39f27c186924d6f519a206d6",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "foreign_key_check": []
+  },
+  "phase12_selected_sources_retained_and_sha_verified": 121,
+  "unchanged_panel_scientific_csv_files": [
+    "beneficiation_concentrate_screen/ahp_audit.csv",
+    "beneficiation_concentrate_screen/cohort_sensitivity.csv",
+    "beneficiation_concentrate_screen/criteria.csv",
+    "beneficiation_concentrate_screen/criterion_contributions.csv",
+    "beneficiation_concentrate_screen/function_sensitivity.csv",
+    "beneficiation_concentrate_screen/leave_out.csv",
+    "beneficiation_concentrate_screen/matrix.csv",
+    "beneficiation_concentrate_screen/method_comparison.csv",
+    "beneficiation_concentrate_screen/partial_order.csv",
+    "beneficiation_concentrate_screen/ranking.csv",
+    "beneficiation_concentrate_screen/rounding_uncertainty.csv",
+    "beneficiation_concentrate_screen/weight_uncertainty.csv",
+    "beneficiation_concentrate_screen/weights.csv",
+    "issuer_resource_composition/ahp_audit.csv",
+    "issuer_resource_composition/aim_c_host_type_description.csv",
+    "issuer_resource_composition/cohort_sensitivity.csv",
+    "issuer_resource_composition/criteria.csv",
+    "issuer_resource_composition/criterion_contributions.csv",
+    "issuer_resource_composition/function_sensitivity.csv",
+    "issuer_resource_composition/leave_out.csv",
+    "issuer_resource_composition/matrix.csv",
+    "issuer_resource_composition/method_comparison.csv",
+    "issuer_resource_composition/partial_order.csv",
+    "issuer_resource_composition/ranking.csv",
+    "issuer_resource_composition/rounding_uncertainty.csv",
+    "issuer_resource_composition/weight_uncertainty.csv",
+    "issuer_resource_composition/weights.csv",
+    "issuer_resource_concentrate/ahp_audit.csv",
+    "issuer_resource_concentrate/aim_c_host_type_description.csv",
+    "issuer_resource_concentrate/cohort_sensitivity.csv",
+    "issuer_resource_concentrate/criteria.csv",
+    "issuer_resource_concentrate/criterion_contributions.csv",
+    "issuer_resource_concentrate/function_sensitivity.csv",
+    "issuer_resource_concentrate/leave_out.csv",
+    "issuer_resource_concentrate/matrix.csv",
+    "issuer_resource_concentrate/method_comparison.csv",
+    "issuer_resource_concentrate/partial_order.csv",
+    "issuer_resource_concentrate/ranking.csv",
+    "issuer_resource_concentrate/rounding_uncertainty.csv",
+    "issuer_resource_concentrate/weight_uncertainty.csv",
+    "issuer_resource_concentrate/weights.csv",
+    "issuer_resource_concentrate_recovery/ahp_audit.csv",
+    "issuer_resource_concentrate_recovery/aim_c_host_type_description.csv",
+    "issuer_resource_concentrate_recovery/cohort_sensitivity.csv",
+    "issuer_resource_concentrate_recovery/criteria.csv",
+    "issuer_resource_concentrate_recovery/criterion_contributions.csv",
+    "issuer_resource_concentrate_recovery/function_sensitivity.csv",
+    "issuer_resource_concentrate_recovery/leave_out.csv",
+    "issuer_resource_concentrate_recovery/matrix.csv",
+    "issuer_resource_concentrate_recovery/method_comparison.csv",
+    "issuer_resource_concentrate_recovery/partial_order.csv",
+    "issuer_resource_concentrate_recovery/ranking.csv",
+    "issuer_resource_concentrate_recovery/rounding_uncertainty.csv",
+    "issuer_resource_concentrate_recovery/weight_uncertainty.csv",
+    "issuer_resource_concentrate_recovery/weights.csv",
+    "issuer_resource_financing_milestone/ahp_audit.csv",
+    "issuer_resource_financing_milestone/criteria.csv",
+    "issuer_resource_financing_milestone/weights.csv",
+    "issuer_resource_infrastructure/ahp_audit.csv",
+    "issuer_resource_infrastructure/aim_c_host_type_description.csv",
+    "issuer_resource_infrastructure/cohort_sensitivity.csv",
+    "issuer_resource_infrastructure/criteria.csv",
+    "issuer_resource_infrastructure/criterion_contributions.csv",
+    "issuer_resource_infrastructure/function_sensitivity.csv",
+    "issuer_resource_infrastructure/leave_out.csv",
+    "issuer_resource_infrastructure/matrix.csv",
+    "issuer_resource_infrastructure/method_comparison.csv",
+    "issuer_resource_infrastructure/partial_order.csv",
+    "issuer_resource_infrastructure/ranking.csv",
+    "issuer_resource_infrastructure/rounding_uncertainty.csv",
+    "issuer_resource_infrastructure/weight_uncertainty.csv",
+    "issuer_resource_infrastructure/weights.csv",
+    "issuer_resource_study/ahp_audit.csv",
+    "issuer_resource_study/criteria.csv",
+    "issuer_resource_study/weights.csv",
+    "official_wa_resource_screen/ahp_audit.csv",
+    "official_wa_resource_screen/aim_c_stage_rank_association.csv",
+    "official_wa_resource_screen/cohort_sensitivity.csv",
+    "official_wa_resource_screen/criteria.csv",
+    "official_wa_resource_screen/criterion_contributions.csv",
+    "official_wa_resource_screen/function_sensitivity.csv",
+    "official_wa_resource_screen/leave_out.csv",
+    "official_wa_resource_screen/matrix.csv",
+    "official_wa_resource_screen/method_comparison.csv",
+    "official_wa_resource_screen/partial_order.csv",
+    "official_wa_resource_screen/ranking.csv",
+    "official_wa_resource_screen/rounding_uncertainty.csv",
+    "official_wa_resource_screen/weight_uncertainty.csv",
+    "official_wa_resource_screen/weights.csv",
+    "resource_infrastructure_pilot/ahp_audit.csv",
+    "resource_infrastructure_pilot/criteria.csv",
+    "resource_infrastructure_pilot/weights.csv"
+  ],
+  "pairwise_rank_comparisons": [
+    {
+      "panel": "beneficiation_concentrate_screen",
+      "scenario": "balanced_process_assumption",
+      "method": "saw",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "beneficiation_concentrate_screen",
+      "scenario": "balanced_process_assumption",
+      "method": "promethee",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "beneficiation_concentrate_screen",
+      "scenario": "balanced_process_assumption",
+      "method": "topsis",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "beneficiation_concentrate_screen",
+      "scenario": "grade_priority_assumption",
+      "method": "saw",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "beneficiation_concentrate_screen",
+      "scenario": "grade_priority_assumption",
+      "method": "promethee",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "beneficiation_concentrate_screen",
+      "scenario": "grade_priority_assumption",
+      "method": "topsis",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "beneficiation_concentrate_screen",
+      "scenario": "recovery_priority_assumption",
+      "method": "saw",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "beneficiation_concentrate_screen",
+      "scenario": "recovery_priority_assumption",
+      "method": "promethee",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "beneficiation_concentrate_screen",
+      "scenario": "recovery_priority_assumption",
+      "method": "topsis",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_composition",
+      "scenario": "development_assumption",
+      "method": "saw",
+      "common_projects": 10,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_composition",
+      "scenario": "development_assumption",
+      "method": "promethee",
+      "common_projects": 10,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_composition",
+      "scenario": "development_assumption",
+      "method": "topsis",
+      "common_projects": 10,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_composition",
+      "scenario": "resource_assumption",
+      "method": "saw",
+      "common_projects": 10,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_composition",
+      "scenario": "resource_assumption",
+      "method": "promethee",
+      "common_projects": 10,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_composition",
+      "scenario": "resource_assumption",
+      "method": "topsis",
+      "common_projects": 10,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_composition",
+      "scenario": "strategic_assumption",
+      "method": "saw",
+      "common_projects": 10,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_composition",
+      "scenario": "strategic_assumption",
+      "method": "promethee",
+      "common_projects": 10,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_composition",
+      "scenario": "strategic_assumption",
+      "method": "topsis",
+      "common_projects": 10,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate",
+      "scenario": "development_assumption",
+      "method": "saw",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate",
+      "scenario": "development_assumption",
+      "method": "promethee",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate",
+      "scenario": "development_assumption",
+      "method": "topsis",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate",
+      "scenario": "resource_assumption",
+      "method": "saw",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate",
+      "scenario": "resource_assumption",
+      "method": "promethee",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate",
+      "scenario": "resource_assumption",
+      "method": "topsis",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate",
+      "scenario": "strategic_assumption",
+      "method": "saw",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate",
+      "scenario": "strategic_assumption",
+      "method": "promethee",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate",
+      "scenario": "strategic_assumption",
+      "method": "topsis",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate_recovery",
+      "scenario": "development_assumption",
+      "method": "saw",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate_recovery",
+      "scenario": "development_assumption",
+      "method": "promethee",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate_recovery",
+      "scenario": "development_assumption",
+      "method": "topsis",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate_recovery",
+      "scenario": "resource_assumption",
+      "method": "saw",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate_recovery",
+      "scenario": "resource_assumption",
+      "method": "promethee",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate_recovery",
+      "scenario": "resource_assumption",
+      "method": "topsis",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate_recovery",
+      "scenario": "strategic_assumption",
+      "method": "saw",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate_recovery",
+      "scenario": "strategic_assumption",
+      "method": "promethee",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate_recovery",
+      "scenario": "strategic_assumption",
+      "method": "topsis",
+      "common_projects": 2,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_financing_milestone",
+      "scenario": "development_assumption",
+      "method": "saw",
+      "common_projects": 6,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_financing_milestone",
+      "scenario": "development_assumption",
+      "method": "promethee",
+      "common_projects": 6,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_financing_milestone",
+      "scenario": "development_assumption",
+      "method": "topsis",
+      "common_projects": 6,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_financing_milestone",
+      "scenario": "resource_assumption",
+      "method": "saw",
+      "common_projects": 6,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_financing_milestone",
+      "scenario": "resource_assumption",
+      "method": "promethee",
+      "common_projects": 6,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_financing_milestone",
+      "scenario": "resource_assumption",
+      "method": "topsis",
+      "common_projects": 6,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_financing_milestone",
+      "scenario": "strategic_assumption",
+      "method": "saw",
+      "common_projects": 6,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_financing_milestone",
+      "scenario": "strategic_assumption",
+      "method": "promethee",
+      "common_projects": 6,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_financing_milestone",
+      "scenario": "strategic_assumption",
+      "method": "topsis",
+      "common_projects": 6,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_infrastructure",
+      "scenario": "development_assumption",
+      "method": "saw",
+      "common_projects": 7,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_infrastructure",
+      "scenario": "development_assumption",
+      "method": "promethee",
+      "common_projects": 7,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_infrastructure",
+      "scenario": "development_assumption",
+      "method": "topsis",
+      "common_projects": 7,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_infrastructure",
+      "scenario": "resource_assumption",
+      "method": "saw",
+      "common_projects": 7,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_infrastructure",
+      "scenario": "resource_assumption",
+      "method": "promethee",
+      "common_projects": 7,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_infrastructure",
+      "scenario": "resource_assumption",
+      "method": "topsis",
+      "common_projects": 7,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_infrastructure",
+      "scenario": "strategic_assumption",
+      "method": "saw",
+      "common_projects": 7,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_infrastructure",
+      "scenario": "strategic_assumption",
+      "method": "promethee",
+      "common_projects": 7,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_infrastructure",
+      "scenario": "strategic_assumption",
+      "method": "topsis",
+      "common_projects": 7,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_study",
+      "scenario": "development_assumption",
+      "method": "saw",
+      "common_projects": 8,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_study",
+      "scenario": "development_assumption",
+      "method": "promethee",
+      "common_projects": 8,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_study",
+      "scenario": "development_assumption",
+      "method": "topsis",
+      "common_projects": 8,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_study",
+      "scenario": "resource_assumption",
+      "method": "saw",
+      "common_projects": 8,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_study",
+      "scenario": "resource_assumption",
+      "method": "promethee",
+      "common_projects": 8,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_study",
+      "scenario": "resource_assumption",
+      "method": "topsis",
+      "common_projects": 8,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_study",
+      "scenario": "strategic_assumption",
+      "method": "saw",
+      "common_projects": 8,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_study",
+      "scenario": "strategic_assumption",
+      "method": "promethee",
+      "common_projects": 8,
+      "pairwise_order_inversions": 1,
+      "tie_changes": 0
+    },
+    {
+      "panel": "issuer_resource_study",
+      "scenario": "strategic_assumption",
+      "method": "topsis",
+      "common_projects": 8,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "official_wa_resource_screen",
+      "scenario": "balanced_resource_assumption",
+      "method": "saw",
+      "common_projects": 17,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "official_wa_resource_screen",
+      "scenario": "balanced_resource_assumption",
+      "method": "promethee",
+      "common_projects": 17,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "official_wa_resource_screen",
+      "scenario": "balanced_resource_assumption",
+      "method": "topsis",
+      "common_projects": 17,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "official_wa_resource_screen",
+      "scenario": "grade_priority_assumption",
+      "method": "saw",
+      "common_projects": 17,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "official_wa_resource_screen",
+      "scenario": "grade_priority_assumption",
+      "method": "promethee",
+      "common_projects": 17,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "official_wa_resource_screen",
+      "scenario": "grade_priority_assumption",
+      "method": "topsis",
+      "common_projects": 17,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "official_wa_resource_screen",
+      "scenario": "inventory_priority_assumption",
+      "method": "saw",
+      "common_projects": 17,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "official_wa_resource_screen",
+      "scenario": "inventory_priority_assumption",
+      "method": "promethee",
+      "common_projects": 17,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "official_wa_resource_screen",
+      "scenario": "inventory_priority_assumption",
+      "method": "topsis",
+      "common_projects": 17,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "resource_infrastructure_pilot",
+      "scenario": "development_assumption",
+      "method": "saw",
+      "common_projects": 19,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "resource_infrastructure_pilot",
+      "scenario": "development_assumption",
+      "method": "promethee",
+      "common_projects": 19,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "resource_infrastructure_pilot",
+      "scenario": "development_assumption",
+      "method": "topsis",
+      "common_projects": 19,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "resource_infrastructure_pilot",
+      "scenario": "resource_assumption",
+      "method": "saw",
+      "common_projects": 19,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "resource_infrastructure_pilot",
+      "scenario": "resource_assumption",
+      "method": "promethee",
+      "common_projects": 19,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "resource_infrastructure_pilot",
+      "scenario": "resource_assumption",
+      "method": "topsis",
+      "common_projects": 19,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "resource_infrastructure_pilot",
+      "scenario": "strategic_assumption",
+      "method": "saw",
+      "common_projects": 19,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "resource_infrastructure_pilot",
+      "scenario": "strategic_assumption",
+      "method": "promethee",
+      "common_projects": 19,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    },
+    {
+      "panel": "resource_infrastructure_pilot",
+      "scenario": "strategic_assumption",
+      "method": "topsis",
+      "common_projects": 19,
+      "pairwise_order_inversions": 0,
+      "tie_changes": 0
+    }
+  ],
+  "code_structure": {
+    "new_production_modules": 0,
+    "new_dependencies": 0,
+    "new_schema_tables": 0,
+    "new_databases": "No second production DB; isolated disposable clean replays only",
+    "R_engine_changed": false
+  },
+  "reproducibility": {
+    "phase12_replay": {
+      "status": "EXACT",
+      "panel_csv_files": 142,
+      "evidence_exports": 6,
+      "numeric_tolerance": 0,
+      "platform_differences": [],
+      "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+      "before": "results\\phase12-2026-11-04",
+      "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase13-replay12\\runs\\20261103T215054-fb8d8466"
+    },
+    "ci": "Run after publication; authoritative results are PR checks",
+    "python_tests": {
+      "tests": 186,
+      "failures": 0,
+      "errors": 0,
+      "elapsed_seconds": 383.251
+    },
+    "R": "Analytical, identity RNG, evidence cohort and contribution invariants passed",
+    "independent_clean": {
+      "status": "EXACT",
+      "panel_csv_files": 142,
+      "evidence_exports": 7,
+      "numeric_tolerance": 0,
+      "platform_differences": [],
+      "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+      "before": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase13-release-clean-a\\runs\\20261103T215708-e5656c00",
+      "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase13-release-clean-b\\runs\\20261103T215707-71f848a4"
+    },
+    "canonical_clean": {
+      "status": "EXACT",
+      "panel_csv_files": 142,
+      "evidence_exports": 7,
+      "numeric_tolerance": 0,
+      "platform_differences": [],
+      "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+      "before": "results\\phase13-2026-11-04",
+      "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase13-release-clean-a\\runs\\20261103T215708-e5656c00"
+    },
+    "frozen_generated_hashes_verified": 218,
+    "common_criterion_point_cells_unchanged": 169,
+    "publication_scan": {
+      "local_text_artifacts": 2551,
+      "status": "PASSED"
+    },
+    "staged_git_frozen_hashes_verified": 218,
+    "staged_git_code_content_sha256": "d69d49c05cf2e201f88cf16d4cd8f82524ec059520131782b240b0aada6cf858",
+    "phase13_pinned_fixture_tests": {
+      "tests": 16,
+      "status": "PASSED"
+    }
+  },
+  "limitations": [
+    "North Stanmore2025 cutoff330 TREO+Sc and2026 cutoff300 TREO are separate scopes. Unchanged multi-scope guard excludes it from current resource matrix; retained raw resource evidence is not erased.",
+    "No new common MCDA sample; panels resource+port20to19, study9to8, financing7to6. S10/T0/D9/C8 unchanged; I19 is resource-cohort scoring, no GIS original lost.",
+    "Image-only individual North Stanmore REO cells failed200/600dpi page and400dpi region OCR. No S1 estimate or decimal repair.",
+    "Additional document-disjoint Salazar/Burracoppin check has0TP/0FP/6FN; development benchmark improvement is not national or blind validation.",
+    "FormalC1, strictDevelopment and fullEvidence remain0; Splinter and36 pairs/112 government candidates remain unresolved."
+  ]
+}

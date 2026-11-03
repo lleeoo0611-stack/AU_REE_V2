@@ -44,7 +44,8 @@ class Phase11Tests(unittest.TestCase):
         old={s['key'] for s in select_snapshots(ROOT,'2026-11-03')}
         new=select_snapshots(ROOT,'2026-11-03',acquired_through='2026-11-04')
         for s in new:
-            if s['key'] not in old:self.assertIn(s['kind'],('pdf','html','document_extraction','pdf_page_extraction'))
+            # A retrospective search receipt is unscored acquisition metadata.
+            if s['key'] not in old:self.assertIn(s['kind'],('pdf','html','document_extraction','pdf_page_extraction','discovery_receipt'))
 
     def test_upstream_ledger_bytes_and_unapproved_crosswalk(self):
         p=json.loads((ROOT/'config/eligibility_compatibility.json').read_text())

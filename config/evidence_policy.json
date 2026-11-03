@@ -1,5 +1,5 @@
 {
-  "version": "evidence-resolution-v6-phase12",
+  "version": "evidence-resolution-v7-source-recovery",
   "main_codes": [
     "R1",
     "S1",
@@ -346,13 +346,14 @@
   },
   "identity_rule_version": "document-native-extension-phase8-v1",
   "document_pipeline": {
-    "parser_version": "document-recognition-v2-mineralogy",
+    "parser_version": "document-recognition-v3-bound-quantities",
     "role": "RAW_SCOPED_DISCLOSURES_NOT_AUTOMATIC_FORMAL_CRITERIA",
     "resource_promotion": "REPORTED_VARIABLES_ONLY_UNTIL_EFFECTIVE_DATE_AND_SCOPE_COMPATIBLE",
     "validation_version": "scientific-context-v4-column-binding",
     "parser_versions": [
       "document-recognition-v1",
-      "document-recognition-v2-mineralogy"
+      "document-recognition-v2-mineralogy",
+      "document-recognition-v3-bound-quantities"
     ]
   },
   "technical_comparability": {

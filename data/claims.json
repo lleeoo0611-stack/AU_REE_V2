@@ -1547,6 +1547,556 @@
           "statistic": "SOURCE_REPORTED_AVERAGE_OR_EQUIVALENT_ACTIVITY",
           "scale": "SCOPING_ASSAY_AND_MINE_SCHEDULE_CONTEXT",
           "endpoint": "PHOSPHATE_REE_MINERAL_CONCENTRATE"
+        },
+        {
+          "variable": "test_concentrate_treo_grade_pct",
+          "value": 25.15,
+          "unit": "%",
+          "basis": "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED",
+          "domain": "Technical",
+          "scope": "Cummins Range CRCS-10 selected high-grade composite; SGS Lakefield F7 2nd Cleaner Concentrate",
+          "statement_id": "cummins-sgs20260713-F7-2nd-cleaner-concentrate",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "F7",
+            "2nd Cleaner Concentrate",
+            "25.15"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "INTERMEDIATE_PRODUCT_GRADE",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": "CLEANER_MINERAL_CONCENTRATE",
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "process_stage": "CLEANER_FLOTATION",
+          "statistic": "SELECTED_TEST_RESULT_NOT_OVERALL_PROJECT_RECOVERY",
+          "sample_population": "CRCS-10 high-grade composite; selected from 11 flotation tests"
+        },
+        {
+          "variable": "test_flotation_treo_recovery_pct",
+          "value": 29.2,
+          "unit": "%",
+          "basis": "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED",
+          "domain": "Technical",
+          "scope": "Cummins Range CRCS-10 selected high-grade composite; SGS Lakefield F7 2nd Cleaner Concentrate",
+          "statement_id": "cummins-sgs20260713-F7-2nd-cleaner-concentrate",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "F7",
+            "2nd Cleaner Concentrate",
+            "29.2"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "BENEFICIATION_RECOVERY",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": "CLEANER_MINERAL_CONCENTRATE",
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "process_stage": "CLEANER_FLOTATION",
+          "statistic": "SELECTED_TEST_RESULT_NOT_OVERALL_PROJECT_RECOVERY",
+          "sample_population": "CRCS-10 high-grade composite; selected from 11 flotation tests"
+        },
+        {
+          "variable": "test_concentrate_treo_grade_pct",
+          "value": 13.51,
+          "unit": "%",
+          "basis": "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED",
+          "domain": "Technical",
+          "scope": "Cummins Range CRCS-10 selected high-grade composite; SGS Lakefield F7 1st Cleaner Concentrate",
+          "statement_id": "cummins-sgs20260713-F7-1st-cleaner-concentrate",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "F7",
+            "1st Cleaner Concentrate",
+            "13.51"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "INTERMEDIATE_PRODUCT_GRADE",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": "CLEANER_MINERAL_CONCENTRATE",
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "process_stage": "CLEANER_FLOTATION",
+          "statistic": "SELECTED_TEST_RESULT_NOT_OVERALL_PROJECT_RECOVERY",
+          "sample_population": "CRCS-10 high-grade composite; selected from 11 flotation tests"
+        },
+        {
+          "variable": "test_flotation_treo_recovery_pct",
+          "value": 41.9,
+          "unit": "%",
+          "basis": "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED",
+          "domain": "Technical",
+          "scope": "Cummins Range CRCS-10 selected high-grade composite; SGS Lakefield F7 1st Cleaner Concentrate",
+          "statement_id": "cummins-sgs20260713-F7-1st-cleaner-concentrate",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "F7",
+            "1st Cleaner Concentrate",
+            "41.9"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "BENEFICIATION_RECOVERY",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": "CLEANER_MINERAL_CONCENTRATE",
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "process_stage": "CLEANER_FLOTATION",
+          "statistic": "SELECTED_TEST_RESULT_NOT_OVERALL_PROJECT_RECOVERY",
+          "sample_population": "CRCS-10 high-grade composite; selected from 11 flotation tests"
+        },
+        {
+          "variable": "test_concentrate_treo_grade_pct",
+          "value": 6.6,
+          "unit": "%",
+          "basis": "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED",
+          "domain": "Technical",
+          "scope": "Cummins Range CRCS-10 selected high-grade composite; SGS Lakefield F7 Rougher Concentrate (R1+R2)",
+          "statement_id": "cummins-sgs20260713-F7-rougher-concentrate-(r1+r2)",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "F7",
+            "Rougher Concentrate",
+            "6.60"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "INTERMEDIATE_PRODUCT_GRADE",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": "ROUGHER_MINERAL_CONCENTRATE",
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "process_stage": "ROUGHER_FLOTATION",
+          "statistic": "SELECTED_TEST_RESULT_NOT_OVERALL_PROJECT_RECOVERY",
+          "sample_population": "CRCS-10 high-grade composite; selected from 11 flotation tests"
+        },
+        {
+          "variable": "test_flotation_treo_recovery_pct",
+          "value": 68.0,
+          "unit": "%",
+          "basis": "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED",
+          "domain": "Technical",
+          "scope": "Cummins Range CRCS-10 selected high-grade composite; SGS Lakefield F7 Rougher Concentrate (R1+R2)",
+          "statement_id": "cummins-sgs20260713-F7-rougher-concentrate-(r1+r2)",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "F7",
+            "Rougher Concentrate",
+            "68.0"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "BENEFICIATION_RECOVERY",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": "ROUGHER_MINERAL_CONCENTRATE",
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "process_stage": "ROUGHER_FLOTATION",
+          "statistic": "SELECTED_TEST_RESULT_NOT_OVERALL_PROJECT_RECOVERY",
+          "sample_population": "CRCS-10 high-grade composite; selected from 11 flotation tests"
+        },
+        {
+          "variable": "test_concentrate_treo_grade_pct",
+          "value": 19.93,
+          "unit": "%",
+          "basis": "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED",
+          "domain": "Technical",
+          "scope": "Cummins Range CRCS-10 selected high-grade composite; SGS Lakefield F8 2nd Cleaner Concentrate",
+          "statement_id": "cummins-sgs20260713-F8-2nd-cleaner-concentrate",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "F8",
+            "2nd Cleaner Concentrate",
+            "19.93"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "INTERMEDIATE_PRODUCT_GRADE",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": "CLEANER_MINERAL_CONCENTRATE",
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "process_stage": "CLEANER_FLOTATION",
+          "statistic": "SELECTED_TEST_RESULT_NOT_OVERALL_PROJECT_RECOVERY",
+          "sample_population": "CRCS-10 high-grade composite; selected from 11 flotation tests"
+        },
+        {
+          "variable": "test_flotation_treo_recovery_pct",
+          "value": 37.6,
+          "unit": "%",
+          "basis": "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED",
+          "domain": "Technical",
+          "scope": "Cummins Range CRCS-10 selected high-grade composite; SGS Lakefield F8 2nd Cleaner Concentrate",
+          "statement_id": "cummins-sgs20260713-F8-2nd-cleaner-concentrate",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "F8",
+            "2nd Cleaner Concentrate",
+            "37.6"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "BENEFICIATION_RECOVERY",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": "CLEANER_MINERAL_CONCENTRATE",
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "process_stage": "CLEANER_FLOTATION",
+          "statistic": "SELECTED_TEST_RESULT_NOT_OVERALL_PROJECT_RECOVERY",
+          "sample_population": "CRCS-10 high-grade composite; selected from 11 flotation tests"
+        },
+        {
+          "variable": "test_concentrate_treo_grade_pct",
+          "value": 6.41,
+          "unit": "%",
+          "basis": "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED",
+          "domain": "Technical",
+          "scope": "Cummins Range CRCS-10 selected high-grade composite; SGS Lakefield F8 Rougher Concentrate",
+          "statement_id": "cummins-sgs20260713-F8-rougher-concentrate",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "F8",
+            "Rougher Concentrate",
+            "6.41"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "INTERMEDIATE_PRODUCT_GRADE",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": "ROUGHER_MINERAL_CONCENTRATE",
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "process_stage": "ROUGHER_FLOTATION",
+          "statistic": "SELECTED_TEST_RESULT_NOT_OVERALL_PROJECT_RECOVERY",
+          "sample_population": "CRCS-10 high-grade composite; selected from 11 flotation tests"
+        },
+        {
+          "variable": "test_flotation_treo_recovery_pct",
+          "value": 74.6,
+          "unit": "%",
+          "basis": "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED",
+          "domain": "Technical",
+          "scope": "Cummins Range CRCS-10 selected high-grade composite; SGS Lakefield F8 Rougher Concentrate",
+          "statement_id": "cummins-sgs20260713-F8-rougher-concentrate",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "F8",
+            "Rougher Concentrate",
+            "74.6"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "BENEFICIATION_RECOVERY",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": "ROUGHER_MINERAL_CONCENTRATE",
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "process_stage": "ROUGHER_FLOTATION",
+          "statistic": "SELECTED_TEST_RESULT_NOT_OVERALL_PROJECT_RECOVERY",
+          "sample_population": "CRCS-10 high-grade composite; selected from 11 flotation tests"
+        },
+        {
+          "variable": "test_concentrate_treo_grade_pct",
+          "value": 17.57,
+          "unit": "%",
+          "basis": "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED",
+          "domain": "Technical",
+          "scope": "Cummins Range CRCS-10 selected high-grade composite; SGS Lakefield F11 2nd Cleaner Concentrate",
+          "statement_id": "cummins-sgs20260713-F11-2nd-cleaner-concentrate",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "F11",
+            "2nd Cleaner Concentrate",
+            "17.57"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "INTERMEDIATE_PRODUCT_GRADE",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": "CLEANER_MINERAL_CONCENTRATE",
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "process_stage": "CLEANER_FLOTATION",
+          "statistic": "SELECTED_TEST_RESULT_NOT_OVERALL_PROJECT_RECOVERY",
+          "sample_population": "CRCS-10 high-grade composite; selected from 11 flotation tests"
+        },
+        {
+          "variable": "test_flotation_treo_recovery_pct",
+          "value": 21.7,
+          "unit": "%",
+          "basis": "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED",
+          "domain": "Technical",
+          "scope": "Cummins Range CRCS-10 selected high-grade composite; SGS Lakefield F11 2nd Cleaner Concentrate",
+          "statement_id": "cummins-sgs20260713-F11-2nd-cleaner-concentrate",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "F11",
+            "2nd Cleaner Concentrate",
+            "21.7"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "BENEFICIATION_RECOVERY",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": "CLEANER_MINERAL_CONCENTRATE",
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "process_stage": "CLEANER_FLOTATION",
+          "statistic": "SELECTED_TEST_RESULT_NOT_OVERALL_PROJECT_RECOVERY",
+          "sample_population": "CRCS-10 high-grade composite; selected from 11 flotation tests"
+        },
+        {
+          "variable": "test_feed_treo_grade_pct",
+          "value": 2.85,
+          "unit": "%",
+          "basis": "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED",
+          "domain": "Technical",
+          "scope": "Cummins Range SGS Lakefield CRCS-10 selected high-grade composite flotation program",
+          "statement_id": "cummins-sgs-program20260713",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "2.85%"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "TEST_FEED_GRADE",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": null,
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION"
+        },
+        {
+          "variable": "flotation_test_count",
+          "value": 11,
+          "unit": "count",
+          "basis": "COUNT",
+          "domain": "Technical",
+          "scope": "Cummins Range SGS Lakefield CRCS-10 selected high-grade composite flotation program",
+          "statement_id": "cummins-sgs-program20260713",
+          "effective_date": "2026-07-13",
+          "date_role": "TEST_DISCLOSURE_DATE_TEST_DATE_NOT_DISCLOSED",
+          "category": "NOT_APPLICABLE",
+          "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+          "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+          "pdf_page": 3,
+          "page_markers": [
+            "Eleven flotation tests"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "CRCS-10",
+                "necessarily reflective of long-term feed-grade"
+              ]
+            }
+          ],
+          "locator": "physical p3 Table2 or program description; p2 CRCS-10 representativeness warning",
+          "role": "TEST_POPULATION",
+          "feed": "SELECTED_HIGH_GRADE_COMPOSITE_CRCS10",
+          "endpoint": null,
+          "scale": "LABORATORY",
+          "measurement_bounds": null,
+          "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION"
         }
       ]
     },
@@ -1971,6 +2521,86 @@
           "role": "TEST_POPULATION",
           "scale": "PILOT_CONCENTRATE_CHARACTERIZATION",
           "sample_population": "One composite from33air-core samples/18drillholes; one Project"
+        },
+        {
+          "variable": "ore_mt",
+          "value": 278.8,
+          "unit": "Mt",
+          "basis": "TREO",
+          "domain": "Resource",
+          "scope": "North Stanmore August2026 global MRE; >=300ppm TREO cutoff excludingSc; Measured+Indicated+Inferred; includes high-grade subset and Ore Reserve; dry basis",
+          "statement_id": "north-stanmore-global-mre-202608-primary",
+          "effective_date": "2026-08-18",
+          "date_role": "AUGUST2026_MRE_PUBLISHED_WITH_PFS_NOT_COMMON_MEASUREMENT_DATE",
+          "resource_effective_period": "2026-08",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "source_key": "north_stanmore_pfs2026",
+          "source_sha256": "de5b5c737eb582bb2092d84bb900ecb7a27fb321fe7ecd58d38f2b5c834a5831",
+          "pdf_page": 8,
+          "page_markers": [
+            "278.80",
+            "483",
+            "excluding Sc"
+          ],
+          "context_evidence": [
+            {
+              "page": 136,
+              "markers": [
+                "respective REO estimated grades"
+              ]
+            },
+            {
+              "page": 144,
+              "markers": [
+                "dry-grade basis",
+                "inclusive of Ore Reserves"
+              ]
+            }
+          ],
+          "locator": "physical p8 Table4 global MRE; p136 JORC REO sum; p144 dry basis/inclusive reserve; excludes p8 Table3 subset and p9 Reserve",
+          "rounding_half_width": 0.005,
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "basis_note": "TREO excludes Sc; p136 individual REO table includes Y2O3. Image-only individual oxide decimals unresolved by OCR; no S1 derived. Rounded p8 headline used consistently, not more precise p136 cells."
+        },
+        {
+          "variable": "grade",
+          "value": 483.0,
+          "unit": "ppm",
+          "basis": "TREO",
+          "domain": "Resource",
+          "scope": "North Stanmore August2026 global MRE; >=300ppm TREO cutoff excludingSc; Measured+Indicated+Inferred; includes high-grade subset and Ore Reserve; dry basis",
+          "statement_id": "north-stanmore-global-mre-202608-primary",
+          "effective_date": "2026-08-18",
+          "date_role": "AUGUST2026_MRE_PUBLISHED_WITH_PFS_NOT_COMMON_MEASUREMENT_DATE",
+          "resource_effective_period": "2026-08",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "source_key": "north_stanmore_pfs2026",
+          "source_sha256": "de5b5c737eb582bb2092d84bb900ecb7a27fb321fe7ecd58d38f2b5c834a5831",
+          "pdf_page": 8,
+          "page_markers": [
+            "278.80",
+            "483",
+            "excluding Sc"
+          ],
+          "context_evidence": [
+            {
+              "page": 136,
+              "markers": [
+                "respective REO estimated grades"
+              ]
+            },
+            {
+              "page": 144,
+              "markers": [
+                "dry-grade basis",
+                "inclusive of Ore Reserves"
+              ]
+            }
+          ],
+          "locator": "physical p8 Table4 global MRE; p136 JORC REO sum; p144 dry basis/inclusive reserve; excludes p8 Table3 subset and p9 Reserve",
+          "rounding_half_width": 0.5,
+          "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION",
+          "basis_note": "TREO excludes Sc; p136 individual REO table includes Y2O3. Image-only individual oxide decimals unresolved by OCR; no S1 derived. Rounded p8 headline used consistently, not more precise p136 cells."
         }
       ]
     },

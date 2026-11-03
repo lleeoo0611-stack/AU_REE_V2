@@ -80,6 +80,14 @@ jobs:
           python tools/check_phase11.py results/phase12-2026-11-04 work/evidence-yield-a/latest.json --reference
           python tools/evaluate_documents.py work/phase12_document_benchmark.json --phase12
           python -c "import json; assert json.load(open('work/phase12_document_benchmark.json')) == json.load(open('data/phase12_document_benchmark.json'))"
+      - name: Phase 13 source recovery and independent clean reconstruction
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase13-2026-11-04/snapshot_lock.json --compare-to results/phase12-2026-11-04 --work work/source-recovery-a
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase13-2026-11-04/snapshot_lock.json --work work/source-recovery-b
+          python tools/check_phase11.py work/source-recovery-a/latest.json work/source-recovery-b/latest.json
+          python tools/check_phase11.py results/phase13-2026-11-04 work/source-recovery-a/latest.json --reference
+          python tools/evaluate_documents.py work/phase13_document_benchmark.json --phase13
+          python -c "import json; assert json.load(open('work/phase13_document_benchmark.json')) == json.load(open('data/phase13_document_benchmark.json'))"
       - name: Incremental public update (isolated live-source smoke)
         id: live
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
@@ -121,6 +129,9 @@ jobs:
             work/evidence-yield-a/runs/
             work/evidence-yield-b/runs/
             work/phase12_document_benchmark.json
+            work/source-recovery-a/runs/
+            work/source-recovery-b/runs/
+            work/phase13_document_benchmark.json
             work/updated/runs/
             work/acquisition_status.json
             data/manifest.json

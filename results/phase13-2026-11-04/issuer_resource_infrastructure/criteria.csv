@@ -1,0 +1,6 @@
+code,domain,direction,low,high,function
+I1,Infrastructure,MIN,0,200,linear
+I2,Infrastructure,MIN,0,1000,linear
+I3,Infrastructure,MIN,0,500,linear
+I4,Infrastructure,MIN,0,2000,linear
+R1,Resource,MAX,0,5000,log1p
