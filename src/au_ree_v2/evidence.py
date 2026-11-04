@@ -187,7 +187,7 @@ def ingest_recognized(db, root, snapshots, cutoff, policy, acquired_through=None
                     reasons.append('PUBLICATION_DATE_NOT_ESTABLISHED')
                 date=reported_date or source['available_date']
                 if date_end(date)>cutoff:continue
-                values={};component_basis={}
+                values={};component_basis={};component_metadata={}
                 if c['kind']=='RESOURCE_TABLE_TOTAL':
                     for variable,value in c['values'].items():
                         original=dict(variable=variable,value=value,unit=c['units'][variable],basis=c['basis'],
@@ -195,6 +195,8 @@ def ingest_recognized(db, root, snapshots, cutoff, policy, acquired_through=None
                                       statement_id=c['candidate_id'],category=c.get('category'))
                         reasons.extend(normalize(original))
                         values['reported_resource_'+variable]=(value,c['units'][variable])
+                elif c['kind']=='TECHNICAL_TABLE_CELL':
+                    values['reported_technical_'+c['quantity']]=(c['value'],c['unit'])
                 elif c['kind']=='LEACH_TABLE_ROW':
                     for element,value in c['values'].items():
                         if not isinstance(value,(int,float)) or not 0<=value<=100:
@@ -205,8 +207,14 @@ def ingest_recognized(db, root, snapshots, cutoff, policy, acquired_through=None
                     values['reported_'+c['domain'].lower()+'_disclosure']=(None,None)
                     if c['domain']=='Technical':
                         for i,number in enumerate(c.get('numbers',[])):
-                            if number.get('quantity_role') and 0<=number['value']<=100:
-                                values['reported_technical_'+number['quantity_role'].lower()+'_'+str(i)+'_pct']=(number['value'],'%')
+                            if number.get('quantity_role') and isinstance(number['value'],(int,float)) and 0<=number['value']<=100:
+                                variable='reported_technical_'+number['quantity_role'].lower()+'_'+str(i)+'_pct'
+                                values[variable]=(number['value'],'%')
+                                if number.get('basis'):component_basis[variable]=number['basis']
+                                if number.get('statistic'):component_metadata[variable]={k:number.get(k) for k in ('statistic','evidence_nature','quantity_role')}
+
+                for i,ratio in enumerate(c.get('reported_ratios',[])):
+                    values['reported_technical_'+ratio['quantity']+'_'+str(i)]=(ratio['value'],ratio['unit'])
                 for extra in c.get('extra_values',[]):
                     if extra['unit']!='ppm':continue
                     domain='Technical' if extra['label'] in ('U','Th') else 'Strategic'
@@ -215,13 +223,13 @@ def ingest_recognized(db, root, snapshots, cutoff, policy, acquired_through=None
                 c.update(effective_date=date,date_role='DISCLOSURE_DATE_NOT_RESOURCE_EFFECTIVE_DATE',
                          source_key=source['key'],source_sha256=source['sha256'],
                          pdf_page=c['physical_page'] if source['kind']=='pdf' else None,
-                         locator='physical page '+str(c['physical_page'])+'; row/paragraph '+str(c['row_index']),
+                         locator='physical page '+str(c['physical_page'])+'; row/paragraph '+str(c['row_index'])+('; table '+str(c['table_index'])+'; column '+str(c['column_index']) if c['kind']=='TECHNICAL_TABLE_CELL' else ''),
                          extraction_artifact_sha256=artifact['sha256'],statement_id=c['candidate_id'],
                          domain=c['domain'],role='AUTOMATIC_RAW_OBSERVATION_NOT_CRITERION_APPROVAL')
                 if policy.get('validation_version'):c['validation_version']=policy['validation_version']
                 status='REVIEW' if reasons else 'AUTO_VALIDATED'
                 for variable,(value,unit) in values.items():
-                    raw=dict(c,variable=variable,value=value,unit=unit)
+                    raw=dict(c,variable=variable,value=value,unit=unit,**component_metadata.get(variable,{}))
                     if variable in component_basis:
                         raw['source_total_basis']=raw.get('basis');raw['basis']=component_basis[variable]
                     if variable.startswith('reported_strategic_'):raw['domain']='Strategic'

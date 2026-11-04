@@ -1,0 +1,218 @@
+{
+  "version": "phase15-source-bound-technical-v1",
+  "baseline_commit": "e97272bdb25c2600a94aee7ebc9ece4fb26258a7",
+  "branch": "feat/phase15-technical-extraction",
+  "base_branch": "feat/phase14-official-reports",
+  "parent_pr": 4,
+  "canonical_run": "20261104T100827-bb0d2956",
+  "code": {
+    "package": "0.1.0",
+    "commit": "e97272bdb25c2600a94aee7ebc9ece4fb26258a7",
+    "content_sha256": "397bbfeee4af8e9a842da2b45a884e521f206cf95ad982829eab1915182e320f"
+  },
+  "configuration_sha256": "3d6934a71f2304bf755b240571e6c04359ea120844cd9086b7c450dbb89492fd",
+  "snapshot_sha256": "e89bdd430f6631d17332680ff9124ef1c2ba467cc8d68679ab999f89bc4ea76f",
+  "cutoffs": {
+    "research": "2026-11-03",
+    "formal": "2026-10-29",
+    "acquisition_through": "2026-11-04"
+  },
+  "before": {
+    "registry_groups": 31,
+    "resource_defined": 21,
+    "source_snapshots": 242,
+    "recognized_documents": 32,
+    "source_valid_numeric_observation_rows": 321,
+    "project_selected_numeric_rows": 319,
+    "project_valid_numeric_by_domain": {
+      "Resource": 89,
+      "Technical": 168,
+      "Strategic": 37,
+      "Commercial": 12,
+      "Development": 9,
+      "": 4
+    },
+    "coverage": {
+      "Resource": 21,
+      "Strategic": 10,
+      "Technical": 0,
+      "Development": 9,
+      "Infrastructure": 19,
+      "Commercial": 8
+    },
+    "development": 0,
+    "full_evidence": 0,
+    "formal_c1": 0,
+    "panel_n": {
+      "resource_infrastructure_pilot": 19,
+      "issuer_resource_infrastructure": 7,
+      "issuer_resource_study": 8,
+      "issuer_resource_concentrate": 2,
+      "issuer_resource_concentrate_recovery": 2,
+      "issuer_resource_composition": 10,
+      "issuer_resource_financing_milestone": 6,
+      "official_wa_resource_screen": 17,
+      "beneficiation_concentrate_screen": 2
+    }
+  },
+  "after": {
+    "registry_groups": 31,
+    "resource_defined": 21,
+    "source_snapshots": 251,
+    "recognized_documents": 37,
+    "source_valid_numeric_observation_rows": 703,
+    "project_selected_numeric_rows": 701,
+    "project_valid_numeric_by_domain": {
+      "Resource": 89,
+      "Technical": 550,
+      "Strategic": 37,
+      "Commercial": 12,
+      "Development": 9,
+      "": 4
+    },
+    "coverage": {
+      "Resource": 21,
+      "Strategic": 10,
+      "Technical": 0,
+      "Development": 9,
+      "Infrastructure": 19,
+      "Commercial": 8
+    },
+    "development": 0,
+    "full_evidence": 0,
+    "formal_c1": 0,
+    "panel_n": {
+      "resource_infrastructure_pilot": 19,
+      "issuer_resource_infrastructure": 7,
+      "issuer_resource_study": 8,
+      "issuer_resource_concentrate": 2,
+      "issuer_resource_concentrate_recovery": 2,
+      "issuer_resource_composition": 10,
+      "issuer_resource_financing_milestone": 6,
+      "official_wa_resource_screen": 17,
+      "beneficiation_concentrate_screen": 2
+    }
+  },
+  "technical": {
+    "derived": {
+      "conditional_cleaner_retention": 2,
+      "printed_acid_contrast_pp": 45,
+      "reagent_intensity_kg_t_dry_feed": 12,
+      "treo_enrichment_ratio": 6
+    },
+    "eligible_by_use": {
+      "DESIGN_DRY_FEED_REAGENT": 12,
+      "SOURCE_BRANCH_CONSISTENCY": 25,
+      "SOURCE_DESIGN_COMPONENT_PROFILE": 14,
+      "WITHIN_COMPOSITE_FLOTATION": 28,
+      "WITHIN_TABLE_ELEMENT_LEACH": 269
+    },
+    "feed_reference_cells": 4,
+    "flow_checks": 10,
+    "formal_criteria_policy": "UNCHANGED_NOT_PROMOTED_BY_CASE_ANALYSIS",
+    "limits": [
+      "SOURCE_CELLS_NOT_INDEPENDENT_REPLICATES",
+      "SAMPLE_COMPARISON_NOT_PROJECT_PERFORMANCE",
+      "NO_COMMON_PERFORMANCE_BURDEN_SCORE",
+      "NO_2023_2026_PROCESS_JOIN"
+    ],
+    "population_assertion_cells": 208,
+    "projects": 4,
+    "quantities": {
+      "downstream_recovery_factor": 15,
+      "dry_feed_mtpa": 3,
+      "extraction_pct": 270,
+      "grade_pct": 19,
+      "mass_fraction_pct": 20,
+      "reagent_intensity": 1,
+      "reagent_tpa": 12,
+      "recovery_pct": 14,
+      "stage_recovery_pct": 25
+    },
+    "resource_scoped_performance_projects": 9,
+    "scoped_performance_projects": 11,
+    "source_cells": 379,
+    "source_conflicts": 1,
+    "source_documents": 5,
+    "table_scopes": 9,
+    "valid_numeric_cells": 371,
+    "version": "source-bound-technical-v1"
+  },
+  "new_distinct_original_documents": 4,
+  "new_formal_project_criterion": 0,
+  "new_mcda_projects": 0,
+  "independent_projects_in_cell_transcripts": 4,
+  "source_cell_count_note": "379 includes six explicit missing tokens; 373 numeric transcripts, 371 validated. Source cells are not experiments. Existing-source core pages yield 308 audited cells; other existing-source Stage3 adds five. New-original Donald/Nolans add 66 cells.",
+  "value_count_note": "321/703 include two valid source observations excluded from Project selection. Project-selected counts are319/701. Study parameters40 are separate. Re-transcription/corroboration is not a new measurement.",
+  "raw_increment_attribution": {
+    "existing_core_original_source_cells": 313,
+    "new_original_source_cells": 66,
+    "held_numeric_cells": 2,
+    "explicit_missing_tokens": 6,
+    "validated_source_cells": 371,
+    "net_project_selected_technical_numeric_rows": 382
+  },
+  "corroboration_note": "Cummins2026 twelve TREO product grade/recovery cells and one feed-grade cell corroborate already curated records. Other identical values may also corroborate a design parameter; no count of new independent measurements is asserted.",
+  "derivation_note": "65 technical derived values are stored in the existing derived table; ten branch-consistency rows are reproducible diagnostics with source evidence IDs. Four Feed cells include two recovery=100 reference entries, not measured recoveries.",
+  "verification": {
+    "python_tests": 215,
+    "python_seconds": 441.381,
+    "r_invariant_families": 3,
+    "source_files_sha_verified": 493,
+    "selected_snapshots": 251,
+    "entity_ids_preserved": 7555,
+    "schema_changed": false,
+    "sqlite_integrity": "ok",
+    "foreign_key_violations": 0,
+    "unchanged_phase14_panel_csv": 142,
+    "checks": {
+      "historical_phase14": {
+        "status": "REFERENCE_POINT_EQUIVALENT_RANKS_AND_MONTE_CARLO_EXACT",
+        "panel_csv_files": 142,
+        "evidence_exports": 7,
+        "numeric_tolerance": "Unchanged check_replay point tolerance1e-12; ranks/stochastic0",
+        "platform_differences": [],
+        "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+        "before": "results/phase14-2026-11-04",
+        "after": "work/phase15/replay14/runs/20261104T093911-e8a0a648"
+      },
+      "final_clean_pair": {
+        "status": "EXACT",
+        "panel_csv_files": 142,
+        "evidence_exports": 7,
+        "numeric_tolerance": 0,
+        "platform_differences": [],
+        "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+        "before": "work/phase15/git-a/runs/20261104T101006-84cc3116",
+        "after": "work/phase15/git-b/runs/20261104T101006-9cf14e8d",
+        "technical_exports": 7,
+        "technical_exact": true
+      },
+      "final_canonical_clean": {
+        "status": "EXACT",
+        "panel_csv_files": 142,
+        "evidence_exports": 7,
+        "numeric_tolerance": 0,
+        "platform_differences": [],
+        "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+        "before": "results/phase15-2026-11-04",
+        "after": "work/phase15/git-a/runs/20261104T101006-84cc3116",
+        "technical_exports": 7,
+        "technical_exact": true
+      }
+    },
+    "github_ci": "PENDING_AT_LOCAL_FREEZE_SEE_PR_CHECKS",
+    "figure_layout_fix": "Only reagent SVG height/margin/text-size changed after Python suite; final R invariants, visual redraw and final canonical/two-clean reconstructions rerun; CSV values unchanged. GitHub runs the full suite on final commit.",
+    "workspace_code_matches_git_index": true,
+    "canonical_history_extractions_preserved_sha_verified": 14,
+    "line_ending_note": "Final canonical and independent clean reconstructions use LF code bytes verified equal to the Git index; scientific CSV values unchanged."
+  },
+  "limits": [
+    "No joint2023reagent/2026recovery point",
+    "No whole-project performance from composites",
+    "Nolans La parameter is scenario-conditional; base-case La circuit excluded; no weighted TREO inferred",
+    "Browns Range untuned technical layout still misses two selected cells",
+    "Goschen Central project binding remains unresolved; no merge into VHM Goschen",
+    "No change to formal T1/TC1/TC2/C1 gates; no new common technical MCDA scale"
+  ]
+}

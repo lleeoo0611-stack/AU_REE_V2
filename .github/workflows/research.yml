@@ -97,6 +97,14 @@ jobs:
           python tools/check_phase11.py results/phase14-2026-11-04 work/official-reports-a/latest.json --reference
           python tools/evaluate_documents.py work/phase14_document_benchmark.json --phase14
           python -c "import json; assert json.load(open('work/phase14_document_benchmark.json')) == json.load(open('data/phase14_document_benchmark.json'))"
+      - name: Phase 15 source-bound technical reconstruction
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase15-2026-11-04/snapshot_lock.json --work work/technical-evidence-a
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase15-2026-11-04/snapshot_lock.json --work work/technical-evidence-b
+          python tools/check_phase15.py work/technical-evidence-a/latest.json work/technical-evidence-b/latest.json
+          python tools/check_phase15.py results/phase15-2026-11-04 work/technical-evidence-a/latest.json --reference
+          python tools/evaluate_technical.py work/technical_benchmark.json
+          python -c "import json; assert json.load(open('work/technical_benchmark.json')) == json.load(open('data/phase15_document_benchmark.json'))"
       - name: Scan publication payload
         run: python tools/check_publication.py
       - uses: actions/upload-artifact@v4
@@ -124,6 +132,8 @@ jobs:
             work/official-reports-a/runs/
             work/official-reports-b/runs/
             work/phase14_document_benchmark.json
+            work/technical-evidence-a/runs/
+            work/technical-evidence-b/runs/
             work/updated/runs/
             work/acquisition_status.json
             data/manifest.json
