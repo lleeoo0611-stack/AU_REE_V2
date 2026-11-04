@@ -137,11 +137,17 @@ jobs:
           python tools/check_phase16.py results/phase16-2026-11-04 work/phase16-a/latest.json --reference
           python tools/evaluate_phase16.py work/phase16_evaluation.json
           python -c "import json; assert json.load(open('work/phase16_evaluation.json')) == json.load(open('data/phase16_evaluation.json'))"
+      - name: Phase 16 remediation source, semantic and process-panel reconstruction
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase16-remediation-2026-11-05/snapshot_lock.json --work work/phase16-remediation-a
+          python tools/check_phase16_remediation.py results/phase16-remediation-2026-11-05 work/phase16-remediation-a/latest.json --reference
+          python tools/evaluate_phase16_remediation.py work/phase16_remediation_evaluation.json
+          python -c "import json; assert json.load(open('work/phase16_remediation_evaluation.json')) == json.load(open('data/phase16_remediation_evaluation.json'))"
       - name: Independent current release reconstruction
         if: steps.scope.outputs.archive == 'true'
         run: |
-          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase16-2026-11-04/snapshot_lock.json --work work/phase16-b
-          python tools/check_phase16.py work/phase16-a/latest.json work/phase16-b/latest.json
+          au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase16-remediation-2026-11-05/snapshot_lock.json --work work/phase16-remediation-b
+          python tools/check_phase16_remediation.py work/phase16-remediation-a/latest.json work/phase16-remediation-b/latest.json
       - name: Scan publication payload
         run: python tools/check_publication.py
       - uses: actions/upload-artifact@v4
@@ -167,7 +173,9 @@ jobs:
             work/phase14_document_benchmark.json
             work/technical-evidence-a/runs/
             work/phase16-a/runs/
-            work/phase16-b/runs/
+            work/phase16-remediation-a/runs/
+            work/phase16-remediation-b/runs/
+            work/phase16_remediation_evaluation.json
             work/phase16_evaluation.json
             work/updated/runs/
             work/acquisition_status.json

@@ -1,0 +1,55 @@
+{
+  "version": "phase16-remediation-local-validation-v1",
+  "python_full": {
+    "tests": 256,
+    "passed": true,
+    "test_body_seconds": 931.643,
+    "command_seconds": 936.6042669,
+    "note": "Full run began before the final additional source-version test was added; runtime code is the frozen release. The additional test passed separately."
+  },
+  "additional_source_version_test": {
+    "passed": true,
+    "tests": 1,
+    "seconds": 0.286
+  },
+  "new_remediation_tests": 24,
+  "r_invariants": [
+    "analytical",
+    "identity_rng",
+    "cohort_contributions",
+    "zero_weight_exclusion",
+    "fixed_technical_group_budget"
+  ],
+  "historical_phase16_benchmark": "EXACT",
+  "two_clean": {
+    "passed": true,
+    "clean_a_seconds": 398.4532978,
+    "clean_b_seconds": 397.9899691,
+    "panel_csv": 170,
+    "evidence_exports": 7,
+    "technical_exports": 7,
+    "phase16_exports": 7,
+    "additional_exact_exports": 13,
+    "static_sensitivity_export": "EXACT",
+    "logical_json_file_sha256": "4c59543fedbd8e2520b890b8b0e222f4aec6bee728abd394d31976cc37a5c0ee"
+  },
+  "publication_first": {
+    "artifacts": 3642,
+    "passed": true,
+    "scope": "Files present when initial scan began; latest full payload is checked again by CI"
+  },
+  "history": "Local phases5-12 PASSED; Phase12 prior disk-full attempt retained; unfinished Phase13 cancelled to avoid duplicating required full core CI. Phases13-16 are NOT locally claimed passed; final full scope checked by GitHub CI.",
+  "ci": "PENDING_AT_LOCAL_RECEIPT_SEE_PR_CHECKS",
+  "disk_full_attempt": {
+    "phase": 12,
+    "exit_code": 1,
+    "observed_cli_message": "database or disk is full",
+    "disposition": "Generated validation SQLite/JSON copies and 117 task-created test temporary directories removed after scope verification; formal database, originals, frozen results and comparison receipts retained; retry in a fresh Phase12 work directory",
+    "counted_as_success": false
+  },
+  "new_remediation_tests_result": {
+    "tests": 24,
+    "passed": true,
+    "seconds": 5.825
+  }
+}

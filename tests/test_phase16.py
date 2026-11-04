@@ -11,7 +11,7 @@ from au_ree_v2.technical import burden_states,unified_observations
 from au_ree_v2.store import SCHEMA,canonical,entity
 
 ROOT=Path(__file__).resolve().parents[1]
-POLICY=json.loads((ROOT/'config/evidence_policy.json').read_text())
+POLICY=json.loads((ROOT/'results/phase16-2026-11-04/configuration.json').read_text())['research']['evidence_resolution']
 PROFILE=POLICY['technical_profile']
 V6='document-recognition-v6-context-bound'
 
@@ -131,7 +131,7 @@ class OriginalIntegration(unittest.TestCase):
         from au_ree_v2.official import ingest_minedex_resources,minedex_resource_rows
         manifest=json.loads((ROOT/'data/manifest.json').read_text())['snapshots']
         source=next(s for s in manifest if s['kind']=='minedex_resource_batch')
-        allrows,rows=minedex_resource_rows(ROOT,source)
+        allrows,rows=minedex_resource_rows(ROOT,source,"minedex-resource-batch-v1")
         self.assertEqual(2666,len(allrows));self.assertEqual(68,len(rows))
         db=sqlite3.connect(':memory:');db.row_factory=sqlite3.Row;db.executescript(SCHEMA)
         db.execute('INSERT INTO sources VALUES(?,?,?,?,?,?,?,?)',(source['sha256'],source['key'],source['url'],source['publication_date'],source['acquired_at'],source['path'],source['kind'],canonical(source)))

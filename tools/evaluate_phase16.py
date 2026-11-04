@@ -12,7 +12,7 @@ def run(root):
     regression=evaluate(root,version)
     for r in regression['results']:
         r['partition']='PHASE16_DEVELOPMENT_REGRESSION_NOT_HELD_OUT'
-    policy=json.loads((root/'config/evidence_policy.json').read_text())['technical_profile']
+    policy=json.loads((root/'results/phase16-2026-11-04/configuration.json').read_text())['research']['evidence_resolution']['technical_profile']
     manifest=json.loads((root/'data/manifest.json').read_text())['snapshots']
     source=next(s for s in manifest if s['key']=='koppamurra_pfs2026' and s['kind']=='pdf')
     d=recognize_document(root,source,project_registry(root),parser_version=version,page_numbers={11})

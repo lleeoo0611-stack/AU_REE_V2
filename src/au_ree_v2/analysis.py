@@ -345,6 +345,8 @@ def run_r(root, out, prepared, config, rscript=None):
         results[panel]={'status':'COMPLETED','n':n,'weight_status':config['weight_status'],
                         'evidence_status':('PRIMARY_ENDPOINT_MATCHED_DFS_CASES_NOT_OPERATING_RESULTS' if panel in config.get('case_panels',{}) else config['screen_evidence_policy']['status'] if panel=='official_wa_resource_screen' else 'ISSUER_SCOPE_VALIDATED'),
                         'full_evidence_eligibility':panel=='six_domain'}
+        if panel.startswith('technical_process_concentrate_'):
+            results[panel]['evidence_status']='NAMED_DESIGN_FORECAST_COMPARISON_NOT_OPERATING_OR_NATIONAL_RANK'
         if config.get('evidence_resolution'):
             results[panel]['formal_c1_eligibility']=False
             results[panel]['criteria_policy']=config['evidence_resolution']['version']
@@ -436,3 +438,74 @@ def canonicalize_interchange(out):
             with path.open(encoding='utf-8',newline='') as stream:
                 reader=csv.DictReader(stream);fields=reader.fieldnames;rows=list(reader)
             write_csv(path,sorted(rows,key=lambda r:tuple(r[k] for k in keys)),fields)
+
+
+def prepare_technical_panel(selection,prepared,config,out):
+    """Additional source-qualified interchange, consumed by the existing R engine.
+
+    No resource scope is copied onto a different mine plan. Infrastructure is
+    an explicitly limited representative-point reference; it is held fixed.
+    """
+    from .technical import technical_record,technical_compare,csvrows_local
+    policy=config['evidence_resolution'];model=policy['technical_profile']['numeric_model']
+    contract=model['contract'];eligibility=[];candidates={};names={}
+    for c in selection['inventory']:
+        if c.get('domain')!='Technical':continue
+        r=technical_record(c,policy);reasons=technical_compare(r,contract,contract['model_assumptions'])
+        if c.get('origin')!='STUDY_PARAMETER':reasons.append('NOT_TYPED_NAMED_ENGINEERING_CASE_RETAIN_AS_RAW_OR_CORROBORATION')
+        codes=[code for code,item in model['criteria'].items() if item['variable']==r['variable']]
+        eligibility.append(dict(project_id=r['project_id'],case_id=r['case_id'],evidence_id=r['evidence_id'],source_sha256=r['source_sha256'],pdf_page=r['pdf_page'],scope=r['scope'],value=r['value'],basis=r['basis'],feed=r['feed'],endpoint=r['endpoint'],scale=r['scale'],quantity=r['variable'],criteria=codes,reasons=sorted(set(reasons)),eligible=not reasons,model_version=model['version']))
+        if reasons or not codes:continue
+        key=(r['project_id'],r['case_id']);candidates.setdefault(key,{})[codes[0]]=r
+    # The reference comes from the current shared matrix, never a frozen rank.
+    reference={};reference_code=model['reference_criterion']
+    for panel in sorted(prepared['panels']):
+        file=Path(out)/panel/'matrix.csv'
+        if not file.exists():continue
+        with file.open(encoding='utf8',newline='') as f:
+            for r in csv.DictReader(f):
+                if reference_code in r:reference.setdefault(r.get('canonical_project_id',r['project_id']),r)
+    project_cases={pid:{case for p,case in candidates if p==pid} for pid,case in candidates}
+    rows=[];raw=[];decisions=[]
+    for (pid,case),values in sorted(candidates.items()):
+        why=[]
+        if len(project_cases[pid])!=1:why.append('MULTIPLE_CASES_REQUIRE_SCOPE_CHOICE')
+        if set(values)!=set(model['criteria']):why.append('INCOMPLETE_COMMON_CRITERIA')
+        if pid not in reference:why.append('NO_SHARED_REFERENCE_CRITERION')
+        decisions.append(dict(project_id=pid,case_id=case,eligible=not why,reasons=why))
+        if why:continue
+        rr=reference[pid];first=next(iter(values.values()))
+        r=dict(project_id=pid,canonical_project_id=pid,project_name=rr['project_name'],scope=first['scope'],case_id=case,uncertainty_kind='NO_SOURCE_BOUNDS')
+        ref=float(rr[reference_code]);r.update({reference_code:ref,reference_code+'_alt':ref,reference_code+'_lower':ref,reference_code+'_upper':ref})
+        for code,v in values.items():
+            x=v['value']/100
+            r.update({code:x,code+'_alt':x,code+'_lower':x,code+'_upper':x})
+            raw.append(dict(project_id=pid,case_id=case,criterion=code,value=v['value'],unit=v['unit'],basis=v['basis'],feed=v['feed'],endpoint=v['endpoint'],scope=v['scope'],source_sha256=v['source_sha256'],pdf_page=v['pdf_page'],locator=v['locator'],evidence_id=v['evidence_id'],evidence_mode=v['evidence_mode']))
+        rows.append(r)
+    write_csv(Path(out)/'technical_panel_eligibility.csv',csvrows_local(eligibility),list(eligibility[0]) if eligibility else ['project_id','reasons'])
+    write_csv(Path(out)/'technical_panel_cases.csv',csvrows_local(decisions),['project_id','case_id','eligible','reasons'])
+    write_csv(Path(out)/'technical_panel_inputs.csv',raw,list(raw[0]) if raw else ['project_id'])
+    criteria=[dict(code=code,domain=x['domain'],direction=x['direction'],low=x['low'],high=x['high'],function=x['function']) for code,x in model['criteria'].items()]
+    criteria+=[dict(code=reference_code,domain='Development',direction='MAX',low=1,high=6,function='linear')]
+    weights=[]
+    for total in model['weights']['technical_totals']:
+        for i,(recovery,grade) in enumerate(model['weights']['technical_subweights']):
+            if total==0 and i>0:continue
+            scenario='technical_'+str(total)+'_split_'+str(i+1)
+            for code,weight in [(reference_code,1-total),('TPR',total*recovery),('TPG',total*grade)]:weights.append(dict(scenario=scenario,criterion=code,weight=weight,group='Technical' if code in model['criteria'] else 'Reference',group_weight=total if code in model['criteria'] else 1-total))
+    for variant in ('fixed','sample_minmax'):
+        panel='technical_process_concentrate_'+variant;folder=Path(out)/panel
+        matrix=[dict(r) for r in rows]
+        if variant=='sample_minmax' and len(rows)>1:
+            for code in model['criteria']:
+                lo=min(r[code] for r in rows);hi=max(r[code] for r in rows)
+                for r in matrix:
+                    x=(r[code]-lo)/(hi-lo) if hi>lo else .5
+                    for suffix in ('','_alt','_lower','_upper'):r[code+suffix]=x
+        write_csv(folder/'matrix.csv',matrix,list(matrix[0]) if matrix else ['project_id','project_name','scope'])
+        write_csv(folder/'criteria.csv',criteria,['code','domain','direction','low','high','function'])
+        write_csv(folder/'weights.csv',weights,['scenario','criterion','weight','group','group_weight'])
+        prepared['panels'][panel]=len(rows)
+    # Scope scenario cannot turn forecasts into operating measurements.
+    write_csv(Path(out)/'technical_scope_sensitivity.csv',[dict(scenario='ENGINEERING_DESIGN',n=len(rows),reason='Explicit forecast comparison only'),dict(scenario='OPERATING_ONLY',n=0,reason='No demonstrated operating observations in admitted design cases')],['scenario','n','reason'])
+    return dict(version=model['version'],n=len(rows),cases=decisions,rank_scope='TWO_NAMED_DESIGN_CASES_NOT_NATIONAL_RANKING')

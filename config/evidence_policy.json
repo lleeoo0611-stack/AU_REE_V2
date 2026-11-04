@@ -510,8 +510,8 @@
     ]
   },
   "technical_profile": {
-    "version": "technical-burden-profile-v1",
-    "decision": "PARTIAL_MCDA_PLUS_SCOPED_TECHNICAL_PROFILES",
+    "version": "technical-profile-remediation-v2",
+    "decision": "PROCESS_SPECIFIC_NUMERIC_MCDA_PLUS_NOMINAL_REQUIREMENTS",
     "status": "EXPLORATORY_NOT_INDEPENDENT_EXPERT_VALIDATED",
     "common_score": false,
     "ordinal_numeric_mapping": null,
@@ -581,6 +581,110 @@
       ]
     },
     "calibration": "Phase15 core Dubbo and Cummins source scopes; rule set fixed before application",
-    "evaluation": "Existing Koppamurra and Cowalinya source cases withheld from rule adjustment; AI-assisted source reading and deterministic consistency only, not expert reliability or blind corpus accuracy"
+    "evaluation": "Phase16 prior held documents are development/regression; fixed new document partition in data/phase16_remediation_preregistration.json",
+    "numeric_model": {
+      "version": "process-specific-technical-v1",
+      "formal_c1": false,
+      "adoption": {
+        "A": "ADOPT_EXPLORATORY_DESIGN_DEMONSTRATION",
+        "B": "WITHIN_CASE_FORMULATION_AND_ACTIVE_INPUT_ONLY_PENDING_CROSS_CASE",
+        "C": "SOURCE_SPECIFICATION_DIAGNOSTIC_NOT_COMMON_ORDINAL",
+        "D": "SUFFICIENCY_CHECK_NO_UNSUPPORTED_FUNCTIONAL_UNIT"
+      },
+      "contract": {
+        "version": "technical-use-v2",
+        "variables": [
+          "whole_ore_concentrate_recovery_pct",
+          "concentrate_treo_grade_pct"
+        ],
+        "unit": "%",
+        "basis": [
+          "TREO_INCLUDING_Y"
+        ],
+        "requires": {
+          "feed": "WHOLE_ORE",
+          "endpoint": "MINERAL_CONCENTRATE",
+          "scale": "DFS_MODEL"
+        },
+        "required_conditions": [
+          "scope",
+          "study_date",
+          "case_id"
+        ],
+        "analysis_scope": "NAMED_MINE_PLAN_DESIGN",
+        "model_assumptions": [
+          "Each source dated mine-plan design forecast, not operating performance",
+          "Compare whole-feed oxide recovery and concentrate oxide grade; no extrapolation to all deposits or to separated oxides",
+          "Different mineral assemblages are background mechanisms, not numerical bonuses",
+          "Only one explicitly typed engineering design case per project; competing cases excluded rather than selecting maximum or newest"
+        ]
+      },
+      "criteria": {
+        "TPR": {
+          "variable": "whole_ore_concentrate_recovery_pct",
+          "quantity": "TREO mass recovered in mineral concentrate / TREO in whole ore",
+          "low": 0,
+          "high": 100,
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear"
+        },
+        "TPG": {
+          "variable": "concentrate_treo_grade_pct",
+          "quantity": "TREO mass / mineral concentrate mass",
+          "low": 0,
+          "high": 100,
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear"
+        }
+      },
+      "background": [
+        "mineralogy",
+        "study_date",
+        "scale",
+        "site geography"
+      ],
+      "burden_variables": [
+        "reagent",
+        "temperature",
+        "grinding",
+        "residue"
+      ],
+      "required_comparability": [
+        "same oxide basis including Y",
+        "whole ore feed",
+        "mineral concentrate endpoint",
+        "engineering forecast interpretation",
+        "single named case"
+      ],
+      "reference_criterion": "D1",
+      "reference_scope": "Existing development study maturity score, fixed at source DFS design in both named cases; invariant context not Technical performance or evidence-quality bonus",
+      "weights": {
+        "technical_totals": [
+          0,
+          0.25,
+          0.5,
+          1
+        ],
+        "technical_subweights": [
+          [
+            0.8,
+            0.2
+          ],
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.2,
+            0.8
+          ]
+        ]
+      },
+      "anchors": "Physical fractions 0..1 are preference assumptions, not engineering pass thresholds; infrastructure keeps existing 0..2000 km anchor",
+      "dependency_audit": "Grade and recovery have distinct numerators/denominators; no enrichment, contained resource or product tonnage included. Same-source errors dependent and unquantified; no independent measurement noise drawn. Study maturity not scored. Both cases have equal existing D1=0.6; it contributes no discrimination. Do not interpret D1 weighting as independent validation quality. GIS comparison excluded where Yangibana has no selected representative point; no zero imputation.",
+      "uncertainty": "NO_SOURCE_MEASUREMENT_BOUNDS; deterministic scope scenarios; existing seeded weight Monte Carlo only, not success probability"
+    }
   }
 }

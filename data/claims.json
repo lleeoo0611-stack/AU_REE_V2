@@ -3071,6 +3071,92 @@
             "Magnet REOs"
           ],
           "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE"
+        },
+        {
+          "kind": "SOURCE_BOUND_SCIENTIFIC_CLAIM",
+          "domain": "Technical",
+          "variable": "reported_technical_scientific_claim",
+          "value": null,
+          "unit": null,
+          "basis": "TREO_INCLUDING_Y",
+          "scope": "1kg blend of screened undersize from 4 of13 composites; first-pass MREC; impurity above commercial specification; overall recovery not reported",
+          "statement_id": "cowalinya-mrec-1kg-concept2024-reviewed-T-B",
+          "case_id": "cowalinya-mrec-1kg-concept2024",
+          "effective_date": "2024-06-30",
+          "date_role": "DATED_DISCLOSURE_NOT_EXPERIMENT_DATE",
+          "source_key": "cowalinya_ar2024",
+          "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+          "pdf_page": 9,
+          "locator": "physical PDF p.9; source-bound remediation claim",
+          "page_markers": [
+            "Whilst the total impurity content"
+          ],
+          "raw_text": "Whilst the total impurity content at 8.4% (mainly iron, copper and sodium) is over specification for a commercial rare earth separation plant (typically below 5%), the Company emphasises that this was a ‘first pass’ concept program to demonstrate that MREC can be produced from the Cowalinya deposit.",
+          "feed": "FOUR_COMPOSITE_UNDERSIZE_BLEND",
+          "endpoint": "MREC",
+          "scale": "BENCH_CONCEPT_ONE_KG",
+          "evidence_mode": "TEST_RESULT_OR_DISCLOSURE",
+          "reviewed_interpretations": [
+            {
+              "criterion": "T-B",
+              "state": "OBSERVED_SPECIFICATION_OBSTACLE",
+              "rule_id": "PAGE_REVIEW_T-B",
+              "meaning": "Named source process requirement or product limitation only; not common burden rank"
+            }
+          ],
+          "extraction_method": "AI_ASSISTED_NATIVE_AND_RENDERED_PAGE_CHECK_NOT_INDEPENDENT_EXPERT",
+          "limitations": [
+            "NO_COMMON_ORDINAL_UTILITY",
+            "NO_UNSUPPORTED_PROJECT_EXTRAPOLATION"
+          ],
+          "product_constraint": {
+            "actual_variable": "product_impurity_pct",
+            "product": "First-pass MREC from the source-defined 1kg four-composite blend",
+            "benchmark_value": 5,
+            "benchmark_unit": "%",
+            "benchmark_role": "ISSUER_REPORTED_TYPICAL_SEPARATION_PLANT_NOT_BINDING_BUYER_SPECIFICATION",
+            "operator": "LESS_THAN",
+            "source_quote": "Whilst the total impurity content at 8.4% (mainly iron, copper and sodium) is over specification for a commercial rare earth separation plant (typically below 5%), the Company emphasises that this was a ‘first pass’ concept program to demonstrate that MREC can be produced from the Cowalinya deposit.",
+            "interpretation": "A first-pass concept product, not Project failure or full product-specification assessment"
+          }
+        },
+        {
+          "kind": "SOURCE_BOUND_SCIENTIFIC_CLAIM",
+          "domain": "Technical",
+          "variable": "reported_technical_scientific_claim",
+          "value": null,
+          "unit": null,
+          "basis": "PrNdDyTb_OXIDES",
+          "scope": "45 preferred composites selected for >75% magnet leach extraction and <40kg/t 32%HCl; not unbiased resource-average or whole-ore recovery",
+          "statement_id": "cowalinya-preferred45-diagnostic2024-reviewed-T-A",
+          "case_id": "cowalinya-preferred45-diagnostic2024",
+          "effective_date": "2024-06-30",
+          "date_role": "DATED_DISCLOSURE_NOT_EXPERIMENT_DATE",
+          "source_key": "cowalinya_ar2024",
+          "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+          "pdf_page": 9,
+          "locator": "physical PDF p.9; source-bound remediation claim",
+          "page_markers": [
+            "ACID is 32%"
+          ],
+          "raw_text": "ACID is 32% hydrochloric acid (HCl). AVERAGE calculated on 45 composites which satisfy both >75% MREO leach extraction and <40 kg of 32% HCl per tonne of leach feed (i.e., SM01, SM02, SM03, SM04, SM06, SM07, SM12, SM13, SM14, SM16, SM22, SM24, SM26, SM34, SM36, SM38, SM40, SM42, SM44, SM45, SM47, SM48, SM49, SM50, SM51, SM62, SM68, SM72, SM73, SM74, SM77, SM78, SM79, SM80, SM82, SM93, SM94, SM96, SM99, SM105, SM106, SM113, SM114, SM120, SM125).",
+          "feed": "SELECTED_UNDERSIZE_LEACH_FEED",
+          "endpoint": "LEACH_SOLUTION",
+          "scale": "BENCH_DIAGNOSTIC_SELECTED_COMPOSITES",
+          "evidence_mode": "TEST_RESULT_OR_DISCLOSURE",
+          "reviewed_interpretations": [
+            {
+              "criterion": "T-A",
+              "state": "EXPLICIT_INPUT_DISCLOSURE",
+              "rule_id": "PAGE_REVIEW_T-A",
+              "meaning": "Named source process requirement or product limitation only; not common burden rank"
+            }
+          ],
+          "extraction_method": "AI_ASSISTED_NATIVE_AND_RENDERED_PAGE_CHECK_NOT_INDEPENDENT_EXPERT",
+          "limitations": [
+            "NO_COMMON_ORDINAL_UTILITY",
+            "NO_UNSUPPORTED_PROJECT_EXTRAPOLATION"
+          ]
         }
       ]
     },
@@ -4433,6 +4519,44 @@
             "Initial CAPEX A$M 178"
           ],
           "locator": "physicalPDF p3; Global Koppamurra JORC2012 M+I+I MRE as reaffirmed25June2026; includesY; excludes26MtOreReserve subset and Exploration Target; not a sum with reserve or186Mtoldergovernmentversion"
+        },
+        {
+          "kind": "SOURCE_BOUND_SCIENTIFIC_CLAIM",
+          "domain": "Technical",
+          "variable": "reported_technical_scientific_claim",
+          "value": null,
+          "unit": null,
+          "basis": "TREO_INCLUDING_Y",
+          "scope": "Koppamurra12yrPFS mine plan;71%ProbableReserve+29%Inferred; wholeore to finalMREO incloffsitecalcination, notglobal243Mtresource-average performance",
+          "statement_id": "koppamurra-pfs2026-resource-to-mreo-reviewed-T-B",
+          "case_id": "koppamurra-pfs2026-resource-to-mreo",
+          "effective_date": "2026-06-25",
+          "date_role": "DATED_DISCLOSURE_NOT_EXPERIMENT_DATE",
+          "source_key": "koppamurra_pfs2026",
+          "source_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+          "pdf_page": 11,
+          "locator": "physical PDF p.11; source-bound remediation claim",
+          "page_markers": [
+            "Pregnant leach solution (PLS)"
+          ],
+          "raw_text": "Pregnant leach solution (PLS) is collected and processed through a simple precipitation and re-dissolution step as a first stage of removing impurities including aluminium and other gangue elements",
+          "feed": "WHOLE_ORE_PFS_MINE_PLAN",
+          "endpoint": "CALCINED_MIXED_REO",
+          "scale": "PFS_MODEL",
+          "evidence_mode": "ENGINEERING_MODEL",
+          "reviewed_interpretations": [
+            {
+              "criterion": "T-B",
+              "state": "EXPLICIT_ADDITIONAL_REQUIREMENT",
+              "rule_id": "PAGE_REVIEW_T-B",
+              "meaning": "Named source process requirement or product limitation only; not common burden rank"
+            }
+          ],
+          "extraction_method": "AI_ASSISTED_NATIVE_AND_RENDERED_PAGE_CHECK_NOT_INDEPENDENT_EXPERT",
+          "limitations": [
+            "NO_COMMON_ORDINAL_UTILITY",
+            "NO_UNSUPPORTED_PROJECT_EXTRAPOLATION"
+          ]
         }
       ]
     },

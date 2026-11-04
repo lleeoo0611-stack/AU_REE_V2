@@ -73,6 +73,8 @@ def validate_pages(root, source, evidence, snapshots, cache=None):
             if data['source_sha256'] != source['sha256'] or data['physical_page'] != page or data['status'] != 'EXTRACTED_REQUIRES_SCOPE_VALIDATION':
                 raise ValueError('PAGE_ARTIFACT_BINDING_FAILED')
             text = data['text']
+        if evidence.get('kind')=='SOURCE_BOUND_SCIENTIFIC_CLAIM' and page==evidence['pdf_page']:
+            if ' '.join(evidence['raw_text'].split()) not in ' '.join(text.split()):raise ValueError('SCIENTIFIC_QUOTE_NOT_BOUND_TO_PAGE')
         if not all(marker in text for marker in binding['markers']):
             raise ValueError('EXTRACTION_PAGE_CHECK_FAILED')
 
@@ -307,14 +309,14 @@ def document_report(root, snapshots, outcomes, out, shared_comparability=False):
     (out/'document_pipeline_summary.json').write_text(canonical(report)+'\n',encoding='utf-8')
     return report
 
-def ingest_sources(db, root, snapshots):
+def ingest_sources(db, root, snapshots, commodity_version="minedex-commodity-v2"):
     for s in snapshots:
         db.execute('INSERT OR IGNORE INTO sources VALUES(?,?,?,?,?,?,?,?)',
                    (s['sha256'], s['key'], s['url'], s.get('publication_date'),
                     s['acquired_at'], s['path'], s['kind'], canonical(s)))
         if s['kind']=='minedex_resource_batch':
             from .official import ingest_minedex_resources
-            try:ingest_minedex_resources(db,root,s)
+            try:ingest_minedex_resources(db,root,s,commodity_version)
             except Exception as exc:issue(db,None,s['sha256'],'MINEDEX_RESOURCE_INGEST_FAILED',str(exc))
             continue
         if s.get('national_government'):
@@ -366,9 +368,11 @@ def normalize(observation):
     reasons = []
     value = o.get('value')
     numeric = isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
-    if not numeric:
+    textual=o.get('kind')=='SOURCE_BOUND_SCIENTIFIC_CLAIM'
+    if textual and (value is not None or not o.get('raw_text') or not o.get('reviewed_interpretations')):reasons.append('INVALID_TEXTUAL_SCIENTIFIC_CLAIM')
+    if not numeric and not textual:
         reasons.append('MISSING_OR_NONFINITE')
-    elif value < 0:
+    elif numeric and value < 0:
         reasons.append('NEGATIVE_VALUE')
     if numeric and o.get('unit')=='%' and value>100:reasons.append('PERCENT_OUT_OF_RANGE')
     if numeric and o['variable'] in ('ore_mt','grade','contained_treo_kt') and value<=0:reasons.append('NONPOSITIVE_RESOURCE_VALUE')

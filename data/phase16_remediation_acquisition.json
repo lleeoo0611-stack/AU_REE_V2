@@ -1,0 +1,25 @@
+{
+  "version": "bounded-remediation-acquisition-v1",
+  "candidate_budget": 6,
+  "attempted_candidates": 3,
+  "verified_alternative_entries_per_candidate": 0,
+  "method": "Existing acquisition.refresh, original issuer URLs fixed before contents inspection; no guessed WebLink endpoint",
+  "outcomes": [
+    {
+      "key": "sybella_impurity2024",
+      "status": "ADDED",
+      "sha256": "c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756"
+    },
+    {
+      "key": "kennedy_met2023",
+      "status": "ADDED",
+      "sha256": "a5599f729e3c5888317324ff0057c7999312ae2735bac827fe9717fd15ec53f6"
+    },
+    {
+      "key": "sandy_met2024",
+      "status": "ADDED",
+      "sha256": "a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33"
+    }
+  ],
+  "elapsed_seconds": 18.19194960000459
+}

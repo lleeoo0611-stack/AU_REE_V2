@@ -327,7 +327,7 @@ def _derive_table(key,group,emit):
     return plots
 
 
-def burden_states(text, definition):
+def _burden_states_v1(text, definition):
     """Predeclared source-scope rules. Absence, maturity and geology are not scores."""
     import re
     result=[]
@@ -344,7 +344,7 @@ def burden_states(text, definition):
     return sorted({canonical(r):r for r in result}.values(),key=canonical)
 
 
-def unified_observations(selection, definition):
+def _unified_observations_v1(selection, definition):
     """One view over Selection, including text, cells and study parameters.
 
     Technical interpretation, numerical comparability and Project extrapolation
@@ -377,7 +377,7 @@ def unified_observations(selection, definition):
         profile_reasons=technical_compare(r,profile_contract,profile_contract['model_assumptions'])
         reasons['SOURCE_CASE_NUMERIC_PROFILE']=profile_reasons
         profile=not profile_reasons and r['semantic_class']=='B_PROCESS_PERFORMANCE'
-        state_rows=burden_states(quote,definition) if bound else []
+        state_rows=_burden_states_v1(quote,definition) if bound else []
         missing=raw.get('token_state') in ('NOT_REPORTED','NOT_APPLICABLE')
         support=bound and not missing and (bool(quote) or numeric)
         identity=[r.get(k) for k in ('project_id','source_sha256','pdf_page','variable','basis','scope','case_id','value','unit')]
@@ -416,7 +416,131 @@ def unified_observations(selection, definition):
     return sorted(out,key=lambda r:r['analytical_identity'])
 
 
-def analyze_profiles(selection, definition, out, resource_ids):
+def claim_purpose(text):
+    """A conservative clause classifier, not an assertion of operating truth."""
+    import re
+    t=' '.join(text.split())
+    if not t:return 'EMPTY'
+    if re.search(r'\.{3,}\s*\d+|table of contents',t,re.I):return 'NAVIGATION_OR_HEADER'
+    # Short nominal headings have no scientific predicate. Words such as
+    # "removal" describe a topic, not an established treatment requirement.
+    predicate=r'\b(?:is|are|was|were|requires?|required|uses?|used|consumed|measured|demonstrated|showed|confirmed|contains?|produced|achieved|exceeded|failed|reported|removed|reduced|designed|assumed|estimated|modelled)\b'
+    if not re.search(predicate,t,re.I):return 'NAVIGATION_OR_HEADER'
+    if re.search(r'\b(?:not disclosed|not reported|no .{0,35}(?:data|information)|not measured)\b',t,re.I):return 'ABSENCE_OF_DISCLOSURE'
+    if re.search(r'\b(?:designed to|aims? to|objective|to validate|to optimise|to optimize|will evaluate|will test|planned|proposed test)\b',t,re.I):return 'PLAN_OR_TEST_OBJECTIVE'
+    if re.search(r'\b(?:if|unless|conditional on|subject to)\b',t,re.I):return 'CONDITIONAL'
+    if re.search(r'\b(?:assumed|design|model|estimated)\b',t,re.I) and re.search(r'\d',t):return 'DESIGN_MODEL'
+    if re.search(r'\b(?:tests?|testwork|measured|observed|produced|achieved|confirmed|demonstrated|consumed|exceeded)\b',t,re.I):return 'TEST_RESULT_OR_DISCLOSURE'
+    return 'PROCESS_DESCRIPTION'
+
+
+def burden_states(text, definition):
+    if definition.get('version')!='technical-profile-remediation-v2':return _burden_states_v1(text,definition)
+    import re
+    result=[]
+    # Scope future/negation to clauses; an unrelated future sentence cannot
+    # erase an established result. Decimal points are not sentence boundaries.
+    clauses=re.split(r'(?<=[.;])\s+(?=[A-Za-z])|\n\s*\n|\s+but\s+',text)
+    for clause in clauses:
+        sentence=' '.join(clause.split());purpose=claim_purpose(sentence)
+        if purpose in ('EMPTY','NAVIGATION_OR_HEADER','ABSENCE_OF_DISCLOSURE','PLAN_OR_TEST_OBJECTIVE'):continue
+        if re.search(r'\bwill\b',sentence,re.I) and purpose!='DESIGN_MODEL':continue
+        for rule in definition['rules']:
+            match=re.search(rule['pattern'],sentence,re.I)
+            if not match:continue
+            lower=rule['state']=='SUPPORTED_LOWER_BURDEN'
+            before=sentence[max(0,match.start()-40):match.start()]
+            if not lower and re.search(r'\b(?:no|not|without|lack of)\b',before,re.I):continue
+            if not lower and re.search(r'\b(?:no|not|without)\b.{0,25}(?:required|consum|remov|treatment)',sentence,re.I):continue
+            if re.search(r'\b(?:lower|higher|less|more) than\b',sentence,re.I) and not re.search(r'\d',sentence):continue
+            # A mention of acid consumption does not establish a high burden.
+            # Explicit generic requirements may be recorded as process facts.
+            if purpose=='PROCESS_DESCRIPTION' and not re.search(r'\b(?:requires?|required|used|uses?|is removed|are removed)\b',sentence,re.I):continue
+            quantities=[dict(token=m.group(0),value=float(m.group(1)),unit=m.group(2)) for m in re.finditer(r'(\d+(?:\.\d+)?)\s*(kg/t|g/L|kWh/t|m3/t|%|ppm)',sentence,re.I)]
+            material=re.search(r'\b(?:hydrochloric acid|sulphuric acid|sulfuric acid|acid|reagent|grinding|impurit(?:y|ies)|residue|tailings|thorium|uranium)\b',sentence,re.I)
+            result.append(dict(criterion=rule['criterion'],state='CONDITIONAL_REQUIREMENT' if purpose=='CONDITIONAL' else rule['state'],rule_id=rule['id'],quote=sentence,meaning=rule['meaning'],
+                evidence_nature=purpose,material=material.group(0) if material else None,quantities=quantities,
+                requirement_existence='CONDITIONAL' if purpose=='CONDITIONAL' else 'SUPPORTED_AT_QUOTED_SCOPE',
+                intensity_order='NOT_ESTABLISHED',missing_conditions=['NO_COMMON_INTENSITY_UTILITY'],allowed_use='NOMINAL_REQUIREMENT_ATTRIBUTE_NOT_ORDINAL_SCORE'))
+    return sorted({canonical(r):r for r in result}.values(),key=canonical)
+
+
+def target_applicability(record, raw):
+    """Source-bound coverage evidence changes the result; signatures do not."""
+    evidence=raw.get('representativeness_evidence') or {}
+    target=raw.get('target_scope') or evidence.get('target_population') or record.get('scope')
+    missing=[]
+    for field in ('source_sha256','pdf_page','quote','sample_id','target_population','coverage_basis','qualification'):
+        if not evidence.get(field):missing.append(field)
+    if record.get('evidence_reason'):missing.append('VALID_SOURCE_OBSERVATION')
+    if raw.get('semantic_conflicts') or evidence.get('conflict'):status='CONFLICT'
+    elif not missing and evidence['source_sha256']==record['source_sha256'] and evidence['sample_id']==raw.get('sample_id') and evidence['target_population']==target and evidence['qualification']=='TARGET_POPULATION_VALIDATED':status='SUPPORTED_FOR_NAMED_TARGET'
+    elif not missing:status='TARGET_OR_SOURCE_MISMATCH'
+    else:status='NOT_ESTABLISHED'
+    return dict(version='target-applicability-v2',target_scope=target,target_scope_kind=raw.get('target_scope_kind','SOURCE_CASE'),
+        status=status,reason='BOUND_TARGET_COVERAGE' if status=='SUPPORTED_FOR_NAMED_TARGET' else status+':'+','.join(missing),
+        evidence=evidence or None,evidence_mode=record.get('evidence_mode'),project_extrapolation=status=='SUPPORTED_FOR_NAMED_TARGET' and raw.get('target_scope_kind')=='PROJECT')
+
+
+def unified_observations(selection, definition):
+    if definition.get('version')!='technical-profile-remediation-v2':return _unified_observations_v1(selection,definition)
+    import re
+    records=[];policy=selection['policy']
+    # Process one input at a time: legacy dedup cannot erase semantic differences
+    # before the corrected identity has a chance to inspect them.
+    for c in selection['inventory']:
+        if c.get('domain')!='Technical':continue
+        row=_unified_observations_v1(dict(selection,inventory=[c]),definition)[0];raw=c['raw']
+        row['legacy_analytical_identity']=row['analytical_identity']
+        fields=('process_stage','sample_interval','reagent','temperature_c','residence_hours','acid_concentration','pressure','scenario','statistic')
+        for k in fields:
+            if k in raw:row[k]=raw[k]
+        row['date_role']=raw.get('date_role') or raw.get('effective_date_role') or 'DISCLOSURE_OR_CASE_EFFECTIVE_DATE_NOT_TEST_DATE'
+        row['sample_id']=raw.get('sample_id');row['test_id']=raw.get('test_id');row['material_branch']=raw.get('fraction_scope') or raw.get('product')
+        for k in ('acid_unit','reagent_formulation','liquid_solid_ratio','stage','from_material','to_material'):
+            row[k]=raw.get(k)
+        row['conditions']=raw.get('conditions');row['population']=raw.get('target_population') or row.get('sample_population')
+        row['source_record_identity']=c['evidence_id']
+        # Without an explicit cross-document measurement ID, preserve source
+        # version, locator and test anchor; equal values alone prove nothing.
+        measurement=raw.get('measurement_identity_evidence',{})
+        cross=bool(measurement.get('measurement_id') and measurement.get('quote') and measurement.get('source_sha256')==row['source_sha256'] and measurement.get('pdf_page'))
+        anchor=measurement['measurement_id'] if cross else [row['source_sha256'],row['pdf_page'],row['locator'],raw.get('table_index'),raw.get('row_index'),raw.get('column_index')]
+        semantics=('project_id','case_id','variable','quantity','basis','scope','feed','endpoint','scale','process_stage','sample_population','sample_id','test_id','sample_interval','study_date','date_role','statistic','scenario','material_branch','reagent','temperature_c','residence_hours','acid_concentration','pressure','conditions','population','base_case_applicable','acid_unit','reagent_formulation','liquid_solid_ratio','stage','from_material','to_material')
+        unit=' '.join((row.get('unit') or '').split()) or None
+        unit={'percent':'%','pct':'%'}.get(unit,unit);row['normalized_unit']=unit
+        row['scientific_observation_identity']=digest([anchor,[(k,row.get(k)) for k in semantics],unit])
+        row['analytical_identity']=digest(['technical-identity-v2',row['scientific_observation_identity'],row['value'],row['observation_form'],row['raw_quote'],row.get('token_state')])
+        row['identity_version']='technical-identity-v2';row['dedup_reason']='EXACT_SCIENTIFIC_SEMANTICS_AND_REPRESENTATION_ONLY'
+        row['cross_document_relation']='EXPLICIT_MEASUREMENT_LINK' if cross else 'NO_INDEPENDENT_EQUIVALENCE_EVIDENCE'
+        row['claim_purpose']=claim_purpose(row['raw_quote'])
+        row['interpretations']=burden_states(row['raw_quote'],definition) if not row['evidence_reason'] else []
+        if not row['evidence_reason'] and raw.get('kind')=='SOURCE_BOUND_SCIENTIFIC_CLAIM':
+            for judgment in raw.get('reviewed_interpretations',[]):
+                row['interpretations'].append(dict(judgment,quote=row['raw_quote'],origin='AI_ASSISTED_ORIGINAL_PAGE_REVIEW_NOT_EXPERT',evidence_nature=raw.get('evidence_mode'),intensity_order='NOT_ESTABLISHED',allowed_use='NOMINAL_SOURCE_CLAIM_ONLY'))
+        if row['observation_form']!='TECHNICAL_TABLE_CELL' and row['claim_purpose'] in ('NAVIGATION_OR_HEADER','PLAN_OR_TEST_OBJECTIVE','ABSENCE_OF_DISCLOSURE','EMPTY') and row['value'] is None:
+            row.update(supports_technical_interpretation=False,interpretation_reason=row['claim_purpose'])
+        applicability=target_applicability(row,raw);row['target_applicability']=applicability
+        row['project_extrapolation']=applicability['project_extrapolation'];row['project_extrapolation_reason']=applicability['reason']
+        records.append(row)
+    grouped=defaultdict(list);scientific=defaultdict(list)
+    for r in records:grouped[r['analytical_identity']].append(r);scientific[r['scientific_observation_identity']].append(r)
+    out=[]
+    for group in grouped.values():
+        r=dict(sorted(group,key=canonical)[0]);r['evidence_ids']=sorted({x['evidence_id'] for x in group});r['corroborating_rows']=len(group)
+        r['source_record_identities']=sorted({x['source_record_identity'] for x in group})
+        r['source_records']=[dict(evidence_id=x['evidence_id'],source_sha256=x['source_sha256'],pdf_page=x['pdf_page'],locator=x['locator'],unit=x['unit'],value=x['value']) for x in sorted(group,key=canonical)]
+        r['source_locators']=sorted({canonical([x['source_sha256'],x['pdf_page'],x['locator']]) for x in group})
+        peers=scientific[r['scientific_observation_identity']]
+        conflict=len({canonical(x['value']) for x in peers if not x['evidence_reason'] and x['value'] is not None})>1
+        r['measurement_relation']='CONFLICTING_VALUES_SAME_SCIENTIFIC_OBSERVATION' if conflict else 'CORROBORATING_RECORDS' if len(group)>1 else 'SINGLE_RECORD_INDEPENDENCE_UNKNOWN'
+        r['related_analytical_ids']=sorted({x['analytical_identity'] for x in peers})
+        if conflict:r.update(numeric_profile_eligible=False,interpretation_reason='CONFLICTING_VALUES_NOT_INDEPENDENT_EXPERIMENTS')
+        out.append(r)
+    return sorted(out,key=lambda r:r['analytical_identity'])
+
+
+def analyze_profiles(selection, definition, out, resource_ids, root=None, snapshots=()):
     """Executed model decision: existing partial MCDA + technical case profiles.
 
     No universal ordinal utility is established. Therefore no numeric mapping,
@@ -424,7 +548,15 @@ def analyze_profiles(selection, definition, out, resource_ids):
     """
     from .analysis import write_csv
     out=Path(out);rows=unified_observations(selection,definition)
+    if definition.get('version')=='technical-profile-remediation-v2':
+        # Explicit same-page curated cell markers corroborate source records,
+        # independently of scientific measurement identity or value conflicts.
+        links={e:r['source_cell_identity'] for r in _unified_observations_v1(selection,definition) if r['source_cell_identity'] for e in r['evidence_ids']}
+        for r in rows:
+            targets={links[e] for e in r['evidence_ids'] if e in links}
+            if not r['source_cell_identity'] and len(targets)==1:r['source_cell_identity']=next(iter(targets))
     fields=['analytical_identity','source_cell_identity','project_id','case_id','evidence_ids','source_sha256','pdf_page','locator','study_date','observation_form','variable','quantity','value','unit','basis','feed','endpoint','scale','scope','sample_population','statistic','raw_quote','token_state','supports_technical_interpretation','interpretation_reason','numeric_profile_eligible','permitted_comparison_groups','comparison_reasons','interpretations','project_extrapolation','project_extrapolation_reason','semantic_evidence','semantic_conflicts','scenario','scenario_evidence','base_case_applicable','corroborating_rows','rule_version']
+    if definition.get('version')=='technical-profile-remediation-v2':fields+=['legacy_analytical_identity','source_record_identities','source_records','scientific_observation_identity','identity_version','dedup_reason','cross_document_relation','source_locators','date_role','process_stage','sample_id','test_id','sample_interval','material_branch','reagent','temperature_c','residence_hours','acid_concentration','pressure','conditions','population','acid_unit','reagent_formulation','liquid_solid_ratio','stage','from_material','to_material','measurement_relation','related_analytical_ids','claim_purpose','target_applicability']
     write_csv(out/'technical_observations.csv',csvrows_local(rows),fields)
     profiles=[];judgments=[];groups=defaultdict(list)
     pids=sorted(selection['projects'])
@@ -436,7 +568,7 @@ def analyze_profiles(selection, definition, out, resource_ids):
             profiles.append(dict(project_id=pid,criterion=criterion,resource_defined=pid in resource_ids,
                 source_scoped_states=states or ['UNKNOWN'],status='CONFLICT_OR_SCOPE_VARIATION' if len(states)>1 else 'SCOPED_EVIDENCE_ONLY' if states else 'UNKNOWN',
                 scoped_interpretations=len(matches),evidence_ids=sorted({e for j in matches for e in j['evidence_ids']}),
-                project_score=None,project_extrapolation=False,rule_version=definition['version'],
+                project_score=None,project_extrapolation=any(r['project_extrapolation'] for r in rr),rule_version=definition['version'],
                 missing_reason='NO_BOUND_RULE_MATCH' if not matches else 'NO_CALIBRATED_COMMON_UTILITY_OR_TARGET_POPULATION_COVERAGE'))
         for r in rr:
             if not r['numeric_profile_eligible']:continue
@@ -446,7 +578,9 @@ def analyze_profiles(selection, definition, out, resource_ids):
             groups[group].append(r)
     group_rows=[dict(group_id=g,project_ids=sorted({r['project_id'] for r in rr}),case_ids=sorted({r['case_id'] for r in rr}),quantity=rr[0]['quantity'],basis=rr[0]['basis'],unit=rr[0]['unit'],feed=rr[0]['feed'],endpoint=rr[0]['endpoint'],scale=rr[0]['scale'],source_sha256=rr[0]['source_sha256'],values=[r['value'] for r in rr],evidence_ids=sorted({e for r in rr for e in r['evidence_ids']}),analysis_scope='SOURCE_CASE_PROFILE_NOT_CROSS_PROJECT_ORDER',uncertainty='NOT_QUANTIFIED_NO_INVENTED_ERROR') for g,rr in sorted(groups.items())]
     write_csv(out/'technical_project_profiles.csv',csvrows_local(profiles),['project_id','criterion','resource_defined','source_scoped_states','status','scoped_interpretations','evidence_ids','project_score','project_extrapolation','rule_version','missing_reason'])
-    write_csv(out/'technical_burden_evidence.csv',csvrows_local(judgments),['project_id','criterion','state','rule_id','case_id','analytical_identity','source_sha256','pdf_page','locator','scope','quote','meaning','evidence_ids','rule_version'])
+    burden_fields=['project_id','criterion','state','rule_id','case_id','analytical_identity','source_sha256','pdf_page','locator','scope','quote','meaning','evidence_ids','rule_version']
+    if definition.get('version')=='technical-profile-remediation-v2':burden_fields+=['origin','evidence_nature','material','quantities','requirement_existence','intensity_order','missing_conditions','allowed_use']
+    write_csv(out/'technical_burden_evidence.csv',csvrows_local(judgments),burden_fields)
     write_csv(out/'technical_comparison_groups.csv',csvrows_local(group_rows),['group_id','project_ids','case_ids','quantity','basis','unit','feed','endpoint','scale','source_sha256','values','evidence_ids','analysis_scope','uncertainty'])
     summary=dict(version=definition['version'],decision=definition['decision'],common_score_adopted=False,
         ordinal_mapping=None,technical_weight_change=0,formal_eligibility_change=False,
@@ -460,10 +594,108 @@ def analyze_profiles(selection, definition, out, resource_ids):
         projects_with_source_scoped_numeric=len({r['project_id'] for r in rows if r['numeric_profile_eligible']}),
         resource_projects_with_source_scoped_numeric=len({r['project_id'] for r in rows if r['numeric_profile_eligible']} & set(resource_ids)),
         source_scoped_criterion_projects={c:sum(p['criterion']==c and p['scoped_interpretations']>0 for p in profiles) for c in ('T-A','T-B')},
-        comparable_case_groups=len(groups),project_extrapolatable=0,
+        comparable_case_groups=len(groups),project_extrapolatable=sum(r['project_extrapolation'] for r in rows),
         aim_a='Existing partial MCDA plus source-scoped T-A/T-B evidence and numerical groups; no six-domain rank',
         aim_b='No ordinal utility adopted: mapping/weight sensitivity is NOT_APPLICABLE; prior partial-MCDA Monte Carlo and method sensitivity rerun; no probability of success',
         aim_c='Mechanism-oriented source-case comparison; no deposit-label-derived score or causal inference',
         limitation='Analytical identity deduplicates records only, not independent experiments; different versions may corroborate. AI consistency is not independent expert validation.')
+    if definition.get('version')=='technical-profile-remediation-v2':
+        summary.update(scoped_numeric_model_adopted=True,aim_a='Executed process-specific design panel via existing R engine; nominal burdens kept separate',aim_b='Same two design cases: Technical total/subweight, scoring, method and operating-only scope scenarios',project_extrapolatable=sum(r['project_extrapolation'] for r in rows))
+        if root is not None:summary['remediation']=export_remediation(selection,definition,rows,out,resource_ids,Path(root),snapshots)
     (out/'technical_model_decision.json').write_text(canonical(summary)+'\n',encoding='utf8')
     return summary
+
+
+def export_remediation(selection,definition,rows,out,resource_ids,root,snapshots):
+    """Use existing inventory for coverage, provenance bridge and model decisions."""
+    import csv
+    from .analysis import write_csv
+    from .pdf_extract import project_registry
+    from .store import filehash
+    sources={s['sha256']:s for s in snapshots};byproject=defaultdict(list)
+    for r in rows:byproject[r['project_id']].append(r)
+    registry=project_registry(root);mapping=selection['mapping'];bykey={s['key']:s for s in snapshots}
+    coverage=[]
+    for pid in sorted(selection['projects']):
+        rr=byproject[pid];members=[p for p in registry if mapping.get(p['entity_id'],p['entity_id'])==pid]
+        originals={s['sha256']:s for r in rr if (s:=sources.get(r['source_sha256'])) and s['kind']=='pdf'}
+        for p in members:
+            if (s:=bykey.get(p['identity_source'])) and s['kind']=='pdf':originals[s['sha256']]=s
+        original_state=[]
+        for sha,source in sorted(originals.items()):
+            valid=(root/source['path']).exists() and filehash(root/source['path'])==sha
+            original_state.append(dict(sha256=sha,key=source['key'],sha_verified=valid,readable_source_observations=any(r['source_sha256']==sha and r['supports_technical_interpretation'] for r in rr)))
+        selected=[r for r in rr if not r['evidence_reason']]
+        numeric=[r for r in selected if isinstance(r['value'],(int,float))]
+        fields=('feed','basis','endpoint','scale','study_date','scenario','statistic','sample_population')
+        states=[]
+        if not original_state:states.append('NO_PROJECT_BOUND_ORIGINAL_IN_THIS_SELECTION_NOT_PROOF_OF_EXTERNAL_ABSENCE')
+        elif not rr:states.append('ORIGINAL_ACQUIRED_NO_SELECTED_TECHNICAL_OBSERVATION')
+        if rr and not selected:states.append('PARSED_NOT_VALIDATED_OR_NOT_SELECTED')
+        if selected and not numeric:states.append('TEXT_ONLY_NO_FINITE_NUMERIC')
+        if any(r['measurement_relation'].startswith('CONFLICT') for r in rr):states.append('SOURCE_VALUE_CONFLICT')
+        if selected and not any(r['numeric_profile_eligible'] for r in rr):states.append('NUMERIC_OR_SCOPE_INSUFFICIENT_FOR_PROFILE')
+        if selected:states.append('VALID_SOURCE_OBSERVATIONS_SPECIFIC_CONTRACTS_STILL_REQUIRED')
+        coverage.append(dict(project_id=pid,project_names=sorted({p['name'] for p in members}),resource_defined=pid in resource_ids,originals=original_state,technical_rows=len(rr),validated_rows=len(selected),numeric_records=len(numeric),numeric_profiles=sum(r['numeric_profile_eligible'] for r in rr),study_cases=sorted({r['case_id'] for r in rr if r['observation_form']=='STUDY_PARAMETER'}),field_coverage={k:sum(bool(r.get(k)) for r in rr) for k in fields},reagent_energy_water_residue_records=sum(bool(r.get('reagent')) or any(q in r['variable'].lower() for q in ('acid','reagent','energy','water','residue')) for r in rr),representative_targets=sum(r['target_applicability']['status']=='SUPPORTED_FOR_NAMED_TARGET' for r in rr),uncertainty='MEASUREMENT_ERROR_AND_REPLICATE_COUNTS_NOT_ESTABLISHED',states=states,exclusion_reasons=sorted({r['evidence_reason'] for r in rr if r['evidence_reason']}),comparison_failures=sorted({reason for r in rr for rr2 in r['comparison_reasons'].values() for reason in rr2})))
+    write_csv(out/'technical_coverage_gaps.csv',csvrows_local(coverage),list(coverage[0]) if coverage else ['project_id'])
+    bridge=[dict(old_analytical_identity=r['legacy_analytical_identity'],new_analytical_identity=r['analytical_identity'],scientific_observation_identity=r['scientific_observation_identity'],evidence_ids=r['evidence_ids'],relation=r['measurement_relation'],reason=r['dedup_reason']) for r in rows]
+    write_csv(out/'technical_identity_bridge.csv',csvrows_local(bridge),list(bridge[0]) if bridge else ['old_analytical_identity'])
+    # Every previously published rule hit receives a reproducible disposition.
+    old=root/'results/phase16-2026-11-04/technical_burden_evidence.csv';audit=[]
+    with old.open(encoding='utf8',newline='') as stream:
+        for index,r in enumerate(csv.DictReader(stream),1):
+            matches=burden_states(r['quote'],definition);purpose=claim_purpose(r['quote'])
+            status='RETAIN_SCOPED_REQUIREMENT_NOT_INTENSITY_ORDER' if matches else 'DOWNGRADE_DISCOVERY_OR_PROCESS_CONTEXT'
+            if purpose in ('PLAN_OR_TEST_OBJECTIVE','NAVIGATION_OR_HEADER'):status='REMOVE_ESTABLISHED_BURDEN_'+purpose
+            audit.append(dict(prior_hit=index,prior_analytical_identity=r['analytical_identity'],project_id=r['project_id'],criterion=r['criterion'],source_sha256=r['source_sha256'],pdf_page=r['pdf_page'],locator=r['locator'],quote=r['quote'],purpose=purpose,disposition=status,new_claims=matches,source_selected=r['source_sha256'] in sources,reason='Clause purpose and explicit predicate checked; existence and intensity are distinct; structured case summaries are navigation/context unless backed by a direct reviewed claim',review_status='AI_ASSISTED_SOURCE_CONTEXT_CHECK_NOT_INDEPENDENT_EXPERT'))
+    write_csv(out/'technical_burden_remediation.csv',csvrows_local(audit),list(audit[0]))
+    inputs=[]
+    # Existing derived reagent intensities retain table_scope/source chain.
+    f=out/'technical_derived.csv'
+    if f.exists():
+        with f.open(encoding='utf8',newline='') as stream:
+            for r in csv.DictReader(stream):
+                if r['variable']=='reagent_intensity_kg_t_dry_feed':inputs.append(dict(project_id=r['project_id'],case_id=r['table_scope_id'],stage=r['stage'],value=float(r['value']),unit=r['unit'],reagent=r['reagent'],material_basis='COMMERCIAL_FORMULATION_PURITY_UNESTABLISHED',nature='DATED_DESIGN_MODEL',source_sha256=r['source_sha256'],evidence_ids=r['evidence_ids'],formula=r['formula'],decision='WITHIN_CASE_NOT_COMMON_ACTIVE_INGREDIENT_SCORE'))
+    # Typed source case carries 24.8 kg/t formulation, not an invented feed assay.
+    for c in selection['inventory']:
+        if c['variable']!='acid_32pct_hcl_kg_per_t_feed' or c['reason']:continue
+        inputs.append(dict(project_id=c['project_id'],case_id=c['case_id'],value=c['value'],unit=c['unit'],reagent='32% HCl source formulation',material_basis='SOURCE_32_PERCENT_HCL_FORMULATION_PER_LEACH_FEED',nature='SELECTED_COMPOSITE_DIAGNOSTIC_NOT_OPERATING',source_sha256=c['source_sha256'],evidence_ids=[c['evidence_id']],formula='Source case value; hypothetical active equivalent = q*0.32 only if concentration is mass fraction',conditional_active_kg_t=c['value']*.32,active_conversion_status='CONDITIONAL_MASS_FRACTION_ASSUMPTION_NOT_ADOPTED_MEASUREMENT',decision='WITHIN_CASE; feed moisture and net consumption balance not independently established'))
+    write_csv(out/'technical_input_intensities.csv',csvrows_local(inputs),['project_id','case_id','value','unit','reagent','material_basis','nature','stage','source_sha256','evidence_ids','formula','conditional_active_kg_t','active_conversion_status','decision'])
+    products=[]
+    for c in selection['inventory']:
+        raw=c['raw']
+        if raw.get('kind')!='SOURCE_BOUND_SCIENTIFIC_CLAIM' or c['reason']:continue
+        for claim in raw.get('reviewed_interpretations',[]):
+            if claim['state']!='OBSERVED_SPECIFICATION_OBSTACLE':continue
+            constraint=raw.get('product_constraint',{})
+            peers=[x for x in selection['inventory'] if x['variable']==constraint.get('actual_variable') and x.get('case_id')==raw['case_id'] and x['source_sha256']==c['source_sha256'] and not x['reason']]
+            values={x['value'] for x in peers};actual=next(iter(values)) if len(values)==1 else None
+            limit=constraint.get('benchmark_value');unit=constraint.get('benchmark_unit')
+            compatible=actual is not None and isinstance(limit,(int,float)) and limit>0 and all(x['unit']==unit for x in peers) and constraint.get('operator') in ('LESS_THAN','LESS_THAN_OR_EQUAL')
+            diagnostic=actual/limit if compatible else None
+            failed=(actual>=limit if constraint.get('operator')=='LESS_THAN' else actual>limit) if compatible else None
+            status=('DOES_NOT_MEET_SINGLE_REPORTED_BENCHMARK' if failed else 'MEETS_SINGLE_REPORTED_BENCHMARK') if compatible else 'MISSING_OR_CONFLICTING_METRIC_OR_BENCHMARK'
+            products.append(dict(project_id=c['project_id'],case_id=raw['case_id'],source_sha256=c['source_sha256'],pdf_page=c['pdf_page'],evidence_id=c['evidence_id'],metric_evidence_ids=[x['evidence_id'] for x in peers],quote=raw['raw_text'],product=constraint.get('product'),metric=constraint.get('actual_variable'),actual_value=actual,benchmark_value=limit,unit=unit,operator=constraint.get('operator'),diagnostic_c_over_L=diagnostic,status=status,benchmark_role=constraint.get('benchmark_role'),decision='SOURCE_DIAGNOSTIC_ONLY; typical reported benchmark is not a binding buyer specification; no common ordinal grade; full specification items not disclosed'))
+    write_csv(out/'technical_product_constraints.csv',products,list(products[0]) if products else ['project_id','status'])
+    # Functional unit cannot splice preferred45 extraction onto the four-blend.
+    functional=[dict(project_id=c['project_id'],case_id=c['case_id'],source_sha256=c['source_sha256'],pdf_page=c['pdf_page'],candidate='kg reagent / kg recovered TREO in specified MREC',formula='q/(1000*g*R)',feed_grade_fraction=c['value']/1e6,reagent_kg_t=None,endpoint_recovery_fraction=None,functional_intensity=None,decision='NOT_CALCULABLE',missing=['Same-case reagent requirement','Same-case whole-feed-to-MREC recovery','Buyer product specification','Coproduct allocation and outsourced boundary'],prohibited_link='Other same-Project cases are not joined: q, grade and endpoint recovery must belong to this same feed and scenario') for c in selection['inventory'] if c['variable']=='feed_treo_ppm' and c.get('endpoint')=='MREC' and not c['reason']]
+    write_csv(out/'technical_functional_unit_check.csv',csvrows_local(functional),['project_id','case_id','source_sha256','pdf_page','candidate','formula','feed_grade_fraction','reagent_kg_t','endpoint_recovery_fraction','functional_intensity','decision','missing','prohibited_link'])
+    sensitivity=[];membership=[]
+    for variant in ('fixed','sample_minmax'):
+        folder=out/('technical_process_concentrate_'+variant)
+        if (folder/'ranking.csv').exists():
+            with (folder/'ranking.csv').open(encoding='utf8',newline='') as stream:ranks=list(csv.DictReader(stream))
+            baseline={r['project_id']:r for r in ranks if r['scenario']=='technical_0_split_1'}
+            for r in ranks:
+                for method in ('saw','promethee','topsis'):
+                    base=baseline[r['project_id']]
+                    sensitivity.append(dict(normalization=variant,scenario=r['scenario'],project_id=r['project_id'],project_name=r['project_name'],method=method,score=float(r[method]),baseline_score=float(base[method]),score_change=float(r[method])-float(base[method]),rank=float(r[method+'_rank']),baseline_rank=float(base[method+'_rank']),rank_change=float(r[method+'_rank'])-float(base[method+'_rank']),cohort_change=False,data_change=False,interpretation='Fixed cases and background; explicit criterion/weight effect, not measurement significance or national rank'))
+        if variant=='fixed' and (folder/'matrix.csv').exists():
+            with (folder/'matrix.csv').open(encoding='utf8',newline='') as stream:matrix=list(csv.DictReader(stream))
+            for r in matrix:
+                if len(matrix)==2:membership.append(dict(retained_project=r['project_id'],removed_project=next(x['project_id'] for x in matrix if x['project_id']!=r['project_id']),n=1,TPR_fixed=r['TPR'],TPG_fixed=r['TPG'],local_minmax=None,rank=None,reason='Single retained case: physical fraction remains defined; sample minmax and cross-case ranking undefined, no midpoint imputation'))
+    write_csv(out/'technical_definition_sensitivity.csv',sensitivity,['normalization','scenario','project_id','project_name','method','score','baseline_score','score_change','rank','baseline_rank','rank_change','cohort_change','data_change','interpretation'])
+    write_csv(out/'technical_membership_sensitivity.csv',membership,['retained_project','removed_project','n','TPR_fixed','TPG_fixed','local_minmax','rank','reason'])
+    decisions=dict(definition['numeric_model'],burden_ordinal_adopted=False,missing_never_zero=True)
+    (out/'technical_analysis_decisions.json').write_text(canonical(decisions)+'\n',encoding='utf8')
+    return dict(coverage_projects=len(coverage),resource_projects=sum(r['resource_defined'] for r in coverage),old_hits_dispositioned=len(audit),intensity_records=len(inputs),product_constraint_cases=len(products),functional_checks=len(functional))

@@ -5717,6 +5717,87 @@
       "available_date": "2026-11-04",
       "parser_version": "document-recognition-v6-context-bound",
       "publication_date": "2019-02-07"
+    },
+    {
+      "key": "sybella_impurity2024",
+      "url": "https://redmetal.com.au/wp-content/uploads/2024/07/RDM_ASX_Sybella_Project_Impurity_Removal_final.pdf",
+      "publication_date": "2024-07-08",
+      "process": "LEACH_IMPURITY_MREC",
+      "kind": "pdf",
+      "role": "DOCUMENT_LEVEL_HELD_EVALUATION_NOT_PROJECT_IDENTITY",
+      "timeout_seconds": 20,
+      "sha256": "c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "path": "data/snapshots/c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756.pdf",
+      "acquired_at": "2026-11-04T18:36:34.389412+00:00",
+      "available_date": "2026-11-04",
+      "etag": null,
+      "last_modified": "Sun, 07 Jul 2024 23:33:17 GMT"
+    },
+    {
+      "key": "kennedy_met2023",
+      "url": "https://www.devexresources.com.au/wp-content/uploads/2024/06/61157632.pdf",
+      "publication_date": "2023-07-10",
+      "process": "DESORPTION",
+      "kind": "pdf",
+      "role": "DOCUMENT_LEVEL_HELD_EVALUATION_NOT_PROJECT_IDENTITY",
+      "timeout_seconds": 20,
+      "sha256": "a5599f729e3c5888317324ff0057c7999312ae2735bac827fe9717fd15ec53f6",
+      "path": "data/snapshots/a5599f729e3c5888317324ff0057c7999312ae2735bac827fe9717fd15ec53f6.pdf",
+      "acquired_at": "2026-11-04T18:36:39.568262+00:00",
+      "available_date": "2026-11-04",
+      "etag": null,
+      "last_modified": "Fri, 07 Jun 2024 08:43:37 GMT"
+    },
+    {
+      "key": "sandy_met2024",
+      "url": "https://arkmines.com/wp-content/uploads/2024/07/02823586.pdf",
+      "publication_date": "2024-07-02",
+      "process": "PHYSICAL_BENEFICIATION",
+      "kind": "pdf",
+      "role": "DOCUMENT_LEVEL_HELD_EVALUATION_NOT_PROJECT_IDENTITY",
+      "timeout_seconds": 20,
+      "sha256": "a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33",
+      "path": "data/snapshots/a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33.pdf",
+      "acquired_at": "2026-11-04T18:36:48.268705+00:00",
+      "available_date": "2026-11-04",
+      "etag": null,
+      "last_modified": null
+    },
+    {
+      "key": "recognized_c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "kind": "document_extraction",
+      "url": "https://redmetal.com.au/wp-content/uploads/2024/07/RDM_ASX_Sybella_Project_Impurity_Removal_final.pdf",
+      "source_sha256": "c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "sha256": "d20226056e7d85b0cfa41aedc9918088955911eaeb6d6697c43232e2e913fb16",
+      "path": "data/snapshots/d20226056e7d85b0cfa41aedc9918088955911eaeb6d6697c43232e2e913fb16.json",
+      "acquired_at": "2026-11-04T18:41:30.926228+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2024-07-08"
+    },
+    {
+      "key": "recognized_a5599f729e3c5888317324ff0057c7999312ae2735bac827fe9717fd15ec53f6",
+      "kind": "document_extraction",
+      "url": "https://www.devexresources.com.au/wp-content/uploads/2024/06/61157632.pdf",
+      "source_sha256": "a5599f729e3c5888317324ff0057c7999312ae2735bac827fe9717fd15ec53f6",
+      "sha256": "a6a21997a5e39fa11a431a0f2828919585d8729349caf2b281e81929869a509c",
+      "path": "data/snapshots/a6a21997a5e39fa11a431a0f2828919585d8729349caf2b281e81929869a509c.json",
+      "acquired_at": "2026-11-04T18:41:33.543325+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2023-07-10"
+    },
+    {
+      "key": "recognized_a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33",
+      "kind": "document_extraction",
+      "url": "https://arkmines.com/wp-content/uploads/2024/07/02823586.pdf",
+      "source_sha256": "a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33",
+      "sha256": "c907f00004318e284144d85fac6299ea457cc2d9360e9a30d82a983c167f4448",
+      "path": "data/snapshots/c907f00004318e284144d85fac6299ea457cc2d9360e9a30d82a983c167f4448.json",
+      "acquired_at": "2026-11-04T18:41:50.406229+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2024-07-02"
     }
   ]
 }

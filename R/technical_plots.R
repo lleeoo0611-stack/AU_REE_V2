@@ -35,3 +35,18 @@ if(nrow(x)>0) {
  }
  dev.off()
 }
+
+# Same two source-qualified design cases: performance is separate from evidence maturity.
+process_file<-file.path(folder,'technical_process_concentrate_fixed','matrix.csv')
+if(file.exists(process_file)) {
+  z<-read.csv(process_file)
+  if(nrow(z)>=2) {
+    svg(file.path(folder,'technical_process_concentrate.svg'),width=8,height=5)
+    plot(100*z$TPR,100*z$TPG,pch=19,col='#176b72',xlim=range(100*z$TPR)+c(-1,1),
+      ylim=range(100*z$TPG)+c(-1,1),xlab='Whole-ore TREO recovery to mineral concentrate (%)',
+      ylab='Mineral concentrate TREO grade (%)',main='Named engineering design demonstration (n = 2)')
+    text(100*z$TPR,100*z$TPG,labels=z$case_id,pos=3,cex=.75)
+    mtext('No operating outcome, measurement-error bounds or national ranking inferred',side=1,line=4,cex=.7)
+    dev.off()
+  }
+}

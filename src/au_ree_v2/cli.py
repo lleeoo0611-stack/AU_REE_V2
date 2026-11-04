@@ -156,7 +156,7 @@ def execute(args):
          digest(snapshots),'RUNNING',None))
     db.commit()
     try:
-        ingest_sources(db,root,snapshots)
+        ingest_sources(db,root,snapshots,config.get("commodity_version","minedex-resource-batch-v1"))
         from .national import government_explicit_relations
         government_explicit_relations(db,snapshots)
         from .national import live_government_inventory,live_government_coverage,government_link_candidates
@@ -256,6 +256,9 @@ def execute(args):
                 selection=select_evidence(db,snapshots,args.as_of,resources,cases,identity['mapping'],config['evidence_resolution'],root,acquired_through,active_claim_ids=active_claim_ids)
                 export_selection(selection,out)
             prepared=prepare(db,args.as_of,snapshots,resources,gis_values,config,out,args.project,identity['mapping'],cases,selection)
+            if selection and config.get('evidence_resolution',{}).get('technical_profile',{}).get('numeric_model'):
+                from .analysis import prepare_technical_panel
+                prepare_technical_panel(selection,prepared,config,out)
             if config['monte_carlo'].get('method_version')=='entity-keyed-rng-v2':
                 from .analysis import canonicalize_interchange
                 canonicalize_interchange(out)
@@ -281,8 +284,8 @@ def execute(args):
         if selection and config.get('evidence_resolution',{}).get('technical_profile'):
             from .technical import analyze_profiles
             from .official import minedex_resource_report
-            analyze_profiles(selection,config['evidence_resolution']['technical_profile'],out,{identity['mapping'].get(pid,pid) for pid in resources})
-            minedex_resource_report(db,root,snapshots,out)
+            analyze_profiles(selection,config['evidence_resolution']['technical_profile'],out,{identity['mapping'].get(pid,pid) for pid in resources},root,snapshots)
+            minedex_resource_report(db,root,snapshots,out,config.get("commodity_version","minedex-resource-batch-v1"))
         source_shas={s['sha256'] for s in snapshots}
         from .national import raw_domain_coverage
         if config.get('research_analysis_version')=='evidence-cohort-v1':

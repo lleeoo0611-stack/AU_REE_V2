@@ -26,8 +26,11 @@ for(scenario in unique(weights$scenario)) {
   wd<-weights[weights$scenario==scenario,];stopifnot(!anyDuplicated(wd$criterion))
   w<-wd$weight[match(codes,wd$criterion)];validate(X,w)
   # Assumption-derived reciprocal matrix exercises AHP, not elicited expert judgments.
-  A<-outer(w,w,'/');a<-ahp(A);stopifnot(max(abs(a$weights-w/sum(w)))<1e-8)
-  all_ahp[[scenario]]<-data.frame(scenario,criterion=codes,weight=a$weights,CR=a$CR,
+  active<-which(w>0)
+  A<-outer(w[active],w[active],'/');a<-ahp(A)
+  full_weights<-numeric(length(w));full_weights[active]<-a$weights
+  stopifnot(max(abs(full_weights-w/sum(w)))<1e-8)
+  all_ahp[[scenario]]<-data.frame(scenario,criterion=codes,weight=full_weights,CR=a$CR,
       status='ASSUMPTION_DERIVED_MATRIX_NOT_EXPERT_ELICITATION')
   baseline<-promethee(X,w,p); ranks<-rank_score(baseline)
   all_ranks[[scenario]]<-data.frame(scenario,project_id=d$project_id,project_name=d$project_name,scope=d$scope,
@@ -47,6 +50,10 @@ for(scenario in unique(weights$scenario)) {
   inputs<-if(deterministic)keyed_inputs(d$project_id,codes,w,reps,version,seed,scenario,concentration) else NULL
   for(k in seq_len(reps)) {
     wt<-if(deterministic)inputs$weights[,k] else rgamma(length(w),shape=pmax(w*concentration,1e-9));wt<-wt/sum(wt)
+    if(all(c('group','group_weight') %in% names(wd))) {
+      ordered<-wd[match(codes,wd$criterion),]
+      wt<-budget_weights(wt,ordered$group,ordered$group_weight)
+    }
     W[,k]<-rank_score(promethee(X,wt,p))
   }
   # Independent RNG stream; keeps source rounding distinct from weight uncertainty.
@@ -61,7 +68,7 @@ for(scenario in unique(weights$scenario)) {
       frequency_top3=if(nrow(X)>=3)rowMeans(M<=3) else NA_real_,
       frequency_top5=if(nrow(X)>=5)rowMeans(M<=5) else NA_real_,
       interpretation='Preference/model frequency; not development success probability')
-  all_weight[[scenario]]<-summarize(W,'WEIGHTS_ONLY')
+  all_weight[[scenario]]<-summarize(W,if(all(c('group','group_weight') %in% names(wd)))'WITHIN_GROUP_WEIGHTS_FIXED_DOMAIN_TOTALS' else 'WEIGHTS_ONLY')
   all_rounding[[scenario]]<-summarize(D,'SOURCE_ROUNDING_ONLY_NOT_MEASUREMENT_UNCERTAINTY')
   if('uncertainty_kind' %in% names(d) && all(d$uncertainty_kind=='NO_SOURCE_BOUNDS')) {
     all_rounding[[scenario]]$uncertainty<-'NOT_QUANTIFIED_NO_SOURCE_BOUNDS'
