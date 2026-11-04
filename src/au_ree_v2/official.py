@@ -18,6 +18,68 @@ STATUS = "OFFICIAL_SUMMARY_SCOPE_UNVERIFIED"
 COLUMNS = ("row", "project", "status", "owner", "ore_mt", "grade_pct",
            "contained_treo_kt", "resource_date")
 
+def minedex_resource_rows(root, source):
+    """Original ZIP and CSV member checked before interpreting resource totals."""
+    import zipfile,io,hashlib
+    path=Path(root)/source['path']
+    if filehash(path)!=source['sha256']:raise ValueError('MINEDEX_BATCH_SHA_MISMATCH')
+    with zipfile.ZipFile(path) as z:
+        names=[n for n in z.namelist() if n.lower().endswith('.csv')]
+        if len(names)!=1:raise ValueError('MINEDEX_BATCH_CSV_AMBIGUOUS')
+        raw=z.read(names[0]);member_sha=hashlib.sha256(raw).hexdigest()
+    reader=csv.DictReader(io.StringIO(raw.decode('utf-8-sig')))
+    required={'PROJ_CODE','LOC_SITE','EST_COM','RES_QTY','RES_QTY_U','RES_CON','RES_CON_U','PROJ_NAME'}
+    if not required.issubset(reader.fieldnames or []):raise ValueError('MINEDEX_RESOURCE_SCHEMA_MISMATCH')
+    rows=list(reader);keys=[(r['PROJ_CODE'],r['EST_COM']) for r in rows]
+    if len(keys)!=len(set(keys)):raise ValueError('MINEDEX_DUPLICATE_PROJECT_COMMODITY')
+    result=[]
+    for line,r in enumerate(rows,2):
+        if not re.search(r'rare earth|yttrium|lanthanum|cerium|neodymium|praseodymium|dysprosium|terbium',r['EST_COM'],re.I):continue
+        result.append(dict(source_sha256=source['sha256'],csv_sha256=member_sha,member=names[0],csv_line=line,raw=r))
+    return rows,result
+
+
+def ingest_minedex_resources(db, root, source):
+    """Native-ID relations, not issuer Project equivalence or JORC promotion."""
+    _,rows=minedex_resource_rows(root,source)
+    for item in rows:
+        r=item['raw'];native=r['PROJ_CODE']
+        project=entity(db,'WA_MINDEX_PROJECT',native,'PROJECT_CANDIDATE')
+        record=entity(db,'WA_MINEDEX_RESOURCE_PROJECT_COMMODITY',native+'|'+r['EST_COM'],'SOURCE_RECORD')
+        locator=item['member']+':'+str(item['csv_line'])
+        payload=dict(item,source_kind='MINEDEX_RESOURCE_BATCH',project_candidate_id=project,
+            basis=r['EST_COM'],basis_note='Commodity label only; Y inclusion in total REO not disclosed',
+            estimate_date=None,jorc_classes='Measured+Indicated+Inferred combined; no class split',
+            limitations=['PRODUCT_DATE_NOT_ESTIMATE_DATE','NO_DEPOSIT_ALLOCATION','NO_RESOURCE_RESERVE_SUM','NOT_ORIGINAL_JORC_DOCUMENT'])
+        db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',(record,source['sha256'],r['PROJ_NAME']+' | '+r['EST_COM'],'WA',float(r['LONGITUDE']),float(r['LATITUDE']),None,None,canonical(payload)))
+        db.execute('INSERT OR IGNORE INTO relations VALUES(?,?,?,?,?,?,?)',(digest([project,record,source['sha256']]),project,record,'RESOURCE_SUMMARY_FOR_NATIVE_PROJECT',source['publication_date'],source['sha256'],locator))
+        site=db.execute("SELECT entity_id FROM entities WHERE native_namespace='WA_MINDEX_SITE' AND native_id=?",(r['LOC_SITE'],)).fetchone()
+        if site:
+            db.execute('INSERT OR IGNORE INTO relations VALUES(?,?,?,?,?,?,?)',(digest([record,site[0],source['sha256']]),record,site[0],'REPRESENTATIVE_RESOURCE_LOCATION_SITE_NOT_RESOURCE_EXTENT',source['publication_date'],source['sha256'],locator))
+        for field,unitfield in [('RES_QTY','RES_QTY_U'),('RES_QTY_G','RES_QTY_GU'),('RES_CON','RES_CON_U'),('RV_QTY','RV_QTY_U'),('RV_QTY_G','RV_QTY_GU'),('RV_CON','RV_CON_U')]:
+            value=float(r[field]) if r[field].strip() else None
+            issues=['ESTIMATE_DATE_AND_REO_BASIS_UNVERIFIED']
+            if value is not None and (not math.isfinite(value) or value<0):issues.append('INVALID_VALUE')
+            raw=dict(payload,domain='Resource',variable='official_batch_'+field.lower(),original_value=r[field],original_unit=r[unitfield],value=value,unit=r[unitfield] or None,date_role='PRODUCT_UPDATE_NOT_RESOURCE_ESTIMATE')
+            db.execute('INSERT OR IGNORE INTO observations VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',(digest([record,source['sha256'],field]),record,raw['variable'],value,raw['unit'],r['EST_COM'],native+' | '+r['EST_COM'],native+'|'+r['EST_COM'],raw['jorc_classes'] if field.startswith('RES_') else 'Proven+Probable combined',source['publication_date'],source['sha256'],locator,'OFFICIAL_SUMMARY_SCOPE_UNVERIFIED',canonical(issues),canonical(raw),'minedex-resource-batch-v1'))
+    return len(rows)
+
+
+def minedex_resource_report(db,root,snapshots,out):
+    from .analysis import write_csv
+    reports=[];inventory=[]
+    for source in snapshots:
+        if source['kind']!='minedex_resource_batch':continue
+        allrows,rr=minedex_resource_rows(root,source)
+        for item in rr:
+            r=item['raw'];native=db.execute("SELECT entity_id FROM entities WHERE native_namespace='WA_MINDEX_PROJECT' AND native_id=?",(r['PROJ_CODE'],)).fetchone()
+            site=db.execute("SELECT entity_id FROM entities WHERE native_namespace='WA_MINDEX_SITE' AND native_id=?",(r['LOC_SITE'],)).fetchone()
+            inventory.append(dict(project_code=r['PROJ_CODE'],project_name=r['PROJ_NAME'],native_project_candidate_id=native[0] if native else None,location_site_code=r['LOC_SITE'],site_id=site[0] if site else None,commodity=r['EST_COM'],resource_qty=r['RES_QTY'] or None,resource_qty_unit=r['RES_QTY_U'] or None,resource_grade=r['RES_QTY_G'] or None,resource_grade_unit=r['RES_QTY_GU'] or None,resource_contained=r['RES_CON'] or None,resource_contained_unit=r['RES_CON_U'] or None,reserve_qty=r['RV_QTY'] or None,estimate_date=None,extract_date=r.get('EXTRACT_DA') or None,source_sha256=item['source_sha256'],csv_sha256=item['csv_sha256'],locator=item['member']+':'+str(item['csv_line']),mapping_status='NATIVE_ID_ONLY_NOT_CANONICAL_PROJECT_EQUIVALENCE',reo_basis_status='Y_INCLUSION_NOT_DISCLOSED',date_status='PRODUCT_DATE_ONLY_NOT_ESTIMATE_DATE'))
+        reports.append(dict(source_sha256=source['sha256'],csv_sha256=rr[0]['csv_sha256'] if rr else None,all_commodity_rows=len(allrows),ree_commodity_rows=len(rr),ree_native_project_codes=len({r['raw']['PROJ_CODE'] for r in rr}),source_update=source.get('source_update'),fields=list(allrows[0]) if allrows else [],mapped_location_site_rows=sum(bool(r['site_id']) for r in inventory),distinct_mapped_sites=len({r['site_id'] for r in inventory if r['site_id']}),unmatched_location_site_codes=sorted({r['location_site_code'] for r in inventory if not r['site_id']}),estimate_dates=sum(bool(r.get('EXTRACT_DA')) for r in allrows),jurisdiction='WA_ONLY_NOT_NATIONAL',resource_aggregation='NO_SUM_ACROSS_COMMODITIES_RESOURCE_RESERVE_OR_YEARS'))
+    write_csv(Path(out)/'minedex_resource_batch.csv',inventory,list(inventory[0]) if inventory else ['project_code','commodity','source_sha256'])
+    (Path(out)/'minedex_resource_batch.json').write_text(canonical(reports)+'\n',encoding='utf8')
+    return reports
+
 def slug(name):
     return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
 

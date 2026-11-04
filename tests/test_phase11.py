@@ -45,7 +45,15 @@ class Phase11Tests(unittest.TestCase):
         new=select_snapshots(ROOT,'2026-11-03',acquired_through='2026-11-04')
         for s in new:
             # A retrospective search receipt is unscored acquisition metadata.
-            if s['key'] not in old:self.assertIn(s['kind'],('pdf','html','document_extraction','pdf_page_extraction','discovery_receipt'))
+            if s['key'] not in old:
+                if s['kind']=='minedex_resource_batch':
+                    # Phase16 adds a dated published ZIP, not a live GIS query.
+                    from datetime import datetime
+                    from email.utils import parsedate_to_datetime
+                    self.assertEqual(s['publication_date'],datetime.strptime(s['source_update'],'%d/%m/%Y').date().isoformat())
+                    self.assertLessEqual(s['publication_date'],'2026-11-03')
+                    self.assertLessEqual(parsedate_to_datetime(s['last_modified']).date().isoformat(),'2026-11-03')
+                else:self.assertIn(s['kind'],('pdf','html','document_extraction','pdf_page_extraction','discovery_receipt','source_documentation'))
 
     def test_upstream_ledger_bytes_and_unapproved_crosswalk(self):
         p=json.loads((ROOT/'config/eligibility_compatibility.json').read_text())

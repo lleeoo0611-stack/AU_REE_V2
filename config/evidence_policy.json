@@ -1,5 +1,5 @@
 {
-  "version": "evidence-resolution-v9-source-bound-technical",
+  "version": "evidence-resolution-v10-technical-profiles",
   "main_codes": [
     "R1",
     "S1",
@@ -346,7 +346,7 @@
   },
   "identity_rule_version": "document-native-extension-phase8-v1",
   "document_pipeline": {
-    "parser_version": "document-recognition-v5-technical-cells",
+    "parser_version": "document-recognition-v6-context-bound",
     "role": "RAW_SCOPED_DISCLOSURES_NOT_AUTOMATIC_FORMAL_CRITERIA",
     "resource_promotion": "REPORTED_VARIABLES_ONLY_UNTIL_EFFECTIVE_DATE_AND_SCOPE_COMPATIBLE",
     "validation_version": "scientific-context-v4-column-binding",
@@ -355,7 +355,8 @@
       "document-recognition-v2-mineralogy",
       "document-recognition-v3-bound-quantities",
       "document-recognition-v4-native-resource-totals",
-      "document-recognition-v5-technical-cells"
+      "document-recognition-v5-technical-cells",
+      "document-recognition-v6-context-bound"
     ]
   },
   "technical_comparability": {
@@ -401,7 +402,7 @@
     "historical_compatibility": "Opt-in only; frozen Phase5-9 policies retain their semantics"
   },
   "technical_analysis": {
-    "version": "source-bound-technical-v1",
+    "version": "source-bound-technical-v2-context",
     "contracts": {
       "WITHIN_TABLE_ELEMENT_LEACH": {
         "version": "technical-use-v2",
@@ -452,7 +453,7 @@
           "reagent"
         ],
         "model_assumptions": [
-          "Dated scoping design, commercial formulation mass; no operating or active-purity inference"
+          "Dated source design, commercial formulation mass; no operating or active-purity inference"
         ]
       },
       "SOURCE_BRANCH_CONSISTENCY": {
@@ -507,5 +508,79 @@
       "STAGE_MATERIAL_RECOVERY",
       "ELEMENT_DESIGN_RECOVERY_FACTOR"
     ]
+  },
+  "technical_profile": {
+    "version": "technical-burden-profile-v1",
+    "decision": "PARTIAL_MCDA_PLUS_SCOPED_TECHNICAL_PROFILES",
+    "status": "EXPLORATORY_NOT_INDEPENDENT_EXPERT_VALIDATED",
+    "common_score": false,
+    "ordinal_numeric_mapping": null,
+    "technical_weight_change": 0,
+    "states": [
+      "SUPPORTED_LOWER_BURDEN",
+      "EXPLICIT_ADDITIONAL_REQUIREMENT",
+      "OBSERVED_MAJOR_OBSTACLE",
+      "UNKNOWN",
+      "CONFLICT",
+      "NOT_APPLICABLE"
+    ],
+    "rules": [
+      {
+        "id": "TA-REAGENT",
+        "criterion": "T-A",
+        "pattern": "(?:acid|reagent|energy|power).{0,60}(?:consumption|requirement|demand)|(?:consumption|requirement).{0,60}(?:acid|reagent|energy)",
+        "state": "EXPLICIT_ADDITIONAL_REQUIREMENT",
+        "meaning": "A disclosed extraction input requirement, not a calibrated magnitude or cross-project difficulty order"
+      },
+      {
+        "id": "TA-OBSTACLE",
+        "criterion": "T-A",
+        "pattern": "(?:observed|testwork|tests? (?:showed|demonstrated|confirmed)).{0,80}(?:refractory|poor extraction|failed to leach)",
+        "state": "OBSERVED_MAJOR_OBSTACLE",
+        "meaning": "Explicit observed extraction limitation at source scope"
+      },
+      {
+        "id": "TA-LOWER",
+        "criterion": "T-A",
+        "pattern": "(?:tests? (?:showed|demonstrated|confirmed)|testwork demonstrated).{0,80}(?:no grinding required|negligible gangue dissolution)",
+        "state": "SUPPORTED_LOWER_BURDEN",
+        "meaning": "Positive test evidence for the named barrier only, never entire process burden"
+      },
+      {
+        "id": "TB-TREATMENT",
+        "criterion": "T-B",
+        "pattern": "(?:impurit(?:y|ies)|thorium|uranium|residue|tailings).{0,90}(?:removal|neutralisation|neutralization|treatment|stabili[sz]ation|disposal)|(?:removal|neutralisation|neutralization).{0,60}(?:impurit(?:y|ies)|thorium|uranium)",
+        "state": "EXPLICIT_ADDITIONAL_REQUIREMENT",
+        "meaning": "Disclosed impurity or residue management requirement, not dose or risk inferred from ore concentration"
+      },
+      {
+        "id": "TB-OBSTACLE",
+        "criterion": "T-B",
+        "pattern": "(?:tests? (?:showed|demonstrated|confirmed)|observed).{0,80}(?:failed.{0,25}(?:specification|impurity)|unacceptable impurit)",
+        "state": "OBSERVED_MAJOR_OBSTACLE",
+        "meaning": "Explicit test failure against named impurity or product specification"
+      }
+    ],
+    "conflict_rule": "Different applicable states for the same scoped criterion remain a state set; no best/latest priority",
+    "missing_rule": "No match means UNKNOWN, never lower burden. N/A requires explicit source applicability, not absence.",
+    "scope_rule": "Source-case interpretation only; Project extrapolation requires independently supported target population coverage, not an issuer representative assertion",
+    "negation_rule": "Negated, hypothetical and forward-looking matches do not establish observed performance",
+    "double_counting": "Extraction inputs belong to T-A; distinct resulting residue treatment belongs to T-B. No aggregation into weighted score; Development remains separate.",
+    "examples": {
+      "positive": [
+        "Tests demonstrated no grinding required.",
+        "Acid consumption was measured on the selected composites.",
+        "Impurity removal required neutralisation."
+      ],
+      "negative": [
+        "A DFS was completed.",
+        "The deposit is clay hosted.",
+        "Ore contains 20 ppm thorium.",
+        "The company uses proven technology.",
+        "No acid consumption data were disclosed."
+      ]
+    },
+    "calibration": "Phase15 core Dubbo and Cummins source scopes; rule set fixed before application",
+    "evaluation": "Existing Koppamurra and Cowalinya source cases withheld from rule adjustment; AI-assisted source reading and deterministic consistency only, not expert reliability or blind corpus accuracy"
   }
 }

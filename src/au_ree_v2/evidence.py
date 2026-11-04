@@ -312,6 +312,11 @@ def ingest_sources(db, root, snapshots):
         db.execute('INSERT OR IGNORE INTO sources VALUES(?,?,?,?,?,?,?,?)',
                    (s['sha256'], s['key'], s['url'], s.get('publication_date'),
                     s['acquired_at'], s['path'], s['kind'], canonical(s)))
+        if s['kind']=='minedex_resource_batch':
+            from .official import ingest_minedex_resources
+            try:ingest_minedex_resources(db,root,s)
+            except Exception as exc:issue(db,None,s['sha256'],'MINEDEX_RESOURCE_INGEST_FAILED',str(exc))
+            continue
         if s.get('national_government'):
             from .national import ingest_government
             try:ingest_government(db,root,s)

@@ -1,0 +1,227 @@
+{
+  "version": "phase16-technical-model-research-v1",
+  "baseline_commit": "b1c36e93652c646ae02dfec7a8dd1234e38b6eff",
+  "branch": "feat/phase16-technical-model",
+  "base_branch": "feat/phase15-technical-extraction",
+  "parent_pr": 5,
+  "canonical_run": "20261104T133335-142044b9",
+  "code": {
+    "package": "0.1.0",
+    "commit": "b1c36e93652c646ae02dfec7a8dd1234e38b6eff",
+    "content_sha256": "1a09381b297a0be7ec94045e8851ab6cf3f34475f0d0c5dccd7ebe2fb298cc89"
+  },
+  "cutoffs": {
+    "research": "2026-11-03",
+    "acquired_through": "2026-11-04",
+    "upstream_formal": "2026-10-29"
+  },
+  "before": {
+    "registry_groups": 31,
+    "resource_defined": 21,
+    "source_snapshots": 251,
+    "recognized_documents": 37,
+    "source_valid_numeric_observation_rows": 703,
+    "project_selected_numeric_rows": 701,
+    "project_valid_numeric_by_domain": {
+      "Resource": 89,
+      "Technical": 550,
+      "Strategic": 37,
+      "Commercial": 12,
+      "Development": 9,
+      "": 4
+    },
+    "coverage": {
+      "Resource": 21,
+      "Strategic": 10,
+      "Technical": 0,
+      "Development": 9,
+      "Infrastructure": 19,
+      "Commercial": 8
+    },
+    "development": 0,
+    "full_evidence": 0,
+    "formal_c1": 0,
+    "panel_n": {
+      "resource_infrastructure_pilot": 19,
+      "issuer_resource_infrastructure": 7,
+      "issuer_resource_study": 8,
+      "issuer_resource_concentrate": 2,
+      "issuer_resource_concentrate_recovery": 2,
+      "issuer_resource_composition": 10,
+      "issuer_resource_financing_milestone": 6,
+      "official_wa_resource_screen": 17,
+      "beneficiation_concentrate_screen": 2
+    }
+  },
+  "after": {
+    "registry_groups": 31,
+    "resource_defined": 21,
+    "source_snapshots": 254,
+    "recognized_documents": 38,
+    "source_valid_numeric_observation_rows": 711,
+    "project_selected_numeric_rows": 709,
+    "project_valid_numeric_by_domain": {
+      "Technical": 558,
+      "Resource": 89,
+      "Strategic": 37,
+      "Commercial": 12,
+      "Development": 9,
+      "": 4
+    },
+    "coverage": {
+      "Resource": 21,
+      "Strategic": 10,
+      "Technical": 0,
+      "Development": 9,
+      "Infrastructure": 19,
+      "Commercial": 8
+    },
+    "development": 0,
+    "full_evidence": 0,
+    "formal_c1": 0,
+    "panel_n": {
+      "resource_infrastructure_pilot": 19,
+      "issuer_resource_infrastructure": 7,
+      "issuer_resource_study": 8,
+      "issuer_resource_concentrate": 2,
+      "issuer_resource_concentrate_recovery": 2,
+      "issuer_resource_composition": 10,
+      "issuer_resource_financing_milestone": 6,
+      "official_wa_resource_screen": 17,
+      "beneficiation_concentrate_screen": 2
+    }
+  },
+  "technical_model": {
+    "aim_a": "Existing partial MCDA plus source-scoped T-A/T-B evidence and numerical groups; no six-domain rank",
+    "aim_b": "No ordinal utility adopted: mapping/weight sensitivity is NOT_APPLICABLE; prior partial-MCDA Monte Carlo and method sensitivity rerun; no probability of success",
+    "aim_c": "Mechanism-oriented source-case comparison; no deposit-label-derived score or causal inference",
+    "analytical_records": 1822,
+    "common_score_adopted": false,
+    "comparable_case_groups": 260,
+    "decision": "PARTIAL_MCDA_PLUS_SCOPED_TECHNICAL_PROFILES",
+    "distinct_transcribed_source_cells": 381,
+    "formal_eligibility_change": false,
+    "independent_physical_measurements": null,
+    "limitation": "Analytical identity deduplicates records only, not independent experiments; different versions may corroborate. AI consistency is not independent expert validation.",
+    "linked_cell_corroborations": 6,
+    "measurement_count_reason": "Reports do not establish independent replicate identities; source-cell groups and analytical records reported separately",
+    "observation_forms": {
+      "LEACH_TABLE_ROW": 112,
+      "OBSERVATION": 389,
+      "RESOURCE_TABLE_TOTAL": 2,
+      "SCOPED_TEXT_DISCLOSURE": 904,
+      "STUDY_PARAMETER": 34,
+      "TECHNICAL_TABLE_CELL": 381
+    },
+    "ordinal_mapping": null,
+    "project_extrapolatable": 0,
+    "projects_with_source_scoped_numeric": 11,
+    "resource_projects_with_source_scoped_numeric": 9,
+    "source_rows": 1822,
+    "source_scoped_criterion_projects": {
+      "T-A": 6,
+      "T-B": 6
+    },
+    "source_scoped_numeric": 494,
+    "technical_weight_change": 0,
+    "technically_interpretable": 1333,
+    "version": "technical-burden-profile-v1"
+  },
+  "scoped_ta_tb_intersection": 3,
+  "scoped_ta_tb_union": 9,
+  "new_distinct_pdf_originals": 0,
+  "new_verified_independent_projects": 0,
+  "new_mcda_projects": 0,
+  "official_batch": {
+    "source_record_rows": 68,
+    "native_project_candidates": 22,
+    "native_sites": 22,
+    "new_source_records": 68,
+    "new_native_project_or_site_entities": 0,
+    "source_bound_relations": 136,
+    "numeric_source_fields": 252,
+    "missing_fields": 156,
+    "validation_status": "OFFICIAL_SUMMARY_SCOPE_UNVERIFIED_NOT_AUTO_JORC",
+    "jurisdiction": "WA_ONLY"
+  },
+  "evidence_count_note": "The eight additional validated numerical rows include repeated engineering disclosures; source cells, analytical records and physical experiments are different. Independent physical measurement count is unknown.",
+  "verification": {
+    "python_tests": 233,
+    "python_seconds": 349.972,
+    "new_phase16_tests": 18,
+    "r_invariant_families": 3,
+    "integrity": {
+      "selected_files_sha_verified": 500,
+      "preserved_manifest_entries": 380,
+      "new_manifest_entries": 26,
+      "old_entity_ids_preserved": 7555,
+      "total_entity_ids": 7623,
+      "added_entities": 68,
+      "new_batch_observations": 408,
+      "new_batch_numeric": 252,
+      "new_batch_missing": 156,
+      "integrity": "ok",
+      "foreign_key_violations": 0,
+      "schema_changed": false
+    },
+    "canonical_to_clean": {
+      "status": "REFERENCE_POINT_EQUIVALENT_RANKS_AND_MONTE_CARLO_EXACT",
+      "panel_csv_files": 142,
+      "evidence_exports": 7,
+      "numeric_tolerance": "Unchanged check_replay point tolerance1e-12; ranks/stochastic0",
+      "platform_differences": [],
+      "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+      "before": "results\\phase16-2026-11-04",
+      "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase16\\clean-c\\runs\\20261104T134132-cf1d81ba",
+      "technical_exports": 7,
+      "technical_exact": true,
+      "phase16_exports": 7,
+      "phase16_exact": true,
+      "clean_logical_database_exact": null
+    },
+    "independent_clean": {
+      "status": "EXACT",
+      "panel_csv_files": 142,
+      "evidence_exports": 7,
+      "numeric_tolerance": 0,
+      "platform_differences": [],
+      "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+      "before": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase16\\clean-c\\runs\\20261104T134132-cf1d81ba",
+      "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase16\\clean-d\\runs\\20261104T134132-f7cd6bed",
+      "technical_exports": 7,
+      "technical_exact": true,
+      "phase16_exports": 7,
+      "phase16_exact": true,
+      "clean_logical_database_exact": true
+    },
+    "historical15": {
+      "status": "REFERENCE_POINT_EQUIVALENT_RANKS_AND_MONTE_CARLO_EXACT",
+      "panel_csv_files": 142,
+      "evidence_exports": 7,
+      "numeric_tolerance": "Unchanged check_replay point tolerance1e-12; ranks/stochastic0",
+      "platform_differences": [],
+      "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+      "before": "results\\phase15-2026-11-04",
+      "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase16\\historical15\\runs\\20261104T131132-5008f574",
+      "technical_exports": 7,
+      "technical_exact": true
+    },
+    "publication_scan": {
+      "status": "PASSED_LOCAL_BEFORE_COMMIT",
+      "text_and_archive_artifacts": 3356,
+      "compressed_archive_contents_scanned": true
+    },
+    "github_ci": "PENDING_AT_LOCAL_FREEZE_SEE_PR_CHECKS",
+    "full_historical_scope": "Phase5-16 scheduled by PR core-contract rule; not reported passed before CI execution",
+    "code_matches_git_blobs": true
+  },
+  "limits": [
+    "NO_COMMON_ORDINAL_UTILITY",
+    "NO_TARGET_POPULATION_EXTRAPOLATION",
+    "BURDEN_EVALUATION_1_OF_3_MATCHED_NOT_EXPERT_VALIDATED",
+    "WEBLINK_ACCESS_CONDITIONS_NOT_ESTABLISHED",
+    "GOSCHEN_CENTRAL_RELATION_UNRESOLVED",
+    "MINEDEX_ESTIMATE_DATES_AND_Y_BASIS_MISSING"
+  ],
+  "coverage_definition": "Same Phase15 six-domain criterion definitions: Resource resource-defined/R1; Strategic S1; Technical T1 only, excluding endpoint-specific TC1/TC2; Development D1; Infrastructure I4; Commercial financing C1. Global counts, not resource-cohort intersections."
+}

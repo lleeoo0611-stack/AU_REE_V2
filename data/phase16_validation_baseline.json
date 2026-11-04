@@ -1,0 +1,271 @@
+{
+  "version": "validation-cost-v1",
+  "phase15": [
+    {
+      "run_id": 41813830075,
+      "url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/41813830075",
+      "runner_seconds": 883,
+      "steps": [
+        {
+          "name": "Set up job",
+          "seconds": 1,
+          "status": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "seconds": 27,
+          "status": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "seconds": 0,
+          "status": "success"
+        },
+        {
+          "name": "Run r-lib/actions/setup-r@v2",
+          "seconds": 31,
+          "status": "success"
+        },
+        {
+          "name": "Install package",
+          "seconds": 7,
+          "status": "success"
+        },
+        {
+          "name": "Core, clean bootstrap and replay tests",
+          "seconds": 128,
+          "status": "success"
+        },
+        {
+          "name": "R analytical regression tests",
+          "seconds": 2,
+          "status": "success"
+        },
+        {
+          "name": "Frozen research reconstruction",
+          "seconds": 4,
+          "status": "success"
+        },
+        {
+          "name": "Frozen Phase 5 evidence reconstruction",
+          "seconds": 16,
+          "status": "success"
+        },
+        {
+          "name": "Phase 6 national database and partial MCDA reconstruction",
+          "seconds": 21,
+          "status": "success"
+        },
+        {
+          "name": "Verify frozen Phase 5 and Phase 6 scientific results",
+          "seconds": 0,
+          "status": "success"
+        },
+        {
+          "name": "Phase 7 consolidated evidence and commercial integration",
+          "seconds": 23,
+          "status": "success"
+        },
+        {
+          "name": "Phase 8 coverage and comparable endpoint reconstruction",
+          "seconds": 35,
+          "status": "success"
+        },
+        {
+          "name": "Phase 9 automatic document evidence reconstruction",
+          "seconds": 36,
+          "status": "success"
+        },
+        {
+          "name": "Phase 10 shared technical comparability reconstruction",
+          "seconds": 36,
+          "status": "success"
+        },
+        {
+          "name": "Phase 11 deterministic independent clean reconstructions",
+          "seconds": 76,
+          "status": "success"
+        },
+        {
+          "name": "Phase 12 evidence yield and deterministic research reconstruction",
+          "seconds": 87,
+          "status": "success"
+        },
+        {
+          "name": "Phase 13 source recovery and independent clean reconstruction",
+          "seconds": 89,
+          "status": "success"
+        },
+        {
+          "name": "Phase 14 official report recovery and independent reconstruction",
+          "seconds": 88,
+          "status": "success"
+        },
+        {
+          "name": "Phase 15 source-bound technical reconstruction",
+          "seconds": 92,
+          "status": "success"
+        },
+        {
+          "name": "Scan publication payload",
+          "seconds": 54,
+          "status": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "seconds": 27,
+          "status": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "seconds": 0,
+          "status": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "seconds": 0,
+          "status": "success"
+        },
+        {
+          "name": "Complete job",
+          "seconds": 0,
+          "status": "success"
+        }
+      ]
+    },
+    {
+      "run_id": 41813995704,
+      "url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/41813995704",
+      "runner_seconds": 1408,
+      "steps": [
+        {
+          "name": "Set up job",
+          "seconds": 2,
+          "status": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "seconds": 28,
+          "status": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "seconds": 1,
+          "status": "success"
+        },
+        {
+          "name": "Run r-lib/actions/setup-r@v2",
+          "seconds": 43,
+          "status": "success"
+        },
+        {
+          "name": "Install package",
+          "seconds": 9,
+          "status": "success"
+        },
+        {
+          "name": "Core, clean bootstrap and replay tests",
+          "seconds": 207,
+          "status": "success"
+        },
+        {
+          "name": "R analytical regression tests",
+          "seconds": 2,
+          "status": "success"
+        },
+        {
+          "name": "Frozen research reconstruction",
+          "seconds": 7,
+          "status": "success"
+        },
+        {
+          "name": "Frozen Phase 5 evidence reconstruction",
+          "seconds": 27,
+          "status": "success"
+        },
+        {
+          "name": "Phase 6 national database and partial MCDA reconstruction",
+          "seconds": 34,
+          "status": "success"
+        },
+        {
+          "name": "Verify frozen Phase 5 and Phase 6 scientific results",
+          "seconds": 0,
+          "status": "success"
+        },
+        {
+          "name": "Phase 7 consolidated evidence and commercial integration",
+          "seconds": 37,
+          "status": "success"
+        },
+        {
+          "name": "Phase 8 coverage and comparable endpoint reconstruction",
+          "seconds": 57,
+          "status": "success"
+        },
+        {
+          "name": "Phase 9 automatic document evidence reconstruction",
+          "seconds": 58,
+          "status": "success"
+        },
+        {
+          "name": "Phase 10 shared technical comparability reconstruction",
+          "seconds": 59,
+          "status": "success"
+        },
+        {
+          "name": "Phase 11 deterministic independent clean reconstructions",
+          "seconds": 118,
+          "status": "success"
+        },
+        {
+          "name": "Phase 12 evidence yield and deterministic research reconstruction",
+          "seconds": 132,
+          "status": "success"
+        },
+        {
+          "name": "Phase 13 source recovery and independent clean reconstruction",
+          "seconds": 140,
+          "status": "success"
+        },
+        {
+          "name": "Phase 14 official report recovery and independent reconstruction",
+          "seconds": 149,
+          "status": "success"
+        },
+        {
+          "name": "Phase 15 source-bound technical reconstruction",
+          "seconds": 151,
+          "status": "success"
+        },
+        {
+          "name": "Scan publication payload",
+          "seconds": 102,
+          "status": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "seconds": 41,
+          "status": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "seconds": 0,
+          "status": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "seconds": 0,
+          "status": "success"
+        },
+        {
+          "name": "Complete job",
+          "seconds": 0,
+          "status": "success"
+        }
+      ]
+    }
+  ],
+  "phase16_ci": "PENDING_AT_LOCAL_FREEZE_SEE_PR_CHECKS",
+  "interpretation": "Observed separate runners, not a controlled speed benchmark. Prior push and PR overlapped; runner sum is not user waiting time. Phase16 runs the full core-contract historical scope once per PR, with current two-clean archive for core changes."
+}

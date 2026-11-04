@@ -47,7 +47,7 @@ def _base(table,cell,header,caption,quantity,basis,unit,scope,**extra):
                 bbox=cell['bbox'],bboxes=[cell['bbox']],header_path=header,header=' | '.join(header),
                 scope=scope,table_caption=caption,raw_text=cell['text'],context=caption+' | '+' | '.join(header),
                 quantity=quantity,basis=basis,unit=unit,issues=[],limitations=[],
-                statistic='SOURCE_TABLE_VALUE',**n,**{'evidence_mode':'TESTWORK',**extra})
+                **n,**{'statistic':'SOURCE_TABLE_VALUE','evidence_mode':'TESTWORK',**extra})
 
 
 def technical_cells(table,text):
@@ -258,3 +258,98 @@ def quantity_binding(sentence,number):
     elif re.search(r'expected|target(?:ing)?|planned|will',sentence,re.I):nature='FORWARD_LOOKING_TARGET'
     elif re.search(r'testwork|test results|laboratory|bench|pilot',sentence,re.I):nature='TESTWORK_DISCLOSURE_SCALE_REQUIRES_CONTEXT'
     return dict(quantity_role=role,basis=basis,evidence_nature=nature,statistic='SOURCE_REPORTED_MAXIMUM' if role.startswith('MAXIMUM') else 'SOURCE_REPORTED_MEAN' if role.startswith('AVERAGE') else 'SOURCE_REPORTED_POINT')
+
+
+def metric_cells(table, text, words=()):
+    """Explicit quantity / units / value rows; table shape proves no test scale."""
+    cc=cells(table);out=[]
+    caption=next((s.strip() for s in text.splitlines() if re.match(r'\s*Table\s+\d+\s+Key\s+Project\s+metrics',s,re.I)),None)
+    if not caption:return out
+    for label in cc:
+        merged=re.fullmatch(r'((?:Average\s+)?(?:TREO recovery to concentrate|Concentrate grade))\s+(%\s*(?:TREO)?)\s+('+NUM+r')',label['text'],re.I)
+        if merged:
+            hits=[w for w in words if w[4]==merged[3] and label['bbox'][0]<=w[0]<=label['bbox'][2] and label['bbox'][1]<=w[1]<=label['bbox'][3]]
+            if len(hits)!=1:continue
+            w=hits[0];cell=dict(text=merged[3],bbox=list(w[:4]),row=label['row'],column=2)
+            c=_base(table,cell,[merged[1],merged[2]],caption,'recovery_pct' if 'recovery' in merged[1].lower() else 'grade_pct','TREO','%',caption,
+                    product='Concentrate',feed=None,endpoint='MINERAL_CONCENTRATE',scale=None,sample_population=None,evidence_mode='SOURCE_DISCLOSURE',statistic='REPORTED_LOM_MODEL_PARAMETER')
+            if c:out.append(c)
+            continue
+        if not re.fullmatch(r'(?:Average\s+)?(?:TREO recovery to concentrate|Concentrate grade)',label['text'],re.I):continue
+        row=[c for c in cc if c['row']==label['row'] and c['column']>label['column']]
+        unit=next((c for c in row if c['text'].startswith('%')),None)
+        values=[c for c in row if number_token(c['text'])]
+        if not unit or len(values)!=1:continue
+        quantity='recovery_pct' if 'recovery' in label['text'].lower() else 'grade_pct'
+        c=_base(table,values[0],[label['text'],unit['text']],caption,quantity,'TREO','%',caption,
+                product='Concentrate',feed=None,endpoint='MINERAL_CONCENTRATE',scale=None,
+                sample_population=None,evidence_mode='SOURCE_DISCLOSURE',statistic='REPORTED_LOM_MODEL_PARAMETER')
+        if c:out.append(c)
+    return out
+
+
+def bind_semantics(candidate, texts, source_sha):
+    """V6 context binding. Native cell families cannot establish scientific metadata.
+
+    Keep each supporting quote and page. Conflicting explicit local statements
+    retain all candidates and leave the field unknown; never rank study stages.
+    """
+    c=candidate
+    if c.get('kind')!='TECHNICAL_TABLE_CELL':return c
+    n=c['physical_page'];local=[(i+1,texts[i]) for i in range(max(0,n-3),n)]
+    evidence={};conflicts=[]
+    # Title/header establishes document study type, not laboratory test scale.
+    stage_patterns={'SCOPING_MODEL':r'\bscoping study\b','PFS_MODEL':r'\bpre[- ]feasibility study\b',
+                    'DFS_MODEL':r'\b(?:definitive|bankable) feasibility study\b|\b(?:DFS|BFS)\b'}
+    stage_hits=[]
+    for value,pattern in stage_patterns.items():
+        for page,t in [(1,texts[0][:3000]),(n,texts[n-1][-900:])]:
+            for line in t.splitlines():
+                if re.search(pattern,line,re.I):stage_hits.append(dict(value=value,pdf_page=page,quote=line.strip(),source_sha256=source_sha))
+    stages={e['value'] for e in stage_hits}
+    c['study_stage']=next(iter(stages)) if len(stages)==1 else None
+    evidence['study_stage']=stage_hits
+    if len(stages)>1:conflicts.append('STUDY_STAGE_CONTEXT_CONFLICT')
+    # Remove family assumptions, retain explicit physical endpoints/units.
+    if c['quantity'] in ('reagent_tpa','dry_feed_mtpa','downstream_recovery_factor','reagent_intensity'):
+        c['scale']=c['study_stage']
+        c['evidence_mode']='ENGINEERING_MODEL' if re.search(r'design|equation|parameter',c.get('table_caption',''),re.I) else 'SOURCE_DISCLOSURE'
+        evidence['scale']=stage_hits
+    elif c.get('scale')=='LAB_FLOTATION':c['scale']=None
+    elif c.get('scale') in ('BOTTLE_ROLL','LAB_SCALE_UNSPECIFIED'):c['scale']=None
+    elif c.get('scale')=='REPORTED_STAGE_PERFORMANCE':c['scale']=None
+    if c.get('statistic')=='SELECTED_INDIVIDUAL_TEST':
+        # A test identifier proves an individual row, not selection from a
+        # larger experimental population. The source warning is kept separately.
+        c['statistic']='SOURCE_REPORTED_TEST_ROW'
+    if c.get('feed')=='ZONE_COMPOSITE':c['feed']=None
+    scale_patterns={'BOTTLE_ROLL':r'bottle.?roll', 'LAB_FLOTATION':r'(?:laboratory|bench)[- ]?(?:scale)?.{0,40}flotation|flotation.{0,40}(?:laboratory|bench)',
+                    'PILOT_FLOTATION':r'pilot[- ]?(?:scale)?.{0,40}flotation|flotation.{0,40}pilot'}
+    scale_hits=[]
+    for page,t in local:
+        for line in t.splitlines():
+            for value,pattern in scale_patterns.items():
+                if re.search(pattern,line,re.I):scale_hits.append(dict(value=value,pdf_page=page,quote=line.strip(),source_sha256=source_sha))
+    if c['quantity'] in ('extraction_pct','grade_pct','recovery_pct'):
+        values={e['value'] for e in scale_hits};c['scale']=next(iter(values)) if len(values)==1 else None
+        evidence['scale']=scale_hits
+        if len(values)>1:conflicts.append('TEST_SCALE_CONTEXT_CONFLICT')
+    if c.get('sample_id'):
+        sample=c['sample_id']
+        hits=[]
+        for p,t in local:
+            flat=' '.join(t.split());match=re.search(re.escape(sample)+r'.{0,40}composite|composite.{0,40}'+re.escape(sample),flat,re.I)
+            if match:hits.append(dict(value='SOURCE_NAMED_COMPOSITE',pdf_page=p,quote=flat[max(0,match.start()-100):match.end()+200],source_sha256=source_sha))
+        if hits:c['feed']='SOURCE_NAMED_COMPOSITE';evidence['feed']=hits
+    # A printed footnote excludes La from base case; never replace it with zero.
+    if c.get('quantity')=='downstream_recovery_factor':
+        t=' '.join(texts[n-1].split())
+        foot=re.search(r'\*\s*La2O3 recovery to final product.*?base case of the Project\)',t,re.I)
+        if foot:
+            c['scenario_evidence']=dict(source_sha256=source_sha,pdf_page=n,quote=foot[0])
+            c['scenario']='LA_CIRCUIT_INCLUDED_ONLY' if c.get('basis')=='La2O3' else 'SOURCE_OTHER_OXIDE_COEFFICIENT'
+            c['base_case_applicable']=False if c.get('basis')=='La2O3' else None
+    c['semantic_evidence']=evidence;c['semantic_conflicts']=conflicts
+    c['limitations'].extend(conflicts)
+    c['semantics_version']='technical-context-v1'
+    return c

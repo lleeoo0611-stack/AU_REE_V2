@@ -285,8 +285,8 @@ def _derive_table(key,group,emit):
         if len(same)==1:
             emit('reagent_intensity_kg_t_dry_feed',r['value']*1000/(same[0]['value']*1e6),'kg/t dry feed',[r,same[0]],
                  stage=r['stage'],reagent=r['reagent'],formula='reagent_tpa*1000/(dry_feed_mtpa*1000000)',
-                 interpretation='Scoping design; commercial formulation mass, active purity not established')
-    flotation=[r for r in valid if r['scale']=='LAB_FLOTATION' and r['basis']=='TREO' and 'WITHIN_COMPOSITE_FLOTATION' in r['allowed_analysis']]
+                 interpretation=('Source dated design; commercial formulation mass, active purity not established' if r.get('semantics_version') else 'Scoping design; commercial formulation mass, active purity not established'))
+    flotation=[r for r in valid if (r['scale']=='LAB_FLOTATION' or r.get('semantics_version')=='technical-context-v1') and r['basis']=='TREO' and 'WITHIN_COMPOSITE_FLOTATION' in r['allowed_analysis'] and r.get('product') is not None]
     feed=[r for r in flotation if r['product']=='Feed' and r['quantity']=='grade_pct']
     for r in flotation:
         if r['product']=='Feed' or r['quantity']!='grade_pct':continue
@@ -325,3 +325,145 @@ def _derive_table(key,group,emit):
                      sample=hi.get('sample_id'),formula='higher_printed_g_L - lower_printed_g_L',
                      interpretation='Conditional printed-label contrast only; narrative kg/t and table g/L are not reconciled; no causal or significance claim')
     return plots
+
+
+def burden_states(text, definition):
+    """Predeclared source-scope rules. Absence, maturity and geology are not scores."""
+    import re
+    result=[]
+    for sentence in re.split(r'(?<=[.;])\s+|\n\s*\n',text):
+        sentence=' '.join(sentence.split())
+        for rule in definition['rules']:
+            match=re.search(rule['pattern'],sentence,re.I)
+            if not match:continue
+            # Conservative negation/target isolation; do not interpret a disclosure
+            # of absent data, or proposed future work, as an observed constraint.
+            before=sentence[max(0,match.start()-35):match.start()]
+            if re.search(r'\b(?:no|not|without|lack of)\b',before,re.I) or re.search(r'\b(?:will|may|could|potential|planned|not disclosed|no .{0,30}data)\b',sentence,re.I):continue
+            result.append(dict(criterion=rule['criterion'],state=rule['state'],rule_id=rule['id'],quote=sentence,meaning=rule['meaning']))
+    return sorted({canonical(r):r for r in result}.values(),key=canonical)
+
+
+def unified_observations(selection, definition):
+    """One view over Selection, including text, cells and study parameters.
+
+    Technical interpretation, numerical comparability and Project extrapolation
+    are separate decisions. A conservative analytical identity is not a claim
+    that different publications are independent physical measurements.
+    """
+    records=[];policy=selection['policy']
+    for c in selection['inventory']:
+        if c.get('domain')!='Technical':continue
+        r=technical_record(c,policy);raw=c['raw']
+        kind=raw.get('kind') or c['origin']
+        quote=raw.get('raw_text') or raw.get('process') or raw.get('technical_description') or ''
+        bound=not r['evidence_reason'] and bool(r['source_sha256'] and r['locator'] and r['scope'] and r['study_date'])
+        numeric=bound and isinstance(r['value'],(int,float)) and math.isfinite(r['value'])
+        quantity=raw.get('quantity') or r['process_stage'] or c['variable']
+        if raw.get('quantity_role'):
+            quantity=raw['quantity_role']
+            if any(word in quantity for word in ('RECOVERY','EXTRACTION')):r['semantic_class']='B_PROCESS_PERFORMANCE'
+        uses=[];reasons={}
+        # All representations pass through the same intended-use gate.
+        for name,contract in policy.get('technical_analysis',{}).get('contracts',{}).items():
+            rr=dict(r,**{k:v for k,v in raw.items() if k not in ('value','variable','unit','basis','project_id','case_id','evidence_reason')})
+            failures=technical_compare(rr,contract,contract.get('model_assumptions',[]));reasons[name]=failures
+            if not failures:uses.append(name)
+        # Typed study roles also support within-source numerical profiles even
+        # when they do not meet a cross-project recovery endpoint contract.
+        profile_contract=dict(version='technical-use-v2',variables=[c['variable']],unit=r['unit'],basis=None,
+            required_conditions=['feed','endpoint','basis'],analysis_scope='SOURCE_CASE',
+            model_assumptions=['Dated source-case quantity, not observed operation or Project average'])
+        profile_reasons=technical_compare(r,profile_contract,profile_contract['model_assumptions'])
+        reasons['SOURCE_CASE_NUMERIC_PROFILE']=profile_reasons
+        profile=not profile_reasons and r['semantic_class']=='B_PROCESS_PERFORMANCE'
+        state_rows=burden_states(quote,definition) if bound else []
+        missing=raw.get('token_state') in ('NOT_REPORTED','NOT_APPLICABLE')
+        support=bound and not missing and (bool(quote) or numeric)
+        identity=[r.get(k) for k in ('project_id','source_sha256','pdf_page','variable','basis','scope','case_id','value','unit')]
+        identity+=[raw.get(k) for k in ('test_id','product','source_column','row_index','column_index')]
+        r.update(observation_form=kind,quantity=quantity,raw_quote=quote,
+            analytical_identity=digest(identity),supports_technical_interpretation=support,
+            numeric_profile_eligible=profile,permitted_comparison_groups=uses,
+            comparison_reasons=reasons,interpretations=state_rows,
+            project_extrapolation=False,project_extrapolation_reason='TARGET_POPULATION_COVERAGE_NOT_VALIDATED',
+            interpretation_reason=None if support else ('EXPLICIT_NOT_APPLICABLE' if raw.get('token_state')=='NOT_APPLICABLE' else 'MISSING_SOURCE_VALUE') if missing else r['evidence_reason'] or 'INSUFFICIENT_BOUND_CONTENT',
+            token_state=raw.get('token_state'),
+            semantic_evidence=raw.get('semantic_evidence'),semantic_conflicts=raw.get('semantic_conflicts',[]),
+            scenario=raw.get('scenario'),scenario_evidence=raw.get('scenario_evidence'),
+            base_case_applicable=raw.get('base_case_applicable'),rule_version=definition['version'])
+        # Source-cell corroboration uses explicit curated row markers, not a
+        # percentage coincidence or Project name. Preserve different scope/basis
+        # statements even when they transcribe the same printed cell.
+        r['source_cell_identity']=digest([r['source_sha256'],r['pdf_page'],raw.get('table_index'),raw.get('row_index'),raw.get('column_index')]) if kind=='TECHNICAL_TABLE_CELL' else None
+        r['_markers']=raw.get('page_markers',[])
+        r['_cell_labels']=[str(raw.get(k) or '') for k in ('test_id','product','original_token')]
+        records.append(r)
+    cells=[r for r in records if r['source_cell_identity']]
+    for r in records:
+        if r['source_cell_identity'] or len(r['_markers'])<3:continue
+        hits=[t for t in cells if t['source_sha256']==r['source_sha256'] and t['pdf_page']==r['pdf_page'] and t['value']==r['value'] and t['unit']==r['unit']
+              and all(any(marker.casefold()==label.casefold() or label.casefold().startswith(marker.casefold()) for label in t['_cell_labels']) for marker in r['_markers'])]
+        if len(hits)==1:r['source_cell_identity']=hits[0]['source_cell_identity']
+    for r in records:r.pop('_markers');r.pop('_cell_labels')
+    # Exact analytical duplicates corroborate; retain every source evidence ID.
+    groups=defaultdict(list)
+    for r in records:groups[r['analytical_identity']].append(r)
+    out=[]
+    for group in groups.values():
+        r=dict(sorted(group,key=canonical)[0]);r['evidence_ids']=sorted({x['evidence_id'] for x in group});r['corroborating_rows']=len(group)
+        out.append(r)
+    return sorted(out,key=lambda r:r['analytical_identity'])
+
+
+def analyze_profiles(selection, definition, out, resource_ids):
+    """Executed model decision: existing partial MCDA + technical case profiles.
+
+    No universal ordinal utility is established. Therefore no numeric mapping,
+    new weight, imputed unknown, or maturity-based Technical rank is generated.
+    """
+    from .analysis import write_csv
+    out=Path(out);rows=unified_observations(selection,definition)
+    fields=['analytical_identity','source_cell_identity','project_id','case_id','evidence_ids','source_sha256','pdf_page','locator','study_date','observation_form','variable','quantity','value','unit','basis','feed','endpoint','scale','scope','sample_population','statistic','raw_quote','token_state','supports_technical_interpretation','interpretation_reason','numeric_profile_eligible','permitted_comparison_groups','comparison_reasons','interpretations','project_extrapolation','project_extrapolation_reason','semantic_evidence','semantic_conflicts','scenario','scenario_evidence','base_case_applicable','corroborating_rows','rule_version']
+    write_csv(out/'technical_observations.csv',csvrows_local(rows),fields)
+    profiles=[];judgments=[];groups=defaultdict(list)
+    pids=sorted(selection['projects'])
+    for pid in pids:
+        rr=[r for r in rows if r['project_id']==pid]
+        for criterion in ('T-A','T-B'):
+            matches=[dict(j,project_id=pid,case_id=r['case_id'],analytical_identity=r['analytical_identity'],evidence_ids=r['evidence_ids'],source_sha256=r['source_sha256'],pdf_page=r['pdf_page'],locator=r['locator'],scope=r['scope'],rule_version=definition['version']) for r in rr for j in r['interpretations'] if j['criterion']==criterion]
+            judgments.extend(matches);states=sorted({j['state'] for j in matches})
+            profiles.append(dict(project_id=pid,criterion=criterion,resource_defined=pid in resource_ids,
+                source_scoped_states=states or ['UNKNOWN'],status='CONFLICT_OR_SCOPE_VARIATION' if len(states)>1 else 'SCOPED_EVIDENCE_ONLY' if states else 'UNKNOWN',
+                scoped_interpretations=len(matches),evidence_ids=sorted({e for j in matches for e in j['evidence_ids']}),
+                project_score=None,project_extrapolation=False,rule_version=definition['version'],
+                missing_reason='NO_BOUND_RULE_MATCH' if not matches else 'NO_CALIBRATED_COMMON_UTILITY_OR_TARGET_POPULATION_COVERAGE'))
+        for r in rr:
+            if not r['numeric_profile_eligible']:continue
+            # Within-source design/sample groups, preserving date, feed and
+            # endpoint. Differences in reagent/temperature remain burden/context.
+            group=digest([pid,r['source_sha256'],r['case_id'],r['quantity'],r['basis'],r['unit'],r['feed'],r['endpoint'],r['scale']])[:20]
+            groups[group].append(r)
+    group_rows=[dict(group_id=g,project_ids=sorted({r['project_id'] for r in rr}),case_ids=sorted({r['case_id'] for r in rr}),quantity=rr[0]['quantity'],basis=rr[0]['basis'],unit=rr[0]['unit'],feed=rr[0]['feed'],endpoint=rr[0]['endpoint'],scale=rr[0]['scale'],source_sha256=rr[0]['source_sha256'],values=[r['value'] for r in rr],evidence_ids=sorted({e for r in rr for e in r['evidence_ids']}),analysis_scope='SOURCE_CASE_PROFILE_NOT_CROSS_PROJECT_ORDER',uncertainty='NOT_QUANTIFIED_NO_INVENTED_ERROR') for g,rr in sorted(groups.items())]
+    write_csv(out/'technical_project_profiles.csv',csvrows_local(profiles),['project_id','criterion','resource_defined','source_scoped_states','status','scoped_interpretations','evidence_ids','project_score','project_extrapolation','rule_version','missing_reason'])
+    write_csv(out/'technical_burden_evidence.csv',csvrows_local(judgments),['project_id','criterion','state','rule_id','case_id','analytical_identity','source_sha256','pdf_page','locator','scope','quote','meaning','evidence_ids','rule_version'])
+    write_csv(out/'technical_comparison_groups.csv',csvrows_local(group_rows),['group_id','project_ids','case_ids','quantity','basis','unit','feed','endpoint','scale','source_sha256','values','evidence_ids','analysis_scope','uncertainty'])
+    summary=dict(version=definition['version'],decision=definition['decision'],common_score_adopted=False,
+        ordinal_mapping=None,technical_weight_change=0,formal_eligibility_change=False,
+        source_rows=sum(r['corroborating_rows'] for r in rows),analytical_records=len(rows),
+        distinct_transcribed_source_cells=len({r['source_cell_identity'] for r in rows if r['source_cell_identity']}),
+        linked_cell_corroborations=sum(bool(r['source_cell_identity']) and r['observation_form']!='TECHNICAL_TABLE_CELL' for r in rows),
+        independent_physical_measurements=None,measurement_count_reason='Reports do not establish independent replicate identities; source-cell groups and analytical records reported separately',
+        observation_forms=dict(Counter(r['observation_form'] for r in rows)),
+        technically_interpretable=sum(r['supports_technical_interpretation'] for r in rows),
+        source_scoped_numeric=sum(r['numeric_profile_eligible'] for r in rows),
+        projects_with_source_scoped_numeric=len({r['project_id'] for r in rows if r['numeric_profile_eligible']}),
+        resource_projects_with_source_scoped_numeric=len({r['project_id'] for r in rows if r['numeric_profile_eligible']} & set(resource_ids)),
+        source_scoped_criterion_projects={c:sum(p['criterion']==c and p['scoped_interpretations']>0 for p in profiles) for c in ('T-A','T-B')},
+        comparable_case_groups=len(groups),project_extrapolatable=0,
+        aim_a='Existing partial MCDA plus source-scoped T-A/T-B evidence and numerical groups; no six-domain rank',
+        aim_b='No ordinal utility adopted: mapping/weight sensitivity is NOT_APPLICABLE; prior partial-MCDA Monte Carlo and method sensitivity rerun; no probability of success',
+        aim_c='Mechanism-oriented source-case comparison; no deposit-label-derived score or causal inference',
+        limitation='Analytical identity deduplicates records only, not independent experiments; different versions may corroborate. AI consistency is not independent expert validation.')
+    (out/'technical_model_decision.json').write_text(canonical(summary)+'\n',encoding='utf8')
+    return summary

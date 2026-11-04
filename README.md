@@ -217,3 +217,5 @@ Phase14 adds [bounded official WAMEX/GSQ report discovery and measured recovery]
 已將既有 Dubbo／Cummins 原件及新取得的 Donald／Nolans 技術表接入同一 CLI、SQLite 與 Evidence Selection。379 個來源格位包含 371 個通過驗證的數值，產生試劑強度、品位—回收率、附條件精選保留比及流程一致性分析；不代表379次獨立測量，也未更改正式T1或C1。
 
 [研究報告](docs/phase15-source-bound-technical.md) · [凍結結果與重現命令](results/phase15-2026-11-04/README.md) · [逐文件評估](data/phase15_document_benchmark.json)。
+
+Phase16：來源限定的 Technical 操作化、MINEDEX 批次核對與驗證分層，見 [研究報告](docs/phase16-technical-model.md) 及 [可重建結果](results/phase16-2026-11-04/README.md)。

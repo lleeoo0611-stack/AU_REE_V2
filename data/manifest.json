@@ -5381,6 +5381,342 @@
       "available_date": "2026-11-04",
       "parser_version": "document-recognition-v5-technical-cells",
       "publication_date": "2026-07-13"
+    },
+    {
+      "key": "weblink_api_documentation",
+      "kind": "source_documentation",
+      "url": "https://datadirector.weblink.com.au/knowledge-base/weblink-data-api/",
+      "sha256": "44437ef97ffeb832f2c4cb2c3203aa6245316e5e84799254a5ec342ae2eb28aa",
+      "path": "data/snapshots/44437ef97ffeb832f2c4cb2c3203aa6245316e5e84799254a5ec342ae2eb28aa.html",
+      "acquired_at": "2026-11-04T12:56:07.874102+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "wa_minedex_resource_batch",
+      "kind": "minedex_resource_batch",
+      "url": "https://dasc.dmirs.wa.gov.au/home?productAlias=MINEDEX_ResourceEstimatesbyProject",
+      "product_alias": "MINEDEX_ResourceEstimatesbyProject",
+      "jurisdiction": "WA",
+      "scope": "Official aggregated Project commodity resource and reserve summaries; not original JORC or Technical tests",
+      "publication_date": "2026-11-03",
+      "sha256": "33b5aeb88ec339adcf0c765b0bb1440ef8978a76b374ef183363283a728bb6e8",
+      "path": "data/snapshots/33b5aeb88ec339adcf0c765b0bb1440ef8978a76b374ef183363283a728bb6e8.zip",
+      "acquired_at": "2026-11-04T12:56:30.938831+00:00",
+      "available_date": "2026-11-04",
+      "etag": "0x8DF39DEA3F60727",
+      "last_modified": "Tue, 03 Nov 2026 19:14:10 GMT",
+      "source_update": "03/11/2026",
+      "resolved_download_url": "https://dasc.dmirs.wa.gov.au/Download/File/3957",
+      "original_responses": [
+        {
+          "sha256": "fe72370624e1f503761c27fdce771b13c35d1ae7bdd10068fbeb6ad74143d8cf",
+          "path": "data/snapshots/fe72370624e1f503761c27fdce771b13c35d1ae7bdd10068fbeb6ad74143d8cf.response"
+        },
+        {
+          "sha256": "0ec40a2c1829e87203e7dd3032ee2bc0e53ae8096a11f80bdef4e7b5a617af27",
+          "path": "data/snapshots/0ec40a2c1829e87203e7dd3032ee2bc0e53ae8096a11f80bdef4e7b5a617af27.response"
+        },
+        {
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "path": "data/snapshots/4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945.response"
+        },
+        {
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "path": "data/snapshots/4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945.response"
+        },
+        {
+          "sha256": "33b5aeb88ec339adcf0c765b0bb1440ef8978a76b374ef183363283a728bb6e8",
+          "path": "data/snapshots/33b5aeb88ec339adcf0c765b0bb1440ef8978a76b374ef183363283a728bb6e8.response"
+        }
+      ]
+    },
+    {
+      "key": "recognized_5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20250915/pdf/06p6zt0hxtpg01.pdf",
+      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "sha256": "df592730f7ed59a414920d3cb1499f98bcd24fa8567b0f28d746ac0c4f56d7b4",
+      "path": "data/snapshots/df592730f7ed59a414920d3cb1499f98bcd24fa8567b0f28d746ac0c4f56d7b4.json",
+      "acquired_at": "2026-11-04T13:00:58.262641+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-09-15"
+    },
+    {
+      "key": "recognized_7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20240930/pdf/068jx9r9284599.pdf",
+      "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "sha256": "7995f55c1fc853ade69997dafbb659673798f72619b7b983d5834c4ba75e7fee",
+      "path": "data/snapshots/7995f55c1fc853ade69997dafbb659673798f72619b7b983d5834c4ba75e7fee.json",
+      "acquired_at": "2026-11-04T13:01:00.807047+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2024-09-30"
+    },
+    {
+      "key": "recognized_1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20230822/pdf/05swq0gwm2w86n.pdf",
+      "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "sha256": "9219d8de2927b31abe45ed4ac2cc841a5152ee00fed4ad023e695d79e136d8f6",
+      "path": "data/snapshots/9219d8de2927b31abe45ed4ac2cc841a5152ee00fed4ad023e695d79e136d8f6.json",
+      "acquired_at": "2026-11-04T13:01:08.506398+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2023-08-22"
+    },
+    {
+      "key": "recognized_8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "kind": "document_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7629289.pdf?v=63951121196",
+      "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "sha256": "f4c4243bb7ab4a34dfbaf70c7120de88c780d01eb68fb0586378acf74c17c301",
+      "path": "data/snapshots/f4c4243bb7ab4a34dfbaf70c7120de88c780d01eb68fb0586378acf74c17c301.json",
+      "acquired_at": "2026-11-04T13:01:10.402893+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-07-13"
+    },
+    {
+      "key": "recognized_c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "kind": "document_extraction",
+      "url": "https://wcsecure.weblink.com.au/pdf/ATR/03073797.pdf",
+      "source_sha256": "c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "sha256": "a21e3f395c549d340900d89b773c9bc29405f5315178023eb69521bae2372ec1",
+      "path": "data/snapshots/a21e3f395c549d340900d89b773c9bc29405f5315178023eb69521bae2372ec1.json",
+      "acquired_at": "2026-11-04T13:01:14.877470+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-03-31"
+    },
+    {
+      "key": "recognized_734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "sha256": "e504edc638dc050f147519b8f1bda6baaeb3719b6d8432f7c5704d661b7724b9",
+      "path": "data/snapshots/e504edc638dc050f147519b8f1bda6baaeb3719b6d8432f7c5704d661b7724b9.json",
+      "acquired_at": "2026-11-04T13:01:21.499094+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-07-11"
+    },
+    {
+      "key": "recognized_c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "kind": "document_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7600073.pdf?v=63949564086",
+      "source_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "sha256": "eba8a4d9c44959dce8befcc793a6c7d300cf75c41a051610813b40db8fd4e8f7",
+      "path": "data/snapshots/eba8a4d9c44959dce8befcc793a6c7d300cf75c41a051610813b40db8fd4e8f7.json",
+      "acquired_at": "2026-11-04T13:01:29.461755+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-06-25"
+    },
+    {
+      "key": "recognized_63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20190207/pdf/442fgrbxqwrxdd.pdf",
+      "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "sha256": "54f0a75d7f0dc6dec665e94a1bf355c8ff846f2ad32e959225b57ea9bc7e71d4",
+      "path": "data/snapshots/54f0a75d7f0dc6dec665e94a1bf355c8ff846f2ad32e959225b57ea9bc7e71d4.json",
+      "acquired_at": "2026-11-04T13:01:38.295207+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2019-02-07"
+    },
+    {
+      "key": "recognized_5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20250915/pdf/06p6zt0hxtpg01.pdf",
+      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "sha256": "cc9832ef2c80b945cae444e5dc10d19d043f7ba38ad268b7d2303f546eeac548",
+      "path": "data/snapshots/cc9832ef2c80b945cae444e5dc10d19d043f7ba38ad268b7d2303f546eeac548.json",
+      "acquired_at": "2026-11-04T13:08:51.348204+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-09-15"
+    },
+    {
+      "key": "recognized_7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20240930/pdf/068jx9r9284599.pdf",
+      "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "sha256": "b95f5ad22329f288a69c7414f859e7ca94ea3f5c592a61b2113b59f9c49f46e4",
+      "path": "data/snapshots/b95f5ad22329f288a69c7414f859e7ca94ea3f5c592a61b2113b59f9c49f46e4.json",
+      "acquired_at": "2026-11-04T13:08:53.094619+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2024-09-30"
+    },
+    {
+      "key": "recognized_1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20230822/pdf/05swq0gwm2w86n.pdf",
+      "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "sha256": "d22fa909aa5c94e3ea6df9feae03651321fd6fa9b1055309273ead27ddf5ada3",
+      "path": "data/snapshots/d22fa909aa5c94e3ea6df9feae03651321fd6fa9b1055309273ead27ddf5ada3.json",
+      "acquired_at": "2026-11-04T13:09:00.372942+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2023-08-22"
+    },
+    {
+      "key": "recognized_8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "kind": "document_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7629289.pdf?v=63951121196",
+      "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "sha256": "11dc2ff74943a90144ecf1f59cb58633f5b384c8cfe53359babd993989568841",
+      "path": "data/snapshots/11dc2ff74943a90144ecf1f59cb58633f5b384c8cfe53359babd993989568841.json",
+      "acquired_at": "2026-11-04T13:09:02.336890+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-07-13"
+    },
+    {
+      "key": "recognized_c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "kind": "document_extraction",
+      "url": "https://wcsecure.weblink.com.au/pdf/ATR/03073797.pdf",
+      "source_sha256": "c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "sha256": "1d2b0a9da392a4a36848282a8d02359ef39ae8b72c6eb40e37a4c70a4df1f2b6",
+      "path": "data/snapshots/1d2b0a9da392a4a36848282a8d02359ef39ae8b72c6eb40e37a4c70a4df1f2b6.json",
+      "acquired_at": "2026-11-04T13:09:06.663651+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-03-31"
+    },
+    {
+      "key": "recognized_734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "sha256": "a6aabfbbebbe4ac44f696374996f04a48a668d3c16184fbda35c03e6d3df2c2b",
+      "path": "data/snapshots/a6aabfbbebbe4ac44f696374996f04a48a668d3c16184fbda35c03e6d3df2c2b.json",
+      "acquired_at": "2026-11-04T13:09:13.413078+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-07-11"
+    },
+    {
+      "key": "recognized_c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "kind": "document_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7600073.pdf?v=63949564086",
+      "source_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "sha256": "80c32b4ff0a722eb4aedf2410fc7ea90d123710d6e5395354643b8c704c434d8",
+      "path": "data/snapshots/80c32b4ff0a722eb4aedf2410fc7ea90d123710d6e5395354643b8c704c434d8.json",
+      "acquired_at": "2026-11-04T13:09:18.577467+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-06-25"
+    },
+    {
+      "key": "recognized_63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20190207/pdf/442fgrbxqwrxdd.pdf",
+      "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "sha256": "0934e89f4be01adbff848507c39eac5a3253b05f48a6d4fc05a71c5fbea5215d",
+      "path": "data/snapshots/0934e89f4be01adbff848507c39eac5a3253b05f48a6d4fc05a71c5fbea5215d.json",
+      "acquired_at": "2026-11-04T13:09:26.821798+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2019-02-07"
+    },
+    {
+      "key": "recognized_5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20250915/pdf/06p6zt0hxtpg01.pdf",
+      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "sha256": "f795e7ccb93f03048dd87962fd477531ee380767b40d2e2aa5ed5865943f06ae",
+      "path": "data/snapshots/f795e7ccb93f03048dd87962fd477531ee380767b40d2e2aa5ed5865943f06ae.json",
+      "acquired_at": "2026-11-04T13:19:13.720790+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-09-15"
+    },
+    {
+      "key": "recognized_7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20240930/pdf/068jx9r9284599.pdf",
+      "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "sha256": "ec61c2cfbc5f03c1ff83a0d0803a4b91c68909e95ff6856978847309750d1d3b",
+      "path": "data/snapshots/ec61c2cfbc5f03c1ff83a0d0803a4b91c68909e95ff6856978847309750d1d3b.json",
+      "acquired_at": "2026-11-04T13:19:15.855808+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2024-09-30"
+    },
+    {
+      "key": "recognized_1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20230822/pdf/05swq0gwm2w86n.pdf",
+      "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "sha256": "cdf2b8dfdcc6356792a9d4350b41ffe2849298e4af517e41c91ab9e72bd23773",
+      "path": "data/snapshots/cdf2b8dfdcc6356792a9d4350b41ffe2849298e4af517e41c91ab9e72bd23773.json",
+      "acquired_at": "2026-11-04T13:19:25.285491+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2023-08-22"
+    },
+    {
+      "key": "recognized_8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "kind": "document_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7629289.pdf?v=63951121196",
+      "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "sha256": "66e731a1daabe941345004d73dfa8869fe9664f12f2882612814b9566586cbda",
+      "path": "data/snapshots/66e731a1daabe941345004d73dfa8869fe9664f12f2882612814b9566586cbda.json",
+      "acquired_at": "2026-11-04T13:19:27.862216+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-07-13"
+    },
+    {
+      "key": "recognized_c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "kind": "document_extraction",
+      "url": "https://wcsecure.weblink.com.au/pdf/ATR/03073797.pdf",
+      "source_sha256": "c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "sha256": "0891f1f33b9d8ab90a5c8104007ac179561fe98a665f328ae1a1b7019ca38344",
+      "path": "data/snapshots/0891f1f33b9d8ab90a5c8104007ac179561fe98a665f328ae1a1b7019ca38344.json",
+      "acquired_at": "2026-11-04T13:19:32.239681+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-03-31"
+    },
+    {
+      "key": "recognized_734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "sha256": "7a831def3a0860fc25f1a6d7eebf4cdda084ee5fe0d4c1de3201733351dbfee5",
+      "path": "data/snapshots/7a831def3a0860fc25f1a6d7eebf4cdda084ee5fe0d4c1de3201733351dbfee5.json",
+      "acquired_at": "2026-11-04T13:19:39.635769+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-07-11"
+    },
+    {
+      "key": "recognized_c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "kind": "document_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7600073.pdf?v=63949564086",
+      "source_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "sha256": "07d91b8423980515a39728640067f2e090527624837f491747ef56f0f593d004",
+      "path": "data/snapshots/07d91b8423980515a39728640067f2e090527624837f491747ef56f0f593d004.json",
+      "acquired_at": "2026-11-04T13:19:45.492469+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-06-25"
+    },
+    {
+      "key": "recognized_63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20190207/pdf/442fgrbxqwrxdd.pdf",
+      "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "sha256": "469338ea9b6a02e6b13a6546fbf29473bbeee57d2be912679a9b234d9f0ab148",
+      "path": "data/snapshots/469338ea9b6a02e6b13a6546fbf29473bbeee57d2be912679a9b234d9f0ab148.json",
+      "acquired_at": "2026-11-04T13:19:53.505502+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2019-02-07"
     }
   ]
 }

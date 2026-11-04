@@ -89,6 +89,10 @@ def execute(args):
             chosen=[s for s in registry['sources'] if s['key'] in keys]
             if keys!={s['key'] for s in chosen}:raise ValueError('Unknown acquisition source key')
             discovery={'status':'TARGETED_SOURCE_UPDATE'}
+        elif getattr(args,'centralized',False):
+            chosen=[s for s in registry['sources'] if s['kind']=='minedex_resource_batch']
+            from .discovery import centralized_feasibility
+            discovery=centralized_feasibility(root)
         else:
             chosen=registry['sources']
             discovery_config=json.loads((root/'config/discovery.json').read_text(encoding='utf-8'))
@@ -108,6 +112,7 @@ def execute(args):
             recognition_snapshots=select_snapshots(root,recognition_cutoff,
                 acquired_through=None if args.module=='acquire' else acquired_through)
             wanted={d.get('document_sha256') for d in discovery.get('documents',[])} if getattr(args,'gap_report',None) or getattr(args,'official_only',False) else None
+            if getattr(args,'centralized',False):wanted=set()
             if args.source_key:
                 wanted={s['sha256'] for s in recognition_snapshots if s['key'] in keys}
             if wanted is not None:recognition_snapshots=[s for s in recognition_snapshots if s['sha256'] in wanted]
@@ -273,6 +278,11 @@ def execute(args):
                     from .technical import plot_cells
                     plot_cells(root,out,args.rscript)
 
+        if selection and config.get('evidence_resolution',{}).get('technical_profile'):
+            from .technical import analyze_profiles
+            from .official import minedex_resource_report
+            analyze_profiles(selection,config['evidence_resolution']['technical_profile'],out,{identity['mapping'].get(pid,pid) for pid in resources})
+            minedex_resource_report(db,root,snapshots,out)
         source_shas={s['sha256'] for s in snapshots}
         from .national import raw_domain_coverage
         if config.get('research_analysis_version')=='evidence-cohort-v1':
@@ -443,6 +453,7 @@ def main():
     parser.add_argument('--skip-r',action='store_true')
     parser.add_argument('--rscript')
     parser.add_argument('--snapshot-lock',help='Exact immutable snapshot_lock.json from a prior run')
+    parser.add_argument('--centralized',action='store_true',help='Bounded centralized-source feasibility and official resource batch acquisition')
     parser.add_argument('--compare-to',help='Frozen prior run/results folder for coverage and rank comparison')
     parser.add_argument('--source-key');parser.add_argument('--pages',default='1');parser.add_argument('--tessdata')
     parser.add_argument('--gap-report',help='Existing evidence_pipeline_diagnostics.csv for bounded acquisition')

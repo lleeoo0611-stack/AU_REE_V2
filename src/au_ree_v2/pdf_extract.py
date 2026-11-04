@@ -10,7 +10,7 @@ from pathlib import Path
 from pypdf import PdfReader
 from .store import filehash,canonical
 
-DOCUMENT_VERSION = 'document-recognition-v5-technical-cells'
+DOCUMENT_VERSION = 'document-recognition-v6-context-bound'
 RESOURCE_LAYOUT_VERSION = 'positioned-resource-columns-v2'
 NUMBER = r'(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?'
 
@@ -304,7 +304,7 @@ def narrative_candidates(text, page, registry, parser_version='document-recognit
     for i,sentence in enumerate(sentences):
         if len(sentence)<25:continue
         technical=r'(?i)\b(?:recover\w*|extract\w*|leach\w*|reagent|thorium|uranium|NORM)\b'
-        if parser_version in ('document-recognition-v2-mineralogy','document-recognition-v3-bound-quantities','document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells'):technical=r'(?i)\b(?:recover\w*|extract\w*|leach\w*|reagent|thorium|uranium|NORM|mineralog\w*|monazite|xenotime|rhabdophane|churchite|gangue)\b'
+        if parser_version in ('document-recognition-v2-mineralogy','document-recognition-v3-bound-quantities','document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells','document-recognition-v6-context-bound'):technical=r'(?i)\b(?:recover\w*|extract\w*|leach\w*|reagent|thorium|uranium|NORM|mineralog\w*|monazite|xenotime|rhabdophane|churchite|gangue)\b'
         domain='Technical' if re.search(technical,sentence) else ('Commercial' if re.search(r'(?i)\b(?:financing|offtake|off-take|financial close|drawdown|credit approval|grant|funding|cash position)\b',sentence) else ('Development' if re.search(r'(?i)\b(?:scoping study|PFS|DFS|care and maintenance|construction commenced)\b',sentence) else None))
         if not domain:continue
         context=' '.join(sentences[max(0,i-1):i+2])
@@ -316,7 +316,7 @@ def narrative_candidates(text, page, registry, parser_version='document-recognit
                   'FINAL_SEPARATED_REO' if re.search(r'(?i)separated (?:rare earth )?oxides',context) else None)
         scale='BENCH' if re.search(r'(?i)bench|composite samples|laboratory',context) else ('PILOT' if re.search(r'(?i)\bpilot\b',context) else None)
         numbers=[dict(value=_number(m.group(1)),unit='%',token=m.group(0),start=m.start()) for m in re.finditer('('+NUMBER+r')\s*%',sentence)]
-        if parser_version=='document-recognition-v5-technical-cells':
+        if parser_version in ('document-recognition-v5-technical-cells','document-recognition-v6-context-bound'):
             from .technical_tables import technical_numbers
             numbers=technical_numbers(sentence)
         for number in numbers:
@@ -324,7 +324,7 @@ def narrative_candidates(text, page, registry, parser_version='document-recognit
             number['quantity_role']=('MAXIMUM_EXTRACTION' if re.search(r'up to\s*$',prefix,re.I) else
                                      'AVERAGE_EXTRACTION' if re.search(r'averag(?:e|ing)\s*(?:of\s*)?$',prefix,re.I) else None)
             if not re.search(r'extract|recover|leach',sentence,re.I):number['quantity_role']=None
-            if parser_version in ('document-recognition-v3-bound-quantities','document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells'):
+            if parser_version in ('document-recognition-v3-bound-quantities','document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells','document-recognition-v6-context-bound'):
                 suffix=sentence[number['start']+len(number['token']):number['start']+len(number['token'])+65]
                 local=prefix[-35:]+' '+number['token']+' '+suffix[:35]
                 coordinated_mean=bool(re.search(r'(?:extraction|recovery|recoveries)\s+(?:achieved\s+)?up to\s+'+NUMBER+r'\s*%\s*,\s*averaging\s*$',sentence[:number['start']],re.I))
@@ -339,13 +339,13 @@ def narrative_candidates(text, page, registry, parser_version='document-recognit
                     if quantity=='RECOVERY' and re.search(r'mining\s+recovery',local,re.I):quantity='MINING_RECOVERY'
                     qualifier='MAXIMUM' if re.search(r'up to\s*$',prefix,re.I) else 'AVERAGE' if re.search(r'averag(?:e|ing)',prefix[-40:],re.I) else 'REPORTED'
                     number['quantity_role']=qualifier+'_'+quantity
-        if parser_version=='document-recognition-v5-technical-cells' and domain=='Technical':
+        if parser_version in ('document-recognition-v5-technical-cells','document-recognition-v6-context-bound') and domain=='Technical':
             from .technical_tables import quantity_binding
             for number in numbers:number.update(quantity_binding(sentence,number))
         # Text observations are valid disclosures, not numerical project scores.
         reasons=[]
         if not pid:reasons.append('PROJECT_ATTRIBUTION_AMBIGUOUS')
-        if re.search(r'(?i)\b(?:will|planned|targeting|expected|aims|potential)\b',sentence) and not (parser_version=='document-recognition-v5-technical-cells' and domain=='Technical' and re.search(r'design|model|DFS|scoping|PFS',context,re.I)):reasons.append('FORWARD_LOOKING_NOT_COMPLETED_EVENT')
+        if re.search(r'(?i)\b(?:will|planned|targeting|expected|aims|potential)\b',sentence) and not (parser_version in ('document-recognition-v5-technical-cells','document-recognition-v6-context-bound') and domain=='Technical' and re.search(r'design|model|DFS|scoping|PFS',context,re.I)):reasons.append('FORWARD_LOOKING_NOT_COMPLETED_EVENT')
         result.append(dict(domain=domain,kind='SCOPED_TEXT_DISCLOSURE',project_id=pid,physical_page=page,
                            scope=context,raw_text=sentence,context=context,endpoint=endpoint,scale=scale,
                            feed='SELECTED_COMPOSITES' if re.search(r'(?i)composite samples|selected composite',context) else None,
@@ -404,16 +404,30 @@ def source_binding_signature(root,source):
     return digest([owners,source.get('recognition_project_native_id'),source.get('project_binding_status')])
 
 
+def extraction_dependencies():
+    """V6 cache binds parser/semantic implementation and native backend version."""
+    import pymupdf
+    from .store import digest
+    return digest(dict(backend=pymupdf.VersionBind,files={name:filehash(Path(__file__).parent/name) for name in ('pdf_extract.py','technical_tables.py')}))
+
+
+def _native_tables(doc,n,table_cache,modern,parser_version):
+    """Geometry cache depends on native cell rectangles, not scientific defaults."""
+    return (table_cache[n] if table_cache is not None and n in table_cache and (not modern or all('rows' in t for t in table_cache[n])) and (table_cache[n] or parser_version not in ('document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells','document-recognition-v6-context-bound')) else
+        [dict(physical_page=n,table_index=i,bbox=list(t.bbox),cells=t.extract(),header=t.header.names,external_header=t.header.external,**({'rows':[list(r.cells) for r in t.rows]} if modern else {}))
+         for i,t in enumerate(doc[n-1].find_tables().tables)])
+
+
 def recognize_document(root, source, registry, tessdata=None, parser_version=None, table_cache=None, page_numbers=None):
     """Scan every page once, then extract tables/OCR only relevant pages."""
     import pymupdf
     parser_version=parser_version or DOCUMENT_VERSION
-    if parser_version not in ('document-recognition-v1','document-recognition-v2-mineralogy','document-recognition-v3-bound-quantities','document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells'):
+    if parser_version not in ('document-recognition-v1','document-recognition-v2-mineralogy','document-recognition-v3-bound-quantities','document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells','document-recognition-v6-context-bound'):
         raise ValueError('UNSUPPORTED_DOCUMENT_PARSER_VERSION')
     root=Path(root);path=root/source['path']
     if filehash(path)!=source['sha256']:raise ValueError('SOURCE_HASH_MISMATCH')
     pages=[];candidates=[];tables=[];sample_context_cache={}
-    modern=parser_version=='document-recognition-v5-technical-cells'
+    modern=parser_version in ('document-recognition-v5-technical-cells','document-recognition-v6-context-bound')
     bound=[]
     if modern:
         claims=json.loads((root/'data/claims.json').read_text(encoding='utf-8'))
@@ -438,19 +452,17 @@ def recognize_document(root, source, registry, tessdata=None, parser_version=Non
             labels=classify(text);method='MUPDF_POSITIONED' if doc else 'STATIC_HTML'
             if doc and not readable(text) and tessdata:
                 extracted=extract_page(path,n,tessdata);text=extracted['text'];method=extracted['method'];labels=classify(text)
-            technical_hint=modern and bool(re.search(r'Table\s+\d',text,re.I)) and bool(re.search(r'Extraction\s*\(%\)|Test\s*/\s*Product|process design basis|Stage Wise Recovery|Recovery Parameters|Concentrate Composition Equations',text,re.I|re.S))
+            technical_hint=modern and bool(re.search(r'Table\s+\d',text,re.I)) and bool(re.search(r'Extraction\s*\(%\)|Test\s*/\s*Product|process design basis|Stage Wise Recovery|Recovery Parameters|Concentrate Composition Equations'+('|Key Project metrics' if parser_version=='document-recognition-v6-context-bound' else ''),text,re.I|re.S))
             relevant=(bool(labels) and bool(re.search(r'TREO|rare earth|\bREE\b',text,re.I))) or technical_hint
             page=dict(physical_page=n,method=method,labels=labels,relevant=relevant,text=text,
                       status='EXTRACTED' if readable(text) else 'UNREADABLE',tables=[])
             if relevant:
                 page_tables=[]
                 recognized=resource_rows(text,n,registry)+leach_tables(text,n,registry)+narrative_candidates(text,n,registry,parser_version)
-                if doc and (any(c['kind'] in ('RESOURCE_TABLE_TOTAL','LEACH_TABLE_ROW') for c in recognized) or (parser_version in ('document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells') and 'JORC_RESOURCE' in labels) or technical_hint):
+                if doc and (any(c['kind'] in ('RESOURCE_TABLE_TOTAL','LEACH_TABLE_ROW') for c in recognized) or (parser_version in ('document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells','document-recognition-v6-context-bound') and 'JORC_RESOURCE' in labels) or technical_hint):
                     page_tables=[]
                     try:
-                        native=(table_cache[n] if table_cache is not None and n in table_cache and (not modern or all('rows' in t for t in table_cache[n])) and (table_cache[n] or parser_version not in ('document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells')) else
-                            [dict(physical_page=n,table_index=i,bbox=list(t.bbox),cells=t.extract(),header=t.header.names,external_header=t.header.external,**({'rows':[list(r.cells) for r in t.rows]} if modern else {}))
-                             for i,t in enumerate(doc[n-1].find_tables().tables)])
+                        native=_native_tables(doc,n,table_cache,modern,parser_version)
                         for table in native:
                             i=table['table_index'];table=dict(table)
                             table.pop('continuation_candidate',None)
@@ -458,11 +470,13 @@ def recognize_document(root, source, registry, tessdata=None, parser_version=Non
                             page_tables.append(table)
                     except Exception as exc:page['table_error']=type(exc).__name__
                     positioned_resource_columns(recognized,page_tables,text,registry,
-                        version='positioned-resource-columns-v4' if parser_version in ('document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells') else 'positioned-resource-columns-v3' if parser_version=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION)
+                        version='positioned-resource-columns-v4' if parser_version in ('document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells','document-recognition-v6-context-bound') else 'positioned-resource-columns-v3' if parser_version=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION)
                 if modern:
-                    from .technical_tables import technical_cells,flow_cells,model_parameters,sample_context
+                    from .technical_tables import technical_cells,flow_cells,model_parameters,sample_context,metric_cells,bind_semantics
                     for table in page_tables if doc and 'page_tables' in locals() else []:
-                        if table['physical_page']==n:recognized.extend(technical_cells(table,text))
+                        if table['physical_page']==n:
+                            recognized.extend(technical_cells(table,text))
+                            if parser_version=='document-recognition-v6-context-bound':recognized.extend(metric_cells(table,text,doc[n-1].get_text('words')))
                     if doc:
                         recognized.extend(flow_cells(page_tables,doc[n-1].get_text('words'),text,n))
                         recognized.extend(model_parameters(doc[n-1].get_text('words'),text,n))
@@ -481,13 +495,14 @@ def recognize_document(root, source, registry, tessdata=None, parser_version=Non
                         # Only explicit primary-composite statements bind a table to an earlier sample.
                         context_pages=[(j+1,t) for j,t in enumerate(texts[max(0,n-3):n],max(0,n-3)) if re.search(r'primary composite',t,re.I)]
                         samples=[(pn,m[1]) for pn,t in context_pages for m in re.finditer(r'Composite Sample\s*\(([A-Za-z0-9-]+)\)',t,re.I)]
-                        if c.get('scale')=='LAB_FLOTATION' and len(set(x[1] for x in samples))==1:
+                        if (c.get('scale')=='LAB_FLOTATION' or (parser_version=='document-recognition-v6-context-bound' and c.get('test_id'))) and len(set(x[1] for x in samples))==1:
                             c['sample_id']=c['sample_population']=samples[0][1];c['sample_binding']=dict(physical_page=samples[0][0],method='EXPLICIT_PRIMARY_COMPOSITE_STATEMENT')
                         sample=c.get('sample_id')
                         if sample not in sample_context_cache:sample_context_cache[sample]=sample_context(texts,sample,source['sha256'])
                         rep=sample_context_cache[sample]
                         if rep:
                             c['representativeness_evidence']=rep;c['representativeness']=rep['state']
+                        if parser_version=='document-recognition-v6-context-bound':bind_semantics(c,texts,source['sha256'])
                         c['case_id']=digest([c['table_scope_id'],c.get('sample_id'),c.get('stage')])
                         c['scope']+=' | '+str(c.get('test_id') or '')+' | '+str(c.get('product') or c.get('source_column') or c.get('stage') or '')
                     c.update(source_sha256=source['sha256'],source_key=source['key'],
@@ -511,11 +526,12 @@ def recognize_document(root, source, registry, tessdata=None, parser_version=Non
             previous=[t for t in tables if t['physical_page']==table['physical_page']-1 and t['header']==table['header'] and any(t['header'])]
             if len(previous)==1:
                 table['continuation_candidate']=dict(physical_page=previous[0]['physical_page'],table_index=previous[0]['table_index'],status='HEADER_MATCH_ONLY_NOT_SCOPE_EQUIVALENCE')
-        return dict(version=parser_version,resource_layout_version='positioned-resource-columns-v4' if parser_version in ('document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells') else 'positioned-resource-columns-v3' if parser_version=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION,observation_contract='automatic-observation-v1-element-basis',source_sha256=source['sha256'],source_key=source['key'],
+        return dict(version=parser_version,resource_layout_version='positioned-resource-columns-v4' if parser_version in ('document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells','document-recognition-v6-context-bound') else 'positioned-resource-columns-v3' if parser_version=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION,observation_contract='automatic-observation-v1-element-basis',source_sha256=source['sha256'],source_key=source['key'],
                     source_url=source['url'],publication_date=source.get('publication_date') or publication_date(texts[0]),
                     labels=classify(texts[0]),mentioned_labels=sorted({v for p in pages for v in p['labels']}),pages=pages,tables=tables,candidates=candidates,
                     backend_version=pymupdf.VersionBind,registry_identity_sha256=__import__('hashlib').sha256(canonical(registry).encode()).hexdigest(),
                     **({'source_binding_sha256':source_binding_signature(root,source)} if modern else {}),
+                    **({'extraction_dependency_sha256':extraction_dependencies()} if parser_version=='document-recognition-v6-context-bound' else {}),
                     **({'requested_physical_pages':sorted(page_numbers)} if page_numbers is not None else {}),
                     limitations=['NO_CROSS_TABLE_SUM','NO_DATE_OR_FEED_IMPUTATION','CANDIDATE_TEXT_IS_NOT_CRITERION_SCORE'])
     finally:
@@ -538,13 +554,13 @@ def capture_documents(root, snapshots, keys=None, tessdata=None, only_missing=Fa
                     latest=max(prior,key=lambda s:s['acquired_at'])
                     if filehash(root/latest['path'])!=latest['sha256']:raise ValueError('IMMUTABLE_EXTRACTION_MISMATCH')
                     cached=json.loads((root/latest['path']).read_text(encoding='utf-8'))
-                    if (cached['version']==DOCUMENT_VERSION and (DOCUMENT_VERSION!='document-recognition-v5-technical-cells' or cached.get('source_binding_sha256')==source_binding_signature(root,source)) and cached.get('observation_contract')=='automatic-observation-v1-element-basis'
-                            and cached.get('resource_layout_version')==('positioned-resource-columns-v4' if DOCUMENT_VERSION in ('document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells') else 'positioned-resource-columns-v3' if DOCUMENT_VERSION=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION)
+                    if (cached['version']==DOCUMENT_VERSION and (DOCUMENT_VERSION!='document-recognition-v6-context-bound' or cached.get('extraction_dependency_sha256')==extraction_dependencies()) and (DOCUMENT_VERSION not in ('document-recognition-v5-technical-cells','document-recognition-v6-context-bound') or cached.get('source_binding_sha256')==source_binding_signature(root,source)) and cached.get('observation_contract')=='automatic-observation-v1-element-basis'
+                            and cached.get('resource_layout_version')==('positioned-resource-columns-v4' if DOCUMENT_VERSION in ('document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells','document-recognition-v6-context-bound') else 'positioned-resource-columns-v3' if DOCUMENT_VERSION=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION)
                             and cached['registry_identity_sha256']==hashlib.sha256(canonical(registry).encode()).hexdigest()):
                         outcomes.append(dict(source_key=source['key'],source_sha256=source['sha256'],status='REUSED_VERIFIED_EXTRACTION',sha256=latest['sha256']))
                         continue
             native_cache=None
-            if DOCUMENT_VERSION in ('document-recognition-v3-bound-quantities','document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells'):
+            if DOCUMENT_VERSION in ('document-recognition-v3-bound-quantities','document-recognition-v4-native-resource-totals','document-recognition-v5-technical-cells','document-recognition-v6-context-bound'):
                 import pymupdf
                 prior=[s for s in manifest['snapshots'] if s['kind']=='document_extraction' and s.get('source_sha256')==source['sha256']]
                 if prior:
