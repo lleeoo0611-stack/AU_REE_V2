@@ -1,5 +1,5 @@
 {
-  "version": "discovery-v6-executed-tasks",
+  "version": "discovery-v7-official-reports",
   "max_documents_per_seed": 3,
   "seeds": [
     {
@@ -351,5 +351,44 @@
   "official_archive_template": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode={code}&timeframe=Y&year=2026",
   "max_official_archives": 10,
   "public_mirror_index_template": "https://financialfilings.com/companies/{company_slug}/2026/",
-  "max_mirror_indexes": 2
+  "max_mirror_indexes": 2,
+  "max_official_documents": 5,
+  "max_official_details": 4,
+  "official_reports": [
+    {
+      "key": "wamex_ree_technical_index",
+      "protocol": "arcgis",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/22",
+      "where": "digital_file = 1 AND report_year >= 2015 AND (UPPER(project) LIKE '%CUMMINS%' OR UPPER(project) LIKE '%BROWNS RANGE%' OR UPPER(project) LIKE '%SALAZAR%' OR UPPER(project) LIKE '%STANMORE%' OR UPPER(project) LIKE '%YANGIBANA%' OR UPPER(project) LIKE '%WELD%') AND (UPPER(target_commodity) LIKE '%RARE EARTH%' OR UPPER(keywords) LIKE '%MINERAL PROCESS%' OR UPPER(keywords) LIKE '%METALLURG%')",
+      "max_records": 30
+    },
+    {
+      "key": "gsq_ree_metallurgy",
+      "protocol": "ckan",
+      "url": "https://geoscience.data.qld.gov.au/api/3/action/",
+      "query": "\"rare earth\"",
+      "rows": 4,
+      "max_pages": 2,
+      "document_hosts": [
+        "gsq-prod-ckan-horizon-public.s3.ap-southeast-2.amazonaws.com",
+        "geoscience.data.qld.gov.au"
+      ],
+      "max_document_bytes": 15000000
+    },
+    {
+      "key": "gsq_ree_census",
+      "protocol": "ckan",
+      "url": "https://geoscience.data.qld.gov.au/api/3/action/",
+      "query": "monazite",
+      "rows": 4,
+      "max_pages": 2,
+      "document_hosts": [
+        "gsq-prod-ckan-horizon-public.s3.ap-southeast-2.amazonaws.com",
+        "geoscience.data.qld.gov.au"
+      ],
+      "max_document_bytes": 15000000
+    }
+  ],
+  "max_wamex_documents": 2,
+  "max_wamex_document_bytes": 30000000
 }

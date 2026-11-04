@@ -208,3 +208,6 @@ remains as an attestation, not a redistributed unredacted payload.
 Latest increment: [source discovery and C1 compatibility](docs/phase4-discovery-eligibility.md), [frozen outputs](results/phase4-2026-11-03/README.md).
 
 Latest evidence increment: [Phase 5 sources and research results](docs/phase5-primary-evidence.md), [frozen comparison](results/phase5-2026-11-03/README.md).
+
+
+Phase14 adds [bounded official WAMEX/GSQ report discovery and measured recovery](docs/phase14-official-reports.md): four WAMEX originals,315→321 validated numeric statements, unchanged21 resource cases and no extra common MCDA sample. [Frozen results](results/phase14-2026-11-04/README.md) preserve the original gates and methods. Live update status is reported separately from offline scientific CI; GSQ document delivery remains partial.

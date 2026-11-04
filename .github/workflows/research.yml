@@ -17,6 +17,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   research:
+    if: github.event_name != 'workflow_dispatch' || !inputs.refresh
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -88,28 +89,16 @@ jobs:
           python tools/check_phase11.py results/phase13-2026-11-04 work/source-recovery-a/latest.json --reference
           python tools/evaluate_documents.py work/phase13_document_benchmark.json --phase13
           python -c "import json; assert json.load(open('work/phase13_document_benchmark.json')) == json.load(open('data/phase13_document_benchmark.json'))"
-      - name: Incremental public update (isolated live-source smoke)
-        id: live
-        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
-        continue-on-error: true
-        timeout-minutes: 15
+      - name: Phase 14 official report recovery and independent reconstruction
         run: |
-          au-ree-v2 acquire > work/acquisition_status.json
-          au-ree-v2 all --work work/updated
-          python -m unittest discover -s tests -v
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase14-2026-11-04/snapshot_lock.json --work work/official-reports-a
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase14-2026-11-04/snapshot_lock.json --work work/official-reports-b
+          python tools/check_phase11.py work/official-reports-a/latest.json work/official-reports-b/latest.json
+          python tools/check_phase11.py results/phase14-2026-11-04 work/official-reports-a/latest.json --reference
+          python tools/evaluate_documents.py work/phase14_document_benchmark.json --phase14
+          python -c "import json; assert json.load(open('work/phase14_document_benchmark.json')) == json.load(open('data/phase14_document_benchmark.json'))"
       - name: Scan publication payload
         run: python tools/check_publication.py
-      - name: Archive verified public snapshot bytes to research branch
-        if: (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)) && steps.live.outcome == 'success'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          cp work/acquisition_status.json data/acquisition_status_latest.json
-          git add data/manifest.json data/snapshots/ data/acquisition_status_latest.json
-          if ! git diff --cached --quiet; then
-            git commit -m "data: freeze public source acquisition snapshots [skip ci]"
-            git push origin HEAD:"${GITHUB_REF_NAME}"
-          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -132,8 +121,66 @@ jobs:
             work/source-recovery-a/runs/
             work/source-recovery-b/runs/
             work/phase13_document_benchmark.json
+            work/official-reports-a/runs/
+            work/official-reports-b/runs/
+            work/phase14_document_benchmark.json
             work/updated/runs/
             work/acquisition_status.json
             data/manifest.json
             data/snapshots/
           retention-days: 90
+
+  live_update:
+    name: Live official discovery and acquisition (separate from scientific replay)
+    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install .
+      - name: Acquire bounded official reports and parse new originals
+        run: |
+          mkdir -p work
+          au-ree-v2 acquire --official-only > work/live_official_status.json
+      - name: Publish explicit transport and parsing outcome
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          p=Path('work/live_official_status.json')
+          try:
+              data=json.loads(p.read_text()); status=data['live_update']
+          except Exception:
+              status={'status':'EXECUTION_FAILED_NO_COMPLETE_RECEIPT'}
+          text='Live source update: '+json.dumps(status,indent=2)
+          Path('work/live_update_summary.json').write_text(json.dumps(status,indent=2)+'\n')
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write('```json\n'+text+'\n```\n')
+          if status['status']!='COMPLETED_BOUNDED_ATTEMPTS':raise SystemExit(1)
+          PY
+      - name: Archive successful public acquisition only
+        if: success()
+        run: |
+          python tools/check_publication.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp work/live_official_status.json data/acquisition_status_latest.json
+          git add data/manifest.json data/snapshots/ data/acquisition_status_latest.json data/discovery_latest.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: freeze public official report acquisition [skip ci]"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-official-${{ github.run_id }}
+          path: |
+            work/live_official_status.json
+            work/live_update_summary.json
+            data/manifest.json
+            data/discovery_latest.json
+            data/snapshots/
+          retention-days: 30

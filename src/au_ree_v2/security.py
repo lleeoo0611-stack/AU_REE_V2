@@ -1,13 +1,13 @@
 """Publication guard for literal and repeatedly encoded credential query parameters."""
 import html,re
 from urllib.parse import unquote
-PATTERN=re.compile(r'[?&]\s*(?:access[_\s-]*token|api[_\s-]*key|token|signature|sig)\s*=',re.I)
+PATTERN=re.compile(r'[?&]\s*(?:access[_\s-]*token|api[_\s-]*key|token|signature|sig|x-amz-[a-z-]+|x-goog-[a-z-]+)\s*=',re.I)
 def sensitive_reference(text):
     for _ in range(8):text=html.unescape(unquote(text))
     return bool(PATTERN.search(text))
 
 
-_REDACT=re.compile(r'''(?:[?&]|&amp;|\\u0026)\s*(?:access[_\s-]*token|api[_\s-]*key|token|signature|sig)\s*=\s*[^\s"'<>\\&]*''',re.I)
+_REDACT=re.compile(r'''(?:[?&]|&amp;|\\u0026)\s*(?:access[_\s-]*token|api[_\s-]*key|token|signature|sig|x-amz-[a-z-]+|x-goog-[a-z-]+)\s*=\s*[^\s"'<>\\&]*''',re.I)
 
 def redact_reference_text(text):
     """Remove the parameter AND value; never return or log the credential value."""

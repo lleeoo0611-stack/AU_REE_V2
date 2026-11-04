@@ -24,15 +24,18 @@ def failure_details(exc):
                 'NON_PDF_RESPONSE' if str(exc) in ('NOT_PDF','Not a PDF response') else
                 'TERMS_INTERSTITIAL_NOT_ACCEPTED' if str(exc)=='TERMS_INTERSTITIAL_NOT_ACCEPTED' else type(exc).__name__))
     return dict(failure_status=state,http_status=code,attempts=getattr(exc,'request_attempts',1),
+                **({'validation_error':str(exc)} if isinstance(exc,ValueError) and __import__('re').fullmatch(r'[A-Z_]{3,100}',str(exc)) else {}),
                 retry_after_seconds=getattr(exc,'retry_after_seconds',None),
                 reason=type(exc).__name__+('_'+str(code) if code else ''),
                 interpretation='URL_FAILURE_NOT_DOCUMENT_ABSENCE')
 
 
-def request(url, params=None, headers=None, timeout=25):
-    if params:
+def request(url, params=None, headers=None, timeout=25, method='GET', max_bytes=None):
+    data=None
+    if params and method=='POST':data=urllib.parse.urlencode(params).encode()
+    elif params:
         url += ('&' if '?' in url else '?') + urllib.parse.urlencode(params)
-    req = urllib.request.Request(url, headers={'User-Agent': 'AU_REE_V2/0.1 public research', **(headers or {})})
+    req = urllib.request.Request(url, data=data,method=method,headers={'User-Agent': 'AU_REE_V2/0.1 public research', **(headers or {})})
     for attempt in range(3):
         host=urllib.parse.urlsplit(url).netloc
         pause=.25-(time.monotonic()-_last_request.get(host,0))
@@ -40,7 +43,9 @@ def request(url, params=None, headers=None, timeout=25):
         _last_request[host]=time.monotonic()
         try:
             with urllib.request.urlopen(req, timeout=timeout) as response:
-                return response.read(), dict(response.headers)
+                raw=response.read(max_bytes+1) if max_bytes is not None else response.read()
+                if max_bytes is not None and len(raw)>max_bytes:raise ValueError('DOCUMENT_BYTE_BUDGET_EXCEEDED')
+                return raw, dict(response.headers)
         except urllib.error.HTTPError as exc:
             exc.request_attempts=attempt+1
             delay=exc.headers.get('Retry-After') if exc.headers else None
@@ -58,10 +63,10 @@ def request(url, params=None, headers=None, timeout=25):
             if attempt==2:raise
             time.sleep(.5*(2**attempt))
 
-def arcgis(url, where='1=1', windows=None, archive=None):
+def arcgis(url, where='1=1', windows=None, archive=None, fetch=None, max_records=None):
     """Inventory-complete retrieval, globally or within each registered project AOI."""
     def query(params):
-        raw, _ = request(url.rstrip('/') + '/query', {'f': 'json', **params})
+        raw, _ = (fetch or request)(url.rstrip('/') + '/query', {'f': 'json', **params})
         if archive is not None:archive(raw)
         data = json.loads(raw)
         if 'error' in data:
@@ -84,6 +89,8 @@ def arcgis(url, where='1=1', windows=None, archive=None):
             raise ValueError('ArcGIS object ID field changed between windows')
         oid_field = field
         expected = sorted(set(ids['objectIds'] or []))
+        total_count=len(expected)
+        if max_records is not None:expected=expected[:max(0,max_records-len(all_features))]
         seen = []
         for start in range(0,len(expected),500):
             page = query({'objectIds': ','.join(map(str,expected[start:start+500])),
@@ -104,8 +111,38 @@ def arcgis(url, where='1=1', windows=None, archive=None):
     return {'features':[all_features[k] for k in sorted(all_features)],
             'spatialReference':{'wkid':4326},
             'inventory':{'where':where, 'objectIdFieldName':oid_field,
-                         'count':len(all_features), 'complete':True,
+                         'count':len(all_features), 'complete':max_records is None or total_count<=max_records,
+                         **({'matched_count':total_count,'record_budget':max_records} if max_records is not None else {}),
                          'scope':scope, 'queries':inventories}}
+
+
+def ckan(url, query, rows=10, max_pages=2, fetch=None, archive=None):
+    """Bounded public package_search; count is not the number retrieved.
+
+    API-level failures, duplicates, count drift and premature empty pages are
+    failures, even with HTTP 200. Each original response is archived first.
+    """
+    if not 1<=rows<=1000 or not 1<=max_pages<=20:raise ValueError('INVALID_CKAN_BUDGET')
+    items={};count=None;pages=0
+    for page in range(max_pages):
+        raw,_=(fetch or request)(url.rstrip('/')+'/package_search',dict(q=query,rows=rows,start=page*rows,sort='id asc'))
+        if archive:archive(raw)
+        data=json.loads(raw)
+        if data.get('success') is not True:raise ValueError('CKAN_API_UNSUCCESSFUL')
+        result=data['result'];current=result['count']
+        if not isinstance(current,int) or current<0:raise ValueError('CKAN_INVALID_COUNT')
+        if count is not None and count!=current:raise ValueError('CKAN_COUNT_CHANGED_RETRY_LATER')
+        count=current;batch=result['results'];pages+=1
+        if not isinstance(batch,list) or len(batch)>rows:raise ValueError('CKAN_INVALID_PAGE')
+        if not batch and len(items)<count:raise ValueError('CKAN_PREMATURE_EMPTY_PAGE')
+        for item in batch:
+            if not item.get('id') or item['id'] in items:raise ValueError('CKAN_DUPLICATE_OR_MISSING_NATIVE_ID')
+            items[item['id']]=item
+        if len(items)>count:raise ValueError('CKAN_COUNT_EXCEEDED')
+        if len(items)==count:break
+        if len(batch)<rows:raise ValueError('CKAN_TRUNCATED_PAGE')
+    return dict(results=list(items.values()),inventory=dict(query=query,matched_count=count,
+        retrieved_count=len(items),pages=pages,rows=rows,max_pages=max_pages,complete=len(items)==count))
 
 
 def wfs(source, archive=None):
