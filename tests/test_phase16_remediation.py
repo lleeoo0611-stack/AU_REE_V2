@@ -177,6 +177,29 @@ class IntegratedModels(unittest.TestCase):
             self.assertEqual(ids[0],ids[1]);self.assertEqual(12,db.execute('select count(*) from observations').fetchone()[0])
             self.assertEqual(2,db.execute('select count(distinct source_sha) from observations').fetchone()[0]);self.assertEqual([],db.execute('pragma foreign_key_check').fetchall());db.close()
 
+    def panel_conflict_fixture(self,change):
+        from au_ree_v2.analysis import prepare_technical_panel,write_csv
+        import tempfile
+        rec=observation(variable='whole_ore_concentrate_recovery_pct',value=84,basis='TREO_INCLUDING_Y',feed='WHOLE_ORE',endpoint='MINERAL_CONCENTRATE',scale='DFS_MODEL',origin='STUDY_PARAMETER')
+        grade=dict(rec,variable='concentrate_treo_grade_pct',value=25,evidence_id='grade')
+        alternative=copy.deepcopy(rec);alternative.update(evidence_id='alternative');change(alternative)
+        second=[dict(rec,project_id='q',case_id='q-case',evidence_id='q-rec',value=80),dict(grade,project_id='q',case_id='q-case',evidence_id='q-grade',value=20)]
+        with tempfile.TemporaryDirectory(dir=ROOT/'work') as tmp:
+            out=Path(tmp);write_csv(out/'reference/matrix.csv',[{'project_id':p,'project_name':p,'D1':.6} for p in ['p','q']],['project_id','project_name','D1'])
+            result=prepare_technical_panel({'policy':POLICY,'inventory':[rec,grade,alternative,*second]},{'panels':{'reference':2}},{'evidence_resolution':POLICY},out)
+            eligibility=list(csv.DictReader((out/'technical_panel_eligibility.csv').open()))
+            return result,eligibility
+    def test_panel_cannot_bypass_same_measurement_value_conflict(self):
+        result,rows=self.panel_conflict_fixture(lambda r:r.update(value=81))
+        self.assertEqual(1,result['n']);self.assertTrue(any('SCIENTIFIC_OBSERVATION_VALUE_CONFLICT' in r['reasons'] for r in rows));self.assertTrue(all(r['eligible']=='False' for r in rows if r['evidence_id'] in ('e','alternative')))
+    def test_panel_same_case_different_scope_or_scenario_is_not_last_write_wins(self):
+        for change in [lambda r:r['raw'].update(scenario='ALTERNATIVE'),lambda r:r.update(scope='different mine plan'),lambda r:r.update(effective_date='2025-02-01')]:
+            result,rows=self.panel_conflict_fixture(change)
+            self.assertEqual(1,result['n']);self.assertTrue(any('AMBIGUOUS_COMPATIBLE_OBSERVATIONS_FOR_CASE_CRITERION' in r['reasons'] for r in rows))
+    def test_panel_exact_corroboration_does_not_add_a_project(self):
+        result,rows=self.panel_conflict_fixture(lambda r:None)
+        self.assertEqual(2,result['n']);self.assertTrue(all(r['eligible']=='True' for r in rows))
+
     def test_held_component_hashes_still_fixed(self):
         from tools.evaluate_phase16_remediation import run
         r=run(ROOT);self.assertEqual(3,r['documents']);self.assertTrue(r['rule_freeze_verified']);self.assertTrue(r['no_retuning'])

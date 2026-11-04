@@ -103,3 +103,9 @@ work/pinned-env/Scripts/python.exe tools/evaluate_phase16_remediation.py work/he
 - 本期兩次獨立 clean 分別 398.453／397.990 秒：170 個面板 CSV、7 份既有證據、7 份 Technical、7 份 Phase16、13 份補修匯出及定義敏感度均符合原規則。本機靜態點差異零；兩個 clean 邏輯 JSON 檔案 SHA 均 `4c59543fedbd8e2520b890b8b0e222f4aec6bee728abd394d31976cc37a5c0ee`。兩庫 integrity=ok／FK=0；canonical 保留較多未選入歷史，不宣稱整個歷史與 clean 相同。
 - 正式資料庫本次完整執行 471.429 秒。本機 Phase5–12 歷史回放通過；Phase12 曾因磁碟不足失敗，清理本次產生的可重建測試／驗證副本後重跑通過。正式 SQLite、原件及已凍結結果未刪除。Phase13 本機重建未完成即停止，剩餘完整歷史驗收交由核心變更 CI；未把 cancelled／pending 報成通過。
 - 首輪本機出版掃描通過 3,642 個檔案；最新完整樹仍由 CI 重新掃描。PR checks 是發布 head 的最終狀態，以上本機封存紀錄不先宣稱 CI 成功。
+
+## 面板衝突防護補充
+
+凍結結果對應 `dbb804f` 的程式內容；後續檢查補上主面板不能繞過共用科學觀測視圖的防護：同案異值、同案不同 scenario／scope／日期均不任取最後一筆；完全相同的語意佐證可保留，但不增加 Project。衝突只排除受影響案例，其餘案例繼續。
+
+此修正未新增原始資料，也沒有重寫凍結檔案。以本期實際 Selection 匯出重建輸入、保留原工程參數型別並套用既有 interchange canonicalization，兩案的資格、來源輸入、矩陣、準則、權重與範圍情境共10檔 exact。新程式 content SHA 及核對記錄見 `data/phase16_remediation_panel_guard.json`；27項補修測試通過。最新 head 的完整歷史與兩次新 CLI clean 由 CI 再驗證，不把原凍結 code SHA 冒稱為後續修正程式。

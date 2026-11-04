@@ -443,20 +443,36 @@ def canonicalize_interchange(out):
 def prepare_technical_panel(selection,prepared,config,out):
     """Additional source-qualified interchange, consumed by the existing R engine.
 
-    No resource scope is copied onto a different mine plan. Infrastructure is
-    an explicitly limited representative-point reference; it is held fixed.
+    No resource scope is copied onto a different mine plan. The configured
+    reference stays fixed; scientific conflicts use the same unified view.
     """
-    from .technical import technical_record,technical_compare,csvrows_local
+    from .technical import technical_record,technical_compare,csvrows_local,unified_observations
     policy=config['evidence_resolution'];model=policy['technical_profile']['numeric_model']
-    contract=model['contract'];eligibility=[];candidates={};names={}
+    contract=model['contract'];eligibility=[];candidates={};options={}
+    shared=unified_observations(selection,policy['technical_profile'])
+    by_evidence={eid:r for r in shared for eid in r['evidence_ids']}
     for c in selection['inventory']:
         if c.get('domain')!='Technical':continue
         r=technical_record(c,policy);reasons=technical_compare(r,contract,contract['model_assumptions'])
         if c.get('origin')!='STUDY_PARAMETER':reasons.append('NOT_TYPED_NAMED_ENGINEERING_CASE_RETAIN_AS_RAW_OR_CORROBORATION')
+        scientific=by_evidence.get(r['evidence_id'])
+        if c.get('origin')=='STUDY_PARAMETER':
+            if scientific is None:reasons.append('SCIENTIFIC_IDENTITY_NOT_ESTABLISHED')
+            elif scientific['measurement_relation']=='CONFLICTING_VALUES_SAME_SCIENTIFIC_OBSERVATION':reasons.append('SCIENTIFIC_OBSERVATION_VALUE_CONFLICT')
         codes=[code for code,item in model['criteria'].items() if item['variable']==r['variable']]
-        eligibility.append(dict(project_id=r['project_id'],case_id=r['case_id'],evidence_id=r['evidence_id'],source_sha256=r['source_sha256'],pdf_page=r['pdf_page'],scope=r['scope'],value=r['value'],basis=r['basis'],feed=r['feed'],endpoint=r['endpoint'],scale=r['scale'],quantity=r['variable'],criteria=codes,reasons=sorted(set(reasons)),eligible=not reasons,model_version=model['version']))
+        entry=dict(project_id=r['project_id'],case_id=r['case_id'],evidence_id=r['evidence_id'],source_sha256=r['source_sha256'],pdf_page=r['pdf_page'],scope=r['scope'],value=r['value'],basis=r['basis'],feed=r['feed'],endpoint=r['endpoint'],scale=r['scale'],quantity=r['variable'],criteria=codes,reasons=sorted(set(reasons)),eligible=not reasons,model_version=model['version'])
+        eligibility.append(entry)
         if reasons or not codes:continue
-        key=(r['project_id'],r['case_id']);candidates.setdefault(key,{})[codes[0]]=r
+        key=(r['project_id'],r['case_id'],codes[0]);options.setdefault(key,[]).append((r,entry,scientific))
+    for (pid,case,code),group in options.items():
+        # Equal values alone do not establish equal scope or measurement.
+        if len({x[2]['scientific_observation_identity'] for x in group})>1 or len({canonical(x[0]['value']) for x in group})>1:
+            for _,entry,_ in group:
+                entry['reasons']=sorted(set(entry['reasons']+['AMBIGUOUS_COMPATIBLE_OBSERVATIONS_FOR_CASE_CRITERION']));entry['eligible']=False
+            continue
+        # Exact semantic corroboration is already linked by unified_observations;
+        # all evidence IDs/locators remain in that view, never extra experiments.
+        candidates.setdefault((pid,case),{})[code]=min((x[0] for x in group),key=canonical)
     # The reference comes from the current shared matrix, never a frozen rank.
     reference={};reference_code=model['reference_criterion']
     for panel in sorted(prepared['panels']):

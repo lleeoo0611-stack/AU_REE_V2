@@ -1,0 +1,57 @@
+{
+  "version": "phase16-remediation-panel-conflict-guard-v1",
+  "frozen_commit": "dbb804fdb46ea637bdc28a6b927d4db7388a1cf6",
+  "frozen_source_content_sha256": "dac7ab7a2071b51eeca0d0f1e7a4d5d83f8db6d72eb4476846238ce0f353aa21",
+  "guard_code": {
+    "package": "0.1.0",
+    "commit": "dbb804fdb46ea637bdc28a6b927d4db7388a1cf6",
+    "content_sha256": "8c46b1e612443cb3a5aed0e602ccc6881bb42a4f856e3feced7fc046009e7011"
+  },
+  "new_valid_numeric_data": 0,
+  "new_projects": 0,
+  "actual_cases": 2,
+  "frozen_actual_selection_inputs_reassembled_without_database_mutation": true,
+  "current_scientific_interchange_unchanged": [
+    {
+      "file": "technical_panel_eligibility.csv",
+      "exact": true
+    },
+    {
+      "file": "technical_panel_cases.csv",
+      "exact": true
+    },
+    {
+      "file": "technical_panel_inputs.csv",
+      "exact": true
+    },
+    {
+      "file": "technical_scope_sensitivity.csv",
+      "exact": true
+    },
+    {
+      "file": "technical_process_concentrate_fixed/matrix.csv",
+      "exact": true
+    },
+    {
+      "file": "technical_process_concentrate_fixed/criteria.csv",
+      "exact": true
+    },
+    {
+      "file": "technical_process_concentrate_fixed/weights.csv",
+      "exact": true
+    },
+    {
+      "file": "technical_process_concentrate_sample_minmax/matrix.csv",
+      "exact": true
+    },
+    {
+      "file": "technical_process_concentrate_sample_minmax/criteria.csv",
+      "exact": true
+    },
+    {
+      "file": "technical_process_concentrate_sample_minmax/weights.csv",
+      "exact": true
+    }
+  ],
+  "verification": "Rehydrated current Selection export with original Study Parameter numeric types; ran shared-identity guard and normal CLI interchange canonicalization. Initial raw-order comparison of criteria/weights was corrected by executing the existing canonicalization step; no scientific tolerance changed. Latest-head CI performs fresh full CLI, history and two-clean. Original frozen outputs and hashes retained."
+}
