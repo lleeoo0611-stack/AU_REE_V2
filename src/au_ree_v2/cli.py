@@ -266,6 +266,13 @@ def execute(args):
             if not args.skip_r:
                 results=run_r(root,out,prepared,config,args.rscript)
             if config.get('research_utilization') and selection:research_readiness(selection,out,config.get('research_analysis_version'))
+            if selection and config.get('evidence_resolution',{}).get('technical_analysis'):
+                from .technical import analyze_cells
+                analyze_cells(selection,config['evidence_resolution']['technical_analysis'],db,run_id,out,{identity['mapping'].get(pid,pid) for pid in resources})
+                if not args.skip_r:
+                    from .technical import plot_cells
+                    plot_cells(root,out,args.rscript)
+
         source_shas={s['sha256'] for s in snapshots}
         from .national import raw_domain_coverage
         if config.get('research_analysis_version')=='evidence-cohort-v1':

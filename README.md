@@ -211,3 +211,9 @@ Latest evidence increment: [Phase 5 sources and research results](docs/phase5-pr
 
 
 Phase14 adds [bounded official WAMEX/GSQ report discovery and measured recovery](docs/phase14-official-reports.md): four WAMEX originals,315→321 validated numeric statements, unchanged21 resource cases and no extra common MCDA sample. [Frozen results](results/phase14-2026-11-04/README.md) preserve the original gates and methods. Live update status is reported separately from offline scientific CI; GSQ document delivery remains partial.
+
+## Phase 15：來源限定的技術擷取與分析
+
+已將既有 Dubbo／Cummins 原件及新取得的 Donald／Nolans 技術表接入同一 CLI、SQLite 與 Evidence Selection。379 個來源格位包含 371 個通過驗證的數值，產生試劑強度、品位—回收率、附條件精選保留比及流程一致性分析；不代表379次獨立測量，也未更改正式T1或C1。
+
+[研究報告](docs/phase15-source-bound-technical.md) · [凍結結果與重現命令](results/phase15-2026-11-04/README.md) · [逐文件評估](data/phase15_document_benchmark.json)。

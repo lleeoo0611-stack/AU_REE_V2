@@ -1,5 +1,5 @@
 {
-  "version": "evidence-resolution-v8-official-report-recovery",
+  "version": "evidence-resolution-v9-source-bound-technical",
   "main_codes": [
     "R1",
     "S1",
@@ -346,7 +346,7 @@
   },
   "identity_rule_version": "document-native-extension-phase8-v1",
   "document_pipeline": {
-    "parser_version": "document-recognition-v4-native-resource-totals",
+    "parser_version": "document-recognition-v5-technical-cells",
     "role": "RAW_SCOPED_DISCLOSURES_NOT_AUTOMATIC_FORMAL_CRITERIA",
     "resource_promotion": "REPORTED_VARIABLES_ONLY_UNTIL_EFFECTIVE_DATE_AND_SCOPE_COMPATIBLE",
     "validation_version": "scientific-context-v4-column-binding",
@@ -354,7 +354,8 @@
       "document-recognition-v1",
       "document-recognition-v2-mineralogy",
       "document-recognition-v3-bound-quantities",
-      "document-recognition-v4-native-resource-totals"
+      "document-recognition-v4-native-resource-totals",
+      "document-recognition-v5-technical-cells"
     ]
   },
   "technical_comparability": {
@@ -398,5 +399,113 @@
     "quality_scoring": "NO_WEIGHTED_SCORE",
     "measured_contract_status": "NO_CROSS_PROJECT_MEASURED_CONTRACT_ADOPTED",
     "historical_compatibility": "Opt-in only; frozen Phase5-9 policies retain their semantics"
+  },
+  "technical_analysis": {
+    "version": "source-bound-technical-v1",
+    "contracts": {
+      "WITHIN_TABLE_ELEMENT_LEACH": {
+        "version": "technical-use-v2",
+        "variables": [
+          "reported_technical_extraction_pct"
+        ],
+        "unit": "%",
+        "basis": null,
+        "analysis_scope": "WITHIN_SAMPLE",
+        "requires": {},
+        "required_conditions": [
+          "sample_population",
+          "grain_mm",
+          "source_column"
+        ],
+        "model_assumptions": []
+      },
+      "WITHIN_COMPOSITE_FLOTATION": {
+        "version": "technical-use-v2",
+        "variables": [
+          "reported_technical_grade_pct",
+          "reported_technical_recovery_pct"
+        ],
+        "unit": "%",
+        "basis": [
+          "TREO",
+          "Ce"
+        ],
+        "analysis_scope": "WITHIN_SAMPLE",
+        "requires": {},
+        "required_conditions": [
+          "sample_population",
+          "product"
+        ],
+        "model_assumptions": []
+      },
+      "DESIGN_DRY_FEED_REAGENT": {
+        "version": "technical-use-v2",
+        "variables": [
+          "reported_technical_reagent_tpa"
+        ],
+        "unit": "tpa",
+        "basis": null,
+        "analysis_scope": "WITHIN_PROCESS",
+        "requires": {},
+        "required_conditions": [
+          "stage",
+          "reagent"
+        ],
+        "model_assumptions": [
+          "Dated scoping design, commercial formulation mass; no operating or active-purity inference"
+        ]
+      },
+      "SOURCE_BRANCH_CONSISTENCY": {
+        "version": "technical-use-v2",
+        "variables": [
+          "reported_technical_stage_recovery_pct"
+        ],
+        "unit": "%",
+        "basis": [
+          "CeO2",
+          "Y2O3",
+          "TiO2",
+          "ZrO2",
+          "THM"
+        ],
+        "requires": {},
+        "analysis_scope": "WITHIN_PROCESS",
+        "required_conditions": [
+          "from_material",
+          "to_material",
+          "fraction_scope"
+        ]
+      },
+      "SOURCE_DESIGN_COMPONENT_PROFILE": {
+        "version": "technical-use-v2",
+        "variables": [
+          "reported_technical_downstream_recovery_factor"
+        ],
+        "unit": "fraction",
+        "requires": {},
+        "analysis_scope": "WITHIN_PROCESS",
+        "required_conditions": [
+          "basis",
+          "feed",
+          "endpoint"
+        ],
+        "model_assumptions": [
+          "Dated DFS coefficient, not measured whole-ore recovery; no weighted TREO without composition"
+        ]
+      }
+    },
+    "quantity_roles": {
+      "grade_pct": "INTERMEDIATE_PRODUCT_GRADE",
+      "recovery_pct": "BENEFICIATION_RECOVERY",
+      "stage_recovery_pct": "STAGE_MATERIAL_RECOVERY",
+      "downstream_recovery_factor": "ELEMENT_DESIGN_RECOVERY_FACTOR",
+      "reagent_intensity": "REAGENT_INTENSITY",
+      "reagent_tpa": "REAGENT_ANNUAL_AMOUNT",
+      "dry_feed_mtpa": "DESIGN_DRY_FEED"
+    },
+    "performance_roles": [
+      "STAGE_MATERIAL_RECOVERY",
+      "ELEMENT_DESIGN_RECOVERY_FACTOR"
+    ]
   }
 }
