@@ -1,0 +1,786 @@
+{
+  "version": "phase14-official-report-recovery-v1",
+  "baseline_commit": "386b8fdeb6192913c3aaf8b7a2bf9ce229d5b75f",
+  "branch": "feat/phase14-official-reports",
+  "base_branch": "feat/phase13-source-recovery",
+  "parent_pr": 3,
+  "canonical_run": "20261104T045200-525bf851",
+  "code": {
+    "package": "0.1.0",
+    "commit": "386b8fdeb6192913c3aaf8b7a2bf9ce229d5b75f",
+    "content_sha256": "82315d87d1030a57a2e936e84bada701cf10b2b2a1cd1d86ea109d216f5dd9bb"
+  },
+  "configuration_sha256": "2ee9f2d2b3d1f8997f3939f9e665b760b6f6d10eee0a379fc207296f8d7e482c",
+  "snapshot_sha256": "871cca467d381e76239ddaa7e19ca3d34ba5ebc3407d817f9d7128836c9ecef6",
+  "cutoffs": {
+    "research": "2026-11-03",
+    "acquisition_through": "2026-11-04",
+    "formal": "2026-10-29"
+  },
+  "before": {
+    "unresolved_pairs": 36,
+    "primary_scope_gaps": 1,
+    "resource_defined": 21,
+    "source_snapshots": 204,
+    "pdf_snapshots": 54,
+    "validated_statement_values": 315,
+    "validated_structured_events": 21,
+    "government_unconfirmed_relation_candidates": 112,
+    "government_confirmed_representative_site_relations": 4,
+    "development": 0,
+    "full_evidence": 0,
+    "canonical_registry_groups": 31,
+    "scorable_Resource": 21,
+    "scorable_Strategic": 10,
+    "scorable_Technical": 0,
+    "scorable_Development": 9,
+    "scorable_Infrastructure": 19,
+    "scorable_Commercial": 8
+  },
+  "after": {
+    "unresolved_pairs": 36,
+    "primary_scope_gaps": 1,
+    "resource_defined": 21,
+    "source_snapshots": 242,
+    "pdf_snapshots": 58,
+    "validated_statement_values": 321,
+    "validated_structured_events": 21,
+    "government_unconfirmed_relation_candidates": 112,
+    "government_confirmed_representative_site_relations": 4,
+    "development": 0,
+    "full_evidence": 0,
+    "canonical_registry_groups": 31,
+    "scorable_Resource": 21,
+    "scorable_Strategic": 10,
+    "scorable_Technical": 0,
+    "scorable_Development": 9,
+    "scorable_Infrastructure": 19,
+    "scorable_Commercial": 8
+  },
+  "cohorts": [
+    {
+      "panel": "beneficiation_concentrate_screen",
+      "before_n": 2,
+      "after_n": 2
+    },
+    {
+      "panel": "issuer_resource_composition",
+      "before_n": 10,
+      "after_n": 10
+    },
+    {
+      "panel": "issuer_resource_concentrate",
+      "before_n": 2,
+      "after_n": 2
+    },
+    {
+      "panel": "issuer_resource_concentrate_recovery",
+      "before_n": 2,
+      "after_n": 2
+    },
+    {
+      "panel": "issuer_resource_financing_milestone",
+      "before_n": 6,
+      "after_n": 6
+    },
+    {
+      "panel": "issuer_resource_infrastructure",
+      "before_n": 7,
+      "after_n": 7
+    },
+    {
+      "panel": "issuer_resource_study",
+      "before_n": 8,
+      "after_n": 8
+    },
+    {
+      "panel": "official_wa_resource_screen",
+      "before_n": 17,
+      "after_n": 17
+    },
+    {
+      "panel": "resource_infrastructure_pilot",
+      "before_n": 19,
+      "after_n": 19
+    }
+  ],
+  "numeric_yield": {
+    "automatic_numeric_additions": 6,
+    "net_selected_increase": 6,
+    "source": "Existing Salazar original p7; two resource and four oxide-component cells. Corroborative raw statements, not six new measurements or projects.",
+    "new_official_document_numeric_additions": 0,
+    "new_scorable_project_criteria": 0,
+    "new_joint_mcda_projects": 0,
+    "added_observations": [
+      {
+        "project_id": "AU-bb565f5348679a46d4a0",
+        "variable": "reported_strategic_nd2o3_ppm",
+        "value": "193.0",
+        "unit": "ppm",
+        "basis": "Nd2O3",
+        "scope": "Table 1: Salazar Project, Newmont and O’Connor Deposits - Indicated and Inferred TREO Mineral Resource",
+        "effective_date": "2024-10-08",
+        "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+        "pdf_page": "7",
+        "locator": "physical page 7; row/paragraph 27",
+        "origin": "OBSERVATION"
+      },
+      {
+        "project_id": "AU-bb565f5348679a46d4a0",
+        "variable": "reported_strategic_pr6o11_ppm",
+        "value": "55.0",
+        "unit": "ppm",
+        "basis": "Pr6O11",
+        "scope": "Table 1: Salazar Project, Newmont and O’Connor Deposits - Indicated and Inferred TREO Mineral Resource",
+        "effective_date": "2024-10-08",
+        "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+        "pdf_page": "7",
+        "locator": "physical page 7; row/paragraph 27",
+        "origin": "OBSERVATION"
+      },
+      {
+        "project_id": "AU-bb565f5348679a46d4a0",
+        "variable": "reported_resource_grade",
+        "value": "1178.0",
+        "unit": "ppm",
+        "basis": "TREO",
+        "scope": "Table 1: Salazar Project, Newmont and O’Connor Deposits - Indicated and Inferred TREO Mineral Resource",
+        "effective_date": "2024-10-08",
+        "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+        "pdf_page": "7",
+        "locator": "physical page 7; row/paragraph 27",
+        "origin": "OBSERVATION"
+      },
+      {
+        "project_id": "AU-bb565f5348679a46d4a0",
+        "variable": "reported_strategic_tb4o7_ppm",
+        "value": "4.0",
+        "unit": "ppm",
+        "basis": "Tb4O7",
+        "scope": "Table 1: Salazar Project, Newmont and O’Connor Deposits - Indicated and Inferred TREO Mineral Resource",
+        "effective_date": "2024-10-08",
+        "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+        "pdf_page": "7",
+        "locator": "physical page 7; row/paragraph 27",
+        "origin": "OBSERVATION"
+      },
+      {
+        "project_id": "AU-bb565f5348679a46d4a0",
+        "variable": "reported_resource_ore_mt",
+        "value": "230.0",
+        "unit": "Mt",
+        "basis": "TREO",
+        "scope": "Table 1: Salazar Project, Newmont and O’Connor Deposits - Indicated and Inferred TREO Mineral Resource",
+        "effective_date": "2024-10-08",
+        "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+        "pdf_page": "7",
+        "locator": "physical page 7; row/paragraph 27",
+        "origin": "OBSERVATION"
+      },
+      {
+        "project_id": "AU-bb565f5348679a46d4a0",
+        "variable": "reported_strategic_dy2o3_ppm",
+        "value": "22.0",
+        "unit": "ppm",
+        "basis": "Dy2O3",
+        "scope": "Table 1: Salazar Project, Newmont and O’Connor Deposits - Indicated and Inferred TREO Mineral Resource",
+        "effective_date": "2024-10-08",
+        "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+        "pdf_page": "7",
+        "locator": "physical page 7; row/paragraph 27",
+        "origin": "OBSERVATION"
+      }
+    ],
+    "removed_numeric_observations": 0
+  },
+  "original_pdf_snapshots": {
+    "before_entries": 54,
+    "after_entries": 58,
+    "before_distinct_shas": 52,
+    "after_distinct_shas": 56,
+    "new_distinct_pdfs": [
+      {
+        "acquired_at": "2026-11-04T04:23:14.896333+00:00",
+        "authority": "OFFICIAL_WAMEX_REPORT",
+        "available_date": "2026-11-04",
+        "date_role": "OPEN_FILE_RELEASE_NOT_RESOURCE_EFFECTIVE_DATE",
+        "key": "wamex_A104804_423301",
+        "kind": "pdf",
+        "metadata_sha256": [
+          "26a9fae3030fad03ed73b58d18b86a389b7b8a4f266e2105d116a8945dc27adb"
+        ],
+        "original_filename": "a104804_lith_logging_codes_20150416_(ocr)_KG_OCR.pdf",
+        "path": "data/snapshots/fe89b4e4c4ebc1baa493f5d9dfcaef6bc4ce3645b1d8cf09d82f9a5bceb1ecb9.pdf",
+        "publication_date": "2021-05-03",
+        "report_native_id": "WAMEX:A104804",
+        "resource_native_id": "423301",
+        "sha256": "fe89b4e4c4ebc1baa493f5d9dfcaef6bc4ce3645b1d8cf09d82f9a5bceb1ecb9",
+        "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=104804"
+      },
+      {
+        "acquired_at": "2026-11-04T04:23:53.359430+00:00",
+        "authority": "OFFICIAL_WAMEX_REPORT",
+        "available_date": "2026-11-04",
+        "date_role": "OPEN_FILE_RELEASE_NOT_RESOURCE_EFFECTIVE_DATE",
+        "key": "wamex_A107882_440687",
+        "kind": "pdf",
+        "metadata_sha256": [
+          "2e81286b46907bdbe37fd6e6f0ab67e8d8027d882227d3b8aa9a7c5c9683710a"
+        ],
+        "original_filename": "c56-1999_2015 mt weld rare earths project annual report_KG_OCR.pdf",
+        "path": "data/snapshots/6faf69a2970df7948b3d04ddb5835eec18302d4d6e2896e8013fb45de24b0dfa.pdf",
+        "publication_date": "2022-05-02",
+        "report_native_id": "WAMEX:A107882",
+        "resource_native_id": "440687",
+        "sha256": "6faf69a2970df7948b3d04ddb5835eec18302d4d6e2896e8013fb45de24b0dfa",
+        "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=107882"
+      },
+      {
+        "acquired_at": "2026-11-04T04:31:51.497070+00:00",
+        "authority": "OFFICIAL_WAMEX_REPORT",
+        "available_date": "2026-11-04",
+        "date_role": "OPEN_FILE_RELEASE_NOT_RESOURCE_EFFECTIVE_DATE",
+        "key": "wamex_A118927_534767",
+        "kind": "pdf",
+        "metadata_sha256": [
+          "0b8e55c3951edcdc826f05fc46640cf5e6df4c4265c88d147ba4e228765cc7aa"
+        ],
+        "original_filename": "a118927_v1_report_KG_OCR.pdf",
+        "path": "data/snapshots/0ee87a6876f4ab20b39d67303f84f0cdf04372a4588c6cb9a74a741b33481736.pdf",
+        "publication_date": "2025-05-05",
+        "report_native_id": "WAMEX:A118927",
+        "resource_native_id": "534767",
+        "sha256": "0ee87a6876f4ab20b39d67303f84f0cdf04372a4588c6cb9a74a741b33481736",
+        "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=118927"
+      },
+      {
+        "acquired_at": "2026-11-04T04:32:04.351183+00:00",
+        "authority": "OFFICIAL_WAMEX_REPORT",
+        "available_date": "2026-11-04",
+        "date_role": "OPEN_FILE_RELEASE_NOT_RESOURCE_EFFECTIVE_DATE",
+        "key": "wamex_A118927_535165",
+        "kind": "pdf",
+        "metadata_sha256": [
+          "0b8e55c3951edcdc826f05fc46640cf5e6df4c4265c88d147ba4e228765cc7aa"
+        ],
+        "original_filename": "sgc3347_hastings_yangibana_magmodelling_KG_OCR.pdf",
+        "path": "data/snapshots/56471f58306f36b3fc8f58488bd89961a4275a2c612c196a63eaf506d77f8cb8.pdf",
+        "publication_date": "2025-05-05",
+        "report_native_id": "WAMEX:A118927",
+        "resource_native_id": "535165",
+        "sha256": "56471f58306f36b3fc8f58488bd89961a4275a2c612c196a63eaf506d77f8cb8",
+        "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=118927"
+      }
+    ],
+    "full_annual_technical_reports": 2,
+    "methodology_or_geophysical_appendices": 2
+  },
+  "official_metadata": {
+    "final_bounded_view": {
+      "WAMEX": 30,
+      "GSQ": 16
+    },
+    "WAMEX_matched_count": 42,
+    "WAMEX_retrieved_count": 30,
+    "WAMEX_complete": false,
+    "GSQ_queries": [
+      {
+        "query": "rare earth phrase",
+        "matched": 302,
+        "retrieved": 8,
+        "pages": 2,
+        "complete": false
+      },
+      {
+        "query": "monazite",
+        "matched": 381,
+        "retrieved": 8,
+        "pages": 2,
+        "complete": false
+      }
+    ],
+    "unique_native_report_ids_in_selected_execution_receipts": [
+      "GSQ:cr002398",
+      "GSQ:cr006355",
+      "GSQ:cr015659",
+      "GSQ:cr017345",
+      "GSQ:cr017878",
+      "GSQ:cr019982",
+      "GSQ:cr021892",
+      "GSQ:cr055354",
+      "GSQ:cr114541",
+      "GSQ:cr115571",
+      "GSQ:cr116327",
+      "GSQ:cr123673",
+      "GSQ:cr125720",
+      "GSQ:cr138687",
+      "GSQ:cr138689",
+      "GSQ:cr166873",
+      "WAMEX:A104804",
+      "WAMEX:A105288",
+      "WAMEX:A105548",
+      "WAMEX:A107133",
+      "WAMEX:A107134",
+      "WAMEX:A107511",
+      "WAMEX:A107803",
+      "WAMEX:A107882",
+      "WAMEX:A108517",
+      "WAMEX:A109311",
+      "WAMEX:A109438",
+      "WAMEX:A109831",
+      "WAMEX:A111860",
+      "WAMEX:A112044",
+      "WAMEX:A112080",
+      "WAMEX:A112513",
+      "WAMEX:A114242",
+      "WAMEX:A115877",
+      "WAMEX:A116142",
+      "WAMEX:A116568",
+      "WAMEX:A116804",
+      "WAMEX:A118402",
+      "WAMEX:A118927",
+      "WAMEX:A119053",
+      "WAMEX:A119370",
+      "WAMEX:A119604",
+      "WAMEX:A119861",
+      "WAMEX:A122818",
+      "WAMEX:A122882",
+      "WAMEX:A122902",
+      "WAMEX:A59666",
+      "WAMEX:A61622",
+      "WAMEX:A61891",
+      "WAMEX:A62002",
+      "WAMEX:A66166",
+      "WAMEX:A67907",
+      "WAMEX:A68782",
+      "WAMEX:A70146",
+      "WAMEX:A71305",
+      "WAMEX:A71752",
+      "WAMEX:A74680",
+      "WAMEX:A76961",
+      "WAMEX:A77656",
+      "WAMEX:A80229",
+      "WAMEX:A80543",
+      "WAMEX:A81632",
+      "WAMEX:A82697",
+      "WAMEX:A85423",
+      "WAMEX:A85426",
+      "WAMEX:A86201",
+      "WAMEX:A88702",
+      "WAMEX:A88940",
+      "WAMEX:A89738",
+      "WAMEX:A91543",
+      "WAMEX:A92176",
+      "WAMEX:A92232",
+      "WAMEX:A92234",
+      "WAMEX:A92451",
+      "WAMEX:A92509",
+      "WAMEX:A93001"
+    ],
+    "unique_native_report_counts": {
+      "WAMEX": 60,
+      "GSQ": 16
+    },
+    "new_project_entities": 0,
+    "new_confirmed_cross_source_project_relations": 0,
+    "source_bound_report_document_records": 4,
+    "interpretation": "Historical reports/metadata are not independent Projects or current JORC resources. Alias/company matches remain candidates; spatial overlap does not confirm identity."
+  },
+  "live_automation": {
+    "final_bounded_acquisition": {
+      "status": "PARTIAL_FAILURE",
+      "valid_source_searches": 7,
+      "source_failures": 0,
+      "downloaded_originals": 2,
+      "reused_originals": 0,
+      "download_failures": 5,
+      "parsed_documents": 2,
+      "reused_extractions": 0,
+      "parse_failures": 0,
+      "failure_reasons": {
+        "NON_PDF_RESPONSE": 5
+      },
+      "validated_numeric_observations": null,
+      "new_scorable_project_criteria": null,
+      "scientific_yield_status": "NOT_EVALUATED_UNTIL_EXISTING_EVIDENCE_SELECTION_AND_DATABASE_REBUILD",
+      "reconstruction_status": "SEPARATE_OFFLINE_SCIENTIFIC_JOB",
+      "no_document_absence_inference": true
+    },
+    "same_configuration_rerun": {
+      "status": "PARTIAL_FAILURE",
+      "valid_source_searches": 7,
+      "source_failures": 0,
+      "downloaded_originals": 0,
+      "reused_originals": 2,
+      "download_failures": 5,
+      "parsed_documents": 0,
+      "reused_extractions": 2,
+      "parse_failures": 0,
+      "failure_reasons": {
+        "NON_PDF_RESPONSE": 5
+      },
+      "validated_numeric_observations": null,
+      "new_scorable_project_criteria": null,
+      "scientific_yield_status": "NOT_EVALUATED_UNTIL_EXISTING_EVIDENCE_SELECTION_AND_DATABASE_REBUILD",
+      "reconstruction_status": "SEPARATE_OFFLINE_SCIENTIFIC_JOB",
+      "no_document_absence_inference": true
+    },
+    "workflow_local_script": {
+      "status": "PASS",
+      "partial_update_exit_code": 1,
+      "summary_valid_json": true,
+      "offline_science_job_separate": true
+    },
+    "receipt_files": [
+      "data/phase14_live_acquisition.json",
+      "data/phase14_live_idempotence.json"
+    ],
+    "limitation": "An earlier bounded configuration acquired the first two WAMEX PDFs; final prioritized configuration acquired two further PDFs. Do not pool exploratory attempts into a single success rate. Offline CI success does not assert live acquisition success."
+  },
+  "document_pipeline_before": {
+    "candidate_statuses": {
+      "AUTO_VALIDATED": 411,
+      "OBSERVATION_EXTRACTED_NOT_VALIDATED": 1152,
+      "REVIEW": 198
+    },
+    "candidates": 1761,
+    "documents": 27,
+    "limitations": [
+      "RAW_VALIDATION_IS_NOT_FORMAL_CRITERION_APPROVAL",
+      "NO_CORPUS_WIDE_RECALL_CLAIM"
+    ],
+    "pages": 1364,
+    "relevant_pages": 700,
+    "tables": 81,
+    "validated_observations": 528
+  },
+  "document_pipeline_after": {
+    "candidate_statuses": {
+      "AUTO_VALIDATED": 444,
+      "OBSERVATION_EXTRACTED_NOT_VALIDATED": 1213,
+      "REVIEW": 201
+    },
+    "candidates": 1858,
+    "documents": 32,
+    "limitations": [
+      "RAW_VALIDATION_IS_NOT_FORMAL_CRITERION_APPROVAL",
+      "NO_CORPUS_WIDE_RECALL_CLAIM"
+    ],
+    "pages": 1507,
+    "relevant_pages": 776,
+    "tables": 100,
+    "validated_observations": 566
+  },
+  "technical_inventory": {
+    "before": {
+      "NOT_COMPARABLE": 573,
+      "DESCRIPTIVE_ONLY": 274,
+      "NUMERIC_COMPARABLE": 4
+    },
+    "after": {
+      "NOT_COMPARABLE": 576,
+      "DESCRIPTIVE_ONLY": 305,
+      "NUMERIC_COMPARABLE": 4
+    }
+  },
+  "source_coverage": {
+    "rows": 279,
+    "registry_groups": 31,
+    "before_stages": {
+      "VERIFIED_NOT_CURRENTLY_COMPARABLE": 55,
+      "SEARCHED_NO_CANDIDATE_IN_BOUNDED_COVERAGE": 93,
+      "PARSED_NO_VALIDATED_OBSERVATION": 25,
+      "PARSED_VALUES_OR_SCOPE_NOT_VALIDATED": 8,
+      "VERIFIED_USABLE_FOR_SPECIFIED_ANALYSIS": 31,
+      "NOT_SEARCHED_OR_ENDPOINT_NOT_CONFIGURED": 66,
+      "DISCOVERED_DOWNLOAD_FAILED": 1
+    },
+    "after_stages": {
+      "VERIFIED_NOT_CURRENTLY_COMPARABLE": 59,
+      "SEARCHED_NO_CANDIDATE_IN_BOUNDED_COVERAGE": 89,
+      "PARSED_NO_VALIDATED_OBSERVATION": 25,
+      "PARSED_VALUES_OR_SCOPE_NOT_VALIDATED": 8,
+      "VERIFIED_USABLE_FOR_SPECIFIED_ANALYSIS": 31,
+      "NOT_SEARCHED_OR_ENDPOINT_NOT_CONFIGURED": 66,
+      "DISCOVERED_DOWNLOAD_FAILED": 1
+    },
+    "before_bounded_attempt_projects": 22,
+    "after_bounded_attempt_projects": 22
+  },
+  "stable_ids": {
+    "before": 7555,
+    "after": 7555,
+    "retained_existing": 7555,
+    "removed": [],
+    "added": []
+  },
+  "sqlite": {
+    "schema_changed": false,
+    "schema_sha256": "855340b9c96e300a6e5cb5bb487400b12a9d25a41286f8a23a32ea5dcc40b38b",
+    "quick_check": "ok",
+    "foreign_key_check": []
+  },
+  "unchanged_panel_scientific_csv_files": [
+    "beneficiation_concentrate_screen/ahp_audit.csv",
+    "beneficiation_concentrate_screen/cohort_sensitivity.csv",
+    "beneficiation_concentrate_screen/criteria.csv",
+    "beneficiation_concentrate_screen/criterion_contributions.csv",
+    "beneficiation_concentrate_screen/function_sensitivity.csv",
+    "beneficiation_concentrate_screen/leave_out.csv",
+    "beneficiation_concentrate_screen/matrix.csv",
+    "beneficiation_concentrate_screen/method_comparison.csv",
+    "beneficiation_concentrate_screen/partial_order.csv",
+    "beneficiation_concentrate_screen/ranking.csv",
+    "beneficiation_concentrate_screen/rounding_uncertainty.csv",
+    "beneficiation_concentrate_screen/runtime.csv",
+    "beneficiation_concentrate_screen/weight_uncertainty.csv",
+    "beneficiation_concentrate_screen/weights.csv",
+    "issuer_resource_composition/ahp_audit.csv",
+    "issuer_resource_composition/aim_c_host_type_description.csv",
+    "issuer_resource_composition/cohort_sensitivity.csv",
+    "issuer_resource_composition/criteria.csv",
+    "issuer_resource_composition/criterion_contributions.csv",
+    "issuer_resource_composition/evidence_cohort_sensitivity.csv",
+    "issuer_resource_composition/function_sensitivity.csv",
+    "issuer_resource_composition/leave_out.csv",
+    "issuer_resource_composition/matrix.csv",
+    "issuer_resource_composition/method_comparison.csv",
+    "issuer_resource_composition/partial_order.csv",
+    "issuer_resource_composition/ranking.csv",
+    "issuer_resource_composition/rounding_uncertainty.csv",
+    "issuer_resource_composition/runtime.csv",
+    "issuer_resource_composition/weight_uncertainty.csv",
+    "issuer_resource_composition/weights.csv",
+    "issuer_resource_concentrate/ahp_audit.csv",
+    "issuer_resource_concentrate/aim_c_host_type_description.csv",
+    "issuer_resource_concentrate/cohort_sensitivity.csv",
+    "issuer_resource_concentrate/criteria.csv",
+    "issuer_resource_concentrate/criterion_contributions.csv",
+    "issuer_resource_concentrate/evidence_cohort_sensitivity.csv",
+    "issuer_resource_concentrate/function_sensitivity.csv",
+    "issuer_resource_concentrate/leave_out.csv",
+    "issuer_resource_concentrate/matrix.csv",
+    "issuer_resource_concentrate/method_comparison.csv",
+    "issuer_resource_concentrate/partial_order.csv",
+    "issuer_resource_concentrate/ranking.csv",
+    "issuer_resource_concentrate/rounding_uncertainty.csv",
+    "issuer_resource_concentrate/runtime.csv",
+    "issuer_resource_concentrate/weight_uncertainty.csv",
+    "issuer_resource_concentrate/weights.csv",
+    "issuer_resource_concentrate_recovery/ahp_audit.csv",
+    "issuer_resource_concentrate_recovery/aim_c_host_type_description.csv",
+    "issuer_resource_concentrate_recovery/cohort_sensitivity.csv",
+    "issuer_resource_concentrate_recovery/criteria.csv",
+    "issuer_resource_concentrate_recovery/criterion_contributions.csv",
+    "issuer_resource_concentrate_recovery/evidence_cohort_sensitivity.csv",
+    "issuer_resource_concentrate_recovery/function_sensitivity.csv",
+    "issuer_resource_concentrate_recovery/leave_out.csv",
+    "issuer_resource_concentrate_recovery/matrix.csv",
+    "issuer_resource_concentrate_recovery/method_comparison.csv",
+    "issuer_resource_concentrate_recovery/partial_order.csv",
+    "issuer_resource_concentrate_recovery/ranking.csv",
+    "issuer_resource_concentrate_recovery/rounding_uncertainty.csv",
+    "issuer_resource_concentrate_recovery/runtime.csv",
+    "issuer_resource_concentrate_recovery/weight_uncertainty.csv",
+    "issuer_resource_concentrate_recovery/weights.csv",
+    "issuer_resource_financing_milestone/ahp_audit.csv",
+    "issuer_resource_financing_milestone/aim_c_host_type_description.csv",
+    "issuer_resource_financing_milestone/cohort_sensitivity.csv",
+    "issuer_resource_financing_milestone/commercial_saw_crossings.csv",
+    "issuer_resource_financing_milestone/commercial_weight_sensitivity.csv",
+    "issuer_resource_financing_milestone/criteria.csv",
+    "issuer_resource_financing_milestone/criterion_contributions.csv",
+    "issuer_resource_financing_milestone/evidence_cohort_sensitivity.csv",
+    "issuer_resource_financing_milestone/function_sensitivity.csv",
+    "issuer_resource_financing_milestone/leave_out.csv",
+    "issuer_resource_financing_milestone/matrix.csv",
+    "issuer_resource_financing_milestone/method_comparison.csv",
+    "issuer_resource_financing_milestone/partial_order.csv",
+    "issuer_resource_financing_milestone/ranking.csv",
+    "issuer_resource_financing_milestone/rounding_uncertainty.csv",
+    "issuer_resource_financing_milestone/runtime.csv",
+    "issuer_resource_financing_milestone/weight_uncertainty.csv",
+    "issuer_resource_financing_milestone/weights.csv",
+    "issuer_resource_infrastructure/ahp_audit.csv",
+    "issuer_resource_infrastructure/aim_c_host_type_description.csv",
+    "issuer_resource_infrastructure/cohort_sensitivity.csv",
+    "issuer_resource_infrastructure/criteria.csv",
+    "issuer_resource_infrastructure/criterion_contributions.csv",
+    "issuer_resource_infrastructure/evidence_cohort_sensitivity.csv",
+    "issuer_resource_infrastructure/function_sensitivity.csv",
+    "issuer_resource_infrastructure/leave_out.csv",
+    "issuer_resource_infrastructure/matrix.csv",
+    "issuer_resource_infrastructure/method_comparison.csv",
+    "issuer_resource_infrastructure/partial_order.csv",
+    "issuer_resource_infrastructure/ranking.csv",
+    "issuer_resource_infrastructure/rounding_uncertainty.csv",
+    "issuer_resource_infrastructure/runtime.csv",
+    "issuer_resource_infrastructure/weight_uncertainty.csv",
+    "issuer_resource_infrastructure/weights.csv",
+    "issuer_resource_study/ahp_audit.csv",
+    "issuer_resource_study/aim_c_host_type_description.csv",
+    "issuer_resource_study/cohort_sensitivity.csv",
+    "issuer_resource_study/criteria.csv",
+    "issuer_resource_study/criterion_contributions.csv",
+    "issuer_resource_study/evidence_cohort_sensitivity.csv",
+    "issuer_resource_study/function_sensitivity.csv",
+    "issuer_resource_study/leave_out.csv",
+    "issuer_resource_study/matrix.csv",
+    "issuer_resource_study/method_comparison.csv",
+    "issuer_resource_study/partial_order.csv",
+    "issuer_resource_study/ranking.csv",
+    "issuer_resource_study/rounding_uncertainty.csv",
+    "issuer_resource_study/runtime.csv",
+    "issuer_resource_study/weight_uncertainty.csv",
+    "issuer_resource_study/weights.csv",
+    "official_wa_resource_screen/ahp_audit.csv",
+    "official_wa_resource_screen/aim_c_stage_rank_association.csv",
+    "official_wa_resource_screen/cohort_sensitivity.csv",
+    "official_wa_resource_screen/criteria.csv",
+    "official_wa_resource_screen/criterion_contributions.csv",
+    "official_wa_resource_screen/function_sensitivity.csv",
+    "official_wa_resource_screen/leave_out.csv",
+    "official_wa_resource_screen/matrix.csv",
+    "official_wa_resource_screen/method_comparison.csv",
+    "official_wa_resource_screen/partial_order.csv",
+    "official_wa_resource_screen/ranking.csv",
+    "official_wa_resource_screen/rounding_uncertainty.csv",
+    "official_wa_resource_screen/runtime.csv",
+    "official_wa_resource_screen/weight_uncertainty.csv",
+    "official_wa_resource_screen/weights.csv",
+    "resource_infrastructure_pilot/ahp_audit.csv",
+    "resource_infrastructure_pilot/aim_c_host_type_description.csv",
+    "resource_infrastructure_pilot/cohort_sensitivity.csv",
+    "resource_infrastructure_pilot/criteria.csv",
+    "resource_infrastructure_pilot/criterion_contributions.csv",
+    "resource_infrastructure_pilot/function_sensitivity.csv",
+    "resource_infrastructure_pilot/leave_out.csv",
+    "resource_infrastructure_pilot/matrix.csv",
+    "resource_infrastructure_pilot/method_comparison.csv",
+    "resource_infrastructure_pilot/partial_order.csv",
+    "resource_infrastructure_pilot/ranking.csv",
+    "resource_infrastructure_pilot/rounding_uncertainty.csv",
+    "resource_infrastructure_pilot/runtime.csv",
+    "resource_infrastructure_pilot/weight_uncertainty.csv",
+    "resource_infrastructure_pilot/weights.csv"
+  ],
+  "benchmark": "data/phase14_document_benchmark.json",
+  "reproducibility": {
+    "historical_source_snapshots_retained_and_sha_verified": 204,
+    "frozen_output_hashes": 218,
+    "phase13_replay": {
+      "status": "REFERENCE_POINT_EQUIVALENT_RANKS_AND_MONTE_CARLO_EXACT",
+      "panel_csv_files": 142,
+      "evidence_exports": 7,
+      "numeric_tolerance": "Unchanged check_replay point tolerance1e-12; ranks/stochastic0",
+      "platform_differences": [],
+      "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+      "before": "results\\phase13-2026-11-04",
+      "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase14-parent-replay\\runs\\20261104T043828-afa3eb60"
+    },
+    "canonical_clean": {
+      "status": "EXACT",
+      "panel_csv_files": 142,
+      "evidence_exports": 7,
+      "numeric_tolerance": 0,
+      "platform_differences": [],
+      "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+      "before": "results\\phase14-2026-11-04",
+      "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase14-clean-a\\runs\\20261104T044151-651f0980"
+    },
+    "historical_hash_check": {
+      "files": 1651,
+      "mismatches": [
+        "results\\phase5-2026-11-03\\beneficiation_concentrate_screen\\R.log",
+        "results\\phase5-2026-11-03\\issuer_resource_composition\\R.log",
+        "results\\phase5-2026-11-03\\issuer_resource_infrastructure\\R.log",
+        "results\\phase5-2026-11-03\\issuer_resource_study\\R.log",
+        "results\\phase5-2026-11-03\\official_wa_resource_screen\\R.log",
+        "results\\phase5-2026-11-03\\resource_infrastructure_pilot\\R.log"
+      ],
+      "runtime_log_exceptions": [
+        {
+          "path": "results/phase5-2026-11-03/beneficiation_concentrate_screen/R.log",
+          "tracked": false,
+          "ignored": false
+        },
+        {
+          "path": "results/phase5-2026-11-03/issuer_resource_composition/R.log",
+          "tracked": false,
+          "ignored": false
+        },
+        {
+          "path": "results/phase5-2026-11-03/issuer_resource_infrastructure/R.log",
+          "tracked": false,
+          "ignored": false
+        },
+        {
+          "path": "results/phase5-2026-11-03/issuer_resource_study/R.log",
+          "tracked": false,
+          "ignored": false
+        },
+        {
+          "path": "results/phase5-2026-11-03/official_wa_resource_screen/R.log",
+          "tracked": false,
+          "ignored": false
+        },
+        {
+          "path": "results/phase5-2026-11-03/resource_infrastructure_pilot/R.log",
+          "tracked": false,
+          "ignored": false
+        }
+      ]
+    },
+    "python_tests": 199,
+    "python_seconds": 295.195,
+    "R_invariant_families": 3,
+    "ci": "Pending branch publication; see PR checks",
+    "independent_clean": {
+      "status": "EXACT",
+      "panel_csv_files": 142,
+      "evidence_exports": 7,
+      "numeric_tolerance": 0,
+      "platform_differences": [],
+      "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+      "before": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase14-clean-a\\runs\\20261104T044151-651f0980",
+      "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase14-clean-b\\runs\\20261104T044405-96c915bc"
+    },
+    "final_integration_tests": 12,
+    "all_218_outputs_identical_after_acquisition_date_separation": true,
+    "publication_scan_text_artifacts": 2810,
+    "code_content_sha256": "82315d87d1030a57a2e936e84bada701cf10b2b2a1cd1d86ea109d216f5dd9bb",
+    "final_canonical_clean": {
+      "status": "EXACT",
+      "panel_csv_files": 142,
+      "evidence_exports": 7,
+      "numeric_tolerance": 0,
+      "platform_differences": [],
+      "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+      "before": "results\\phase14-2026-11-04",
+      "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase14-clean-b\\runs\\20261104T044405-96c915bc"
+    }
+  },
+  "code_structure": {
+    "new_production_modules": 0,
+    "new_dependencies": 0,
+    "new_schema_tables": 0,
+    "new_formal_databases": 0,
+    "new_R_engines": 0,
+    "changed_existing_modules": [
+      "acquisition",
+      "discovery",
+      "pdf_extract",
+      "cli",
+      "security"
+    ],
+    "purpose": "Two official protocols share existing request/retry, snapshots, candidates and recognition. Transient WAMEX signed links use stable A-number/file identity; API count drift and file version changes are explicit."
+  },
+  "limitations": [
+    "North Stanmore PFS pp8/35/136/144 distinguishes revised footprint, Mafeking Bora exclusion, cutoff and Sc basis. Existing Selection has no cross-scope supersession rule; both estimates stay separate and resource-defined remains21.",
+    "FormalC1/fullEvidence/strictDevelopment remain0; original gates/scoring/R engine unchanged.",
+    "New official originals supply descriptive historical evidence; no comparable Technical criterion or new MCDA sample gained.",
+    "Untuned North Stanmore/Goschen document test still0TP/0FP/4FN plus one true-negative THM reserve control; no demonstrated cross-document recall improvement.",
+    "GSQ metadata/search/package_show work; published S3 paths returned403 and permanent downloads returned non-PDF pages. No credentials, policy bypass or invented URL mapping.",
+    "DIGS/GEMIS/SARIG/TIGER public search/document pages assessed, but programmatic report API/paging/access contracts not fully verified; no speculative adapters. EPBC not integrated in this bounded phase."
+  ]
+}

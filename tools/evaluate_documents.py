@@ -138,7 +138,7 @@ def evaluate_phase12(root, validation_version='scientific-context-v4-column-bind
             if any(c['kind']=='RESOURCE_TABLE_TOTAL' for c in rows):
                 for i,t in enumerate(page.find_tables().tables):
                     tables.append(dict(physical_page=number,table_index=i,bbox=list(t.bbox),cells=t.extract(),header=t.header.names,external_header=t.header.external))
-                positioned_resource_columns(rows,tables,text,registry,version='positioned-resource-columns-v3' if parser_version=='document-recognition-v3-bound-quantities' else 'positioned-resource-columns-v2')
+                positioned_resource_columns(rows,tables,text,registry,version='positioned-resource-columns-v4' if parser_version=='document-recognition-v4-native-resource-totals' else 'positioned-resource-columns-v3' if parser_version=='document-recognition-v3-bound-quantities' else 'positioned-resource-columns-v2')
             for c in rows:
                 c['source_sha256']=sources[key]['sha256']
                 c['issues']=sorted(set(c['issues']+candidate_value_issues(c)+
@@ -250,7 +250,30 @@ def evaluate_phase13(root):
                 limitation='Development recall and document-disjoint check reported separately; no pooled or national accuracy claim.')
 
 
+def evaluate_phase14(root):
+    """Frozen old tests, explicitly reused Salazar, then untuned documents."""
+    version='document-recognition-v4-native-resource-totals'
+    old=evaluate_phase13(root)
+    numeric=[dict(key='salazar_mre2024',page=7,row=r'^TOTAL\s+230\b',project='salazar',scope=r'Salazar|Newmont',
+        values=dict(ore_mt=230.,grade=1178.,Pr6O11=55.,Nd2O3=193.,Dy2O3=22.,Tb4O7=4.),
+        units=dict(ore_mt='Mt',grade='ppm',Pr6O11='ppm',Nd2O3='ppm',Dy2O3='ppm',Tb4O7='ppm'))]
+    reused=evaluate_phase12(root,parser_version=version,numeric_cases=numeric,decision_cases=[])
+    holdout=[dict(key='north_stanmore_pfs2026',page=8,row=r'^Total\s+53\.34\b',project='north-stanmore',scope=r'high.grade',
+        values=dict(ore_mt=53.34,grade=1024.),units=dict(ore_mt='Mt',grade='ppm')),
+        dict(key='north_stanmore_pfs2026',page=8,row=r'^Total\s+278\.80\b',project='north-stanmore',scope=r'global',
+        values=dict(ore_mt=278.8,grade=483.),units=dict(ore_mt='Mt',grade='ppm'))]
+    negative=[dict(label='Goschen_THM_reserve_not_TREO_resource',key='goschen_mre2025',page=15,
+        pattern=r'^Total',kind='RESOURCE_TABLE_TOTAL',project='goschen',accept=False)]
+    before=evaluate_phase12(root,parser_version='document-recognition-v3-bound-quantities',numeric_cases=holdout,decision_cases=negative)
+    after=evaluate_phase12(root,parser_version=version,numeric_cases=holdout,decision_cases=negative)
+    return dict(version='phase14-native-table-recovery-v1',frozen_phase13=old,
+        fixed_development_set=evaluate_phase12(root,parser_version=version),reused_salazar_development=reused,
+        document_disjoint_before=before,document_disjoint_after=after,
+        independence='North Stanmore PFS and Goschen MRE were not used to adjust parser rules; original corpus and North Stanmore scope review were already available. Labels frozen after parser code freeze. Not blind or independent human validation. No further tuning on these results.',
+        limitation='Salazar is now development, not an independent Phase14 holdout. No pooled or national accuracy.')
+
+
 if __name__=='__main__':
-    result=evaluate_phase13('.') if '--phase13' in sys.argv else evaluate_phase12('.') if '--phase12' in sys.argv else evaluate('.',legacy='--phase9' in sys.argv)
+    result=evaluate_phase14('.') if '--phase14' in sys.argv else evaluate_phase13('.') if '--phase13' in sys.argv else evaluate_phase12('.') if '--phase12' in sys.argv else evaluate('.',legacy='--phase9' in sys.argv)
     Path(sys.argv[1]).write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({k:v for k,v in result.items() if k not in ('results','numeric_results','acceptance_results','sources')},indent=2))

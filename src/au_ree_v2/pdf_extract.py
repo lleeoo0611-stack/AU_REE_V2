@@ -10,7 +10,7 @@ from pathlib import Path
 from pypdf import PdfReader
 from .store import filehash,canonical
 
-DOCUMENT_VERSION = 'document-recognition-v3-bound-quantities'
+DOCUMENT_VERSION = 'document-recognition-v4-native-resource-totals'
 RESOURCE_LAYOUT_VERSION = 'positioned-resource-columns-v2'
 NUMBER = r'(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?'
 
@@ -170,12 +170,37 @@ def positioned_resource_columns(candidates, tables, text, registry, version='pos
     addition. A continuation without tonnage/TREO headers remains unresolved.
     Missing REO definitions and other scientific validation issues remain held.
     """
-    modern=version=='positioned-resource-columns-v3'
+    modern=version in ('positioned-resource-columns-v3','positioned-resource-columns-v4')
     import unicodedata
     def header_text(value):
         return re.sub(r'\s+',' ',unicodedata.normalize('NFKC',str(value or ''))).strip()
     def grade_header(value):
-        return bool(re.fullmatch(r'TREO\s*(?:\+\s*Y2O3\s*)?\(?(?:%|ppm)\)?',value,re.I))
+        return bool(re.fullmatch(r'TREO\*?\s*(?:\+\s*Y2O3\s*)?\(?(?:%|ppm)\)?',value,re.I))
+    if version=='positioned-resource-columns-v4':
+        # Native table totals recover vertically split JORC rows. Only a single
+        # explicit on-page caption and exact native values grant a candidate.
+        # Captions may be below a table; arbitrary nearby project mentions do not.
+        captions=[line.strip() for line in text.splitlines() if re.search(r'Table\s+\d+.*(?:Mineral Resource|Ore Reserve)',line,re.I)]
+        for table in tables:
+            for row in table['cells']:
+                if not any(re.fullmatch(r'Total|Grand Total',str(v or '').strip(),re.I) for v in row):continue
+                tokens=[str(v).strip() for v in row if v and re.fullmatch(NUMBER,str(v).strip())]
+                if len(tokens)<2 or any(c.get('original_tokens')==tokens for c in candidates):continue
+                raw=next((line.strip() for line in text.splitlines() if re.match(r'^\s*(?:TOTAL|Grand Total)\s+',line,re.I)
+                          and re.findall(NUMBER,re.sub(r'^\s*(?:TOTAL|Grand Total)\s+','',line,flags=re.I))==tokens),None)
+                if not raw or len(captions)!=1:continue
+                caption=captions[0];hits=_matches(caption,registry)
+                category=[c for c in ('Measured','Indicated','Inferred') if re.search(r'\b'+c+r'\b',caption,re.I)]
+                reserve=bool(re.search(r'Ore Reserve',caption,re.I))
+                issues=['TABLE_COLUMN_OR_UNIT_UNRESOLVED','REO_DEFINITION_NOT_LOCATED']
+                if len(hits)!=1:issues.append('PROJECT_ATTRIBUTION_AMBIGUOUS')
+                if not category:issues.append('JORC_CATEGORY_NOT_RESOLVED')
+                if reserve:issues.append('RESERVE_SUBSET_NOT_RESOURCE')
+                candidates.append(dict(domain='Resource',kind='RESOURCE_TABLE_TOTAL',project_id=hits[0]['entity_id'] if len(hits)==1 else None,
+                    physical_page=table['physical_page'],scope=caption,resource_type='ORE_RESERVE' if reserve else 'MINERAL_RESOURCE',
+                    category='_'.join(c.upper() for c in category)+'_TOTAL' if len(category)>1 else category[0].upper() if category else None,
+                    values={},units={},original_tokens=tokens,header='',raw_text=raw,context=text,basis='TREO',basis_definition='',
+                    cutoff=None,rounding_bounds_kt=None,issues=issues,column_labels=[],extra_values=[],row_index=None))
     for c in candidates:
         if c['kind']!='RESOURCE_TABLE_TOTAL':continue
         if not modern and not any(x in c['issues'] for x in ('TABLE_COLUMN_OR_UNIT_UNRESOLVED','PROJECT_ATTRIBUTION_AMBIGUOUS')):continue
@@ -184,10 +209,13 @@ def positioned_resource_columns(candidates, tables, text, registry, version='pos
             for ri,row in enumerate(table['cells']):
                 if not row:continue
                 label=next((v for v in row if v and str(v).strip()),'') if modern else (row[0] or '') if row else ''
+                if version=='positioned-resource-columns-v4':label=next((v for v in row if re.fullmatch(r'\s*(?:Grand Total|Total)\s*',str(v or ''),re.I)),label)
                 if not row or not re.fullmatch(r'\s*(?:Grand Total|Total)\s*',label,re.I):continue
                 numeric=[(j,v.strip()) for j,v in enumerate(row) if v and re.fullmatch(NUMBER,v.strip())]
                 if [v for j,v in numeric]!=tokens:continue
                 first_data=next((i for i,r in enumerate(table['cells']) if re.match(r'^(?:Measured|Indicated|Inferred|Subtotal|Total)\b',next((v for v in r if v and str(v).strip()),'') if modern else r[0] or '',re.I)),ri)
+                if version=='positioned-resource-columns-v4':
+                    first_data=next((i for i,r in enumerate(table['cells']) if any(re.match(r'^(?:Measured|Indicated|Inferred|Subtotal|Total)\b',str(v or '').strip(),re.I) for v in r)),first_data)
                 headers=[' '.join(str(r[j] or '') for r in table['cells'][:first_data]) for j in range(len(row))]
                 if modern:headers=[header_text(h) for h in headers]
                 # A visually separate header table is usable only with the same
@@ -224,6 +252,32 @@ def positioned_resource_columns(candidates, tables, text, registry, version='pos
             section=re.sub(r'Classification|Category|Deposit','',section or '',flags=re.I).strip()
             if re.fullmatch(r'Mineral\s+Resource',section,re.I):section=None
             if section and section not in c['scope']:c['scope']+=' | '+section
+        if version=='positioned-resource-columns-v4':
+            captions=[line.strip() for line in text.splitlines() if re.search(r'Table\s+\d+.*(?:Mineral Resource|Ore Reserve)',line,re.I)]
+            if len(captions)==1:
+                c['scope']=captions[0]
+                c['issues']=[x for x in c['issues'] if x!='TABLE_SCOPE_HEADING_NOT_RESOLVED']
+            # Subscript digits split by the PDF font are normalized only in an
+            # explicit chemical column header, never in numerical cell values.
+            normalized=[re.sub(r'\s+','',h).replace('*','') for h in headers]
+            font_order={'PrO611ppm':'Pr6O11ppm','NdO23ppm':'Nd2O3ppm','DyO23ppm':'Dy2O3ppm','TbO47ppm':'Tb4O7ppm'}
+            normalized=[font_order.get(h,h) for h in normalized]
+            oxide_labels=('Pr6O11','Nd2O3','Dy2O3','Tb4O7','Y2O3','Sc2O3')
+            # The matched row must be reselected by its exact token sequence.
+            native_rows=[r for t in tables for r in t['cells'] if [v.strip() for v in r if v and re.fullmatch(NUMBER,v.strip())]==tokens]
+            if len(native_rows)==1:
+                native=native_rows[0];positions={j:i for i,(j,v) in enumerate([(j,v) for j,v in enumerate(native) if v and re.fullmatch(NUMBER,v.strip())])}
+                for label in oxide_labels:
+                    columns=[j for j,h in enumerate(normalized) if h==label+'ppm']
+                    if len(columns)==1 and columns[0] in positions:
+                        token=tokens[positions[columns[0]]]
+                        c['extra_values'].append(dict(label=label,value=_number(token),unit='ppm',original_token=token))
+            # Formula continuation is copied verbatim, without inventing REO basis.
+            lines=text.splitlines()
+            definitions=[i for i,line in enumerate(lines) if re.search(r'TREO\s*=\s*La2O3',line)]
+            if len(definitions)==1:
+                i=definitions[0];c['basis_definition']=' '.join(lines[i:i+3]).strip()
+                c['issues']=[x for x in c['issues'] if x!='REO_DEFINITION_NOT_LOCATED']
         if not c['project_id']:
             hits=_matches(text,registry)
             if len(hits)==1:
@@ -245,7 +299,7 @@ def narrative_candidates(text, page, registry, parser_version='document-recognit
     for i,sentence in enumerate(sentences):
         if len(sentence)<25:continue
         technical=r'(?i)\b(?:recover\w*|extract\w*|leach\w*|reagent|thorium|uranium|NORM)\b'
-        if parser_version in ('document-recognition-v2-mineralogy','document-recognition-v3-bound-quantities'):technical=r'(?i)\b(?:recover\w*|extract\w*|leach\w*|reagent|thorium|uranium|NORM|mineralog\w*|monazite|xenotime|rhabdophane|churchite|gangue)\b'
+        if parser_version in ('document-recognition-v2-mineralogy','document-recognition-v3-bound-quantities','document-recognition-v4-native-resource-totals'):technical=r'(?i)\b(?:recover\w*|extract\w*|leach\w*|reagent|thorium|uranium|NORM|mineralog\w*|monazite|xenotime|rhabdophane|churchite|gangue)\b'
         domain='Technical' if re.search(technical,sentence) else ('Commercial' if re.search(r'(?i)\b(?:financing|offtake|off-take|financial close|drawdown|credit approval|grant|funding|cash position)\b',sentence) else ('Development' if re.search(r'(?i)\b(?:scoping study|PFS|DFS|care and maintenance|construction commenced)\b',sentence) else None))
         if not domain:continue
         context=' '.join(sentences[max(0,i-1):i+2])
@@ -262,7 +316,7 @@ def narrative_candidates(text, page, registry, parser_version='document-recognit
             number['quantity_role']=('MAXIMUM_EXTRACTION' if re.search(r'up to\s*$',prefix,re.I) else
                                      'AVERAGE_EXTRACTION' if re.search(r'averag(?:e|ing)\s*(?:of\s*)?$',prefix,re.I) else None)
             if not re.search(r'extract|recover|leach',sentence,re.I):number['quantity_role']=None
-            if parser_version=='document-recognition-v3-bound-quantities':
+            if parser_version in ('document-recognition-v3-bound-quantities','document-recognition-v4-native-resource-totals'):
                 suffix=sentence[number['start']+len(number['token']):number['start']+len(number['token'])+65]
                 local=prefix[-35:]+' '+number['token']+' '+suffix[:35]
                 coordinated_mean=bool(re.search(r'(?:extraction|recovery|recoveries)\s+(?:achieved\s+)?up to\s+'+NUMBER+r'\s*%\s*,\s*averaging\s*$',sentence[:number['start']],re.I))
@@ -335,7 +389,7 @@ def recognize_document(root, source, registry, tessdata=None, parser_version=Non
     """Scan every page once, then extract tables/OCR only relevant pages."""
     import pymupdf
     parser_version=parser_version or DOCUMENT_VERSION
-    if parser_version not in ('document-recognition-v1','document-recognition-v2-mineralogy','document-recognition-v3-bound-quantities'):
+    if parser_version not in ('document-recognition-v1','document-recognition-v2-mineralogy','document-recognition-v3-bound-quantities','document-recognition-v4-native-resource-totals'):
         raise ValueError('UNSUPPORTED_DOCUMENT_PARSER_VERSION')
     root=Path(root);path=root/source['path']
     if filehash(path)!=source['sha256']:raise ValueError('SOURCE_HASH_MISMATCH')
@@ -355,10 +409,10 @@ def recognize_document(root, source, registry, tessdata=None, parser_version=Non
                       status='EXTRACTED' if readable(text) else 'UNREADABLE',tables=[])
             if relevant:
                 recognized=resource_rows(text,n,registry)+leach_tables(text,n,registry)+narrative_candidates(text,n,registry,parser_version)
-                if doc and any(c['kind'] in ('RESOURCE_TABLE_TOTAL','LEACH_TABLE_ROW') for c in recognized):
+                if doc and (any(c['kind'] in ('RESOURCE_TABLE_TOTAL','LEACH_TABLE_ROW') for c in recognized) or (parser_version=='document-recognition-v4-native-resource-totals' and 'JORC_RESOURCE' in labels)):
                     page_tables=[]
                     try:
-                        native=(table_cache[n] if table_cache is not None and n in table_cache else
+                        native=(table_cache[n] if table_cache is not None and n in table_cache and (table_cache[n] or parser_version!='document-recognition-v4-native-resource-totals') else
                             [dict(physical_page=n,table_index=i,bbox=list(t.bbox),cells=t.extract(),header=t.header.names,external_header=t.header.external)
                              for i,t in enumerate(doc[n-1].find_tables().tables)])
                         for table in native:
@@ -368,7 +422,7 @@ def recognize_document(root, source, registry, tessdata=None, parser_version=Non
                             page_tables.append(table)
                     except Exception as exc:page['table_error']=type(exc).__name__
                     positioned_resource_columns(recognized,page_tables,text,registry,
-                        version='positioned-resource-columns-v3' if parser_version=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION)
+                        version='positioned-resource-columns-v4' if parser_version=='document-recognition-v4-native-resource-totals' else 'positioned-resource-columns-v3' if parser_version=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION)
                 for c in recognized:
                     c.update(source_sha256=source['sha256'],source_key=source['key'],
                              publication_date=source.get('publication_date'),effective_date=None,
@@ -391,7 +445,7 @@ def recognize_document(root, source, registry, tessdata=None, parser_version=Non
             previous=[t for t in tables if t['physical_page']==table['physical_page']-1 and t['header']==table['header'] and any(t['header'])]
             if len(previous)==1:
                 table['continuation_candidate']=dict(physical_page=previous[0]['physical_page'],table_index=previous[0]['table_index'],status='HEADER_MATCH_ONLY_NOT_SCOPE_EQUIVALENCE')
-        return dict(version=parser_version,resource_layout_version='positioned-resource-columns-v3' if parser_version=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION,observation_contract='automatic-observation-v1-element-basis',source_sha256=source['sha256'],source_key=source['key'],
+        return dict(version=parser_version,resource_layout_version='positioned-resource-columns-v4' if parser_version=='document-recognition-v4-native-resource-totals' else 'positioned-resource-columns-v3' if parser_version=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION,observation_contract='automatic-observation-v1-element-basis',source_sha256=source['sha256'],source_key=source['key'],
                     source_url=source['url'],publication_date=source.get('publication_date') or publication_date(texts[0]),
                     labels=classify(texts[0]),mentioned_labels=sorted({v for p in pages for v in p['labels']}),pages=pages,tables=tables,candidates=candidates,
                     backend_version=pymupdf.VersionBind,registry_identity_sha256=__import__('hashlib').sha256(canonical(registry).encode()).hexdigest(),
@@ -417,12 +471,12 @@ def capture_documents(root, snapshots, keys=None, tessdata=None, only_missing=Fa
                     if filehash(root/latest['path'])!=latest['sha256']:raise ValueError('IMMUTABLE_EXTRACTION_MISMATCH')
                     cached=json.loads((root/latest['path']).read_text(encoding='utf-8'))
                     if (cached['version']==DOCUMENT_VERSION and cached.get('observation_contract')=='automatic-observation-v1-element-basis'
-                            and cached.get('resource_layout_version')==('positioned-resource-columns-v3' if DOCUMENT_VERSION=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION)
+                            and cached.get('resource_layout_version')==('positioned-resource-columns-v4' if DOCUMENT_VERSION=='document-recognition-v4-native-resource-totals' else 'positioned-resource-columns-v3' if DOCUMENT_VERSION=='document-recognition-v3-bound-quantities' else RESOURCE_LAYOUT_VERSION)
                             and cached['registry_identity_sha256']==hashlib.sha256(canonical(registry).encode()).hexdigest()):
                         outcomes.append(dict(source_key=source['key'],source_sha256=source['sha256'],status='REUSED_VERIFIED_EXTRACTION',sha256=latest['sha256']))
                         continue
             native_cache=None
-            if DOCUMENT_VERSION=='document-recognition-v3-bound-quantities':
+            if DOCUMENT_VERSION in ('document-recognition-v3-bound-quantities','document-recognition-v4-native-resource-totals'):
                 import pymupdf
                 prior=[s for s in manifest['snapshots'] if s['kind']=='document_extraction' and s.get('source_sha256')==source['sha256']]
                 if prior:

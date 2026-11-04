@@ -4679,6 +4679,572 @@
       "path": "data/snapshots/2e334dd753a78b1df38dd80491a58962e0a3b2072729abe18d6011c9542ec424.json",
       "acquired_at": "2026-11-03T21:53:25.736478+00:00",
       "available_date": "2026-11-03"
+    },
+    {
+      "key": "discovery_execution_f887835c72f12827",
+      "kind": "discovery_receipt",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/22",
+      "metadata_only": true,
+      "sha256": "f887835c72f128273d8bc38d1af31cd8cfb9223ff657ef3a57d3a41c11c8ad0a",
+      "path": "data/snapshots/f887835c72f128273d8bc38d1af31cd8cfb9223ff657ef3a57d3a41c11c8ad0a.json",
+      "acquired_at": "2026-11-04T04:14:53.746703+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_e1918c27cdb2abb0",
+      "kind": "discovery_receipt",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/22",
+      "metadata_only": true,
+      "sha256": "e1918c27cdb2abb083530b057c60690988bd5cdd82e65c0fb36f5c299cf4cfcc",
+      "path": "data/snapshots/e1918c27cdb2abb083530b057c60690988bd5cdd82e65c0fb36f5c299cf4cfcc.json",
+      "acquired_at": "2026-11-04T04:14:56.429237+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_wamex_A59666",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=59666",
+      "kind": "discovery_html",
+      "sha256": "403939a9fd0cc273123f994ba5c85e0ab0a7386df4129716933a8ffe822cd047",
+      "path": "data/snapshots/403939a9fd0cc273123f994ba5c85e0ab0a7386df4129716933a8ffe822cd047.html",
+      "acquired_at": "2026-11-04T04:15:07.035441+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_wamex_A61891",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=61891",
+      "kind": "discovery_html",
+      "sha256": "7094f7a66de23d234933d93fcc0c9d9ab1c4ab521c2864fc041f8e71fe737a4f",
+      "path": "data/snapshots/7094f7a66de23d234933d93fcc0c9d9ab1c4ab521c2864fc041f8e71fe737a4f.html",
+      "acquired_at": "2026-11-04T04:15:08.386266+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_2c05bfce5cbb7bad",
+      "kind": "discovery_receipt",
+      "url": "local:bounded-discovery-execution",
+      "sha256": "2c05bfce5cbb7bad24bb1adfaa453c945fe27c3e10a845e875ce8a8e1f82f521",
+      "path": "data/snapshots/2c05bfce5cbb7bad24bb1adfaa453c945fe27c3e10a845e875ce8a8e1f82f521.json",
+      "acquired_at": "2026-11-04T04:15:08.485125+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_e61c5e92b2ebc3ca",
+      "kind": "discovery_receipt",
+      "url": "https://geoscience.data.qld.gov.au/api/3/action/",
+      "metadata_only": true,
+      "sha256": "e61c5e92b2ebc3ca704fedb634d7875b76b369582600bf87cee45051a8b68714",
+      "path": "data/snapshots/e61c5e92b2ebc3ca704fedb634d7875b76b369582600bf87cee45051a8b68714.json",
+      "acquired_at": "2026-11-04T04:16:48.015303+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_2948ed26676e1256",
+      "kind": "discovery_receipt",
+      "url": "https://geoscience.data.qld.gov.au/api/3/action/",
+      "metadata_only": true,
+      "sha256": "2948ed26676e1256020edf073cb7eb26884765dcd95fd4cb63b2493f0e54813b",
+      "path": "data/snapshots/2948ed26676e1256020edf073cb7eb26884765dcd95fd4cb63b2493f0e54813b.json",
+      "acquired_at": "2026-11-04T04:16:49.820585+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_440f35c5588fc845",
+      "kind": "discovery_receipt",
+      "url": "https://geoscience.data.qld.gov.au/api/3/action/",
+      "metadata_only": true,
+      "sha256": "440f35c5588fc8457365c2e75320086649bb7cc6500223972d13605def6c6b98",
+      "path": "data/snapshots/440f35c5588fc8457365c2e75320086649bb7cc6500223972d13605def6c6b98.json",
+      "acquired_at": "2026-11-04T04:16:51.456579+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_653d87e8fc937155",
+      "kind": "discovery_receipt",
+      "url": "https://geoscience.data.qld.gov.au/api/3/action/",
+      "metadata_only": true,
+      "sha256": "653d87e8fc93715504121473da7e2536f8817d3dbcfc7ca4a0724e04671b7edc",
+      "path": "data/snapshots/653d87e8fc93715504121473da7e2536f8817d3dbcfc7ca4a0724e04671b7edc.json",
+      "acquired_at": "2026-11-04T04:16:52.977007+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_wamex_A59666",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=59666",
+      "kind": "discovery_html",
+      "sha256": "c3e50069fbc0fd4b7fe3e67b62a9982f3a9137cb34bccb33f4a3cf9bdf2ed54d",
+      "path": "data/snapshots/c3e50069fbc0fd4b7fe3e67b62a9982f3a9137cb34bccb33f4a3cf9bdf2ed54d.html",
+      "acquired_at": "2026-11-04T04:17:05.016552+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_wamex_A61891",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=61891",
+      "kind": "discovery_html",
+      "sha256": "424710d84a34c24396a7f24f917d070b2b7dda8c84ee9a97ba5c3fb146b3c6e5",
+      "path": "data/snapshots/424710d84a34c24396a7f24f917d070b2b7dda8c84ee9a97ba5c3fb146b3c6e5.html",
+      "acquired_at": "2026-11-04T04:17:06.637129+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_c5617a318c34d046",
+      "kind": "discovery_receipt",
+      "url": "local:bounded-discovery-execution",
+      "sha256": "c5617a318c34d046bcde41035b293abd44253ee9b765d077eb12793d46f1a62d",
+      "path": "data/snapshots/c5617a318c34d046bcde41035b293abd44253ee9b765d077eb12793d46f1a62d.json",
+      "acquired_at": "2026-11-04T04:17:06.785802+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_cee72fb938d40d12",
+      "kind": "discovery_receipt",
+      "url": "https://geoscience.data.qld.gov.au/api/3/action/",
+      "metadata_only": true,
+      "sha256": "cee72fb938d40d12c2be9c23e616b2660159e8f323c281923acb91dc07be19c7",
+      "path": "data/snapshots/cee72fb938d40d12c2be9c23e616b2660159e8f323c281923acb91dc07be19c7.json",
+      "acquired_at": "2026-11-04T04:18:00.594647+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_466ccb8ae8f50ae0",
+      "kind": "discovery_receipt",
+      "url": "https://geoscience.data.qld.gov.au/api/3/action/",
+      "metadata_only": true,
+      "sha256": "466ccb8ae8f50ae0222d8fa958d9d61747b6140734ad470c3fa0aa740afb4335",
+      "path": "data/snapshots/466ccb8ae8f50ae0222d8fa958d9d61747b6140734ad470c3fa0aa740afb4335.json",
+      "acquired_at": "2026-11-04T04:18:01.625502+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_c2c3c540887e2fca",
+      "kind": "discovery_receipt",
+      "url": "https://geoscience.data.qld.gov.au/api/3/action/",
+      "metadata_only": true,
+      "sha256": "c2c3c540887e2fcabb40d6aba642931fc123d2c0053c74bdeb93cf35d3e23cb4",
+      "path": "data/snapshots/c2c3c540887e2fcabb40d6aba642931fc123d2c0053c74bdeb93cf35d3e23cb4.json",
+      "acquired_at": "2026-11-04T04:18:05.591978+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_6e9b4d0e337e5ce5",
+      "kind": "discovery_receipt",
+      "url": "https://geoscience.data.qld.gov.au/api/3/action/",
+      "metadata_only": true,
+      "sha256": "6e9b4d0e337e5ce5b245247ca98ae458da6ee33c01f0c4eca041bfd82d48a36a",
+      "path": "data/snapshots/6e9b4d0e337e5ce5b245247ca98ae458da6ee33c01f0c4eca041bfd82d48a36a.json",
+      "acquired_at": "2026-11-04T04:18:06.583730+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_gsq_ree_metallurgy_2a4d3b5419605366",
+      "url": "https://geoscience.data.qld.gov.au/data/dataset/004bfec1-c987-4a23-8aa7-12f23e96dd76/resource/geo-doc1432078-cr166873/download/%252FReport%25252f166873%25252fDocument%25252f1432078%25252fEPM19022%252BPartial%252BRelinquishment%252BReport%252B2026.pdf",
+      "kind": "discovery_html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "data/snapshots/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.html",
+      "acquired_at": "2026-11-04T04:18:07.274273+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_gsq_ree_metallurgy_45ad9156b5927712",
+      "url": "https://geoscience.data.qld.gov.au/data/dataset/032106c5-ec89-41a4-bfb9-1a262b469737/resource/geo-doc1304445-cr123673/download/%252FReport%25252f123673%25252fDocument%25252f1304445%25252fEPM27259_2020_12_04_Annual%252BActivity%252BReport.pdf",
+      "kind": "discovery_html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "data/snapshots/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.html",
+      "acquired_at": "2026-11-04T04:18:07.969656+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_gsq_ree_metallurgy_8bca7ca76226b8b0",
+      "url": "https://geoscience.data.qld.gov.au/data/dataset/0371f500-2793-414c-9dbf-09711b171c1e/resource/geo-doc537386-cr116327/download/%252FReport%25252f116327%25252fDocument%25252f537386%25252fcr_116327_1.pdf",
+      "kind": "discovery_html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "data/snapshots/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.html",
+      "acquired_at": "2026-11-04T04:18:08.630717+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_gsq_ree_metallurgy_5fdf0838afeb4f5e",
+      "url": "https://geoscience.data.qld.gov.au/data/dataset/04c05b13-9ece-405d-89a1-50402f6aebd6/resource/geo-doc1309735-cr125720/download/%252FReport%25252f125720%25252fDocument%25252f1309735%25252fREE%252BDEPOSITS%252BFINAL.pdf",
+      "kind": "discovery_html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "data/snapshots/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.html",
+      "acquired_at": "2026-11-04T04:18:09.287549+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_gsq_ree_metallurgy_6badc31c8f4ac212",
+      "url": "https://geoscience.data.qld.gov.au/data/dataset/06630b0a-4cb1-42bf-a9b6-5a4736bbdb63/resource/geo-doc533757-cr114541/download/%252FReport%25252f114541%25252fDocument%25252f533757%25252fcr_114541_1.pdf",
+      "kind": "discovery_html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "data/snapshots/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.html",
+      "acquired_at": "2026-11-04T04:18:09.938541+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_wamex_A59666",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=59666",
+      "kind": "discovery_html",
+      "sha256": "a75425e611c8e2558615c94648d7b02715938eaabcb757be9c2121831344c5fd",
+      "path": "data/snapshots/a75425e611c8e2558615c94648d7b02715938eaabcb757be9c2121831344c5fd.html",
+      "acquired_at": "2026-11-04T04:18:13.625818+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_wamex_A61891",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=61891",
+      "kind": "discovery_html",
+      "sha256": "da2516cb645a0993c0c6e759f6515e09b98df327624c4a443e8f1b0194928ffa",
+      "path": "data/snapshots/da2516cb645a0993c0c6e759f6515e09b98df327624c4a443e8f1b0194928ffa.html",
+      "acquired_at": "2026-11-04T04:18:15.402879+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_88903e92dba3fc08",
+      "kind": "discovery_receipt",
+      "url": "local:bounded-discovery-execution",
+      "sha256": "88903e92dba3fc0808fd690d4826054c6fa633bd9bc2bd45f53c0b140c54b0ae",
+      "path": "data/snapshots/88903e92dba3fc0808fd690d4826054c6fa633bd9bc2bd45f53c0b140c54b0ae.json",
+      "acquired_at": "2026-11-04T04:18:15.526790+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_beee9f4f2ba46020",
+      "kind": "discovery_receipt",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/22",
+      "metadata_only": true,
+      "sha256": "beee9f4f2ba46020af9b3bcc16fdc5f8c6ecb891021f2b6c40aa38a19529a732",
+      "path": "data/snapshots/beee9f4f2ba46020af9b3bcc16fdc5f8c6ecb891021f2b6c40aa38a19529a732.json",
+      "acquired_at": "2026-11-04T04:21:34.335407+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "non_pdf_gsq_ree_metallurgy_2a4d3b5419605366",
+      "url": "https://geoscience.data.qld.gov.au/data/dataset/004bfec1-c987-4a23-8aa7-12f23e96dd76/resource/geo-doc1432078-cr166873/download/%252FReport%25252f166873%25252fDocument%25252f1432078%25252fEPM19022%252BPartial%252BRelinquishment%252BReport%252B2026.pdf",
+      "kind": "discovery_html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "data/snapshots/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.html",
+      "acquired_at": "2026-11-04T04:21:45.846686+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "non_pdf_gsq_ree_metallurgy_45ad9156b5927712",
+      "url": "https://geoscience.data.qld.gov.au/data/dataset/032106c5-ec89-41a4-bfb9-1a262b469737/resource/geo-doc1304445-cr123673/download/%252FReport%25252f123673%25252fDocument%25252f1304445%25252fEPM27259_2020_12_04_Annual%252BActivity%252BReport.pdf",
+      "kind": "discovery_html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "data/snapshots/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.html",
+      "acquired_at": "2026-11-04T04:21:46.496176+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "non_pdf_gsq_ree_metallurgy_8bca7ca76226b8b0",
+      "url": "https://geoscience.data.qld.gov.au/data/dataset/0371f500-2793-414c-9dbf-09711b171c1e/resource/geo-doc537386-cr116327/download/%252FReport%25252f116327%25252fDocument%25252f537386%25252fcr_116327_1.pdf",
+      "kind": "discovery_html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "data/snapshots/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.html",
+      "acquired_at": "2026-11-04T04:21:47.146721+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "non_pdf_gsq_ree_metallurgy_5fdf0838afeb4f5e",
+      "url": "https://geoscience.data.qld.gov.au/data/dataset/04c05b13-9ece-405d-89a1-50402f6aebd6/resource/geo-doc1309735-cr125720/download/%252FReport%25252f125720%25252fDocument%25252f1309735%25252fREE%252BDEPOSITS%252BFINAL.pdf",
+      "kind": "discovery_html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "data/snapshots/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.html",
+      "acquired_at": "2026-11-04T04:21:47.808633+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "non_pdf_gsq_ree_metallurgy_6badc31c8f4ac212",
+      "url": "https://geoscience.data.qld.gov.au/data/dataset/06630b0a-4cb1-42bf-a9b6-5a4736bbdb63/resource/geo-doc533757-cr114541/download/%252FReport%25252f114541%25252fDocument%25252f533757%25252fcr_114541_1.pdf",
+      "kind": "discovery_html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "data/snapshots/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.html",
+      "acquired_at": "2026-11-04T04:21:48.466461+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_69ecc9365e66b067",
+      "kind": "discovery_receipt",
+      "url": "local:bounded-discovery-execution",
+      "sha256": "69ecc9365e66b06776f6b8d862275237dee29d214b2aebd7f83ca0729339f7a6",
+      "path": "data/snapshots/69ecc9365e66b06776f6b8d862275237dee29d214b2aebd7f83ca0729339f7a6.json",
+      "acquired_at": "2026-11-04T04:21:48.522466+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_0d877c8b84dbb857",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=59666",
+      "kind": "discovery_receipt",
+      "metadata_only": true,
+      "publication_transform": "SIGNED_DOWNLOAD_URLS_OMITTED_V1",
+      "sha256": "0d877c8b84dbb8578b323695ba3a27de0f79e64f8298629afb3b2dd14dc34500",
+      "path": "data/snapshots/0d877c8b84dbb8578b323695ba3a27de0f79e64f8298629afb3b2dd14dc34500.json",
+      "acquired_at": "2026-11-04T04:22:32.762123+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_3873bc65caae6156",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=61891",
+      "kind": "discovery_receipt",
+      "metadata_only": true,
+      "publication_transform": "SIGNED_DOWNLOAD_URLS_OMITTED_V1",
+      "sha256": "3873bc65caae61562edf81061c5b44d7d971ece1f14f1558629d542383f63a45",
+      "path": "data/snapshots/3873bc65caae61562edf81061c5b44d7d971ece1f14f1558629d542383f63a45.json",
+      "acquired_at": "2026-11-04T04:22:33.513216+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_62286c13bb516239",
+      "kind": "discovery_receipt",
+      "url": "local:bounded-discovery-execution",
+      "sha256": "62286c13bb51623983268a90d342b47edf0eed7b5d8d485d0c58f6b7cd36c5aa",
+      "path": "data/snapshots/62286c13bb51623983268a90d342b47edf0eed7b5d8d485d0c58f6b7cd36c5aa.json",
+      "acquired_at": "2026-11-04T04:22:33.601901+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_d0b1a14d5ab1075e",
+      "kind": "discovery_receipt",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/22",
+      "metadata_only": true,
+      "sha256": "d0b1a14d5ab1075eab86d7989a4b13f7a6bd3ac6376fa0063b74ccef67f1d802",
+      "path": "data/snapshots/d0b1a14d5ab1075eab86d7989a4b13f7a6bd3ac6376fa0063b74ccef67f1d802.json",
+      "acquired_at": "2026-11-04T04:22:57.365221+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_9c5c75f07900aa98",
+      "kind": "discovery_receipt",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/22",
+      "metadata_only": true,
+      "sha256": "9c5c75f07900aa98bf03aff5e0a78441fef250a69f345a219d6a66db08acd408",
+      "path": "data/snapshots/9c5c75f07900aa98bf03aff5e0a78441fef250a69f345a219d6a66db08acd408.json",
+      "acquired_at": "2026-11-04T04:22:58.895730+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_26a9fae3030fad03",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=104804",
+      "kind": "discovery_receipt",
+      "metadata_only": true,
+      "publication_transform": "SIGNED_DOWNLOAD_URLS_OMITTED_V1",
+      "sha256": "26a9fae3030fad03ed73b58d18b86a389b7b8a4f266e2105d116a8945dc27adb",
+      "path": "data/snapshots/26a9fae3030fad03ed73b58d18b86a389b7b8a4f266e2105d116a8945dc27adb.json",
+      "acquired_at": "2026-11-04T04:23:10.327618+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "wamex_A104804_423301",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=104804",
+      "kind": "pdf",
+      "report_native_id": "WAMEX:A104804",
+      "resource_native_id": "423301",
+      "original_filename": "a104804_lith_logging_codes_20150416_(ocr)_KG_OCR.pdf",
+      "metadata_sha256": [
+        "26a9fae3030fad03ed73b58d18b86a389b7b8a4f266e2105d116a8945dc27adb"
+      ],
+      "publication_date": "2021-05-03",
+      "date_role": "OPEN_FILE_RELEASE_NOT_RESOURCE_EFFECTIVE_DATE",
+      "authority": "OFFICIAL_WAMEX_REPORT",
+      "sha256": "fe89b4e4c4ebc1baa493f5d9dfcaef6bc4ce3645b1d8cf09d82f9a5bceb1ecb9",
+      "path": "data/snapshots/fe89b4e4c4ebc1baa493f5d9dfcaef6bc4ce3645b1d8cf09d82f9a5bceb1ecb9.pdf",
+      "acquired_at": "2026-11-04T04:23:14.896333+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_e014b4cf0f223bdb",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=105288",
+      "kind": "discovery_receipt",
+      "metadata_only": true,
+      "publication_transform": "SIGNED_DOWNLOAD_URLS_OMITTED_V1",
+      "sha256": "e014b4cf0f223bdbdbf5108947b74e9e4a57c71f842426047a873d4e0321f01e",
+      "path": "data/snapshots/e014b4cf0f223bdbdbf5108947b74e9e4a57c71f842426047a873d4e0321f01e.json",
+      "acquired_at": "2026-11-04T04:23:16.866965+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_d499a3e76e6a46bc",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=107803",
+      "kind": "discovery_receipt",
+      "metadata_only": true,
+      "publication_transform": "SIGNED_DOWNLOAD_URLS_OMITTED_V1",
+      "sha256": "d499a3e76e6a46bc41469699ae7639430650bee05a58ee32076f7e0968ff4e50",
+      "path": "data/snapshots/d499a3e76e6a46bc41469699ae7639430650bee05a58ee32076f7e0968ff4e50.json",
+      "acquired_at": "2026-11-04T04:23:17.766667+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_2e81286b46907bdb",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=107882",
+      "kind": "discovery_receipt",
+      "metadata_only": true,
+      "publication_transform": "SIGNED_DOWNLOAD_URLS_OMITTED_V1",
+      "sha256": "2e81286b46907bdbe37fd6e6f0ab67e8d8027d882227d3b8aa9a7c5c9683710a",
+      "path": "data/snapshots/2e81286b46907bdbe37fd6e6f0ab67e8d8027d882227d3b8aa9a7c5c9683710a.json",
+      "acquired_at": "2026-11-04T04:23:18.970639+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "wamex_A107882_440687",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=107882",
+      "kind": "pdf",
+      "report_native_id": "WAMEX:A107882",
+      "resource_native_id": "440687",
+      "original_filename": "c56-1999_2015 mt weld rare earths project annual report_KG_OCR.pdf",
+      "metadata_sha256": [
+        "2e81286b46907bdbe37fd6e6f0ab67e8d8027d882227d3b8aa9a7c5c9683710a"
+      ],
+      "publication_date": "2022-05-02",
+      "date_role": "OPEN_FILE_RELEASE_NOT_RESOURCE_EFFECTIVE_DATE",
+      "authority": "OFFICIAL_WAMEX_REPORT",
+      "sha256": "6faf69a2970df7948b3d04ddb5835eec18302d4d6e2896e8013fb45de24b0dfa",
+      "path": "data/snapshots/6faf69a2970df7948b3d04ddb5835eec18302d4d6e2896e8013fb45de24b0dfa.pdf",
+      "acquired_at": "2026-11-04T04:23:53.359430+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_6c708c677bf1441e",
+      "kind": "discovery_receipt",
+      "url": "local:bounded-discovery-execution",
+      "sha256": "6c708c677bf1441e8a92aa3e450d6405932c6c03aa13a40bf9a2a6930cfb13af",
+      "path": "data/snapshots/6c708c677bf1441e8a92aa3e450d6405932c6c03aa13a40bf9a2a6930cfb13af.json",
+      "acquired_at": "2026-11-04T04:23:56.802911+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "recognized_fe89b4e4c4ebc1baa493f5d9dfcaef6bc4ce3645b1d8cf09d82f9a5bceb1ecb9",
+      "kind": "document_extraction",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=104804",
+      "source_sha256": "fe89b4e4c4ebc1baa493f5d9dfcaef6bc4ce3645b1d8cf09d82f9a5bceb1ecb9",
+      "sha256": "0776da74bd8876e4ddf0ff678c02971df025007604d4a88bd26934cef3460d63",
+      "path": "data/snapshots/0776da74bd8876e4ddf0ff678c02971df025007604d4a88bd26934cef3460d63.json",
+      "acquired_at": "2026-11-04T04:23:59.315777+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v4-native-resource-totals",
+      "publication_date": "2021-05-03"
+    },
+    {
+      "key": "recognized_6faf69a2970df7948b3d04ddb5835eec18302d4d6e2896e8013fb45de24b0dfa",
+      "kind": "document_extraction",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=107882",
+      "source_sha256": "6faf69a2970df7948b3d04ddb5835eec18302d4d6e2896e8013fb45de24b0dfa",
+      "sha256": "0ac736146763668f15c95bf166ecdd71f162fe02e77dfed021298c5aaf1395d8",
+      "path": "data/snapshots/0ac736146763668f15c95bf166ecdd71f162fe02e77dfed021298c5aaf1395d8.json",
+      "acquired_at": "2026-11-04T04:24:02.121378+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v4-native-resource-totals",
+      "publication_date": "2022-05-02"
+    },
+    {
+      "key": "discovery_execution_0b8e55c3951edcdc",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=118927",
+      "kind": "discovery_receipt",
+      "metadata_only": true,
+      "publication_transform": "SIGNED_DOWNLOAD_URLS_OMITTED_V1",
+      "sha256": "0b8e55c3951edcdc826f05fc46640cf5e6df4c4265c88d147ba4e228765cc7aa",
+      "path": "data/snapshots/0b8e55c3951edcdc826f05fc46640cf5e6df4c4265c88d147ba4e228765cc7aa.json",
+      "acquired_at": "2026-11-04T04:31:40.720901+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "wamex_A118927_534767",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=118927",
+      "kind": "pdf",
+      "report_native_id": "WAMEX:A118927",
+      "resource_native_id": "534767",
+      "original_filename": "a118927_v1_report_KG_OCR.pdf",
+      "metadata_sha256": [
+        "0b8e55c3951edcdc826f05fc46640cf5e6df4c4265c88d147ba4e228765cc7aa"
+      ],
+      "publication_date": "2025-05-05",
+      "date_role": "OPEN_FILE_RELEASE_NOT_RESOURCE_EFFECTIVE_DATE",
+      "authority": "OFFICIAL_WAMEX_REPORT",
+      "sha256": "0ee87a6876f4ab20b39d67303f84f0cdf04372a4588c6cb9a74a741b33481736",
+      "path": "data/snapshots/0ee87a6876f4ab20b39d67303f84f0cdf04372a4588c6cb9a74a741b33481736.pdf",
+      "acquired_at": "2026-11-04T04:31:51.497070+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "wamex_A118927_535165",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=118927",
+      "kind": "pdf",
+      "report_native_id": "WAMEX:A118927",
+      "resource_native_id": "535165",
+      "original_filename": "sgc3347_hastings_yangibana_magmodelling_KG_OCR.pdf",
+      "metadata_sha256": [
+        "0b8e55c3951edcdc826f05fc46640cf5e6df4c4265c88d147ba4e228765cc7aa"
+      ],
+      "publication_date": "2025-05-05",
+      "date_role": "OPEN_FILE_RELEASE_NOT_RESOURCE_EFFECTIVE_DATE",
+      "authority": "OFFICIAL_WAMEX_REPORT",
+      "sha256": "56471f58306f36b3fc8f58488bd89961a4275a2c612c196a63eaf506d77f8cb8",
+      "path": "data/snapshots/56471f58306f36b3fc8f58488bd89961a4275a2c612c196a63eaf506d77f8cb8.pdf",
+      "acquired_at": "2026-11-04T04:32:04.351183+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_51435ec224d78688",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=112044",
+      "kind": "discovery_receipt",
+      "metadata_only": true,
+      "publication_transform": "SIGNED_DOWNLOAD_URLS_OMITTED_V1",
+      "sha256": "51435ec224d78688cb775d5f28204516cd6b60c93b901e887c2f793a3ae80008",
+      "path": "data/snapshots/51435ec224d78688cb775d5f28204516cd6b60c93b901e887c2f793a3ae80008.json",
+      "acquired_at": "2026-11-04T04:32:06.273625+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "discovery_execution_047fd9f43de0a5ea",
+      "kind": "discovery_receipt",
+      "url": "local:bounded-discovery-execution",
+      "sha256": "047fd9f43de0a5ea4735d179576331a1df6d233c36714afe3e018880112a76d3",
+      "path": "data/snapshots/047fd9f43de0a5ea4735d179576331a1df6d233c36714afe3e018880112a76d3.json",
+      "acquired_at": "2026-11-04T04:32:11.210153+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "recognized_0ee87a6876f4ab20b39d67303f84f0cdf04372a4588c6cb9a74a741b33481736",
+      "kind": "document_extraction",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=118927",
+      "source_sha256": "0ee87a6876f4ab20b39d67303f84f0cdf04372a4588c6cb9a74a741b33481736",
+      "sha256": "1834a5e61f03a2ffb3b20f1ce3ab09b3625e2972e3420804dbf271c1025b897b",
+      "path": "data/snapshots/1834a5e61f03a2ffb3b20f1ce3ab09b3625e2972e3420804dbf271c1025b897b.json",
+      "acquired_at": "2026-11-04T04:32:17.093711+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v4-native-resource-totals",
+      "publication_date": "2025-05-05"
+    },
+    {
+      "key": "recognized_56471f58306f36b3fc8f58488bd89961a4275a2c612c196a63eaf506d77f8cb8",
+      "kind": "document_extraction",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=118927",
+      "source_sha256": "56471f58306f36b3fc8f58488bd89961a4275a2c612c196a63eaf506d77f8cb8",
+      "sha256": "6fc040fcd827601b4ca7abfd7f273528c4505393c85323a11009358eb793dadc",
+      "path": "data/snapshots/6fc040fcd827601b4ca7abfd7f273528c4505393c85323a11009358eb793dadc.json",
+      "acquired_at": "2026-11-04T04:32:18.486312+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v4-native-resource-totals",
+      "publication_date": "2025-05-05"
+    },
+    {
+      "key": "recognized_6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+      "kind": "document_extraction",
+      "url": "https://api.investi.com.au/api/announcements/wc1/ea9172ff-a94.pdf",
+      "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+      "sha256": "14c7585b259a57d561e4df1edb07c38fffd00ed888ccb638384476e3d92b2624",
+      "path": "data/snapshots/14c7585b259a57d561e4df1edb07c38fffd00ed888ccb638384476e3d92b2624.json",
+      "acquired_at": "2026-11-04T04:33:38.559924+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v4-native-resource-totals",
+      "publication_date": "2024-10-08"
+    },
+    {
+      "key": "discovery_execution_22462f7b674d3a79",
+      "kind": "discovery_receipt",
+      "url": "local:bounded-discovery-execution",
+      "sha256": "22462f7b674d3a794dd0c238ea0808b51ea7ad3642b2dc1b7bff64a179c9d3c1",
+      "path": "data/snapshots/22462f7b674d3a794dd0c238ea0808b51ea7ad3642b2dc1b7bff64a179c9d3c1.json",
+      "acquired_at": "2026-11-04T04:34:37.072478+00:00",
+      "available_date": "2026-11-04"
     }
   ]
 }

@@ -78,7 +78,10 @@ def execute(args):
     acquisition=[]
     if args.module=='discover':
         from .discovery import discover
-        return discover(root,json.loads((root/'config/discovery.json').read_text(encoding='utf-8')),diagnostics=getattr(args,'gap_report',None),task_limit=getattr(args,'task_limit',3))
+        discovery_config=json.loads((root/'config/discovery.json').read_text(encoding='utf-8'))
+        if getattr(args,'official_only',False):
+            discovery_config.update(seeds=[],official_archive_template=None,public_mirror_index_template=None)
+        return discover(root,discovery_config,diagnostics=getattr(args,'gap_report',None),task_limit=getattr(args,'task_limit',3))
     if args.module=='acquire' or args.refresh:
         from .discovery import discover
         if args.source_key:
@@ -88,20 +91,32 @@ def execute(args):
             discovery={'status':'TARGETED_SOURCE_UPDATE'}
         else:
             chosen=registry['sources']
-            discovery=discover(root,json.loads((root/'config/discovery.json').read_text(encoding='utf-8')),diagnostics=getattr(args,'gap_report',None),task_limit=getattr(args,'task_limit',3))
+            discovery_config=json.loads((root/'config/discovery.json').read_text(encoding='utf-8'))
+            if getattr(args,'official_only',False):
+                discovery_config.update(seeds=[],official_archive_template=None,public_mirror_index_template=None)
+                chosen=[]
+            discovery=discover(root,discovery_config,diagnostics=getattr(args,'gap_report',None),task_limit=getattr(args,'task_limit',3))
             if getattr(args,'gap_report',None):chosen=[]
         acquisition=refresh(root,dict(registry,sources=chosen))
         recognized=[]
         if config.get('evidence_resolution',{}).get('document_pipeline'):
             from .pdf_extract import capture_documents
-            recognition_snapshots=select_snapshots(root,args.as_of,acquired_through=acquired_through)
-            wanted={d.get('document_sha256') for d in discovery.get('documents',[])} if getattr(args,'gap_report',None) else None
+            # Live acquisition parses currently public originals independently
+            # of a frozen study window. Evidence Selection/rebuild retains the
+            # original research cutoff and never admits these newer values.
+            recognition_cutoff=(datetime.now(timezone.utc).date().isoformat() if args.module=='acquire' else args.as_of)
+            recognition_snapshots=select_snapshots(root,recognition_cutoff,
+                acquired_through=None if args.module=='acquire' else acquired_through)
+            wanted={d.get('document_sha256') for d in discovery.get('documents',[])} if getattr(args,'gap_report',None) or getattr(args,'official_only',False) else None
             if args.source_key:
                 wanted={s['sha256'] for s in recognition_snapshots if s['key'] in keys}
             if wanted is not None:recognition_snapshots=[s for s in recognition_snapshots if s['sha256'] in wanted]
             recognized=capture_documents(root,recognition_snapshots,tessdata=args.tessdata,only_missing=True)
         if args.module=='acquire':
-            return {'status':'COMPLETED_WITH_SOURCE_STATUS','sources':acquisition,'discovery':discovery,'document_recognition':recognized}
+            from .discovery import live_status
+            return {'status':'COMPLETED_WITH_SOURCE_STATUS','sources':acquisition,'discovery':discovery,'document_recognition':recognized,
+                    'research_cutoff':args.as_of,'recognition_cutoff':recognition_cutoff if config.get('evidence_resolution',{}).get('document_pipeline') else None,
+                    'live_update':live_status(discovery,acquisition,recognized)}
     snapshots=select_snapshots(root,args.as_of,acquired_through=acquired_through)
     if args.snapshot_lock:
         snapshots=json.loads(Path(args.snapshot_lock).read_text(encoding='utf-8'))
@@ -425,6 +440,7 @@ def main():
     parser.add_argument('--source-key');parser.add_argument('--pages',default='1');parser.add_argument('--tessdata')
     parser.add_argument('--gap-report',help='Existing evidence_pipeline_diagnostics.csv for bounded acquisition')
     parser.add_argument('--task-limit',type=int,default=3)
+    parser.add_argument('--official-only',action='store_true',help='Bounded configured official report discovery; no issuer refresh')
     parser.add_argument('--before');parser.add_argument('--after')
     args=parser.parse_args()
     try:
