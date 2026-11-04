@@ -82,7 +82,7 @@ Aim C以原文中的給料、產品、處理及礦物學資訊支持機制比較
 
 ### MINEDEX Resource Estimates by Project
 
-由[官方DASC入口](https://dasc.dmirs.wa.gov.au/home?productAlias=MINEDEX_ResourceEstimatesbyProject)實際讀取目錄、三個advertised roots及CSV ZIP下載，共5個邏輯請求；成功重取且內容SHA不變，整段本機呼叫8.895秒。這是實測耗時，沒有與不同功能的PDF查找流程比較而宣稱節省比例。
+由[官方DASC入口](https://dasc.dmirs.wa.gov.au/home?productAlias=MINEDEX_ResourceEstimatesbyProject)實際讀取目錄、三個advertised roots及CSV ZIP下載，共5個邏輯請求；成功重取且內容SHA不變，更新程序7.730秒（含外圍命令共8.895秒）。這是實測耗時，沒有與不同功能的PDF查找流程比較而宣稱節省比例。
 
 ZIP SHA `33b5aeb88ec339adcf0c765b0bb1440ef8978a76b374ef183363283a728bb6e8`；CSV member SHA `9b127f7436c50ec67978313eb9e3c478e0696fff0dbef7a602b158beed3eb8a7`。目錄日期2026-11-03、HTTP Last-Modified為該日19:14:10 GMT，實際取得日2026-11-04不回填。僅在明示取得窗口，且目錄／HTTP日期均不晚於cutoff時納入這個已發布批次產品；一般live GIS不能據此回溯。
 
@@ -114,7 +114,7 @@ ZIP包含授權、metadata與資料字典，原始回應／取得時間／SHA沿
 
 本機最終233項Python測試通過（349.972秒），新增18項Phase16測試；R三組invariants亦通過。Phase15歷史回放的142個panel CSV、7份既有evidence及7份Technical輸出一致，沒有本機浮點差異。當期兩次clean與GitHub全歷史驗收的實際結果記錄於研究摘要與本PR checks；未執行項目不宣稱通過。
 
-當期兩次獨立clean已通過142個panel CSV＋7份既有evidence＋7份Technical＋7份Phase16輸出exact比對，兩個clean邏輯資料庫SHA亦相同；canonical的當期科學輸出與clean一致。236個凍結輸出雜湊及壓縮歷史解壓SHA已驗證。八份解析快照經相依雜湊檢查後重用0.450秒、Manifest位元未變；這與首次八份解析52.097秒是相同來源集的不同快取狀態，並非公告取得效率提升百分比。
+當期兩次獨立clean已通過142個panel CSV＋7份既有evidence＋7份Technical＋7份Phase16輸出exact比對，兩個clean邏輯資料庫SHA亦相同；canonical的當期科學輸出與clean一致。236個凍結輸出雜湊及壓縮歷史解壓SHA已驗證。八份解析快照經相依雜湊檢查後重用0.450秒、Manifest位元未變；這與本次八份重新辨識59.777秒（已可重用原生幾何快取）是相同來源集的不同快取狀態，並非公告取得效率提升百分比。
 
 正式T1、TC1/TC2、C1六項Gate及既有權重均保留。未解的來源身分、共同尺度、可信測量不確定性及保留集T-B漏判仍是限制；它們沒有阻塞其他案例。
 
