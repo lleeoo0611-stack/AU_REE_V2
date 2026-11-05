@@ -504,6 +504,31 @@
       "required_source_keys": [
         "barkly_ipo20260130"
       ]
+    },
+    {
+      "left": [
+        "project_registry_v1",
+        "candidate-b17e9292e0cb34972770"
+      ],
+      "right": [
+        "GA_ENO",
+        "927415"
+      ],
+      "relation": "SOURCE_CONTEXT_CANDIDATE_NOT_VERIFIED_ENTITY_RELATION",
+      "source_key": "kennedy_mre20240704",
+      "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+      "effective_date": "2024-07-04",
+      "pdf_page": 1,
+      "page_markers": [
+        "Kennedy",
+        "DevEx",
+        "North Queensland",
+        "150Mt"
+      ],
+      "locator": "Original issuer p1 explicitly declares its 100%-owned Kennedy Project and JORC resource. GA ENO927415 native crosswalk remains candidate: name/region/coordinates alone are not equivalence. Resource scope established solely by issuer Table1.",
+      "required_source_keys": [
+        "kennedy_mre20240704"
+      ]
     }
   ]
 }

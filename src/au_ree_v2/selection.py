@@ -18,6 +18,62 @@ def observation_visible(raw, selected_shas, validation_version=None):
         not validation_version or not raw.get('parser_version') or raw.get('validation_version')==validation_version)
 
 
+def current_evidence_view(db,snapshots,cutoff,active_claim_ids,validation_version=None,candidate_version=None,claims_data=None):
+    """One selected source AND coding contract; history remains in SQLite.
+
+    The returned ID sets are in-memory selection boundaries, not a parallel
+    registry. Scope entities derived only from obsolete claims are historical.
+    """
+    shas={s['sha256'] for s in snapshots};observations=set();scopes=set();scope_records=set()
+    government={s['sha256']:s for s in snapshots if s.get('national_government') and not s.get('record_filter')}
+    records=set();pending_parents=[];record_values={}
+    invalid_native_ids={r['entity_id'] for r in db.execute('SELECT entity_id,native_id FROM entities') if not str(r['native_id']).strip()}
+    for r in db.execute('SELECT * FROM records WHERE source_sha IN (SELECT value FROM json_each(?))',(canonical(sorted(shas)),)):
+        source=government.get(r['source_sha']);raw=json.loads(r['raw'])
+        if r['entity_id'] in invalid_native_ids:continue
+        # Earlier producer versions materialised native-ID placeholders from
+        # a historical selection. They remain history, not current records.
+        if raw.get('role')=='NATIVE_GOVERNMENT_RECORDED_LOCATION_NOT_MINING_FOOTPRINT':continue
+        if raw.get('status')=='GOVERNMENT_PARENT_CODE_NOT_TECHNICALLY_VALIDATED' and not str(raw.get('proj_code') or '').strip():continue
+        if source and candidate_version:
+            if raw.get('source_kind')=='LIVE_GOVERNMENT_PROJECT_PARENT':pending_parents.append(r);continue
+            attrs=raw.get('original_attributes',{})
+            from .census import classify_ree
+            structured=[k for k in source['commodity_fields'] if not any(t in k.lower() for t in ('description','summary','ore_min','gangue','min_ass'))]
+            if not classify_ree({k:attrs.get(k) for k in source['commodity_fields']},structured,candidate_version)['include']:continue
+        records.add((r['entity_id'],r['source_sha']))
+        # Regenerate the presentation of explicit WA children from retained
+        # source features, even if an older producer occupied this record key.
+        if raw.get('source_key')=='STATE_WA_MINDEX':
+            for f in raw.get('all_selected_features') or [{'attributes':raw.get('original_attributes',{})}]:
+                a=f.get('attributes',{});site=a.get('site_code');code=a.get('proj_code')
+                if not site:continue
+                sid='AU-'+digest(['WA_MINDEX_SITE',str(site)])[:20];key=(sid,r['source_sha'])
+                records.add(key);record_values[key]=dict(name=a.get('short_name') or str(site),state='WA',longitude=None,latitude=None,deposit_type=None,activity=None)
+                if str(code or '').strip():
+                    pid='AU-'+digest(['WA_MINDEX_PROJECT',str(code)])[:20];records.add((pid,r['source_sha']))
+    for r in pending_parents:
+        children=db.execute('SELECT child_id FROM relations WHERE parent_id=? AND source_sha=?',(r['entity_id'],r['source_sha']))
+        if any((child[0],r['source_sha']) in records for child in children):records.add((r['entity_id'],r['source_sha']))
+    for row in db.execute('SELECT * FROM observations WHERE source_sha IN (SELECT value FROM json_each(?))',(canonical(sorted(shas)),)):
+        if row['effective_date']>cutoff:continue
+        if row['source_sha'] in government and (row['entity_id'],row['source_sha']) not in records:continue
+        if row['transform_version'] in ('normalization-v1','commercial-event-v1') and row['obs_id'] not in active_claim_ids:continue
+        if not observation_visible(json.loads(row['raw']),shas,validation_version):continue
+        observations.add(row['obs_id'])
+        if row['variable']=='ore_mt' and row['status']=='AUTO_VALIDATED':
+            scope_id='AU-'+digest(['PRIMARY_RESOURCE_SCOPE',row['statement_id']+'|'+row['scope']])[:20]
+            scopes.add(scope_id);scope_records.add((scope_id,row['source_sha']))
+    all_scopes={r[0] for r in db.execute("SELECT entity_id FROM entities WHERE native_namespace='PRIMARY_RESOURCE_SCOPE'")}
+    historical_scopes=all_scopes-scopes
+    records={pair for pair in records if pair[0] not in all_scopes or pair in scope_records}
+    aliases={}
+    for p in (claims_data or {}).get('projects',[]):
+        eid='AU-'+digest([p.get('entity_namespace','project_registry_v1'),str(p['id'])])[:20]
+        aliases[eid]=[p['name']]+p.get('aliases',[])
+    return dict(observation_ids=observations,historical_scope_ids=historical_scopes,record_ids=records,record_values=record_values,project_aliases=aliases,invalid_native_ids=invalid_native_ids)
+
+
 def evidence_domain(variable, raw):
     """Shared raw-domain taxonomy; a domain assignment never grants a score."""
     if raw.get('domain'):

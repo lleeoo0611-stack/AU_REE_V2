@@ -1,26 +1,26 @@
 # AU_REE_V2
 
-Latest: **Phase 21 — consolidated evidence pipeline and national Census expansion**, cutoff **2026-11-05**, configuration `research-v7-national-disclosure-incremental`. See [results, limits and reconstruction](results/phase21-2026-11-05/README.md), [verification](results/phase21-2026-11-05/evaluation.json), and [evidence priorities](results/phase21-2026-11-05/six_domain_gap_priority.csv).
+Latest: **Phase 22 — native-candidate acquisition, source-bound evidence and shared-method MCDA**, cutoff **2026-11-05**, configuration `research-v8-native-candidate-shared-draws`. See [results, limits and reconstruction](results/phase22-2026-11-06/README.md), [verification](results/phase22-2026-11-06/evaluation.json), and [evidence priorities](results/phase22-2026-11-06/six_domain_gap_priority.csv).
 
-Current evidence: **32 canonical registry groups, 21 resource cases, 20 complete transparency point scores and 5 complete six-domain cases**. Cummins Range and Nolans join Jupiter within Brothers, Goschen Area 1 and Koppamurra after source-bound four-oxide composition recovery. Barkly is a newly documented NT Project with two documented prospects; its reported resource arithmetic conflict and unavailable detailed prospectus are retained, so it is not forced into ranking. Counts of source rows, native sites, resource scopes, groups and independent Projects remain distinct.
+Current evidence: **33 canonical registry groups, 22 resource cases, 20 complete transparency point scores and 6 complete six-domain cases**. Wolverine/Browns Range joins the previous five after original resource composition and Project financing-plan disclosure recovery. New national candidate Kennedy enters resource/composition ranking, with seven disclosure items Unknown; it is not a new complete six-domain case. Barkly's resource arithmetic conflict and unavailable detailed prospectus remain unresolved. Counts of source rows, native sites, resource scopes, groups and independent Projects remain distinct.
 
 Technical remains **[Technical Disclosure Transparency v1](docs/technical-disclosure.md)**: seven binary items, denominator7, unknowns retained; not technical capability, feasibility or JORC compliance. New scopes enter the same incremental review as Unknown until source-bound coding is complete. Frozen Phase19/20 reviews and results remain unchanged. Formal C1 gates and approval status remain separate from exploratory completeness.
 
-The current path assembles disclosure analysis once from in-memory selected values, prepares commercial R inputs once and builds rank-dependent views afterward. Native-page and deterministic R caches verify content and dependencies. One SQLite store uses additional indexes and WAL so discovery can read the last committed registry during ingestion. No new production database or scoring engine is introduced.
+Unregistered native candidates now produce stable evidence-search tasks and can enter the same registry through source-bound `register-candidate` declarations. Dynamic WAMEX searches, cursor-aware acquisition and the versioned common classifier retain original IDs and unresolved crosswalks. Current evidence views exclude superseded coding without deleting history. R core-panel computation and peer comparisons have separate verified dependencies; shared draws feed SAW, PROMETHEE II and TOPSIS without changing historical PROMETHEE sequences. One formal SQLite store remains in use.
 
 Reconstruction and tests:
 
 ```sh
 au-ree-v2 all --as-of 2026-11-05 --work work/phase5
-au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase21-2026-11-05/snapshot_lock.json --work work/phase21-replay
-python tools/check_replay.py results/phase21-2026-11-05 work/phase21-replay/latest.json
+au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/phase22-replay
+python tools/check_replay.py results/phase22-2026-11-06 work/phase22-replay/latest.json
 python -m unittest discover -s tests -v
 Rscript tests/test_methods.R
 ```
 
-On Windows supply `--rscript "C:/Program Files/R/R-4.5.2/bin/Rscript.exe"` when R is not on PATH. `--skip-r` explicitly omits ranking. Cache hits report reuse, not a new Monte Carlo execution; seed/reps/method/weights/bounds/cohort and R-program dependencies are retained. Government source coverage is not national Project completeness. ACT dedicated acquisition and external territories remain incomplete, and the bounded agent-labelled validation reference is not independent national ground truth. Five cases do not support national inference or Aim C causality.
+On Windows supply `--rscript "C:/Program Files/R/R-4.5.2/bin/Rscript.exe"` when R is not on PATH. `--skip-r` explicitly omits ranking. Cache hits report reuse, not a new Monte Carlo execution. Government source coverage is not national Project completeness. ACT dedicated acquisition, external territories and the REMP2025 workbook remain incomplete. The prospective agent-labelled validation is not independent national ground truth; independent high-impact disclosure recoding is still outstanding. Six selected cases do not support national inference or Aim C causality.
 
-Historical releases: [Phase20](results/phase20-2026-11-05/README.md), [Phase19](results/phase19-2026-11-05/REPORT.md), [Phase16 remediation](docs/phase16-remediation.md), and the earlier frozen results below. Branch/PR names are historical; PR #6 stays Draft and is not automatically merged.
+Historical releases: [Phase21](results/phase21-2026-11-05/README.md), [Phase20](results/phase20-2026-11-05/README.md), [Phase19](results/phase19-2026-11-05/REPORT.md), [Phase16 remediation](docs/phase16-remediation.md), and the earlier frozen results below. Branch/PR names are historical; PR #6 stays Draft and is not automatically merged.
 
 One Python / SQLite / R research system for Australian rare-earth evidence, official GIS and explicitly scoped exploratory MCDA. Government source records, deposits and registry groups are not interchangeable independent Projects. No national completeness or national six-domain development ranking is claimed.
 

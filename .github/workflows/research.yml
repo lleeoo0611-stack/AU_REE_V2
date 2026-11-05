@@ -162,6 +162,15 @@ jobs:
         run: |
           au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase21-2026-11-05/snapshot_lock.json --work work/phase21-b
           python tools/check_replay.py results/phase21-2026-11-05 work/phase21-b/latest.json
+      - name: Phase 22 current evidence and shared-method reconstruction
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/phase22-a
+          python tools/check_replay.py results/phase22-2026-11-06 work/phase22-a/latest.json
+      - name: Phase 22 second clean reconstruction
+        if: steps.scope.outputs.archive == 'true'
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/phase22-b
+          python tools/check_replay.py results/phase22-2026-11-06 work/phase22-b/latest.json
       - name: Final publication payload verification
         run: python tools/check_publication.py
       - uses: actions/upload-artifact@v4
@@ -169,6 +178,8 @@ jobs:
         with:
           name: research-${{ github.sha }}-${{ github.run_id }}
           path: |
+            work/phase22-a/runs/
+            work/phase22-b/runs/
             work/phase21-a/runs/
             work/phase21-b/runs/
             work/frozen/runs/

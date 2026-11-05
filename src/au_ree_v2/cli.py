@@ -82,6 +82,25 @@ def execute(args):
     if args.dry_run:
         return {'status':'DRY_RUN','module':args.module,'cutoff':args.as_of,'root':str(root),
                 'snapshot_count':len(select_snapshots(root,args.as_of)), 'writes':False}
+    if args.module=='register-candidate':
+        from .evidence import load_claims,register_candidate
+        if not args.registration:raise ValueError('register-candidate requires --registration')
+        snapshots=select_snapshots(root,args.as_of)
+        work=Path(args.work or root/'work/phase5');db=connect(work/'canonical.sqlite')
+        try:
+            claims,old_sha=load_claims(root,freeze=True)
+            registration=json.loads(Path(args.registration).read_text(encoding='utf8'))
+            project,relation=register_candidate(db,root,snapshots,args.as_of,registration,claims)
+            path=root/'data/identity_links.json';links=json.loads(path.read_text(encoding='utf8'))
+            if relation not in links.setdefault('relations',[]):links['relations'].append(relation)
+            # Existing versioned inputs; SQLite is populated by the same normal
+            # ingest. No second registry, automatic C1 or eager resource scoring.
+            path.write_text(json.dumps(links,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+            (root/'data/claims.json').write_text(json.dumps(claims,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+            return dict(status='SOURCE_VERIFIED_PROJECT_DECLARATION_ADOPTED',project_id='AU-'+digest([project.get('entity_namespace','project_registry_v1'),project['id']])[:20],
+                candidate_id=registration['candidate_id'],relation_status=relation['relation'],
+                previous_claims_sha256=old_sha,claims_sha256=filehash(root/'data/claims.json'),formal_C1=False)
+        finally:db.close()
     disclosure_settings=config.get('evidence_resolution',{}).get('technical_disclosure',{})
     if not args.snapshot_lock and disclosure_settings.get('incremental_registry') and args.module in ('all','analyze','disclosure'):
         # Like the existing claims contract: active coding may grow, whereas
@@ -183,7 +202,7 @@ def execute(args):
     if args.snapshot_lock:
         snapshots=json.loads(Path(args.snapshot_lock).read_text(encoding='utf-8'))
         for s in snapshots:
-            if s['available_date']>(acquired_through or args.as_of) or s.get('publication_date','')>args.as_of:
+            if s['available_date']>(acquired_through or args.as_of) or (s.get('publication_date') or '')>args.as_of:
                 raise ValueError('Snapshot lock contains evidence after cutoff')
             if filehash(root/s['path'])!=s['sha256']:
                 raise ValueError('Locked snapshot checksum mismatch')
@@ -217,7 +236,11 @@ def execute(args):
         from .national import government_explicit_relations
         government_explicit_relations(db,snapshots)
         from .national import live_government_inventory,live_government_coverage,government_link_candidates
-        live_rows=live_government_inventory(db,snapshots)
+        native_current=None
+        if config.get('current_view_version'):
+            from .selection import current_evidence_view
+            native_current=current_evidence_view(db,snapshots,args.as_of,active_claim_ids,candidate_version=config.get('candidate_version'),claims_data=claims_data)
+        live_rows=live_government_inventory(db,snapshots,native_current)
         live_coverage=live_government_coverage(root,snapshots,live_rows)
         write_csv(out/'government_native_entities.csv',live_rows,
                   ['entity_id','kind','namespace','native_id','name','state','longitude','latitude',
@@ -241,23 +264,27 @@ def execute(args):
                       ['parent_id','child_id','relation','source_sha256','locator','rule','status'])
         resources=resource_values(db,args.as_of,{s['sha256'] for s in snapshots},strict=bool(config.get('evidence_resolution')),active_claim_ids=active_claim_ids)
         from .national import resource_quality_checks
-        resource_qa=resource_quality_checks(db,{s['sha256'] for s in snapshots})
-        write_csv(out/'resource_statement_quality.csv',resource_qa,
-                  ['entity_id','statement_id','scope','effective_date','source_sha256','basis',
-                   'calculated_contained_kt','reported_contained_kt','rounding_lower_kt','rounding_upper_kt','status','interpretation'])
         cases=ingest_cases(db,root,snapshots,args.as_of) if args.module!='bootstrap' else []
         if config.get('evidence_resolution') and args.module!='bootstrap':
             from .evidence import ingest_events
             ingest_events(db,root,snapshots,args.as_of,claims_data=claims_data)
+        current=None
+        if config.get('current_view_version'):
+            from .selection import current_evidence_view
+            current=current_evidence_view(db,snapshots,args.as_of,active_claim_ids,config.get('evidence_resolution',{}).get('document_pipeline',{}).get('validation_version'),config.get('candidate_version'),claims_data=claims_data)
+        resource_qa=resource_quality_checks(db,{s['sha256'] for s in snapshots},current)
+        write_csv(out/'resource_statement_quality.csv',resource_qa,
+                  ['entity_id','statement_id','scope','effective_date','source_sha256','basis',
+                   'calculated_contained_kt','reported_contained_kt','rounding_lower_kt','rounding_upper_kt','status','interpretation'])
         # Register source-bound resource scopes before producing membership.
         # Otherwise fresh runs omit scopes which appear only on the next run.
-        build_hierarchy(db,snapshots,collect=False)
-        identity=resolve(db,root,snapshots,args.as_of,config.get('evidence_resolution',{}).get('identity_rule_version'))
-        hierarchy=hierarchy_rows(db,snapshots)
-        live_candidates=government_link_candidates(db,snapshots,identity['mapping'] if config.get('evidence_resolution',{}).get('identity_rule_version') else None)
+        build_hierarchy(db,snapshots,collect=False,current=current)
+        identity=resolve(db,root,snapshots,args.as_of,config.get('evidence_resolution',{}).get('identity_rule_version'),current=current)
+        hierarchy=hierarchy_rows(db,snapshots,current)
+        live_candidates=government_link_candidates(db,snapshots,identity['mapping'] if config.get('evidence_resolution',{}).get('identity_rule_version') else None,config.get('government_pairing_version'),current)
         write_csv(out/'government_identity_candidates.csv',live_candidates,
-                  ['a','b','name','state','distance_m','status','source_a','source_b'])
-        technical_rows=technical_coverage(db,identity,resources,cases,{s['sha256'] for s in snapshots})
+                  ['a','b','name','state','distance_m','status','source_a','source_b']+(['evidence_keys','relation_evidence','holder_dates'] if config.get('government_pairing_version') else []))
+        technical_rows=technical_coverage(db,identity,resources,cases,{s['sha256'] for s in snapshots},current)
         write_csv(out/'technical_project_coverage.csv',technical_rows,['canonical_project_id','member_entity_ids','status','resource_scopes','study_case_ids','other_stage_evidence','shared_resource_context','unverified_or_other_scope_claims','interpretation'])
         write_csv(out/'native_identity_ledger.csv',identity['ledger'],['source_record_id','target_id','state','source_key','native_id','resolved_entities','status','source_sha256'])
         write_csv(out/'canonical_membership.csv',identity['membership'],['entity_id','kind','canonical_id','status'])
@@ -374,12 +401,14 @@ def execute(args):
         source_shas={s['sha256'] for s in snapshots}
         from .national import raw_domain_coverage
         if config.get('research_analysis_version')=='evidence-cohort-v1':
-            raw_domains=raw_domain_coverage(db,source_shas,config['evidence_resolution']['document_pipeline'].get('validation_version'),active_claim_ids)
+            raw_domains=raw_domain_coverage(db,source_shas,config['evidence_resolution']['document_pipeline'].get('validation_version'),active_claim_ids,current)
         else:raw_domains=raw_domain_coverage(db,source_shas)
         write_csv(out/'database_domain_coverage.csv',raw_domains,
                   ['domain','evidence_status','distinct_statement_values','entities','sources','numeric_values','interpretation'])
         census=[dict(r) for r in db.execute('''SELECT e.entity_id,e.kind,r.* FROM entities e
-            JOIN records r USING(entity_id) ORDER BY e.entity_id,r.source_sha''') if r['source_sha'] in source_shas]
+            JOIN records r USING(entity_id) ORDER BY e.entity_id,r.source_sha''') if r['source_sha'] in source_shas and (current is None or r['entity_id'] not in current['historical_scope_ids'] and (r['entity_id'],r['source_sha']) in current['record_ids'])]
+        if current is not None:
+            for r in census:r.update(current.get('record_values',{}).get((r['entity_id'],r['source_sha']),{}))
         write_csv(out/'census.csv',census,['entity_id','kind','name','state','longitude','latitude','deposit_type','activity','source_sha'])
         inventory=official_inventory(db,source_shas)
         write_csv(out/'official_resource_inventory.csv',inventory,
@@ -395,7 +424,7 @@ def execute(args):
                   ['project_id','project_name','state','owner','strategic_evidence',
                    'technical_evidence','development_evidence','commercial_evidence',
                    'source_sha256','locator','status','source_url'])
-        dimension_rows=domain_evidence_coverage(db,inventory,resources,gis_values,national_inventory,source_shas,selection,prepared,config['criteria'])
+        dimension_rows=domain_evidence_coverage(db,inventory,resources,gis_values,national_inventory,source_shas,selection,prepared,config['criteria'],current)
         write_csv(out/'project_domain_evidence.csv',dimension_rows,
                   ['project_id','project_name','domain','evidence_state','evidence_reference','scorable']+(['exploratory_scorable','selection_policy'] if selection else []))
         candidates=[]
@@ -435,7 +464,7 @@ def execute(args):
                            'properties':{k:r[k] for k in ('entity_id','kind','name','state','source_sha')}})
         (out/'census.geojson').write_text(canonical({'type':'FeatureCollection','features':points})+'\n',encoding='utf-8')
         from .eligibility import audit
-        audit_summary=audit(db,out,identity,technical_rows,prepared,config,args.as_of,snapshots,root)
+        audit_summary=audit(db,out,identity,technical_rows,prepared,config,args.as_of,snapshots,root,current)
         from .security import public_export
         dump=public_export(logical_dump(db))
         (out/'logical_database.json').write_text(canonical(dump)+'\n',encoding='utf-8')
@@ -503,7 +532,7 @@ def execute(args):
             summary['comparison']=compare_runs(args.compare_to,out)
         output_hashes={p.relative_to(out).as_posix():filehash(p) for p in sorted(out.rglob('*')) if p.is_file()}
         summary['output_hashes']=output_hashes
-        summary['execution_artifacts']=[name for name in output_hashes if Path(name).name in ('R.log','r_cache.json')]
+        summary['execution_artifacts']=[name for name in output_hashes if Path(name).name in ('R.log','r_cache.json','R_cohort.log','r_cohort_cache.json')]
         (out/'summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
         report=['# AU_REE_V2 research run',f"Cutoff: {args.as_of}",f"Run: {run_id}",
                 '## Verified coverage',canonical(by_kind),f'Resource-defined sample: {len(resources)}',
@@ -531,7 +560,7 @@ def execute(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure'])
+    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate'])
     parser.add_argument('--root',default='.')
     parser.add_argument('--work')
     parser.add_argument('--as-of',default=datetime.now(timezone.utc).date().isoformat())
@@ -544,6 +573,7 @@ def main():
     parser.add_argument('--centralized',action='store_true',help='Bounded centralized-source feasibility and official resource batch acquisition')
     parser.add_argument('--compare-to',help='Frozen prior run/results folder for coverage and rank comparison')
     parser.add_argument('--source-key');parser.add_argument('--pages',default='1');parser.add_argument('--tessdata')
+    parser.add_argument('--registration',help='Source-bound native candidate Project declaration in existing claims format')
     parser.add_argument('--gap-report',help='Existing evidence_pipeline_diagnostics.csv for bounded acquisition')
     parser.add_argument('--task-limit',type=int,default=3)
     parser.add_argument('--official-only',action='store_true',help='Bounded configured official report discovery; no issuer refresh')

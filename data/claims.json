@@ -163,18 +163,21 @@
           "statement_id": "browns-range-2025-01-15",
           "category": "MEASURED_INDICATED_INFERRED_TOTAL",
           "effective_date": "2025-01-15",
-          "source_key": "browns_range_2025",
-          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
-          "locator": "physical PDF page 13; Table 5 Wolverine subtotal",
-          "pdf_page": 13,
+          "source_key": "browns_wolverine_mre20250116",
+          "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+          "locator": "Physical PDF p5 Table2 Wolverine Total MRE, dated15January2025; excludes other deposits and pilot stockpiles",
+          "pdf_page": 5,
           "page_markers": [
-            "Wolverine",
+            "Table 2: Mineral Resource estimate",
             "7.3",
             "0.96",
             "70,500"
           ],
           "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
-          "rounding_half_width": 0.05
+          "rounding_half_width": 0.05,
+          "page_extraction_key": "browns_wolverine_mre20250116_page_5",
+          "page_extraction_sha256": "87cc1a1d70b46d36298cb8fd296bd4bf78982da2e53834df44eed71af7d154eb",
+          "marker_normalization": "WHITESPACE_ONLY_V1"
         },
         {
           "variable": "grade",
@@ -185,18 +188,21 @@
           "statement_id": "browns-range-2025-01-15",
           "category": "MEASURED_INDICATED_INFERRED_TOTAL",
           "effective_date": "2025-01-15",
-          "source_key": "browns_range_2025",
-          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
-          "locator": "physical PDF page 13; Table 5 Wolverine subtotal",
-          "pdf_page": 13,
+          "source_key": "browns_wolverine_mre20250116",
+          "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+          "locator": "Physical PDF p5 Table2 Wolverine Total MRE, dated15January2025; excludes other deposits and pilot stockpiles",
+          "pdf_page": 5,
           "page_markers": [
-            "Wolverine",
+            "Table 2: Mineral Resource estimate",
             "7.3",
             "0.96",
             "70,500"
           ],
           "extraction_method": "EXPLICIT_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE_NOT_INDEPENDENT_APPROVAL",
-          "rounding_half_width": 0.005
+          "rounding_half_width": 0.005,
+          "page_extraction_key": "browns_wolverine_mre20250116_page_5",
+          "page_extraction_sha256": "87cc1a1d70b46d36298cb8fd296bd4bf78982da2e53834df44eed71af7d154eb",
+          "marker_normalization": "WHITESPACE_ONLY_V1"
         },
         {
           "variable": "contained_treo_kt",
@@ -242,6 +248,234 @@
           "date_role": "DATED_DISCLOSURE_OF_COMPLETED_DFS",
           "completion_by_date": "2025-09-15",
           "current_stage_certification": false
+        },
+        {
+          "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+          "statement_id": "browns-range-2025-01-15",
+          "effective_date": "2025-01-15",
+          "source_key": "browns_wolverine_mre20250116",
+          "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+          "pdf_page": 6,
+          "page_markers": [
+            "Table 5: Wolverine Total Mineral Resource estimate",
+            "7,300",
+            "280",
+            "840",
+            "120"
+          ],
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "locator": "Physical PDF p6 Table5 TOTAL row, all Wolverine OP+UG Mineral Resources; not Table4 underground-only and not concentrate assemblage",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "extraction_method": "SOURCE_BOUND_NATIVE_AND_RENDERED_TABLE_ROW_REVIEW",
+          "variable": "reported_resource_pr_ppm",
+          "basis": "Pr6O11",
+          "value": 60,
+          "unit": "ppm",
+          "page_extraction_key": "browns_wolverine_mre20250116_page_6",
+          "page_extraction_sha256": "6555991720303977939b580dede15262701330b2b7650de3e5307f1b74a265e7",
+          "marker_normalization": "WHITESPACE_ONLY_V1"
+        },
+        {
+          "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+          "statement_id": "browns-range-2025-01-15",
+          "effective_date": "2025-01-15",
+          "source_key": "browns_wolverine_mre20250116",
+          "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+          "pdf_page": 6,
+          "page_markers": [
+            "Table 5: Wolverine Total Mineral Resource estimate",
+            "7,300",
+            "280",
+            "840",
+            "120"
+          ],
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "locator": "Physical PDF p6 Table5 TOTAL row, all Wolverine OP+UG Mineral Resources; not Table4 underground-only and not concentrate assemblage",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "extraction_method": "SOURCE_BOUND_NATIVE_AND_RENDERED_TABLE_ROW_REVIEW",
+          "variable": "reported_resource_nd_ppm",
+          "basis": "Nd2O3",
+          "value": 280,
+          "unit": "ppm",
+          "page_extraction_key": "browns_wolverine_mre20250116_page_6",
+          "page_extraction_sha256": "6555991720303977939b580dede15262701330b2b7650de3e5307f1b74a265e7",
+          "marker_normalization": "WHITESPACE_ONLY_V1"
+        },
+        {
+          "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+          "statement_id": "browns-range-2025-01-15",
+          "effective_date": "2025-01-15",
+          "source_key": "browns_wolverine_mre20250116",
+          "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+          "pdf_page": 6,
+          "page_markers": [
+            "Table 5: Wolverine Total Mineral Resource estimate",
+            "7,300",
+            "280",
+            "840",
+            "120"
+          ],
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "locator": "Physical PDF p6 Table5 TOTAL row, all Wolverine OP+UG Mineral Resources; not Table4 underground-only and not concentrate assemblage",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "extraction_method": "SOURCE_BOUND_NATIVE_AND_RENDERED_TABLE_ROW_REVIEW",
+          "variable": "reported_resource_tb_ppm",
+          "basis": "Tb4O7",
+          "value": 120,
+          "unit": "ppm",
+          "page_extraction_key": "browns_wolverine_mre20250116_page_6",
+          "page_extraction_sha256": "6555991720303977939b580dede15262701330b2b7650de3e5307f1b74a265e7",
+          "marker_normalization": "WHITESPACE_ONLY_V1"
+        },
+        {
+          "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+          "statement_id": "browns-range-2025-01-15",
+          "effective_date": "2025-01-15",
+          "source_key": "browns_wolverine_mre20250116",
+          "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+          "pdf_page": 6,
+          "page_markers": [
+            "Table 5: Wolverine Total Mineral Resource estimate",
+            "7,300",
+            "280",
+            "840",
+            "120"
+          ],
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "locator": "Physical PDF p6 Table5 TOTAL row, all Wolverine OP+UG Mineral Resources; not Table4 underground-only and not concentrate assemblage",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "extraction_method": "SOURCE_BOUND_NATIVE_AND_RENDERED_TABLE_ROW_REVIEW",
+          "variable": "reported_resource_dy_ppm",
+          "basis": "Dy2O3",
+          "value": 840,
+          "unit": "ppm",
+          "page_extraction_key": "browns_wolverine_mre20250116_page_6",
+          "page_extraction_sha256": "6555991720303977939b580dede15262701330b2b7650de3e5307f1b74a265e7",
+          "marker_normalization": "WHITESPACE_ONLY_V1"
+        },
+        {
+          "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+          "statement_id": "browns-range-2025-01-15",
+          "effective_date": "2025-01-15",
+          "source_key": "browns_wolverine_mre20250116",
+          "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+          "pdf_page": 6,
+          "page_markers": [
+            "Table 5: Wolverine Total Mineral Resource estimate",
+            "7,300",
+            "280",
+            "840",
+            "120"
+          ],
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "locator": "Physical PDF p6 Table5 TOTAL row, all Wolverine OP+UG Mineral Resources; not Table4 underground-only and not concentrate assemblage",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "extraction_method": "SOURCE_BOUND_NATIVE_AND_RENDERED_TABLE_ROW_REVIEW",
+          "variable": "normalized_resource_treo_ppm",
+          "basis": "TREO",
+          "value": 9600,
+          "unit": "ppm",
+          "transform": {
+            "rule": "REO_GRADE_PERCENT_TO_PPM",
+            "inputs": [
+              "grade"
+            ]
+          },
+          "context_evidence": [
+            {
+              "page": 5,
+              "markers": [
+                "0.96",
+                "7.3",
+                "70,500"
+              ],
+              "page_extraction_key": "browns_wolverine_mre20250116_page_5",
+              "page_extraction_sha256": "87cc1a1d70b46d36298cb8fd296bd4bf78982da2e53834df44eed71af7d154eb",
+              "marker_normalization": "WHITESPACE_ONLY_V1"
+            }
+          ],
+          "original_value": 0.96,
+          "original_unit": "% TREO",
+          "page_extraction_key": "browns_wolverine_mre20250116_page_6",
+          "page_extraction_sha256": "6555991720303977939b580dede15262701330b2b7650de3e5307f1b74a265e7",
+          "marker_normalization": "WHITESPACE_ONLY_V1"
+        },
+        {
+          "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+          "statement_id": "browns-range-2025-01-15",
+          "effective_date": "2025-01-15",
+          "source_key": "browns_wolverine_mre20250116",
+          "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+          "pdf_page": 6,
+          "page_markers": [
+            "Table 5: Wolverine Total Mineral Resource estimate",
+            "7,300",
+            "280",
+            "840",
+            "120"
+          ],
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "locator": "Physical PDF p6 Table5 TOTAL row, all Wolverine OP+UG Mineral Resources; not Table4 underground-only and not concentrate assemblage",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "extraction_method": "SOURCE_BOUND_NATIVE_AND_RENDERED_TABLE_ROW_REVIEW",
+          "variable": "reported_resource_magnet_ppm",
+          "basis": "PrNdDyTb_OXIDES",
+          "value": 1300,
+          "unit": "ppm",
+          "transform": {
+            "rule": "SUM_MAGNET_OXIDE_PPM",
+            "inputs": [
+              "reported_resource_pr_ppm",
+              "reported_resource_nd_ppm",
+              "reported_resource_tb_ppm",
+              "reported_resource_dy_ppm"
+            ]
+          },
+          "page_extraction_key": "browns_wolverine_mre20250116_page_6",
+          "page_extraction_sha256": "6555991720303977939b580dede15262701330b2b7650de3e5307f1b74a265e7",
+          "marker_normalization": "WHITESPACE_ONLY_V1"
+        },
+        {
+          "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+          "statement_id": "browns-range-2025-01-15",
+          "effective_date": "2025-01-15",
+          "source_key": "browns_wolverine_mre20250116",
+          "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+          "pdf_page": 6,
+          "page_markers": [
+            "Table 5: Wolverine Total Mineral Resource estimate",
+            "7,300",
+            "280",
+            "840",
+            "120"
+          ],
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "locator": "Physical PDF p6 Table5 TOTAL row, all Wolverine OP+UG Mineral Resources; not Table4 underground-only and not concentrate assemblage",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "extraction_method": "SOURCE_BOUND_NATIVE_AND_RENDERED_TABLE_ROW_REVIEW",
+          "variable": "magnet_reo_share_pct",
+          "basis": "PrNdDyTb_OXIDES_OVER_TREO",
+          "value": 13.541666666666666,
+          "unit": "%",
+          "transform": {
+            "rule": "RATIO_PPM_PERCENT",
+            "inputs": [
+              "reported_resource_magnet_ppm",
+              "normalized_resource_treo_ppm"
+            ]
+          },
+          "composition_definition": "Nd2O3+Pr6O11+Dy2O3+Tb4O7 / TREO including Y2O3 excluding Sc; Wolverine total MRE",
+          "source_rounding_status": "ROUNDING_WARNING_PRESENT_BUT_ELEMENT_SIGNIFICANT_FIGURES_NOT_SPECIFIED_NO_DISTRIBUTION_ASSIGNED",
+          "page_extraction_key": "browns_wolverine_mre20250116_page_6",
+          "page_extraction_sha256": "6555991720303977939b580dede15262701330b2b7650de3e5307f1b74a265e7",
+          "marker_normalization": "WHITESPACE_ONLY_V1"
         }
       ]
     },
@@ -1259,7 +1493,10 @@
             "27% TREO"
           ]
         }
-      ]
+      ],
+      "coordinate_source": "ga_aimr",
+      "coordinate_native_id": "335246",
+      "coordinate_role": "GA AIMR Yangibana regional representative deposit point, checked against DFS Upper Gascoyne location; not Stage1 plant footprint, haul route or entity equivalence"
     },
     {
       "id": "donald-rare-earth-mineral-sands-project",
@@ -8451,6 +8688,272 @@
         "barkly_ipo20260130"
       ],
       "observations": []
+    },
+    {
+      "id": "candidate-b17e9292e0cb34972770",
+      "entity_namespace": "project_registry_v1",
+      "name": "Kennedy Rare Earths Project",
+      "state": "QLD",
+      "identity_source": "kennedy_mre20240704",
+      "origin_candidate_id": "AU-b17e9292e0cb34972770",
+      "observations": [
+        {
+          "source_key": "kennedy_mre20240704",
+          "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+          "pdf_page": 2,
+          "page_markers": [
+            "Table 1: Kennedy Project Inferred MRE",
+            "1,000",
+            "180",
+            "325"
+          ],
+          "scope": "Kennedy Inferred MRE at325ppm TREO-CeO2 cutoff; excludes475ppm alternative and any Exploration Target",
+          "statement_id": "kennedy-mre20240704-cutoff325",
+          "effective_date": "2024-07-04",
+          "category": "INFERRED",
+          "locator": "physical PDF p2 Table1 first325ppm cutoff row; not second475ppm cutoff row",
+          "basis": "TREO",
+          "extraction_method": "SOURCE_BOUND_TABLE_ROW_REVIEW_AND_RENDERED_PAGE_CHECK",
+          "composition_definition": "Pr6O11+Nd2O3+Tb4O7+Dy2O3 / TREO including Y2O3 excluding Sc",
+          "variable": "ore_mt",
+          "value": 150,
+          "unit": "Mt",
+          "rounding_half_width": 0.5,
+          "rounding_note": "Printed last-unit resolution convention only; no measurement-error distribution or inferred significant figures"
+        },
+        {
+          "source_key": "kennedy_mre20240704",
+          "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+          "pdf_page": 2,
+          "page_markers": [
+            "Table 1: Kennedy Project Inferred MRE",
+            "1,000",
+            "180",
+            "325"
+          ],
+          "scope": "Kennedy Inferred MRE at325ppm TREO-CeO2 cutoff; excludes475ppm alternative and any Exploration Target",
+          "statement_id": "kennedy-mre20240704-cutoff325",
+          "effective_date": "2024-07-04",
+          "category": "INFERRED",
+          "locator": "physical PDF p2 Table1 first325ppm cutoff row; not second475ppm cutoff row",
+          "basis": "TREO",
+          "extraction_method": "SOURCE_BOUND_TABLE_ROW_REVIEW_AND_RENDERED_PAGE_CHECK",
+          "composition_definition": "Pr6O11+Nd2O3+Tb4O7+Dy2O3 / TREO including Y2O3 excluding Sc",
+          "variable": "grade",
+          "value": 1000,
+          "unit": "ppm",
+          "rounding_half_width": 0.5,
+          "rounding_note": "Printed last-unit resolution convention only; no measurement-error distribution or inferred significant figures"
+        },
+        {
+          "source_key": "kennedy_mre20240704",
+          "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+          "pdf_page": 2,
+          "page_markers": [
+            "Table 1: Kennedy Project Inferred MRE",
+            "1,000",
+            "180",
+            "325"
+          ],
+          "scope": "Kennedy Inferred MRE at325ppm TREO-CeO2 cutoff; excludes475ppm alternative and any Exploration Target",
+          "statement_id": "kennedy-mre20240704-cutoff325",
+          "effective_date": "2024-07-04",
+          "category": "INFERRED",
+          "locator": "physical PDF p2 Table1 first325ppm cutoff row; not second475ppm cutoff row",
+          "basis": "Pr6O11",
+          "extraction_method": "SOURCE_BOUND_TABLE_ROW_REVIEW_AND_RENDERED_PAGE_CHECK",
+          "composition_definition": "Pr6O11+Nd2O3+Tb4O7+Dy2O3 / TREO including Y2O3 excluding Sc",
+          "variable": "reported_resource_pr_ppm",
+          "value": 32,
+          "unit": "ppm",
+          "source_note": "Source states rounding errors are apparent; 177.7ppm component sum and reported180ppm aggregate both retained, no forced reconciliation."
+        },
+        {
+          "source_key": "kennedy_mre20240704",
+          "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+          "pdf_page": 2,
+          "page_markers": [
+            "Table 1: Kennedy Project Inferred MRE",
+            "1,000",
+            "180",
+            "325"
+          ],
+          "scope": "Kennedy Inferred MRE at325ppm TREO-CeO2 cutoff; excludes475ppm alternative and any Exploration Target",
+          "statement_id": "kennedy-mre20240704-cutoff325",
+          "effective_date": "2024-07-04",
+          "category": "INFERRED",
+          "locator": "physical PDF p2 Table1 first325ppm cutoff row; not second475ppm cutoff row",
+          "basis": "Nd2O3",
+          "extraction_method": "SOURCE_BOUND_TABLE_ROW_REVIEW_AND_RENDERED_PAGE_CHECK",
+          "composition_definition": "Pr6O11+Nd2O3+Tb4O7+Dy2O3 / TREO including Y2O3 excluding Sc",
+          "variable": "reported_resource_nd_ppm",
+          "value": 120,
+          "unit": "ppm",
+          "source_note": "Source states rounding errors are apparent; 177.7ppm component sum and reported180ppm aggregate both retained, no forced reconciliation."
+        },
+        {
+          "source_key": "kennedy_mre20240704",
+          "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+          "pdf_page": 2,
+          "page_markers": [
+            "Table 1: Kennedy Project Inferred MRE",
+            "1,000",
+            "180",
+            "325"
+          ],
+          "scope": "Kennedy Inferred MRE at325ppm TREO-CeO2 cutoff; excludes475ppm alternative and any Exploration Target",
+          "statement_id": "kennedy-mre20240704-cutoff325",
+          "effective_date": "2024-07-04",
+          "category": "INFERRED",
+          "locator": "physical PDF p2 Table1 first325ppm cutoff row; not second475ppm cutoff row",
+          "basis": "Tb4O7",
+          "extraction_method": "SOURCE_BOUND_TABLE_ROW_REVIEW_AND_RENDERED_PAGE_CHECK",
+          "composition_definition": "Pr6O11+Nd2O3+Tb4O7+Dy2O3 / TREO including Y2O3 excluding Sc",
+          "variable": "reported_resource_tb_ppm",
+          "value": 3.7,
+          "unit": "ppm",
+          "source_note": "Source states rounding errors are apparent; 177.7ppm component sum and reported180ppm aggregate both retained, no forced reconciliation."
+        },
+        {
+          "source_key": "kennedy_mre20240704",
+          "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+          "pdf_page": 2,
+          "page_markers": [
+            "Table 1: Kennedy Project Inferred MRE",
+            "1,000",
+            "180",
+            "325"
+          ],
+          "scope": "Kennedy Inferred MRE at325ppm TREO-CeO2 cutoff; excludes475ppm alternative and any Exploration Target",
+          "statement_id": "kennedy-mre20240704-cutoff325",
+          "effective_date": "2024-07-04",
+          "category": "INFERRED",
+          "locator": "physical PDF p2 Table1 first325ppm cutoff row; not second475ppm cutoff row",
+          "basis": "Dy2O3",
+          "extraction_method": "SOURCE_BOUND_TABLE_ROW_REVIEW_AND_RENDERED_PAGE_CHECK",
+          "composition_definition": "Pr6O11+Nd2O3+Tb4O7+Dy2O3 / TREO including Y2O3 excluding Sc",
+          "variable": "reported_resource_dy_ppm",
+          "value": 22,
+          "unit": "ppm",
+          "source_note": "Source states rounding errors are apparent; 177.7ppm component sum and reported180ppm aggregate both retained, no forced reconciliation."
+        },
+        {
+          "source_key": "kennedy_mre20240704",
+          "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+          "pdf_page": 2,
+          "page_markers": [
+            "Table 1: Kennedy Project Inferred MRE",
+            "1,000",
+            "180",
+            "325"
+          ],
+          "scope": "Kennedy Inferred MRE at325ppm TREO-CeO2 cutoff; excludes475ppm alternative and any Exploration Target",
+          "statement_id": "kennedy-mre20240704-cutoff325",
+          "effective_date": "2024-07-04",
+          "category": "INFERRED",
+          "locator": "physical PDF p2 Table1 first325ppm cutoff row; not second475ppm cutoff row",
+          "basis": "TREO",
+          "extraction_method": "SOURCE_BOUND_TABLE_ROW_REVIEW_AND_RENDERED_PAGE_CHECK",
+          "composition_definition": "Pr6O11+Nd2O3+Tb4O7+Dy2O3 / TREO including Y2O3 excluding Sc",
+          "variable": "reported_resource_treo_ppm",
+          "value": 1000,
+          "unit": "ppm",
+          "source_note": "Source states rounding errors are apparent; 177.7ppm component sum and reported180ppm aggregate both retained, no forced reconciliation."
+        },
+        {
+          "source_key": "kennedy_mre20240704",
+          "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+          "pdf_page": 2,
+          "page_markers": [
+            "Table 1: Kennedy Project Inferred MRE",
+            "1,000",
+            "180",
+            "325"
+          ],
+          "scope": "Kennedy Inferred MRE at325ppm TREO-CeO2 cutoff; excludes475ppm alternative and any Exploration Target",
+          "statement_id": "kennedy-mre20240704-cutoff325",
+          "effective_date": "2024-07-04",
+          "category": "INFERRED",
+          "locator": "physical PDF p2 Table1 first325ppm cutoff row; not second475ppm cutoff row",
+          "basis": "PrNdDyTb_OXIDES",
+          "extraction_method": "SOURCE_BOUND_TABLE_ROW_REVIEW_AND_RENDERED_PAGE_CHECK",
+          "composition_definition": "Pr6O11+Nd2O3+Tb4O7+Dy2O3 / TREO including Y2O3 excluding Sc",
+          "variable": "reported_resource_magnet_ppm",
+          "value": 180,
+          "unit": "ppm",
+          "source_note": "Source states rounding errors are apparent; 177.7ppm component sum and reported180ppm aggregate both retained, no forced reconciliation."
+        },
+        {
+          "source_key": "kennedy_mre20240704",
+          "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+          "pdf_page": 2,
+          "page_markers": [
+            "Table 1: Kennedy Project Inferred MRE",
+            "1,000",
+            "180",
+            "325"
+          ],
+          "scope": "Kennedy Inferred MRE at325ppm TREO-CeO2 cutoff; excludes475ppm alternative and any Exploration Target",
+          "statement_id": "kennedy-mre20240704-cutoff325",
+          "effective_date": "2024-07-04",
+          "category": "INFERRED",
+          "locator": "physical PDF p2 Table1 first325ppm cutoff row; not second475ppm cutoff row",
+          "basis": "PrNdDyTb_OXIDES_OVER_TREO",
+          "extraction_method": "SOURCE_BOUND_TABLE_ROW_REVIEW_AND_RENDERED_PAGE_CHECK",
+          "composition_definition": "Pr6O11+Nd2O3+Tb4O7+Dy2O3 / TREO including Y2O3 excluding Sc",
+          "variable": "magnet_reo_share_pct",
+          "value": 18.0,
+          "unit": "%",
+          "transform": {
+            "rule": "RATIO_PPM_PERCENT",
+            "inputs": [
+              "reported_resource_magnet_ppm",
+              "reported_resource_treo_ppm"
+            ]
+          },
+          "source_note": "Use source-reported180ppm aggregate with source formula; component sum177.7ppm retained separately; exact rounding scope not established so source rounding bounds not quantified."
+        },
+        {
+          "source_key": "kennedy_mre20240704",
+          "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+          "pdf_page": 2,
+          "page_markers": [
+            "ammonium sulfate",
+            "pH4"
+          ],
+          "scope": "Kennedy preliminary desorption testwork; feed/source scale not restated in MRE announcement",
+          "statement_id": "kennedy-historical-leach-reference20240704",
+          "effective_date": "2024-07-04",
+          "category": "NOT_APPLICABLE",
+          "locator": "physical PDF p2 Table1 first325ppm cutoff row; not second475ppm cutoff row",
+          "basis": "TEST_CONDITION_NOT_PERFORMANCE",
+          "extraction_method": "SOURCE_BOUND_TABLE_ROW_REVIEW_AND_RENDERED_PAGE_CHECK",
+          "composition_definition": "Pr6O11+Nd2O3+Tb4O7+Dy2O3 / TREO including Y2O3 excluding Sc",
+          "variable": "reported_technical_desorption_ph",
+          "value": 4,
+          "unit": "pH",
+          "domain": "Technical",
+          "scorable": false
+        }
+      ],
+      "identity_declaration": {
+        "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+        "pdf_page": 1,
+        "page_markers": [
+          "Kennedy",
+          "DevEx",
+          "North Queensland",
+          "150Mt"
+        ],
+        "scope_reason": "Original issuer p1 explicitly declares its 100%-owned Kennedy Project and JORC resource. GA ENO927415 native crosswalk remains candidate: name/region/coordinates alone are not equivalence. Resource scope established solely by issuer Table1."
+      },
+      "required_source_keys": [
+        "kennedy_mre20240704"
+      ],
+      "aliases": [
+        "Kennedy",
+        "Kennedy Project"
+      ]
     }
   ],
   "events": [
@@ -9057,6 +9560,34 @@
       "agreement_state": "DISCUSSIONS_ONLY",
       "conditions": "Further studies, approvals, market conditions and final investment decision; no certainty of funding",
       "currentness": "DATED_DISCLOSURE_NOT_CERTIFICATION_OF_CURRENT_AVAILABILITY"
+    },
+    {
+      "event_id": "browns-range-dfs-project-finance-plan20250915",
+      "project_namespace": "project_registry_v1",
+      "project_native_id": "browns-range",
+      "source_key": "browns_range_2025",
+      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "pdf_page": 4,
+      "page_markers": [
+        "Project",
+        "discussions are ongoing with export credit agencies",
+        "Australia, the US",
+        "and Europe."
+      ],
+      "locator": "Physical PDF p4: explicit Project finance discussions, not corporate equity or a signed credit facility",
+      "effective_date": "2025-09-15",
+      "scope": "Browns Range commercial-scale Wolverine-based DFS project financing plan; includes BRPP stockpile within engineering scope, no funding apportioned to deposit parcels",
+      "event_type": "FINANCING",
+      "attribution": "PROJECT",
+      "finance_state": "PLANNED_OR_NONBINDING",
+      "facility_id": "browns-range-commercial-dfs-funding-plan",
+      "conditions_status": "DISCUSSIONS_ONLY_NO_COMMITMENT_ESTABLISHED",
+      "agreement_state": "DISCUSSIONS_ONLY",
+      "conditions": "ECA discussions in Australia US Europe; no binding facility, amount, financial close or drawdown established by this disclosure",
+      "valid_from": null,
+      "valid_to": null,
+      "currentness": "DATED_DISCLOSURE_NOT_CERTIFICATION_OF_CURRENT_AVAILABILITY",
+      "date_role": "DATED_FINANCING_PLAN_DISCLOSURE"
     }
   ]
 }

@@ -1,0 +1,34 @@
+{
+  "seconds": 1.1717058000067482,
+  "exit_code": 0,
+  "python_peak_working_set_bytes": 12292096,
+  "r_peak_working_set_bytes": null,
+  "sampled_combined_working_set_bytes": 16416768,
+  "poll_seconds": 0.1,
+  "samples": 10,
+  "processes": [
+    {
+      "pid": 1588,
+      "parent_pid": 27236,
+      "name": "python.exe",
+      "lifetime_sequence": 1,
+      "peak_working_set_bytes": 4124672
+    },
+    {
+      "pid": 18444,
+      "parent_pid": 1588,
+      "name": "python.exe",
+      "lifetime_sequence": 2,
+      "peak_working_set_bytes": 12292096
+    },
+    {
+      "pid": 1588,
+      "parent_pid": 27236,
+      "name": "python.exe",
+      "lifetime_sequence": 3,
+      "peak_working_set_bytes": 4644864
+    }
+  ],
+  "tracker_version": "birth-checked-live-ancestry-v3",
+  "scope": "OFFLINE_COMMAND_AND_LIVE_DESCENDANTS; creation times reject reused parent PIDs, exited Windows handles retired; HWM observed while live; children missed between polls may be absent"
+}

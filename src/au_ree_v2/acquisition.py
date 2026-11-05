@@ -63,7 +63,7 @@ def request(url, params=None, headers=None, timeout=25, method='GET', max_bytes=
             if attempt==2:raise
             time.sleep(.5*(2**attempt))
 
-def arcgis(url, where='1=1', windows=None, archive=None, fetch=None, max_records=None):
+def arcgis(url, where='1=1', windows=None, archive=None, fetch=None, max_records=None,start_after=None):
     """Inventory-complete retrieval, globally or within each registered project AOI."""
     def query(params):
         raw, _ = (fetch or request)(url.rstrip('/') + '/query', {'f': 'json', **params})
@@ -90,6 +90,8 @@ def arcgis(url, where='1=1', windows=None, archive=None, fetch=None, max_records
         oid_field = field
         expected = sorted(set(ids['objectIds'] or []))
         total_count=len(expected)
+        if start_after is not None:expected=[oid for oid in expected if oid>start_after]
+        remaining_count=len(expected)
         if max_records is not None:expected=expected[:max(0,max_records-len(all_features))]
         seen = []
         for start in range(0,len(expected),500):
@@ -111,12 +113,14 @@ def arcgis(url, where='1=1', windows=None, archive=None, fetch=None, max_records
     return {'features':[all_features[k] for k in sorted(all_features)],
             'spatialReference':{'wkid':4326},
             'inventory':{'where':where, 'objectIdFieldName':oid_field,
-                         'count':len(all_features), 'complete':max_records is None or total_count<=max_records,
+                         'count':len(all_features), 'complete':max_records is None or (remaining_count if start_after is not None else total_count)<=max_records,
                          **({'matched_count':total_count,'record_budget':max_records} if max_records is not None else {}),
+                         **({'start_after':start_after,'remaining_count':remaining_count,
+                             'next_cursor':max(all_features) if all_features and max_records is not None and remaining_count>len(all_features) else None} if start_after is not None else {}),
                          'scope':scope, 'queries':inventories}}
 
 
-def ckan(url, query, rows=10, max_pages=2, fetch=None, archive=None):
+def ckan(url, query, rows=10, max_pages=2, fetch=None, archive=None,start_offset=0):
     """Bounded public package_search; count is not the number retrieved.
 
     API-level failures, duplicates, count drift and premature empty pages are
@@ -125,7 +129,7 @@ def ckan(url, query, rows=10, max_pages=2, fetch=None, archive=None):
     if not 1<=rows<=1000 or not 1<=max_pages<=20:raise ValueError('INVALID_CKAN_BUDGET')
     items={};count=None;pages=0
     for page in range(max_pages):
-        raw,_=(fetch or request)(url.rstrip('/')+'/package_search',dict(q=query,rows=rows,start=page*rows,sort='id asc'))
+        raw,_=(fetch or request)(url.rstrip('/')+'/package_search',dict(q=query,rows=rows,start=start_offset+page*rows,sort='id asc'))
         if archive:archive(raw)
         data=json.loads(raw)
         if data.get('success') is not True:raise ValueError('CKAN_API_UNSUCCESSFUL')
@@ -134,15 +138,16 @@ def ckan(url, query, rows=10, max_pages=2, fetch=None, archive=None):
         if count is not None and count!=current:raise ValueError('CKAN_COUNT_CHANGED_RETRY_LATER')
         count=current;batch=result['results'];pages+=1
         if not isinstance(batch,list) or len(batch)>rows:raise ValueError('CKAN_INVALID_PAGE')
-        if not batch and len(items)<count:raise ValueError('CKAN_PREMATURE_EMPTY_PAGE')
+        if not batch and start_offset+len(items)<count:raise ValueError('CKAN_PREMATURE_EMPTY_PAGE')
         for item in batch:
             if not item.get('id') or item['id'] in items:raise ValueError('CKAN_DUPLICATE_OR_MISSING_NATIVE_ID')
             items[item['id']]=item
-        if len(items)>count:raise ValueError('CKAN_COUNT_EXCEEDED')
-        if len(items)==count:break
+        if start_offset+len(items)>count:raise ValueError('CKAN_COUNT_EXCEEDED')
+        if start_offset+len(items)==count:break
         if len(batch)<rows:raise ValueError('CKAN_TRUNCATED_PAGE')
     return dict(results=list(items.values()),inventory=dict(query=query,matched_count=count,
-        retrieved_count=len(items),pages=pages,rows=rows,max_pages=max_pages,complete=len(items)==count))
+        retrieved_count=len(items),pages=pages,rows=rows,max_pages=max_pages,complete=start_offset+len(items)==count,
+        **(dict(start_offset=start_offset,next_start=start_offset+len(items) if start_offset+len(items)<count else None) if start_offset else {})))
 
 
 def wfs(source, archive=None):
@@ -342,7 +347,7 @@ def select_snapshots(root, cutoff, keys=None, acquired_through=None):
     manifest = json.loads((Path(root) / 'data/manifest.json').read_text(encoding='utf-8'))
     selected = {}
     def visible(s):
-        if s.get('publication_date', '')>cutoff:return False
+        if (s.get('publication_date') or '')>cutoff:return False
         if s['available_date']<=cutoff:return True
         # Retrospective acquisition is explicit and limited to dated documents
         # and their extraction artifacts; never backdate live GIS/government rows.

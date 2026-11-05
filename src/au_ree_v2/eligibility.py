@@ -4,7 +4,7 @@ from .analysis import write_csv
 from .store import canonical, digest
 
 
-def audit(db,out,identity,technical,prepared,config,cutoff,snapshots,root=None):
+def audit(db,out,identity,technical,prepared,config,cutoff,snapshots,root=None,current=None):
     mapping=identity['mapping']; selected={s['sha256'] for s in snapshots}
     names={r['entity_id']:r['name'] for r in db.execute('SELECT * FROM records ORDER BY source_sha') if r['source_sha'] in selected}
     coverage={r['canonical_project_id']:r for r in prepared['coverage']}
@@ -31,12 +31,12 @@ def audit(db,out,identity,technical,prepared,config,cutoff,snapshots,root=None):
     stats={'unresolved_pairs':len(pairs),'primary_scope_gaps':len(gaps),'formal_c1_evaluated':0,'formal_c1_admitted':0,'formal_c1_reason':'UPSTREAM_GATE_LEDGER_AND_FIXED_PANEL_NOT_IMPORTED','registry_groups':len(cohorts),'source_snapshots':len(snapshots),'resource_defined':sum(c['resource_defined'] for c in cohorts),'development':sum(c['development'] for c in cohorts),'full_evidence':sum(c['full_evidence'] for c in cohorts)}
     if config.get('eligibility_evidence',{}).get('imports'):
         stats['formal_c1_reason']='IMPORTED_POLICY_EMPTY_SIGNOFF_LEDGERS_NO_APPROVED_CROSSWALK_OR_PANEL'
-        stats['objective_evidence']=objective_evidence(db,out,mapping,technical,config['eligibility_evidence'],cutoff,snapshots,root)
+        stats['objective_evidence']=objective_evidence(db,out,mapping,technical,config['eligibility_evidence'],cutoff,snapshots,root,current)
     (out/'eligibility_audit.json').write_text(json.dumps(stats,indent=2)+'\n',encoding='utf-8')
     return stats
 
 
-def objective_evidence(db,out,mapping,technical,policy,cutoff,snapshots,root):
+def objective_evidence(db,out,mapping,technical,policy,cutoff,snapshots,root,current=None):
     """Evidence availability and formal decisions are independent axes.
 
     No name-based upstream crosswalk. Post-cutoff acquisitions may establish a
@@ -58,6 +58,7 @@ def objective_evidence(db,out,mapping,technical,policy,cutoff,snapshots,root):
     sources={s['sha256']:s for s in snapshots};facts={};rows=[]
     for obs in db.execute('SELECT * FROM observations ORDER BY obs_id'):
         if obs['source_sha'] not in sources:continue
+        if current is not None and obs['obs_id'] not in current['observation_ids']:continue
         raw=json.loads(obs['raw']);source=sources[obs['source_sha']]
         if not observation_visible(raw,sources):continue
         if obs['status']!='AUTO_VALIDATED':continue
@@ -67,6 +68,8 @@ def objective_evidence(db,out,mapping,technical,policy,cutoff,snapshots,root):
         pid=mapping.get(obs['entity_id'],obs['entity_id'])
         facts.setdefault(pid,[]).append(dict(evidence_id=obs['obs_id'],variable=obs['variable'],value=obs['value'],basis=obs['basis'],scope=obs['scope'],effective_date=obs['effective_date'],source_sha256=obs['source_sha'],source_publication=source['publication_date'],acquired_at=source['acquired_at'],locator=obs['locator'],pdf_page=raw.get('pdf_page'),raw=raw))
     for rec in db.execute('SELECT e.native_namespace,e.native_id,e.kind,r.* FROM entities e JOIN records r USING(entity_id) ORDER BY e.entity_id,r.source_sha'):
+        if current is not None and rec['entity_id'] in current['historical_scope_ids']:continue
+        if current is not None and (rec['entity_id'],rec['source_sha']) not in current['record_ids']:continue
         source=sources.get(rec['source_sha'])
         if not source or not source.get('publication_date') or date_end(source['publication_date'])>formal_cutoff:continue
         pid=mapping.get(rec['entity_id'],rec['entity_id'])

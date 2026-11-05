@@ -158,7 +158,12 @@ class Phase21(unittest.TestCase):
         review=json.loads((ROOT/'data/technical_disclosure_current.json').read_text(encoding='utf8'))
         old=json.loads((ROOT/'data/technical_disclosure_v1.json').read_text(encoding='utf8'))
         old_by_id={g['project_id']:g for g in old['groups']}
-        self.assertTrue(all(old_by_id[g['project_id']]==g for g in review['groups'] if g['project_id'] in old_by_id))
+        conf=json.loads((ROOT/'results/phase21-2026-11-05/configuration.json').read_text())
+        frozen=json.loads((ROOT/conf['research']['evidence_resolution']['technical_disclosure']['review_path']).read_text(encoding='utf8'))
+        self.assertTrue(all(old_by_id[g['project_id']]==g for g in frozen['groups'] if g['project_id'] in old_by_id))
+        # Later reviewed explanations/documents may evolve; the original
+        # frozen review and adopted seven binary states remain reconstructable.
+        self.assertTrue(all(old_by_id[g['project_id']]['items'][code]['status']==item['status'] for g in review['groups'] if g['project_id'] in old_by_id for code,item in g['items'].items()))
         p=next(g for g in review['groups'] if 'Barkly' in g['name'])
         self.assertFalse(p['search_complete']);self.assertEqual('UNVERIFIABLE',p['items']['TD6']['status'])
 

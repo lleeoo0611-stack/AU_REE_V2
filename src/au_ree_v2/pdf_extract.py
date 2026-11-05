@@ -678,9 +678,9 @@ def capture_pages(root, source, pages, tessdata=None, markers_by_page=None, ocr_
     return outcomes
 
 
-def narrative_context_issues(candidate,page,version='page-context-v2'):
+def narrative_context_issues(candidate,page,version='page-context-v2',project_aliases=()):
     """Definitions/abbreviations are reference text, never project events."""
-    if version=='scientific-context-v4-column-binding' and candidate.get('kind')=='RESOURCE_TABLE_TOTAL':
+    if version in ('scientific-context-v4-column-binding','scientific-context-v5-peer-boundary') and candidate.get('kind')=='RESOURCE_TABLE_TOTAL':
         import unicodedata
         header=unicodedata.normalize('NFKC',candidate.get('header',''))
         # Matching row tokens proves transcription, not what their columns mean.
@@ -693,9 +693,13 @@ def narrative_context_issues(candidate,page,version='page-context-v2'):
     header=' '.join(page.get('text','').split())[:500]
     if re.search(r'(?i)glossary|abbreviations and defined terms|definition of terms',header):
         return ['SOURCE_GLOSSARY_NOT_PROJECT_DISCLOSURE']
-    if version in ('scientific-context-v3','scientific-context-v4-column-binding'):
+    if version in ('scientific-context-v3','scientific-context-v4-column-binding','scientific-context-v5-peer-boundary'):
         text=candidate.get('raw_text','')
         reasons=[]
+        if version=='scientific-context-v5-peer-boundary' and candidate.get('domain')=='Development':
+            titles=re.findall(r'(?:titled|title)\s*:?\s*[“"]([^”"]*(?:DFS|PFS|feasibility|scoping)[^”"]*)[”"]',text,re.I)
+            if titles and any(not any(re.search(r'(?<!\w)'+re.escape(a)+r'(?!\w)',title,re.I) for a in project_aliases if len(a)>=4) for title in titles):
+                reasons.append('CITED_STUDY_SCOPE_NOT_ESTABLISHED_FOR_THIS_PROJECT')
         if re.search(r'(?i)forward[- ]looking statements? (?:include|are|may)|terms of any future funding|no assurance (?:that|can)',text):
             reasons.append('CAUTION_OR_HYPOTHETICAL_TERMS_NOT_PROJECT_EVENT')
         if candidate.get('domain')=='Commercial' and re.search(r'(?i)\b(?:cash position|cash balance|cash at bank|cash equivalents)\b',text):

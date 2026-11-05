@@ -512,43 +512,54 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
     return {'coverage':coverage,'traces':traces,'matrices':matrices,'panels':{**{p:len(v) for p,v in matrices.items()},**case_panels},
             'trace_values':len(traces),'government_screen_n':len(screen_rows)}
 
-def mcda_cache_contract(root,out,panel,config,runtime):
+def mcda_cache_contract(root,out,panel,config,runtime,stage=None):
     """Actual R dependencies, including cross-panel cohort comparisons."""
     from .store import filehash
     out=Path(out);inputs={}
-    folders=sorted(p for p in out.iterdir() if p.is_dir()) if config.get('research_analysis_version') else [out/panel]
+    folders=sorted(p for p in out.iterdir() if p.is_dir()) if config.get('research_analysis_version') and stage!='core' else [out/panel]
     for folder in folders:
         paths=[folder/name for name in ('matrix.csv','criteria.csv','weights.csv')]
         if all(p.is_file() for p in paths):inputs.update({p.relative_to(out).as_posix():filehash(p) for p in paths})
     coverage=out/'commercial_project_coverage.csv'
-    if coverage.is_file():inputs[coverage.name]=filehash(coverage)
+    with (out/panel/'criteria.csv').open(encoding='utf8') as stream:codes={r['code'] for r in csv.DictReader(stream)}
+    if coverage.is_file() and (stage is None or stage=='core' and codes=={'R1','C1'}):inputs[coverage.name]=filehash(coverage)
     return dict(version='mcda-input-cache-v1',panel=panel,inputs=inputs,R=runtime,vanilla=True,
         programs={name:filehash(Path(root)/'R'/name) for name in ('run_mcda.R','methods.R')},
-        monte_carlo=config['monte_carlo'],threshold=config['promethee_threshold'],analysis=config.get('research_analysis_version'))
+        monte_carlo=config['monte_carlo'],threshold=config['promethee_threshold'],analysis=config.get('research_analysis_version'),
+        **(dict(stage=stage,sampling=config.get('shared_method_draws')) if stage else {}))
 
 
 def cached_r(root,folder,command,contract):
     """Reuse only complete, SHA-checked deterministic R outputs; never input CSVs."""
     from .store import digest,filehash
     import uuid
-    folder=Path(folder);key=digest(contract);cache=Path(root)/'work/cache/mcda'/key
-    receipt=cache/'receipt.json';hit=False;metadata=None
+    folder=Path(folder);key=digest(contract)
+    import os
+    cache=Path(os.environ.get('AU_REE_MCDA_CACHE',str(Path(root)/'work/cache/mcda')))/key
+    receipt=cache/'receipt.json';hit=False;metadata=None;stage=contract.get('stage')
+    sentinel='evidence_cohort_sensitivity.csv' if stage=='cohort' else 'ranking.csv'
     if receipt.is_file():
         try:
             metadata=json.loads(receipt.read_text(encoding='utf8'))
-            hit=(metadata['contract']==contract and 'ranking.csv' in metadata['outputs'] and
+            hit=(metadata['contract']==contract and sentinel in metadata['outputs'] and
                  all(Path(name).name==name and filehash(cache/name)==sha for name,sha in metadata['outputs'].items()))
         except (KeyError,ValueError,OSError):hit=False
     if hit:
         for name in metadata['outputs']:shutil.copy2(cache/name,folder/name)
-        (folder/'R.log').write_text('REUSED_SHA_VERIFIED_R_OUTPUTS; no Monte Carlo rerun; generating runtime in runtime.csv\n',encoding='utf8')
+        (folder/('R_cohort.log' if stage=='cohort' else 'R.log')).write_text('REUSED_SHA_VERIFIED_R_OUTPUTS; no Monte Carlo rerun; generating runtime in runtime.csv\n',encoding='utf8')
     else:
         result=subprocess.run(command,capture_output=True,text=True,timeout=300)
-        (folder/'R.log').write_text(result.stdout+'\n'+result.stderr,encoding='utf8')
+        (folder/('R_cohort.log' if stage=='cohort' else 'R.log')).write_text(result.stdout+'\n'+result.stderr,encoding='utf8')
         if result.returncode:raise RuntimeError('R MCDA failed: '+result.stderr[-2000:])
         outputs={p.name:filehash(p) for p in folder.glob('*.csv') if p.name not in ('matrix.csv','criteria.csv','weights.csv')}
         required={'ranking.csv','weight_uncertainty.csv','rounding_uncertainty.csv','leave_out.csv',
                   'method_comparison.csv','function_sensitivity.csv','cohort_sensitivity.csv','ahp_audit.csv'}
+        if stage=='cohort':
+            outputs={k:v for k,v in outputs.items() if k=='evidence_cohort_sensitivity.csv'}
+            required={'evidence_cohort_sensitivity.csv'}
+        elif stage=='core':
+            outputs.pop('evidence_cohort_sensitivity.csv',None)
+            if contract.get('sampling'):required|={'uncertainty_by_method.csv','shared_draw_contract.csv'}
         if not required<=outputs.keys():raise RuntimeError('R output contract incomplete')
         cache.mkdir(parents=True,exist_ok=True)
         for name in outputs:
@@ -556,7 +567,7 @@ def cached_r(root,folder,command,contract):
         metadata=dict(contract=contract,outputs=outputs)
         temporary=cache/('receipt.'+uuid.uuid4().hex+'.tmp');temporary.write_text(canonical(metadata)+'\n',encoding='utf8');temporary.replace(receipt)
     status=dict(key=key,status='REUSED_VERIFIED' if hit else 'COMPUTED_AND_CACHED',contract=contract)
-    (folder/'r_cache.json').write_text(canonical(status)+'\n',encoding='utf8')
+    (folder/('r_cohort_cache.json' if stage=='cohort' else 'r_cache.json')).write_text(canonical(status)+'\n',encoding='utf8')
     return status['status']
 
 
@@ -583,10 +594,15 @@ def run_r(root, out, prepared, config, rscript=None):
             if not config['monte_carlo'].get('method_version'):
                 raise ValueError('Research analysis requires an explicit MCDA method version')
             command.append(config['research_analysis_version'])
+        split=config.get('mcda_dependency_version')=='panel-core-and-cohort-v2'
+        if config.get('shared_method_draws'):
+            command.append(config['shared_method_draws'])
+            if split:command.append('core')
+        elif split:raise ValueError('Split MCDA requires the versioned shared draw contract')
         cache_status=None
         if config.get('mcda_cache'):
             command.insert(1,'--vanilla')
-            cache_status=cached_r(root,folder,command,mcda_cache_contract(root,out,panel,config,runtime))
+            cache_status=cached_r(root,folder,command,mcda_cache_contract(root,out,panel,config,runtime,'core' if split else None))
         else:
             result=subprocess.run(command,capture_output=True,text=True,timeout=300)
             (folder/'R.log').write_text(result.stdout+'\n'+result.stderr,encoding='utf-8')
@@ -599,6 +615,15 @@ def run_r(root, out, prepared, config, rscript=None):
                         'evidence_status':('SOURCE_BOUND_RESEARCH_DISCLOSURE_CODING' if panel in ('disclosure_only','resource_disclosure','resource_port_disclosure','six_domain_disclosure') else 'PRIMARY_ENDPOINT_MATCHED_DFS_CASES_NOT_OPERATING_RESULTS' if panel in config.get('case_panels',{}) else config['screen_evidence_policy']['status'] if panel=='official_wa_resource_screen' else 'ISSUER_SCOPE_VALIDATED'),
                         'full_evidence_eligibility':panel=='six_domain'}
         if cache_status:results[panel]['cache_status']=cache_status
+        if split and config.get('research_analysis_version'):
+            peer_command=[*command[:-1],'cohort']
+            if config.get('mcda_cache'):
+                results[panel]['cohort_cache_status']=cached_r(root,folder,peer_command,
+                    mcda_cache_contract(root,out,panel,config,runtime,'cohort'))
+            else:
+                peer=subprocess.run(peer_command,capture_output=True,text=True,timeout=300)
+                (folder/'R_cohort.log').write_text(peer.stdout+'\n'+peer.stderr,encoding='utf8')
+                if peer.returncode:raise RuntimeError('R cohort comparison failed: '+peer.stderr[-2000:])
         if panel.startswith('technical_process_concentrate_'):
             results[panel]['evidence_status']='NAMED_DESIGN_FORECAST_COMPARISON_NOT_OPERATING_OR_NATIONAL_RANK'
         if config.get('evidence_resolution'):

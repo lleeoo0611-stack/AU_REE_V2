@@ -1,5 +1,5 @@
 {
-  "version": "research-v7-national-disclosure-incremental",
+  "version": "research-v8-native-candidate-shared-draws",
   "frozen_before_scoring": true,
   "cohorts": {
     "full_census": "All available source entities; counts must be stratified by entity kind. Not a complete national project census.",
@@ -281,7 +281,11 @@
   "source_coverage_version": "bounded-document-stages-v1",
   "commodity_version": "minedex-commodity-v2",
   "disclosure_current_baseline": true,
-  "candidate_version": "ree-candidate-v2",
+  "candidate_version": "ree-candidate-v3",
   "disclosure_source_rounding": true,
-  "mcda_cache": true
+  "mcda_cache": true,
+  "shared_method_draws": "shared-method-draws-v1",
+  "mcda_dependency_version": "panel-core-and-cohort-v2",
+  "current_view_version": "active-input-contract-v1",
+  "government_pairing_version": "multi-evidence-candidates-v2"
 }

@@ -10,7 +10,7 @@ from au_ree_v2.store import canonical,digest
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--reference');p.add_argument('--snapshot-lock');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--reference');p.add_argument('--snapshot-lock');p.add_argument('--candidate-version',default=CANDIDATE_VERSION);p.add_argument('--baseline-candidate-version');a=p.parse_args()
     root=Path(__file__).resolve().parents[1];out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
     snapshots=json.loads(Path(a.snapshot_lock).read_text(encoding='utf8')) if a.snapshot_lock else select_snapshots(root,'2026-11-05')
     audit=[];coverage=[];features={}
@@ -20,7 +20,7 @@ def main():
         for index,f in enumerate(raw):
             attrs=f.get('attributes',f.get('properties',{}));native=str(attrs.get(s['id_field']))
             fields={k:attrs.get(k) for k in s['commodity_fields']}
-            result=classify_ree(fields,structured);old=bool(REE_TERMS.search('; '.join(str(v or '') for v in fields.values())))
+            result=classify_ree(fields,structured,a.candidate_version);old=classify_ree(fields,structured,a.baseline_candidate_version)['include'] if a.baseline_candidate_version else bool(REE_TERMS.search('; '.join(str(v or '') for v in fields.values())))
             old_count+=old
             count[result['role']]+=1;features[s['key'],native]=(fields,structured,s['sha256'])
             # Keep every positive and deterministic excluded examples. No
@@ -30,7 +30,7 @@ def main():
                     name=attrs.get(s['name_field']),source_entity_kind=s.get('entity_kind','SITE'),
                     locator=f'original features[{index}] / '+s['id_field']+'='+native,
                     old_candidate=old,new_candidate=result['include'],role=result['role'],
-                    matches=canonical(result['matches']),original_fields=canonical(fields),rule_version=CANDIDATE_VERSION))
+                    matches=canonical(result['matches']),original_fields=canonical(fields),rule_version=a.candidate_version))
         coverage.append(dict(state=s['state'],source_key=s['key'],source_sha256=s['sha256'],raw_records=len(raw),
             candidate_records=sum(v for k,v in count.items() if k!='NO_REE_MATCH'),previous_rule_candidates=old_count,role_counts=canonical(dict(count)),
             status='COMPLETE_SPECIFIED_SOURCE_NOT_COMPLETE_PROJECT_CENSUS'))
@@ -45,11 +45,11 @@ def main():
         for r in ref['records']:
             fields,structured,sha=features[r['source_key'],r['native_id']]
             if sha!=r['source_sha256'] or fields!=r['original_fields']:raise ValueError('REFERENCE_SOURCE_CHANGED')
-            result=classify_ree(fields,structured)
-            rows.append(dict(**r,old_candidate=bool(REE_TERMS.search('; '.join(str(v or '') for v in fields.values()))),
+            result=classify_ree(fields,structured,a.candidate_version)
+            rows.append(dict(**r,old_candidate=classify_ree(fields,structured,a.baseline_candidate_version)['include'] if a.baseline_candidate_version else bool(REE_TERMS.search('; '.join(str(v or '') for v in fields.values()))),
                 predicted_candidate=result['include'],predicted_role=result['role']))
         metrics={}
-        for split in ('development','held_out'):
+        for split in sorted({r['split'] for r in rows}):
             rr=[r for r in rows if r['split']==split];metrics[split]={}
             for version,field in [('previous','old_candidate'),('current','predicted_candidate')]:
                 tp=sum(r['expected_candidate'] and r[field] for r in rr);fp=sum(not r['expected_candidate'] and r[field] for r in rr)
@@ -57,8 +57,9 @@ def main():
                 metrics[split][version]=dict(n=len(rr),TP=tp,FP=fp,FN=fn,TN=tn,
                     precision=tp/(tp+fp) if tp+fp else None,recall=tp/(tp+fn) if tp+fn else None,
                     F1=2*tp/(2*tp+fp+fn) if 2*tp+fp+fn else None)
-            metrics[split]['role_correct']=sum(r['expected_role']==r['predicted_role'] for r in rr)
-            metrics[split]['role_errors']=[dict(source_key=r['source_key'],native_id=r['native_id'],expected=r['expected_role'],actual=r['predicted_role']) for r in rr if r['expected_role']!=r['predicted_role']]
+            metrics[split]['role_denominator']=sum(r['expected_role'] is not None for r in rr)
+            metrics[split]['role_correct']=sum(r['expected_role']==r['predicted_role'] for r in rr if r['expected_role'] is not None)
+            metrics[split]['role_errors']=[dict(source_key=r['source_key'],native_id=r['native_id'],expected=r['expected_role'],actual=r['predicted_role']) for r in rr if r['expected_role'] is not None and r['expected_role']!=r['predicted_role']]
             metrics[split]['strict_REE_excluding_Sc_only']={}
             for version,field in [('previous','old_candidate'),('current','predicted_candidate')]:
                 truth=[r['expected_candidate'] and r['expected_role']!='SC_ONLY' for r in rr]
@@ -68,10 +69,21 @@ def main():
                 metrics[split]['strict_REE_excluding_Sc_only'][version]=dict(TP=tp,FP=fp,FN=fn,TN=tn,
                     precision=tp/(tp+fp) if tp+fp else None,recall=tp/(tp+fn) if tp+fn else None,
                     F1=2*tp/(2*tp+fp+fn) if 2*tp+fp+fn else None)
+        stratified=[]
+        for dimension in ('state','source_key','stratum','entity_kind'):
+            for value in sorted({str(r.get(dimension) or 'UNKNOWN') for r in rows}):
+                rr=[r for r in rows if str(r.get(dimension) or 'UNKNOWN')==value]
+                for version,field in [('previous','old_candidate'),('current','predicted_candidate')]:
+                    tp=sum(r['expected_candidate'] and r[field] for r in rr);fp=sum(not r['expected_candidate'] and r[field] for r in rr)
+                    fn=sum(r['expected_candidate'] and not r[field] for r in rr);tn=sum(not r['expected_candidate'] and not r[field] for r in rr)
+                    stratified.append(dict(dimension=dimension,stratum=value,version=version,n=len(rr),TP=tp,FP=fp,FN=fn,TN=tn,
+                        precision=tp/(tp+fp) if tp+fp else None,recall=tp/(tp+fn) if tp+fn else None,
+                        F1=2*tp/(2*tp+fp+fn) if 2*tp+fp+fn else None))
+        write_csv(out/'census_validation_strata.csv',stratified,list(stratified[0]))
         (out/'census_validation.json').write_text(canonical(dict(reference=ref['annotation_status'],metrics=metrics,
             reference_scope='Purposeful stratified native records only; not national recall or independent gold',
             identity_precision_recall=None,identity_reason='No independent exhaustive Project crosswalk; new Barkly typed hierarchy source-checked separately',
-            binding_scope='Cummins and Nolans source tables reviewed separately; no national binding accuracy claim'))+'\n',encoding='utf8')
+            binding_scope='Source cell validation reported separately; candidate classification is not scope-binding accuracy'))+'\n',encoding='utf8')
     print(canonical(dict(sources=len(coverage)-2,decision_audit_rows=len(audit))))
 
 

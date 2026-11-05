@@ -293,6 +293,26 @@
       "company": "Barkly Rare Earths Ltd",
       "asx_code": "BAK",
       "distribution": "PUBLIC_MIRROR_OF_ISSUER_ASX_ANNOUNCEMENT"
+    },
+    "kennedy_mre20240704": {
+      "key": "kennedy_mre20240704",
+      "url": "https://www.devexresources.com.au/wp-content/uploads/2024/07/61214441.pdf",
+      "kind": "pdf",
+      "publication_date": "2024-07-04",
+      "sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+      "path": "data/snapshots/79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566.pdf",
+      "acquired_at": "2026-11-05T15:32:51.988472+00:00",
+      "available_date": "2026-11-05"
+    },
+    "dubbo_phaseb20250617": {
+      "key": "dubbo_phaseb20250617",
+      "url": "https://investornews.com/wp-content/uploads/2025/06/ASM-6-17-25.pdf",
+      "kind": "pdf",
+      "publication_date": "2025-06-17",
+      "sha256": "4aeb63ac0341402bfc14f7b8021533a293790088865324cdc4e513f8f1554ee9",
+      "path": "data/snapshots/4aeb63ac0341402bfc14f7b8021533a293790088865324cdc4e513f8f1554ee9.pdf",
+      "acquired_at": "2026-11-05T15:31:15.736568+00:00",
+      "available_date": "2026-11-05"
     }
   },
   "search_sources": {
@@ -4265,6 +4285,15 @@
             "page": 27,
             "quote": "Toongi deposit was divided into three east-to-west zones"
           }
+        },
+        {
+          "source_key": "dubbo_phaseb20250617",
+          "scope_reason": "Original17June2025 same Toongi PhaseB program reprinted in11July scoping; not OFS route",
+          "scope_evidence": {
+            "source_key": "dubbo_phaseb20250617",
+            "page": 2,
+            "quote": "three large mining zone composites using hydrochloric acid (Phase B Program)"
+          }
         }
       ],
       "items": {
@@ -4424,7 +4453,7 @@
         },
         "TD3": {
           "status": "UNVERIFIABLE",
-          "reason": "Material acid-unit/column-label conflicts require source clarification; not a zero and no corrected values manufactured.",
+          "reason": "Original17June2025 pp5-11 repeats kg/t narrative versus g/L table headers and repeated crush/acid column labels; p6 Dy37.7% conflicts with p7table37.3%. July study is not independent correction. Unknown retained; no conversion/correction manufactured.",
           "evidence": [
             {
               "source_key": "dubbo_scoping2025",
@@ -4493,7 +4522,8 @@
       ],
       "stop_reason": "Complete relevant technical narrative, tables and JORC commentary reviewed in the fixed source scope. No unresolved in-scope source candidate; remaining zeros identify specific missing facets, not external absolute absence.",
       "conflicts_updates": [
-        "2025 heap-leach case differs materially from OFS. Table4 g/L column labels differ from narrative kg/t acid additions; no numerical conversion assumed. Table5 repeats25mm and Table6 acid headers repeat50g/L; data table layout conflicts retained."
+        "2025 heap-leach case differs materially from OFS. Table4 g/L column labels differ from narrative kg/t acid additions; no numerical conversion assumed. Table5 repeats25mm and Table6 acid headers repeat50g/L; data table layout conflicts retained.",
+        "Phase22 recovered original17June2025 announcement: repeats unit/header issues and adds37.7 vs37.3%Dy discrepancy; TD3 remains Unknown, TD4/TD5 zeros unchanged."
       ],
       "search": {
         "aliases": [
@@ -15170,6 +15200,58 @@
           "reason": "Detailed prospectus unavailable; required facets not fully verifiable in retrieved IPO"
         }
       }
+    },
+    {
+      "project_id": "AU-cc4e217a90b7123dce0a",
+      "name": "Kennedy Rare Earths Project",
+      "scope": "Kennedy Inferred MRE at325ppm TREO-CeO2 cutoff; excludes475ppm alternative and any Exploration Target",
+      "documents": [
+        {
+          "source_key": "kennedy_mre20240704",
+          "scope_reason": "Explicit Kennedy MRE announcement; Makuutu comparative DFS and other DevEx projects excluded",
+          "scope_evidence": {
+            "source_key": "kennedy_mre20240704",
+            "page": 1,
+            "quote": "100%-owned Kennedy Rare Earths Project"
+          }
+        }
+      ],
+      "search_complete": false,
+      "review_complete_items": [],
+      "stop_reason": "Read16-page MRE and Table1; cited16May/10July2023 original testwork not yet acquired. No absence inference.",
+      "conflicts_updates": [
+        "Two cutoff scenarios not summed. Reported aggregate180ppm vs177.7ppm component sum; source rounding warning retained. No Makuutu DFS borrowed for Kennedy."
+      ],
+      "items": {
+        "TD1": {
+          "status": "UNVERIFIABLE",
+          "reason": "Referenced original metallurgy and feed/scale/product limitations not yet fully verified; MRE methods alone do not prove technical disclosure adequacy."
+        },
+        "TD2": {
+          "status": "UNVERIFIABLE",
+          "reason": "Referenced original metallurgy and feed/scale/product limitations not yet fully verified; MRE methods alone do not prove technical disclosure adequacy."
+        },
+        "TD3": {
+          "status": "UNVERIFIABLE",
+          "reason": "Referenced original metallurgy and feed/scale/product limitations not yet fully verified; MRE methods alone do not prove technical disclosure adequacy."
+        },
+        "TD4": {
+          "status": "UNVERIFIABLE",
+          "reason": "Referenced original metallurgy and feed/scale/product limitations not yet fully verified; MRE methods alone do not prove technical disclosure adequacy."
+        },
+        "TD5": {
+          "status": "UNVERIFIABLE",
+          "reason": "Referenced original metallurgy and feed/scale/product limitations not yet fully verified; MRE methods alone do not prove technical disclosure adequacy."
+        },
+        "TD6": {
+          "status": "UNVERIFIABLE",
+          "reason": "Referenced original metallurgy and feed/scale/product limitations not yet fully verified; MRE methods alone do not prove technical disclosure adequacy."
+        },
+        "TD7": {
+          "status": "UNVERIFIABLE",
+          "reason": "Referenced original metallurgy and feed/scale/product limitations not yet fully verified; MRE methods alone do not prove technical disclosure adequacy."
+        }
+      }
     }
   ],
   "baseline": {
@@ -18636,6 +18718,6 @@
       "snapshot_lock.json": "77411526d7c951ceb9812a830fb00764d2de4cf2ca12f69a7fc97b13661266cd"
     }
   },
-  "review_revision": "phase21-incremental-v1",
-  "parent_review_sha256": "a19c0d7e361356bbfa058e0cda9162014527adcf3fe5a378ee0347f57b71d94f"
+  "review_revision": "phase22-source-recovery-v1",
+  "parent_review_sha256": "2a879b5923043525363f7c6d8f35e9e76e48f92478e83b69674009b1fcb406a1"
 }

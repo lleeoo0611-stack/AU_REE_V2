@@ -1,10 +1,14 @@
 args<-commandArgs(trailingOnly=TRUE)
-if(!length(args) %in% c(5,6,7))stop('Require folder seed reps threshold concentration [method_version] [research_analysis_version]')
+if(!length(args) %in% c(5,6,7,8,9))stop('Require folder seed reps threshold concentration [method_version] [research_analysis_version]')
 version<-if(length(args)>=6)args[6] else 'legacy-position-rng-v1'
 stopifnot(version %in% c('legacy-position-rng-v1','entity-keyed-rng-v2'))
 deterministic<-version=='entity-keyed-rng-v2'
-research_analysis<-length(args)==7
+research_analysis<-length(args)>=7
 if(research_analysis)stopifnot(deterministic,args[7]=='evidence-cohort-v1')
+shared_methods<-length(args)>=8 && args[8]=='shared-method-draws-v1'
+if(length(args)>=8)stopifnot(shared_methods,deterministic)
+stage<-if(length(args)>=9)args[9] else 'all'
+stopifnot(stage %in% c('all','core','cohort'))
 folder<-args[1];seed<-as.integer(args[2]);reps<-as.integer(args[3]);p<-as.numeric(args[4]);concentration<-as.numeric(args[5])
 stopifnot(reps>=1,reps<=100000,concentration>0,is.finite(concentration))
 script<-sub('^--file=','',grep('^--file=',commandArgs(),value=TRUE)[1])
@@ -22,8 +26,9 @@ stopifnot(!anyDuplicated(d$project_id),!anyNA(X))
 if('canonical_project_id' %in% names(d))stopifnot(!anyDuplicated(d$canonical_project_id))
 writeout<-function(rows,name)write.csv(rows,file.path(folder,paste0(name,'.csv')),row.names=FALSE,na='')
 all_ranks<-all_weight<-all_rounding<-all_leave<-all_methods<-all_functions<-all_cohorts<-all_ahp<-list()
-all_contributions<-list()
-for(scenario in unique(weights$scenario)) {
+all_contributions<-list(); shared_summaries<-shared_draws<-list()
+trace_draws<-shared_methods && basename(folder)=='six_domain'
+if(stage!='cohort') for(scenario in unique(weights$scenario)) {
   wd<-weights[weights$scenario==scenario,];stopifnot(!anyDuplicated(wd$criterion))
   w<-wd$weight[match(codes,wd$criterion)];validate(X,w)
   # Assumption-derived reciprocal matrix exercises AHP, not elicited expert judgments.
@@ -47,6 +52,14 @@ for(scenario in unique(weights$scenario)) {
       interpretation='MATHEMATICAL_SCORE_DECOMPOSITION_NOT_EXTERNAL_ASSOCIATION_OR_CAUSAL_EFFECT')
   }
   set.seed(seed);W<-matrix(NA_real_,nrow(X),reps);D<-W
+  WM<-DM<-list(SAW=W,PROMETHEE_II=W,TOPSIS=W)
+  score_draw<-function(Z,ww,prom_score)list(SAW=saw(Z,ww),PROMETHEE_II=prom_score,TOPSIS=topsis(Z,ww))
+  record_draw<-function(scores,k,family) {
+    if(!trace_draws)return(NULL)
+    do.call(rbind,lapply(names(scores),function(method)data.frame(
+      cohort=basename(folder),scenario,uncertainty=family,draw_id=k,method,
+      project_id=d$project_id,score=scores[[method]],rank=rank_score(scores[[method]]))))
+  }
   lower<-as.matrix(d[,paste0(codes,'_lower'),drop=FALSE]);upper<-as.matrix(d[,paste0(codes,'_upper'),drop=FALSE])
   inputs<-if(deterministic)keyed_inputs(d$project_id,codes,w,reps,version,seed,scenario,concentration) else NULL
   for(k in seq_len(reps)) {
@@ -55,13 +68,23 @@ for(scenario in unique(weights$scenario)) {
       ordered<-wd[match(codes,wd$criterion),]
       wt<-budget_weights(wt,ordered$group,ordered$group_weight)
     }
-    W[,k]<-rank_score(promethee(X,wt,p))
+    prom_score<-promethee(X,wt,p);W[,k]<-rank_score(prom_score)
+    if(shared_methods) {
+      scores<-score_draw(X,wt,prom_score)
+      for(method in names(scores))WM[[method]][,k]<-rank_score(scores[[method]])
+      if(trace_draws)shared_draws[[paste(scenario,'weights',k)]]<-record_draw(scores,k,'WEIGHTS_ONLY')
+    }
   }
   # Independent RNG stream; keeps source rounding distinct from weight uncertainty.
   set.seed(seed+1)
   for(k in seq_len(reps)) {
     XD<-if(deterministic)lower+inputs$rounding[,,k]*(upper-lower) else matrix(runif(length(X),as.vector(lower),as.vector(upper)),nrow=nrow(X))
-    D[,k]<-rank_score(promethee(XD,w,p))
+    prom_score<-promethee(XD,w,p);D[,k]<-rank_score(prom_score)
+    if(shared_methods) {
+      scores<-score_draw(XD,w,prom_score)
+      for(method in names(scores))DM[[method]][,k]<-rank_score(scores[[method]])
+      if(trace_draws)shared_draws[[paste(scenario,'rounding',k)]]<-record_draw(scores,k,'SOURCE_ROUNDING_ONLY_NOT_MEASUREMENT_UNCERTAINTY')
+    }
   }
   summarize<-function(M,label) {
     result<-data.frame(scenario,project_id=d$project_id,uncertainty=label,
@@ -82,6 +105,24 @@ for(scenario in unique(weights$scenario)) {
     all_rounding[[scenario]]$uncertainty<-'NOT_QUANTIFIED_NO_SOURCE_BOUNDS'
     for(column in c('median','q05','q95','frequency_first','frequency_top3','frequency_top5'))all_rounding[[scenario]][[column]]<-NA_real_
     if(disclosure_panel)all_rounding[[scenario]]$frequency_joint_first<-NA_real_
+  }
+  if(shared_methods) for(method in names(WM)) {
+    for(family in c('WEIGHTS_ONLY','SOURCE_ROUNDING_ONLY_NOT_MEASUREMENT_UNCERTAINTY')) {
+      M<-if(family=='WEIGHTS_ONLY')WM[[method]] else DM[[method]]
+      result<-summarize(M,family)
+      result$frequency_joint_first<-rowMeans(sweep(M,2,apply(M,2,min),'=='))
+      result$method<-method;result$cohort<-basename(folder)
+      result$draw_contract<-'entity-keyed-rng-v2/shared-method-draws-v1'
+      result$seed<-seed;result$draws<-reps
+      result$tie_policy<-'Average point rank; all equal leaders count as joint first'
+      if(family!='WEIGHTS_ONLY' && 'uncertainty_kind' %in% names(d) && all(d$uncertainty_kind=='NO_SOURCE_BOUNDS')) {
+        result$uncertainty<-'NOT_QUANTIFIED_NO_SOURCE_BOUNDS'
+        for(column in c('median','q05','q95','frequency_first','frequency_top3','frequency_top5','frequency_joint_first'))result[[column]]<-NA_real_
+      }
+      if(family=='WEIGHTS_ONLY' && all(c('group','group_weight') %in% names(wd)))result$uncertainty<-'WITHIN_GROUP_WEIGHTS_FIXED_DOMAIN_TOTALS'
+      shared_summaries[[paste(scenario,method,family)]]<-result
+    }
+    stopifnot(identical(WM$PROMETHEE_II,W),identical(DM$PROMETHEE_II,D))
   }
   for(j in seq_along(codes)) {
     idx<-setdiff(seq_along(codes),j)
@@ -108,7 +149,7 @@ for(scenario in unique(weights$scenario)) {
 }
 # Independent preference sweep on the existing R1/C1 candidate panel.
 # Offtake filters evidence coverage only; it is never a score or zero fill.
-if(deterministic && setequal(codes,c('R1','C1'))) {
+if(stage!='cohort' && deterministic && setequal(codes,c('R1','C1'))) {
   coverage<-read.csv(file.path(folder,'..','commercial_project_coverage.csv'))
   has_offtake<-coverage$offtake_evidence[match(d$project_id,coverage$project_id)]>0
   cohorts<-list(FINANCING_DISCLOSURE=seq_len(nrow(X)),FINANCING_AND_OFFTAKE=which(has_offtake))
@@ -132,6 +173,7 @@ if(deterministic && setequal(codes,c('R1','C1'))) {
 }
 
 bind<-function(x,empty)if(length(x))do.call(rbind,x) else empty
+if(stage!='cohort') {
 writeout(bind(all_ranks,data.frame()),'ranking')
 writeout(bind(all_weight,data.frame()),'weight_uncertainty')
 writeout(bind(all_rounding,data.frame()),'rounding_uncertainty')
@@ -140,8 +182,18 @@ writeout(bind(all_methods,data.frame()),'method_comparison')
 writeout(bind(all_functions,data.frame()),'function_sensitivity')
 writeout(bind(all_cohorts,data.frame(scenario=character(),removed_project=character(),project_id=character(),rank=double())),'cohort_sensitivity')
 writeout(bind(all_ahp,data.frame()),'ahp_audit')
-if(research_analysis) {
-  writeout(bind(all_contributions,data.frame()),'criterion_contributions')
+if(research_analysis)writeout(bind(all_contributions,data.frame()),'criterion_contributions')
+if(shared_methods) {
+  writeout(do.call(rbind,shared_summaries),'uncertainty_by_method')
+  if(trace_draws)writeout(do.call(rbind,shared_draws),'shared_draw_ranks')
+  writeout(data.frame(contract='shared-method-draws-v1',cohort=basename(folder),seed,reps,
+    input_contract=version,methods='SAW|PROMETHEE_II|TOPSIS',
+    draw_identity='version|seed|scenario|family|project_id|criterion_id|draw_index',
+    detail=if(trace_draws)'ALL_DRAW_RANKS' else 'RECONSTRUCT_FROM_KEYED_INPUTS',
+    unknown='NO_PROBABILITY_DISTRIBUTION_ASSIGNED'),'shared_draw_contract')
+}
+}
+if(research_analysis && stage!='core') {
   # Hold shared criteria and their weights fixed while changing the reference
   # population. Rerank the broad scores on the common Projects before comparing
   # with the common-cohort refit, so merely removing competitors is not called
@@ -218,8 +270,9 @@ if(research_analysis) {
       }
     }
   }
-  if(length(comparisons))writeout(do.call(rbind,comparisons),'evidence_cohort_sensitivity')
+  if(length(comparisons))writeout(do.call(rbind,comparisons),'evidence_cohort_sensitivity') else if(stage=='cohort')writeout(data.frame(scenario=character(),method=character(),project_id=character()),'evidence_cohort_sensitivity')
 }
+if(stage!='cohort') {
 # True pairwise dominance on the active panel; absence of dominance is incomparability.
 pairs<-list()
 for(i in seq_len(nrow(X)))for(j in seq_len(nrow(X)))if(i!=j)pairs[[paste(i,j)]]<-data.frame(a=d$project_id[i],b=d$project_id[j],dominates=all(X[i,]>=X[j,])&&any(X[i,]>X[j,]))
@@ -268,4 +321,5 @@ runtime<-data.frame(R_version=R.version.string,seed,reps,threshold=p,concentrati
 if(deterministic)runtime<-cbind(runtime,method_version=version,RNG_kind="L'Ecuyer-CMRG",normal_kind='Inversion',sample_kind='Rejection',identity='version|seed|scenario|family|project_id|criterion_id|draw_index',rounding='SOURCE_ROUNDING_NOT_MEASUREMENT')
 if(research_analysis)runtime<-cbind(runtime,research_analysis_version=args[7])
 writeout(runtime,'runtime')
+}
 cat('Completed',nrow(X),'alternatives on the frozen panel;',length(codes),'criteria.\n')

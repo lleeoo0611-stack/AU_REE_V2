@@ -232,7 +232,7 @@ def exact_deposit_candidates(db, inventory, selected_shas):
                         "status":"UNVERIFIED_LINK_NO_GIS_RELEASE"})
     return out
 
-def domain_evidence_coverage(db, inventory, resources, gis_values, prospectus=None, selected_shas=None, selection=None, prepared=None, criteria=None):
+def domain_evidence_coverage(db, inventory, resources, gis_values, prospectus=None, selected_shas=None, selection=None, prepared=None, criteria=None,current=None):
     """Descriptive source facts must not silently become six-domain scored values."""
     project_ids={r[0] for r in db.execute("SELECT entity_id FROM entities WHERE kind='PROJECT'")}
     if selected_shas is not None:
@@ -266,7 +266,7 @@ def domain_evidence_coverage(db, inventory, resources, gis_values, prospectus=No
                        'Technical':('recovery_pct','uranium_ppm','thorium_ppm'),
                        'Development':('study_maturity_ord',),
                        'Commercial':('conditional_senior_debt_usd_m','offtake_nameplate_pct','financing_ord')}.get(domain,())
-            observations=[dict(o) for o in db.execute("SELECT variable,source_sha,locator FROM observations WHERE entity_id=? AND status='AUTO_VALIDATED'",(eid,)) if o['variable'] in variables and (selected_shas is None or o['source_sha'] in selected_shas)]
+            observations=[{k:o[k] for k in ('variable','source_sha','locator')} for o in db.execute("SELECT obs_id,variable,source_sha,locator FROM observations WHERE entity_id=? AND status='AUTO_VALIDATED' ORDER BY obs_id",(eid,)) if o['variable'] in variables and (selected_shas is None or o['source_sha'] in selected_shas) and (current is None or o['obs_id'] in current['observation_ids'])]
             if observations:
                 state='PRIMARY_SCOPED_OBSERVATIONS';evidence=canonical(observations)
             name=db.execute('SELECT name FROM records WHERE entity_id=? ORDER BY source_sha LIMIT 1',(eid,)).fetchone()[0]
