@@ -1090,7 +1090,7 @@
   },
   "technical_disclosure": {
     "version": "technical-disclosure-transparency-v1",
-    "review_path": "data/technical_disclosure_v1.json",
+    "review_path": "data/technical_disclosure_current.json",
     "codebook": "docs/technical-disclosure.md",
     "denominator": 7,
     "states": {
@@ -1121,6 +1121,7 @@
         "I4",
         "C1"
       ]
-    }
+    },
+    "incremental_registry": true
   }
 }

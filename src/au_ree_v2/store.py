@@ -61,11 +61,47 @@ def digest(value):
 def filehash(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
+
+def append_snapshots(path, entries):
+    """Merge immutable additions under a short writer lock, never replace history.
+
+    Discovery and acquisition may finish in either order. A stale in-memory
+    manifest must not erase a different source captured while it was fetching.
+    """
+    import os,time,uuid
+    path=Path(path);lock=path.with_suffix(path.suffix+'.lock');started=time.monotonic()
+    while True:
+        try:fd=os.open(lock,os.O_CREAT|os.O_EXCL|os.O_WRONLY);break
+        except FileExistsError:
+            if time.monotonic()-started>30:raise TimeoutError('MANIFEST_WRITER_BUSY_RETRY_LATER')
+            time.sleep(.05)
+    temporary=path.with_name(path.name+'.'+uuid.uuid4().hex+'.tmp')
+    try:
+        manifest=json.loads(path.read_text(encoding='utf8'))
+        identity=lambda s:(s['key'],s['sha256'],s.get('source_document_version'))
+        known={identity(s) for s in manifest['snapshots']}
+        for s in entries:
+            if identity(s) not in known:manifest['snapshots'].append(s);known.add(identity(s))
+        temporary.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf8')
+        os.replace(temporary,path)
+        return manifest
+    finally:
+        os.close(fd);lock.unlink()
+        if temporary.exists():temporary.unlink()
+
 def connect(path):
     Path(path).parent.mkdir(parents=True, exist_ok=True)
-    db = sqlite3.connect(path)
+    db = sqlite3.connect(path,timeout=30)
     db.row_factory = sqlite3.Row
+    db.execute('PRAGMA journal_mode=WAL')
     db.executescript(SCHEMA)
+    # Access paths only: no logical data or historical schema contract changes.
+    db.executescript('''
+        CREATE INDEX IF NOT EXISTS observations_entity_window ON observations(entity_id,status,effective_date);
+        CREATE INDEX IF NOT EXISTS records_source_entity ON records(source_sha,entity_id);
+        CREATE INDEX IF NOT EXISTS relations_parent_kind ON relations(parent_id,relation);
+        CREATE INDEX IF NOT EXISTS observations_source ON observations(source_sha);
+    ''')
     return db
 
 def entity(db, namespace, native_id, kind):

@@ -58,22 +58,28 @@ def interval_mcda(matrix, weights, threshold=.2):
             for method,bounds in result.items()}
 
 
-def current_disclosure_baseline(out, mapping, group_ids):
+def current_disclosure_baseline(out, mapping, group_ids, prepared=None, include_bounds=False):
     """Use this run's source-selected values, never a previous score snapshot.
 
     Only issuer-harmonized resource scopes enter. Conflicting canonical scopes
     remain unknown; government screening rows cannot supply missing criteria.
     """
     out=Path(out);allowed=set(group_ids);candidates={}
-    with (out/'cohort_coverage.csv').open(encoding='utf8',newline='') as stream:
-        eligible={r['entity_id'] for r in csv.DictReader(stream) if r['resource_defined']=='1'}
-    with (out/'value_trace.csv').open(encoding='utf8',newline='') as stream:
-        for row in csv.DictReader(stream):
+    if prepared is None:
+        # Frozen callers and archived interchange retain their reconstruction entry.
+        coverage=list(csv.DictReader((out/'cohort_coverage.csv').open(encoding='utf8',newline='')))
+        traces=list(csv.DictReader((out/'value_trace.csv').open(encoding='utf8',newline='')))
+    else:coverage,traces=prepared['coverage'],prepared['traces']
+    eligible={r['entity_id'] for r in coverage if str(r['resource_defined'])=='1'}
+    for row in traces:
             pid=mapping.get(row['entity_id'],row['entity_id']);code=row['criterion']
             if pid not in allowed or row['entity_id'] not in eligible or code not in ('R1','S1','D1','I4','C1'):continue
             source=json.loads(row['source'])
             if source.get('source_scope')=='government_project_summary_not_JORC_harmonized':continue
             value=dict(score=float(row['score']),raw_value=float(row['raw_value']),source=source,scoring=json.loads(row['scoring']))
+            if include_bounds:
+                value.update(score_lower=row.get('score_lower',value['score']),score_upper=row.get('score_upper',value['score']),
+                             score_alt=row.get('score_alt',value['score']))
             candidates.setdefault((pid,code),{})[canonical(value)]=value
     scores={};conflicts=[]
     for (pid,code),options in sorted(candidates.items()):
@@ -160,6 +166,11 @@ def prepare_disclosure_analysis(result, baseline, config, out):
             row['uncertainty_kind']='NO_SOURCE_BOUNDS'
             for c in cc:
                 for suffix in ('','_lower','_upper','_alt'):row[c+suffix]=r[c]
+                entry=originals.get(r['project_id'],{}).get(c,{})
+                if config.get('disclosure_source_rounding'):
+                    row[c+'_lower']=entry.get('score_lower',r[c]);row[c+'_upper']=entry.get('score_upper',r[c])
+                    row[c+'_alt']=entry.get('score_alt',r[c])
+                    row['uncertainty_kind']='SOURCE_ROUNDING_ONLY_NOT_MEASUREMENT_ERROR'
             rr.append(row)
         folder=out/panel;prepared['panels'][panel]=len(rr)
         write_csv(folder/'matrix.csv',rr,list(rr[0]) if rr else ['project_id','project_name','scope',*cc])
@@ -441,8 +452,13 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
                          **{code:int(code in scored) for code in criteria},**currentness})
         for code, val in scored.items():
             c=criteria[code]
+            raw=values[c['variable']];evidence=provenance.get(c['variable'],{}).get('raw',{})
+            half=evidence.get('rounding_half_width',0)
+            bounds=resource['rounding_bounds_kt'] if code=='R1' else evidence.get('rounding_bounds',[raw-half,raw+half])
             traces.append({'entity_id':eid,'criterion':code,'raw_value':values[c['variable']],
                            'score':val,'config_version':config['version'],
+                           'score_lower':min(score(v,c) for v in bounds),'score_upper':max(score(v,c) for v in bounds),
+                           'score_alt':score(raw,c,alternative=True),
                            'source':canonical(provenance[c['variable']]),'scoring':canonical(c)})
         for panel, codes in config['panels'].items():
             if not all(c in scored for c in codes) or (panel=='six_domain' and not is_full):
@@ -482,7 +498,8 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
         codes=config['panels'][panel]
         folder=out/panel
         write_csv(folder/'matrix.csv',rows,['project_id','canonical_project_id','project_name','scope','deposit_type',*[key for code in codes for key in (code,code+'_alt',code+'_lower',code+'_upper')]])
-        write_csv(folder/'criteria.csv',[criteria[c] for c in codes],['code','domain','direction','low','high','function'])
+        write_csv(folder/'criteria.csv',[criteria[c] for c in codes],['code','domain','direction','low','high','function']+
+                  (['definition_version'] if config.get('candidate_version') else []))
         weights=[]
         for scenario, domain_weights in config['scenarios'].items():
             domains={criteria[c]['domain'] for c in codes}
@@ -492,14 +509,67 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
                 count=sum(criteria[c]['domain']==domain for c in codes)
                 weights.append({'scenario':scenario,'criterion':code,'weight':domain_weights[domain]/total/count})
         write_csv(folder/'weights.csv',weights,['scenario','criterion','weight'])
-    return {'coverage':coverage,'panels':{**{p:len(v) for p,v in matrices.items()},**case_panels},
+    return {'coverage':coverage,'traces':traces,'matrices':matrices,'panels':{**{p:len(v) for p,v in matrices.items()},**case_panels},
             'trace_values':len(traces),'government_screen_n':len(screen_rows)}
+
+def mcda_cache_contract(root,out,panel,config,runtime):
+    """Actual R dependencies, including cross-panel cohort comparisons."""
+    from .store import filehash
+    out=Path(out);inputs={}
+    folders=sorted(p for p in out.iterdir() if p.is_dir()) if config.get('research_analysis_version') else [out/panel]
+    for folder in folders:
+        paths=[folder/name for name in ('matrix.csv','criteria.csv','weights.csv')]
+        if all(p.is_file() for p in paths):inputs.update({p.relative_to(out).as_posix():filehash(p) for p in paths})
+    coverage=out/'commercial_project_coverage.csv'
+    if coverage.is_file():inputs[coverage.name]=filehash(coverage)
+    return dict(version='mcda-input-cache-v1',panel=panel,inputs=inputs,R=runtime,vanilla=True,
+        programs={name:filehash(Path(root)/'R'/name) for name in ('run_mcda.R','methods.R')},
+        monte_carlo=config['monte_carlo'],threshold=config['promethee_threshold'],analysis=config.get('research_analysis_version'))
+
+
+def cached_r(root,folder,command,contract):
+    """Reuse only complete, SHA-checked deterministic R outputs; never input CSVs."""
+    from .store import digest,filehash
+    import uuid
+    folder=Path(folder);key=digest(contract);cache=Path(root)/'work/cache/mcda'/key
+    receipt=cache/'receipt.json';hit=False;metadata=None
+    if receipt.is_file():
+        try:
+            metadata=json.loads(receipt.read_text(encoding='utf8'))
+            hit=(metadata['contract']==contract and 'ranking.csv' in metadata['outputs'] and
+                 all(Path(name).name==name and filehash(cache/name)==sha for name,sha in metadata['outputs'].items()))
+        except (KeyError,ValueError,OSError):hit=False
+    if hit:
+        for name in metadata['outputs']:shutil.copy2(cache/name,folder/name)
+        (folder/'R.log').write_text('REUSED_SHA_VERIFIED_R_OUTPUTS; no Monte Carlo rerun; generating runtime in runtime.csv\n',encoding='utf8')
+    else:
+        result=subprocess.run(command,capture_output=True,text=True,timeout=300)
+        (folder/'R.log').write_text(result.stdout+'\n'+result.stderr,encoding='utf8')
+        if result.returncode:raise RuntimeError('R MCDA failed: '+result.stderr[-2000:])
+        outputs={p.name:filehash(p) for p in folder.glob('*.csv') if p.name not in ('matrix.csv','criteria.csv','weights.csv')}
+        required={'ranking.csv','weight_uncertainty.csv','rounding_uncertainty.csv','leave_out.csv',
+                  'method_comparison.csv','function_sensitivity.csv','cohort_sensitivity.csv','ahp_audit.csv'}
+        if not required<=outputs.keys():raise RuntimeError('R output contract incomplete')
+        cache.mkdir(parents=True,exist_ok=True)
+        for name in outputs:
+            temporary=cache/(name+'.'+uuid.uuid4().hex+'.tmp');shutil.copy2(folder/name,temporary);temporary.replace(cache/name)
+        metadata=dict(contract=contract,outputs=outputs)
+        temporary=cache/('receipt.'+uuid.uuid4().hex+'.tmp');temporary.write_text(canonical(metadata)+'\n',encoding='utf8');temporary.replace(receipt)
+    status=dict(key=key,status='REUSED_VERIFIED' if hit else 'COMPUTED_AND_CACHED',contract=contract)
+    (folder/'r_cache.json').write_text(canonical(status)+'\n',encoding='utf8')
+    return status['status']
+
 
 def run_r(root, out, prepared, config, rscript=None):
     executable = rscript or shutil.which('Rscript')
     if not executable:
         raise RuntimeError('Rscript is required. Supply --rscript or explicitly use --skip-r for coverage only.')
-    results={}
+    results={};runtime=None
+    if config.get('mcda_cache'):
+        version=subprocess.run([str(executable),'--version'],capture_output=True,text=True,timeout=30)
+        if version.returncode:raise RuntimeError('R runtime identification failed')
+        import platform
+        runtime=dict(version=version.stdout+version.stderr,executable=str(Path(executable).resolve()),platform=platform.platform())
     for panel,n in prepared['panels'].items():
         if n<2:
             results[panel]={'status':'INSUFFICIENT_SAMPLE','n':n};continue
@@ -513,10 +583,14 @@ def run_r(root, out, prepared, config, rscript=None):
             if not config['monte_carlo'].get('method_version'):
                 raise ValueError('Research analysis requires an explicit MCDA method version')
             command.append(config['research_analysis_version'])
-        result=subprocess.run(command,capture_output=True,text=True,timeout=300)
-        (folder/'R.log').write_text(result.stdout+'\n'+result.stderr,encoding='utf-8')
-        if result.returncode:
-            raise RuntimeError('R MCDA failed: '+result.stderr[-2000:])
+        cache_status=None
+        if config.get('mcda_cache'):
+            command.insert(1,'--vanilla')
+            cache_status=cached_r(root,folder,command,mcda_cache_contract(root,out,panel,config,runtime))
+        else:
+            result=subprocess.run(command,capture_output=True,text=True,timeout=300)
+            (folder/'R.log').write_text(result.stdout+'\n'+result.stderr,encoding='utf-8')
+            if result.returncode:raise RuntimeError('R MCDA failed: '+result.stderr[-2000:])
         expected=('ranking.csv','weight_uncertainty.csv','rounding_uncertainty.csv','leave_out.csv',
                   'method_comparison.csv','function_sensitivity.csv','cohort_sensitivity.csv','ahp_audit.csv')
         if not all((folder/p).is_file() for p in expected):
@@ -524,6 +598,7 @@ def run_r(root, out, prepared, config, rscript=None):
         results[panel]={'status':'COMPLETED','n':n,'weight_status':config['weight_status'],
                         'evidence_status':('SOURCE_BOUND_RESEARCH_DISCLOSURE_CODING' if panel in ('disclosure_only','resource_disclosure','resource_port_disclosure','six_domain_disclosure') else 'PRIMARY_ENDPOINT_MATCHED_DFS_CASES_NOT_OPERATING_RESULTS' if panel in config.get('case_panels',{}) else config['screen_evidence_policy']['status'] if panel=='official_wa_resource_screen' else 'ISSUER_SCOPE_VALIDATED'),
                         'full_evidence_eligibility':panel=='six_domain'}
+        if cache_status:results[panel]['cache_status']=cache_status
         if panel.startswith('technical_process_concentrate_'):
             results[panel]['evidence_status']='NAMED_DESIGN_FORECAST_COMPARISON_NOT_OPERATING_OR_NATIONAL_RANK'
         if config.get('evidence_resolution'):
@@ -551,18 +626,12 @@ def run_r(root, out, prepared, config, rscript=None):
     return results
 
 
-def research_readiness(selection,out,analysis_version=None):
-    """Descriptive views reuse resolved evidence and ranks, without new scores."""
+def prepare_commercial_coverage(selection,out):
+    """Evidence-only R input, computed once before ranking; no rank dependency."""
     from .selection import commercial_evidence
-    from collections import Counter
     out=Path(out);events=commercial_evidence(selection)
     if events:write_csv(out/'commercial_event_semantics.csv',events,list(events[0]))
-    projects=[];features=[]
-    technical=selection.get('technical_comparability',[])
-    ranks={}
-    for file in sorted(out.glob('*/ranking.csv')):
-        for r in csv.DictReader(file.open(encoding='utf-8')):
-            ranks.setdefault(r['project_id'],[]).append(dict(panel=file.parent.name,scenario=r['scenario'],rank=r['promethee_rank']))
+    projects=[]
     for pid in sorted(selection['projects']):
         valid=[r for r in events if r['project_id']==pid and r['qualified_project_event']]
         finance=selection['values'].get(pid,{}).get('C1');offtake=[r for r in valid if r['event_type']=='OFFTAKE']
@@ -573,6 +642,20 @@ def research_readiness(selection,out,analysis_version=None):
             joint_financing_offtake=int(finance is not None and bool(offtake)),
             commercial_complete=int(bool(finance) and bool(offtake) and all(r['counterparty'] and r['valid_to'] and r['conditions_status']!='UNKNOWN' for r in valid)),
             interpretation='DISCLOSURE_COVERAGE_NOT_ABSENCE_CURRENT_FUNDS_OR_FORMAL_C1'))
+    write_csv(out/'commercial_project_coverage.csv',projects,list(projects[0]) if projects else ['project_id'])
+    return projects
+
+
+def research_readiness(selection,out,analysis_version=None,commercial=None):
+    """Rank-dependent descriptive views consume the same selected evidence once."""
+    from collections import Counter
+    out=Path(out)
+    projects=prepare_commercial_coverage(selection,out) if commercial is None else commercial
+    features=[];technical=selection.get('technical_comparability',[]);ranks={}
+    for file in sorted(out.glob('*/ranking.csv')):
+        for r in csv.DictReader(file.open(encoding='utf-8')):
+            ranks.setdefault(r['project_id'],[]).append(dict(panel=file.parent.name,scenario=r['scenario'],rank=r['promethee_rank']))
+    for pid in sorted(selection['projects']):
         tr=[r for r in technical if r['project_id']==pid]
         if tr:
             counts=Counter(r['comparability_status'] for r in tr)
@@ -588,7 +671,6 @@ def research_readiness(selection,out,analysis_version=None):
                 missingness_reasons=canonical(dict(sorted(Counter(reason for r in tr for reason in r['reason_codes']).items()))),
                 rank_links=canonical(ranks.get(pid,[])),
                 interpretation='PROJECT_UNIT_NOT_TEST_ROWS;SELECTED_DISCLOSURE_MISSINGNESS_NOT_MCAR_OR_CAUSAL_INFERENCE'))
-    write_csv(out/'commercial_project_coverage.csv',projects,list(projects[0]) if projects else ['project_id'])
     if analysis_version=='evidence-cohort-v1':
         import re
         minerals=('monazite','xenotime','apatite','churchite','rhabdophane','kaolinite','bastnaesite','bastn\u00e4site')

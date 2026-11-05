@@ -183,22 +183,27 @@ def resolve(db,root,snapshots,cutoff=None,rule_version=None):
     for a in accepted:
         if a['alias_id'] not in mapping:continue
         link(db,a['canonical_id'],a['alias_id'],'DOCUMENT_SUPPORTED_SAME_'+a['kind'],a['source_sha256'],a['locator']);valid.append(a)
-    membership=[]
+    membership=[];member_ids=set()
     for r in db.execute('SELECT e.*,r.source_sha FROM entities e JOIN records r USING(entity_id) ORDER BY e.entity_id'):
-        if r['source_sha'] not in selected or any(x['entity_id']==r['entity_id'] for x in membership):continue
+        if r['source_sha'] not in selected or r['entity_id'] in member_ids:continue
         target=r['entity_id'];seen=set()
         while target in mapping and target not in seen:seen.add(target);target=mapping[target]
         membership.append(dict(entity_id=r['entity_id'],kind=r['kind'],canonical_id=target,status='DOCUMENT_SUPPORTED_ALIAS' if seen else 'RETAINED_SOURCE_ID_NOT_ASSUMED_UNIQUE_PHYSICAL_ENTITY'))
+        member_ids.add(r['entity_id'])
     # A complete candidate ledger: proximity/name is a review lead, never automatic equivalence.
-    deposits=[]
+    deposits=[];deposit_ids=set()
     for r in db.execute("SELECT e.entity_id,e.native_namespace,r.* FROM entities e JOIN records r USING(entity_id) WHERE e.kind='DEPOSIT' ORDER BY e.entity_id,r.source_sha"):
-        if r['source_sha'] in selected and not any(x['entity_id']==r['entity_id'] for x in deposits):deposits.append(dict(r))
+        if r['source_sha'] in selected and r['entity_id'] not in deposit_ids:
+            deposits.append(dict(r));deposit_ids.add(r['entity_id'])
     pairs=[]
+    buckets={};canonical_ids={x['entity_id']:x['canonical_id'] for x in membership}
+    for r in deposits:buckets.setdefault((r['state'],normalized(r['name'])),[]).append(r)
     for i,a in enumerate(deposits):
-        for b in deposits[i+1:]:
+        for b in buckets[a['state'],normalized(a['name'])]:
+            if b['entity_id']<=a['entity_id']:continue
             if a['native_namespace']==b['native_namespace'] or a['state']!=b['state'] or normalized(a['name'])!=normalized(b['name']):continue
             dist=None if any(r[k] is None for r in (a,b) for k in ('longitude','latitude')) else GEO.inv(a['longitude'],a['latitude'],b['longitude'],b['latitude'])[2]
-            ca=next(x['canonical_id'] for x in membership if x['entity_id']==a['entity_id']);cb=next(x['canonical_id'] for x in membership if x['entity_id']==b['entity_id'])
+            ca=canonical_ids[a['entity_id']];cb=canonical_ids[b['entity_id']]
             pairs.append(dict(a=a['entity_id'],b=b['entity_id'],name=a['name'],state=a['state'],distance_m=dist,status='DOCUMENT_SUPPORTED_EQUIVALENCE' if ca==cb else 'LOCATION_CONFLICT_REVIEW' if dist is not None and dist>500 else 'TECHNICAL_IDENTITY_REVIEW_REQUIRED',source_a=a['source_sha'],source_b=b['source_sha']))
     return dict(ledger=ledger,accepted=valid,membership=membership,candidates=pairs,mapping={x['entity_id']:x['canonical_id'] for x in membership})
 

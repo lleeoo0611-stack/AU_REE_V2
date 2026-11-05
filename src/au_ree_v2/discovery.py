@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import urljoin, urlsplit, urldefrag, quote
 from .acquisition import request, failure_details
 from .security import sensitive_reference
-from .store import filehash
+from .store import append_snapshots, filehash
 
 DOCUMENT_TERMS = {
     'Resource': ['JORC mineral resource', 'mineral resource estimate'],
@@ -38,7 +38,7 @@ def centralized_feasibility(root, fetch=None):
         entry=dict(key='weblink_api_documentation',kind='source_documentation',url=url,sha256=sha,path=path.relative_to(root).as_posix(),acquired_at=now,available_date=now[:10])
         manifest_path=root/'data/manifest.json';manifest=json.loads(manifest_path.read_text())
         if not any(s['key']==entry['key'] and s['sha256']==sha for s in manifest['snapshots']):manifest['snapshots'].append(entry)
-        manifest_path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf8')
+        append_snapshots(manifest_path,manifest['snapshots'])
         text=re.sub('<[^>]+>',' ',raw.decode('utf8'));text=' '.join(text.split())
         receipts.append(dict(url=url,status='DOCUMENTATION_RETRIEVED_NOT_API_SUCCESS',sha256=sha,acquired_at=now,requests=1,elapsed_seconds=time.monotonic()-start,
             pagination_parameters=[p for p in ('year','headlinesPerPage','pageNumber','category','sensitive') if p in text],
@@ -56,7 +56,7 @@ def centralized_feasibility(root, fetch=None):
     return result
 
 
-def search_tasks(root, registry, diagnostics=None):
+def search_tasks(root, registry, diagnostics=None, db=None, snapshots=None):
     """Registry-derived jobs reuse issuer endpoints; missing endpoints stay unknown.
 
     Aliases and company/ASX identifiers are discovery context, never entity
@@ -67,7 +67,16 @@ def search_tasks(root, registry, diagnostics=None):
     registered_path=Path(root)/'config/sources.json'
     registered={s['key']:s for s in json.loads(registered_path.read_text(encoding='utf-8'))['sources']} if registered_path.exists() else {}
     sources={s['key']:s for s in manifest};tasks=[]
-    for p in project_registry(root):
+    own_db=None
+    if db is None and registry.get('canonical_store'):
+        import sqlite3
+        store=Path(root)/registry['canonical_store']
+        if store.exists():
+            own_db=sqlite3.connect(store.resolve().as_uri()+'?mode=ro',uri=True,timeout=30);own_db.row_factory=sqlite3.Row;db=own_db
+    try:projects=project_registry(root,db,snapshots or list(sources.values()))
+    finally:
+        if own_db is not None:own_db.close()
+    for p in projects:
         source={**registered.get(p['identity_source'],{}),**sources.get(p['identity_source'],{})}
         code=source.get('asx_code');code_evidence=None
         if registry.get('task_execution_version') and not code and source.get('kind')=='pdf':
@@ -82,6 +91,7 @@ def search_tasks(root, registry, diagnostics=None):
         matches=[s for s in registry['seeds'] if s.get('project_id')==p['entity_id'] or
                  any(a.casefold() in json.dumps(s).casefold() for a in p['aliases'])]
         tasks.append(dict(project_id=p['entity_id'],project_name=p['name'],aliases=p['aliases'],
+                          state=p.get('state') or source.get('state'),
                           company=source.get('company'),asx_code=code,asx_code_evidence_sha256=code_evidence,
                           source_key=p['identity_source'],source_url=source.get('url'),
                           queries=[a+' '+kind for a in p['aliases'] for kind in ('mineral resource','metallurgical','feasibility','financing')],
@@ -345,6 +355,24 @@ def discover(root, registry, fetch=request, diagnostics=None, task_limit=3):
         if not any(s['key']==entry['key'] and s['sha256']==sha and s.get('source_document_version')==entry.get('source_document_version') for s in manifest['snapshots']):manifest['snapshots'].append(entry)
         return sha
     tasks=search_tasks(root,registry,diagnostics) if registry.get('registry_tasks') or diagnostics else []
+    if registry.get('incremental_tasks') and not diagnostics:
+        # Resume from the existing immutable execution receipts. No second
+        # queue/registry; missing endpoints are attempts, never completed search.
+        last={}
+        for receipt in manifest['snapshots']:
+            if receipt['kind']!='discovery_receipt':continue
+            if filehash(root/receipt['path'])!=receipt['sha256']:raise ValueError('DISCOVERY_RECEIPT_HASH_MISMATCH')
+            prior=json.loads((root/receipt['path']).read_text(encoding='utf8'))
+            for task in prior.get('search_tasks',[]):
+                last[task['project_id']]=max(last.get(task['project_id'],''),receipt['acquired_at'])
+        ordered=sorted(tasks,key=lambda t:(last.get(t['project_id'],''),t.get('state') or '',t['project_id']))
+        selected=[];states=set()
+        for task in ordered:
+            state=task.get('state') or 'UNKNOWN'
+            if state in states:continue
+            selected.append(task);states.add(state)
+            if len(selected)>=task_limit:break
+        tasks=selected
     if diagnostics:
         selected=[];seen_projects=set()
         for task in tasks:
@@ -532,7 +560,7 @@ def discover(root, registry, fetch=request, diagnostics=None, task_limit=3):
                 found.append(dict(candidate_id=hashlib.sha256(seed['url'].encode()).hexdigest(),seed_key=seed['key'],url=seed['url'],
                     report_native_id=seed['report_native_id'],resource_native_id=seed['resource_native_id'],
                     status='DOWNLOAD_UNAVAILABLE',**failure_details(exc)))
-    path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+    append_snapshots(path,manifest['snapshots'])
     result={'version':'discovery-v4-evidence-gaps' if diagnostics else 'discovery-v3-registry-tasks' if tasks else 'discovery-v2',
             'execution_mode':registry.get('execution_mode','PUBLIC_ENDPOINTS'), 'sources':outcomes,'documents':found}
     if reports:result['official_reports']=reports
@@ -548,7 +576,7 @@ def discover(root, registry, fetch=request, diagnostics=None, task_limit=3):
         result['version']='discovery-v6-executed-tasks'
         save((json.dumps(result,sort_keys=True,ensure_ascii=False)+'\n').encode(),
              dict(key='discovery_execution',kind='discovery_receipt',url='local:bounded-discovery-execution'),'.json')
-        path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+        append_snapshots(path,manifest['snapshots'])
     if diagnostics:result['execution_metrics']=dict(elapsed_seconds=round(time.monotonic()-started,3),
         source_items=len(outcomes),search_pages=sum(s['status']=='PARSED' for s in outcomes),
         downloaded_documents=len({r['document_sha256'] for r in found if r['status'] in ('SNAPSHOT_REQUIRES_DATED_SCOPE_EXTRACTION','DIRECT_PDF_REQUIRES_DATED_SCOPE_EXTRACTION')}),

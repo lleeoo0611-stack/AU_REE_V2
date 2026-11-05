@@ -6,7 +6,7 @@ import sys
 import uuid
 import platform
 from datetime import date, datetime, timezone, timedelta
-from .hierarchy import build as build_hierarchy
+from .hierarchy import build as build_hierarchy, rows as hierarchy_rows
 from .resolution import resolve,technical_coverage
 from .studies import ingest as ingest_cases
 from .screen_index import rows as screen_index_rows
@@ -57,6 +57,17 @@ def research_configuration(root, snapshot_lock=None):
     return config
 
 
+def recognition_registry(root, work, snapshots, config):
+    """Current recognition and acquisition share the committed SQLite registry."""
+    import sqlite3
+    from .pdf_extract import project_registry
+    store=(Path(work).resolve() if work else root/'work/phase5')/'canonical.sqlite'
+    if not config.get('candidate_version') or not store.is_file():return None
+    db=sqlite3.connect(store.as_uri()+'?mode=ro',uri=True,timeout=30);db.row_factory=sqlite3.Row
+    try:return project_registry(root,db,snapshots)
+    finally:db.close()
+
+
 def execute(args):
     root=Path(args.root).resolve()
     config=research_configuration(root,args.snapshot_lock)
@@ -71,6 +82,15 @@ def execute(args):
     if args.dry_run:
         return {'status':'DRY_RUN','module':args.module,'cutoff':args.as_of,'root':str(root),
                 'snapshot_count':len(select_snapshots(root,args.as_of)), 'writes':False}
+    disclosure_settings=config.get('evidence_resolution',{}).get('technical_disclosure',{})
+    if not args.snapshot_lock and disclosure_settings.get('incremental_registry') and args.module in ('all','analyze','disclosure'):
+        # Like the existing claims contract: active coding may grow, whereas
+        # a published run must always resolve its exact adopted coding bytes.
+        live=root/disclosure_settings['review_path'];sha=filehash(live)
+        archive=root/'data/snapshots'/(sha+'.disclosure.json')
+        if not archive.exists():archive.write_bytes(live.read_bytes())
+        if filehash(archive)!=sha:raise ValueError('IMMUTABLE_DISCLOSURE_REVIEW_MISMATCH')
+        disclosure_settings.update(review_path=archive.relative_to(root).as_posix(),review_sha256=sha)
     if args.module=='disclosure' and config.get('disclosure_current_baseline'):
         # Current disclosure needs current non-Technical selection as well.
         # Historical locks without this flag keep the frozen Phase19 baseline.
@@ -108,7 +128,9 @@ def execute(args):
     if args.module=='recognize':
         from .pdf_extract import capture_documents
         keys=set(args.source_key.split(',')) if args.source_key else None
-        return {'documents':capture_documents(root,select_snapshots(root,args.as_of,acquired_through=acquired_through),keys,args.tessdata)}
+        selected=select_snapshots(root,args.as_of,acquired_through=acquired_through)
+        return {'documents':capture_documents(root,selected,keys,args.tessdata,
+            registry=recognition_registry(root,args.work,selected,config))}
     acquisition=[]
     if args.module=='discover':
         from .discovery import discover
@@ -149,8 +171,9 @@ def execute(args):
             if getattr(args,'centralized',False):wanted=set()
             if args.source_key:
                 wanted={s['sha256'] for s in recognition_snapshots if s['key'] in keys}
+            document_registry=recognition_registry(root,getattr(args,'work',None),recognition_snapshots,config)
             if wanted is not None:recognition_snapshots=[s for s in recognition_snapshots if s['sha256'] in wanted]
-            recognized=capture_documents(root,recognition_snapshots,tessdata=args.tessdata,only_missing=True)
+            recognized=capture_documents(root,recognition_snapshots,tessdata=args.tessdata,only_missing=True,registry=document_registry)
         if args.module=='acquire':
             from .discovery import live_status
             return {'status':'COMPLETED_WITH_SOURCE_STATUS','sources':acquisition,'discovery':discovery,'document_recognition':recognized,
@@ -190,7 +213,7 @@ def execute(args):
          digest(snapshots),'RUNNING',None))
     db.commit()
     try:
-        ingest_sources(db,root,snapshots,config.get("commodity_version","minedex-resource-batch-v1"))
+        ingest_sources(db,root,snapshots,config.get("commodity_version","minedex-resource-batch-v1"),config.get('candidate_version'))
         from .national import government_explicit_relations
         government_explicit_relations(db,snapshots)
         from .national import live_government_inventory,live_government_coverage,government_link_candidates
@@ -226,14 +249,16 @@ def execute(args):
         if config.get('evidence_resolution') and args.module!='bootstrap':
             from .evidence import ingest_events
             ingest_events(db,root,snapshots,args.as_of,claims_data=claims_data)
-        hierarchy=build_hierarchy(db,snapshots)
+        # Register source-bound resource scopes before producing membership.
+        # Otherwise fresh runs omit scopes which appear only on the next run.
+        build_hierarchy(db,snapshots,collect=False)
         identity=resolve(db,root,snapshots,args.as_of,config.get('evidence_resolution',{}).get('identity_rule_version'))
+        hierarchy=hierarchy_rows(db,snapshots)
         live_candidates=government_link_candidates(db,snapshots,identity['mapping'] if config.get('evidence_resolution',{}).get('identity_rule_version') else None)
         write_csv(out/'government_identity_candidates.csv',live_candidates,
                   ['a','b','name','state','distance_m','status','source_a','source_b'])
         technical_rows=technical_coverage(db,identity,resources,cases,{s['sha256'] for s in snapshots})
         write_csv(out/'technical_project_coverage.csv',technical_rows,['canonical_project_id','member_entity_ids','status','resource_scopes','study_case_ids','other_stage_evidence','shared_resource_context','unverified_or_other_scope_claims','interpretation'])
-        hierarchy=build_hierarchy(db,snapshots)
         write_csv(out/'native_identity_ledger.csv',identity['ledger'],['source_record_id','target_id','state','source_key','native_id','resolved_entities','status','source_sha256'])
         write_csv(out/'canonical_membership.csv',identity['membership'],['entity_id','kind','canonical_id','status'])
         write_csv(out/'identity_decisions.csv',identity['accepted'],['alias_id','canonical_id','kind','status','source_sha256','locator'])
@@ -295,7 +320,10 @@ def execute(args):
                 disclosure_settings=config['evidence_resolution'].get('technical_disclosure')
                 if disclosure_settings and args.as_of==disclosure_settings['review_cutoff']:
                     from .technical import run_disclosure
-                    disclosure_result,disclosure_prepared,disclosure_summary=run_disclosure(root,config,args.as_of,out,db,run_id,selection)
+                    from .pdf_extract import project_registry
+                    current_registry=project_registry(root,db,snapshots,identity['mapping']) if disclosure_settings.get('incremental_registry') else None
+                    disclosure_result,disclosure_prepared,disclosure_summary=run_disclosure(root,config,args.as_of,out,db,run_id,selection,
+                        assemble=not config.get('disclosure_current_baseline'),registry=current_registry,selected_snapshots=snapshots)
                 elif disclosure_settings:
                     (out/'disclosure_status.json').write_text(canonical(dict(
                         status='NOT_EVALUATED_REVIEW_CUTOFF_DIFFERS',cutoff=args.as_of,
@@ -304,7 +332,8 @@ def execute(args):
             prepared=prepare(db,args.as_of,snapshots,resources,gis_values,config,out,args.project,identity['mapping'],cases,selection)
             if disclosure_result and config.get('disclosure_current_baseline'):
                 from .analysis import current_disclosure_baseline,prepare_disclosure_analysis
-                baseline=current_disclosure_baseline(out,identity['mapping'],[s['project_id'] for s in disclosure_result['scores']])
+                baseline=current_disclosure_baseline(out,identity['mapping'],[s['project_id'] for s in disclosure_result['scores']],prepared,
+                    include_bounds=bool(config.get('disclosure_source_rounding')))
                 disclosure_prepared,current_summary=prepare_disclosure_analysis(disclosure_result,baseline,config,out)
                 disclosure_summary.update(current_summary)
                 (out/'disclosure_analysis.json').write_text(canonical(disclosure_summary)+'\n',encoding='utf8')
@@ -321,12 +350,15 @@ def execute(args):
                 if config.get('source_coverage_version')=='bounded-document-stages-v1':
                     from .discovery import source_coverage
                     source_coverage(root,snapshots,selection,prepared,out)
+            commercial=None
             if config.get('research_utilization') and selection:
-                from .analysis import research_readiness
-                research_readiness(selection,out,config.get('research_analysis_version'))
+                from .analysis import prepare_commercial_coverage
+                commercial=prepare_commercial_coverage(selection,out)
             if not args.skip_r:
                 results=run_r(root,out,prepared,config,args.rscript)
-            if config.get('research_utilization') and selection:research_readiness(selection,out,config.get('research_analysis_version'))
+            if config.get('research_utilization') and selection:
+                from .analysis import research_readiness
+                research_readiness(selection,out,config.get('research_analysis_version'),commercial)
             if selection and config.get('evidence_resolution',{}).get('technical_analysis'):
                 from .technical import analyze_cells
                 analyze_cells(selection,config['evidence_resolution']['technical_analysis'],db,run_id,out,{identity['mapping'].get(pid,pid) for pid in resources})
@@ -412,8 +444,7 @@ def execute(args):
         issues=[dict(r) for r in db.execute('SELECT * FROM review_queue ORDER BY issue_id')]
         write_csv(out/'review_queue.csv',issues,['issue_id','entity_id','source_sha','reason','details','status'])
         by_kind={}
-        for eid in {r['entity_id'] for r in census}:
-            kind=next(r['kind'] for r in census if r['entity_id']==eid)
+        for kind in {r['entity_id']:r['kind'] for r in census}.values():
             by_kind[kind]=by_kind.get(kind,0)+1
         registered_keys={source['key'] for source in registry['sources']}
         selected_keys={snapshot['key'] for snapshot in snapshots}
@@ -472,6 +503,7 @@ def execute(args):
             summary['comparison']=compare_runs(args.compare_to,out)
         output_hashes={p.relative_to(out).as_posix():filehash(p) for p in sorted(out.rglob('*')) if p.is_file()}
         summary['output_hashes']=output_hashes
+        summary['execution_artifacts']=[name for name in output_hashes if Path(name).name in ('R.log','r_cache.json')]
         (out/'summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
         report=['# AU_REE_V2 research run',f"Cutoff: {args.as_of}",f"Run: {run_id}",
                 '## Verified coverage',canonical(by_kind),f'Resource-defined sample: {len(resources)}',

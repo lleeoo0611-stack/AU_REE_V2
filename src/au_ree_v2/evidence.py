@@ -60,10 +60,25 @@ def validate_pages(root, source, evidence, snapshots, cache=None):
             raise ValueError('MISSING_PHYSICAL_PAGE_OR_MARKERS')
         key = (source['sha256'], page)
         if key not in cache:
-            reader_key = ('reader', source['sha256'])
-            if reader_key not in cache:
-                cache[reader_key] = PdfReader(root/source['path'])
-            cache[key] = cache[reader_key].pages[page-1].extract_text() or ''
+            import pypdf
+            contract=dict(source_sha256=source['sha256'],page=page,parser='pypdf-'+pypdf.__version__,parameters='extract_text-default-v1')
+            import os
+            cache_root=Path(os.environ.get('AU_REE_NATIVE_CACHE',str(root/'work/cache/native_pages')))
+            cached_path=cache_root/(digest(contract)+'.json')
+            payload=None
+            if cached_path.exists():
+                try:
+                    candidate=json.loads(cached_path.read_text(encoding='utf8'))
+                    if candidate['contract']==contract and candidate['text_sha256']==digest(candidate['text']):payload=candidate
+                except (KeyError,ValueError,OSError):pass
+            if payload is None:
+                reader_key = ('reader', source['sha256'])
+                if reader_key not in cache:cache[reader_key] = PdfReader(root/source['path'])
+                text=cache[reader_key].pages[page-1].extract_text() or ''
+                payload=dict(contract=contract,text=text,text_sha256=digest(text))
+                cached_path.parent.mkdir(parents=True,exist_ok=True)
+                cached_path.write_text(canonical(payload)+'\n',encoding='utf8')
+            cache[key]=payload['text']
         text = cache[key]
         if evidence.get('page_extraction_key') and page == evidence['pdf_page']:
             artifact = next(s for s in snapshots if s['key'] == evidence['page_extraction_key'])
@@ -309,7 +324,7 @@ def document_report(root, snapshots, outcomes, out, shared_comparability=False):
     (out/'document_pipeline_summary.json').write_text(canonical(report)+'\n',encoding='utf-8')
     return report
 
-def ingest_sources(db, root, snapshots, commodity_version="minedex-commodity-v2"):
+def ingest_sources(db, root, snapshots, commodity_version="minedex-commodity-v2", candidate_version=None):
     for s in snapshots:
         db.execute('INSERT OR IGNORE INTO sources VALUES(?,?,?,?,?,?,?,?)',
                    (s['sha256'], s['key'], s['url'], s.get('publication_date'),
@@ -321,7 +336,7 @@ def ingest_sources(db, root, snapshots, commodity_version="minedex-commodity-v2"
             continue
         if s.get('national_government'):
             from .national import ingest_government
-            try:ingest_government(db,root,s)
+            try:ingest_government(db,root,s,candidate_version)
             except Exception as exc:issue(db,None,s['sha256'],'GOVERNMENT_SOURCE_INGEST_FAILED',str(exc))
             continue
         if s['kind']=='legacy_screen_index':
@@ -404,6 +419,15 @@ def transformation_issues(o, siblings, depth=0):
     try:
         if t['rule']=='BT_TO_MT':
             assert t['original_unit']=='Bt' and o['unit']=='Mt' and math.isclose(o['value'],t['original_value']*1000)
+        elif t['rule']=='OXIDE_DISTRIBUTION_PERCENT_TO_PPM':
+            assert t['original_unit']=='% of TREO' and o['unit']=='ppm'
+            assert o['basis'] in {'Pr6O11','Nd2O3','Tb4O7','Dy2O3','TREO'}
+            assert o.get('material_basis')=='OXIDE_DISTRIBUTION_NOT_ORE_GRADE'
+            assert 0<=t['original_value']<=100 and math.isclose(o['value'],t['original_value']*10000)
+        elif t['rule']=='REO_DISTRIBUTION_DENOMINATOR':
+            assert o['basis']=='TREO' and o['unit']=='ppm' and o['value']==1000000
+            assert o.get('material_basis')=='OXIDE_DISTRIBUTION_NOT_ORE_GRADE'
+            assert o.get('derivation_status')=='DEFINITION_IDENTITY_NOT_REPORTED_MEASUREMENT'
         else:
             inputs=[]
             for var in t['inputs']:
@@ -450,10 +474,16 @@ def ingest_claims(db, root, snapshots, cutoff, project=None, conflict_selection=
                 db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
                     (eid, coordinate_source['sha256'], p['name'], p['state'],dep['longitude'],dep['latitude'],
                      p.get('deposit_type'), None, canonical(p)))
-                db.execute('INSERT OR IGNORE INTO relations VALUES(?,?,?,?,?,?,?)',
-                    (digest([eid,dep['entity_id'],'REPRESENTATIVE_POINT']),eid,dep['entity_id'],
+                # The legacy key omitted the source revision. Keep old rows,
+                # but allow an unchanged native point in a new source snapshot.
+                # Do not duplicate a relation already stored under a legacy key.
+                db.execute('''INSERT OR IGNORE INTO relations SELECT ?,?,?,?,?,?,?
+                    WHERE NOT EXISTS (SELECT 1 FROM relations
+                        WHERE parent_id=? AND child_id=? AND relation=? AND source_sha=?)''',
+                    (digest([eid,dep['entity_id'],'REPRESENTATIVE_POINT',coordinate_source['sha256']]),eid,dep['entity_id'],
                      'REPRESENTATIVE_POINT_NOT_ENTITY_EQUIVALENCE',coordinate_source['available_date'],
-                     coordinate_source['sha256'],p['coordinate_role']))
+                     coordinate_source['sha256'],p['coordinate_role'],eid,dep['entity_id'],
+                     'REPRESENTATIVE_POINT_NOT_ENTITY_EQUIVALENCE',coordinate_source['sha256']))
         for o in p['observations']:
             s = by_key.get(o['source_key'])
             if not s or o['effective_date'] > cutoff:

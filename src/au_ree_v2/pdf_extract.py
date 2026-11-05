@@ -8,7 +8,7 @@ import json
 from datetime import datetime,timezone
 from pathlib import Path
 from pypdf import PdfReader
-from .store import filehash,canonical
+from .store import append_snapshots, filehash,canonical
 
 DOCUMENT_VERSION = 'document-recognition-v6-context-bound'
 RESOURCE_LAYOUT_VERSION = 'positioned-resource-columns-v2'
@@ -33,7 +33,7 @@ def classify(text):
     return [label for label, pattern in rules.items() if re.search(pattern, text)]
 
 
-def project_registry(root):
+def project_registry(root, db=None, snapshots=None, mapping=None):
     """Reuse registered identities only; no observation values are read here."""
     from .store import digest
     data=json.loads((Path(root)/'data/claims.json').read_text(encoding='utf-8'))
@@ -46,7 +46,29 @@ def project_registry(root):
         rows.append(dict(entity_id='AU-'+digest([p.get('entity_namespace','project_registry_v1'),str(p['id'])])[:20],
                          native_id=str(p['id']),name=p['name'],aliases=aliases,
                          identity_source=p['identity_source']))
-    return rows
+    if db is None:return rows  # Frozen extraction contracts retain their exact aliases.
+    overrides={p['entity_id']:p for p in rows}
+    selected={s['sha256'] for s in snapshots} if snapshots is not None else None
+    if mapping is None:
+        parents={}
+        for r in db.execute("SELECT parent_id,child_id,source_sha FROM relations WHERE relation='DOCUMENT_SUPPORTED_SAME_PROJECT'"):
+            if selected is None or r['source_sha'] in selected:parents.setdefault(r['child_id'],set()).add(r['parent_id'])
+        unique={child:next(iter(p)) for child,p in parents.items() if len(p)==1};mapping={}
+        for child in unique:
+            seen={child};target=unique[child]
+            while target in unique and target not in seen:seen.add(target);target=unique[target]
+            if target not in seen:mapping[child]=target
+    authoritative={}
+    for r in db.execute('''SELECT e.entity_id,e.native_id,r.* FROM entities e JOIN records r USING(entity_id)
+            WHERE e.kind='PROJECT' ORDER BY e.entity_id,r.source_sha'''):
+        if selected is not None and r['source_sha'] not in selected:continue
+        pid=mapping.get(r['entity_id'],r['entity_id']);override=overrides.get(pid) or overrides.get(r['entity_id'])
+        if pid not in authoritative:
+            authoritative[pid]=dict(override) if override else dict(entity_id=pid,native_id=r['native_id'],name=r['name'],
+                aliases=[],identity_source=db.execute('SELECT source_key FROM sources WHERE sha=?',(r['source_sha'],)).fetchone()[0])
+        a=authoritative[pid];a['aliases']=sorted(set(a['aliases'])|{r['name']})
+        a['state']=r['state']
+    return [authoritative[k] for k in sorted(authoritative)]
 
 
 def _matches(text, registry):
@@ -538,11 +560,12 @@ def recognize_document(root, source, registry, tessdata=None, parser_version=Non
         if doc:doc.close()
 
 
-def capture_documents(root, snapshots, keys=None, tessdata=None, only_missing=False):
+def capture_documents(root, snapshots, keys=None, tessdata=None, only_missing=False, registry=None):
     """Content-addressed extraction artifacts join the existing source manifest."""
     import hashlib
     root=Path(root);path=root/'data/manifest.json';manifest=json.loads(path.read_text(encoding='utf-8'))
-    registry=project_registry(root);outcomes=[];seen=set()
+    registry=project_registry(root) if registry is None else registry
+    outcomes=[];seen=set()
     for source in snapshots:
         if source['kind'] not in ('pdf','html') or (keys and source['key'] not in keys) or source['sha256'] in seen:continue
         seen.add(source['sha256'])
@@ -584,7 +607,7 @@ def capture_documents(root, snapshots, keys=None, tessdata=None, only_missing=Fa
             outcomes.append(dict(source_key=source['key'],source_sha256=source['sha256'],status='CAPTURED',sha256=sha,
                                  pages=len(data['pages']),tables=len(data['tables']),candidates=len(data['candidates']),labels=data['labels']))
         except Exception as exc:outcomes.append(dict(source_key=source['key'],status='EXTRACTION_FAILED',reason=str(exc)))
-    path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+    append_snapshots(path,manifest['snapshots'])
     return outcomes
 
 
@@ -651,7 +674,7 @@ def capture_pages(root, source, pages, tessdata=None, markers_by_page=None, ocr_
             if not any(s['key']==key and s['sha256']==sha for s in manifest['snapshots']):manifest['snapshots'].append(entry)
             outcomes.append(dict(page=page,status=result['status'],method=result['method'],sha256=sha))
         except Exception as exc:outcomes.append(dict(page=page,status='UNAVAILABLE',reason=type(exc).__name__))
-    path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+    append_snapshots(path,manifest['snapshots'])
     return outcomes
 
 

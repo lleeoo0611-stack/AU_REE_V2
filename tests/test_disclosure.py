@@ -133,7 +133,7 @@ class ActualDisclosure(unittest.TestCase):
         for pid in ['AU-47d12ebe6b66df8e5936','AU-574465211976ec57b1ef','AU-d0ce731e1d8198ffaf58']:
             self.assertEqual(7,next(x for x in r['scores'] if x['project_id']==pid)['unknown_items'])
     def test_same_store_derived_only_idempotent_and_NULL_preserved(self):
-        config=research_configuration(ROOT)
+        config=research_configuration(ROOT,ROOT/'results/phase19-2026-11-05/snapshot_lock.json')
         with tempfile.TemporaryDirectory(dir=ROOT/'work') as tmp:
             db=connect(Path(tmp)/'test.sqlite');review=json.loads((ROOT/'data/technical_disclosure_v1.json').read_text())
             for g in review['groups']:db.execute('INSERT INTO entities VALUES(?,?,?,?)',(g['project_id'],'PROJECT','test',g['project_id']))

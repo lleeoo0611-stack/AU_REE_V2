@@ -390,5 +390,7 @@
     }
   ],
   "max_wamex_documents": 2,
-  "max_wamex_document_bytes": 30000000
+  "max_wamex_document_bytes": 30000000,
+  "canonical_store": "work/phase5/canonical.sqlite",
+  "incremental_tasks": "receipt-resume-v1"
 }

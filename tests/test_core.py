@@ -134,7 +134,7 @@ class CoreTests(unittest.TestCase):
         def read(path):
             if 'mt_weld' in str(path):raise OSError('one unavailable document')
             return PdfReader(path)
-        with patch('pypdf.PdfReader',side_effect=read):
+        with patch.dict(os.environ,{'AU_REE_NATIVE_CACHE':str(self.work/'cold-native-pages')}),patch('pypdf.PdfReader',side_effect=read):
             ingest_claims(db,ROOT,snapshots,CUTOFF)
         result=resource_values(db,CUTOFF,{s['sha256'] for s in snapshots})
         self.assertEqual(1,len(result))
@@ -275,7 +275,10 @@ class CoreTests(unittest.TestCase):
         self.assertEqual(20,outputs[0]['official_government_ree_resource_rows'])
         if rscript:
             self.assertEqual('COMPLETED',outputs[0]['r_results']['resource_infrastructure_pilot']['status'])
+            execution=set(outputs[0].get('execution_artifacts',[]))
+            self.assertEqual(execution,set(outputs[1].get('execution_artifacts',[])))
             for key,value in outputs[0]['output_hashes'].items():
+                if key in execution:continue  # Actual execution/reuse differs, scientific CSVs must not.
                 self.assertEqual(value,outputs[1]['output_hashes'][key],key)
 
 if __name__=='__main__':unittest.main()

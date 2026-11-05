@@ -265,12 +265,14 @@
           "statement_id": "nolans-rare-earths-project-2017-06-07",
           "category": "MEASURED_INDICATED_INFERRED_TOTAL",
           "effective_date": "2017-06-07",
-          "source_key": "nolans_ar2025",
-          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
-          "locator": "physical PDF p.15; resource table / stated event",
+          "source_key": "nolans_dfs2019_asx",
+          "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+          "locator": "physical PDF p15 Table2, same 7 June 2017 Mineral Resource; excludes Ore Reserves",
           "pdf_page": 15,
           "page_markers": [
-            "TOTAL 56 2.6",
+            "Statement of Mineral Resources",
+            "56",
+            "2.6",
             "26.4"
           ],
           "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
@@ -285,12 +287,14 @@
           "statement_id": "nolans-rare-earths-project-2017-06-07",
           "category": "MEASURED_INDICATED_INFERRED_TOTAL",
           "effective_date": "2017-06-07",
-          "source_key": "nolans_ar2025",
-          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
-          "locator": "physical PDF p.15; resource table / stated event",
+          "source_key": "nolans_dfs2019_asx",
+          "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+          "locator": "physical PDF p15 Table2, same 7 June 2017 Mineral Resource; excludes Ore Reserves",
           "pdf_page": 15,
           "page_markers": [
-            "TOTAL 56 2.6",
+            "Statement of Mineral Resources",
+            "56",
+            "2.6",
             "26.4"
           ],
           "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
@@ -305,12 +309,14 @@
           "statement_id": "nolans-rare-earths-project-2017-06-07",
           "category": "MEASURED_INDICATED_INFERRED_TOTAL",
           "effective_date": "2017-06-07",
-          "source_key": "nolans_ar2025",
-          "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
-          "locator": "physical PDF p.15; resource table / stated event",
+          "source_key": "nolans_dfs2019_asx",
+          "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+          "locator": "physical PDF p15 Table2, same 7 June 2017 Mineral Resource; excludes Ore Reserves",
           "pdf_page": 15,
           "page_markers": [
-            "TOTAL 56 2.6",
+            "Statement of Mineral Resources",
+            "56",
+            "2.6",
             "26.4"
           ],
           "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
@@ -370,6 +376,228 @@
             "Definitive Feasibility Study"
           ],
           "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL"
+        },
+        {
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2017-06-07",
+          "effective_date": "2017-06-07",
+          "source_key": "nolans_dfs2019_asx",
+          "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+          "pdf_page": 37,
+          "locator": "physical PDF p37; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Percentage Proportion of TREO in the Mineral Resources",
+            "20.5",
+            "5.9",
+            "0.08",
+            "0.3"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "reported_resource_distribution_nd_ppm",
+          "basis": "Nd2O3",
+          "value": 205000.0,
+          "unit": "ppm",
+          "original_value": 20.5,
+          "original_unit": "% of TREO",
+          "transform": {
+            "rule": "OXIDE_DISTRIBUTION_PERCENT_TO_PPM",
+            "original_value": 20.5,
+            "original_unit": "% of TREO"
+          }
+        },
+        {
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2017-06-07",
+          "effective_date": "2017-06-07",
+          "source_key": "nolans_dfs2019_asx",
+          "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+          "pdf_page": 37,
+          "locator": "physical PDF p37; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Percentage Proportion of TREO in the Mineral Resources",
+            "20.5",
+            "5.9",
+            "0.08",
+            "0.3"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "reported_resource_distribution_pr_ppm",
+          "basis": "Pr6O11",
+          "value": 59000.0,
+          "unit": "ppm",
+          "original_value": 5.9,
+          "original_unit": "% of TREO",
+          "transform": {
+            "rule": "OXIDE_DISTRIBUTION_PERCENT_TO_PPM",
+            "original_value": 5.9,
+            "original_unit": "% of TREO"
+          }
+        },
+        {
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2017-06-07",
+          "effective_date": "2017-06-07",
+          "source_key": "nolans_dfs2019_asx",
+          "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+          "pdf_page": 37,
+          "locator": "physical PDF p37; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Percentage Proportion of TREO in the Mineral Resources",
+            "20.5",
+            "5.9",
+            "0.08",
+            "0.3"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "reported_resource_distribution_tb_ppm",
+          "basis": "Tb4O7",
+          "value": 800.0,
+          "unit": "ppm",
+          "original_value": 0.08,
+          "original_unit": "% of TREO",
+          "transform": {
+            "rule": "OXIDE_DISTRIBUTION_PERCENT_TO_PPM",
+            "original_value": 0.08,
+            "original_unit": "% of TREO"
+          }
+        },
+        {
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2017-06-07",
+          "effective_date": "2017-06-07",
+          "source_key": "nolans_dfs2019_asx",
+          "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+          "pdf_page": 37,
+          "locator": "physical PDF p37; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Percentage Proportion of TREO in the Mineral Resources",
+            "20.5",
+            "5.9",
+            "0.08",
+            "0.3"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "reported_resource_distribution_dy_ppm",
+          "basis": "Dy2O3",
+          "value": 3000.0,
+          "unit": "ppm",
+          "original_value": 0.3,
+          "original_unit": "% of TREO",
+          "transform": {
+            "rule": "OXIDE_DISTRIBUTION_PERCENT_TO_PPM",
+            "original_value": 0.3,
+            "original_unit": "% of TREO"
+          }
+        },
+        {
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2017-06-07",
+          "effective_date": "2017-06-07",
+          "source_key": "nolans_dfs2019_asx",
+          "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+          "pdf_page": 37,
+          "locator": "physical PDF p37; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Percentage Proportion of TREO in the Mineral Resources",
+            "20.5",
+            "5.9",
+            "0.08",
+            "0.3"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "normalized_resource_distribution_treo_ppm",
+          "basis": "TREO",
+          "value": 1000000,
+          "unit": "ppm",
+          "derivation_status": "DEFINITION_IDENTITY_NOT_REPORTED_MEASUREMENT",
+          "transform": {
+            "rule": "REO_DISTRIBUTION_DENOMINATOR"
+          },
+          "source_note": "A fraction of total TREO is normalised to one million ppm by definition; no reported 100% measurement is invented."
+        },
+        {
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2017-06-07",
+          "effective_date": "2017-06-07",
+          "source_key": "nolans_dfs2019_asx",
+          "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+          "pdf_page": 37,
+          "locator": "physical PDF p37; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Percentage Proportion of TREO in the Mineral Resources",
+            "20.5",
+            "5.9",
+            "0.08",
+            "0.3"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "reported_resource_distribution_magnet_ppm",
+          "basis": "PrNdDyTb_OXIDES",
+          "value": 267800.0,
+          "unit": "ppm",
+          "transform": {
+            "rule": "SUM_MAGNET_OXIDE_PPM",
+            "inputs": [
+              "reported_resource_distribution_nd_ppm",
+              "reported_resource_distribution_pr_ppm",
+              "reported_resource_distribution_tb_ppm",
+              "reported_resource_distribution_dy_ppm"
+            ]
+          }
+        },
+        {
+          "scope": "Nolans Bore Mineral Resource; excludes reserves",
+          "statement_id": "nolans-rare-earths-project-2017-06-07",
+          "effective_date": "2017-06-07",
+          "source_key": "nolans_dfs2019_asx",
+          "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+          "pdf_page": 37,
+          "locator": "physical PDF p37; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Percentage Proportion of TREO in the Mineral Resources",
+            "20.5",
+            "5.9",
+            "0.08",
+            "0.3"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "magnet_reo_share_pct",
+          "basis": "PrNdDyTb_OXIDES_OVER_TREO",
+          "value": 26.78,
+          "unit": "%",
+          "rounding_bounds": [
+            26.625,
+            26.935
+          ],
+          "uncertainty_type": "PRINTED_OXIDE_DISTRIBUTION_ROUNDING_ONLY",
+          "transform": {
+            "rule": "RATIO_PPM_PERCENT",
+            "inputs": [
+              "reported_resource_distribution_magnet_ppm",
+              "normalized_resource_distribution_treo_ppm"
+            ]
+          }
         }
       ],
       "deposit_type": "Apatite/carbonatite"
@@ -2237,6 +2465,228 @@
           "measurement_bounds": null,
           "representativeness": "SELECTED_HIGH_GRADE_NOT_LOM_FEED",
           "extraction_method": "SOURCE_LOCATED_AI_ASSISTED_TRANSCRIPTION_RENDERED_PAGE_AND_NATIVE_TEXT_CHECKED_NOT_INDEPENDENT_HUMAN_VALIDATION"
+        },
+        {
+          "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+          "statement_id": "cummins-range-2023-05-01",
+          "effective_date": "2023-05-01",
+          "source_key": "cummins_mre2023",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "pdf_page": 2,
+          "locator": "physical PDF p2; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Mineral Resource-Based Basket Price",
+            "16.9%",
+            "4.9%",
+            "0.2%",
+            "0.8%"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "reported_resource_distribution_nd_ppm",
+          "basis": "Nd2O3",
+          "value": 169000.0,
+          "unit": "ppm",
+          "original_value": 16.9,
+          "original_unit": "% of TREO",
+          "transform": {
+            "rule": "OXIDE_DISTRIBUTION_PERCENT_TO_PPM",
+            "original_value": 16.9,
+            "original_unit": "% of TREO"
+          }
+        },
+        {
+          "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+          "statement_id": "cummins-range-2023-05-01",
+          "effective_date": "2023-05-01",
+          "source_key": "cummins_mre2023",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "pdf_page": 2,
+          "locator": "physical PDF p2; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Mineral Resource-Based Basket Price",
+            "16.9%",
+            "4.9%",
+            "0.2%",
+            "0.8%"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "reported_resource_distribution_pr_ppm",
+          "basis": "Pr6O11",
+          "value": 49000.0,
+          "unit": "ppm",
+          "original_value": 4.9,
+          "original_unit": "% of TREO",
+          "transform": {
+            "rule": "OXIDE_DISTRIBUTION_PERCENT_TO_PPM",
+            "original_value": 4.9,
+            "original_unit": "% of TREO"
+          }
+        },
+        {
+          "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+          "statement_id": "cummins-range-2023-05-01",
+          "effective_date": "2023-05-01",
+          "source_key": "cummins_mre2023",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "pdf_page": 2,
+          "locator": "physical PDF p2; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Mineral Resource-Based Basket Price",
+            "16.9%",
+            "4.9%",
+            "0.2%",
+            "0.8%"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "reported_resource_distribution_tb_ppm",
+          "basis": "Tb4O7",
+          "value": 2000.0,
+          "unit": "ppm",
+          "original_value": 0.2,
+          "original_unit": "% of TREO",
+          "transform": {
+            "rule": "OXIDE_DISTRIBUTION_PERCENT_TO_PPM",
+            "original_value": 0.2,
+            "original_unit": "% of TREO"
+          }
+        },
+        {
+          "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+          "statement_id": "cummins-range-2023-05-01",
+          "effective_date": "2023-05-01",
+          "source_key": "cummins_mre2023",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "pdf_page": 2,
+          "locator": "physical PDF p2; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Mineral Resource-Based Basket Price",
+            "16.9%",
+            "4.9%",
+            "0.2%",
+            "0.8%"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "reported_resource_distribution_dy_ppm",
+          "basis": "Dy2O3",
+          "value": 8000.0,
+          "unit": "ppm",
+          "original_value": 0.8,
+          "original_unit": "% of TREO",
+          "transform": {
+            "rule": "OXIDE_DISTRIBUTION_PERCENT_TO_PPM",
+            "original_value": 0.8,
+            "original_unit": "% of TREO"
+          }
+        },
+        {
+          "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+          "statement_id": "cummins-range-2023-05-01",
+          "effective_date": "2023-05-01",
+          "source_key": "cummins_mre2023",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "pdf_page": 2,
+          "locator": "physical PDF p2; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Mineral Resource-Based Basket Price",
+            "16.9%",
+            "4.9%",
+            "0.2%",
+            "0.8%"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "normalized_resource_distribution_treo_ppm",
+          "basis": "TREO",
+          "value": 1000000,
+          "unit": "ppm",
+          "derivation_status": "DEFINITION_IDENTITY_NOT_REPORTED_MEASUREMENT",
+          "transform": {
+            "rule": "REO_DISTRIBUTION_DENOMINATOR"
+          },
+          "source_note": "A fraction of total TREO is normalised to one million ppm by definition; no reported 100% measurement is invented."
+        },
+        {
+          "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+          "statement_id": "cummins-range-2023-05-01",
+          "effective_date": "2023-05-01",
+          "source_key": "cummins_mre2023",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "pdf_page": 2,
+          "locator": "physical PDF p2; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Mineral Resource-Based Basket Price",
+            "16.9%",
+            "4.9%",
+            "0.2%",
+            "0.8%"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "reported_resource_distribution_magnet_ppm",
+          "basis": "PrNdDyTb_OXIDES",
+          "value": 228000.0,
+          "unit": "ppm",
+          "transform": {
+            "rule": "SUM_MAGNET_OXIDE_PPM",
+            "inputs": [
+              "reported_resource_distribution_nd_ppm",
+              "reported_resource_distribution_pr_ppm",
+              "reported_resource_distribution_tb_ppm",
+              "reported_resource_distribution_dy_ppm"
+            ]
+          }
+        },
+        {
+          "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+          "statement_id": "cummins-range-2023-05-01",
+          "effective_date": "2023-05-01",
+          "source_key": "cummins_mre2023",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "pdf_page": 2,
+          "locator": "physical PDF p2; resource oxide distribution TOTAL column, not recovery or price weights",
+          "category": "NOT_APPLICABLE",
+          "domain": "Strategic",
+          "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+          "page_markers": [
+            "Mineral Resource-Based Basket Price",
+            "16.9%",
+            "4.9%",
+            "0.2%",
+            "0.8%"
+          ],
+          "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+          "variable": "magnet_reo_share_pct",
+          "basis": "PrNdDyTb_OXIDES_OVER_TREO",
+          "value": 22.8,
+          "unit": "%",
+          "rounding_bounds": [
+            22.6,
+            23.0
+          ],
+          "uncertainty_type": "PRINTED_OXIDE_DISTRIBUTION_ROUNDING_ONLY",
+          "transform": {
+            "rule": "RATIO_PPM_PERCENT",
+            "inputs": [
+              "reported_resource_distribution_magnet_ppm",
+              "normalized_resource_distribution_treo_ppm"
+            ]
+          }
         }
       ]
     },
@@ -7797,6 +8247,209 @@
       "state": "SA",
       "identity_source": "wudinna_mre2026",
       "identity_locator": "RNS4065A: maiden MRE undertaken across Boland and Head prospects",
+      "observations": []
+    },
+    {
+      "id": "barkly-ree",
+      "entity_namespace": "project_registry_v1",
+      "name": "Barkly Rare Earths Project",
+      "state": "NT",
+      "identity_source": "barkly_ipo20260130",
+      "required_source_keys": [
+        "barkly_ipo20260130"
+      ],
+      "aliases": [
+        "Barkly Project"
+      ],
+      "identity_evidence": {
+        "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+        "page": 1,
+        "quote": "100%-owned Barkly",
+        "reason": "Issuer explicitly identifies its wholly owned Barkly Rare Earths Project in NT; Buntine separate, no name/proximity merge"
+      },
+      "observations": [
+        {
+          "scope": "Barkly Vanadis and Benmara combined Inferred Mineral Resource; excludes Exploration Target and Buntine",
+          "statement_id": "barkly-resource-prospectus-20251201",
+          "category": "INFERRED",
+          "effective_date": "2025-12-01",
+          "source_key": "barkly_ipo20260130",
+          "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+          "pdf_page": 2,
+          "page_markers": [
+            "Barkly Project rare earth element Inferred Mineral Resource",
+            "2,100",
+            "710"
+          ],
+          "locator": "physical PDF p2 Table1 plus p1 reported contained TREO; 430ppm NdPr cutoff",
+          "basis": "TREO",
+          "extraction_method": "PRIMARY_PAGE_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "variable": "ore_mt",
+          "value": 40,
+          "unit": "Mt",
+          "rounding_half_width": 0.5
+        },
+        {
+          "scope": "Barkly Vanadis and Benmara combined Inferred Mineral Resource; excludes Exploration Target and Buntine",
+          "statement_id": "barkly-resource-prospectus-20251201",
+          "category": "INFERRED",
+          "effective_date": "2025-12-01",
+          "source_key": "barkly_ipo20260130",
+          "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+          "pdf_page": 2,
+          "page_markers": [
+            "Barkly Project rare earth element Inferred Mineral Resource",
+            "2,100",
+            "710"
+          ],
+          "locator": "physical PDF p2 Table1 plus p1 reported contained TREO; 430ppm NdPr cutoff",
+          "basis": "TREO",
+          "extraction_method": "PRIMARY_PAGE_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "variable": "grade",
+          "value": 2100,
+          "unit": "ppm",
+          "rounding_half_width": 0.5
+        },
+        {
+          "scope": "Barkly Vanadis and Benmara combined Inferred Mineral Resource; excludes Exploration Target and Buntine",
+          "statement_id": "barkly-resource-prospectus-20251201",
+          "category": "INFERRED",
+          "effective_date": "2025-12-01",
+          "source_key": "barkly_ipo20260130",
+          "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+          "pdf_page": 1,
+          "page_markers": [
+            "40 Mt",
+            "2,100 ppm",
+            "82,000 tonnes"
+          ],
+          "locator": "physical PDF p2 Table1 plus p1 reported contained TREO; 430ppm NdPr cutoff",
+          "basis": "TREO",
+          "extraction_method": "PRIMARY_PAGE_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "variable": "contained_treo_kt",
+          "value": 82,
+          "unit": "kt",
+          "rounding_half_width": 0.5
+        },
+        {
+          "scope": "Barkly Vanadis and Benmara combined Inferred Mineral Resource; excludes Exploration Target and Buntine",
+          "statement_id": "barkly-resource-prospectus-20251201",
+          "category": "INFERRED",
+          "effective_date": "2025-12-01",
+          "source_key": "barkly_ipo20260130",
+          "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+          "pdf_page": 2,
+          "page_markers": [
+            "Barkly Project rare earth element Inferred Mineral Resource",
+            "2,100",
+            "710"
+          ],
+          "locator": "physical PDF p2 Table1 plus p1 reported contained TREO; 430ppm NdPr cutoff",
+          "basis": "PrNdDyTb_OXIDES",
+          "extraction_method": "PRIMARY_PAGE_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "variable": "reported_resource_magnet_ppm",
+          "value": 710,
+          "unit": "ppm",
+          "context_evidence": [
+            {
+              "page": 3,
+              "markers": [
+                "MREO ratio = (Nd2O3 + Pr6O11 + Tb4O7 + Dy2O3)/TREO"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Barkly Vanadis and Benmara combined Inferred Mineral Resource; excludes Exploration Target and Buntine",
+          "statement_id": "barkly-resource-prospectus-20251201",
+          "category": "INFERRED",
+          "effective_date": "2025-12-01",
+          "source_key": "barkly_ipo20260130",
+          "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+          "pdf_page": 2,
+          "page_markers": [
+            "Barkly Project rare earth element Inferred Mineral Resource",
+            "2,100",
+            "710"
+          ],
+          "locator": "physical PDF p2 Table1 plus p1 reported contained TREO; 430ppm NdPr cutoff",
+          "basis": "TREO",
+          "extraction_method": "PRIMARY_PAGE_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "variable": "reported_resource_treo_ppm",
+          "value": 2100,
+          "unit": "ppm",
+          "context_evidence": [
+            {
+              "page": 3,
+              "markers": [
+                "MREO ratio = (Nd2O3 + Pr6O11 + Tb4O7 + Dy2O3)/TREO"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Barkly Vanadis and Benmara combined Inferred Mineral Resource; excludes Exploration Target and Buntine",
+          "statement_id": "barkly-resource-prospectus-20251201",
+          "category": "INFERRED",
+          "effective_date": "2025-12-01",
+          "source_key": "barkly_ipo20260130",
+          "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+          "pdf_page": 2,
+          "page_markers": [
+            "Barkly Project rare earth element Inferred Mineral Resource",
+            "2,100",
+            "710"
+          ],
+          "locator": "physical PDF p2 Table1 plus p1 reported contained TREO; 430ppm NdPr cutoff",
+          "basis": "PrNdDyTb_OXIDES_OVER_TREO",
+          "extraction_method": "PRIMARY_PAGE_SCOPED_TRANSCRIPTION_NOT_INDEPENDENT_APPROVAL",
+          "variable": "magnet_reo_share_pct",
+          "value": 33.80952380952381,
+          "unit": "%",
+          "transform": {
+            "rule": "RATIO_PPM_PERCENT",
+            "inputs": [
+              "reported_resource_magnet_ppm",
+              "reported_resource_treo_ppm"
+            ]
+          },
+          "context_evidence": [
+            {
+              "page": 3,
+              "markers": [
+                "MREO ratio = (Nd2O3 + Pr6O11 + Tb4O7 + Dy2O3)/TREO"
+              ]
+            }
+          ],
+          "rounding_bounds": [
+            33.77767198286122,
+            33.84139080733508
+          ]
+        }
+      ]
+    },
+    {
+      "id": "barkly-vanadis",
+      "entity_namespace": "ISSUER_DOCUMENTED_PROSPECT",
+      "entity_kind": "PROSPECT",
+      "name": "Vanadis prospect within Barkly",
+      "state": "NT",
+      "identity_source": "barkly_ipo20260130",
+      "required_source_keys": [
+        "barkly_ipo20260130"
+      ],
+      "observations": []
+    },
+    {
+      "id": "barkly-benmara",
+      "entity_namespace": "ISSUER_DOCUMENTED_PROSPECT",
+      "entity_kind": "PROSPECT",
+      "name": "Benmara prospect within Barkly",
+      "state": "NT",
+      "identity_source": "barkly_ipo20260130",
+      "required_source_keys": [
+        "barkly_ipo20260130"
+      ],
       "observations": []
     }
   ],

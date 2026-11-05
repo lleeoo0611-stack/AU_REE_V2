@@ -828,10 +828,11 @@ def apply_disclosure(selection,result):
     return selection
 
 
-def run_disclosure(root, config, cutoff, out, db=None, run_id=None, selection=None):
+def run_disclosure(root, config, cutoff, out, db=None, run_id=None, selection=None, assemble=None, registry=None, selected_snapshots=None):
     """Existing evidence store + versioned review + existing MCDA machinery."""
     from .analysis import write_csv,prepare_disclosure_analysis
     from .store import filehash
+    if assemble is None:assemble=not config.get('disclosure_current_baseline')
     settings=config['evidence_resolution']['technical_disclosure']
     path=Path(root)/settings['review_path'];review=json.loads(path.read_text(encoding='utf8'))
     if settings.get('review_sha256') and filehash(path)!=settings['review_sha256']:
@@ -840,13 +841,23 @@ def run_disclosure(root, config, cutoff, out, db=None, run_id=None, selection=No
     if settings['states']!=DISCLOSURE_STATES:raise ValueError('Disclosure state coding differs from versioned contract')
     if review.get('codebook_sha256')!=filehash(Path(root)/settings['codebook']):
         raise ValueError('Disclosure codebook checksum mismatch; recoding/versioning required')
-    if set(g['project_id'] for g in review['groups'])!=set(review['baseline']['canonical_group_ids']):
+    if not settings.get('incremental_registry') and set(g['project_id'] for g in review['groups'])!=set(review['baseline']['canonical_group_ids']):
         raise ValueError('Disclosure canonical cohort differs from frozen baseline')
-    result=assess_disclosure(root,review,list(review['sources'].values()),cutoff)
+    if settings.get('incremental_registry') and registry is not None:
+        import copy
+        review=copy.deepcopy(review)
+        known={g['project_id'] for g in review['groups']}
+        for p in registry:
+            if p['entity_id'] in known:continue
+            review['groups'].append(dict(project_id=p['entity_id'],name=p['name'],scope=p.get('scope',p['name']),
+                documents=[],search_complete=False,review_complete_items=[],stop_reason='NEW_REGISTRY_SCOPE_REVIEW_NOT_COMPLETE',
+                items={code:dict(status='UNVERIFIABLE',reason='New registered scope has no completed source-bound content review') for code in DISCLOSURE_FACETS}))
+    active_sources=selected_snapshots if settings.get('incremental_registry') and selected_snapshots is not None else list(review['sources'].values())
+    result=assess_disclosure(root,review,active_sources,cutoff)
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     for key,name in [('items','disclosure_items.csv'),('scores','disclosure_scores.csv'),('audits','disclosure_search_audit.csv')]:
         rows=csvrows_local(result[key]);write_csv(out/name,rows,list(rows[0]))
-    prepared,summary=prepare_disclosure_analysis(result,review['baseline'],config,out)
+    prepared,summary=prepare_disclosure_analysis(result,review['baseline'],config,out) if assemble else (None,{})
     if selection is not None:apply_disclosure(selection,result)
     if db is not None:
         if run_id is None:raise ValueError('A run identity is required for persisted disclosure')
@@ -864,6 +875,9 @@ def run_disclosure(root, config, cutoff, out, db=None, run_id=None, selection=No
         for state in ('DISCLOSED','EXPLICIT_UNKNOWN','INSUFFICIENT','UNVERIFIABLE')},
         validation_issue_items=sum(bool(r['validation_issues']) for r in result['items']),
         source_originals=len(review['sources']),cutoff=cutoff)
+    if settings.get('incremental_registry'):
+        summary['review_dependencies_sha256']=digest(dict(review=result['review_identity'],cutoff=cutoff,
+            projects=registry,sources={s['key']:s['sha256'] for s in active_sources}))
     summary['status']='COMPLETED_WITH_VALIDATION_GAPS' if summary['validation_issue_items'] else 'COMPLETED_WITH_SOURCE_GAPS' if summary['states']['UNVERIFIABLE'] else 'COMPLETED_BOUNDED_REVIEW'
     (out/'disclosure_analysis.json').write_text(canonical(summary)+'\n',encoding='utf8')
     return result,prepared,summary

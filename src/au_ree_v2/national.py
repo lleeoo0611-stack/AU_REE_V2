@@ -236,7 +236,7 @@ def government_features(root, source):
     return data['features']
 
 
-def ingest_government(db,root,source):
+def ingest_government(db,root,source,candidate_version=None):
     """Government native locations and explicit parent codes, never name-based Projects."""
     from .hierarchy import link
     seen=set();count=0
@@ -250,7 +250,12 @@ def ingest_government(db,root,source):
         native=str(int(key)) if isinstance(key,(float,int)) and float(key).is_integer() else str(key or '').strip()
         terms='; '.join(str(a.get(k) or '') for k in source['commodity_fields'])
         tenure=source.get('record_filter')=='ALL_TENURE_RECORDS' and source.get('entity_kind')=='TENEMENT'
-        if not tenure and not REE_TERMS.search(terms):continue
+        decision=None
+        if candidate_version:
+            from .census import classify_ree
+            structured=[k for k in source['commodity_fields'] if not any(x in k.lower() for x in ('description','summary','ore_min','gangue','min_ass'))]
+            decision=classify_ree({k:a.get(k) for k in source['commodity_fields']},structured)
+        if not tenure and not (decision['include'] if decision else REE_TERMS.search(terms)):continue
         if not native or native in seen or counts[native]>1:
             issue(db,None,source['sha256'],'GOVERNMENT_NATIVE_ID_MISSING_OR_DUPLICATE',canonical({'row':index,'native':native}))
             continue
@@ -264,7 +269,8 @@ def ingest_government(db,root,source):
         raw={'source_kind':'LIVE_GOVERNMENT_TENURE_RECORD' if tenure else 'LIVE_GOVERNMENT_NATIVE_RECORD','source_key':source['key'],
              'native_id':native,'original_attributes':a,'original_geometry':f.get('geometry'),
              'locator':('CSV physical row '+str(index+2)) if source['kind']=='government_csv' else 'features['+str(index)+']',
-             'ree_rule':'ALL_TITLES_NO_REE_OR_PROJECT_INFERENCE' if tenure else 'REE_COMMODITY_FIELDS_V1','matched_commodity_text':terms,
+             'ree_rule':'ALL_TITLES_NO_REE_OR_PROJECT_INFERENCE' if tenure else candidate_version or 'REE_COMMODITY_FIELDS_V1','matched_commodity_text':terms,
+             **({'candidate_classification':decision} if decision else {}),
              'interpretation':'GOVERNMENT_RECORDED_'+kind+'_NOT_INDEPENDENT_PHYSICAL_PROJECT_COUNT'}
         db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
                    (eid,source['sha256'],name,source['state'],lon,lat,
@@ -304,7 +310,8 @@ def ingest_government(db,root,source):
         parent=a.get(source.get('parent_id_field',''))
         if parent:
             # Existing WA parent IDs and their established kind stay stable.
-            pid=entity(db,'WA_MINDEX_PROJECT',str(parent),'PROJECT_CANDIDATE')
+            namespace=source.get('parent_namespace') or ('WA_MINDEX_PROJECT' if source['namespace']=='WA_MINDEX_SITE' else source['namespace']+'_PROJECT')
+            pid=entity(db,namespace,str(parent),source.get('parent_kind','PROJECT_CANDIDATE'))
             db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
                        (pid,source['sha256'],str(a.get(source['parent_name_field']) or parent),source['state'],
                         None,None,None,None,canonical({'source_kind':'LIVE_GOVERNMENT_PROJECT_PARENT',
@@ -363,6 +370,9 @@ def government_link_candidates(db,snapshots,mapping=None):
             groups.setdefault((r['state'],normalized(r['name'])),[]).append(dict(r,source_sha256=r['source_sha']))
     pairs={}
     for (state,name),members in groups.items():
+        # Stable endpoint order also binds each source to the advertised ID.
+        # Sorting IDs after choosing sources swapped provenance on some pairs.
+        members=sorted(members,key=lambda r:(r['entity_id'],r['source_sha256']))
         for i,a in enumerate(members):
             for b in members[i+1:]:
                 if a['entity_id']==b['entity_id'] or a['namespace']==b['namespace'] or a['source_sha256']==b['source_sha256']:continue

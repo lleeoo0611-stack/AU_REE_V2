@@ -19,7 +19,8 @@ COLUMNS = ("row", "project", "status", "owner", "ore_mt", "grade_pct",
            "contained_treo_kt", "resource_date")
 
 COMMODITY_VERSION = 'minedex-commodity-v2'
-LANTHANIDES = 'lanthanum cerium praseodymium neodymium promethium samarium europium gadolinium terbium dysprosium holmium erbium thulium ytterbium lutetium'.split()
+from .census import ELEMENTS
+LANTHANIDES = [name for name in ELEMENTS if name!='yttrium']
 
 
 def commodity_classification(label):

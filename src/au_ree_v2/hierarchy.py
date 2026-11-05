@@ -3,7 +3,7 @@ import json
 from .store import entity,digest,canonical
 from .analysis import write_csv
 
-def build(db,snapshots):
+def build(db,snapshots,collect=True):
     if not snapshots or max(s['available_date'] for s in snapshots)<'2026-11-03':
         return []  # Versioned hierarchy policy; preserve earlier frozen replay.
     selected={s['sha256'] for s in snapshots}
@@ -29,6 +29,13 @@ def build(db,snapshots):
         dep=entity(db,'PRIMARY_RESOURCE_SCOPE',row['statement_id']+'|'+row['scope'],'DEPOSIT_SCOPE')
         db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',(dep,row['source_sha'],row['scope'],None,None,None,None,None,row['raw']))
         link(db,row['entity_id'],dep,'HAS_TECHNICALLY_DOCUMENTED_RESOURCE_SCOPE',row['source_sha'],row['locator'])
+    return rows(db,snapshots) if collect else []
+
+
+def rows(db,snapshots):
+    """Read relationships after all source and identity rules have run."""
+    if not snapshots or max(s['available_date'] for s in snapshots)<'2026-11-03':return []
+    selected={s['sha256'] for s in snapshots}
     return [dict(r) for r in db.execute('''SELECT rel.*,p.kind parent_kind,c.kind child_kind
         FROM relations rel JOIN entities p ON p.entity_id=rel.parent_id JOIN entities c ON c.entity_id=rel.child_id
         ORDER BY relation_id''') if r['source_sha'] in selected]

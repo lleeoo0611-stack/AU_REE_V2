@@ -133,9 +133,18 @@ def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None,
     source_errors = {sha: source_check(s, cutoff, root, acquired_through) for sha, s in sources.items()}
     selected_by_key = {s['key']: s['sha256'] for s in snapshots}
     inventory, decisions, values = [], [], defaultdict(dict)
-    names = {r['entity_id']: r['name'] for r in db.execute('SELECT * FROM records ORDER BY source_sha') if r['source_sha'] in sources}
-    projects = {mapping.get(r[0], r[0]) for r in db.execute("SELECT entity_id FROM entities WHERE kind='PROJECT'")}
-    for row in db.execute('SELECT * FROM observations ORDER BY obs_id'):
+    source_parameter=(canonical(sorted(sources)),)
+    names = {r['entity_id']: r['name'] for r in db.execute('SELECT * FROM records WHERE source_sha IN (SELECT value FROM json_each(?)) ORDER BY source_sha',source_parameter)}
+    # Standalone study/observation ingestion may have a typed Project without
+    # a display-name record. Its source-bound evidence still establishes
+    # availability; a future empty entity must not appear in historical runs.
+    projects = {mapping.get(r[0], r[0]) for r in db.execute('''SELECT DISTINCT e.entity_id FROM entities e JOIN (
+        SELECT entity_id,source_sha FROM records
+        UNION ALL SELECT entity_id,source_sha FROM observations WHERE effective_date<=?
+        UNION ALL SELECT project_id,source_sha FROM study_cases WHERE effective_date<=?
+        ) proof USING(entity_id) WHERE e.kind='PROJECT' AND proof.source_sha IN (SELECT value FROM json_each(?))''',
+        (cutoff,cutoff,*source_parameter))}
+    for row in db.execute('SELECT * FROM observations WHERE source_sha IN (SELECT value FROM json_each(?)) ORDER BY obs_id',source_parameter):
         if row['source_sha'] not in sources:
             continue
         if active_claim_ids is not None and row['transform_version'] in ('normalization-v1','commercial-event-v1') and row['obs_id'] not in active_claim_ids:

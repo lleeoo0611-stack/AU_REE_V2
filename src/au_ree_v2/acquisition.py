@@ -8,7 +8,7 @@ import socket
 from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone
 from pathlib import Path
-from .store import canonical, digest, filehash
+from .store import canonical, digest, filehash, append_snapshots
 from .spatial import project_windows
 
 _last_request = {}
@@ -288,13 +288,13 @@ def refresh(root, registry):
             if pages:entry['original_responses']=pages
             if changes:entry['native_changes']=changes
             manifest['snapshots'].append(entry)
-            manifest_path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+            manifest=append_snapshots(manifest_path,manifest['snapshots'])
             outcomes.append({'key': source['key'], 'status': 'ADDED', 'sha256': sha})
         except Exception as exc:
             outcomes.append({'key': source['key'], 'status': 'UNAVAILABLE', 'reason': str(exc),
                              **failure_details(exc),
                              **({'original_responses':pages} if pages else {})})
-    manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+    append_snapshots(manifest_path,manifest['snapshots'])
     return outcomes
 
 def minedex_resource_batch(url, product_alias, archive=None, fetch=None):

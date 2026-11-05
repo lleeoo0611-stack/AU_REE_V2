@@ -1,5 +1,5 @@
 {
-  "version": "source-registry-v9-phase8",
+  "version": "source-registry-v10-phase21",
   "sources": [
     {
       "key": "ga_aimr",
@@ -715,6 +715,25 @@
       "kind": "pdf",
       "publication_date": "2023-06-06",
       "url": "https://wcsecure.weblink.com.au/pdf/VHM/02673409.pdf"
+    },
+    {
+      "key": "barkly_ipo20260130",
+      "kind": "pdf",
+      "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3ABAK%3A6A1309514/pdf/inline/barkly-rare-earths-completes-successful-ipo",
+      "publication_date": "2026-01-30",
+      "capture_metadata": "Recovered original-capture filesystem timestamp after concurrent manifest overwrite; original bytes/hash verified",
+      "company": "Barkly Rare Earths Ltd",
+      "asx_code": "BAK",
+      "distribution": "PUBLIC_MIRROR_OF_ISSUER_ASX_ANNOUNCEMENT"
+    },
+    {
+      "key": "barkly_prospectus20251201",
+      "kind": "pdf",
+      "publication_date": "2025-12-01",
+      "url": "https://staff-web.automicgroup.com.au/er/public/api/documents/BAK?fileName=IPO_Prospectus___Barkly_Rare_Earths_Limited__BAK___01_12_25___Website_Version__3871524.1_.pdf",
+      "asx_code": "BAK",
+      "company": "Barkly Rare Earths Ltd",
+      "definition": "Cited original technical prospectus; HTTP403 on Phase21 attempt, bytes not acquired. Target registration is not evidence."
     }
   ]
 }

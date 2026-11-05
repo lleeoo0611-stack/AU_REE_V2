@@ -456,6 +456,54 @@
       ],
       "locator": "RNS4065A: Maiden Mineral Resource Estimate, 91sonic core holes across Boland and Head; MRE combined once",
       "effective_date": "2026-10-26"
+    },
+    {
+      "left": [
+        "project_registry_v1",
+        "barkly-ree"
+      ],
+      "right": [
+        "ISSUER_DOCUMENTED_PROSPECT",
+        "barkly-vanadis"
+      ],
+      "relation": "CONTAINS_ISSUER_DOCUMENTED_PROSPECT_NOT_RESOURCE_SUM",
+      "source_key": "barkly_ipo20260130",
+      "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+      "pdf_page": 2,
+      "page_markers": [
+        "100% owned Barkly Project",
+        "Vanadis",
+        "Benmara"
+      ],
+      "locator": "physical PDF p2 explicit drilling at Vanadis and Benmara prospects within Barkly; no resource split or addition",
+      "effective_date": "2026-01-30",
+      "required_source_keys": [
+        "barkly_ipo20260130"
+      ]
+    },
+    {
+      "left": [
+        "project_registry_v1",
+        "barkly-ree"
+      ],
+      "right": [
+        "ISSUER_DOCUMENTED_PROSPECT",
+        "barkly-benmara"
+      ],
+      "relation": "CONTAINS_ISSUER_DOCUMENTED_PROSPECT_NOT_RESOURCE_SUM",
+      "source_key": "barkly_ipo20260130",
+      "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+      "pdf_page": 2,
+      "page_markers": [
+        "100% owned Barkly Project",
+        "Vanadis",
+        "Benmara"
+      ],
+      "locator": "physical PDF p2 explicit drilling at Vanadis and Benmara prospects within Barkly; no resource split or addition",
+      "effective_date": "2026-01-30",
+      "required_source_keys": [
+        "barkly_ipo20260130"
+      ]
     }
   ]
 }
