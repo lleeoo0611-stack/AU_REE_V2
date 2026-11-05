@@ -50,6 +50,10 @@ def research_configuration(root, snapshot_lock=None):
                     'panels':{**config['panels'],**policy['panels']}}
     if not snapshot_lock and (root/'config/eligibility_compatibility.json').exists():
         config['eligibility_evidence']=json.loads((root/'config/eligibility_compatibility.json').read_text())
+    if config.get('evidence_resolution',{}).get('technical_disclosure'):
+        config['criteria']=[dict(c,variable='technical_disclosure_pct',
+            interpretation='Technical Disclosure Transparency; not technical feasibility/performance',
+            definition_version='technical-disclosure-transparency-v1') if c['code']=='T1' else c for c in config['criteria']]
     return config
 
 
@@ -67,6 +71,36 @@ def execute(args):
     if args.dry_run:
         return {'status':'DRY_RUN','module':args.module,'cutoff':args.as_of,'root':str(root),
                 'snapshot_count':len(select_snapshots(root,args.as_of)), 'writes':False}
+    if args.module=='disclosure' and config.get('disclosure_current_baseline'):
+        # Current disclosure needs current non-Technical selection as well.
+        # Historical locks without this flag keep the frozen Phase19 baseline.
+        args.work=args.work or str(root/'work/phase5')
+        if not (Path(args.work).resolve()/'canonical.sqlite').is_file():
+            raise ValueError('Require an existing canonical.sqlite')
+        args.module='analyze'
+    if args.module=='disclosure':
+        # Deliberately reuse the current canonical store; never bootstrap a
+        # second formal database for a content-analysis revision.
+        work=Path(args.work).resolve() if args.work else root/'work/phase5'
+        if not (work/'canonical.sqlite').is_file():raise ValueError('Require an existing canonical.sqlite')
+        review_path=root/config['evidence_resolution']['technical_disclosure']['review_path']
+        version=code_version(root);run_id='phase19-'+digest([filehash(review_path),config,version['content_sha256'],args.as_of])[:16]
+        out=work/'runs'/run_id;out.mkdir(parents=True,exist_ok=True)
+        db=connect(work/'canonical.sqlite')
+        try:
+            from .technical import run_disclosure
+            db.execute('INSERT OR IGNORE INTO runs VALUES(?,?,?,?,?,?,?,?)',
+                (run_id,datetime.now(timezone.utc).isoformat(),args.as_of,canonical(version),digest(config),filehash(review_path),'RUNNING',None))
+            result,prepared,summary=run_disclosure(root,config,args.as_of,out,db,run_id)
+            r_results={} if args.skip_r else run_r(root,out,prepared,config,args.rscript)
+            summary.update(run_id=run_id,output_dir=str(out),R=r_results,code=version)
+            (out/'summary.json').write_text(canonical(summary)+'\n',encoding='utf8')
+            (out/'configuration.json').write_text(canonical({'research':config})+'\n',encoding='utf8')
+            db.execute("UPDATE runs SET status='COMPLETED',error=NULL WHERE run_id=?",(run_id,));db.commit()
+            return summary
+        except Exception:
+            db.rollback();raise
+        finally:db.close()
     if args.module=='pdf-extract':
         from .pdf_extract import capture_pages
         source=next(s for s in select_snapshots(root,args.as_of) if s['key']==args.source_key)
@@ -249,16 +283,35 @@ def execute(args):
                   ['entity_id','variable','distance_km','layer_sha256',
                    'coordinate_source_sha256','method','coverage_scope',
                    'radius_km','source_where','limitation'])
-        results={};prepared={'panels':{},'coverage':[]};selection=None
+        results={};prepared={'panels':{},'coverage':[]};selection=None;technical_observations=None;disclosure_prepared=None;disclosure_result=None
         if args.module in ('all','analyze','rebuild'):
             if config.get('evidence_resolution'):
                 from .selection import resolve as select_evidence,export as export_selection
                 selection=select_evidence(db,snapshots,args.as_of,resources,cases,identity['mapping'],config['evidence_resolution'],root,acquired_through,active_claim_ids=active_claim_ids)
                 export_selection(selection,out)
+                if config['evidence_resolution'].get('technical_profile'):
+                    from .technical import unified_observations
+                    technical_observations=unified_observations(selection,config['evidence_resolution']['technical_profile'])
+                disclosure_settings=config['evidence_resolution'].get('technical_disclosure')
+                if disclosure_settings and args.as_of==disclosure_settings['review_cutoff']:
+                    from .technical import run_disclosure
+                    disclosure_result,disclosure_prepared,disclosure_summary=run_disclosure(root,config,args.as_of,out,db,run_id,selection)
+                elif disclosure_settings:
+                    (out/'disclosure_status.json').write_text(canonical(dict(
+                        status='NOT_EVALUATED_REVIEW_CUTOFF_DIFFERS',cutoff=args.as_of,
+                        review_cutoff=disclosure_settings['review_cutoff'],
+                        interpretation='No later disclosure coding backdated; other research continues'))+'\n',encoding='utf8')
             prepared=prepare(db,args.as_of,snapshots,resources,gis_values,config,out,args.project,identity['mapping'],cases,selection)
+            if disclosure_result and config.get('disclosure_current_baseline'):
+                from .analysis import current_disclosure_baseline,prepare_disclosure_analysis
+                baseline=current_disclosure_baseline(out,identity['mapping'],[s['project_id'] for s in disclosure_result['scores']])
+                disclosure_prepared,current_summary=prepare_disclosure_analysis(disclosure_result,baseline,config,out)
+                disclosure_summary.update(current_summary)
+                (out/'disclosure_analysis.json').write_text(canonical(disclosure_summary)+'\n',encoding='utf8')
+            if disclosure_prepared:prepared['panels'].update(disclosure_prepared['panels'])
             if selection and config.get('evidence_resolution',{}).get('technical_profile',{}).get('numeric_model'):
                 from .analysis import prepare_technical_panel
-                prepare_technical_panel(selection,prepared,config,out)
+                prepare_technical_panel(selection,prepared,config,out,observations=technical_observations)
             if config['monte_carlo'].get('method_version')=='entity-keyed-rng-v2':
                 from .analysis import canonicalize_interchange
                 canonicalize_interchange(out)
@@ -284,7 +337,7 @@ def execute(args):
         if selection and config.get('evidence_resolution',{}).get('technical_profile'):
             from .technical import analyze_profiles
             from .official import minedex_resource_report
-            analyze_profiles(selection,config['evidence_resolution']['technical_profile'],out,{identity['mapping'].get(pid,pid) for pid in resources},root,snapshots)
+            analyze_profiles(selection,config['evidence_resolution']['technical_profile'],out,{identity['mapping'].get(pid,pid) for pid in resources},root,snapshots,observations=technical_observations)
             minedex_resource_report(db,root,snapshots,out,config.get("commodity_version","minedex-resource-batch-v1"))
         source_shas={s['sha256'] for s in snapshots}
         from .national import raw_domain_coverage
@@ -446,7 +499,7 @@ def execute(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize'])
+    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure'])
     parser.add_argument('--root',default='.')
     parser.add_argument('--work')
     parser.add_argument('--as-of',default=datetime.now(timezone.utc).date().isoformat())

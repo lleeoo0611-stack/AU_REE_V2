@@ -1,11 +1,11 @@
 {
-  "version": "research-v4-identity-study-endpoints",
+  "version": "research-v6-current-disclosure-evidence",
   "frozen_before_scoring": true,
   "cohorts": {
     "full_census": "All available source entities; counts must be stratified by entity kind. Not a complete national project census.",
     "resource_defined": "PROJECT with one latest complete same-scope TREO Mineral Resource statement. No stage requirement.",
-    "development": "Resource-defined plus source-supported study maturity and recovery observations.",
-    "full_evidence": "Development cohort plus a valid scored observation in every one of the six domains.",
+    "development": "Historical resource plus study maturity and comparable overall recovery cohort retained; new transparency T1 does not certify recovery.",
+    "full_evidence": "Resource-defined cohort with all six scored criteria; transparency replaces technical performance. No legacy recovery entry gate. Not formal C1 approval.",
     "official_summary_resource_screen": "Government published 2026 WA table of 20 project resource summaries. Exploratory R1/R2 ranking only: JORC categories and project scopes are not issuer-harmonized. Separate from official resource-defined, development and full-evidence cohorts."
   },
   "panels": {
@@ -61,13 +61,15 @@
     },
     {
       "code": "T1",
-      "variable": "recovery_pct",
+      "variable": "technical_disclosure_pct",
       "domain": "Technical",
       "direction": "MAX",
       "low": 0,
       "high": 100,
       "unit": "%",
-      "function": "linear"
+      "function": "linear",
+      "interpretation": "Technical Disclosure Transparency; fixed seven binary items; not technical capability, recovery performance or feasibility",
+      "definition_version": "technical-disclosure-transparency-v1"
     },
     {
       "code": "D1",
@@ -277,5 +279,6 @@
   "research_utilization": "phase12-evidence-yield-v1",
   "research_analysis_version": "evidence-cohort-v1",
   "source_coverage_version": "bounded-document-stages-v1",
-  "commodity_version": "minedex-commodity-v2"
+  "commodity_version": "minedex-commodity-v2",
+  "disclosure_current_baseline": true
 }

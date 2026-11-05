@@ -11,6 +11,7 @@ script<-sub('^--file=','',grep('^--file=',commandArgs(),value=TRUE)[1])
 source(file.path(dirname(script),'methods.R'))
 d<-read.csv(file.path(folder,'matrix.csv'),check.names=FALSE)
 criteria<-read.csv(file.path(folder,'criteria.csv'));weights<-read.csv(file.path(folder,'weights.csv'))
+disclosure_panel<-'definition_version' %in% names(criteria) && any(criteria$definition_version=='technical-disclosure-transparency-v1',na.rm=TRUE)
 if(deterministic) {
   d<-d[order(d$project_id,method='radix'),,drop=FALSE]
   criteria<-criteria[order(criteria$code,method='radix'),,drop=FALSE]
@@ -62,17 +63,25 @@ for(scenario in unique(weights$scenario)) {
     XD<-if(deterministic)lower+inputs$rounding[,,k]*(upper-lower) else matrix(runif(length(X),as.vector(lower),as.vector(upper)),nrow=nrow(X))
     D[,k]<-rank_score(promethee(XD,w,p))
   }
-  summarize<-function(M,label)data.frame(scenario,project_id=d$project_id,uncertainty=label,
+  summarize<-function(M,label) {
+    result<-data.frame(scenario,project_id=d$project_id,uncertainty=label,
       median=apply(M,1,median),q05=apply(M,1,quantile,.05),q95=apply(M,1,quantile,.95),
       frequency_first=rowMeans(M==1),
       frequency_top3=if(nrow(X)>=3)rowMeans(M<=3) else NA_real_,
       frequency_top5=if(nrow(X)>=5)rowMeans(M<=5) else NA_real_,
       interpretation='Preference/model frequency; not development success probability')
+    if(disclosure_panel) {
+      result$frequency_joint_first<-rowMeans(sweep(M,2,apply(M,2,min),'=='))
+      result$tie_policy<-'Average point ranks; joint-first frequency includes all tied top alternatives and need not sum to one'
+    }
+    result
+  }
   all_weight[[scenario]]<-summarize(W,if(all(c('group','group_weight') %in% names(wd)))'WITHIN_GROUP_WEIGHTS_FIXED_DOMAIN_TOTALS' else 'WEIGHTS_ONLY')
   all_rounding[[scenario]]<-summarize(D,'SOURCE_ROUNDING_ONLY_NOT_MEASUREMENT_UNCERTAINTY')
   if('uncertainty_kind' %in% names(d) && all(d$uncertainty_kind=='NO_SOURCE_BOUNDS')) {
     all_rounding[[scenario]]$uncertainty<-'NOT_QUANTIFIED_NO_SOURCE_BOUNDS'
     for(column in c('median','q05','q95','frequency_first','frequency_top3','frequency_top5'))all_rounding[[scenario]][[column]]<-NA_real_
+    if(disclosure_panel)all_rounding[[scenario]]$frequency_joint_first<-NA_real_
   }
   for(j in seq_along(codes)) {
     idx<-setdiff(seq_along(codes),j)

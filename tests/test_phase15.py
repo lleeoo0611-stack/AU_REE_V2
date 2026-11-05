@@ -80,12 +80,15 @@ class Phase15Contracts(unittest.TestCase):
         contract=dict(version='technical-use-v2',variables=['x'],unit='%',analysis_scope='PROJECT_EXTRAPOLATION')
         self.assertIn('SAMPLE_REPRESENTATIVENESS_LIMITATION',technical_compare(record,contract))
 
-    def test_formal_t1_and_historical_tc_unchanged(self):
+    def test_historical_t1_retained_and_current_disclosure_versioned(self):
         current=json.loads((ROOT/'config/evidence_policy.json').read_text())
         old=json.loads((ROOT/'results/phase14-2026-11-04/configuration.json').read_text())['research']['evidence_resolution']
-        for code in ('T1','TC1','TC2'):self.assertEqual(old['criteria'][code],current['criteria'][code])
+        for code in ('TC1','TC2'):self.assertEqual(old['criteria'][code],current['criteria'][code])
+        self.assertEqual(old['criteria']['T1'],current['criteria']['T_RECOVERY_LEGACY'])
+        self.assertEqual([],current['criteria']['T1']['variables'])
+        self.assertEqual('technical-disclosure-transparency-v1',current['criteria']['T1']['derived_by'])
         self.assertEqual(old['technical_comparability'],current['technical_comparability'])
-        self.assertNotEqual(current['criteria']['T1']['requires'],current['criteria']['TC1']['requires'])
+        self.assertNotEqual(current['criteria']['T_RECOVERY_LEGACY']['requires'],current['criteria']['TC1']['requires'])
 
     def test_scientific_invalidity_local_to_negative_cell(self):
         from au_ree_v2.pdf_extract import candidate_value_issues

@@ -5,6 +5,7 @@ comparison and derivation; it neither acquires sources nor maintains a new store
 """
 import math
 import json
+import re
 from collections import defaultdict, Counter
 from pathlib import Path
 from .store import canonical, digest
@@ -482,6 +483,39 @@ def target_applicability(record, raw):
         evidence=evidence or None,evidence_mode=record.get('evidence_mode'),project_extrapolation=status=='SUPPORTED_FOR_NAMED_TARGET' and raw.get('target_scope_kind')=='PROJECT')
 
 
+def framework_fields(row, definition):
+    """Classify a final shared observation; never grant scoring or extrapolation.
+
+    Quantity roles come from policy, not project names or percentage tokens.
+    Feed assays, mineral deportment, study maturity and throughput stay context.
+    """
+    framework=definition.get('framework')
+    if not framework:return {}
+    roles={row.get('quantity'),row.get('process_stage')}
+    axes={axis for axis,allowed in framework['roles'].items() if roles.intersection(allowed)}
+    supported=row.get('supports_technical_interpretation') and not row.get('evidence_reason')
+    value=row.get('value');numeric=isinstance(value,(int,float)) and not isinstance(value,bool) and math.isfinite(value)
+    # A recovery number in a paragraph mentioning acid is not an acid amount.
+    # Text requirements may inform several axes; numeric quantities may not.
+    if supported and not numeric:
+        axes.update(framework['interpretation_axes'][j['criterion']] for j in row.get('interpretations',[])
+                    if j.get('criterion') in framework['interpretation_axes'])
+    missing=[key for key in framework['context_fields'] if row.get(key) in (None,'')]
+    conflict=row.get('measurement_relation')=='CONFLICTING_VALUES_SAME_SCIENTIFIC_OBSERVATION'
+    # The legacy performance flag excludes non-performance roles such as
+    # input intensity. Reuse its source-context contract, not that taxonomy.
+    source_numeric=row.get('numeric_profile_eligible') or row.get('comparison_reasons',{}).get('SOURCE_CASE_NUMERIC_PROFILE')==[]
+    if not axes:status='CONTEXT_ONLY'
+    elif numeric and len(axes)>1:status='CONFLICT'
+    elif conflict:status='CONFLICT'
+    elif not supported:status='UNSUPPORTED'
+    elif numeric and source_numeric:status='SOURCE_SCOPED_NUMERIC'
+    elif numeric:status='NUMERIC_CONTEXT_INCOMPLETE'
+    else:status='SOURCE_SCOPED_DESCRIPTION'
+    return dict(technical_axes=sorted(axes),technical_use=status,technical_missing_context=missing,
+                technical_framework_version=framework['version'])
+
+
 def unified_observations(selection, definition):
     if definition.get('version')!='technical-profile-remediation-v2':return _unified_observations_v1(selection,definition)
     import re
@@ -540,14 +574,15 @@ def unified_observations(selection, definition):
     return sorted(out,key=lambda r:r['analytical_identity'])
 
 
-def analyze_profiles(selection, definition, out, resource_ids, root=None, snapshots=()):
+def analyze_profiles(selection, definition, out, resource_ids, root=None, snapshots=(), observations=None):
     """Executed model decision: existing partial MCDA + technical case profiles.
 
     No universal ordinal utility is established. Therefore no numeric mapping,
     new weight, imputed unknown, or maturity-based Technical rank is generated.
     """
     from .analysis import write_csv
-    out=Path(out);rows=unified_observations(selection,definition)
+    out=Path(out);rows=unified_observations(selection,definition) if observations is None else observations
+    for r in rows:r.update(framework_fields(r,definition))
     if definition.get('version')=='technical-profile-remediation-v2':
         # Explicit same-page curated cell markers corroborate source records,
         # independently of scientific measurement identity or value conflicts.
@@ -557,6 +592,7 @@ def analyze_profiles(selection, definition, out, resource_ids, root=None, snapsh
             if not r['source_cell_identity'] and len(targets)==1:r['source_cell_identity']=next(iter(targets))
     fields=['analytical_identity','source_cell_identity','project_id','case_id','evidence_ids','source_sha256','pdf_page','locator','study_date','observation_form','variable','quantity','value','unit','basis','feed','endpoint','scale','scope','sample_population','statistic','raw_quote','token_state','supports_technical_interpretation','interpretation_reason','numeric_profile_eligible','permitted_comparison_groups','comparison_reasons','interpretations','project_extrapolation','project_extrapolation_reason','semantic_evidence','semantic_conflicts','scenario','scenario_evidence','base_case_applicable','corroborating_rows','rule_version']
     if definition.get('version')=='technical-profile-remediation-v2':fields+=['legacy_analytical_identity','source_record_identities','source_records','scientific_observation_identity','identity_version','dedup_reason','cross_document_relation','source_locators','date_role','process_stage','sample_id','test_id','sample_interval','material_branch','reagent','temperature_c','residence_hours','acid_concentration','pressure','conditions','population','acid_unit','reagent_formulation','liquid_solid_ratio','stage','from_material','to_material','measurement_relation','related_analytical_ids','claim_purpose','target_applicability']
+    if definition.get('framework'):fields+=['technical_axes','technical_use','technical_missing_context','technical_framework_version']
     write_csv(out/'technical_observations.csv',csvrows_local(rows),fields)
     profiles=[];judgments=[];groups=defaultdict(list)
     pids=sorted(selection['projects'])
@@ -602,8 +638,391 @@ def analyze_profiles(selection, definition, out, resource_ids, root=None, snapsh
     if definition.get('version')=='technical-profile-remediation-v2':
         summary.update(scoped_numeric_model_adopted=True,aim_a='Executed process-specific design panel via existing R engine; nominal burdens kept separate',aim_b='Same two design cases: Technical total/subweight, scoring, method and operating-only scope scenarios',project_extrapolatable=sum(r['project_extrapolation'] for r in rows))
         if root is not None:summary['remediation']=export_remediation(selection,definition,rows,out,resource_ids,Path(root),snapshots)
+    if definition.get('framework'):
+        # One row per Project/axis reports evidence availability, never averages
+        # incompatible cases or treats source records as independent experiments.
+        framework=definition['framework'];coverage=[]
+        for pid in pids:
+            for axis in framework['axes']:
+                rr=[r for r in rows if r['project_id']==pid and axis in r['technical_axes']]
+                numeric=[r for r in rr if r['technical_use']=='SOURCE_SCOPED_NUMERIC']
+                coverage.append(dict(project_id=pid,axis=axis,
+                    status='SOURCE_SCOPED_NUMERIC' if numeric else 'SOURCE_SCOPED_DESCRIPTION' if any(r['technical_use']=='SOURCE_SCOPED_DESCRIPTION' for r in rr) else 'UNRESOLVED' if rr else 'UNKNOWN',
+                    source_records=len(rr),numeric_records=len(numeric),
+                    case_ids=sorted({r['case_id'] for r in rr}),
+                    evidence_ids=sorted({e for r in rr for e in r['evidence_ids']}),
+                    missing_context=sorted({key for r in rr for key in r['technical_missing_context']}),
+                    project_score=None,score_status='NO_COMMON_UTILITY_ADOPTED',
+                    framework_version=framework['version']))
+        write_csv(out/'technical_framework_profiles.csv',csvrows_local(coverage),['project_id','axis','status','source_records','numeric_records','case_ids','evidence_ids','missing_context','project_score','score_status','framework_version'])
+        summary['framework']=dict(version=framework['version'],axes=list(framework['axes']),
+            projects=len(pids),profiles=len(coverage),project_scores_adopted=False,
+            source_scoped_numeric_projects={axis:sum(r['axis']==axis and r['numeric_records']>0 for r in coverage) for axis in framework['axes']})
+    if definition.get('jorc_screening') and not definition.get('disclosure_supersedes_screening'):
+        summary['jorc_screening']=analyze_jorc_screening(selection,definition,rows,out,root)
+    if definition.get('disclosure_supersedes_screening'):
+        summary['current_T1_definition']='technical-disclosure-transparency-v1'
+        summary['performance_profile_interpretation']='SUPPLEMENTARY_SOURCE_CONTENT_NOT_DISCLOSURE_SCORES'
     (out/'technical_model_decision.json').write_text(canonical(summary)+'\n',encoding='utf8')
     return summary
+
+
+DISCLOSURE_VERSION = 'technical-disclosure-transparency-v1'
+DISCLOSURE_STATES = {'DISCLOSED':1,'EXPLICIT_UNKNOWN':1,'INSUFFICIENT':0,'UNVERIFIABLE':None}
+DISCLOSURE_FACETS = {
+    'TD1': ('origin', 'sampling', 'preparation'),
+    'TD2': ('route', 'selection_reason'),
+    'TD3': ('element_basis', 'feed', 'endpoint', 'number_or_unknown', 'data_basis'),
+    'TD4': ('reagents', 'energy', 'water'),
+    'TD5': ('product', 'specification', 'impurities'),
+    'TD6': ('scale', 'data_nature'),
+    'TD7': ('population', 'coverage', 'limits'),
+}
+
+
+def disclosure_score(items):
+    """Fixed seven binary items; a lower bound is never a known point score."""
+    if set(items) != set(DISCLOSURE_FACETS):
+        raise ValueError('Require exactly the seven versioned disclosure items')
+    values = [DISCLOSURE_STATES[r['status']] for r in items.values()]
+    n = sum(v == 1 for v in values); u = sum(v is None for v in values)
+    return dict(confirmed_items=n, unknown_items=u, insufficient_items=7-n-u,
+                confirmed_score=n/7*100, score_lower=n/7*100,
+                score_upper=(n+u)/7*100, score=None if u else n/7*100,
+                denominator=7, version=DISCLOSURE_VERSION)
+
+
+def assess_disclosure(root, review, snapshots, cutoff):
+    """Validate source-bound content coding, not keyword-derived adequacy.
+
+    Human/agent content judgments live in the versioned review input. This
+    function checks their explicit facets, scope, dates and original quotes.
+    Any local provenance failure becomes unknown; it cannot become zero.
+    """
+    from .selection import source_check, date_end
+    from .store import filehash
+    root=Path(root);sources={s['key']:s for s in snapshots};pages={};errors={}
+    if review['version'] != DISCLOSURE_VERSION or cutoff != review['cutoff']:
+        raise ValueError('Disclosure review version/cutoff mismatch; recoding required')
+    def normalized(text):return re.sub(r'\s+', ' ', text.replace('ﬁ','fi').replace('ﬂ','fl')).strip()
+    class CitedPages:
+        """Read only cited pages, after the original hash/date checks.
+
+        Invocation-local caching cannot outlive validation or hide a changed
+        original. Search completeness still comes from the bounded review.
+        """
+        def __init__(self, path, count):
+            self.path=path;self.count=count;self.cache={}
+        def __len__(self):return self.count
+        def __getitem__(self, index):
+            if index not in self.cache:
+                import fitz
+                with fitz.open(self.path) as pdf:
+                    self.cache[index]=normalized(pdf[index].get_text())
+            return self.cache[index]
+    def document(key):
+        if key not in pages and key not in errors:
+            s=sources.get(key)
+            try:
+                problem=source_check(s,cutoff,root)
+                if problem:raise ValueError(problem)
+                if not s.get('publication_date') and not (s['kind']=='html' and s.get('available_date') and s.get('acquired_at')):
+                    raise ValueError('UNDATED_SOURCE_NO_DATED_PUBLIC_ARCHIVE')
+                if s['sha256']!=review['sources'][key]['sha256']:
+                    raise ValueError('REVIEW_SOURCE_VERSION_MISMATCH')
+                if s['kind']=='pdf':
+                    import fitz
+                    with fitz.open(root/s['path']) as pdf:
+                        pages[key]=CitedPages(root/s['path'], len(pdf))
+                elif s['kind']=='html':
+                    from .evidence import html_text
+                    pages[key]=[normalized(html_text(root,s))]
+                else:raise ValueError('NOT_PRIMARY_DOCUMENT')
+            except Exception as exc:errors[key]=str(exc)
+        return pages.get(key,[])
+    def cite(c,allowed):
+        key=c.get('source_key');page=c.get('page');quote=normalized(c.get('quote',''))
+        pp=document(key)
+        if key not in allowed:raise ValueError('OUTSIDE_PROJECT_DOCUMENT_SCOPE')
+        if not isinstance(page,int) or isinstance(page,bool) or not 1<=page<=len(pp):
+            raise ValueError(errors.get(key,'INVALID_PAGE'))
+        if len(quote)<16 or quote not in pp[page-1]:raise ValueError('QUOTE_NOT_IN_ORIGINAL_PAGE')
+        return dict(c,source_sha256=sources[key]['sha256'],
+                    publication_date=sources[key].get('publication_date'),url=sources[key]['url'],
+                    available_date=sources[key].get('available_date'),
+                    date_basis='PUBLISHED_DATE' if sources[key].get('publication_date') else 'PUBLIC_HTML_ARCHIVED_BEFORE_CUTOFF_PUBLICATION_DATE_UNKNOWN',
+                    locator=('physical PDF page ' if sources[key]['kind']=='pdf' else 'HTML text block page ')+str(page))
+    rows=[];scores=[];audits=[]
+    for group in review['groups']:
+        pid=group['project_id'];allowed={x['source_key'] for x in group['documents']}
+        scope_errors=[];scope_proofs=[]
+        for binding in group['documents']:
+            try:
+                if not binding.get('scope_reason'):raise ValueError('NO_EXPLICIT_SCOPE_REASON')
+                scope_proofs.append(cite(binding['scope_evidence'],allowed))
+            except Exception as exc:scope_errors.append(binding['source_key']+':'+str(exc))
+        # Every audit records what was actually readable, not a claim of global
+        # absence. Search hits are navigation; only reviewed facets can score.
+        audit=dict(project_id=pid,project_name=group['name'],scope=group['scope'],
+                   cutoff=cutoff,search_protocol=review['search_protocol'],
+                   document_keys=sorted(allowed),scope_proofs=scope_proofs,
+                   excluded_documents=group.get('excluded_documents',[]),
+                   search_complete=group['search_complete'] and not scope_errors,
+                   review_complete_items=group.get('review_complete_items',[]),
+                   failures=scope_errors,stop_reason=group['stop_reason'],
+                   conflicts_updates=group.get('conflicts_updates',[]))
+        audit['search_navigation']=group.get('search',{})
+        audits.append(audit);assessments={}
+        for code,facets in DISCLOSURE_FACETS.items():
+            assessment=group['items'].get(code,dict(status='UNVERIFIABLE',reason='CONTENT_REVIEW_NOT_COMPLETE'))
+            state=assessment['status'];issues=[];proofs={}
+            try:
+                if scope_errors:raise ValueError('PROJECT_SOURCE_SCOPE_NOT_VALIDATED')
+                if state in ('DISCLOSED','EXPLICIT_UNKNOWN'):
+                    if set(assessment.get('facets',{}))!=set(facets):raise ValueError('MINIMUM_FACETS_NOT_MET')
+                    explicit=False
+                    for facet,value in assessment['facets'].items():
+                        if len(value.get('interpretation','').strip())<20:raise ValueError('NO_CONTENT_JUDGMENT')
+                        if not value.get('evidence'):raise ValueError('NO_FACET_EVIDENCE')
+                        proofs[facet]=[cite(c,allowed) for c in value['evidence']]
+                        if value.get('explicit_unknown'):
+                            explicit=True
+                            if len(value.get('unknown_reason','').strip())<20:raise ValueError('UNKNOWN_WITHOUT_SPECIFIC_REASON')
+                    if (state=='EXPLICIT_UNKNOWN') != explicit:raise ValueError('EXPLICIT_UNKNOWN_STATE_MISMATCH')
+                elif state=='INSUFFICIENT':
+                    if not audit['search_complete'] or code not in audit['review_complete_items']:
+                        raise ValueError('ZERO_REQUIRES_COMPLETED_BOUNDED_REVIEW')
+                    if not assessment.get('missing_facets'):raise ValueError('ZERO_WITHOUT_SPECIFIC_MISSING_CONTENT')
+                    if not set(assessment['missing_facets'])<=set(facets):raise ValueError('UNKNOWN_MINIMUM_FACET')
+                    proofs['review_context']=[cite(c,allowed) for c in assessment.get('evidence',[])]
+                    if not proofs['review_context']:raise ValueError('ZERO_WITHOUT_REVIEW_CONTEXT')
+                elif state=='UNVERIFIABLE':
+                    proofs['available_context']=[cite(c,allowed) for c in assessment.get('evidence',[])]
+                else:raise ValueError('INVALID_DISCLOSURE_STATE')
+                if not assessment.get('reason'):raise ValueError('NO_SCORING_REASON')
+            except Exception as exc:issues.append(str(exc));state='UNVERIFIABLE'
+            assessments[code]=dict(status=state)
+            rows.append(dict(assessment_id='TD-'+digest([DISCLOSURE_VERSION,pid,group['scope'],code,state,assessment,proofs])[:24],
+                project_id=pid,project_name=group['name'],scope=group['scope'],item=code,
+                status=state,value=DISCLOSURE_STATES[state],
+                reason=assessment.get('reason',''),missing_facets=assessment.get('missing_facets',[]),
+                facet_interpretations=assessment.get('facets',{}),evidence=proofs,validation_issues=issues,
+                conflicts_updates=group.get('conflicts_updates',[]),version=DISCLOSURE_VERSION,
+                review_type='SOURCE_BOUND_AGENT_CONTENT_CODING_NOT_INDEPENDENT_DUAL_REVIEW'))
+        scores.append(dict(project_id=pid,project_name=group['name'],scope=group['scope'],**disclosure_score(assessments)))
+    if len({s['project_id'] for s in scores})!=len(scores):raise ValueError('Duplicate canonical group')
+    return dict(items=rows,scores=scores,audits=audits,review_identity=digest(review))
+
+
+def apply_disclosure(selection,result):
+    """One criterion, new semantics: never retain an old recovery T1 value."""
+    for pid,values in selection['values'].items():values.pop('T1',None)
+    for s in result['scores']:
+        if s['score'] is not None:
+            selection['values'].setdefault(s['project_id'],{})['T1']=dict(
+                value=s['score'],variable='technical_disclosure_pct',unit='%',
+                basis=DISCLOSURE_VERSION,scope=s['scope'],raw=dict(s),
+                evidence_ids=[r['assessment_id'] for r in result['items'] if r['project_id']==s['project_id']],
+                review_identity=result['review_identity'],
+                interpretation='TECHNICAL_DISCLOSURE_NOT_TECHNICAL_PERFORMANCE')
+    return selection
+
+
+def run_disclosure(root, config, cutoff, out, db=None, run_id=None, selection=None):
+    """Existing evidence store + versioned review + existing MCDA machinery."""
+    from .analysis import write_csv,prepare_disclosure_analysis
+    from .store import filehash
+    settings=config['evidence_resolution']['technical_disclosure']
+    path=Path(root)/settings['review_path'];review=json.loads(path.read_text(encoding='utf8'))
+    if settings.get('review_sha256') and filehash(path)!=settings['review_sha256']:
+        raise ValueError('Frozen disclosure review checksum mismatch')
+    if settings['denominator']!=7:raise ValueError('Disclosure denominator must remain seven')
+    if settings['states']!=DISCLOSURE_STATES:raise ValueError('Disclosure state coding differs from versioned contract')
+    if review.get('codebook_sha256')!=filehash(Path(root)/settings['codebook']):
+        raise ValueError('Disclosure codebook checksum mismatch; recoding/versioning required')
+    if set(g['project_id'] for g in review['groups'])!=set(review['baseline']['canonical_group_ids']):
+        raise ValueError('Disclosure canonical cohort differs from frozen baseline')
+    result=assess_disclosure(root,review,list(review['sources'].values()),cutoff)
+    out=Path(out);out.mkdir(parents=True,exist_ok=True)
+    for key,name in [('items','disclosure_items.csv'),('scores','disclosure_scores.csv'),('audits','disclosure_search_audit.csv')]:
+        rows=csvrows_local(result[key]);write_csv(out/name,rows,list(rows[0]))
+    prepared,summary=prepare_disclosure_analysis(result,review['baseline'],config,out)
+    if selection is not None:apply_disclosure(selection,result)
+    if db is not None:
+        if run_id is None:raise ValueError('A run identity is required for persisted disclosure')
+        for s in result['scores']:
+            if not db.execute('SELECT 1 FROM entities WHERE entity_id=?',(s['project_id'],)).fetchone():
+                raise ValueError('Unknown stable project group')
+        for s in result['scores']:
+            items=[r for r in result['items'] if r['project_id']==s['project_id']]
+            for variable,value,provenance in [
+                ('technical_disclosure_pct',s['score'],dict(score=s,items=items)),
+                *[('technical_disclosure_'+r['item'],r['value'],r) for r in items]]:
+                db.execute('INSERT OR REPLACE INTO derived VALUES(?,?,?,?,?)',
+                    (run_id,s['project_id'],variable,value,canonical(provenance)))
+    summary.update(review_sha256=filehash(path),states={state:sum(r['status']==state for r in result['items'])
+        for state in ('DISCLOSED','EXPLICIT_UNKNOWN','INSUFFICIENT','UNVERIFIABLE')},
+        validation_issue_items=sum(bool(r['validation_issues']) for r in result['items']),
+        source_originals=len(review['sources']),cutoff=cutoff)
+    summary['status']='COMPLETED_WITH_VALIDATION_GAPS' if summary['validation_issue_items'] else 'COMPLETED_WITH_SOURCE_GAPS' if summary['states']['UNVERIFIABLE'] else 'COMPLETED_BOUNDED_REVIEW'
+    (out/'disclosure_analysis.json').write_text(canonical(summary)+'\n',encoding='utf8')
+    return result,prepared,summary
+
+
+def screening_utility(row, panel, axis):
+    """Explicit boundary/value-function contract, independent of maturity gates.
+
+    Missing date, scale, sample count or statistic never veto a numerical
+    observation. Invalid provenance, semantic conflicts and wrong physical
+    quantities still cannot establish a utility. Return None means unknown,
+    never exclusion of the project from MCDA.
+    """
+    contract=panel.get('criteria',{}).get(axis)
+    if not contract:return None,'NO_COMMON_VALUE_FUNCTION'
+    value=row.get('value')
+    if (row.get('evidence_reason') or not row.get('supports_technical_interpretation')
+            or row.get('semantic_conflicts') or row.get('measurement_relation')=='CONFLICTING_VALUES_SAME_SCIENTIFIC_OBSERVATION'):
+        return None,'INVALID_OR_CONFLICTING_SOURCE'
+    if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value):
+        return None,'NO_FINITE_VALUE'
+    if axis not in row.get('technical_axes',[]):return None,'DIFFERENT_QUANTITY_ROLE'
+    if row.get('quantity') not in contract['quantities'] and row.get('process_stage') not in contract['quantities']:
+        return None,'DIFFERENT_QUANTITY_ROLE'
+    if row.get('basis') not in contract['bases']:return None,'DIFFERENT_OR_UNKNOWN_ELEMENT_BASIS'
+    if row.get('endpoint') not in contract['endpoints']:return None,'DIFFERENT_OR_UNKNOWN_PROCESS_BOUNDARY'
+    divisor=contract['unit_divisors'].get(row.get('normalized_unit') or row.get('unit'))
+    if divisor is None:return None,'INCOMPATIBLE_UNIT'
+    score=value/divisor
+    if not 0<=score<=1:return None,'OUTSIDE_PHYSICAL_FRACTION'
+    return score,'SOURCE_BOUNDARY_PROXY_NOT_PROJECT_ESTIMATE'
+
+
+def analyze_jorc_screening(selection, definition, rows, out, root=None):
+    """JORC Table 1 evidence crosswalk + all-group interval screening.
+
+    This is a research operationalisation, not a JORC compliance assessment.
+    Source-case ranges condition on the listed boundary/oxide equivalence and
+    on reported outcomes representing the screening alternatives. A separate
+    project-transfer stress restores [0,1] where extrapolation is unproved.
+    No midpoint, probability distribution, maturity bonus or case splicing.
+    """
+    from .analysis import write_csv, interval_mcda
+    policy=definition['jorc_screening'];out=Path(out)
+    pids=sorted(selection['projects']);names={pid:pid for pid in pids}
+    if root is not None:
+        from .pdf_extract import project_registry
+        for item in project_registry(root):
+            pid=selection['mapping'].get(item['entity_id'],item['entity_id'])
+            if pid in names:names[pid]=item['name']
+    byproject={pid:[r for r in rows if r['project_id']==pid] for pid in pids}
+    crosswalk=[];maturity=[]
+    for pid,rr in byproject.items():
+        valid=[r for r in rr if not r.get('evidence_reason') and r.get('supports_technical_interpretation')]
+        tests=sorted({r['scale'] for r in valid if r.get('scale') and r['scale'] not in policy['design_scales']})
+        designs=sorted({r['scale'] for r in valid if r.get('scale') in policy['design_scales']})
+        maturity.append(dict(project_id=pid,project_name=names[pid],test_scales=tests,design_scales=designs,
+            sample_population_labels=sorted({r['sample_population'] for r in valid if r.get('sample_population')}),
+            representative_project_observations=sum(bool(r.get('project_extrapolation')) for r in valid),
+            missing_context=sorted({k for r in valid for k in policy['maturity_context'] if r.get(k) in (None,'')}),
+            evidence_status='SCOPED_DISCLOSURE_PRESENT' if valid else 'NOT_ESTABLISHED_IN_SELECTED_EVIDENCE',
+            maturity_score=None,performance_weight=0,
+            interpretation='Nominal evidence attributes; no project-wide maturity or compliance inferred from a document label'))
+        for code,item in policy['table1_items'].items():
+            hits=[r for r in valid if (any(r.get(k) not in (None,'',[]) for k in item.get('fields',[]))
+                  or any(a in r.get('technical_axes',[]) for a in item.get('axes',[])))]
+            crosswalk.append(dict(project_id=pid,item=code,jorc_reference=item['reference'],topic=item['topic'],
+                status='SCOPED_METADATA_OR_CLAIM_PRESENT' if hits else 'NOT_ESTABLISHED_IN_SELECTED_EVIDENCE',
+                evidence_ids=sorted({e for r in hits for e in r['evidence_ids']}),
+                analytical_ids=sorted({r['analytical_identity'] for r in hits}),
+                interpretation='Evidence navigation only; neither JORC compliance nor adequacy is certified'))
+    write_csv(out/'technical_evidence_maturity.csv',csvrows_local(maturity),list(maturity[0]))
+    write_csv(out/'technical_jorc_table1.csv',csvrows_local(crosswalk),list(crosswalk[0]))
+    matrices=[];trace=[];bounds=[];pairs=[];envelopes=[];coverage={}
+    weight_vectors=list(policy['weight_scenarios'].items())
+    # Enumerated simplex is a preference sensitivity grid, not a distribution.
+    steps=policy['weight_grid_steps']
+    grid=[('grid_'+str(i)+'_'+str(j),[i/steps,j/steps,(steps-i-j)/steps])
+          for i in range(steps+1) for j in range(steps-i+1)]
+    for panel_name,panel in policy['panels'].items():
+        source={};supported=set()
+        for pid,rr in byproject.items():
+            for axis in policy['criteria_order']:
+                accepted=[]
+                for r in rr:
+                    score,reason=screening_utility(r,panel,axis)
+                    # Keep scored cells and relevant non-scoring quantities for
+                    # audit; an excluded cell never excludes its project.
+                    if axis in r.get('technical_axes',[]):
+                        trace.append(dict(panel=panel_name,project_id=pid,criterion=axis,
+                            analytical_identity=r['analytical_identity'],case_id=r['case_id'],
+                            evidence_ids=r['evidence_ids'],source_sha256=r['source_sha256'],pdf_page=r.get('pdf_page'),
+                            value=r.get('value'),unit=r.get('unit'),basis=r.get('basis'),feed=r.get('feed'),
+                            endpoint=r.get('endpoint'),scale=r.get('scale'),statistic=r.get('statistic'),
+                            admitted=score is not None,utility=score,reason=reason))
+                    if score is not None:accepted.append((score,r))
+                source[pid,axis]=accepted
+                if accepted:supported.add(pid)
+        coverage[panel_name]=len(supported)
+        for transfer in ('REPORTED_CASE_PROXY','PROJECT_TRANSFER_STRESS'):
+            for delta in policy['perturbation_percentage_points']:
+                matrix=[];scenario_key=f'{panel_name}/{transfer}/plusminus_{delta}pp'
+                for pid in pids:
+                    cells=[]
+                    for axis in policy['criteria_order']:
+                        accepted=source[pid,axis]
+                        if transfer=='PROJECT_TRANSFER_STRESS':
+                            # Unbound cases cannot narrow project-target bounds.
+                            # Even if some are bound, unbound cases are not
+                            # silently treated as representative observations.
+                            accepted=[v for v in accepted if v[1].get('project_extrapolation')]
+                        values=[v for v,r in accepted]
+                        lo=max(0,min(values)-delta/100) if values else 0.
+                        hi=min(1,max(values)+delta/100) if values else 1.
+                        cells.append((lo,hi))
+                        matrices.append(dict(panel=panel_name,transfer=transfer,perturbation_pp=delta,
+                            project_id=pid,project_name=names[pid],criterion=axis,utility_lower=lo,utility_upper=hi,
+                            status='CONDITIONAL_REPORTED_OUTCOME_ENVELOPE' if values else 'UNKNOWN_FULL_UTILITY_DOMAIN',
+                            case_ids=sorted({r['case_id'] for v,r in accepted}),
+                            analytical_ids=sorted({r['analytical_identity'] for v,r in accepted}),
+                            interpretation='Outer box, not a joint process estimate or confidence interval'))
+                    matrix.append(cells)
+                results=[]
+                for weight_name,w in weight_vectors+grid:
+                    methods=interval_mcda(matrix,w,policy['promethee_threshold'])
+                    for method,rr in methods.items():
+                        for pid,r in zip(pids,rr):
+                            row=dict(panel=panel_name,transfer=transfer,perturbation_pp=delta,weight=weight_name,
+                                     method=method,project_id=pid,project_name=names[pid],**r)
+                            results.append(row)
+                            if not weight_name.startswith('grid_'):bounds.append(row)
+                        if not weight_name.startswith('grid_'):
+                            for i,a in enumerate(rr):
+                                for j,b in enumerate(rr):
+                                    if i!=j and a['score_lower']>b['score_upper']+1e-12:
+                                        pairs.append(dict(scenario=scenario_key,weight=weight_name,method=method,
+                                                          ahead=pids[i],behind=pids[j],
+                                                          interpretation='Sufficient robust order within stated scenario only'))
+                for method in ('SAW','TOPSIS','PROMETHEE_II'):
+                    for pid in pids:
+                        rr=[r for r in results if r['project_id']==pid and r['method']==method]
+                        envelopes.append(dict(panel=panel_name,transfer=transfer,perturbation_pp=delta,method=method,
+                            project_id=pid,project_name=names[pid],rank_best=min(r['rank_best'] for r in rr),
+                            rank_worst=max(r['rank_worst'] for r in rr),
+                            preference_vectors=len(weight_vectors+grid),
+                            interpretation='Outer rank range over enumerated preference grid; not a probability or exact attainable set'))
+    for filename,items in [('technical_screening_matrix.csv',matrices),('technical_screening_trace.csv',trace),
+                            ('technical_interval_ranking.csv',bounds),('technical_robust_pairs.csv',pairs),
+                            ('technical_rank_envelopes.csv',envelopes)]:
+        write_csv(out/filename,csvrows_local(items),list(items[0]) if items else ['scenario','weight','method','ahead','behind'])
+    summary=dict(version=policy['version'],project_groups=len(pids),excluded_projects=0,
+        axes=policy['criteria_order'],conditional_boundary_coverage=coverage,
+        interval_ranking_rows=len(bounds),rank_envelope_rows=len(envelopes),robust_pair_rows=len(pairs),
+        methods=['SAW','TOPSIS','PROMETHEE_II'],preference_vectors=len(weight_vectors+grid),
+        maturity_in_performance=False,unknown_distribution=None,point_ranking_adopted=False,
+        uncertainty='Outer possibility bounds + explicit source-transfer and percentage-point stress, not confidence intervals',
+        policy=policy)
+    (out/'technical_jorc_screening.json').write_text(canonical(summary)+'\n',encoding='utf8')
+    return {k:v for k,v in summary.items() if k!='policy'}
 
 
 def export_remediation(selection,definition,rows,out,resource_ids,root,snapshots):

@@ -1,16 +1,20 @@
 # AU_REE_V2
 
-Latest: [Phase 13 source recovery](docs/phase13-source-recovery.md) bounds discovery/retries and repairs PDF column/quantity binding using the existing Python/SQLite/R system. Its independent Draft PR targets Phase12; no previous PR is merged.
+Latest: **Phase 20 — six-domain evidence expansion and selective-page verification**, cutoff **2026-11-05**. Research configuration: `research-v6-current-disclosure-evidence`. See the [release results and reconstruction commands](results/phase20-2026-11-05/README.md), [verification receipt](results/phase20-2026-11-05/evaluation.json) and [remaining evidence priorities](results/phase20-2026-11-05/six_domain_gap_priority.csv).
 
-Current evidence: **31 registry groups,21 resource-defined analysis cases,315 selected validated numeric statements and21 typed events**. Coverage **R21/S10/T0/D9/I19/C8**; resource/composition, study and financing panels **10/8/6**. Gross25 raw numeric additions minus2 misclassified percentages gives net+23. North Stanmore different resource versions trigger the unchanged scope guard; no extra MCDA admission is claimed. Formal C1/full six-domain samples remain zero; Missing and unresolved OCR decimals are not imputed.
+Current evidence: **31 registry groups, 21 resource-defined cases, 20 complete transparency scores and 3 complete six-domain groups**: Jupiter within Brothers, Goschen **Area 1 only**, and Koppamurra. Phase 20 increased the complete six-domain sample **1 → 3** by recovering Goschen's same-statement four-oxide composition and Koppamurra's disclosed funding plan, refreshing the matrix from current selected evidence, and removing the legacy recovery gate from the transparency model. Missing values remain unknown; 31 groups are not 31 independent Projects. Formal C1/C2 approval is unchanged.
 
-[Phase 13 outputs](results/phase13-2026-11-04/README.md), [Phase 12 outputs](results/phase12-2026-11-04/README.md), [literature/access limits](docs/phase12-literature.md), [Phase 11 deterministic research](docs/phase11-deterministic-research.md), [Phase 10 outputs](results/phase10-2026-11-03/README.md), [Phase 9 outputs](results/phase9-2026-11-03/README.md), [Phase 8 coverage](docs/phase8-evidence-coverage.md), [Phase 7 integration](docs/phase7-evidence-integration.md), [Phase 6 national originals](docs/phase6-national-database.md) and [Phase 5 primary evidence](docs/phase5-primary-evidence.md) retain separate results.
+**Phase 19 remains the adopted Technical definition:** [Technical Disclosure Transparency](docs/technical-disclosure.md), seven fixed binary items, with unknowns retained as score ranges. It measures disclosure, not technical feasibility, plant performance or JORC compliance. The [Phase 19 report](results/phase19-2026-11-05/REPORT.md) and frozen outputs retain that version's one complete six-domain group. Phase 20 is its subsequent evidence/selection iteration; it does not introduce another Technical definition.
 
-One Python / SQLite / R research system for Australian rare-earth evidence, official GIS and explicitly scoped exploratory MCDA. Government source records, deposits and registry groups are not interchangeable independent Projects. No national completeness or six-domain development ranking is claimed.
+Validation: **292 Python tests passed**, two same-store executions matched **10 key scientific files**, and SAW/TOPSIS/PROMETHEE II plus sensitivity analyses ran for the three-group six-domain panels. A single same-corpus PDF verification experiment decreased **16.54 → 3.62 seconds (4.56×)** with all **217 item assessments unchanged**; this is a step-level measurement, not an overall pipeline speedup. Three complete groups are insufficient for national inference or Aim C causal claims. Commercial C1 is a dated disclosed financing milestone, not secured funds or complete commercial/ESG coverage. Latest-head GitHub Actions status must be checked on the PR; these local results do not assert remote CI success.
+
+Historical releases: [Phase 16 remediation](docs/phase16-remediation.md), [Phase 15](docs/phase15-source-bound-technical.md), [Phase 14](docs/phase14-official-reports.md), [Phase 13](results/phase13-2026-11-04/README.md), [Phase 12](results/phase12-2026-11-04/README.md), [Phase 11](docs/phase11-deterministic-research.md), [Phase 10](results/phase10-2026-11-03/README.md), [Phase 9](results/phase9-2026-11-03/README.md), [Phase 8](docs/phase8-evidence-coverage.md), [Phase 7](docs/phase7-evidence-integration.md), [Phase 6](docs/phase6-national-database.md) and [Phase 5](docs/phase5-primary-evidence.md). Their counts and definitions apply to their frozen configurations, not the current release. Phase 17/18 are not separately published releases in this repository.
+
+One Python / SQLite / R research system for Australian rare-earth evidence, official GIS and explicitly scoped exploratory MCDA. Government source records, deposits and registry groups are not interchangeable independent Projects. No national completeness or national six-domain development ranking is claimed.
 
 ```sh
 python -m pip install .
-au-ree-v2 all --as-of 2026-11-03
+au-ree-v2 all --as-of 2026-11-05 --work work/phase5
 python -m unittest discover -s tests -v
 Rscript tests/test_methods.R
 ```
@@ -43,7 +47,7 @@ value-level provenance, review issues, R ranking comparison, weight-only and sou
 Monte Carlo intervals, leave-criterion/domain-out, scoring/threshold sensitivity, cohort sensitivity,
 partial dominance and AHP consistency audit. Data missing from a criterion stays missing.
 
-Resource, Development and Full-evidence cohorts are separate; the current resource-defined sample is 22.
+Resource, historical Development and current six-domain cohorts have versioned entry rules; the current resource-defined sample is 21. The historical Development cohort still requires compatible recovery and must not gate the new disclosure-based six-domain panel.
 The original November2 pilot compared
 Mt Weld's reported Mineral Resource with Browns Range's **Wolverine-only** Mineral Resource,
 not total Browns Range project inventory. Reported contained totals are retained after rounding checks.
@@ -205,9 +209,9 @@ this same access parameter. V2 sanitization now removes all seven occurrences
 before inclusion in the current source manifest. The original upstream hash
 remains as an attestation, not a redistributed unredacted payload.
 
-Latest increment: [source discovery and C1 compatibility](docs/phase4-discovery-eligibility.md), [frozen outputs](results/phase4-2026-11-03/README.md).
+Historical Phase 4 increment: [source discovery and C1 compatibility](docs/phase4-discovery-eligibility.md), [frozen outputs](results/phase4-2026-11-03/README.md).
 
-Latest evidence increment: [Phase 5 sources and research results](docs/phase5-primary-evidence.md), [frozen comparison](results/phase5-2026-11-03/README.md).
+Historical Phase 5 increment: [sources and research results](docs/phase5-primary-evidence.md), [frozen comparison](results/phase5-2026-11-03/README.md).
 
 
 Phase14 adds [bounded official WAMEX/GSQ report discovery and measured recovery](docs/phase14-official-reports.md): four WAMEX originals,315→321 validated numeric statements, unchanged21 resource cases and no extra common MCDA sample. [Frozen results](results/phase14-2026-11-04/README.md) preserve the original gates and methods. Live update status is reported separately from offline scientific CI; GSQ document delivery remains partial.
