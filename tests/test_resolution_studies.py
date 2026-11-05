@@ -3,7 +3,7 @@ from pathlib import Path
 from unittest.mock import patch
 from au_ree_v2.store import connect,entity,canonical,digest,logical_dump
 from au_ree_v2.acquisition import select_snapshots
-from au_ree_v2.evidence import ingest_sources,ingest_claims,resource_values,transformation_issues
+from au_ree_v2.evidence import ingest_sources,ingest_claims,resource_values,transformation_issues,load_claims
 from au_ree_v2.resolution import resolve
 from au_ree_v2.hierarchy import build
 from au_ree_v2.studies import ingest,prepare
@@ -15,7 +15,9 @@ class ResolutionStudyTests(unittest.TestCase):
     def setUpClass(cls):
         cls.work=ROOT/'work/tests'/uuid.uuid4().hex;cls.work.mkdir(parents=True)
         cls.db=connect(cls.work/'canonical.sqlite');cls.snapshots=json.loads((ROOT/'results/phase4-2026-11-03/snapshot_lock.json').read_text())
-        ingest_sources(cls.db,ROOT,cls.snapshots);ingest_claims(cls.db,ROOT,cls.snapshots,'2026-11-03')
+        config=json.loads((ROOT/'results/phase4-2026-11-03/configuration.json').read_text())
+        claims,_=load_claims(ROOT,config['claims_sha256'])
+        ingest_sources(cls.db,ROOT,cls.snapshots);ingest_claims(cls.db,ROOT,cls.snapshots,'2026-11-03',claims_data=claims)
         cls.cases=ingest(cls.db,ROOT,cls.snapshots,'2026-11-03');build(cls.db,cls.snapshots)
         cls.resolved=resolve(cls.db,ROOT,cls.snapshots)
     @classmethod
@@ -103,7 +105,7 @@ class ResolutionStudyTests(unittest.TestCase):
         tmp=connect(self.work/'isolated.sqlite')
         try:
             ingest_sources(tmp,ROOT,self.snapshots)
-            with patch('pypdf.PdfReader',side_effect=reader):rows=ingest(tmp,ROOT,self.snapshots,'2026-11-03')
+            with patch.dict(os.environ,{'AU_REE_NATIVE_CACHE':str(self.work/'cold-native-pages')}),patch('pypdf.PdfReader',side_effect=reader):rows=ingest(tmp,ROOT,self.snapshots,'2026-11-03')
             self.assertEqual(4,len(rows))
         finally:tmp.close()
 

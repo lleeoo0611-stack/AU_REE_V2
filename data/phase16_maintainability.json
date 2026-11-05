@@ -1,0 +1,597 @@
+{
+  "branch_rule": "AST If/For/While/IfExp/ExceptHandler/BoolOp/comprehension nodes; not McCabe complexity; same algorithm before and after",
+  "functions": {
+    "src/au_ree_v2/cli.py": {
+      "before": {
+        "code_version": {
+          "lines": 8,
+          "branches": 2
+        },
+        "research_configuration": {
+          "lines": 22,
+          "branches": 10
+        },
+        "execute": {
+          "lines": 377,
+          "branches": 130
+        },
+        "main": {
+          "lines": 32,
+          "branches": 11
+        }
+      },
+      "after": {
+        "code_version": {
+          "lines": 8,
+          "branches": 2
+        },
+        "research_configuration": {
+          "lines": 22,
+          "branches": 10
+        },
+        "execute": {
+          "lines": 387,
+          "branches": 136
+        },
+        "main": {
+          "lines": 33,
+          "branches": 11
+        }
+      }
+    },
+    "src/au_ree_v2/pdf_extract.py": {
+      "before": {
+        "classify": {
+          "lines": 16,
+          "branches": 1
+        },
+        "project_registry": {
+          "lines": 14,
+          "branches": 2
+        },
+        "_matches": {
+          "lines": 2,
+          "branches": 2
+        },
+        "_number": {
+          "lines": 2,
+          "branches": 0
+        },
+        "_half": {
+          "lines": 2,
+          "branches": 1
+        },
+        "publication_date": {
+          "lines": 12,
+          "branches": 7
+        },
+        "candidate_value_issues": {
+          "lines": 24,
+          "branches": 16
+        },
+        "resource_rows": {
+          "lines": 65,
+          "branches": 43
+        },
+        "positioned_resource_columns": {
+          "lines": 123,
+          "branches": 118
+        },
+        "narrative_candidates": {
+          "lines": 59,
+          "branches": 39
+        },
+        "leach_tables": {
+          "lines": 40,
+          "branches": 20
+        },
+        "source_binding_signature": {
+          "lines": 6,
+          "branches": 2
+        },
+        "recognize_document": {
+          "lines": 116,
+          "branches": 90
+        },
+        "capture_documents": {
+          "lines": 48,
+          "branches": 32
+        },
+        "readable": {
+          "lines": 3,
+          "branches": 3
+        },
+        "extract_page": {
+          "lines": 36,
+          "branches": 14
+        },
+        "capture_pages": {
+          "lines": 22,
+          "branches": 11
+        },
+        "narrative_context_issues": {
+          "lines": 25,
+          "branches": 12
+        }
+      },
+      "after": {
+        "classify": {
+          "lines": 16,
+          "branches": 1
+        },
+        "project_registry": {
+          "lines": 14,
+          "branches": 2
+        },
+        "_matches": {
+          "lines": 2,
+          "branches": 2
+        },
+        "_number": {
+          "lines": 2,
+          "branches": 0
+        },
+        "_half": {
+          "lines": 2,
+          "branches": 1
+        },
+        "publication_date": {
+          "lines": 12,
+          "branches": 7
+        },
+        "candidate_value_issues": {
+          "lines": 24,
+          "branches": 16
+        },
+        "resource_rows": {
+          "lines": 65,
+          "branches": 43
+        },
+        "positioned_resource_columns": {
+          "lines": 123,
+          "branches": 118
+        },
+        "narrative_candidates": {
+          "lines": 59,
+          "branches": 39
+        },
+        "leach_tables": {
+          "lines": 40,
+          "branches": 20
+        },
+        "source_binding_signature": {
+          "lines": 6,
+          "branches": 2
+        },
+        "extraction_dependencies": {
+          "lines": 5,
+          "branches": 1
+        },
+        "_native_tables": {
+          "lines": 5,
+          "branches": 8
+        },
+        "recognize_document": {
+          "lines": 118,
+          "branches": 88
+        },
+        "capture_documents": {
+          "lines": 48,
+          "branches": 33
+        },
+        "readable": {
+          "lines": 3,
+          "branches": 3
+        },
+        "extract_page": {
+          "lines": 36,
+          "branches": 14
+        },
+        "capture_pages": {
+          "lines": 22,
+          "branches": 11
+        },
+        "narrative_context_issues": {
+          "lines": 25,
+          "branches": 12
+        }
+      }
+    },
+    "src/au_ree_v2/technical.py": {
+      "before": {
+        "technical_record": {
+          "lines": 42,
+          "branches": 29
+        },
+        "technical_compare": {
+          "lines": 32,
+          "branches": 27
+        },
+        "technical_comparability": {
+          "lines": 52,
+          "branches": 30
+        },
+        "ratio": {
+          "lines": 11,
+          "branches": 8
+        },
+        "analyze_cells": {
+          "lines": 65,
+          "branches": 46
+        },
+        "plot_cells": {
+          "lines": 8,
+          "branches": 3
+        },
+        "csvrows_local": {
+          "lines": 2,
+          "branches": 3
+        },
+        "rounding_interval": {
+          "lines": 4,
+          "branches": 1
+        },
+        "flow_consistency": {
+          "lines": 31,
+          "branches": 22
+        },
+        "_derive_table": {
+          "lines": 51,
+          "branches": 43
+        }
+      },
+      "after": {
+        "technical_record": {
+          "lines": 42,
+          "branches": 29
+        },
+        "technical_compare": {
+          "lines": 32,
+          "branches": 27
+        },
+        "technical_comparability": {
+          "lines": 52,
+          "branches": 30
+        },
+        "ratio": {
+          "lines": 11,
+          "branches": 8
+        },
+        "analyze_cells": {
+          "lines": 65,
+          "branches": 46
+        },
+        "plot_cells": {
+          "lines": 8,
+          "branches": 3
+        },
+        "csvrows_local": {
+          "lines": 2,
+          "branches": 3
+        },
+        "rounding_interval": {
+          "lines": 4,
+          "branches": 1
+        },
+        "flow_consistency": {
+          "lines": 31,
+          "branches": 22
+        },
+        "_derive_table": {
+          "lines": 51,
+          "branches": 45
+        },
+        "burden_states": {
+          "lines": 15,
+          "branches": 6
+        },
+        "unified_observations": {
+          "lines": 70,
+          "branches": 41
+        },
+        "analyze_profiles": {
+          "lines": 51,
+          "branches": 32
+        }
+      }
+    },
+    "src/au_ree_v2/technical_tables.py": {
+      "before": {
+        "number_token": {
+          "lines": 9,
+          "branches": 5
+        },
+        "cells": {
+          "lines": 10,
+          "branches": 6
+        },
+        "path_above": {
+          "lines": 3,
+          "branches": 2
+        },
+        "_base": {
+          "lines": 9,
+          "branches": 1
+        },
+        "technical_cells": {
+          "lines": 10,
+          "branches": 6
+        },
+        "_element_cells": {
+          "lines": 28,
+          "branches": 26
+        },
+        "_product_cells": {
+          "lines": 21,
+          "branches": 14
+        },
+        "_design_cells": {
+          "lines": 28,
+          "branches": 24
+        },
+        "direct_role": {
+          "lines": 12,
+          "branches": 6
+        },
+        "flow_cells": {
+          "lines": 40,
+          "branches": 32
+        },
+        "model_parameters": {
+          "lines": 21,
+          "branches": 12
+        },
+        "technical_numbers": {
+          "lines": 3,
+          "branches": 1
+        },
+        "sample_context": {
+          "lines": 16,
+          "branches": 10
+        },
+        "quantity_binding": {
+          "lines": 14,
+          "branches": 9
+        }
+      },
+      "after": {
+        "number_token": {
+          "lines": 9,
+          "branches": 5
+        },
+        "cells": {
+          "lines": 10,
+          "branches": 6
+        },
+        "path_above": {
+          "lines": 3,
+          "branches": 2
+        },
+        "_base": {
+          "lines": 9,
+          "branches": 1
+        },
+        "technical_cells": {
+          "lines": 10,
+          "branches": 6
+        },
+        "_element_cells": {
+          "lines": 28,
+          "branches": 26
+        },
+        "_product_cells": {
+          "lines": 21,
+          "branches": 14
+        },
+        "_design_cells": {
+          "lines": 28,
+          "branches": 24
+        },
+        "direct_role": {
+          "lines": 12,
+          "branches": 6
+        },
+        "flow_cells": {
+          "lines": 40,
+          "branches": 32
+        },
+        "model_parameters": {
+          "lines": 21,
+          "branches": 12
+        },
+        "technical_numbers": {
+          "lines": 3,
+          "branches": 1
+        },
+        "sample_context": {
+          "lines": 16,
+          "branches": 10
+        },
+        "quantity_binding": {
+          "lines": 14,
+          "branches": 9
+        },
+        "metric_cells": {
+          "lines": 26,
+          "branches": 18
+        },
+        "bind_semantics": {
+          "lines": 65,
+          "branches": 32
+        }
+      }
+    },
+    "src/au_ree_v2/analysis.py": {
+      "before": {
+        "write_csv": {
+          "lines": 7,
+          "branches": 0
+        },
+        "compare_runs": {
+          "lines": 101,
+          "branches": 69
+        },
+        "score": {
+          "lines": 10,
+          "branches": 5
+        },
+        "_official_wa_resource_screen": {
+          "lines": 79,
+          "branches": 30
+        },
+        "prepare": {
+          "lines": 105,
+          "branches": 57
+        },
+        "run_r": {
+          "lines": 35,
+          "branches": 14
+        },
+        "research_readiness": {
+          "lines": 74,
+          "branches": 52
+        },
+        "canonicalize_interchange": {
+          "lines": 7,
+          "branches": 3
+        }
+      },
+      "after": {
+        "write_csv": {
+          "lines": 7,
+          "branches": 0
+        },
+        "compare_runs": {
+          "lines": 101,
+          "branches": 69
+        },
+        "score": {
+          "lines": 10,
+          "branches": 5
+        },
+        "_official_wa_resource_screen": {
+          "lines": 79,
+          "branches": 30
+        },
+        "prepare": {
+          "lines": 105,
+          "branches": 57
+        },
+        "run_r": {
+          "lines": 35,
+          "branches": 14
+        },
+        "research_readiness": {
+          "lines": 74,
+          "branches": 52
+        },
+        "canonicalize_interchange": {
+          "lines": 7,
+          "branches": 3
+        }
+      }
+    },
+    "src/au_ree_v2/selection.py": {
+      "before": {
+        "observation_visible": {
+          "lines": 4,
+          "branches": 3
+        },
+        "evidence_domain": {
+          "lines": 11,
+          "branches": 11
+        },
+        "date_end": {
+          "lines": 10,
+          "branches": 2
+        },
+        "source_check": {
+          "lines": 11,
+          "branches": 8
+        },
+        "choose": {
+          "lines": 25,
+          "branches": 13
+        },
+        "select_cases": {
+          "lines": 20,
+          "branches": 6
+        },
+        "_valid_candidate": {
+          "lines": 20,
+          "branches": 12
+        },
+        "resolve": {
+          "lines": 157,
+          "branches": 107
+        },
+        "export": {
+          "lines": 44,
+          "branches": 24
+        },
+        "diagnostics": {
+          "lines": 39,
+          "branches": 23
+        },
+        "commercial_evidence": {
+          "lines": 28,
+          "branches": 13
+        },
+        "_instrument_type": {
+          "lines": 6,
+          "branches": 6
+        }
+      },
+      "after": {
+        "observation_visible": {
+          "lines": 4,
+          "branches": 3
+        },
+        "evidence_domain": {
+          "lines": 11,
+          "branches": 11
+        },
+        "date_end": {
+          "lines": 10,
+          "branches": 2
+        },
+        "source_check": {
+          "lines": 11,
+          "branches": 8
+        },
+        "choose": {
+          "lines": 25,
+          "branches": 13
+        },
+        "select_cases": {
+          "lines": 20,
+          "branches": 6
+        },
+        "_valid_candidate": {
+          "lines": 20,
+          "branches": 12
+        },
+        "resolve": {
+          "lines": 157,
+          "branches": 107
+        },
+        "export": {
+          "lines": 44,
+          "branches": 24
+        },
+        "diagnostics": {
+          "lines": 39,
+          "branches": 23
+        },
+        "commercial_evidence": {
+          "lines": 28,
+          "branches": 13
+        },
+        "_instrument_type": {
+          "lines": 6,
+          "branches": 6
+        }
+      }
+    }
+  }
+}

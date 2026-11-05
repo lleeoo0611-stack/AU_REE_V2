@@ -1,0 +1,1216 @@
+{
+  "version": "census-reference-v1",
+  "annotation_status": "SINGLE_AGENT_SOURCE_FIELD_REVIEW_NOT_INDEPENDENT_GOLD; purposeful set frozen after initial implementation, not blind prospective validation",
+  "acceptance": "No false Project promotion; candidate precision and recall reported on this bounded set, no national threshold claim",
+  "records": [
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "101048",
+      "name": "Sunrise",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Ni, Co",
+        "minor_comm": "Sc, Pt",
+        "ore_min": null,
+        "gangue_min": null,
+        "summary_desc": "Extensive lateritic Ni-Co-Pt deposit located over dunites of the Tout Intrusive Complex. Mineralisation derived from the weathering of an Alaskan Type intrusive. Developed in the same laterite profileas the Syerston Scandium deposit. "
+      },
+      "expected_candidate": true,
+      "expected_role": "SC_ONLY",
+      "group_id": "jurisdiction-documents|NSW",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "218720",
+      "name": "Nyngan Scandium Project ",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Sc",
+        "minor_comm": null,
+        "ore_min": null,
+        "gangue_min": null,
+        "summary_desc": "Lateritic scandium deposit. Mineralisation overlying an ultramafic complex. "
+      },
+      "expected_candidate": true,
+      "expected_role": "SC_ONLY",
+      "group_id": "jurisdiction-documents|NSW",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "220274",
+      "name": "Malamute ",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Al, Co, Sc",
+        "minor_comm": null,
+        "ore_min": null,
+        "gangue_min": null,
+        "summary_desc": "Scandium-cobalt lateritic mineralisation"
+      },
+      "expected_candidate": true,
+      "expected_role": "SC_ONLY",
+      "group_id": "jurisdiction-documents|NSW",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "101504",
+      "name": "Tumbarumba Creek Alluvials",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Au, Sn, sapphire",
+        "minor_comm": "ruby",
+        "ore_min": "cassiterite, gold (beryl, ruby, sapphire, spinel, zircon)",
+        "gangue_min": "quartz (chromium spinel, garnet, haematite, ilmenite, monazite, rutile, tourmaline, xenotime)",
+        "summary_desc": "For main producers and discussion of workings see Willis (1972), and Clift (1975). Both recent and Tertiary sediments were worked. A figure of the order of 2500kg Au is suggested for the Tumbarumba drainage and adjacent deep leads."
+      },
+      "expected_candidate": true,
+      "expected_role": "MINERAL_ONLY",
+      "group_id": "jurisdiction-documents|NSW",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "103332",
+      "name": "Dubbo Project",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Total Rare Earth Oxide, Zr, Nb",
+        "minor_comm": "Rare earths - excluding monazite, Hf, Y, Ta",
+        "ore_min": "armstrongite, Ca-baestnasite, eudialyte, natroniobite (aeschynite, ancylite, Ca-zirconosilicate, chernovite, parisite, ree-zirconpsilicate)",
+        "gangue_min": "aegirine, albite, k-feldspar, siderite",
+        "summary_desc": "The Toongi deposit is within a hydrothermally altered trachyte and contains an unusual ore mineralogy.  Full details of the mineralogy are not yet available however open file CSIRO details are included."
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|NSW",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "104388",
+      "name": "Carcoar Mine",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Co, Au, U, Cu",
+        "minor_comm": "Re, Mo, Ag",
+        "ore_min": "annabergite, autunite, azurite, bastnaesite, chalcopyrite, cobaltite, erythrite, glaucodot, limonite, malachite, molybdenite, pyrite, pyrrhotite, uraninite",
+        "gangue_min": "quartz",
+        "summary_desc": "Historical workings on polymetallic fracture controlled pods hosted in pelites and diorite/gabbro. Cpy/py qty veins hosted in diorite. 1987 trenching exposed polymetallic intermediate pegmatite with REE, U, Au & Cu. RAB, RC and core drilling."
+      },
+      "expected_candidate": true,
+      "expected_role": "MENTION_ONLY",
+      "group_id": "jurisdiction-documents|NSW",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "101001",
+      "name": null,
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Pb, Zn",
+        "minor_comm": "Cu",
+        "ore_min": null,
+        "gangue_min": null,
+        "summary_desc": "Geological reconnaissance. From vein quartz exposed in a small pit: 700 ppm Cu, 1340 ppm Pb, 1400 ppm Zn, 50 ppm Sb, 30 ppm Co, 150 ppm Ni, 50 ppm Mo and 4 ppm Ag."
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|NSW",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "101002",
+      "name": "Central South",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Cu",
+        "minor_comm": "Zn",
+        "ore_min": "pyrite (chalcopyrite, pyrrhotite)",
+        "gangue_min": "carbonate, quartz",
+        "summary_desc": "The central south prospect is based on a magnetic anomaly south of the central mine.  The axis of the elongate anomaly appears to be approximately along the contact of the great Cobar slate and the Chesney Formation."
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|NSW",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "101003",
+      "name": "Anomaly C9",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Pb",
+        "minor_comm": "Zn, Cu",
+        "ore_min": null,
+        "gangue_min": null,
+        "summary_desc": "Penarroya (Aust) Pty Ltd, 1978: a 21 hole percussion drilling program in vicinity. Shallow drilling at the aeromagnetic anomaly encountered greenish weathered rock (an ultramafic?)."
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|NSW",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nt_modat_live",
+      "source_sha256": "a1a15d7d639aac6c79e2b4b6c37088824ccab4bcfa7750cc2519e3f993697974",
+      "native_id": "http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/8",
+      "name": "Browns Range",
+      "state": "NT",
+      "original_fields": {
+        "commodity": "Gold,REE",
+        "representativeCommodity_uri": "http://resource.geosciml.org/classifier/cgi/commodity-code/REE"
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|NT",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nt_modat_live",
+      "source_sha256": "a1a15d7d639aac6c79e2b4b6c37088824ccab4bcfa7750cc2519e3f993697974",
+      "native_id": "http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/743",
+      "name": "Bells Monazite",
+      "state": "NT",
+      "original_fields": {
+        "commodity": "Monazite,Thorium",
+        "representativeCommodity_uri": "http://resource.geosciml.org/classifier/cgi/commodity-code/Monazite"
+      },
+      "expected_candidate": true,
+      "expected_role": "MINERAL_ONLY",
+      "group_id": "jurisdiction-documents|NT",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nt_modat_live",
+      "source_sha256": "a1a15d7d639aac6c79e2b4b6c37088824ccab4bcfa7750cc2519e3f993697974",
+      "native_id": "http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/2044",
+      "name": "Unnamed 02044",
+      "state": "NT",
+      "original_fields": {
+        "commodity": "REE,Thorium",
+        "representativeCommodity_uri": "http://resource.geosciml.org/classifier/cgi/commodity-code/REE"
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|NT",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nt_modat_live",
+      "source_sha256": "a1a15d7d639aac6c79e2b4b6c37088824ccab4bcfa7750cc2519e3f993697974",
+      "native_id": "http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/1",
+      "name": "Keep River 1",
+      "state": "NT",
+      "original_fields": {
+        "commodity": "Coal",
+        "representativeCommodity_uri": "http://resource.geosciml.org/classifier/cgi/commodity-code/Coal"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|NT",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nt_modat_live",
+      "source_sha256": "a1a15d7d639aac6c79e2b4b6c37088824ccab4bcfa7750cc2519e3f993697974",
+      "native_id": "http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/2",
+      "name": "Campbells Springs",
+      "state": "NT",
+      "original_fields": {
+        "commodity": "Copper",
+        "representativeCommodity_uri": "http://resource.geosciml.org/classifier/cgi/commodity-code/Copper"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|NT",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "nt_modat_live",
+      "source_sha256": "a1a15d7d639aac6c79e2b4b6c37088824ccab4bcfa7750cc2519e3f993697974",
+      "native_id": "http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/4",
+      "name": "Peron Island",
+      "state": "NT",
+      "original_fields": {
+        "commodity": "Titanium,Zircon",
+        "representativeCommodity_uri": "http://resource.geosciml.org/classifier/cgi/commodity-code/Titanium"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|NT",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "480319",
+      "name": "UNNAMED 854331",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Sn(vs);Zir(vs);Mz(vs);Y(vs)",
+        "main_commodity": "TIN"
+      },
+      "expected_candidate": true,
+      "expected_role": "REE_ELEMENT",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "501459",
+      "name": "KOKOMO",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Sc(s);Co(s);Ni(vs);Pt(vs)",
+        "main_commodity": "SCANDIUM"
+      },
+      "expected_candidate": true,
+      "expected_role": "SC_ONLY",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "611148",
+      "name": "SERENDIPITY",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Cu(vs);Au(vs);Ce(unk)",
+        "main_commodity": "COPPER"
+      },
+      "expected_candidate": true,
+      "expected_role": "REE_ELEMENT",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "38262",
+      "name": "SANDY AND REID CREEKS",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Mz(vs);Im(vs);Rut(vs);Zir(vs)",
+        "main_commodity": "MONAZITE"
+      },
+      "expected_candidate": true,
+      "expected_role": "MINERAL_ONLY",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "38278",
+      "name": "UNNAMED 162217",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Mz(vs);Rut(vs);Zir(vs);Y(unk)",
+        "main_commodity": "MONAZITE"
+      },
+      "expected_candidate": true,
+      "expected_role": "REE_ELEMENT",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "588058",
+      "name": "COORABULKA",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Y(unk);Nd(unk);Dy(unk);Ree(unk)",
+        "main_commodity": "YTTRIUM"
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "37923",
+      "name": "MUNDERRA",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Cu(vs);Pb(vs);Zn(vs);Sn(vs);Fl(vs)",
+        "main_commodity": "COPPER"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "37924",
+      "name": "UNNAMED 515686",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Au(vs)",
+        "main_commodity": "GOLD"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "37314",
+      "name": "UNNAMED 140815",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Sn(vs)",
+        "main_commodity": "TIN"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "480319",
+      "name": "UNNAMED 854331",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Sn(vs);Zir(vs);Mz(vs);Y(vs)",
+        "main_commodity": "TIN"
+      },
+      "expected_candidate": true,
+      "expected_role": "REE_ELEMENT",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "501459",
+      "name": "KOKOMO",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Sc(s);Co(s);Ni(vs);Pt(vs)",
+        "main_commodity": "SCANDIUM"
+      },
+      "expected_candidate": true,
+      "expected_role": "SC_ONLY",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "582060",
+      "name": "KORELLA",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Phr(m);Y(unk);Nd(unk);Sc(unk);Dy(unk)",
+        "main_commodity": "PHOSPHATE ROCK (PHOSPHORITE)"
+      },
+      "expected_candidate": true,
+      "expected_role": "REE_ELEMENT",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "611148",
+      "name": "SERENDIPITY",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Cu(vs);Au(vs);Ce(unk)",
+        "main_commodity": "COPPER"
+      },
+      "expected_candidate": true,
+      "expected_role": "REE_ELEMENT",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "38262",
+      "name": "SANDY AND REID CREEKS",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Mz(vs);Im(vs);Rut(vs);Zir(vs)",
+        "main_commodity": "MONAZITE"
+      },
+      "expected_candidate": true,
+      "expected_role": "MINERAL_ONLY",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "38278",
+      "name": "UNNAMED 162217",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Mz(vs);Rut(vs);Zir(vs);Y(unk)",
+        "main_commodity": "MONAZITE"
+      },
+      "expected_candidate": true,
+      "expected_role": "REE_ELEMENT",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "588058",
+      "name": "COORABULKA",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Y(unk);Nd(unk);Dy(unk);Ree(unk)",
+        "main_commodity": "YTTRIUM"
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "25560",
+      "name": "BANTAM",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Au(vs)",
+        "main_commodity": "GOLD"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "37922",
+      "name": "MOUNT WENDY",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Cu(vs);Mo(vs)",
+        "main_commodity": "COPPER"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "37923",
+      "name": "MUNDERRA",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Cu(vs);Pb(vs);Zn(vs);Sn(vs);Fl(vs)",
+        "main_commodity": "COPPER"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|QLD",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_developing_live",
+      "source_sha256": "adcf276ce1ab953163f2ab14c2abf13261e8699e03bc9e4c66c5340f744904c9",
+      "native_id": "2298466",
+      "name": "Koppamurra",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Rare Earth Elements (REE)",
+        "PROJECT_DESCRIPTION": "Clay-hosted rare earth element project in southeastern South Australia"
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_developing_live",
+      "source_sha256": "adcf276ce1ab953163f2ab14c2abf13261e8699e03bc9e4c66c5340f744904c9",
+      "native_id": "1123290",
+      "name": "Wudinna",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Gold (Au), Rare Earth Elements (REE)",
+        "PROJECT_DESCRIPTION": "Includes Baggy Green, White Tank and Barns and Clarke deposits. Gold and REE resources separate."
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_developing_live",
+      "source_sha256": "adcf276ce1ab953163f2ab14c2abf13261e8699e03bc9e4c66c5340f744904c9",
+      "native_id": "1130745",
+      "name": "Flinders",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Zinc (Zn)",
+        "PROJECT_DESCRIPTION": ""
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_developing_live",
+      "source_sha256": "adcf276ce1ab953163f2ab14c2abf13261e8699e03bc9e4c66c5340f744904c9",
+      "native_id": "1850316",
+      "name": "Fremantle Doctor",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Copper (Cu), Gold (Au), Silver (Ag)",
+        "PROJECT_DESCRIPTION": "Undeveloped IOCG deposit"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_developing_live",
+      "source_sha256": "adcf276ce1ab953163f2ab14c2abf13261e8699e03bc9e4c66c5340f744904c9",
+      "native_id": "210512",
+      "name": "Gould's Dam",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Uranium (U3O8)",
+        "PROJECT_DESCRIPTION": ""
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_major_live",
+      "source_sha256": "61e62011fe4a16d1de872553ec9c7edf58d28373cc6ffdf7831dbb5adf972a40",
+      "native_id": "1130520",
+      "name": "Kalkaroo",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Copper (Cu), Gold (Au), Cobalt (Co), Rare Earth Elements (REE)",
+        "PROJECT_DESCRIPTION": ""
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_major_live",
+      "source_sha256": "61e62011fe4a16d1de872553ec9c7edf58d28373cc6ffdf7831dbb5adf972a40",
+      "native_id": "1123158",
+      "name": "Four Mile",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Uranium (U3O8)",
+        "PROJECT_DESCRIPTION": ""
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_major_live",
+      "source_sha256": "61e62011fe4a16d1de872553ec9c7edf58d28373cc6ffdf7831dbb5adf972a40",
+      "native_id": "1365399",
+      "name": "Great White",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Kaolin, Halloysite",
+        "PROJECT_DESCRIPTION": ""
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_major_live",
+      "source_sha256": "61e62011fe4a16d1de872553ec9c7edf58d28373cc6ffdf7831dbb5adf972a40",
+      "native_id": "2044941",
+      "name": "Hillside",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Copper (Cu), Gold (Au)",
+        "PROJECT_DESCRIPTION": ""
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "34",
+      "name": "VICTORY DOWNS",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Rare Earths,  Heavy Minerals",
+        "DEPOSIT_SUMMARY": "stream sediment sampling returned heavy mineral contents high in rare earths. Heavy mineral fraction ~38% of the total, with zircon content to 1.6-8.6 %, TIO2 content 1.5 to 8.9%. REE of yttrium 100 ppm, cerium 800 ppm, and lanthanum at 600 ppm."
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "362",
+      "name": "BLACKFELLOW HILL",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Iron,  Phosphate",
+        "DEPOSIT_SUMMARY": "low hill of 2 narrow Archean BIF bands. Tested in holes PDH 1-3, which intersected dark grey meta-BIF. Values to 46.8% Fe, with 26.4% SiO2. Weathered ultrabasic possible source of anomalous base metals, Ni (to 1000ppm), Au and REE."
+      },
+      "expected_candidate": true,
+      "expected_role": "MENTION_ONLY",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "485",
+      "name": "KATTATA",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Gold",
+        "DEPOSIT_SUMMARY": "workings on pegmatite in Hiltaba Granite, with high amounts of bright red feldspar, and pegmatitic phases with high iron oxide content. Grab samples from mine spoils assayed low Au. Sampling in 2008 identified anomalous REE, notably La and Ce."
+      },
+      "expected_candidate": true,
+      "expected_role": "MENTION_ONLY",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "17",
+      "name": "ENTERPRISE BELTANA",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Copper",
+        "DEPOSIT_SUMMARY": "S continuation of the Black Feather vein system, Vertical quartz-siderite lode to 6m wide with malachite, bornite, chalcopyrite in host shale of the Bunyeroo Formation. Reported production to 1907 was ~ 163t including ~19t treated ore at 5-9%Cu."
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "21",
+      "name": "HARVEYS RETURN",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Copper",
+        "DEPOSIT_SUMMARY": "Cu mineralisation in a NS-trending qz-siderite vein system in host slate of the Bunyeroo Formation. Production to 1899 was ~14t ore @ 4-16% Cu, though a 1909 report indicated \"\"considerable\"\" ore raised."
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "33",
+      "name": "OOLDEA",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Iron",
+        "DEPOSIT_SUMMARY": "aeromagnetic anomaly, of ~25km strike length at SW end of Karari Fault Zone. Drilling identified magnetite-bearing intervals of gneiss, with assays to 27%Fe. Preliminary resource estimate for 5km strike 180Mtonne at 16.6%Fe, for mt conc 70.5%Fe."
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|SA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "tas_mrt_live",
+      "source_sha256": "82b91fe93aaadc9940a2112d6fd6c87a0593123755b0355f691a0e8b20cb98df",
+      "native_id": "1146",
+      "name": "Stronach",
+      "state": "TAS",
+      "original_fields": {
+        "COMMODITIES": "Tin, Rare Earths",
+        "DESCRIPTION": "alluvial tin workings",
+        "ORE_DESCRIPTION": null
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|TAS",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "tas_mrt_live",
+      "source_sha256": "82b91fe93aaadc9940a2112d6fd6c87a0593123755b0355f691a0e8b20cb98df",
+      "native_id": "1148",
+      "name": "Unnamed",
+      "state": "TAS",
+      "original_fields": {
+        "COMMODITIES": "Tin, Rare Earths",
+        "DESCRIPTION": "alluvial tin workings",
+        "ORE_DESCRIPTION": null
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|TAS",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "tas_mrt_live",
+      "source_sha256": "82b91fe93aaadc9940a2112d6fd6c87a0593123755b0355f691a0e8b20cb98df",
+      "native_id": "1149",
+      "name": "Unnamed",
+      "state": "TAS",
+      "original_fields": {
+        "COMMODITIES": "Tin, Rare Earths",
+        "DESCRIPTION": "alluvial tin and monazite workings",
+        "ORE_DESCRIPTION": null
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|TAS",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "tas_mrt_live",
+      "source_sha256": "82b91fe93aaadc9940a2112d6fd6c87a0593123755b0355f691a0e8b20cb98df",
+      "native_id": "2",
+      "name": "Comstock",
+      "state": "TAS",
+      "original_fields": {
+        "COMMODITIES": "Zinc, Lead, Silver",
+        "DESCRIPTION": "Area of considerable geological complexity",
+        "ORE_DESCRIPTION": null
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|TAS",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "tas_mrt_live",
+      "source_sha256": "82b91fe93aaadc9940a2112d6fd6c87a0593123755b0355f691a0e8b20cb98df",
+      "native_id": "3",
+      "name": "South Mount Cameron",
+      "state": "TAS",
+      "original_fields": {
+        "COMMODITIES": "Tin",
+        "DESCRIPTION": null,
+        "ORE_DESCRIPTION": null
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|TAS",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "tas_mrt_live",
+      "source_sha256": "82b91fe93aaadc9940a2112d6fd6c87a0593123755b0355f691a0e8b20cb98df",
+      "native_id": "4",
+      "name": "Blackwood",
+      "state": "TAS",
+      "original_fields": {
+        "COMMODITIES": "Coal -general",
+        "DESCRIPTION": "Location is centre of gravity of underground workings",
+        "ORE_DESCRIPTION": null
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|TAS",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "source_sha256": "71a08e4ba1b92724dbbdf8c0b592ca191a90031457868ee9448be15f2fb7deb6",
+      "native_id": "369199",
+      "name": "Elphinstone",
+      "state": "VIC",
+      "original_fields": {
+        "pri_comm": "Ilmenite; Rutile; Zircon; ",
+        "sec_comm": " ",
+        "min_ass": "Rutile; Monazite; Zircon; Ilmenite",
+        "prod_comm": " "
+      },
+      "expected_candidate": true,
+      "expected_role": "MINERAL_ONLY",
+      "group_id": "jurisdiction-documents|VIC",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "source_sha256": "71a08e4ba1b92724dbbdf8c0b592ca191a90031457868ee9448be15f2fb7deb6",
+      "native_id": "383600",
+      "name": "WIM 050 Resource Area",
+      "state": "VIC",
+      "original_fields": {
+        "pri_comm": "Ilmenite; Leucoxene; Monazite; Rutile; Zircon; ",
+        "sec_comm": " ",
+        "min_ass": "Rutile; Monazite; Zircon; Leucoxene; Ilmenite",
+        "prod_comm": " "
+      },
+      "expected_candidate": true,
+      "expected_role": "MINERAL_ONLY",
+      "group_id": "jurisdiction-documents|VIC",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "source_sha256": "71a08e4ba1b92724dbbdf8c0b592ca191a90031457868ee9448be15f2fb7deb6",
+      "native_id": "873729",
+      "name": "Pimpinio",
+      "state": "VIC",
+      "original_fields": {
+        "pri_comm": "Ilmenite; Leucoxene; Monazite; Rutile; Xenotime; Zircon; ",
+        "sec_comm": " ",
+        "min_ass": "Rutile; Monazite; Xenotime - (Y); Zircon; Leucoxene; Ilmenite",
+        "prod_comm": " "
+      },
+      "expected_candidate": true,
+      "expected_role": "MINERAL_ONLY",
+      "group_id": "jurisdiction-documents|VIC",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "source_sha256": "71a08e4ba1b92724dbbdf8c0b592ca191a90031457868ee9448be15f2fb7deb6",
+      "native_id": "361023",
+      "name": "Brandy Creek",
+      "state": "VIC",
+      "original_fields": {
+        "pri_comm": "Gold; ",
+        "sec_comm": " ",
+        "min_ass": "Gold",
+        "prod_comm": "Gold"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|VIC",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "source_sha256": "71a08e4ba1b92724dbbdf8c0b592ca191a90031457868ee9448be15f2fb7deb6",
+      "native_id": "361024",
+      "name": "Cobungra River",
+      "state": "VIC",
+      "original_fields": {
+        "pri_comm": "Gold; ",
+        "sec_comm": " ",
+        "min_ass": "Gold",
+        "prod_comm": " "
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|VIC",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "source_sha256": "71a08e4ba1b92724dbbdf8c0b592ca191a90031457868ee9448be15f2fb7deb6",
+      "native_id": "361025",
+      "name": "Morris Workings",
+      "state": "VIC",
+      "original_fields": {
+        "pri_comm": "Gold; ",
+        "sec_comm": " ",
+        "min_ass": "Gold",
+        "prod_comm": " "
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|VIC",
+      "split": "held_out",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0025433",
+      "name": "Nulyercamyer Hill",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "Cu, Y",
+        "target_com": "COPPER - LEAD - ZINC",
+        "commodity": "BASE METAL"
+      },
+      "expected_candidate": true,
+      "expected_role": "REE_ELEMENT",
+      "group_id": "jurisdiction-documents|WA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0027433",
+      "name": "Whites Beach",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "Au, U, Phos, Y",
+        "target_com": "GOLD",
+        "commodity": "PRECIOUS METAL"
+      },
+      "expected_candidate": true,
+      "expected_role": "REE_ELEMENT",
+      "group_id": "jurisdiction-documents|WA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0029563",
+      "name": "Watrara Pool",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "Brt, Sr, Mo, Ce",
+        "target_com": "BARITE",
+        "commodity": "INDUSTRIAL MINERAL"
+      },
+      "expected_candidate": true,
+      "expected_role": "REE_ELEMENT",
+      "group_id": "jurisdiction-documents|WA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0029902",
+      "name": "Gasher",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "Pb, Cu, Ce, La",
+        "target_com": "COPPER - LEAD - ZINC",
+        "commodity": "BASE METAL"
+      },
+      "expected_candidate": true,
+      "expected_role": "REE_ELEMENT",
+      "group_id": "jurisdiction-documents|WA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0030425",
+      "name": "Brockman 14",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "Zr, Ta, Y, Nb, Hf, Ga, Al, Fl",
+        "target_com": "HEAVY MINERAL SANDS",
+        "commodity": "SPECIALITY METAL"
+      },
+      "expected_candidate": true,
+      "expected_role": "REE_ELEMENT",
+      "group_id": "jurisdiction-documents|WA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0001183",
+      "name": "Brockman (Main) 1 REE",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "REE, HREE, Nb, Ta, Y, Zr",
+        "target_com": "RARE EARTHS",
+        "commodity": "SPECIALITY METAL"
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|WA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0001709",
+      "name": "Central Lanthanide (CLD)",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "REE, Ce, La, Nd, Sm, Gd, Eu, Y, Pr, Dy, Tb, Er, Ho, Tm, Yb, Nb, Th, Ta, Lu, Sc",
+        "target_com": "RARE EARTHS",
+        "commodity": "SPECIALITY METAL"
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|WA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0001711",
+      "name": "John Galt Main Zone REE",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "REE",
+        "target_com": "RARE EARTHS",
+        "commodity": "SPECIALITY METAL"
+      },
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "group_id": "jurisdiction-documents|WA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0000001",
+      "name": "Pieces of Eight - Admiral Hill",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "Au, Ag",
+        "target_com": "GOLD",
+        "commodity": "PRECIOUS METAL"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|WA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0000002",
+      "name": "Albury Heath",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "Au, Ag",
+        "target_com": "GOLD",
+        "commodity": "PRECIOUS METAL"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|WA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0000005",
+      "name": "Aspacia",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "Au, Ag",
+        "target_com": "GOLD",
+        "commodity": "PRECIOUS METAL"
+      },
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "group_id": "jurisdiction-documents|WA",
+      "split": "development",
+      "annotation_reason": "Agent read original commodity/description fields; explicit REE, exact element code, mineral-only, Sc-only, narrative-only and unrelated scope distinguished. No Project or resource claim."
+    }
+  ],
+  "split_policy": "Whole jurisdiction source/document families; QLD duplicate native rows stay together. No individual row split; unknown cross-state Project equivalence not asserted."
+}

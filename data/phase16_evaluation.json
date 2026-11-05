@@ -1,0 +1,245 @@
+{
+  "version": "phase16-evaluation-v1",
+  "regression": {
+    "version": "technical-benchmark-v1",
+    "parser_version": "document-recognition-v6-context-bound",
+    "annotation": "Expected values transcribed from rendered original pages, checked against native text; AI-assisted visual review, not independent human review. Disclosed cases are development/regression, not blind.",
+    "documents": 6,
+    "results": [
+      {
+        "source_key": "dubbo_scoping2025",
+        "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "physical_page": 30,
+        "partition": "PHASE16_DEVELOPMENT_REGRESSION_NOT_HELD_OUT",
+        "family": "ELEMENT_EXTRACTION",
+        "expected_cells": 90,
+        "predicted_cells": 90,
+        "true_positive": 90,
+        "false_positive": 0,
+        "false_negative": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "strict_quantity_unit_scope_correct": 90,
+        "located_matches": 90,
+        "unmatched_expected": [],
+        "quantity_counts": {
+          "extraction_pct": 90
+        }
+      },
+      {
+        "source_key": "dubbo_scoping2025",
+        "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "physical_page": 31,
+        "partition": "PHASE16_DEVELOPMENT_REGRESSION_NOT_HELD_OUT",
+        "family": "ELEMENT_EXTRACTION",
+        "expected_cells": 90,
+        "predicted_cells": 90,
+        "true_positive": 90,
+        "false_positive": 0,
+        "false_negative": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "strict_quantity_unit_scope_correct": 90,
+        "located_matches": 90,
+        "unmatched_expected": [],
+        "quantity_counts": {
+          "extraction_pct": 90
+        }
+      },
+      {
+        "source_key": "dubbo_scoping2025",
+        "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "physical_page": 32,
+        "partition": "PHASE16_DEVELOPMENT_REGRESSION_NOT_HELD_OUT",
+        "family": "ELEMENT_EXTRACTION",
+        "expected_cells": 90,
+        "predicted_cells": 90,
+        "true_positive": 90,
+        "false_positive": 0,
+        "false_negative": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "strict_quantity_unit_scope_correct": 90,
+        "located_matches": 90,
+        "unmatched_expected": [],
+        "quantity_counts": {
+          "extraction_pct": 90
+        }
+      },
+      {
+        "source_key": "cummins_scoping2023",
+        "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+        "physical_page": 60,
+        "partition": "PHASE16_DEVELOPMENT_REGRESSION_NOT_HELD_OUT",
+        "family": "DRY_FEED_REAGENTS",
+        "expected_cells": 10,
+        "predicted_cells": 10,
+        "true_positive": 10,
+        "false_positive": 0,
+        "false_negative": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "strict_quantity_unit_scope_correct": 10,
+        "located_matches": 10,
+        "unmatched_expected": [],
+        "quantity_counts": {
+          "dry_feed_mtpa": 2,
+          "reagent_tpa": 8
+        }
+      },
+      {
+        "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+        "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+        "physical_page": 3,
+        "partition": "PHASE16_DEVELOPMENT_REGRESSION_NOT_HELD_OUT",
+        "family": "FLOTATION",
+        "expected_cells": 28,
+        "predicted_cells": 28,
+        "true_positive": 28,
+        "false_positive": 0,
+        "false_negative": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "strict_quantity_unit_scope_correct": 28,
+        "located_matches": 28,
+        "unmatched_expected": [],
+        "quantity_counts": {
+          "grade_pct": 14,
+          "recovery_pct": 14
+        }
+      },
+      {
+        "source_key": "browns_range_2025",
+        "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+        "physical_page": 116,
+        "partition": "PHASE16_DEVELOPMENT_REGRESSION_NOT_HELD_OUT",
+        "family": "MODEL_RECOVERY_GRADE",
+        "expected_cells": 2,
+        "predicted_cells": 2,
+        "true_positive": 2,
+        "false_positive": 0,
+        "false_negative": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "strict_quantity_unit_scope_correct": 2,
+        "located_matches": 2,
+        "unmatched_expected": [],
+        "quantity_counts": {
+          "grade_pct": 1,
+          "recovery_pct": 1
+        }
+      },
+      {
+        "source_key": "donald_bfs2026",
+        "source_sha256": "c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+        "physical_page": 45,
+        "partition": "PHASE16_DEVELOPMENT_REGRESSION_NOT_HELD_OUT",
+        "family": "BRANCH_RECOVERY",
+        "expected_cells": 10,
+        "predicted_cells": 10,
+        "true_positive": 10,
+        "false_positive": 0,
+        "false_negative": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "strict_quantity_unit_scope_correct": 10,
+        "located_matches": 10,
+        "unmatched_expected": [],
+        "quantity_counts": {
+          "stage_recovery_pct": 10
+        }
+      },
+      {
+        "source_key": "nolans_dfs2019_asx",
+        "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+        "physical_page": 45,
+        "partition": "PHASE16_DEVELOPMENT_REGRESSION_NOT_HELD_OUT",
+        "family": "MODEL_COEFFICIENTS",
+        "expected_cells": 15,
+        "predicted_cells": 15,
+        "true_positive": 15,
+        "false_positive": 0,
+        "false_negative": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "strict_quantity_unit_scope_correct": 15,
+        "located_matches": 15,
+        "unmatched_expected": [],
+        "quantity_counts": {
+          "downstream_recovery_factor": 15
+        }
+      }
+    ],
+    "scope": "FIXED_PAGES_AND_QUANTITIES_ONLY; disclosed documents development/regression; no national accuracy claim; negative source value counts as correct transcription, not valid performance"
+  },
+  "held_document_extraction": {
+    "source_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+    "pdf_page": 11,
+    "partition": "NOT_USED_FOR_PHASE16_RULE_ADJUSTMENT_KNOWN_ARCHIVE_NOT_BLIND",
+    "sampling": "First existing PFS resource-to-final-MREO source case without Phase15 technical cells; fixed p11 and two explicit recovery clauses, not random national sampling",
+    "expected": [
+      [
+        68,
+        "TREO",
+        "REPORTED_RECOVERY"
+      ],
+      [
+        68,
+        "MREO",
+        "REPORTED_RECOVERY"
+      ]
+    ],
+    "predicted": [
+      [
+        68.0,
+        "TREO",
+        "REPORTED_RECOVERY"
+      ],
+      [
+        68.0,
+        "MREO",
+        "REPORTED_RECOVERY"
+      ]
+    ],
+    "true_positive": 2,
+    "false_negative": 0,
+    "false_positive": 0
+  },
+  "burden_interpretation": [
+    {
+      "source_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "pdf_page": 11,
+      "criterion": "T-B",
+      "expected_source_scoped_state": "EXPLICIT_ADDITIONAL_REQUIREMENT",
+      "predicted_states": [
+        "UNKNOWN"
+      ],
+      "exact_match": false,
+      "partition": "HELD_FROM_RULE_ADJUSTMENT_NOT_BLIND_NOT_EXPERT_VALIDATED"
+    },
+    {
+      "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "pdf_page": 9,
+      "criterion": "T-A",
+      "expected_source_scoped_state": "EXPLICIT_ADDITIONAL_REQUIREMENT",
+      "predicted_states": [
+        "EXPLICIT_ADDITIONAL_REQUIREMENT"
+      ],
+      "exact_match": true,
+      "partition": "HELD_FROM_RULE_ADJUSTMENT_NOT_BLIND_NOT_EXPERT_VALIDATED"
+    },
+    {
+      "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "pdf_page": 9,
+      "criterion": "T-B",
+      "expected_source_scoped_state": "OBSERVED_MAJOR_OBSTACLE",
+      "predicted_states": [
+        "UNKNOWN"
+      ],
+      "exact_match": false,
+      "partition": "HELD_FROM_RULE_ADJUSTMENT_NOT_BLIND_NOT_EXPERT_VALIDATED"
+    }
+  ],
+  "annotation": "AI-assisted original-page reading plus rendered-page review, not independent experts; fixed purposive sample, no corpus accuracy claim",
+  "revisions": "Browns Range moved to development/regression after repair. No holdout-driven changes to the burden rule set."
+}

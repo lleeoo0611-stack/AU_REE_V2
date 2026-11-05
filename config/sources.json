@@ -1,5 +1,5 @@
 {
-  "version": "source-registry-v9-phase8",
+  "version": "source-registry-v11-phase22",
   "sources": [
     {
       "key": "ga_aimr",
@@ -687,6 +687,71 @@
       "url": "https://announcements.asx.com.au/asxpdf/20190207/pdf/442fgrbxqwrxdd.pdf",
       "publication_date": "2019-02-07",
       "recognition_project_native_id": "nolans-rare-earths-project"
+    },
+    {
+      "key": "wa_minedex_resource_batch",
+      "kind": "minedex_resource_batch",
+      "url": "https://dasc.dmirs.wa.gov.au/home?productAlias=MINEDEX_ResourceEstimatesbyProject",
+      "product_alias": "MINEDEX_ResourceEstimatesbyProject",
+      "jurisdiction": "WA",
+      "scope": "Official aggregated Project commodity resource and reserve summaries; not original JORC or Technical tests",
+      "publication_date": "2026-11-03"
+    },
+    {
+      "key": "wudinna_desorption20260916",
+      "kind": "html",
+      "publication_date": "2026-09-16",
+      "text_contract": "LSE_ARTICLE_BODY_JS_STRING_V1",
+      "url": "https://www.londonstockexchange.com/en/news/article/COBR/high-ree-recoveries-at-reduced-lixiviant-levels/17788790"
+    },
+    {
+      "key": "lyons_met_quarter20220729",
+      "kind": "pdf",
+      "publication_date": "2022-07-29",
+      "url": "https://announcements.asx.com.au/asxpdf/20220729/pdf/45cb0xjwlp4y1y.pdf"
+    },
+    {
+      "key": "goschen_hydromet_pilot20230606",
+      "kind": "pdf",
+      "publication_date": "2023-06-06",
+      "url": "https://wcsecure.weblink.com.au/pdf/VHM/02673409.pdf"
+    },
+    {
+      "key": "barkly_ipo20260130",
+      "kind": "pdf",
+      "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3ABAK%3A6A1309514/pdf/inline/barkly-rare-earths-completes-successful-ipo",
+      "publication_date": "2026-01-30",
+      "capture_metadata": "Recovered original-capture filesystem timestamp after concurrent manifest overwrite; original bytes/hash verified",
+      "company": "Barkly Rare Earths Ltd",
+      "asx_code": "BAK",
+      "distribution": "PUBLIC_MIRROR_OF_ISSUER_ASX_ANNOUNCEMENT"
+    },
+    {
+      "key": "barkly_prospectus20251201",
+      "kind": "pdf",
+      "publication_date": "2025-12-01",
+      "url": "https://staff-web.automicgroup.com.au/er/public/api/documents/BAK?fileName=IPO_Prospectus___Barkly_Rare_Earths_Limited__BAK___01_12_25___Website_Version__3871524.1_.pdf",
+      "asx_code": "BAK",
+      "company": "Barkly Rare Earths Ltd",
+      "definition": "Cited original technical prospectus; HTTP403 on Phase21 attempt, bytes not acquired. Target registration is not evidence."
+    },
+    {
+      "key": "kennedy_mre20240704",
+      "url": "https://www.devexresources.com.au/wp-content/uploads/2024/07/61214441.pdf",
+      "kind": "pdf",
+      "publication_date": "2024-07-04"
+    },
+    {
+      "key": "dubbo_phaseb20250617",
+      "url": "https://investornews.com/wp-content/uploads/2025/06/ASM-6-17-25.pdf",
+      "kind": "pdf",
+      "publication_date": "2025-06-17"
+    },
+    {
+      "key": "browns_wolverine_mre20250116",
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02903635-6A1247151",
+      "kind": "pdf",
+      "publication_date": "2025-01-16"
     }
   ]
 }

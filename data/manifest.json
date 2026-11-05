@@ -5381,6 +5381,1451 @@
       "available_date": "2026-11-04",
       "parser_version": "document-recognition-v5-technical-cells",
       "publication_date": "2026-07-13"
+    },
+    {
+      "key": "weblink_api_documentation",
+      "kind": "source_documentation",
+      "url": "https://datadirector.weblink.com.au/knowledge-base/weblink-data-api/",
+      "sha256": "44437ef97ffeb832f2c4cb2c3203aa6245316e5e84799254a5ec342ae2eb28aa",
+      "path": "data/snapshots/44437ef97ffeb832f2c4cb2c3203aa6245316e5e84799254a5ec342ae2eb28aa.html",
+      "acquired_at": "2026-11-04T12:56:07.874102+00:00",
+      "available_date": "2026-11-04"
+    },
+    {
+      "key": "wa_minedex_resource_batch",
+      "kind": "minedex_resource_batch",
+      "url": "https://dasc.dmirs.wa.gov.au/home?productAlias=MINEDEX_ResourceEstimatesbyProject",
+      "product_alias": "MINEDEX_ResourceEstimatesbyProject",
+      "jurisdiction": "WA",
+      "scope": "Official aggregated Project commodity resource and reserve summaries; not original JORC or Technical tests",
+      "publication_date": "2026-11-03",
+      "sha256": "33b5aeb88ec339adcf0c765b0bb1440ef8978a76b374ef183363283a728bb6e8",
+      "path": "data/snapshots/33b5aeb88ec339adcf0c765b0bb1440ef8978a76b374ef183363283a728bb6e8.zip",
+      "acquired_at": "2026-11-04T12:56:30.938831+00:00",
+      "available_date": "2026-11-04",
+      "etag": "0x8DF39DEA3F60727",
+      "last_modified": "Tue, 03 Nov 2026 19:14:10 GMT",
+      "source_update": "03/11/2026",
+      "resolved_download_url": "https://dasc.dmirs.wa.gov.au/Download/File/3957",
+      "original_responses": [
+        {
+          "sha256": "fe72370624e1f503761c27fdce771b13c35d1ae7bdd10068fbeb6ad74143d8cf",
+          "path": "data/snapshots/fe72370624e1f503761c27fdce771b13c35d1ae7bdd10068fbeb6ad74143d8cf.response"
+        },
+        {
+          "sha256": "0ec40a2c1829e87203e7dd3032ee2bc0e53ae8096a11f80bdef4e7b5a617af27",
+          "path": "data/snapshots/0ec40a2c1829e87203e7dd3032ee2bc0e53ae8096a11f80bdef4e7b5a617af27.response"
+        },
+        {
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "path": "data/snapshots/4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945.response"
+        },
+        {
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "path": "data/snapshots/4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945.response"
+        },
+        {
+          "sha256": "33b5aeb88ec339adcf0c765b0bb1440ef8978a76b374ef183363283a728bb6e8",
+          "path": "data/snapshots/33b5aeb88ec339adcf0c765b0bb1440ef8978a76b374ef183363283a728bb6e8.response"
+        }
+      ]
+    },
+    {
+      "key": "recognized_5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20250915/pdf/06p6zt0hxtpg01.pdf",
+      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "sha256": "df592730f7ed59a414920d3cb1499f98bcd24fa8567b0f28d746ac0c4f56d7b4",
+      "path": "data/snapshots/df592730f7ed59a414920d3cb1499f98bcd24fa8567b0f28d746ac0c4f56d7b4.json",
+      "acquired_at": "2026-11-04T13:00:58.262641+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-09-15"
+    },
+    {
+      "key": "recognized_7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20240930/pdf/068jx9r9284599.pdf",
+      "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "sha256": "7995f55c1fc853ade69997dafbb659673798f72619b7b983d5834c4ba75e7fee",
+      "path": "data/snapshots/7995f55c1fc853ade69997dafbb659673798f72619b7b983d5834c4ba75e7fee.json",
+      "acquired_at": "2026-11-04T13:01:00.807047+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2024-09-30"
+    },
+    {
+      "key": "recognized_1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20230822/pdf/05swq0gwm2w86n.pdf",
+      "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "sha256": "9219d8de2927b31abe45ed4ac2cc841a5152ee00fed4ad023e695d79e136d8f6",
+      "path": "data/snapshots/9219d8de2927b31abe45ed4ac2cc841a5152ee00fed4ad023e695d79e136d8f6.json",
+      "acquired_at": "2026-11-04T13:01:08.506398+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2023-08-22"
+    },
+    {
+      "key": "recognized_8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "kind": "document_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7629289.pdf?v=63951121196",
+      "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "sha256": "f4c4243bb7ab4a34dfbaf70c7120de88c780d01eb68fb0586378acf74c17c301",
+      "path": "data/snapshots/f4c4243bb7ab4a34dfbaf70c7120de88c780d01eb68fb0586378acf74c17c301.json",
+      "acquired_at": "2026-11-04T13:01:10.402893+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-07-13"
+    },
+    {
+      "key": "recognized_c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "kind": "document_extraction",
+      "url": "https://wcsecure.weblink.com.au/pdf/ATR/03073797.pdf",
+      "source_sha256": "c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "sha256": "a21e3f395c549d340900d89b773c9bc29405f5315178023eb69521bae2372ec1",
+      "path": "data/snapshots/a21e3f395c549d340900d89b773c9bc29405f5315178023eb69521bae2372ec1.json",
+      "acquired_at": "2026-11-04T13:01:14.877470+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-03-31"
+    },
+    {
+      "key": "recognized_734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "sha256": "e504edc638dc050f147519b8f1bda6baaeb3719b6d8432f7c5704d661b7724b9",
+      "path": "data/snapshots/e504edc638dc050f147519b8f1bda6baaeb3719b6d8432f7c5704d661b7724b9.json",
+      "acquired_at": "2026-11-04T13:01:21.499094+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-07-11"
+    },
+    {
+      "key": "recognized_c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "kind": "document_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7600073.pdf?v=63949564086",
+      "source_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "sha256": "eba8a4d9c44959dce8befcc793a6c7d300cf75c41a051610813b40db8fd4e8f7",
+      "path": "data/snapshots/eba8a4d9c44959dce8befcc793a6c7d300cf75c41a051610813b40db8fd4e8f7.json",
+      "acquired_at": "2026-11-04T13:01:29.461755+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-06-25"
+    },
+    {
+      "key": "recognized_63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20190207/pdf/442fgrbxqwrxdd.pdf",
+      "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "sha256": "54f0a75d7f0dc6dec665e94a1bf355c8ff846f2ad32e959225b57ea9bc7e71d4",
+      "path": "data/snapshots/54f0a75d7f0dc6dec665e94a1bf355c8ff846f2ad32e959225b57ea9bc7e71d4.json",
+      "acquired_at": "2026-11-04T13:01:38.295207+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2019-02-07"
+    },
+    {
+      "key": "recognized_5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20250915/pdf/06p6zt0hxtpg01.pdf",
+      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "sha256": "cc9832ef2c80b945cae444e5dc10d19d043f7ba38ad268b7d2303f546eeac548",
+      "path": "data/snapshots/cc9832ef2c80b945cae444e5dc10d19d043f7ba38ad268b7d2303f546eeac548.json",
+      "acquired_at": "2026-11-04T13:08:51.348204+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-09-15"
+    },
+    {
+      "key": "recognized_7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20240930/pdf/068jx9r9284599.pdf",
+      "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "sha256": "b95f5ad22329f288a69c7414f859e7ca94ea3f5c592a61b2113b59f9c49f46e4",
+      "path": "data/snapshots/b95f5ad22329f288a69c7414f859e7ca94ea3f5c592a61b2113b59f9c49f46e4.json",
+      "acquired_at": "2026-11-04T13:08:53.094619+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2024-09-30"
+    },
+    {
+      "key": "recognized_1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20230822/pdf/05swq0gwm2w86n.pdf",
+      "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "sha256": "d22fa909aa5c94e3ea6df9feae03651321fd6fa9b1055309273ead27ddf5ada3",
+      "path": "data/snapshots/d22fa909aa5c94e3ea6df9feae03651321fd6fa9b1055309273ead27ddf5ada3.json",
+      "acquired_at": "2026-11-04T13:09:00.372942+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2023-08-22"
+    },
+    {
+      "key": "recognized_8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "kind": "document_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7629289.pdf?v=63951121196",
+      "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "sha256": "11dc2ff74943a90144ecf1f59cb58633f5b384c8cfe53359babd993989568841",
+      "path": "data/snapshots/11dc2ff74943a90144ecf1f59cb58633f5b384c8cfe53359babd993989568841.json",
+      "acquired_at": "2026-11-04T13:09:02.336890+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-07-13"
+    },
+    {
+      "key": "recognized_c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "kind": "document_extraction",
+      "url": "https://wcsecure.weblink.com.au/pdf/ATR/03073797.pdf",
+      "source_sha256": "c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "sha256": "1d2b0a9da392a4a36848282a8d02359ef39ae8b72c6eb40e37a4c70a4df1f2b6",
+      "path": "data/snapshots/1d2b0a9da392a4a36848282a8d02359ef39ae8b72c6eb40e37a4c70a4df1f2b6.json",
+      "acquired_at": "2026-11-04T13:09:06.663651+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-03-31"
+    },
+    {
+      "key": "recognized_734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "sha256": "a6aabfbbebbe4ac44f696374996f04a48a668d3c16184fbda35c03e6d3df2c2b",
+      "path": "data/snapshots/a6aabfbbebbe4ac44f696374996f04a48a668d3c16184fbda35c03e6d3df2c2b.json",
+      "acquired_at": "2026-11-04T13:09:13.413078+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-07-11"
+    },
+    {
+      "key": "recognized_c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "kind": "document_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7600073.pdf?v=63949564086",
+      "source_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "sha256": "80c32b4ff0a722eb4aedf2410fc7ea90d123710d6e5395354643b8c704c434d8",
+      "path": "data/snapshots/80c32b4ff0a722eb4aedf2410fc7ea90d123710d6e5395354643b8c704c434d8.json",
+      "acquired_at": "2026-11-04T13:09:18.577467+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-06-25"
+    },
+    {
+      "key": "recognized_63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20190207/pdf/442fgrbxqwrxdd.pdf",
+      "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "sha256": "0934e89f4be01adbff848507c39eac5a3253b05f48a6d4fc05a71c5fbea5215d",
+      "path": "data/snapshots/0934e89f4be01adbff848507c39eac5a3253b05f48a6d4fc05a71c5fbea5215d.json",
+      "acquired_at": "2026-11-04T13:09:26.821798+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2019-02-07"
+    },
+    {
+      "key": "recognized_5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20250915/pdf/06p6zt0hxtpg01.pdf",
+      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "sha256": "f795e7ccb93f03048dd87962fd477531ee380767b40d2e2aa5ed5865943f06ae",
+      "path": "data/snapshots/f795e7ccb93f03048dd87962fd477531ee380767b40d2e2aa5ed5865943f06ae.json",
+      "acquired_at": "2026-11-04T13:19:13.720790+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-09-15"
+    },
+    {
+      "key": "recognized_7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20240930/pdf/068jx9r9284599.pdf",
+      "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "sha256": "ec61c2cfbc5f03c1ff83a0d0803a4b91c68909e95ff6856978847309750d1d3b",
+      "path": "data/snapshots/ec61c2cfbc5f03c1ff83a0d0803a4b91c68909e95ff6856978847309750d1d3b.json",
+      "acquired_at": "2026-11-04T13:19:15.855808+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2024-09-30"
+    },
+    {
+      "key": "recognized_1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20230822/pdf/05swq0gwm2w86n.pdf",
+      "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "sha256": "cdf2b8dfdcc6356792a9d4350b41ffe2849298e4af517e41c91ab9e72bd23773",
+      "path": "data/snapshots/cdf2b8dfdcc6356792a9d4350b41ffe2849298e4af517e41c91ab9e72bd23773.json",
+      "acquired_at": "2026-11-04T13:19:25.285491+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2023-08-22"
+    },
+    {
+      "key": "recognized_8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "kind": "document_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7629289.pdf?v=63951121196",
+      "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "sha256": "66e731a1daabe941345004d73dfa8869fe9664f12f2882612814b9566586cbda",
+      "path": "data/snapshots/66e731a1daabe941345004d73dfa8869fe9664f12f2882612814b9566586cbda.json",
+      "acquired_at": "2026-11-04T13:19:27.862216+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-07-13"
+    },
+    {
+      "key": "recognized_c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "kind": "document_extraction",
+      "url": "https://wcsecure.weblink.com.au/pdf/ATR/03073797.pdf",
+      "source_sha256": "c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "sha256": "0891f1f33b9d8ab90a5c8104007ac179561fe98a665f328ae1a1b7019ca38344",
+      "path": "data/snapshots/0891f1f33b9d8ab90a5c8104007ac179561fe98a665f328ae1a1b7019ca38344.json",
+      "acquired_at": "2026-11-04T13:19:32.239681+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-03-31"
+    },
+    {
+      "key": "recognized_734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "sha256": "7a831def3a0860fc25f1a6d7eebf4cdda084ee5fe0d4c1de3201733351dbfee5",
+      "path": "data/snapshots/7a831def3a0860fc25f1a6d7eebf4cdda084ee5fe0d4c1de3201733351dbfee5.json",
+      "acquired_at": "2026-11-04T13:19:39.635769+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-07-11"
+    },
+    {
+      "key": "recognized_c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "kind": "document_extraction",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7600073.pdf?v=63949564086",
+      "source_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "sha256": "07d91b8423980515a39728640067f2e090527624837f491747ef56f0f593d004",
+      "path": "data/snapshots/07d91b8423980515a39728640067f2e090527624837f491747ef56f0f593d004.json",
+      "acquired_at": "2026-11-04T13:19:45.492469+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-06-25"
+    },
+    {
+      "key": "recognized_63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "kind": "document_extraction",
+      "url": "https://announcements.asx.com.au/asxpdf/20190207/pdf/442fgrbxqwrxdd.pdf",
+      "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "sha256": "469338ea9b6a02e6b13a6546fbf29473bbeee57d2be912679a9b234d9f0ab148",
+      "path": "data/snapshots/469338ea9b6a02e6b13a6546fbf29473bbeee57d2be912679a9b234d9f0ab148.json",
+      "acquired_at": "2026-11-04T13:19:53.505502+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2019-02-07"
+    },
+    {
+      "key": "sybella_impurity2024",
+      "url": "https://redmetal.com.au/wp-content/uploads/2024/07/RDM_ASX_Sybella_Project_Impurity_Removal_final.pdf",
+      "publication_date": "2024-07-08",
+      "process": "LEACH_IMPURITY_MREC",
+      "kind": "pdf",
+      "role": "DOCUMENT_LEVEL_HELD_EVALUATION_NOT_PROJECT_IDENTITY",
+      "timeout_seconds": 20,
+      "sha256": "c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "path": "data/snapshots/c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756.pdf",
+      "acquired_at": "2026-11-04T18:36:34.389412+00:00",
+      "available_date": "2026-11-04",
+      "etag": null,
+      "last_modified": "Sun, 07 Jul 2024 23:33:17 GMT"
+    },
+    {
+      "key": "kennedy_met2023",
+      "url": "https://www.devexresources.com.au/wp-content/uploads/2024/06/61157632.pdf",
+      "publication_date": "2023-07-10",
+      "process": "DESORPTION",
+      "kind": "pdf",
+      "role": "DOCUMENT_LEVEL_HELD_EVALUATION_NOT_PROJECT_IDENTITY",
+      "timeout_seconds": 20,
+      "sha256": "a5599f729e3c5888317324ff0057c7999312ae2735bac827fe9717fd15ec53f6",
+      "path": "data/snapshots/a5599f729e3c5888317324ff0057c7999312ae2735bac827fe9717fd15ec53f6.pdf",
+      "acquired_at": "2026-11-04T18:36:39.568262+00:00",
+      "available_date": "2026-11-04",
+      "etag": null,
+      "last_modified": "Fri, 07 Jun 2024 08:43:37 GMT"
+    },
+    {
+      "key": "sandy_met2024",
+      "url": "https://arkmines.com/wp-content/uploads/2024/07/02823586.pdf",
+      "publication_date": "2024-07-02",
+      "process": "PHYSICAL_BENEFICIATION",
+      "kind": "pdf",
+      "role": "DOCUMENT_LEVEL_HELD_EVALUATION_NOT_PROJECT_IDENTITY",
+      "timeout_seconds": 20,
+      "sha256": "a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33",
+      "path": "data/snapshots/a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33.pdf",
+      "acquired_at": "2026-11-04T18:36:48.268705+00:00",
+      "available_date": "2026-11-04",
+      "etag": null,
+      "last_modified": null
+    },
+    {
+      "key": "recognized_c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "kind": "document_extraction",
+      "url": "https://redmetal.com.au/wp-content/uploads/2024/07/RDM_ASX_Sybella_Project_Impurity_Removal_final.pdf",
+      "source_sha256": "c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "sha256": "d20226056e7d85b0cfa41aedc9918088955911eaeb6d6697c43232e2e913fb16",
+      "path": "data/snapshots/d20226056e7d85b0cfa41aedc9918088955911eaeb6d6697c43232e2e913fb16.json",
+      "acquired_at": "2026-11-04T18:41:30.926228+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2024-07-08"
+    },
+    {
+      "key": "recognized_a5599f729e3c5888317324ff0057c7999312ae2735bac827fe9717fd15ec53f6",
+      "kind": "document_extraction",
+      "url": "https://www.devexresources.com.au/wp-content/uploads/2024/06/61157632.pdf",
+      "source_sha256": "a5599f729e3c5888317324ff0057c7999312ae2735bac827fe9717fd15ec53f6",
+      "sha256": "a6a21997a5e39fa11a431a0f2828919585d8729349caf2b281e81929869a509c",
+      "path": "data/snapshots/a6a21997a5e39fa11a431a0f2828919585d8729349caf2b281e81929869a509c.json",
+      "acquired_at": "2026-11-04T18:41:33.543325+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2023-07-10"
+    },
+    {
+      "key": "recognized_a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33",
+      "kind": "document_extraction",
+      "url": "https://arkmines.com/wp-content/uploads/2024/07/02823586.pdf",
+      "source_sha256": "a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33",
+      "sha256": "c907f00004318e284144d85fac6299ea457cc2d9360e9a30d82a983c167f4448",
+      "path": "data/snapshots/c907f00004318e284144d85fac6299ea457cc2d9360e9a30d82a983c167f4448.json",
+      "acquired_at": "2026-11-04T18:41:50.406229+00:00",
+      "available_date": "2026-11-04",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2024-07-02"
+    },
+    {
+      "key": "wudinna_desorption20260916",
+      "kind": "html",
+      "publication_date": "2026-09-16",
+      "text_contract": "LSE_ARTICLE_BODY_JS_STRING_V1",
+      "url": "https://www.londonstockexchange.com/en/news/article/COBR/high-ree-recoveries-at-reduced-lixiviant-levels/17788790",
+      "sha256": "f93f07ed1bf765f94de4edce0dd2b87853bb8690bee74fa5b2220efdb58331ba",
+      "path": "data/snapshots/f93f07ed1bf765f94de4edce0dd2b87853bb8690bee74fa5b2220efdb58331ba.html",
+      "acquired_at": "2026-11-05T05:28:59.211026+00:00",
+      "available_date": "2026-11-05",
+      "etag": "W/\"466fa-65f80c5b75b96\"",
+      "last_modified": "Thu, 05 Nov 2026 05:28:57 GMT"
+    },
+    {
+      "key": "lyons_met_quarter20220729",
+      "kind": "pdf",
+      "publication_date": "2022-07-29",
+      "url": "https://announcements.asx.com.au/asxpdf/20220729/pdf/45cb0xjwlp4y1y.pdf",
+      "sha256": "d4c0b6d3f40a66b4d328574f390f797ec75d412d8328040b427d46d1cd98fa08",
+      "path": "data/snapshots/d4c0b6d3f40a66b4d328574f390f797ec75d412d8328040b427d46d1cd98fa08.pdf",
+      "acquired_at": "2026-11-05T05:29:04.797724+00:00",
+      "available_date": "2026-11-05",
+      "etag": "\"-CO2/1Merkf4CEAE=\"",
+      "last_modified": "Tue, 04 Apr 2023 23:06:15 GMT"
+    },
+    {
+      "key": "goschen_hydromet_pilot20230606",
+      "kind": "pdf",
+      "publication_date": "2023-06-06",
+      "url": "https://wcsecure.weblink.com.au/pdf/VHM/02673409.pdf",
+      "sha256": "1a069bb6aaa19d44b36b00b391de98ffe21a2910f53c1eab335456648b20a181",
+      "path": "data/snapshots/1a069bb6aaa19d44b36b00b391de98ffe21a2910f53c1eab335456648b20a181.pdf",
+      "acquired_at": "2026-11-05T05:29:23.291465+00:00",
+      "available_date": "2026-11-05",
+      "etag": "\"e6e6eaeae6bdd1:0\"",
+      "last_modified": "Mon, 02 Nov 2026 21:12:50 GMT"
+    },
+    {
+      "key": "tower_archived_project_met",
+      "url": "https://ktaresources.com/projects/mt-clere/",
+      "kind": "html",
+      "sha256": "c635a9f16969459b47b9c7879b2e03ef8e658cde4a50a5e42071ea422ee6411b",
+      "path": "data/snapshots/c635a9f16969459b47b9c7879b2e03ef8e658cde4a50a5e42071ea422ee6411b.html",
+      "acquired_at": "2026-11-03T21:24:00.924033+00:00",
+      "available_date": "2026-11-03",
+      "source_role": "ARCHIVED_ISSUER_PROJECT_PAGE_UNDATED_TESTWORK",
+      "original_snapshot_key": "discovery_krakatoa_tower"
+    },
+    {
+      "key": "tas_mrt_live",
+      "kind": "government_arcgis",
+      "url": "https://data.stategrowth.tas.gov.au/ags/rest/services/MRT/GeoscienceWFS/MapServer/3",
+      "national_government": true,
+      "state": "TAS",
+      "namespace": "TAS_MRT_SITE",
+      "id_field": "DEPOSIT_ID",
+      "name_field": "DEPOSIT_NAME",
+      "commodity_fields": [
+        "COMMODITIES",
+        "DESCRIPTION",
+        "ORE_DESCRIPTION"
+      ],
+      "alias_fields": [
+        "ALIAS"
+      ],
+      "where": "1=1",
+      "geological_kind_field": "DEPOSIT_TYPE",
+      "timeout_seconds": 20,
+      "sha256": "82b91fe93aaadc9940a2112d6fd6c87a0593123755b0355f691a0e8b20cb98df",
+      "path": "data/snapshots/82b91fe93aaadc9940a2112d6fd6c87a0593123755b0355f691a0e8b20cb98df.json",
+      "acquired_at": "2026-11-05T10:38:28.121115+00:00",
+      "available_date": "2026-11-05",
+      "etag": null,
+      "last_modified": null,
+      "original_responses": [
+        {
+          "sha256": "702134a599bd9769735853aefa60b7c757d330cfb98b588b3b6b67142d0009b6",
+          "path": "data/snapshots/702134a599bd9769735853aefa60b7c757d330cfb98b588b3b6b67142d0009b6.response"
+        },
+        {
+          "sha256": "a375faf58278ab9b6cbded8ffd4107933a4934c8d3a45e7f792435f3959403f3",
+          "path": "data/snapshots/a375faf58278ab9b6cbded8ffd4107933a4934c8d3a45e7f792435f3959403f3.response"
+        },
+        {
+          "sha256": "2355e64637869317c7c47a101c54594220664d2f7981feddbf79e25f05eff5eb",
+          "path": "data/snapshots/2355e64637869317c7c47a101c54594220664d2f7981feddbf79e25f05eff5eb.response"
+        },
+        {
+          "sha256": "9f45aa240b09c1647cdb4cc5ed051436f454cd1eb4d8d96b61a231860019f953",
+          "path": "data/snapshots/9f45aa240b09c1647cdb4cc5ed051436f454cd1eb4d8d96b61a231860019f953.response"
+        },
+        {
+          "sha256": "c95313069c1f8967f2879ff95f8b3bf3ddb1c7b4d5f7ea51b709a46ac1a185f0",
+          "path": "data/snapshots/c95313069c1f8967f2879ff95f8b3bf3ddb1c7b4d5f7ea51b709a46ac1a185f0.response"
+        },
+        {
+          "sha256": "bc452230f922bf1ad21df4f7af9ff3f4ad6472296da64e325783dbb6eb231380",
+          "path": "data/snapshots/bc452230f922bf1ad21df4f7af9ff3f4ad6472296da64e325783dbb6eb231380.response"
+        },
+        {
+          "sha256": "7de16806c4f592076421a3949cc825d5367d54f24ee14c362722a562a1ec4f81",
+          "path": "data/snapshots/7de16806c4f592076421a3949cc825d5367d54f24ee14c362722a562a1ec4f81.response"
+        },
+        {
+          "sha256": "bb9a78d335695a299d312ddd2ff610a9f04b61a61315f09b0596b4e5f450c473",
+          "path": "data/snapshots/bb9a78d335695a299d312ddd2ff610a9f04b61a61315f09b0596b4e5f450c473.response"
+        },
+        {
+          "sha256": "28890907c008edb0e445be1b9a494067cdb37e37bd2dc10a09035e5d84c8025f",
+          "path": "data/snapshots/28890907c008edb0e445be1b9a494067cdb37e37bd2dc10a09035e5d84c8025f.response"
+        },
+        {
+          "sha256": "f1a49ccc0b8d9e3f320327fddd4e09021c67e787e716785f180d5e790a3e8953",
+          "path": "data/snapshots/f1a49ccc0b8d9e3f320327fddd4e09021c67e787e716785f180d5e790a3e8953.response"
+        },
+        {
+          "sha256": "1bd2b47d8f59620cee707434aa3a300cfe59fc70677c6837d621ee818baa0ecb",
+          "path": "data/snapshots/1bd2b47d8f59620cee707434aa3a300cfe59fc70677c6837d621ee818baa0ecb.response"
+        },
+        {
+          "sha256": "d4903aecd970abe369c31f671ba0b29c312fe208609c0a58ffb132d7d5900948",
+          "path": "data/snapshots/d4903aecd970abe369c31f671ba0b29c312fe208609c0a58ffb132d7d5900948.response"
+        },
+        {
+          "sha256": "5acf298454128ba353e42101d662829ddf733f150c22e7c7fe4ab1550c2ad7f9",
+          "path": "data/snapshots/5acf298454128ba353e42101d662829ddf733f150c22e7c7fe4ab1550c2ad7f9.response"
+        },
+        {
+          "sha256": "5b301d8a086e06aec8c1dcd2fbcaed3985ef305911e164d72bd098e05bad6dbc",
+          "path": "data/snapshots/5b301d8a086e06aec8c1dcd2fbcaed3985ef305911e164d72bd098e05bad6dbc.response"
+        },
+        {
+          "sha256": "35f95aba671a0eb2b16b2f3a8abcfe055aa711bd2e15acaed56189dfdbbb68ed",
+          "path": "data/snapshots/35f95aba671a0eb2b16b2f3a8abcfe055aa711bd2e15acaed56189dfdbbb68ed.response"
+        },
+        {
+          "sha256": "a20aaa6d68877838cf84ce8c6a4462952d198758060c9cd7b5ed2ac18cc2214b",
+          "path": "data/snapshots/a20aaa6d68877838cf84ce8c6a4462952d198758060c9cd7b5ed2ac18cc2214b.response"
+        },
+        {
+          "sha256": "7b006f6bf88dd2a509e19762a40627928fc56e6b6c41c39cb6ae82f22755bed0",
+          "path": "data/snapshots/7b006f6bf88dd2a509e19762a40627928fc56e6b6c41c39cb6ae82f22755bed0.response"
+        },
+        {
+          "sha256": "fdc5e7f816ddaf701d1eb0cdf73a0aba65eca001104b88f22786e2e70f43ec0c",
+          "path": "data/snapshots/fdc5e7f816ddaf701d1eb0cdf73a0aba65eca001104b88f22786e2e70f43ec0c.response"
+        }
+      ],
+      "native_changes": {
+        "previous_sha256": "54e30333740532118fdb742f2ada2e1faa3da34bf611646e0ef3d39eb43176ab",
+        "current_native_id_groups": 8298,
+        "added_native_id_groups": 0,
+        "removed_native_id_groups": 0,
+        "changed_native_id_groups": 2,
+        "unchanged_native_id_groups": 8296,
+        "unit": "SOURCE_NATIVE_ID_GROUPS_NOT_PROJECTS"
+      }
+    },
+    {
+      "key": "sa_developing_live",
+      "kind": "government_wfs",
+      "url": "https://services.sarig.sa.gov.au/vector/south_australia_mining_projects/wfs",
+      "national_government": true,
+      "state": "SA",
+      "namespace": "SA_MINING_PROJECT_SITE_NO",
+      "entity_kind": "PROJECT",
+      "id_field": "SITE_NO",
+      "name_field": "PROJECT_NAME",
+      "commodity_fields": [
+        "COMMODITIES",
+        "PROJECT_DESCRIPTION"
+      ],
+      "type_name": "south_australia_mining_projects:developing_projects___minerals",
+      "wfs_version": "1.1.0",
+      "page_size": 1000,
+      "timeout_seconds": 20,
+      "sha256": "adcf276ce1ab953163f2ab14c2abf13261e8699e03bc9e4c66c5340f744904c9",
+      "path": "data/snapshots/adcf276ce1ab953163f2ab14c2abf13261e8699e03bc9e4c66c5340f744904c9.json",
+      "acquired_at": "2026-11-05T10:38:30.076828+00:00",
+      "available_date": "2026-11-05",
+      "etag": null,
+      "last_modified": null,
+      "original_responses": [
+        {
+          "sha256": "d56792eddeff48c05a94aa15bb2244cccc3f386be56571e7c10837e5d9aea097",
+          "path": "data/snapshots/d56792eddeff48c05a94aa15bb2244cccc3f386be56571e7c10837e5d9aea097.response"
+        },
+        {
+          "sha256": "9cc6e42bce52ba0408f5c524f009c62e1f859be8975f37bb7cdab5ffb55952df",
+          "path": "data/snapshots/9cc6e42bce52ba0408f5c524f009c62e1f859be8975f37bb7cdab5ffb55952df.response"
+        }
+      ],
+      "native_changes": {
+        "previous_sha256": "dda7bf8f8e2d4d3e8adaf11e0ccc12e777026a30746f319549ff91fdd2a394bf",
+        "current_native_id_groups": 35,
+        "added_native_id_groups": 0,
+        "removed_native_id_groups": 0,
+        "changed_native_id_groups": 33,
+        "unchanged_native_id_groups": 2,
+        "unit": "SOURCE_NATIVE_ID_GROUPS_NOT_PROJECTS"
+      }
+    },
+    {
+      "key": "sa_major_live",
+      "kind": "government_wfs",
+      "url": "https://services.sarig.sa.gov.au/vector/south_australia_mining_projects/wfs",
+      "national_government": true,
+      "state": "SA",
+      "namespace": "SA_MINING_PROJECT_SITE_NO",
+      "entity_kind": "PROJECT",
+      "id_field": "SITE_NO",
+      "name_field": "PROJECT_NAME",
+      "commodity_fields": [
+        "COMMODITIES",
+        "PROJECT_DESCRIPTION"
+      ],
+      "type_name": "south_australia_mining_projects:major_mines___minerals",
+      "wfs_version": "1.1.0",
+      "page_size": 1000,
+      "timeout_seconds": 20,
+      "sha256": "61e62011fe4a16d1de872553ec9c7edf58d28373cc6ffdf7831dbb5adf972a40",
+      "path": "data/snapshots/61e62011fe4a16d1de872553ec9c7edf58d28373cc6ffdf7831dbb5adf972a40.json",
+      "acquired_at": "2026-11-05T10:38:32.215893+00:00",
+      "available_date": "2026-11-05",
+      "etag": null,
+      "last_modified": null,
+      "original_responses": [
+        {
+          "sha256": "67ff3f8b13f7e0752f5d126af4ea529fbc67644a7436dfb1f2ccc5eca78b6881",
+          "path": "data/snapshots/67ff3f8b13f7e0752f5d126af4ea529fbc67644a7436dfb1f2ccc5eca78b6881.response"
+        },
+        {
+          "sha256": "0bdba3f22d66e3c83302be61cb7f94eaed2d3bc73ee5d7ffd13367e2f4ed117f",
+          "path": "data/snapshots/0bdba3f22d66e3c83302be61cb7f94eaed2d3bc73ee5d7ffd13367e2f4ed117f.response"
+        }
+      ],
+      "native_changes": {
+        "previous_sha256": "60a4439018f6b97f700954d767196f49e20ea8de137ab468b24ea57d3c831be3",
+        "current_native_id_groups": 31,
+        "added_native_id_groups": 0,
+        "removed_native_id_groups": 0,
+        "changed_native_id_groups": 31,
+        "unchanged_native_id_groups": 0,
+        "unit": "SOURCE_NATIVE_ID_GROUPS_NOT_PROJECTS"
+      }
+    },
+    {
+      "key": "wa_minedex_live",
+      "kind": "government_arcgis",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/0",
+      "national_government": true,
+      "state": "WA",
+      "namespace": "WA_MINDEX_SITE",
+      "id_field": "site_code",
+      "name_field": "site_title",
+      "commodity_fields": [
+        "site_commo",
+        "target_com",
+        "commodity"
+      ],
+      "alias_fields": [
+        "short_name"
+      ],
+      "parent_id_field": "proj_code",
+      "parent_name_field": "proj_title",
+      "where": "1=1",
+      "geological_kind_field": "site_type_",
+      "timeout_seconds": 20,
+      "sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "path": "data/snapshots/82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf.json",
+      "acquired_at": "2026-11-05T10:40:45.959313+00:00",
+      "available_date": "2026-11-05",
+      "etag": null,
+      "last_modified": null,
+      "original_responses": [
+        {
+          "sha256": "b16477ed5f083f8bd9113fca817a86eeaca480eabb86e0b5a58b2c1f96912b40",
+          "path": "data/snapshots/b16477ed5f083f8bd9113fca817a86eeaca480eabb86e0b5a58b2c1f96912b40.response"
+        },
+        {
+          "sha256": "5316960d0ac0703d8c7a3f0b094d2a4ea726e523da8af2a8fefcbcc7e48b0895",
+          "path": "data/snapshots/5316960d0ac0703d8c7a3f0b094d2a4ea726e523da8af2a8fefcbcc7e48b0895.response"
+        },
+        {
+          "sha256": "97627bf933c79f75dc9fb8def8c694b8a0bbd1952edfbc6aea99155ce33fdef1",
+          "path": "data/snapshots/97627bf933c79f75dc9fb8def8c694b8a0bbd1952edfbc6aea99155ce33fdef1.response"
+        },
+        {
+          "sha256": "dea94df891a6b28c843f8fd1375d6e459b572075984426367a397f42d8ad3e1e",
+          "path": "data/snapshots/dea94df891a6b28c843f8fd1375d6e459b572075984426367a397f42d8ad3e1e.response"
+        },
+        {
+          "sha256": "a5257ad2f5aceccef2b0c8b400b61e42a888263c7ede6014795a8be3cf9cb2d8",
+          "path": "data/snapshots/a5257ad2f5aceccef2b0c8b400b61e42a888263c7ede6014795a8be3cf9cb2d8.response"
+        },
+        {
+          "sha256": "77e1c34eff7f62f53280b00bc9fd1fdae4dcfea8b072411ffb18f8f2056550de",
+          "path": "data/snapshots/77e1c34eff7f62f53280b00bc9fd1fdae4dcfea8b072411ffb18f8f2056550de.response"
+        },
+        {
+          "sha256": "f8dca528d050770f73e13660b621b8ab1186c2ebb054331365d96ef15df79759",
+          "path": "data/snapshots/f8dca528d050770f73e13660b621b8ab1186c2ebb054331365d96ef15df79759.response"
+        },
+        {
+          "sha256": "834e942a35dfe7f35ed66c04928833b2e33385ac47fb7210a51f792a20cd1718",
+          "path": "data/snapshots/834e942a35dfe7f35ed66c04928833b2e33385ac47fb7210a51f792a20cd1718.response"
+        },
+        {
+          "sha256": "d66ee50c5ebdfb432d9e63594b9de3a385d9cfbe4fa2d0477683e4d0cec9f812",
+          "path": "data/snapshots/d66ee50c5ebdfb432d9e63594b9de3a385d9cfbe4fa2d0477683e4d0cec9f812.response"
+        },
+        {
+          "sha256": "a7bcd40fde0b046119d5a0b9b8ec1e56c587fd7fff22267a6d088a53d8d3ed7a",
+          "path": "data/snapshots/a7bcd40fde0b046119d5a0b9b8ec1e56c587fd7fff22267a6d088a53d8d3ed7a.response"
+        },
+        {
+          "sha256": "7eec04c9ddfc1594bb77e92ea7512622e8b863ac7dd442d0dd2c9915fe6543da",
+          "path": "data/snapshots/7eec04c9ddfc1594bb77e92ea7512622e8b863ac7dd442d0dd2c9915fe6543da.response"
+        },
+        {
+          "sha256": "3c849418fd050115985570789604a7c7a98f4c0fdcd231c0dc336a5b49da5fd0",
+          "path": "data/snapshots/3c849418fd050115985570789604a7c7a98f4c0fdcd231c0dc336a5b49da5fd0.response"
+        },
+        {
+          "sha256": "d31314ac2c2761df91ea0ca7a3a8363a7ec2b0ec14a33c7b3e37d17142f0859e",
+          "path": "data/snapshots/d31314ac2c2761df91ea0ca7a3a8363a7ec2b0ec14a33c7b3e37d17142f0859e.response"
+        },
+        {
+          "sha256": "2b5e0469f8037a7045ca1d4d77587696a9faf20f89a1da83f58afaf90d2419de",
+          "path": "data/snapshots/2b5e0469f8037a7045ca1d4d77587696a9faf20f89a1da83f58afaf90d2419de.response"
+        },
+        {
+          "sha256": "82092e810a4463ba92d9f2cc65bcf48f49b99ed830664fe10a893d13d1d9d98d",
+          "path": "data/snapshots/82092e810a4463ba92d9f2cc65bcf48f49b99ed830664fe10a893d13d1d9d98d.response"
+        },
+        {
+          "sha256": "4d12505dc1e5faad968c5ae9ca585ecf74e81f33054886d604b2baff09eac03b",
+          "path": "data/snapshots/4d12505dc1e5faad968c5ae9ca585ecf74e81f33054886d604b2baff09eac03b.response"
+        },
+        {
+          "sha256": "ddf8c3d13131cb2814702d505a8753d631cd72ab2a8dfe6886db7426ada91271",
+          "path": "data/snapshots/ddf8c3d13131cb2814702d505a8753d631cd72ab2a8dfe6886db7426ada91271.response"
+        },
+        {
+          "sha256": "dfebef06800d2148391200bd8183a5b3ec2313999722f14d0699bb0fc8db5f4c",
+          "path": "data/snapshots/dfebef06800d2148391200bd8183a5b3ec2313999722f14d0699bb0fc8db5f4c.response"
+        },
+        {
+          "sha256": "07b86216474790b8acd868131fae9576826e576056047cf99e386a08a7d61351",
+          "path": "data/snapshots/07b86216474790b8acd868131fae9576826e576056047cf99e386a08a7d61351.response"
+        },
+        {
+          "sha256": "d3b10581a6ec78561d9be4a15a5a22973857dc09bf319182314a529c88247d0d",
+          "path": "data/snapshots/d3b10581a6ec78561d9be4a15a5a22973857dc09bf319182314a529c88247d0d.response"
+        },
+        {
+          "sha256": "6329e5aaeffe8d879758f727c26a254639e6d04da760942c771eabcf6ea49c7a",
+          "path": "data/snapshots/6329e5aaeffe8d879758f727c26a254639e6d04da760942c771eabcf6ea49c7a.response"
+        },
+        {
+          "sha256": "7c07de78be2b188f32aa8bc0de84acc2a997437203546d1ffd4beb51e36c4e46",
+          "path": "data/snapshots/7c07de78be2b188f32aa8bc0de84acc2a997437203546d1ffd4beb51e36c4e46.response"
+        },
+        {
+          "sha256": "c9ac081abbab4d390e8c8519926769709ef77c0c2a670382eea93e9a62ca1674",
+          "path": "data/snapshots/c9ac081abbab4d390e8c8519926769709ef77c0c2a670382eea93e9a62ca1674.response"
+        },
+        {
+          "sha256": "fb3ccd815f483de0490fcd00e7122ef85d195e551074ca8d8aba8bb669d7b3d8",
+          "path": "data/snapshots/fb3ccd815f483de0490fcd00e7122ef85d195e551074ca8d8aba8bb669d7b3d8.response"
+        },
+        {
+          "sha256": "993e4a88ab8164f65db4efb87583141b5107a1ae476c6184f30d8d11cdb304a0",
+          "path": "data/snapshots/993e4a88ab8164f65db4efb87583141b5107a1ae476c6184f30d8d11cdb304a0.response"
+        },
+        {
+          "sha256": "63c6edcac377c13f74541e03491771c112084f3e269fee9802b2abdb4b89dc3e",
+          "path": "data/snapshots/63c6edcac377c13f74541e03491771c112084f3e269fee9802b2abdb4b89dc3e.response"
+        },
+        {
+          "sha256": "5ac8c2d4cf70ab34139606b763778a5e102ec6d9173b66286bd4c664c6223f52",
+          "path": "data/snapshots/5ac8c2d4cf70ab34139606b763778a5e102ec6d9173b66286bd4c664c6223f52.response"
+        },
+        {
+          "sha256": "61ea8e34bff33b4afafeb0df9ff98a8b9fbe210301b742ce459a62cc67b9e488",
+          "path": "data/snapshots/61ea8e34bff33b4afafeb0df9ff98a8b9fbe210301b742ce459a62cc67b9e488.response"
+        },
+        {
+          "sha256": "5c7d0289624404e69b2babb39e76c46d82ab8eb2412e94ce4cce227442492728",
+          "path": "data/snapshots/5c7d0289624404e69b2babb39e76c46d82ab8eb2412e94ce4cce227442492728.response"
+        },
+        {
+          "sha256": "13c5153cee3b09012efb0ca97f5e2f92532bb0d9d5299dd01ac2d3fdc5b2a6ea",
+          "path": "data/snapshots/13c5153cee3b09012efb0ca97f5e2f92532bb0d9d5299dd01ac2d3fdc5b2a6ea.response"
+        },
+        {
+          "sha256": "cbdf52796d3785544b83dc938beccf1d83046ed561694ed32eb11ba9fbb2b720",
+          "path": "data/snapshots/cbdf52796d3785544b83dc938beccf1d83046ed561694ed32eb11ba9fbb2b720.response"
+        },
+        {
+          "sha256": "8d3ba45f78542c2346ae7058baf86a090e17b3e0ac9af28e3072c5576bbbe88f",
+          "path": "data/snapshots/8d3ba45f78542c2346ae7058baf86a090e17b3e0ac9af28e3072c5576bbbe88f.response"
+        },
+        {
+          "sha256": "0e108221377c72af81463457f10181a91cc302317b2da329de97531e80c4f11a",
+          "path": "data/snapshots/0e108221377c72af81463457f10181a91cc302317b2da329de97531e80c4f11a.response"
+        },
+        {
+          "sha256": "caa8b10e3fe9550508b9ebe0805566c465ae130bf8515c3322e4c300d9cd9e13",
+          "path": "data/snapshots/caa8b10e3fe9550508b9ebe0805566c465ae130bf8515c3322e4c300d9cd9e13.response"
+        },
+        {
+          "sha256": "dbec888bad84828b9da541f9cfa2e22f94d94406938673b7dea89bd89f9edf85",
+          "path": "data/snapshots/dbec888bad84828b9da541f9cfa2e22f94d94406938673b7dea89bd89f9edf85.response"
+        },
+        {
+          "sha256": "c23dd9bdd1dd521f6d2d9c548578e12ea8f32450943ba6c05f534538389c3451",
+          "path": "data/snapshots/c23dd9bdd1dd521f6d2d9c548578e12ea8f32450943ba6c05f534538389c3451.response"
+        },
+        {
+          "sha256": "24aca34c6f8834d97451c339707035a92ede8beaefd4e5b79aefe2de9236a432",
+          "path": "data/snapshots/24aca34c6f8834d97451c339707035a92ede8beaefd4e5b79aefe2de9236a432.response"
+        },
+        {
+          "sha256": "780afd7101d36706c76fa7a53e7c373b42cc9ffef5a1f44fc31ce98a8e544266",
+          "path": "data/snapshots/780afd7101d36706c76fa7a53e7c373b42cc9ffef5a1f44fc31ce98a8e544266.response"
+        },
+        {
+          "sha256": "fa994047de50952c1444a5216b95429b26c2582166159efc3402a32c18f70cb0",
+          "path": "data/snapshots/fa994047de50952c1444a5216b95429b26c2582166159efc3402a32c18f70cb0.response"
+        },
+        {
+          "sha256": "d7fd34c66aab5c802792a5340d308cb118b7f9380b77dfd5b81eab44b0639fd1",
+          "path": "data/snapshots/d7fd34c66aab5c802792a5340d308cb118b7f9380b77dfd5b81eab44b0639fd1.response"
+        },
+        {
+          "sha256": "8112d62bd531f87f71b8bcd3a7ec451c18b3e088dbc1fea8c0c3ae341ec61a57",
+          "path": "data/snapshots/8112d62bd531f87f71b8bcd3a7ec451c18b3e088dbc1fea8c0c3ae341ec61a57.response"
+        },
+        {
+          "sha256": "c39e65bd6d72bfb1a10971cf96186c42535b1da67170211e0d4ee6836064316f",
+          "path": "data/snapshots/c39e65bd6d72bfb1a10971cf96186c42535b1da67170211e0d4ee6836064316f.response"
+        },
+        {
+          "sha256": "d1f1f23966ce7e86aa3bedbb0b0fff5266cd3287d9607c928d67b5a93af168fa",
+          "path": "data/snapshots/d1f1f23966ce7e86aa3bedbb0b0fff5266cd3287d9607c928d67b5a93af168fa.response"
+        },
+        {
+          "sha256": "614ec6ad41921f2da37d5af3fd9a5169699b4e12455848dde361fd06d6bb2d18",
+          "path": "data/snapshots/614ec6ad41921f2da37d5af3fd9a5169699b4e12455848dde361fd06d6bb2d18.response"
+        },
+        {
+          "sha256": "9aae927a3a54e7026f5fb5e548c982d0c1506792a275e01b5f693ccd557a188a",
+          "path": "data/snapshots/9aae927a3a54e7026f5fb5e548c982d0c1506792a275e01b5f693ccd557a188a.response"
+        },
+        {
+          "sha256": "5045305f10cd5b38167c6f3e092e4a3ec8fcb2ee847acc5d5f1cddfc4c3124bd",
+          "path": "data/snapshots/5045305f10cd5b38167c6f3e092e4a3ec8fcb2ee847acc5d5f1cddfc4c3124bd.response"
+        },
+        {
+          "sha256": "0b087c0b5c329decc7b7febbd1ec1d50a54e0c2474ab65bec6407fd0571f6be1",
+          "path": "data/snapshots/0b087c0b5c329decc7b7febbd1ec1d50a54e0c2474ab65bec6407fd0571f6be1.response"
+        },
+        {
+          "sha256": "7165d570da35fa89121afc5bf333b826d7e219abd1940ef2b7fa888256b8348a",
+          "path": "data/snapshots/7165d570da35fa89121afc5bf333b826d7e219abd1940ef2b7fa888256b8348a.response"
+        },
+        {
+          "sha256": "e31138ea7448c205dfa5c1eebb17047a2e9e46e22a3a1fb34ab8dc75ef213991",
+          "path": "data/snapshots/e31138ea7448c205dfa5c1eebb17047a2e9e46e22a3a1fb34ab8dc75ef213991.response"
+        },
+        {
+          "sha256": "58f683ae6a779347625ade5bcc9ed6e790b3af7f1c6df40379fdf7673ba94e70",
+          "path": "data/snapshots/58f683ae6a779347625ade5bcc9ed6e790b3af7f1c6df40379fdf7673ba94e70.response"
+        },
+        {
+          "sha256": "7f7c0fa2307c75505b4758859d4ffbc3f15f51019c1271811b1a20e0a6bf00dc",
+          "path": "data/snapshots/7f7c0fa2307c75505b4758859d4ffbc3f15f51019c1271811b1a20e0a6bf00dc.response"
+        },
+        {
+          "sha256": "afb92e4b7120c7641dda1da875babe585a0ab6882613a656104e252fb3621ef1",
+          "path": "data/snapshots/afb92e4b7120c7641dda1da875babe585a0ab6882613a656104e252fb3621ef1.response"
+        },
+        {
+          "sha256": "6837e608af330415c0f1f90aeaadb8e0bb5a3f0eae172d228aa6361840cbb242",
+          "path": "data/snapshots/6837e608af330415c0f1f90aeaadb8e0bb5a3f0eae172d228aa6361840cbb242.response"
+        },
+        {
+          "sha256": "d64c18d4b872260436d8f9d40f15b3dd57d5f2e87ff91060ebdae191b0b911d8",
+          "path": "data/snapshots/d64c18d4b872260436d8f9d40f15b3dd57d5f2e87ff91060ebdae191b0b911d8.response"
+        },
+        {
+          "sha256": "2210bd2d15aeb09cd567404d1180c9c05d045a2b7e762e2d41f6e55410ffe6db",
+          "path": "data/snapshots/2210bd2d15aeb09cd567404d1180c9c05d045a2b7e762e2d41f6e55410ffe6db.response"
+        },
+        {
+          "sha256": "57f620b51c45d262f2a08c3935a7f2e65279011f6739021ae1a985ebc8f6fad8",
+          "path": "data/snapshots/57f620b51c45d262f2a08c3935a7f2e65279011f6739021ae1a985ebc8f6fad8.response"
+        },
+        {
+          "sha256": "8ec880fa5bd441461fa35e5954c2bf7282e4a6f44832eb886f4320c7fcf1a63b",
+          "path": "data/snapshots/8ec880fa5bd441461fa35e5954c2bf7282e4a6f44832eb886f4320c7fcf1a63b.response"
+        },
+        {
+          "sha256": "ff8d337a6358c48a7bea7642aef214345dfac720b3e473071aae9d0884932cfd",
+          "path": "data/snapshots/ff8d337a6358c48a7bea7642aef214345dfac720b3e473071aae9d0884932cfd.response"
+        },
+        {
+          "sha256": "e54b0c65f96a96336b4e4c2a7071d4d294b6fbf9d86d9de40415a6ea50a58f4f",
+          "path": "data/snapshots/e54b0c65f96a96336b4e4c2a7071d4d294b6fbf9d86d9de40415a6ea50a58f4f.response"
+        },
+        {
+          "sha256": "92e8636bff8090221a307f4a139133acd591050cc84c388318d2a3bb4f5247dd",
+          "path": "data/snapshots/92e8636bff8090221a307f4a139133acd591050cc84c388318d2a3bb4f5247dd.response"
+        },
+        {
+          "sha256": "2499d61aa4868e18595f4b09f91c5292623e39c33e9bb09bc1946aa64a361c84",
+          "path": "data/snapshots/2499d61aa4868e18595f4b09f91c5292623e39c33e9bb09bc1946aa64a361c84.response"
+        },
+        {
+          "sha256": "206456cf391ad0f7eb2a5f2ea06aae63d9a103885b14feb48baeaca356749ba9",
+          "path": "data/snapshots/206456cf391ad0f7eb2a5f2ea06aae63d9a103885b14feb48baeaca356749ba9.response"
+        },
+        {
+          "sha256": "cbcee7599f4a961cbdbc76d5e3112b9a1688d9999c0774641fdb2d0ea1ac141b",
+          "path": "data/snapshots/cbcee7599f4a961cbdbc76d5e3112b9a1688d9999c0774641fdb2d0ea1ac141b.response"
+        },
+        {
+          "sha256": "3829c836d78ca31683d924e534387d93075fb0c1001742e45e04462fb047270b",
+          "path": "data/snapshots/3829c836d78ca31683d924e534387d93075fb0c1001742e45e04462fb047270b.response"
+        },
+        {
+          "sha256": "75247a2f9cbaf6bbc9c8b3c2b8f28a4ef8dcd796cb29dbd4a6cbb6fbf9b04ce2",
+          "path": "data/snapshots/75247a2f9cbaf6bbc9c8b3c2b8f28a4ef8dcd796cb29dbd4a6cbb6fbf9b04ce2.response"
+        },
+        {
+          "sha256": "b52ad9ce4d5fd5c01bef1a2d8c3c2b41c945d94beef2d0363a8ae092fdde85ce",
+          "path": "data/snapshots/b52ad9ce4d5fd5c01bef1a2d8c3c2b41c945d94beef2d0363a8ae092fdde85ce.response"
+        },
+        {
+          "sha256": "d9fd788105df33408eab688c1ad362a6c069031518d9a07039b1a731ad40bde3",
+          "path": "data/snapshots/d9fd788105df33408eab688c1ad362a6c069031518d9a07039b1a731ad40bde3.response"
+        },
+        {
+          "sha256": "e156032a762e161945fd68819ec9de32d60c57164ac6498c1f9fdf259b3c272c",
+          "path": "data/snapshots/e156032a762e161945fd68819ec9de32d60c57164ac6498c1f9fdf259b3c272c.response"
+        },
+        {
+          "sha256": "af4f9e8e586bdd3c0d1f76fb44b4bad44c3cf8478d4bafef08d02d7b184378c3",
+          "path": "data/snapshots/af4f9e8e586bdd3c0d1f76fb44b4bad44c3cf8478d4bafef08d02d7b184378c3.response"
+        },
+        {
+          "sha256": "4247c017910c3d137e3977d2cae0b955b4ef5751c44af3eda301354b40d2847c",
+          "path": "data/snapshots/4247c017910c3d137e3977d2cae0b955b4ef5751c44af3eda301354b40d2847c.response"
+        },
+        {
+          "sha256": "7c810de7fb997d00233f14493c8c3765b86f5f63b24405c3764400536d8cae4b",
+          "path": "data/snapshots/7c810de7fb997d00233f14493c8c3765b86f5f63b24405c3764400536d8cae4b.response"
+        },
+        {
+          "sha256": "e059820c0d37cbcca9a66e6480243ef9c6433ba520c072a6da05d783d6bdb30a",
+          "path": "data/snapshots/e059820c0d37cbcca9a66e6480243ef9c6433ba520c072a6da05d783d6bdb30a.response"
+        },
+        {
+          "sha256": "1b44ac8e3da1ed56312009ba5cf9e4b463def6914fa779759b5956fd466921c5",
+          "path": "data/snapshots/1b44ac8e3da1ed56312009ba5cf9e4b463def6914fa779759b5956fd466921c5.response"
+        },
+        {
+          "sha256": "bc6df41bfa8f98a8b44168e594e166d66b4e1670a7bb100863d894fa31e35ed2",
+          "path": "data/snapshots/bc6df41bfa8f98a8b44168e594e166d66b4e1670a7bb100863d894fa31e35ed2.response"
+        },
+        {
+          "sha256": "c702a74dbf4fd5afb197fe035d542399d6d2a9d499dc03dd663962d355dd6ef0",
+          "path": "data/snapshots/c702a74dbf4fd5afb197fe035d542399d6d2a9d499dc03dd663962d355dd6ef0.response"
+        },
+        {
+          "sha256": "00abbb0ed45d2ec56ceb2abc1e1b8d5c9d0b5a470ba4ba08a43d91ed15e37f4e",
+          "path": "data/snapshots/00abbb0ed45d2ec56ceb2abc1e1b8d5c9d0b5a470ba4ba08a43d91ed15e37f4e.response"
+        },
+        {
+          "sha256": "6cfc0cd3578b1f8b277e133ecf528f8f4805ff7d10d670acf4843566649911d9",
+          "path": "data/snapshots/6cfc0cd3578b1f8b277e133ecf528f8f4805ff7d10d670acf4843566649911d9.response"
+        },
+        {
+          "sha256": "0946ddf9ea2cd6bbdbaacce52a98d7faf726e1b9af5b28e9d0827073d34308e3",
+          "path": "data/snapshots/0946ddf9ea2cd6bbdbaacce52a98d7faf726e1b9af5b28e9d0827073d34308e3.response"
+        },
+        {
+          "sha256": "00063cbff7df022091d13422121802dbeb452c6ead6d758d95236e136e47512b",
+          "path": "data/snapshots/00063cbff7df022091d13422121802dbeb452c6ead6d758d95236e136e47512b.response"
+        },
+        {
+          "sha256": "93ccf83e0d48cc19a523d1a949e039e954c2dc552a21fb02182582f0a3f60f42",
+          "path": "data/snapshots/93ccf83e0d48cc19a523d1a949e039e954c2dc552a21fb02182582f0a3f60f42.response"
+        },
+        {
+          "sha256": "f15794884b707cb88301c5196921dbd0e9dcc89a05a7c73e3857de1d2150f9bc",
+          "path": "data/snapshots/f15794884b707cb88301c5196921dbd0e9dcc89a05a7c73e3857de1d2150f9bc.response"
+        },
+        {
+          "sha256": "059f9ce8b9bdfe385391bd9250104377b6a7928543dfb3bf893a528050e20720",
+          "path": "data/snapshots/059f9ce8b9bdfe385391bd9250104377b6a7928543dfb3bf893a528050e20720.response"
+        },
+        {
+          "sha256": "1a6d1ac336be603215e985d4d98d1607406f6b72771b3f1fddebda2f90afffed",
+          "path": "data/snapshots/1a6d1ac336be603215e985d4d98d1607406f6b72771b3f1fddebda2f90afffed.response"
+        },
+        {
+          "sha256": "50755ec437e991f35c2eef8569d2f667580b07d987577652806a6b295b824b30",
+          "path": "data/snapshots/50755ec437e991f35c2eef8569d2f667580b07d987577652806a6b295b824b30.response"
+        },
+        {
+          "sha256": "66a0a7cd3f15e831885b2285fbcf58d1f3b3366ffa95414a00c5a27b44988df1",
+          "path": "data/snapshots/66a0a7cd3f15e831885b2285fbcf58d1f3b3366ffa95414a00c5a27b44988df1.response"
+        },
+        {
+          "sha256": "1d0a931a6ebc43e0360c7d3b584df2a31d52c3391ba24b9dd86e4461c3e12f8b",
+          "path": "data/snapshots/1d0a931a6ebc43e0360c7d3b584df2a31d52c3391ba24b9dd86e4461c3e12f8b.response"
+        },
+        {
+          "sha256": "d2ebc6ac99a1be6b6e30dbf9848dcd02ac7beed33218701c716db0ce3a7a15ff",
+          "path": "data/snapshots/d2ebc6ac99a1be6b6e30dbf9848dcd02ac7beed33218701c716db0ce3a7a15ff.response"
+        },
+        {
+          "sha256": "7ff5d2c823e7847dfe362feb1f021c2d7ac1dabd26b9ecfe4ca40bbba26987ed",
+          "path": "data/snapshots/7ff5d2c823e7847dfe362feb1f021c2d7ac1dabd26b9ecfe4ca40bbba26987ed.response"
+        },
+        {
+          "sha256": "debd264d8ab2a16be0edbc52978d277033ad77fd8a9b4f1d9ea646dd4d9b705c",
+          "path": "data/snapshots/debd264d8ab2a16be0edbc52978d277033ad77fd8a9b4f1d9ea646dd4d9b705c.response"
+        },
+        {
+          "sha256": "1966c4d080d5a497d0c64bad037e85a8f6cea5827eeb330ccdfc8f7614067d55",
+          "path": "data/snapshots/1966c4d080d5a497d0c64bad037e85a8f6cea5827eeb330ccdfc8f7614067d55.response"
+        },
+        {
+          "sha256": "be31788e12744a520cb9d92f880bafc54296acab6f62ffe17b3a884ba673103e",
+          "path": "data/snapshots/be31788e12744a520cb9d92f880bafc54296acab6f62ffe17b3a884ba673103e.response"
+        },
+        {
+          "sha256": "f3ee70e1db88e1ba5e2b28b1f492a33a0ee4233e6ae56782567a2184d9ca17b0",
+          "path": "data/snapshots/f3ee70e1db88e1ba5e2b28b1f492a33a0ee4233e6ae56782567a2184d9ca17b0.response"
+        },
+        {
+          "sha256": "39941ae24c8d11daa18b8ad3b9b8173d83ef4a34f7aa8c63f3068114ed36b320",
+          "path": "data/snapshots/39941ae24c8d11daa18b8ad3b9b8173d83ef4a34f7aa8c63f3068114ed36b320.response"
+        },
+        {
+          "sha256": "d1c67d54b1b15a597351d7e3b603762e1f59db9f2bcb602254c7cc5740be2a61",
+          "path": "data/snapshots/d1c67d54b1b15a597351d7e3b603762e1f59db9f2bcb602254c7cc5740be2a61.response"
+        },
+        {
+          "sha256": "da84c794e981e77fc9f302d4ca05e1428a9eceb59c75a98aeb03e4bad11109a4",
+          "path": "data/snapshots/da84c794e981e77fc9f302d4ca05e1428a9eceb59c75a98aeb03e4bad11109a4.response"
+        },
+        {
+          "sha256": "eca583ccfdab1e4376b68aae6883c5ae760a72eedeff504d19c82d15f0d7a0c5",
+          "path": "data/snapshots/eca583ccfdab1e4376b68aae6883c5ae760a72eedeff504d19c82d15f0d7a0c5.response"
+        },
+        {
+          "sha256": "2c22c686761bcacc6be07bddfd2c6f977efb448b50966fb63481f34643667fc0",
+          "path": "data/snapshots/2c22c686761bcacc6be07bddfd2c6f977efb448b50966fb63481f34643667fc0.response"
+        },
+        {
+          "sha256": "8fd8b6bc09a8bb855f351c7e2af7935c2b19c838cbd7b24e7763bf45f5cbf094",
+          "path": "data/snapshots/8fd8b6bc09a8bb855f351c7e2af7935c2b19c838cbd7b24e7763bf45f5cbf094.response"
+        },
+        {
+          "sha256": "e8300b15eba3cbc5386c7fa6537c421495c323e6a2f51e0956e13a8a38d47b99",
+          "path": "data/snapshots/e8300b15eba3cbc5386c7fa6537c421495c323e6a2f51e0956e13a8a38d47b99.response"
+        }
+      ],
+      "native_changes": {
+        "previous_sha256": "f3a419502e1c5fb30cb918ba4fb82912ea93ebf7b974214f27bbf4d213b14439",
+        "current_native_id_groups": 48528,
+        "added_native_id_groups": 19,
+        "removed_native_id_groups": 0,
+        "changed_native_id_groups": 48509,
+        "unchanged_native_id_groups": 0,
+        "unit": "SOURCE_NATIVE_ID_GROUPS_NOT_PROJECTS"
+      }
+    },
+    {
+      "key": "barkly_ipo20260130",
+      "kind": "pdf",
+      "sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+      "path": "data/snapshots/7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca.pdf",
+      "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3ABAK%3A6A1309514/pdf/inline/barkly-rare-earths-completes-successful-ipo",
+      "publication_date": "2026-01-30",
+      "available_date": "2026-11-05",
+      "acquired_at": "2026-11-05T10:45:27.713091+00:00",
+      "capture_metadata": "Recovered original-capture filesystem timestamp after concurrent manifest overwrite; original bytes/hash verified",
+      "company": "Barkly Rare Earths Ltd",
+      "asx_code": "BAK",
+      "distribution": "PUBLIC_MIRROR_OF_ISSUER_ASX_ANNOUNCEMENT"
+    },
+    {
+      "key": "recognized_7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+      "kind": "document_extraction",
+      "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3ABAK%3A6A1309514/pdf/inline/barkly-rare-earths-completes-successful-ipo",
+      "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+      "sha256": "48d647d709d02a9c05d14f749dfe2544cd603ce615a9466d82da554393e67a81",
+      "path": "data/snapshots/48d647d709d02a9c05d14f749dfe2544cd603ce615a9466d82da554393e67a81.json",
+      "acquired_at": "2026-11-05T11:18:28.275131+00:00",
+      "available_date": "2026-11-05",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2026-01-30"
+    },
+    {
+      "key": "dubbo_phaseb20250617",
+      "url": "https://investornews.com/wp-content/uploads/2025/06/ASM-6-17-25.pdf",
+      "kind": "pdf",
+      "publication_date": "2025-06-17",
+      "sha256": "4aeb63ac0341402bfc14f7b8021533a293790088865324cdc4e513f8f1554ee9",
+      "path": "data/snapshots/4aeb63ac0341402bfc14f7b8021533a293790088865324cdc4e513f8f1554ee9.pdf",
+      "acquired_at": "2026-11-05T15:31:15.736568+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "asm_announcements_phase22",
+      "url": "https://asm-au.com/investors/asx-announcements/",
+      "kind": "html",
+      "publication_date": null,
+      "sha256": "e2092eab984ce69b1451a2051ce6b75628626d7019f504ba97ddd0af8e495de0",
+      "path": "data/snapshots/e2092eab984ce69b1451a2051ce6b75628626d7019f504ba97ddd0af8e495de0.html",
+      "acquired_at": "2026-11-05T15:31:19.217232+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "kennedy_mre20240704",
+      "url": "https://www.devexresources.com.au/wp-content/uploads/2024/07/61214441.pdf",
+      "kind": "pdf",
+      "publication_date": "2024-07-04",
+      "sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+      "path": "data/snapshots/79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566.pdf",
+      "acquired_at": "2026-11-05T15:32:51.988472+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "ga_act_mineral_scope20261105",
+      "url": "https://www.ga.gov.au/education/minerals-energy/australian-mineral-facts",
+      "kind": "html",
+      "publication_date": null,
+      "sha256": "2ce9c8fce13b3cf5f2c72a7783151e96f8d0d8b0c6a332d250babee093915c0f",
+      "path": "data/snapshots/2ce9c8fce13b3cf5f2c72a7783151e96f8d0d8b0c6a332d250babee093915c0f.html",
+      "acquired_at": "2026-11-05T15:48:35.053622+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "browns_wolverine_mre20250116",
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02903635-6A1247151",
+      "kind": "pdf",
+      "publication_date": "2025-01-16",
+      "sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+      "path": "data/snapshots/9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691.pdf",
+      "acquired_at": "2026-11-05T15:48:42.785918+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "discovery_execution_643b7844c083198a",
+      "kind": "discovery_receipt",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/22",
+      "metadata_only": true,
+      "sha256": "643b7844c083198acd7b9d34d44c609a27942418631f293295248123a95df557",
+      "path": "data/snapshots/643b7844c083198acd7b9d34d44c609a27942418631f293295248123a95df557.json",
+      "acquired_at": "2026-11-05T15:48:32.406758+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "discovery_execution_b7cd250a9c94a18f",
+      "kind": "discovery_receipt",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/22",
+      "metadata_only": true,
+      "sha256": "b7cd250a9c94a18fd15a8e58b53cbf6e8e9b0c3aa0108e9ca3cea7cac6ad2302",
+      "path": "data/snapshots/b7cd250a9c94a18fd15a8e58b53cbf6e8e9b0c3aa0108e9ca3cea7cac6ad2302.json",
+      "acquired_at": "2026-11-05T15:48:32.837060+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "discovery_execution_d2470edc47c81aea",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=144387",
+      "kind": "discovery_receipt",
+      "metadata_only": true,
+      "sha256": "d2470edc47c81aea491047144d1a03f2f2e363fb32a28dc27f6b9efb2e9f7d64",
+      "path": "data/snapshots/d2470edc47c81aea491047144d1a03f2f2e363fb32a28dc27f6b9efb2e9f7d64.json",
+      "acquired_at": "2026-11-05T15:48:48.989424+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "discovery_execution_aab13f6e1dad58ff",
+      "kind": "discovery_receipt",
+      "url": "local:bounded-discovery-execution",
+      "sha256": "aab13f6e1dad58ff06c0cadcc091f71039237e90844a6e726062d5a590f349e7",
+      "path": "data/snapshots/aab13f6e1dad58ff06c0cadcc091f71039237e90844a6e726062d5a590f349e7.json",
+      "acquired_at": "2026-11-05T15:48:54.631108+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "discovery_execution_61655e8398ab52b6",
+      "kind": "discovery_receipt",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/22",
+      "metadata_only": true,
+      "sha256": "61655e8398ab52b6c71a515403598701a7831db116b1269195abce204cddc4d5",
+      "path": "data/snapshots/61655e8398ab52b6c71a515403598701a7831db116b1269195abce204cddc4d5.json",
+      "acquired_at": "2026-11-05T15:55:28.493142+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "discovery_execution_310591d3736f42ef",
+      "kind": "discovery_receipt",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/22",
+      "metadata_only": true,
+      "sha256": "310591d3736f42efa19a1c4cc23afbf386c5bfb33b4164d3518bf586a12f8196",
+      "path": "data/snapshots/310591d3736f42efa19a1c4cc23afbf386c5bfb33b4164d3518bf586a12f8196.json",
+      "acquired_at": "2026-11-05T15:55:30.044973+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "discovery_execution_b31ad91b18835a6e",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=145591",
+      "kind": "discovery_receipt",
+      "metadata_only": true,
+      "publication_transform": "SIGNED_DOWNLOAD_URLS_OMITTED_V1",
+      "sha256": "b31ad91b18835a6e31d1105ea5b4bafbefa163d9c33b7d1dffd5949821e8d038",
+      "path": "data/snapshots/b31ad91b18835a6e31d1105ea5b4bafbefa163d9c33b7d1dffd5949821e8d038.json",
+      "acquired_at": "2026-11-05T15:55:40.347700+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "wamex_A145591_749066",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=145591",
+      "kind": "pdf",
+      "report_native_id": "WAMEX:A145591",
+      "resource_native_id": "749066",
+      "original_filename": "a145591_v3_report_KG_OCR.pdf",
+      "source_document_version": "ee46bfaee2aaa61392431544ad29d5fbae05eb9d20f433bd5ad6c73b82ba7a70",
+      "metadata_sha256": [
+        "b31ad91b18835a6e31d1105ea5b4bafbefa163d9c33b7d1dffd5949821e8d038"
+      ],
+      "publication_date": "2025-05-05",
+      "date_role": "OPEN_FILE_RELEASE_NOT_RESOURCE_EFFECTIVE_DATE",
+      "authority": "OFFICIAL_WAMEX_REPORT",
+      "sha256": "74844581ae1cbf8d7294764735746e7a782097445170985869f46f08fbbb0452",
+      "path": "data/snapshots/74844581ae1cbf8d7294764735746e7a782097445170985869f46f08fbbb0452.pdf",
+      "acquired_at": "2026-11-05T15:55:45.514404+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "discovery_execution_228ac22cb5863ac8",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=134625",
+      "kind": "discovery_receipt",
+      "metadata_only": true,
+      "publication_transform": "SIGNED_DOWNLOAD_URLS_OMITTED_V1",
+      "sha256": "228ac22cb5863ac861bfc1aa35e0c2c48c346379330e21410834166fc945366d",
+      "path": "data/snapshots/228ac22cb5863ac861bfc1aa35e0c2c48c346379330e21410834166fc945366d.json",
+      "acquired_at": "2026-11-05T15:55:46.152761+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "wamex_A134625_706058",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=134625",
+      "kind": "pdf",
+      "report_native_id": "WAMEX:A134625",
+      "resource_native_id": "706058",
+      "original_filename": "a134625_v1_report_KG_OCR.pdf",
+      "source_document_version": "a3fcfbf4432f72bafa1fa5e5e6fe7848e65d74664a70e507baa615a6bd32cc63",
+      "metadata_sha256": [
+        "228ac22cb5863ac861bfc1aa35e0c2c48c346379330e21410834166fc945366d"
+      ],
+      "publication_date": "2025-01-15",
+      "date_role": "OPEN_FILE_RELEASE_NOT_RESOURCE_EFFECTIVE_DATE",
+      "authority": "OFFICIAL_WAMEX_REPORT",
+      "sha256": "94fa3129e398a2cdba2c480a582aefe53be7280899a5c36f64fc2ac2b54b33b5",
+      "path": "data/snapshots/94fa3129e398a2cdba2c480a582aefe53be7280899a5c36f64fc2ac2b54b33b5.pdf",
+      "acquired_at": "2026-11-05T15:56:20.244406+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "discovery_execution_5cef9cdd035c1fe9",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=135132",
+      "kind": "discovery_receipt",
+      "metadata_only": true,
+      "publication_transform": "SIGNED_DOWNLOAD_URLS_OMITTED_V1",
+      "sha256": "5cef9cdd035c1fe913031f9c0dae1208d80777c86f8a5a6e699efd710ba6b7b6",
+      "path": "data/snapshots/5cef9cdd035c1fe913031f9c0dae1208d80777c86f8a5a6e699efd710ba6b7b6.json",
+      "acquired_at": "2026-11-05T15:56:21.485487+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "discovery_execution_209c2368f5387e6e",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=137050",
+      "kind": "discovery_receipt",
+      "metadata_only": true,
+      "publication_transform": "SIGNED_DOWNLOAD_URLS_OMITTED_V1",
+      "sha256": "209c2368f5387e6ef68aa5755eeacc555c61bdaa3a9361ceea75fd25be3a22f8",
+      "path": "data/snapshots/209c2368f5387e6ef68aa5755eeacc555c61bdaa3a9361ceea75fd25be3a22f8.json",
+      "acquired_at": "2026-11-05T15:56:22.639414+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "discovery_execution_fe17402d99828c0d",
+      "kind": "discovery_receipt",
+      "url": "local:bounded-discovery-execution",
+      "sha256": "fe17402d99828c0d77e577478d73c08c8985ea4bc946066ca1013c6c6ceefa31",
+      "path": "data/snapshots/fe17402d99828c0d77e577478d73c08c8985ea4bc946066ca1013c6c6ceefa31.json",
+      "acquired_at": "2026-11-05T15:56:26.633088+00:00",
+      "available_date": "2026-11-05"
+    },
+    {
+      "key": "recognized_94fa3129e398a2cdba2c480a582aefe53be7280899a5c36f64fc2ac2b54b33b5",
+      "kind": "document_extraction",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=134625",
+      "source_sha256": "94fa3129e398a2cdba2c480a582aefe53be7280899a5c36f64fc2ac2b54b33b5",
+      "sha256": "b290466fb24006c9f4a8633fed87b05015385ae5509a12cea68b6249dd51472c",
+      "path": "data/snapshots/b290466fb24006c9f4a8633fed87b05015385ae5509a12cea68b6249dd51472c.json",
+      "acquired_at": "2026-11-05T15:56:32.270714+00:00",
+      "available_date": "2026-11-05",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-01-15"
+    },
+    {
+      "key": "recognized_74844581ae1cbf8d7294764735746e7a782097445170985869f46f08fbbb0452",
+      "kind": "document_extraction",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=145591",
+      "source_sha256": "74844581ae1cbf8d7294764735746e7a782097445170985869f46f08fbbb0452",
+      "sha256": "c0fbe7d75347b5e3664b2899973bf7d3db464d418040f37e1866fbae464dabef",
+      "path": "data/snapshots/c0fbe7d75347b5e3664b2899973bf7d3db464d418040f37e1866fbae464dabef.json",
+      "acquired_at": "2026-11-05T15:56:32.890801+00:00",
+      "available_date": "2026-11-05",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-05-05"
+    },
+    {
+      "key": "recognized_9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+      "kind": "document_extraction",
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02903635-6A1247151",
+      "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+      "sha256": "e63ddbd4c9db162826242b8c108922bf558f1b4ec2d6bb401c876bd85ef1f7d5",
+      "path": "data/snapshots/e63ddbd4c9db162826242b8c108922bf558f1b4ec2d6bb401c876bd85ef1f7d5.json",
+      "acquired_at": "2026-11-05T15:57:00.577666+00:00",
+      "available_date": "2026-11-05",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-01-16"
+    },
+    {
+      "key": "recognized_4aeb63ac0341402bfc14f7b8021533a293790088865324cdc4e513f8f1554ee9",
+      "kind": "document_extraction",
+      "url": "https://investornews.com/wp-content/uploads/2025/06/ASM-6-17-25.pdf",
+      "source_sha256": "4aeb63ac0341402bfc14f7b8021533a293790088865324cdc4e513f8f1554ee9",
+      "sha256": "6356717ea4e34daea066812bad1ea952cac7293af94a65830d00302630e57ace",
+      "path": "data/snapshots/6356717ea4e34daea066812bad1ea952cac7293af94a65830d00302630e57ace.json",
+      "acquired_at": "2026-11-05T15:57:05.314936+00:00",
+      "available_date": "2026-11-05",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-06-17"
+    },
+    {
+      "key": "recognized_79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+      "kind": "document_extraction",
+      "url": "https://www.devexresources.com.au/wp-content/uploads/2024/07/61214441.pdf",
+      "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+      "sha256": "e6cc1fc36cb8eee3e5219723f23b0579fd5657d38feec9daa8db4c1186f7bc8c",
+      "path": "data/snapshots/e6cc1fc36cb8eee3e5219723f23b0579fd5657d38feec9daa8db4c1186f7bc8c.json",
+      "acquired_at": "2026-11-05T15:57:14.477112+00:00",
+      "available_date": "2026-11-05",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2024-07-04"
+    },
+    {
+      "key": "browns_wolverine_mre20250116_page_5",
+      "kind": "pdf_page_extraction",
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02903635-6A1247151",
+      "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+      "physical_page": 5,
+      "sha256": "87cc1a1d70b46d36298cb8fd296bd4bf78982da2e53834df44eed71af7d154eb",
+      "path": "data/snapshots/87cc1a1d70b46d36298cb8fd296bd4bf78982da2e53834df44eed71af7d154eb.json",
+      "acquired_at": "2026-11-05T15:59:41.209499+00:00",
+      "available_date": "2026-11-05",
+      "publication_date": "2025-01-16"
+    },
+    {
+      "key": "browns_wolverine_mre20250116_page_6",
+      "kind": "pdf_page_extraction",
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02903635-6A1247151",
+      "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+      "physical_page": 6,
+      "sha256": "6555991720303977939b580dede15262701330b2b7650de3e5307f1b74a265e7",
+      "path": "data/snapshots/6555991720303977939b580dede15262701330b2b7650de3e5307f1b74a265e7.json",
+      "acquired_at": "2026-11-05T15:59:41.282855+00:00",
+      "available_date": "2026-11-05",
+      "publication_date": "2025-01-16"
+    },
+    {
+      "key": "recognized_79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+      "kind": "document_extraction",
+      "url": "https://www.devexresources.com.au/wp-content/uploads/2024/07/61214441.pdf",
+      "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+      "sha256": "b518ae51fd4f50ea2a10bbffa2e5aa7df0d1b7faf654eaff69f2ff4bc94d0194",
+      "path": "data/snapshots/b518ae51fd4f50ea2a10bbffa2e5aa7df0d1b7faf654eaff69f2ff4bc94d0194.json",
+      "acquired_at": "2026-11-05T16:15:18.943874+00:00",
+      "available_date": "2026-11-05",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2024-07-04"
+    },
+    {
+      "key": "recognized_94fa3129e398a2cdba2c480a582aefe53be7280899a5c36f64fc2ac2b54b33b5",
+      "kind": "document_extraction",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=134625",
+      "source_sha256": "94fa3129e398a2cdba2c480a582aefe53be7280899a5c36f64fc2ac2b54b33b5",
+      "sha256": "e440c75caeeeb63f8117e8261589f41037b1609a4d795348bffdc07a711f7253",
+      "path": "data/snapshots/e440c75caeeeb63f8117e8261589f41037b1609a4d795348bffdc07a711f7253.json",
+      "acquired_at": "2026-11-05T16:15:19.200098+00:00",
+      "available_date": "2026-11-05",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-01-15"
+    },
+    {
+      "key": "recognized_74844581ae1cbf8d7294764735746e7a782097445170985869f46f08fbbb0452",
+      "kind": "document_extraction",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=145591",
+      "source_sha256": "74844581ae1cbf8d7294764735746e7a782097445170985869f46f08fbbb0452",
+      "sha256": "ab403b90eee9dadaf0a8aefa80c8242eca73f5e947b4847e6212295c31087dee",
+      "path": "data/snapshots/ab403b90eee9dadaf0a8aefa80c8242eca73f5e947b4847e6212295c31087dee.json",
+      "acquired_at": "2026-11-05T16:15:19.912769+00:00",
+      "available_date": "2026-11-05",
+      "parser_version": "document-recognition-v6-context-bound",
+      "publication_date": "2025-05-05"
     }
   ]
 }

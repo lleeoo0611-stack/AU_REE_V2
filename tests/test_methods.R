@@ -92,3 +92,12 @@ run_fixture('evidence-cohort-v1')
 stopifnot(!file.exists(file.path(target_folder,'evidence_cohort_sensitivity.csv')))
 on.exit_cleanup()
 cat('Evidence cohort and mathematical contribution invariants passed\n')
+
+# Excluded technical criteria remain zero in weight uncertainty, not tiny random weights.
+z<-keyed_inputs(c('a','b'),c('I4','TPR','TPG'),c(1,0,0),25,'entity-keyed-rng-v2',42,'zero',30)
+stopifnot(all(z$weights[1,]==1),all(z$weights[2:3,]==0))
+cat('Zero-weight exclusion invariant passed\n')
+
+bw<-budget_weights(c(.9,.02,.08),c('Reference','Technical','Technical'),c(.6,.4,.4))
+stopifnot(abs(bw[1]-.6)<1e-12,abs(sum(bw[2:3])-.4)<1e-12)
+cat('Technical group budget invariant passed\n')

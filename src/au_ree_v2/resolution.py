@@ -53,7 +53,7 @@ def document_relations(db, root, snapshots, cutoff):
                                       rule='EXPLICIT_LOCATED_ON_ITS_PROJECT_V1',status='CONFIRMED_HIERARCHY_NOT_CANONICAL_MERGE'))
     return decisions
 
-def resolve(db,root,snapshots,cutoff=None,rule_version=None):
+def resolve(db,root,snapshots,cutoff=None,rule_version=None,current=None):
     selected={s['sha256'] for s in snapshots};by_key={s['key']:s for s in snapshots}
     path=Path(root)/'data/identity_links.json'
     cutoff=cutoff or max((s['available_date'] for s in snapshots),default='0001-01-01')
@@ -161,7 +161,14 @@ def resolve(db,root,snapshots,cutoff=None,rule_version=None):
             if not all(x in text for x in relation['page_markers']):raise ValueError('RELATION_PRIMARY_PAGE_MARKER_MISMATCH')
             nodes=[db.execute('SELECT * FROM entities WHERE native_namespace=? AND native_id=?',tuple(relation[k])).fetchone() for k in ('left','right')]
             contracts={'CONTAINS_DOCUMENTED_REE_SCOPE_NOT_IDENTITY_EQUIVALENCE':('PROJECT','PROJECT'),
+                       'CONTAINS_ISSUER_DOCUMENTED_DEPOSIT_NOT_RESOURCE_SUM':('PROJECT','DEPOSIT'),
                        'CONTAINS_ISSUER_DOCUMENTED_PROSPECT_NOT_RESOURCE_SUM':('PROJECT','PROSPECT')}
+            if relation['relation']=='HAS_SOURCE_DOCUMENTED_NATIVE_ENTITY_NOT_IDENTITY_EQUIVALENCE':
+                contracts[relation['relation']]=('PROJECT',nodes[1]['kind'] if nodes[1] else None)
+            if relation['relation']=='SOURCE_CONTEXT_CANDIDATE_NOT_VERIFIED_ENTITY_RELATION':
+                # Work provenance is retained in the immutable claims input;
+                # an unresolved native crosswalk is never a confirmed hierarchy.
+                continue
             kinds=contracts.get(relation['relation'])
             if not kinds:raise ValueError('UNSUPPORTED_TYPED_RELATION')
             if any(n is None or n['kind']!=kind for n,kind in zip(nodes,kinds)):raise ValueError('RELATION_ENTITY_KIND_OR_NATIVE_ID_MISMATCH')
@@ -183,32 +190,39 @@ def resolve(db,root,snapshots,cutoff=None,rule_version=None):
     for a in accepted:
         if a['alias_id'] not in mapping:continue
         link(db,a['canonical_id'],a['alias_id'],'DOCUMENT_SUPPORTED_SAME_'+a['kind'],a['source_sha256'],a['locator']);valid.append(a)
-    membership=[]
+    membership=[];member_ids=set()
     for r in db.execute('SELECT e.*,r.source_sha FROM entities e JOIN records r USING(entity_id) ORDER BY e.entity_id'):
-        if r['source_sha'] not in selected or any(x['entity_id']==r['entity_id'] for x in membership):continue
+        if r['source_sha'] not in selected or r['entity_id'] in member_ids:continue
+        if current is not None and r['entity_id'] in current['historical_scope_ids']:continue
+        if current is not None and (r['entity_id'],r['source_sha']) not in current['record_ids']:continue
         target=r['entity_id'];seen=set()
         while target in mapping and target not in seen:seen.add(target);target=mapping[target]
         membership.append(dict(entity_id=r['entity_id'],kind=r['kind'],canonical_id=target,status='DOCUMENT_SUPPORTED_ALIAS' if seen else 'RETAINED_SOURCE_ID_NOT_ASSUMED_UNIQUE_PHYSICAL_ENTITY'))
+        member_ids.add(r['entity_id'])
     # A complete candidate ledger: proximity/name is a review lead, never automatic equivalence.
-    deposits=[]
+    deposits=[];deposit_ids=set()
     for r in db.execute("SELECT e.entity_id,e.native_namespace,r.* FROM entities e JOIN records r USING(entity_id) WHERE e.kind='DEPOSIT' ORDER BY e.entity_id,r.source_sha"):
-        if r['source_sha'] in selected and not any(x['entity_id']==r['entity_id'] for x in deposits):deposits.append(dict(r))
+        if r['source_sha'] in selected and r['entity_id'] not in deposit_ids:
+            deposits.append(dict(r));deposit_ids.add(r['entity_id'])
     pairs=[]
+    buckets={};canonical_ids={x['entity_id']:x['canonical_id'] for x in membership}
+    for r in deposits:buckets.setdefault((r['state'],normalized(r['name'])),[]).append(r)
     for i,a in enumerate(deposits):
-        for b in deposits[i+1:]:
+        for b in buckets[a['state'],normalized(a['name'])]:
+            if b['entity_id']<=a['entity_id']:continue
             if a['native_namespace']==b['native_namespace'] or a['state']!=b['state'] or normalized(a['name'])!=normalized(b['name']):continue
             dist=None if any(r[k] is None for r in (a,b) for k in ('longitude','latitude')) else GEO.inv(a['longitude'],a['latitude'],b['longitude'],b['latitude'])[2]
-            ca=next(x['canonical_id'] for x in membership if x['entity_id']==a['entity_id']);cb=next(x['canonical_id'] for x in membership if x['entity_id']==b['entity_id'])
+            ca=canonical_ids[a['entity_id']];cb=canonical_ids[b['entity_id']]
             pairs.append(dict(a=a['entity_id'],b=b['entity_id'],name=a['name'],state=a['state'],distance_m=dist,status='DOCUMENT_SUPPORTED_EQUIVALENCE' if ca==cb else 'LOCATION_CONFLICT_REVIEW' if dist is not None and dist>500 else 'TECHNICAL_IDENTITY_REVIEW_REQUIRED',source_a=a['source_sha'],source_b=b['source_sha']))
     return dict(ledger=ledger,accepted=valid,membership=membership,candidates=pairs,mapping={x['entity_id']:x['canonical_id'] for x in membership})
 
-def technical_coverage(db,resolution,resources,cases,snapshot_shas):
+def technical_coverage(db,resolution,resources,cases,snapshot_shas,current=None):
     from .selection import observation_visible
     def active_raw(sql,eid):
         rows=[]
         for record in db.execute(sql,(eid,)):
             r=dict(record);raw=json.loads(r.pop('raw'))
-            if r['source_sha'] in snapshot_shas and observation_visible(raw,snapshot_shas):rows.append(r)
+            if r['source_sha'] in snapshot_shas and observation_visible(raw,snapshot_shas) and (current is None or r['obs_id'] in current['observation_ids']):rows.append(r)
         return rows
     groups={}
     for row in resolution['membership']:
@@ -217,16 +231,18 @@ def technical_coverage(db,resolution,resources,cases,snapshot_shas):
     for cid,members in sorted(groups.items()):
         scopes=[dict(source_entity_id=eid,scope=r['scope'],date=r['date'],source_sha256=r['source_sha']) for eid,r in resources.items() if eid in members]
         studies=[c['case_id'] for c in cases if c['project_id'] in members]
-        stages=[dict(r) for eid in members for r in db.execute("SELECT obs_id,source_sha,locator FROM observations WHERE entity_id=? AND variable='study_maturity_ord' AND status='AUTO_VALIDATED'",(eid,)) if r['source_sha'] in snapshot_shas]
+        stages=[dict(r) for eid in members for r in db.execute("SELECT obs_id,source_sha,locator FROM observations WHERE entity_id=? AND variable='study_maturity_ord' AND status='AUTO_VALIDATED'",(eid,)) if r['source_sha'] in snapshot_shas and (current is None or r['obs_id'] in current['observation_ids'])]
         shared=[dict(r) for eid in members for r in db.execute("SELECT child_id,source_sha,locator FROM relations WHERE parent_id=? AND relation='CONTAINS_DOCUMENTED_REE_SCOPE_NOT_IDENTITY_EQUIVALENCE'",(eid,)) if r['source_sha'] in snapshot_shas]
         status=('PRIMARY_RESOURCE_AND_STUDY_EVIDENCE' if scopes and (studies or stages) else 'PRIMARY_RESOURCE_SCOPE_ONLY' if scopes else 'PRIMARY_STUDY_CASE_ONLY' if studies else 'PRIMARY_SHARED_RESOURCE_CONTEXT_ONLY_NO_ADDITIVE_RESOURCE' if shared else 'NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET')
         scoped_obs={obs for eid,r in resources.items() if eid in members for obs in r['obs_ids']}
-        other=[dict(r) for eid in members for r in db.execute("SELECT obs_id,variable,value,basis,scope,effective_date,source_sha,status FROM observations WHERE entity_id=? AND variable IN ('ore_mt','grade','contained_treo_kt')",(eid,)) if r['source_sha'] in snapshot_shas and r['obs_id'] not in scoped_obs]
+        other=[dict(r) for eid in members for r in db.execute("SELECT obs_id,variable,value,basis,scope,effective_date,source_sha,status FROM observations WHERE entity_id=? AND variable IN ('ore_mt','grade','contained_treo_kt')",(eid,)) if r['source_sha'] in snapshot_shas and r['obs_id'] not in scoped_obs and (current is None or r['obs_id'] in current['observation_ids'])]
         primary_raw=[r for eid in members for r in active_raw("SELECT o.obs_id,o.variable,o.value,o.basis,o.scope,o.effective_date,o.source_sha,o.status,o.raw FROM observations o JOIN sources s ON o.source_sha=s.sha WHERE o.entity_id=? AND o.status='AUTO_VALIDATED' AND s.kind='pdf' AND (o.variable LIKE 'reported_fine_fraction_%' OR o.variable LIKE 'reported_resource_%' OR o.variable='reported_bulk_ore_mt')",eid)]
         if status=='NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET' and primary_raw:status='PRIMARY_RESOURCE_BASIS_OR_FRACTION_NOT_COMPARABLE'
         raw_process=[r for eid in members for r in active_raw("SELECT o.obs_id,o.variable,o.value,o.basis,o.scope,o.effective_date,o.source_sha,o.status,o.raw FROM observations o JOIN sources s ON o.source_sha=s.sha WHERE o.entity_id=? AND o.status='AUTO_VALIDATED' AND s.kind IN ('pdf','html','discovery_html') AND o.variable LIKE 'reported_technical_%'",eid)]
         if status=='NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET' and raw_process:status='PRIMARY_PROCESS_EVIDENCE_ONLY_NOT_COMPARABLE_RESOURCE'
         other.extend(primary_raw)
         other.extend(raw_process)
+        if current is not None:
+            scopes.sort(key=canonical);studies.sort();stages.sort(key=canonical);shared.sort(key=canonical);other.sort(key=canonical)
         output.append(dict(canonical_project_id=cid,member_entity_ids=canonical(sorted(members)),status=status,resource_scopes=canonical(scopes),study_case_ids=canonical(studies),other_stage_evidence=canonical(stages),shared_resource_context=canonical(shared),unverified_or_other_scope_claims=canonical(other),interpretation='SOURCE_DEFINED_SCOPES_NOT_LATEST_PROJECT_TOTAL_CERTIFICATION'))
     return output

@@ -26,6 +26,7 @@ class CoreTests(unittest.TestCase):
     def setUp(self):
         self.work=ROOT/'work/tests'/uuid.uuid4().hex
         self.work.mkdir(parents=True)
+        self.addCleanup(shutil.rmtree,self.work)
 
     def copy_data(self):
         # November2 fixtures do not need hundreds of MB of later government captures.
@@ -38,9 +39,15 @@ class CoreTests(unittest.TestCase):
         def ignore(folder,names):
             return [n for n in names if n not in allowed] if Path(folder)==ROOT/'data/snapshots' else []
         shutil.copytree(ROOT/'data',self.work/'data',ignore=ignore)
+        (self.work/'data/claims.json').write_text(json.dumps(self.frozen_claims()),encoding='utf8')
 
     def db(self):
         db=connect(self.work/'test.sqlite');self.addCleanup(db.close);return db
+
+    def frozen_claims(self):
+        from au_ree_v2.evidence import load_claims
+        conf=json.loads((ROOT/'results/phase21-2026-11-05/configuration.json').read_text())
+        return load_claims(ROOT,conf['claims_sha256'])[0]
 
     def claim(self):
         return json.loads((ROOT/'data/claims.json').read_text(encoding='utf-8'))['projects'][0]['observations'][0]
@@ -85,9 +92,9 @@ class CoreTests(unittest.TestCase):
 
     def test_incremental_replay_and_resource_rounding(self):
         db=self.db();snapshots=select_snapshots(ROOT,CUTOFF)
-        ingest_sources(db,ROOT,snapshots);ingest_claims(db,ROOT,snapshots,CUTOFF)
+        ingest_sources(db,ROOT,snapshots);ingest_claims(db,ROOT,snapshots,CUTOFF,claims_data=self.frozen_claims())
         before=digest(logical_dump(db))
-        ingest_sources(db,ROOT,snapshots);ingest_claims(db,ROOT,snapshots,CUTOFF)
+        ingest_sources(db,ROOT,snapshots);ingest_claims(db,ROOT,snapshots,CUTOFF,claims_data=self.frozen_claims())
         self.assertEqual(before,digest(logical_dump(db)))
         values=resource_values(db,CUTOFF,{s['sha256'] for s in snapshots})
         self.assertEqual(2,len(values))
@@ -98,11 +105,11 @@ class CoreTests(unittest.TestCase):
 
     def test_conflict_does_not_block_other_project(self):
         db=self.db();snapshots=select_snapshots(ROOT,CUTOFF)
-        ingest_sources(db,ROOT,snapshots);ingest_claims(db,ROOT,snapshots,CUTOFF)
+        ingest_sources(db,ROOT,snapshots);ingest_claims(db,ROOT,snapshots,CUTOFF,claims_data=self.frozen_claims())
         row=dict(db.execute("SELECT * FROM observations WHERE variable='ore_mt' AND status='AUTO_VALIDATED' LIMIT 1").fetchone())
         original=row['entity_id'];row['obs_id']='conflict';row['value']+=2
         db.execute('INSERT INTO observations VALUES('+','.join('?'*16)+')',tuple(row.values()))
-        ingest_claims(db,ROOT,snapshots,CUTOFF)
+        ingest_claims(db,ROOT,snapshots,CUTOFF,claims_data=self.frozen_claims())
         result=resource_values(db,CUTOFF,{s['sha256'] for s in snapshots})
         self.assertEqual(1,len(result));self.assertNotIn(original,result)
         self.assertGreater(db.execute('SELECT COUNT(*) FROM review_queue').fetchone()[0],0)
@@ -134,8 +141,8 @@ class CoreTests(unittest.TestCase):
         def read(path):
             if 'mt_weld' in str(path):raise OSError('one unavailable document')
             return PdfReader(path)
-        with patch('pypdf.PdfReader',side_effect=read):
-            ingest_claims(db,ROOT,snapshots,CUTOFF)
+        with patch.dict(os.environ,{'AU_REE_NATIVE_CACHE':str(self.work/'cold-native-pages')}),patch('pypdf.PdfReader',side_effect=read):
+            ingest_claims(db,ROOT,snapshots,CUTOFF,claims_data=self.frozen_claims())
         result=resource_values(db,CUTOFF,{s['sha256'] for s in snapshots})
         self.assertEqual(1,len(result))
         self.assertGreater(db.execute("SELECT COUNT(*) FROM review_queue WHERE reason='EXTRACTION_READ_FAILED'").fetchone()[0],0)
@@ -163,8 +170,8 @@ class CoreTests(unittest.TestCase):
     def test_project_aois_use_official_anchors_and_are_conservative(self):
         manifest=json.loads((ROOT/'data/manifest.json').read_text(encoding='utf-8'))
         windows=project_windows(ROOT,manifest,160)
-        self.assertEqual(['2298466','browns-range','circle-valley','cowalinya','cummins-range','dubbo-project','goschen','jupiter','lyons','mangaroon','mons','mount-ridley-mia','mt-clere','mt-weld','narraburra','nolans-rare-earths-project','north-stanmore','redlings','salazar','splinter-rock','yttria'],[w['project_id'] for w in windows])
-        self.assertEqual(21,len(windows))
+        self.assertEqual(['2298466','browns-range','circle-valley','cowalinya','cummins-range','dubbo-project','goschen','jupiter','lyons','mangaroon','mons','mount-ridley-mia','mt-clere','mt-weld','narraburra','nolans-rare-earths-project','north-stanmore','redlings','salazar','splinter-rock','yangibana','yttria'],[w['project_id'] for w in windows])
+        self.assertEqual(22,len(windows))
         for window in windows:
             self.assertEqual(160,window['radius_km'])
             lon,lat=window['longitude'],window['latitude']
@@ -196,7 +203,7 @@ class CoreTests(unittest.TestCase):
 
     def test_gis_refuses_uncovered_project_and_reused_future_coordinate(self):
         db=self.db();snapshots=select_snapshots(ROOT,CUTOFF)
-        ingest_sources(db,ROOT,snapshots);ingest_claims(db,ROOT,snapshots,CUTOFF)
+        ingest_sources(db,ROOT,snapshots);ingest_claims(db,ROOT,snapshots,CUTOFF,claims_data=self.frozen_claims())
         resources=resource_values(db,CUTOFF,{s['sha256'] for s in snapshots})
         names={r['native_id']:r['entity_id'] for r in db.execute(
             "SELECT native_id,entity_id FROM entities WHERE kind='PROJECT'")}
@@ -261,9 +268,12 @@ class CoreTests(unittest.TestCase):
         rscript=os.environ.get('RSCRIPT') or shutil.which('Rscript')
         windows=Path('C:/Program Files/R/R-4.5.2/bin/Rscript.exe')
         if not rscript and windows.exists():rscript=str(windows)
+        frozen=self.work/'frozen-input';frozen.mkdir()
+        (frozen/'snapshot_lock.json').write_text(json.dumps(select_snapshots(ROOT,CUTOFF)))
+        shutil.copy2(ROOT/'results/phase21-2026-11-05/configuration.json',frozen/'configuration.json')
         outputs=[]
         for name in ('a','b'):
-            command=[sys.executable,'-m','au_ree_v2','all','--root',str(ROOT),'--work',str(self.work/name),'--as-of',CUTOFF]
+            command=[sys.executable,'-m','au_ree_v2','all','--root',str(ROOT),'--work',str(self.work/name),'--as-of',CUTOFF,'--snapshot-lock',str(frozen/'snapshot_lock.json')]
             command+=['--rscript',rscript] if rscript else ['--skip-r']
             result=subprocess.run(command,env=env,capture_output=True,text=True)
             self.assertEqual(0,result.returncode,result.stderr)
@@ -275,7 +285,10 @@ class CoreTests(unittest.TestCase):
         self.assertEqual(20,outputs[0]['official_government_ree_resource_rows'])
         if rscript:
             self.assertEqual('COMPLETED',outputs[0]['r_results']['resource_infrastructure_pilot']['status'])
+            execution=set(outputs[0].get('execution_artifacts',[]))
+            self.assertEqual(execution,set(outputs[1].get('execution_artifacts',[])))
             for key,value in outputs[0]['output_hashes'].items():
+                if key in execution:continue  # Actual execution/reuse differs, scientific CSVs must not.
                 self.assertEqual(value,outputs[1]['output_hashes'][key],key)
 
 if __name__=='__main__':unittest.main()

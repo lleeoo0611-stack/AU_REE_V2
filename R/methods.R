@@ -55,9 +55,19 @@ keyed_inputs <- function(ids,codes,w,reps,version,seed,scenario,concentration) {
   U<-array(NA_real_,c(length(ids),length(codes),reps))
   G<-matrix(NA_real_,length(codes),reps)
   for(j in seq_along(codes)) {
-    G[j,]<-qgamma(keyed_uniform(reps,version,seed,scenario,'WEIGHTS','',codes[j]),
+    G[j,]<-if(w[j]==0)rep(0,reps) else qgamma(keyed_uniform(reps,version,seed,scenario,'WEIGHTS','',codes[j]),
                  shape=pmax(w[j]*concentration,1e-9))
     for(i in seq_along(ids))U[i,j,]<-keyed_uniform(reps,version,seed,scenario,'SOURCE_ROUNDING',ids[i],codes[j])
   }
   list(rounding=U,weights=sweep(G,2,colSums(G),'/'))
+}
+
+
+budget_weights <- function(wt,groups,totals) {
+  stopifnot(length(wt)==length(groups),length(wt)==length(totals))
+  for(g in unique(groups)) {
+    idx<-which(groups==g);target<-unique(totals[idx]);stopifnot(length(target)==1,target>=0)
+    if(target==0)wt[idx]<-0 else {stopifnot(sum(wt[idx])>0);wt[idx]<-wt[idx]/sum(wt[idx])*target}
+  }
+  stopifnot(abs(sum(wt)-1)<1e-12);wt
 }

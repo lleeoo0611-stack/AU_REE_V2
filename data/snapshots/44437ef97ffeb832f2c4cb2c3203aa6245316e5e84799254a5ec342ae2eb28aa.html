@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="profile" href="http://gmpg.org/xfn/11" />
+        <link rel="pingback" href="https://datadirector.weblink.com.au/xmlrpc.php" />
+        <title>WebLink Data API  ASX Data Feed &#8211; Data Director Knowledge Base</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Data Director Knowledge Base &raquo; Feed" href="https://datadirector.weblink.com.au/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Data Director Knowledge Base &raquo; Comments Feed" href="https://datadirector.weblink.com.au/comments/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/datadirector.weblink.com.au\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.9"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://datadirector.weblink.com.au/wp-includes/css/dist/block-library/style.min.css?ver=5.8.9' type='text/css' media='all' />
+<link rel='stylesheet' id='bbp-default-css'  href='https://datadirector.weblink.com.au/wp-content/plugins/bbpress/templates/default/css/bbpress.min.css?ver=2.6.7' type='text/css' media='screen' />
+<link rel='stylesheet' id='hm_bbpui-css'  href='https://datadirector.weblink.com.au/wp-content/plugins/image-upload-for-bbpress/css/bbp-image-upload.css?ver=5.8.9' type='text/css' media='all' />
+<link rel='stylesheet' id='extendify-sdk-utility-classes-css'  href='https://datadirector.weblink.com.au/wp-content/plugins/ml-slider/extendify-sdk/public/build/extendify-utilities.css?ver=11.7' type='text/css' media='all' />
+<link rel='stylesheet' id='ht-theme-style-css'  href='https://datadirector.weblink.com.au/wp-content/themes/helpguru/helpguru/css/style.css?ver=5.8.9' type='text/css' media='all' />
+<style id='ht-theme-style-inline-css' type='text/css'>
+a, a:visited, .bbp-author-name { color: #32a3cb; } a:hover { color: #32a3cb; } #site-header { background: #336666; } @media screen and (max-width: 768px) { #nav-primary-menu { background: #336666; } } #site-header, #site-header a, #site-header a:visited, #site-header a:hover { color:#ffffff; } #page-header { background: #80bfbf; } #page-header, #page-header a, #page-header a:visited, #page-header a:hover, #page-header #page-header-title { color:#ffffff; } #page-header #page-header-tagline { color:rgba(255,255,255,0.9); } #ht-site-container.ht-layout-boxed { max-width: 1200px; box-shadow: 0 0 55px rgba(0,0,0,0.15); } #homepage-features .hf-block i { color: #336666; } #homepage-features .hf-block:hover{ background:#336666!important; }
+</style>
+<link rel='stylesheet' id='ht-kb-css'  href='https://datadirector.weblink.com.au/wp-content/themes/helpguru/helpguru/css/ht-kb.css?ver=5.8.9' type='text/css' media='all' />
+<link rel='stylesheet' id='ht-google-font-css'  href='//fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700|Nunito:400' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='https://datadirector.weblink.com.au/wp-content/plugins/elementor/assets/lib/font-awesome/css/font-awesome.min.css?ver=4.7.0' type='text/css' media='all' />
+<link rel='stylesheet' id='msl-main-css'  href='https://datadirector.weblink.com.au/wp-content/plugins/master-slider/public/assets/css/masterslider.main.css?ver=3.7.10' type='text/css' media='all' />
+<link rel='stylesheet' id='msl-custom-css'  href='https://datadirector.weblink.com.au/wp-content/uploads/master-slider/custom.css?ver=2.6' type='text/css' media='all' />
+<script type='text/javascript' src='https://datadirector.weblink.com.au/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://datadirector.weblink.com.au/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://datadirector.weblink.com.au/wp-content/plugins/image-upload-for-bbpress/js/bbp-image-upload.js?ver=1.1.17' id='hm_bbpui-js'></script>
+<link rel="https://api.w.org/" href="https://datadirector.weblink.com.au/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://datadirector.weblink.com.au/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://datadirector.weblink.com.au/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.8.9" />
+<link rel="canonical" href="https://datadirector.weblink.com.au/knowledge-base/weblink-data-api/" />
+<link rel='shortlink' href='https://datadirector.weblink.com.au/?p=2297' />
+<link rel="alternate" type="application/json+oembed" href="https://datadirector.weblink.com.au/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdatadirector.weblink.com.au%2Fknowledge-base%2Fweblink-data-api%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://datadirector.weblink.com.au/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdatadirector.weblink.com.au%2Fknowledge-base%2Fweblink-data-api%2F&#038;format=xml" />
+<!-- Heroic Knowledge Base custom styles --><style></style><script>var ms_grabbing_curosr = 'https://datadirector.weblink.com.au/wp-content/plugins/master-slider/public/assets/css/common/grabbing.cur', ms_grab_curosr = 'https://datadirector.weblink.com.au/wp-content/plugins/master-slider/public/assets/css/common/grab.cur';</script>
+<meta name="generator" content="MasterSlider 3.7.10 - Responsive Touch Image Slider | avt.li/msf" />
+<!--[if lt IE 9]><script src="https://datadirector.weblink.com.au/wp-content/themes/helpguru/helpguru/inc/ht-core/js/html5.js"></script><![endif]--><!--[if (gte IE 6)&(lte IE 8)]><script src="https://datadirector.weblink.com.au/wp-content/themes/helpguru/helpguru/inc/ht-core/js/selectivizr-min.js"></script><![endif]--><!-- All in one Favicon 4.7 --><link rel="shortcut icon" href="https://kb.bullcharts.com.au/wp-content/uploads/2016/09/favicon.ico" />
+<link rel="icon" href="https://kb.bullcharts.com.au/wp-content/uploads/2016/09/favicon-32x32.png" type="image/png"/>
+<link rel="apple-touch-icon" href="https://kb.bullcharts.com.au/wp-content/uploads/2016/09/apple-touch-icon.png" />
+    </head>
+<body class="no-js bbpress ht_kb-template-default single single-ht_kb postid-2297 single-format-standard ht-kb _masterslider _ms_version_3.7.10 unknown elementor-default elementor-kit-" itemtype="http://schema.org/WebPage" itemscope="itemscope">
+
+<!-- #ht-site-container -->
+<div id="ht-site-container" class="clearfix ht-layout-fullwidth">
+
+    <!-- #header -->
+    <header id="site-header" class="clearfix" role="banner" itemtype="http://schema.org/WPHeader" itemscope="itemscope">
+    <div class="ht-container clearfix">
+
+    <!-- #logo -->
+    <div id="logo">
+        <a title="Data Director Knowledge Base" href="https://datadirector.weblink.com.au">
+            <img alt="Data Director Knowledge Base" src="https://paritech.weblink.com.au/wp-content/uploads/2019/11/BullCharts-Basic-Logo-3-e1574936650751.png" />
+                        </a>
+    </div>
+    <!-- /#logo -->
+
+            <!-- #primary-nav -->
+        <nav id="nav-primary" role="navigation" itemtype="http://schema.org/SiteNavigationElement" itemscope="itemscope">
+            <button id="ht-nav-toggle"><span>Menu</span></button>
+            <div id="nav-primary-menu" class="menu-homepage-menu-container"><ul id="menu-homepage-menu" class=""><li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-30"><a href="https://paritech.weblink.com.au">Home</a></li>
+</ul></div>        </nav>
+        <!-- /#primary-nav -->
+    
+    </div>
+    </header>
+    <!-- /#header -->
+<!-- #page-header -->
+<section id="page-header" class="clearfix">
+<div class="ht-container">
+	<h1 id="page-header-title">Data Director Knowledge Base</h1>
+		
+        <form class="hkb-site-search" method="get" action="https://datadirector.weblink.com.au/">
+        <label class="hkb-screen-reader-text" for="s">Search For</label>
+        <input class="hkb-site-search__field" type="text" value="" placeholder="Search the Knowledge Base" name="s" autocomplete="off">
+        <input type="hidden" name="ht-kb-search" value="1" />
+        <input type="hidden" name="lang" value=""/>
+        <button class="hkb-site-search__button" type="submit"><span>Search</span></button>
+    </form>
+</div>
+</section>
+<!-- /#page-header -->
+
+<!-- #page-header-breadcrumbs -->
+<section id="page-header-breadcrumbs" class="clearfix">
+<div class="ht-container">
+		
+
+<!-- .hkb-breadcrumbs -->
+            <ol class="hkb-breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
+                                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="https://datadirector.weblink.com.au" title="Home">
+                        <span itemprop="name">Home</span>
+                    </a>
+                    <meta itemprop="position" content="1" />
+                </li>               
+                            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="https://datadirector.weblink.com.au/knowledge-base/weblink-data-api/" title="WebLink Data API  ASX Data Feed">
+                        <span itemprop="name">WebLink Data API  ASX Data Feed</span>
+                    </a>
+                    <meta itemprop="position" content="2" />
+                </li>               
+                    </ol>
+    <!-- /.hkb-breadcrumbs -->
+</div>
+</section>
+<!-- /#page-header -->
+<!-- #primary -->
+<div id="primary" class="sidebar-right clearfix"> 
+<div class="ht-container">
+
+<!-- #content -->
+<main id="content" role="main" itemscope="itemscope" itemprop="mainContentOfPage">
+<!-- #ht-kb -->
+<div id="hkb" class="hkb-template-single">
+
+	
+		<article id="post-2297" class="post-2297 ht_kb type-ht_kb status-publish format-standard hentry" itemtype="http://schema.org/CreativeWork" itemscope="itemscope">
+
+		<!-- .entry-header -->
+		<header class="entry-header">
+
+		
+			<h1 class="entry-title" itemprop="headline">
+				WebLink Data API  ASX Data Feed			</h1>
+
+			<ul class="hkb-entry-meta clearfix">
+
+				<li class="hkb-em-date"> 
+				    <span>Created</span>
+				    <a href="https://datadirector.weblink.com.au/knowledge-base/weblink-data-api/" rel="bookmark" itemprop="url"><time datetime="2021-07-05" itemprop="datePublished">July 5, 2021</time></a>
+				</li>
+				<li class="ht-kb-em-author">
+					<span>Author</span>
+					<a class="url fn n" href="https://datadirector.weblink.com.au/author/dd3kb95/" title="Brendon Lansdowne" rel="me" itemprop="author">Brendon Lansdowne</a>
+				</li>
+									<li class="ht-kb-em-category">
+					    <span>Category</span>
+					    Uncategorized					</li>
+								
+			</ul>
+
+				    
+		</header>
+		<!-- /.entry-header --> 
+
+			<div class="hkb-entry-content">
+
+					<!-- .hkb-article__content -->
+<div class="hkb-article__content entry-content" itemprop="articleBody">
+    <header class="entry-header"><span style="color: #1a1a1a; font-family: Nunito, sans-serif; font-size: 36px;">WebLink API Documentation</span></header>
+<div class="hkb-entry-content">
+<div class="hkb-article__content entry-content">
+<p>WebLink has a range of APIs in JSON for delayed and live data.  We can also customise the data feed as WebLink is a Level 1 Data Provider of the ASX  with full access to a wide range of data sets.</p>
+<h1><span id="but-what-we-need-is"><span id="but-what-we-need-is">But what we need is…</span></span></h1>
+<p>Let us know your requirements so we can help further.</p>
+<h1><span id="weblink-hosted-modules">WebLink Hosted Modules</span></h1>
+<p>We do have widgets already created that we host as an option as well.</p>
+<p><a href="https://datadirector.weblink.com.au/knowledge-base/weblink-hosted-stock-market-solutions/">https://datadirector.weblink.com.au/knowledge-base/weblink-hosted-stock-market-solutions/</a></p>
+<h1><span id="asx-announcements-by-symbol"><span id="asx-announcements-by-symbol"><span id="asx-announcements-api">ASX Announcements by Symbol</span></span></span></h1>
+<p><a href="/api/headline/bhp">/api/headline/bhp</a></p>
+<pre>parameters:
+    * year 
+       - 2018 = show Headlines only for Year 2018
+       - &gt;=2018 = show headlines from and including 2018 
+       - &gt;2018  = show headlines released after 2018
+       - &lt;=2018 = show headlines released up to and including 2018
+       - &lt;2018 = show headlines released before 2018
+    * headlinesPerPage                        
+    * pageNumber 
+    * sensitive : default value false= show all
+    * category:
+        - 0 = All
+        - 1 = Annual Reports &amp; Half Year Reports
+        - 2 = Quarterly Reports
+        - 3 = AGM
+        - 4 = Presentations
+        - 5 = Others
+        - 6 = Annual Reports
+        - 7 = Half Year Reports
+        - 8 = Financial Reports
+        - 9 = Dividends
+        - 10 = Issued capital
+        - 11 = Stock Exchange Announcement  
+        - 12 = All without Presentations and financial reports  
+        - 13 = NTA
+        - 14 = corporate governance
+        - 15 = All announcements (no presentations)
+        - 16 = Annual, Half Year &amp; Quarterly Reports</pre>
+<p>{“Symbol”:”BHP”,”Text”:”Change in substantial holding”,”MarketSensitive”:”N”,”Pages”:31,”Link”:”http://api.weblink.com.au/article.aspx?articleID=3543189″,”NewsDateTime”:”2020-06-18T08:29:05″}</p>
+<h1><span id="asx-announcements-current-all-of-market"><span id="asx-announcements-current-all-of-market">ASX Announcements – Current All of Market</span></span></h1>
+<p>/api/headline/</p>
+<p>[{“Symbol”:”ARN”,”Text”:”Corporate Presentation”,”MarketSensitive”:”N”,”Pages”:10,”Link”:”http://api.weblink.com.au/article.aspx?articleID=61039037″,”NewsDateTime”:”2021-07-01T11:39:38″}</p>
+<h1><span id="watchlist"><span id="watchlist">WatchList</span></span></h1>
+<p>/api/StockQuote?symbol=BHP,ANZ,CBA</p>
+<p>[{“Symbol”:”ANZ”,”CompanyName”:”Australia And New Zealand Banking Group Limited”,”Open”:28.160,”High”:28.190,”Low”:27.905,”Close”:27.960,”Volume”:1159273,”Sales”:32496823.00,”Trades”:6394,”PrevClose”:28.150,”BuyPrice”:27.9500,”SellPrice”:27.9600,”Buyers”:10,”Sellers”:10,”BidQuantity”:2452,”AskQuantity”:1952,”Movement”:-0.190,”MovementPercent”:-0.675,”LastTradedDateTime”:”2021-07-01T11:43:12″,”AsAt”:”2021-07-01T11:43:17″,”VWAP”:28.0321},</p>
+<h1><span id="global-indices"><span id="global-indices">Global Indices</span></span></h1>
+<p>/api/Global</p>
+<p>{“Symbol”:”US.^HSI”,”CompanyName”:””,”Open”:29107.900,”High”:29146.280,”Low”:28827.700,”Close”:28827.950,”Volume”:0,”Sales”:0,”Trades”:0,”PrevClose”:28934.450,”BuyPrice”:0,”SellPrice”:0,”Buyers”:0,”Sellers”:0,”BidQuantity”:0,”AskQuantity”:0,”Movement”:-106.500,”MovementPercent”:-0.368,”LastTradedDateTime”:null,”AsAt”:”2021-06-30T00:00:00″}</p>
+<h1><span id="currencies"><span id="currencies">Currencies</span></span></h1>
+<p>/api/Currencies</p>
+<p>[{“Symbol”:”$.AUDEUR”,”CompanyName”:”Australia Dollars/Euro”,”Open”:0,”High”:0,”Low”:0,”Close”:0.632,”Volume”:0,”Sales”:0,”Trades”:0,”PrevClose”:0.632,”BuyPrice”:0,”SellPrice”:0,”Buyers”:0,”Sellers”:0,”BidQuantity”:0,”AskQuantity”:0,”Movement”:0.000,”MovementPercent”:0,”LastTradedDateTime”:null,”AsAt”:”2021-07-01T06:59:13″},{“Symbol”:”$.AUDGBP”,”CompanyName”:”Australia Dollars/United Kingdom Pounds”,”Open”:0,”High”:0,”Low”:0,”Close”:0.542,”Volume”:0,”Sales”:0,”Trades”:0,”PrevClose”:0.542,”BuyPrice”:0,”SellPrice”:0,”Buyers”:0,”Sellers”:0,”BidQuantity”:0,”AskQuantity”:0,”Movement”:0.000,”MovementPercent”:0,”LastTradedDateTime”:null,”AsAt”:”2021-07-01T06:59:13″}</p>
+<h1><span id="commodities"><span id="commodities">Commodities</span></span></h1>
+<p>/api/commodities</p>
+<p>[{“Symbol”:”US.^CL”,”CompanyName”:”Crude Oil WTI”,”Open”:73.500,”High”:73.500,”Low”:73.390,”Close”:73.500,”Volume”:0,”Sales”:0,”Trades”:0,”PrevClose”:73.480,”BuyPrice”:0,”SellPrice”:0,”Buyers”:0,”Sellers”:0,”BidQuantity”:0,”AskQuantity”:0,”Movement”:0.020,”MovementPercent”:0.027,”LastTradedDateTime”:null,”AsAt”:”2021-06-30T00:00:00″},</p>
+<h1><span id="top-50"><span id="top-50">Top 50</span></span></h1>
+<p>/api/Top50</p>
+<p>[{“Symbol”:”A2M”,”CompanyName”:”The A2 Milk Company Limited”,”Open”:6.0800,”High”:6.2600,”Low”:6.0500,”Close”:6.1400,”Volume”:3248816,”Sales”:20352389,”Trades”:2528,”PrevClose”:6.0000,”BuyPrice”:6.1400,”SellPrice”:6.1500,”Buyers”:11,”Sellers”:13,”BidQuantity”:15918,”AskQuantity”:13671,”Movement”:0.1400,”MovementPercent”:2.333,”LastTradedDateTime”:”2021-07-01T11:29:05″,”AsAt”:”2021-07-01T11:31:11″,”VWAP”:6.2646},{“Symbol”:”AGL”,”CompanyName”:”AGL Energy</p>
+<h1><span id="index-constituent-list"><span id="index-constituent-list">Index Constituent List</span></span></h1>
+<p>/api/IndexList?index=XAO</p>
+<p>[{“index”:”XAO”,”list”:”360,3DP,4DX,A2M,A4N,AAC,ABA,ABB,ABC,ABP,ABR,ABY,AD8,ADH,ADI,ADN,ADO,ADT,AEF,AFG,AGG,AGL,AHY,AIA,AIZ,AKP,ALD,ALG,ALK,ALL,ALQ,ALU,ALX,AMA,AMC,AMI,AMP,ANN,ANO,ANZ,AOF,APA,APE,API,APT,APX,AQR,AQZ,ARB,ARF,ASB,ASG,ASM,AST,ASX,AUB,AUT,AVH,AVJ,AVN,AVZ,AWC,AX1,AZJ,BAP,BBN,BEN,BET,BFG,BGA,BGL,BHP,BIN,BKG,BKL,BKW,BLD,BLX,BOQ,BPT,BRG,BRN,BSE,BSL,BTH,BUB,BVS,BWP,BWX,BXB,BYE,CAI,CAJ,CAR,CAT,CBA,CBR,CCL,CCP,CCX,CDA,CDP,CEN,CGC,CGF,CHC,CHN,CIA,CIM,CIP,CKF,CL1,CLV,CLW,CMM,CMW,CNI,CNU,COE,COF,COH,COL,CPU,CQE,CQR,CRN,CSL,CSR,CSX,CTD,CTM,CTT,CUV,CVC,CVN,CVW,CWN,CWP,CWY,CYC,CYL,CYM,DBI,DCN,DDR,DEG,DGO,DHG,DMP,DOC,DOW,DRR,DTC,DTL,DUB,DXS,EBO,ECF,ECX,EHE,EHL,ELD,ELO,EML,EMR,EMV,EOF,EOS,EQT,ERA,EVN,EVS,EVT,EZL,FBU,FCL,FDV,FID,FLN,FLT,FMG,FMS,FPH,FRI,FWD,GDF,GDI,GEM,GGG,GLL,GMA,GMG,GNC,GOR,GOZ,GPR,GPT,GRR,GSS,GUD,GWA,GXY,HAS,HDN,HE8,HFR,HLO,HLS,HMC,HMY,HPG,HPI,HSN,HT1,HTA,HUB,HUM,HUO,HVN,IAG,IAP,IDX,IEL,IFL,IFM,IGO,ILU,IMD,IMM,IMR,IMU,INA,ING,INR,IPH,IPL,IRE,IRI,IVC,JBH,JHG,JHX,JIN,JLG,JMS,JRV,KAR,KCN,KGN,KMD,KSL,LBY,LEG,LEP,LFG,LIC,LLC,LME,LNK,LOV,LTR,LVT,LYC,LYL,M7T,MAF,MAH,MAQ,MAU,MCP,MCR,MEZ,MFG,MGH,MGR,MGV,MGX,MHJ,MIN,MLD,MME,MMM,MMS,MND,MNF,MNY,MP1,MPL,MQG,MSB,MTS,MVF,MVP,MYD,MYR,MYS,MYX,NAB,NAN,NCK,NCM,NCZ,NEA,NEC,NEW,NGI,NHC,NHF,NIC,NSR,NST,NTO,NTU,NUF,NVA,NVX,NWH,NWL,NWS,NXL,NXT,OBL,OBM,OCL,OFX,OMH,OML,OPT,OPY,ORA,ORE,ORG,ORI,OSH,OTW,OZL,PAC,PAN,PAR,PBH,PDL,PDN,PFP,PGH,PLL,PLS,PLT,PME,PMV,PNI,PNR,PNV,POS,PPC,PPE,PPH,PPK,PPS,PPT,PRN,PRU,PSI,PSQ,PTM,PWG,PWH,PYC,QAN,QBE,QUB,RAC,RBL,RCE,RDC,RDY,REA,RED,REG,REH,RFF,RHC,RHP,RIC,RIO,RMC,RMD,RMS,RRL,RSG,RUL,RWC,S32,SBM,SCG,SCP,SDF,SDG,SEK,SFC,SFG,SFR,SGF,SGLLV,SGM,SGP,SGR,SHL,SHV,SIG,SIQ,SKC,SKI,SLC,SLK,SLR,SM1,SMR,SNL,SO4,SOL,SPK,SPL,SPT,SRL,SRV,SSM,SSR,SST,ST1,STO,STX,SUL,SUN,SVL,SVW,SVY,SWM,SXL,SXYDA,SYD,SYR,SZL,TAH,TBR,TCL,TGP,TGR,TIE,TLG,TLS,TLX,TNE,TNT,TPG,TPW,TRS,TUA,TWE,TYR,UMG,UNI,UOS,URW,UWL,VCX,VEA,VGI,VHT,VOC,VRT,VUK,VUL,VVA,WAF,WBC,WBT,WEB,WES,WGN,WGO,WGX,WHC,WMX,WOR,WOT,WOW,WPL,WPP,WPR,WSA,WSP,WTC,WZR,XRO,YAL,YOJ,Z1P,ZEL,ZIM,ZNO”}]</p>
+<h1><span id="stock-price"><span id="stock-price">Stock Price</span></span></h1>
+<p>/api/StockPrice?symbol=bhp</p>
+<p>[{“Symbol”:”BHP”,”CompanyName”:”BHP Group Limited”,”Price”:48.4200,”Movement”:-0.1500,”MovementPercent”:-0.309,”AsAt”:”2021-07-01T11:32:51″}]</p>
+<h1><span id="stock-price-extended"><span id="stock-price-extended">Stock Price Extended</span></span></h1>
+<p>/api/eod.aspx?extended=status,secType,name,lastTradedDate,lastTradedTime,isin,buyPrice,sellPrice,sellers,buyers,bidQuantity,askQuantity</p>
+<p>{ “date”: “20200805”, “time”: “171844”, “feed”: “20 Min Delay”, “stocks”: [ { “symbol”: “14D”, “open”: 0.1500, “high”: 0.1650, “low”: 0.1500, “close”: 0.1650, “volume”: 220586, “sales”: 35307.0, “trades”: 63, “prevClose”: 0.1500, “movement”: 0.0150, “movementPercent”: 10.0, “lastTradedDateTime”: “2020-08-05T15:41:24”, “buyPrice”: 0.1500, “sellPrice”: 0.1700, “sellers”: 5, “buyers”: 4, “bidQuantity”: 93666, “askQuantity”: 212529, “status”: “ACTIVE”, “secType”: “01”, “name”: “1414 DEGREES LIMITED”, “isin”: “AU0000010696” },</p>
+<h1><span id="historical-data-1-minute-data"><span id="historical-data-1-minute-data">Historical Data – 1 Minute data</span></span></h1>
+<p>/api/StockHist?symbol=bhp&amp;type=1min</p>
+<p>[{“Symbol”:”BHP”,”Date”:”2021-06-30T00:00:00″,”Open”:48.3000,”High”:49.1050,”Low”:48.2700,”Close”:48.5700,”Volume”:5768284,”Trades”:25090}</p>
+<h1><span id="historical-data-daily"><span id="historical-data-daily">Historical Data – Daily</span></span></h1>
+<p>/api/StockHist?symbol=bhp&amp;type=daily&amp;date=20200902</p>
+<p>Or convenient by offset for 1 day ago etc https://webservices.weblink.com.au/eod.aspx?offset=5</p>
+<p>[{“Symbol”:”BHP”,”Date”:”2021-06-30T00:00:00″,”Open”:48.3000,”High”:49.1050,”Low”:48.2700,”Close”:48.5700,”Volume”:5768284,”Trades”:25090},{“Symbol”:”BHP”,”Date”:”2021-06-29T00:00:00″,”Open”:48.0000,”High”:48.1200,”Low”:47.6500,”Close”:48.0600,”Volume”:3942896,”Trades”:24056},{“Symbol”:”BHP”,”Date”:”2021-06-28T00:00:00″,”Open”:48.1600,”High”:48.5400,”Low”:48.0400,”Close”:48.4000,”Volume”:3524021,”Trades”:18721},{“Symbol”:”BHP”,”Date”:”2021-06-25T00:00:00″,”Open”:47.9500,”High”:48.2000,”Low”:47.7700,”Close”:47.9000,”Volume”:4074707,”Trades”:21401},{“Symbol”:”BHP”,”Date”:”2021-06-24T00:00:00″,”Open”:47.4000,”High”:47.7950,”Low”:47.3600,”Close”:47.6000,”Volume”:4390435,”Trades”:23085}</p>
+<h1><span id="option-summary"><span id="option-summary">Option Summary</span></span></h1>
+<p>/api/OptionSummary?symbol=bhp</p>
+<p>[{“Symbol”:”BHPPO9″,”Type”:”CALL”,”ExPrice”:40.5000,”OI”:0,”ExpiryDate”:”2021-07-01T00:00:00″,”LastPrice”:0.0000,”BuyPrice”:0.0000,”SellPrice”:0.0000,”Buyers”:0,”Sellers”:0,”BidQuantity”:0,”AskQuantity”:0,”Volume”:0,”ExType”:”A”},{“Symbol”:”BHPPP9″,”Type”:”PUT”,”ExPrice”:40.5000,”OI”:0,”ExpiryDate”:”2021-07-01T00:00:00″,”LastPrice”:0.0000,”BuyPrice”:0.0000,”SellPrice”:0.0000,”Buyers”:0,”Sellers”:0,”BidQuantity”:0,”AskQuantity”:0,”Volume”:0,”ExType”:”A”}</p>
+<h1><span id="warrant-summary"><span id="warrant-summary"><span id="warrantsummary">Warrant Summary</span></span></span></h1>
+<p>/api/WarrantSummary?symbol=bhp</p>
+<p>[{“Symbol”:”BHPIOE”,”Type”:”CALL”,”ExPrice”:20.0000,”ExpiryDate”:”2021-09-08T00:00:00″,”LastPrice”:23.9600,”BuyPrice”:28.7300,”SellPrice”:28.7500,”Buyers”:1,”Sellers”:1,”BidQuantity”:0,”AskQuantity”:0,”Volume”:0,”ExType”:”A”}</p>
+<h1><span id="fundamental-security-details-for-a-stock"><span id="security-details-for-a-stock">Fundamental/Security Details for a Stock</span></span></h1>
+<p>/api/SecDetails?symbol=BHP&amp;type=details</p>
+<p>{“Symbol”:”BHP”,”ISIN”:”AU000000BHP4″,”IssuerName”:”BHP GROUP LIMITED”,”SecDesc”:”ORDINARY FULLY PAID”,”WebSite”:”http://www.bhp.com”,”IssuerType”:”Mining (M)”,”SecType”:”Ordinary (1)”,”GICSSector”:”Materials”,”GICSIndGroup”:”Materials”,”GICSIndustry”:”Metals \u0026 Mining”,”GICSSubInd”:”Withheld by ASX”,”GICSCode”:”15104000″,”IssuingCurrency”:”USD”,”IndexParticipation”:”Participates in an index”,”QuotedSec”:”Quoted and Tradable”,”ShortSellStatus”:”N/A”,”CHESSEligibility”:”CHESS eligible”}</p>
+<h2><span id="example">Example</span></h2>
+<p id="pskGnmT"><img loading="lazy" width="603" height="742" class="alignnone size-full wp-image-2456 " src="https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bbdbae5d50.png" alt="" srcset="https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bbdbae5d50.png 603w, https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bbdbae5d50-244x300.png 244w, https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bbdbae5d50-41x50.png 41w, https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bbdbae5d50-600x738.png 600w, https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bbdbae5d50-320x394.png 320w" sizes="(max-width: 603px) 100vw, 603px" /></p>
+<p id="havjrxX"><img loading="lazy" width="594" height="341" class="alignnone size-full wp-image-2457 " src="https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bbdd3b864b.png" alt="" srcset="https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bbdd3b864b.png 594w, https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bbdd3b864b-300x172.png 300w, https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bbdd3b864b-50x29.png 50w, https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bbdd3b864b-320x184.png 320w" sizes="(max-width: 594px) 100vw, 594px" /></p>
+<h1><span id="security-details-ratios-for-a-stock"><span id="security-details-ratios-for-a-stock">Security Details Ratios for a Stock</span></span></h1>
+<p>/api/SecDetails?symbol=BHP&amp;type=ratios</p>
+<p>{“Symbol”:”BHP”,”TotalClassIssue”:2945851394,”MarketCap”:142785417067,”AssetBacking”:13.32,”EPS”:1.912,”EarningsYield”:3.9447,”PE”:25.3504,”PaidUpValue”:0.00,”oneYearHigh”:51.820,”oneYearLow”:33.730,”StatexFootNote”:”Based on interim results”}</p>
+<h1><span id="current-dividends-by-stock"><span id="current-dividends-by-stock">Current Dividends by stock</span></span></h1>
+<p><a href="/api/SecDetails?symbol=BHP&amp;type=dividends">/api/SecDetails?symbol=BHP&amp;type=dividends</a></p>
+<p>{“Symbol”:”BHP”,”DPS”:2.0659,”DivYeild”:4.2675,”CurrentDivAmount”:1.311348,”ScripDivAmount”:0.0000,”TotalAnnualDPS”:2.0659,”FrankedPercent”:100.00,”GrossDivAmount”:2.9513,”DivCover”:0.9300,”DivPaidMonths”:”Mar,Sep,Mar,Sep”,”DivType”:”Interim”,”ExDate”:”2021-03-04T00:00:00″,”DivPayableDate”:”2021-03-23T00:00:00″}</p>
+<h1><span id="upcoming-dividends-for-market"><span id="upcoming-dividends-for-market">Upcoming Dividends for market</span></span></h1>
+<p>{“date”:”20210701″,”UpcomingDividend”:[ {“Symbol” : “XKAP”, “ExDate” : “20210104”, “DividendPayableDate” : “20210120”, “DividendType” : “I”, “DPS”:0.00, “FrankPercent”:0.00, “LastDividendDeclared” : 34.2861, “GrossDividend”:0.00} , {“Symbol” : “A200”, “ExDate” : “20210104”, “DividendPayableDate” : “20210119”, “DividendType” : “I”, “DPS”:0.00, “FrankPercent”:64.99, “LastDividendDeclared” : 62.3975, “GrossDividend”:0.00} , {“Symbol” : “AAA”, “ExDate” : “20210104”, “DividendPayableDate” : “20210119”, “DividendType” : “I”, “DPS”:0, “FrankPercent”:0.00, “LastDividendDeclared” : 1.8217, “GrossDividend”:0}</p>
+<h1><span id="dividend-history-by-date-by-year-by-stock"><span id="dividend-history-by-date-by-year-by-stock">Dividend History – by date, by year, by stock</span></span></h1>
+<p>/api/dividendjson.aspx</p>
+<p>{ “symbol”:”SEK”, “data”:[{“DividendType”:”I”,”DividendAmount”:20.0000,”FrankingCredit”:100.00,”PaymentDate”:”20210524″},</p>
+<h1><span id="short-positions-report"><span id="short-positions-report">Short Positions Report</span></span></h1>
+<p>/api/shortposition/</p>
+<p>[{<br />
+“E_Rank”: 1,<br />
+“E_Symbol”: “WEB”,<br />
+“E_Date”: “20210624”,<br />
+“E_Name”: “WEBJET LIMITED ORDINARY”,<br />
+“E_Short_Positions”: 40519170,<br />
+“E_Total”: 378684821,<br />
+“E_Percent”: 10.69997205<br />
+}, {<br />
+“E_Rank”: 2,<br />
+“E_Symbol”: “KGN”,<br />
+“E_Date”: “20210624”,<br />
+“E_Name”: “<a href="http://kogan.com/" target="_blank" rel="nofollow noopener noreferrer">KOGAN.COM</a> LTD ORDINARY”,<br />
+“E_Short_Positions”: 11290978,<br />
+“E_Total”: 106561563,<br />
+“E_Percent”: 10.59573235<br />
+}, {<br />
+“E_Rank”: 3,<br />
+“E_Symbol”: “FLT”,<br />
+“E_Date”: “20210624”,<br />
+“E_Name”: “FLIGHT CENTRE TRAVEL ORDINARY”,<br />
+“E_Short_Positions”: 19199621,<br />
+“E_Total”: 199323553,<br />
+“E_Percent”: 9.63238950<br />
+}, {<br />
+“E_Rank”: 4,<br />
+“E_Symbol”: “ING”,<br />
+“E_Date”: “20210624”,<br />
+“E_Name”: “INGHAMS GROUP ORDINARY”,<br />
+“E_Short_Positions”: 32388547,<br />
+“E_Total”: 371679601,<br />
+“E_Percent”: 8.71410401<br />
+},</p>
+<h1><span id="stock-symbol-and-name-changes"><span id="stock-symbol-and-name-changes">Stock Symbol and Name Changes</span></span></h1>
+<p>/Api/NameChangeJson.aspx</p>
+<p>{ “feed”: “NameChange”, “Year”: “2020”, “data”: [ { “Date”: “20200803”, “OldSymbol”: “8VI”, “OldCompanyName”: “8VIC Holdings Limited”, “NewSymbol”: “8VI”, “NewCompanyName”: “8VI Holdings Limited” }, { “Date”: “20200803”, “OldSymbol”: “HSC”, “OldCompanyName”: “Homestay Care Limited”, “NewSymbol”: “HSC”, “NewCompanyName”: “HSC Technology Ltd” },</p>
+<h1><span id="historical-data-for-charts-by-interval-1w-1m-1q-1y-5y"><span id="historical-data-for-charts-by-interval-1w-1m-1q-1y-5y">Historical Data for Charts by Interval (1w, 1m, 1q, 1y, 5y)</span></span></h1>
+<p>/api/histdata.aspx?symbol=HZN&amp;period=1y</p>
+<p>{ “symbol”:”HZN” ,”period”:”1y” ,”dataInterval”:”weekly” ,”histData”:[{“Symbol”:””,”Date”:”20210701″,”Time”:”115947″,”Open”:0.11,”High”:0.112,”Low”:0.105,”Close”:0.105,”Volume”:4919683},{“Symbol”:””,”Date”:”20210625″,”Time”:”000000″,”Open”:0.1,”High”:0.105,”Low”:0.098,”Close”:0.105,”Volume”:5635935},{“Symbol”:””,”Date”:”20210618″,”Time”:”000000″,”Open”:0.1,”High”:0.105,”Low”:0.098,”Close”:0.099,”Volume”:3243956},{“Symbol”:””,”Date”:”20210611″,”Time”:”000000″,”Open”:0.1,”High”:0.105,”Low”:0.096,”Close”:0.1,”Volume”:6297495},</p>
+<h1><span id="custom-extensions"><span id="custom-extensions">Custom Extensions</span></span></h1>
+<p>We are able to custom the data feed to include server side calculations.  We can add in as required.</p>
+<h2><span id="vwap"><span id="vwap">VWAP</span></span></h2>
+<p>/api/StockQuote?extended=vol_ma20,rvol&amp;symbol=BHP</p>
+<p>[{“Symbol”:”BHP”,”CompanyName”:”BHP Group Limited”,”Open”:48.690,”High”:48.740,”Low”:48.180,”Close”:48.280,”Volume”:2162416,”Sales”:104886982.00,”Trades”:25737,”PrevClose”:48.570,”BuyPrice”:48.2600,”SellPrice”:48.2800,”Buyers”:16,”Sellers”:30,”BidQuantity”:1918,”AskQuantity”:1840,”Movement”:-0.290,”MovementPercent”:-0.597,”LastTradedDateTime”:”2021-07-01T14:43:21″,”AsAt”:”2021-07-01T14:43:21″,”<strong>VWAP</strong>“:48.5045,”VOL_MA20″:5228201,”RVOL”:1.9030}]</p>
+<h2><span id="moving-average-custom-extension"><span id="moving-average-custom-extension">Moving Average Custom Extension</span></span></h2>
+<p>/api/StockQuote?extended=vol_ma20,rvol&amp;symbol=BHP</p>
+<p>[{“Symbol”:”BHP”,”CompanyName”:”BHP Group Limited”,”Open”:48.690,”High”:48.740,”Low”:48.180,”Close”:48.280,”Volume”:2162416,”Sales”:104886982.00,”Trades”:25737,”PrevClose”:48.570,”BuyPrice”:48.2600,”SellPrice”:48.2800,”Buyers”:16,”Sellers”:30,”BidQuantity”:1918,”AskQuantity”:1840,”Movement”:-0.290,”MovementPercent”:-0.597,”LastTradedDateTime”:”2021-07-01T14:43:21″,”AsAt”:”2021-07-01T14:43:21″,”VWAP”:48.5045,”VOL_MA20″:5228201,”RVOL”:1.9030}]</p>
+<h2><span id="relative-volume-rvol-custom-extension"><span id="relative-volume-rvol-custom-extension">Relative Volume (RVOL) Custom Extension</span></span></h2>
+<p>/api/StockQuote?extended=<strong>vol_ma20</strong>,rvol&amp;symbol=BHP</p>
+<p>[{“Symbol”:”BHP”,”CompanyName”:”BHP Group Limited”,”Open”:48.690,”High”:48.740,”Low”:48.180,”Close”:48.280,”Volume”:2162416,”Sales”:104886982.00,”Trades”:25737,”PrevClose”:48.570,”BuyPrice”:48.2600,”SellPrice”:48.2800,”Buyers”:16,”Sellers”:30,”BidQuantity”:1918,”AskQuantity”:1840,”Movement”:-0.290,”MovementPercent”:-0.597,”LastTradedDateTime”:”2021-07-01T14:43:21″,”AsAt”:”2021-07-01T14:43:21″,”VWAP”:48.5045,”VOL_MA20″:5228201,”<strong>RVOL</strong>“:1.9030}]</p>
+<h1><span id="dilution-factors"><span id="dilution-factors">Dilution Factors</span></span></h1>
+<p>Via FTP or  webservice</p>
+<h1><span id="market-depth">Market Depth</span></h1>
+<p>/api/DepthQuote?BHP</p>
+<p>[{<br />
+&#8220;bidask&#8221;: 1,<br />
+&#8220;pos&#8221;: 1,<br />
+&#8220;chg&#8221;: 0,<br />
+&#8220;seq&#8221;: 85404,<br />
+&#8220;quan&#8221;: 50,<br />
+&#8220;orderNum&#8221;: &#8220;0x6756A1010028B4C3&#8221;,<br />
+&#8220;price&#8221;: 48.3400<br />
+}, {<br />
+&#8220;bidask&#8221;: 1,<br />
+&#8220;pos&#8221;: 2,<br />
+&#8220;chg&#8221;: 0,<br />
+&#8220;seq&#8221;: 63364,<br />
+&#8220;quan&#8221;: 517,<br />
+&#8220;orderNum&#8221;: &#8220;0x6756A10100206C42&#8221;,<br />
+&#8220;price&#8221;: 48.2800<br />
+}, {<br />
+&#8220;bidask&#8221;: 1,<br />
+&#8220;pos&#8221;: 3,<br />
+&#8220;chg&#8221;: 0,<br />
+&#8220;seq&#8221;: 85678,<br />
+&#8220;quan&#8221;: 2500,<br />
+&#8220;orderNum&#8221;: &#8220;0x6756A1010028DBF8&#8221;,<br />
+&#8220;price&#8221;: 48.2800</p>
+<h1><span id="ticker">Ticker</span></h1>
+<p><img class="alignnone wp-image-36778 size-full" src="https://kbi.weblink.com.au/wp-content/uploads/2021/07/Pasted-into-WebLink-Data-API-1.png" /></p>
+<h1><span id="chart">Chart</span></h1>
+<p>We have created our own chart engine that allows customisation. We have over 25 different chart format that we can customise to the look and feel of the site.  We can also create new features and options.</p>
+<p id="iYkJctQ"><img loading="lazy" width="744" height="358" class="alignnone size-full wp-image-2442 " src="https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bb90b79c90.png" alt="" srcset="https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bb90b79c90.png 744w, https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bb90b79c90-300x144.png 300w, https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bb90b79c90-50x24.png 50w, https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bb90b79c90-600x289.png 600w, https://datadirector.weblink.com.au/wp-content/uploads/2021/10/img_615bb90b79c90-320x154.png 320w" sizes="(max-width: 744px) 100vw, 744px" /></p>
+<p id="sNAIasU">
+</div>
+</div>
+</div>
+<!-- /.hkb-article__content -->
+
+
+					
+
+
+					 
+
+					
+			</div>			
+
+		</article>
+
+		
+		
+
+
+
+		
+	
+</div><!-- /#ht-kb -->
+</main>
+<!-- /#content -->
+
+
+<!-- #sidebar -->
+<aside id="sidebar" role="complementary" itemtype="http://schema.org/WPSideBar" itemscope="itemscope">
+	<section id="ht-kb-toc-widget-4" class="widget hkb_widget_toc clearfix"><h4 class="widget-title">Contents</h4>
+            <nav id="navtoc" role="navigation">
+
+            <ol class="nav"><li class="active"><a href="#but-what-we-need-is">But what we need is…</a><li class=""><a href="#weblink-hosted-modules">WebLink Hosted Modules</a><li class=""><a href="#asx-announcements-by-symbol">ASX Announcements by Symbol</a><li class=""><a href="#asx-announcements-current-all-of-market">ASX Announcements – Current All of Market</a><li class=""><a href="#watchlist">WatchList</a><li class=""><a href="#global-indices">Global Indices</a><li class=""><a href="#currencies">Currencies</a><li class=""><a href="#commodities">Commodities</a><li class=""><a href="#top-50">Top 50</a><li class=""><a href="#index-constituent-list">Index Constituent List</a><li class=""><a href="#stock-price">Stock Price</a><li class=""><a href="#stock-price-extended">Stock Price Extended</a><li class=""><a href="#historical-data-1-minute-data">Historical Data – 1 Minute data</a><li class=""><a href="#historical-data-daily">Historical Data – Daily</a><li class=""><a href="#option-summary">Option Summary</a><li class=""><a href="#warrant-summary">Warrant Summary</a><li class=""><a href="#fundamental-security-details-for-a-stock">Fundamental/Security Details for a Stock</a><ol><li><a href="#example">Example</a></li></ol><li><a href="#security-details-ratios-for-a-stock">Security Details Ratios for a Stock</a></li><li class=""><a href="#current-dividends-by-stock">Current Dividends by stock</a><li class=""><a href="#upcoming-dividends-for-market">Upcoming Dividends for market</a><li class=""><a href="#dividend-history-by-date-by-year-by-stock">Dividend History – by date, by year, by stock</a><li class=""><a href="#short-positions-report">Short Positions Report</a><li class=""><a href="#stock-symbol-and-name-changes">Stock Symbol and Name Changes</a><li class=""><a href="#historical-data-for-charts-by-interval-1w-1m-1q-1y-5y">Historical Data for Charts by Interval (1w, 1m, 1q, 1y, 5y)</a><li class=""><a href="#custom-extensions">Custom Extensions</a><ol><li><a href="#vwap">VWAP</a></li><li class=""><a href="#moving-average-custom-extension">Moving Average Custom Extension</a><li class=""><a href="#relative-volume-rvol-custom-extension">Relative Volume (RVOL) Custom Extension</a></ol><li><a href="#dilution-factors">Dilution Factors</a></li><li class=""><a href="#market-depth">Market Depth</a><li class=""><a href="#ticker">Ticker</a><li class=""><a href="#chart">Chart</a></ol><!-- /ht-kb-toc-widget -->
+            </nav>
+
+            </section></aside>
+<!-- /#sidebar -->
+
+
+</div>
+<!-- /.ht-container -->
+</div>
+<!-- /#primary -->
+
+<!-- #site-footer-widgets -->
+<section id="site-footer-widgets">
+<div class="ht-container">
+
+
+</div>
+</section>
+<!-- /#site-footer-widgets -->
+
+<!-- #site-footer -->
+<footer id="site-footer" class="clearfix" itemtype="http://schema.org/WPFooter" itemscope="itemscope">
+<div class="ht-container">
+
+    <small id="copyright" role="contentinfo">© Copyright <a href="http://www.weblink.com.au">WebLink Systems Pty Ltd</a>.</small>
+  
+  
+</div>
+</footer> 
+<!-- /#site-footer -->
+
+<script type='text/javascript' src='https://datadirector.weblink.com.au/wp-content/plugins/ht-knowledge-base/js/jquery.livesearch.js?ver=5.8.9' id='ht-kb-live-search-plugin-js'></script>
+<script type='text/javascript' id='ht-kb-live-search-js-extra'>
+/* <![CDATA[ */
+var hkbJSSettings = {"liveSearchUrl":"https:\/\/datadirector.weblink.com.au\/?ajax=1&ht-kb-search=1&s=","focusSearchBox":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://datadirector.weblink.com.au/wp-content/plugins/ht-knowledge-base/js/hkb-livesearch-js.js?ver=5.8.9' id='ht-kb-live-search-js'></script>
+<script type='text/javascript' src='https://datadirector.weblink.com.au/wp-content/plugins/bbpress/templates/default/js/editor.min.js?ver=2.6.7' id='bbpress-editor-js'></script>
+<script type='text/javascript' src='https://datadirector.weblink.com.au/wp-content/themes/helpguru/helpguru/js/functions.js?ver=5.8.9' id='ht_theme_custom-js'></script>
+<script type='text/javascript' src='https://datadirector.weblink.com.au/wp-content/themes/helpguru/helpguru/inc/ht-core/js/jquery-picture-min.js?ver=5.8.9' id='jquery-picture-js'></script>
+<script type='text/javascript' src='https://datadirector.weblink.com.au/wp-includes/js/wp-embed.min.js?ver=5.8.9' id='wp-embed-js'></script>
+
+</div>
+<!-- /#site-container -->
+</body>
+</html>

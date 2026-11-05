@@ -1,0 +1,19 @@
+test_actual_31_source_quotes_and_coding_integrate (test_disclosure.ActualDisclosure.test_actual_31_source_quotes_and_coding_integrate) ... ok
+test_same_store_derived_only_idempotent_and_NULL_preserved (test_disclosure.ActualDisclosure.test_same_store_derived_only_idempotent_and_NULL_preserved) ... ok
+test_all_three_input_categories_required (test_disclosure.Disclosure.test_all_three_input_categories_required) ... ok
+test_archived_public_html_does_not_invent_publication_date (test_disclosure.Disclosure.test_archived_public_html_does_not_invent_publication_date) ... ok
+test_cutoff_version_and_duplicate_ids_fail_closed (test_disclosure.Disclosure.test_cutoff_version_and_duplicate_ids_fail_closed) ... ok
+test_explicit_unknown_requires_specific_reason (test_disclosure.Disclosure.test_explicit_unknown_requires_specific_reason) ... ok
+test_fixed_denominator_and_missing_not_midpoint (test_disclosure.Disclosure.test_fixed_denominator_and_missing_not_midpoint) ... ok
+test_good_result_vague_disclosure_scores_zero_only_after_review (test_disclosure.Disclosure.test_good_result_vague_disclosure_scores_zero_only_after_review) ... ok
+test_hash_quote_date_failures_are_unknown (test_disclosure.Disclosure.test_hash_quote_date_failures_are_unknown) ... ok
+test_new_T1_never_retains_recovery_score (test_disclosure.Disclosure.test_new_T1_never_retains_recovery_score) ... ok
+test_no_experiment_but_explicit_limit_can_score (test_disclosure.Disclosure.test_no_experiment_but_explicit_limit_can_score) ... ok
+test_other_project_document_cannot_support_facet (test_disclosure.Disclosure.test_other_project_document_cannot_support_facet) ... ok
+test_ties_unknown_envelopes_and_order_independence (test_disclosure.Disclosure.test_ties_unknown_envelopes_and_order_independence) ... ok
+test_weights_are_fixed_across_groups_and_zero_domain_excluded (test_disclosure.Disclosure.test_weights_are_fixed_across_groups_and_zero_domain_excluded) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 27.405s
+
+OK

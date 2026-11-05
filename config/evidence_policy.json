@@ -1,5 +1,5 @@
 {
-  "version": "evidence-resolution-v9-source-bound-technical",
+  "version": "evidence-resolution-v15-peer-scope",
   "main_codes": [
     "R1",
     "S1",
@@ -16,9 +16,9 @@
       "version": "coverage-development-v1-compatible",
       "requires": [
         "D1",
-        "T1"
+        "T_RECOVERY_LEGACY"
       ],
-      "interpretation": "Unchanged resource plus study and comparable overall recovery; case-specific TC1 is not T1"
+      "interpretation": "Historical cohort semantics retained: D1 plus comparable overall recovery; disclosure T1 does not certify technical performance."
     }
   },
   "criteria": {
@@ -48,24 +48,9 @@
     },
     "T1": {
       "domain": "Technical",
-      "variables": [
-        "recovery_pct",
-        "modelled_mrec_recovery_pct",
-        "whole_ore_concentrate_recovery_pct",
-        "resource_to_final_mreo_recovery_pct",
-        "treo_leach_average_pct",
-        "magnet_extraction_to_leach_pct",
-        "nd_west_leach_pct"
-      ],
+      "variables": [],
       "unit": "%",
-      "basis": [
-        "TREO_INCLUDING_Y"
-      ],
-      "requires": {
-        "endpoint": "FINAL_SEPARATED_REO",
-        "feed": "WHOLE_ORE",
-        "scale": "VALIDATED_PLANT_DESIGN"
-      }
+      "derived_by": "technical-disclosure-transparency-v1"
     },
     "TC1": {
       "domain": "Technical",
@@ -103,6 +88,27 @@
         "commercial_event"
       ],
       "unit": "ordinal"
+    },
+    "T_RECOVERY_LEGACY": {
+      "domain": "Technical",
+      "variables": [
+        "recovery_pct",
+        "modelled_mrec_recovery_pct",
+        "whole_ore_concentrate_recovery_pct",
+        "resource_to_final_mreo_recovery_pct",
+        "treo_leach_average_pct",
+        "magnet_extraction_to_leach_pct",
+        "nd_west_leach_pct"
+      ],
+      "unit": "%",
+      "basis": [
+        "TREO_INCLUDING_Y"
+      ],
+      "requires": {
+        "endpoint": "FINAL_SEPARATED_REO",
+        "feed": "WHOLE_ORE",
+        "scale": "VALIDATED_PLANT_DESIGN"
+      }
     }
   },
   "panels": {
@@ -137,8 +143,8 @@
   "technical_definitions": {
     "version": "technical-taxonomy-v1",
     "legacy_T1": "PROCESSING_COMPLEXITY_IN_UPSTREAM_RESEARCH_NOT_EQUIVALENT_TO_RECOVERY",
-    "v2_T1": "RECOVERY_ONLY; explicit comparable feed/REO basis/endpoint/scale required",
-    "T1_contract_status": "CONSERVATIVE_EXPLORATORY_COMPATIBILITY_CONTRACT_NOT_APPROVED_FORMAL_PANEL",
+    "v2_T1": "Technical Disclosure Transparency N/7*100; replaces recovery; user-authorized Phase19 definition",
+    "T1_contract_status": "USER_ADOPTED_RESEARCH_OPERATIONALISATION_NOT_JORC_CERTIFICATION_NOT_TECHNICAL_FEASIBILITY",
     "processing_complexity": {
       "status": "DESCRIPTIVE_ONLY_NO_ORDINAL_OR_SCIENTIFIC_ORDER_ADOPTED",
       "reason": "Number of operations cannot establish process difficulty; cost, energy, reagent intensity, mineral liberation and NORM handling differ. Preserve flowsheet text, endpoints and mineralogy. No substitution for recovery."
@@ -150,7 +156,8 @@
       "scientific_basis": "Mass fraction of feed TREO reporting to a defined first-stage mineral concentrate; excludes leach solution, selected-composite assays, MREC and separated oxides",
       "limitations": "Engineering forecast, not measured operating recovery; different mine plans; downstream losses and impurity burden not assessed",
       "development_overlap": "Numeric recovery and study-stage are different variables, but DFS-only eligibility conditions on maturity. Compare only within this maturity; do not claim independent maturity effect."
-    }
+    },
+    "v2_T1_historical": "RECOVERY_ONLY; explicit comparable feed/REO basis/endpoint/scale required"
   },
   "study_parameters": {
     "whole_ore_concentrate_recovery_pct": {
@@ -346,16 +353,17 @@
   },
   "identity_rule_version": "document-native-extension-phase8-v1",
   "document_pipeline": {
-    "parser_version": "document-recognition-v5-technical-cells",
+    "parser_version": "document-recognition-v6-context-bound",
     "role": "RAW_SCOPED_DISCLOSURES_NOT_AUTOMATIC_FORMAL_CRITERIA",
     "resource_promotion": "REPORTED_VARIABLES_ONLY_UNTIL_EFFECTIVE_DATE_AND_SCOPE_COMPATIBLE",
-    "validation_version": "scientific-context-v4-column-binding",
+    "validation_version": "scientific-context-v5-peer-boundary",
     "parser_versions": [
       "document-recognition-v1",
       "document-recognition-v2-mineralogy",
       "document-recognition-v3-bound-quantities",
       "document-recognition-v4-native-resource-totals",
-      "document-recognition-v5-technical-cells"
+      "document-recognition-v5-technical-cells",
+      "document-recognition-v6-context-bound"
     ]
   },
   "technical_comparability": {
@@ -401,7 +409,7 @@
     "historical_compatibility": "Opt-in only; frozen Phase5-9 policies retain their semantics"
   },
   "technical_analysis": {
-    "version": "source-bound-technical-v1",
+    "version": "source-bound-technical-v2-context",
     "contracts": {
       "WITHIN_TABLE_ELEMENT_LEACH": {
         "version": "technical-use-v2",
@@ -452,7 +460,7 @@
           "reagent"
         ],
         "model_assumptions": [
-          "Dated scoping design, commercial formulation mass; no operating or active-purity inference"
+          "Dated source design, commercial formulation mass; no operating or active-purity inference"
         ]
       },
       "SOURCE_BRANCH_CONSISTENCY": {
@@ -507,5 +515,613 @@
       "STAGE_MATERIAL_RECOVERY",
       "ELEMENT_DESIGN_RECOVERY_FACTOR"
     ]
+  },
+  "technical_profile": {
+    "version": "technical-profile-remediation-v2",
+    "framework": {
+      "version": "technical-framework-v2",
+      "axes": {
+        "T-R": "Recovery and separation performance",
+        "T-I": "Processing inputs and requirements",
+        "T-P": "Product properties and treatment constraints"
+      },
+      "roles": {
+        "T-R": [
+          "BENEFICIATION_RECOVERY",
+          "LEACH_EXTRACTION",
+          "ZONE_LEACH_EXTRACTION",
+          "SELECTED_COMPOSITES_LEACH_EXTRACTION",
+          "BENCH_LEACH_AVERAGE",
+          "BENCH_LEACH_MAXIMUM",
+          "BENCH_MAGNET_LEACH_AVERAGE",
+          "BENCH_MAGNET_LEACH_MAXIMUM",
+          "MODELLED_INTERMEDIATE_PRODUCT_RECOVERY",
+          "ALTERNATIVE_PROCESS_DESIGN_RECOVERY",
+          "OVERALL_TO_CALCINED_MIXED_REO",
+          "POST_LEACH_LOSS",
+          "STAGE_MATERIAL_RECOVERY",
+          "ELEMENT_DESIGN_RECOVERY_FACTOR",
+          "REPORTED_RECOVERY",
+          "extraction_pct",
+          "recovery_pct",
+          "stage_recovery_pct",
+          "downstream_recovery_factor"
+        ],
+        "T-I": [
+          "REAGENT_INTENSITY",
+          "REAGENT_ANNUAL_AMOUNT",
+          "reagent_intensity",
+          "reagent_tpa"
+        ],
+        "T-P": [
+          "INTERMEDIATE_PRODUCT_GRADE",
+          "PRODUCT_IMPURITY",
+          "grade_pct"
+        ]
+      },
+      "interpretation_axes": {
+        "T-A": "T-I",
+        "T-B": "T-P"
+      },
+      "context_fields": [
+        "basis",
+        "feed",
+        "endpoint",
+        "scale",
+        "scope",
+        "study_date",
+        "case_id"
+      ],
+      "case_consistency_fields": [
+        "scope",
+        "study_date",
+        "date_role",
+        "scenario",
+        "basis",
+        "feed",
+        "endpoint",
+        "scale"
+      ],
+      "scoring_rule": "Classification is not a utility function or permission to rank. Existing numeric-model contracts own admission and weights. Context and evidence maturity never earn Technical points.",
+      "missing_rule": "Unknown remains null. No automatic endpoint conversion, stage multiplication, best-case selection, imputation or per-project reweighting."
+    },
+    "decision": "PROCESS_SPECIFIC_NUMERIC_MCDA_PLUS_NOMINAL_REQUIREMENTS",
+    "status": "EXPLORATORY_NOT_INDEPENDENT_EXPERT_VALIDATED",
+    "common_score": false,
+    "ordinal_numeric_mapping": null,
+    "technical_weight_change": 0,
+    "states": [
+      "SUPPORTED_LOWER_BURDEN",
+      "EXPLICIT_ADDITIONAL_REQUIREMENT",
+      "OBSERVED_MAJOR_OBSTACLE",
+      "UNKNOWN",
+      "CONFLICT",
+      "NOT_APPLICABLE"
+    ],
+    "rules": [
+      {
+        "id": "TA-REAGENT",
+        "criterion": "T-A",
+        "pattern": "(?:acid|reagent|energy|power).{0,60}(?:consumption|requirement|demand)|(?:consumption|requirement).{0,60}(?:acid|reagent|energy)",
+        "state": "EXPLICIT_ADDITIONAL_REQUIREMENT",
+        "meaning": "A disclosed extraction input requirement, not a calibrated magnitude or cross-project difficulty order"
+      },
+      {
+        "id": "TA-OBSTACLE",
+        "criterion": "T-A",
+        "pattern": "(?:observed|testwork|tests? (?:showed|demonstrated|confirmed)).{0,80}(?:refractory|poor extraction|failed to leach)",
+        "state": "OBSERVED_MAJOR_OBSTACLE",
+        "meaning": "Explicit observed extraction limitation at source scope"
+      },
+      {
+        "id": "TA-LOWER",
+        "criterion": "T-A",
+        "pattern": "(?:tests? (?:showed|demonstrated|confirmed)|testwork demonstrated).{0,80}(?:no grinding required|negligible gangue dissolution)",
+        "state": "SUPPORTED_LOWER_BURDEN",
+        "meaning": "Positive test evidence for the named barrier only, never entire process burden"
+      },
+      {
+        "id": "TB-TREATMENT",
+        "criterion": "T-B",
+        "pattern": "(?:impurit(?:y|ies)|thorium|uranium|residue|tailings).{0,90}(?:removal|neutralisation|neutralization|treatment|stabili[sz]ation|disposal)|(?:removal|neutralisation|neutralization).{0,60}(?:impurit(?:y|ies)|thorium|uranium)",
+        "state": "EXPLICIT_ADDITIONAL_REQUIREMENT",
+        "meaning": "Disclosed impurity or residue management requirement, not dose or risk inferred from ore concentration"
+      },
+      {
+        "id": "TB-OBSTACLE",
+        "criterion": "T-B",
+        "pattern": "(?:tests? (?:showed|demonstrated|confirmed)|observed).{0,80}(?:failed.{0,25}(?:specification|impurity)|unacceptable impurit)",
+        "state": "OBSERVED_MAJOR_OBSTACLE",
+        "meaning": "Explicit test failure against named impurity or product specification"
+      }
+    ],
+    "conflict_rule": "Different applicable states for the same scoped criterion remain a state set; no best/latest priority",
+    "missing_rule": "No match means UNKNOWN, never lower burden. N/A requires explicit source applicability, not absence.",
+    "scope_rule": "Source-case interpretation only; Project extrapolation requires independently supported target population coverage, not an issuer representative assertion",
+    "negation_rule": "Negated, hypothetical and forward-looking matches do not establish observed performance",
+    "double_counting": "Extraction inputs belong to T-A; distinct resulting residue treatment belongs to T-B. No aggregation into weighted score; Development remains separate.",
+    "examples": {
+      "positive": [
+        "Tests demonstrated no grinding required.",
+        "Acid consumption was measured on the selected composites.",
+        "Impurity removal required neutralisation."
+      ],
+      "negative": [
+        "A DFS was completed.",
+        "The deposit is clay hosted.",
+        "Ore contains 20 ppm thorium.",
+        "The company uses proven technology.",
+        "No acid consumption data were disclosed."
+      ]
+    },
+    "calibration": "Phase15 core Dubbo and Cummins source scopes; rule set fixed before application",
+    "evaluation": "Phase16 prior held documents are development/regression; fixed new document partition in data/phase16_remediation_preregistration.json",
+    "numeric_model": {
+      "version": "process-specific-technical-v1",
+      "formal_c1": false,
+      "adoption": {
+        "A": "ADOPT_EXPLORATORY_DESIGN_DEMONSTRATION",
+        "B": "WITHIN_CASE_FORMULATION_AND_ACTIVE_INPUT_ONLY_PENDING_CROSS_CASE",
+        "C": "SOURCE_SPECIFICATION_DIAGNOSTIC_NOT_COMMON_ORDINAL",
+        "D": "SUFFICIENCY_CHECK_NO_UNSUPPORTED_FUNCTIONAL_UNIT"
+      },
+      "contract": {
+        "version": "technical-use-v2",
+        "variables": [
+          "whole_ore_concentrate_recovery_pct",
+          "concentrate_treo_grade_pct"
+        ],
+        "unit": "%",
+        "basis": [
+          "TREO_INCLUDING_Y"
+        ],
+        "requires": {
+          "feed": "WHOLE_ORE",
+          "endpoint": "MINERAL_CONCENTRATE",
+          "scale": "DFS_MODEL"
+        },
+        "required_conditions": [
+          "scope",
+          "study_date",
+          "case_id"
+        ],
+        "analysis_scope": "NAMED_MINE_PLAN_DESIGN",
+        "model_assumptions": [
+          "Each source dated mine-plan design forecast, not operating performance",
+          "Compare whole-feed oxide recovery and concentrate oxide grade; no extrapolation to all deposits or to separated oxides",
+          "Different mineral assemblages are background mechanisms, not numerical bonuses",
+          "Only one explicitly typed engineering design case per project; competing cases excluded rather than selecting maximum or newest"
+        ]
+      },
+      "criteria": {
+        "TPR": {
+          "framework_axis": "T-R",
+          "variable": "whole_ore_concentrate_recovery_pct",
+          "quantity": "TREO mass recovered in mineral concentrate / TREO in whole ore",
+          "low": 0,
+          "high": 100,
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear"
+        },
+        "TPG": {
+          "framework_axis": "T-P",
+          "variable": "concentrate_treo_grade_pct",
+          "quantity": "TREO mass / mineral concentrate mass",
+          "low": 0,
+          "high": 100,
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear"
+        }
+      },
+      "background": [
+        "mineralogy",
+        "study_date",
+        "scale",
+        "site geography"
+      ],
+      "burden_variables": [
+        "reagent",
+        "temperature",
+        "grinding",
+        "residue"
+      ],
+      "required_comparability": [
+        "same oxide basis including Y",
+        "whole ore feed",
+        "mineral concentrate endpoint",
+        "engineering forecast interpretation",
+        "single named case"
+      ],
+      "reference_criterion": "D1",
+      "reference_scope": "Existing development study maturity score, fixed at source DFS design in both named cases; invariant context not Technical performance or evidence-quality bonus",
+      "weights": {
+        "criteria_order": [
+          "TPR",
+          "TPG"
+        ],
+        "technical_totals": [
+          0,
+          0.25,
+          0.5,
+          1
+        ],
+        "technical_subweights": [
+          [
+            0.8,
+            0.2
+          ],
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.2,
+            0.8
+          ]
+        ]
+      },
+      "anchors": "Physical fractions 0..1 are preference assumptions, not engineering pass thresholds; infrastructure keeps existing 0..2000 km anchor",
+      "dependency_audit": "Grade and recovery have distinct numerators/denominators; no enrichment, contained resource or product tonnage included. Same-source errors dependent and unquantified; no independent measurement noise drawn. Study maturity not scored. Both cases have equal existing D1=0.6; it contributes no discrimination. Do not interpret D1 weighting as independent validation quality. GIS comparison excluded where Yangibana has no selected representative point; no zero imputation.",
+      "uncertainty": "NO_SOURCE_MEASUREMENT_BOUNDS; deterministic scope scenarios; existing seeded weight Monte Carlo only, not success probability"
+    },
+    "jorc_screening": {
+      "version": "jorc-table1-interval-screening-v1",
+      "source": "https://www.jorc.org/docs/JORC_code_2012.pdf",
+      "status": "RESEARCH_OPERATIONALISATION_NOT_JORC_PRESCRIBED_SCORING",
+      "criteria_order": [
+        "T-R",
+        "T-I",
+        "T-P"
+      ],
+      "design_scales": [
+        "DFS_MODEL",
+        "PFS_MODEL",
+        "SCOPING_MODEL"
+      ],
+      "maturity_context": [
+        "study_date",
+        "scale",
+        "sample_population",
+        "statistic",
+        "feed",
+        "endpoint",
+        "basis"
+      ],
+      "table1_items": {
+        "sampling": {
+          "reference": "Table 1 Section 1: Sampling techniques; Sub-sampling techniques and sample preparation",
+          "topic": "樣本與前處理",
+          "fields": [
+            "sample_id",
+            "sample_population",
+            "sample_interval"
+          ]
+        },
+        "process": {
+          "reference": "Table 1 Sections 3/4: Metallurgical factors or assumptions",
+          "topic": "製程與處理適用性",
+          "fields": [
+            "feed",
+            "endpoint",
+            "process_stage"
+          ]
+        },
+        "recovery": {
+          "reference": "Table 1 Section 4: Metallurgical factors or assumptions, testwork and recovery factors",
+          "topic": "回收與分離表現",
+          "axes": [
+            "T-R"
+          ]
+        },
+        "inputs": {
+          "reference": "Table 1 Section 4: Metallurgical factors or assumptions; Costs (processing inputs operationalisation)",
+          "topic": "處理投入（研究延伸欄位）",
+          "axes": [
+            "T-I"
+          ]
+        },
+        "product": {
+          "reference": "Table 1 Section 4: Metallurgical factors or assumptions, deleterious elements and specifications",
+          "topic": "產品與有害元素限制",
+          "axes": [
+            "T-P"
+          ]
+        },
+        "scale": {
+          "reference": "Table 1 Section 4: Metallurgical factors or assumptions, bulk/pilot testwork; Study status",
+          "topic": "試驗尺度與設計依據",
+          "fields": [
+            "scale"
+          ]
+        },
+        "representation": {
+          "reference": "Table 1 Section 4: Metallurgical factors or assumptions, sample representativeness",
+          "topic": "目標代表性依據",
+          "fields": [
+            "representativeness_evidence"
+          ]
+        }
+      },
+      "weight_scenarios": {
+        "balanced": [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333
+        ],
+        "recovery_focus": [
+          0.8,
+          0.1,
+          0.1
+        ],
+        "product_focus": [
+          0.4,
+          0.1,
+          0.5
+        ],
+        "input_focus": [
+          0.3,
+          0.5,
+          0.2
+        ]
+      },
+      "weight_grid_steps": 10,
+      "promethee_threshold": 0.2,
+      "perturbation_percentage_points": [
+        0,
+        5,
+        10
+      ],
+      "utility_assumptions": [
+        "Fixed-anchor benefit utility is the reported recovery fraction or TREO grade fraction; linear preference is researcher-assumed, not JORC mandated.",
+        "Each panel defines a process boundary; named boundary variants, oxide sums and reported tests/models are treated as comparable only conditionally for screening.",
+        "Reported-case envelope is min/max of admitted source outcomes, including reported maxima as observed outcomes; never a population mean, measurement error bound or future performance prediction.",
+        "T-I has no adopted cross-reagent/functional-unit utility; full [0,1] remains for every group rather than zero fill, reweighting or merging abandoned routes.",
+        "T-P grade is only a concentration proxy, not a saleability/compliance score; missing full specifications remain in evidence crosswalk.",
+        "Independent criterion boxes are conservative outer sets; corners may combine incompatible cases and are never published as a realised design.",
+        "Project-transfer stress uses bound project-applicable evidence only; unproved extrapolation restores unknown utility without excluding any project.",
+        "Percentage-point perturbations and weights are explicit research stress assumptions, not source-derived confidence or probability distributions."
+      ],
+      "panels": {
+        "concentrate_treo": {
+          "label": "精礦邊界TREO回收與品位條件比較",
+          "criteria": {
+            "T-R": {
+              "quantities": [
+                "BENEFICIATION_RECOVERY",
+                "REPORTED_RECOVERY",
+                "recovery_pct",
+                "LEACH_EXTRACTION",
+                "ZONE_LEACH_EXTRACTION",
+                "extraction_pct",
+                "MODELLED_INTERMEDIATE_PRODUCT_RECOVERY",
+                "ALTERNATIVE_PROCESS_DESIGN_RECOVERY",
+                "OVERALL_TO_CALCINED_MIXED_REO"
+              ],
+              "bases": [
+                "TREO",
+                "TREO_INCLUDING_Y",
+                "SOURCE_REO_SET_NOT_FULLY_DEFINED",
+                "SOURCE_REPORTED_TREO_NO_FURTHER_BASIS_HARMONIZATION",
+                "SOURCE_REPORTED_TREO_SET_NOT_FULLY_RESTATED",
+                "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED"
+              ],
+              "endpoints": [
+                "MINERAL_CONCENTRATE",
+                "MONAZITE_MINERAL_CONCENTRATE",
+                "PHOSPHATE_REE_MINERAL_CONCENTRATE",
+                "CLEANER_CONCENTRATE",
+                "ROUGHER_CONCENTRATE",
+                "CLEANER_MINERAL_CONCENTRATE",
+                "ROUGHER_MINERAL_CONCENTRATE",
+                "1st Cleaner Concentrate",
+                "2nd Cleaner Concentrate",
+                "Rougher Concentrate",
+                "Rougher Concentrate (R1+R2)"
+              ],
+              "unit_divisors": {
+                "%": 100,
+                "fraction": 1
+              }
+            },
+            "T-P": {
+              "quantities": [
+                "INTERMEDIATE_PRODUCT_GRADE",
+                "grade_pct"
+              ],
+              "bases": [
+                "TREO",
+                "TREO_INCLUDING_Y",
+                "SOURCE_REO_SET_NOT_FULLY_DEFINED",
+                "SOURCE_REPORTED_TREO_NO_FURTHER_BASIS_HARMONIZATION",
+                "SOURCE_REPORTED_TREO_SET_NOT_FULLY_RESTATED",
+                "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED"
+              ],
+              "endpoints": [
+                "MINERAL_CONCENTRATE",
+                "MONAZITE_MINERAL_CONCENTRATE",
+                "PHOSPHATE_REE_MINERAL_CONCENTRATE",
+                "CLEANER_CONCENTRATE",
+                "ROUGHER_CONCENTRATE",
+                "CLEANER_MINERAL_CONCENTRATE",
+                "ROUGHER_MINERAL_CONCENTRATE",
+                "1st Cleaner Concentrate",
+                "2nd Cleaner Concentrate",
+                "Rougher Concentrate",
+                "Rougher Concentrate (R1+R2)"
+              ],
+              "unit_divisors": {
+                "%": 100,
+                "ppm": 1000000,
+                "fraction": 1
+              }
+            }
+          }
+        },
+        "leach_ndpr": {
+          "label": "Nd/Pr浸出或解吸回收條件比較",
+          "criteria": {
+            "T-R": {
+              "quantities": [
+                "BENEFICIATION_RECOVERY",
+                "REPORTED_RECOVERY",
+                "recovery_pct",
+                "LEACH_EXTRACTION",
+                "ZONE_LEACH_EXTRACTION",
+                "extraction_pct",
+                "MODELLED_INTERMEDIATE_PRODUCT_RECOVERY",
+                "ALTERNATIVE_PROCESS_DESIGN_RECOVERY",
+                "OVERALL_TO_CALCINED_MIXED_REO"
+              ],
+              "bases": [
+                "Nd",
+                "Nd2O3",
+                "Pr",
+                "Pr6O11",
+                "NdPr",
+                "Nd2O3+Pr6O11",
+                "SOURCE_DEFINED_NDPR_OXIDES"
+              ],
+              "endpoints": [
+                "LEACH_SOLUTION",
+                "DESORPTION_LIQUOR"
+              ],
+              "unit_divisors": {
+                "%": 100,
+                "fraction": 1
+              }
+            }
+          }
+        },
+        "leach_dytb": {
+          "label": "Dy/Tb浸出或解吸回收條件比較",
+          "criteria": {
+            "T-R": {
+              "quantities": [
+                "BENEFICIATION_RECOVERY",
+                "REPORTED_RECOVERY",
+                "recovery_pct",
+                "LEACH_EXTRACTION",
+                "ZONE_LEACH_EXTRACTION",
+                "extraction_pct",
+                "MODELLED_INTERMEDIATE_PRODUCT_RECOVERY",
+                "ALTERNATIVE_PROCESS_DESIGN_RECOVERY",
+                "OVERALL_TO_CALCINED_MIXED_REO"
+              ],
+              "bases": [
+                "Dy",
+                "Dy2O3",
+                "Tb",
+                "Tb4O7",
+                "Dy2O3+Tb4O7"
+              ],
+              "endpoints": [
+                "LEACH_SOLUTION",
+                "DESORPTION_LIQUOR"
+              ],
+              "unit_divisors": {
+                "%": 100,
+                "fraction": 1
+              }
+            }
+          }
+        },
+        "mixed_product_treo": {
+          "label": "混合稀土產品邊界TREO條件比較",
+          "criteria": {
+            "T-R": {
+              "quantities": [
+                "BENEFICIATION_RECOVERY",
+                "REPORTED_RECOVERY",
+                "recovery_pct",
+                "LEACH_EXTRACTION",
+                "ZONE_LEACH_EXTRACTION",
+                "extraction_pct",
+                "MODELLED_INTERMEDIATE_PRODUCT_RECOVERY",
+                "ALTERNATIVE_PROCESS_DESIGN_RECOVERY",
+                "OVERALL_TO_CALCINED_MIXED_REO"
+              ],
+              "bases": [
+                "TREO",
+                "TREO_INCLUDING_Y",
+                "SOURCE_REO_SET_NOT_FULLY_DEFINED",
+                "SOURCE_REPORTED_TREO_NO_FURTHER_BASIS_HARMONIZATION",
+                "SOURCE_REPORTED_TREO_SET_NOT_FULLY_RESTATED",
+                "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED"
+              ],
+              "endpoints": [
+                "MREC",
+                "CALCINED_MIXED_REO"
+              ],
+              "unit_divisors": {
+                "%": 100,
+                "fraction": 1
+              }
+            },
+            "T-P": {
+              "quantities": [
+                "INTERMEDIATE_PRODUCT_GRADE",
+                "grade_pct"
+              ],
+              "bases": [
+                "TREO",
+                "TREO_INCLUDING_Y",
+                "SOURCE_REO_SET_NOT_FULLY_DEFINED",
+                "SOURCE_REPORTED_TREO_NO_FURTHER_BASIS_HARMONIZATION",
+                "SOURCE_REPORTED_TREO_SET_NOT_FULLY_RESTATED",
+                "TEST_TREO_REPORTED_OXIDE_SUM_NOT_FULLY_DEFINED"
+              ],
+              "endpoints": [
+                "MREC",
+                "CALCINED_MIXED_REO"
+              ],
+              "unit_divisors": {
+                "%": 100,
+                "ppm": 1000000,
+                "fraction": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "disclosure_supersedes_screening": true
+  },
+  "technical_disclosure": {
+    "version": "technical-disclosure-transparency-v1",
+    "review_path": "data/technical_disclosure_current.json",
+    "codebook": "docs/technical-disclosure.md",
+    "denominator": 7,
+    "states": {
+      "DISCLOSED": 1,
+      "EXPLICIT_UNKNOWN": 1,
+      "INSUFFICIENT": 0,
+      "UNVERIFIABLE": null
+    },
+    "review_cutoff": "2026-11-05",
+    "panels": {
+      "disclosure_only": [
+        "T1"
+      ],
+      "resource_disclosure": [
+        "R1",
+        "T1"
+      ],
+      "resource_port_disclosure": [
+        "R1",
+        "I4",
+        "T1"
+      ],
+      "six_domain_disclosure": [
+        "R1",
+        "S1",
+        "T1",
+        "D1",
+        "I4",
+        "C1"
+      ]
+    },
+    "incremental_registry": true
   }
 }

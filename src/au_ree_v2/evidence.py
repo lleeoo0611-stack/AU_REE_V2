@@ -3,7 +3,7 @@ import json
 import math
 import re
 from pathlib import Path
-from .store import canonical, digest, entity, issue
+from .store import canonical, digest, entity, issue, filehash
 from .census import ingest_workbook
 from .official import ingest_official_table, ingest_prospectus
 from .national import ingest_legacy_e1
@@ -50,7 +50,8 @@ def validate_pages(root, source, evidence, snapshots, cache=None):
         if not markers or not all(m in html_text(root,source) for m in markers):
             raise ValueError('EXTRACTION_HTML_MARKER_CHECK_FAILED')
         return
-    bindings = [dict(page=evidence['pdf_page'], markers=evidence['page_markers'])]
+    bindings = [dict(page=evidence['pdf_page'], markers=evidence['page_markers'],
+        **{k:evidence[k] for k in ('page_extraction_key','page_extraction_sha256','marker_normalization') if k in evidence})]
     bindings += evidence.get('context_evidence', [])
     if evidence.get('finance_evidence'):
         bindings.append(evidence['finance_evidence'])
@@ -58,21 +59,47 @@ def validate_pages(root, source, evidence, snapshots, cache=None):
         page = binding['page']
         if not isinstance(page, int) or page < 1 or not binding['markers']:
             raise ValueError('MISSING_PHYSICAL_PAGE_OR_MARKERS')
+        # Resolve an explicitly captured native/positioned page BEFORE opening
+        # the original with pypdf. Public PDFs using AES with an empty password
+        # are already readable by the installed MuPDF; no new dependency, OCR
+        # or guessed numeric substitution is needed. Context pages bind too.
+        if binding.get('page_extraction_key'):
+            artifact=next(s for s in snapshots if s['key']==binding['page_extraction_key'])
+            if artifact['sha256']!=binding['page_extraction_sha256'] or filehash(root/artifact['path'])!=artifact['sha256']:
+                raise ValueError('PAGE_ARTIFACT_VERSION_MISMATCH')
+            data=json.loads((root/artifact['path']).read_text(encoding='utf8'))
+            if data['source_sha256']!=source['sha256'] or data['physical_page']!=page or data['status']!='EXTRACTED_REQUIRES_SCOPE_VALIDATION':
+                raise ValueError('PAGE_ARTIFACT_BINDING_FAILED')
+            text=data['text']
+            compared=' '.join(text.split()) if binding.get('marker_normalization')=='WHITESPACE_ONLY_V1' else text
+            if not all(marker in compared for marker in binding['markers']):raise ValueError('EXTRACTION_PAGE_CHECK_FAILED')
+            if evidence.get('kind')=='SOURCE_BOUND_SCIENTIFIC_CLAIM' and page==evidence['pdf_page'] and ' '.join(evidence['raw_text'].split()) not in ' '.join(text.split()):
+                raise ValueError('SCIENTIFIC_QUOTE_NOT_BOUND_TO_PAGE')
+            continue
         key = (source['sha256'], page)
         if key not in cache:
-            reader_key = ('reader', source['sha256'])
-            if reader_key not in cache:
-                cache[reader_key] = PdfReader(root/source['path'])
-            cache[key] = cache[reader_key].pages[page-1].extract_text() or ''
+            import pypdf
+            contract=dict(source_sha256=source['sha256'],page=page,parser='pypdf-'+pypdf.__version__,parameters='extract_text-default-v1')
+            import os
+            cache_root=Path(os.environ.get('AU_REE_NATIVE_CACHE',str(root/'work/cache/native_pages')))
+            cached_path=cache_root/(digest(contract)+'.json')
+            payload=None
+            if cached_path.exists():
+                try:
+                    candidate=json.loads(cached_path.read_text(encoding='utf8'))
+                    if candidate['contract']==contract and candidate['text_sha256']==digest(candidate['text']):payload=candidate
+                except (KeyError,ValueError,OSError):pass
+            if payload is None:
+                reader_key = ('reader', source['sha256'])
+                if reader_key not in cache:cache[reader_key] = PdfReader(root/source['path'])
+                text=cache[reader_key].pages[page-1].extract_text() or ''
+                payload=dict(contract=contract,text=text,text_sha256=digest(text))
+                cached_path.parent.mkdir(parents=True,exist_ok=True)
+                cached_path.write_text(canonical(payload)+'\n',encoding='utf8')
+            cache[key]=payload['text']
         text = cache[key]
-        if evidence.get('page_extraction_key') and page == evidence['pdf_page']:
-            artifact = next(s for s in snapshots if s['key'] == evidence['page_extraction_key'])
-            if artifact['sha256'] != evidence['page_extraction_sha256']:
-                raise ValueError('PAGE_ARTIFACT_VERSION_MISMATCH')
-            data = json.loads((root/artifact['path']).read_text(encoding='utf-8'))
-            if data['source_sha256'] != source['sha256'] or data['physical_page'] != page or data['status'] != 'EXTRACTED_REQUIRES_SCOPE_VALIDATION':
-                raise ValueError('PAGE_ARTIFACT_BINDING_FAILED')
-            text = data['text']
+        if evidence.get('kind')=='SOURCE_BOUND_SCIENTIFIC_CLAIM' and page==evidence['pdf_page']:
+            if ' '.join(evidence['raw_text'].split()) not in ' '.join(text.split()):raise ValueError('SCIENTIFIC_QUOTE_NOT_BOUND_TO_PAGE')
         if not all(marker in text for marker in binding['markers']):
             raise ValueError('EXTRACTION_PAGE_CHECK_FAILED')
 
@@ -112,6 +139,58 @@ def claim_evidence_ids(claims):
         raw=dict(event,variable='commercial_event',domain=event.get('domain','Commercial'),value=None)
         active.add(digest([eid,event['source_sha256'],raw]))
     return active
+
+
+def register_candidate(db,root,snapshots,cutoff,registration,claims):
+    """Adopt an explicit, source-reviewed Project declaration in existing claims.
+
+    A native candidate starts work, not admission. This interface validates its
+    immutable row, original declaration, date and typed relation. It never uses
+    name similarity, distance, owner or a tenement hit as Project proof. Caller
+    persists the returned claims/relation with the existing version mechanism.
+    """
+    from .selection import source_check
+    root=Path(root);r=registration;by_key={s['key']:s for s in snapshots}
+    candidate=db.execute('''SELECT e.*,r.* FROM entities e JOIN records r USING(entity_id)
+        WHERE e.entity_id=? AND r.source_sha=?''',(r['candidate_id'],r['candidate_source_sha256'])).fetchone()
+    if candidate is None:raise ValueError('CANDIDATE_NATIVE_SOURCE_NOT_FOUND')
+    source=by_key.get(r['identity_source'])
+    if source_check(source,cutoff,root):raise ValueError('PROJECT_DECLARATION_SOURCE_INVALID_OR_POST_CUTOFF')
+    if r.get('identity_basis')!='EXPLICIT_NAMED_PROJECT_DECLARATION':raise ValueError('PROJECT_IDENTITY_REQUIRES_EXPLICIT_DECLARATION')
+    declaration=r['declaration']
+    if declaration.get('source_sha256')!=source['sha256']:raise ValueError('PROJECT_DECLARATION_SOURCE_VERSION_MISMATCH')
+    if not declaration.get('page_markers') or not declaration.get('scope_reason'):raise ValueError('PROJECT_DECLARATION_SCOPE_AND_LOCATOR_REQUIRED')
+    if source['kind']=='pdf':validate_pages(root,source,declaration,snapshots)
+    elif source['kind'] in ('html','discovery_html'):
+        text=html_text(root,source)
+        if not all(m in text for m in declaration['page_markers']):raise ValueError('PROJECT_DECLARATION_TEXT_NOT_FOUND')
+    else:raise ValueError('PROJECT_DECLARATION_REQUIRES_ORIGINAL_DOCUMENT')
+    if r['state']!=candidate['state']:raise ValueError('PROJECT_CANDIDATE_JURISDICTION_CONFLICT')
+    native='candidate-'+candidate['entity_id'].removeprefix('AU-')
+    def same_declaration(p):
+        old=p.get('identity_declaration',{})
+        return (p.get('name')==r['name'] and p.get('state')==r['state'] and
+            all(old.get(k)==declaration.get(k) for k in ('source_sha256','pdf_page','page_markers')) and bool(old))
+    existing=[p for p in claims['projects'] if p.get('origin_candidate_id')==candidate['entity_id'] or same_declaration(p)]
+    if len(existing)>1:raise ValueError('CANDIDATE_HAS_MULTIPLE_PROJECT_DECLARATIONS')
+    project=dict(existing[0]) if existing else dict(id=native,entity_namespace='project_registry_v1',
+        name=r['name'],state=r['state'],identity_source=r['identity_source'],
+        origin_candidate_id=candidate['entity_id'],observations=[])
+    if existing and (project['name']!=r['name'] or project['state']!=r['state']):raise ValueError('EXISTING_PROJECT_IDENTITY_CONFLICT')
+    project.update(identity_declaration=declaration,required_source_keys=[r['identity_source']])
+    if not existing:claims['projects'].append(project)
+    else:claims['projects'][claims['projects'].index(existing[0])]=project
+    relation=dict(left=[project.get('entity_namespace','project_registry_v1'),project['id']],
+        right=[candidate['native_namespace'],candidate['native_id']],
+        relation=r.get('relation','SOURCE_CONTEXT_CANDIDATE_NOT_VERIFIED_ENTITY_RELATION'),
+        source_key=source['key'],source_sha256=source['sha256'],effective_date=source.get('publication_date') or source['available_date'],
+        pdf_page=declaration.get('pdf_page'),page_markers=declaration['page_markers'],
+        locator=declaration['scope_reason'],required_source_keys=[source['key']])
+    if relation['relation'] not in ('HAS_SOURCE_DOCUMENTED_NATIVE_ENTITY_NOT_IDENTITY_EQUIVALENCE','CONTAINS_ISSUER_DOCUMENTED_DEPOSIT_NOT_RESOURCE_SUM','SOURCE_CONTEXT_CANDIDATE_NOT_VERIFIED_ENTITY_RELATION'):
+        raise ValueError('CANDIDATE_ADMISSION_CANNOT_ASSERT_CANONICAL_EQUIVALENCE')
+    if relation['relation']!='SOURCE_CONTEXT_CANDIDATE_NOT_VERIFIED_ENTITY_RELATION' and str(candidate['native_id']) not in ' '.join(declaration['page_markers']):
+        raise ValueError('CONFIRMED_NATIVE_RELATION_REQUIRES_DOCUMENTED_NATIVE_ID')
+    return project,relation
 
 
 def ingest_events(db, root, snapshots, cutoff, claims_data=None):
@@ -158,6 +237,10 @@ def ingest_recognized(db, root, snapshots, cutoff, policy, acquired_through=None
     from .selection import source_check, date_end
     from .store import filehash
     root=Path(root);sources={s['sha256']:s for s in snapshots};outcomes=[]
+    aliases={}
+    if policy.get('validation_version')=='scientific-context-v5-peer-boundary':
+        from .pdf_extract import project_registry
+        aliases={p['entity_id']:p['aliases'] for p in project_registry(root,db,snapshots)}
     for artifact in snapshots:
         if artifact['kind']!='document_extraction':continue
         try:
@@ -176,7 +259,7 @@ def ingest_recognized(db, root, snapshots, cutoff, policy, acquired_through=None
                     reasons.append('PAGE_TEXT_BINDING_FAILED')
                 if policy.get('validation_version') and page:
                     from .pdf_extract import narrative_context_issues
-                    reasons.extend(narrative_context_issues(c,page,version=policy['validation_version']))
+                    reasons.extend(narrative_context_issues(c,page,version=policy['validation_version'],project_aliases=aliases.get(pid,())))
                 if c['source_sha256']!=source['sha256']:reasons.append('SOURCE_BINDING_FAILED')
                 if not pid or not db.execute("SELECT 1 FROM entities WHERE entity_id=? AND kind='PROJECT'",(pid,)).fetchone():
                     outcomes.append(dict(candidate_id=c['candidate_id'],source_key=source['key'],
@@ -307,14 +390,19 @@ def document_report(root, snapshots, outcomes, out, shared_comparability=False):
     (out/'document_pipeline_summary.json').write_text(canonical(report)+'\n',encoding='utf-8')
     return report
 
-def ingest_sources(db, root, snapshots):
+def ingest_sources(db, root, snapshots, commodity_version="minedex-commodity-v2", candidate_version=None):
     for s in snapshots:
         db.execute('INSERT OR IGNORE INTO sources VALUES(?,?,?,?,?,?,?,?)',
                    (s['sha256'], s['key'], s['url'], s.get('publication_date'),
                     s['acquired_at'], s['path'], s['kind'], canonical(s)))
+        if s['kind']=='minedex_resource_batch':
+            from .official import ingest_minedex_resources
+            try:ingest_minedex_resources(db,root,s,commodity_version)
+            except Exception as exc:issue(db,None,s['sha256'],'MINEDEX_RESOURCE_INGEST_FAILED',str(exc))
+            continue
         if s.get('national_government'):
             from .national import ingest_government
-            try:ingest_government(db,root,s)
+            try:ingest_government(db,root,s,candidate_version)
             except Exception as exc:issue(db,None,s['sha256'],'GOVERNMENT_SOURCE_INGEST_FAILED',str(exc))
             continue
         if s['kind']=='legacy_screen_index':
@@ -330,7 +418,7 @@ def ingest_sources(db, root, snapshots):
             ingest_official_table(db,root,s)
             continue
         if s['kind'] == 'xlsx_census':
-            ingest_workbook(db,root,s)
+            ingest_workbook(db,root,s,candidate_version)
             continue
         if s['kind'] != 'arcgis_census':
             continue
@@ -361,9 +449,11 @@ def normalize(observation):
     reasons = []
     value = o.get('value')
     numeric = isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
-    if not numeric:
+    textual=o.get('kind')=='SOURCE_BOUND_SCIENTIFIC_CLAIM'
+    if textual and (value is not None or not o.get('raw_text') or not o.get('reviewed_interpretations')):reasons.append('INVALID_TEXTUAL_SCIENTIFIC_CLAIM')
+    if not numeric and not textual:
         reasons.append('MISSING_OR_NONFINITE')
-    elif value < 0:
+    elif numeric and value < 0:
         reasons.append('NEGATIVE_VALUE')
     if numeric and o.get('unit')=='%' and value>100:reasons.append('PERCENT_OUT_OF_RANGE')
     if numeric and o['variable'] in ('ore_mt','grade','contained_treo_kt') and value<=0:reasons.append('NONPOSITIVE_RESOURCE_VALUE')
@@ -395,6 +485,20 @@ def transformation_issues(o, siblings, depth=0):
     try:
         if t['rule']=='BT_TO_MT':
             assert t['original_unit']=='Bt' and o['unit']=='Mt' and math.isclose(o['value'],t['original_value']*1000)
+        elif t['rule']=='REO_GRADE_PERCENT_TO_PPM':
+            matches=[x for x in siblings if x['variable']=='grade' and all(x.get(k)==o.get(k) for k in ('scope','statement_id','effective_date','source_key','source_sha256'))]
+            assert len(matches)==1 and matches[0]['unit']=='%' and matches[0]['basis']=='TREO'
+            assert not normalize(matches[0]) and o['unit']=='ppm' and o['basis']=='TREO'
+            assert math.isclose(o['value'],matches[0]['value']*10000)
+        elif t['rule']=='OXIDE_DISTRIBUTION_PERCENT_TO_PPM':
+            assert t['original_unit']=='% of TREO' and o['unit']=='ppm'
+            assert o['basis'] in {'Pr6O11','Nd2O3','Tb4O7','Dy2O3','TREO'}
+            assert o.get('material_basis')=='OXIDE_DISTRIBUTION_NOT_ORE_GRADE'
+            assert 0<=t['original_value']<=100 and math.isclose(o['value'],t['original_value']*10000)
+        elif t['rule']=='REO_DISTRIBUTION_DENOMINATOR':
+            assert o['basis']=='TREO' and o['unit']=='ppm' and o['value']==1000000
+            assert o.get('material_basis')=='OXIDE_DISTRIBUTION_NOT_ORE_GRADE'
+            assert o.get('derivation_status')=='DEFINITION_IDENTITY_NOT_REPORTED_MEASUREMENT'
         else:
             inputs=[]
             for var in t['inputs']:
@@ -441,10 +545,16 @@ def ingest_claims(db, root, snapshots, cutoff, project=None, conflict_selection=
                 db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
                     (eid, coordinate_source['sha256'], p['name'], p['state'],dep['longitude'],dep['latitude'],
                      p.get('deposit_type'), None, canonical(p)))
-                db.execute('INSERT OR IGNORE INTO relations VALUES(?,?,?,?,?,?,?)',
-                    (digest([eid,dep['entity_id'],'REPRESENTATIVE_POINT']),eid,dep['entity_id'],
+                # The legacy key omitted the source revision. Keep old rows,
+                # but allow an unchanged native point in a new source snapshot.
+                # Do not duplicate a relation already stored under a legacy key.
+                db.execute('''INSERT OR IGNORE INTO relations SELECT ?,?,?,?,?,?,?
+                    WHERE NOT EXISTS (SELECT 1 FROM relations
+                        WHERE parent_id=? AND child_id=? AND relation=? AND source_sha=?)''',
+                    (digest([eid,dep['entity_id'],'REPRESENTATIVE_POINT',coordinate_source['sha256']]),eid,dep['entity_id'],
                      'REPRESENTATIVE_POINT_NOT_ENTITY_EQUIVALENCE',coordinate_source['available_date'],
-                     coordinate_source['sha256'],p['coordinate_role']))
+                     coordinate_source['sha256'],p['coordinate_role'],eid,dep['entity_id'],
+                     'REPRESENTATIVE_POINT_NOT_ENTITY_EQUIVALENCE',coordinate_source['sha256']))
         for o in p['observations']:
             s = by_key.get(o['source_key'])
             if not s or o['effective_date'] > cutoff:

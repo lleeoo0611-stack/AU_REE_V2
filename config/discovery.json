@@ -1,5 +1,5 @@
 {
-  "version": "discovery-v7-official-reports",
+  "version": "discovery-v8-native-candidate-search",
   "max_documents_per_seed": 3,
   "seeds": [
     {
@@ -359,8 +359,9 @@
       "key": "wamex_ree_technical_index",
       "protocol": "arcgis",
       "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/22",
-      "where": "digital_file = 1 AND report_year >= 2015 AND (UPPER(project) LIKE '%CUMMINS%' OR UPPER(project) LIKE '%BROWNS RANGE%' OR UPPER(project) LIKE '%SALAZAR%' OR UPPER(project) LIKE '%STANMORE%' OR UPPER(project) LIKE '%YANGIBANA%' OR UPPER(project) LIKE '%WELD%') AND (UPPER(target_commodity) LIKE '%RARE EARTH%' OR UPPER(keywords) LIKE '%MINERAL PROCESS%' OR UPPER(keywords) LIKE '%METALLURG%')",
-      "max_records": 30
+      "max_records": 30,
+      "dynamic_candidates": true,
+      "temporal_scope": "ALL_RELEASED_REPORT_YEARS_NO_ARBITRARY_LOWER_BOUND"
     },
     {
       "key": "gsq_ree_metallurgy",
@@ -373,7 +374,10 @@
         "gsq-prod-ckan-horizon-public.s3.ap-southeast-2.amazonaws.com",
         "geoscience.data.qld.gov.au"
       ],
-      "max_document_bytes": 15000000
+      "max_document_bytes": 15000000,
+      "resume": true,
+      "prefer_original_resource_url": true,
+      "dynamic_candidates": true
     },
     {
       "key": "gsq_ree_census",
@@ -386,9 +390,16 @@
         "gsq-prod-ckan-horizon-public.s3.ap-southeast-2.amazonaws.com",
         "geoscience.data.qld.gov.au"
       ],
-      "max_document_bytes": 15000000
+      "max_document_bytes": 15000000,
+      "resume": true,
+      "prefer_original_resource_url": true
     }
   ],
   "max_wamex_documents": 2,
-  "max_wamex_document_bytes": 30000000
+  "max_wamex_document_bytes": 30000000,
+  "canonical_store": "work/phase5/canonical.sqlite",
+  "incremental_tasks": "receipt-resume-v1",
+  "candidate_tasks": true,
+  "search_cutoff": "2026-11-05",
+  "candidate_version": "ree-candidate-v3"
 }

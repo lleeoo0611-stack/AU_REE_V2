@@ -1,0 +1,1212 @@
+{
+  "version": "phase16-remediation-held-evaluation-v1",
+  "documents": 3,
+  "partition": "THREE_FIXED_DOCUMENTS_NOT_USED_FOR_REMEDIATION_RULE_ADJUSTMENT_NOT_BLIND",
+  "rule_freeze_verified": true,
+  "numeric_targets": [
+    {
+      "key": "sybella_impurity2024",
+      "page": 5,
+      "value": 75,
+      "unit": "%",
+      "basis": "Nd2O3",
+      "endpoint": "MREC",
+      "meaning": "Whole ore to MREC Nd, not 93% downstream",
+      "source_sha256": "c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "token_found": true,
+      "quantity_scope_bound": false,
+      "predicted": [
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "75",
+          "quantity_role": null,
+          "start": 176,
+          "token": "75%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 75.0,
+          "candidate_id": "18371850ad0266e212d76fa350a129e2c041f08a8e2b257c2b53b15468ca7d22",
+          "raw_text": "This coupled with the strong REO extractions achieved during bottle roll leaching (Appendix 2), resulted in a high REO recovery from ore to the final MREC product including: \u2022 75% of the neodymium, \u2022 76% of the praseodymium, \u2022 52% of the terbium, \u2022 45% of the dysprosium."
+        },
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "75",
+          "quantity_role": null,
+          "start": 454,
+          "token": "75%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 75.0,
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "raw_text": "SBRC016 0-20m Average Leaching Recovery 78% MREO pH 1.3-1.5 Bottle Roll 80% Nd\u2082O\u2083 Sulphuric Acid Leaching 81% Pr\u2086O\u2081\u2081 56% Tb\u2084O\u2087 Leach PLS & Wash 48% Dy\u2082O\u2083 Magnesia pH 3.2 Impurity Removal Impurity Removal Recovery 93% MREO 93% Nd\u2082O\u2083 94% Pr\u2086O\u2081\u2081 93% Tb\u2084O\u2087 93% Dy\u2082O\u2083 Hydrated Lime pH 5.5 Impurity Removal MREC Precipitation Recovery >99.5% MREO pH 8.0 MREC >99.5% Nd\u2082O\u2083 Soda Ash Precipitation >99.5% Pr\u2086O\u2081\u2081 >99.5% Tb\u2084O\u2087 >99.5% Dy\u2082O\u2083 Global Recovery 73% MREO 75% Nd\u2082O\u2083 76% Pr\u2086O\u2081\u2081 52% Tb\u2084O\u2087 45% Dy\u2082O\u2083 [Figure 4] Sybella MREC precipitation test flowsheet and process unit MREO recoveries. 5"
+        }
+      ],
+      "disposition": "RAW_TOKEN_ONLY_NOT_ADMITTED"
+    },
+    {
+      "key": "sybella_impurity2024",
+      "page": 5,
+      "value": 76,
+      "unit": "%",
+      "basis": "Pr6O11",
+      "endpoint": "MREC",
+      "meaning": "Whole ore to MREC Pr",
+      "source_sha256": "c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "token_found": true,
+      "quantity_scope_bound": false,
+      "predicted": [
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "76",
+          "quantity_role": null,
+          "start": 200,
+          "token": "76%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 76.0,
+          "candidate_id": "18371850ad0266e212d76fa350a129e2c041f08a8e2b257c2b53b15468ca7d22",
+          "raw_text": "This coupled with the strong REO extractions achieved during bottle roll leaching (Appendix 2), resulted in a high REO recovery from ore to the final MREC product including: \u2022 75% of the neodymium, \u2022 76% of the praseodymium, \u2022 52% of the terbium, \u2022 45% of the dysprosium."
+        },
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "76",
+          "quantity_role": null,
+          "start": 464,
+          "token": "76%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 76.0,
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "raw_text": "SBRC016 0-20m Average Leaching Recovery 78% MREO pH 1.3-1.5 Bottle Roll 80% Nd\u2082O\u2083 Sulphuric Acid Leaching 81% Pr\u2086O\u2081\u2081 56% Tb\u2084O\u2087 Leach PLS & Wash 48% Dy\u2082O\u2083 Magnesia pH 3.2 Impurity Removal Impurity Removal Recovery 93% MREO 93% Nd\u2082O\u2083 94% Pr\u2086O\u2081\u2081 93% Tb\u2084O\u2087 93% Dy\u2082O\u2083 Hydrated Lime pH 5.5 Impurity Removal MREC Precipitation Recovery >99.5% MREO pH 8.0 MREC >99.5% Nd\u2082O\u2083 Soda Ash Precipitation >99.5% Pr\u2086O\u2081\u2081 >99.5% Tb\u2084O\u2087 >99.5% Dy\u2082O\u2083 Global Recovery 73% MREO 75% Nd\u2082O\u2083 76% Pr\u2086O\u2081\u2081 52% Tb\u2084O\u2087 45% Dy\u2082O\u2083 [Figure 4] Sybella MREC precipitation test flowsheet and process unit MREO recoveries. 5"
+        }
+      ],
+      "disposition": "RAW_TOKEN_ONLY_NOT_ADMITTED"
+    },
+    {
+      "key": "sybella_impurity2024",
+      "page": 5,
+      "value": 52,
+      "unit": "%",
+      "basis": "Tb4O7",
+      "endpoint": "MREC",
+      "meaning": "Whole ore to MREC Tb",
+      "source_sha256": "c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "token_found": true,
+      "quantity_scope_bound": false,
+      "predicted": [
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "52",
+          "quantity_role": null,
+          "start": 227,
+          "token": "52%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 52.0,
+          "candidate_id": "18371850ad0266e212d76fa350a129e2c041f08a8e2b257c2b53b15468ca7d22",
+          "raw_text": "This coupled with the strong REO extractions achieved during bottle roll leaching (Appendix 2), resulted in a high REO recovery from ore to the final MREC product including: \u2022 75% of the neodymium, \u2022 76% of the praseodymium, \u2022 52% of the terbium, \u2022 45% of the dysprosium."
+        },
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "52",
+          "quantity_role": null,
+          "start": 475,
+          "token": "52%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 52.0,
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "raw_text": "SBRC016 0-20m Average Leaching Recovery 78% MREO pH 1.3-1.5 Bottle Roll 80% Nd\u2082O\u2083 Sulphuric Acid Leaching 81% Pr\u2086O\u2081\u2081 56% Tb\u2084O\u2087 Leach PLS & Wash 48% Dy\u2082O\u2083 Magnesia pH 3.2 Impurity Removal Impurity Removal Recovery 93% MREO 93% Nd\u2082O\u2083 94% Pr\u2086O\u2081\u2081 93% Tb\u2084O\u2087 93% Dy\u2082O\u2083 Hydrated Lime pH 5.5 Impurity Removal MREC Precipitation Recovery >99.5% MREO pH 8.0 MREC >99.5% Nd\u2082O\u2083 Soda Ash Precipitation >99.5% Pr\u2086O\u2081\u2081 >99.5% Tb\u2084O\u2087 >99.5% Dy\u2082O\u2083 Global Recovery 73% MREO 75% Nd\u2082O\u2083 76% Pr\u2086O\u2081\u2081 52% Tb\u2084O\u2087 45% Dy\u2082O\u2083 [Figure 4] Sybella MREC precipitation test flowsheet and process unit MREO recoveries. 5"
+        }
+      ],
+      "disposition": "RAW_TOKEN_ONLY_NOT_ADMITTED"
+    },
+    {
+      "key": "sybella_impurity2024",
+      "page": 5,
+      "value": 45,
+      "unit": "%",
+      "basis": "Dy2O3",
+      "endpoint": "MREC",
+      "meaning": "Whole ore to MREC Dy",
+      "source_sha256": "c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "token_found": true,
+      "quantity_scope_bound": false,
+      "predicted": [
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "45",
+          "quantity_role": null,
+          "start": 249,
+          "token": "45%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 45.0,
+          "candidate_id": "18371850ad0266e212d76fa350a129e2c041f08a8e2b257c2b53b15468ca7d22",
+          "raw_text": "This coupled with the strong REO extractions achieved during bottle roll leaching (Appendix 2), resulted in a high REO recovery from ore to the final MREC product including: \u2022 75% of the neodymium, \u2022 76% of the praseodymium, \u2022 52% of the terbium, \u2022 45% of the dysprosium."
+        },
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "45",
+          "quantity_role": null,
+          "start": 485,
+          "token": "45%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 45.0,
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "raw_text": "SBRC016 0-20m Average Leaching Recovery 78% MREO pH 1.3-1.5 Bottle Roll 80% Nd\u2082O\u2083 Sulphuric Acid Leaching 81% Pr\u2086O\u2081\u2081 56% Tb\u2084O\u2087 Leach PLS & Wash 48% Dy\u2082O\u2083 Magnesia pH 3.2 Impurity Removal Impurity Removal Recovery 93% MREO 93% Nd\u2082O\u2083 94% Pr\u2086O\u2081\u2081 93% Tb\u2084O\u2087 93% Dy\u2082O\u2083 Hydrated Lime pH 5.5 Impurity Removal MREC Precipitation Recovery >99.5% MREO pH 8.0 MREC >99.5% Nd\u2082O\u2083 Soda Ash Precipitation >99.5% Pr\u2086O\u2081\u2081 >99.5% Tb\u2084O\u2087 >99.5% Dy\u2082O\u2083 Global Recovery 73% MREO 75% Nd\u2082O\u2083 76% Pr\u2086O\u2081\u2081 52% Tb\u2084O\u2087 45% Dy\u2082O\u2083 [Figure 4] Sybella MREC precipitation test flowsheet and process unit MREO recoveries. 5"
+        }
+      ],
+      "disposition": "RAW_TOKEN_ONLY_NOT_ADMITTED"
+    },
+    {
+      "key": "sybella_impurity2024",
+      "page": 5,
+      "value": 93,
+      "unit": "%",
+      "basis": "Nd2O3",
+      "endpoint": "DOWNSTREAM_MREC",
+      "meaning": "Downstream Nd, not whole ore",
+      "source_sha256": "c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "token_found": true,
+      "quantity_scope_bound": false,
+      "predicted": [
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "93",
+          "quantity_role": null,
+          "start": 73,
+          "token": "93%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 93.0,
+          "candidate_id": "9c5c2370c5d10e38edbbb2e7c3da96856c73f5f2695f3a2607198954e0368f93",
+          "raw_text": "Our first-pass MREC precipitation achieved high downstream recoveries of 93% neodymium, 94% praseodymium, 93% dysprosium and 93% terbium (Figure 4)."
+        },
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "93",
+          "quantity_role": null,
+          "start": 106,
+          "token": "93%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 93.0,
+          "candidate_id": "9c5c2370c5d10e38edbbb2e7c3da96856c73f5f2695f3a2607198954e0368f93",
+          "raw_text": "Our first-pass MREC precipitation achieved high downstream recoveries of 93% neodymium, 94% praseodymium, 93% dysprosium and 93% terbium (Figure 4)."
+        },
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "93",
+          "quantity_role": null,
+          "start": 125,
+          "token": "93%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 93.0,
+          "candidate_id": "9c5c2370c5d10e38edbbb2e7c3da96856c73f5f2695f3a2607198954e0368f93",
+          "raw_text": "Our first-pass MREC precipitation achieved high downstream recoveries of 93% neodymium, 94% praseodymium, 93% dysprosium and 93% terbium (Figure 4)."
+        },
+        {
+          "basis": null,
+          "bounds": null,
+          "evidence_nature": "SOURCE_REPORTED_QUANTITY_SCALE_UNRESOLVED",
+          "original_token": "93",
+          "quantity_role": "REPORTED_RECOVERY",
+          "start": 213,
+          "statistic": "SOURCE_REPORTED_POINT",
+          "token": "93%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 93.0,
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "raw_text": "SBRC016 0-20m Average Leaching Recovery 78% MREO pH 1.3-1.5 Bottle Roll 80% Nd\u2082O\u2083 Sulphuric Acid Leaching 81% Pr\u2086O\u2081\u2081 56% Tb\u2084O\u2087 Leach PLS & Wash 48% Dy\u2082O\u2083 Magnesia pH 3.2 Impurity Removal Impurity Removal Recovery 93% MREO 93% Nd\u2082O\u2083 94% Pr\u2086O\u2081\u2081 93% Tb\u2084O\u2087 93% Dy\u2082O\u2083 Hydrated Lime pH 5.5 Impurity Removal MREC Precipitation Recovery >99.5% MREO pH 8.0 MREC >99.5% Nd\u2082O\u2083 Soda Ash Precipitation >99.5% Pr\u2086O\u2081\u2081 >99.5% Tb\u2084O\u2087 >99.5% Dy\u2082O\u2083 Global Recovery 73% MREO 75% Nd\u2082O\u2083 76% Pr\u2086O\u2081\u2081 52% Tb\u2084O\u2087 45% Dy\u2082O\u2083 [Figure 4] Sybella MREC precipitation test flowsheet and process unit MREO recoveries. 5"
+        },
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "93",
+          "quantity_role": null,
+          "start": 222,
+          "token": "93%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 93.0,
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "raw_text": "SBRC016 0-20m Average Leaching Recovery 78% MREO pH 1.3-1.5 Bottle Roll 80% Nd\u2082O\u2083 Sulphuric Acid Leaching 81% Pr\u2086O\u2081\u2081 56% Tb\u2084O\u2087 Leach PLS & Wash 48% Dy\u2082O\u2083 Magnesia pH 3.2 Impurity Removal Impurity Removal Recovery 93% MREO 93% Nd\u2082O\u2083 94% Pr\u2086O\u2081\u2081 93% Tb\u2084O\u2087 93% Dy\u2082O\u2083 Hydrated Lime pH 5.5 Impurity Removal MREC Precipitation Recovery >99.5% MREO pH 8.0 MREC >99.5% Nd\u2082O\u2083 Soda Ash Precipitation >99.5% Pr\u2086O\u2081\u2081 >99.5% Tb\u2084O\u2087 >99.5% Dy\u2082O\u2083 Global Recovery 73% MREO 75% Nd\u2082O\u2083 76% Pr\u2086O\u2081\u2081 52% Tb\u2084O\u2087 45% Dy\u2082O\u2083 [Figure 4] Sybella MREC precipitation test flowsheet and process unit MREO recoveries. 5"
+        },
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "93",
+          "quantity_role": null,
+          "start": 243,
+          "token": "93%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 93.0,
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "raw_text": "SBRC016 0-20m Average Leaching Recovery 78% MREO pH 1.3-1.5 Bottle Roll 80% Nd\u2082O\u2083 Sulphuric Acid Leaching 81% Pr\u2086O\u2081\u2081 56% Tb\u2084O\u2087 Leach PLS & Wash 48% Dy\u2082O\u2083 Magnesia pH 3.2 Impurity Removal Impurity Removal Recovery 93% MREO 93% Nd\u2082O\u2083 94% Pr\u2086O\u2081\u2081 93% Tb\u2084O\u2087 93% Dy\u2082O\u2083 Hydrated Lime pH 5.5 Impurity Removal MREC Precipitation Recovery >99.5% MREO pH 8.0 MREC >99.5% Nd\u2082O\u2083 Soda Ash Precipitation >99.5% Pr\u2086O\u2081\u2081 >99.5% Tb\u2084O\u2087 >99.5% Dy\u2082O\u2083 Global Recovery 73% MREO 75% Nd\u2082O\u2083 76% Pr\u2086O\u2081\u2081 52% Tb\u2084O\u2087 45% Dy\u2082O\u2083 [Figure 4] Sybella MREC precipitation test flowsheet and process unit MREO recoveries. 5"
+        },
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "93",
+          "quantity_role": null,
+          "start": 253,
+          "token": "93%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 93.0,
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "raw_text": "SBRC016 0-20m Average Leaching Recovery 78% MREO pH 1.3-1.5 Bottle Roll 80% Nd\u2082O\u2083 Sulphuric Acid Leaching 81% Pr\u2086O\u2081\u2081 56% Tb\u2084O\u2087 Leach PLS & Wash 48% Dy\u2082O\u2083 Magnesia pH 3.2 Impurity Removal Impurity Removal Recovery 93% MREO 93% Nd\u2082O\u2083 94% Pr\u2086O\u2081\u2081 93% Tb\u2084O\u2087 93% Dy\u2082O\u2083 Hydrated Lime pH 5.5 Impurity Removal MREC Precipitation Recovery >99.5% MREO pH 8.0 MREC >99.5% Nd\u2082O\u2083 Soda Ash Precipitation >99.5% Pr\u2086O\u2081\u2081 >99.5% Tb\u2084O\u2087 >99.5% Dy\u2082O\u2083 Global Recovery 73% MREO 75% Nd\u2082O\u2083 76% Pr\u2086O\u2081\u2081 52% Tb\u2084O\u2087 45% Dy\u2082O\u2083 [Figure 4] Sybella MREC precipitation test flowsheet and process unit MREO recoveries. 5"
+        }
+      ],
+      "disposition": "RAW_TOKEN_ONLY_NOT_ADMITTED"
+    },
+    {
+      "key": "kennedy_met2023",
+      "page": 4,
+      "value": 3.3,
+      "unit": "kg/t",
+      "basis": "ACID_SOURCE_UNSPECIFIED_FORMULATION",
+      "endpoint": "LEACH_SOLUTION",
+      "meaning": "ANSTO mean acid consumption; not 3.3% recovery",
+      "source_sha256": "a5599f729e3c5888317324ff0057c7999312ae2735bac827fe9717fd15ec53f6",
+      "token_found": false,
+      "quantity_scope_bound": false,
+      "predicted": [],
+      "disposition": "MISSED_TARGET"
+    },
+    {
+      "key": "sandy_met2024",
+      "page": 1,
+      "value": 51.9,
+      "unit": "%",
+      "basis": "TREO",
+      "endpoint": "MINERAL_CONCENTRATE",
+      "meaning": "Concentrate grade not recovery",
+      "source_sha256": "a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33",
+      "token_found": true,
+      "quantity_scope_bound": false,
+      "predicted": [
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "51.9",
+          "quantity_role": null,
+          "start": 2126,
+          "token": "51.9%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 51.9,
+          "candidate_id": "7dbd14c9ea2ace4907fce12cfb5b3fa3c33cfd35e190d0bcabc4e6908a3a4b10",
+          "raw_text": "Exploration Exploration MzEq Monazite Xenotime Zircon Rutile Ilmenite TREO+Y+Sc TREO LREO HREO MagREO CREO Target Range Target From Grade ppm 1,250 590 80 620 550 10,000 440 380 370 13 90 110 From Dry Tonnes 1,316,705,000 1,644,000 781,000 103,000 810,000 721,000 13,169,000 573,000 504,000 487,000 17,000 122,000 139,000 To Grade ppm 1,490 710 90 730 650 11,930 520 460 440 13 110 130 To Dry Tonnes 1,580,046,000 2,354,000 1,119,000 148,000 1,160,000 1,032,000 18,855,000 820,000 722,000 698,000 24,000 175,000 199,000 \u2022 The Exploration Target includes a basket of high value Heavy Minerals (HM) totalling 15.6 to 22.3 million tonnes of contained HM, comprised of the following: o Monazite from 781,000 tonnes to 1,119,000 tonnes, grading from 590 ppm to 710 ppm, o Xenotime from 103,000 tonnes to 148,000 tonnes, grading from 80 ppm to 90- ppm, o Zircon from 810,000 tonnes to 1,160,000 tonnes, grading from 620 ppm to 730 ppm, o Rutile from 721,000 tonnes to 1,032,000 tonnes, grading from 550 ppm to 650 ppm, o Ilmenite from 13,169,000 tonnes to 18,855,000 tonnes, grading from 10,000 ppm to 11,930 ppm. \u2022 Reported MzEq grades are expected to support strong project economics through simple low-cost downstream processing, with reference to current market prices for monazite concentrate. \u2022 High magnetic REO (Nd, Pr, Dy, Tb) element proportion of 24% of the TREO basket, positioning Sandy Mitchell as one of Australia\u2019s most enriched MREO deposits. \u2022 MRE developed from only 1.2% of the available anomaly area at Sandy Mitchell, with the Exploration Target presenting as a real and substantial potential for Mineral Resource expansion. o The mineralisation is from surface to around 12m, amenable to low-cost open pit mining methods. \u2022 First pass un-optimised beneficiation test work of the Sandy Mitchell Rare Earth sands has produced a high-grade rare earth concentrate. \u2022 The beneficiation test work has shown the greatest upgrade is by screening followed by simple gravity separation, confirming the material is amenable to straightforward beneficiation by gravity processing: o The final concentrate assays returned 51.9% TREO, mostly La, Ce, Pr and Nd, plus Heavy Rare Earths Dy and Tb, which collectively represents a very high-value saleable product."
+        }
+      ],
+      "disposition": "RAW_TOKEN_ONLY_NOT_ADMITTED"
+    },
+    {
+      "key": "sandy_met2024",
+      "page": 2,
+      "value": 71.7,
+      "unit": "%",
+      "basis": "CeO2",
+      "endpoint": "REM_CONCENTRATE",
+      "meaning": "Gravity feed to REM, not whole ore TREO",
+      "source_sha256": "a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33",
+      "token_found": true,
+      "quantity_scope_bound": false,
+      "predicted": [
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "71.7",
+          "quantity_role": null,
+          "start": 124,
+          "token": "71.7%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 71.7,
+          "candidate_id": "f8cbc7ea8a894571ef6873dc2266ce3c6eb52037a78ef5ff8e33a7ada2097426",
+          "raw_text": " ASX ANNOUNCEMENT 2 July 2024 o Direct cerium oxide (CeO2) recovery from gravity feed to REM concentrate is estimated to be 71.7%, with indications that >83% may be achievable. o 49% of the feed mass is rejected by screening. \u2022 Pre-Feasibility Study for Sandy Mitchell now underway, along with an expanded phase 2 Mineral Resource adding to the Maiden Resource."
+        }
+      ],
+      "disposition": "RAW_TOKEN_ONLY_NOT_ADMITTED"
+    },
+    {
+      "key": "sandy_met2024",
+      "page": 2,
+      "value": 49,
+      "unit": "%",
+      "basis": "FEED_MASS",
+      "endpoint": "SCREEN_REJECT",
+      "meaning": "Screened rejected mass, not REO recovery",
+      "source_sha256": "a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33",
+      "token_found": true,
+      "quantity_scope_bound": false,
+      "predicted": [
+        {
+          "basis": null,
+          "bounds": null,
+          "original_token": "49",
+          "quantity_role": null,
+          "start": 179,
+          "token": "49%",
+          "token_state": "NUMBER",
+          "unit": "%",
+          "value": 49.0,
+          "candidate_id": "f8cbc7ea8a894571ef6873dc2266ce3c6eb52037a78ef5ff8e33a7ada2097426",
+          "raw_text": " ASX ANNOUNCEMENT 2 July 2024 o Direct cerium oxide (CeO2) recovery from gravity feed to REM concentrate is estimated to be 71.7%, with indications that >83% may be achievable. o 49% of the feed mass is rejected by screening. \u2022 Pre-Feasibility Study for Sandy Mitchell now underway, along with an expanded phase 2 Mineral Resource adding to the Maiden Resource."
+        }
+      ],
+      "disposition": "RAW_TOKEN_ONLY_NOT_ADMITTED"
+    }
+  ],
+  "token_metrics": {
+    "TP": 8,
+    "FN": 1,
+    "FP": null,
+    "precision": null,
+    "reason": "Targeted statement retrieval, not exhaustive page annotation; no invented precision"
+  },
+  "quantity_binding_metrics": {
+    "TP": 0,
+    "FN": 9
+  },
+  "claim_results": [
+    {
+      "key": "sybella_impurity2024",
+      "page": 4,
+      "start": "Impurities, including",
+      "end": "Firstly,",
+      "expected_claim": true,
+      "criterion": "T-B",
+      "expected_nature": "TEST_RESULT_OR_DISCLOSURE",
+      "expected_project_extrapolation": false,
+      "reason": "Actual impurity precipitation on chosen impure blended PLS, not all resource",
+      "source_sha256": "c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "quote": "Impurities, including iron, aluminium, phosphorous, silica, thorium and uranium were removed via conventional ambient temperature precipitation methods, as similarly applied by ionic clay developers.",
+      "predicted_claim": false,
+      "predicted": [],
+      "predicted_nature": "PROCESS_DESCRIPTION",
+      "nature_match": false,
+      "project_extrapolation": false,
+      "result": "FN",
+      "disposition": "MISSED_POSITIVE_RETAIN_FOR_FUTURE_DEVELOPMENT"
+    },
+    {
+      "key": "sybella_impurity2024",
+      "page": 5,
+      "start": "Optimisation of the impurity removal and MREC precipitation steps will",
+      "end": "The MREO content",
+      "expected_claim": false,
+      "criterion": "T-B",
+      "expected_nature": "PLAN_OR_TEST_OBJECTIVE",
+      "expected_project_extrapolation": false,
+      "reason": "Future work only",
+      "source_sha256": "c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "quote": "Optimisation of the impurity removal and MREC precipitation steps will be undertaken on pH 3 and/or pH 3.5 leach liquors derived from the current column leach trials.",
+      "predicted_claim": false,
+      "predicted": [],
+      "predicted_nature": "NAVIGATION_OR_HEADER",
+      "nature_match": false,
+      "project_extrapolation": false,
+      "result": "TN",
+      "disposition": "SOURCE_SCOPE_ONLY_NOT_COMMON_SCORE"
+    },
+    {
+      "key": "kennedy_met2023",
+      "page": 4,
+      "start": "Pleasingly, very low dissolution",
+      "end": "Page | 4",
+      "expected_claim": true,
+      "criterion": "T-A",
+      "expected_nature": "TEST_RESULT_OR_DISCLOSURE",
+      "expected_project_extrapolation": false,
+      "reason": "Mean disclosed consumption on eight 1m samples; representativeness not established",
+      "source_sha256": "a5599f729e3c5888317324ff0057c7999312ae2735bac827fe9717fd15ec53f6",
+      "quote": "Pleasingly, very low dissolution of cerium (Ce2O3), iron, calcium, and aluminium all lead to very low acid consumption (averaging 3.3 kg/t reported by ANSTO). Low acid consumption and low dissolution of gangue minerals, including cerium, are very encouraging and a key characteristic of favourable ionic clay mineral systems.",
+      "predicted_claim": false,
+      "predicted": [],
+      "predicted_nature": "PROCESS_DESCRIPTION",
+      "nature_match": false,
+      "project_extrapolation": false,
+      "result": "FN",
+      "disposition": "MISSED_POSITIVE_RETAIN_FOR_FUTURE_DEVELOPMENT"
+    },
+    {
+      "key": "sandy_met2024",
+      "page": 2,
+      "start": "Direct cerium oxide",
+      "end": "49% of the feed",
+      "expected_claim": false,
+      "criterion": "T-A",
+      "expected_nature": "CONDITIONAL",
+      "expected_project_extrapolation": false,
+      "reason": "71.7% gravity feed recovery estimated; >83% is prospective, not evidence of input magnitude",
+      "source_sha256": "a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33",
+      "quote": "Direct cerium oxide (CeO2) recovery from gravity feed to REM concentrate is estimated to be 71.7%, with indications that >83% may be achievable. o",
+      "predicted_claim": false,
+      "predicted": [],
+      "predicted_nature": "DESIGN_MODEL",
+      "nature_match": false,
+      "project_extrapolation": false,
+      "result": "TN",
+      "disposition": "SOURCE_SCOPE_ONLY_NOT_COMMON_SCORE"
+    }
+  ],
+  "claim_metrics": {
+    "TP": 0,
+    "FP": 0,
+    "FN": 2,
+    "TN": 2,
+    "precision": null,
+    "recall": 0.0
+  },
+  "nature_matches": 0,
+  "acceptance_results": [
+    {
+      "key": "sybella_impurity2024",
+      "expected_common_whole_ore_design_panel": false,
+      "reason": "Bench blend and element-specific MREC endpoints; no registered Project link in current matrix",
+      "source_sha256": "c0fcb9d5024e58cfafb7e81e112cb263b0f7ca175d160d3a6a4b86f4b7f71756",
+      "actual_common_whole_ore_design_panel": false,
+      "result": "TN",
+      "attempts": [
+        {
+          "candidate_id": "a7de941d4636dd0c762b04bc7eed3981aaf9c360e5a74d749a890002608006f4",
+          "page": 1,
+          "value": 92.5,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "a7de941d4636dd0c762b04bc7eed3981aaf9c360e5a74d749a890002608006f4",
+          "page": 1,
+          "value": 26.6,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "a7de941d4636dd0c762b04bc7eed3981aaf9c360e5a74d749a890002608006f4",
+          "page": 1,
+          "value": 75.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "a7de941d4636dd0c762b04bc7eed3981aaf9c360e5a74d749a890002608006f4",
+          "page": 1,
+          "value": 76.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "a7de941d4636dd0c762b04bc7eed3981aaf9c360e5a74d749a890002608006f4",
+          "page": 1,
+          "value": 52.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "a7de941d4636dd0c762b04bc7eed3981aaf9c360e5a74d749a890002608006f4",
+          "page": 1,
+          "value": 45.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "9c5c2370c5d10e38edbbb2e7c3da96856c73f5f2695f3a2607198954e0368f93",
+          "page": 5,
+          "value": 93.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "9c5c2370c5d10e38edbbb2e7c3da96856c73f5f2695f3a2607198954e0368f93",
+          "page": 5,
+          "value": 94.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "9c5c2370c5d10e38edbbb2e7c3da96856c73f5f2695f3a2607198954e0368f93",
+          "page": 5,
+          "value": 93.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "9c5c2370c5d10e38edbbb2e7c3da96856c73f5f2695f3a2607198954e0368f93",
+          "page": 5,
+          "value": 93.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "18371850ad0266e212d76fa350a129e2c041f08a8e2b257c2b53b15468ca7d22",
+          "page": 5,
+          "value": 75.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "18371850ad0266e212d76fa350a129e2c041f08a8e2b257c2b53b15468ca7d22",
+          "page": 5,
+          "value": 76.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "18371850ad0266e212d76fa350a129e2c041f08a8e2b257c2b53b15468ca7d22",
+          "page": 5,
+          "value": 52.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "18371850ad0266e212d76fa350a129e2c041f08a8e2b257c2b53b15468ca7d22",
+          "page": 5,
+          "value": 45.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 78.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 80.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 81.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 56.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 48.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 93.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 93.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 94.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 93.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 93.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 99.5,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 99.5,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 99.5,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 99.5,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 99.5,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 73.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 75.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 76.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 52.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "8f96b9cdfae368a9e92d0c56992960909ef56f919fa055bb682407a2d585e26f",
+          "page": 5,
+          "value": 45.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "kennedy_met2023",
+      "expected_common_whole_ore_design_panel": false,
+      "reason": "Selected sample desorption to solution; no whole-ore mineral-concentrate design",
+      "source_sha256": "a5599f729e3c5888317324ff0057c7999312ae2735bac827fe9717fd15ec53f6",
+      "actual_common_whole_ore_design_panel": false,
+      "result": "TN",
+      "attempts": [
+        {
+          "candidate_id": "9470d367a2b7057310fbcdf5152665379d05df917aefc6e8ca5f72498540c878",
+          "page": 9,
+          "value": 85.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "6d04460dee9a18279730fd1b139fecdb35b7619ad29cc57e6f255071312c3575",
+          "page": 9,
+          "value": 85.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "sandy_met2024",
+      "expected_common_whole_ore_design_panel": false,
+      "reason": "CeO2 gravity-feed recovery not whole-ore TREO-including-Y design",
+      "source_sha256": "a62a7bf077d5200bd0d55219c1bc0f2f0d9986a2a7b31039d7ca7d52bde27c33",
+      "actual_common_whole_ore_design_panel": false,
+      "result": "TN",
+      "attempts": [
+        {
+          "candidate_id": "7dbd14c9ea2ace4907fce12cfb5b3fa3c33cfd35e190d0bcabc4e6908a3a4b10",
+          "page": 1,
+          "value": 24.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "7dbd14c9ea2ace4907fce12cfb5b3fa3c33cfd35e190d0bcabc4e6908a3a4b10",
+          "page": 1,
+          "value": 1.2,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "7dbd14c9ea2ace4907fce12cfb5b3fa3c33cfd35e190d0bcabc4e6908a3a4b10",
+          "page": 1,
+          "value": 51.9,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "f8cbc7ea8a894571ef6873dc2266ce3c6eb52037a78ef5ff8e33a7ada2097426",
+          "page": 2,
+          "value": 71.7,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "f8cbc7ea8a894571ef6873dc2266ce3c6eb52037a78ef5ff8e33a7ada2097426",
+          "page": 2,
+          "value": 83.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "f8cbc7ea8a894571ef6873dc2266ce3c6eb52037a78ef5ff8e33a7ada2097426",
+          "page": 2,
+          "value": 49.0,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "e16e7261c0e2d0b66d2285e9fe35eace6c171396b93e17cb56305e15a967d916",
+          "page": 34,
+          "value": 51.9,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "e16e7261c0e2d0b66d2285e9fe35eace6c171396b93e17cb56305e15a967d916",
+          "page": 34,
+          "value": 71.7,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "e16e7261c0e2d0b66d2285e9fe35eace6c171396b93e17cb56305e15a967d916",
+          "page": 34,
+          "value": 16.9,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        },
+        {
+          "candidate_id": "e16e7261c0e2d0b66d2285e9fe35eace6c171396b93e17cb56305e15a967d916",
+          "page": 34,
+          "value": 83.8,
+          "reasons": [
+            "ENDPOINT_MISMATCH",
+            "FEED_MISMATCH",
+            "MISSING_CONDITIONS",
+            "PROJECT_IDENTITY_NOT_ESTABLISHED",
+            "QUANTITY_MISMATCH",
+            "REO_BASIS_MISMATCH",
+            "SCOPE_MISMATCH",
+            "TEST_SCALE_MISMATCH"
+          ]
+        }
+      ]
+    }
+  ],
+  "acceptance_metrics": {
+    "TP": 0,
+    "FP": 0,
+    "FN": 0,
+    "TN": 3
+  },
+  "project_extrapolation_false": 4,
+  "disposition": "All new held candidates remain raw or review without complete basis/feed/endpoint/identity; none can affect adopted design panel",
+  "limitations": "AI-assisted native and rendered original pages; purposive fixed documents, not independent experts or blind annotation. Labels are evaluation only, never production answer branches.",
+  "no_retuning": true
+}

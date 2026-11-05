@@ -8,7 +8,7 @@ import socket
 from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone
 from pathlib import Path
-from .store import canonical, digest, filehash
+from .store import canonical, digest, filehash, append_snapshots
 from .spatial import project_windows
 
 _last_request = {}
@@ -63,7 +63,7 @@ def request(url, params=None, headers=None, timeout=25, method='GET', max_bytes=
             if attempt==2:raise
             time.sleep(.5*(2**attempt))
 
-def arcgis(url, where='1=1', windows=None, archive=None, fetch=None, max_records=None):
+def arcgis(url, where='1=1', windows=None, archive=None, fetch=None, max_records=None,start_after=None):
     """Inventory-complete retrieval, globally or within each registered project AOI."""
     def query(params):
         raw, _ = (fetch or request)(url.rstrip('/') + '/query', {'f': 'json', **params})
@@ -90,6 +90,8 @@ def arcgis(url, where='1=1', windows=None, archive=None, fetch=None, max_records
         oid_field = field
         expected = sorted(set(ids['objectIds'] or []))
         total_count=len(expected)
+        if start_after is not None:expected=[oid for oid in expected if oid>start_after]
+        remaining_count=len(expected)
         if max_records is not None:expected=expected[:max(0,max_records-len(all_features))]
         seen = []
         for start in range(0,len(expected),500):
@@ -111,12 +113,14 @@ def arcgis(url, where='1=1', windows=None, archive=None, fetch=None, max_records
     return {'features':[all_features[k] for k in sorted(all_features)],
             'spatialReference':{'wkid':4326},
             'inventory':{'where':where, 'objectIdFieldName':oid_field,
-                         'count':len(all_features), 'complete':max_records is None or total_count<=max_records,
+                         'count':len(all_features), 'complete':max_records is None or (remaining_count if start_after is not None else total_count)<=max_records,
                          **({'matched_count':total_count,'record_budget':max_records} if max_records is not None else {}),
+                         **({'start_after':start_after,'remaining_count':remaining_count,
+                             'next_cursor':max(all_features) if all_features and max_records is not None and remaining_count>len(all_features) else None} if start_after is not None else {}),
                          'scope':scope, 'queries':inventories}}
 
 
-def ckan(url, query, rows=10, max_pages=2, fetch=None, archive=None):
+def ckan(url, query, rows=10, max_pages=2, fetch=None, archive=None,start_offset=0):
     """Bounded public package_search; count is not the number retrieved.
 
     API-level failures, duplicates, count drift and premature empty pages are
@@ -125,7 +129,7 @@ def ckan(url, query, rows=10, max_pages=2, fetch=None, archive=None):
     if not 1<=rows<=1000 or not 1<=max_pages<=20:raise ValueError('INVALID_CKAN_BUDGET')
     items={};count=None;pages=0
     for page in range(max_pages):
-        raw,_=(fetch or request)(url.rstrip('/')+'/package_search',dict(q=query,rows=rows,start=page*rows,sort='id asc'))
+        raw,_=(fetch or request)(url.rstrip('/')+'/package_search',dict(q=query,rows=rows,start=start_offset+page*rows,sort='id asc'))
         if archive:archive(raw)
         data=json.loads(raw)
         if data.get('success') is not True:raise ValueError('CKAN_API_UNSUCCESSFUL')
@@ -134,15 +138,16 @@ def ckan(url, query, rows=10, max_pages=2, fetch=None, archive=None):
         if count is not None and count!=current:raise ValueError('CKAN_COUNT_CHANGED_RETRY_LATER')
         count=current;batch=result['results'];pages+=1
         if not isinstance(batch,list) or len(batch)>rows:raise ValueError('CKAN_INVALID_PAGE')
-        if not batch and len(items)<count:raise ValueError('CKAN_PREMATURE_EMPTY_PAGE')
+        if not batch and start_offset+len(items)<count:raise ValueError('CKAN_PREMATURE_EMPTY_PAGE')
         for item in batch:
             if not item.get('id') or item['id'] in items:raise ValueError('CKAN_DUPLICATE_OR_MISSING_NATIVE_ID')
             items[item['id']]=item
-        if len(items)>count:raise ValueError('CKAN_COUNT_EXCEEDED')
-        if len(items)==count:break
+        if start_offset+len(items)>count:raise ValueError('CKAN_COUNT_EXCEEDED')
+        if start_offset+len(items)==count:break
         if len(batch)<rows:raise ValueError('CKAN_TRUNCATED_PAGE')
     return dict(results=list(items.values()),inventory=dict(query=query,matched_count=count,
-        retrieved_count=len(items),pages=pages,rows=rows,max_pages=max_pages,complete=len(items)==count))
+        retrieved_count=len(items),pages=pages,rows=rows,max_pages=max_pages,complete=start_offset+len(items)==count,
+        **(dict(start_offset=start_offset,next_start=start_offset+len(items) if start_offset+len(items)<count else None) if start_offset else {})))
 
 
 def wfs(source, archive=None):
@@ -235,7 +240,9 @@ def refresh(root, registry):
                 outcomes.append({'key':source['key'],'status':'MANAGED_TRANSCRIPTION_VERIFIED',
                                  'sha256':latest['sha256']})
                 continue
-            if source['kind']=='government_wfs':
+            if source['kind']=='minedex_resource_batch':
+                raw,headers=minedex_resource_batch(source['url'],source['product_alias'],archive)
+            elif source['kind']=='government_wfs':
                 raw=(canonical(wfs(source,archive))+'\n').encode();headers={}
             elif source['kind'] in ('arcgis_census', 'arcgis_gis','government_arcgis'):
                 windows = project_windows(root, manifest, source['aoi_radius_km']) if source.get('aoi_radius_km') else None
@@ -269,7 +276,7 @@ def refresh(root, registry):
                                  **({'native_changes':changes} if changes else {}),
                                  **({'original_responses':pages} if pages else {})})
                 continue
-            suffix = '.pdf' if source['kind'] == 'pdf' else '.xlsx' if source['kind'] == 'xlsx_census' else '.csv' if source['kind']=='government_csv' else '.html' if source['kind']=='html' else '.json'
+            suffix = '.zip' if source['kind']=='minedex_resource_batch' else '.pdf' if source['kind'] == 'pdf' else '.xlsx' if source['kind'] == 'xlsx_census' else '.csv' if source['kind']=='government_csv' else '.html' if source['kind']=='html' else '.json'
             path = root / 'data/snapshots' / (sha + suffix)
             path.parent.mkdir(parents=True, exist_ok=True)
             if not path.exists():path.write_bytes(raw)
@@ -279,28 +286,82 @@ def refresh(root, registry):
                      'acquired_at': now, 'available_date': now[:10],
                      'etag':headers.get('ETag'),'last_modified':headers.get('Last-Modified')}
             entry.update(redaction)
+            if source['kind']=='minedex_resource_batch':
+                entry.update(source_update=headers.get('X-DASC-Updated'),resolved_download_url=headers.get('X-DASC-Download'))
+                entry['publication_date']=datetime.strptime(headers['X-DASC-Updated'],'%d/%m/%Y').date().isoformat()
+                entry['request_count']=int(headers['X-DASC-Requests']);entry['elapsed_seconds']=float(headers['X-DASC-Seconds'])
             if pages:entry['original_responses']=pages
             if changes:entry['native_changes']=changes
             manifest['snapshots'].append(entry)
-            manifest_path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+            manifest=append_snapshots(manifest_path,manifest['snapshots'])
             outcomes.append({'key': source['key'], 'status': 'ADDED', 'sha256': sha})
         except Exception as exc:
             outcomes.append({'key': source['key'], 'status': 'UNAVAILABLE', 'reason': str(exc),
                              **failure_details(exc),
                              **({'original_responses':pages} if pages else {})})
-    manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+    append_snapshots(manifest_path,manifest['snapshots'])
     return outcomes
+
+def minedex_resource_batch(url, product_alias, archive=None, fetch=None):
+    """Discover CSV ZIP through the official DASC hierarchy, not MapServer sites.
+
+    The original directory responses precede the immutable ZIP. Native product
+    alias and advertised format determine the download, never a guessed file ID.
+    """
+    import re,io,zipfile
+    transport=fetch or request;request_count=0;started=time.monotonic()
+    def fetch(*args,**kwargs):
+        nonlocal request_count
+        request_count+=1
+        return transport(*args,**kwargs)
+    raw,_=fetch(url)
+    if archive:archive(raw)
+    match=re.search(rb'var tabs\s*=\s*(\[.*?\]);',raw,re.S)
+    if not match:raise ValueError('DASC_TAB_DIRECTORY_ABSENT')
+    base=urllib.parse.urljoin(url,'/')
+    products=[]
+    def walk(nodes):
+        for n in nodes:
+            if n.get('NodeType')=='File' and n.get('FileFormat')=='CSV':products.append(n)
+            walk(n.get('Children') or [])
+    # Fixed budget for advertised directory roots, not open-ended crawling.
+    for tab in json.loads(match[1])[:4]:
+        body,_=fetch(urllib.parse.urljoin(base,'Home/GetHierarchy'),dict(mapsheetNumber='',productAlias=product_alias,parentFolderId=tab['Id']))
+        if archive:archive(body)
+        walk(json.loads(body))
+    unique={p['Path']:p for p in products}
+    if len(unique)!=1:raise ValueError('DASC_CSV_PRODUCT_AMBIGUOUS_OR_MISSING')
+    product=next(iter(unique.values()));download=urllib.parse.urljoin(base,product['Path'])
+    if urllib.parse.urlsplit(download).netloc!=urllib.parse.urlsplit(url).netloc:raise ValueError('DASC_EXTERNAL_DOWNLOAD_NOT_ALLOWED')
+    body,headers=fetch(download)
+    if archive:archive(body)
+    with zipfile.ZipFile(io.BytesIO(body)) as z:
+        names=[n for n in z.namelist() if n.lower().endswith('.csv')]
+        if len(names)!=1 or z.getinfo(names[0]).file_size>30_000_000:raise ValueError('DASC_RESOURCE_CSV_MEMBER_INVALID')
+        header=z.read(names[0]).decode('utf-8-sig').splitlines()[0]
+        if not {'PROJ_CODE','EST_COM','RES_QTY','RES_CON','LOC_SITE'}.issubset(header.split(',')):raise ValueError('DASC_NOT_RESOURCE_ESTIMATE_PRODUCT')
+    return body,dict(headers,**{'X-DASC-Updated':product['UpdatedDate'],'X-DASC-Download':download,'X-DASC-Requests':str(request_count),'X-DASC-Seconds':str(time.monotonic()-started)})
+
 
 def select_snapshots(root, cutoff, keys=None, acquired_through=None):
     manifest = json.loads((Path(root) / 'data/manifest.json').read_text(encoding='utf-8'))
     selected = {}
     def visible(s):
-        if s.get('publication_date', '')>cutoff:return False
+        if (s.get('publication_date') or '')>cutoff:return False
         if s['available_date']<=cutoff:return True
         # Retrospective acquisition is explicit and limited to dated documents
         # and their extraction artifacts; never backdate live GIS/government rows.
         if not acquired_through or s['available_date']>acquired_through:return False
         if s['kind']=='discovery_receipt':return True  # Acquisition diagnostics, never observations.
+        if s['kind']=='source_documentation':return True  # Access diagnostics, not dated scientific evidence.
+        if s['kind']=='minedex_resource_batch':
+            # An explicitly dated published ZIP is different from querying a
+            # current live feature layer; acquisition time remains unchanged.
+            try:
+                catalog_date=datetime.strptime(s['source_update'],'%d/%m/%Y').date().isoformat()
+                http_date=parsedate_to_datetime(s['last_modified']).date().isoformat()
+            except (KeyError,TypeError,ValueError):return False
+            return bool(s.get('publication_date')==catalog_date and catalog_date<=cutoff and http_date<=cutoff)
         if s['kind'] not in ('pdf','html','document_extraction','pdf_page_extraction'):return False
         if s['kind'] in ('pdf','html'):return bool(s.get('publication_date'))
         return any(o['sha256']==s.get('source_sha256') and o.get('publication_date') and o['publication_date']<=cutoff for o in manifest['snapshots'])

@@ -1,0 +1,17 @@
+{
+  "version": "phase16-remediation-integrity-v1",
+  "source_original_response_hashes_verified": 509,
+  "frozen_export_hashes_verified": 281,
+  "old_manifest_entries_preserved": 406,
+  "new_manifest_entries": 6,
+  "old_entity_ids_preserved": 7623,
+  "new_entity_ids": 15,
+  "new_entity_kinds": {
+    "SOURCE_RECORD": 15
+  },
+  "sqlite_integrity": "ok",
+  "foreign_key_violations": 0,
+  "schema_changed": false,
+  "logical_database_history_boundary": "Canonical retains inactive historical claims/extractions; clean runs reconstruct selected state, not all canonical historical rows",
+  "source_count_note": "254->272: 6 new PDF/extraction artifacts, 12 previously archived discovery HTML now eligible at new cutoff"
+}

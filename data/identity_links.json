@@ -456,6 +456,79 @@
       ],
       "locator": "RNS4065A: Maiden Mineral Resource Estimate, 91sonic core holes across Boland and Head; MRE combined once",
       "effective_date": "2026-10-26"
+    },
+    {
+      "left": [
+        "project_registry_v1",
+        "barkly-ree"
+      ],
+      "right": [
+        "ISSUER_DOCUMENTED_PROSPECT",
+        "barkly-vanadis"
+      ],
+      "relation": "CONTAINS_ISSUER_DOCUMENTED_PROSPECT_NOT_RESOURCE_SUM",
+      "source_key": "barkly_ipo20260130",
+      "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+      "pdf_page": 2,
+      "page_markers": [
+        "100% owned Barkly Project",
+        "Vanadis",
+        "Benmara"
+      ],
+      "locator": "physical PDF p2 explicit drilling at Vanadis and Benmara prospects within Barkly; no resource split or addition",
+      "effective_date": "2026-01-30",
+      "required_source_keys": [
+        "barkly_ipo20260130"
+      ]
+    },
+    {
+      "left": [
+        "project_registry_v1",
+        "barkly-ree"
+      ],
+      "right": [
+        "ISSUER_DOCUMENTED_PROSPECT",
+        "barkly-benmara"
+      ],
+      "relation": "CONTAINS_ISSUER_DOCUMENTED_PROSPECT_NOT_RESOURCE_SUM",
+      "source_key": "barkly_ipo20260130",
+      "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+      "pdf_page": 2,
+      "page_markers": [
+        "100% owned Barkly Project",
+        "Vanadis",
+        "Benmara"
+      ],
+      "locator": "physical PDF p2 explicit drilling at Vanadis and Benmara prospects within Barkly; no resource split or addition",
+      "effective_date": "2026-01-30",
+      "required_source_keys": [
+        "barkly_ipo20260130"
+      ]
+    },
+    {
+      "left": [
+        "project_registry_v1",
+        "candidate-b17e9292e0cb34972770"
+      ],
+      "right": [
+        "GA_ENO",
+        "927415"
+      ],
+      "relation": "SOURCE_CONTEXT_CANDIDATE_NOT_VERIFIED_ENTITY_RELATION",
+      "source_key": "kennedy_mre20240704",
+      "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+      "effective_date": "2024-07-04",
+      "pdf_page": 1,
+      "page_markers": [
+        "Kennedy",
+        "DevEx",
+        "North Queensland",
+        "150Mt"
+      ],
+      "locator": "Original issuer p1 explicitly declares its 100%-owned Kennedy Project and JORC resource. GA ENO927415 native crosswalk remains candidate: name/region/coordinates alone are not equivalence. Resource scope established solely by issuer Table1.",
+      "required_source_keys": [
+        "kennedy_mre20240704"
+      ]
     }
   ]
 }

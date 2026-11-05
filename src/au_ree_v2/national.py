@@ -236,7 +236,7 @@ def government_features(root, source):
     return data['features']
 
 
-def ingest_government(db,root,source):
+def ingest_government(db,root,source,candidate_version=None):
     """Government native locations and explicit parent codes, never name-based Projects."""
     from .hierarchy import link
     seen=set();count=0
@@ -250,7 +250,12 @@ def ingest_government(db,root,source):
         native=str(int(key)) if isinstance(key,(float,int)) and float(key).is_integer() else str(key or '').strip()
         terms='; '.join(str(a.get(k) or '') for k in source['commodity_fields'])
         tenure=source.get('record_filter')=='ALL_TENURE_RECORDS' and source.get('entity_kind')=='TENEMENT'
-        if not tenure and not REE_TERMS.search(terms):continue
+        decision=None
+        if candidate_version:
+            from .census import classify_ree
+            structured=[k for k in source['commodity_fields'] if not any(x in k.lower() for x in ('description','summary','ore_min','gangue','min_ass'))]
+            decision=classify_ree({k:a.get(k) for k in source['commodity_fields']},structured,candidate_version)
+        if not tenure and not (decision['include'] if decision else REE_TERMS.search(terms)):continue
         if not native or native in seen or counts[native]>1:
             issue(db,None,source['sha256'],'GOVERNMENT_NATIVE_ID_MISSING_OR_DUPLICATE',canonical({'row':index,'native':native}))
             continue
@@ -264,7 +269,8 @@ def ingest_government(db,root,source):
         raw={'source_kind':'LIVE_GOVERNMENT_TENURE_RECORD' if tenure else 'LIVE_GOVERNMENT_NATIVE_RECORD','source_key':source['key'],
              'native_id':native,'original_attributes':a,'original_geometry':f.get('geometry'),
              'locator':('CSV physical row '+str(index+2)) if source['kind']=='government_csv' else 'features['+str(index)+']',
-             'ree_rule':'ALL_TITLES_NO_REE_OR_PROJECT_INFERENCE' if tenure else 'REE_COMMODITY_FIELDS_V1','matched_commodity_text':terms,
+             'ree_rule':'ALL_TITLES_NO_REE_OR_PROJECT_INFERENCE' if tenure else candidate_version or 'REE_COMMODITY_FIELDS_V1','matched_commodity_text':terms,
+             **({'candidate_classification':decision} if decision else {}),
              'interpretation':'GOVERNMENT_RECORDED_'+kind+'_NOT_INDEPENDENT_PHYSICAL_PROJECT_COUNT'}
         db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
                    (eid,source['sha256'],name,source['state'],lon,lat,
@@ -302,9 +308,10 @@ def ingest_government(db,root,source):
                      source['available_date'],source['sha256'],raw['locator']+' / '+field,
                      'DOCUMENTED_GOVERNMENT_RAW','[]',canonical(payload),'government-native-v1'))
         parent=a.get(source.get('parent_id_field',''))
-        if parent:
+        if parent and (candidate_version!='ree-candidate-v3' or str(parent).strip()):
             # Existing WA parent IDs and their established kind stay stable.
-            pid=entity(db,'WA_MINDEX_PROJECT',str(parent),'PROJECT_CANDIDATE')
+            namespace=source.get('parent_namespace') or ('WA_MINDEX_PROJECT' if source['namespace']=='WA_MINDEX_SITE' else source['namespace']+'_PROJECT')
+            pid=entity(db,namespace,str(parent),source.get('parent_kind','PROJECT_CANDIDATE'))
             db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
                        (pid,source['sha256'],str(a.get(source['parent_name_field']) or parent),source['state'],
                         None,None,None,None,canonical({'source_kind':'LIVE_GOVERNMENT_PROJECT_PARENT',
@@ -318,18 +325,24 @@ def ingest_government(db,root,source):
     return {'raw_records':len(features),'ree_native_records':count}
 
 
-def live_government_inventory(db,snapshots):
+def live_government_inventory(db,snapshots,current=None):
     """Separate current source records, native entities, parents and registry Projects."""
     selected={s['sha256']:s for s in snapshots if s.get('national_government')}
     rows=[]
     for r in db.execute('SELECT e.*,r.* FROM entities e JOIN records r USING(entity_id) ORDER BY e.entity_id,r.source_sha'):
         if r['source_sha'] not in selected:continue
+        if current is not None and (r['entity_id'],r['source_sha']) not in current['record_ids']:continue
         raw=json.loads(r['raw']);s=selected[r['source_sha']]
+        attrs=raw.get('original_attributes',{})
+        if current is not None and raw.get('source_kind')=='LIVE_GOVERNMENT_PROJECT_PARENT':
+            # A parent's first inserted child may differ by classifier/history.
+            # Child geology/tenure is not a property of the whole parent.
+            attrs={'project_code':raw.get('project_code'),'project_name':r['name']}
         rows.append({'entity_id':r['entity_id'],'kind':r['kind'],'namespace':r['native_namespace'],
                      'native_id':r['native_id'],'name':r['name'],'state':r['state'],
                      'longitude':r['longitude'],'latitude':r['latitude'],'source_key':s['key'],
                      'source_sha256':r['source_sha'],'locator':raw.get('locator'),
-                     'source_role':raw.get('source_kind'),'original_attributes':canonical(raw.get('original_attributes',{}))})
+                     'source_role':raw.get('source_kind'),'original_attributes':canonical(attrs)})
     return rows
 
 
@@ -351,18 +364,22 @@ def live_government_coverage(root,snapshots,rows):
     return out
 
 
-def government_link_candidates(db,snapshots,mapping=None):
+def government_link_candidates(db,snapshots,mapping=None,version=None,current=None):
     """Source-location hints only; a name or proximity can never confirm identity."""
     from .resolution import normalized,GEO
-    shas={s['sha256'] for s in snapshots};live=live_government_inventory(db,snapshots)
+    shas={s['sha256'] for s in snapshots};live=live_government_inventory(db,snapshots,current)
     groups={}
     for r in live:
         if r['source_role']=='LIVE_GOVERNMENT_NATIVE_RECORD':groups.setdefault((r['state'],normalized(r['name'])),[]).append(r)
     for r in db.execute("SELECT e.entity_id,e.kind,e.native_namespace namespace,r.* FROM entities e JOIN records r USING(entity_id) WHERE e.kind IN ('DEPOSIT','PROJECT')"):
         if r['source_sha'] in shas:
+            if current is not None and (r['entity_id'],r['source_sha']) not in current['record_ids']:continue
             groups.setdefault((r['state'],normalized(r['name'])),[]).append(dict(r,source_sha256=r['source_sha']))
     pairs={}
     for (state,name),members in groups.items():
+        # Stable endpoint order also binds each source to the advertised ID.
+        # Sorting IDs after choosing sources swapped provenance on some pairs.
+        members=sorted(members,key=lambda r:(r['entity_id'],r['source_sha256']))
         for i,a in enumerate(members):
             for b in members[i+1:]:
                 if a['entity_id']==b['entity_id'] or a['namespace']==b['namespace'] or a['source_sha256']==b['source_sha256']:continue
@@ -379,15 +396,66 @@ def government_link_candidates(db,snapshots,mapping=None):
             a,b=row['a'],row['b']
             if (mapping.get(a,a),b) in represented or (mapping.get(b,b),a) in represented:
                 row['status']='CONFIRMED_REPRESENTATIVE_SITE_RELATION_NOT_IDENTITY'
+    if version=='multi-evidence-candidates-v2':
+        # Inverted indices widen discovery without changing canonical identity.
+        # Bare native numbers, ownership, distance and tenure are not merge rules.
+        nodes={r['entity_id']:r for r in live};tokens={}
+        for r in db.execute("SELECT e.entity_id,e.native_namespace namespace,e.native_id,e.kind,r.* FROM entities e JOIN records r USING(entity_id) WHERE e.kind IN ('DEPOSIT','PROJECT') ORDER BY r.source_sha"):
+            if r['source_sha'] in shas and (current is None or (r['entity_id'],r['source_sha']) in current['record_ids']):nodes.setdefault(r['entity_id'],dict(r,source_sha256=r['source_sha']))
+        for eid,r in sorted(nodes.items()):
+            raw=json.loads(r.get('raw') or '{}');attrs=json.loads(r.get('original_attributes') or '{}') or raw.get('original_attributes',{})
+            current_aliases=current.get('project_aliases',{}) if current is not None else {}
+            keys={('name',normalized(current_aliases[eid][0] if eid in current_aliases else r.get('name') or ''))}
+            for field in ('former_name','alternativeName','other_names','aliases','project_name','proj_title'):
+                value=(current_aliases[eid] if field=='aliases' else None) if eid in current_aliases else attrs.get(field) or raw.get(field)
+                for name in (value if isinstance(value,list) else re.split(r'[;|]',str(value or ''))):
+                    if len(str(name).strip())>=4:keys.add(('alias',normalized(str(name))))
+            for field in ('tenement','tenements','TENEMENTS','permit','LEASE_NO'):
+                for title in re.findall(r'\b[EMLRPS]\s*\d+\s*/\s*\d+\b',str(attrs.get(field) or ''),re.I):keys.add(('tenement',re.sub(r'\s','',title).upper()))
+            # Explicit foreign code fields retain their namespace. Never equate
+            # unrelated sources solely because they both have a row numbered 1.
+            for field,namespace in [('ga_eno','GA_ENO'),('MINERAL_DEPOSIT_NO','SA_MINDEP'),('deposit_no','SA_MINDEP')]:
+                if attrs.get(field):keys.add(('official_id',namespace+':'+str(attrs[field])))
+            if str(r.get('namespace','')).startswith('GA_') and r.get('native_id'):keys.add(('official_id','GA_ENO:'+str(r['native_id'])))
+            if str(r.get('namespace','')).startswith('SA_MINDEP') and r.get('native_id'):keys.add(('official_id','SA_MINDEP:'+str(r['native_id'])))
+            r['_holder_dates']={k:attrs[k] for k in ('authorisedholdername','approvedate','expirydate','OPERATING_COMPANY') if attrs.get(k)}
+            for kind,key in keys:
+                if key:tokens.setdefault((r.get('state'),('name_or_alias' if kind in ('name','alias') else kind),key),set()).add(eid)
+        for (state,kind,token),ids in sorted(tokens.items(),key=str):
+            members=sorted(ids)
+            for i,a in enumerate(members):
+                for b in members[i+1:]:
+                    ra,rb=nodes[a],nodes[b]
+                    if ra.get('namespace')==rb.get('namespace') or ra['source_sha256']==rb['source_sha256']:continue
+                    pair=pairs.setdefault((a,b),dict(a=a,b=b,name=ra.get('name'),state=state,distance_m=None,
+                        status='CANDIDATE_MULTI_EVIDENCE_NOT_IDENTITY_EQUIVALENCE',source_a=ra['source_sha256'],source_b=rb['source_sha256']))
+                    evidence=set(json.loads(pair.get('evidence_keys','[]')));evidence.add(kind+':'+token)
+                    pair['evidence_keys']=canonical(sorted(evidence));pair['holder_dates']=canonical({a:ra.get('_holder_dates',{}),b:rb.get('_holder_dates',{})})
+        for rel in db.execute('SELECT * FROM relations ORDER BY relation_id'):
+            if rel['source_sha'] not in shas:continue
+            if current is not None and {rel['parent_id'],rel['child_id']}&current.get('invalid_native_ids',set()):continue
+            if current is not None and rel['relation']=='HAS_TECHNICALLY_DOCUMENTED_RESOURCE_SCOPE' and (rel['child_id'],rel['source_sha']) not in current['record_ids']:continue
+            for eid in (rel['parent_id'],rel['child_id']):
+                if eid in nodes:continue
+                row=db.execute('''SELECT e.entity_id,e.native_namespace namespace,e.native_id,e.kind,r.*
+                    FROM entities e JOIN records r USING(entity_id) WHERE e.entity_id=? AND r.source_sha=?''',(eid,rel['source_sha'])).fetchone()
+                if row is not None and (current is None or (eid,rel['source_sha']) in current['record_ids']):nodes[eid]=dict(row,source_sha256=row['source_sha'])
+            if rel['parent_id'] not in nodes or rel['child_id'] not in nodes:continue
+            if current is not None and (rel['parent_id'] in current['historical_scope_ids'] or rel['child_id'] in current['historical_scope_ids']):continue
+            a,b=sorted((rel['parent_id'],rel['child_id']));ra,rb=nodes[a],nodes[b]
+            pair=pairs.setdefault((a,b),dict(a=a,b=b,name=ra.get('name'),state=ra.get('state'),distance_m=None,
+                status='SOURCE_BOUND_TYPED_RELATION_NOT_IDENTITY_EQUIVALENCE',source_a=ra['source_sha256'],source_b=rb['source_sha256']))
+            pair['relation_evidence']=canonical(dict(parent_id=rel['parent_id'],child_id=rel['child_id'],relation=rel['relation'],source_sha256=rel['source_sha'],locator=rel['locator']))
     return [pairs[k] for k in sorted(pairs)]
 
 
-def raw_domain_coverage(db,snapshot_shas,validation_version=None,active_claim_ids=None):
+def raw_domain_coverage(db,snapshot_shas,validation_version=None,active_claim_ids=None,current=None):
     """Validated numeric statements and typed government text are separate evidence classes."""
     from .selection import evidence_domain,observation_visible
     groups={}
     for r in db.execute('SELECT o.*,e.kind FROM observations o JOIN entities e USING(entity_id)'):
         if r['source_sha'] not in snapshot_shas:continue
+        if current is not None and r['obs_id'] not in current['observation_ids']:continue
         if active_claim_ids is not None and r['transform_version'] in ('normalization-v1','commercial-event-v1') and r['obs_id'] not in active_claim_ids:continue
         raw=json.loads(r['raw'])
         if validation_version and not observation_visible(raw,snapshot_shas,validation_version):continue
@@ -402,7 +470,7 @@ def raw_domain_coverage(db,snapshot_shas,validation_version=None,active_claim_id
                  interpretation='RAW_EVIDENCE_COUNTS_NOT_COMMON_SCORABLE_PROJECTS') for (d,s),g in sorted(groups.items())]
 
 
-def resource_quality_checks(db,snapshot_shas):
+def resource_quality_checks(db,snapshot_shas,current=None):
     """Same-statement arithmetic, preserving reported basis and rounding intervals."""
     from .store import issue
     statements={}
@@ -411,6 +479,7 @@ def resource_quality_checks(db,snapshot_shas):
              'reported_resource_contained_kt':'contained'}
     for r in db.execute("SELECT * FROM observations WHERE status='AUTO_VALIDATED'"):
         if r['source_sha'] not in snapshot_shas or r['variable'] not in aliases:continue
+        if current is not None and r['obs_id'] not in current['observation_ids']:continue
         key=tuple(r[k] for k in ('entity_id','statement_id','scope','effective_date','source_sha','basis'))
         statements.setdefault(key,{})[aliases[r['variable']]]=dict(r)
     output=[]

@@ -6,7 +6,7 @@ import sys
 import uuid
 import platform
 from datetime import date, datetime, timezone, timedelta
-from .hierarchy import build as build_hierarchy
+from .hierarchy import build as build_hierarchy, rows as hierarchy_rows
 from .resolution import resolve,technical_coverage
 from .studies import ingest as ingest_cases
 from .screen_index import rows as screen_index_rows
@@ -50,7 +50,22 @@ def research_configuration(root, snapshot_lock=None):
                     'panels':{**config['panels'],**policy['panels']}}
     if not snapshot_lock and (root/'config/eligibility_compatibility.json').exists():
         config['eligibility_evidence']=json.loads((root/'config/eligibility_compatibility.json').read_text())
+    if config.get('evidence_resolution',{}).get('technical_disclosure'):
+        config['criteria']=[dict(c,variable='technical_disclosure_pct',
+            interpretation='Technical Disclosure Transparency; not technical feasibility/performance',
+            definition_version='technical-disclosure-transparency-v1') if c['code']=='T1' else c for c in config['criteria']]
     return config
+
+
+def recognition_registry(root, work, snapshots, config):
+    """Current recognition and acquisition share the committed SQLite registry."""
+    import sqlite3
+    from .pdf_extract import project_registry
+    store=(Path(work).resolve() if work else root/'work/phase5')/'canonical.sqlite'
+    if not config.get('candidate_version') or not store.is_file():return None
+    db=sqlite3.connect(store.as_uri()+'?mode=ro',uri=True,timeout=30);db.row_factory=sqlite3.Row
+    try:return project_registry(root,db,snapshots)
+    finally:db.close()
 
 
 def execute(args):
@@ -67,6 +82,64 @@ def execute(args):
     if args.dry_run:
         return {'status':'DRY_RUN','module':args.module,'cutoff':args.as_of,'root':str(root),
                 'snapshot_count':len(select_snapshots(root,args.as_of)), 'writes':False}
+    if args.module=='register-candidate':
+        from .evidence import load_claims,register_candidate
+        if not args.registration:raise ValueError('register-candidate requires --registration')
+        snapshots=select_snapshots(root,args.as_of)
+        work=Path(args.work or root/'work/phase5');db=connect(work/'canonical.sqlite')
+        try:
+            claims,old_sha=load_claims(root,freeze=True)
+            registration=json.loads(Path(args.registration).read_text(encoding='utf8'))
+            project,relation=register_candidate(db,root,snapshots,args.as_of,registration,claims)
+            path=root/'data/identity_links.json';links=json.loads(path.read_text(encoding='utf8'))
+            if relation not in links.setdefault('relations',[]):links['relations'].append(relation)
+            # Existing versioned inputs; SQLite is populated by the same normal
+            # ingest. No second registry, automatic C1 or eager resource scoring.
+            path.write_text(json.dumps(links,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+            (root/'data/claims.json').write_text(json.dumps(claims,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+            return dict(status='SOURCE_VERIFIED_PROJECT_DECLARATION_ADOPTED',project_id='AU-'+digest([project.get('entity_namespace','project_registry_v1'),project['id']])[:20],
+                candidate_id=registration['candidate_id'],relation_status=relation['relation'],
+                previous_claims_sha256=old_sha,claims_sha256=filehash(root/'data/claims.json'),formal_C1=False)
+        finally:db.close()
+    disclosure_settings=config.get('evidence_resolution',{}).get('technical_disclosure',{})
+    if not args.snapshot_lock and disclosure_settings.get('incremental_registry') and args.module in ('all','analyze','disclosure'):
+        # Like the existing claims contract: active coding may grow, whereas
+        # a published run must always resolve its exact adopted coding bytes.
+        live=root/disclosure_settings['review_path'];sha=filehash(live)
+        archive=root/'data/snapshots'/(sha+'.disclosure.json')
+        if not archive.exists():archive.write_bytes(live.read_bytes())
+        if filehash(archive)!=sha:raise ValueError('IMMUTABLE_DISCLOSURE_REVIEW_MISMATCH')
+        disclosure_settings.update(review_path=archive.relative_to(root).as_posix(),review_sha256=sha)
+    if args.module=='disclosure' and config.get('disclosure_current_baseline'):
+        # Current disclosure needs current non-Technical selection as well.
+        # Historical locks without this flag keep the frozen Phase19 baseline.
+        args.work=args.work or str(root/'work/phase5')
+        if not (Path(args.work).resolve()/'canonical.sqlite').is_file():
+            raise ValueError('Require an existing canonical.sqlite')
+        args.module='analyze'
+    if args.module=='disclosure':
+        # Deliberately reuse the current canonical store; never bootstrap a
+        # second formal database for a content-analysis revision.
+        work=Path(args.work).resolve() if args.work else root/'work/phase5'
+        if not (work/'canonical.sqlite').is_file():raise ValueError('Require an existing canonical.sqlite')
+        review_path=root/config['evidence_resolution']['technical_disclosure']['review_path']
+        version=code_version(root);run_id='phase19-'+digest([filehash(review_path),config,version['content_sha256'],args.as_of])[:16]
+        out=work/'runs'/run_id;out.mkdir(parents=True,exist_ok=True)
+        db=connect(work/'canonical.sqlite')
+        try:
+            from .technical import run_disclosure
+            db.execute('INSERT OR IGNORE INTO runs VALUES(?,?,?,?,?,?,?,?)',
+                (run_id,datetime.now(timezone.utc).isoformat(),args.as_of,canonical(version),digest(config),filehash(review_path),'RUNNING',None))
+            result,prepared,summary=run_disclosure(root,config,args.as_of,out,db,run_id)
+            r_results={} if args.skip_r else run_r(root,out,prepared,config,args.rscript)
+            summary.update(run_id=run_id,output_dir=str(out),R=r_results,code=version)
+            (out/'summary.json').write_text(canonical(summary)+'\n',encoding='utf8')
+            (out/'configuration.json').write_text(canonical({'research':config})+'\n',encoding='utf8')
+            db.execute("UPDATE runs SET status='COMPLETED',error=NULL WHERE run_id=?",(run_id,));db.commit()
+            return summary
+        except Exception:
+            db.rollback();raise
+        finally:db.close()
     if args.module=='pdf-extract':
         from .pdf_extract import capture_pages
         source=next(s for s in select_snapshots(root,args.as_of) if s['key']==args.source_key)
@@ -74,7 +147,9 @@ def execute(args):
     if args.module=='recognize':
         from .pdf_extract import capture_documents
         keys=set(args.source_key.split(',')) if args.source_key else None
-        return {'documents':capture_documents(root,select_snapshots(root,args.as_of,acquired_through=acquired_through),keys,args.tessdata)}
+        selected=select_snapshots(root,args.as_of,acquired_through=acquired_through)
+        return {'documents':capture_documents(root,selected,keys,args.tessdata,
+            registry=recognition_registry(root,args.work,selected,config))}
     acquisition=[]
     if args.module=='discover':
         from .discovery import discover
@@ -89,6 +164,10 @@ def execute(args):
             chosen=[s for s in registry['sources'] if s['key'] in keys]
             if keys!={s['key'] for s in chosen}:raise ValueError('Unknown acquisition source key')
             discovery={'status':'TARGETED_SOURCE_UPDATE'}
+        elif getattr(args,'centralized',False):
+            chosen=[s for s in registry['sources'] if s['kind']=='minedex_resource_batch']
+            from .discovery import centralized_feasibility
+            discovery=centralized_feasibility(root)
         else:
             chosen=registry['sources']
             discovery_config=json.loads((root/'config/discovery.json').read_text(encoding='utf-8'))
@@ -108,10 +187,12 @@ def execute(args):
             recognition_snapshots=select_snapshots(root,recognition_cutoff,
                 acquired_through=None if args.module=='acquire' else acquired_through)
             wanted={d.get('document_sha256') for d in discovery.get('documents',[])} if getattr(args,'gap_report',None) or getattr(args,'official_only',False) else None
+            if getattr(args,'centralized',False):wanted=set()
             if args.source_key:
                 wanted={s['sha256'] for s in recognition_snapshots if s['key'] in keys}
+            document_registry=recognition_registry(root,getattr(args,'work',None),recognition_snapshots,config)
             if wanted is not None:recognition_snapshots=[s for s in recognition_snapshots if s['sha256'] in wanted]
-            recognized=capture_documents(root,recognition_snapshots,tessdata=args.tessdata,only_missing=True)
+            recognized=capture_documents(root,recognition_snapshots,tessdata=args.tessdata,only_missing=True,registry=document_registry)
         if args.module=='acquire':
             from .discovery import live_status
             return {'status':'COMPLETED_WITH_SOURCE_STATUS','sources':acquisition,'discovery':discovery,'document_recognition':recognized,
@@ -121,7 +202,7 @@ def execute(args):
     if args.snapshot_lock:
         snapshots=json.loads(Path(args.snapshot_lock).read_text(encoding='utf-8'))
         for s in snapshots:
-            if s['available_date']>(acquired_through or args.as_of) or s.get('publication_date','')>args.as_of:
+            if s['available_date']>(acquired_through or args.as_of) or (s.get('publication_date') or '')>args.as_of:
                 raise ValueError('Snapshot lock contains evidence after cutoff')
             if filehash(root/s['path'])!=s['sha256']:
                 raise ValueError('Locked snapshot checksum mismatch')
@@ -151,11 +232,15 @@ def execute(args):
          digest(snapshots),'RUNNING',None))
     db.commit()
     try:
-        ingest_sources(db,root,snapshots)
+        ingest_sources(db,root,snapshots,config.get("commodity_version","minedex-resource-batch-v1"),config.get('candidate_version'))
         from .national import government_explicit_relations
         government_explicit_relations(db,snapshots)
         from .national import live_government_inventory,live_government_coverage,government_link_candidates
-        live_rows=live_government_inventory(db,snapshots)
+        native_current=None
+        if config.get('current_view_version'):
+            from .selection import current_evidence_view
+            native_current=current_evidence_view(db,snapshots,args.as_of,active_claim_ids,candidate_version=config.get('candidate_version'),claims_data=claims_data)
+        live_rows=live_government_inventory(db,snapshots,native_current)
         live_coverage=live_government_coverage(root,snapshots,live_rows)
         write_csv(out/'government_native_entities.csv',live_rows,
                   ['entity_id','kind','namespace','native_id','name','state','longitude','latitude',
@@ -179,22 +264,28 @@ def execute(args):
                       ['parent_id','child_id','relation','source_sha256','locator','rule','status'])
         resources=resource_values(db,args.as_of,{s['sha256'] for s in snapshots},strict=bool(config.get('evidence_resolution')),active_claim_ids=active_claim_ids)
         from .national import resource_quality_checks
-        resource_qa=resource_quality_checks(db,{s['sha256'] for s in snapshots})
-        write_csv(out/'resource_statement_quality.csv',resource_qa,
-                  ['entity_id','statement_id','scope','effective_date','source_sha256','basis',
-                   'calculated_contained_kt','reported_contained_kt','rounding_lower_kt','rounding_upper_kt','status','interpretation'])
         cases=ingest_cases(db,root,snapshots,args.as_of) if args.module!='bootstrap' else []
         if config.get('evidence_resolution') and args.module!='bootstrap':
             from .evidence import ingest_events
             ingest_events(db,root,snapshots,args.as_of,claims_data=claims_data)
-        hierarchy=build_hierarchy(db,snapshots)
-        identity=resolve(db,root,snapshots,args.as_of,config.get('evidence_resolution',{}).get('identity_rule_version'))
-        live_candidates=government_link_candidates(db,snapshots,identity['mapping'] if config.get('evidence_resolution',{}).get('identity_rule_version') else None)
+        current=None
+        if config.get('current_view_version'):
+            from .selection import current_evidence_view
+            current=current_evidence_view(db,snapshots,args.as_of,active_claim_ids,config.get('evidence_resolution',{}).get('document_pipeline',{}).get('validation_version'),config.get('candidate_version'),claims_data=claims_data)
+        resource_qa=resource_quality_checks(db,{s['sha256'] for s in snapshots},current)
+        write_csv(out/'resource_statement_quality.csv',resource_qa,
+                  ['entity_id','statement_id','scope','effective_date','source_sha256','basis',
+                   'calculated_contained_kt','reported_contained_kt','rounding_lower_kt','rounding_upper_kt','status','interpretation'])
+        # Register source-bound resource scopes before producing membership.
+        # Otherwise fresh runs omit scopes which appear only on the next run.
+        build_hierarchy(db,snapshots,collect=False,current=current)
+        identity=resolve(db,root,snapshots,args.as_of,config.get('evidence_resolution',{}).get('identity_rule_version'),current=current)
+        hierarchy=hierarchy_rows(db,snapshots,current)
+        live_candidates=government_link_candidates(db,snapshots,identity['mapping'] if config.get('evidence_resolution',{}).get('identity_rule_version') else None,config.get('government_pairing_version'),current)
         write_csv(out/'government_identity_candidates.csv',live_candidates,
-                  ['a','b','name','state','distance_m','status','source_a','source_b'])
-        technical_rows=technical_coverage(db,identity,resources,cases,{s['sha256'] for s in snapshots})
+                  ['a','b','name','state','distance_m','status','source_a','source_b']+(['evidence_keys','relation_evidence','holder_dates'] if config.get('government_pairing_version') else []))
+        technical_rows=technical_coverage(db,identity,resources,cases,{s['sha256'] for s in snapshots},current)
         write_csv(out/'technical_project_coverage.csv',technical_rows,['canonical_project_id','member_entity_ids','status','resource_scopes','study_case_ids','other_stage_evidence','shared_resource_context','unverified_or_other_scope_claims','interpretation'])
-        hierarchy=build_hierarchy(db,snapshots)
         write_csv(out/'native_identity_ledger.csv',identity['ledger'],['source_record_id','target_id','state','source_key','native_id','resolved_entities','status','source_sha256'])
         write_csv(out/'canonical_membership.csv',identity['membership'],['entity_id','kind','canonical_id','status'])
         write_csv(out/'identity_decisions.csv',identity['accepted'],['alias_id','canonical_id','kind','status','source_sha256','locator'])
@@ -244,13 +335,39 @@ def execute(args):
                   ['entity_id','variable','distance_km','layer_sha256',
                    'coordinate_source_sha256','method','coverage_scope',
                    'radius_km','source_where','limitation'])
-        results={};prepared={'panels':{},'coverage':[]};selection=None
+        results={};prepared={'panels':{},'coverage':[]};selection=None;technical_observations=None;disclosure_prepared=None;disclosure_result=None
         if args.module in ('all','analyze','rebuild'):
             if config.get('evidence_resolution'):
                 from .selection import resolve as select_evidence,export as export_selection
                 selection=select_evidence(db,snapshots,args.as_of,resources,cases,identity['mapping'],config['evidence_resolution'],root,acquired_through,active_claim_ids=active_claim_ids)
                 export_selection(selection,out)
+                if config['evidence_resolution'].get('technical_profile'):
+                    from .technical import unified_observations
+                    technical_observations=unified_observations(selection,config['evidence_resolution']['technical_profile'])
+                disclosure_settings=config['evidence_resolution'].get('technical_disclosure')
+                if disclosure_settings and args.as_of==disclosure_settings['review_cutoff']:
+                    from .technical import run_disclosure
+                    from .pdf_extract import project_registry
+                    current_registry=project_registry(root,db,snapshots,identity['mapping']) if disclosure_settings.get('incremental_registry') else None
+                    disclosure_result,disclosure_prepared,disclosure_summary=run_disclosure(root,config,args.as_of,out,db,run_id,selection,
+                        assemble=not config.get('disclosure_current_baseline'),registry=current_registry,selected_snapshots=snapshots)
+                elif disclosure_settings:
+                    (out/'disclosure_status.json').write_text(canonical(dict(
+                        status='NOT_EVALUATED_REVIEW_CUTOFF_DIFFERS',cutoff=args.as_of,
+                        review_cutoff=disclosure_settings['review_cutoff'],
+                        interpretation='No later disclosure coding backdated; other research continues'))+'\n',encoding='utf8')
             prepared=prepare(db,args.as_of,snapshots,resources,gis_values,config,out,args.project,identity['mapping'],cases,selection)
+            if disclosure_result and config.get('disclosure_current_baseline'):
+                from .analysis import current_disclosure_baseline,prepare_disclosure_analysis
+                baseline=current_disclosure_baseline(out,identity['mapping'],[s['project_id'] for s in disclosure_result['scores']],prepared,
+                    include_bounds=bool(config.get('disclosure_source_rounding')))
+                disclosure_prepared,current_summary=prepare_disclosure_analysis(disclosure_result,baseline,config,out)
+                disclosure_summary.update(current_summary)
+                (out/'disclosure_analysis.json').write_text(canonical(disclosure_summary)+'\n',encoding='utf8')
+            if disclosure_prepared:prepared['panels'].update(disclosure_prepared['panels'])
+            if selection and config.get('evidence_resolution',{}).get('technical_profile',{}).get('numeric_model'):
+                from .analysis import prepare_technical_panel
+                prepare_technical_panel(selection,prepared,config,out,observations=technical_observations)
             if config['monte_carlo'].get('method_version')=='entity-keyed-rng-v2':
                 from .analysis import canonicalize_interchange
                 canonicalize_interchange(out)
@@ -260,12 +377,15 @@ def execute(args):
                 if config.get('source_coverage_version')=='bounded-document-stages-v1':
                     from .discovery import source_coverage
                     source_coverage(root,snapshots,selection,prepared,out)
+            commercial=None
             if config.get('research_utilization') and selection:
-                from .analysis import research_readiness
-                research_readiness(selection,out,config.get('research_analysis_version'))
+                from .analysis import prepare_commercial_coverage
+                commercial=prepare_commercial_coverage(selection,out)
             if not args.skip_r:
                 results=run_r(root,out,prepared,config,args.rscript)
-            if config.get('research_utilization') and selection:research_readiness(selection,out,config.get('research_analysis_version'))
+            if config.get('research_utilization') and selection:
+                from .analysis import research_readiness
+                research_readiness(selection,out,config.get('research_analysis_version'),commercial)
             if selection and config.get('evidence_resolution',{}).get('technical_analysis'):
                 from .technical import analyze_cells
                 analyze_cells(selection,config['evidence_resolution']['technical_analysis'],db,run_id,out,{identity['mapping'].get(pid,pid) for pid in resources})
@@ -273,15 +393,22 @@ def execute(args):
                     from .technical import plot_cells
                     plot_cells(root,out,args.rscript)
 
+        if selection and config.get('evidence_resolution',{}).get('technical_profile'):
+            from .technical import analyze_profiles
+            from .official import minedex_resource_report
+            analyze_profiles(selection,config['evidence_resolution']['technical_profile'],out,{identity['mapping'].get(pid,pid) for pid in resources},root,snapshots,observations=technical_observations)
+            minedex_resource_report(db,root,snapshots,out,config.get("commodity_version","minedex-resource-batch-v1"))
         source_shas={s['sha256'] for s in snapshots}
         from .national import raw_domain_coverage
         if config.get('research_analysis_version')=='evidence-cohort-v1':
-            raw_domains=raw_domain_coverage(db,source_shas,config['evidence_resolution']['document_pipeline'].get('validation_version'),active_claim_ids)
+            raw_domains=raw_domain_coverage(db,source_shas,config['evidence_resolution']['document_pipeline'].get('validation_version'),active_claim_ids,current)
         else:raw_domains=raw_domain_coverage(db,source_shas)
         write_csv(out/'database_domain_coverage.csv',raw_domains,
                   ['domain','evidence_status','distinct_statement_values','entities','sources','numeric_values','interpretation'])
         census=[dict(r) for r in db.execute('''SELECT e.entity_id,e.kind,r.* FROM entities e
-            JOIN records r USING(entity_id) ORDER BY e.entity_id,r.source_sha''') if r['source_sha'] in source_shas]
+            JOIN records r USING(entity_id) ORDER BY e.entity_id,r.source_sha''') if r['source_sha'] in source_shas and (current is None or r['entity_id'] not in current['historical_scope_ids'] and (r['entity_id'],r['source_sha']) in current['record_ids'])]
+        if current is not None:
+            for r in census:r.update(current.get('record_values',{}).get((r['entity_id'],r['source_sha']),{}))
         write_csv(out/'census.csv',census,['entity_id','kind','name','state','longitude','latitude','deposit_type','activity','source_sha'])
         inventory=official_inventory(db,source_shas)
         write_csv(out/'official_resource_inventory.csv',inventory,
@@ -297,7 +424,7 @@ def execute(args):
                   ['project_id','project_name','state','owner','strategic_evidence',
                    'technical_evidence','development_evidence','commercial_evidence',
                    'source_sha256','locator','status','source_url'])
-        dimension_rows=domain_evidence_coverage(db,inventory,resources,gis_values,national_inventory,source_shas,selection,prepared,config['criteria'])
+        dimension_rows=domain_evidence_coverage(db,inventory,resources,gis_values,national_inventory,source_shas,selection,prepared,config['criteria'],current)
         write_csv(out/'project_domain_evidence.csv',dimension_rows,
                   ['project_id','project_name','domain','evidence_state','evidence_reference','scorable']+(['exploratory_scorable','selection_policy'] if selection else []))
         candidates=[]
@@ -337,7 +464,7 @@ def execute(args):
                            'properties':{k:r[k] for k in ('entity_id','kind','name','state','source_sha')}})
         (out/'census.geojson').write_text(canonical({'type':'FeatureCollection','features':points})+'\n',encoding='utf-8')
         from .eligibility import audit
-        audit_summary=audit(db,out,identity,technical_rows,prepared,config,args.as_of,snapshots,root)
+        audit_summary=audit(db,out,identity,technical_rows,prepared,config,args.as_of,snapshots,root,current)
         from .security import public_export
         dump=public_export(logical_dump(db))
         (out/'logical_database.json').write_text(canonical(dump)+'\n',encoding='utf-8')
@@ -346,8 +473,7 @@ def execute(args):
         issues=[dict(r) for r in db.execute('SELECT * FROM review_queue ORDER BY issue_id')]
         write_csv(out/'review_queue.csv',issues,['issue_id','entity_id','source_sha','reason','details','status'])
         by_kind={}
-        for eid in {r['entity_id'] for r in census}:
-            kind=next(r['kind'] for r in census if r['entity_id']==eid)
+        for kind in {r['entity_id']:r['kind'] for r in census}.values():
             by_kind[kind]=by_kind.get(kind,0)+1
         registered_keys={source['key'] for source in registry['sources']}
         selected_keys={snapshot['key'] for snapshot in snapshots}
@@ -406,6 +532,7 @@ def execute(args):
             summary['comparison']=compare_runs(args.compare_to,out)
         output_hashes={p.relative_to(out).as_posix():filehash(p) for p in sorted(out.rglob('*')) if p.is_file()}
         summary['output_hashes']=output_hashes
+        summary['execution_artifacts']=[name for name in output_hashes if Path(name).name in ('R.log','r_cache.json','R_cohort.log','r_cohort_cache.json')]
         (out/'summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
         report=['# AU_REE_V2 research run',f"Cutoff: {args.as_of}",f"Run: {run_id}",
                 '## Verified coverage',canonical(by_kind),f'Resource-defined sample: {len(resources)}',
@@ -433,7 +560,7 @@ def execute(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize'])
+    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate'])
     parser.add_argument('--root',default='.')
     parser.add_argument('--work')
     parser.add_argument('--as-of',default=datetime.now(timezone.utc).date().isoformat())
@@ -443,8 +570,10 @@ def main():
     parser.add_argument('--skip-r',action='store_true')
     parser.add_argument('--rscript')
     parser.add_argument('--snapshot-lock',help='Exact immutable snapshot_lock.json from a prior run')
+    parser.add_argument('--centralized',action='store_true',help='Bounded centralized-source feasibility and official resource batch acquisition')
     parser.add_argument('--compare-to',help='Frozen prior run/results folder for coverage and rank comparison')
     parser.add_argument('--source-key');parser.add_argument('--pages',default='1');parser.add_argument('--tessdata')
+    parser.add_argument('--registration',help='Source-bound native candidate Project declaration in existing claims format')
     parser.add_argument('--gap-report',help='Existing evidence_pipeline_diagnostics.csv for bounded acquisition')
     parser.add_argument('--task-limit',type=int,default=3)
     parser.add_argument('--official-only',action='store_true',help='Bounded configured official report discovery; no issuer refresh')

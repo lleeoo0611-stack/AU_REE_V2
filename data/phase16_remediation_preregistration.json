@@ -1,0 +1,94 @@
+{
+  "version": "phase16-remediation-preregistration-v1",
+  "baseline": "29b9b68fd1f3e3ba71450f9f3b6fbbfe024e6e65",
+  "registered_at": "2026-11-05",
+  "partition_unit": "DOCUMENT_SHA_NOT_PAGE",
+  "holdout": [
+    {
+      "key": "sybella_impurity2024",
+      "url": "https://redmetal.com.au/wp-content/uploads/2024/07/RDM_ASX_Sybella_Project_Impurity_Removal_final.pdf",
+      "publication_date": "2024-07-08",
+      "process": "LEACH_IMPURITY_MREC"
+    },
+    {
+      "key": "kennedy_met2023",
+      "url": "https://www.devexresources.com.au/wp-content/uploads/2024/06/61157632.pdf",
+      "publication_date": "2023-07-10",
+      "process": "DESORPTION"
+    },
+    {
+      "key": "sandy_met2024",
+      "url": "https://arkmines.com/wp-content/uploads/2024/07/02823586.pdf",
+      "publication_date": "2024-07-02",
+      "process": "PHYSICAL_BENEFICIATION"
+    }
+  ],
+  "selection_reason": "Fixed linked issuer originals recommended in project discussion; purposive three process routes, not random/blind. No contents will be inspected before burden and identity rule implementation is fixed. Transport failure is retained, never substituted silently.",
+  "development": [
+    "Koppamurra",
+    "Cowalinya",
+    "Browns Range",
+    "Dubbo",
+    "Cummins",
+    "Nolans",
+    "Donald",
+    "Yttria",
+    "Jupiter",
+    "Yangibana",
+    "Circle Valley"
+  ],
+  "main_analysis": {
+    "unit": "project plus selected mine-plan design scenario",
+    "panel": "whole-ore-to-mineral-concentrate design demonstration",
+    "anchors": [
+      0,
+      100
+    ],
+    "technical_subweights": [
+      [
+        0.8,
+        0.2
+      ],
+      [
+        0.5,
+        0.5
+      ],
+      [
+        0.2,
+        0.8
+      ]
+    ],
+    "technical_total_weight": [
+      0,
+      0.25,
+      0.5,
+      1
+    ],
+    "nontechnical_reference": "D1 fixed-source DFS context; preserve actual GIS missingness",
+    "normalization_sensitivity": [
+      "fixed_fraction",
+      "cohort_minmax"
+    ],
+    "scope_sensitivity": [
+      "engineering_design",
+      "operating_only"
+    ],
+    "distributions": "Existing entity-keyed weight RNG; no new measurement distribution or arbitrary model errors",
+    "formal_c1": false,
+    "reference_change_reason": "Original source pages checked before ranks; peak and average annual production cannot be one reference quantity.",
+    "reference_change_after_coverage_probe": "No ranking executed: Yangibana has no selected port distance. Use existing D1 fixed=0.6 in both design cases (source DFS stage), an invariant Development context, not a Technical quality bonus. No resource scope attached. GIS unavailable cannot be zero-filled."
+  },
+  "baseline_files": {
+    "data/manifest.json": "550e8428458c4e626c1464914883ddc2fd621994f8704be087b02d99761b60cd",
+    "data/claims.json": "42e120a1d6c0d1bddfa91559b13d15dd4e524f9c22f32ed5c36ac79c87ba30a7",
+    "config/evidence_policy.json": "490a3ce6ce148dd6542e66c8c9e041b4fe57f94924fd8f3e0fe2d92771aed77f"
+  },
+  "held_rule_freeze": {
+    "claim_purpose": "fc19761cc56d1750ebfb7bf37f44e0d039e83f2760685dfc81d172cf8812b00e",
+    "burden_states": "67324c6a5a860bd7165d792f46266ec2fb9562b972f3926dbfc5791fc629a5d7",
+    "target_applicability": "afaf976fe0300fe6151e5cf86414b9f35c6c03df2a0b42a373e29bfd5bdea078",
+    "unified_observations": "34b7cbc29417f92030619cb64f9a936132d5337596c9a5d706cc251ee19b5d38"
+  },
+  "evaluation_rule": "These exact function hashes fixed before held original contents are inspected; no held-result-driven retuning",
+  "identity_pre_evaluation_extension": "Protect acid concentration unit, formulation, liquid-solid ratio and explicit stage material boundaries; no held extraction or claim result consulted."
+}

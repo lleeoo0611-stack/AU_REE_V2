@@ -4,6 +4,9 @@ import hashlib
 import json
 import subprocess
 import sys
+import io
+import zipfile
+import gzip
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -16,7 +19,7 @@ roots=[ROOT/d for d in ('src','R','config','data','docs','results','tests','tool
 files=set(p for base in roots for p in base.rglob('*') if p.is_file())
 files.update(p for p in ROOT.iterdir() if p.is_file())
 paths=[p for p in sorted(files) if p.suffix.lower() in
-       ('.json','.jsonl','.csv','.md','.yml','.yaml','.py','.r','.toml','.geojson','.html','.response','.upstream')]
+       ('.json','.jsonl','.csv','.md','.yml','.yaml','.py','.r','.toml','.geojson','.html','.response','.upstream','.zip','.gz')]
 found=[]
 manifest_data=json.loads((ROOT/'data/manifest.json').read_text(encoding='utf-8'))
 escaped_originals={ROOT/s['path'] for s in manifest_data['snapshots'] if s.get('encoding_errors')=='backslashreplace'}
@@ -31,7 +34,23 @@ for path in paths:
         ignored=subprocess.run(['git','check-ignore','-q','--',relative],cwd=ROOT).returncode==0
         if not ignored:raise SystemExit('Unpublished original must be explicitly ignored: '+relative)
         continue
-    if raw.startswith(b'%PDF'):
+    if raw.startswith(b'\x1f\x8b'):
+        content=gzip.decompress(raw).decode('utf-8-sig',errors='strict')
+    elif raw.startswith(b'PK\x03\x04'):
+        # Resource batch exports may include CSV + PDF licence/data dictionary.
+        # Inspect their contents, including a ZIP stored as an original response.
+        parts=[]
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            for member in archive.infolist():
+                if member.is_dir():continue
+                if member.file_size>50_000_000:raise SystemExit('Archive member exceeds publication scan budget')
+                body=archive.read(member)
+                if body.startswith(b'%PDF'):
+                    import pymupdf
+                    with pymupdf.open(stream=body,filetype='pdf') as doc:parts.append('\n'.join(page.get_text() for page in doc))
+                else:parts.append(body.decode('utf-8-sig',errors='strict'))
+        content='\n'.join(parts)
+    elif raw.startswith(b'%PDF'):
         import pymupdf
         with pymupdf.open(stream=raw,filetype='pdf') as doc:content='\n'.join(page.get_text() for page in doc)
     else:content=raw.decode('utf-8-sig',errors='backslashreplace' if path in escaped_originals else 'strict')

@@ -1,16 +1,32 @@
 # AU_REE_V2
 
-Latest: [Phase 13 source recovery](docs/phase13-source-recovery.md) bounds discovery/retries and repairs PDF column/quantity binding using the existing Python/SQLite/R system. Its independent Draft PR targets Phase12; no previous PR is merged.
+Latest: **Phase 22 — native-candidate acquisition, source-bound evidence and shared-method MCDA**, cutoff **2026-11-05**, configuration `research-v8-native-candidate-shared-draws`. See [results, limits and reconstruction](results/phase22-2026-11-06/README.md), [verification](results/phase22-2026-11-06/evaluation.json), and [evidence priorities](results/phase22-2026-11-06/six_domain_gap_priority.csv).
 
-Current evidence: **31 registry groups,21 resource-defined analysis cases,315 selected validated numeric statements and21 typed events**. Coverage **R21/S10/T0/D9/I19/C8**; resource/composition, study and financing panels **10/8/6**. Gross25 raw numeric additions minus2 misclassified percentages gives net+23. North Stanmore different resource versions trigger the unchanged scope guard; no extra MCDA admission is claimed. Formal C1/full six-domain samples remain zero; Missing and unresolved OCR decimals are not imputed.
+Current evidence: **33 canonical registry groups, 22 resource cases, 20 complete transparency point scores and 6 complete six-domain cases**. Wolverine/Browns Range joins the previous five after original resource composition and Project financing-plan disclosure recovery. New national candidate Kennedy enters resource/composition ranking, with seven disclosure items Unknown; it is not a new complete six-domain case. Barkly's resource arithmetic conflict and unavailable detailed prospectus remain unresolved. Counts of source rows, native sites, resource scopes, groups and independent Projects remain distinct.
 
-[Phase 13 outputs](results/phase13-2026-11-04/README.md), [Phase 12 outputs](results/phase12-2026-11-04/README.md), [literature/access limits](docs/phase12-literature.md), [Phase 11 deterministic research](docs/phase11-deterministic-research.md), [Phase 10 outputs](results/phase10-2026-11-03/README.md), [Phase 9 outputs](results/phase9-2026-11-03/README.md), [Phase 8 coverage](docs/phase8-evidence-coverage.md), [Phase 7 integration](docs/phase7-evidence-integration.md), [Phase 6 national originals](docs/phase6-national-database.md) and [Phase 5 primary evidence](docs/phase5-primary-evidence.md) retain separate results.
+Technical remains **[Technical Disclosure Transparency v1](docs/technical-disclosure.md)**: seven binary items, denominator7, unknowns retained; not technical capability, feasibility or JORC compliance. New scopes enter the same incremental review as Unknown until source-bound coding is complete. Frozen Phase19/20 reviews and results remain unchanged. Formal C1 gates and approval status remain separate from exploratory completeness.
 
-One Python / SQLite / R research system for Australian rare-earth evidence, official GIS and explicitly scoped exploratory MCDA. Government source records, deposits and registry groups are not interchangeable independent Projects. No national completeness or six-domain development ranking is claimed.
+Unregistered native candidates now produce stable evidence-search tasks and can enter the same registry through source-bound `register-candidate` declarations. Dynamic WAMEX searches, cursor-aware acquisition and the versioned common classifier retain original IDs and unresolved crosswalks. Current evidence views exclude superseded coding without deleting history. R core-panel computation and peer comparisons have separate verified dependencies; shared draws feed SAW, PROMETHEE II and TOPSIS without changing historical PROMETHEE sequences. One formal SQLite store remains in use.
+
+Reconstruction and tests:
+
+```sh
+au-ree-v2 all --as-of 2026-11-05 --work work/phase5
+au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/phase22-replay
+python tools/check_replay.py results/phase22-2026-11-06 work/phase22-replay/latest.json
+python -m unittest discover -s tests -v
+Rscript tests/test_methods.R
+```
+
+On Windows supply `--rscript "C:/Program Files/R/R-4.5.2/bin/Rscript.exe"` when R is not on PATH. `--skip-r` explicitly omits ranking. Cache hits report reuse, not a new Monte Carlo execution. Government source coverage is not national Project completeness. ACT dedicated acquisition, external territories and the REMP2025 workbook remain incomplete. The prospective agent-labelled validation is not independent national ground truth; independent high-impact disclosure recoding is still outstanding. Six selected cases do not support national inference or Aim C causality.
+
+Historical releases: [Phase21](results/phase21-2026-11-05/README.md), [Phase20](results/phase20-2026-11-05/README.md), [Phase19](results/phase19-2026-11-05/REPORT.md), [Phase16 remediation](docs/phase16-remediation.md), and the earlier frozen results below. Branch/PR names are historical; PR #6 stays Draft and is not automatically merged.
+
+One Python / SQLite / R research system for Australian rare-earth evidence, official GIS and explicitly scoped exploratory MCDA. Government source records, deposits and registry groups are not interchangeable independent Projects. No national completeness or national six-domain development ranking is claimed.
 
 ```sh
 python -m pip install .
-au-ree-v2 all --as-of 2026-11-03
+au-ree-v2 all --as-of 2026-11-05 --work work/phase5
 python -m unittest discover -s tests -v
 Rscript tests/test_methods.R
 ```
@@ -43,7 +59,7 @@ value-level provenance, review issues, R ranking comparison, weight-only and sou
 Monte Carlo intervals, leave-criterion/domain-out, scoring/threshold sensitivity, cohort sensitivity,
 partial dominance and AHP consistency audit. Data missing from a criterion stays missing.
 
-Resource, Development and Full-evidence cohorts are separate; the current resource-defined sample is 22.
+Resource, historical Development and current six-domain cohorts have versioned entry rules; the current resource-defined sample is 21. The historical Development cohort still requires compatible recovery and must not gate the new disclosure-based six-domain panel.
 The original November2 pilot compared
 Mt Weld's reported Mineral Resource with Browns Range's **Wolverine-only** Mineral Resource,
 not total Browns Range project inventory. Reported contained totals are retained after rounding checks.
@@ -205,9 +221,9 @@ this same access parameter. V2 sanitization now removes all seven occurrences
 before inclusion in the current source manifest. The original upstream hash
 remains as an attestation, not a redistributed unredacted payload.
 
-Latest increment: [source discovery and C1 compatibility](docs/phase4-discovery-eligibility.md), [frozen outputs](results/phase4-2026-11-03/README.md).
+Historical Phase 4 increment: [source discovery and C1 compatibility](docs/phase4-discovery-eligibility.md), [frozen outputs](results/phase4-2026-11-03/README.md).
 
-Latest evidence increment: [Phase 5 sources and research results](docs/phase5-primary-evidence.md), [frozen comparison](results/phase5-2026-11-03/README.md).
+Historical Phase 5 increment: [sources and research results](docs/phase5-primary-evidence.md), [frozen comparison](results/phase5-2026-11-03/README.md).
 
 
 Phase14 adds [bounded official WAMEX/GSQ report discovery and measured recovery](docs/phase14-official-reports.md): four WAMEX originals,315→321 validated numeric statements, unchanged21 resource cases and no extra common MCDA sample. [Frozen results](results/phase14-2026-11-04/README.md) preserve the original gates and methods. Live update status is reported separately from offline scientific CI; GSQ document delivery remains partial.
@@ -217,3 +233,7 @@ Phase14 adds [bounded official WAMEX/GSQ report discovery and measured recovery]
 已將既有 Dubbo／Cummins 原件及新取得的 Donald／Nolans 技術表接入同一 CLI、SQLite 與 Evidence Selection。379 個來源格位包含 371 個通過驗證的數值，產生試劑強度、品位—回收率、附條件精選保留比及流程一致性分析；不代表379次獨立測量，也未更改正式T1或C1。
 
 [研究報告](docs/phase15-source-bound-technical.md) · [凍結結果與重現命令](results/phase15-2026-11-04/README.md) · [逐文件評估](data/phase15_document_benchmark.json)。
+
+Phase16：來源限定的 Technical 操作化、MINEDEX 批次核對與驗證分層，見 [研究報告](docs/phase16-technical-model.md) 及 [可重建結果](results/phase16-2026-11-04/README.md)。
+
+Phase 16 remediation: [source scope, identity repair and process-specific MCDA](docs/phase16-remediation.md); [reconstructable results](results/phase16-remediation-2026-11-05).

@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import urljoin, urlsplit, urldefrag, quote
 from .acquisition import request, failure_details
 from .security import sensitive_reference
-from .store import filehash
+from .store import append_snapshots, filehash
 
 DOCUMENT_TERMS = {
     'Resource': ['JORC mineral resource', 'mineral resource estimate'],
@@ -22,7 +22,41 @@ DOCUMENT_TERMS = {
 }
 
 
-def search_tasks(root, registry, diagnostics=None):
+def centralized_feasibility(root, fetch=None):
+    """Record documentation; a relative example is not an authorized API origin."""
+    import time
+    from .store import canonical
+    fetch=fetch or request;root=Path(root);receipts=[]
+    url='https://datadirector.weblink.com.au/knowledge-base/weblink-data-api/'
+    start=time.monotonic()
+    try:
+        raw,headers=fetch(url)
+        sha=hashlib.sha256(raw).hexdigest();path=root/'data/snapshots'/(sha+'.html')
+        if not path.exists():path.write_bytes(raw)
+        if filehash(path)!=sha:raise ValueError('IMMUTABLE_DOCUMENTATION_MISMATCH')
+        now=datetime.now(timezone.utc).isoformat()
+        entry=dict(key='weblink_api_documentation',kind='source_documentation',url=url,sha256=sha,path=path.relative_to(root).as_posix(),acquired_at=now,available_date=now[:10])
+        manifest_path=root/'data/manifest.json';manifest=json.loads(manifest_path.read_text())
+        if not any(s['key']==entry['key'] and s['sha256']==sha for s in manifest['snapshots']):manifest['snapshots'].append(entry)
+        append_snapshots(manifest_path,manifest['snapshots'])
+        text=re.sub('<[^>]+>',' ',raw.decode('utf8'));text=' '.join(text.split())
+        receipts.append(dict(url=url,status='DOCUMENTATION_RETRIEVED_NOT_API_SUCCESS',sha256=sha,acquired_at=now,requests=1,elapsed_seconds=time.monotonic()-start,
+            pagination_parameters=[p for p in ('year','headlinesPerPage','pageNumber','category','sensitive') if p in text],
+            relative_route_documented='/api/headline/' in text,verified_api_base_url=None,authentication=None,research_usage_authorization=None,
+            evidence_quote='Let us know your requirements so we can help further.' if 'Let us know your requirements' in text else None,
+            conclusion='ACCESS_CONDITIONS_NOT_ESTABLISHED_NO_BATCH_CALL',
+            required_provider_information=['service base URL','authentication','licensed research use and redistribution','history coverage','pagination termination semantics'],
+            contact_sent=False,purchase=False))
+    except Exception as exc:receipts.append(dict(url=url,status='DOCUMENTATION_UNAVAILABLE',**failure_details(exc),elapsed_seconds=time.monotonic()-start))
+    targets=[dict(symbol='NTU',year=2025,known_document='Browns Range DFS'),dict(symbol='REE',year=2023,known_document='Cummins enhanced scoping study')]
+    result=dict(version='centralized-feasibility-v1',status='BOUNDED_DOCUMENTATION_CHECK',weblink=receipts,predeclared_targets=targets,
+        company_year_api_test='NOT_EVALUATED_ACCESS_CONDITIONS_NOT_ESTABLISHED',known_document_recall=None,new_documents=0,new_usable_fields=0,
+        efficiency_comparison='NOT_ESTIMABLE_WITHOUT_AUTHORIZED_INDEX; no time-saving claim',investorhub_investi='SUPPLEMENTARY_NOT_NEW_ADAPTERS')
+    (root/'data/phase16_centralized_feasibility.json').write_text(canonical(result)+'\n',encoding='utf8')
+    return result
+
+
+def search_tasks(root, registry, diagnostics=None, db=None, snapshots=None):
     """Registry-derived jobs reuse issuer endpoints; missing endpoints stay unknown.
 
     Aliases and company/ASX identifiers are discovery context, never entity
@@ -33,7 +67,47 @@ def search_tasks(root, registry, diagnostics=None):
     registered_path=Path(root)/'config/sources.json'
     registered={s['key']:s for s in json.loads(registered_path.read_text(encoding='utf-8'))['sources']} if registered_path.exists() else {}
     sources={s['key']:s for s in manifest};tasks=[]
-    for p in project_registry(root):
+    own_db=None
+    if db is None and registry.get('canonical_store'):
+        import sqlite3
+        store=Path(root)/registry['canonical_store']
+        if store.exists():
+            own_db=sqlite3.connect(store.resolve().as_uri()+'?mode=ro',uri=True,timeout=30);own_db.row_factory=sqlite3.Row;db=own_db
+    pending=[]
+    try:
+        projects=project_registry(root,db,snapshots or list(sources.values()))
+        if db is not None and registry.get('candidate_tasks'):
+            from .national import live_government_inventory
+            from .acquisition import select_snapshots
+            selected=snapshots or select_snapshots(root,registry.get('search_cutoff','2026-11-05'))
+            known={p['entity_id'] for p in projects}
+            native_rows=live_government_inventory(db,selected)
+            ga_sources={s['sha256']:s for s in selected if s['kind']=='arcgis_census' and s.get('namespace','').startswith('GA_')}
+            for r in db.execute("SELECT e.*,r.* FROM entities e JOIN records r USING(entity_id) WHERE e.kind='DEPOSIT' ORDER BY e.entity_id,r.source_sha"):
+                if r['source_sha'] not in ga_sources:continue
+                source=ga_sources[r['source_sha']]
+                native_rows.append(dict(r,namespace=r['native_namespace'],source_sha256=r['source_sha'],
+                    source_key=source['key'],source_role='LIVE_GOVERNMENT_NATIVE_RECORD',
+                    original_attributes=r['raw'],locator='native '+r['native_namespace']+'/'+r['native_id']))
+            for row in native_rows:
+                if row['entity_id'] in known or row['source_role'] not in ('LIVE_GOVERNMENT_NATIVE_RECORD','LIVE_GOVERNMENT_PROJECT_PARENT'):continue
+                attrs=json.loads(row['original_attributes']);name=row['name']
+                if not name or len(name.strip())<3:continue
+                aliases=sorted({name,*[str(attrs[k]) for k in ('former_name','alternativeName','other_names','project_name') if attrs.get(k)]})
+                pending.append(dict(project_id=row['entity_id'],candidate_id=row['entity_id'],
+                    native_id=row['native_id'],namespace=row['namespace'],project_name=name,aliases=aliases,state=row['state'],
+                    source_key=row['source_key'],source_sha256=row['source_sha256'],source_locator=row['locator'],
+                    source_url=sources.get(row['source_key'],{}).get('url'),
+                    company=attrs.get('OPERATING_COMPANY') or attrs.get('company'),asx_code=attrs.get('ASX_CODE'),
+                    seed_keys=[],registry_status='UNREGISTERED_NATIVE_CANDIDATE_NOT_PROJECT',
+                    task_id=hashlib.sha256((row['entity_id']+'|'+row['source_sha256']+'|identity-and-primary-v1').encode()).hexdigest(),
+                    queries=[name+' '+term for term in ('rare earth project technical report',row['native_id']+' '+row['state'])],
+                    status='CANDIDATE_IDENTITY_AND_ORIGINAL_SEARCH_NOT_ADMISSION',
+                    blockers=['PROJECT_IDENTITY_NOT_SOURCE_VERIFIED'],
+                    work_types=['IDENTITY_VERIFICATION','PRIMARY_DOCUMENT_DISCOVERY','EVIDENCE_EXTRACTION']))
+    finally:
+        if own_db is not None:own_db.close()
+    for p in projects:
         source={**registered.get(p['identity_source'],{}),**sources.get(p['identity_source'],{})}
         code=source.get('asx_code');code_evidence=None
         if registry.get('task_execution_version') and not code and source.get('kind')=='pdf':
@@ -48,12 +122,16 @@ def search_tasks(root, registry, diagnostics=None):
         matches=[s for s in registry['seeds'] if s.get('project_id')==p['entity_id'] or
                  any(a.casefold() in json.dumps(s).casefold() for a in p['aliases'])]
         tasks.append(dict(project_id=p['entity_id'],project_name=p['name'],aliases=p['aliases'],
+                          state=p.get('state') or source.get('state'),
                           company=source.get('company'),asx_code=code,asx_code_evidence_sha256=code_evidence,
                           source_key=p['identity_source'],source_url=source.get('url'),
                           queries=[a+' '+kind for a in p['aliases'] for kind in ('mineral resource','metallurgical','feasibility','financing')],
                           seed_keys=[s['key'] for s in matches],
                           status='BOUNDED_ISSUER_SEARCH_TASK' if matches else 'SEARCH_ENDPOINT_NOT_CONFIGURED_UNKNOWN'))
-    if diagnostics is None:return tasks
+    # Multiple native source rows retain their provenance, but one entity/version
+    # produces one stable work item. A job is never a Project admission.
+    pending=list({(t['candidate_id'],t['source_sha256']):t for t in pending}.values())
+    if diagnostics is None:return tasks+sorted(pending,key=lambda t:(t.get('state') or '',t['task_id']))
     import csv
     with Path(diagnostics).open(encoding='utf-8',newline='') as stream:gaps=list(csv.DictReader(stream))
     coverage={}
@@ -96,7 +174,32 @@ def search_tasks(root, registry, diagnostics=None):
                 'potential_joint_sample_gain':int(joint),'unparsed_originals':unparsed} if components else {}),
             queries=[a+' '+term for a in t['aliases'] for term in DOCUMENT_TERMS.get(g['domain'],['technical report'])],
             reusable_documents=[dict(key=s['key'],url=s['url'],sha256=s['sha256'],publication_date=s.get('publication_date')) for s in docs]))
-    return sorted(jobs,key=lambda t:(-t['priority'],t['project_id'],t['criterion']))
+    candidate_jobs=[dict(t,priority=50,criterion='IDENTITY',domain='Census',gap_state='PROJECT_IDENTITY_NOT_ESTABLISHED',
+        expected_document_types=['PRIMARY_PROJECT_DECLARATION','JORC_RESOURCE','TECHNICAL_REPORT'],prior_search_failures=[],
+        priority_basis='CANDIDATE_VERIFICATION_BUDGET_NOT_PREDICTED_SUCCESS_OR_FORMAL_ADMISSION',
+        priority_components={'candidate_verification':50,'repeated_failure_cost':0},potential_joint_sample_gain=0)
+        for t in sorted(pending,key=lambda t:t['task_id'])]
+    return sorted(jobs+candidate_jobs,key=lambda t:(-t['priority'],t['project_id'],t['criterion']))
+
+
+def official_query(source,tasks):
+    """A bounded WAMEX query from source-native candidates and confirmed aliases.
+
+    No arbitrary year floor: released report metadata determines temporal scope.
+    A configured year floor is allowed only with a recorded research rationale.
+    """
+    if not source.get('dynamic_candidates'):return source.get('where','1=1')
+    if source.get('year_from') and not source.get('year_reason'):raise ValueError('REPORT_YEAR_RANGE_REQUIRES_RATIONALE')
+    aliases=sorted({a.strip() for t in tasks if t.get('state')=='WA' for a in t['aliases'] if len(a.strip())>=4})
+    if not aliases:return None
+    terms=[]
+    for alias in aliases:
+        # LIKE metacharacters must be literal; leave punctuation/IDs in the
+        # retained task, avoiding unbounded wildcard or SQL injection queries.
+        safe=alias.replace("'","''").replace('%','').replace('_',' ')
+        terms.extend("UPPER("+field+") LIKE '%"+safe.upper()+"%'" for field in ('project','title'))
+    dates=(' AND report_year >= '+str(int(source['year_from']))) if source.get('year_from') else ''
+    return "digital_file = 1"+dates+" AND ("+' OR '.join(terms)+") AND (UPPER(target_commodity) LIKE '%RARE EARTH%' OR UPPER(keywords) LIKE '%MONAZITE%' OR UPPER(keywords) LIKE '%METALLURG%' OR UPPER(keywords) LIKE '%MINERAL PROCESS%')"
 
 
 class Links(HTMLParser):
@@ -155,7 +258,14 @@ def official_reports(registry, tasks, fetch, save, originals=()):
             page_shas.append(sha)
         try:
             if source['protocol']=='arcgis':
-                data=arcgis(url,source['where'],archive=archive,fetch=fetch,max_records=source.get('max_records',30))
+                where=official_query(source,tasks)
+                if where is None:
+                    outcomes.append(dict(seed_key=key,url=url,status='NO_APPLICABLE_CANDIDATE_TASK',query_complete=False));continue
+                contract=hashlib.sha256((url+'|'+where).encode()).hexdigest()
+                cursor=registry.get('official_cursors',{}).get(contract,0) if source.get('dynamic_candidates') else None
+                data=arcgis(url,where,archive=archive,fetch=fetch,max_records=source.get('max_records',30),start_after=cursor)
+                if source.get('dynamic_candidates'):data['inventory'].update(query_contract=contract,
+                    termination='SOURCE_EXHAUSTED' if data['inventory']['complete'] else 'RECORD_BUDGET_EXHAUSTED_RESUMABLE')
                 records=[dict(native_id='WAMEX:A'+str(f['attributes']['anumber']),
                     title=f['attributes'].get('title'),attributes=f['attributes'],geometry=f.get('geometry'),
                     spatial_reference=data['spatialReference'],
@@ -164,7 +274,18 @@ def official_reports(registry, tasks, fetch, save, originals=()):
                                    if f['attributes'].get('date_released') else None),
                     resources=[]) for f in data['features']]
             elif source['protocol']=='ckan':
-                data=ckan(url,source['query'],source.get('rows',10),source.get('max_pages',2),fetch,archive)
+                query=source['query']
+                if source.get('dynamic_candidates'):
+                    aliases=sorted({a for task in tasks if task.get('state')=='QLD' for a in task['aliases'] if len(a)>=4})
+                    if not aliases:
+                        outcomes.append(dict(seed_key=key,url=url,status='NO_APPLICABLE_CANDIDATE_TASK',query_complete=False));continue
+                    query='('+' OR '.join('"'+a.replace('"','').replace('\\','')+'"' for a in aliases)+') AND ('+query+')'
+                contract=hashlib.sha256((url+'|'+query).encode()).hexdigest()
+                start=registry.get('official_cursors',{}).get(contract,0) if source.get('resume') else 0
+                data=ckan(url,query,source.get('rows',10),source.get('max_pages',2),fetch,archive,start_offset=start)
+                if source.get('resume'):data['inventory'].update(query_contract=contract,start_offset=start,
+                    next_start=start+len(data['results']) if not data['inventory']['complete'] else None,
+                    termination='SOURCE_EXHAUSTED' if data['inventory']['complete'] else 'PAGE_BUDGET_EXHAUSTED_RESUMABLE')
                 for item in data['results'][:source.get('max_package_show',2)]:
                     try:
                         raw,_=fetch(url.rstrip('/')+'/package_show',{'id':item['id']});archive(raw)
@@ -192,7 +313,8 @@ def official_reports(registry, tasks, fetch, save, originals=()):
                 record['document_candidates']=[]
                 for resource in record['resources']:
                     if str(resource.get('format','')).upper()!='PDF':continue
-                    docurl=resource.get('download_url') or resource.get('url','');rid=resource.get('id')
+                    docurl=(resource.get('url') or resource.get('download_url','')) if source.get('prefer_original_resource_url') else (resource.get('download_url') or resource.get('url',''))
+                    rid=resource.get('id')
                     status='DISCOVERED_BUDGET_DEFERRED'
                     # Signed credentials stay out of receipts/manifest/logs.
                     if sensitive_reference(docurl):status='SIGNED_LINK_NOT_PUBLISHED_OR_FETCHED'
@@ -311,6 +433,29 @@ def discover(root, registry, fetch=request, diagnostics=None, task_limit=3):
         if not any(s['key']==entry['key'] and s['sha256']==sha and s.get('source_document_version')==entry.get('source_document_version') for s in manifest['snapshots']):manifest['snapshots'].append(entry)
         return sha
     tasks=search_tasks(root,registry,diagnostics) if registry.get('registry_tasks') or diagnostics else []
+    if registry.get('incremental_tasks') and not diagnostics:
+        # Resume from the existing immutable execution receipts. No second
+        # queue/registry; missing endpoints are attempts, never completed search.
+        last={}
+        for receipt in manifest['snapshots']:
+            if receipt['kind']!='discovery_receipt':continue
+            if filehash(root/receipt['path'])!=receipt['sha256']:raise ValueError('DISCOVERY_RECEIPT_HASH_MISMATCH')
+            prior=json.loads((root/receipt['path']).read_text(encoding='utf8'))
+            for task in prior.get('search_tasks',[]):
+                tid=task.get('task_id') or task['project_id']
+                last[tid]=max(last.get(tid,''),receipt['acquired_at'])
+            for outcome in prior.get('sources',[]):
+                inv=outcome.get('inventory',{})
+                if inv.get('query_contract'):
+                    registry.setdefault('official_cursors',{})[inv['query_contract']]=inv.get('next_cursor') or inv.get('next_start') or 0
+        ordered=sorted(tasks,key=lambda t:(last.get(t.get('task_id') or t['project_id'],''),t.get('state') or '',t['project_id']))
+        selected=[];states=set()
+        for task in ordered:
+            state=task.get('state') or 'UNKNOWN'
+            if state in states:continue
+            selected.append(task);states.add(state)
+            if len(selected)>=task_limit:break
+        tasks=selected
     if diagnostics:
         selected=[];seen_projects=set()
         for task in tasks:
@@ -498,7 +643,7 @@ def discover(root, registry, fetch=request, diagnostics=None, task_limit=3):
                 found.append(dict(candidate_id=hashlib.sha256(seed['url'].encode()).hexdigest(),seed_key=seed['key'],url=seed['url'],
                     report_native_id=seed['report_native_id'],resource_native_id=seed['resource_native_id'],
                     status='DOWNLOAD_UNAVAILABLE',**failure_details(exc)))
-    path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+    append_snapshots(path,manifest['snapshots'])
     result={'version':'discovery-v4-evidence-gaps' if diagnostics else 'discovery-v3-registry-tasks' if tasks else 'discovery-v2',
             'execution_mode':registry.get('execution_mode','PUBLIC_ENDPOINTS'), 'sources':outcomes,'documents':found}
     if reports:result['official_reports']=reports
@@ -514,7 +659,7 @@ def discover(root, registry, fetch=request, diagnostics=None, task_limit=3):
         result['version']='discovery-v6-executed-tasks'
         save((json.dumps(result,sort_keys=True,ensure_ascii=False)+'\n').encode(),
              dict(key='discovery_execution',kind='discovery_receipt',url='local:bounded-discovery-execution'),'.json')
-        path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+        append_snapshots(path,manifest['snapshots'])
     if diagnostics:result['execution_metrics']=dict(elapsed_seconds=round(time.monotonic()-started,3),
         source_items=len(outcomes),search_pages=sum(s['status']=='PARSED' for s in outcomes),
         downloaded_documents=len({r['document_sha256'] for r in found if r['status'] in ('SNAPSHOT_REQUIRES_DATED_SCOPE_EXTRACTION','DIRECT_PDF_REQUIRES_DATED_SCOPE_EXTRACTION')}),
