@@ -390,7 +390,9 @@ def export_master(data, out, summary, documents):
     sheets = [('專案總表', data['headers'], data['rows']),
               ('資源範圍與檢核', data['review_headers'], data['review_rows']),
               ('逐欄來源', data['evidence_headers'], data['evidence_rows']),
-              ('欄位與版本說明', ['項目', '內容'], [[k, v] for k, v in {**data['metadata'], **summary}.items()]),
+              ('欄位與版本說明', ['項目', '內容'],
+               [[k, v] for k, v in {**data['metadata'], **summary}.items()] +
+               [[], data['definition_headers'], *data['definition_rows']]),
               ('ASX文件搜尋', ['URL', '狀態', '文件SHA256', '已存於基線', '發布日期', '頁數', '候選數'],
                [[d.get(k, '') for k in ('url', 'status', 'source_sha256', 'known_baseline_sha', 'publication_date', 'pages', 'candidates')] for d in documents])]
     for name, headers, rows in sheets:
@@ -406,7 +408,7 @@ def export_master(data, out, summary, documents):
             cell.font = Font(name='Arial', bold=True, color='FFFFFF', size=10)
             cell.alignment = Alignment(wrap_text=True, vertical='center')
         ws.row_dimensions[1].height = 44
-        for col in range(1, len(headers) + 1):
+        for col in range(1, ws.max_column + 1):
             ws.column_dimensions[get_column_letter(col)].width = 22
         for row in ws.iter_rows(min_row=2):
             for cell in row:
@@ -422,9 +424,17 @@ def export_master(data, out, summary, documents):
         if name == '欄位與版本說明':
             ws.column_dimensions['A'].width = 30
             ws.column_dimensions['B'].width = 115
+            ws.column_dimensions['C'].width = 25
+            ws.column_dimensions['D'].width = 70
+            ws.column_dimensions['E'].width = 100
             for row in ws.iter_rows(min_row=2):
                 row[1].alignment = Alignment(wrap_text=True, vertical='top')
                 ws.row_dimensions[row[0].row].height = max(30, 15 * (len(str(row[1].value)) // 85 + 1))
+            for row in ws.iter_rows(min_row=2):
+                if row[0].value == '欄序':
+                    for cell in row:
+                        cell.fill = PatternFill('solid', fgColor='24435B')
+                        cell.font = Font(name='Arial', bold=True, color='FFFFFF', size=10)
         if name == 'ASX文件搜尋':
             ws.column_dimensions['A'].width = 80
             ws.column_dimensions['B'].width = 38
@@ -541,7 +551,8 @@ def main(argv=None):
             raise ValueError('FORMAL_INPUTS_CHANGED')
     summary['master_values'] = 'BASELINE_ONLY' if not summary['resource_updates'] else 'BASELINE_WITH_REVIEWED_RESOURCE_UPDATES'
     data['metadata'].update({'本次搜尋狀態': summary['status'], '本次新增資源': summary['resource_updates'],
-                             '本次總表': summary['master_values'], '製表日期': args.as_of})
+                             '本次總表': summary['master_values'], '製表日期': args.as_of,
+                             '本次取值方式': '讀取先前SQLite匯出總表之凍結衍生快照；本次未重查正式SQL。新資源僅經來源核對與scope替換decision後納入。'})
     write_json(work / 'document_inventory.json', documents)
     write_json(work / 'candidate_review.json', list(candidates.values()))
     write_json(work / 'search_results.json', hits)
