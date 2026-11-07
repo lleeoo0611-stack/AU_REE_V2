@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location('apify_experiment', Path(__file__).with_name('pipeline.py'))
 p = importlib.util.module_from_spec(spec)
@@ -14,7 +15,7 @@ class ExperimentTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.work = Path(self.tmp.name)
-        self.config = json.loads((p.HERE / 'config.json').read_text())
+        self.config = json.loads((p.HERE / 'config.google-serp.json').read_text())
         self.baseline = p.load_baseline()
         self.projects = p.registry(self.baseline)
         self.plan = p.query_plan(self.config, self.projects, '2026-11-07')
@@ -162,6 +163,83 @@ class ExperimentTests(unittest.TestCase):
         self.assertIsNone(ws['AK2'].value)
         self.assertEqual(ws.freeze_panes, 'E2')
         self.assertTrue(ws.auto_filter.ref)
+
+
+class AnnouncementTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.config = json.loads((p.HERE / 'config.json').read_text())
+        cls.plan = p.query_plan(cls.config, p.registry(p.load_baseline()), '2026-11-07')
+
+    def sample(self, **extra):
+        return dict(announcement_id='03139933', ticker='LYC', company_name='Fixture issuer',
+                    announcement_date='2026-11-06', headline='Quarterly activities report',
+                    file_url=None, source_url='https://www.asx.com.au/asx/v2/statistics/announcements.do?announcementId=03139933', **extra)
+
+    def test_actor_input_matches_four_documented_fields(self):
+        data = p.actor_input(self.config, self.plan)
+        self.assertEqual(self.config['actor'], 'nexgendata~asx-company-announcements')
+        self.assertEqual(set(data), {'tickers', 'marketSensitiveOnly', 'announcementType', 'maxResults'})
+        self.assertEqual(data['maxResults'], 19)
+        self.assertIn('LYC', data['tickers'])
+        self.assertTrue(self.plan['ticker_evidence'])
+        self.assertFalse(self.plan['date_range_supported'])
+        self.assertFalse(self.plan['keyword_search_supported'])
+
+    def test_missing_file_url_preserves_announcement_wrapper(self):
+        row = self.sample()
+        hits = p.flatten_results([row, row], self.plan, self.config)
+        self.assertEqual(len(hits), 1)
+        self.assertEqual(hits[0]['announcement_id'], '03139933')
+        self.assertEqual(hits[0]['url'], row['source_url'])
+        self.assertTrue(hits[0]['eligible_for_download'])
+        self.assertNotIn('project_id', hits[0])
+
+    def test_keyword_priority_does_not_discard_quarterly(self):
+        normal = self.sample()
+        jorc = dict(normal, announcement_id='03139934', headline='JORC Mineral Resource Estimate')
+        hits = p.flatten_results([normal, jorc], self.plan, self.config)
+        self.assertEqual(len(hits), 2)
+        self.assertEqual(hits[0]['announcement_id'], '03139934')
+        self.assertTrue(hits[0]['keyword_hits'])
+        self.assertTrue(hits[1]['eligible_for_download'])
+
+    def test_future_and_missing_url_records_retained(self):
+        future = dict(self.sample(), announcement_date='2026-11-08')
+        missing = dict(self.sample(), announcement_id='03139935', source_url=None)
+        hits = p.flatten_results([future, missing], self.plan, self.config)
+        self.assertEqual(len(hits), 2)
+        self.assertTrue(all(not r['eligible_for_download'] for r in hits))
+        self.assertIn('ANNOUNCEMENT_AFTER_CUTOFF', {r['status'] for r in hits})
+
+    def test_conflicting_duplicate_id_needs_review(self):
+        a = self.sample()
+        b = dict(a, headline='Changed announcement content')
+        with self.assertRaisesRegex(ValueError, 'CONFLICTING_DUPLICATE_ANNOUNCEMENT_ID'):
+            p.flatten_results([a,b], self.plan, self.config)
+
+    def test_announcement_link_is_validated_and_resolved(self):
+        url = 'https://announcements.asx.com.au/asxpdf/20261106/pdf/fixture.pdf'
+        html = '<a href="' + url + '">Download</a>'
+        self.assertEqual(p.announcement_pdf_link(html, self.sample()['source_url'], self.config), url)
+        for bad in ('<a href="https://evil.test/a.pdf">PDF</a>',
+                    html + '<a href="https://www.asx.com.au/other.pdf">Other</a>',
+                    '<p>You must accept the terms</p>' + html):
+            with self.assertRaises(ValueError):
+                p.announcement_pdf_link(bad, self.sample()['source_url'], self.config)
+
+    def test_announcements_api_uses_actor_specific_payload(self):
+        calls = []
+        def transport(method, url, body, headers):
+            calls.append((method,url,body))
+            if method == 'POST':
+                return json.dumps({'data': {'id':'run1','status':'SUCCEEDED','defaultDatasetId':'ds1'}}).encode(), {}
+            return json.dumps([self.sample()]).encode(), {'X-Apify-Pagination-Total':'1','X-Apify-Pagination-Offset':'0','X-Apify-Pagination-Count':'1'}
+        with tempfile.TemporaryDirectory() as work:
+            rows = p.ApifyClient('fixture-secret', transport).search(self.config,self.plan,work)
+        self.assertEqual(len(rows),1)
+        self.assertIn('/acts/nexgendata~asx-company-announcements/runs',calls[0][1])
+        self.assertEqual(set(json.loads(calls[0][2])), {'tickers','marketSensitiveOnly','announcementType','maxResults'})
 
 
 if __name__ == '__main__':

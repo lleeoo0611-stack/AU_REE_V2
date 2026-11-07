@@ -21,6 +21,8 @@ from datetime import date, datetime, timezone, timedelta
 from urllib.parse import urlencode, urlsplit, urlunsplit, urldefrag
 from urllib.request import Request, build_opener, HTTPRedirectHandler
 from urllib.error import HTTPError, URLError
+from html.parser import HTMLParser
+from urllib.parse import urljoin
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'src'))
@@ -80,6 +82,8 @@ def registry(baseline):
 
 
 def query_plan(config, projects, cutoff):
+    if config.get('provider') == 'asx_announcements':
+        return announcement_plan(config, projects, cutoff)
     after = ''  # Historical documents can contain the first usable resource.
     before = (date.fromisoformat(cutoff) + timedelta(days=1)).isoformat()
     jobs = []
@@ -104,6 +108,62 @@ def query_plan(config, projects, cutoff):
     return dict(version=config['version'], cutoff=cutoff, jobs=chosen, query_offset=offset,
                 planned_queries=len(chosen), all_available_queries=len(jobs),
                 omitted_queries=len(jobs)-len(chosen), national_completeness=False)
+
+
+def announcement_plan(config, projects, cutoff):
+    """Retained issuer headers supply ticker search context, never ownership."""
+    import pymupdf
+    claims = json.loads((ROOT / 'data/claims.json').read_text())
+    locked = json.loads((ROOT / 'results/phase22-2026-11-06/snapshot_lock.json').read_text())
+    sources = {s['sha256']: s for s in locked if s['kind'] == 'pdf'}
+    evidence, inspected, unavailable = [], {}, set()
+    for project in claims['projects']:
+        if project.get('entity_kind', 'PROJECT') != 'PROJECT':
+            continue
+        hashes = {o.get('source_sha256') for o in project.get('observations', [])}
+        for sha, source in sorted(sources.items()):
+            if sha not in hashes and source['key'] != project['identity_source']:
+                continue
+            if sha not in inspected:
+                path = ROOT / source['path']
+                if not path.exists():
+                    unavailable.add(sha)
+                    continue
+                if filehash(path) != sha:
+                    raise ValueError('TICKER_SOURCE_HASH_MISMATCH')
+                with pymupdf.open(path) as pdf:
+                    text = pdf[0].get_text(sort=True)
+                codes = sorted(set(re.findall(r'\bASX\s*(?:Code\s*)?[:|]\s*([A-Z][A-Z0-9]{1,4})\b', text)))
+                inspected[sha] = codes
+            for code in inspected[sha]:
+                evidence.append(dict(ticker=code, source_sha256=sha, source_key=source['key'],
+                                     publication_date=source.get('publication_date'), physical_page=1,
+                                     role='RETAINED_ISSUER_HEADER_SEARCH_CONTEXT_NOT_CURRENT_OWNERSHIP'))
+    configured = config.get('tickers', [])
+    if not isinstance(configured, list) or any(not isinstance(t, str) or not re.fullmatch('[A-Z][A-Z0-9]{1,4}', t) for t in configured):
+        raise ValueError('INVALID_ASX_TICKERS')
+    tickers = sorted(set(configured) or {e['ticker'] for e in evidence})
+    if not tickers:
+        raise ValueError('TICKER_CONTEXT_MISSING_NO_MARKET_WIDE_FALLBACK')
+    maximum = config['max_results']
+    if not isinstance(maximum, int) or not 1 <= maximum <= 500:
+        raise ValueError('INVALID_ANNOUNCEMENT_LIMIT')
+    request_input = dict(tickers=tickers, marketSensitiveOnly=config['market_sensitive_only'],
+                         announcementType=config['announcement_type'], maxResults=maximum)
+    return dict(version=config['version'], provider='asx_announcements', cutoff=cutoff,
+                jobs=[], planned_queries=1, tickers=tickers, ticker_evidence=evidence,
+                ticker_sources_unavailable=sorted(unavailable),
+                actor_input=request_input, national_completeness=False,
+                date_range_supported=False, keyword_search_supported=False,
+                completeness='RECENT_MATCHING_ANNOUNCEMENTS_GLOBAL_CAP_NOT_PER_TICKER',
+                max_results=maximum, keyword_filter_location='LOCAL_HEADLINE_AND_RETAINED_PDF')
+
+
+def actor_input(config, plan):
+    if config.get('provider') == 'asx_announcements':
+        return plan['actor_input']
+    return {'queries': '\n'.join(j['query'] for j in plan['jobs']),
+            'maxPagesPerQuery': config['max_pages_per_query'], 'countryCode': 'au', 'languageCode': 'en'}
 
 
 def document_url(url, hosts):
@@ -153,9 +213,7 @@ class ApifyClient:
         return json.loads(raw), headers
 
     def search(self, config, plan, work, resume_run=None):
-        request_input = {'queries': '\n'.join(j['query'] for j in plan['jobs']),
-                         'maxPagesPerQuery': config['max_pages_per_query'],
-                         'countryCode': 'au', 'languageCode': 'en'}
+        request_input = actor_input(config, plan)
         write_json(Path(work) / 'actor_input.json', request_input)
         if resume_run:
             run = self.call('GET', '/actor-runs/' + resume_run)[0]['data']
@@ -193,11 +251,11 @@ class ApifyClient:
             if int(headers['x-apify-pagination-offset']) != offset or int(headers['x-apify-pagination-count']) != len(page):
                 raise ValueError('DATASET_OFFSET_OR_COUNT_MISMATCH')
             safe = public_export(page)
-            safe_sha, _ = archive(work, (canonical(safe) + '\n').encode(), '.serp.json')
+            safe_sha, _ = archive(work, (canonical(safe) + '\n').encode(), '.dataset.json')
             receipts.append(dict(offset=offset, count=len(page), total=total,
                                  original_canonical_json_sha256=digest(page),
                                  retained_sha256=safe_sha, credential_redaction_applied=page != safe))
-            write_json(Path(work) / 'serp_receipts.json', receipts)
+            write_json(Path(work) / 'dataset_receipts.json', receipts)
             rows.extend(safe)
             offset += len(page)
             if offset == total:
@@ -209,6 +267,8 @@ class ApifyClient:
 
 def flatten_results(dataset, plan, config):
     """SERP query association is retained, never used as Project attribution."""
+    if config.get('provider') == 'asx_announcements':
+        return flatten_announcements(dataset, plan, config)
     jobs = {j['query']: j for j in plan['jobs']}
     found = {}
     for page in dataset:
@@ -231,17 +291,105 @@ def flatten_results(dataset, plan, config):
     return [found[k] for k in sorted(found)]
 
 
+def keyword_hits(text, config):
+    return [word for word in config['keywords'] if re.search(r'(?<!\w)' + re.escape(word) + r'(?!\w)', text, re.I)]
+
+
+def flatten_announcements(dataset, plan, config):
+    """Every announcement remains reviewable, including absent file URLs."""
+    found = {}
+    for item in dataset:
+        if not isinstance(item, dict):
+            raise ValueError('INVALID_ANNOUNCEMENT_ROW')
+        aid = item.get('announcement_id')
+        if not isinstance(aid, str) or not re.fullmatch(r'\d+', aid):
+            raise ValueError('ANNOUNCEMENT_ID_MUST_BE_DIGIT_STRING')
+        raw_date = item.get('announcement_date')
+        if not isinstance(raw_date, str):
+            raise ValueError('ANNOUNCEMENT_DATE_MISSING')
+        published = date.fromisoformat(raw_date).isoformat()
+        file_url, source_url = item.get('file_url'), item.get('source_url')
+        url = None
+        issues = []
+        for value in (file_url, source_url):
+            if not value:
+                continue
+            try:
+                url = document_url(value, config['allowed_document_hosts'])
+                break
+            except ValueError:
+                issues.append('DOCUMENT_HOST_NOT_ALLOWED')
+        if url is None:
+            issues.append('DOCUMENT_URL_MISSING_OR_UNSAFE')
+        row = dict(announcement_id=aid, ticker=item.get('ticker'), company_name=item.get('company_name'),
+                   announcement_date=published, announcement_time=item.get('announcement_time'),
+                   announcement_types=item.get('announcement_types'), title=item.get('headline', ''),
+                   file_url=file_url, source_url=source_url, url=url,
+                   query_ids=[], search_project_ids=[], status='ANNOUNCEMENT_REVIEW_REQUIRED', issues=issues,
+                   keyword_hits=keyword_hits(item.get('headline') or '', config),
+                   eligible_for_download=bool(url) and published <= plan['cutoff'],
+                   announcement_record_sha256=digest(item))
+        if published > plan['cutoff']:
+            row['status'] = 'ANNOUNCEMENT_AFTER_CUTOFF'
+        if item.get('ticker') not in plan.get('tickers', []):
+            row['issues'].append('ANNOUNCEMENT_TICKER_NOT_REQUESTED')
+            row['eligible_for_download'] = False
+        if aid in found:
+            if found[aid]['announcement_record_sha256'] != row['announcement_record_sha256']:
+                raise ValueError('CONFLICTING_DUPLICATE_ANNOUNCEMENT_ID')
+        else:
+            found[aid] = row
+    # Retain nonmatching headlines: an innocuous quarterly headline can contain
+    # a JORC table. Keywords prioritize downloads, never silently discard PDFs.
+    return sorted(found.values(), key=lambda r: (not bool(r['keyword_hits']), -int(r['announcement_id'])))
+
+
 def fetch_pdf(url, config):
     url = document_url(url, config['allowed_document_hosts'])
-    request = Request(url, headers={'User-Agent': 'AU_REE_V2 research Apify experiment/1.0'})
-    # No authenticated headers are ever sent to document origins.
-    with build_opener(NoRedirect()).open(request, timeout=35) as response:
-        raw = response.read(config['max_pdf_bytes'] + 1)
-    if len(raw) > config['max_pdf_bytes']:
-        raise ValueError('PDF_BYTE_BUDGET_EXCEEDED')
-    if not raw.startswith(b'%PDF'):
-        raise ValueError('NOT_A_PDF')
-    return raw
+    chain = []
+    for _ in range(3):
+        request = Request(url, headers={'User-Agent': 'AU_REE_V2 research Apify experiment/1.0'})
+        # No authenticated headers are ever sent to document origins.
+        with build_opener(NoRedirect()).open(request, timeout=35) as response:
+            raw = response.read(config['max_pdf_bytes'] + 1)
+        if len(raw) > config['max_pdf_bytes']:
+            raise ValueError('PDF_BYTE_BUDGET_EXCEEDED')
+        if raw.startswith(b'%PDF'):
+            return raw, dict(resolved_pdf_url=url, resolution_chain=chain)
+        html = raw.decode('utf-8', errors='replace')
+        if sensitive_reference(html):
+            raise ValueError('WRAPPER_CREDENTIAL_REFERENCE_REQUIRES_REVIEW')
+        target = announcement_pdf_link(html, url, config)
+        chain.append(dict(url=url, raw=raw))
+        if target == url:
+            raise ValueError('ANNOUNCEMENT_RESOLUTION_LOOP')
+        url = target
+    raise ValueError('ANNOUNCEMENT_PDF_NOT_RESOLVED')
+
+
+def announcement_pdf_link(html, base_url, config):
+    if re.search(r'(?:agree|accept|consent).{0,100}terms|terms.{0,100}(?:agree|accept|consent)', html, re.I | re.S):
+        raise ValueError('TERMS_INTERSTITIAL_NOT_ACCEPTED')
+    class Links(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.links = set()
+        def handle_starttag(self, tag, attrs):
+            attrs = dict(attrs)
+            key = {'a':'href', 'iframe':'src', 'embed':'src', 'object':'data'}.get(tag)
+            if key and attrs.get(key):
+                value = urljoin(base_url, attrs[key])
+                try:
+                    value = document_url(value, config['allowed_document_hosts'])
+                    if urlsplit(value).path.lower().endswith('.pdf') or '/asxpdf/' in value.lower():
+                        self.links.add(value)
+                except ValueError:
+                    pass
+    parser = Links()
+    parser.feed(html)
+    if len(parser.links) != 1:
+        raise ValueError('ANNOUNCEMENT_PDF_LINK_MISSING_OR_AMBIGUOUS')
+    return next(iter(parser.links))
 
 
 def stage_documents(work, hits, config, projects, fetch=fetch_pdf):
@@ -255,10 +403,25 @@ def stage_documents(work, hits, config, projects, fetch=fetch_pdf):
     known = {s['sha256'] for s in json.loads((ROOT / 'data/manifest.json').read_text())['snapshots'] if s['kind'] == 'pdf'}
     all_candidates, documents, seen = {}, [], set()
     try:
-        for hit in hits[:config['max_documents']]:
+        count = 0
+        for hit in hits:
             row = dict(hit)
+            if hit.get('eligible_for_download') is False:
+                documents.append(row)
+                continue
+            if count >= config['max_documents']:
+                row['status'] = 'DOCUMENT_BUDGET_DEFERRED'
+                documents.append(row)
+                continue
+            count += 1
             try:
-                raw = fetch(row['url'], config)
+                fetched = fetch(row['url'], config)
+                raw, resolution = fetched if isinstance(fetched, tuple) else (fetched, {})
+                retained_chain = []
+                for wrapper in resolution.get('resolution_chain', []):
+                    wrapper_sha, wrapper_path = archive(work, wrapper['raw'], '.announcement.html')
+                    retained_chain.append(dict(url=wrapper['url'], sha256=wrapper_sha, path=str(wrapper_path.relative_to(work))))
+                row.update(resolved_pdf_url=resolution.get('resolved_pdf_url', row['url']), resolution_chain=retained_chain)
                 if not raw.startswith(b'%PDF') or len(raw) > config['max_pdf_bytes']:
                     raise ValueError('PDF_CONTRACT_FAILED')
                 sha, path = archive(work, raw, '.pdf')
@@ -270,10 +433,11 @@ def stage_documents(work, hits, config, projects, fetch=fetch_pdf):
                     continue
                 seen.add(sha)
                 source = dict(key='apify_asx_' + sha[:20], kind='pdf', url=row['url'],
-                              path=str(path), sha256=sha)
+                              path=str(path), sha256=sha, publication_date=row.get('announcement_date'))
                 # Existing parser reads existing claims, without updating them.
                 extracted = recognize_document(ROOT, source, projects)
                 extracted = public_export(extracted)
+                row['pdf_keyword_hits'] = keyword_hits('\n'.join(p['text'] for p in extracted['pages']), config)
                 ex_sha, ex_path = archive(work, (canonical(extracted) + '\n').encode(), '.extraction.json')
                 row.update(status='EXTRACTED_REVIEW_REQUIRED', publication_date=extracted.get('publication_date'),
                            extraction_sha256=ex_sha, extraction_path=str(ex_path.relative_to(work)),
@@ -289,7 +453,8 @@ def stage_documents(work, hits, config, projects, fetch=fetch_pdf):
                 db.execute('INSERT OR REPLACE INTO documents VALUES(?,?,?)', (sha, row['url'], canonical(row)))
             except Exception as exc:
                 # Exception text can contain URL credentials; publish type/code only.
-                row.update(status='FETCH_OR_EXTRACTION_FAILED', error=type(exc).__name__, http_status=getattr(exc, 'code', None))
+                reason = str(exc) if re.fullmatch('[A-Z0-9_]+', str(exc)) else type(exc).__name__
+                row.update(status='FETCH_OR_EXTRACTION_FAILED', error=reason, http_status=getattr(exc, 'code', None))
             documents.append(row)
         db.commit()
     finally:
@@ -461,6 +626,7 @@ def export_master(data, out, summary, documents):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--mode', choices=['plan', 'replay', 'live'], default='plan')
+    parser.add_argument('--provider', choices=['asx_announcements', 'google_serp'], default='asx_announcements')
     parser.add_argument('--work', type=Path, required=True)
     parser.add_argument('--as-of', default=date.today().isoformat())
     parser.add_argument('--dataset', type=Path)
@@ -470,6 +636,8 @@ def main(argv=None):
     parser.add_argument('--max-queries', type=int)
     parser.add_argument('--query-offset', type=int, default=0)
     parser.add_argument('--max-documents', type=int)
+    parser.add_argument('--tickers', help='Comma-separated ASX codes; search context only')
+    parser.add_argument('--max-results', type=int)
     args = parser.parse_args(argv)
     date.fromisoformat(args.as_of)
     if args.as_of < '2026-11-05':
@@ -479,7 +647,12 @@ def main(argv=None):
     if work == ROOT or any(work.is_relative_to(ROOT / p) for p in ('src', 'config', 'data', 'results', 'experiments', '.git')):
         raise ValueError('WORK_MUST_BE_ISOLATED_FROM_FORMAL_INPUTS')
     work.mkdir(parents=True, exist_ok=True)
-    config = json.loads((HERE / 'config.json').read_text())
+    config_path = HERE / ('config.json' if args.provider == 'asx_announcements' else 'config.google-serp.json')
+    config = json.loads(config_path.read_text())
+    if args.tickers:
+        config['tickers'] = [t.strip().upper() for t in args.tickers.split(',') if t.strip()]
+    if args.max_results is not None:
+        config['max_results'] = args.max_results
     if args.max_queries is not None:
         config['max_queries'] = args.max_queries
     config['query_offset'] = args.query_offset
@@ -494,7 +667,7 @@ def main(argv=None):
     write_json(work / 'config.json', config)
     before = {p: filehash(ROOT / p) for p in ('data/manifest.json', 'data/claims.json', 'config/research.json', 'config/sources.json')}
     summary = dict(mode=args.mode, status='PLANNED_NO_LIVE_SEARCH', export_date=args.as_of,
-                   baseline_cutoff='2026-11-05', base_commit=BASE_COMMIT,
+                   baseline_cutoff='2026-11-05', base_commit=BASE_COMMIT, provider=args.provider, actor=config['actor'],
                    baseline_sha256=filehash(HERE / 'baseline_master.json'), planned_queries=plan['planned_queries'],
                    experiment_code_sha256=filehash(Path(__file__)), config_sha256=digest(config),
                    projects=len(baseline['rows']), columns=52, search_results=0, documents_fetched=0,
@@ -514,9 +687,9 @@ def main(argv=None):
             dataset = None
         if dataset is not None:
             if not isinstance(dataset, list):
-                raise ValueError('DATASET_MUST_BE_SERP_PAGE_ARRAY')
+                raise ValueError('DATASET_MUST_BE_ARRAY')
             safe = public_export(dataset)
-            summary['dataset_sha256'], _ = archive(work, (canonical(safe) + '\n').encode(), '.serp.json')
+            summary['dataset_sha256'], _ = archive(work, (canonical(safe) + '\n').encode(), '.dataset.json')
             hits = flatten_results(safe, plan, config)
             fetch = fetch_pdf
             if args.mode == 'replay':
@@ -531,7 +704,12 @@ def main(argv=None):
             summary.update(status='SEARCH_PROCESSED_REVIEW_REQUIRED', search_results=len(hits),
                            documents_fetched=sum(bool(d.get('source_sha256')) for d in documents),
                            new_document_sha256=len({d['source_sha256'] for d in documents if d.get('source_sha256') and not d.get('known_baseline_sha')}),
-                           parsed_candidates=len(candidates), document_budget_deferred=max(0, len(hits)-config['max_documents']))
+                           parsed_candidates=len(candidates), document_budget_deferred=sum(d['status']=='DOCUMENT_BUDGET_DEFERRED' for d in documents))
+            if args.provider == 'asx_announcements':
+                summary.update(announcement_records=len(hits), headline_keyword_matches=sum(bool(h['keyword_hits']) for h in hits),
+                               pdf_keyword_matches=sum(bool(d.get('pdf_keyword_hits')) for d in documents),
+                               recent_feed_only=True, historical_coverage_verified=False,
+                               missing_document_urls=sum(not bool(h.get('url')) for h in hits))
         data = copy.deepcopy(baseline)
         if args.decisions:
             decisions = json.loads(args.decisions.read_text(encoding='utf-8'))

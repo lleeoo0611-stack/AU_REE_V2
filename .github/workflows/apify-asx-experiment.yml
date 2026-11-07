@@ -9,10 +9,10 @@ on:
         description: Run paid Apify search with APIFY_TOKEN
         type: boolean
         default: false
-      max_queries:
-        description: Search query limit (267 covers current plan)
+      max_results:
+        description: Recent announcement limit (global across tickers)
         type: number
-        default: 16
+        default: 19
 permissions:
   contents: read
 jobs:
@@ -31,11 +31,11 @@ jobs:
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
           LIVE: ${{ github.event_name == 'push' || inputs.live }}
-          MAX_QUERIES: ${{ inputs.max_queries || 16 }}
+          MAX_RESULTS: ${{ inputs.max_results || 19 }}
         run: |
           mode=plan
           if [ "$LIVE" = "true" ]; then mode=live; fi
-          python experiments/apify_asx/pipeline.py --mode "$mode" --max-queries "$MAX_QUERIES" --as-of "$(TZ=Asia/Taipei date +%F)" --work work/apify-asx
+          python experiments/apify_asx/pipeline.py --provider asx_announcements --mode "$mode" --max-results "$MAX_RESULTS" --as-of "$(TZ=Asia/Taipei date +%F)" --work work/apify-asx
       - uses: actions/upload-artifact@v4
         if: always()
         with:
