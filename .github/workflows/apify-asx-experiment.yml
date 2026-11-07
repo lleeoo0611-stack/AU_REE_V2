@@ -30,7 +30,7 @@ jobs:
       - name: Generate table and optionally search
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-          LIVE: ${{ inputs.live || vars.APIFY_LIVE_ENABLED == 'true' }}
+          LIVE: ${{ github.event_name == 'push' || inputs.live }}
           MAX_QUERIES: ${{ inputs.max_queries || 16 }}
         run: |
           mode=plan

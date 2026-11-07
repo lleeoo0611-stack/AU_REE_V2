@@ -22,7 +22,7 @@ python experiments/apify_asx/pipeline.py --mode live --work work/apify-live-001 
 
 初次測試預設 16 個 query、每個 query 1 頁、最多下載 20 份 PDF，傳送 `maxTotalChargeUsd=1.0` 與 Actor timeout=300 秒。費用參數依 Apify Actor 的計價模式生效；它不保證搜尋覆蓋率。267 個 query 涵蓋目前設定的 3 組全國搜尋及 33 專案 × 8 詞組，可用 `--max-queries 267 --max-documents 100` 擴大；也可用 `--query-offset 16` 分批接續。每次新付費搜尋使用新的 work 目錄。
 
-GitHub 執行方式：在 Repository Settings → Secrets and variables → Actions 新增 Secret `APIFY_TOKEN`；另將 Repository Variable `APIFY_LIVE_ENABLED` 設為 `true`，於本測試分支的下一次相關 push 執行真實搜尋。未開啟該變數時僅產生 plan／原表。工作流程只讀取 repository，成果保存於 Actions artifact，沒有自動 merge 或回寫正式資料。新增 workflow 尚未存在 default branch 時，GitHub 可能不提供手動 dispatch 按鈕，可先使用本分支 push 觸發。
+GitHub 執行方式：在 Repository Settings → Secrets and variables → Actions 新增 Secret `APIFY_TOKEN`，於本測試分支的下一次相關 push 執行真實搜尋。缺少 Secret 時明確回報 blocked 並保留原表及紀錄。手動 dispatch 的 live 預設為 false。工作流程只讀取 repository，成果保存於 Actions artifact，沒有自動 merge 或回寫正式資料。新增 workflow 尚未存在 default branch 時，GitHub 可能不提供手動 dispatch 按鈕，可先使用本分支 push 觸發。
 
 Apify start POST 不自動重試。若網路中斷造成啟動結果不明，先核對 Apify Console；已取得 run ID 可用 `--resume-run RUN_ID` 接續，不得直接重新啟動相同批次。`start_intent.json` 防止無意重複計費。完成的 run 保留 run ID、dataset ID、build ID、費用、輸入設定及完整 dataset 分頁收據。
 
