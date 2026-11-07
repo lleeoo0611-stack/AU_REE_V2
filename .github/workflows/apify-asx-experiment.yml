@@ -1,0 +1,44 @@
+name: Isolated Apify ASX experiment
+on:
+  push:
+    branches: [test/apify-asx-jorc-20261107]
+    paths: [experiments/apify_asx/**, .github/workflows/apify-asx-experiment.yml]
+  workflow_dispatch:
+    inputs:
+      live:
+        description: Run paid Apify search with APIFY_TOKEN
+        type: boolean
+        default: false
+      max_queries:
+        description: Search query limit (267 covers current plan)
+        type: number
+        default: 16
+permissions:
+  contents: read
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install .
+      - name: Test isolated contracts
+        run: python -m unittest discover -s experiments/apify_asx -p 'test_*.py' -v
+      - name: Generate table and optionally search
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          LIVE: ${{ inputs.live || vars.APIFY_LIVE_ENABLED == 'true' }}
+          MAX_QUERIES: ${{ inputs.max_queries || 16 }}
+        run: |
+          mode=plan
+          if [ "$LIVE" = "true" ]; then mode=live; fi
+          python experiments/apify_asx/pipeline.py --mode "$mode" --max-queries "$MAX_QUERIES" --as-of "$(TZ=Asia/Taipei date +%F)" --work work/apify-asx
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: apify-asx-experiment
+          path: work/apify-asx/
+          retention-days: 30

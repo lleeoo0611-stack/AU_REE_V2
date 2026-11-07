@@ -1,0 +1,20 @@
+{
+  "version": "apify-asx-jorc-experiment-v1",
+  "actor": "apify~google-search-scraper",
+  "max_queries": 16,
+  "max_pages_per_query": 1,
+  "max_total_charge_usd": 1.0,
+  "actor_timeout_seconds": 300,
+  "poll_seconds": 3,
+  "dataset_page_size": 100,
+  "max_dataset_items": 2000,
+  "max_documents": 20,
+  "max_pdf_bytes": 25000000,
+  "allowed_document_hosts": ["announcements.asx.com.au", "www.asx.com.au"],
+  "keywords": ["JORC", "Mineral Resource Estimate", "Ore Reserve", "Competent Person", "JORC Table 1", "Pre-Feasibility Study", "Definitive Feasibility Study", "metallurgical testwork"],
+  "global_queries": [
+    "site:announcements.asx.com.au filetype:pdf (\"rare earth\" OR TREO) (JORC OR \"Mineral Resource\")",
+    "site:announcements.asx.com.au filetype:pdf (\"rare earth\" OR TREO) (\"Ore Reserve\" OR \"Competent Person\")",
+    "site:announcements.asx.com.au filetype:pdf (\"rare earth\" OR TREO) (\"JORC Table 1\" OR \"feasibility study\" OR \"metallurgical testwork\")"
+  ]
+}
