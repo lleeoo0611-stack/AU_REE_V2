@@ -1,0 +1,25 @@
+{
+  "version": "apify-asx-jorc-experiment-v2-announcements",
+  "provider": "asx_announcements",
+  "actor": "nexgendata~asx-company-announcements",
+  "tickers": [],
+  "max_results": 19,
+  "market_sensitive_only": false,
+  "announcement_type": "",
+  "max_queries": 16,
+  "max_pages_per_query": 1,
+  "max_total_charge_usd": 1.0,
+  "actor_timeout_seconds": 300,
+  "poll_seconds": 3,
+  "dataset_page_size": 100,
+  "max_dataset_items": 2000,
+  "max_documents": 20,
+  "max_pdf_bytes": 25000000,
+  "allowed_document_hosts": ["announcements.asx.com.au", "www.asx.com.au"],
+  "keywords": ["JORC", "Mineral Resource", "Mineral Resource Estimate", "Resource Estimate", "MRE", "Ore Reserve", "Ore Reserves", "Competent Person", "JORC Table 1", "Pre-Feasibility Study", "Definitive Feasibility Study", "PFS", "DFS", "BFS", "Scoping Study", "metallurgical testwork", "TREO", "rare earth", "NdPr"],
+  "global_queries": [
+    "site:announcements.asx.com.au filetype:pdf (\"rare earth\" OR TREO) (JORC OR \"Mineral Resource\")",
+    "site:announcements.asx.com.au filetype:pdf (\"rare earth\" OR TREO) (\"Ore Reserve\" OR \"Competent Person\")",
+    "site:announcements.asx.com.au filetype:pdf (\"rare earth\" OR TREO) (\"JORC Table 1\" OR \"feasibility study\" OR \"metallurgical testwork\")"
+  ]
+}

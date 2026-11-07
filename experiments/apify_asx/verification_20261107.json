@@ -1,0 +1,36 @@
+{
+  "base_commit": "b5e2a73438e2f3aa9f4adc3ab0f6ff0f898f0fca",
+  "isolated_tests": {
+    "run": 20,
+    "passed": 20
+  },
+  "real_retained_asx_pdf_smoke": {
+    "source_key": "yttria_2025",
+    "candidates": 4,
+    "new_document_sha256": 0,
+    "formal_inputs_unchanged": true
+  },
+  "csv_comparison": {
+    "projects": 33,
+    "columns": 52,
+    "all_cells_exactly_equal_to_20261106": true
+  },
+  "live_status": "BLOCKED_APIFY_TOKEN_MISSING",
+  "full_existing_regression": {
+    "run": 206,
+    "failures": 3,
+    "errors": 56,
+    "skipped": 3,
+    "passed": false,
+    "limitation": "Sparse checkout lacks historical results, benchmark, disclosure and snapshot dependencies; unchanged core was not fully validated."
+  },
+  "provider": "nexgendata/asx-company-announcements",
+  "announcement_adapter_smoke": {
+    "announcement_records": 1,
+    "headline_keyword_matches": 1,
+    "pdf_keyword_matches": 1,
+    "parsed_candidates": 4,
+    "new_document_sha256": 0,
+    "formal_input_hashes_unchanged": true
+  }
+}
