@@ -1,0 +1,1521 @@
+{
+  "version": "reviewed-project-discovery-v1",
+  "baseline_commit": "b1625cf3f8f10155eec76f6f0ca5905251a7362b",
+  "acquired_through": "2026-11-10",
+  "cutoff": "2026-11-05",
+  "scope": "Federal and state primary-source name expansion plus complete frozen project-candidate inventory;bounded search,not national completeness",
+  "candidates": [
+    {
+      "candidate_key": "deep-leads-rubble-mound-wind-break",
+      "name": "Deep Leads – Rubble Mound – Wind Break REE Project",
+      "aliases": [
+        "Deep Leads",
+        "Rubble Mound",
+        "Wind Break"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_ORIGINAL_CONFIRMS_SEPARATE_AUSTRALIAN_MINING_PROJECT;NUMERIC_ADMISSION_IS_SEPARATELY_REVIEWED",
+      "country": "AU",
+      "scope": "One combined Deep Leads/Rubble Mound/Wind Break project, not three additive projects",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b.pdf",
+          "sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02803111",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Deep Leads",
+                "Tasmania"
+              ]
+            },
+            {
+              "page": 6,
+              "markers": [
+                "Rubble Mound",
+                "Wind Break"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r4_deep_leads_rubble_mound_wind_break",
+        "publication_date": "2024-05-02",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "2 May 2024"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Deep Leads",
+            "Tasmania"
+          ]
+        },
+        "name_marker": "Deep Leads",
+        "state": "TAS",
+        "state_marker": "Tasmania"
+      },
+      "existing_candidate_ids": [
+        "AU-349942263b854d123079",
+        "AU-9e986608bf0a54caebf8",
+        "AU-d0baf9b2e4c29f69235f",
+        "AU-e1344c7833104fea4433",
+        "AU-f48f008e102437cce8b9"
+      ]
+    },
+    {
+      "candidate_key": "sandy-mitchell",
+      "name": "Sandy Mitchell Rare Earths and Heavy Minerals Project",
+      "aliases": [
+        "Sandy Mitchell"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_ORIGINAL_CONFIRMS_SEPARATE_AUSTRALIAN_MINING_PROJECT;NUMERIC_ADMISSION_IS_SEPARATELY_REVIEWED",
+      "country": "AU",
+      "scope": "Sandy Mitchell project; refined373.3Mt not paired with announced379.4Mt composition",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089.pdf",
+          "sha256": "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03159067",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "29 October 2026",
+                "SANDY MITCHELL"
+              ]
+            },
+            {
+              "page": 2,
+              "markers": [
+                "Far North Queensland",
+                "Ark Mines Limited"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r4_sandy_mitchell",
+        "publication_date": "2026-10-29",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "29 October 2026"
+          ]
+        },
+        "project_evidence": {
+          "page": 2,
+          "markers": [
+            "Sandy Mitchell",
+            "Queensland"
+          ]
+        },
+        "name_marker": "Sandy Mitchell",
+        "state": "QLD",
+        "state_marker": "Queensland"
+      },
+      "existing_candidate_ids": [
+        "AU-a9d2fa306b08877a5507",
+        "AU-b08ec7c107439f137ec4"
+      ]
+    },
+    {
+      "candidate_key": "avonbank",
+      "name": "Avonbank Mineral Sands Project",
+      "aliases": [
+        "Avonbank"
+      ],
+      "country": "AU",
+      "decision": "ADMIT_PROJECT",
+      "reason": "GOVERNMENT_PROJECT_CATALOGUE_CONFIRMS_DISTINCT_AUSTRALIAN_REE_BYPRODUCT_MINING_PROJECT;NUMERIC_RESOURCE_AND_OUTPUT_VALUES_WITHHELD",
+      "scope": "Avonbank mining project, not Wimmera/WIM100 or a processing plant",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5.pdf",
+          "sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+          "url": "https://international.austrade.gov.au/content/dam/austrade-assets/international/documents/reports/critical-minerals/australian-critical-minerals-prospectus-march-2026.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 46,
+              "markers": [
+                "Avonbank",
+                "Rare Earth"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-524874d2ee01b08ae179",
+        "AU-732efbab209f10145036"
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "austrade_2026_prospectus_pdf",
+        "publication_date": "2026-03-31",
+        "publication_date_precision": "MONTH",
+        "publication_date_interval": [
+          "2026-03-01",
+          "2026-03-31"
+        ],
+        "publication_month_role": "PUBLISHER_PUBLICATION_MONTH",
+        "source_kind": "GOVERNMENT_PROJECT_CATALOGUE",
+        "date_evidence": {
+          "page": 2,
+          "markers": [
+            "Publication date: March 2026"
+          ]
+        },
+        "project_evidence": {
+          "page": 46,
+          "markers": [
+            "Avonbank",
+            "VIC"
+          ]
+        },
+        "name_marker": "Avonbank",
+        "state": "VIC",
+        "state_marker": "VIC",
+        "developer": {
+          "value": "WIM Resource Pty Ltd",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 46,
+            "markers": [
+              "Avonbank",
+              "Mineral Resources"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "copi",
+      "name": "Copi Mineral Sands Project",
+      "aliases": [
+        "Copi"
+      ],
+      "country": "AU",
+      "decision": "ADMIT_PROJECT",
+      "reason": "GOVERNMENT_PROJECT_CATALOGUE_CONFIRMS_DISTINCT_AUSTRALIAN_REE_BYPRODUCT_MINING_PROJECT;NUMERIC_RESOURCE_AND_OUTPUT_VALUES_WITHHELD",
+      "scope": "Copi NSW mining project; excludes Brisbane mineral separation plant",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5.pdf",
+          "sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+          "url": "https://international.austrade.gov.au/content/dam/austrade-assets/international/documents/reports/critical-minerals/australian-critical-minerals-prospectus-march-2026.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 47,
+              "markers": [
+                "Copi",
+                "Rare Earth"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [],
+      "identity": {
+        "source_index": 0,
+        "source_key": "austrade_2026_prospectus_pdf",
+        "publication_date": "2026-03-31",
+        "publication_date_precision": "MONTH",
+        "publication_date_interval": [
+          "2026-03-01",
+          "2026-03-31"
+        ],
+        "publication_month_role": "PUBLISHER_PUBLICATION_MONTH",
+        "source_kind": "GOVERNMENT_PROJECT_CATALOGUE",
+        "date_evidence": {
+          "page": 2,
+          "markers": [
+            "Publication date: March 2026"
+          ]
+        },
+        "project_evidence": {
+          "page": 47,
+          "markers": [
+            "Copi",
+            "NSW"
+          ]
+        },
+        "name_marker": "Copi",
+        "state": "NSW",
+        "state_marker": "NSW",
+        "developer": {
+          "value": "RZ Resources Ltd",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "REE_BEARING_MINERAL_OR_THM_PERCENT_NOT_TREO;NO_MATCHED_OXIDE_RESOURCE_OR_ANNUAL_BASIS;MONAZITE_XENOTIME_NOT_ASSUMED_PURE_OXIDES",
+          "evidence": {
+            "page": 47,
+            "markers": [
+              "Copi",
+              "Mineral Resources"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "wimmera",
+      "name": "Wimmera",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "VIC_SEPARATE_MINING_PROJECT_CONFIRMED;NOT_THE_E﻿NEABBA_REFINERY;RESOURCE_AND_COMPOSITION_ORIGINAL_NOT_REVIEWED",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/36a156ce1afcc5bd7dcc5eb91da2048c4533ececf273940a138c21e6adad44e0.html",
+          "sha256": "36a156ce1afcc5bd7dcc5eb91da2048c4533ececf273940a138c21e6adad44e0",
+          "url": "https://www.iluka.com/operations-resource-development/resource-development/wimmera",
+          "kind": "html",
+          "evidence": [
+            {
+              "markers": [
+                "Wimmera",
+                "rare earth"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": []
+    },
+    {
+      "candidate_key": "balranald",
+      "name": "Balranald",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "NSW_GOVERNMENT_IDENTIFIES_REE_BEARING_MINERAL_SANDS;NO_SOURCE_BOUND_TREO_RESOURCE_BUNDLE",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/32adb459a2241692c992b4841d39a1d269d1a62dabff7a4b11a8e37556fd28ad.html",
+          "sha256": "32adb459a2241692c992b4841d39a1d269d1a62dabff7a4b11a8e37556fd28ad",
+          "url": "https://www.resources.nsw.gov.au/invest-nsw/investment-pathways/nsw-priority-metals/rare-earth-elements",
+          "kind": "html",
+          "evidence": [
+            {
+              "markers": [
+                "Balranald",
+                "monazite"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": []
+    },
+    {
+      "candidate_key": "euston",
+      "name": "Euston",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "NSW_GOVERNMENT_IDENTIFIES_REE_BEARING_MINERAL_SANDS;NO_SOURCE_BOUND_TREO_RESOURCE_BUNDLE",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/32adb459a2241692c992b4841d39a1d269d1a62dabff7a4b11a8e37556fd28ad.html",
+          "sha256": "32adb459a2241692c992b4841d39a1d269d1a62dabff7a4b11a8e37556fd28ad",
+          "url": "https://www.resources.nsw.gov.au/invest-nsw/investment-pathways/nsw-priority-metals/rare-earth-elements",
+          "kind": "html",
+          "evidence": [
+            {
+              "markers": [
+                "Euston",
+                "monazite"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": []
+    },
+    {
+      "candidate_key": "caralue-bluff",
+      "name": "Caralue Bluff",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601.pdf",
+          "sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601",
+          "url": "https://demstedpprodaue12.blob.core.windows.net/mesac-public/resources/files/5880056/RB24-28%20CMSA%20REE%202.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 17,
+              "markers": [
+                "Caralue Bluff"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-46bf0d96b8abf78e215c",
+        "AU-4e40de25c12016e66988"
+      ]
+    },
+    {
+      "candidate_key": "dickson-well",
+      "name": "Dickson Well",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601.pdf",
+          "sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601",
+          "url": "https://demstedpprodaue12.blob.core.windows.net/mesac-public/resources/files/5880056/RB24-28%20CMSA%20REE%202.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 17,
+              "markers": [
+                "Dickson Well"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-02f16c32f258f5472eb9",
+        "AU-16b6e23e6097a0cde82e",
+        "AU-729047243b4eb31181d6",
+        "AU-dbd7cc493ad8fb45513b"
+      ]
+    },
+    {
+      "candidate_key": "franklyn",
+      "name": "Franklyn",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601.pdf",
+          "sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601",
+          "url": "https://demstedpprodaue12.blob.core.windows.net/mesac-public/resources/files/5880056/RB24-28%20CMSA%20REE%202.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 17,
+              "markers": [
+                "Franklyn"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": []
+    },
+    {
+      "candidate_key": "minos",
+      "name": "Minos",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601.pdf",
+          "sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601",
+          "url": "https://demstedpprodaue12.blob.core.windows.net/mesac-public/resources/files/5880056/RB24-28%20CMSA%20REE%202.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 17,
+              "markers": [
+                "Minos"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": []
+    },
+    {
+      "candidate_key": "target-21",
+      "name": "Target 21",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601.pdf",
+          "sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601",
+          "url": "https://demstedpprodaue12.blob.core.windows.net/mesac-public/resources/files/5880056/RB24-28%20CMSA%20REE%202.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 17,
+              "markers": [
+                "Target 21"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": []
+    },
+    {
+      "candidate_key": "comet",
+      "name": "Comet",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601.pdf",
+          "sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601",
+          "url": "https://demstedpprodaue12.blob.core.windows.net/mesac-public/resources/files/5880056/RB24-28%20CMSA%20REE%202.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 17,
+              "markers": [
+                "Comet"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": []
+    },
+    {
+      "candidate_key": "morgan-s-creek",
+      "name": "Morgan’s Creek",
+      "aliases": [
+        "MORGANS CREEK"
+      ],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601.pdf",
+          "sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601",
+          "url": "https://demstedpprodaue12.blob.core.windows.net/mesac-public/resources/files/5880056/RB24-28%20CMSA%20REE%202.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 17,
+              "markers": [
+                "Morgan’s Creek"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-2480f0a5ede466bff487",
+        "AU-2a3535d7ccf5f874ab52",
+        "AU-4bb3f3a9926ce922c31d",
+        "AU-68657b0f98a146d465c1"
+      ]
+    },
+    {
+      "candidate_key": "billeroo",
+      "name": "Billeroo",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601.pdf",
+          "sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601",
+          "url": "https://demstedpprodaue12.blob.core.windows.net/mesac-public/resources/files/5880056/RB24-28%20CMSA%20REE%202.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 17,
+              "markers": [
+                "Billeroo"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": []
+    },
+    {
+      "candidate_key": "olympic-dam",
+      "name": "Olympic Dam",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "POLYMETALLIC_REE_POTENTIAL;REE_TECHNICAL_AND_PROJECT_BOUNDARY_REVIEW_REQUIRED",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/c52c0aa482d6a2d1c02ca4daba4cfa0c75dce2986493e11dff739469a0723a05.html",
+          "sha256": "c52c0aa482d6a2d1c02ca4daba4cfa0c75dce2986493e11dff739469a0723a05",
+          "url": "https://energymining.sa.gov.au/industry/geological-survey/mesa-journal/2024/reviewing-sas-geological-potential-for-selected-critical-minerals",
+          "kind": "html",
+          "evidence": [
+            {
+              "markers": [
+                "Olympic Dam"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-04d175e13ef6e4d6e00b",
+        "AU-1444e0a79265d6d7a36c",
+        "AU-7ec11d0514dec74ce5a6",
+        "AU-c287adad547f61f7c62e",
+        "AU-e13b580a1e3b3e4ea93b",
+        "AU-fcaabf5809af90f07fc4"
+      ]
+    },
+    {
+      "candidate_key": "carrapateena",
+      "name": "Carrapateena",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "POLYMETALLIC_REE_POTENTIAL;REE_TECHNICAL_AND_PROJECT_BOUNDARY_REVIEW_REQUIRED",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/9426476952623a1a10ee346bcc93399f88015097d012f8e3ca7bbebdadd4ded0.html",
+          "sha256": "9426476952623a1a10ee346bcc93399f88015097d012f8e3ca7bbebdadd4ded0",
+          "url": "https://www.energymining.sa.gov.au/industry/minerals-and-mining/mineral-commodities/rare_earths",
+          "kind": "html",
+          "evidence": [
+            {
+              "markers": [
+                "Carrapateena"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-20efeb86329e32578c0c",
+        "AU-23d13f564b884e6610dd",
+        "AU-b6fec91a00f2856114a7",
+        "AU-baa792163f2c3cb23f34"
+      ]
+    },
+    {
+      "candidate_key": "aileron",
+      "name": "Aileron",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "REE_EXPLORATION_OR_STOCKPILE_PROCESSING_SCOPE_NEEDS_DISTINCTION;NOT_AUTOMATIC_RESOURCE_ADMISSION",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb.pdf",
+          "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+          "url": "https://www.wa.gov.au/media/159141/download?inline=",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Aileron"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-760e554ef4bb1bb426cf",
+        "AU-c66a11a08c779dcf096b"
+      ]
+    },
+    {
+      "candidate_key": "eneabba",
+      "name": "Eneabba",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "REE_EXPLORATION_OR_STOCKPILE_PROCESSING_SCOPE_NEEDS_DISTINCTION;NOT_AUTOMATIC_RESOURCE_ADMISSION",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb.pdf",
+          "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+          "url": "https://www.wa.gov.au/media/159141/download?inline=",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Eneabba"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-4c4f5b44c9e41963ad19",
+        "AU-5ffc97f416d59faf4f9f"
+      ]
+    },
+    {
+      "candidate_key": "stinger",
+      "name": "Stinger",
+      "aliases": [],
+      "decision": "ALIAS_OR_CHILD",
+      "reason": "DISCOVERY_WITHIN_ALREADY_LISTED_MANGAROON;DO_NOT_ADD_AS_INDEPENDENT_PROJECT",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb.pdf",
+          "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+          "url": "https://www.wa.gov.au/media/159141/download?inline=",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Stinger",
+                "Mangaroon"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": []
+    },
+    {
+      "candidate_key": "yin-gifford",
+      "name": "Gifford Creek within Mangaroon",
+      "aliases": [],
+      "decision": "ALIAS_OR_CHILD",
+      "reason": "DISTINCT_DEPOSIT_SCOPE_WITHIN_MANGAROON;DO_NOT_SUM_YIN_AND_PARENT_AS_INDEPENDENT_PROJECTS",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5.pdf",
+          "sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/5449464.pdf?v=63941956896",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Gifford Creek",
+                "Yin"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-00e1fe9115d060b4b006"
+      ]
+    },
+    {
+      "candidate_key": "mt-stirling-yttria",
+      "name": "Mt Stirling / Yttria",
+      "aliases": [],
+      "decision": "ALIAS_OR_CHILD",
+      "reason": "EXISTING_PARENT_AND_RESOURCE_SCOPE_OVERLAP;NO_SECOND15MT_RESOURCE",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb.pdf",
+          "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+          "url": "https://www.wa.gov.au/media/159141/download?inline=",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Mt Stirling",
+                "15.00"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-66a4ff0cc57114c19400"
+      ]
+    },
+    {
+      "candidate_key": "brothers-jupiter",
+      "name": "Greater Brothers / Jupiter",
+      "aliases": [],
+      "decision": "ALIAS_OR_CHILD",
+      "reason": "EXISTING_PARENT_AND_DEPOSIT_OVERLAP;NO_SECOND1780MT_RESOURCE",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb.pdf",
+          "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+          "url": "https://www.wa.gov.au/media/159141/download?inline=",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Greater Brothers"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-3e0603b3c88b3df7c69e"
+      ]
+    },
+    {
+      "candidate_key": "burracoppin-review",
+      "name": "Burracoppin",
+      "aliases": [],
+      "decision": "EXISTING_PROJECT",
+      "reason": "EXISTING_GROUP;GOVERNMENT_BULK_TIMES_FINE_FRACTION_GRADE_CONFLICT_REMAINS",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb.pdf",
+          "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+          "url": "https://www.wa.gov.au/media/159141/download?inline=",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Burracoppin",
+                "35.71",
+                "0.14"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-6e8df282abb928bfb60f",
+        "AU-743792270625a8970b64",
+        "AU-828cc4ec46791fcbbb3e",
+        "AU-bf79b858b94cf613acf4",
+        "AU-db2df430825e3e5c4aee"
+      ]
+    },
+    {
+      "candidate_key": "splinter-review",
+      "name": "Splinter",
+      "aliases": [],
+      "decision": "EXISTING_PROJECT",
+      "reason": "EXISTING_GROUP;PRIVATE_ISSUER_ORIGINAL_AND_RESOURCE_CATEGORIES_UNRESOLVED;NOT_OD6_SPLINTER_ROCK",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb.pdf",
+          "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+          "url": "https://www.wa.gov.au/media/159141/download?inline=",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Splinter REE Resources",
+                "22.90",
+                "09/01/2015"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-574465211976ec57b1ef",
+        "AU-c5cb28f27c4027920582",
+        "AU-f5d4d34f0ca0179bd87e"
+      ]
+    },
+    {
+      "candidate_key": "lyons-review",
+      "name": "Lyons",
+      "aliases": [],
+      "decision": "EXISTING_PROJECT",
+      "reason": "LIVE_ISSUER_PAGE_STILL_REPORTS2266_PLUS670_VS3221;NO_SOURCE_CORRECTION_FOUND",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/11e00f7c56dd1f7955bda20defd545b5b37699e5c8e175d14a815b8afb3847a1.html",
+          "sha256": "11e00f7c56dd1f7955bda20defd545b5b37699e5c8e175d14a815b8afb3847a1",
+          "url": "https://fortunametals.limited/gascoyne/",
+          "kind": "html",
+          "evidence": [
+            {
+              "markers": [
+                "2,266",
+                "670",
+                "3,221"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-3c6096256ec60671a62b",
+        "AU-5ae72732732273520037",
+        "AU-7c198d219aa1db3e291f",
+        "AU-a244868dd19f60f5216d",
+        "AU-bb775aa0fbc6bbb5e88c"
+      ]
+    },
+    {
+      "candidate_key": "kalkaroo-review",
+      "name": "Kalkaroo",
+      "aliases": [],
+      "decision": "EXISTING_PROJECT",
+      "reason": "REE_IS_UNDER_STUDY;CU_AU_CO_RESOURCE_NOT_TRANSFERRED",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5.pdf",
+          "sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+          "url": "https://international.austrade.gov.au/content/dam/austrade-assets/international/documents/reports/critical-minerals/australian-critical-minerals-prospectus-march-2026.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 12,
+              "markers": [
+                "Kalkaroo",
+                "under study"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-f46f6d53e7196650495d"
+      ]
+    },
+    {
+      "candidate_key": "lynas-processing",
+      "name": "Lynas processing facilities",
+      "aliases": [],
+      "decision": "PROCESSING_ONLY",
+      "reason": "SEPARATION_CAPACITY_IS_NOT_A_NEW_AUSTRALIAN_MINING_PROJECT",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5.pdf",
+          "sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+          "url": "https://international.austrade.gov.au/content/dam/austrade-assets/international/documents/reports/critical-minerals/australian-critical-minerals-prospectus-march-2026.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 77,
+              "markers": [
+                "Lynas",
+                "Midstream"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": []
+    },
+    {
+      "candidate_key": "charley-creek",
+      "name": "Charley Creek",
+      "aliases": [],
+      "decision": "CANDIDATE_ONLY",
+      "reason": "SEPARATE_NT_AUSTRALIAN_PROJECT_CONFIRMED;HISTORICAL805MT_HEADLINE_NOT_PAIRED_WITH_NEW_CATTLE_CREEK_RESOURCE_DEFINITION;ORIGINAL_RESOURCE_SCOPE_AND_DATE_REVIEW_PENDING",
+      "sources": [
+        {
+          "asset_set": "round4",
+          "path": "data/snapshots/1b18cf40345c1af98885887ebabedb857c6c624d49c9151c22afa20bb69d520c.html",
+          "sha256": "1b18cf40345c1af98885887ebabedb857c6c624d49c9151c22afa20bb69d520c",
+          "url": "https://enovamining.com/projects/charley-creek-rare-earth-project/",
+          "kind": "html",
+          "evidence": [
+            {
+              "markers": [
+                "Charley Creek",
+                "Northern Territory"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [
+        "AU-151482081987976466df",
+        "AU-2f412ba290dbaa1e7c05",
+        "AU-56bd4bad4255e543e0e0"
+      ]
+    }
+  ]
+}

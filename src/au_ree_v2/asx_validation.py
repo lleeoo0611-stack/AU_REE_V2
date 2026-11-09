@@ -18,6 +18,31 @@ def month_interval(day):
     value=date.fromisoformat(day)
     return [value.replace(day=1).isoformat(),value.replace(day=calendar.monthrange(value.year,value.month)[1]).isoformat()]
 
+
+def catalogue_month_proof(doc,pub,content,role='EDITION_MONTH'):
+    """A labelled publication month takes precedence over an earlier edition month."""
+    label=normalized(datetime.strptime(pub,'%Y-%m-%d').strftime('%B %Y'))
+    front=' '.join(normalized(doc[i].get_text(sort=True)) for i in range(min(3,len(doc))))
+    months='January February March April May June July August September October November December'.split()
+    explicit={normalized(m+' '+y) for m,y in re.findall(r'publication\s+date\s*:\s*('+'|'.join(months)+r')\s+(20\d{2})',front,re.I)}
+    if explicit and explicit!={label}:raise ValueError('REVIEW_EDITION_CANNOT_OVERRIDE_PUBLICATION_MONTH')
+    if role=='PUBLISHER_PUBLICATION_MONTH':
+        if 'publication date: '+label not in content:raise ValueError('REVIEW_PUBLICATION_LABEL_MONTH_MISMATCH')
+    elif role=='EDITION_MONTH':
+        if label not in content or 'edition' not in content:raise ValueError('REVIEW_PUBLICATION_EDITION_MONTH_MISMATCH')
+    else:raise ValueError('REVIEW_PUBLICATION_MONTH_ROLE_REQUIRED')
+
+
+def resource_share_factor(review,value):
+    """Convert an oxide's explicitly reported %TREO using this reviewed resource grade."""
+    if value['basis'] not in ELEMENTS or value['unit']!='ppm':raise ValueError('REVIEW_RESOURCE_SHARE_BASIS')
+    grades=[o for o in review['observations'] if o['variable']=='grade' and o['basis']=='TREO']
+    if len(grades)!=1 or value.get('grade_input')!='MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW':
+        raise ValueError('REVIEW_RESOURCE_SHARE_MATCHED_GRADE_REQUIRED')
+    grade=grades[0]
+    if grade['unit'] not in ('%','ppm'):raise ValueError('REVIEW_RESOURCE_SHARE_GRADE_UNIT')
+    return grade['value']*(100 if grade['unit']=='%' else .01)
+
 def annual_product_derivation(derivation,value,annual_page,evidence):
     """Only same-table, explicitly annual, oxide-based product conversions."""
     from .technical_tables import number_token
@@ -115,9 +140,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 if not (urlsplit(review['url']).hostname or '').endswith('.gov.au'):
                     raise ValueError('REVIEW_GOVERNMENT_CATALOGUE_HOST_REQUIRED')
                 content=evidence(month)
-                label=normalized(datetime.strptime(pub,'%Y-%m-%d').strftime('%B %Y'))
-                if label not in content or 'edition' not in content:
-                    raise ValueError('REVIEW_PUBLICATION_EDITION_MONTH_MISMATCH')
+                catalogue_month_proof(doc,pub,content,review.get('publication_month_role','EDITION_MONTH'))
                 if parsed_publication is not None:raise ValueError('REVIEW_MONTH_CANNOT_OVERRIDE_EXPLICIT_DAY')
                 parsed_publication=pub
             if parsed_publication!=pub:
@@ -192,6 +215,9 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     if not hm or value['evidence']['page']!=hm['evidence']['page']:raise ValueError('REVIEW_HM_NORMALIZATION_REQUIRES_SAME_TABLE')
                     if not token_value or token_value['value'] is None or not 0<=token_value['value']<=100:raise ValueError('REVIEW_HM_PERCENT_OUT_OF_RANGE')
                     factor=hm['value']/100 if variable=='grade' and unit=='%' else hm['value']*100 if basis in ELEMENTS and unit=='ppm' else None
+                if original_unit=='%TREO':
+                    if not token_value or not 0<=token_value['value']<=100:raise ValueError('REVIEW_RESOURCE_SHARE_RANGE')
+                    factor=resource_share_factor(review,value)
                 if not token_value or token_value['value'] is None or factor is None or not math.isclose(token_value['value']*factor,value['value'],rel_tol=1e-12,abs_tol=1e-10):
                     raise ValueError('REVIEW_ORIGINAL_TOKEN_UNIT_TRANSFORM_MISMATCH')
                 if variable=='ore_mt' and (unit!='Mt' or basis!='TREO' or value['value']<=0):raise ValueError('REVIEW_ORE_UNIT_OR_BASIS')
@@ -215,6 +241,8 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     source_kind=review.get('source_kind','ISSUER_TECHNICAL_DISCLOSURE'),
                     original_token=value.get('original_token'),evidence=e,cell_binding=binding,
                     original_unit=original_unit,bulk_hm_percent=hm,
+                    grade_input=value.get('grade_input'),
+                    normalization='RESOURCE_TREO_GRADE_X_REPORTED_OXIDE_PERCENT_OF_TREO' if original_unit=='%TREO' else None,
                     material_basis='RESOURCE_ORE_GRADE_OXIDE_PPM' if basis in ELEMENTS else 'RESOURCE_BULK_ORE',
                     review_method=cell_method)
                 row=dict(obs_id=digest([pid,sha,raw]),entity_id=pid,variable=variable,value=value['value'],unit=unit,basis=basis,
@@ -402,13 +430,14 @@ def audit_candidate_cohort(root,audit_dir,ledger_path,out):
     return result
 
 
-def compare_summaries(before,after,out):
+def compare_summaries(before,after,out,allow_expansion=False):
     before=Path(before);after=Path(after);out=Path(out);out.mkdir(parents=True,exist_ok=True)
     def read(path):
         with (path/'專案總表.csv').open(encoding='utf-8-sig',newline='') as f:
             reader=csv.DictReader(f);rows=list(reader);return reader.fieldnames,{r['專案ID']:r for r in rows}
     columns,old=read(before);other,new=read(after)
-    if columns!=other or set(old)!=set(new):raise ValueError('SUMMARY_COMPARISON_COHORT_OR_COLUMNS_CHANGED')
+    if columns!=other or (not set(old)<=set(new) if allow_expansion else set(old)!=set(new)):
+        raise ValueError('SUMMARY_COMPARISON_COHORT_OR_COLUMNS_CHANGED')
     provenance={}
     with (after/'field_provenance.csv').open(encoding='utf-8-sig') as f:
         for row in csv.DictReader(f):provenance[row['project_id'],row['column']]=row
@@ -438,11 +467,18 @@ def compare_summaries(before,after,out):
     with (out/'field_changes.csv').open('w',encoding='utf-8-sig',newline='') as f:
         fields=list(changes[0]) if changes else ['project_id','project_name','column','before','after','status','source_sha256','source_url','locator','method','scope','effective_date','effective_date_role','review_ids','withdrawal_reason']
         w=csv.DictWriter(f,fields);w.writeheader();w.writerows(changes)
-    result=dict(rows=len(new),columns=len(columns),newly_filled_cells=sum(filled.values()),newly_filled_column_types=len(filled),
+    result=dict(rows=len(old),columns=len(columns),newly_filled_cells=sum(filled.values()),newly_filled_column_types=len(filled),
         projects_with_new_values=len({r['project_id'] for r in changes if r['status']=='NEWLY_FILLED'}),new_cells_by_column=dict(filled),
         updated_value_cells=sum(updated.values()),updated_cells_by_column=dict(updated),numeric_format_only_cells=format_only,
         became_unknown_cells=sum(withdrawn.values()),became_unknown_by_column=dict(withdrawn),net_filled_cell_increase=sum(filled.values())-sum(withdrawn.values()),
         remaining_blank_cells=sum(remaining.values()),remaining_blanks_by_column=dict(remaining),
         baseline_csv_sha256=filehash(before/'專案總表.csv'),updated_csv_sha256=filehash(after/'專案總表.csv'))
+    if allow_expansion:
+        added=[new[k] for k in sorted(set(new)-set(old))]
+        result.update(comparison_scope='FIXED_BASELINE_COHORT;NEW_PROJECT_CELLS_REPORTED_SEPARATELY',expanded_rows=len(new),
+            added_project_ids=[r['專案ID'] for r in added],added_project_filled_cells=sum(v!='' for r in added for v in r.values()),
+            added_project_blank_cells=sum(v=='' for r in added for v in r.values()),
+            expanded_remaining_blank_cells=sum(v=='' for r in new.values() for v in r.values()),
+            expanded_filled_cells=sum(v!='' for r in new.values() for v in r.values()))
     (out/'field_increment.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     return result

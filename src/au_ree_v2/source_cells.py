@@ -91,8 +91,20 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
         wanted = number_token(str(token))
         if not match or not wanted or number_token(match[1])['value'] != wanted['value']:
             fail('STATEMENT_TOKEN_MISMATCH')
-        if (field != 'average_annual_treo_product_t' or 'annual' not in prefix or
-                not suffix.startswith('tpa of contained treo in concentrate') or unit != 'tpa'):
+        if field=='average_annual_ndpr_product_t':
+            if prefix!='nd-pr contained in rec' or suffix!='tpa' or unit!='tpa':fail('STATEMENT_SEMANTICS_MISMATCH')
+            time_basis=norm(region_text(page,rect('time_basis_bbox')))
+            if time_basis!='operations metrics (life-of-mine annual average)':fail('STATEMENT_ANNUAL_BASIS_MISMATCH')
+            proof=binding.get('oxide_basis_proof',{})
+            pn=proof.get('page');box=proof.get('bbox')
+            if not isinstance(pn,int) or not 1<=pn<=len(doc) or not isinstance(box,list) or len(box)!=4:
+                fail('STATEMENT_OXIDE_BASIS_REQUIRED')
+            region=pymupdf.Rect(box)
+            if not doc[pn-1].rect.contains(region):fail('STATEMENT_OXIDE_BASIS_REQUIRED')
+            exact='Nd-Pr, Dy and Tb production figures are life-of-mine annual average calculated by multiplying REC production by TREO grade and its respective rare earth oxide composition as a % of TREO'
+            if norm(region_text(doc[pn-1],region))!=norm(exact):fail('STATEMENT_OXIDE_BASIS_REQUIRED')
+        elif (field != 'average_annual_treo_product_t' or 'annual' not in prefix or
+              not suffix.startswith('tpa of contained treo in concentrate') or unit != 'tpa'):
             fail('STATEMENT_SEMANTICS_MISMATCH')
         return 'NATIVE_SCOPED_STATEMENT_BINDING'
     table, row, column = rect('table_bbox'), rect('row_bbox'), rect('column_bbox')
@@ -150,6 +162,11 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     if source_unit == 'million' and unit == 'Mt': source_unit = 'mt'
     if source_unit == 'tonnes' and unit == 't': source_unit = 't'
     if unit == '%HM' and source_unit == '% of total hm': source_unit = '%hm'
+    if unit == '%TREO':
+        context=anchor('metric_context_bbox','metric_context',table)
+        if source_unit!='percentage' or context!='percentage proportion of treo in the mineral resources':
+            fail('RESOURCE_SHARE_DENOMINATOR_REQUIRED')
+        source_unit='%treo'
     if source_unit != norm(unit): fail('SOURCE_UNIT_SEMANTICS_MISMATCH')
     if forecast and (not selected_scenario or label != norm(selected_scenario)):
         fail('FORECAST_SCENARIO_MISMATCH')
@@ -167,6 +184,9 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     elif field.startswith('reported_resource_'):
         # The binding must identify the exact oxide, including stoichiometry.
         valid = label == norm(binding.get('basis', '')) and source_unit in ('ppm','%hm')
+        if binding.get('resource_orientation')=='oxide_rows':
+            valid=(source_unit=='%treo' and label=='total' and
+                   norm(binding.get('row_label',''))==norm(binding.get('basis','')))
     elif field.startswith('annual_input_'):
         # An annual product forecast may be converted to contained oxides only
         # from the selected product row, with independent mass/grade/%TREO cells.

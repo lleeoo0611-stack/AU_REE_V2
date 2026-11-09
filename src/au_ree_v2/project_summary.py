@@ -58,7 +58,7 @@ def complete_sum(elements,required):
     return sum(elements[k] for k in required) if all(k in elements and elements[k] is not None for k in required) else None
 
 
-def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',review_ledger=None,asset_roots=None):
+def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',review_ledger=None,asset_roots=None,discovery_ledger=None):
     root=Path(root).resolve();database=Path(database).resolve();run_dir=Path(run_dir).resolve();out=Path(out).resolve()
     if out==root or out==database.parent or root in out.parents and out.relative_to(root).parts[0] in ('data','config','src'):
         raise ValueError('SUMMARY_OUTPUT_MUST_BE_ISOLATED')
@@ -78,11 +78,11 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
         if filehash(study_file)!=configuration['study_cases.json_sha256']:raise ValueError('FROZEN_STUDY_CASES_DIFFER')
         approved_studies={digest(c) for c in json.loads(study_file.read_text('utf8'))['cases']}
     before=filehash(database);db=sqlite3.connect(database.as_uri()+'?mode=ro',uri=True);db.row_factory=sqlite3.Row
-    rows=[];trace=[];diagnostics=[];verified=set();inventory=[];supplement=None
+    rows=[];trace=[];diagnostics=[];verified=set();inventory=[];supplement=None;discovered=None
     def verify(sha):
         if sha in verified:return
         source=selected[sha]
-        if filehash(root/source['path'])!=sha:raise ValueError('SUMMARY_SOURCE_HASH_MISMATCH')
+        if filehash(Path(source.get('asset_root',root))/source['path'])!=sha:raise ValueError('SUMMARY_SOURCE_HASH_MISMATCH')
         verified.add(sha)
     def add_trace(pid,column,value,sha,locator,method,scope='',obs_ids=(),review_id=None):
         if sha:verify(sha)
@@ -120,11 +120,16 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                 seen.add(pid);pid=mapping[pid]
             return pid
         projects=project_registry(root,db,list(selected.values()),mapping={p:canonical_id(p) for p in mapping})
+        if discovery_ledger:
+            from .reviewed_discovery import validate_discovery
+            discovered=validate_discovery(discovery_ledger,asset_roots or {},projects,cutoff)
+            projects.extend(discovered['projects']);selected.update(discovered['sources'])
         if review_ledger:
             from .asx_validation import validate_reviews
             supplement=validate_reviews(review_ledger,asset_roots or {},projects,cutoff)
             selected.update(supplement['sources'])
         records=defaultdict(list);observations=defaultdict(list);studies=defaultdict(list)
+        for r in (discovered or {}).get('records',[]):records[r['entity_id']].append(r)
         for r in db.execute('SELECT r.*,e.kind,e.native_id FROM records r JOIN entities e USING(entity_id)'):
             if (r['entity_id'],r['source_sha']) not in current['record_ids']:continue
             d=dict(r);d.update(current['record_values'].get((r['entity_id'],r['source_sha']),{}));records[canonical_id(r['entity_id'])].append(d)
@@ -150,8 +155,8 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                 eligible.sort(key=lambda r:(selected[r['source_sha']].get('publication_date') or '',r['source_sha']),reverse=True)
                 return eligible[0]
             identity=next((s for s in selected.values() if s['key']==p['identity_source']),None)
-            put('專案ID',pid,method='EXISTING_CANONICAL_PROJECT_RELATION')
-            put('專案名稱',p['name'],identity['sha256'] if identity else '',method='EXISTING_PROJECT_REGISTRY')
+            put('專案ID',pid,method='SOURCE_REVIEWED_PROJECT_EXTENSION' if p.get('reviewed_extension') else 'EXISTING_CANONICAL_PROJECT_RELATION')
+            put('專案名稱',p['name'],identity['sha256'] if identity else '',method='SOURCE_REVIEWED_PROJECT_EXTENSION' if p.get('reviewed_extension') else 'EXISTING_PROJECT_REGISTRY')
             put('國家','澳洲',method='AUSTRALIAN_CENSUS_SCOPE')
             state=pick_record('state')
             if state:
@@ -263,15 +268,17 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                          ('NO_COMPATIBLE_SOURCE_REVIEWED_ENGINEERING_FORECAST' if supplement else 'NO_COMPATIBLE_FROZEN_ENGINEERING_FORECAST') if column.startswith('預估年產') else
                          'NO_COMPATIBLE_VERIFIED_FIELD; BLANK_IS_UNKNOWN')
                     d=dict(project_id=pid,column=column,reason=why)
-                    deferred=(supplement or {}).get('deferred_fields',{}).get(pid,{}).get(column)
+                    deferred=((supplement or {}).get('deferred_fields',{}).get(pid,{}).get(column) or
+                              (discovered or {}).get('deferred_fields',{}).get(pid,{}).get(column))
                     if deferred:d.update(reason=deferred['reason'],source_sha256=deferred['source_sha256'],physical_page=deferred['evidence']['page'],review_id=deferred['review_id'])
                     diagnostics.append(d)
             rows.append(row)
         pids={r['專案ID'] for r in rows}
         for eid,rs in sorted(records.items()):
             r=sorted(rs,key=lambda r:r['source_sha'])[0]
-            inventory.append(dict(entity_id=eid,kind=r['kind'],name=r['name'],included_in_project_summary=eid in pids,
-                source_sha256=r['source_sha'],unit_of_analysis='EXISTING_CENSUS_ENTITY_NOT_AUTOMATIC_PROJECT_ADMISSION'))
+            extension=next((p for p in (discovered or {}).get('projects',[]) if p['entity_id']==eid),None)
+            inventory.append(dict(entity_id=eid,kind='REVIEWED_PROJECT_EXTENSION' if extension else r['kind'],name=extension['name'] if extension else r['name'],included_in_project_summary=eid in pids,
+                source_sha256=r['source_sha'],unit_of_analysis='EXPLICIT_SOURCE_REVIEWED_EXTENSION_NOT_CANONICAL_DB_MUTATION' if extension else 'EXISTING_CENSUS_ENTITY_NOT_AUTOMATIC_PROJECT_ADMISSION'))
     finally:db.close()
     if filehash(database)!=before:raise ValueError('READ_ONLY_DATABASE_CHANGED_DURING_EXPORT')
     out.mkdir(parents=True,exist_ok=True)
@@ -300,5 +307,9 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
         result['limitations'].remove('NO_AUTOMATIC_PROMOTION_OF_NEW_ASX_CANDIDATES')
         result['limitations'].append('IMAGE_CELL_TRANSCRIPTIONS_ARE_VISUALLY_REVIEWED_NOT_INDEPENDENT_OCR')
         result['limitations'].append('ONLY_SOURCE_REVIEW_LEDGER_VALUES_PROMOTED;NOT_FORMAL_C1_OR_INDEPENDENT_APPROVAL')
+    if discovered:
+        result.update(discovery_ledger_sha256=discovered['ledger_sha256'],discovery_reviews=discovered['receipts'],
+            original_canonical_projects=len(projects)-len(discovered['projects']),reviewed_project_extensions=len(discovered['projects']))
+        result['limitations'].append('EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1')
     (out/'summary.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     return result
