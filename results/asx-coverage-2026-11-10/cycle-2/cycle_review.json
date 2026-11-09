@@ -1,0 +1,124 @@
+{
+  "version": "coverage-cycle-review-v1",
+  "cycle_id": "cycle-2",
+  "current": {
+    "projects": 58,
+    "columns": 53,
+    "filled_cells": 1225,
+    "total_cells": 3074,
+    "remaining_blank_cells": 1849,
+    "scientific_columns": [
+      "礦石蘊藏量_Mt",
+      "TREO品位_pct",
+      "總TREO蘊藏量_kt",
+      "磁鐵稀土氧化物蘊藏量_kt",
+      "磁鐵稀土佔TREO_pct",
+      "NdPr蘊藏量_kt_需兩者皆公布",
+      "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+      "預估年產TREO_t_per_year",
+      "預估年產NdPr_t_per_year",
+      "預估年產重稀土_t_per_year",
+      "La2O3_氧化鑭_kt",
+      "CeO2_氧化鈰_kt",
+      "Pr6O11_氧化鐠_kt",
+      "Nd2O3_氧化釹_kt",
+      "Sm2O3_氧化釤_kt",
+      "Eu2O3_氧化銪_kt",
+      "Gd2O3_氧化釓_kt",
+      "Tb4O7_氧化鋱_kt",
+      "Dy2O3_氧化鏑_kt",
+      "Ho2O3_氧化鈥_kt",
+      "Er2O3_氧化鉺_kt",
+      "Tm2O3_氧化銩_kt",
+      "Yb2O3_氧化鐿_kt",
+      "Lu2O3_氧化鎦_kt",
+      "Y2O3_氧化釔_kt"
+    ],
+    "scientific_filled_cells": 370,
+    "scientific_total_cells": 1450,
+    "output_hashes": {
+      "專案總表.csv": "6ee5e061507e18eb45284aa67b2239651f66bbffcf599e77779af96f5a64f9c0",
+      "field_provenance.csv": "a0f7253c8e8bf3686a8c31075dc924a8be4b9f5233f7cfb6399c00c0d58da35c",
+      "missing_fields.csv": "b09ab3b37d3de865fe04eab04954f7d241ef292e5269d60f5383de29544b3528",
+      "census_inventory.csv": "c4f2767cbce711d41c389d53eefb2945adc16f860d8b0f591b56f9e33f16f026"
+    },
+    "provenance_complete": true,
+    "missing_diagnostics_complete": true
+  },
+  "existing_projects": {
+    "newly_filled_cells": 1,
+    "scientific_newly_filled_cells": 0,
+    "updated_value_cells": 0,
+    "withdrawn_cells": 0,
+    "scientific_withdrawn_cells": 0,
+    "numeric_format_only_cells": 0,
+    "net_filled_cell_increase": 1
+  },
+  "added_projects": {
+    "project_ids": [
+      "AU-0832169526bb5ec07626",
+      "AU-d99cf357d160df73387c"
+    ],
+    "count": 2,
+    "filled_cells": 22,
+    "scientific_filled_cells": 0,
+    "identity_and_other_metadata_cells": 22
+  },
+  "removed_projects": {
+    "project_ids": [],
+    "filled_cells": 0,
+    "explanations": []
+  },
+  "total_filled_cell_delta": 23,
+  "stopping_rule": {
+    "threshold": 3,
+    "operator": "<",
+    "newly_filled_cells": 23,
+    "scientific_newly_filled_cells": 0,
+    "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
+    "eligible": true,
+    "stop": false,
+    "incomplete": [],
+    "decision": "CONTINUE"
+  },
+  "baseline_csv_sha256": "d9b8082539b6123490f1fa58c9bfc9d7dadbade1b3f029347e4739120a1ffee9",
+  "current_csv_sha256": "6ee5e061507e18eb45284aa67b2239651f66bbffcf599e77779af96f5a64f9c0",
+  "review_manifest": {
+    "cycle_id": "cycle-2",
+    "tracks": {
+      "candidates": {
+        "completed": true,
+        "records": [
+          {
+            "query": "sha256:d40cc835b64b2cca5518fc1bf77fe88bac686c2c03c0cb419852c982b08adbb6",
+            "disposition": "Two identities and source-date ASX codes admitted; no global REO resource transferred"
+          }
+        ]
+      },
+      "numeric": {
+        "completed": true,
+        "records": [
+          {
+            "query": "sha256:7cd69f8e25519ae3a949702b56373d380761b47ba3ea9931c5431546a337e0ec",
+            "disposition": "No new scientific values; one product metadata cell restored after same-case proof; new project rows remain numeric Unknown"
+          }
+        ]
+      }
+    },
+    "validation": {
+      "sources": {
+        "passed": true,
+        "evidence": "Complete export replay; three source-ledger hashes verified"
+      },
+      "tests": {
+        "passed": true,
+        "evidence": "52ca4d97cb7a1b55b027ee6dd71059f6db9ee41e7d65164b6b24054ee60fb015"
+      },
+      "reproducibility": {
+        "passed": true,
+        "evidence": "All four CSVs match independent repeated export"
+      }
+    }
+  },
+  "limitations": "Search/source/test completion is declared by the reviewer manifest; table integrity is independently checked. STOP means marginal gain below threshold, not complete coverage."
+}

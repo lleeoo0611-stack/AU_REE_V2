@@ -1,23 +1,23 @@
 {
   "version": "census-project-summary-v3-asx-identity",
   "cutoff": "2026-11-05",
-  "rows": 56,
+  "rows": 58,
   "columns": 53,
-  "unique_project_ids": 56,
+  "unique_project_ids": 58,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "claims_sha256": "11bfc4842e4b1d391ff220d39d0d17ad000a645ca6ed19dad11294b3408940f2",
   "snapshot_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
   "configuration_sha256": "92774d210b9d5b55a3b7ced161381be1cb52a5a3959ea4e4a284bf554fb5ed1a",
   "columns_sha256": "f6389bc0ace6cccac5ef34ae0ffd651403e4dbec5fd9d9ee7602f22404ed5223",
   "filled_counts": {
-    "專案ID": 56,
-    "開發商": 55,
+    "專案ID": 58,
+    "開發商": 57,
     "未上市公司": 11,
-    "專案名稱": 56,
-    "所在地_中文": 56,
-    "所在地_英文": 56,
-    "國家": 56,
-    "州省地區": 56,
+    "專案名稱": 58,
+    "所在地_中文": 58,
+    "所在地_英文": 58,
+    "國家": 58,
+    "州省地區": 58,
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
@@ -35,11 +35,11 @@
     "預估年產TREO_t_per_year": 6,
     "預估年產NdPr_t_per_year": 6,
     "預估年產重稀土_t_per_year": 0,
-    "產品/產出": 10,
+    "產品/產出": 11,
     "有TREO資源估計": 31,
-    "有來源文件": 54,
-    "資料來源名稱": 56,
-    "資料來源URL": 56,
+    "有來源文件": 56,
+    "資料來源名稱": 58,
+    "資料來源URL": 58,
     "已公布元素數_共15項": 18,
     "已公布元素總和_kt": 18,
     "元素總和/TREO": 16,
@@ -62,9 +62,9 @@
     "Yb2O3_氧化鐿_kt": 11,
     "Lu2O3_氧化鎦_kt": 12,
     "Y2O3_氧化釔_kt": 13,
-    "ASX代碼": 44
+    "ASX代碼": 46
   },
-  "verified_source_hashes": 95,
+  "verified_source_hashes": 97,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -74,7 +74,7 @@
     "PROJECT": 33,
     "SITE": 766,
     "DEPOSIT": 301,
-    "REVIEWED_PROJECT_EXTENSION": 23,
+    "REVIEWED_PROJECT_EXTENSION": 25,
     "DEPOSIT_SCOPE": 27,
     "PROSPECT": 191,
     "PROJECT_PROGRAM": 1,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "d9b8082539b6123490f1fa58c9bfc9d7dadbade1b3f029347e4739120a1ffee9",
-    "field_provenance.csv": "bc2e7c09f24fee3e37484f12a7305f06f7124c02854c4e9db8b26f89810f7c1f",
-    "missing_fields.csv": "201213d1ae2ef96319875e2370f341b68b342e500c42e4d802f96cb0a8cd93b5",
-    "census_inventory.csv": "c96f7089a9c5363387b6511a8fb83ec9e80c7902ee393e564375c03ee6877cf2"
+    "專案總表.csv": "6ee5e061507e18eb45284aa67b2239651f66bbffcf599e77779af96f5a64f9c0",
+    "field_provenance.csv": "a0f7253c8e8bf3686a8c31075dc924a8be4b9f5233f7cfb6399c00c0d58da35c",
+    "missing_fields.csv": "b09ab3b37d3de865fe04eab04954f7d241ef292e5269d60f5383de29544b3528",
+    "census_inventory.csv": "c4f2767cbce711d41c389d53eefb2945adc16f860d8b0f591b56f9e33f16f026"
   },
-  "review_ledger_sha256": "9b76ac1af5ea53e937d5bfd0e10ec42afe9b31e056f10d7e4bac3ee7099454d9",
+  "review_ledger_sha256": "c061699dbca3990428098b731aef01c6f32ff1b036bb218f5626ae134f47c8f4",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -1137,7 +1137,7 @@
       "project_id": "AU-908fd6f4461622e89548",
       "source_sha256": "f03cdb2769d58dcc65159e1f3bc892b3525e871c4bf685e480aa428bcf47a260",
       "status": "VALIDATED",
-      "scope": "Yangibana Stage 1 updated DFS first announced 13 July 2026; 19-year life-of-mine average contained NdPr oxide in concentrate, 100% project basis; reaffirmed 30 September 2026 annual report",
+      "scope": "Yangibana Stage1 19-year DFS mine plan; contained TREO in mineral concentrate; revised 13July2026 announcement",
       "review_methods": [
         "NATIVE_SCOPED_STATEMENT_BINDING"
       ],
@@ -1493,7 +1493,7 @@
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "96c9dacd95a249a499945006e5a207d5b5ceca159f5882f90a55a37efb0a59e5",
+  "discovery_ledger_sha256": "22a6a0f33432adf6f5b7be6ffc78723acae9f8516e38062a57be1ec73ce4ffe2",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -3506,9 +3506,9 @@
     },
     {
       "candidate_key": "franklyn",
-      "name": "Franklyn",
-      "decision": "CANDIDATE_ONLY",
-      "reason": "ROUND6_DATED_ISSUER_CONFIRMS_FRANKLYN_PROSPECT_AND_DRILLING;NO_INDEPENDENT_RESOURCE_OR_CURRENT_PROJECT_BOUNDARY_VERIFIED",
+      "name": "Franklyn Kaolin–REE Project — Nackara Arc",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_ORIGINAL_NAMES_FRANKLYN_AS_SEPARATE_PROJECT_IN_SA_NACKARA_ARC;HISTORICAL_IDENTITY_ONLY",
       "existing_candidate_ids": [],
       "sources": [
         {
@@ -3542,6 +3542,30 @@
               ]
             }
           ]
+        },
+        {
+          "path": "data/snapshots/9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631.pdf",
+          "sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631",
+          "url": "https://www.itechminerals.com.au/wp-content/uploads/2022/07/20211027-iTECH-MINERALS-2021-ANNUAL-REPORT.pdf",
+          "kind": "pdf",
+          "asset_set": "coverage_fresh",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "27 October 2021",
+                "iTech Minerals Ltd"
+              ]
+            },
+            {
+              "page": 5,
+              "markers": [
+                "Franklyn Project in the Nackara Arc",
+                "South Australia",
+                "Rare earth element"
+              ]
+            }
+          ]
         }
       ],
       "followup_review": {
@@ -3553,7 +3577,317 @@
       "round6_review": {
         "status": "DATED_PROSPECT_CONFIRMED;ADMISSION_PENDING",
         "reason": "45_91MT_IS_KAOLIN_EXPLORATION_TARGET_AND_AL2O3_IS_NOT_TREO"
-      }
+      },
+      "project_id": "AU-0832169526bb5ec07626",
+      "scope": "Franklyn Kaolin–REE exploration project in Nackara Arc, South Australia, separately named in iTech 2021 annual report. Historical issuer/project identity; current tenure continuity not certified. Kaolin exploration target and alumina grade are excluded from REE MRE fields.",
+      "identity": {
+        "source_index": 2,
+        "source_key": "itech_franklyn_identity20211027",
+        "publication_date": "2021-10-27",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "27 October 2021"
+          ]
+        },
+        "name_marker": "Franklyn Project",
+        "state": "SA",
+        "state_marker": "South Australia",
+        "project_evidence": {
+          "page": 5,
+          "markers": [
+            "Franklyn Project",
+            "Nackara Arc",
+            "South Australia"
+          ]
+        },
+        "developer": {
+          "value": "iTech Minerals Ltd",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "iTech Minerals Ltd"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "FRANKLYN_HISTORICAL_KAOLIN_EXPLORATION_TARGET_AND_ALUMINA_NOT_REE_MRE;NO_MATCHED_RESOURCE_COMPOSITION_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Franklyn Project",
+              "Exploration Target"
+            ]
+          }
+        }
+      ]
     },
     {
       "candidate_key": "minos",
@@ -9900,20 +10234,345 @@
           }
         }
       ]
+    },
+    {
+      "candidate_key": "southern-cross-gcx",
+      "name": "Southern Cross Li-REE Project — GCX",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_PRIMARY_TENEMENT_BOUND_AU_REE_PROJECT;REJECT_UNVERIFIED_EXTERNAL_COMPANY_PAIRING",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "path": "data/snapshots/aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5.pdf",
+          "sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5",
+          "url": "https://announcements.asx.com.au/asxpdf/20230922/pdf/05v5qdfqlg7vwx.pdf",
+          "kind": "pdf",
+          "asset_set": "auto_candidates",
+          "evidence": [
+            {
+              "page": 52,
+              "markers": [
+                "Southern Cross Li-REE Project",
+                "Western Australia",
+                "E77/3009",
+                "E77/3012"
+              ]
+            },
+            {
+              "page": 1,
+              "markers": [
+                "GCX Metals Limited",
+                "ASX:GCX"
+              ]
+            }
+          ]
+        }
+      ],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "Southern Cross Li-REE exploration project E77/3009-E77/3012 in Western Australia, GCX source-date reporting issuer. Not Zenith input pairing, not generic Southern Cross regional mines or Rankin Dome. Current ownership/status not inferred.",
+        "effective_disclosure_date": "2023-09-22",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "project_id": "AU-d99cf357d160df73387c",
+      "scope": "Southern Cross Li-REE exploration project E77/3009-E77/3012 in Western Australia, GCX source-date reporting issuer. Not Zenith input pairing, not generic Southern Cross regional mines or Rankin Dome. Current ownership/status not inferred.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "auto2_identity_southern_cross",
+        "publication_date": "2023-09-22",
+        "date_evidence": {
+          "page": 18,
+          "markers": [
+            "22 September 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 52,
+          "markers": [
+            "Southern Cross Li-REE Project",
+            "Western Australia",
+            "E77/3009"
+          ]
+        },
+        "name_marker": "Southern Cross",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "GCX Metals Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "GCX Metals Limited"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "SOURCE_EXPLICITLY_REPORTS_NO_MINERAL_RESOURCES_OR_ORE_RESERVES;NO_REO_GLOBAL_GRADE_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 52,
+            "markers": [
+              "no reported Mineral Resources or Ore Reserves"
+            ]
+          }
+        }
+      ]
     }
   ],
   "original_canonical_projects": 33,
-  "reviewed_project_extensions": 23,
+  "reviewed_project_extensions": 25,
   "base_contract_columns": 52,
   "base_projection_hashes": {
-    "census_inventory.csv": "c96f7089a9c5363387b6511a8fb83ec9e80c7902ee393e564375c03ee6877cf2",
-    "field_provenance.csv": "d426dd9ea666ea9095b6f20427bcd39071a965f8efbbdf8d6141e2bc5ed2d63a",
-    "missing_fields.csv": "6bab4b10e484393062fcffc3a92c816977c7eec4c6f742fc44b74a583b2a525d",
-    "專案總表.csv": "c802923227e6cc2a58b0fa820eaec318895d7deaa930d25677a88a21677ad9d4"
+    "census_inventory.csv": "c4f2767cbce711d41c389d53eefb2945adc16f860d8b0f591b56f9e33f16f026",
+    "field_provenance.csv": "af874ff9683689ecda2e9074cb0e83bed633c35406e5c67b96ba696d1470e922",
+    "missing_fields.csv": "72af3788ea93aae7ce1153e169e6467983ef83cbfb742a5f0078cad4be9d7455",
+    "專案總表.csv": "494d9f01f8f4b98fb8c7f4c03ae3a65a86609b188d8f108281704f6d06bce9c5"
   },
-  "identity_ledger_sha256": "5f324ee155e8e8eb3afec0917e5bb1ef99f4fef5bb9a8f1c2d450f9ffcdd680f",
+  "identity_ledger_sha256": "f00303e57feef84b4d1031627cff03aee53c7d290cea3f0972c4389da87366cb",
   "identity_merges": [],
-  "validated_asx_codes": 44,
+  "validated_asx_codes": 46,
   "identity_sources": {
     "AU-12cc237ae66c7a6508ca": {
       "asset_set": "round3",
@@ -10191,6 +10850,55 @@
           "page": 15,
           "markers": [
             "monazite containing rare earths"
+          ]
+        }
+      ]
+    },
+    "AU-d99cf357d160df73387c": {
+      "path": "data/snapshots/aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5.pdf",
+      "sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5",
+      "url": "https://announcements.asx.com.au/asxpdf/20230922/pdf/05v5qdfqlg7vwx.pdf",
+      "kind": "pdf",
+      "asset_set": "auto_candidates",
+      "evidence": [
+        {
+          "page": 52,
+          "markers": [
+            "Southern Cross Li-REE Project",
+            "Western Australia",
+            "E77/3009",
+            "E77/3012"
+          ]
+        },
+        {
+          "page": 1,
+          "markers": [
+            "GCX Metals Limited",
+            "ASX:GCX"
+          ]
+        }
+      ]
+    },
+    "AU-0832169526bb5ec07626": {
+      "path": "data/snapshots/9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631.pdf",
+      "sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631",
+      "url": "https://www.itechminerals.com.au/wp-content/uploads/2022/07/20211027-iTECH-MINERALS-2021-ANNUAL-REPORT.pdf",
+      "kind": "pdf",
+      "asset_set": "coverage_fresh",
+      "evidence": [
+        {
+          "page": 1,
+          "markers": [
+            "27 October 2021",
+            "iTech Minerals Ltd"
+          ]
+        },
+        {
+          "page": 5,
+          "markers": [
+            "Franklyn Project in the Nackara Arc",
+            "South Australia",
+            "Rare earth element"
           ]
         }
       ]

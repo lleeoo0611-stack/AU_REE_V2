@@ -1,12 +1,12 @@
 {
-  "iteration": 11,
-  "coverage_cycle": 1,
+  "iteration": 12,
+  "coverage_cycle": 2,
   "current_integrity": {
-    "projects": 56,
+    "projects": 58,
     "columns": 53,
-    "filled_cells": 1202,
-    "total_cells": 2968,
-    "remaining_blank_cells": 1766,
+    "filled_cells": 1225,
+    "total_cells": 3074,
+    "remaining_blank_cells": 1849,
     "scientific_columns": [
       "礦石蘊藏量_Mt",
       "TREO品位_pct",
@@ -35,25 +35,25 @@
       "Y2O3_氧化釔_kt"
     ],
     "scientific_filled_cells": 370,
-    "scientific_total_cells": 1400,
+    "scientific_total_cells": 1450,
     "output_hashes": {
-      "專案總表.csv": "d9b8082539b6123490f1fa58c9bfc9d7dadbade1b3f029347e4739120a1ffee9",
-      "field_provenance.csv": "bc2e7c09f24fee3e37484f12a7305f06f7124c02854c4e9db8b26f89810f7c1f",
-      "missing_fields.csv": "201213d1ae2ef96319875e2370f341b68b342e500c42e4d802f96cb0a8cd93b5",
-      "census_inventory.csv": "c96f7089a9c5363387b6511a8fb83ec9e80c7902ee393e564375c03ee6877cf2"
+      "專案總表.csv": "6ee5e061507e18eb45284aa67b2239651f66bbffcf599e77779af96f5a64f9c0",
+      "field_provenance.csv": "a0f7253c8e8bf3686a8c31075dc924a8be4b9f5233f7cfb6399c00c0d58da35c",
+      "missing_fields.csv": "b09ab3b37d3de865fe04eab04954f7d241ef292e5269d60f5383de29544b3528",
+      "census_inventory.csv": "c4f2767cbce711d41c389d53eefb2945adc16f860d8b0f591b56f9e33f16f026"
     },
     "provenance_complete": true,
     "missing_diagnostics_complete": true
   },
-  "bundle": "results/asx-coverage-2026-11-10/cycle-1",
-  "bundle_validation_sha256": "4afb3c8ec228ff4cd8c2c9a8c8b64df73034190c198458053ffeab20164204cf",
+  "bundle": "results/asx-coverage-2026-11-10/cycle-2",
+  "bundle_validation_sha256": "6596538f2e2a14cb3357d4d1de1ba738a109230d9fd7fe9c8ed859dd1e944a07",
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "database_modified": false,
   "stopping_rule": {
     "threshold": 3,
     "operator": "<",
-    "newly_filled_cells": 35,
-    "scientific_newly_filled_cells": 19,
+    "newly_filled_cells": 23,
+    "scientific_newly_filled_cells": 0,
     "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
     "eligible": true,
     "stop": false,
@@ -68,13 +68,13 @@
     "skipped": 0
   },
   "artifact_hashes": {
-    "audit.json": "64e1a116ef6cb96c603272965672982cdd4ac91d487fa8ea65ac8d38f3ddb55e",
-    "census_inventory.csv": "c96f7089a9c5363387b6511a8fb83ec9e80c7902ee393e564375c03ee6877cf2",
-    "field_provenance.csv": "bc2e7c09f24fee3e37484f12a7305f06f7124c02854c4e9db8b26f89810f7c1f",
-    "missing_fields.csv": "201213d1ae2ef96319875e2370f341b68b342e500c42e4d802f96cb0a8cd93b5",
-    "REVIEW.md": "0f4564204a10e2bc8c4179713c3c902d0c7d7c339f601346827cfcb1cf8011c6",
+    "audit.json": "6431fb4b6129193f0c8f36c09b22f692da12abfb6d55c16f8d31ea1fe705e51f",
+    "census_inventory.csv": "c4f2767cbce711d41c389d53eefb2945adc16f860d8b0f591b56f9e33f16f026",
+    "field_provenance.csv": "a0f7253c8e8bf3686a8c31075dc924a8be4b9f5233f7cfb6399c00c0d58da35c",
+    "missing_fields.csv": "b09ab3b37d3de865fe04eab04954f7d241ef292e5269d60f5383de29544b3528",
+    "REVIEW.md": "1eb4855d26a4877a81dd89a6a6cb67d3c093b21f941abd74149d813209a5987a",
     "source_consistency.csv": "09922af3f905e79f23f58c3e5c0fd84515a01dcf6bc6984660b86c0532fe41ba",
-    "summary.json": "2460bfcb938b9ceb150ca2d6959699645590dbf6bf76db8c31ce8f3b3ef34be4",
-    "專案總表.csv": "d9b8082539b6123490f1fa58c9bfc9d7dadbade1b3f029347e4739120a1ffee9"
+    "summary.json": "647d3aa5d5e0f615d632313bb1457b2f16d7f448633f5be31c086af1890e7480",
+    "專案總表.csv": "6ee5e061507e18eb45284aa67b2239651f66bbffcf599e77779af96f5a64f9c0"
   }
 }

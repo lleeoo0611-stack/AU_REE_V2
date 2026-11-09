@@ -1,7 +1,7 @@
 # ASX dual-track coverage cycles
 
-Fixed starting point: bc6a901, 55 projects × 53 columns, 1,168 filled cells / 1,747 unknowns. Latest published cycle: 1.
+Fixed starting point: bc6a901, 55 projects × 53 columns, 1,168 filled cells / 1,747 unknowns. Latest published cycle: 2.
 
-Current: 56 projects; 1202 filled; 1766 unknown. Decision: CONTINUE; this cycle adds 35 cells before withdrawals. Existing-project/new-project accounting is separate in each cycle_review.json.
+Current: 58 projects; 1225 filled; 1849 unknown. Decision: CONTINUE; this cycle adds 23 cells before withdrawals. Existing-project/new-project accounting is separate in each cycle_review.json.
 
 Each cycle includes source-ledger snapshots, independent repeated CSV outputs and passed local regression checks. No full historical/R rebuild or new remote CI result is claimed.

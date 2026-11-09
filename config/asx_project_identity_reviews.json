@@ -283,6 +283,55 @@
           ]
         }
       ]
+    },
+    "AU-d99cf357d160df73387c": {
+      "path": "data/snapshots/aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5.pdf",
+      "sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5",
+      "url": "https://announcements.asx.com.au/asxpdf/20230922/pdf/05v5qdfqlg7vwx.pdf",
+      "kind": "pdf",
+      "asset_set": "auto_candidates",
+      "evidence": [
+        {
+          "page": 52,
+          "markers": [
+            "Southern Cross Li-REE Project",
+            "Western Australia",
+            "E77/3009",
+            "E77/3012"
+          ]
+        },
+        {
+          "page": 1,
+          "markers": [
+            "GCX Metals Limited",
+            "ASX:GCX"
+          ]
+        }
+      ]
+    },
+    "coverage_franklyn2021": {
+      "path": "data/snapshots/9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631.pdf",
+      "sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631",
+      "url": "https://www.itechminerals.com.au/wp-content/uploads/2022/07/20211027-iTECH-MINERALS-2021-ANNUAL-REPORT.pdf",
+      "kind": "pdf",
+      "asset_set": "coverage_fresh",
+      "evidence": [
+        {
+          "page": 1,
+          "markers": [
+            "27 October 2021",
+            "iTech Minerals Ltd"
+          ]
+        },
+        {
+          "page": 5,
+          "markers": [
+            "Franklyn Project in the Nackara Arc",
+            "South Australia",
+            "Rare earth element"
+          ]
+        }
+      ]
     }
   },
   "codes": [
@@ -1825,6 +1874,78 @@
         ]
       },
       "scope": "Coburn mining and integrated mineral sands plant in Western Australia; monazite rare earths in zircon-in-concentrate product; source-date issuer association only, not current ownership or operating status. Ilmenite shipment and bulk HMC are not REO annual production."
+    },
+    {
+      "review_id": "auto2_code_AU-d99cf357d160df73387c",
+      "project_id": "AU-d99cf357d160df73387c",
+      "code": "GCX",
+      "issuer_name": "GCX Metals Limited",
+      "source_key": "AU-d99cf357d160df73387c",
+      "evidence_date": "2023-09-22",
+      "date_evidence": {
+        "page": 18,
+        "markers": [
+          "22 September 2023"
+        ]
+      },
+      "project_marker": "Southern Cross",
+      "project_evidence": {
+        "page": 52,
+        "markers": [
+          "Southern Cross Li-REE Project",
+          "Western Australia",
+          "E77/3009"
+        ]
+      },
+      "issuer_evidence": {
+        "page": 1,
+        "markers": [
+          "GCX Metals Limited"
+        ]
+      },
+      "code_label": "ASX:GCX",
+      "code_evidence": {
+        "page": 1,
+        "markers": [
+          "ASX:GCX"
+        ]
+      },
+      "scope": "Southern Cross Li-REE exploration project E77/3009-E77/3012 in Western Australia, GCX source-date reporting issuer. Not Zenith input pairing, not generic Southern Cross regional mines or Rankin Dome. Current ownership/status not inferred."
+    },
+    {
+      "review_id": "coverage2_code_franklyn2021",
+      "project_id": "AU-0832169526bb5ec07626",
+      "code": "ITM",
+      "issuer_name": "iTech Minerals Ltd",
+      "source_key": "coverage_franklyn2021",
+      "evidence_date": "2021-10-27",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "27 October 2021"
+        ]
+      },
+      "project_marker": "Franklyn",
+      "project_evidence": {
+        "page": 5,
+        "markers": [
+          "Franklyn Project"
+        ]
+      },
+      "issuer_evidence": {
+        "page": 1,
+        "markers": [
+          "iTech Minerals Ltd"
+        ]
+      },
+      "code_evidence": {
+        "page": 1,
+        "markers": [
+          "ASX: ITM"
+        ]
+      },
+      "code_label": "ASX: ITM",
+      "scope": "Historical iTech reporting issuer for Franklyn at 2021-10-27; not real-time legal ownership"
     }
   ],
   "merges": [],

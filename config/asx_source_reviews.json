@@ -26132,7 +26132,7 @@
           "30 September 2026"
         ]
       },
-      "scope": "Yangibana Stage 1 updated DFS first announced 13 July 2026; 19-year life-of-mine average contained NdPr oxide in concentrate, 100% project basis; reaffirmed 30 September 2026 annual report",
+      "scope": "Yangibana Stage1 19-year DFS mine plan; contained TREO in mineral concentrate; revised 13July2026 announcement",
       "statement_id": "yangibana-dfs-annual-reaffirmation-20260930",
       "observations": [],
       "selection_reason": "DIRECT_DISCLOSURE_OF_ANNUAL_NDPR_NOT_RESERVE_FRACTION_INFERENCE",
@@ -26169,7 +26169,7 @@
         "parameter_bindings": {
           "average_annual_ndpr_product_t": {
             "field": "average_annual_ndpr_product_t",
-            "scope": "Yangibana Stage 1 updated DFS first announced 13 July 2026; 19-year life-of-mine average contained NdPr oxide in concentrate, 100% project basis; reaffirmed 30 September 2026 annual report",
+            "scope": "Yangibana Stage1 19-year DFS mine plan; contained TREO in mineral concentrate; revised 13July2026 announcement",
             "page": 9,
             "mode": "native_statement",
             "statement_bbox": [
@@ -26205,7 +26205,18 @@
           "30 September 2026"
         ]
       },
-      "publication_date_role": "ASX_ARCHIVE_PUBLICATION_WITH_SEPARATE_DOCUMENT_ISSUE_DATE"
+      "publication_date_role": "ASX_ARCHIVE_PUBLICATION_WITH_SEPARATE_DOCUMENT_ISSUE_DATE",
+      "case_alignment_evidence": {
+        "page": 9,
+        "markers": [
+          "On 13 July 2026",
+          "100% Project basis",
+          "19-year mine life"
+        ],
+        "reason": "Same Stage1 July DFS scope reaffirmed in annual report; effective_date is the annual disclosure reaffirmation date, not a new study or geological effective date."
+      },
+      "original_engineering_study_date": "2026-07-13",
+      "effective_date_explanation": "2026-09-30 is the dated reaffirmation disclosure, not a new DFS or geological resource date. Original study 2026-07-13 is separately retained."
     },
     {
       "review_id": "cycle1_wim100_hm_oxides2026",
