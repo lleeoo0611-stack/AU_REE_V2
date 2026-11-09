@@ -7181,7 +7181,9 @@
           "anchor": "Dy2O3",
           "row_label": "Mia"
         }
-      }
+      },
+      "resource_selection_role": "CONTEXT_ONLY",
+      "context_selection_reason": "Mia is a distinct complementary resource, retained as validated evidence but not combined with selected March2026 Blocks1and2 composition. Current one-row projection explicitly labels Blocks1and2 sub-scope."
     },
     {
       "review_id": "splinter_global_202405",
@@ -8444,7 +8446,21 @@
           "anchor": "Tb4O7",
           "row_label": "TOTAL"
         }
-      }
+      },
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "West Cobar Metals",
+              "Salazar Critical Minerals Project",
+              "100%-owned"
+            ]
+          }
+        }
+      ]
     },
     {
       "review_id": "cummins_global_202401",
@@ -8913,7 +8929,21 @@
           "anchor": "COMBINED",
           "row_label": "Total"
         }
-      }
+      },
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RareX Limited",
+              "Cummins Range Rare Earths-",
+              "100%-owned"
+            ]
+          }
+        }
+      ]
     },
     {
       "review_id": "donald_min5532_202512",
@@ -9935,7 +9965,21 @@
           }
         }
       ],
-      "superseded_by_review": "nolans_forecast_clarification202606"
+      "superseded_by_review": "nolans_forecast_clarification202606",
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Arafura Rare Earths Limited",
+              "Nolans",
+              "100%-owned"
+            ]
+          }
+        }
+      ]
     },
     {
       "review_id": "dubbo_ndpr_lom_202507",
@@ -10285,7 +10329,7 @@
             "2026-01-28"
           ]
         ],
-        "prior_remote_archive_sha256": "c26be14347ff90483f0ca8e8996a788c1a7547e41d7192423c5204e365710c38"
+        "prior_remote_archive_sha256": "8fb04ea80b6cc7f62197ae8efb031a1b360ff56944f7cb57aef57ec9a2ebbb18"
       },
       "effective_date": "2025-11-17",
       "effective_date_role": "RESOURCE_EFFECTIVE_DATE",
@@ -12074,7 +12118,21 @@
           "anchor": "La2O3",
           "row_label": "Total Inferred"
         }
-      }
+      },
+      "attributes": [
+        {
+          "column": "開發商",
+          "value": "Barkly Rare Earths Limited",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Barkly Rare Earths Limited",
+              "The Company’s flagship project, the Barkly Project",
+              "focused on the discovery and development"
+            ]
+          }
+        }
+      ]
     },
     {
       "review_id": "nolans_forecast_clarification202606",
@@ -13998,7 +14056,8 @@
         "asset_set": "technical",
         "path": "data/snapshots/628ab4c1e21e32691a4e9f3b7dc8cae04576c52a9846659d3bab571ad9e3047e.html",
         "sha256": "628ab4c1e21e32691a4e9f3b7dc8cae04576c52a9846659d3bab571ad9e3047e",
-        "url": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode=DEV&timeframe=Y&year=2025"
+        "url": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode=DEV&timeframe=Y&year=2025",
+        "prior_remote_archive_sha256": "6bd04f4c492176694d59e268d4144b5c64a977bd0c5adabe6da8a655e6c0bf53"
       },
       "document_issue_date": "2025-09-16",
       "document_issue_evidence": {
@@ -16485,6 +16544,17 @@
               "Asra Minerals Limited"
             ]
           }
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Yttria Rare Earth Elements",
+              "100%-owned"
+            ]
+          }
         }
       ],
       "selected_resource_sections": {
@@ -17972,6 +18042,2969 @@
           }
         }
       ]
+    },
+    {
+      "review_id": "nolans_resource_full15_2019",
+      "source_key": "nolans_dfs2019_asx",
+      "project_id": "AU-1345edd8165c10930e94",
+      "asset_set": "canonical",
+      "path": "data/snapshots/63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb.pdf",
+      "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "url": "https://announcements.asx.com.au/asxpdf/20190207/pdf/442fgrbxqwrxdd.pdf",
+      "publication_date": "2019-02-07",
+      "effective_date": "2017-06-07",
+      "effective_date_role": "RESOURCE_EFFECTIVE_DATE",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Nolans DFS"
+        ]
+      },
+      "date_evidence": {
+        "page": 36,
+        "markers": [
+          "Announced 7 June 2017"
+        ]
+      },
+      "scope_evidence": [
+        {
+          "page": 36,
+          "markers": [
+            "Statement of Mineral Resources for the Nolans Bore Rare Earth Deposit",
+            "1% TREO lower cut-off grade"
+          ]
+        },
+        {
+          "page": 37,
+          "markers": [
+            "Percentage Proportion of TREO in the Mineral Resources"
+          ]
+        }
+      ],
+      "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+      "statement_id": "Nolans-MRE-20170607-total",
+      "selection_reason": "Table11 total resource and explicitly linked Table12 Total oxide proportions; values are reported proportions converted to bulk-ore ppm, not inferred splits or recoverable products.",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "basis": "TREO",
+          "original_token": "56",
+          "value": 56.0,
+          "unit": "Mt",
+          "evidence": {
+            "page": 36,
+            "markers": [
+              "Table 11",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 36,
+            "original_unit": "Mt",
+            "unit_label": "(Mt)",
+            "table_bbox": [
+              129.3300018310547,
+              536.68896484375,
+              320.5149841308594,
+              676.8099975585938
+            ],
+            "table_label": "Table 11",
+            "table_label_bbox": [
+              283.0,
+              537.18896484375,
+              319.5149841308594,
+              549.2899780273438
+            ],
+            "row_bbox": [
+              129.3300018310547,
+              663.408984375,
+              320.5149841308594,
+              675.6099975585937
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              130.3300018310547,
+              663.458984375,
+              152.46299743652344,
+              675.5599975585938
+            ],
+            "column_bbox": [
+              203.39999389648438,
+              536.68896484375,
+              258.3574981689453,
+              676.8099975585938
+            ],
+            "column_label": "Tonnes",
+            "column_label_bbox": [
+              204.39999389648438,
+              579.6690063476562,
+              235.3740234375,
+              591.77001953125
+            ],
+            "unit_bbox": [
+              210.27999877929688,
+              591.6690063476562,
+              229.58099365234375,
+              603.77001953125
+            ],
+            "scope_anchor_bbox": [
+              204.39999389648438,
+              579.6690063476562,
+              235.3740234375,
+              591.77001953125
+            ],
+            "scope_anchor": "Tonnes",
+            "section_id": "p36-579.7-ore_mt"
+          }
+        },
+        {
+          "variable": "grade",
+          "basis": "TREO",
+          "original_token": "2.6",
+          "value": 2.6,
+          "unit": "%",
+          "evidence": {
+            "page": 36,
+            "markers": [
+              "Table 11",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "grade",
+            "basis": "TREO",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 36,
+            "original_unit": "%",
+            "unit_label": "(%)",
+            "table_bbox": [
+              129.3300018310547,
+              536.68896484375,
+              332.98748779296875,
+              676.8099975585938
+            ],
+            "table_label": "Table 11",
+            "table_label_bbox": [
+              283.0,
+              537.18896484375,
+              319.5149841308594,
+              549.2899780273438
+            ],
+            "row_bbox": [
+              129.3300018310547,
+              663.408984375,
+              332.98748779296875,
+              675.6099975585937
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              130.3300018310547,
+              663.458984375,
+              152.46299743652344,
+              675.5599975585938
+            ],
+            "column_bbox": [
+              258.3574981689453,
+              536.68896484375,
+              331.98748779296875,
+              676.8099975585938
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              286.3599853515625,
+              579.6690063476562,
+              309.63897705078125,
+              591.77001953125
+            ],
+            "unit_bbox": [
+              290.55999755859375,
+              591.6690063476562,
+              305.541015625,
+              603.77001953125
+            ],
+            "scope_anchor_bbox": [
+              286.3599853515625,
+              579.6690063476562,
+              309.63897705078125,
+              591.77001953125
+            ],
+            "scope_anchor": "TREO",
+            "section_id": "p36-579.7-grade"
+          }
+        },
+        {
+          "variable": "reported_resource_la_ppm",
+          "basis": "La2O3",
+          "value": 5018.0,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "19.3",
+          "rounding_half_width": 13.0,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "La2O3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_la_ppm",
+            "basis": "La2O3",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              176.65897216796876,
+              537,
+              190.28998718261718
+            ],
+            "row_label": "La2O3",
+            "row_label_bbox": [
+              70.69400024414062,
+              177.25897216796875,
+              93.26799774169922,
+              189.6899871826172
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_ce_ppm",
+          "basis": "CeO2",
+          "value": 12662.0,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "48.7",
+          "rounding_half_width": 13.0,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "CeO2"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_ce_ppm",
+            "basis": "CeO2",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              194.53897705078126,
+              537,
+              208.16999206542968
+            ],
+            "row_label": "CeO2",
+            "row_label_bbox": [
+              70.69400024414062,
+              195.13897705078125,
+              91.46800231933594,
+              207.5699920654297
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_pr_ppm",
+          "basis": "Pr6O11",
+          "value": 1534.0,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "5.9",
+          "rounding_half_width": 13.0,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "Pr6O11"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_pr_ppm",
+            "basis": "Pr6O11",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              212.53897705078126,
+              537,
+              226.16999206542968
+            ],
+            "row_label": "Pr6O11",
+            "row_label_bbox": [
+              70.69400024414062,
+              213.13897705078125,
+              95.90799713134766,
+              225.5699920654297
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_nd_ppm",
+          "basis": "Nd2O3",
+          "value": 5330.0,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "20.5",
+          "rounding_half_width": 13.0,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "Nd2O3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_nd_ppm",
+            "basis": "Nd2O3",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              230.53897705078126,
+              537,
+              244.16999206542968
+            ],
+            "row_label": "Nd2O3",
+            "row_label_bbox": [
+              70.69400024414062,
+              231.13897705078125,
+              96.50800323486328,
+              243.5699920654297
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_sm_ppm",
+          "basis": "Sm2O3",
+          "value": 598.0,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "2.3",
+          "rounding_half_width": 13.0,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "Sm2O3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_sm_ppm",
+            "basis": "Sm2O3",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              248.41898193359376,
+              537,
+              262.0500122070313
+            ],
+            "row_label": "Sm2O3",
+            "row_label_bbox": [
+              70.69400024414062,
+              249.01898193359375,
+              97.10800170898438,
+              261.45001220703125
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_eu_ppm",
+          "basis": "Eu2O3",
+          "value": 104.0,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "0.4",
+          "rounding_half_width": 13.0,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "Eu2O3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_eu_ppm",
+            "basis": "Eu2O3",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              266.4489501953125,
+              537,
+              280.07998046875
+            ],
+            "row_label": "Eu2O3",
+            "row_label_bbox": [
+              70.69400024414062,
+              267.0489501953125,
+              94.10800170898438,
+              279.47998046875
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_gd_ppm",
+          "basis": "Gd2O3",
+          "value": 260.0,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "1.0",
+          "rounding_half_width": 13.0,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "Gd2O3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_gd_ppm",
+            "basis": "Gd2O3",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              284.4489501953125,
+              537,
+              298.07998046875
+            ],
+            "row_label": "Gd2O3",
+            "row_label_bbox": [
+              70.69400024414062,
+              285.0489501953125,
+              95.90800476074219,
+              297.47998046875
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_tb_ppm",
+          "basis": "Tb4O7",
+          "value": 20.8,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "0.08",
+          "rounding_half_width": 1.3,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "Tb4O7"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_tb_ppm",
+            "basis": "Tb4O7",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              302.328955078125,
+              537,
+              315.9599853515625
+            ],
+            "row_label": "Tb4O7",
+            "row_label_bbox": [
+              70.69400024414062,
+              302.928955078125,
+              94.46800231933594,
+              315.3599853515625
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_dy_ppm",
+          "basis": "Dy2O3",
+          "value": 78.0,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "0.3",
+          "rounding_half_width": 13.0,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "Dy2O3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_dy_ppm",
+            "basis": "Dy2O3",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              320.3289855957031,
+              537,
+              333.9599853515625
+            ],
+            "row_label": "Dy2O3",
+            "row_label_bbox": [
+              70.69400024414062,
+              320.9289855957031,
+              95.18800354003906,
+              333.3599853515625
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_ho_ppm",
+          "basis": "Ho2O3",
+          "value": 10.4,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "0.04",
+          "rounding_half_width": 1.3,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "Ho2O3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_ho_ppm",
+            "basis": "Ho2O3",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              338.3289855957031,
+              537,
+              351.9599853515625
+            ],
+            "row_label": "Ho2O3",
+            "row_label_bbox": [
+              70.69400024414062,
+              338.9289855957031,
+              96.14800262451172,
+              351.3599853515625
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_er_ppm",
+          "basis": "Er2O3",
+          "value": 23.4,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "0.09",
+          "rounding_half_width": 1.3,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "Er2O3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_er_ppm",
+            "basis": "Er2O3",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              356.2089904785156,
+              537,
+              369.839990234375
+            ],
+            "row_label": "Er2O3",
+            "row_label_bbox": [
+              70.69400024414062,
+              356.8089904785156,
+              92.18800354003906,
+              369.239990234375
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_tm_ppm",
+          "basis": "Tm2O3",
+          "value": 2.6,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "0.01",
+          "rounding_half_width": 1.3,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "Tm2O3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_tm_ppm",
+            "basis": "Tm2O3",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              374.2089904785156,
+              537,
+              387.839990234375
+            ],
+            "row_label": "Tm2O3",
+            "row_label_bbox": [
+              70.69400024414062,
+              374.8089904785156,
+              96.98799896240234,
+              387.239990234375
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_yb_ppm",
+          "basis": "Yb2O3",
+          "value": 13.0,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "0.05",
+          "rounding_half_width": 1.3,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "Yb2O3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_yb_ppm",
+            "basis": "Yb2O3",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              392.08896484375,
+              537,
+              405.7199951171875
+            ],
+            "row_label": "Yb2O3",
+            "row_label_bbox": [
+              70.69400024414062,
+              392.68896484375,
+              94.70800018310547,
+              405.1199951171875
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_lu_ppm",
+          "basis": "Lu2O3",
+          "value": 1.82,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "0.007",
+          "rounding_half_width": 0.13,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "Lu2O3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_lu_ppm",
+            "basis": "Lu2O3",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              410.08896484375,
+              537,
+              423.7199951171875
+            ],
+            "row_label": "Lu2O3",
+            "row_label_bbox": [
+              70.69400024414062,
+              410.68896484375,
+              93.74800109863281,
+              423.1199951171875
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        },
+        {
+          "variable": "reported_resource_y_ppm",
+          "basis": "Y2O3",
+          "value": 364.0,
+          "unit": "ppm",
+          "original_unit": "%TREO",
+          "original_token": "1.4",
+          "rounding_half_width": 13.0,
+          "evidence": {
+            "page": 37,
+            "markers": [
+              "Table 12",
+              "Y2O3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "resource_orientation": "oxide_rows",
+            "field": "reported_resource_y_ppm",
+            "basis": "Y2O3",
+            "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+            "page": 37,
+            "original_unit": "%TREO",
+            "table_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "table_label": "Table 12",
+            "table_label_bbox": [
+              283.0,
+              125.53900146484375,
+              319.5149841308594,
+              137.63999938964844
+            ],
+            "row_bbox": [
+              65,
+              428.08896484375,
+              537,
+              441.7199951171875
+            ],
+            "row_label": "Y2O3",
+            "row_label_bbox": [
+              70.69400024414062,
+              428.68896484375,
+              89.4280014038086,
+              441.1199951171875
+            ],
+            "column_bbox": [
+              440,
+              117,
+              537,
+              447
+            ],
+            "column_label": "Total",
+            "column_label_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "unit_bbox": [
+              181.3300018310547,
+              140.53900146484375,
+              421.3999938964844,
+              152.63999938964844
+            ],
+            "unit_label": "Percentage Proportion of TREO in the Mineral Resources",
+            "unit_scope_bbox": [
+              65,
+              117,
+              537,
+              447
+            ],
+            "scope_anchor": "Total",
+            "scope_anchor_bbox": [
+              476.9700012207031,
+              159.25897216796875,
+              499.1029968261719,
+              171.35997009277344
+            ],
+            "section_id": "oxide-total"
+          }
+        }
+      ],
+      "selected_resource_sections": {
+        "p36-579.7-ore_mt": {
+          "page": 36,
+          "bbox": [
+            129.3300018310547,
+            536.68896484375,
+            320.5149841308594,
+            676.8099975585938
+          ],
+          "anchor_bbox": [
+            204.39999389648438,
+            579.6690063476562,
+            235.3740234375,
+            591.77001953125
+          ],
+          "anchor": "Tonnes",
+          "row_label": "Total"
+        },
+        "p36-579.7-grade": {
+          "page": 36,
+          "bbox": [
+            129.3300018310547,
+            536.68896484375,
+            332.98748779296875,
+            676.8099975585938
+          ],
+          "anchor_bbox": [
+            286.3599853515625,
+            579.6690063476562,
+            309.63897705078125,
+            591.77001953125
+          ],
+          "anchor": "TREO",
+          "row_label": "Total"
+        },
+        "oxide-total": {
+          "page": 37,
+          "bbox": [
+            65,
+            117,
+            537,
+            447
+          ],
+          "anchor": "Total",
+          "anchor_bbox": [
+            476.9700012207031,
+            159.25897216796875,
+            499.1029968261719,
+            171.35997009277344
+          ],
+          "category_label": "Total"
+        }
+      },
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "7 February 2019",
+          "Nolans DFS Delivers Robust Project Economics"
+        ],
+        "header_title": "Nolans DFS Delivers Robust Project Economics"
+      },
+      "bulk_treo_grade_pct": {
+        "value": 2.6,
+        "original_token": "2.6",
+        "evidence": {
+          "page": 36,
+          "markers": [
+            "Table 11",
+            "Total"
+          ]
+        },
+        "cell_binding": {
+          "mode": "native_cell",
+          "field": "grade",
+          "basis": "TREO",
+          "scope": "Global Nolans Bore mineral resource, 1% TREO lower cut-off, Measured Indicated Inferred Total",
+          "page": 36,
+          "original_unit": "%",
+          "unit_label": "(%)",
+          "table_bbox": [
+            129.3300018310547,
+            536.68896484375,
+            332.98748779296875,
+            676.8099975585938
+          ],
+          "table_label": "Table 11",
+          "table_label_bbox": [
+            283.0,
+            537.18896484375,
+            319.5149841308594,
+            549.2899780273438
+          ],
+          "row_bbox": [
+            129.3300018310547,
+            663.408984375,
+            332.98748779296875,
+            675.6099975585937
+          ],
+          "row_label": "Total",
+          "row_label_bbox": [
+            130.3300018310547,
+            663.458984375,
+            152.46299743652344,
+            675.5599975585938
+          ],
+          "column_bbox": [
+            258.3574981689453,
+            536.68896484375,
+            331.98748779296875,
+            676.8099975585938
+          ],
+          "column_label": "TREO",
+          "column_label_bbox": [
+            286.3599853515625,
+            579.6690063476562,
+            309.63897705078125,
+            591.77001953125
+          ],
+          "unit_bbox": [
+            290.55999755859375,
+            591.6690063476562,
+            305.541015625,
+            603.77001953125
+          ],
+          "scope_anchor_bbox": [
+            286.3599853515625,
+            579.6690063476562,
+            309.63897705078125,
+            591.77001953125
+          ],
+          "scope_anchor": "TREO",
+          "section_id": "p36-579.7-grade"
+        }
+      },
+      "oxide_sum_tolerance_ppm": 123.63,
+      "oxide_sum_tolerance_basis": "Sum of half a displayed unit for each Table12 Total proportion, multiplied by 2.6*100 to bulk ppm (123.63ppm). Shared TREO grade rounding is not added to composition closure tolerance. Reported Total proportions sum100.077%; no renormalization."
+    },
+    {
+      "review_id": "ridley_blocks12_202603",
+      "source_key": "asx_ridley_blocks12_202603",
+      "project_id": "AU-3651cf8448b9227adcf5",
+      "source_sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+      "asset_set": "gap_ridley",
+      "path": "data/snapshots/245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03075245",
+      "publication_date": "2026-03-24",
+      "effective_date": "2026-03-24",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Mount Ridley",
+          "Inferred Mineral Resource"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "24 March 2026"
+        ]
+      },
+      "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+      "statement_id": "ridley_blocks12_202603",
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 4,
+          "markers": [
+            "confined to Blocks 1 and 2",
+            "Mia Prospect"
+          ]
+        },
+        {
+          "page": 6,
+          "markers": [
+            "35,366,009",
+            "87,180,242",
+            "122,546,251"
+          ]
+        },
+        {
+          "page": 24,
+          "markers": [
+            "Block 3 Mia",
+            "168,000,000",
+            "1201"
+          ]
+        },
+        {
+          "page": 53,
+          "markers": [
+            "CeO2",
+            "1.2284"
+          ]
+        }
+      ],
+      "selection_reason": "Explicitly selects newer Blocks1and2 REE sub-scope, not an additive expansion of MiaCentral2024. Uses exact Table1 total tonnes rather than inconsistent rounded headline122.56Mt. Ce excluded because Table3/4Ce2O3 conflicts with conversion/formulaCeO2 onpp22,52,53. Other12oxide grades exact Table3;YandYb excluded after contained-mass QA. No full15closure claimed. Source p24 independently reaffirms Block3 Mia168Mt/1201ppm, so no replacement or whole-project growth claim. Source p22 MREO definition inconsistent; no aggregate MREO imported. QA flags Table3 vs Table4 Y/Yb contained discrepancies beyond display-rounding envelope; quarantine these alongside Ce pending reconciliation.",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 122.546251,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "122,546,251",
+          "original_unit": "t",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 1",
+              "Total",
+              "122,546,251"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table1",
+            "original_unit": "t",
+            "table_bbox": [
+              16,
+              98,
+              580,
+              210
+            ],
+            "table_label_bbox": [
+              52.00000076293945,
+              99.12020568847656,
+              86.8815185546875,
+              111.6116439819336
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              52.00000076293945,
+              99.12020568847656,
+              86.8815185546875,
+              111.6116439819336
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              16,
+              196.48999999999998,
+              580,
+              208.23
+            ],
+            "row_label_bbox": [
+              52.289998626708986,
+              196.64000854492187,
+              73.72512664794922,
+              206.90001525878907
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              207,
+              136.85,
+              263,
+              210
+            ],
+            "column_label_bbox": [
+              215.54000244140624,
+              136.99999389648437,
+              251.53665771484376,
+              147.26000061035157
+            ],
+            "column_label": "Tonnage",
+            "unit_bbox": [
+              228.62000427246093,
+              149.23998413085937,
+              238.62102355957032,
+              159.49999084472657
+            ],
+            "unit_label": "(t)"
+          },
+          "rounding_half_width": 5e-07
+        },
+        {
+          "variable": "grade",
+          "value": 889,
+          "unit": "ppm",
+          "basis": "TREO",
+          "original_token": "889",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 1",
+              "Total",
+              "889"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "grade",
+            "basis": "TREO",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              16,
+              98,
+              580,
+              210
+            ],
+            "table_label_bbox": [
+              52.00000076293945,
+              99.12020568847656,
+              86.8815185546875,
+              111.6116439819336
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              52.00000076293945,
+              99.12020568847656,
+              86.8815185546875,
+              111.6116439819336
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              16,
+              196.48999999999998,
+              580,
+              208.23
+            ],
+            "row_label_bbox": [
+              52.289998626708986,
+              196.64000854492187,
+              73.72512664794922,
+              206.90001525878907
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              269,
+              149.08999999999997,
+              333,
+              210
+            ],
+            "column_label_bbox": [
+              276.0200134277344,
+              149.23998413085937,
+              301.6408752441406,
+              159.49999084472657
+            ],
+            "column_label": "(TREO",
+            "unit_bbox": [
+              303.6400085449219,
+              149.23998413085937,
+              325.9714721679687,
+              159.49999084472657
+            ],
+            "unit_label": "ppm)"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "contained_treo_kt",
+          "value": 108.954,
+          "unit": "kt TREO",
+          "basis": "TREO",
+          "original_token": "108,954",
+          "original_unit": "t",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 2",
+              "Total",
+              "108,954"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "contained_treo_kt",
+            "basis": "TREO",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table2",
+            "original_unit": "t",
+            "table_bbox": [
+              16,
+              228,
+              580,
+              339
+            ],
+            "table_label_bbox": [
+              37.00000076293945,
+              228.96023254394532,
+              71.92159576416016,
+              241.45167846679686
+            ],
+            "table_label": "Table 2",
+            "scope_anchor_bbox": [
+              37.00000076293945,
+              228.96023254394532,
+              71.92159576416016,
+              241.45167846679686
+            ],
+            "scope_anchor": "Table 2",
+            "row_bbox": [
+              16,
+              326.24,
+              580,
+              336.81
+            ],
+            "row_label_bbox": [
+              168.59000549316406,
+              326.3899780273438,
+              190.0251220703125,
+              336.64996948242185
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              279,
+              266.71999999999997,
+              322,
+              339
+            ],
+            "column_label_bbox": [
+              289.339990234375,
+              266.8699890136719,
+              311.8408569335937,
+              277.12998046875
+            ],
+            "column_label": "TREO",
+            "unit_bbox": [
+              295.58001098632815,
+              279.1099792480469,
+              305.5810302734375,
+              289.369970703125
+            ],
+            "unit_label": "(t)"
+          },
+          "rounding_half_width": 0.0005
+        },
+        {
+          "variable": "reported_resource_dy_ppm",
+          "value": 34.9,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "34.9",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 3",
+              "Total",
+              "34.9"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_dy_ppm",
+            "basis": "Dy2O3",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table3",
+            "original_unit": "ppm",
+            "table_bbox": [
+              16,
+              358,
+              580,
+              471
+            ],
+            "table_label_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "table_label": "Table 3",
+            "scope_anchor_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "scope_anchor": "Table 3",
+            "row_bbox": [
+              16,
+              457.18,
+              580,
+              469.76
+            ],
+            "row_label_bbox": [
+              31.050000762939455,
+              457.32998046875,
+              50.37600173950195,
+              466.62998046875
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              99.13999938964844,
+              398.96,
+              127.26200103759766,
+              471
+            ],
+            "column_label_bbox": [
+              101.98999938964843,
+              399.1099792480469,
+              124.41200103759766,
+              408.619970703125
+            ],
+            "column_label": "Dy2O3",
+            "unit_bbox": [
+              104.51000366210937,
+              413.6499877929688,
+              121.72701110839844,
+              422.9499877929687
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "reported_resource_er_ppm",
+          "value": 20.0,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "original_token": "20.0",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 3",
+              "Total",
+              "20.0"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_er_ppm",
+            "basis": "Er2O3",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table3",
+            "original_unit": "ppm",
+            "table_bbox": [
+              16,
+              358,
+              580,
+              471
+            ],
+            "table_label_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "table_label": "Table 3",
+            "scope_anchor_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "scope_anchor": "Table 3",
+            "row_bbox": [
+              16,
+              457.18,
+              580,
+              469.76
+            ],
+            "row_label_bbox": [
+              31.050000762939455,
+              457.32998046875,
+              50.37600173950195,
+              466.62998046875
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              132.02000427246094,
+              398.96,
+              157.8620147705078,
+              471
+            ],
+            "column_label_bbox": [
+              134.87000427246093,
+              399.1099792480469,
+              155.01201477050782,
+              408.619970703125
+            ],
+            "column_label": "Er2O3",
+            "unit_bbox": [
+              136.18999633789062,
+              413.6499877929688,
+              153.4070037841797,
+              422.9499877929687
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "reported_resource_eu_ppm",
+          "value": 13.3,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "original_token": "13.3",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 3",
+              "Total",
+              "13.3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_eu_ppm",
+            "basis": "Eu2O3",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table3",
+            "original_unit": "ppm",
+            "table_bbox": [
+              16,
+              358,
+              580,
+              471
+            ],
+            "table_label_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "table_label": "Table 3",
+            "scope_anchor_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "scope_anchor": "Table 3",
+            "row_bbox": [
+              16,
+              457.18,
+              580,
+              469.76
+            ],
+            "row_label_bbox": [
+              31.050000762939455,
+              457.32998046875,
+              50.37600173950195,
+              466.62998046875
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              162.6199951171875,
+              398.96,
+              190.052001953125,
+              471
+            ],
+            "column_label_bbox": [
+              165.4699951171875,
+              399.1099792480469,
+              187.202001953125,
+              408.619970703125
+            ],
+            "column_label": "Eu2O3",
+            "unit_bbox": [
+              167.62999877929687,
+              413.6499877929688,
+              184.84700622558594,
+              422.9499877929687
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "reported_resource_gd_ppm",
+          "value": 38.4,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "original_token": "38.4",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 3",
+              "Total",
+              "38.4"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_gd_ppm",
+            "basis": "Gd2O3",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table3",
+            "original_unit": "ppm",
+            "table_bbox": [
+              16,
+              358,
+              580,
+              471
+            ],
+            "table_label_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "table_label": "Table 3",
+            "scope_anchor_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "scope_anchor": "Table 3",
+            "row_bbox": [
+              16,
+              457.18,
+              580,
+              469.76
+            ],
+            "row_label_bbox": [
+              31.050000762939455,
+              457.32998046875,
+              50.37600173950195,
+              466.62998046875
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              194.92999267578125,
+              398.96,
+              223.65200805664062,
+              471
+            ],
+            "column_label_bbox": [
+              197.77999267578124,
+              399.1099792480469,
+              220.80200805664063,
+              408.619970703125
+            ],
+            "column_label": "Gd2O3",
+            "unit_bbox": [
+              200.65999755859374,
+              413.6499877929688,
+              217.87700500488282,
+              422.9499877929687
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "reported_resource_ho_ppm",
+          "value": 7.2,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "original_token": "7.2",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 3",
+              "Total",
+              "7.2"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_ho_ppm",
+            "basis": "Ho2O3",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table3",
+            "original_unit": "ppm",
+            "table_bbox": [
+              16,
+              358,
+              580,
+              471
+            ],
+            "table_label_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "table_label": "Table 3",
+            "scope_anchor_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "scope_anchor": "Table 3",
+            "row_bbox": [
+              16,
+              457.18,
+              580,
+              469.76
+            ],
+            "row_label_bbox": [
+              31.050000762939455,
+              457.32998046875,
+              50.37600173950195,
+              466.62998046875
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              228.41000366210938,
+              398.96,
+              257.0120086669922,
+              471
+            ],
+            "column_label_bbox": [
+              231.26000366210937,
+              399.1099792480469,
+              254.1620086669922,
+              408.619970703125
+            ],
+            "column_label": "Ho2O3",
+            "unit_bbox": [
+              234.0199981689453,
+              413.6499877929688,
+              251.23700561523438,
+              422.9499877929687
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "reported_resource_la_ppm",
+          "value": 128.0,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "original_token": "128.0",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 3",
+              "Total",
+              "128.0"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_la_ppm",
+            "basis": "La2O3",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table3",
+            "original_unit": "ppm",
+            "table_bbox": [
+              16,
+              358,
+              580,
+              471
+            ],
+            "table_label_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "table_label": "Table 3",
+            "scope_anchor_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "scope_anchor": "Table 3",
+            "row_bbox": [
+              16,
+              457.18,
+              580,
+              469.76
+            ],
+            "row_label_bbox": [
+              31.050000762939455,
+              457.32998046875,
+              50.37600173950195,
+              466.62998046875
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              263.2099914550781,
+              398.96,
+              289.6519775390625,
+              471
+            ],
+            "column_label_bbox": [
+              266.05999145507815,
+              399.1099792480469,
+              286.8019775390625,
+              408.619970703125
+            ],
+            "column_label": "La2O3",
+            "unit_bbox": [
+              267.7400146484375,
+              413.6499877929688,
+              284.95697631835935,
+              422.9499877929687
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "reported_resource_lu_ppm",
+          "value": 2.6,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "original_token": "2.6",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 3",
+              "Total",
+              "2.6"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_lu_ppm",
+            "basis": "Lu2O3",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table3",
+            "original_unit": "ppm",
+            "table_bbox": [
+              16,
+              358,
+              580,
+              471
+            ],
+            "table_label_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "table_label": "Table 3",
+            "scope_anchor_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "scope_anchor": "Table 3",
+            "row_bbox": [
+              16,
+              457.18,
+              580,
+              469.76
+            ],
+            "row_label_bbox": [
+              31.050000762939455,
+              457.32998046875,
+              50.37600173950195,
+              466.62998046875
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              295.8699951171875,
+              398.96,
+              322.6719970703125,
+              471
+            ],
+            "column_label_bbox": [
+              298.7199951171875,
+              399.1099792480469,
+              319.8219970703125,
+              408.619970703125
+            ],
+            "column_label": "Lu2O3",
+            "unit_bbox": [
+              300.6400085449219,
+              413.6499877929688,
+              317.8569702148437,
+              422.9499877929687
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "reported_resource_nd_ppm",
+          "value": 154.7,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "154.7",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 3",
+              "Total",
+              "154.7"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_nd_ppm",
+            "basis": "Nd2O3",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table3",
+            "original_unit": "ppm",
+            "table_bbox": [
+              16,
+              358,
+              580,
+              471
+            ],
+            "table_label_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "table_label": "Table 3",
+            "scope_anchor_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "scope_anchor": "Table 3",
+            "row_bbox": [
+              16,
+              457.18,
+              580,
+              469.76
+            ],
+            "row_label_bbox": [
+              31.050000762939455,
+              457.32998046875,
+              50.37600173950195,
+              466.62998046875
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              327.54998779296875,
+              398.96,
+              356.3919982910156,
+              471
+            ],
+            "column_label_bbox": [
+              330.3999877929688,
+              399.1099792480469,
+              353.5419982910156,
+              408.619970703125
+            ],
+            "column_label": "Nd2O3",
+            "unit_bbox": [
+              333.2799926757813,
+              413.6499877929688,
+              350.4969543457031,
+              422.9499877929687
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "reported_resource_pr_ppm",
+          "value": 37.4,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "37.4",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 3",
+              "Total",
+              "37.4"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_pr_ppm",
+            "basis": "Pr6O11",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table3",
+            "original_unit": "ppm",
+            "table_bbox": [
+              16,
+              358,
+              580,
+              471
+            ],
+            "table_label_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "table_label": "Table 3",
+            "scope_anchor_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "scope_anchor": "Table 3",
+            "row_bbox": [
+              16,
+              457.18,
+              580,
+              469.76
+            ],
+            "row_label_bbox": [
+              31.050000762939455,
+              457.32998046875,
+              50.37600173950195,
+              466.62998046875
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              362.8299865722656,
+              398.96,
+              392.031982421875,
+              471
+            ],
+            "column_label_bbox": [
+              365.67998657226565,
+              399.1099792480469,
+              389.181982421875,
+              408.619970703125
+            ],
+            "column_label": "Pr6O11",
+            "unit_bbox": [
+              368.67998657226565,
+              413.6499877929688,
+              385.8969482421875,
+              422.9499877929687
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "reported_resource_sm_ppm",
+          "value": 36.2,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "original_token": "36.2",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 3",
+              "Total",
+              "36.2"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_sm_ppm",
+            "basis": "Sm2O3",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table3",
+            "original_unit": "ppm",
+            "table_bbox": [
+              16,
+              358,
+              580,
+              471
+            ],
+            "table_label_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "table_label": "Table 3",
+            "scope_anchor_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "scope_anchor": "Table 3",
+            "row_bbox": [
+              16,
+              457.18,
+              580,
+              469.76
+            ],
+            "row_label_bbox": [
+              31.050000762939455,
+              457.32998046875,
+              50.37600173950195,
+              466.62998046875
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              400.1499938964844,
+              398.96,
+              429.86199951171875,
+              471
+            ],
+            "column_label_bbox": [
+              402.9999938964844,
+              399.1099792480469,
+              427.0119995117187,
+              408.619970703125
+            ],
+            "column_label": "Sm2O3",
+            "unit_bbox": [
+              406.360009765625,
+              413.6499877929688,
+              423.57697143554685,
+              422.9499877929687
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "reported_resource_tb_ppm",
+          "value": 5.9,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "5.9",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 3",
+              "Total",
+              "5.9"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tb_ppm",
+            "basis": "Tb4O7",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table3",
+            "original_unit": "ppm",
+            "table_bbox": [
+              16,
+              358,
+              580,
+              471
+            ],
+            "table_label_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "table_label": "Table 3",
+            "scope_anchor_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "scope_anchor": "Table 3",
+            "row_bbox": [
+              16,
+              457.18,
+              580,
+              469.76
+            ],
+            "row_label_bbox": [
+              31.050000762939455,
+              457.32998046875,
+              50.37600173950195,
+              466.62998046875
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              437.739990234375,
+              398.96,
+              465.1419982910156,
+              471
+            ],
+            "column_label_bbox": [
+              440.589990234375,
+              399.1099792480469,
+              462.2919982910156,
+              408.619970703125
+            ],
+            "column_label": "Tb4O7",
+            "unit_bbox": [
+              442.8699890136719,
+              413.6499877929688,
+              460.0869506835937,
+              422.9499877929687
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "reported_resource_tm_ppm",
+          "value": 2.9,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "original_token": "2.9",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 3",
+              "Total",
+              "2.9"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tm_ppm",
+            "basis": "Tm2O3",
+            "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+            "page": 6,
+            "section_id": "table3",
+            "original_unit": "ppm",
+            "table_bbox": [
+              16,
+              358,
+              580,
+              471
+            ],
+            "table_label_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "table_label": "Table 3",
+            "scope_anchor_bbox": [
+              31.240000534057618,
+              358.71021728515626,
+              66.16160125732422,
+              371.20167846679686
+            ],
+            "scope_anchor": "Table 3",
+            "row_bbox": [
+              16,
+              457.18,
+              580,
+              469.76
+            ],
+            "row_label_bbox": [
+              31.050000762939455,
+              457.32998046875,
+              50.37600173950195,
+              466.62998046875
+            ],
+            "row_label": "Total",
+            "column_bbox": [
+              473.260009765625,
+              398.96,
+              503.1820068359375,
+              471
+            ],
+            "column_label_bbox": [
+              476.110009765625,
+              399.1099792480469,
+              500.3320068359375,
+              408.619970703125
+            ],
+            "column_label": "Tm2O3",
+            "unit_bbox": [
+              479.589990234375,
+              413.6499877929688,
+              496.80695190429685,
+              422.9499877929687
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.05
+        }
+      ],
+      "selected_resource_sections": {
+        "table1": {
+          "page": 6,
+          "bbox": [
+            16,
+            98,
+            580,
+            210
+          ],
+          "anchor_bbox": [
+            52.00000076293945,
+            99.12020568847656,
+            86.8815185546875,
+            111.6116439819336
+          ],
+          "anchor": "Table 1",
+          "row_label": "Total"
+        },
+        "table2": {
+          "page": 6,
+          "bbox": [
+            16,
+            228,
+            580,
+            339
+          ],
+          "anchor_bbox": [
+            37.00000076293945,
+            228.96023254394532,
+            71.92159576416016,
+            241.45167846679686
+          ],
+          "anchor": "Table 2",
+          "row_label": "Total"
+        },
+        "table3": {
+          "page": 6,
+          "bbox": [
+            16,
+            358,
+            580,
+            471
+          ],
+          "anchor_bbox": [
+            31.240000534057618,
+            358.71021728515626,
+            66.16160125732422,
+            371.20167846679686
+          ],
+          "anchor": "Table 3",
+          "row_label": "Total"
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "TABLE3_TABLE4_LABEL_Ce2O3_CONFLICTS_WITH_CeO2_FORMULA_AND_1.2284_CONVERSION;NO_SILENT_STOICHIOMETRY_CORRECTION",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Ce2O3",
+              "168.7",
+              "20,677"
+            ]
+          },
+          "context_evidence": [
+            {
+              "page": 53,
+              "markers": [
+                "CeO2",
+                "1.2284"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Y2O3",
+              "222.6",
+              "27,265",
+              "122,546,251"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "TABLE3_GRADE_16.2PPM_PREDICTS_1985.2492662T_VS_TABLE4_2010T;DELTA24.751T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Yb2O3",
+              "16.2",
+              "2,010",
+              "122,546,251"
+            ]
+          }
+        }
+      ],
+      "summary_resource_scope_label": "Blocks 1 and 2",
+      "rounding_basis": "Half a displayed unit: tonnes±0.5t converted toMt, TREO grade±0.5ppm, containedTREO±0.5t converted tokt, individual oxide grade±0.05ppm."
     },
     {
       "review_id": "r4_deep_leads_mre2024",
@@ -19641,1907 +22674,6 @@
           }
         }
       ]
-    },
-    {
-      "review_id": "r4_nolans_resource_composition2019",
-      "project_id": "AU-1345edd8165c10930e94",
-      "source_key": "nolans_dfs2019_asx",
-      "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
-      "asset_set": "canonical",
-      "path": "data/snapshots/63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb.pdf",
-      "url": "https://announcements.asx.com.au/asxpdf/20190207/pdf/442fgrbxqwrxdd.pdf",
-      "publication_date": "2019-02-07",
-      "effective_date": "2017-06-07",
-      "effective_date_role": "RESOURCE_EFFECTIVE_DATE",
-      "date_precision": "DAY",
-      "identity_evidence": {
-        "page": 1,
-        "markers": [
-          "Nolans"
-        ]
-      },
-      "date_evidence": {
-        "page": 36,
-        "markers": [
-          "7 June 2017"
-        ]
-      },
-      "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-      "statement_id": "r4_nolans_resource_composition2019",
-      "observations": [
-        {
-          "variable": "ore_mt",
-          "basis": "TREO",
-          "original_token": "56",
-          "value": 56.0,
-          "unit": "Mt",
-          "evidence": {
-            "page": 36,
-            "markers": [
-              "Table 11",
-              "Total"
-            ],
-            "render_sha256": "2e1a4f91e06220be9f203d8ac4253efaa2d0971775d0da9846f4a65c87fcaa93"
-          },
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "ore_mt",
-            "basis": "TREO",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 36,
-            "original_unit": "Mt",
-            "table_bbox": [
-              96,
-              533,
-              503,
-              677
-            ],
-            "table_label": "Table 11",
-            "table_label_bbox": [
-              283.12,
-              537.30896484375,
-              319.39498413085937,
-              549.1699780273437
-            ],
-            "row_bbox": [
-              96,
-              663.508984375,
-              503,
-              675.5099975585938
-            ],
-            "row_label": "Total",
-            "row_label_bbox": [
-              130.4500018310547,
-              663.578984375,
-              152.34299743652343,
-              675.4399975585937
-            ],
-            "column_bbox": [
-              204.34999389648436,
-              533,
-              235.4240234375,
-              677
-            ],
-            "column_label": "Tonnes",
-            "column_label_bbox": [
-              204.51999389648438,
-              579.7890063476563,
-              235.2540234375,
-              591.65001953125
-            ],
-            "unit_bbox": [
-              210.39999877929688,
-              591.7890063476563,
-              229.46099365234375,
-              603.65001953125
-            ],
-            "unit_label": "(Mt)",
-            "scope_anchor": "Tonnes",
-            "scope_anchor_bbox": [
-              204.51999389648438,
-              579.7890063476563,
-              235.2540234375,
-              591.65001953125
-            ],
-            "section_id": "36-ore_mt"
-          }
-        },
-        {
-          "variable": "grade",
-          "basis": "TREO",
-          "original_token": "2.6",
-          "value": 2.6,
-          "unit": "%",
-          "evidence": {
-            "page": 36,
-            "markers": [
-              "Table 11",
-              "Total"
-            ],
-            "render_sha256": "2e1a4f91e06220be9f203d8ac4253efaa2d0971775d0da9846f4a65c87fcaa93"
-          },
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "grade",
-            "basis": "TREO",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 36,
-            "original_unit": "%",
-            "table_bbox": [
-              96,
-              533,
-              503,
-              677
-            ],
-            "table_label": "Table 11",
-            "table_label_bbox": [
-              283.12,
-              537.30896484375,
-              319.39498413085937,
-              549.1699780273437
-            ],
-            "row_bbox": [
-              96,
-              663.508984375,
-              503,
-              675.5099975585938
-            ],
-            "row_label": "Total",
-            "row_label_bbox": [
-              130.4500018310547,
-              663.578984375,
-              152.34299743652343,
-              675.4399975585937
-            ],
-            "column_bbox": [
-              286.3099853515625,
-              533,
-              309.68897705078126,
-              677
-            ],
-            "column_label": "TREO",
-            "column_label_bbox": [
-              286.4799853515625,
-              579.7890063476563,
-              309.51897705078125,
-              591.65001953125
-            ],
-            "unit_bbox": [
-              290.67999755859375,
-              591.7890063476563,
-              305.421015625,
-              603.65001953125
-            ],
-            "unit_label": "(%)",
-            "scope_anchor": "TREO",
-            "scope_anchor_bbox": [
-              286.4799853515625,
-              579.7890063476563,
-              309.51897705078125,
-              591.65001953125
-            ],
-            "section_id": "36-grade"
-          }
-        },
-        {
-          "variable": "reported_resource_la_ppm",
-          "basis": "La2O3",
-          "original_token": "19.3",
-          "value": 5018.0,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_la_ppm",
-            "basis": "La2O3",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              177.30897216796876,
-              540,
-              189.63998718261718
-            ],
-            "row_label": "La2O3",
-            "row_label_bbox": [
-              70.81400024414063,
-              177.37897216796875,
-              93.14799774169921,
-              189.56998718261718
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_la_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_ce_ppm",
-          "basis": "CeO2",
-          "original_token": "48.7",
-          "value": 12662.0,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_ce_ppm",
-            "basis": "CeO2",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              195.18897705078126,
-              540,
-              207.51999206542968
-            ],
-            "row_label": "CeO2",
-            "row_label_bbox": [
-              70.81400024414063,
-              195.25897705078125,
-              91.34800231933593,
-              207.44999206542968
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_ce_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_pr_ppm",
-          "basis": "Pr6O11",
-          "original_token": "5.9",
-          "value": 1534.0,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_pr_ppm",
-            "basis": "Pr6O11",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              213.18897705078126,
-              540,
-              225.51999206542968
-            ],
-            "row_label": "Pr6O11",
-            "row_label_bbox": [
-              70.81400024414063,
-              213.25897705078125,
-              95.78799713134765,
-              225.44999206542968
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_pr_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_nd_ppm",
-          "basis": "Nd2O3",
-          "original_token": "20.5",
-          "value": 5330.0,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_nd_ppm",
-            "basis": "Nd2O3",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              231.18897705078126,
-              540,
-              243.51999206542968
-            ],
-            "row_label": "Nd2O3",
-            "row_label_bbox": [
-              70.81400024414063,
-              231.25897705078125,
-              96.38800323486328,
-              243.44999206542968
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_nd_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_sm_ppm",
-          "basis": "Sm2O3",
-          "original_token": "2.3",
-          "value": 598.0,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_sm_ppm",
-            "basis": "Sm2O3",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              249.06898193359376,
-              540,
-              261.40001220703124
-            ],
-            "row_label": "Sm2O3",
-            "row_label_bbox": [
-              70.81400024414063,
-              249.13898193359375,
-              96.98800170898437,
-              261.33001220703125
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_sm_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_eu_ppm",
-          "basis": "Eu2O3",
-          "original_token": "0.4",
-          "value": 104.0,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_eu_ppm",
-            "basis": "Eu2O3",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              267.0989501953125,
-              540,
-              279.42998046875
-            ],
-            "row_label": "Eu2O3",
-            "row_label_bbox": [
-              70.81400024414063,
-              267.1689501953125,
-              93.98800170898437,
-              279.35998046875
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_eu_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_gd_ppm",
-          "basis": "Gd2O3",
-          "original_token": "1.0",
-          "value": 260.0,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_gd_ppm",
-            "basis": "Gd2O3",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              285.0989501953125,
-              540,
-              297.42998046875
-            ],
-            "row_label": "Gd2O3",
-            "row_label_bbox": [
-              70.81400024414063,
-              285.1689501953125,
-              95.78800476074218,
-              297.35998046875
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_gd_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_tb_ppm",
-          "basis": "Tb4O7",
-          "original_token": "0.08",
-          "value": 20.8,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_tb_ppm",
-            "basis": "Tb4O7",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              302.978955078125,
-              540,
-              315.3099853515625
-            ],
-            "row_label": "Tb4O7",
-            "row_label_bbox": [
-              70.81400024414063,
-              303.048955078125,
-              94.34800231933593,
-              315.2399853515625
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_tb_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_dy_ppm",
-          "basis": "Dy2O3",
-          "original_token": "0.3",
-          "value": 78.0,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_dy_ppm",
-            "basis": "Dy2O3",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              320.97898559570314,
-              540,
-              333.3099853515625
-            ],
-            "row_label": "Dy2O3",
-            "row_label_bbox": [
-              70.81400024414063,
-              321.04898559570313,
-              95.06800354003906,
-              333.2399853515625
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_dy_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_ho_ppm",
-          "basis": "Ho2O3",
-          "original_token": "0.04",
-          "value": 10.4,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_ho_ppm",
-            "basis": "Ho2O3",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              338.97898559570314,
-              540,
-              351.3099853515625
-            ],
-            "row_label": "Ho2O3",
-            "row_label_bbox": [
-              70.81400024414063,
-              339.04898559570313,
-              96.02800262451171,
-              351.2399853515625
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_ho_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_er_ppm",
-          "basis": "Er2O3",
-          "original_token": "0.09",
-          "value": 23.4,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_er_ppm",
-            "basis": "Er2O3",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              356.85899047851564,
-              540,
-              369.189990234375
-            ],
-            "row_label": "Er2O3",
-            "row_label_bbox": [
-              70.81400024414063,
-              356.92899047851563,
-              92.06800354003906,
-              369.119990234375
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_er_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_tm_ppm",
-          "basis": "Tm2O3",
-          "original_token": "0.01",
-          "value": 2.6,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_tm_ppm",
-            "basis": "Tm2O3",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              374.85899047851564,
-              540,
-              387.189990234375
-            ],
-            "row_label": "Tm2O3",
-            "row_label_bbox": [
-              70.81400024414063,
-              374.92899047851563,
-              96.86799896240234,
-              387.119990234375
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_tm_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_yb_ppm",
-          "basis": "Yb2O3",
-          "original_token": "0.05",
-          "value": 13.0,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_yb_ppm",
-            "basis": "Yb2O3",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              392.73896484375,
-              540,
-              405.0699951171875
-            ],
-            "row_label": "Yb2O3",
-            "row_label_bbox": [
-              70.81400024414063,
-              392.80896484375,
-              94.58800018310546,
-              404.9999951171875
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_yb_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_lu_ppm",
-          "basis": "Lu2O3",
-          "original_token": "0.007",
-          "value": 1.82,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_lu_ppm",
-            "basis": "Lu2O3",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              410.73896484375,
-              540,
-              423.0699951171875
-            ],
-            "row_label": "Lu2O3",
-            "row_label_bbox": [
-              70.81400024414063,
-              410.80896484375,
-              93.62800109863281,
-              422.9999951171875
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_lu_ppm"
-          }
-        },
-        {
-          "variable": "reported_resource_y_ppm",
-          "basis": "Y2O3",
-          "original_token": "1.4",
-          "value": 364.0,
-          "unit": "ppm",
-          "evidence": {
-            "page": 37,
-            "markers": [
-              "Percentage Proportion of TREO in the Mineral Resources",
-              "Total"
-            ],
-            "render_sha256": "1fcc6e4156a650a5d77c385e3157d88fffe668033651341bf5ba39234f517a1d"
-          },
-          "original_unit": "%TREO",
-          "grade_input": "MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW",
-          "cell_binding": {
-            "mode": "native_cell",
-            "field": "reported_resource_y_ppm",
-            "basis": "Y2O3",
-            "scope": "Nolans global2017Measured+Indicated+Inferred56Mt2.6pctTREO at1pctcutoff;2019DFS Table11sameMRE andTable12Total resource oxide percentages;notreserve,product orcategorysubsets",
-            "page": 37,
-            "original_unit": "%TREO",
-            "resource_orientation": "oxide_rows",
-            "table_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "table_label": "Table 12",
-            "table_label_bbox": [
-              283.12,
-              125.65900146484375,
-              319.39498413085937,
-              137.51999938964843
-            ],
-            "row_bbox": [
-              65,
-              428.73896484375,
-              540,
-              441.0699951171875
-            ],
-            "row_label": "Y2O3",
-            "row_label_bbox": [
-              70.81400024414063,
-              428.80896484375,
-              89.30800140380859,
-              440.9999951171875
-            ],
-            "column_bbox": [
-              465,
-              123,
-              515,
-              448
-            ],
-            "column_label": "Total",
-            "column_label_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "unit_scope_bbox": [
-              65,
-              123,
-              540,
-              448
-            ],
-            "unit_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              229.0860089111328,
-              152.51999938964843
-            ],
-            "unit_label": "Percentage",
-            "scope_anchor": "Total",
-            "scope_anchor_bbox": [
-              477.09000122070313,
-              159.37897216796875,
-              498.98299682617187,
-              171.23997009277343
-            ],
-            "metric_context": "Percentage Proportion of TREO in the Mineral Resources",
-            "metric_context_bbox": [
-              181.4500018310547,
-              140.65900146484375,
-              421.27999389648437,
-              152.51999938964843
-            ],
-            "section_id": "37-reported_resource_y_ppm"
-          }
-        }
-      ],
-      "selection_reason": "EXPLICIT_MATCHED_GLOBAL_RESOURCE_TABLE;NO_NESTED_DEPOSIT_AGGREGATION",
-      "resource_categories": [
-        "MEASURED",
-        "INDICATED",
-        "INFERRED"
-      ],
-      "scope_evidence": [
-        {
-          "page": 36,
-          "markers": [
-            "Mineral Resources",
-            "Measured",
-            "Indicated",
-            "Inferred",
-            "Total"
-          ]
-        },
-        {
-          "page": 37,
-          "markers": [
-            "Percentage Proportion of TREO in the Mineral Resources"
-          ]
-        }
-      ],
-      "oxide_sum_tolerance_ppm": 96.5,
-      "publication_header_evidence": {
-        "page": 1,
-        "markers": [
-          "7 February 2019"
-        ],
-        "header_title": "Nolans DFS Delivers Robust Project Economics"
-      },
-      "selected_resource_sections": {
-        "36-ore_mt": {
-          "page": 36,
-          "bbox": [
-            96,
-            533,
-            503,
-            677
-          ],
-          "anchor_bbox": [
-            204.51999389648438,
-            579.7890063476563,
-            235.2540234375,
-            591.65001953125
-          ],
-          "anchor": "Tonnes",
-          "row_label": "Total"
-        },
-        "36-grade": {
-          "page": 36,
-          "bbox": [
-            96,
-            533,
-            503,
-            677
-          ],
-          "anchor_bbox": [
-            286.4799853515625,
-            579.7890063476563,
-            309.51897705078125,
-            591.65001953125
-          ],
-          "anchor": "TREO",
-          "row_label": "Total"
-        },
-        "37-reported_resource_la_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "La2O3"
-        },
-        "37-reported_resource_ce_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "CeO2"
-        },
-        "37-reported_resource_pr_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "Pr6O11"
-        },
-        "37-reported_resource_nd_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "Nd2O3"
-        },
-        "37-reported_resource_sm_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "Sm2O3"
-        },
-        "37-reported_resource_eu_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "Eu2O3"
-        },
-        "37-reported_resource_gd_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "Gd2O3"
-        },
-        "37-reported_resource_tb_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "Tb4O7"
-        },
-        "37-reported_resource_dy_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "Dy2O3"
-        },
-        "37-reported_resource_ho_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "Ho2O3"
-        },
-        "37-reported_resource_er_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "Er2O3"
-        },
-        "37-reported_resource_tm_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "Tm2O3"
-        },
-        "37-reported_resource_yb_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "Yb2O3"
-        },
-        "37-reported_resource_lu_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "Lu2O3"
-        },
-        "37-reported_resource_y_ppm": {
-          "page": 37,
-          "bbox": [
-            65,
-            123,
-            540,
-            448
-          ],
-          "anchor_bbox": [
-            477.09000122070313,
-            159.37897216796875,
-            498.98299682617187,
-            171.23997009277343
-          ],
-          "anchor": "Total",
-          "row_label": "Y2O3"
-        }
-      }
     },
     {
       "review_id": "r4_sandy_identity_and_limits",

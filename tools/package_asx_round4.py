@@ -28,6 +28,13 @@ def package(a):
     shutil.copyfile(baseline/'專案總表.csv',out/'專案總表_補值前.csv')
     for f in Path(a.discovery_audit).glob('*'):
         if f.suffix in ('.csv','.json'):shutil.copyfile(f,out/f.name)
+    if a.parallel_comparison:
+        for name in ['field_changes.csv','field_increment.json']:
+            shutil.copyfile(Path(a.parallel_comparison)/name,out/('parallel_'+name))
+    if a.source_consistency:shutil.copyfile(a.source_consistency,out/'source_consistency.csv')
+    if a.candidate_audit:
+        for name in ['candidate_validation.csv','candidate_validation.json']:
+            shutil.copyfile(Path(a.candidate_audit)/name,out/name)
     # Receipts contain metadata and hashes only; raw sources stay local.
     shutil.copyfile(Path(a.source_dir)/'downloads.json',out/'research_downloads.json')
     shutil.copyfile(Path(a.archive_dir)/'archive_discovery.json',out/'supplemental_archive_discovery.json')
@@ -72,7 +79,7 @@ def package(a):
         p=Path(name);s=ET.parse(p).getroot().find('testsuite')
         if s is None or any(int(s.get(k,'0')) for k in ['failures','errors']):raise ValueError('ROUND4_TEST_FAILURE')
         tests.append(dict(report=p.name,sha256=filehash(p),tests_including_subtests=int(s.get('tests','0')),failures=int(s.get('failures','0')),errors=int(s.get('errors','0')),skipped=int(s.get('skipped','0')),seconds=float(s.get('time','0'))))
-    validation=dict(baseline_commit='b1625cf3f8f10155eec76f6f0ca5905251a7362b',iteration=4,cutoff=summary['cutoff'],
+    validation=dict(baseline_commit='b1625cf3f8f10155eec76f6f0ca5905251a7362b',parallel_baseline_commit='bf581820d176f732071a1463a0797a2d6301e93b',iteration=6,research_round=4,cutoff=summary['cutoff'],
         database_sha256=filehash(database),database_modified=False,review_ledger_sha256=filehash(ledger),discovery_ledger_sha256=filehash(discovery),
         current_integrity=report,increment=increment,coverage=metrics,
         acquisition=dict(urls=len(downloads),status_counts=dict(Counter(r['status'] for r in downloads)),
@@ -95,5 +102,6 @@ def _numeric(value):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for key in ['baseline','updated','repeat','ledger','discovery-ledger','discovery-audit','database','source-dir','archive-dir','out']:p.add_argument('--'+key,required=True)
+    p.add_argument('--parallel-comparison');p.add_argument('--source-consistency');p.add_argument('--candidate-audit')
     p.add_argument('--test-report',action='append',required=True)
     print(json.dumps(package(p.parse_args()),ensure_ascii=False,indent=2))

@@ -1,23 +1,17 @@
 # Current ASX coverage review
 
-Iteration 3: remaining-991 gap expansion, integrating source-cell hardening from `20d8ad2` and parallel Redlings work from `f8975a0`, with the third acquisition/review round based on `7ca6047`.
+Iteration 6. Integrates parallel commits `9b85c84` and `bf58182` with the fourth acquisition/research round requested against the 923-gap baseline `b1625cf`.
 
-- Reconciled the 33-review v2 ledger, retaining the existing 25 reviewed sources and adding native source-cell bindings for 44 expanded resource observations plus the annual-product calculation inputs.
-- Filled 68 blanks relative to the requested 991-gap baseline (58 numeric); 25 Redlings fills were already present in parallel commit `f8975a0`, so 43 are additional to that 750-filled version. Overall, updated 12 existing values/source labels, and withdrew none. The unchanged 33 × 52 cohort now contains 793 filled cells and 923 blanks.
-- Fixed scientific subset: 276 / 825 cells, up from 230 / 825 across the same 25 columns. This denominator excludes identity and metadata.
-- Preserved current-only provenance: every filled cell has exactly one matching source entry, and every blank has a diagnostic.
-- Seven priority resource gaps were reviewed. Fingerboards is filled from a clearly labelled government catalogue, without claiming independent issuer-JORC verification; six remain withheld for documented scope/basis/conflict/source gaps.
-- Kennedy and Redlings add complete 15-oxide resource sets. Yttria adds four individual magnet oxides. Donald adds annual contained TREO/NdPr calculated from one product row with matched mass, grade, oxide fractions and annual units.
-- Added a repeatable current-only integrity audit: `tools/audit_summary_iteration.py`.
-- Six additional ASX original PDFs were acquired (410 pages), all six readable. Eight renamed-issuer/year archive pages were parsed; four contain zero dated links, which does not establish historical absence.
-- The live Barkly index changed bytes again during integration; its refreshed capture is bound explicitly and the same announcement URL/date relationship passes the retained archive check.
+- Original 33 groups: 37 blanks filled, 886 remaining; 17 existing cells change with the explicit Ridley Blocks 1/2 scope. No values are withdrawn.
+- Four documentary research-project extensions: Deep Leads–Rubble Mound–Wind Break, Sandy Mitchell, Avonbank and Copi. Their 70 filled cells and 138 blanks are counted separately. Canonical SQLite identities and relations remain unchanged.
+- Expanded table: 37 × 52, 900 filled and 1,024 unknown. Scientific subset: original groups 302/825, new groups 22/100, expanded 324/925.
+- Relative to parallel `bf58182`, one additional existing-group fill: Goschen annual NdPr oxide 990 tpa, with the issuer's exact annual row and cross-page oxide-basis definition. The four new rows are additional.
+- Deduplicated the parallel Nolans full oxide suite, retaining its resource-grade input binding. Retained Ridley Blocks 1/2, the context-only Mia review and Ce/Y/Yb quarantine. No scope addition or geological downgrade is inferred.
+- The original six paired-resource gaps remain unknown for documented fraction, overlap, source-category or numerical-conflict reasons. New Sandy Mitchell/Avonbank/Copi resource numbers also remain withheld.
+- Reviewed 29 names: four admitted, 16 candidates, four parent/child scopes, four existing projects, one processing facility. Published all 129 frozen PROJECT_CANDIDATE records as a queue; those are not counts of independent projects.
+- Publisher-labelled March 2026 publication month takes precedence over the February edition in the Austrade catalogue. Month intervals remain explicit; month-end dates are ordering bounds.
+- Nine readable PDF captures from ten PDF URLs (668 document pages); eight of eight ASX URLs succeeded. Captured HTML shells do not themselves verify substantive content. Nine archive pages yielded 459 distinct dated links, not 459 downloaded documents.
 
-Image-cell transcripts remain visually reviewed, not independent OCR. Source contracts still require scientific review; deterministic checks do not prove arbitrary scope choices. No R/MCDA results are claimed.
+Final related regressions: 255 passed plus 27 subtests. Focused tests: 114 passed plus 19 subtests; overlapping, not additive. All four CSV exports replay byte-for-byte. Every filled cell has exactly one current provenance entry, every blank a diagnostic. Original SQLite hash is unchanged. No full historical rebuild, R/MCDA run, independent C1 approval or remote-CI success is claimed.
 
-This directory holds the latest output only. Subsequent iterations replace its contents; this change does not rewrite Git history or duplicate older result bundles. Source PDFs, full-page renders and SQLite are excluded from the current publication.
-
-Run `python tools/audit_summary_iteration.py --results results/asx-current --out work/current-audit.json` to verify the publication's cell/provenance/missing-data contract and exact output hashes.
-
-Verification and exact test counts are in `validation.json`; these are targeted related regressions, not a new full historical rebuild or remote-CI claim. Repeated exports are byte-identical across all four CSVs, and the source database hash is unchanged.
-
-Details and gap dispositions: [third-round research report](../../docs/asx-gap-round3.md), [per-source search reviews](../asx-gap-round3-2026-11-10/research_gap_reviews.csv), and [field changes](../asx-gap-round3-2026-11-10/field_changes.csv).
+Details: [research report](../../docs/asx-gap-round4.md), [cohort coverage](../asx-gap-round4-2026-11-10/cohort_coverage.csv), [discovery reviews](../asx-gap-round4-2026-11-10/discovery_reviews.csv), [gap reasons](missing_fields.csv). Prior result bundles and Git history are preserved. Raw PDFs, page text/renders and SQLite are excluded from publication.

@@ -33,16 +33,6 @@ def catalogue_month_proof(doc,pub,content,role='EDITION_MONTH'):
     else:raise ValueError('REVIEW_PUBLICATION_MONTH_ROLE_REQUIRED')
 
 
-def resource_share_factor(review,value):
-    """Convert an oxide's explicitly reported %TREO using this reviewed resource grade."""
-    if value['basis'] not in ELEMENTS or value['unit']!='ppm':raise ValueError('REVIEW_RESOURCE_SHARE_BASIS')
-    grades=[o for o in review['observations'] if o['variable']=='grade' and o['basis']=='TREO']
-    if len(grades)!=1 or value.get('grade_input')!='MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW':
-        raise ValueError('REVIEW_RESOURCE_SHARE_MATCHED_GRADE_REQUIRED')
-    grade=grades[0]
-    if grade['unit'] not in ('%','ppm'):raise ValueError('REVIEW_RESOURCE_SHARE_GRADE_UNIT')
-    return grade['value']*(100 if grade['unit']=='%' else .01)
-
 def annual_product_derivation(derivation,value,annual_page,evidence):
     """Only same-table, explicitly annual, oxide-based product conversions."""
     from .technical_tables import number_token
@@ -197,6 +187,19 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     raise ValueError('REVIEW_HM_BASIS_EVIDENCE_REQUIRED')
                 from .source_cells import validate_cell
                 validate_cell(doc,hm.get('cell_binding'),'bulk_hm_percent',hm['original_token'],'%',review['scope'],selected_sections=review.get('selected_resource_sections'))
+            treo_grade=review.get('bulk_treo_grade_pct')
+            if treo_grade:
+                content=evidence(treo_grade['evidence'])
+                from .technical_tables import number_token
+                parsed=number_token(treo_grade['original_token'])
+                if not parsed or parsed['value']!=treo_grade['value'] or not 0<treo_grade['value']<=100:
+                    raise ValueError('REVIEW_TREO_GRADE_TOKEN_MISMATCH')
+                matching=[v for v in review.get('observations',[]) if v['variable']=='grade' and
+                    v['basis']=='TREO' and v['unit']=='%' and v['value']==treo_grade['value'] and
+                    v.get('cell_binding')==treo_grade.get('cell_binding')]
+                if len(matching)!=1:raise ValueError('REVIEW_TREO_FACTOR_REQUIRES_SELECTED_RESOURCE_GRADE')
+                from .source_cells import validate_cell
+                validate_cell(doc,treo_grade.get('cell_binding'),'grade',treo_grade['original_token'],'%',review['scope'],selected_sections=review.get('selected_resource_sections'))
             rows=[]
             for value in review.get('observations',[]):
                 if not isinstance(value['value'],(int,float)) or isinstance(value['value'],bool) or not math.isfinite(value['value']) or value['value']<0:
@@ -216,8 +219,9 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     if not token_value or token_value['value'] is None or not 0<=token_value['value']<=100:raise ValueError('REVIEW_HM_PERCENT_OUT_OF_RANGE')
                     factor=hm['value']/100 if variable=='grade' and unit=='%' else hm['value']*100 if basis in ELEMENTS and unit=='ppm' else None
                 if original_unit=='%TREO':
-                    if not token_value or not 0<=token_value['value']<=100:raise ValueError('REVIEW_RESOURCE_SHARE_RANGE')
-                    factor=resource_share_factor(review,value)
+                    if not treo_grade:raise ValueError('REVIEW_TREO_NORMALIZATION_REQUIRES_SELECTED_GRADE')
+                    if not token_value or token_value['value'] is None or not 0<=token_value['value']<=100:raise ValueError('REVIEW_TREO_PROPORTION_OUT_OF_RANGE')
+                    factor=treo_grade['value']*100 if basis in ELEMENTS and unit=='ppm' else None
                 if not token_value or token_value['value'] is None or factor is None or not math.isclose(token_value['value']*factor,value['value'],rel_tol=1e-12,abs_tol=1e-10):
                     raise ValueError('REVIEW_ORIGINAL_TOKEN_UNIT_TRANSFORM_MISMATCH')
                 if variable=='ore_mt' and (unit!='Mt' or basis!='TREO' or value['value']<=0):raise ValueError('REVIEW_ORE_UNIT_OR_BASIS')
@@ -243,6 +247,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     original_unit=original_unit,bulk_hm_percent=hm,
                     grade_input=value.get('grade_input'),
                     normalization='RESOURCE_TREO_GRADE_X_REPORTED_OXIDE_PERCENT_OF_TREO' if original_unit=='%TREO' else None,
+                    **({'bulk_treo_grade_pct':treo_grade,'basis_transform':'TREO_PROPORTION_TO_BULK_PPM'} if original_unit=='%TREO' else {}),
                     material_basis='RESOURCE_ORE_GRADE_OXIDE_PPM' if basis in ELEMENTS else 'RESOURCE_BULK_ORE',
                     review_method=cell_method)
                 row=dict(obs_id=digest([pid,sha,raw]),entity_id=pid,variable=variable,value=value['value'],unit=unit,basis=basis,
@@ -274,16 +279,21 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                         basis='PrNdDyTb_OXIDES_OVER_TREO',transform='SUM_FOUR_RESOURCE_OXIDE_PPM_DIVIDED_BY_MATCHED_TREO_PPM')
                     rows.append(dict(rows[0],obs_id=digest([pid,sha,raw]),variable='magnet_reo_share_pct',value=pct,unit='%',
                         basis='PrNdDyTb_OXIDES_OVER_TREO',raw=canonical(raw)))
-                observations.setdefault(pid,[]).extend(rows)
-                contract=(sha,review['scope'],review['statement_id'],effective)
-                if pid in resource_contracts and resource_contracts[pid]!=contract:raise ValueError('REVIEW_MULTIPLE_PREFERRED_RESOURCE_SOURCES')
-                resource_contracts[pid]=contract
-                if not review.get('selection_reason'):raise ValueError('REVIEW_RESOURCE_SELECTION_REASON_REQUIRED')
-                preferences[pid]=sha
-                label=review.get('summary_resource_scope_label')
-                if label:
-                    if normalized(label) not in scope_content:raise ValueError('REVIEW_SUMMARY_SCOPE_LABEL_NOT_IN_SOURCE')
-                    resource_labels[pid]=dict(label=label,source_sha256=sha,scope=review['scope'])
+                selection_role=review.get('resource_selection_role','PREFERRED')
+                if selection_role not in ('PREFERRED','CONTEXT_ONLY'):raise ValueError('REVIEW_RESOURCE_SELECTION_ROLE_INVALID')
+                if selection_role=='CONTEXT_ONLY' and not review.get('context_selection_reason'):
+                    raise ValueError('REVIEW_CONTEXT_SELECTION_REASON_REQUIRED')
+                if selection_role=='PREFERRED':
+                    observations.setdefault(pid,[]).extend(rows)
+                    contract=(sha,review['scope'],review['statement_id'],effective)
+                    if pid in resource_contracts and resource_contracts[pid]!=contract:raise ValueError('REVIEW_MULTIPLE_PREFERRED_RESOURCE_SOURCES')
+                    resource_contracts[pid]=contract
+                    if not review.get('selection_reason'):raise ValueError('REVIEW_RESOURCE_SELECTION_REASON_REQUIRED')
+                    preferences[pid]=sha
+                    label=review.get('summary_resource_scope_label')
+                    if label:
+                        if normalized(label) not in scope_content:raise ValueError('REVIEW_SUMMARY_SCOPE_LABEL_NOT_IN_SOURCE')
+                        resource_labels[pid]=dict(label=label,source_sha256=sha,scope=review['scope'])
             study=review.get('study');parameter_methods={}
             if study:
                 if study['scale'] not in ('PFS_MODEL','DFS_MODEL','SCOPING_MODEL'):raise ValueError('REVIEW_STUDY_SCALE_NOT_FORECAST')
@@ -346,6 +356,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 effective_date_role=role,date_precision=review['date_precision'])
             receipts.append(dict(review_id=review['review_id'],project_id=pid,source_sha256=sha,status='VALIDATED',scope=review['scope'],
                 review_methods=sorted({json.loads(row['raw'])['review_method'] for row in rows}|set(parameter_methods.values())),
+                resource_selection_role=review.get('resource_selection_role','PREFERRED') if rows else None,
                 new_observations=len(rows),forecast_parameters=len(study['parameters']) if study else 0,
                 effective_date=effective,effective_date_role=role,date_precision=review['date_precision'],
                 effective_date_interval=review.get('effective_date_interval')))

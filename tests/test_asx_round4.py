@@ -1,29 +1,13 @@
 import copy,csv,json,tempfile,unittest
 from pathlib import Path
 import pymupdf
-from au_ree_v2.asx_validation import resource_share_factor,compare_summaries,catalogue_month_proof
+from au_ree_v2.asx_validation import compare_summaries,catalogue_month_proof
 from au_ree_v2.reviewed_discovery import validate_discovery,project_id
 from au_ree_v2.source_cells import validate_cell
 from au_ree_v2.store import filehash
 
 
 class ResourceShareRules(unittest.TestCase):
-    def fixture(self):
-        return dict(observations=[dict(variable='grade',basis='TREO',value=2.6,unit='%')]),dict(basis='Nd2O3',unit='ppm',grade_input='MATCHED_RESOURCE_GRADE_IN_SAME_REVIEW')
-    def test_percent_and_ppm_resource_grade_agree(self):
-        r,v=self.fixture();self.assertEqual(260,resource_share_factor(r,v))
-        r['observations'][0].update(value=26000,unit='ppm');self.assertEqual(260,resource_share_factor(r,v))
-    def test_grade_is_required_and_unique(self):
-        for grades in [[],[dict(variable='grade',basis='TREO',value=2.6,unit='%')]*2]:
-            with self.subTest(grades=grades):
-                r,v=self.fixture();r['observations']=grades
-                with self.assertRaisesRegex(ValueError,'MATCHED_GRADE'):resource_share_factor(r,v)
-    def test_elemental_basis_and_unmatched_denominator_rejected(self):
-        for change in [dict(basis='Nd'),dict(grade_input='OTHER_SOURCE'),dict(unit='%')]:
-            with self.subTest(change=change):
-                r,v=self.fixture();v.update(change)
-                with self.assertRaises(ValueError):resource_share_factor(r,v)
-
     def native_fixture(self):
         d=pymupdf.open();p=d.new_page();p.insert_text((40,30),'Table 12',fontsize=10)
         title='Percentage Proportion of TREO in the Mineral Resources'
@@ -43,7 +27,7 @@ class ResourceShareRules(unittest.TestCase):
     def test_same_number_in_measured_column_is_not_global_total(self):
         d,b,s=self.native_fixture();p=d[0]
         b.update(column_bbox=[320,15,380,120],column_label='Measured',column_label_bbox=list(p.search_for('Measured')[0]))
-        with d,self.assertRaisesRegex(ValueError,'SEMANTICS'):validate_cell(d,b,b['field'],'20.5','%TREO','global total',selected_sections=s)
+        with d,self.assertRaisesRegex(ValueError,'TOTAL_COLUMN|SEMANTICS'):validate_cell(d,b,b['field'],'20.5','%TREO','global total',selected_sections=s)
     def test_transposed_table_cannot_be_relabelled_as_bulk_percent(self):
         d,b,s=self.native_fixture()
         with d,self.assertRaisesRegex(ValueError,'UNIT'):validate_cell(d,b,b['field'],'20.5','%','global total',selected_sections=s)

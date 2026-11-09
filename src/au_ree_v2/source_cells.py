@@ -113,8 +113,15 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     cell = row & column
     if cell.is_empty or row.height >= table.height or column.width >= table.width:
         fail('AMBIGUOUS_REGION')
-    if not field.startswith('average_annual_') and norm(binding.get('row_label','')) != norm(section.get('row_label','total')):
-        fail('RESOURCE_TOTAL_ROW_REQUIRED')
+    transposed = binding.get('resource_orientation') == 'oxide_rows'
+    if transposed and (not field.startswith('reported_resource_') or mode != 'native_cell'):
+        fail('RESOURCE_ORIENTATION_UNSUPPORTED')
+    if not field.startswith('average_annual_'):
+        if transposed:
+            if norm(binding.get('column_label','')) != norm(section.get('category_label','total')):
+                fail('RESOURCE_TOTAL_COLUMN_REQUIRED')
+        elif norm(binding.get('row_label','')) != norm(section.get('row_label','total')):
+            fail('RESOURCE_TOTAL_ROW_REQUIRED')
     if binding.get('original_unit') != unit:
         fail('UNIT_MISMATCH')
 
@@ -163,9 +170,10 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     if source_unit == 'tonnes' and unit == 't': source_unit = 't'
     if unit == '%HM' and source_unit == '% of total hm': source_unit = '%hm'
     if unit == '%TREO':
-        context=anchor('metric_context_bbox','metric_context',table)
-        if source_unit!='percentage' or context!='percentage proportion of treo in the mineral resources':
-            fail('RESOURCE_SHARE_DENOMINATOR_REQUIRED')
+        if source_unit!='percentage proportion of treo in the mineral resources':
+            context=anchor('metric_context_bbox','metric_context',table)
+            if source_unit!='percentage' or context!='percentage proportion of treo in the mineral resources':
+                fail('RESOURCE_SHARE_DENOMINATOR_REQUIRED')
         source_unit='%treo'
     if source_unit != norm(unit): fail('SOURCE_UNIT_SEMANTICS_MISMATCH')
     if forecast and (not selected_scenario or label != norm(selected_scenario)):
@@ -180,7 +188,7 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     elif field == 'bulk_hm_percent':
         valid = label == 'hm' and source_unit == '%'
     elif field in ('grade', 'contained_treo_kt'):
-        valid = label in ('treo','treo*','treo1','treo +','contained treo','total reo') and source_unit in (('ppm', '%', '%hm') if field == 'grade' else ('t', 'kt','kt treo'))
+        valid = label.strip('()') in ('treo','treo*','treo1','treo +','contained treo','total reo') and source_unit in (('ppm', '%', '%hm') if field == 'grade' else ('t', 'kt','kt treo'))
     elif field.startswith('reported_resource_'):
         # The binding must identify the exact oxide, including stoichiometry.
         valid = label == norm(binding.get('basis', '')) and source_unit in ('ppm','%hm')

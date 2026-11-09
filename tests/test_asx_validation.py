@@ -60,6 +60,99 @@ class SourceReviews(unittest.TestCase):
         if not receipt.exists():receipt.write_text(json.dumps([dict(url=self.review['url'],document_sha256=self.review['source_sha256'],status='PDF_ACQUIRED')]))
         path=self.root/'reviews.json';path.write_text(json.dumps(dict(version='asx-source-review-v2',acquired_through='2026-11-09',reviews=[review or self.review])))
         return validate_reviews(path,{'fixture':self.root},self.projects)
+    def test_context_resource_does_not_replace_selected_contract(self):
+        self.validate()
+        context=copy.deepcopy(self.review);context.update(review_id='context',statement_id='other-scope',resource_selection_role='CONTEXT_ONLY',context_selection_reason='Distinct alternative scope, not additive')
+        p=self.root/'reviews.json';ledger=json.loads(p.read_text());ledger['reviews']=[context,self.review];p.write_text(json.dumps(ledger))
+        result=validate_reviews(p,{'fixture':self.root},self.projects)
+        self.assertEqual('fixture-statement',result['resource_contracts']['P'][2])
+        self.assertEqual('CONTEXT_ONLY',result['receipts'][0]['resource_selection_role'])
+        self.assertEqual(2,len(result['observations']['P']))
+    def test_context_only_cannot_become_fallback_resource(self):
+        r=copy.deepcopy(self.review);r.update(resource_selection_role='CONTEXT_ONLY',context_selection_reason='Evidence only')
+        result=self.validate(r)
+        self.assertEqual({},result['observations']);self.assertEqual({},result['resource_preferences'])
+    def test_context_resource_requires_explicit_reason(self):
+        r=copy.deepcopy(self.review);r['resource_selection_role']='CONTEXT_ONLY'
+        with self.assertRaisesRegex(ValueError,'CONTEXT_SELECTION_REASON'):self.validate(r)
+    def test_unknown_selection_role_rejected(self):
+        r=copy.deepcopy(self.review);r['resource_selection_role']='IGNORE'
+        with self.assertRaisesRegex(ValueError,'SELECTION_ROLE_INVALID'):self.validate(r)
+
+    def parenthesized_grade_review(self, label='(TREO'):
+        r=copy.deepcopy(self.review);target=self.root/'data/paren.pdf'
+        with pymupdf.open(self.pdf) as d:
+            p=d[1];p.add_redact_annot(p.search_for('TREO')[0]);p.apply_redactions()
+            p.insert_text((200,90),label,fontsize=10)
+            a=p.search_for(label)[0]
+            r['observations'][1]['cell_binding'].update(column_label=label,column_label_bbox=[a.x0-.2,a.y0-.2,a.x1+.2,a.y1+.2])
+            d.save(target)
+        r.update(path='data/paren.pdf',source_sha256=filehash(target))
+        (self.root/'downloads.json').write_text(json.dumps([dict(url=r['url'],document_sha256=r['source_sha256'],status='PDF_ACQUIRED')]))
+        return r
+    def test_parenthesized_treo_header_keeps_exact_anchor(self):
+        self.assertEqual('VALIDATED',self.validate(self.parenthesized_grade_review())['receipts'][0]['status'])
+    def test_parenthesized_non_treo_header_rejected(self):
+        with self.assertRaisesRegex(ValueError,'HEADER_SEMANTICS'):
+            self.validate(self.parenthesized_grade_review('(HREO'))
+
+    def treo_proportion_review(self):
+        r=copy.deepcopy(self.review)
+        target=self.root/'data/proportions.pdf'
+        with pymupdf.open(self.pdf) as d:
+            p=d[1]
+            for term in ['ppm','1,000']:p.add_redact_annot(p.search_for(term)[0])
+            p.apply_redactions()
+            p.insert_text((200,105),'%',fontsize=10);p.insert_text((200,125),'0.1',fontsize=10)
+            p=d.new_page()
+            for xy,t in [((50,50),'Table 12'),((50,70),'Percentage Proportion of TREO in the Mineral Resources'),
+                         ((200,95),'Measured'),((300,95),'Total'),((50,115),'Nd2O3'),((200,115),'30.0'),((300,115),'20.0'),
+                         ((50,135),'Pr6O11'),((200,135),'6.0'),((300,135),'5.0')]:p.insert_text(xy,t,fontsize=10)
+            def bbox(term):
+                a=p.search_for(term)[0];return [a.x0-.2,a.y0-.2,a.x1+.2,a.y1+.2]
+            tb=[40,35,400,145];hb=bbox('Total');ub=bbox('Percentage Proportion of TREO in the Mineral Resources')
+            r['selected_resource_sections']['proportions']=dict(page=4,bbox=tb,anchor='Total',anchor_bbox=hb,category_label='Total')
+            b=dict(mode='native_cell',resource_orientation='oxide_rows',field='reported_resource_nd_ppm',basis='Nd2O3',scope=r['scope'],page=4,
+                original_unit='%TREO',table_bbox=tb,table_label='Table 12',table_label_bbox=bbox('Table 12'),
+                row_bbox=[40,103,400,119],row_label='Nd2O3',row_label_bbox=bbox('Nd2O3'),column_bbox=[290,35,340,145],column_label='Total',column_label_bbox=hb,
+                unit_bbox=ub,unit_label='Percentage Proportion of TREO in the Mineral Resources',unit_scope_bbox=tb,
+                scope_anchor='Total',scope_anchor_bbox=hb,section_id='proportions')
+            d.save(target)
+        r.update(path='data/proportions.pdf',source_sha256=filehash(target))
+        (self.root/'downloads.json').write_text(json.dumps([dict(url=r['url'],document_sha256=r['source_sha256'],status='PDF_ACQUIRED')]))
+        for o in r['observations']:o['evidence']=dict(page=2,markers=['Mineral Resource','Total'])
+        g=r['observations'][1];g.update(value=.1,original_token='0.1',unit='%');g['cell_binding'].update(original_unit='%',unit_bbox=[199,94,210,108])
+        r['bulk_treo_grade_pct']=dict(value=.1,original_token='0.1',evidence=g['evidence'],cell_binding=copy.deepcopy(g['cell_binding']))
+        r['observations'].append(dict(variable='reported_resource_nd_ppm',basis='Nd2O3',value=200.,unit='ppm',original_token='20.0',original_unit='%TREO',
+                                      evidence=dict(page=4,markers=['Table 12','Nd2O3']),cell_binding=b))
+        return r
+    def test_transposed_treo_proportion_converts_with_selected_grade(self):
+        result=self.validate(self.treo_proportion_review())
+        row=next(x for x in result['observations']['P'] if x['variable']=='reported_resource_nd_ppm')
+        self.assertEqual(200.,row['value']);self.assertEqual('TREO_PROPORTION_TO_BULK_PPM',json.loads(row['raw'])['basis_transform'])
+    def test_treo_proportion_missing_factor_rejected(self):
+        r=self.treo_proportion_review();r.pop('bulk_treo_grade_pct')
+        with self.assertRaisesRegex(ValueError,'REQUIRES_SELECTED_GRADE'):self.validate(r)
+    def test_treo_proportion_wrong_factor_rejected(self):
+        r=self.treo_proportion_review();r['bulk_treo_grade_pct'].update(value=.2,original_token='0.2')
+        with self.assertRaisesRegex(ValueError,'REQUIRES_SELECTED_RESOURCE_GRADE'):self.validate(r)
+    def test_treo_proportion_wrong_conversion_rejected(self):
+        r=self.treo_proportion_review();r['observations'][-1]['value']=20.
+        with self.assertRaisesRegex(ValueError,'UNIT_TRANSFORM'):self.validate(r)
+    def test_treo_proportion_wrong_category_column_rejected(self):
+        r=self.treo_proportion_review();r['observations'][-1]['cell_binding']['column_label']='Measured'
+        with self.assertRaisesRegex(ValueError,'TOTAL_COLUMN'):self.validate(r)
+    def test_treo_proportion_wrong_oxide_row_rejected(self):
+        r=self.treo_proportion_review();b=r['observations'][-1]['cell_binding'];b['row_bbox']=[40,123,400,138]
+        with self.assertRaisesRegex(ValueError,'ANCHOR_OUTSIDE_REGION'):self.validate(r)
+    def test_treo_proportion_over100_rejected(self):
+        r=self.treo_proportion_review();r['observations'][-1]['original_token']='150';r['observations'][-1]['evidence']['markers']=['Table 12']
+        # Arithmetic guard is tested separately from the page token check.
+        with pymupdf.open(self.root/r['path']) as d:
+            d[3].insert_text((50,170),'150',fontsize=10);q=self.root/'data/over100.pdf';d.save(q)
+        r.update(path='data/over100.pdf',source_sha256=filehash(q));(self.root/'downloads.json').write_text(json.dumps([dict(url=r['url'],document_sha256=r['source_sha256'],status='PDF_ACQUIRED')]))
+        with self.assertRaisesRegex(ValueError,'PROPORTION_OUT_OF_RANGE'):self.validate(r)
+
     def test_complete_source_bound_resource_passes(self):
         result=self.validate();self.assertEqual(2,len(result['observations']['P']))
         self.assertEqual('VALIDATED',result['receipts'][0]['status'])
