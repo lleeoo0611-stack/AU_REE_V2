@@ -121,8 +121,17 @@ def validate_listing_proof(doc, proof, evidence):
     ownership=proof['ownership_evidence'];evidence(ownership)
     page=doc[ownership['page']-1];box=pymupdf.Rect(proof['ownership_bbox'])
     if box.is_empty or box.is_infinite or not page.rect.contains(box):fail('OWNERSHIP_REGION_INVALID')
-    statement=norm(proof.get('ownership_statement',''))
-    if not statement or norm(region_text(page,box))!=statement:fail('OWNERSHIP_STATEMENT_MISMATCH')
+    native=norm(region_text(page,box))
+    if proof.get('ownership_statement_sha256'):
+        import hashlib
+        expected=proof['ownership_statement_sha256']
+        if (proof.get('ownership_statement') or not re.fullmatch(r'[0-9a-f]{64}',expected)
+                or not native or hashlib.sha256(native.encode('utf8')).hexdigest()!=expected):
+            fail('OWNERSHIP_STATEMENT_MISMATCH')
+        statement=native
+    else:
+        statement=norm(proof.get('ownership_statement',''))
+        if not statement or native!=statement:fail('OWNERSHIP_STATEMENT_MISMATCH')
     if norm(alias) not in statement or norm(project) not in statement:fail('OWNERSHIP_ISSUER_PROJECT_MISMATCH')
     if re.search(r'\bnot\b|\bno longer\b|\bless than\b',statement):fail('OWNERSHIP_NOT_AFFIRMED')
     if not re.search(r'100%\s*(?:[-\u2010\u2011]?\s*owned\b|ownership\b)|owned\s+100%',statement):fail('FULL_OWNERSHIP_REQUIRED')

@@ -49,6 +49,22 @@ class DescriptiveMetadata(unittest.TestCase):
             if change=='wrong_ownership':changed['description_binding']['qualified_alias_proof']['ownership_statement']=statement.replace('100%','1%')
             with self.subTest(change=change),self.assertRaises(ValueError):validate_descriptive_attribute(*trial)
 
+    def test_ownership_region_digest_preserves_checks_without_publishing_full_text(self):
+        import hashlib
+        from au_ree_v2.reviewed_metadata import validate_listing_proof
+        doc,a,aliases,evidence,review=self.fixture();page=doc[0]
+        page.insert_text((40,140),'Example Metals Limited (ASX: EXM)',fontsize=10)
+        statement='Example Metals 100% owned Known Project';page.insert_text((40,170),statement,fontsize=10)
+        b=page.search_for(statement)[0]
+        proof=dict(exchange='ASX',ticker='EXM',issuer='Example Metals Limited',issuer_alias='Example Metals',
+            project_marker='Known Project',listing_evidence=dict(page=1,markers=['Example Metals Limited','ASX: EXM']),
+            ownership_evidence=dict(page=1,markers=['Known Project','100% owned']),
+            ownership_bbox=[b.x0-.1,b.y0-.1,b.x1+.1,b.y1+.1],
+            ownership_statement_sha256=hashlib.sha256(statement.casefold().encode()).hexdigest())
+        self.assertIn('SOURCE_BOUND',validate_listing_proof(doc,proof,evidence))
+        for change in [dict(ownership_statement_sha256='0'*64),dict(ownership_statement=statement),dict(ownership_bbox=[39,160,50,175])]:
+            with self.subTest(change=change),self.assertRaises(ValueError):validate_listing_proof(doc,dict(proof,**change),evidence)
+
     def test_wrong_alias_statement_region_value_and_column_fail_closed(self):
         for key, value in [('project_marker', 'Other Project'), ('statement', 'Known Project has carbonatite mineralisation.'),
                            ('value_bbox', [-1, 0, 100, 100]), ('literal_value', 'carbonatite')]:

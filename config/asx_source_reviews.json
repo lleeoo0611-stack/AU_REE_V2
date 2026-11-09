@@ -31988,6 +31988,112 @@
         }
       ],
       "scope": "Literal dated project host or activity description. Prospective/potential wording retained. An active DFS is not a completed DFS, mining commencement and HMC are not commercial REO output, and historic production commencement is not current operating status. No classification-code or scientific-quantity inference."
+    },
+    {
+      "review_id": "continuation10_barkly_metadata",
+      "source_key": "barkly_amended_quarter20260518",
+      "project_id": "AU-ad64122c217f0dbfabc8",
+      "source_sha256": "aaa865cfb08d10c134cd7fa562fc88064821c4f64cfec5af34085ba7bdddfc14",
+      "asset_set": "continuation10",
+      "path": "data/snapshots/aaa865cfb08d10c134cd7fa562fc88064821c4f64cfec5af34085ba7bdddfc14.pdf",
+      "url": "https://investorpa.com/announcement-pdf/20260518/293797.pdf",
+      "publication_date": "2026-05-18",
+      "effective_date": "2026-05-18",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "18 May 2026"
+        ]
+      },
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "18 May 2026"
+        ],
+        "header_title": "ASX ANNOUNCEMENT"
+      },
+      "identity_evidence": {
+        "page": 4,
+        "markers": [
+          "Barkly Project"
+        ]
+      },
+      "scope": "Post-IPO issuer metadata at amended quarter publication18May2026; trading began30January2026; only planning/preparation reported for quarter ended31March2026, with mobilisation/drilling still forward looking. No MRE duplicate, actual drilling completion, current title or annual oxide-output inference.",
+      "statement_id": "continuation10_barkly_metadata",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Admitted to the Official List of the ASX",
+              "Barkly Rare Earths Limited"
+            ]
+          },
+          "listing_proof": {
+            "exchange": "ASX",
+            "ticker": "BAK",
+            "issuer": "Barkly Rare Earths Limited",
+            "issuer_alias": "Barkly Rare Earths",
+            "project_marker": "Barkly Rare Earths Project",
+            "listing_evidence": {
+              "page": 2,
+              "markers": [
+                "Barkly Rare Earths Limited",
+                "ASX:BAK",
+                "Admitted to the Official List of the ASX"
+              ]
+            },
+            "ownership_evidence": {
+              "page": 2,
+              "markers": [
+                "100% owned",
+                "Barkly Rare Earths Project"
+              ]
+            },
+            "ownership_bbox": [
+              71.80000152587891,
+              182.08959045410157,
+              525.3083740234375,
+              714.60537109375
+            ],
+            "ownership_statement_sha256": "c599c6f5c542bd87d70be952f5b89af661b3031e80c9e3b33e20e6427fbd49a0"
+          }
+        },
+        {
+          "column": "開發階段",
+          "value": "planned and prepared for its Phase 1 drilling programme（來源揭露：2026-05-18）",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Barkly Project",
+              "planned and prepared"
+            ]
+          },
+          "description_binding": {
+            "page": 4,
+            "project_marker": "Barkly Project",
+            "project_bbox": [
+              71.91104736328126,
+              475.5862182617187,
+              138.79155883789062,
+              489.9726196289063
+            ],
+            "value_bbox": [
+              229.10188903808594,
+              460.22958984375,
+              494.0786071777344,
+              474.6159912109375
+            ],
+            "statement": "planned and prepared for its phase 1 drilling programme",
+            "literal_value": "planned and prepared for its Phase 1 drilling programme"
+          }
+        }
+      ]
     }
   ]
 }

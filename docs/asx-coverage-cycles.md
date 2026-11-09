@@ -61,3 +61,5 @@ A dated issuer original must still identify the named project and reporting issu
 
 
 Purely literal metadata may use an explicitly signed issue date plus its captured, strict ASX dated release URL, preserving both dates and their order. This proof is restricted to description attributes; it rejects resource observations and study forecasts. A project alias qualified by an ASX code is usable for a literal description only when the same original proves that exact code/issuer and an explicit 100% ownership statement for the named project. Both hyphenated and plain-space “100% owned” are accepted; negation, mismatching code/issuer/project, and differing native text remain errors. This neither merges OD6 Grass Patch with MRD nor supplies an inferred classification code.
+
+A native ownership region may be bound by its SHA-256 digest instead of publishing the full region text. The normalized native text still undergoes the identical issuer, project, ASX, 100% ownership and negation checks; wrong digests, boxes or ambiguous raw-plus-digest proofs are rejected. This does not relax ownership scope.

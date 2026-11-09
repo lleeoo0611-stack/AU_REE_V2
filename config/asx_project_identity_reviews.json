@@ -436,6 +436,12 @@
       "path": "data/snapshots/a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a.pdf",
       "sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a",
       "url": "https://announcements.asx.com.au/asxpdf/20220830/pdf/45dgch8z402y23.pdf"
+    },
+    "AU-ad64122c217f0dbfabc8": {
+      "asset_set": "continuation10",
+      "path": "data/snapshots/aaa865cfb08d10c134cd7fa562fc88064821c4f64cfec5af34085ba7bdddfc14.pdf",
+      "url": "https://investorpa.com/announcement-pdf/20260518/293797.pdf",
+      "sha256": "aaa865cfb08d10c134cd7fa562fc88064821c4f64cfec5af34085ba7bdddfc14"
     }
   },
   "codes": [
@@ -2516,6 +2522,41 @@
       },
       "code_label": "ASX Code: IGO",
       "scope": "Historical Lake Campion REE exploration project: dated IGO annual report issued29August2022 and ASX released30August2022; location separately sourced from the earlier captured ASX quarter27July2022, same named project and issuer. Greenbushes Lithium, IGO Ni/Cu production and other-company Wheatbelt resources are excluded. No current rights or resource inference."
+    },
+    {
+      "project_id": "AU-ad64122c217f0dbfabc8",
+      "code": "BAK",
+      "issuer_name": "Barkly Rare Earths Limited",
+      "source_key": "AU-ad64122c217f0dbfabc8",
+      "review_id": "continuation10_code_barkly",
+      "evidence_date": "2026-05-18",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "18 May 2026"
+        ]
+      },
+      "project_marker": "Barkly Project",
+      "project_evidence": {
+        "page": 4,
+        "markers": [
+          "Barkly Project"
+        ]
+      },
+      "issuer_evidence": {
+        "page": 1,
+        "markers": [
+          "Barkly Rare Earths Limited"
+        ]
+      },
+      "code_evidence": {
+        "page": 1,
+        "markers": [
+          "ASX:BAK"
+        ]
+      },
+      "code_label": "ASX:BAK",
+      "scope": "Post-IPO issuer metadata at amended quarter publication18May2026; trading began30January2026; only planning/preparation reported for quarter ended31March2026, with mobilisation/drilling still forward looking. No MRE duplicate, actual drilling completion, current title or annual oxide-output inference."
     }
   ],
   "merges": [],
