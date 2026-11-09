@@ -1,23 +1,23 @@
 {
   "version": "census-project-summary-v3-asx-identity",
   "cutoff": "2026-11-05",
-  "rows": 70,
+  "rows": 71,
   "columns": 53,
-  "unique_project_ids": 70,
+  "unique_project_ids": 71,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "claims_sha256": "11bfc4842e4b1d391ff220d39d0d17ad000a645ca6ed19dad11294b3408940f2",
   "snapshot_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
   "configuration_sha256": "92774d210b9d5b55a3b7ced161381be1cb52a5a3959ea4e4a284bf554fb5ed1a",
   "columns_sha256": "f6389bc0ace6cccac5ef34ae0ffd651403e4dbec5fd9d9ee7602f22404ed5223",
   "filled_counts": {
-    "專案ID": 70,
-    "開發商": 69,
+    "專案ID": 71,
+    "開發商": 70,
     "未上市公司": 14,
-    "專案名稱": 70,
-    "所在地_中文": 70,
-    "所在地_英文": 70,
-    "國家": 70,
-    "州省地區": 70,
+    "專案名稱": 71,
+    "所在地_中文": 71,
+    "所在地_英文": 71,
+    "國家": 71,
+    "州省地區": 71,
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
@@ -37,9 +37,9 @@
     "預估年產重稀土_t_per_year": 0,
     "產品/產出": 11,
     "有TREO資源估計": 31,
-    "有來源文件": 70,
-    "資料來源名稱": 70,
-    "資料來源URL": 70,
+    "有來源文件": 71,
+    "資料來源名稱": 71,
+    "資料來源URL": 71,
     "已公布元素數_共15項": 19,
     "已公布元素總和_kt": 19,
     "元素總和/TREO": 17,
@@ -62,9 +62,9 @@
     "Yb2O3_氧化鐿_kt": 11,
     "Lu2O3_氧化鎦_kt": 12,
     "Y2O3_氧化釔_kt": 13,
-    "ASX代碼": 58
+    "ASX代碼": 59
   },
-  "verified_source_hashes": 106,
+  "verified_source_hashes": 108,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -74,7 +74,7 @@
     "PROJECT": 33,
     "SITE": 766,
     "DEPOSIT": 301,
-    "REVIEWED_PROJECT_EXTENSION": 37,
+    "REVIEWED_PROJECT_EXTENSION": 38,
     "DEPOSIT_SCOPE": 27,
     "PROSPECT": 191,
     "PROJECT_PROGRAM": 1,
@@ -94,10 +94,10 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "05e53a7048ca21d1199032c58b9078ad02165636b358569f7b48fd37a120e7af",
-    "field_provenance.csv": "2011acbbfd117a17e59314cef51f633ddf4c896245b1c9eff4d4439fb547b78c",
-    "missing_fields.csv": "014c35738cbb5a5f20acf98e3e7d6cf7a0813acbfb950b272fb87120c2d1b0f2",
-    "census_inventory.csv": "b1bd88b08609a223e1fc9301b80145fe4d0737892ad30ff292813ac12c9c00d8"
+    "專案總表.csv": "e2ec57c7475665658bb23477058942a6150cf739c9ff905b61bcd6873df38fc9",
+    "field_provenance.csv": "6888511d00255d84e4310b8c3da84a5c9f6c34e9e78333580c5431a32906e9c0",
+    "missing_fields.csv": "4e6cd92f28cdf63fda1f43ea20b4da5034e2dd710c6b22b95b3352adaf3d6d6a",
+    "census_inventory.csv": "0b235d802ac3045e0130ba1e157802a2e8c8684593cb7bc419353325740b0108"
   },
   "review_ledger_sha256": "98a4e417eaeb9c978cbddba3ec757547f93d0ef17875c5a7fc78367514acf6dc",
   "acquired_through": "2026-11-10",
@@ -2223,7 +2223,7 @@
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "cd4a6e41523cd4826d2bad33febc50369079c5aad6f329383d6d71fa29634620",
+  "discovery_ledger_sha256": "5985512247cafdabd0f9821d1bb5e493f946e4d8b9fbb03f0eb33255a90d3836",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -12954,11 +12954,51 @@
     },
     {
       "candidate_key": "lake-campion-igo",
-      "name": "Lake Campion — IGO dated-original identity review pending",
-      "decision": "CANDIDATE_ONLY",
-      "reason": "REE_PROJECT_EXPLICITLY_NAMED_BUT_RETRIEVED_TECHNICAL_ORIGINAL_HAS_NO_VERIFIED_PUBLICATION_HEADER_DATE_OR_ISSUER_CODE_PROOF;NO_DATE_ASSUMED_FROM_FY24_OR_FILE_TIMESTAMP",
+      "name": "Lake Campion REE Exploration Project — IGO",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_PRIMARY_IDENTITY_AND_ISSUER_WITH_SEPARATELY_SOURCED_SAME_PROJECT_STATE_ONLY;NO_QUANTITY_TRANSFER",
       "existing_candidate_ids": [],
       "sources": [
+        {
+          "asset_set": "continuation7",
+          "path": "data/snapshots/a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a.pdf",
+          "sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a",
+          "url": "https://announcements.asx.com.au/asxpdf/20220830/pdf/45dgch8z402y23.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 18,
+              "markers": [
+                "Lake Campion Project",
+                "IGO 100%"
+              ]
+            },
+            {
+              "page": 93,
+              "markers": [
+                "authorised for issue",
+                "29 August 2022"
+              ]
+            }
+          ]
+        },
+        {
+          "asset_set": "continuation6",
+          "path": "data/snapshots/b9a3a4b2356530e0f30e0a17a8c481cc0c024f6a717ae67f0a9c70063a37e8f1.pdf",
+          "sha256": "b9a3a4b2356530e0f30e0a17a8c481cc0c024f6a717ae67f0a9c70063a37e8f1",
+          "url": "https://announcements.asx.com.au/asxpdf/20220727/pdf/45c6frzj7hn5fd.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 12,
+              "markers": [
+                "Lake Campion Project, Western Australia",
+                "IGO applied",
+                "rare earth elements"
+              ]
+            }
+          ]
+        },
         {
           "asset_set": "continuation6",
           "path": "data/snapshots/2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23.pdf",
@@ -12970,27 +13010,328 @@
               "page": 50,
               "markers": [
                 "LAKE CAMPION PROJECT",
-                "Lake Campion REE Project",
-                "Wheatbelt"
+                "conceptual paleochannel-related",
+                "REE"
               ]
             }
           ]
+        }
+      ],
+      "project_id": "AU-2af694147ae21c393820",
+      "scope": "Historical Lake Campion REE exploration project: dated IGO annual report issued29August2022 and ASX released30August2022; location separately sourced from the earlier captured ASX quarter27July2022, same named project and issuer. Greenbushes Lithium, IGO Ni/Cu production and other-company Wheatbelt resources are excluded. No current rights or resource inference.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "igo_annual2022",
+        "publication_date": "2022-08-30",
+        "document_issue_date": "2022-08-29",
+        "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE",
+        "publication_date_role": "ASX_DATED_URL",
+        "date_evidence": {
+          "page": 93,
+          "markers": [
+            "authorised for issue in accordance with a resolution of the Directors on 29 August 2022"
+          ]
+        },
+        "project_evidence": {
+          "page": 18,
+          "markers": [
+            "Lake Campion Project",
+            "IGO 100%"
+          ]
+        },
+        "name_marker": "Lake Campion Project",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "IGO Limited",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "IGO Limited"
+            ]
+          }
+        },
+        "state_bridge": {
+          "mode": "DATED_ASX_SAME_PROJECT_AND_ISSUER_STATE_ONLY",
+          "source_index": 1,
+          "source_key": "igo_quarter20220727_location",
+          "issuer_marker": "IGO",
+          "project_evidence": {
+            "page": 12,
+            "markers": [
+              "Lake Campion Project, Western Australia",
+              "IGO applied",
+              "rare earth elements"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "REVIEWED_IDENTITY_AND_LOCATION_ORIGINALS_NOT_MATCHED_REE_RESOURCE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT;NO_OTHER_IGO_COMMODITY_TRANSFER",
+          "evidence": {
+            "page": 18,
+            "markers": [
+              "Lake Campion Project"
+            ]
+          }
         }
       ]
     }
   ],
   "original_canonical_projects": 33,
-  "reviewed_project_extensions": 37,
+  "reviewed_project_extensions": 38,
   "base_contract_columns": 52,
   "base_projection_hashes": {
-    "census_inventory.csv": "b1bd88b08609a223e1fc9301b80145fe4d0737892ad30ff292813ac12c9c00d8",
-    "field_provenance.csv": "cd76f3082da88f19b32d3fb623f0017716300e84cce2f97893d76a743a05ccf6",
-    "missing_fields.csv": "c81b85d5c2e39f7b2a8cde0acd318fcc63179ec332c96cce2343ede1d9c3e7fd",
-    "專案總表.csv": "2a5bf04682c1603804048c8899c3bb68ccc05d400510b772aebdec9dee8b5227"
+    "census_inventory.csv": "0b235d802ac3045e0130ba1e157802a2e8c8684593cb7bc419353325740b0108",
+    "field_provenance.csv": "eb3b078138c54e50f420e3ccf5ac1d17b17a0501321f8ffcb81b7003f091f94d",
+    "missing_fields.csv": "878cdd913ab22ba5f04cf26ca897937e4196db4094f9cba84cc1df9e52e8f551",
+    "專案總表.csv": "88f25a3e543a6ddaded214777ec13ac3902c8945f804ab438c7837e0fc8ff30b"
   },
-  "identity_ledger_sha256": "55b8e1244e29bba1b02ff0d762ac7137639a5ca149e054be027e65045bc31b96",
+  "identity_ledger_sha256": "d3073ffd4822611dcc716a8f19ea684e4b5ae20725ab6730bbaed8d1a537bbfa",
   "identity_merges": [],
-  "validated_asx_codes": 58,
+  "validated_asx_codes": 59,
   "identity_sources": {
     "AU-12cc237ae66c7a6508ca": {
       "asset_set": "round3",
@@ -13418,6 +13759,12 @@
       "path": "data/snapshots/463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097.pdf",
       "sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097",
       "url": "https://announcements.asx.com.au/asxpdf/20240328/pdf/061z9ycpc5ygs2.pdf"
+    },
+    "AU-2af694147ae21c393820": {
+      "asset_set": "continuation7",
+      "path": "data/snapshots/a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a.pdf",
+      "sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a",
+      "url": "https://announcements.asx.com.au/asxpdf/20220830/pdf/45dgch8z402y23.pdf"
     }
   },
   "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS"

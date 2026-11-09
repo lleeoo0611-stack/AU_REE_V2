@@ -5,11 +5,11 @@
   "series_baseline_filled_cells": 1237,
   "series_baseline_blank_cells": 1890,
   "current": {
-    "projects": 70,
+    "projects": 71,
     "columns": 53,
-    "filled_cells": 1406,
-    "total_cells": 3710,
-    "remaining_blank_cells": 2304,
+    "filled_cells": 1417,
+    "total_cells": 3763,
+    "remaining_blank_cells": 2346,
     "scientific_columns": [
       "礦石蘊藏量_Mt",
       "TREO品位_pct",
@@ -38,22 +38,22 @@
       "Y2O3_氧化釔_kt"
     ],
     "scientific_filled_cells": 372,
-    "scientific_total_cells": 1750,
+    "scientific_total_cells": 1775,
     "output_hashes": {
-      "專案總表.csv": "05e53a7048ca21d1199032c58b9078ad02165636b358569f7b48fd37a120e7af",
-      "field_provenance.csv": "2011acbbfd117a17e59314cef51f633ddf4c896245b1c9eff4d4439fb547b78c",
-      "missing_fields.csv": "014c35738cbb5a5f20acf98e3e7d6cf7a0813acbfb950b272fb87120c2d1b0f2",
-      "census_inventory.csv": "b1bd88b08609a223e1fc9301b80145fe4d0737892ad30ff292813ac12c9c00d8"
+      "專案總表.csv": "e2ec57c7475665658bb23477058942a6150cf739c9ff905b61bcd6873df38fc9",
+      "field_provenance.csv": "6888511d00255d84e4310b8c3da84a5c9f6c34e9e78333580c5431a32906e9c0",
+      "missing_fields.csv": "4e6cd92f28cdf63fda1f43ea20b4da5034e2dd710c6b22b95b3352adaf3d6d6a",
+      "census_inventory.csv": "0b235d802ac3045e0130ba1e157802a2e8c8684593cb7bc419353325740b0108"
     },
     "provenance_complete": true,
     "missing_diagnostics_complete": true
   },
-  "latest_cycle": "continuation-6",
+  "latest_cycle": "continuation-7",
   "stopping_rule": {
     "policy": "ZERO_NEW_VERIFIED_CELLS",
     "threshold": 0,
     "operator": "==",
-    "newly_filled_cells": 22,
+    "newly_filled_cells": 11,
     "scientific_newly_filled_cells": 0,
     "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
     "eligible": false,
@@ -69,8 +69,8 @@
     "all_four_csv_hashes_identical": true
   },
   "regression": {
-    "report_sha256": "ff311d24e4f63bd86ba95da6ac0c9caafb7ce8b4334630606e9883c389bdbeea",
-    "tests_including_subtests": 105,
+    "report_sha256": "16fb15f94d1cb3d71b397f8f88324c87a6dce04d020d30ad5b3da1db1e998177",
+    "tests_including_subtests": 520,
     "failures": 0,
     "errors": 0,
     "skipped": 0
@@ -186,12 +186,13 @@
       "開發商": 1
     },
     "baseline_csv_sha256": "73bbaf0e615b5d30505bead52e368c2910f9d97aff7a8e68799a93f8bd44d809",
-    "updated_csv_sha256": "05e53a7048ca21d1199032c58b9078ad02165636b358569f7b48fd37a120e7af",
+    "updated_csv_sha256": "e2ec57c7475665658bb23477058942a6150cf739c9ff905b61bcd6873df38fc9",
     "comparison_scope": "FIXED_BASELINE_COHORT;NEW_PROJECT_CELLS_REPORTED_SEPARATELY",
-    "expanded_rows": 70,
+    "expanded_rows": 71,
     "added_project_ids": [
       "AU-0832169526bb5ec07626",
       "AU-1103c5aa8bb63077ac61",
+      "AU-2af694147ae21c393820",
       "AU-557f0c9ad81bf84bbb6d",
       "AU-68da41afe874c3bd66d4",
       "AU-6f0ecda27d291720036d",
@@ -206,10 +207,10 @@
       "AU-ee34781b030807146e64",
       "AU-f81823bd8ba271840345"
     ],
-    "added_project_filled_cells": 167,
-    "added_project_blank_cells": 628,
-    "expanded_remaining_blank_cells": 2304,
-    "expanded_filled_cells": 1406
+    "added_project_filled_cells": 178,
+    "added_project_blank_cells": 670,
+    "expanded_remaining_blank_cells": 2346,
+    "expanded_filled_cells": 1417
   },
   "code_fingerprint": {
     "src/au_ree_v2/__init__.py": "10fca67b83d726c143d12481bd749dcd714ae7e369b68b372cc738fe0e1a1011",
@@ -236,7 +237,7 @@
     "src/au_ree_v2/project_identity.py": "2ccb289d79e400ba7f4b40bc3226c6abeb551ce8920551f99379a0686c19e2a1",
     "src/au_ree_v2/project_summary.py": "2c856e0eccb6b1d1479f00a1136b7ffef2ef42779cc5c736acbf8491312bd8d9",
     "src/au_ree_v2/resolution.py": "270f713a42583280ef4f4d72553467bfad31266048b6b7de74fee1a42775960e",
-    "src/au_ree_v2/reviewed_discovery.py": "7ac13da70327e95cf719d6a33c9b61df917ee042b6d464184e5084a2a17e5b07",
+    "src/au_ree_v2/reviewed_discovery.py": "29a55ee0dd2bc3992b700cfb5bd2bb0365b5ace5e1ae5a08080fd5678c52fa4e",
     "src/au_ree_v2/reviewed_metadata.py": "4dea36ee6193fd2c7c313da0981681a1aa76e7d3d4e932ad21534359b9040d83",
     "src/au_ree_v2/screen_index.py": "d592946229279670d64b019c0304fd21527547560b58c082036c3ee32657d274",
     "src/au_ree_v2/security.py": "3c75e6425469d7379c0e5072a487ed2b83102951ebb71117995d6253360588f1",
@@ -286,11 +287,11 @@
     "tools/review_external_project_names.py": "cd2aa95a7377c3ff21ef00a12c562cfd5b967a1ec40cf6cfe98907dac9063644",
     "tools/screen_external_project_names.py": "41adf0c578c8025f2a6f6e26bb487d9567d0d171b87f4a62c6d721ae49a1a462",
     "tools/validate_asx_candidates.py": "10258491fd14b1ea134c10f4efd4a307720cdb8c0b68aafc7fdfc1f7add6f729",
-    "config/asx_discovery_reviews.json": "cd4a6e41523cd4826d2bad33febc50369079c5aad6f329383d6d71fa29634620",
+    "config/asx_discovery_reviews.json": "5985512247cafdabd0f9821d1bb5e493f946e4d8b9fbb03f0eb33255a90d3836",
     "config/asx_external_name_reviews.json": "b72c947360e69c49bf3ffafccadab220a5ac70acafe3a6dad3886e402cf1f06c",
     "config/asx_iteration_sources.json": "5cc38aba0761d5bf9c061c7f95ecb43bca871ec305a49643021c7dea20c6e7fc",
     "config/asx_probe_cases.json": "cc72f4485bf76efe876cfac6b7732e2c354206763f06d5bc40cb52a5180a35fb",
-    "config/asx_project_identity_reviews.json": "55b8e1244e29bba1b02ff0d762ac7137639a5ca149e054be027e65045bc31b96",
+    "config/asx_project_identity_reviews.json": "d3073ffd4822611dcc716a8f19ea684e4b5ae20725ab6730bbaed8d1a537bbfa",
     "config/asx_round2_selected_urls.json": "ed1aa05838f60ed456992443eea1d8d18c4493ddf76fe92c6dac92a1e65d273e",
     "config/asx_round3_gap_research.json": "ab7d6a1a2e24dfa6c79e87e2fae1457de961facff6b8f0bd5636cc6d74b30046",
     "config/asx_round3_selected_urls.json": "a2a99088d662a396021d5ebb467d03aa332e8d34f01b499d589314a5ea0575f0",

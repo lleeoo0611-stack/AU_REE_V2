@@ -53,3 +53,8 @@ python tools/package_coverage_cycle.py --help
 公開結果位於 `results/asx-coverage-2026-11-10/`，目前總表與逐格資料只保留在 `results/asx-current`；各輪只保留來源／配置指紋、測試收據、增量及停止判斷，歷史配置可由當時提交核對。原始 PDF、SQLite、頁面影像／全文、原始 Gemini 輸入列與搜尋全文不公開；本機逐項對照另行交付。
 
 歷史測試資料在精簡工作樹不完整時，使用本分支的程式與設定，連結 canonical 歷史資料作唯讀測試來源並限制寫入。沒有略過原測試斷言，不聲稱完整歷史／R 重建或新的遠端 CI 通過。
+
+
+## Location-only corroboration of a dated project identity
+
+A dated issuer original must still identify the named project and reporting issuer. A separately captured, earlier ASX PDF may supply only its literal state when it contains the exact same project marker and issuer root, has a strict dated ASX URL preceding the identity publication and research cutoff, and has no conflicting release header. Both originals retain independent SHA receipts; the state is written as a separate location record with the location original as its source. This does not join resources, grades, composition, production, ownership fractions, or current title. Unsupported dates, state/issuer/project mismatches and receipt/hash failures remain errors. The Lake Campion annual/quarter example is a historical project identity, not formal C1 approval.

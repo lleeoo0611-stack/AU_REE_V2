@@ -43,6 +43,44 @@ def validate_issue_date(identity, source, cutoff, text):
         raise ValueError('DISCOVERY_DOCUMENT_ISSUE_DATE_PROOF')
 
 
+def validate_state_bridge(identity, sources, primary_project_text, assets, cutoff):
+    """Location-only bridge between explicitly named, same-issuer originals.
+
+    The dated identity original still proves project and issuer. A second,
+    captured ASX original may supply a literal state, never quantities or title.
+    """
+    import pymupdf
+    from urllib.parse import urlsplit
+    bridge=identity['state_bridge']
+    def fail(code):raise ValueError('DISCOVERY_STATE_BRIDGE_'+code)
+    idx=bridge.get('source_index')
+    if (bridge.get('mode')!='DATED_ASX_SAME_PROJECT_AND_ISSUER_STATE_ONLY'
+            or not isinstance(idx,int) or not 0<=idx<len(sources)
+            or idx==identity['source_index'] or not bridge.get('source_key')):fail('CONTRACT')
+    source=sources[idx];u=urlsplit(source['url'])
+    match=re.fullmatch(r'/asxpdf/(\d{8})/pdf/[A-Za-z0-9]+\.pdf',u.path)
+    if (source['kind']!='pdf' or u.scheme!='https' or u.netloc!='announcements.asx.com.au'
+            or u.query or u.fragment or not match):fail('DATED_URL')
+    day=datetime.strptime(match[1],'%Y%m%d').date().isoformat()
+    if day>identity['publication_date'] or day>cutoff:fail('DATE_ORDER')
+    marker=identity['name_marker'].casefold()
+    issuer=re.sub(r'\s+(?:limited|ltd\.?)$','',identity.get('developer',{}).get('value','').casefold())
+    if (len(marker)<4 or len(issuer)<3 or bridge.get('issuer_marker','').casefold()!=issuer
+            or not re.search(r'(?<!\w)'+re.escape(marker)+r'(?!\w)',primary_project_text)
+            or not re.search(r'(?<!\w)'+re.escape(issuer)+r'(?!\w)',primary_project_text)):fail('PRIMARY_PROJECT_ISSUER')
+    with pymupdf.open(Path(assets[source['asset_set']])/source['path']) as doc:
+        proof=bridge['project_evidence'];pn=proof['page']
+        if not isinstance(pn,int) or not 1<=pn<=len(doc):fail('PAGE')
+        text=' '.join(doc[pn-1].get_text(sort=True).split()).casefold()
+        from .pdf_extract import publication_date
+        header=publication_date(doc[0].get_text(sort=True))
+        if header and header!=day:fail('HEADER_DATE_CONFLICT')
+        if (not proof.get('markers') or any(' '.join(m.split()).casefold() not in text for m in proof['markers'])
+                or any(not re.search(r'(?<!\w)'+re.escape(token)+r'(?!\w)',text)
+                       for token in (marker,issuer,identity['state_marker'].casefold()))):fail('NAMED_PROJECT_ISSUER_STATE')
+    return dict(source=source,publication_date=day,source_key=bridge['source_key'],page=pn)
+
+
 def validate_discovery(path, assets, existing, cutoff):
     import pymupdf
     cfg=json.loads(Path(path).read_text('utf8'))
@@ -111,7 +149,12 @@ def validate_discovery(path, assets, existing, cutoff):
                 elif label not in calendar_date_text(text) or any(m.casefold() not in text for m in proof['markers']):raise ValueError('DISCOVERY_PUBLICATION_DATE_PROOF')
                 e=identity['project_evidence'];text=' '.join(d[e['page']-1].get_text(sort=True).split()).casefold()
                 if (not e['markers'] or not identity.get('name_marker') or identity['name_marker'].casefold() not in text or
-                    any(m.casefold() not in text for m in e['markers']) or identity['state_marker'].casefold() not in text):
+                    any(m.casefold() not in text for m in e['markers'])):
+                    raise ValueError('DISCOVERY_PROJECT_STATE_PROOF')
+                state_bridge=None
+                if identity.get('state_bridge'):
+                    state_bridge=validate_state_bridge(identity,r['sources'],text,assets,cutoff)
+                elif identity['state_marker'].casefold() not in text:
                     raise ValueError('DISCOVERY_PROJECT_STATE_PROOF')
                 developer=identity.get('developer');raw={}
                 if developer:
@@ -138,8 +181,16 @@ def validate_discovery(path, assets, existing, cutoff):
                 publication_date_precision=identity.get('publication_date_precision','DAY'),publication_date_interval=identity.get('publication_date_interval'),
                 available_date=cfg['acquired_through'],source_kind=identity.get('source_kind','ISSUER_PROJECT_IDENTITY'),asset_root=str(Path(assets[s['asset_set']]).resolve()))
             projects.append(dict(entity_id=pid,native_id=key,name=r['name'],aliases=aliases,identity_source=source_key,reviewed_extension=True))
-            records.append(dict(entity_id=pid,source_sha=sha,state=identity['state'],latitude=None,longitude=None,deposit_type=None,
+            records.append(dict(entity_id=pid,source_sha=sha,state=None if state_bridge else identity['state'],latitude=None,longitude=None,deposit_type=None,
                 raw=json.dumps(raw),kind='PROJECT',native_id=key))
+            if state_bridge:
+                ss=state_bridge['source'];state_sha=ss['sha256'];state_key=state_bridge['source_key']
+                if state_sha in sources and sources[state_sha]['key']!=state_key:raise ValueError('DISCOVERY_SHARED_SOURCE_KEY_CONFLICT')
+                sources[state_sha]=dict(sha256=state_sha,key=state_key,url=ss['url'],path=ss['path'],kind='pdf',
+                    publication_date=state_bridge['publication_date'],available_date=cfg['acquired_through'],
+                    source_kind='LOCATION_ONLY_SAME_NAMED_PROJECT_AND_ISSUER',asset_root=str(Path(assets[ss['asset_set']]).resolve()))
+                records.append(dict(entity_id=pid,source_sha=state_sha,state=identity['state'],latitude=None,longitude=None,
+                    deposit_type=None,raw=json.dumps(dict(state_only_evidence_page=state_bridge['page'])),kind='PROJECT',native_id=key))
             deferred[pid]={f['column']:dict(f,source_sha256=sha,review_id='discovery:'+key) for f in pending}
             receipt.update(project_id=pid,scope=r['scope'],identity=identity,deferred_fields=pending)
         receipts.append(receipt)
