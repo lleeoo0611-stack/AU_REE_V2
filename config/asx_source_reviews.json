@@ -12566,6 +12566,1642 @@
           }
         }
       ]
+    },
+    {
+      "review_id": "redlings_reported_cutoff202501",
+      "source_key": "asx_redlings_maiden202501",
+      "project_id": "AU-12cc237ae66c7a6508ca",
+      "source_sha256": "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43",
+      "asset_set": "gap_research",
+      "path": "data/snapshots/1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02906350",
+      "publication_date": "2025-01-22",
+      "effective_date": "2025-01-22",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "YEAR",
+      "effective_date_interval": [
+        "2025-01-01",
+        "2025-01-22"
+      ],
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Redlings",
+          "Inferred Mineral Resource"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "22 January 2025"
+        ]
+      },
+      "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+      "statement_id": "redlings_reported_cutoff202501",
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 1,
+          "markers": [
+            "Inferred Mineral Resource",
+            "800 ppm",
+            "11Mt",
+            "1,130 ppm",
+            "12,430t"
+          ]
+        },
+        {
+          "page": 2,
+          "markers": [
+            "Table 1",
+            "Rounded estimates by TREO cut-off"
+          ]
+        }
+      ],
+      "selection_reason": "The issuer explicitly reports the 800 ppm cutoff as its maiden resource on p1. p2 Table1 oxide row matches 11Mt/1130ppm; p3 Table2 provides contained TREO. No aggregation of cutoff sensitivity rows.",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 11,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "11",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "Mt",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              84,
+              422,
+              116,
+              617
+            ],
+            "column_label_bbox": [
+              87.22817687988281,
+              422.8450439453125,
+              112.78628845214844,
+              431.9222900390625
+            ],
+            "column_label": "Tonnes",
+            "unit_bbox": [
+              87.95084838867187,
+              437.31507568359376,
+              113.21329040527344,
+              446.39232177734374
+            ],
+            "unit_label": "Million"
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 1130,
+          "unit": "ppm",
+          "basis": "TREO",
+          "original_token": "1130",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "grade",
+            "basis": "TREO",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              116.40465698242187,
+              422,
+              138.79718627929688,
+              617
+            ],
+            "column_label_bbox": [
+              117.60465698242187,
+              437.31507568359376,
+              137.59718627929686,
+              446.39232177734374
+            ],
+            "column_label": "TREO",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_ce_ppm",
+          "value": 580.0,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "original_token": "580",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_ce_ppm",
+            "basis": "CeO2",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              182.26452026367187,
+              422,
+              202.49033203125,
+              617
+            ],
+            "column_label_bbox": [
+              183.4645202636719,
+              437.31507568359376,
+              201.29033203125,
+              447.11342163085936
+            ],
+            "column_label": "CeO2",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_dy_ppm",
+          "value": 8.0,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "8.0",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_dy_ppm",
+            "basis": "Dy2O3",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              203.27030334472656,
+              422,
+              227.8321746826172,
+              617
+            ],
+            "column_label_bbox": [
+              204.47030334472657,
+              437.31507568359376,
+              226.63217468261718,
+              447.11342163085936
+            ],
+            "column_label": "Dy2O3",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_nd_ppm",
+          "value": 150.0,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "150",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_nd_ppm",
+            "basis": "Nd2O3",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              229.30591735839843,
+              422,
+              253.86778869628907,
+              617
+            ],
+            "column_label_bbox": [
+              230.50591735839845,
+              437.31507568359376,
+              252.66778869628905,
+              447.11342163085936
+            ],
+            "column_label": "Nd2O3",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_pr_ppm",
+          "value": 51.0,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "51",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_pr_ppm",
+            "basis": "Pr6O11",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              256.10271606445315,
+              422,
+              280.6548217773437,
+              617
+            ],
+            "column_label_bbox": [
+              257.30271606445314,
+              437.31507568359376,
+              279.45482177734374,
+              447.11342163085936
+            ],
+            "column_label": "Pr6O11",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_tb_ppm",
+          "value": 1.5,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "1.5",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tb_ppm",
+            "basis": "Tb4O7",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              282.86101684570315,
+              422,
+              305.9775146484375,
+              617
+            ],
+            "column_label_bbox": [
+              284.06101684570314,
+              437.31507568359376,
+              304.7775146484375,
+              447.11342163085936
+            ],
+            "column_label": "Tb4O7",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_er_ppm",
+          "value": 4.1,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "original_token": "4.1",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_er_ppm",
+            "basis": "Er2O3",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              307.48015747070315,
+              422,
+              329.14169921875,
+              617
+            ],
+            "column_label_bbox": [
+              308.68015747070314,
+              437.31507568359376,
+              327.94169921875,
+              447.11342163085936
+            ],
+            "column_label": "Er2O3",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_eu_ppm",
+          "value": 2.3,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "original_token": "2.3",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_eu_ppm",
+            "basis": "Eu2O3",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              330.6250854492188,
+              422,
+              353.7415832519531,
+              617
+            ],
+            "column_label_bbox": [
+              331.82508544921876,
+              437.31507568359376,
+              352.5415832519531,
+              447.11342163085936
+            ],
+            "column_label": "Eu2O3",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_gd_ppm",
+          "value": 11.0,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "original_token": "11",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_gd_ppm",
+            "basis": "Gd2O3",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              355.2249694824219,
+              422,
+              379.7868408203125,
+              617
+            ],
+            "column_label_bbox": [
+              356.4249694824219,
+              437.31507568359376,
+              378.5868408203125,
+              447.11342163085936
+            ],
+            "column_label": "Gd2O3",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_ho_ppm",
+          "value": 1.5,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "original_token": "1.5",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_ho_ppm",
+            "basis": "Ho2O3",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              381.289453125,
+              422,
+              405.8416809082031,
+              617
+            ],
+            "column_label_bbox": [
+              382.489453125,
+              437.31507568359376,
+              404.6416809082031,
+              447.11342163085936
+            ],
+            "column_label": "Ho2O3",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_la_ppm",
+          "value": 300.0,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "original_token": "300",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_la_ppm",
+            "basis": "La2O3",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              407.3250671386719,
+              422,
+              429.7189086914062,
+              617
+            ],
+            "column_label_bbox": [
+              408.5250671386719,
+              437.31507568359376,
+              428.51890869140624,
+              447.11342163085936
+            ],
+            "column_label": "La2O3",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_lu_ppm",
+          "value": 0.5,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "original_token": "0.50",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_lu_ppm",
+            "basis": "Lu2O3",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              431.2311645507813,
+              422,
+              453.6153930664062,
+              617
+            ],
+            "column_label_bbox": [
+              432.43116455078126,
+              437.31507568359376,
+              452.41539306640624,
+              447.11342163085936
+            ],
+            "column_label": "Lu2O3",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_sm_ppm",
+          "value": 18.0,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "original_token": "18",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_sm_ppm",
+            "basis": "Sm2O3",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              455.098779296875,
+              422,
+              481.1059936523437,
+              617
+            ],
+            "column_label_bbox": [
+              456.298779296875,
+              437.31507568359376,
+              479.90599365234374,
+              447.11342163085936
+            ],
+            "column_label": "Sm2O3",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_tm_ppm",
+          "value": 0.57,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "original_token": "0.57",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tm_ppm",
+            "basis": "Tm2O3",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              481.8859497070313,
+              422,
+              507.8835510253906,
+              617
+            ],
+            "column_label_bbox": [
+              483.08594970703126,
+              437.31507568359376,
+              506.6835510253906,
+              447.11342163085936
+            ],
+            "column_label": "Tm2O3",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_y_ppm",
+          "value": 0.05,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "original_token": "0.05",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_y_ppm",
+            "basis": "Y2O3",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              508.6442504882813,
+              422,
+              527.4247192382812,
+              617
+            ],
+            "column_label_bbox": [
+              509.84425048828126,
+              437.31507568359376,
+              526.2247192382813,
+              447.11342163085936
+            ],
+            "column_label": "Y2O3",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_yb_ppm",
+          "value": 3.6,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "original_token": "3.6",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Table 1",
+              "Rounded estimates",
+              "800",
+              "Grade",
+              "ppm"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_yb_ppm",
+            "basis": "Yb2O3",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 2,
+            "section_id": "table1",
+            "original_unit": "ppm",
+            "table_bbox": [
+              43,
+              396,
+              553,
+              617
+            ],
+            "table_label_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "table_label": "Table 1",
+            "scope_anchor_bbox": [
+              49,
+              396.9,
+              80,
+              407.4
+            ],
+            "scope_anchor": "Table 1",
+            "row_bbox": [
+              43,
+              497,
+              553,
+              509
+            ],
+            "row_label_bbox": [
+              56.827606964111325,
+              498.0989501953125,
+              70.30842895507813,
+              507.1761962890625
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              528.9369750976563,
+              422,
+              552.0438598632812,
+              617
+            ],
+            "column_label_bbox": [
+              530.1369750976562,
+              437.31507568359376,
+              550.8438598632813,
+              447.11342163085936
+            ],
+            "column_label": "Yb2O3",
+            "unit_bbox": [
+              336.1096923828125,
+              422.8450439453125,
+              357.9979736328125,
+              431.9222900390625
+            ],
+            "unit_label": "(ppm)",
+            "unit_scope_bbox": [
+              116,
+              422,
+              553,
+              617
+            ]
+          }
+        },
+        {
+          "variable": "contained_treo_kt",
+          "value": 12.43,
+          "unit": "kt TREO",
+          "basis": "TREO",
+          "original_unit": "t",
+          "original_token": "12,430",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Table 2",
+              "Contained tonnes",
+              "800"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "contained_treo_kt",
+            "basis": "TREO",
+            "scope": "Redlings global Inferred Mineral Resource at the declared 800 ppm TREO cutoff; all five prospects, not lower/higher cutoff sensitivities or Exploration Target.",
+            "page": 3,
+            "section_id": "table2",
+            "original_unit": "t",
+            "table_bbox": [
+              43,
+              90,
+              553,
+              316
+            ],
+            "table_label_bbox": [
+              45,
+              90.5,
+              76,
+              101
+            ],
+            "table_label": "Table 2",
+            "scope_anchor_bbox": [
+              45,
+              90.5,
+              76,
+              101
+            ],
+            "scope_anchor": "Table 2",
+            "row_bbox": [
+              180,
+              193,
+              411,
+              205
+            ],
+            "row_label_bbox": [
+              194.7019775390625,
+              194.71455078125,
+              208.68443603515624,
+              204.1069366455078
+            ],
+            "row_label": "800",
+            "column_bbox": [
+              374,
+              116,
+              410,
+              316
+            ],
+            "column_label_bbox": [
+              381.45411376953126,
+              131.72298889160157,
+              402.17653198242186,
+              141.11537475585936
+            ],
+            "column_label": "TREO",
+            "unit_bbox": [
+              375.446728515625,
+              116.7273681640625,
+              400.469287109375,
+              126.11976165771485
+            ],
+            "unit_label": "tonnes",
+            "unit_scope_bbox": [
+              330,
+              116,
+              411,
+              316
+            ]
+          }
+        }
+      ],
+      "selected_resource_sections": {
+        "table1": {
+          "page": 2,
+          "bbox": [
+            43,
+            396,
+            553,
+            617
+          ],
+          "anchor_bbox": [
+            49,
+            396.9,
+            80,
+            407.4
+          ],
+          "anchor": "Table 1",
+          "row_label": "800",
+          "row_role": "selected_cutoff",
+          "cutoff_value": 800,
+          "cutoff_unit": "ppm",
+          "cutoff_evidence": {
+            "page": 1,
+            "markers": [
+              "reported at a cut-off grade of 800 ppm TREO"
+            ]
+          }
+        },
+        "table2": {
+          "page": 3,
+          "bbox": [
+            43,
+            90,
+            553,
+            316
+          ],
+          "anchor_bbox": [
+            45,
+            90.5,
+            76,
+            101
+          ],
+          "anchor": "Table 2",
+          "row_label": "800",
+          "row_role": "selected_cutoff",
+          "cutoff_value": 800,
+          "cutoff_unit": "ppm",
+          "cutoff_evidence": {
+            "page": 1,
+            "markers": [
+              "reported at a cut-off grade of 800 ppm TREO"
+            ]
+          }
+        }
+      },
+      "oxide_sum_tolerance_ppm": 3.815,
+      "oxide_sum_tolerance_basis": "Sum of half-unit intervals at each displayed decimal place for the 15 oxide grades and TREO; p2 Table1 explicitly warns of rounded estimates."
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "iteration": 1,
-  "base_commit": "7ca6047a45d24a49ec5a5d9dd93679b029bf4ec3",
+  "iteration": 2,
+  "base_commit": "20d8ad25a9d17529470749eac2d0a104ae52ed39",
   "tests": {
     "total": 415,
     "passed": 411,
@@ -8,12 +8,21 @@
     "failed": 0,
     "skip_reason": "R_UNAVAILABLE"
   },
-  "full_test_log_sha256": "3301e5c673cbfe4d787c6eb622cfa37146a6025957516091d7925fb3fdfb77a4",
+  "full_test_log_sha256": "d0c1d13a4c02fa3186084122d40ec66fd99f48d099e2f3e2a77a1d9c2d1206ba",
   "repeated_export_identical": true,
-  "master_preserved": true,
-  "ledger_sha256": "6c7a76a222317e58ded1663e2e6e1b5aed7173786e6fe5cbbd66874188c03190",
+  "newly_filled_cells": 25,
+  "withdrawn_cells": 0,
+  "ledger_sha256": "07f24059dc5a7e1fa52840f6bea3584408e48b1ac834fe3a57ff525769d71ff1",
+  "redlings_source_validation": {
+    "source_cells_validated": 18,
+    "mutated_tokens_rejected": 18,
+    "rejection_codes": [
+      "REVIEW_CELL_TOKEN_MISMATCH"
+    ]
+  },
   "limitations": [
     "NO_R_OR_MCDA_RECALCULATION",
-    "VISUALLY_REVIEWED_IMAGE_TRANSCRIPTS_NOT_INDEPENDENT_OCR"
+    "VISUALLY_REVIEWED_IMAGE_TRANSCRIPTS_NOT_INDEPENDENT_OCR",
+    "UNRESOLVED_SCOPE_IN_OTHER_CANDIDATES"
   ]
 }
