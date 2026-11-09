@@ -1,44 +1,15 @@
-# Current ASX coverage review
+# Current experimental Census summary — iteration 10 / research round 6
 
-Iteration 9, based on remote `b610eff5c1f0fce169dbb58e31bca4efe7a7f13b` and its unchanged 43-project cohort.
+55 projects × 53 columns: original 52 plus source-bound ASX codes. 1,168 filled cells and 1,747 unknowns. Every filled cell has provenance and every blank has a diagnostic. The canonical database remains unchanged at 33 groups; 22 reviewed research extensions do not imply formal C1 admission.
 
-## Verified additions
+The fixed original 43-project / 52-column cohort goes from 968 to 1,005 filled cells, leaving 1,231 of the original 1,268 gaps. The 37 fills are split into 27 inherited from remote commits b610eff5 and ab098e2, and 10 directly added this round. Twelve new projects separately contribute 120 original-column cells and 504 blanks. ASX codes add 43 filled cells and 12 blanks, with 31 codes in the original cohort and 12 in the new cohort.
 
-Splinter gains **23 previously blank cells**, including **17 scientific cells**. Two existing source-name/URL cells now identify the original technical report. No other project changes and no values are withdrawn.
+Direct numerical recovery: Brockman Y2O3 on its matched 41.6 Mt resource row; Charley Creek's explicitly named TOTAL INDICATED RESOURCES scope, not a whole-project combined resource. Splinter's inherited 14-compatible-oxide partial projection is preserved; Ce2O3 is not CeO2. Unknown resource-effective and public-release date flags remain intact. No new annual-production number passed.
 
-- Overall coverage: **995 / 2,236 cells**, with **1,241 blanks**.
-- Scientific coverage: **347 / 1,075 cells** across the fixed 25 scientific columns.
-- Complete ore/TREO resource pairs: **30 before and after**. This partial record does not add a complete TREO resource.
+Five follow-ups: Caralue Bluff linked to the new iTech parent; four remain candidate-only. All 89 external names have dispositions: 22 existing-project links, 11 new-project links and 56 other or unresolved scopes. This is not full verification of all external names.
 
-## Original source and selected scope
+ASX means the source-verified reporting issuer at the evidence date, not real-time legal ownership. Explicit merges require the same nonempty verified code and the same project name or evidenced alias. Zero rows merged: private Splinter and OD6 Splinter Rock lack a shared verified code and same-project proof. Similar Grass Patch names with different issuer/tenement scopes remain separate. Narraburra uses OBT; Cobra's LSE listing does not create an ASX code.
 
-The source is CSA Global's R254.2015 technical report, Appendix 7 of [WAMEX report A109432](https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=109432). PDF SHA-256: `428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7`.
+Related local regression: 317 tests and 107 subtests passed. Focused new-rule group: 18 tests and 21 subtests passed; groups overlap. Two complete source-validated exports have identical four-CSV hashes, for both 52- and 53-column projections. Initial concurrent-memory failures were corrected and sequential runs passed; no full historical/R rebuild or new remote CI success is claimed.
 
-Physical page 72, Table 35, binds **22.849 Mt** to the Splinter **Inferred** row at the source-defined **500 ppm TREO+Y2O3 cutoff**. Native cell positions bind that cutoff group, category, ore tonnage and 14 compatible oxide grades. Newmont, unclassified mineralisation, combined Total rows and other cutoffs are excluded. Splinter is not OD6's Splinter Rock.
-
-The source explicitly uses **Ce2O3**, proven by its Table 33 conversion row on physical page 69 and the selected resource-table header. It is not substituted or normalized to the template's CeO2 basis.
-
-The accepted partial record contains ore mass, 14 individually reported compatible oxides, and sums whose complete required oxide sets are present:
-
-- NdPr: 4.912535 kt.
-- HREE8 (Tb, Dy, Ho, Er, Tm, Yb, Lu and Y): 3.770085 kt.
-- Independent NdPrTbDy recalculation: 5.460911 kt.
-- Sum of known compatible oxides: 15.057491 kt, explicitly not total TREO.
-
-These are arithmetic results from source-rounded ore and grade values; their decimal places do not add measurement precision.
-
-## Values and dates kept unknown
-
-CeO2, generic TREO grade, total TREO, the legacy generic magnet-resource amount, magnet/TREO share, element-sum/TREO ratio and complete-resource indicator remain blank. Annual production and unrelated metadata gaps are unchanged.
-
-**2015-11-09 is the technical report's issue date and an ordering date only.** Geological/resource effective date and public release date remain unknown. Both unknown-date flags and their explicit roles are retained in current field provenance and summary limitations. No formal C1 approval or current legal-title certification is implied.
-
-## Validation and reproducibility
-
-Two complete local exports use the exact original canonical SQLite, unchanged at SHA-256 `99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0`, and hash-verified original sources. All four output CSVs match byte for byte between runs. Every filled cell has current provenance and every blank has a diagnostic.
-
-The default complete-resource path still requires paired ore and compatible TREO grade. Partial projection requires explicit source/statement/scope/date binding, native cutoff/category proof, compatible individual oxides and the declared incompatible cerium basis. Eight real-source negative controls rejected altered basis, category, cutoff, date and total/grouped-value claims.
-
-The integrated production code passed the cloud full suite: **506 tests, 502 passed, four optional R-dependent skips, zero failures/errors**. The laptop's **184-test ASX/metadata/partial-resource regression group passed with zero failures/errors/skips**. The earlier laptop full-suite attempt was limited by omitted historical fixtures; no complete Windows historical-suite pass is claimed.
-
-Only current summary, provenance, gaps, audit and review are updated. Raw PDFs, SQLite, temporary acquisition files and historical result bundles are not published. No new research MCDA ranking or remote-CI success is claimed.
+[Full report](../../docs/asx-gap-round6.md), [versioned result bundle](../asx-gap-round6-2026-11-10/validation.json), [separate inherited/direct accounting](../asx-gap-round6-2026-11-10/remote_integration.json). The retained source_consistency.csv is an inherited source-table diagnostic, not new whole-cohort validation. Raw PDFs, SQLite, page renders/text and raw external input rows are excluded from public delivery.

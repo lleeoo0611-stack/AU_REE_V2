@@ -6,6 +6,20 @@ from au_ree_v2.store import filehash
 from au_ree_v2.asx_validation import validate_reviews
 
 
+class BoundedSourceHash(unittest.TestCase):
+    def test_large_source_is_hashed_in_bounded_blocks(self):
+        import io
+        from unittest.mock import patch
+        raw = b'original-source' * 180000
+        class BoundedReader(io.BytesIO):
+            def read(self, size=-1):
+                if not 0 < size <= 1024 * 1024:
+                    raise AssertionError('unbounded source read')
+                return super().read(size)
+        with patch.object(Path, 'open', return_value=BoundedReader(raw)):
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), filehash('source.pdf'))
+
+
 class SameCodeSameName(unittest.TestCase):
     def row(self,name,code):return {'專案名稱':name,ASX_COLUMN:code}
     def test_normalized_same_name_and_same_verified_code(self):

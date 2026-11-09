@@ -50,6 +50,20 @@ def package(a):
         asx_codes_original_cohort=sum(bool(r['ASX代碼']) for r in rows if r['專案ID'] in ids),
         asx_codes_new_cohort=sum(bool(r['ASX代碼']) for r in rows if r['專案ID'] not in ids),
         actual_identity_merges=0,base52_blanks_are_separate_from_new_asx_column=True)
+    integration=None
+    if a.remote_baseline:
+        remote_compare=Path(a.remote_baseline)/'comparison_from_original';direct_compare=Path(a.remote_baseline)/'comparison_to_final'
+        inherited=compare_summaries(a.baseline,a.remote_baseline,remote_compare)
+        direct=compare_summaries(a.remote_baseline,a.base52,direct_compare,True)
+        if increment['newly_filled_cells']!=inherited['newly_filled_cells']+direct['newly_filled_cells']:
+            raise ValueError('ROUND6_REMOTE_INCREMENT_NOT_ADDITIVE')
+        for folder,prefix in [(remote_compare,'inherited_remote_'),(direct_compare,'direct_round6_')]:
+            for name in ['field_changes.csv','field_increment.json']:shutil.copyfile(folder/name,out/(prefix+name))
+        integration=dict(integrated_commits=['b610eff5c1f0fce169dbb58e31bca4efe7a7f13b','ab098e267fdd70a85d39034c972548ce09a29bc7'],
+            original_baseline=BASELINE,remote_parent='ab098e267fdd70a85d39034c972548ce09a29bc7',inherited_remote_newly_filled=inherited['newly_filled_cells'],
+            direct_round6_newly_filled=direct['newly_filled_cells'],combined_since_original_baseline=increment['newly_filled_cells'],
+            note='REMOTE_ADDITIONS_PRESERVED_AND_REPLAYED;NOT_CLAIMED_AS_NEW_SEARCH_RECOVERIES_OF_THIS_ROUND')
+        (out/'remote_integration.json').write_text(json.dumps(integration,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     (out/'field_increment.json').write_text(json.dumps(increment,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     for n in ['專案總表.csv','field_provenance.csv','missing_fields.csv','census_inventory.csv','summary.json']:shutil.copyfile(Path(a.updated)/n,out/n)
     shutil.copyfile(Path(a.base52)/'專案總表.csv',out/'專案總表_原52欄.csv');shutil.copyfile(Path(a.baseline)/'專案總表.csv',out/'專案總表_補值前.csv')
@@ -89,6 +103,9 @@ def package(a):
     for n in ['external_name_reviews.csv','external_name_review.json']:shutil.copyfile(Path(a.external_audit)/n,out/n)
     for path,name in [(a.ledger,'source_reviews.json'),(a.discovery_ledger,'project_discovery_reviews.json'),(a.identity_ledger,'project_identity_reviews.json'),(a.external_ledger,'external_name_reviews.json'),(a.external_search,'external_search_receipts.json'),(Path(a.source_dir)/'downloads.json','research_downloads.json')]:shutil.copyfile(path,out/name)
     if a.source_consistency:shutil.copyfile(a.source_consistency,out/'source_consistency.csv')
+    if a.replay_source_dir:
+        replay=[json.loads((Path(path)/'downloads.json').read_text('utf8')) for path in a.replay_source_dir]
+        (out/'integrated_source_replay.json').write_text(json.dumps(dict(source_sets=replay,ephemeral_links_published=False),ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     downloads=json.loads((Path(a.source_dir)/'downloads.json').read_text('utf8'));archives=[json.loads(Path(p).read_text('utf8')) for p in a.archive]
     write(out,'document_dispositions.csv',[dict(key=r['key'],url=r['url'],status=r['status'],source_sha256=r.get('document_sha256',''),pages=r.get('physical_pages',''),failure_reason=r.get('failure_status',''),
         numerical_reviews=json.dumps([x['review_id'] for x in json.loads(Path(a.ledger).read_text('utf8'))['reviews'] if x['source_sha256']==r.get('document_sha256')]),
@@ -99,10 +116,10 @@ def package(a):
         p=Path(path);suite=ET.parse(p).getroot().find('testsuite')
         if suite is None or any(int(suite.get(k,'0')) for k in ['failures','errors']):raise ValueError('ROUND6_TEST_FAILED')
         tests.append(dict(report=p.name,sha256=filehash(p),tests_including_subtests=int(suite.get('tests','0')),failures=0,errors=0,seconds=float(suite.get('time','0'))))
-    validation=dict(baseline_commit=BASELINE,iteration=8,research_round=6,cutoff=s['cutoff'],database_sha256=SQLITE_SHA,database_modified=False,
+    validation=dict(baseline_commit=BASELINE,iteration=10,research_round=6,cutoff=s['cutoff'],database_sha256=SQLITE_SHA,database_modified=False,
         integrity53=integrity,integrity52=base_integrity,increment=increment,coverage=coverage,followup5=dict(Counter(r['decision'] for r in follow)),
         original_canonical_projects=s['original_canonical_projects'],reviewed_project_extensions=s['reviewed_project_extensions'],
-        tests=tests,test_interpretation='RELATED_REGRESSION_AND_FOCUSED_TESTS_OVERLAP;NO_FULL_HISTORICAL_REBUILD_OR_REMOTE_CI_CLAIM',repeated_csv_exports_identical=True,
+        tests=tests,test_interpretation='RELATED_REGRESSION_AND_FOCUSED_TESTS_OVERLAP;NO_FULL_HISTORICAL_REBUILD_OR_REMOTE_CI_CLAIM',repeated_csv_exports_identical=True,remote_integration=integration,
         acquisition=dict(urls=len(downloads),statuses=dict(Counter(r['status'] for r in downloads)),pdf_urls=sum(r['kind']=='pdf' for r in downloads),pdf_acquired=sum(r['status']=='PDF_ACQUIRED' for r in downloads),
             pdf_document_pages=sum(r.get('physical_pages',0) for r in downloads if r['status']=='PDF_ACQUIRED'),asx_pdf_urls=sum(is_asx_document(r['url']) for r in downloads),
             asx_pdf_acquired=sum(is_asx_document(r['url']) and r['status']=='PDF_ACQUIRED' for r in downloads),archive_pages=sum(len(x['receipts']) for x in archives),
@@ -115,5 +132,5 @@ def package(a):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for key in ['baseline','base52','updated','repeat','repeat52','ledger','discovery-ledger','identity-ledger','external-ledger','discovery-audit','candidate-audit','external-audit','external-search','database','source-dir','out']:p.add_argument('--'+key,required=True)
-    p.add_argument('--archive',action='append',required=True);p.add_argument('--test-report',action='append',required=True);p.add_argument('--source-consistency')
+    p.add_argument('--archive',action='append',required=True);p.add_argument('--test-report',action='append',required=True);p.add_argument('--source-consistency');p.add_argument('--remote-baseline');p.add_argument('--replay-source-dir',action='append')
     print(json.dumps(package(p.parse_args()),ensure_ascii=False,indent=2))

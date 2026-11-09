@@ -384,6 +384,9 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 new_observations=len(rows),forecast_parameters=len(study['parameters']) if study else 0,
                 effective_date=effective,effective_date_role=role,date_precision=review['date_precision'],
                 effective_date_interval=review.get('effective_date_interval')))
+        # Release decoded image/font caches after each closed source, preserving
+        # the exact rendered-page hash checks under limited available memory.
+        pymupdf.TOOLS.store_shrink(100)
     return dict(sources=sources,observations=observations,studies=studies,resource_preferences=preferences,resource_contracts=resource_contracts,receipts=receipts,attributes=attributes,deferred_fields=deferred,resource_labels=resource_labels,partial_resource_contracts=partial_contracts,
         ledger_sha256=filehash(ledger_path),acquired_through=ledger['acquired_through'])
 

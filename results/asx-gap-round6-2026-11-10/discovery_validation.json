@@ -1,0 +1,49 @@
+{
+  "config_sha256": "7e63d7bf6d0a6ca887e9d196e964185561dbbc45f565060664c760766b78be95",
+  "baseline_inventory_sha256": "4f67808a0b05bb8271bd63c6ce2690d9234991d05937bce5092c6603e0d30509",
+  "source_reviewed_names": 41,
+  "decisions": {
+    "ADMIT_PROJECT": 22,
+    "ALIAS_OR_CHILD": 9,
+    "CANDIDATE_ONLY": 4,
+    "PROCESSING_ONLY": 2,
+    "EXISTING_PROJECT": 4
+  },
+  "original_project_candidate_records": 129,
+  "linked_project_candidate_records": 7,
+  "pending_project_candidate_records": 122,
+  "admitted_project_ids": [
+    "AU-d1aeb21e18e60fe8e32e",
+    "AU-3eb7131e4daea18a60a0",
+    "AU-329908ab8d4c1d1d3e03",
+    "AU-fe65cb1bd28eacb7a67f",
+    "AU-ff758cad5beb276d327d",
+    "AU-524c37fc04cf47bf8dca",
+    "AU-3a0020b6daf659f62138",
+    "AU-02d486d425ca0792bdc5",
+    "AU-af44c2bd1173b453953f",
+    "AU-d9fb1b1e3e2ec9fa0851",
+    "AU-6a5615e0ed95d955c2dd",
+    "AU-3eaa906d8230334ef698",
+    "AU-2ab3e8eb7b5784e64f9b",
+    "AU-630885ed0d74d8641d6c",
+    "AU-9d967ecaac6e02fc76a5",
+    "AU-d1394abdef4c8d971c78",
+    "AU-81b21bdd06796fa2217d",
+    "AU-b31d00e2272ffa6ccbd3",
+    "AU-d0827cf51def7e0014fc",
+    "AU-cae6c11543b0da5f840d",
+    "AU-e50ba6a268ea89226495",
+    "AU-1c907e00c797bf8b3ce1"
+  ],
+  "limitations": [
+    "CANDIDATE_RECORDS_ARE_NOT_COUNTS_OF_INDEPENDENT_PROJECTS",
+    "UNREVIEWED_IS_NOT_ABSENCE",
+    "SEARCH_SOURCES_ARE_NON_EXHAUSTIVE;NO_NATIONAL_COMPLETENESS_CLAIM",
+    "CANONICAL_SQLITE_AND_IDENTITY_RELATIONS_NOT_MUTATED"
+  ],
+  "output_hashes": {
+    "discovery_reviews.csv": "8971885880b240278a9aaf1f6a28b928dce498cbdd0813fa72cb72a8a6573f0f",
+    "discovery_candidate_queue.csv": "46f404b45edaa5cbe5c0fcbb75245bc3b8e37e5f7fd89b82311fea6ac4262ac6"
+  }
+}

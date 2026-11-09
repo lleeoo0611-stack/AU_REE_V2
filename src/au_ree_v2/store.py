@@ -59,7 +59,11 @@ def digest(value):
     return hashlib.sha256(canonical(value).encode()).hexdigest()
 
 def filehash(path):
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+    checksum = hashlib.sha256()
+    with Path(path).open('rb') as source:
+        for block in iter(lambda: source.read(1024 * 1024), b''):
+            checksum.update(block)
+    return checksum.hexdigest()
 
 
 def append_snapshots(path, entries):

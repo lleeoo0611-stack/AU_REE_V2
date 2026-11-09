@@ -119,10 +119,10 @@
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02996030"
     },
     "AU-d28382dfa82f1664065e": {
-      "asset_set": "round3",
-      "path": "data/snapshots/9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f.pdf",
-      "sha256": "9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f",
-      "url": "https://announcements.asx.com.au/asxpdf/20230419/pdf/45nsv13j5vtntn.pdf"
+      "asset_set": "metadata",
+      "path": "data/snapshots/ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28.pdf",
+      "url": "https://orbitresources.au/downloads/announcements/obt_2026103001.pdf",
+      "sha256": "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28"
     },
     "AU-d2cd77f89298d6dae330": {
       "asset_set": "canonical",
@@ -932,37 +932,37 @@
     {
       "review_id": "r6_code_AU-d28382dfa82f1664065e",
       "project_id": "AU-d28382dfa82f1664065e",
-      "code": "GRL",
-      "issuer_name": "Godolphin Resources Limited",
+      "code": "OBT",
+      "issuer_name": "Orbit Resources Limited",
       "source_key": "AU-d28382dfa82f1664065e",
-      "evidence_date": "2023-04-19",
+      "evidence_date": "2026-10-30",
       "date_evidence": {
         "page": 1,
         "markers": [
-          "19 April 2023"
+          "30 October 2026"
         ]
       },
       "project_marker": "Narraburra",
       "project_evidence": {
         "page": 1,
         "markers": [
-          "Narraburra"
+          "Narraburra Rare Earths Project"
         ]
       },
       "issuer_evidence": {
         "page": 1,
         "markers": [
-          "Godolphin Resources Limited"
+          "Orbit Resources Limited"
         ]
       },
-      "code_label": "ASX: GRL",
+      "code_label": "ASX: OBT",
       "code_evidence": {
         "page": 1,
         "markers": [
-          "ASX: GRL"
+          "ASX: OBT"
         ]
       },
-      "scope": "Narraburra Rare Earths Project; reporting issuer Godolphin Resources Limited at 2023-04-19; historical issuer association is not current title; no resource or production inference"
+      "scope": "Narraburra; latestcapturedOrbitResourcesLimitedASX_OBTissuerand100percentownershipdisclosure2026-10-30;supersedesGRL2023code;nochange_resource_scope_or_C1"
     },
     {
       "review_id": "r6_code_AU-d2cd77f89298d6dae330",
@@ -1813,5 +1813,9 @@
       "project_name": "Euston Mineral Sands Project",
       "reason": "CODE_LABEL_NOT_NATIVE"
     }
+  ],
+  "integrated_remote_commits": [
+    "b610eff5c1f0fce169dbb58e31bca4efe7a7f13b",
+    "ab098e267fdd70a85d39034c972548ce09a29bc7"
   ]
 }
