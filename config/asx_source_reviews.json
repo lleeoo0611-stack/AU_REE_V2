@@ -4064,19 +4064,8 @@
           }
         }
       },
-      "deferred_fields": [
-        {
-          "column": "預估年產NdPr_t_per_year",
-          "reason": "ORE_RESERVE_NDPR_SHARE_NOT_A_VERIFIED_ANNUAL_PRODUCT_FRACTION",
-          "evidence": {
-            "page": 1,
-            "markers": [
-              "NdPr represents 37%",
-              "Ore Reserve"
-            ]
-          }
-        }
-      ]
+      "deferred_fields": [],
+      "resolved_deferral_note": "Annual NdPr is directly disclosed in review_yangibana_annual2026_ndpr. The 37% Ore Reserve fraction remains inadmissible for annual production derivation."
     },
     {
       "review_id": "review_north_pfs_product202608",
@@ -26114,6 +26103,1733 @@
               "nameplate production capacity",
               "3,645"
             ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "review_yangibana_annual2026_ndpr",
+      "source_key": "hastings_ar2026",
+      "project_id": "AU-908fd6f4461622e89548",
+      "source_sha256": "f03cdb2769d58dcc65159e1f3bc892b3525e871c4bf685e480aa428bcf47a260",
+      "asset_set": "round6",
+      "path": "data/snapshots/f03cdb2769d58dcc65159e1f3bc892b3525e871c4bf685e480aa428bcf47a260.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03146806",
+      "publication_date": "2026-09-30",
+      "effective_date": "2026-09-30",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 9,
+        "markers": [
+          "Yangibana Stage 1",
+          "100% Project basis"
+        ]
+      },
+      "date_evidence": {
+        "page": 91,
+        "markers": [
+          "30 September 2026"
+        ]
+      },
+      "scope": "Yangibana Stage 1 updated DFS first announced 13 July 2026; 19-year life-of-mine average contained NdPr oxide in concentrate, 100% project basis; reaffirmed 30 September 2026 annual report",
+      "statement_id": "yangibana-dfs-annual-reaffirmation-20260930",
+      "observations": [],
+      "selection_reason": "DIRECT_DISCLOSURE_OF_ANNUAL_NDPR_NOT_RESERVE_FRACTION_INFERENCE",
+      "study": {
+        "scale": "DFS_MODEL",
+        "stage": 4,
+        "endpoint": "MINERAL_CONCENTRATE",
+        "element": "TREO_INCLUDING_Y",
+        "parameters": {
+          "average_annual_ndpr_product_t": 3090
+        },
+        "annual_basis_evidence": {
+          "page": 9,
+          "markers": [
+            "average",
+            "annual",
+            "contained",
+            "production",
+            "19-year mine life"
+          ]
+        },
+        "evidence": [
+          {
+            "page": 9,
+            "markers": [
+              "8,524",
+              "3,090",
+              "neodymium",
+              "praseodymium",
+              "rare earth oxides"
+            ]
+          }
+        ],
+        "parameter_bindings": {
+          "average_annual_ndpr_product_t": {
+            "field": "average_annual_ndpr_product_t",
+            "scope": "Yangibana Stage 1 updated DFS first announced 13 July 2026; 19-year life-of-mine average contained NdPr oxide in concentrate, 100% project basis; reaffirmed 30 September 2026 annual report",
+            "page": 9,
+            "mode": "native_statement",
+            "statement_bbox": [
+              67.5,
+              371,
+              291.2,
+              418.5
+            ],
+            "statement": "approximately 31,570 tonnes per annum; and\naverage \nannual \ncontained \nproduction \nof \napproximately 8,524 tonnes of total rare earth oxides, \nincluding approximately 3,090 tonnes of neodymium \nand praseodymium.",
+            "before": "approximately 31,570 tonnes per annum; and\naverage \nannual \ncontained \nproduction \nof \napproximately 8,524 tonnes of total rare earth oxides, \nincluding approximately ",
+            "after": " tonnes of neodymium \nand praseodymium.",
+            "original_unit": "tonnes",
+            "semantic_profile": "yangibana_annual_ndpr_in_treo",
+            "time_basis_bbox": [
+              60,
+              100,
+              295,
+              425
+            ]
+          }
+        }
+      },
+      "publication_archive_evidence": {
+        "asset_set": "round6-more-archives",
+        "path": "data/snapshots/fa5a2b1c985368621416393dcc70ee6981d80c3f94b4af4823d941fc6d392202.html",
+        "sha256": "fa5a2b1c985368621416393dcc70ee6981d80c3f94b4af4823d941fc6d392202",
+        "url": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode=HAS&timeframe=Y&year=2026"
+      },
+      "document_issue_date": "2026-09-30",
+      "document_issue_evidence": {
+        "page": 39,
+        "markers": [
+          "30 September 2026"
+        ]
+      },
+      "publication_date_role": "ASX_ARCHIVE_PUBLICATION_WITH_SEPARATE_DOCUMENT_ISSUE_DATE"
+    },
+    {
+      "review_id": "cycle1_wim100_hm_oxides2026",
+      "project_id": "AU-ff758cad5beb276d327d",
+      "source_key": "wim100_mre20260129",
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "asset_set": "auto_numeric",
+      "path": "data/snapshots/54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732.pdf",
+      "url": "https://www.marketindex.com.au/data-api/api/v1/announcements/XASX%3AILU%3A6A1308937/pdf/inline/wim100-mineral-resource-estimate-increase",
+      "publication_date": "2026-01-29",
+      "effective_date": "2026-01-29",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "WIM100",
+          "Wimmera"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "29 January 2026"
+        ]
+      },
+      "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+      "statement_id": "wim1002026hm_mre",
+      "scope_evidence": [
+        {
+          "page": 3,
+          "markers": [
+            "2026 WIM100 Mineral Resource estimate",
+            "Measured",
+            "Indicated",
+            "Inferred"
+          ]
+        },
+        {
+          "page": 4,
+          "markers": [
+            "Table 2: REO content in the HM for WIM100",
+            "1.0% HM"
+          ]
+        }
+      ],
+      "resource_categories": [
+        "MEASURED",
+        "INDICATED",
+        "INFERRED"
+      ],
+      "selection_reason": "MATCHED_SOURCE_HM_MASS_AND_EXPLICIT_HM_OXIDE_DENOMINATOR;NO_REPORTED_BULK_TREO_INFERENCE",
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "29 January 2026"
+        ],
+        "header_title": "WIM100 Mineral Resource estimate increase"
+      },
+      "selected_resource_sections": {
+        "mass2026": {
+          "page": 3,
+          "bbox": [
+            77,
+            210,
+            510,
+            338
+          ],
+          "anchor_bbox": [
+            77,
+            213,
+            252,
+            226
+          ],
+          "anchor": "2026 WIM100 Mineral Resource estimate",
+          "row_label": "Total3"
+        },
+        "oxide2026": {
+          "page": 4,
+          "bbox": [
+            77,
+            495,
+            571,
+            627
+          ],
+          "anchor_bbox": [
+            77,
+            497,
+            278,
+            511
+          ],
+          "anchor": "Table 2: REO content in the HM for WIM100",
+          "row_label": "TOTAL3"
+        }
+      },
+      "partial_resource_projection": {
+        "mode": "BULK_ORE_AND_HM_HOSTED_OXIDES_ONLY",
+        "withholding_reason": "HM_OXIDE_MASS_DERIVATION_WITHOUT_REPORTED_BULK_TREO",
+        "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+        "statement_id": "wim1002026hm_mre",
+        "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+        "effective_date": "2026-01-29",
+        "mass_inputs": {
+          "ore_mt": {
+            "variable": "ore_mt",
+            "value": 540,
+            "unit": "Mt",
+            "basis": "TREO",
+            "original_token": "540",
+            "rounding_half_width": 5,
+            "evidence": {
+              "page": 3,
+              "markers": [
+                "2026 WIM100 Mineral Resource estimate",
+                "540"
+              ]
+            },
+            "cell_binding": {
+              "mode": "native_cell",
+              "field": "ore_mt",
+              "page": 3,
+              "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+              "section_id": "mass2026",
+              "original_unit": "Mt",
+              "table_bbox": [
+                77,
+                210,
+                510,
+                338
+              ],
+              "table_label_bbox": [
+                77,
+                213,
+                252,
+                226
+              ],
+              "table_label": "2026 WIM100 Mineral Resource estimate",
+              "scope_anchor_bbox": [
+                77,
+                213,
+                252,
+                226
+              ],
+              "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+              "row_bbox": [
+                78,
+                326,
+                508,
+                338
+              ],
+              "row_label_bbox": [
+                87,
+                326,
+                110,
+                338
+              ],
+              "row_label": "Total3",
+              "column_bbox": [
+                123,
+                230,
+                161,
+                338
+              ],
+              "column_label_bbox": [
+                123,
+                237,
+                161,
+                258
+              ],
+              "column_label": "Resource Tonnes1",
+              "unit_bbox": [
+                123,
+                269,
+                161,
+                281
+              ],
+              "unit_label": "Mt3"
+            }
+          },
+          "hm_mass_mt": {
+            "value": 25,
+            "unit": "Mt",
+            "original_token": "25",
+            "rounding_half_width": 0.5,
+            "evidence": {
+              "page": 3,
+              "markers": [
+                "2026 WIM100 Mineral Resource estimate",
+                "25"
+              ]
+            },
+            "cell_binding": {
+              "mode": "native_cell",
+              "field": "hm_mass_mt",
+              "page": 3,
+              "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+              "section_id": "mass2026",
+              "original_unit": "Mt",
+              "table_bbox": [
+                77,
+                210,
+                510,
+                338
+              ],
+              "table_label_bbox": [
+                77,
+                213,
+                252,
+                226
+              ],
+              "table_label": "2026 WIM100 Mineral Resource estimate",
+              "scope_anchor_bbox": [
+                77,
+                213,
+                252,
+                226
+              ],
+              "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+              "row_bbox": [
+                78,
+                326,
+                508,
+                338
+              ],
+              "row_label_bbox": [
+                87,
+                326,
+                110,
+                338
+              ],
+              "row_label": "Total3",
+              "column_bbox": [
+                167,
+                230,
+                201,
+                338
+              ],
+              "column_label_bbox": [
+                169,
+                232,
+                198,
+                263
+              ],
+              "column_label": "In situ HM Tonnes",
+              "unit_bbox": [
+                167,
+                269,
+                201,
+                281
+              ],
+              "unit_label": "Mt3"
+            }
+          }
+        },
+        "denominator_proof": {
+          "page": 4,
+          "bbox": [
+            94,
+            654,
+            533,
+            679
+          ],
+          "text": "The rare earth element oxide is reported as a percentage of the HM content from the reported Mineral Resource.",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "The rare earth element oxide is reported as a percentage of the HM content from the reported Mineral Resource."
+            ]
+          }
+        },
+        "mass_cutoff_proof": {
+          "page": 3,
+          "bbox": [
+            94,
+            352,
+            351,
+            365
+          ],
+          "text": "Mineral Resources are reported at a cut-off grade of 1.0% HM.",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Mineral Resources are reported at a cut-off grade of 1.0% HM."
+            ]
+          }
+        },
+        "oxide_cutoff_proof": {
+          "page": 4,
+          "bbox": [
+            94,
+            642,
+            351,
+            655
+          ],
+          "text": "Mineral Resources are reported at a cut-off grade of 1.0% HM.",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mineral Resources are reported at a cut-off grade of 1.0% HM."
+            ]
+          }
+        },
+        "resource_name": "WIM100"
+      },
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 540,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "540",
+          "rounding_half_width": 5,
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "2026 WIM100 Mineral Resource estimate",
+              "540"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "page": 3,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "mass2026",
+            "original_unit": "Mt",
+            "table_bbox": [
+              77,
+              210,
+              510,
+              338
+            ],
+            "table_label_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "table_label": "2026 WIM100 Mineral Resource estimate",
+            "scope_anchor_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+            "row_bbox": [
+              78,
+              326,
+              508,
+              338
+            ],
+            "row_label_bbox": [
+              87,
+              326,
+              110,
+              338
+            ],
+            "row_label": "Total3",
+            "column_bbox": [
+              123,
+              230,
+              161,
+              338
+            ],
+            "column_label_bbox": [
+              123,
+              237,
+              161,
+              258
+            ],
+            "column_label": "Resource Tonnes1",
+            "unit_bbox": [
+              123,
+              269,
+              161,
+              281
+            ],
+            "unit_label": "Mt3"
+          }
+        },
+        {
+          "variable": "reported_resource_ce_ppm",
+          "value": 310.18518518518516,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "original_unit": "%HM",
+          "original_token": "0.67",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "CeO2",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_ce_ppm",
+            "basis": "CeO2",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              123,
+              549,
+              146,
+              627
+            ],
+            "column_label_bbox": [
+              123,
+              552,
+              146,
+              564
+            ],
+            "column_label": "CeO2",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_dy_ppm",
+          "value": 23.61111111111111,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_unit": "%HM",
+          "original_token": "0.051",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Dy2O3",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_dy_ppm",
+            "basis": "Dy2O3",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              148,
+              549,
+              177,
+              627
+            ],
+            "column_label_bbox": [
+              148,
+              552,
+              177,
+              564
+            ],
+            "column_label": "Dy2O3",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_er_ppm",
+          "value": 16.666666666666664,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "original_unit": "%HM",
+          "original_token": "0.036",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Er2O3",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_er_ppm",
+            "basis": "Er2O3",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              178,
+              549,
+              204,
+              627
+            ],
+            "column_label_bbox": [
+              178,
+              552,
+              204,
+              564
+            ],
+            "column_label": "Er2O3",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_eu_ppm",
+          "value": 1.3888888888888888,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "original_unit": "%HM",
+          "original_token": "0.003",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Eu2O3",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_eu_ppm",
+            "basis": "Eu2O3",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              205,
+              549,
+              232,
+              627
+            ],
+            "column_label_bbox": [
+              205,
+              552,
+              232,
+              564
+            ],
+            "column_label": "Eu2O3",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_gd_ppm",
+          "value": 22.22222222222222,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "original_unit": "%HM",
+          "original_token": "0.048",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gd2O3",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_gd_ppm",
+            "basis": "Gd2O3",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              233,
+              549,
+              261,
+              627
+            ],
+            "column_label_bbox": [
+              233,
+              552,
+              261,
+              564
+            ],
+            "column_label": "Gd2O3",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_ho_ppm",
+          "value": 5.555555555555555,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "original_unit": "%HM",
+          "original_token": "0.012",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Ho2O3",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_ho_ppm",
+            "basis": "Ho2O3",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              262,
+              549,
+              290,
+              627
+            ],
+            "column_label_bbox": [
+              262,
+              552,
+              290,
+              564
+            ],
+            "column_label": "Ho2O3",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_la_ppm",
+          "value": 148.14814814814815,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "original_unit": "%HM",
+          "original_token": "0.32",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "La2O3",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_la_ppm",
+            "basis": "La2O3",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              291,
+              549,
+              318,
+              627
+            ],
+            "column_label_bbox": [
+              291,
+              552,
+              318,
+              564
+            ],
+            "column_label": "La2O3",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_lu_ppm",
+          "value": 2.7777777777777777,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "original_unit": "%HM",
+          "original_token": "0.006",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Lu2O3",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_lu_ppm",
+            "basis": "Lu2O3",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              319,
+              549,
+              345,
+              627
+            ],
+            "column_label_bbox": [
+              319,
+              552,
+              345,
+              564
+            ],
+            "column_label": "Lu2O3",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_nd_ppm",
+          "value": 129.62962962962965,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_unit": "%HM",
+          "original_token": "0.28",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Nd2O3",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_nd_ppm",
+            "basis": "Nd2O3",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              346,
+              549,
+              375,
+              627
+            ],
+            "column_label_bbox": [
+              346,
+              552,
+              375,
+              564
+            ],
+            "column_label": "Nd2O3",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_pr_ppm",
+          "value": 36.574074074074076,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_unit": "%HM",
+          "original_token": "0.079",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Pr6O11",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_pr_ppm",
+            "basis": "Pr6O11",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              376,
+              549,
+              402,
+              627
+            ],
+            "column_label_bbox": [
+              376,
+              552,
+              402,
+              564
+            ],
+            "column_label": "Pr6O11",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_sm_ppm",
+          "value": 25.462962962962965,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "original_unit": "%HM",
+          "original_token": "0.055",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Sm2O3",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_sm_ppm",
+            "basis": "Sm2O3",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              430,
+              549,
+              458,
+              627
+            ],
+            "column_label_bbox": [
+              430,
+              552,
+              458,
+              564
+            ],
+            "column_label": "Sm2O3",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_tb_ppm",
+          "value": 3.703703703703704,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_unit": "%HM",
+          "original_token": "0.008",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Tb4O7",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tb_ppm",
+            "basis": "Tb4O7",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              460,
+              549,
+              487,
+              627
+            ],
+            "column_label_bbox": [
+              460,
+              552,
+              487,
+              564
+            ],
+            "column_label": "Tb4O7",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_tm_ppm",
+          "value": 2.7777777777777777,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "original_unit": "%HM",
+          "original_token": "0.006",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "TM2O3",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tm_ppm",
+            "basis": "Tm2O3",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              488,
+              549,
+              516,
+              627
+            ],
+            "column_label_bbox": [
+              488,
+              552,
+              516,
+              564
+            ],
+            "column_label": "Tm2O3",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_y_ppm",
+          "value": 134.25925925925924,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "original_unit": "%HM",
+          "original_token": "0.29",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Y2O3",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_y_ppm",
+            "basis": "Y2O3",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              518,
+              549,
+              540,
+              627
+            ],
+            "column_label_bbox": [
+              518,
+              552,
+              540,
+              564
+            ],
+            "column_label": "Y2O3",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
+          }
+        },
+        {
+          "variable": "reported_resource_yb_ppm",
+          "value": 18.981481481481485,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "original_unit": "%HM",
+          "original_token": "0.041",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Yb2O3",
+              "TOTAL3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_yb_ppm",
+            "basis": "Yb2O3",
+            "page": 4,
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "section_id": "oxide2026",
+            "original_unit": "%HM",
+            "table_bbox": [
+              77,
+              495,
+              571,
+              627
+            ],
+            "table_label_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "table_label": "Table 2: REO content in the HM for WIM100",
+            "scope_anchor_bbox": [
+              77,
+              497,
+              278,
+              511
+            ],
+            "scope_anchor": "Table 2: REO content in the HM for WIM100",
+            "row_bbox": [
+              78,
+              615,
+              571,
+              627
+            ],
+            "row_label_bbox": [
+              79,
+              615,
+              107,
+              627
+            ],
+            "row_label": "TOTAL3",
+            "column_bbox": [
+              543,
+              549,
+              570,
+              627
+            ],
+            "column_label_bbox": [
+              543,
+              552,
+              570,
+              564
+            ],
+            "column_label": "Yb2O3",
+            "unit_scope_bbox": [
+              120,
+              532,
+              571,
+              627
+            ],
+            "unit_bbox": [
+              298,
+              533,
+              423,
+              545
+            ],
+            "unit_label": "Rare Earth Element Oxide in HM2 (%)"
           }
         }
       ]

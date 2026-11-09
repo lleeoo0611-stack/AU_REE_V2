@@ -1,0 +1,228 @@
+{
+  "version": "coverage-cycle-review-v1",
+  "cycle_id": "cycle-1",
+  "current": {
+    "projects": 56,
+    "columns": 53,
+    "filled_cells": 1202,
+    "total_cells": 2968,
+    "remaining_blank_cells": 1766,
+    "scientific_columns": [
+      "礦石蘊藏量_Mt",
+      "TREO品位_pct",
+      "總TREO蘊藏量_kt",
+      "磁鐵稀土氧化物蘊藏量_kt",
+      "磁鐵稀土佔TREO_pct",
+      "NdPr蘊藏量_kt_需兩者皆公布",
+      "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+      "預估年產TREO_t_per_year",
+      "預估年產NdPr_t_per_year",
+      "預估年產重稀土_t_per_year",
+      "La2O3_氧化鑭_kt",
+      "CeO2_氧化鈰_kt",
+      "Pr6O11_氧化鐠_kt",
+      "Nd2O3_氧化釹_kt",
+      "Sm2O3_氧化釤_kt",
+      "Eu2O3_氧化銪_kt",
+      "Gd2O3_氧化釓_kt",
+      "Tb4O7_氧化鋱_kt",
+      "Dy2O3_氧化鏑_kt",
+      "Ho2O3_氧化鈥_kt",
+      "Er2O3_氧化鉺_kt",
+      "Tm2O3_氧化銩_kt",
+      "Yb2O3_氧化鐿_kt",
+      "Lu2O3_氧化鎦_kt",
+      "Y2O3_氧化釔_kt"
+    ],
+    "scientific_filled_cells": 370,
+    "scientific_total_cells": 1400,
+    "output_hashes": {
+      "專案總表.csv": "d9b8082539b6123490f1fa58c9bfc9d7dadbade1b3f029347e4739120a1ffee9",
+      "field_provenance.csv": "bc2e7c09f24fee3e37484f12a7305f06f7124c02854c4e9db8b26f89810f7c1f",
+      "missing_fields.csv": "201213d1ae2ef96319875e2370f341b68b342e500c42e4d802f96cb0a8cd93b5",
+      "census_inventory.csv": "c96f7089a9c5363387b6511a8fb83ec9e80c7902ee393e564375c03ee6877cf2"
+    },
+    "provenance_complete": true,
+    "missing_diagnostics_complete": true
+  },
+  "existing_projects": {
+    "newly_filled_cells": 24,
+    "scientific_newly_filled_cells": 19,
+    "updated_value_cells": 2,
+    "withdrawn_cells": 1,
+    "scientific_withdrawn_cells": 0,
+    "numeric_format_only_cells": 0,
+    "net_filled_cell_increase": 23
+  },
+  "added_projects": {
+    "project_ids": [
+      "AU-73549b8a9b1c6faf55eb"
+    ],
+    "count": 1,
+    "filled_cells": 11,
+    "scientific_filled_cells": 0,
+    "identity_and_other_metadata_cells": 11
+  },
+  "removed_projects": {
+    "project_ids": [],
+    "filled_cells": 0,
+    "explanations": []
+  },
+  "total_filled_cell_delta": 34,
+  "stopping_rule": {
+    "threshold": 3,
+    "operator": "<",
+    "newly_filled_cells": 35,
+    "scientific_newly_filled_cells": 19,
+    "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
+    "eligible": true,
+    "stop": false,
+    "incomplete": [],
+    "decision": "CONTINUE"
+  },
+  "baseline_csv_sha256": "73bbaf0e615b5d30505bead52e368c2910f9d97aff7a8e68799a93f8bd44d809",
+  "current_csv_sha256": "d9b8082539b6123490f1fa58c9bfc9d7dadbade1b3f029347e4739120a1ffee9",
+  "review_manifest": {
+    "cycle_id": "cycle-1",
+    "tracks": {
+      "candidates": {
+        "completed": true,
+        "records": [
+          {
+            "query": "sha256:048a018e1fc47022981510b77ee32eebc6f9cbb18ca54e1343965797c11c3b60",
+            "disposition": "CANDIDATE_ONLY",
+            "finding": "Existing 2022 ASX source reconfirmed; drilling intercepts are not global grade. 45-91 Mt/30-36% Al2O3 is kaolin exploration target, not REO MRE. Nackara parent/independent current boundary unresolved.",
+            "source_urls": [
+              "https://announcements.asx.com.au/asxpdf/20220729/pdf/45c9m44hzcdy91.pdf"
+            ]
+          },
+          {
+            "query": "sha256:7d245873a098d45a2d73f5e11b1db8c8806b21d8d11266a19bf154415bf7f668",
+            "disposition": "CANDIDATE_ONLY",
+            "finding": "Billeroo Complex geological occurrence must not be equated to Lake Namba-Billeroo uranium palaeochannel by name; no new REE project identity proof.",
+            "source_urls": [
+              "https://hreltd.com.au/projects/lake-namba-billeroo/"
+            ]
+          },
+          {
+            "query": "sha256:aa317a740967bd520138d76ed4a147b2944acb1998661057ba6f55eccfdff221",
+            "disposition": "CANDIDATE_ONLY",
+            "finding": "ANU tailings extraction research is not a declared standalone REE mining resource or production project. Cu/U/Au/Ag resources not transposed. Earlier BHP403 not retried.",
+            "source_urls": [
+              "https://science.anu.edu.au/node/5488"
+            ]
+          },
+          {
+            "query": "sha256:13ff23ed65f3c7ad5559d964133468a772834d28f952c60946fc0c5ec7cb34d4",
+            "disposition": "CANDIDATE_ONLY",
+            "finding": "Government source contains REE intercept evidence only, not total REO resource/composition/annual output. No ore-grade cross-commodity transfer.",
+            "source_urls": [
+              "https://energymining.sa.gov.au/industry/minerals-and-mining/mineral-commodities/rare_earths"
+            ]
+          },
+          {
+            "query": "sha256:dc6975fc16293d6baa34ca8279e9f7e33cb02fd3c548dd765545d1e7fef6a49e",
+            "disposition": "COBURN_ADMITTED;WIM100_LINKED_TO_EXISTING_WIMMERA;OTHER_DISPOSITIONS_RETAINED",
+            "source_urls": [
+              "https://announcements.asx.com.au/asxpdf/20230906/pdf/05tkl2byt4wfmn.pdf",
+              "https://www.iluka.com/media/g1ykjzwl/29jan26-quarterly-review-to-31-december-2025.pdf"
+            ]
+          }
+        ]
+      },
+      "numeric": {
+        "completed": true,
+        "records": [
+          {
+            "query": "sha256:568f41f9d9fc4a36fa1bd4df56005e6d55f19b45359103cc809157e9605d2920",
+            "disposition": "VERIFIED_DIRECT_ANNUAL_NDPR",
+            "finding": "Physical page 9 directly discloses 3,090 tonnes/year NdPr within average annual contained TREO, on a 100% project and 19-year life-of-mine basis. The annual report publication and signed issue dates are verified as 30 September 2026; the original DFS was announced 13 July 2026.",
+            "source_urls": [
+              "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03146806"
+            ]
+          },
+          {
+            "query": "sha256:aa4360eb507c897f499d21825c571260bdbc523837d77647b858d0114329f913",
+            "disposition": "VERIFIED_HM_HOSTED_OXIDE_PROJECTION",
+            "finding": "Physical pages 3 and 4 bind 540 Mt bulk ore, 25 Mt heavy minerals and all 15 RE oxides as percentages of HM at the same 1% HM cutoff. Sc is excluded. Bulk TREO grade, reported total and ratios remain unknown. Source rounding intervals are retained.",
+            "source_urls": [
+              "https://www.marketindex.com.au/data-api/api/v1/announcements/XASX%3AILU%3A6A1308937/pdf/inline/wim100-mineral-resource-estimate-increase"
+            ]
+          },
+          {
+            "query": "sha256:e84c9bf8280aaf9568a3908e7efe2e55ea72db9d8686a99ec4bbcf5958a23118",
+            "disposition": "DEFERRED_CONTRACT",
+            "finding": "Physical2:98Mt,TREO890ppm,TREO-CeO2 660ppm impliesCe230ppm,but arithmetic subtraction requires separate audited derivation.NdPr220 combined only;template requires separateNd/Pr.",
+            "source_urls": [
+              "https://api.investi.com.au/api/announcements/mek/503ff7a2-ead.pdf"
+            ]
+          },
+          {
+            "query": "sha256:625aee6ffd61cc48baf07870857912aa1328f2d2473f301a50a788f28d63a8f1",
+            "disposition": "NO_NEW_COMPATIBLE_EVIDENCE",
+            "finding": "Current524.3Mt row Nd520ppmPr150 already included.HREOgroup not8heavy definition.2023oxide distributions and stage2/3forecasts not same resource/year/LOM.",
+            "source_urls": [
+              "https://rarex.com.au/announcements/aGJ4Ap-quarterly-activities-appendix-5b-cash-flow-report"
+            ]
+          },
+          {
+            "query": "sha256:2f51b355efb3370681370749710ea4e0c353f624d4853aaed301a2cb9145f81c",
+            "disposition": "NO_NEW_COMPATIBLE_EVIDENCE",
+            "finding": "2025scoping LOM1037NdPr already included;11Tb49Dy not complete8HREE;years3-15notLOM.",
+            "source_urls": [
+              "https://wcsecure.weblink.com.au/pdf/ASM/02966845.pdf"
+            ]
+          },
+          {
+            "query": "sha256:e43941c9458d2daa24ffc34a871ae9f02c1e2a1e74e535f1f7b170ecdf50cbba",
+            "disposition": "NO_NEW_COMPATIBLE_EVIDENCE",
+            "finding": "Company page repeats8300TREO LOM,no verified componentannual;current2026MRE categoryrows cannot be added asrounded global total.",
+            "source_urls": [
+              "https://critica.limited/projects/jupiter-and-the-brothers-project/"
+            ]
+          },
+          {
+            "query": "sha256:070e04aa63ed866f3fdb7aa9309f7a88bd8e6fc86413612456884d11bcef42ee",
+            "disposition": "NO_NEW_COMPATIBLE_EVIDENCE",
+            "finding": "29.98Mt1.04%TREO andcombinedNdPr only;no separateNd/Pr.TreatGiffordCreek separately.",
+            "source_urls": [
+              "https://announcements.asx.com.au/asxpdf/20231130/pdf/05y0dpy5c135l9.pdf"
+            ]
+          },
+          {
+            "query": "sha256:a187f752328c1986b5a203b04aa3462f8f66748526f2b0085dc5c4ef01c51495",
+            "disposition": "NO_NEW_COMPATIBLE_EVIDENCE",
+            "finding": "Search found101Mt840/849ppm headlinevariance,no compatible globaloxide or annual forecast.Do notoverwrite840 on headlinealone.",
+            "source_urls": [
+              "https://announcements.asx.com.au/asxpdf/20230308/pdf/45mgls80r4lfr5.pdf"
+            ]
+          },
+          {
+            "query": "sha256:b47b77eb3465c26ac748712d93d2e9c6fb52673b58f1a4c0f72817c85fc66787",
+            "disposition": "NO_NEW_VERIFIED_SOURCE",
+            "finding": "May2026source searchlead;webredirect inaccessible(nonretryable),no snippet adopted.Existing4magnetaggregate cannot split intoelements.",
+            "source_urls": [
+              "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3AGRL%3A6A1326328/pdf/inline/update-narraburra-strategy-update"
+            ]
+          }
+        ]
+      }
+    },
+    "validation": {
+      "sources": {
+        "passed": true,
+        "evidence": "Complete export replay; three source-ledger hashes verified"
+      },
+      "tests": {
+        "passed": true,
+        "evidence": "52ca4d97cb7a1b55b027ee6dd71059f6db9ee41e7d65164b6b24054ee60fb015"
+      },
+      "reproducibility": {
+        "passed": true,
+        "evidence": "All four CSVs match independent repeated export"
+      }
+    },
+    "known_followup": "One product metadata cell withheld because case scopes differ; investigate in cycle2 without weakening source selection."
+  },
+  "limitations": "Search/source/test completion is declared by the reviewer manifest; table integrity is independently checked. STOP means marginal gain below threshold, not complete coverage."
+}

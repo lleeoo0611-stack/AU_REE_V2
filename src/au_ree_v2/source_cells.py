@@ -128,7 +128,21 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
         wanted = number_token(str(token))
         if not match or not wanted or number_token(match[1])['value'] != wanted['value']:
             fail('STATEMENT_TOKEN_MISMATCH')
-        if field=='average_annual_ndpr_product_t':
+        if field=='average_annual_ndpr_product_t' and binding.get('semantic_profile')=='yangibana_annual_ndpr_in_treo':
+            # A separately constrained disclosure profile: the NdPr amount is
+            # explicitly included in average annual contained rare-earth oxides.
+            pattern=(r'approximately [\d,]+(?:\.\d+)? tonnes per annum; and average annual contained '
+                     r'production of approximately [\d,]+(?:\.\d+)? tonnes of total rare earth oxides, '
+                     r'including approximately')
+            if (not re.fullmatch(pattern,prefix) or suffix!='tonnes of neodymium and praseodymium.'
+                    or unit!='tonnes' or binding.get('original_unit')!=unit):
+                fail('STATEMENT_SEMANTICS_MISMATCH')
+            context=norm(region_text(page,rect('time_basis_bbox')))
+            if '19-year mine life' not in context or '100% project basis' not in context:
+                fail('STATEMENT_ANNUAL_BASIS_MISMATCH')
+        elif field=='average_annual_ndpr_product_t':
+            if binding.get('semantic_profile') not in (None,'goschen_ndpr_rec'):
+                fail('STATEMENT_SEMANTICS_MISMATCH')
             if prefix!='nd-pr contained in rec' or suffix!='tpa' or unit!='tpa':fail('STATEMENT_SEMANTICS_MISMATCH')
             time_basis=norm(region_text(page,rect('time_basis_bbox')))
             if time_basis!='operations metrics (life-of-mine annual average)':fail('STATEMENT_ANNUAL_BASIS_MISMATCH')
@@ -203,6 +217,8 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
             fail('SHARED_UNIT_SCOPE_MISMATCH')
     source_unit = anchor('unit_bbox', 'unit_label' if 'unit_label' in binding else 'original_unit', unit_container)
     source_unit = source_unit.strip('()')
+    if field in ('ore_mt', 'hm_mass_mt') and source_unit == 'mt3' and unit == 'Mt': source_unit = 'mt'
+    if unit == '%HM' and source_unit == 'rare earth element oxide in hm2 (%': source_unit = '%hm'
     if source_unit == 'million' and unit == 'Mt': source_unit = 'mt'
     if source_unit == 'm tonnes' and unit == 'Mt': source_unit = 'mt'
     if source_unit == 'tonnes' and unit == 't': source_unit = 't'
@@ -223,7 +239,9 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
         fail('UNIT_OUTSIDE_FORECAST_ROW')
     # Field-to-header semantics, independent of the declared numeric token.
     if field == 'ore_mt':
-        valid = label in ('material', 'tonnes', 'tonnage') and source_unit in ('mt', 'kt', 't')
+        valid = label in ('material', 'tonnes', 'tonnage', 'resource tonnes1') and source_unit in ('mt', 'kt', 't')
+    elif field == 'hm_mass_mt':
+        valid = label == 'in situ hm tonnes' and source_unit == 'mt'
     elif field == 'bulk_hm_percent':
         valid = label == 'hm' and source_unit == '%'
     elif field in ('grade', 'contained_treo_kt'):

@@ -252,7 +252,8 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                     put('已公布元素數_共15項',len(elements),sha,scope=scope)
                     put('已公布元素總和_kt',sum(elements.values()),sha,method='SUM_AVAILABLE_MATCHED_OXIDES_NOT_TOTAL_RESOURCE',scope=scope)
                     if not is_partial and bundle['value']['contained_treo_kt']>0:put('元素總和/TREO',sum(elements.values())/bundle['value']['contained_treo_kt'],sha,method='AVAILABLE_OXIDE_SUM_DIVIDED_BY_MATCHED_TREO',scope=scope)
-                    put('元素數據一致性檢查','來源使用Ce2O3；CeO2與TREO總量、品位及比率留白；僅加總相容氧化物' if is_partial else
+                    put('元素數據一致性檢查','以來源HM噸位與氧化物百分比推算；排除Sc；非來源公布TREO總量或品位；保留來源捨入區間' if is_partial and partial_contract.get('mode')=='BULK_ORE_AND_HM_HOSTED_OXIDES_ONLY' else
+                        '來源使用Ce2O3；CeO2與TREO總量、品位及比率留白；僅加總相容氧化物' if is_partial else
                         '部分元素；未進行完整15項閉合檢查' if len(elements)<15 else
                         '15項氧化物總和與TREO於來源有效位數範圍內一致' if supplement and sha in supplement['sources'] else
                         '15項已齊；須依來源有效位數檢查閉合',sha,scope=scope)
@@ -302,7 +303,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                          ('NO_COMPATIBLE_SOURCE_REVIEWED_ENGINEERING_FORECAST' if supplement else 'NO_COMPATIBLE_FROZEN_ENGINEERING_FORECAST') if column.startswith('預估年產') else
                          'NO_COMPATIBLE_VERIFIED_FIELD; BLANK_IS_UNKNOWN')
                     from .partial_resource import WITHHELD_COLUMNS,REASON
-                    if partial_contract and column in WITHHELD_COLUMNS:why=REASON
+                    if partial_contract and column in WITHHELD_COLUMNS:why=partial_contract.get('withholding_reason',REASON)
                     d=dict(project_id=pid,column=column,reason=why)
                     deferred=((supplement or {}).get('deferred_fields',{}).get(pid,{}).get(column) or
                               (discovered or {}).get('deferred_fields',{}).get(pid,{}).get(column))

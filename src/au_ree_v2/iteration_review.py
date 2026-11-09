@@ -37,3 +37,102 @@ def audit_summary(folder):
                 scientific_filled_cells=sum(r[c]!='' for r in rows for c in scientific),
                 scientific_total_cells=len(rows)*len(scientific),output_hashes=summary['output_hashes'],
                 provenance_complete=True,missing_diagnostics_complete=True)
+
+
+def review_coverage_cycle(before, after, manifest):
+    """Compare validated 53-column outputs; never treat an incomplete pass as convergence.
+
+    The caller performs acquisition, source review and tests. The manifest records
+    those results; this function checks integrity and counts only exported cells.
+    It does not claim to independently validate PDF interpretation or run tests.
+    """
+    if isinstance(manifest, (str, Path)):
+        manifest = json.loads(Path(manifest).read_text(encoding='utf-8-sig'))
+    previous = audit_summary(before)
+    current = audit_summary(after)
+    if previous['columns'] != 53 or current['columns'] != 53:
+        raise ValueError('CYCLE_REQUIRES_53_COLUMNS')
+
+    def rows(folder):
+        with (Path(folder) / '專案總表.csv').open(encoding='utf-8-sig', newline='') as handle:
+            reader = csv.DictReader(handle)
+            data = list(reader)
+            return reader.fieldnames, {row['專案ID']: row for row in data}
+
+    columns, old = rows(before)
+    new_columns, new = rows(after)
+    if columns != new_columns:
+        raise ValueError('CYCLE_COLUMN_CONTRACT_CHANGED')
+    removed = sorted(set(old) - set(new))
+    removals = manifest.get('removed_projects', [])
+    explanations = {entry.get('project_id'): entry for entry in removals}
+    if len(explanations) != len(removals) or set(explanations) != set(removed):
+        raise ValueError('CYCLE_UNEXPLAINED_PROJECT_REMOVAL')
+    for entry in removals:
+        if not str(entry.get('reason', '')).strip():
+            raise ValueError('CYCLE_UNEXPLAINED_PROJECT_REMOVAL')
+        if entry.get('merged_into') is not None and entry['merged_into'] not in new:
+            raise ValueError('CYCLE_INVALID_MERGE_TARGET')
+    scientific = set(current['scientific_columns'])
+    counts = dict(newly_filled_cells=0, scientific_newly_filled_cells=0,
+                  updated_value_cells=0, withdrawn_cells=0,
+                  scientific_withdrawn_cells=0, numeric_format_only_cells=0)
+    import math
+    for pid in sorted(set(old) & set(new)):
+        for column in columns:
+            a, b = old[pid][column], new[pid][column]
+            if a == b:
+                continue
+            if not a and b:
+                counts['newly_filled_cells'] += 1
+                counts['scientific_newly_filled_cells'] += column in scientific
+            elif a and not b:
+                counts['withdrawn_cells'] += 1
+                counts['scientific_withdrawn_cells'] += column in scientific
+            else:
+                try:
+                    equal = math.isclose(float(a), float(b), rel_tol=1e-12, abs_tol=1e-12)
+                except ValueError:
+                    equal = False
+                counts['numeric_format_only_cells' if equal else 'updated_value_cells'] += 1
+    added_ids = sorted(set(new) - set(old))
+    added_filled = sum(value != '' for pid in added_ids for value in new[pid].values())
+    added_scientific = sum(new[pid][column] != '' for pid in added_ids for column in scientific)
+    removed_filled = sum(value != '' for pid in removed for value in old[pid].values())
+    gain = counts['newly_filled_cells'] + added_filled
+    incomplete = []
+    for track in ('candidates', 'numeric'):
+        item = manifest.get('tracks', {}).get(track, {})
+        records = item.get('records', [])
+        complete_records = (isinstance(records, list) and bool(records) and all(
+            isinstance(record, dict) and str(record.get('query', '')).strip()
+            and str(record.get('disposition', '')).strip() for record in records))
+        if item.get('completed') is not True or not complete_records:
+            incomplete.append('track:' + track)
+    for check in ('sources', 'tests', 'reproducibility'):
+        item = manifest.get('validation', {}).get(check, {})
+        if item.get('passed') is not True or not str(item.get('evidence', '')).strip():
+            incomplete.append('validation:' + check)
+    eligible = not incomplete
+    stopped = eligible and gain < 3
+    counts['net_filled_cell_increase'] = counts['newly_filled_cells'] - counts['withdrawn_cells']
+    return dict(
+        version='coverage-cycle-review-v1',
+        cycle_id=manifest.get('cycle_id', ''),
+        current=current,
+        existing_projects=counts,
+        added_projects=dict(project_ids=added_ids, count=len(added_ids), filled_cells=added_filled,
+                            scientific_filled_cells=added_scientific,
+                            identity_and_other_metadata_cells=added_filled-added_scientific),
+        removed_projects=dict(project_ids=removed, filled_cells=removed_filled, explanations=removals),
+        total_filled_cell_delta=current['filled_cells']-previous['filled_cells'],
+        stopping_rule=dict(threshold=3, operator='<', newly_filled_cells=gain,
+                           scientific_newly_filled_cells=counts['scientific_newly_filled_cells']+added_scientific,
+                           counting_scope='EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA',
+                           eligible=eligible, stop=stopped, incomplete=incomplete,
+                           decision='INCOMPLETE' if not eligible else 'STOP' if stopped else 'CONTINUE'),
+        baseline_csv_sha256=filehash(Path(before)/'專案總表.csv'),
+        current_csv_sha256=filehash(Path(after)/'專案總表.csv'),
+        review_manifest=manifest,
+        limitations='Search/source/test completion is declared by the reviewer manifest; table integrity is independently checked. STOP means marginal gain below threshold, not complete coverage.',
+    )

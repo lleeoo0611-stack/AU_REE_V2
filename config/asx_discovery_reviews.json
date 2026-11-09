@@ -3,7 +3,7 @@
   "baseline_commit": "b494607047c6d54111b7b6ad58e3335b3b93e889",
   "acquired_through": "2026-11-10",
   "cutoff": "2026-11-05",
-  "scope": "Round6 follow-up of5 deferred candidates and external Gemini name leads; source-scoped research identities not current title/legal or national completeness certification",
+  "scope": "Source-scoped ASX coverage cycles: pending candidates, external-name leads and scientific gaps; not current title or national completeness certification",
   "candidates": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -8151,6 +8151,356 @@
             "markers": [
               "Grass Patch Project",
               "Significant Intercepts"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "coburn-mineral-sands",
+      "name": "Coburn Mineral Sands Project",
+      "aliases": [
+        "Coburn",
+        "Coburn REE"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ASX_ORIGINAL_CONFIRMS_AU_MINING_PROJECT_AND_MONAZITE_REE_PRODUCT;NUMERIC_AND_CURRENT_TITLE_SEPARATE",
+      "country": "AU",
+      "scope": "Coburn mining and integrated mineral sands plant in Western Australia; monazite rare earths in zircon-in-concentrate product; source-date issuer association only, not current ownership or operating status. Ilmenite shipment and bulk HMC are not REO annual production. Annual report signed 2023-09-05, ASX file published 2023-09-06.",
+      "sources": [
+        {
+          "path": "data/snapshots/4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc.pdf",
+          "sha256": "4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc",
+          "url": "https://announcements.asx.com.au/asxpdf/20230906/pdf/05tkl2byt4wfmn.pdf",
+          "kind": "pdf",
+          "asset_set": "auto_candidates",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Coburn Project in WA",
+                "Strandline Resources Limited"
+              ]
+            },
+            {
+              "page": 15,
+              "markers": [
+                "monazite containing rare earths"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "data/snapshots/400ab441176a908a6eea071db830b59629a4b0ddc1eda9d5548ed9d9ee04bbf9.pdf",
+          "sha256": "400ab441176a908a6eea071db830b59629a4b0ddc1eda9d5548ed9d9ee04bbf9",
+          "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02699350-6A1163850",
+          "kind": "pdf",
+          "asset_set": "auto_candidates",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Coburn",
+                "monazite rare earths"
+              ]
+            },
+            {
+              "page": 2,
+              "markers": [
+                "Coburn Project in WA",
+                "Strandline Resources Limited"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "auto_identity_coburn",
+        "publication_date": "2023-09-06",
+        "date_evidence": {
+          "page": 42,
+          "markers": [
+            "5 September 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 4,
+          "markers": [
+            "Coburn Project in WA"
+          ]
+        },
+        "name_marker": "Coburn",
+        "state": "WA",
+        "state_marker": "WA",
+        "developer": {
+          "value": "Strandline Resources Limited",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Strandline Resources Limited"
+            ]
+          }
+        },
+        "document_issue_date": "2023-09-05",
+        "publication_date_role": "ASX_DATED_URL",
+        "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE"
+      },
+      "existing_candidate_ids": [],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "Coburn mining and integrated mineral sands plant in Western Australia; monazite rare earths in zircon-in-concentrate product; source-date issuer association only, not current ownership or operating status. Ilmenite shipment and bulk HMC are not REO annual production.",
+        "effective_disclosure_date": "2023-09-06",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
             ]
           }
         }

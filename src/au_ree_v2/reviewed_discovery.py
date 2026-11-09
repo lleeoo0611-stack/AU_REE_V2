@@ -9,6 +9,33 @@ def project_id(key):
     return 'AU-'+digest(['reviewed_project_extension_v1',key])[:20]
 
 
+def validate_issue_date(identity, source, cutoff, text):
+    """Separate a PDF's signed issue date from its ASX dated-URL release date.
+
+    The caller must already have verified source bytes and URL/hash receipt.
+    This never treats a signature as a PDF release header.
+    """
+    from urllib.parse import urlsplit
+    if identity.get('date_evidence_role') != 'DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE':
+        raise ValueError('DISCOVERY_ISSUE_DATE_ROLE')
+    if identity.get('publication_date_role') != 'ASX_DATED_URL':
+        raise ValueError('DISCOVERY_RELEASE_DATE_ROLE')
+    u = urlsplit(source['url'])
+    m = re.fullmatch(r'/asxpdf/(\d{8})/pdf/[A-Za-z0-9]+\.pdf', u.path)
+    if (u.scheme != 'https' or u.netloc != 'announcements.asx.com.au'
+            or u.query or u.fragment or not m or source.get('kind') != 'pdf'):
+        raise ValueError('DISCOVERY_RELEASE_URL_PROOF')
+    released = datetime.strptime(m.group(1), '%Y%m%d').date()
+    published = date.fromisoformat(identity['publication_date'])
+    issued = date.fromisoformat(identity['document_issue_date'])
+    if released != published or issued > released or released > date.fromisoformat(cutoff):
+        raise ValueError('DISCOVERY_ISSUE_RELEASE_DATE_ORDER')
+    proof = identity['date_evidence']
+    label = issued.strftime('%d %B %Y').lstrip('0').casefold()
+    if not proof.get('markers') or label not in text or any(m.casefold() not in text for m in proof['markers']):
+        raise ValueError('DISCOVERY_DOCUMENT_ISSUE_DATE_PROOF')
+
+
 def validate_discovery(path, assets, existing, cutoff):
     import pymupdf
     cfg=json.loads(Path(path).read_text('utf8'))
@@ -69,7 +96,12 @@ def validate_discovery(path, assets, existing, cutoff):
                         identity.get('publication_date_interval')!=interval or day!=interval[1]):
                         raise ValueError('DISCOVERY_EDITION_MONTH_REQUIRED')
                     catalogue_month_proof(d,day,text,identity.get('publication_month_role','EDITION_MONTH'))
-                if label not in text or any(m.casefold() not in text for m in proof['markers']):raise ValueError('DISCOVERY_PUBLICATION_DATE_PROOF')
+                if identity.get('date_evidence_role') == 'DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE':
+                    if identity.get('publication_date_precision', 'DAY') != 'DAY':raise ValueError('DISCOVERY_ISSUE_DATE_PRECISION')
+                    validate_issue_date(identity, s, cutoff, text)
+                elif identity.get('date_evidence_role') or identity.get('document_issue_date'):
+                    raise ValueError('DISCOVERY_UNSUPPORTED_DATE_ROLE')
+                elif label not in text or any(m.casefold() not in text for m in proof['markers']):raise ValueError('DISCOVERY_PUBLICATION_DATE_PROOF')
                 e=identity['project_evidence'];text=' '.join(d[e['page']-1].get_text(sort=True).split()).casefold()
                 if (not e['markers'] or not identity.get('name_marker') or identity['name_marker'].casefold() not in text or
                     any(m.casefold() not in text for m in e['markers']) or identity['state_marker'].casefold() not in text):
@@ -92,6 +124,8 @@ def validate_discovery(path, assets, existing, cutoff):
             ids.add(pid);names.update(normalized)
             source_key=identity['source_key'];sha=s['sha256']
             sources[sha]=dict(sha256=sha,key=source_key,url=s['url'],path=s['path'],kind='pdf',publication_date=day,
+                document_issue_date=identity.get('document_issue_date'),publication_date_role=identity.get('publication_date_role'),
+                date_evidence_role=identity.get('date_evidence_role'),
                 publication_date_precision=identity.get('publication_date_precision','DAY'),publication_date_interval=identity.get('publication_date_interval'),
                 available_date=cfg['acquired_through'],source_kind=identity.get('source_kind','ISSUER_PROJECT_IDENTITY'),asset_root=str(Path(assets[s['asset_set']]).resolve()))
             projects.append(dict(entity_id=pid,native_id=key,name=r['name'],aliases=aliases,identity_source=source_key,reviewed_extension=True))

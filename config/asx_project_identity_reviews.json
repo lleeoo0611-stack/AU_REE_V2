@@ -261,6 +261,28 @@
       "path": "data/snapshots/cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb.pdf",
       "sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb",
       "url": "https://announcements.asx.com.au/asxpdf/20230427/pdf/45p123qfz1mgyn.pdf"
+    },
+    "AU-73549b8a9b1c6faf55eb": {
+      "path": "data/snapshots/4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc.pdf",
+      "sha256": "4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc",
+      "url": "https://announcements.asx.com.au/asxpdf/20230906/pdf/05tkl2byt4wfmn.pdf",
+      "kind": "pdf",
+      "asset_set": "auto_candidates",
+      "evidence": [
+        {
+          "page": 4,
+          "markers": [
+            "Coburn Project in WA",
+            "Strandline Resources Limited"
+          ]
+        },
+        {
+          "page": 15,
+          "markers": [
+            "monazite containing rare earths"
+          ]
+        }
+      ]
     }
   },
   "codes": [
@@ -1768,6 +1790,41 @@
         ]
       },
       "scope": "OD6 Grass Patch E63/2151 E63/2152 E63/2185 E63/2154; not Mount Ridley MRD Grass Patch Complex and not Meeka Circle Valley despite same geological province/prospect names; reporting issuer code at2023-04-27, independent of current legal title"
+    },
+    {
+      "review_id": "auto_code_AU-73549b8a9b1c6faf55eb",
+      "project_id": "AU-73549b8a9b1c6faf55eb",
+      "code": "STA",
+      "issuer_name": "Strandline Resources Limited",
+      "source_key": "AU-73549b8a9b1c6faf55eb",
+      "evidence_date": "2023-09-05",
+      "date_evidence": {
+        "page": 42,
+        "markers": [
+          "5 September 2023"
+        ]
+      },
+      "project_marker": "Coburn",
+      "project_evidence": {
+        "page": 4,
+        "markers": [
+          "Coburn Project in WA"
+        ]
+      },
+      "issuer_evidence": {
+        "page": 4,
+        "markers": [
+          "Strandline Resources Limited"
+        ]
+      },
+      "code_label": "ASX: STA",
+      "code_evidence": {
+        "page": 4,
+        "markers": [
+          "ASX: STA"
+        ]
+      },
+      "scope": "Coburn mining and integrated mineral sands plant in Western Australia; monazite rare earths in zircon-in-concentrate product; source-date issuer association only, not current ownership or operating status. Ilmenite shipment and bulk HMC are not REO annual production."
     }
   ],
   "merges": [],

@@ -1,23 +1,23 @@
 {
   "version": "census-project-summary-v3-asx-identity",
   "cutoff": "2026-11-05",
-  "rows": 55,
+  "rows": 56,
   "columns": 53,
-  "unique_project_ids": 55,
+  "unique_project_ids": 56,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "claims_sha256": "11bfc4842e4b1d391ff220d39d0d17ad000a645ca6ed19dad11294b3408940f2",
   "snapshot_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
   "configuration_sha256": "92774d210b9d5b55a3b7ced161381be1cb52a5a3959ea4e4a284bf554fb5ed1a",
   "columns_sha256": "f6389bc0ace6cccac5ef34ae0ffd651403e4dbec5fd9d9ee7602f22404ed5223",
   "filled_counts": {
-    "專案ID": 55,
-    "開發商": 54,
+    "專案ID": 56,
+    "開發商": 55,
     "未上市公司": 11,
-    "專案名稱": 55,
-    "所在地_中文": 55,
-    "所在地_英文": 55,
-    "國家": 55,
-    "州省地區": 55,
+    "專案名稱": 56,
+    "所在地_中文": 56,
+    "所在地_英文": 56,
+    "國家": 56,
+    "州省地區": 56,
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
@@ -25,46 +25,46 @@
     "開發階段代碼": 0,
     "開發階段類別": 0,
     "開發階段": 9,
-    "礦石蘊藏量_Mt": 32,
+    "礦石蘊藏量_Mt": 33,
     "TREO品位_pct": 31,
     "總TREO蘊藏量_kt": 31,
     "磁鐵稀土氧化物蘊藏量_kt": 19,
     "磁鐵稀土佔TREO_pct": 19,
-    "NdPr蘊藏量_kt_需兩者皆公布": 16,
-    "完整重稀土組合蘊藏量_kt_需8元素皆公布": 10,
+    "NdPr蘊藏量_kt_需兩者皆公布": 17,
+    "完整重稀土組合蘊藏量_kt_需8元素皆公布": 11,
     "預估年產TREO_t_per_year": 6,
-    "預估年產NdPr_t_per_year": 5,
+    "預估年產NdPr_t_per_year": 6,
     "預估年產重稀土_t_per_year": 0,
-    "產品/產出": 11,
+    "產品/產出": 10,
     "有TREO資源估計": 31,
-    "有來源文件": 53,
-    "資料來源名稱": 55,
-    "資料來源URL": 55,
-    "已公布元素數_共15項": 17,
-    "已公布元素總和_kt": 17,
+    "有來源文件": 54,
+    "資料來源名稱": 56,
+    "資料來源URL": 56,
+    "已公布元素數_共15項": 18,
+    "已公布元素總和_kt": 18,
     "元素總和/TREO": 16,
-    "元素數據一致性檢查": 17,
-    "四項磁性元素皆公布": 15,
-    "磁性元素重算值_NdPrTbDy_kt": 15,
+    "元素數據一致性檢查": 18,
+    "四項磁性元素皆公布": 16,
+    "磁性元素重算值_NdPrTbDy_kt": 16,
     "重算磁性元素-HTML磁性稀土_kt": 0,
-    "La2O3_氧化鑭_kt": 11,
-    "CeO2_氧化鈰_kt": 10,
-    "Pr6O11_氧化鐠_kt": 16,
-    "Nd2O3_氧化釹_kt": 16,
-    "Sm2O3_氧化釤_kt": 11,
-    "Eu2O3_氧化銪_kt": 11,
-    "Gd2O3_氧化釓_kt": 11,
-    "Tb4O7_氧化鋱_kt": 15,
-    "Dy2O3_氧化鏑_kt": 15,
-    "Ho2O3_氧化鈥_kt": 11,
-    "Er2O3_氧化鉺_kt": 11,
-    "Tm2O3_氧化銩_kt": 11,
-    "Yb2O3_氧化鐿_kt": 10,
-    "Lu2O3_氧化鎦_kt": 11,
-    "Y2O3_氧化釔_kt": 12,
-    "ASX代碼": 43
+    "La2O3_氧化鑭_kt": 12,
+    "CeO2_氧化鈰_kt": 11,
+    "Pr6O11_氧化鐠_kt": 17,
+    "Nd2O3_氧化釹_kt": 17,
+    "Sm2O3_氧化釤_kt": 12,
+    "Eu2O3_氧化銪_kt": 12,
+    "Gd2O3_氧化釓_kt": 12,
+    "Tb4O7_氧化鋱_kt": 16,
+    "Dy2O3_氧化鏑_kt": 16,
+    "Ho2O3_氧化鈥_kt": 12,
+    "Er2O3_氧化鉺_kt": 12,
+    "Tm2O3_氧化銩_kt": 12,
+    "Yb2O3_氧化鐿_kt": 11,
+    "Lu2O3_氧化鎦_kt": 12,
+    "Y2O3_氧化釔_kt": 13,
+    "ASX代碼": 44
   },
-  "verified_source_hashes": 93,
+  "verified_source_hashes": 95,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -74,7 +74,7 @@
     "PROJECT": 33,
     "SITE": 766,
     "DEPOSIT": 301,
-    "REVIEWED_PROJECT_EXTENSION": 22,
+    "REVIEWED_PROJECT_EXTENSION": 23,
     "DEPOSIT_SCOPE": 27,
     "PROSPECT": 191,
     "PROJECT_PROGRAM": 1,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "73bbaf0e615b5d30505bead52e368c2910f9d97aff7a8e68799a93f8bd44d809",
-    "field_provenance.csv": "e06d691cb05544abd9febb1e3bfd9b0ee5a3f539baaf13995c7c056bc1355ac9",
-    "missing_fields.csv": "5340263e6f89f833f1e6528e050b69a903631f53bd892a4875a93bbfa7221df1",
-    "census_inventory.csv": "8016025a67fc0bac94ae6da15e41e99cb9b4397bba6dcc12b9af7a4ae60f6a65"
+    "專案總表.csv": "d9b8082539b6123490f1fa58c9bfc9d7dadbade1b3f029347e4739120a1ffee9",
+    "field_provenance.csv": "bc2e7c09f24fee3e37484f12a7305f06f7124c02854c4e9db8b26f89810f7c1f",
+    "missing_fields.csv": "201213d1ae2ef96319875e2370f341b68b342e500c42e4d802f96cb0a8cd93b5",
+    "census_inventory.csv": "c96f7089a9c5363387b6511a8fb83ec9e80c7902ee393e564375c03ee6877cf2"
   },
-  "review_ledger_sha256": "bad69c2237f023d4f7b282181d3c1cc93068ad0b1174fdaf4c8e2caa0860e9c2",
+  "review_ledger_sha256": "9b76ac1af5ea53e937d5bfd0e10ec42afe9b31e056f10d7e4bac3ee7099454d9",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -1131,10 +1131,369 @@
       "effective_date_role": "DATED_ENGINEERING_FORECAST",
       "date_precision": "DAY",
       "effective_date_interval": null
+    },
+    {
+      "review_id": "review_yangibana_annual2026_ndpr",
+      "project_id": "AU-908fd6f4461622e89548",
+      "source_sha256": "f03cdb2769d58dcc65159e1f3bc892b3525e871c4bf685e480aa428bcf47a260",
+      "status": "VALIDATED",
+      "scope": "Yangibana Stage 1 updated DFS first announced 13 July 2026; 19-year life-of-mine average contained NdPr oxide in concentrate, 100% project basis; reaffirmed 30 September 2026 annual report",
+      "review_methods": [
+        "NATIVE_SCOPED_STATEMENT_BINDING"
+      ],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "ASX_ARCHIVE_PUBLICATION_WITH_SEPARATE_DOCUMENT_ISSUE_DATE",
+      "new_observations": 0,
+      "forecast_parameters": 1,
+      "effective_date": "2026-09-30",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "cycle1_wim100_hm_oxides2026",
+      "project_id": "AU-ff758cad5beb276d327d",
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "status": "VALIDATED",
+      "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+      "review_methods": [
+        "NATIVE_TABLE_ROW_COLUMN_CELL_BINDING"
+      ],
+      "resource_selection_role": "PREFERRED",
+      "partial_resource_projection": {
+        "mode": "BULK_ORE_AND_HM_HOSTED_OXIDES_ONLY",
+        "withholding_reason": "HM_OXIDE_MASS_DERIVATION_WITHOUT_REPORTED_BULK_TREO",
+        "basis_proof_verified": true,
+        "review_id": "cycle1_wim100_hm_oxides2026",
+        "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+        "statement_id": "wim1002026hm_mre",
+        "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+        "effective_date": "2026-01-29",
+        "mass_inputs": {
+          "ore_mt": {
+            "variable": "ore_mt",
+            "value": 540,
+            "unit": "Mt",
+            "basis": "TREO",
+            "original_token": "540",
+            "rounding_half_width": 5,
+            "evidence": {
+              "page": 3,
+              "markers": [
+                "2026 WIM100 Mineral Resource estimate",
+                "540"
+              ]
+            },
+            "cell_binding": {
+              "mode": "native_cell",
+              "field": "ore_mt",
+              "page": 3,
+              "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+              "section_id": "mass2026",
+              "original_unit": "Mt",
+              "table_bbox": [
+                77,
+                210,
+                510,
+                338
+              ],
+              "table_label_bbox": [
+                77,
+                213,
+                252,
+                226
+              ],
+              "table_label": "2026 WIM100 Mineral Resource estimate",
+              "scope_anchor_bbox": [
+                77,
+                213,
+                252,
+                226
+              ],
+              "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+              "row_bbox": [
+                78,
+                326,
+                508,
+                338
+              ],
+              "row_label_bbox": [
+                87,
+                326,
+                110,
+                338
+              ],
+              "row_label": "Total3",
+              "column_bbox": [
+                123,
+                230,
+                161,
+                338
+              ],
+              "column_label_bbox": [
+                123,
+                237,
+                161,
+                258
+              ],
+              "column_label": "Resource Tonnes1",
+              "unit_bbox": [
+                123,
+                269,
+                161,
+                281
+              ],
+              "unit_label": "Mt3"
+            }
+          },
+          "hm_mass_mt": {
+            "value": 25,
+            "unit": "Mt",
+            "original_token": "25",
+            "rounding_half_width": 0.5,
+            "evidence": {
+              "page": 3,
+              "markers": [
+                "2026 WIM100 Mineral Resource estimate",
+                "25"
+              ]
+            },
+            "cell_binding": {
+              "mode": "native_cell",
+              "field": "hm_mass_mt",
+              "page": 3,
+              "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+              "section_id": "mass2026",
+              "original_unit": "Mt",
+              "table_bbox": [
+                77,
+                210,
+                510,
+                338
+              ],
+              "table_label_bbox": [
+                77,
+                213,
+                252,
+                226
+              ],
+              "table_label": "2026 WIM100 Mineral Resource estimate",
+              "scope_anchor_bbox": [
+                77,
+                213,
+                252,
+                226
+              ],
+              "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+              "row_bbox": [
+                78,
+                326,
+                508,
+                338
+              ],
+              "row_label_bbox": [
+                87,
+                326,
+                110,
+                338
+              ],
+              "row_label": "Total3",
+              "column_bbox": [
+                167,
+                230,
+                201,
+                338
+              ],
+              "column_label_bbox": [
+                169,
+                232,
+                198,
+                263
+              ],
+              "column_label": "In situ HM Tonnes",
+              "unit_bbox": [
+                167,
+                269,
+                201,
+                281
+              ],
+              "unit_label": "Mt3"
+            }
+          }
+        },
+        "denominator_proof": {
+          "page": 4,
+          "bbox": [
+            94,
+            654,
+            533,
+            679
+          ],
+          "text": "The rare earth element oxide is reported as a percentage of the HM content from the reported Mineral Resource.",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "The rare earth element oxide is reported as a percentage of the HM content from the reported Mineral Resource."
+            ]
+          }
+        },
+        "mass_cutoff_proof": {
+          "page": 3,
+          "bbox": [
+            94,
+            352,
+            351,
+            365
+          ],
+          "text": "Mineral Resources are reported at a cut-off grade of 1.0% HM.",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Mineral Resources are reported at a cut-off grade of 1.0% HM."
+            ]
+          }
+        },
+        "oxide_cutoff_proof": {
+          "page": 4,
+          "bbox": [
+            94,
+            642,
+            351,
+            655
+          ],
+          "text": "Mineral Resources are reported at a cut-off grade of 1.0% HM.",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mineral Resources are reported at a cut-off grade of 1.0% HM."
+            ]
+          }
+        },
+        "bulk_hm_percent": 4.62962962962963,
+        "oxide_rounding": {
+          "CeO2": {
+            "contained_kt": 167.5,
+            "rounding_interval_kt": [
+              162.925,
+              172.12500000000003
+            ]
+          },
+          "Dy2O3": {
+            "contained_kt": 12.75,
+            "rounding_interval_kt": [
+              12.372499999999999,
+              13.1325
+            ]
+          },
+          "Er2O3": {
+            "contained_kt": 9.0,
+            "rounding_interval_kt": [
+              8.6975,
+              9.3075
+            ]
+          },
+          "Eu2O3": {
+            "contained_kt": 0.75,
+            "rounding_interval_kt": [
+              0.6125,
+              0.8925
+            ]
+          },
+          "Gd2O3": {
+            "contained_kt": 12.0,
+            "rounding_interval_kt": [
+              11.637500000000001,
+              12.3675
+            ]
+          },
+          "Ho2O3": {
+            "contained_kt": 3.0,
+            "rounding_interval_kt": [
+              2.8175,
+              3.1875000000000004
+            ]
+          },
+          "La2O3": {
+            "contained_kt": 80.0,
+            "rounding_interval_kt": [
+              77.175,
+              82.875
+            ]
+          },
+          "Lu2O3": {
+            "contained_kt": 1.5,
+            "rounding_interval_kt": [
+              1.3474999999999997,
+              1.6575000000000002
+            ]
+          },
+          "Nd2O3": {
+            "contained_kt": 70.00000000000001,
+            "rounding_interval_kt": [
+              67.375,
+              72.67500000000001
+            ]
+          },
+          "Pr6O11": {
+            "contained_kt": 19.75,
+            "rounding_interval_kt": [
+              19.232499999999998,
+              20.2725
+            ]
+          },
+          "Sm2O3": {
+            "contained_kt": 13.75,
+            "rounding_interval_kt": [
+              13.352500000000001,
+              14.152500000000002
+            ]
+          },
+          "Tb4O7": {
+            "contained_kt": 2.0,
+            "rounding_interval_kt": [
+              1.8375,
+              2.1675000000000004
+            ]
+          },
+          "Tm2O3": {
+            "contained_kt": 1.5,
+            "rounding_interval_kt": [
+              1.3474999999999997,
+              1.6575000000000002
+            ]
+          },
+          "Y2O3": {
+            "contained_kt": 72.49999999999999,
+            "rounding_interval_kt": [
+              69.82499999999999,
+              75.225
+            ]
+          },
+          "Yb2O3": {
+            "contained_kt": 10.250000000000002,
+            "rounding_interval_kt": [
+              9.922500000000001,
+              10.582500000000001
+            ]
+          }
+        }
+      },
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 16,
+      "forecast_parameters": 0,
+      "effective_date": "2026-01-29",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "effective_date_interval": null
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "7e63d7bf6d0a6ca887e9d196e964185561dbbc45f565060664c760766b78be95",
+  "discovery_ledger_sha256": "96c9dacd95a249a499945006e5a207d5b5ceca159f5882f90a55a37efb0a59e5",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -9195,20 +9554,366 @@
           }
         }
       ]
+    },
+    {
+      "candidate_key": "coburn-mineral-sands",
+      "name": "Coburn Mineral Sands Project",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ASX_ORIGINAL_CONFIRMS_AU_MINING_PROJECT_AND_MONAZITE_REE_PRODUCT;NUMERIC_AND_CURRENT_TITLE_SEPARATE",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "path": "data/snapshots/4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc.pdf",
+          "sha256": "4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc",
+          "url": "https://announcements.asx.com.au/asxpdf/20230906/pdf/05tkl2byt4wfmn.pdf",
+          "kind": "pdf",
+          "asset_set": "auto_candidates",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Coburn Project in WA",
+                "Strandline Resources Limited"
+              ]
+            },
+            {
+              "page": 15,
+              "markers": [
+                "monazite containing rare earths"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "data/snapshots/400ab441176a908a6eea071db830b59629a4b0ddc1eda9d5548ed9d9ee04bbf9.pdf",
+          "sha256": "400ab441176a908a6eea071db830b59629a4b0ddc1eda9d5548ed9d9ee04bbf9",
+          "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02699350-6A1163850",
+          "kind": "pdf",
+          "asset_set": "auto_candidates",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Coburn",
+                "monazite rare earths"
+              ]
+            },
+            {
+              "page": 2,
+              "markers": [
+                "Coburn Project in WA",
+                "Strandline Resources Limited"
+              ]
+            }
+          ]
+        }
+      ],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "Coburn mining and integrated mineral sands plant in Western Australia; monazite rare earths in zircon-in-concentrate product; source-date issuer association only, not current ownership or operating status. Ilmenite shipment and bulk HMC are not REO annual production.",
+        "effective_disclosure_date": "2023-09-06",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "project_id": "AU-73549b8a9b1c6faf55eb",
+      "scope": "Coburn mining and integrated mineral sands plant in Western Australia; monazite rare earths in zircon-in-concentrate product; source-date issuer association only, not current ownership or operating status. Ilmenite shipment and bulk HMC are not REO annual production. Annual report signed 2023-09-05, ASX file published 2023-09-06.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "auto_identity_coburn",
+        "publication_date": "2023-09-06",
+        "date_evidence": {
+          "page": 42,
+          "markers": [
+            "5 September 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 4,
+          "markers": [
+            "Coburn Project in WA"
+          ]
+        },
+        "name_marker": "Coburn",
+        "state": "WA",
+        "state_marker": "WA",
+        "developer": {
+          "value": "Strandline Resources Limited",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Strandline Resources Limited"
+            ]
+          }
+        },
+        "document_issue_date": "2023-09-05",
+        "publication_date_role": "ASX_DATED_URL",
+        "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "MINERAL_SANDS_AND_MONAZITE_PRODUCT_IDENTITY_ONLY;NO_GLOBAL_REO_RESOURCE_OR_REO_ANNUAL_PRODUCTION_IN_THIS_SOURCE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "monazite containing rare earths"
+            ]
+          }
+        }
+      ]
     }
   ],
   "original_canonical_projects": 33,
-  "reviewed_project_extensions": 22,
+  "reviewed_project_extensions": 23,
   "base_contract_columns": 52,
   "base_projection_hashes": {
-    "census_inventory.csv": "8016025a67fc0bac94ae6da15e41e99cb9b4397bba6dcc12b9af7a4ae60f6a65",
-    "field_provenance.csv": "58a7580215bef077b0cd9713f8884f4853110023dc5717b1882d238cde7a1fdd",
-    "missing_fields.csv": "43da029b74c092d251ce0a233956bf069ac7d440fbc9ae1d24a9ccc98cc41e6b",
-    "專案總表.csv": "1ab4b0bc747a861b395e968cd5e77f5d361d4908f76688eeff861df575fa0e2f"
+    "census_inventory.csv": "c96f7089a9c5363387b6511a8fb83ec9e80c7902ee393e564375c03ee6877cf2",
+    "field_provenance.csv": "d426dd9ea666ea9095b6f20427bcd39071a965f8efbbdf8d6141e2bc5ed2d63a",
+    "missing_fields.csv": "6bab4b10e484393062fcffc3a92c816977c7eec4c6f742fc44b74a583b2a525d",
+    "專案總表.csv": "c802923227e6cc2a58b0fa820eaec318895d7deaa930d25677a88a21677ad9d4"
   },
-  "identity_ledger_sha256": "66b49f62c16c84f060df41a8e667ad2f363e4906883d07ac0ab8a7ae5e4ca6b7",
+  "identity_ledger_sha256": "5f324ee155e8e8eb3afec0917e5bb1ef99f4fef5bb9a8f1c2d450f9ffcdd680f",
   "identity_merges": [],
-  "validated_asx_codes": 43,
+  "validated_asx_codes": 44,
   "identity_sources": {
     "AU-12cc237ae66c7a6508ca": {
       "asset_set": "round3",
@@ -9467,6 +10172,28 @@
       "path": "data/snapshots/cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb.pdf",
       "sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb",
       "url": "https://announcements.asx.com.au/asxpdf/20230427/pdf/45p123qfz1mgyn.pdf"
+    },
+    "AU-73549b8a9b1c6faf55eb": {
+      "path": "data/snapshots/4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc.pdf",
+      "sha256": "4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc",
+      "url": "https://announcements.asx.com.au/asxpdf/20230906/pdf/05tkl2byt4wfmn.pdf",
+      "kind": "pdf",
+      "asset_set": "auto_candidates",
+      "evidence": [
+        {
+          "page": 4,
+          "markers": [
+            "Coburn Project in WA",
+            "Strandline Resources Limited"
+          ]
+        },
+        {
+          "page": 15,
+          "markers": [
+            "monazite containing rare earths"
+          ]
+        }
+      ]
     }
   },
   "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS"
