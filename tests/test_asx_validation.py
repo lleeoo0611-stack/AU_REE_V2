@@ -60,6 +60,15 @@ class SourceReviews(unittest.TestCase):
         if not receipt.exists():receipt.write_text(json.dumps([dict(url=self.review['url'],document_sha256=self.review['source_sha256'],status='PDF_ACQUIRED')]))
         path=self.root/'reviews.json';path.write_text(json.dumps(dict(version='asx-source-review-v2',acquired_through='2026-11-09',reviews=[review or self.review])))
         return validate_reviews(path,{'fixture':self.root},self.projects)
+    def test_dated_metadata_role_does_not_claim_resource_effective_date(self):
+        r=copy.deepcopy(self.review);r.update(observations=[],effective_date_role='DATED_ISSUER_METADATA',effective_date=r['publication_date'],date_evidence=dict(page=1,markers=['16 January 2025']),attributes=[dict(column='開發商',value='Issuer',evidence=dict(page=1,markers=['Issuer']))])
+        result=self.validate(r)
+        self.assertEqual('DATED_ISSUER_METADATA',result['receipts'][0]['effective_date_role'])
+        self.assertEqual({},result['observations'])
+    def test_metadata_role_cannot_admit_resource_observations(self):
+        r=copy.deepcopy(self.review);r['effective_date_role']='DATED_ISSUER_METADATA'
+        with self.assertRaisesRegex(ValueError,'METADATA_ROLE_REQUIRES_ATTRIBUTES_ONLY'):self.validate(r)
+
     def test_context_resource_does_not_replace_selected_contract(self):
         self.validate()
         context=copy.deepcopy(self.review);context.update(review_id='context',statement_id='other-scope',resource_selection_role='CONTEXT_ONLY',context_selection_reason='Distinct alternative scope, not additive')

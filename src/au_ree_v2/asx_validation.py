@@ -97,8 +97,10 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
         date.fromisoformat(pub);date.fromisoformat(effective)
         if effective>pub or pub>cutoff:raise ValueError('REVIEW_DATE_OUTSIDE_PUBLICATION_OR_CUTOFF')
         role=review['effective_date_role']
-        if role not in ('RESOURCE_EFFECTIVE_DATE','RESOURCE_REAFFIRMED_AT_PUBLICATION','DATED_ENGINEERING_FORECAST'):
+        if role not in ('RESOURCE_EFFECTIVE_DATE','RESOURCE_REAFFIRMED_AT_PUBLICATION','DATED_ENGINEERING_FORECAST','DATED_ISSUER_METADATA'):
             raise ValueError('REVIEW_EFFECTIVE_DATE_ROLE_REQUIRED')
+        if role=='DATED_ISSUER_METADATA' and (review.get('observations') or review.get('study') or not review.get('attributes')):
+            raise ValueError('REVIEW_METADATA_ROLE_REQUIRES_ATTRIBUTES_ONLY')
         with pymupdf.open(path) as doc:
             texts={};rendered={}
             def text(page):
@@ -336,7 +338,12 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
             for attribute in review.get('attributes',[]):
                 content=evidence(attribute['evidence']);column=attribute['column'];value=attribute['value']
                 if column=='未上市公司':
-                    if value!='否' or not re.search(r'\bASX\s*:\s*[A-Z0-9]+',text(attribute['evidence']['page'])) or not re.search(r'100%\s*[-\u2010\u2011]\s*owned',content):
+                    proof=attribute.get('listing_proof')
+                    if proof:
+                        if value!='否':raise ValueError('REVIEW_LISTING_VALUE_INVALID')
+                        from .reviewed_metadata import validate_listing_proof
+                        validate_listing_proof(doc,proof,evidence)
+                    elif value!='否' or not re.search(r'\bASX\s*:\s*[A-Z0-9]+',text(attribute['evidence']['page'])) or not re.search(r'100%\s*[-\u2010\u2011]\s*owned',content):
                         raise ValueError('REVIEW_LISTING_AND_PROJECT_OWNERSHIP_NOT_ESTABLISHED')
                 elif column=='開發商':
                     if normalized(value) not in content:raise ValueError('REVIEW_DEVELOPER_NOT_ON_PAGE')

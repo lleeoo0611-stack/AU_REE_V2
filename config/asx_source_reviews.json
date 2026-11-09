@@ -10318,8 +10318,8 @@
         ]
       },
       "publication_archive_evidence": {
-        "path": "data/snapshots/5a9ab2d05bd2ac97929d0f9bd082634390e6a342dd7343662f14814ccf3a41f8.html",
-        "sha256": "5a9ab2d05bd2ac97929d0f9bd082634390e6a342dd7343662f14814ccf3a41f8",
+        "path": "data/snapshots/6fa79abe437bd258dda258c3ebd3863b819cff5131dffc350e7a7057f4830a06.html",
+        "sha256": "6fa79abe437bd258dda258c3ebd3863b819cff5131dffc350e7a7057f4830a06",
         "url": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode=BAK&timeframe=Y&year=2026",
         "asset_set": "technical",
         "matches": [
@@ -23732,6 +23732,224 @@
           ],
           "row_label": "Total"
         }
+      }
+    },
+    {
+      "review_id": "metadata_narraburra_orbit_20261030",
+      "source_key": "metadata_narraburra_orbit_20261030",
+      "project_id": "AU-d28382dfa82f1664065e",
+      "source_sha256": "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28",
+      "asset_set": "metadata",
+      "path": "data/snapshots/ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28.pdf",
+      "url": "https://orbitresources.au/downloads/announcements/obt_2026103001.pdf",
+      "publication_date": "2026-10-30",
+      "effective_date": "2026-10-30",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Narraburra Rare Earths Project"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "30 October 2026"
+        ]
+      },
+      "scope": "Narraburra Rare Earths Project issuer/developer metadata at publication only; no resource, element, reserve, stage or production values added",
+      "statement_id": "metadata_narraburra_orbit_20261030",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發商",
+          "value": "Orbit Resources Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Orbit Resources Limited (ASX: OBT)",
+              "Narraburra Rare Earths Project",
+              "Decision preserves Orbit's 100% ownership"
+            ]
+          }
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Orbit Resources Limited (ASX: OBT)",
+              "Decision preserves Orbit's 100% ownership of the Narraburra Rare Earths Project"
+            ]
+          },
+          "listing_proof": {
+            "issuer": "Orbit Resources Limited",
+            "issuer_alias": "Orbit",
+            "project_marker": "Narraburra",
+            "exchange": "ASX",
+            "ticker": "OBT",
+            "listing_evidence": {
+              "page": 1,
+              "markers": [
+                "Orbit Resources Limited (ASX: OBT)"
+              ]
+            },
+            "ownership_evidence": {
+              "page": 1,
+              "markers": [
+                "Decision preserves Orbit's 100% ownership of the Narraburra Rare Earths Project"
+              ]
+            },
+            "ownership_bbox": [
+              95,
+              249,
+              527,
+              280
+            ],
+            "ownership_statement": "Decision preserves Orbit's 100% ownership of the Narraburra Rare Earths Project, retaining full exposure to development upside and potential value creation",
+            "ownership_basis": "EXPLICIT_100_PERCENT_PROJECT_OWNERSHIP_SAME_PAGE"
+          }
+        }
+      ],
+      "scope_evidence": [
+        {
+          "page": 3,
+          "markers": [
+            "Orbit Resources Limited (formerly Godolphin Resources Limited)",
+            "ASX-listed"
+          ]
+        },
+        {
+          "page": 1,
+          "markers": [
+            "Board elects to defer proposed IPO"
+          ]
+        }
+      ],
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "30 October 2026"
+        ],
+        "header_title": "Matrix Critical Minerals: IPO update and Cancellation of General Meeting"
+      }
+    },
+    {
+      "review_id": "metadata_wudinna_cobra_20261026",
+      "source_key": "metadata_wudinna_cobra_20261026",
+      "project_id": "AU-0098e17a63e7c05c213f",
+      "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864",
+      "asset_set": "metadata",
+      "path": "data/snapshots/89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864.pdf",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/lse/7804646.pdf?v=63960217384",
+      "publication_date": "2026-10-26",
+      "effective_date": "2026-10-26",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Wudinna Rare Earths Project"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "26 October 2026"
+        ]
+      },
+      "scope": "Wudinna Rare Earths Project issuer/developer metadata at publication only; no resource, element, reserve, stage or production values added",
+      "statement_id": "metadata_wudinna_cobra_20261026",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發商",
+          "value": "Cobra Resources plc",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Cobra Resources plc",
+              "Cobra (LSE: COBR)",
+              "advancing the Wudinna Rare Earths Project"
+            ]
+          }
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Cobra Resources plc",
+              "Cobra (LSE: COBR)",
+              "advancing the Wudinna Rare Earths Project"
+            ]
+          },
+          "listing_proof": {
+            "issuer": "Cobra Resources plc",
+            "issuer_alias": "Cobra",
+            "project_marker": "Wudinna",
+            "exchange": "LSE",
+            "ticker": "COBR",
+            "listing_evidence": {
+              "page": 1,
+              "markers": [
+                "Cobra Resources plc",
+                "Cobra (LSE: COBR)"
+              ]
+            },
+            "ownership_evidence": {
+              "page": 23,
+              "markers": [
+                "Boland",
+                "EL7074",
+                "Head",
+                "EL6742",
+                "owned 100% by LAM",
+                "Wudinna Pty Ltd, a wholly owned subsidiary of",
+                "Cobra Resources Plc."
+              ]
+            },
+            "ownership_bbox": [
+              357,
+              701,
+              514,
+              741
+            ],
+            "ownership_statement": "Boland is located on EL7074 and Head is located on EL6742, both currently owned 100% by LAM Wudinna Pty Ltd, a wholly owned subsidiary of Cobra Resources Plc.",
+            "ownership_basis": "EXPLICIT_NAMED_TENEMENTS_AND_WHOLLY_OWNED_SUBSIDIARY_SAME_DOCUMENT",
+            "project_scope_evidence": {
+              "page": 1,
+              "markers": [
+                "Wudinna Rare Earths Project",
+                "Boland and Head ore bodies"
+              ]
+            }
+          }
+        }
+      ],
+      "scope_evidence": [
+        {
+          "page": 23,
+          "markers": [
+            "Boland",
+            "EL7074",
+            "Head",
+            "EL6742",
+            "owned 100% by LAM",
+            "wholly owned subsidiary of",
+            "Cobra Resources Plc."
+          ]
+        }
+      ],
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "26 October 2026"
+        ],
+        "header_title": "Maiden Rare Earth Mineral Resource Estimate"
       }
     }
   ]

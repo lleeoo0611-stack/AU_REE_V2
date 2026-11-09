@@ -11,8 +11,8 @@
   "columns_sha256": "74fdf1a34e1fb57106b72bc864b4750496f448e58c47e5138ed97dcca52fd641",
   "filled_counts": {
     "專案ID": 43,
-    "開發商": 40,
-    "未上市公司": 9,
+    "開發商": 42,
+    "未上市公司": 11,
     "專案名稱": 43,
     "所在地_中文": 43,
     "所在地_英文": 43,
@@ -63,7 +63,7 @@
     "Lu2O3_氧化鎦_kt": 10,
     "Y2O3_氧化釔_kt": 10
   },
-  "verified_source_hashes": 76,
+  "verified_source_hashes": 78,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -92,11 +92,11 @@
   ],
   "output_hashes": {
     "census_inventory.csv": "1b69a12157d3228b0554943b6a12bf32775da97ae867a71962357c75b73f9ac4",
-    "field_provenance.csv": "d1fd5e5d928a942735c0b86422f5019157706273d6e650bc941545f08731e2a1",
-    "missing_fields.csv": "3805f2cc97de73f98e14de725862d254e24c2c7d985f3b4c3024a02ae45ea1b6",
-    "專案總表.csv": "f1e96c107de86de73e7eb93d027290f809e834b84035d695bf9cf49e7bf60288"
+    "field_provenance.csv": "4b440611c53cb5b93bef12678be4c7b174ea7f3bdbc6e2e7ce8353b124de9fbc",
+    "missing_fields.csv": "2ec791c83f41e3de78c9c4876e61bbac6731bb90525f093a705dd703e24b29ed",
+    "專案總表.csv": "7c73a7b79cde3eb6c46956aa8ef8b10c81660825c1f4537c3d214ee58b5097a7"
   },
-  "review_ledger_sha256": "72a404ff89e01291436b9509c7c54040b434005a15de956bb619bc1198be7e74",
+  "review_ledger_sha256": "1f4d9f6930a82a8d331d8666e48f4807fadd976cbb38b1052e81d17fd3e0d621",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -793,6 +793,36 @@
       "forecast_parameters": 0,
       "effective_date": "2026-10-27",
       "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "metadata_narraburra_orbit_20261030",
+      "project_id": "AU-d28382dfa82f1664065e",
+      "source_sha256": "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28",
+      "status": "VALIDATED",
+      "scope": "Narraburra Rare Earths Project issuer/developer metadata at publication only; no resource, element, reserve, stage or production values added",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-10-30",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "metadata_wudinna_cobra_20261026",
+      "project_id": "AU-0098e17a63e7c05c213f",
+      "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864",
+      "status": "VALIDATED",
+      "scope": "Wudinna Rare Earths Project issuer/developer metadata at publication only; no resource, element, reserve, stage or production values added",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-10-26",
+      "effective_date_role": "DATED_ISSUER_METADATA",
       "date_precision": "DAY",
       "effective_date_interval": null
     }
