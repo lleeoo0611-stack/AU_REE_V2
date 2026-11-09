@@ -6,6 +6,7 @@ appends one ASX column; code evidence never creates resource observations.
 import csv
 import json
 import re
+import math
 from datetime import date, datetime
 from pathlib import Path
 from .store import filehash, digest
@@ -58,7 +59,17 @@ def validate_identity(ledger, assets, rows, cutoff):
         pn = evidence['page']
         if not isinstance(pn, int) or not 1 <= pn <= len(doc):
             raise ValueError('IDENTITY_PAGE')
-        text = ' '.join(doc[pn-1].get_text(sort=True).split()).casefold()
+        page = doc[pn-1]
+        clip = None
+        if 'bbox' in evidence:
+            bounds = evidence['bbox']
+            if (not isinstance(bounds, list) or len(bounds) != 4 or
+                    any(not isinstance(v, (int, float)) or not math.isfinite(v) for v in bounds)):
+                raise ValueError('IDENTITY_BBOX')
+            clip = pymupdf.Rect(bounds)
+            if clip.is_empty or clip.is_infinite or not page.rect.contains(clip):
+                raise ValueError('IDENTITY_BBOX')
+        text = ' '.join(page.get_text(sort=True, clip=clip).split()).casefold()
         if not evidence.get('markers') or any(' '.join(m.split()).casefold() not in text for m in evidence['markers']):
             raise ValueError('IDENTITY_MARKER')
         return text
@@ -93,7 +104,7 @@ def validate_identity(ledger, assets, rows, cutoff):
                 raise ValueError('IDENTITY_ISSUER_PROOF')
             content = proof(doc, entry['code_evidence'])
             label = entry['code_label']
-            if (not re.search(r'ASX|\bcode\b',label,re.I) or
+            if (not re.search(r'ASX|\bcode\b|Australian\s+Securities\s+Exchange',label,re.I) or
                 not re.search(r'(?<![A-Z0-9])'+re.escape(code)+r'(?![A-Z0-9])', label) or ' '.join(label.split()).casefold() not in content):
                 raise ValueError('IDENTITY_CODE_PROOF')
         entries[pid] = dict(entry, source=source)

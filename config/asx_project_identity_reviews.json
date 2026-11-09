@@ -442,6 +442,42 @@
       "path": "data/snapshots/aaa865cfb08d10c134cd7fa562fc88064821c4f64cfec5af34085ba7bdddfc14.pdf",
       "url": "https://investorpa.com/announcement-pdf/20260518/293797.pdf",
       "sha256": "aaa865cfb08d10c134cd7fa562fc88064821c4f64cfec5af34085ba7bdddfc14"
+    },
+    "AU-d0ce731e1d8198ffaf58": {
+      "asset_set": "canonical",
+      "path": "data/snapshots/73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51.pdf",
+      "sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739"
+    },
+    "AU-47d12ebe6b66df8e5936": {
+      "asset_set": "canonical",
+      "path": "data/snapshots/ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a.pdf",
+      "sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947"
+    },
+    "AU-524c37fc04cf47bf8dca": {
+      "asset_set": "continuation9",
+      "path": "data/snapshots/9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3.pdf",
+      "sha256": "9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3",
+      "url": "https://announcements.asx.com.au/asxpdf/20260218/pdf/06wf3q27w0q4x7.pdf"
+    },
+    "AU-785536db5ff12c25350d": {
+      "asset_set": "round6",
+      "path": "data/snapshots/d413df91d19ec8bdb153fc1244d4274b4fe499c26ebecf46873e4356e5039431.pdf",
+      "sha256": "d413df91d19ec8bdb153fc1244d4274b4fe499c26ebecf46873e4356e5039431",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02717607"
+    },
+    "AU-3a0020b6daf659f62138": {
+      "asset_set": "continuation11",
+      "path": "data/snapshots/66c73ea45aa00561067651fdadfa11b90b4c479222b3c546b56c055cd51b5b53.pdf",
+      "sha256": "66c73ea45aa00561067651fdadfa11b90b4c479222b3c546b56c055cd51b5b53",
+      "url": "https://announcements.asx.com.au/asxpdf/20230221/pdf/45lt2cdc8f40hv.pdf"
+    },
+    "AU-7c198d219aa1db3e291f": {
+      "asset_set": "continuation11",
+      "path": "data/snapshots/dd3653fe14f32c9b7ca83ea83ab42800a8c4308916271fe2e11be8ae90eb8950.pdf",
+      "sha256": "dd3653fe14f32c9b7ca83ea83ab42800a8c4308916271fe2e11be8ae90eb8950",
+      "url": "https://wcsecure.weblink.com.au/clients/fortunametals/headline.aspx?headlineid=61227362"
     }
   },
   "codes": [
@@ -2557,6 +2593,222 @@
       },
       "code_label": "ASX:BAK",
       "scope": "Post-IPO issuer metadata at amended quarter publication18May2026; trading began30January2026; only planning/preparation reported for quarter ended31March2026, with mobilisation/drilling still forward looking. No MRE duplicate, actual drilling completion, current title or annual oxide-output inference."
+    },
+    {
+      "review_id": "continuation11_code_AU-d0ce731e1d8198ffaf58",
+      "project_id": "AU-d0ce731e1d8198ffaf58",
+      "code": "ASR",
+      "issuer_name": "Asra Minerals Limited",
+      "source_key": "AU-d0ce731e1d8198ffaf58",
+      "evidence_date": "2024-04-16",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "16 April 2024"
+        ]
+      },
+      "project_marker": "Mt Stirling",
+      "project_evidence": {
+        "page": 1,
+        "markers": [
+          "Mt Stirling"
+        ]
+      },
+      "issuer_evidence": {
+        "page": 1,
+        "markers": [
+          "Asra Minerals Limited"
+        ]
+      },
+      "code_label": "ASX: ASR",
+      "code_evidence": {
+        "page": 1,
+        "markers": [
+          "ASX: ASR"
+        ]
+      },
+      "scope": "Historical Mt Stirling reporting issuer Asra; current developer label Gold Arc is not assigned this code. Yttria is a nested deposit and is not merged with its parent. Reporting issuer at document date only; not current legal title, resource scope expansion or numeric transfer."
+    },
+    {
+      "review_id": "continuation11_code_AU-47d12ebe6b66df8e5936",
+      "project_id": "AU-47d12ebe6b66df8e5936",
+      "code": "CRI",
+      "issuer_name": "Critica Limited",
+      "source_key": "AU-47d12ebe6b66df8e5936",
+      "evidence_date": "2026-10-20",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "20 October 2026"
+        ]
+      },
+      "project_marker": "Brothers Project",
+      "project_evidence": {
+        "page": 2,
+        "markers": [
+          "Brothers Project"
+        ]
+      },
+      "issuer_evidence": {
+        "page": 1,
+        "markers": [
+          "Critica Limited"
+        ]
+      },
+      "code_label": "ASX: CRI",
+      "code_evidence": {
+        "page": 1,
+        "markers": [
+          "ASX: CRI"
+        ]
+      },
+      "scope": "Frozen Greater Brothers registry identity_source is jupiter_scoping2026, this same original. It calls the parent Brothers Project and identifies Jupiter as a subset. Code association alone; no global Greater/Brothers alias or Jupiter resource duplication. Reporting issuer at document date only; not current legal title, resource scope expansion or numeric transfer."
+    },
+    {
+      "review_id": "continuation11_code_AU-524c37fc04cf47bf8dca",
+      "project_id": "AU-524c37fc04cf47bf8dca",
+      "code": "ILU",
+      "issuer_name": "Iluka Resources Limited",
+      "source_key": "AU-524c37fc04cf47bf8dca",
+      "evidence_date": "2026-02-18",
+      "date_evidence": {
+        "page": 101,
+        "markers": [
+          "18 February 2026"
+        ]
+      },
+      "project_marker": "Balranald",
+      "project_evidence": {
+        "page": 23,
+        "markers": [
+          "Balranald"
+        ]
+      },
+      "issuer_evidence": {
+        "page": 172,
+        "markers": [
+          "Iluka Resources Limited"
+        ]
+      },
+      "code_label": "ASX code of ILU",
+      "code_evidence": {
+        "page": 172,
+        "markers": [
+          "ASX code of ILU"
+        ]
+      },
+      "scope": "Balranald reporting issuer in 2025 annual report issued18February2026. Reporting issuer at document date only; not current legal title, resource scope expansion or numeric transfer."
+    },
+    {
+      "review_id": "continuation11_code_AU-785536db5ff12c25350d",
+      "project_id": "AU-785536db5ff12c25350d",
+      "code": "MEK",
+      "issuer_name": "Meeka Metals Limited",
+      "source_key": "AU-785536db5ff12c25350d",
+      "evidence_date": "2023-09-27",
+      "date_evidence": {
+        "page": 30,
+        "markers": [
+          "27 September 2023"
+        ]
+      },
+      "project_marker": "Circle Valley",
+      "project_evidence": {
+        "page": 10,
+        "markers": [
+          "Circle Valley"
+        ]
+      },
+      "issuer_evidence": {
+        "page": 30,
+        "markers": [
+          "Meeka Metals Limited"
+        ]
+      },
+      "code_label": "ASX : MEK",
+      "code_evidence": {
+        "page": 1,
+        "markers": [
+          "ASX : MEK"
+        ]
+      },
+      "scope": "Same Circle Valley REE project is explicit on page10; Cascade remains separate and its assays are not a Circle Valley resource. Reporting issuer at document date only; not current legal title, resource scope expansion or numeric transfer."
+    },
+    {
+      "review_id": "continuation11_code_AU-3a0020b6daf659f62138",
+      "project_id": "AU-3a0020b6daf659f62138",
+      "code": "ILU",
+      "issuer_name": "Iluka Resources Limited",
+      "source_key": "AU-3a0020b6daf659f62138",
+      "evidence_date": "2023-02-21",
+      "date_evidence": {
+        "page": 99,
+        "markers": [
+          "21 February 2023"
+        ]
+      },
+      "project_marker": "Euston",
+      "project_evidence": {
+        "page": 41,
+        "markers": [
+          "Euston"
+        ]
+      },
+      "issuer_evidence": {
+        "page": 174,
+        "markers": [
+          "Iluka Resources Limited"
+        ]
+      },
+      "code_label": "ASX code of ILU",
+      "code_evidence": {
+        "page": 174,
+        "markers": [
+          "ASX code of ILU"
+        ]
+      },
+      "scope": "Historical Euston reporting issuer; mineral-sands/HM quantities and synthetic rutile capacity do not establish REO resource or production. Reporting issuer at document date only; not current legal title, resource scope expansion or numeric transfer."
+    },
+    {
+      "review_id": "continuation11_code_AU-7c198d219aa1db3e291f",
+      "project_id": "AU-7c198d219aa1db3e291f",
+      "code": "LNR",
+      "issuer_name": "Lanthanein Resources Ltd",
+      "source_key": "AU-7c198d219aa1db3e291f",
+      "evidence_date": "2024-09-26",
+      "date_evidence": {
+        "page": 19,
+        "markers": [
+          "26 September 2024"
+        ]
+      },
+      "project_marker": "Lyons",
+      "project_evidence": {
+        "page": 4,
+        "markers": [
+          "Lyons Project"
+        ]
+      },
+      "issuer_evidence": {
+        "page": 2,
+        "markers": [
+          "LANTHANEIN RESOURCES LTD"
+        ]
+      },
+      "code_label": "Australian Securities Exchange – LNR",
+      "code_evidence": {
+        "page": 2,
+        "markers": [
+          "Australian Securities Exchange – LNR"
+        ],
+        "bbox": [
+          62.22399978637695,
+          586.9099853515625,
+          153.8254425048828,
+          611.7899658203125
+        ]
+      },
+      "scope": "Historical Lyons reporting issuer Lanthanein; current Fortuna developer label is not assigned an inferred code. Report mentions11,12,13 but selected12&13 resource scope is unchanged. Reporting issuer at document date only; not current legal title, resource scope expansion or numeric transfer."
     }
   ],
   "merges": [],

@@ -54,6 +54,27 @@ class SourceBoundIdentity(unittest.TestCase):
     def test_code_requires_hash_receipt_and_all_four_proofs(self):
         with tempfile.TemporaryDirectory() as t:
             root=Path(t);r=self.run_config(root,self.fixture(root));self.assertEqual('ABC',r['entries']['P']['code'])
+    def test_full_exchange_label_in_native_directory_region(self):
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t);c=self.fixture(root);e=c['codes'][0]
+            path=root/'source.pdf'
+            with pymupdf.open(path) as d:
+                p=d[0];p.insert_text((30,200),'Australian Securities',fontsize=10)
+                p.insert_text((30,215),'Exchange - ABC',fontsize=10)
+                p.insert_text((180,205),'Postal Address',fontsize=10)
+                raw=d.tobytes()
+            path.write_bytes(raw);sha=filehash(path);c['sources']['s']['sha256']=sha
+            receipts=json.loads((root/'downloads.json').read_text());receipts[0]['document_sha256']=sha
+            (root/'downloads.json').write_text(json.dumps(receipts))
+            e['code_label']='Australian Securities Exchange - ABC'
+            e['code_evidence']=dict(page=1,markers=[e['code_label']],bbox=[25,185,150,220])
+            self.assertEqual('ABC',self.run_config(root,c)['entries']['P']['code'])
+            for box in [[170,185,300,220],[-1,185,150,220],[150,220,25,185],[25,185,float('nan'),220]]:
+                with self.subTest(box=box):
+                    e['code_evidence']['bbox']=box
+                    with self.assertRaisesRegex(ValueError,'IDENTITY_BBOX|IDENTITY_MARKER'):self.run_config(root,c)
+            e['code_evidence']['bbox']=[25,185,150,220];e['code']='XYZ'
+            with self.assertRaisesRegex(ValueError,'IDENTITY_CODE_PROOF'):self.run_config(root,c)
     def test_wrong_source_marker_date_issuer_code_and_project_rejected(self):
         for change in ['hash','url','marker','date','issuer','code','project','duplicate','path']:
             with self.subTest(change=change),tempfile.TemporaryDirectory() as t:

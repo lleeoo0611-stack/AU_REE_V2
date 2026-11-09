@@ -21,10 +21,10 @@
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
-    "礦床型態": 48,
+    "礦床型態": 49,
     "開發階段代碼": 0,
     "開發階段類別": 0,
-    "開發階段": 34,
+    "開發階段": 35,
     "礦石蘊藏量_Mt": 33,
     "TREO品位_pct": 31,
     "總TREO蘊藏量_kt": 31,
@@ -62,9 +62,9 @@
     "Yb2O3_氧化鐿_kt": 11,
     "Lu2O3_氧化鎦_kt": 12,
     "Y2O3_氧化釔_kt": 13,
-    "ASX代碼": 60
+    "ASX代碼": 66
   },
-  "verified_source_hashes": 109,
+  "verified_source_hashes": 112,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "8b5fc86e5014286ca5149511af413a6397fbd79092354ebd266a617071f3606d",
-    "field_provenance.csv": "a84854089ab1b717b221d6fd6f43cd8db7ed6a553330a20745f92fc65ee61bfe",
-    "missing_fields.csv": "462cd355bc86f617646673108524fde2c26034612b893ab55e5be40f93e05ebd",
+    "專案總表.csv": "10dd1e57a090c65e757243601aa4a06f8ce574c3e0a95847c2800f249b76bac0",
+    "field_provenance.csv": "901a1e377ea29f570e9db93e780fc30f881b092d1e9f39af12a268f3e1b73fa6",
+    "missing_fields.csv": "96124e659328e9809a29814a0ff344bbeac12107c3df0cfc76e9290ed884a142",
     "census_inventory.csv": "0b235d802ac3045e0130ba1e157802a2e8c8684593cb7bc419353325740b0108"
   },
-  "review_ledger_sha256": "d3860442a92653b784f5b60d2986630f5465e7e27b444f6b87c7e05d3735b1c9",
+  "review_ledger_sha256": "a331732ecf0a753dd73912ce1d49a5e11dfc9c5cf3f1bfe8c2b56d96110c67bc",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -2445,6 +2445,25 @@
       "new_observations": 0,
       "forecast_parameters": 0,
       "effective_date": "2026-05-18",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation11_euston_descriptions",
+      "project_id": "AU-3a0020b6daf659f62138",
+      "source_sha256": "66c73ea45aa00561067651fdadfa11b90b4c479222b3c546b56c055cd51b5b53",
+      "status": "VALIDATED",
+      "scope": "Literal Euston host and work-progress wording from same dated paragraph; preliminary feasibility work progressing is not completed PFS or DFS; neighboring Atacama study and synthetic rutile kiln output excluded.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "ASX_DATED_URL",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-02-21",
       "effective_date_role": "DATED_ISSUER_METADATA",
       "date_precision": "DAY",
       "effective_date_interval": null
@@ -13553,13 +13572,13 @@
   "base_contract_columns": 52,
   "base_projection_hashes": {
     "census_inventory.csv": "0b235d802ac3045e0130ba1e157802a2e8c8684593cb7bc419353325740b0108",
-    "field_provenance.csv": "9b7be82234b53aa6417906d001e1f1a6737a5bce6b87a06804df8b9a7a06d249",
-    "missing_fields.csv": "c6b285ddeb23f2ac2372f62e2d6fefe8e91b86301a0d9055eae82505f7db5d81",
-    "專案總表.csv": "cb262c9ed9a85522ace8e0a82394fbda247d2eb710f3130ce6804359f950c5f4"
+    "field_provenance.csv": "3fbbd16aaf58d226c567857faaaeb8d2d1b57d09516aed44eb342b8fed5295a4",
+    "missing_fields.csv": "0bfb44a9e181d0ef7a6155245b899c47623ae50aec882dffb0aa8c5a468b6347",
+    "專案總表.csv": "22083ab3899113d7ce75062b26e60b3cdd28b5094cc2422bb53cadb0a658a231"
   },
-  "identity_ledger_sha256": "8c7950c65a087252869f77fd3bcfa6a58376889b5eafdb067badd4dfdbcf5f51",
+  "identity_ledger_sha256": "3a5a6566bc4c6ebf110ae68b9f48861868a6164fe95627cc2509b6aa57ac1f65",
   "identity_merges": [],
-  "validated_asx_codes": 60,
+  "validated_asx_codes": 66,
   "identity_sources": {
     "AU-12cc237ae66c7a6508ca": {
       "asset_set": "round3",
@@ -13999,6 +14018,42 @@
       "path": "data/snapshots/aaa865cfb08d10c134cd7fa562fc88064821c4f64cfec5af34085ba7bdddfc14.pdf",
       "url": "https://investorpa.com/announcement-pdf/20260518/293797.pdf",
       "sha256": "aaa865cfb08d10c134cd7fa562fc88064821c4f64cfec5af34085ba7bdddfc14"
+    },
+    "AU-d0ce731e1d8198ffaf58": {
+      "asset_set": "canonical",
+      "path": "data/snapshots/73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51.pdf",
+      "sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739"
+    },
+    "AU-47d12ebe6b66df8e5936": {
+      "asset_set": "canonical",
+      "path": "data/snapshots/ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a.pdf",
+      "sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947"
+    },
+    "AU-524c37fc04cf47bf8dca": {
+      "asset_set": "continuation9",
+      "path": "data/snapshots/9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3.pdf",
+      "sha256": "9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3",
+      "url": "https://announcements.asx.com.au/asxpdf/20260218/pdf/06wf3q27w0q4x7.pdf"
+    },
+    "AU-785536db5ff12c25350d": {
+      "asset_set": "round6",
+      "path": "data/snapshots/d413df91d19ec8bdb153fc1244d4274b4fe499c26ebecf46873e4356e5039431.pdf",
+      "sha256": "d413df91d19ec8bdb153fc1244d4274b4fe499c26ebecf46873e4356e5039431",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02717607"
+    },
+    "AU-3a0020b6daf659f62138": {
+      "asset_set": "continuation11",
+      "path": "data/snapshots/66c73ea45aa00561067651fdadfa11b90b4c479222b3c546b56c055cd51b5b53.pdf",
+      "sha256": "66c73ea45aa00561067651fdadfa11b90b4c479222b3c546b56c055cd51b5b53",
+      "url": "https://announcements.asx.com.au/asxpdf/20230221/pdf/45lt2cdc8f40hv.pdf"
+    },
+    "AU-7c198d219aa1db3e291f": {
+      "asset_set": "continuation11",
+      "path": "data/snapshots/dd3653fe14f32c9b7ca83ea83ab42800a8c4308916271fe2e11be8ae90eb8950.pdf",
+      "sha256": "dd3653fe14f32c9b7ca83ea83ab42800a8c4308916271fe2e11be8ae90eb8950",
+      "url": "https://wcsecure.weblink.com.au/clients/fortunametals/headline.aspx?headlineid=61227362"
     }
   },
   "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS"
