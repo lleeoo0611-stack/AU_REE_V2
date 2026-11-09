@@ -3,6 +3,19 @@ import re
 from .source_cells import norm, region_text
 
 
+def validate_metadata_issue_date(review, evidence, cutoff):
+    """Signed-issue/ASX-release proof for literal descriptions only."""
+    if (review.get('effective_date_role')!='DATED_ISSUER_METADATA'
+            or review.get('observations') or review.get('study')
+            or not review.get('attributes')
+            or not all(a.get('description_binding') for a in review['attributes'])):
+        raise ValueError('REVIEW_ISSUE_DATE_LITERAL_METADATA_ONLY')
+    from .reviewed_discovery import validate_issue_date
+    proof=review['document_issue_evidence']
+    identity=dict(review,date_evidence=proof)
+    validate_issue_date(identity,dict(url=review['url'],kind='pdf'),cutoff,evidence(proof))
+
+
 def validate_descriptive_attribute(doc, attribute, aliases, evidence, review):
     """Bind a short literal description to a reviewed project heading and region.
 
@@ -31,8 +44,16 @@ def validate_descriptive_attribute(doc, attribute, aliases, evidence, review):
     marker = norm(binding.get('project_marker', ''))
     def project_label(value):
         return re.sub(r'\bmt\.?\s+', 'mount ', norm(value))
-    if len(marker) < 4 or not re.search(r'(?<!\w)'+re.escape(marker)+r'(?!\w)',header) or not any(
-            project_label(marker) == project_label(a) for a in aliases):
+    known=any(project_label(marker)==project_label(a) for a in aliases)
+    if not known and binding.get('qualified_alias_proof'):
+        proof=binding['qualified_alias_proof']
+        qualified=project_label(proof.get('ticker','')+' '+marker)
+        if (proof.get('exchange')!='ASX' or norm(proof.get('project_marker',''))!=marker
+                or not any(qualified==project_label(a) for a in aliases)):
+            fail('QUALIFIED_PROJECT_ALIAS')
+        validate_listing_proof(doc,proof,evidence)
+        known=True
+    if len(marker) < 4 or not re.search(r'(?<!\w)'+re.escape(marker)+r'(?!\w)',header) or not known:
         fail('PROJECT')
     statement = norm(binding.get('statement', ''))
     if not statement or extract('value_bbox') != statement:
@@ -104,6 +125,6 @@ def validate_listing_proof(doc, proof, evidence):
     if not statement or norm(region_text(page,box))!=statement:fail('OWNERSHIP_STATEMENT_MISMATCH')
     if norm(alias) not in statement or norm(project) not in statement:fail('OWNERSHIP_ISSUER_PROJECT_MISMATCH')
     if re.search(r'\bnot\b|\bno longer\b|\bless than\b',statement):fail('OWNERSHIP_NOT_AFFIRMED')
-    if not re.search(r'100%\s*(?:[-\u2010\u2011]\s*owned|ownership)|owned\s+100%',statement):fail('FULL_OWNERSHIP_REQUIRED')
+    if not re.search(r'100%\s*(?:[-\u2010\u2011]?\s*owned\b|ownership\b)|owned\s+100%',statement):fail('FULL_OWNERSHIP_REQUIRED')
     if proof.get('project_scope_evidence'):evidence(proof['project_scope_evidence'])
     return 'SOURCE_BOUND_LISTED_ISSUER_AND_PROJECT_OWNERSHIP'

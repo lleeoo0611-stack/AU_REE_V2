@@ -131,6 +131,11 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
             from .partial_resource import validate_technical_report_dates
             technical_report_date=validate_technical_report_dates(review,doc,evidence)
             parsed_publication=pub if technical_report_date else publication_date(text(1))
+            if review.get('date_evidence_role'):
+                if parsed_publication not in (None,pub):raise ValueError('REVIEW_PUBLICATION_DATE_MISMATCH')
+                from .reviewed_metadata import validate_metadata_issue_date
+                validate_metadata_issue_date(review,evidence,cutoff)
+                parsed_publication=pub
             month=review.get('publication_month_evidence')
             if month:
                 # Retain edition-month precision; never infer a release day
