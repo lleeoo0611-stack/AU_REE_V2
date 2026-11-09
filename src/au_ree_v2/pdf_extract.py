@@ -90,6 +90,11 @@ def publication_date(text):
     lines=[line.strip() for line in text.splitlines() if line.strip()]
     found=[]
     for i,line in enumerate(lines[:25]):
+        if i<=2 and re.fullmatch(r'ASX\s+(?:Announcement|Release)\s*:?',line,re.I) and i+1<len(lines):
+            value=re.fullmatch(r'(\d{1,2}\s+'+month+r'\s+20\d{2})(?:\s*\|\s*ASX\s*:\s*[A-Z0-9]+)?',lines[i+1],re.I)
+            if value:
+                try:found.append(datetime.strptime(value[1],'%d %B %Y').date().isoformat())
+                except ValueError:pass
         if i!=0 and not re.search(r'ASX\s+(?:Announcement|Release)\s*:|^(?:Release|Date)\s*:',line,re.I):continue
         for value in re.findall(r'\b\d{1,2}\s+'+month+r'\s+20\d{2}\b',line,re.I):
             try:found.append(datetime.strptime(value,'%d %B %Y').date().isoformat())

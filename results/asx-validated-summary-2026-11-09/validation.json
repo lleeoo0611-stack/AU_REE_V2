@@ -1,0 +1,48 @@
+{
+  "version": "asx-reviewed-summary-validation-v1",
+  "source_content_sha256": "e9bf0cfe9886d00bca90ccaf896d336d85a1e19e4b1e4cdd9f0a59dc1e4c5eb8",
+  "review_ledger_sha256": "04750a8a8127efdbb40533ef81e9e6e3b746c2021dad645b87df9580c8c5a920",
+  "tests": [
+    {
+      "report": "asx-validated-regression.xml",
+      "passed_test_functions": 174,
+      "passed_subtests": 8,
+      "sha256": "64f3e934ccf8809651319c1f946f99908b4de8eb2ffe3a01e06efe9848b7e18f",
+      "elapsed_seconds": 135.178
+    },
+    {
+      "report": "asx-reviewed-final-tests.xml",
+      "passed_test_functions": 34,
+      "passed_subtests": 0,
+      "sha256": "a242408457149e24481f23eb14b77a670c10359bd78b08d8dae27a0d6d147c7b",
+      "elapsed_seconds": 2.965
+    }
+  ],
+  "repeat_export_csv_hashes_identical": true,
+  "source_database_unchanged_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
+  "rows": 33,
+  "columns": 52,
+  "original_candidate_ids_checked": 691,
+  "all_packaged_output_hashes_verified": true,
+  "raw_pdf_and_native_text_hashes_verified_by_packager": true,
+  "sensitive_query_parameter_scan": "PASSED",
+  "original_branch_modified": false,
+  "full_historical_rebuild": false,
+  "result_hashes": {
+    "candidate_validation.csv": "7e9498fe2c316fc54af310f6b8a35511a4b9036a5410be742bf64837db905e84",
+    "candidate_validation.json": "a185b9c7871e7d42a4f3a415c0a25b29d37dd789d5d826e984e4622b3c7cbbf4",
+    "census_inventory.csv": "4f67808a0b05bb8271bd63c6ce2690d9234991d05937bce5092c6603e0d30509",
+    "evaluation.json": "a8bb8b1dcf363b038b39ffb03cd9089d48e5206fde791d1afb9dea61c01772e0",
+    "field_changes.csv": "665f0aadc5a4b619f6caa56c5991562e29370fc12c99ad919478097c361fab66",
+    "field_increment.json": "23ed29fbed407eb0cf28ca7e016ffca983a8d60a085ee625be399cde127263f6",
+    "field_provenance.csv": "ed2d93742af9cb5a30ad23edc4a8fb99abe054c0a6c431defe40ee109b1e6ac3",
+    "missing_fields.csv": "eec35ea3a56aa98c3b4c0f512e44d8bc811c05e3de3d695fa3451611af0ef0c5",
+    "source_reviews.json": "04750a8a8127efdbb40533ef81e9e6e3b746c2021dad645b87df9580c8c5a920",
+    "summary.json": "05e811f56815bfdb77ad8a76ebbdca2d988c508155a8f6ee35f4e385bd95a68b",
+    "technical_discovery.json": "afd30754c48d0302208d67c91ee7b635ff621571d5e097a0094edfe783b4540e",
+    "technical_downloads.json": "23897caec1918a407fa336e25e26a3bf4c56b06f27c3d0c0f5f7e76abfc06ebc",
+    "technical_native_inventory.json": "5ff03c5da62e90a2adeab9dc2b3e48fd153751fca4eee6e42ed5e6c3d3e69907",
+    "專案總表.csv": "957c9f026aa2aa1116aa7982254809c7660785dc2730e8ea5f4ee1ad0e90ba0d",
+    "專案總表_補值前.csv": "f88854476d73f231fc5ad2df138518bd7575da1ba85df29c1551dfc18ce403c0"
+  }
+}
