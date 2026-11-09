@@ -24,30 +24,55 @@ def failure_details(exc):
                 'NON_PDF_RESPONSE' if str(exc) in ('NOT_PDF','Not a PDF response') else
                 'TERMS_INTERSTITIAL_NOT_ACCEPTED' if str(exc)=='TERMS_INTERSTITIAL_NOT_ACCEPTED' else type(exc).__name__))
     return dict(failure_status=state,http_status=code,attempts=getattr(exc,'request_attempts',1),
+                **({'asx_acquisition':exc.asx_receipt} if hasattr(exc,'asx_receipt') else {}),
                 **({'validation_error':str(exc)} if isinstance(exc,ValueError) and __import__('re').fullmatch(r'[A-Z_]{3,100}',str(exc)) else {}),
                 retry_after_seconds=getattr(exc,'retry_after_seconds',None),
                 reason=type(exc).__name__+('_'+str(code) if code else ''),
                 interpretation='URL_FAILURE_NOT_DOCUMENT_ABSENCE')
 
 
-def request(url, params=None, headers=None, timeout=25, method='GET', max_bytes=None):
+def request(url, params=None, headers=None, timeout=25, method='GET', max_bytes=None,
+            allowed_hosts=None, max_attempts=3, min_interval=.25, max_redirects=5):
+    if not 1<=max_attempts<=3:raise ValueError('INVALID_REQUEST_ATTEMPTS')
+    opener=None;redirects=[]
+    if allowed_hosts is not None:
+        from .security import sensitive_reference
+        def guard(target):
+            parts=urllib.parse.urlsplit(target)
+            if (parts.scheme!='https' or parts.hostname not in allowed_hosts or parts.username or parts.password
+                or parts.port not in (None,443) or sensitive_reference(target)):
+                raise ValueError('REQUEST_DESTINATION_NOT_ALLOWED')
+        guard(url)
+        class ScopedRedirect(urllib.request.HTTPRedirectHandler):
+            def redirect_request(self, req, fp, code, msg, hdrs, newurl):
+                guard(newurl)
+                if len(redirects)>=max_redirects:raise ValueError('REQUEST_REDIRECT_BUDGET_EXCEEDED')
+                redirects.append(newurl)
+                return super().redirect_request(req,fp,code,msg,hdrs,newurl)
+        opener=urllib.request.build_opener(ScopedRedirect())
     data=None
     if params and method=='POST':data=urllib.parse.urlencode(params).encode()
     elif params:
         url += ('&' if '?' in url else '?') + urllib.parse.urlencode(params)
+    if allowed_hosts is not None:guard(url)
     req = urllib.request.Request(url, data=data,method=method,headers={'User-Agent': 'AU_REE_V2/0.1 public research', **(headers or {})})
-    for attempt in range(3):
+    for attempt in range(max_attempts):
         host=urllib.parse.urlsplit(url).netloc
-        pause=.25-(time.monotonic()-_last_request.get(host,0))
+        pause=min_interval-(time.monotonic()-_last_request.get(host,0))
         if pause>0:time.sleep(pause)
         _last_request[host]=time.monotonic()
         try:
-            with urllib.request.urlopen(req, timeout=timeout) as response:
+            with (opener.open(req,timeout=timeout) if opener else urllib.request.urlopen(req, timeout=timeout)) as response:
                 raw=response.read(max_bytes+1) if max_bytes is not None else response.read()
                 if max_bytes is not None and len(raw)>max_bytes:raise ValueError('DOCUMENT_BYTE_BUDGET_EXCEEDED')
-                return raw, dict(response.headers)
+                result_headers=dict(response.headers)
+                if allowed_hosts is not None:
+                    result_headers['X-Resolved-URL']=response.geturl()
+                    result_headers['X-Redirect-Chain']=json.dumps(redirects)
+                return raw, result_headers
         except urllib.error.HTTPError as exc:
             exc.request_attempts=attempt+1
+            exc.request_redirects=list(redirects)
             delay=exc.headers.get('Retry-After') if exc.headers else None
             try:
                 delay=max(0,float(delay))
@@ -56,12 +81,16 @@ def request(url, params=None, headers=None, timeout=25, method='GET', max_bytes=
                 except (TypeError,ValueError,OverflowError):delay=None
             exc.retry_after_seconds=delay
             # A long Retry-After is deferred, never capped then retried early.
-            if exc.code not in (408,429,500,502,503,504) or attempt==2 or (delay is not None and delay>30):raise
+            if exc.code not in (408,429,500,502,503,504) or attempt==max_attempts-1 or (delay is not None and delay>30):raise
             time.sleep(max(.5*(2**attempt),delay or 0))
         except (urllib.error.URLError,TimeoutError) as exc:
             exc.request_attempts=attempt+1
-            if attempt==2:raise
+            exc.request_redirects=list(redirects)
+            if attempt==max_attempts-1:raise
             time.sleep(.5*(2**attempt))
+        except ValueError as exc:
+            exc.request_redirects=list(redirects)
+            raise
 
 def arcgis(url, where='1=1', windows=None, archive=None, fetch=None, max_records=None,start_after=None):
     """Inventory-complete retrieval, globally or within each registered project AOI."""

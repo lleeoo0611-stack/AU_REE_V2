@@ -1,0 +1,193 @@
+{
+  "version": "asx-public-pdf-v1",
+  "acquired_at": "2026-11-09T10:27:59.811953+00:00",
+  "base_commit": "b5e2a73438e2f3aa9f4adc3ab0f6ff0f898f0fca",
+  "source_content_sha256": "5711c5ca4a0d8dea0ff53c04ec87f07a3bce9e70ba929bb7761af85110426d39",
+  "baseline": [
+    {
+      "key": "asx_wrapper_03126345",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03126345",
+      "status": "TERMS_INTERSTITIAL",
+      "sha256": "fd64cbf7eedde7d49993f20f7ca7b8c1c0e1ef393cb468c5ef32d579e96d7f56",
+      "bytes": 4596,
+      "path": "data/snapshots/fd64cbf7eedde7d49993f20f7ca7b8c1c0e1ef393cb468c5ef32d579e96d7f56.html",
+      "elapsed_seconds": 1.517
+    },
+    {
+      "key": "asx_dubbo_scoping2025_direct",
+      "url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+      "status": "PDF_MAGIC_ONLY",
+      "sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "bytes": 3978148,
+      "path": "data/snapshots/734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab.pdf",
+      "elapsed_seconds": 1.702
+    },
+    {
+      "key": "asx_dubbo_scoping2025_legacy_host",
+      "url": "https://www.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+      "status": "PDF_MAGIC_ONLY",
+      "sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "bytes": 3978148,
+      "path": "data/snapshots/734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab.pdf",
+      "elapsed_seconds": 1.579
+    }
+  ],
+  "experimental": {
+    "version": "discovery-v2",
+    "execution_mode": "PUBLIC_ENDPOINTS",
+    "sources": [
+      {
+        "seed_key": "asx_wrapper_03126345",
+        "status": "DIRECT_PDF_CAPTURED",
+        "sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+        "asx_acquisition": {
+          "version": "asx-public-pdf-v1",
+          "requested_url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03126345",
+          "attempts": [
+            {
+              "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03126345",
+              "basis": "SOURCE_URL",
+              "redirects": [],
+              "resolved_url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03126345",
+              "bytes": 4596,
+              "sha256": "fd64cbf7eedde7d49993f20f7ca7b8c1c0e1ef393cb468c5ef32d579e96d7f56",
+              "response_sha256": "fd64cbf7eedde7d49993f20f7ca7b8c1c0e1ef393cb468c5ef32d579e96d7f56",
+              "terms_interstitial_seen": true,
+              "status": "PUBLIC_PDF_LINK_RESOLVED",
+              "linked_pdf_url": "https://announcements.asx.com.au/asxpdf/20260818/pdf/072w8qbl7kfy0n.pdf"
+            },
+            {
+              "url": "https://announcements.asx.com.au/asxpdf/20260818/pdf/072w8qbl7kfy0n.pdf",
+              "basis": "ASX_RESPONSE_PDF_URL",
+              "redirects": [],
+              "resolved_url": "https://announcements.asx.com.au/asxpdf/20260818/pdf/072w8qbl7kfy0n.pdf",
+              "bytes": 18072766,
+              "sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+              "status": "PDF_VALIDATED",
+              "physical_pages": 167
+            }
+          ],
+          "terms_submitted": false,
+          "interpretation": "RETRIEVAL_NOT_PROJECT_OR_EVIDENCE_VALIDATION",
+          "status": "PDF_ACQUIRED",
+          "resolved_url": "https://announcements.asx.com.au/asxpdf/20260818/pdf/072w8qbl7kfy0n.pdf",
+          "document_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491"
+        }
+      },
+      {
+        "seed_key": "asx_dubbo_scoping2025_direct",
+        "status": "DIRECT_PDF_CAPTURED",
+        "sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "asx_acquisition": {
+          "version": "asx-public-pdf-v1",
+          "requested_url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+          "attempts": [
+            {
+              "url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+              "basis": "SOURCE_URL",
+              "redirects": [],
+              "resolved_url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+              "bytes": 3978148,
+              "sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+              "status": "PDF_VALIDATED",
+              "physical_pages": 69
+            }
+          ],
+          "terms_submitted": false,
+          "interpretation": "RETRIEVAL_NOT_PROJECT_OR_EVIDENCE_VALIDATION",
+          "status": "PDF_ACQUIRED",
+          "resolved_url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+          "document_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab"
+        }
+      },
+      {
+        "seed_key": "asx_dubbo_scoping2025_legacy_host",
+        "status": "DIRECT_PDF_CAPTURED",
+        "sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "asx_acquisition": {
+          "version": "asx-public-pdf-v1",
+          "requested_url": "https://www.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+          "attempts": [
+            {
+              "url": "https://www.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+              "basis": "SOURCE_URL",
+              "redirects": [
+                "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf"
+              ],
+              "resolved_url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+              "bytes": 3978148,
+              "sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+              "status": "PDF_VALIDATED",
+              "physical_pages": 69
+            }
+          ],
+          "terms_submitted": false,
+          "interpretation": "RETRIEVAL_NOT_PROJECT_OR_EVIDENCE_VALIDATION",
+          "status": "PDF_ACQUIRED",
+          "resolved_url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+          "document_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab"
+        }
+      }
+    ],
+    "documents": [
+      {
+        "candidate_id": "9888bf001e0f411c17e409a8dcc74e107df052dd20bdf09e63b46cfd0d018a60",
+        "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03126345",
+        "seed_key": "asx_wrapper_03126345",
+        "publication_date": null,
+        "document_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+        "source_key": "discovery_asx_wrapper_03126345",
+        "project_id": null,
+        "status": "DIRECT_PDF_REQUIRES_DATED_SCOPE_EXTRACTION"
+      },
+      {
+        "candidate_id": "c0370d73dd1ead01c1c05aa93370b0d678b1a7ac811ab04636bb999d7d74aa93",
+        "url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+        "seed_key": "asx_dubbo_scoping2025_direct",
+        "publication_date": null,
+        "document_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "source_key": "discovery_asx_dubbo_scoping2025_direct",
+        "project_id": null,
+        "status": "DIRECT_PDF_REQUIRES_DATED_SCOPE_EXTRACTION"
+      },
+      {
+        "candidate_id": "779c8b35730604f70eede7344232830ebbf676efdc7453a1bf115ce9e7a9218d",
+        "url": "https://www.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+        "seed_key": "asx_dubbo_scoping2025_legacy_host",
+        "publication_date": null,
+        "document_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "source_key": "discovery_asx_dubbo_scoping2025_legacy_host",
+        "project_id": null,
+        "status": "DIRECT_PDF_REQUIRES_DATED_SCOPE_EXTRACTION"
+      }
+    ]
+  },
+  "experimental_elapsed_seconds": 50.227,
+  "repeat_sources": [
+    {
+      "seed_key": "asx_wrapper_03126345",
+      "project_id": null,
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03126345",
+      "status": "REUSED_VERIFIED_ORIGINAL",
+      "sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491"
+    },
+    {
+      "seed_key": "asx_dubbo_scoping2025_direct",
+      "project_id": null,
+      "url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+      "status": "REUSED_VERIFIED_ORIGINAL",
+      "sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab"
+    },
+    {
+      "seed_key": "asx_dubbo_scoping2025_legacy_host",
+      "project_id": null,
+      "url": "https://www.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+      "status": "REUSED_VERIFIED_ORIGINAL",
+      "sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab"
+    }
+  ],
+  "all_snapshot_hashes_verified": true,
+  "limitation": "BOUNDED_SELECTED_URLS; NO_GENERAL_CAPTCHA_BYPASS_OR_EXHAUSTIVE_ARCHIVE_COVERAGE; NO_SCIENTIFIC_ADMISSION",
+  "raw_store": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2-asx-test\\work\\asx-probe-fixed",
+  "canonical_store_modified": false
+}

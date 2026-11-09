@@ -432,6 +432,15 @@ def discover(root, registry, fetch=request, diagnostics=None, task_limit=3):
         entry={**meta,'sha256':sha,'path':dest.relative_to(root).as_posix(),'acquired_at':now,'available_date':now[:10]}
         if not any(s['key']==entry['key'] and s['sha256']==sha and s.get('source_document_version')==entry.get('source_document_version') for s in manifest['snapshots']):manifest['snapshots'].append(entry)
         return sha
+    def retrieve_document(url,**kwargs):
+        from .asx import fetch_pdf,is_asx_document
+        if registry.get('asx_public_acquisition') and is_asx_document(url):
+            def archive(raw,target,suffix):
+                return save(raw,dict(key='asx_response_'+hashlib.sha256(target.encode()).hexdigest(),
+                    url=target,kind='discovery_html' if suffix=='.html' else 'discovery_response'),suffix)
+            return fetch_pdf(url,fetch=fetch,archive=archive,max_bytes=kwargs.get('max_bytes',40*1024*1024))
+        raw,headers=fetch(url,**kwargs)
+        return raw,headers,None
     tasks=search_tasks(root,registry,diagnostics) if registry.get('registry_tasks') or diagnostics else []
     if registry.get('incremental_tasks') and not diagnostics:
         # Resume from the existing immutable execution receipts. No second
@@ -547,16 +556,18 @@ def discover(root, registry, fetch=request, diagnostics=None, task_limit=3):
                 if filehash(root/cached['path'])!=cached['sha256']:raise ValueError('IMMUTABLE_SNAPSHOT_CONTENT_MISMATCH')
                 found.append(dict(candidate_id=hashlib.sha256(seed['url'].encode()).hexdigest(),url=seed['url'],seed_key=seed['key'],source_key=cached['key'],document_sha256=cached['sha256'],status='REUSED_VERIFIED_ORIGINAL',project_id=seed.get('project_id')))
                 outcomes.append(dict(seed_key=seed['key'],project_id=seed.get('project_id'),url=seed['url'],status='REUSED_VERIFIED_ORIGINAL',sha256=cached['sha256']));continue
-            raw,_=(fetch(seed['url'],max_bytes=seed['max_document_bytes']) if seed.get('max_document_bytes') else fetch(seed['url']))
+            raw,_,asx_receipt=retrieve_document(seed['url'],**({'max_bytes':seed['max_document_bytes']} if seed.get('max_document_bytes') else {}))
             if seed.get('resource_native_id') and not raw.startswith(b'%PDF'):
                 save(raw,dict(key='non_pdf_'+seed['key'],url=seed['url'],kind='discovery_html'),'.html')
                 raise ValueError('NOT_PDF')
             if raw.startswith(b'%PDF'):
                 sha=save(raw,{'key':'discovery_'+seed['key'],'url':seed['url'],'kind':'pdf','project_id':seed.get('project_id'),
+                    **({'asx_acquisition':asx_receipt} if asx_receipt else {}),
                     **{k:seed[k] for k in ('report_native_id','resource_native_id','metadata_sha256','source_document_version') if k in seed},
                     'authority':seed.get('authority','SOURCE_AUTHORITY_NOT_ESTABLISHED'),**({'publication_date':seed['publication_date']} if seed.get('publication_date') else {})},'.pdf')
                 found.append({'candidate_id':hashlib.sha256(seed['url'].encode()).hexdigest(),'url':seed['url'],'seed_key':seed['key'],'publication_date':seed.get('publication_date'),'document_sha256':sha,'source_key':'discovery_'+seed['key'],'project_id':seed.get('project_id'),'status':'DIRECT_PDF_REQUIRES_DATED_SCOPE_EXTRACTION'})
-                outcomes.append({'seed_key':seed['key'],'status':'DIRECT_PDF_CAPTURED','sha256':sha});continue
+                outcomes.append({'seed_key':seed['key'],'status':'DIRECT_PDF_CAPTURED','sha256':sha,
+                    **({'asx_acquisition':asx_receipt} if asx_receipt else {})});continue
             sha=save(raw,{'key':'discovery_'+seed['key'],'url':seed['url'],'kind':'discovery_html'},'.html')
             parser=Links();parser.feed(raw.decode('utf-8',errors='replace'))
             if registry.get('task_execution_version'):
@@ -599,7 +610,8 @@ def discover(root, registry, fetch=request, diagnostics=None, task_limit=3):
                 seen_documents.add(row['url'])
                 row['discovery_sha256']=sha
                 try:
-                    doc,_=fetch(row['url'])
+                    doc,_,asx_receipt=retrieve_document(row['url'])
+                    if asx_receipt:row['asx_acquisition']=asx_receipt
                     if not doc.startswith(b'%PDF'):
                         if b'announcementTerms.do' in doc:
                             row['restricted_response_sha256']=save(doc,dict(key='terms_'+row['candidate_id'],url=row['url'],kind='discovery_html'),'.html')
@@ -609,6 +621,7 @@ def discover(root, registry, fetch=request, diagnostics=None, task_limit=3):
                             raise ValueError('TERMS_INTERSTITIAL_NOT_ACCEPTED')
                         if not doc.startswith(b'%PDF'):raise ValueError('NOT_PDF')
                     row['document_sha256']=save(doc,{'key':'discovered_'+row['candidate_id'],'url':row['url'],'kind':'pdf','discovery_sha256':sha,
+                        **({'asx_acquisition':asx_receipt} if asx_receipt else {}),
                         'project_id':row.get('project_id'),'authority':row['authority'],'document_identity':row['candidate_id']},'.pdf')
                     captured[row['url']]=next(s for s in manifest['snapshots'] if s['sha256']==row['document_sha256'] and s['url']==row['url'])
                     # A dated original header is a disclosure date, not resource effectiveness.

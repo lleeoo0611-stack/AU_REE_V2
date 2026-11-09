@@ -1,0 +1,55 @@
+{
+  "branch": "experiment/asx-public-acquisition-20261109",
+  "base_commit": "b5e2a73438e2f3aa9f4adc3ab0f6ff0f898f0fca",
+  "source_content_sha256": "ab30ea571486b258a7ddd102e4e517b50ab2f8c9f89d308a6288888417f2b688",
+  "tests": [
+    {
+      "path": "work/asx-regression.xml",
+      "sha256": "88326fbe4a31b1a8d56b74d4a9b377dc06759224cb78a0fe5d11d023b29507ad",
+      "passed_test_functions": 75,
+      "passed_subtests": 8,
+      "elapsed_seconds": 108.733,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "path": "work/asx-final-tests.xml",
+      "sha256": "c8d39b92b15f419258b13228ad996d7b5833bb2f7965484063e69c394f99b22a",
+      "passed_test_functions": 36,
+      "passed_subtests": 8,
+      "elapsed_seconds": 46.072,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "unique_passed_test_functions": 88,
+  "unique_passed_subtests": 8,
+  "live_record": "asx-public-acquisition-live.json",
+  "final_code_offline_replay": [
+    {
+      "key": "asx_wrapper_03126345",
+      "sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+      "status": "PDF_ACQUIRED"
+    },
+    {
+      "key": "asx_dubbo_scoping2025_direct",
+      "sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "status": "PDF_ACQUIRED"
+    },
+    {
+      "key": "asx_dubbo_scoping2025_legacy_host",
+      "sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "status": "PDF_ACQUIRED"
+    }
+  ],
+  "full_historical_suite_run": false,
+  "limitations": [
+    "Full suite collection initially failed on sibling test-module import; relevant suites were then run with the original tests on the import path.",
+    "Disk space prevented full historical checkout/reconstruction; scoped original fixtures were read in place.",
+    "Initial local tests were blocked by Windows temporary-directory permissions; final tests ran with normal host permissions.",
+    "Initial live PDF validation rejected readable owner-permission PDFs; corrected and regression-tested."
+  ],
+  "original_branch": "feat/phase16-technical-model",
+  "original_tracked_files_changed": false,
+  "canonical_store_modified": false
+}

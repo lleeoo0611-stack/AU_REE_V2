@@ -154,6 +154,7 @@ def execute(args):
     if args.module=='discover':
         from .discovery import discover
         discovery_config=json.loads((root/'config/discovery.json').read_text(encoding='utf-8'))
+        if getattr(args,'asx_public',False):discovery_config['asx_public_acquisition']=True
         if getattr(args,'official_only',False):
             discovery_config.update(seeds=[],official_archive_template=None,public_mirror_index_template=None)
         return discover(root,discovery_config,diagnostics=getattr(args,'gap_report',None),task_limit=getattr(args,'task_limit',3))
@@ -171,6 +172,7 @@ def execute(args):
         else:
             chosen=registry['sources']
             discovery_config=json.loads((root/'config/discovery.json').read_text(encoding='utf-8'))
+            if getattr(args,'asx_public',False):discovery_config['asx_public_acquisition']=True
             if getattr(args,'official_only',False):
                 discovery_config.update(seeds=[],official_archive_template=None,public_mirror_index_template=None)
                 chosen=[]
@@ -577,6 +579,7 @@ def main():
     parser.add_argument('--gap-report',help='Existing evidence_pipeline_diagnostics.csv for bounded acquisition')
     parser.add_argument('--task-limit',type=int,default=3)
     parser.add_argument('--official-only',action='store_true',help='Bounded configured official report discovery; no issuer refresh')
+    parser.add_argument('--asx-public',action='store_true',help='Experimental ASX wrapper/public-PDF resolution with immutable provenance')
     parser.add_argument('--before');parser.add_argument('--after')
     args=parser.parse_args()
     try:
