@@ -1,5 +1,7 @@
 # AU_REE_V2
 
+Experimental branch: [ASX historical-failure retest and Census summary export](docs/asx-expanded-evaluation.md), with [recorded results](results/asx-experiment-2026-11-09/evaluation.json). This branch retains the Phase 22 research cutoff and admission rules.
+
 Latest: **Phase 22 — native-candidate acquisition, source-bound evidence and shared-method MCDA**, cutoff **2026-11-05**, configuration `research-v8-native-candidate-shared-draws`. See [results, limits and reconstruction](results/phase22-2026-11-06/README.md), [verification](results/phase22-2026-11-06/evaluation.json), and [evidence priorities](results/phase22-2026-11-06/six_domain_gap_priority.csv).
 
 Current evidence: **33 canonical registry groups, 22 resource cases, 20 complete transparency point scores and 6 complete six-domain cases**. Wolverine/Browns Range joins the previous five after original resource composition and Project financing-plan disclosure recovery. New national candidate Kennedy enters resource/composition ranking, with seven disclosure items Unknown; it is not a new complete six-domain case. Barkly's resource arithmetic conflict and unavailable detailed prospectus remain unresolved. Counts of source rows, native sites, resource scopes, groups and independent Projects remain distinct.

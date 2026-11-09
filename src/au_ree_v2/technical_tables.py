@@ -15,9 +15,9 @@ def number_token(token):
     """Keep ranges and missing tokens; never turn a range into a midpoint."""
     s=str(token or '').strip(); normalized=s.replace('−','-')
     m=re.fullmatch('('+NUM+r')\s*%?',normalized)
-    if m:return dict(original_token=s,value=float(m[1].replace(',','')),bounds=None,token_state='NUMBER')
+    if m:return dict(original_token=s,value=float(m[1].replace(',','').replace('–','-')),bounds=None,token_state='NUMBER')
     m=re.fullmatch('('+NUM+r')\s*(?:–|—|to|-)\s*('+NUM+r')\s*%?',normalized)
-    if m:return dict(original_token=s,value=None,bounds=[float(m[1].replace(',','')),float(m[2].replace(',',''))],token_state='RANGE')
+    if m:return dict(original_token=s,value=None,bounds=[float(m[1].replace(',','').replace('–','-')),float(m[2].replace(',','').replace('–','-'))],token_state='RANGE')
     if s in ('-','—','–','','N/A','n/a','NA','NR'):return dict(original_token=s,value=None,bounds=None,token_state='NOT_APPLICABLE' if s.upper() in ('N/A','NA') else 'NOT_REPORTED')
     return None
 
