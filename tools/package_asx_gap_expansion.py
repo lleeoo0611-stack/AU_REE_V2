@@ -14,7 +14,11 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     for key in ['baseline','updated','repeat','comparison','technical-dir','selected-dir','audit-dir','ledger','database','out']:
         p.add_argument('--'+key,required=True)
-    p.add_argument('--test-report',action='append',required=True);a=p.parse_args()
+    p.add_argument('--test-report',action='append',required=True)
+    p.add_argument('--extra-selected-dir',action='append',default=[])
+    p.add_argument('--extra-archive-dir',action='append',default=[])
+    p.add_argument('--research-dir')
+    a=p.parse_args()
     before=Path(a.baseline);updated=Path(a.updated);out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
     summary=json.loads((updated/'summary.json').read_text('utf8'));increment=json.loads((Path(a.comparison)/'field_increment.json').read_text('utf8'))
     if summary['review_ledger_sha256']!=filehash(a.ledger):raise ValueError('REVIEW_LEDGER_CHANGED_AFTER_EXPORT')
@@ -34,11 +38,15 @@ def main():
     previous=json.loads((before/'technical_downloads.json').read_text('utf8'))
     old=json.loads((Path(a.audit_dir)/'retest.json').read_text('utf8'))['outcomes']
     fetched=json.loads((technical/'downloads.json').read_text('utf8'));extra=json.loads((selected/'downloads.json').read_text('utf8'))
+    selected_sets=[(selected,extra)]
+    for directory in a.extra_selected_dir:
+        directory=Path(directory);selected_sets.append((directory,json.loads((directory/'downloads.json').read_text('utf8'))))
+    extra=[r for _,records in selected_sets for r in records]
     index=json.loads((technical/'archive_discovery.json').read_text('utf8'));native=json.loads((technical/'native_inventory.json').read_text('utf8'))
     for row in index['receipts']:
         if row.get('sha256') and filehash(technical/'data/snapshots'/(row['sha256']+'.html'))!=row['sha256']:raise ValueError('ARCHIVE_HASH_MISMATCH')
     native_by_sha={r['source_sha256']:r for r in native};document_audit=[]
-    for directory,rows in [(technical,fetched),(selected,extra)]:
+    for directory,rows in [(technical,fetched)]+selected_sets:
         for r in rows:
             sha=r.get('document_sha256');status=r['status']
             if status=='PDF_ACQUIRED' and filehash(directory/r['path'])!=sha:raise ValueError('PDF_HASH_MISMATCH')
@@ -76,7 +84,9 @@ def main():
     shutil.copyfile(before/'專案總表.csv',out/'專案總表_補值前.csv');shutil.copyfile(a.ledger,out/'source_reviews.json')
     for name in ['field_changes.csv','field_increment.json','candidate_validation.csv','candidate_validation.json']:shutil.copyfile(Path(a.comparison)/name,out/name)
     for source,name in [(technical/'downloads.json','technical_downloads.json'),(technical/'archive_discovery.json','technical_discovery.json'),(technical/'native_inventory.json','technical_native_inventory.json'),(selected/'downloads.json','selected_downloads.json')]:shutil.copyfile(source,out/name)
-    all_docs=old+fetched+extra;success=[r for r in all_docs if r['status']=='PDF_ACQUIRED'];prior_urls={r['url'] for r in old+previous}
+    (out/'selected_downloads.json').write_text(json.dumps(extra,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+    previous_selected=json.loads((before/'selected_downloads.json').read_text('utf8')) if (before/'selected_downloads.json').exists() else []
+    all_docs=old+fetched+extra;success=[r for r in all_docs if r['status']=='PDF_ACQUIRED'];prior_urls={r['url'] for r in old+previous+previous_selected}
     round_rows=[r for r in fetched+extra if r['url'] not in prior_urls]
     evaluation=dict(version='asx-gap-expansion-v1',cutoff=summary['cutoff'],acquired_through=summary['acquired_through'],
         increment=increment,newly_filled_numeric_cells=numeric_new,filled_cells_before=sum(bool(v) for r in baseline for v in r.values()),
@@ -92,6 +102,25 @@ def main():
         'UNREVIEWED_DOCUMENTS_AND_BLANKS_ARE_UNKNOWN_NOT_PROVEN_ABSENT','BARKLY_ASX_PUBLICATION_DATE_IS_DISTINCT_FROM_PROSPECTUS_ISSUE_AND_RESOURCE_EFFECTIVE_DATE',
         'DONALD_MIN5532_RESOURCE_SUBSCOPE_AND_HM_TO_BULK_NORMALIZATION_ARE_EXPLICIT','OLD_CUMMINS_MAGNET_SHARE_NOT_CARRIED_TO_UPDATED_RESOURCE',
         'NO_FORMAL_C1_OR_MCDA_RECALCULATION;ORIGINAL_SQLITE_UNCHANGED'])
+    additional=[]
+    for number,directory in enumerate(a.extra_archive_dir,1):
+        directory=Path(directory);extra_index=json.loads((directory/'archive_discovery.json').read_text('utf8'))
+        for r in extra_index['receipts']:
+            if r.get('sha256') and filehash(directory/'data/snapshots'/(r['sha256']+'.html'))!=r['sha256']:raise ValueError('SUPPLEMENTAL_ARCHIVE_HASH_MISMATCH')
+        shutil.copyfile(directory/'archive_discovery.json',out/f'supplemental_archive_discovery_{number}.json')
+        additional.extend(extra_index['receipts'])
+    evaluation.update(additional_archive_pages_attempted=len(additional),additional_archive_statuses=dict(Counter(r['status'] for r in additional)),
+        additional_parsed_pages_with_zero_links=sum(r['status']=='PARSED' and r.get('document_links')==0 for r in additional),
+        additional_archive_failures=dict(Counter(r.get('failure_status','UNKNOWN') for r in additional if r['status']!='PARSED')))
+    if a.research_dir:
+        research=Path(a.research_dir);checked=json.loads((research/'research_gap_validation.json').read_text('utf8'))
+        if not checked['all_bindings_verified']:raise ValueError('RESEARCH_SOURCE_BINDINGS_NOT_VERIFIED')
+        for name,sha in checked['output_hashes'].items():
+            if filehash(research/name)!=sha:raise ValueError('RESEARCH_AUDIT_CHANGED')
+            shutil.copyfile(research/name,out/name)
+        if checked['config_sha256']!=filehash(research/'research_gap_reviews.json'):raise ValueError('RESEARCH_CONFIG_CHANGED')
+        shutil.copyfile(research/'research_gap_validation.json',out/'research_gap_validation.json')
+        evaluation['source_bound_search_review_groups']=checked['review_groups']
     (out/'evaluation.json').write_text(json.dumps(evaluation,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     repo=Path(__file__).resolve().parents[1]
     fingerprint=digest([(p.relative_to(repo).as_posix(),filehash(p)) for folder in ['src','tools'] for p in sorted((repo/folder).rglob('*.py'))])

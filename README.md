@@ -1,6 +1,6 @@
 # AU_REE_V2
 
-Experimental branch: [ASX gap expansion and 52-column summary](docs/asx-gap-expansion.md), with [latest results](results/asx-gap-expansion-2026-11-09/evaluation.json). The [first reviewed summary](docs/asx-validated-summary.md) and [earlier 24-URL baseline](docs/asx-expanded-evaluation.md) are retained. This branch keeps the formal Phase 22 research results and admission rules unchanged.
+Experimental branch: [third-round ASX gap recovery and 52-column summary](docs/asx-gap-round3.md), with [latest results](results/asx-gap-round3-2026-11-10/evaluation.json): 68 newly filled cells, 793 filled and 923 unknown. [Second-round results](docs/asx-gap-expansion.md), the [first reviewed summary](docs/asx-validated-summary.md), and [earlier 24-URL baseline](docs/asx-expanded-evaluation.md) are retained. The government-reported Fingerboards resource is labelled separately from issuer technical originals; formal Phase 22 results and admission rules remain unchanged.
 
 Latest: **Phase 22 — native-candidate acquisition, source-bound evidence and shared-method MCDA**, cutoff **2026-11-05**, configuration `research-v8-native-candidate-shared-draws`. See [results, limits and reconstruction](results/phase22-2026-11-06/README.md), [verification](results/phase22-2026-11-06/evaluation.json), and [evidence priorities](results/phase22-2026-11-06/six_domain_gap_priority.csv).
 

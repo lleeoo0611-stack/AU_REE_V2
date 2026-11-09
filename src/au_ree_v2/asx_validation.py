@@ -3,7 +3,7 @@
 Native row/heading markers or an explicitly reviewed rendered image bind each
 transcription. Date roles, ranges and engineering endpoints remain explicit.
 """
-import hashlib,json,math,re
+import hashlib,json,math,re,calendar
 from datetime import date,datetime
 from collections import Counter
 import csv
@@ -13,6 +13,45 @@ from .pdf_extract import publication_date
 from .project_summary import ELEMENTS,MAGNET
 
 def normalized(text):return re.sub(r'\s+',' ',text).strip().casefold()
+
+def month_interval(day):
+    value=date.fromisoformat(day)
+    return [value.replace(day=1).isoformat(),value.replace(day=calendar.monthrange(value.year,value.month)[1]).isoformat()]
+
+def annual_product_derivation(derivation,value,annual_page,evidence):
+    """Only same-table, explicitly annual, oxide-based product conversions."""
+    from .technical_tables import number_token
+    methods={'ANNUAL_PRODUCT_MASS_X_TREO_FRACTION':{'annual_product_t','treo_percent'},
+             'ANNUAL_PRODUCT_MASS_X_TREO_FRACTION_X_NDPR_SHARE':{'annual_product_t','treo_percent','nd_percent_of_treo','pr_percent_of_treo'}}
+    method=derivation.get('method');inputs=derivation.get('inputs',[])
+    if method not in methods or {i['name'] for i in inputs}!=methods[method] or len(inputs)!=len(methods[method]):
+        raise ValueError('REVIEW_ANNUAL_DERIVATION_INPUT_CONTRACT')
+    values={};table_rows=set()
+    for item in inputs:
+        if item['evidence']['page']!=annual_page:raise ValueError('REVIEW_ANNUAL_DERIVATION_REQUIRES_SAME_TABLE')
+        row=item['evidence'].get('table_row');render=item['evidence'].get('render_sha256','')
+        if not row or not re.fullmatch('[0-9a-f]{64}',render):raise ValueError('REVIEW_ANNUAL_DERIVATION_RENDERED_ROW_REQUIRED')
+        table_rows.add((normalized(row),render))
+        content=evidence(item['evidence']);parsed=number_token(item['original_token'])
+        if normalized(row) not in content:raise ValueError('REVIEW_ANNUAL_DERIVATION_ROW_NOT_IN_SOURCE')
+        v=item['value'];name=item['name']
+        if (isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or v<=0 or not parsed or
+            parsed['value']!=v or not re.search(r'(?<![\d.])'+re.escape(normalized(item['original_token']))+r'(?![\d.])',content)):
+            raise ValueError('REVIEW_ANNUAL_DERIVATION_TOKEN_MISMATCH')
+        expected='t/year' if name=='annual_product_t' else '%' if name=='treo_percent' else '%TREO'
+        if item['unit']!=expected or name!='annual_product_t' and v>100:raise ValueError('REVIEW_ANNUAL_DERIVATION_UNIT_OR_RANGE')
+        if not re.search(r'\bannual\b',content) or not re.search(r'\btreo\b',content):raise ValueError('REVIEW_ANNUAL_DERIVATION_BASIS_MISSING')
+        if name.startswith(('nd_','pr_')) and not all(normalized(m) in content for m in ['As a % of TREO','Nd2O3','Pr6O11']):
+            raise ValueError('REVIEW_ANNUAL_DERIVATION_NDPR_OXIDE_BASIS_MISSING')
+        values[name]=v
+    if len(table_rows)!=1:raise ValueError('REVIEW_ANNUAL_DERIVATION_ROW_CONFLICT')
+    result=values['annual_product_t']*values['treo_percent']/100
+    if method.endswith('_X_NDPR_SHARE'):
+        share=values['nd_percent_of_treo']+values['pr_percent_of_treo']
+        if share>100:raise ValueError('REVIEW_ANNUAL_DERIVATION_NDPR_SHARE_OUT_OF_RANGE')
+        result*=share/100
+    if not math.isclose(result,value,rel_tol=1e-12,abs_tol=1e-9):raise ValueError('REVIEW_ANNUAL_DERIVATION_RESULT_MISMATCH')
+    return result
 
 def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
     import pymupdf
@@ -63,6 +102,24 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     if rendered[page]!=expected:raise ValueError(f"REVIEW_RENDER_BINDING_MISMATCH:{review['review_id']}:p{page}:{rendered[page]}")
                 return content
             parsed_publication=publication_date(text(1))
+            month=review.get('publication_month_evidence')
+            if month:
+                # Retain edition-month precision; never infer a release day
+                # from a URL, filename, or acquisition timestamp.
+                interval=month_interval(pub)
+                if (review.get('source_kind')!='GOVERNMENT_PROJECT_CATALOGUE' or
+                    review.get('publication_date_precision')!='MONTH' or
+                    review.get('publication_date_interval')!=interval or pub!=interval[1]):
+                    raise ValueError('REVIEW_PUBLICATION_MONTH_INTERVAL_REQUIRED')
+                from urllib.parse import urlsplit
+                if not (urlsplit(review['url']).hostname or '').endswith('.gov.au'):
+                    raise ValueError('REVIEW_GOVERNMENT_CATALOGUE_HOST_REQUIRED')
+                content=evidence(month)
+                label=normalized(datetime.strptime(pub,'%Y-%m-%d').strftime('%B %Y'))
+                if label not in content or 'edition' not in content:
+                    raise ValueError('REVIEW_PUBLICATION_EDITION_MONTH_MISMATCH')
+                if parsed_publication is not None:raise ValueError('REVIEW_MONTH_CANNOT_OVERRIDE_EXPLICIT_DAY')
+                parsed_publication=pub
             if parsed_publication!=pub:
                 header=review.get('publication_header_evidence')
                 archive=review.get('publication_archive_evidence')
@@ -85,7 +142,8 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     if parsed_publication is not None or not header or header['page']!=1:raise ValueError('REVIEW_PUBLICATION_DATE_MISMATCH')
                     content=evidence(header)
                     label=normalized(datetime.strptime(pub,'%Y-%m-%d').strftime('%d %B %Y').lstrip('0'))
-                    if label not in content or not header.get('header_title'):raise ValueError('REVIEW_PUBLICATION_HEADER_DATE_MISMATCH')
+                    header_content=re.sub(r'\b(\d{1,2})(?:st|nd|rd|th)\b',r'\1',content)
+                    if label not in header_content or not header.get('header_title'):raise ValueError('REVIEW_PUBLICATION_HEADER_DATE_MISMATCH')
                     if normalized(header['header_title']) not in content:raise ValueError('REVIEW_PUBLICATION_HEADER_TITLE_MISMATCH')
             identity=evidence(review['identity_evidence'])
             aliases=registry[pid]['aliases']+[registry[pid]['name']]
@@ -94,6 +152,11 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
             if review['date_precision'] not in ('DAY','MONTH','YEAR'):raise ValueError('REVIEW_DATE_PRECISION_REQUIRED')
             effective_day=datetime.strptime(effective,'%Y-%m-%d')
             date_labels=[normalized(effective_day.strftime(fmt).lstrip('0')) for fmt in ('%d %B %Y','%d %b %Y')]
+            if role=='RESOURCE_EFFECTIVE_DATE' and review['date_precision']=='MONTH':
+                interval=month_interval(effective)
+                if review.get('effective_date_interval')!=interval or effective!=interval[1]:
+                    raise ValueError('REVIEW_RESOURCE_MONTH_INTERVAL_REQUIRED')
+                date_labels=[normalized(effective_day.strftime(fmt)) for fmt in ('%B %Y','%b-%y')]
             if role=='RESOURCE_EFFECTIVE_DATE' and not any(label in date_content for label in date_labels):
                 raise ValueError('REVIEW_EFFECTIVE_DATE_NOT_IN_SOURCE')
             if role!='RESOURCE_EFFECTIVE_DATE' and effective!=pub:raise ValueError('REVIEW_DISCLOSURE_DATE_ROLE_MISMATCH')
@@ -142,6 +205,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     source_sha256=sha,source_key=review['source_key'],scope=review['scope'],statement_id=review['statement_id'],
                     effective_date=effective,effective_date_role=role,date_precision=review['date_precision'],
                     effective_date_interval=review.get('effective_date_interval'),rounding_half_width=value.get('rounding_half_width'),
+                    source_kind=review.get('source_kind','ISSUER_TECHNICAL_DISCLOSURE'),
                     original_token=value.get('original_token'),evidence=e,
                     original_unit=original_unit,bulk_hm_percent=hm,
                     material_basis='RESOURCE_ORE_GRADE_OXIDE_PPM' if basis in ELEMENTS else 'RESOURCE_BULK_ORE',
@@ -199,10 +263,15 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     # an evidence page, rather than copied from the review file alone.
                     token=str(value) if not float(value).is_integer() else f'{int(value):,}'
                     annual_page=text(study['annual_basis_evidence']['page'])
-                    if token not in annual_page and str(value) not in annual_page:raise ValueError('REVIEW_FORECAST_NUMBER_NOT_ON_PAGE')
+                    derivation=study.get('parameter_derivations',{}).get(key)
+                    if derivation:
+                        expected='ANNUAL_PRODUCT_MASS_X_TREO_FRACTION' if key=='average_annual_treo_product_t' else 'ANNUAL_PRODUCT_MASS_X_TREO_FRACTION_X_NDPR_SHARE' if key=='average_annual_ndpr_product_t' else None
+                        if derivation.get('method')!=expected:raise ValueError('REVIEW_ANNUAL_DERIVATION_PARAMETER_MISMATCH')
+                        annual_product_derivation(derivation,value,study['annual_basis_evidence']['page'],evidence)
+                    elif token not in annual_page and str(value) not in annual_page:raise ValueError('REVIEW_FORECAST_NUMBER_NOT_ON_PAGE')
                     if key=='average_annual_ndpr_product_t' and not re.search(r'NdPr|Nd.Pr|Neodymium',annual_page,re.I):raise ValueError('REVIEW_NDPR_FORECAST_HEADER_MISSING')
                 d=dict(case_id=review['review_id'],locator='physical PDF '+','.join(str(e['page']) for e in study['evidence']),
-                    parameters=study['parameters'],review_id=review['review_id'],scope=review['scope'],effective_date_role=role)
+                    parameters=study['parameters'],parameter_derivations=study.get('parameter_derivations',{}),review_id=review['review_id'],scope=review['scope'],effective_date_role=role)
                 studies.setdefault(pid,[]).append(dict(case_id=review['review_id'],project_id=pid,source_sha=sha,
                     effective_date=effective,scope=review['scope'],stage=study['stage'],endpoint=study['endpoint'],
                     element=study['element'],scale=study['scale'],status='PRIMARY_SCOPED_CASE_NOT_OPERATING_OUTCOME',raw=canonical(d)))
@@ -225,10 +294,13 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
             sources[sha]=dict(key=review['source_key'],kind='pdf',sha256=sha,path=str(path),url=review['url'],
                 publication_date=pub,available_date=ledger['acquired_through'],review_id=review['review_id'],
                 publication_date_role=review.get('publication_date_role','REVIEWED_RELEASE_HEADER'),document_issue_date=review.get('document_issue_date'),
+                publication_date_precision=review.get('publication_date_precision','DAY'),publication_date_interval=review.get('publication_date_interval'),
+                source_kind=review.get('source_kind','ISSUER_TECHNICAL_DISCLOSURE'),
                 effective_date_role=role,date_precision=review['date_precision'])
             receipts.append(dict(review_id=review['review_id'],project_id=pid,source_sha256=sha,status='VALIDATED',scope=review['scope'],
                 new_observations=len(rows),forecast_parameters=len(study['parameters']) if study else 0,
-                effective_date=effective,effective_date_role=role,date_precision=review['date_precision']))
+                effective_date=effective,effective_date_role=role,date_precision=review['date_precision'],
+                effective_date_interval=review.get('effective_date_interval')))
     return dict(sources=sources,observations=observations,studies=studies,resource_preferences=preferences,resource_contracts=resource_contracts,receipts=receipts,attributes=attributes,deferred_fields=deferred,resource_labels=resource_labels,
         ledger_sha256=filehash(ledger_path),acquired_through=ledger['acquired_through'])
 

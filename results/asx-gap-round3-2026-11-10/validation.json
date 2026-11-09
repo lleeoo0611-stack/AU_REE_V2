@@ -1,0 +1,52 @@
+{
+  "version": "asx-gap-expansion-validation-v1",
+  "tests": [
+    {
+      "report": "asx-round3-regression.xml",
+      "sha256": "5f88416ecd6432fc0a2b877a691a3d56a20988f5afdd9290b4d5ba0cdfdb7f7b",
+      "tests": 211,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "report": "asx-round3-focused.xml",
+      "sha256": "dd532924e4f7a9b9d50fc456654f82c307c125e69e37717625b6db37cb655214",
+      "tests": 95,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
+  "database_modified": false,
+  "review_ledger_sha256": "9e508a1bf01d388846bc8b0dcc030b3521a6a3a3f58fe51750731e1e6598817b",
+  "replay_csv_hashes_identical": true,
+  "template_columns": 52,
+  "unique_project_ids": 33,
+  "code_fingerprint_src_tools": "e03b5deceb7a371e78bfc435090c1a663ae59d4b4f288aeddbe447e9030a6b53",
+  "output_hashes": {
+    "candidate_validation.csv": "7e9498fe2c316fc54af310f6b8a35511a4b9036a5410be742bf64837db905e84",
+    "candidate_validation.json": "11a14969bbc5f6712c255be4abcac4a8be4380f0119ec962f50574a8bde9e072",
+    "document_dispositions.csv": "0657d9b4e44ae462dd7c2ccee550c4c9859d00d12b913dd2505d00ee273713e9",
+    "evaluation.json": "5675b961ee7cffe074980d824b667c4d911c5f72139d6b2bb4e15649eb7ab63f",
+    "field_changes.csv": "050ca743377dff66df523bd427bbf7bbb3471f2901d59b1473f1aba1a141b8e3",
+    "field_increment.json": "3172cc89bf825107406cf36a241c74df6298d9cf21362675b0bc0d01197a8f17",
+    "field_provenance.csv": "f13be7a087d16c52410d62167df39659336ab03dd75c7b0d756cea7610d4b54c",
+    "missing_fields.csv": "ef54937e3fbd3038c42358da04ca95b49493dbf75cec459f5b5bf370e6e97a0f",
+    "priority_missing_fields.csv": "7449e69461a3321c9f5544ae7a3989670d783acc8d42222a57f4a63a70d68140",
+    "project_gap_assessment.csv": "d0a9330aae7fe1abf387f9070d708ca0d2d667d9f6dc3b7bb78ccbc60ffc435e",
+    "research_gap_reviews.csv": "58dad6cdd4ee67c6e43215f1d7ffb5d1287d9e4dc0509ae9ad2ae1282d53ff0e",
+    "research_gap_reviews.json": "ab7d6a1a2e24dfa6c79e87e2fae1457de961facff6b8f0bd5636cc6d74b30046",
+    "research_gap_validation.json": "1908c3242bb3ae8132f046e6b7c14364926cb1ecd6cf842552c43f9451f848f6",
+    "selected_downloads.json": "9d11dc6623acb0289fd88119f8b7ee107db176afb8f1a5273f96cd3f963ba746",
+    "source_reviews.json": "9e508a1bf01d388846bc8b0dcc030b3521a6a3a3f58fe51750731e1e6598817b",
+    "summary.json": "450ec6f64fc874854d5e8d047b6c75627f44dfc684d52a3a9cc8e5b1a0b449ac",
+    "supplemental_archive_discovery_1.json": "28d13eab3e24c498fde4af47ff8cf70fc6f953abe36b02632233f73939c0ea4a",
+    "technical_discovery.json": "1d9c6c317410ab40b048663c432acbd1ff2115f8bfeec8367756fe91100b27b4",
+    "technical_downloads.json": "69e16cf6d10eec870553fd5cbdb0c8f263dc3d17a74d0ded5c36f29ccb924db0",
+    "technical_native_inventory.json": "7ee8a6f54042696be90bbbac91dfe433bbc1688f5cfcc3a53a319c43574c16ca",
+    "專案總表.csv": "a5f672412721f95f2aea58f26c540a2e311a21170ef378b294c79754217249c2",
+    "專案總表_補值前.csv": "03c0e689a8abaa83d321cbef1150fccaecec0acaa3b32677307ee51de1bb162f"
+  }
+}

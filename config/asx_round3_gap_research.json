@@ -1,0 +1,492 @@
+{
+  "version": "asx-round3-gap-source-review-v1",
+  "reviewed_through": "2026-11-10",
+  "cutoff": "2026-11-05",
+  "baseline_commit": "7ca6047a45d24a49ec5a5d9dd93679b029bf4ec3",
+  "scope": "Seven missing resource groups first, then source-scoped composition and annual product gaps; bounded searches are not evidence of absence.",
+  "search_routes": [
+    "Existing Census immutable originals and project identity/parent relations",
+    "Full existing ASX archive links beyond technical title keyword filter: Redlings MRE and DevEx annual report",
+    "FUN and GA8 renamed issuer archives for2023-2026;explicit dated links only;zero-link pages not absence",
+    "Targeted public-web primary-source queries:Burracoppin,Greater Brothers,Splinter,Fingerboards,Lyons,Mt Stirling,Kalkaroo,Kennedy,Narraburra,North Stanmore,Goschen,Donald"
+  ],
+  "reviews": [
+    {
+      "review_id": "r3_burracoppin_fines_scope",
+      "project_id": "AU-4286ab9c245effb445ff",
+      "priority": "RESOURCE_TONNAGE_AND_GRADE",
+      "decision": "WITHHELD",
+      "reason": "FINE_FRACTION_GRADE_NOT_BULK_ORE_GRADE;35709000T_BULK_14731000T_FINES_1356_4PPM_20000T;NO_COARSE_FRACTION_GRADE_ADMITTED",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c.pdf",
+          "url": "https://assets.birdsoftware.io/wp-content/uploads/2023/05/01-06-2023-Burracoppin-Project-96Mt-Mineral-Resource-Estimate.pdf",
+          "sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+          "evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "35,709,000",
+                "14,731,000",
+                "1356.4",
+                "20,000"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "r3_kalkaroo_potential_only",
+      "project_id": "AU-f46f6d53e7196650495d",
+      "priority": "RESOURCE_TONNAGE_AND_GRADE",
+      "decision": "WITHHELD",
+      "reason": "REVIEWED_ORIGINAL_IS_REE_POTENTIAL_AND_PROPOSED_STUDIES;NO_MATCHED_REE_MRE;CU_AU_CO_RESOURCE_NOT_TRANSFERRED",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5.pdf",
+          "url": "https://announcements.asx.com.au/asxpdf/20200219/pdf/44f780ww5n6tbj.pdf",
+          "sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Rare Earth Potential",
+                "proposes to carry out REE"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "lyons_conflicting_totals_202310",
+      "project_id": "AU-7c198d219aa1db3e291f",
+      "priority": "RESOURCE_TONNAGE_AND_GRADE",
+      "decision": "WITHHELD",
+      "reason": "SOURCE_TABLE_INTERNAL_CONFLICT;SUBROWS_2266_PLUS670_EQUALS2936T_NOT_TOTAL3221T;NO_INDEPENDENT_CORRECTION_VERIFIED",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4.pdf",
+          "url": "https://wcsecure.weblink.com.au/pdf/LNR/02729838.pdf",
+          "sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "2,266",
+                "670",
+                "3,221",
+                "0.99",
+                "0.32"
+              ]
+            }
+          ]
+        },
+        {
+          "asset_set": "round3",
+          "path": "data/snapshots/9732fb1094c93863c0049ecb5c5d06ae3e3ba8d6689dd779e2f93dba995ebff1.pdf",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03141875",
+          "sha256": "9732fb1094c93863c0049ecb5c5d06ae3e3ba8d6689dd779e2f93dba995ebff1",
+          "evidence": [
+            {
+              "page": 19,
+              "markers": [
+                "Lyons REE Project",
+                "0.99 million tonnes",
+                "0.32%"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "r3_mtstirling_parent_overlap",
+      "project_id": "AU-d0ce731e1d8198ffaf58",
+      "priority": "RESOURCE_TONNAGE_AND_GRADE",
+      "decision": "WITHHELD",
+      "reason": "PARENT_PROJECT_YTTRIA_RESOURCE_ALREADY_IN_AU_ee5ca893d12883df35f1;110_300MT_IS_EXPLORATION_TARGET_NOT_ADDITIONAL_MRE",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51.pdf",
+          "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739",
+          "sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "15Mt",
+                "490ppm",
+                "110-300 Mt",
+                "Mt Stirling"
+              ]
+            }
+          ]
+        },
+        {
+          "asset_set": "round3",
+          "path": "data/snapshots/449bd91f0101eb75871b03a2a52dbca67eb0ffe26543a347260ec639bdc19661.pdf",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03077490",
+          "sha256": "449bd91f0101eb75871b03a2a52dbca67eb0ffe26543a347260ec639bdc19661",
+          "evidence": [
+            {
+              "page": 16,
+              "markers": [
+                "Yttria REE Mineral Resource",
+                "15.0",
+                "490",
+                "16 April 2024"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "r3_fingerboards_resource_202208",
+      "project_id": "AU-7537d9555628040fab40",
+      "priority": "RESOURCE_TONNAGE_AND_GRADE",
+      "decision": "FILLED_GOVERNMENT_REPORTED_RESOURCE_ONLY",
+      "reason": "1170Mt_0_05PCT_580KT;AUG2022_MONTH_PRECISION;GOVERNMENT_CATALOGUE_NOT_INDEPENDENT_ISSUER_JORC_REESTIMATION",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5.pdf",
+          "url": "https://international.austrade.gov.au/content/dam/austrade-assets/international/documents/reports/critical-minerals/australian-critical-minerals-prospectus-march-2026.pdf",
+          "sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+          "evidence": [
+            {
+              "page": 3,
+              "markers": [
+                "February 2026 edition"
+              ]
+            },
+            {
+              "page": 36,
+              "markers": [
+                "Mineral Resources as at Aug-22",
+                "1,170",
+                "0.05",
+                "580"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "greater_brothers_overlap",
+      "project_id": "AU-47d12ebe6b66df8e5936",
+      "priority": "RESOURCE_TONNAGE_AND_GRADE",
+      "decision": "WITHHELD",
+      "reason": "JUPITER_IS_ONE_OF_SIX_DISCOVERIES_IN_BROTHERS;NO_SEPARATE_PARENT_RESOURCE_AGGREGATE_ADMITTED;DO_NOT_DUPLICATE_JUPITER_ROW",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a.pdf",
+          "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
+          "sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "evidence": [
+            {
+              "page": 8,
+              "markers": [
+                "Jupiter is one of six rare earth discoveries",
+                "Brothers Project"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "splinter_original_not_recovered",
+      "project_id": "AU-574465211976ec57b1ef",
+      "priority": "RESOURCE_TONNAGE_AND_GRADE",
+      "decision": "WITHHELD",
+      "reason": "GOVERNMENT_CATALOGUE_ROW_REPORTS22_90MT_0_11PCT_25KT_WITH2015_DATE;ORIGINAL_ISSUER_TECHNICAL_REPORT_AND_RESOURCE_DATE_NOT_RECOVERED;DISTINCT_FROM_OD6_SPLINTER_ROCK",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb.pdf",
+          "url": "https://www.wa.gov.au/media/159141/download?inline=",
+          "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+          "evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Splinter REE Resources",
+                "22.90",
+                "09/01/2015"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "r3_kennedy_202509",
+      "project_id": "AU-cc4e217a90b7123dce0a",
+      "priority": "RESOURCE_OXIDE_COMPOSITION",
+      "decision": "FILLED_SAME_TOTAL_RESOURCE_SCOPE",
+      "reason": "INDIVIDUAL_RESOURCE_OXIDES_TRANSCRIBED_FROM_VISUALLY_REVIEWED_TOTAL;NO_PRODUCT_OR_INTERCEPT_TRANSFER",
+      "sources": [
+        {
+          "asset_set": "round3",
+          "path": "data/snapshots/d631b0e9edbc2162ee3cb12bf526834518b43cc5ce89c4d995e3497afbbf36fb.pdf",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02996030",
+          "sha256": "d631b0e9edbc2162ee3cb12bf526834518b43cc5ce89c4d995e3497afbbf36fb",
+          "evidence": [
+            {
+              "page": 65,
+              "markers": [
+                "325",
+                "150",
+                "Ho2O3",
+                "Table 1"
+              ],
+              "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+              "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "r3_redlings_202501",
+      "project_id": "AU-12cc237ae66c7a6508ca",
+      "priority": "RESOURCE_OXIDE_COMPOSITION",
+      "decision": "FILLED_SAME_TOTAL_RESOURCE_SCOPE",
+      "reason": "INDIVIDUAL_RESOURCE_OXIDES_TRANSCRIBED_FROM_VISUALLY_REVIEWED_TOTAL;NO_PRODUCT_OR_INTERCEPT_TRANSFER",
+      "sources": [
+        {
+          "asset_set": "round3",
+          "path": "data/snapshots/1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43.pdf",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02906350",
+          "sha256": "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43",
+          "evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Rounded estimates by TREO cut-off",
+                "800",
+                "1130"
+              ],
+              "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+              "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "r3_yttria_202404",
+      "project_id": "AU-ee5ca893d12883df35f1",
+      "priority": "RESOURCE_OXIDE_COMPOSITION",
+      "decision": "FILLED_SAME_TOTAL_RESOURCE_SCOPE",
+      "reason": "INDIVIDUAL_RESOURCE_OXIDES_TRANSCRIBED_FROM_VISUALLY_REVIEWED_TOTAL;NO_PRODUCT_OR_INTERCEPT_TRANSFER",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51.pdf",
+          "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739",
+          "sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Pr6O11",
+                "Nd2O3",
+                "Dy2O3",
+                "Tb4O7"
+              ],
+              "render_sha256": "45b58a842a981abfebefa3c9ce0ad2594b6da0c52009534ff62d32db9e2ca3dc",
+              "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "narraburra_aggregate_limits",
+      "project_id": "AU-d28382dfa82f1664065e",
+      "priority": "RESOURCE_OXIDE_COMPOSITION",
+      "decision": "WITHHELD",
+      "reason": "ORIGINAL_MRE_CONTAINS_AGGREGATE_REO_CATEGORIES;NO_SOURCE_REVIEWED_INDIVIDUAL15_COMPONENTS_ADMITTED;52_4MT_FRESH_BEDROCK_EXPLICITLY_NOT_MINERAL_RESOURCE",
+      "sources": [
+        {
+          "asset_set": "round3",
+          "path": "data/snapshots/9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f.pdf",
+          "url": "https://announcements.asx.com.au/asxpdf/20230419/pdf/45nsv13j5vtntn.pdf",
+          "sha256": "9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f",
+          "evidence": [
+            {
+              "page": 8,
+              "markers": [
+                "52.4 Mt",
+                "do not currently",
+                "represent Mineral Resources"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "r3_donald_annual_202602_annual_audit",
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "priority": "ANNUAL_PRODUCT_OUTPUT",
+      "decision": "FILLED_DERIVED_ANNUAL_TREO_AND_NDPR;HREE8_WITHHELD",
+      "reason": "7100*0_606=4302_6TPA_TREO;TIMES(0_139+0_039)=765_8628TPA_NDPR_OXIDES;NOT_FIRST5YR_DYTB_OR_RESOURCE_GRADE",
+      "sources": [
+        {
+          "asset_set": "technical",
+          "path": "data/snapshots/82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097.pdf",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03067134",
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "evidence": [
+            {
+              "page": 3,
+              "markers": [
+                "2025 REEC Product",
+                "Annual Forecast",
+                "REEC Production",
+                "As a % of TREO"
+              ],
+              "render_sha256": "3fd19c896026a0429c22737b62097637fba7fc0a8324c65b6860011da3ee84cc",
+              "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW",
+              "table_row": "2025 REEC Product"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "review_north_pfs_product202608_annual_audit",
+      "project_id": "AU-216d0983f6892f9b58f9",
+      "priority": "ANNUAL_PRODUCT_OUTPUT",
+      "decision": "REMAINING_ANNUAL_FIELDS_WITHHELD",
+      "reason": "AVERAGE_DRY_TONNES_TABLE_LACKS_EXPLICIT_ANNUAL_TIME_BASIS;HREE8_NOT_FULLY_SPECIFIED_IN_REVIEWED_PRODUCTION_TABLE",
+      "sources": [
+        {
+          "asset_set": "technical",
+          "path": "data/snapshots/452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491.pdf",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03126345",
+          "sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+          "evidence": [
+            {
+              "page": 7,
+              "markers": [
+                "Production - Contained Oxide",
+                "Average",
+                "dt"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "review_goschen_dfs_product202609_annual_audit",
+      "project_id": "AU-6d807eb7caec9db0f35e",
+      "priority": "ANNUAL_PRODUCT_OUTPUT",
+      "decision": "REMAINING_ANNUAL_FIELDS_WITHHELD",
+      "reason": "CONCENTRATE_MASS_IS_NOT_CONTAINED_TREO_MASS;CONTAINED_NDPR_OXIDE_VS_ELEMENTAL_BASIS_NOT_EXPLICIT_IN_REVIEWED_TABLE;DY_TB_ONLY_NOT_COMPLETE_HREE8",
+      "sources": [
+        {
+          "asset_set": "technical",
+          "path": "data/snapshots/5a783d0c7a9ed69fd62c532c77927af0f83e0813feeaab093ed617ae1556e0b3.pdf",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03141511",
+          "sha256": "5a783d0c7a9ed69fd62c532c77927af0f83e0813feeaab093ed617ae1556e0b3",
+          "evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Rare earth concentrate (REC) production",
+                "8,300 tpa"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "cummins_multiphase_forecast_202308_annual_audit",
+      "project_id": "AU-9b667066e6eb66753005",
+      "priority": "ANNUAL_PRODUCT_OUTPUT",
+      "decision": "REMAINING_ANNUAL_FIELDS_WITHHELD",
+      "reason": "MULTIPHASE_SCOPING_REPORTS_12KTPA_STAGE2_AND7KTPA_STAGE3;NO_SINGLE_LOM_ANNUAL_OR_APPROVED_PHASE_SELECTION",
+      "sources": [
+        {
+          "asset_set": "technical",
+          "path": "data/snapshots/1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07.pdf",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02700381",
+          "sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "evidence": [
+            {
+              "page": 7,
+              "markers": [
+                "Stage 1",
+                "Stage 2",
+                "Stage 3",
+                "Average TREO production (ktpa)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "nolans_forecast_clarification202606_annual_audit",
+      "project_id": "AU-1345edd8165c10930e94",
+      "priority": "ANNUAL_PRODUCT_OUTPUT",
+      "decision": "REMAINING_ANNUAL_FIELDS_WITHHELD",
+      "reason": "SEG_HRE_573TPA_IS_COMBINED_SEG_AND_HRE_PRODUCT;NOT_COMPLETE_TEMPLATE_HREE8",
+      "sources": [
+        {
+          "asset_set": "selected",
+          "path": "data/snapshots/03ee0d0da9323708e1ed5008c4a35981cdc85ec16ddb06b299da1a10ce59914b.pdf",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03105109",
+          "sha256": "03ee0d0da9323708e1ed5008c4a35981cdc85ec16ddb06b299da1a10ce59914b",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "SEG/HRE Oxide (tpa)",
+                "573"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "r3_fingerboards_resource_202208_annual_audit",
+      "project_id": "AU-7537d9555628040fab40",
+      "priority": "ANNUAL_PRODUCT_OUTPUT",
+      "decision": "REMAINING_ANNUAL_FIELDS_WITHHELD",
+      "reason": "CATALOGUE_1800TPA_NDPR_DOES_NOT_EXPLICITLY_ESTABLISH_OXIDE_VS_ELEMENTAL_BASIS;CATALOGUE_200TPA_DYTB_IS_NOT_COMPLETE_HREE8;CATALOGUE_280KTPA_HMC_AND_2_6PCT_TREO_ARE_DESIGN_RATE_NOT_EXPLICIT_LOM_AVERAGE;UPDATED_DFS_NOT_ADMITTED",
+      "sources": [
+        {
+          "asset_set": "canonical",
+          "path": "data/snapshots/af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5.pdf",
+          "url": "https://international.austrade.gov.au/content/dam/austrade-assets/international/documents/reports/critical-minerals/australian-critical-minerals-prospectus-march-2026.pdf",
+          "sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+          "evidence": [
+            {
+              "page": 36,
+              "markers": [
+                "1,800tpa",
+                "NdPr"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

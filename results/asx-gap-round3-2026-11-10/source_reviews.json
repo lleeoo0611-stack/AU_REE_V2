@@ -1,0 +1,5485 @@
+{
+  "version": "asx-source-review-v1",
+  "acquired_through": "2026-11-10",
+  "reviews": [
+    {
+      "review_id": "review_north_global_mre202608",
+      "source_key": "asx_document_03126345",
+      "project_id": "AU-216d0983f6892f9b58f9",
+      "source_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+      "asset_set": "technical",
+      "path": "data/snapshots/452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03126345",
+      "publication_date": "2026-08-18",
+      "effective_date": "2026-08-18",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "MONTH",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "North",
+          "Stanmore",
+          "Victory Metals"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "18 AUGUST 2026"
+        ]
+      },
+      "scope": "North Stanmore August2026 global MRE; >=300ppm TREO cutoff excludingSc; Measured+Indicated+Inferred; includes high-grade subset and Ore Reserve; dry basis",
+      "statement_id": "north-stanmore-global-mre-202608-primary",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 278.802,
+          "unit": "Mt",
+          "basis": "TREO",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "278,802,000",
+          "original_unit": "t",
+          "rounding_half_width": 0.0005
+        },
+        {
+          "variable": "grade",
+          "value": 482.64,
+          "unit": "ppm",
+          "basis": "TREO",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "482.64",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_la_ppm",
+          "value": 74.73,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "74.73",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_ce_ppm",
+          "value": 135.26,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "135.26",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_pr_ppm",
+          "value": 17.77,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "17.77",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_nd_ppm",
+          "value": 68.66,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "68.66",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_sm_ppm",
+          "value": 14.83,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "14.83",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_y_ppm",
+          "value": 107.1,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "107.1",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_eu_ppm",
+          "value": 3.45,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "3.45",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_gd_ppm",
+          "value": 15.21,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "15.21",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_tb_ppm",
+          "value": 2.54,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "2.54",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_dy_ppm",
+          "value": 16.09,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "16.09",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_ho_ppm",
+          "value": 3.44,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "3.44",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_er_ppm",
+          "value": 10.44,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "10.44",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_tm_ppm",
+          "value": 1.53,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "1.53",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_yb_ppm",
+          "value": 10.09,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "10.09",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_lu_ppm",
+          "value": 1.51,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "evidence": {
+            "page": 136,
+            "markers": [
+              "individual light rare earth",
+              "individual heavy rare earth"
+            ],
+            "render_sha256": "7f8ec215eafd5f2c5fce776ff7c9a05f92baaf94567abb37e85dbf37abf0e3d7",
+            "table_row": "TOTAL, global >=300 ppm TREO",
+            "transcription": "VISUALLY_CHECKED_SOURCE_IMAGE_AND_CROSSCHECKED_NATIVE_P97"
+          },
+          "original_token": "1.51",
+          "rounding_half_width": 0.005
+        }
+      ],
+      "selection_reason": "EXPLICIT_SOURCE_REVIEW_OF_DECLARED_TOTAL_NOT_AN_AUTOMATIC_LATEST_DATE_SCOPE_CHOICE",
+      "effective_date_interval": [
+        "2026-08-01",
+        "2026-08-18"
+      ],
+      "scope_evidence": [
+        {
+          "page": 97,
+          "markers": [
+            "300 ppm TREO",
+            "not additional to",
+            "dry basis"
+          ]
+        },
+        {
+          "page": 8,
+          "markers": [
+            "excluding Sc."
+          ]
+        }
+      ],
+      "oxide_sum_tolerance_ppm": 0.08
+    },
+    {
+      "review_id": "review_koppamurra_global202606",
+      "source_key": "asx_document_03107711",
+      "project_id": "AU-49b538453133bd968e8d",
+      "source_sha256": "7595d024b25438cd5795635cb43f5f87717b9b5ac9a935eff7d1d3c07562fd01",
+      "asset_set": "technical",
+      "path": "data/snapshots/7595d024b25438cd5795635cb43f5f87717b9b5ac9a935eff7d1d3c07562fd01.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03107711",
+      "publication_date": "2026-06-25",
+      "effective_date": "2026-06-25",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "YEAR",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Koppamurra",
+          "25 June 2026"
+        ]
+      },
+      "date_evidence": {
+        "page": 28,
+        "markers": [
+          "Koppamurra 2026 Mineral Resource Statement",
+          "Refer to ASX release 25 June 2026"
+        ]
+      },
+      "scope": "Global Koppamurra JORC2012 M+I+I MRE as reaffirmed25June2026; includesY; excludes26MtOreReserve subset and Exploration Target; not a sum with reserve or186Mtoldergovernmentversion",
+      "statement_id": "koppamurra-mre20260625",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 243,
+          "unit": "Mt",
+          "basis": "TREO",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Global Mineral Resource Estimate",
+              "Total 243 1.6 751 493 25.3 121 257 35 132 26 25"
+            ]
+          },
+          "original_token": "243",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "grade",
+          "value": 751,
+          "unit": "ppm",
+          "basis": "TREO",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Global Mineral Resource Estimate",
+              "Total 243 1.6 751 493 25.3 121 257 35 132 26 25"
+            ]
+          },
+          "original_token": "751",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_la_ppm",
+          "value": 121,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Global Mineral Resource Estimate",
+              "Total 243 1.6 751 493 25.3 121 257 35 132 26 25"
+            ]
+          },
+          "original_token": "121",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_ce_ppm",
+          "value": 257,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Global Mineral Resource Estimate",
+              "Total 243 1.6 751 493 25.3 121 257 35 132 26 25"
+            ]
+          },
+          "original_token": "257",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_pr_ppm",
+          "value": 35,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Global Mineral Resource Estimate",
+              "Total 243 1.6 751 493 25.3 121 257 35 132 26 25"
+            ]
+          },
+          "original_token": "35",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_nd_ppm",
+          "value": 132,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Global Mineral Resource Estimate",
+              "Total 243 1.6 751 493 25.3 121 257 35 132 26 25"
+            ]
+          },
+          "original_token": "132",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_sm_ppm",
+          "value": 26,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Global Mineral Resource Estimate",
+              "Total 243 1.6 751 493 25.3 121 257 35 132 26 25"
+            ]
+          },
+          "original_token": "26",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_gd_ppm",
+          "value": 25,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Global Mineral Resource Estimate",
+              "Total 243 1.6 751 493 25.3 121 257 35 132 26 25"
+            ]
+          },
+          "original_token": "25",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_tb_ppm",
+          "value": 4,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Summary of Global Mineral Resources continued",
+              "Total 4 19 4 10 6 1 8 1 104 2 19"
+            ]
+          },
+          "original_token": "4",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_dy_ppm",
+          "value": 19,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Summary of Global Mineral Resources continued",
+              "Total 4 19 4 10 6 1 8 1 104 2 19"
+            ]
+          },
+          "original_token": "19",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_ho_ppm",
+          "value": 4,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Summary of Global Mineral Resources continued",
+              "Total 4 19 4 10 6 1 8 1 104 2 19"
+            ]
+          },
+          "original_token": "4",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_er_ppm",
+          "value": 10,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Summary of Global Mineral Resources continued",
+              "Total 4 19 4 10 6 1 8 1 104 2 19"
+            ]
+          },
+          "original_token": "10",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_eu_ppm",
+          "value": 6,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Summary of Global Mineral Resources continued",
+              "Total 4 19 4 10 6 1 8 1 104 2 19"
+            ]
+          },
+          "original_token": "6",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_tm_ppm",
+          "value": 1,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Summary of Global Mineral Resources continued",
+              "Total 4 19 4 10 6 1 8 1 104 2 19"
+            ]
+          },
+          "original_token": "1",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_yb_ppm",
+          "value": 8,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Summary of Global Mineral Resources continued",
+              "Total 4 19 4 10 6 1 8 1 104 2 19"
+            ]
+          },
+          "original_token": "8",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_lu_ppm",
+          "value": 1,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Summary of Global Mineral Resources continued",
+              "Total 4 19 4 10 6 1 8 1 104 2 19"
+            ]
+          },
+          "original_token": "1",
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_y_ppm",
+          "value": 104,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "evidence": {
+            "page": 8,
+            "markers": [
+              "Summary of Global Mineral Resources continued",
+              "Total 4 19 4 10 6 1 8 1 104 2 19"
+            ]
+          },
+          "original_token": "104",
+          "rounding_half_width": 0.5
+        }
+      ],
+      "selection_reason": "EXPLICIT_SOURCE_REVIEW_OF_DECLARED_TOTAL_NOT_AN_AUTOMATIC_LATEST_DATE_SCOPE_CHOICE",
+      "effective_date_interval": [
+        "2026-01-01",
+        "2026-06-25"
+      ],
+      "scope_evidence": [
+        {
+          "page": 28,
+          "markers": [
+            "325 ppm TREO-CeO2",
+            "243 Mt @ 751 ppm TREO"
+          ]
+        }
+      ],
+      "oxide_sum_tolerance_ppm": 8
+    },
+    {
+      "review_id": "review_wolverine_mre202501",
+      "source_key": "asx_document_02904920",
+      "project_id": "AU-9bd8e5ed8408cd84d876",
+      "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+      "asset_set": "technical",
+      "path": "data/snapshots/e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02904920",
+      "publication_date": "2025-01-16",
+      "effective_date": "2025-01-15",
+      "effective_date_role": "RESOURCE_EFFECTIVE_DATE",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Wolverine",
+          "Browns Range"
+        ]
+      },
+      "date_evidence": {
+        "page": 5,
+        "markers": [
+          "as at 15 January 2025"
+        ]
+      },
+      "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+      "statement_id": "browns-range-2025-01-15",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 7.3,
+          "unit": "Mt",
+          "basis": "TREO",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Wolverine Total Mineral Resource estimate",
+              "Total 7.3 0.96 0.85 5.68 0.12 89 70,500"
+            ]
+          },
+          "original_token": "7.3",
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "grade",
+          "value": 0.96,
+          "unit": "%",
+          "basis": "TREO",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Wolverine Total Mineral Resource estimate",
+              "Total 7.3 0.96 0.85 5.68 0.12 89 70,500"
+            ]
+          },
+          "original_token": "0.96",
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "contained_treo_kt",
+          "value": 70.5,
+          "unit": "kt TREO",
+          "basis": "TREO",
+          "evidence": {
+            "page": 5,
+            "markers": [
+              "Wolverine Total Mineral Resource estimate",
+              "Total 7.3 0.96 0.85 5.68 0.12 89 70,500"
+            ]
+          },
+          "original_token": "70,500",
+          "original_unit": "t"
+        },
+        {
+          "variable": "reported_resource_la_ppm",
+          "value": 170,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "170",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_ce_ppm",
+          "value": 420,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "420",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_pr_ppm",
+          "value": 60,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "60",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_nd_ppm",
+          "value": 280,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "280",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_sm_ppm",
+          "value": 200,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "200",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_eu_ppm",
+          "value": 40,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "40",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_gd_ppm",
+          "value": 560,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "560",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_tb_ppm",
+          "value": 120,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "120",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_dy_ppm",
+          "value": 840,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "840",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_ho_ppm",
+          "value": 170,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "170",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_er_ppm",
+          "value": 490,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "490",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_tm_ppm",
+          "value": 70,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "70",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_yb_ppm",
+          "value": 380,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "380",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_lu_ppm",
+          "value": 50,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "50",
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_y_ppm",
+          "value": 5700,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Table 5: Wolverine Total Mineral Resource estimate",
+              "Total 7,300 170 420 60 280 200 40 560 120 840 170 490 70 380 50 5,700"
+            ]
+          },
+          "original_token": "5,700",
+          "rounding_half_width": 5
+        }
+      ],
+      "selection_reason": "EXPLICIT_SOURCE_REVIEW_OF_DECLARED_TOTAL_NOT_AN_AUTOMATIC_LATEST_DATE_SCOPE_CHOICE",
+      "oxide_sum_tolerance_ppm": 125,
+      "scope_evidence": [
+        {
+          "page": 5,
+          "markers": [
+            "TREO = Total Rare Earth Oxides"
+          ]
+        },
+        {
+          "page": 6,
+          "markers": [
+            "Wolverine Open Pit MRE constrained",
+            "Wolverine Underground MRE reported"
+          ]
+        }
+      ]
+    },
+    {
+      "review_id": "review_koppamurra_pfs_output202606",
+      "source_key": "asx_document_03107711",
+      "project_id": "AU-49b538453133bd968e8d",
+      "source_sha256": "7595d024b25438cd5795635cb43f5f87717b9b5ac9a935eff7d1d3c07562fd01",
+      "asset_set": "technical",
+      "path": "data/snapshots/7595d024b25438cd5795635cb43f5f87717b9b5ac9a935eff7d1d3c07562fd01.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03107711",
+      "publication_date": "2026-06-25",
+      "effective_date": "2026-06-25",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Koppamurra",
+          "25 June 2026"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "25 June 2026"
+        ]
+      },
+      "scope": "Koppamurra 12-year PFS mine plan; 71%ProbableReserve +29%Inferred; final calcined MREO, not global MRE performance",
+      "statement_id": "koppamurra-pfs20260625-output",
+      "observations": [],
+      "selection_reason": "EXPLICIT_SOURCE_REVIEW_OF_DECLARED_TOTAL_NOT_AN_AUTOMATIC_LATEST_DATE_SCOPE_CHOICE",
+      "study": {
+        "scale": "PFS_MODEL",
+        "stage": 3,
+        "endpoint": "CALCINED_MIXED_REO",
+        "element": "TREO_INCLUDING_Y",
+        "parameters": {
+          "average_annual_treo_product_t": 1860,
+          "average_annual_ndpr_product_t": 435
+        },
+        "annual_basis_evidence": {
+          "page": 3,
+          "markers": [
+            "Average Annual Production (TREO)",
+            "Average NdPr Production"
+          ]
+        },
+        "evidence": [
+          {
+            "page": 3,
+            "markers": [
+              "1,860",
+              "435",
+              "12"
+            ]
+          },
+          {
+            "page": 11,
+            "markers": [
+              "calcined offsite",
+              "final MREO product"
+            ]
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "100%",
+              "owned",
+              "ASX"
+            ]
+          }
+        },
+        {
+          "column": "開發商",
+          "value": "Australian Rare Earths Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Australian Rare Earths Limited",
+              "Koppamurra"
+            ]
+          }
+        },
+        {
+          "column": "礦床型態代碼",
+          "value": "iac",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "ionic adsorption clay"
+            ]
+          }
+        }
+      ],
+      "deferred_fields": [
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "HREE8_NOT_FULLY_SPECIFIED_IN_REVIEWED_PRODUCTION_TABLE",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Average Dy and Tb Production",
+              "Average Y Production"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "review_yangibana_revised_dfs202607",
+      "source_key": "asx_document_03114333",
+      "project_id": "AU-908fd6f4461622e89548",
+      "source_sha256": "99233befa81a1e193848122f00dfaa25079d0b2adbc2f19ef96326ca63c38f2a",
+      "asset_set": "technical",
+      "path": "data/snapshots/99233befa81a1e193848122f00dfaa25079d0b2adbc2f19ef96326ca63c38f2a.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03114333",
+      "publication_date": "2026-07-13",
+      "effective_date": "2026-07-13",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 2,
+        "markers": [
+          "Yangibana",
+          "Stage 1"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "13 July 2026"
+        ]
+      },
+      "scope": "Yangibana Stage1 19-year DFS mine plan; contained TREO in mineral concentrate; revised 13July2026 announcement",
+      "statement_id": "yangibana-revised-dfs-20260713",
+      "observations": [],
+      "selection_reason": "EXPLICIT_SOURCE_REVIEW_OF_DECLARED_TOTAL_NOT_AN_AUTOMATIC_LATEST_DATE_SCOPE_CHOICE",
+      "study": {
+        "scale": "DFS_MODEL",
+        "stage": 4,
+        "endpoint": "MINERAL_CONCENTRATE",
+        "element": "TREO_INCLUDING_Y",
+        "parameters": {
+          "average_annual_treo_product_t": 8524
+        },
+        "annual_basis_evidence": {
+          "page": 63,
+          "markers": [
+            "Anticipated annual concentrate production",
+            "tpa of contained"
+          ]
+        },
+        "evidence": [
+          {
+            "page": 63,
+            "markers": [
+              "31,570",
+              "8,524",
+              "TREO in concentrate"
+            ]
+          }
+        ]
+      },
+      "deferred_fields": [
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "ORE_RESERVE_NDPR_SHARE_NOT_A_VERIFIED_ANNUAL_PRODUCT_FRACTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "NdPr represents 37%",
+              "Ore Reserve"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "review_north_pfs_product202608",
+      "source_key": "asx_document_03126345",
+      "project_id": "AU-216d0983f6892f9b58f9",
+      "source_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+      "asset_set": "technical",
+      "path": "data/snapshots/452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03126345",
+      "publication_date": "2026-08-18",
+      "effective_date": "2026-08-18",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "North",
+          "Stanmore"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "18 AUGUST 2026"
+        ]
+      },
+      "scope": "North Stanmore PFS20-year production plan;47MtProbableReserve; mineral concentrate, not full global resource",
+      "statement_id": "north-stanmore-pfs20260818",
+      "observations": [],
+      "selection_reason": "EXPLICIT_SOURCE_REVIEW_OF_DECLARED_TOTAL_NOT_AN_AUTOMATIC_LATEST_DATE_SCOPE_CHOICE",
+      "study": {
+        "scale": "PFS_MODEL",
+        "stage": 3,
+        "endpoint": "MINERAL_CONCENTRATE",
+        "element": "TREO_INCLUDING_Y",
+        "parameters": {},
+        "evidence": [
+          {
+            "page": 5,
+            "markers": [
+              "beneficiation to produce a heavy rare",
+              "mineral concentrate"
+            ]
+          },
+          {
+            "page": 7,
+            "markers": [
+              "47.0 Mt Probable Ore Reserve"
+            ]
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "100%",
+              "owned",
+              "ASX"
+            ]
+          }
+        }
+      ],
+      "deferred_fields": [
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "AVERAGE_DRY_TONNES_TABLE_LACKS_EXPLICIT_ANNUAL_TIME_BASIS",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Production - Contained Oxide",
+              "Average",
+              "dt"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "AVERAGE_DRY_TONNES_TABLE_LACKS_EXPLICIT_ANNUAL_TIME_BASIS",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Production - Contained Oxide",
+              "Average",
+              "dt"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "HREE8_NOT_FULLY_SPECIFIED_IN_REVIEWED_PRODUCTION_TABLE",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Production - Terbium",
+              "Production - Dysprosium"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "review_goschen_dfs_product202609",
+      "source_key": "asx_document_03141511",
+      "project_id": "AU-6d807eb7caec9db0f35e",
+      "source_sha256": "5a783d0c7a9ed69fd62c532c77927af0f83e0813feeaab093ed617ae1556e0b3",
+      "asset_set": "technical",
+      "path": "data/snapshots/5a783d0c7a9ed69fd62c532c77927af0f83e0813feeaab093ed617ae1556e0b3.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03141511",
+      "publication_date": "2026-09-21",
+      "effective_date": "2026-09-21",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Goschen",
+          "21 September 2026"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "21 September 2026"
+        ]
+      },
+      "scope": "Goschen DFS18-year5Mtpa93Mt mine plan;REC endpoint; not Area1/global MineralResource substitution",
+      "statement_id": "goschen-dfs20260921-product",
+      "observations": [],
+      "selection_reason": "EXPLICIT_SOURCE_REVIEW_OF_DECLARED_TOTAL_NOT_AN_AUTOMATIC_LATEST_DATE_SCOPE_CHOICE",
+      "study": {
+        "scale": "DFS_MODEL",
+        "stage": 4,
+        "endpoint": "REEC",
+        "element": "TREO_INCLUDING_Y",
+        "parameters": {},
+        "evidence": [
+          {
+            "page": 2,
+            "markers": [
+              "Rare earth concentrate (REC) production",
+              "8,300 tpa"
+            ]
+          },
+          {
+            "page": 3,
+            "markers": [
+              "18-year, 5 Mtpa"
+            ]
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "100%",
+              "owned",
+              "ASX"
+            ]
+          }
+        }
+      ],
+      "deferred_fields": [
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "CONCENTRATE_MASS_IS_NOT_CONTAINED_TREO_MASS",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rare earth concentrate (REC) production",
+              "8,300 tpa"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "CONTAINED_NDPR_OXIDE_VS_ELEMENTAL_BASIS_NOT_EXPLICIT_IN_REVIEWED_TABLE",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Nd-Pr contained in REC",
+              "990 tpa"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "DY_TB_ONLY_NOT_COMPLETE_HREE8",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Dy and Tb contained in REC",
+              "115 tpa"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "review_browns_dfs_output202509",
+      "source_key": "asx_document_02995224",
+      "project_id": "AU-9bd8e5ed8408cd84d876",
+      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "asset_set": "technical",
+      "path": "data/snapshots/5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02995224",
+      "publication_date": "2025-09-15",
+      "effective_date": "2025-09-15",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Browns Range"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "15 September 2025"
+        ]
+      },
+      "scope": "Browns Range Wolverine-based DFS mine plan including BRPP stockpile; 11 years; forecast average, not total or nameplate output",
+      "statement_id": "review_browns_dfs_output202509",
+      "observations": [],
+      "study": {
+        "scale": "DFS_MODEL",
+        "stage": 4,
+        "endpoint": "MINERAL_CONCENTRATE",
+        "element": "TREO_INCLUDING_Y",
+        "parameters": {
+          "average_annual_treo_product_t": 4350
+        },
+        "annual_basis_evidence": {
+          "page": 116,
+          "markers": [
+            "Average TREO production",
+            "tpa"
+          ]
+        },
+        "evidence": [
+          {
+            "page": 116,
+            "markers": [
+              "Average TREO production",
+              "4,350",
+              "Table 25 Key Project metrics"
+            ]
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "100%",
+              "owned",
+              "ASX"
+            ]
+          }
+        }
+      ],
+      "deferred_fields": [
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "DY_TB_SHARE_IS_NOT_COMPLETE_HREE8_FORECAST",
+          "evidence": {
+            "page": 116,
+            "markers": [
+              "DyTb % in TREO",
+              "10.7"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "RESOURCE_OXIDE_COMPOSITION_IS_NOT_ANNUAL_PRODUCT_COMPOSITION",
+          "evidence": {
+            "page": 116,
+            "markers": [
+              "Average TREO production",
+              "Concentrate grade"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "review_jupiter_scoping_output202610",
+      "source_key": "asx_document_03154309",
+      "project_id": "AU-dac3c8e40326b8244cdb",
+      "source_sha256": "5e88f8aaf0d5da1a9de7f64ec7628ffea48e1a22a7daf296b563e5ee5aa65328",
+      "asset_set": "technical",
+      "path": "data/snapshots/5e88f8aaf0d5da1a9de7f64ec7628ffea48e1a22a7daf296b563e5ee5aa65328.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03154309",
+      "publication_date": "2026-10-20",
+      "effective_date": "2026-10-20",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Jupiter"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "20 October 2026"
+        ]
+      },
+      "scope": "Jupiter Scoping Base Case107.3Mt scheduled feed14yr;MREC;8300tpa LOM average, not9300tpa nominal process-design basis",
+      "statement_id": "review_jupiter_scoping_output202610",
+      "observations": [],
+      "study": {
+        "scale": "SCOPING_MODEL",
+        "stage": 2,
+        "endpoint": "MREC",
+        "element": "TREO_INCLUDING_Y",
+        "parameters": {
+          "average_annual_treo_product_t": 8300
+        },
+        "annual_basis_evidence": {
+          "page": 21,
+          "markers": [
+            "Average annual contained TREO in MREC",
+            "tpa",
+            "Base Case annual production represents the life-of-mine annual average"
+          ]
+        },
+        "evidence": [
+          {
+            "page": 21,
+            "markers": [
+              "8,300",
+              "9,300",
+              "Process Design Basis"
+            ]
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "100%",
+              "owned",
+              "ASX"
+            ]
+          }
+        },
+        {
+          "column": "開發商",
+          "value": "Critica Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Critica Limited",
+              "Jupiter"
+            ]
+          }
+        }
+      ],
+      "deferred_fields": [
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "TOTAL_TREO_FORECAST_DOES_NOT_ESTABLISH_COMPONENT_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 21,
+            "markers": [
+              "Average annual contained TREO in MREC",
+              "8,300"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "TOTAL_TREO_FORECAST_DOES_NOT_ESTABLISH_COMPONENT_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 21,
+            "markers": [
+              "Average annual contained TREO in MREC",
+              "8,300"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "cowalinya_global_202309",
+      "source_key": "asx_review_cowalinya_global_202309",
+      "project_id": "AU-4ec1fb08563b42352d29",
+      "source_sha256": "39699576fe9ebe47225c083dc285d7a561b732ab357a9050a67472e89a5512aa",
+      "asset_set": "technical",
+      "path": "data/snapshots/39699576fe9ebe47225c083dc285d7a561b732ab357a9050a67472e89a5512aa.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02720445",
+      "publication_date": "2023-10-03",
+      "effective_date": "2023-09-30",
+      "effective_date_role": "RESOURCE_EFFECTIVE_DATE",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Cowalinya"
+        ]
+      },
+      "date_evidence": {
+        "page": 4,
+        "markers": [
+          "30 September 2023"
+        ]
+      },
+      "scope": "Cowalinya all saprolite layers SUM+SMM+SLM; Inferred resource; 400ppm TREO-CeO2 cutoff; 30Sep2023; not exploration target",
+      "statement_id": "cowalinya_global_202309",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 158.9,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "158.9",
+          "evidence": {
+            "page": 16,
+            "markers": [
+              "Cowalinya Rare Earth Oxide",
+              "All",
+              "Inferred",
+              "158.9",
+              "870.3"
+            ]
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 870.3,
+          "unit": "ppm",
+          "basis": "TREO",
+          "original_token": "870.3",
+          "evidence": {
+            "page": 16,
+            "markers": [
+              "Cowalinya Rare Earth Oxide",
+              "All",
+              "Inferred",
+              "158.9",
+              "870.3"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_La2O3_ppm",
+          "value": 145.8,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "original_token": "145.8",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_CeO2_ppm",
+          "value": 238.5,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "original_token": "238.5",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Pr6O11_ppm",
+          "value": 43.4,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "43.4",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Nd2O3_ppm",
+          "value": 170.5,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "170.5",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Sm2O3_ppm",
+          "value": 34.2,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "original_token": "34.2",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Eu2O3_ppm",
+          "value": 7.5,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "original_token": "7.5",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Gd2O3_ppm",
+          "value": 30.1,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "original_token": "30.1",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Tb4O7_ppm",
+          "value": 4.3,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "4.3",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Dy2O3_ppm",
+          "value": 23.3,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "23.3",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Ho2O3_ppm",
+          "value": 4.6,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "original_token": "4.6",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Er2O3_ppm",
+          "value": 12.4,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "original_token": "12.4",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Tm2O3_ppm",
+          "value": 1.8,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "original_token": "1.8",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Yb2O3_ppm",
+          "value": 10.9,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "original_token": "10.9",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Lu2O3_ppm",
+          "value": 1.6,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "original_token": "1.6",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Y2O3_ppm",
+          "value": 141.6,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "original_token": "141.6",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "All",
+              "Inferred",
+              "400.0",
+              "870.3",
+              "individual REOs"
+            ]
+          }
+        }
+      ],
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "3 October 2023"
+        ],
+        "header_title": "FIVE-FOLD INCREASE IN MINERAL RESOURCES"
+      },
+      "oxide_sum_tolerance_ppm": 0.8,
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 16,
+          "markers": [
+            "Cowalinya Rare Earth Oxide",
+            "All",
+            "Inferred",
+            "158.9",
+            "870.3"
+          ]
+        }
+      ],
+      "selection_reason": "Same 2023 global resource repeated in 2024 annual report; use original detailed 158.9Mt and870.3ppm total, not rounded159Mt870ppm, and same-scope fifteen oxides. Headline138290t is rounded consistently with detailed paired inputs; contained amount derived and marked."
+    },
+    {
+      "review_id": "circle_valley_global_202306",
+      "source_key": "asx_review_circle_valley_global_202306",
+      "project_id": "AU-785536db5ff12c25350d",
+      "source_sha256": "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad",
+      "asset_set": "technical",
+      "path": "data/snapshots/259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02675850",
+      "publication_date": "2023-06-14",
+      "effective_date": "2023-06-14",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "YEAR",
+      "effective_date_interval": [
+        "2023-01-01",
+        "2023-06-14"
+      ],
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Circle Valley"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "14 June 2023"
+        ]
+      },
+      "scope": "Circle Valley Inferred pit-constrained global resource; >430ppm TREO-CeO2; US$145/kg basket pit; excludes13Mt high-grade nested subset",
+      "statement_id": "circle_valley_global_202306",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 98.0,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "98",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Circle Valley Rare Earth Mineral Resource",
+              "Total",
+              "98",
+              "890",
+              "Inferred"
+            ]
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 890.0,
+          "unit": "ppm",
+          "basis": "TREO",
+          "original_token": "890",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Circle Valley Rare Earth Mineral Resource",
+              "Total",
+              "98",
+              "890",
+              "Inferred"
+            ]
+          }
+        }
+      ],
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 2,
+          "markers": [
+            "Circle Valley Rare Earth Mineral Resource",
+            "Total",
+            "98",
+            "890",
+            "Inferred"
+          ]
+        }
+      ],
+      "selection_reason": "Explicitly reviewed source total at the stated cutoff; no addition of nested subsets or other deposits.",
+      "deferred_fields": [
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "COMBINED_NDPR_OXIDE_220PPM_REPORTED_BUT_NO_SEPARATE_ND_AND_PR_OXIDE_VALUES_FOR_TEMPLATE_CONTRACT",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "NdPr = Nd2O3 + Pr6O11",
+              "220"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "mia_central_202405",
+      "source_key": "asx_review_mia_central_202405",
+      "project_id": "AU-3651cf8448b9227adcf5",
+      "source_sha256": "eac3b88bddeeda7a38488b44300d70ad4ceaa9b86db3383d950556952bac77e0",
+      "asset_set": "technical",
+      "path": "data/snapshots/eac3b88bddeeda7a38488b44300d70ad4ceaa9b86db3383d950556952bac77e0.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02809770",
+      "publication_date": "2024-05-22",
+      "effective_date": "2024-05-22",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "YEAR",
+      "effective_date_interval": [
+        "2024-01-01",
+        "2024-05-22"
+      ],
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Mount Ridley"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "22 May 2024"
+        ]
+      },
+      "scope": "Mount Ridley Central Mia Prospect only; Inferred MRE at750ppm TREO cutoff; excludes other Mount Ridley prospects and1000ppm nested subset",
+      "statement_id": "mia_central_202405",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 168.0,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "168",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Central Mia Prospect Mineral Resource Estimate",
+              "Inferred",
+              "750ppm"
+            ]
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 1201.0,
+          "unit": "ppm",
+          "basis": "TREO",
+          "original_token": "1,201",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Central Mia Prospect Mineral Resource Estimate",
+              "Inferred",
+              "750ppm"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Pr6O11_ppm",
+          "value": 57.0,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "57",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Central Mia Prospect Mineral Resource Estimate",
+              "Inferred",
+              "750ppm"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Nd2O3_ppm",
+          "value": 215.0,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "215",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Central Mia Prospect Mineral Resource Estimate",
+              "Inferred",
+              "750ppm"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Tb4O7_ppm",
+          "value": 4.0,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "4",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Central Mia Prospect Mineral Resource Estimate",
+              "Inferred",
+              "750ppm"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Dy2O3_ppm",
+          "value": 25.0,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "25",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Central Mia Prospect Mineral Resource Estimate",
+              "Inferred",
+              "750ppm"
+            ]
+          }
+        }
+      ],
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 2,
+          "markers": [
+            "Central Mia Prospect Mineral Resource Estimate",
+            "Inferred",
+            "750ppm"
+          ]
+        }
+      ],
+      "selection_reason": "Explicitly reviewed source total at the stated cutoff; no addition of nested subsets or other deposits."
+    },
+    {
+      "review_id": "splinter_global_202405",
+      "source_key": "asx_review_splinter_global_202405",
+      "project_id": "AU-2262a37ca19531f08da3",
+      "source_sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+      "asset_set": "technical",
+      "path": "data/snapshots/56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02812349",
+      "publication_date": "2024-05-29",
+      "effective_date": "2024-05-29",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "YEAR",
+      "effective_date_interval": [
+        "2024-01-01",
+        "2024-05-29"
+      ],
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Splinter Rock"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "29 May 2024"
+        ]
+      },
+      "scope": "Splinter Rock total all six prospect rows; Indicated+Inferred at1000ppm TREO cutoff; includes119Mt InsideCentre subset, not added to682Mt total",
+      "statement_id": "splinter_global_202405",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 682.0,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "682",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Splinter Rock",
+              "Total",
+              "Indicated",
+              "Inferred",
+              "1,000ppm"
+            ]
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 1338.0,
+          "unit": "ppm",
+          "basis": "TREO",
+          "original_token": "1,338",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Splinter Rock",
+              "Total",
+              "Indicated",
+              "Inferred",
+              "1,000ppm"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Pr6O11_ppm",
+          "value": 64.0,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "64",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Splinter Rock",
+              "Total",
+              "Indicated",
+              "Inferred",
+              "1,000ppm"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Nd2O3_ppm",
+          "value": 226.0,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "226",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Splinter Rock",
+              "Total",
+              "Indicated",
+              "Inferred",
+              "1,000ppm"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Tb4O7_ppm",
+          "value": 3.0,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "3",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Splinter Rock",
+              "Total",
+              "Indicated",
+              "Inferred",
+              "1,000ppm"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Dy2O3_ppm",
+          "value": 14.0,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "14",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Splinter Rock",
+              "Total",
+              "Indicated",
+              "Inferred",
+              "1,000ppm"
+            ]
+          }
+        }
+      ],
+      "resource_categories": [
+        "INDICATED",
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 2,
+          "markers": [
+            "Splinter Rock",
+            "Total",
+            "Indicated",
+            "Inferred",
+            "1,000ppm"
+          ]
+        }
+      ],
+      "selection_reason": "Explicitly reviewed source total at the stated cutoff; no addition of nested subsets or other deposits."
+    },
+    {
+      "review_id": "salazar_global_202410",
+      "source_key": "salazar_mre2024",
+      "project_id": "AU-bb565f5348679a46d4a0",
+      "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+      "asset_set": "canonical",
+      "path": "data/snapshots/6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e.pdf",
+      "url": "https://api.investi.com.au/api/announcements/wc1/ea9172ff-a94.pdf",
+      "publication_date": "2024-10-08",
+      "effective_date": "2024-10-08",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "YEAR",
+      "effective_date_interval": [
+        "2024-01-01",
+        "2024-10-08"
+      ],
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Salazar"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "8 October 2024"
+        ]
+      },
+      "scope": "Salazar combined Newmont+OConnor Indicated+Inferred global resource;600ppm TREO cutoff; not Newmont-only123Mt or scandium/titania resources",
+      "statement_id": "salazar_global_202410",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 230.0,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "230",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "TOTAL",
+              "230",
+              "1178",
+              "Indicated",
+              "Inferred"
+            ]
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 1178.0,
+          "unit": "ppm",
+          "basis": "TREO",
+          "original_token": "1178",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "TOTAL",
+              "230",
+              "1178",
+              "Indicated",
+              "Inferred"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Pr6O11_ppm",
+          "value": 55.0,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "55",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "TOTAL",
+              "230",
+              "1178",
+              "Indicated",
+              "Inferred"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Nd2O3_ppm",
+          "value": 193.0,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "193",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "TOTAL",
+              "230",
+              "1178",
+              "Indicated",
+              "Inferred"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Dy2O3_ppm",
+          "value": 22.0,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "22",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "TOTAL",
+              "230",
+              "1178",
+              "Indicated",
+              "Inferred"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Tb4O7_ppm",
+          "value": 4.0,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "4.0",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "TOTAL",
+              "230",
+              "1178",
+              "Indicated",
+              "Inferred"
+            ]
+          }
+        }
+      ],
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "8 October 2024"
+        ],
+        "header_title": "MAJOR RESOURCE EXPANSIONS AT"
+      },
+      "resource_categories": [
+        "INDICATED",
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 7,
+          "markers": [
+            "TOTAL",
+            "230",
+            "1178",
+            "Indicated",
+            "Inferred"
+          ]
+        }
+      ],
+      "selection_reason": "Explicitly reviewed source total at the stated cutoff; no addition of nested subsets or other deposits."
+    },
+    {
+      "review_id": "cummins_global_202401",
+      "source_key": "asx_review_cummins_global_202401",
+      "project_id": "AU-9b667066e6eb66753005",
+      "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+      "asset_set": "technical",
+      "path": "data/snapshots/5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02766275",
+      "publication_date": "2024-01-25",
+      "effective_date": "2024-01-25",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "YEAR",
+      "effective_date_interval": [
+        "2024-01-01",
+        "2024-01-25"
+      ],
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Cummins Range"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "25 January 2024"
+        ]
+      },
+      "scope": "Cummins Range combined Rare Dyke+Phos Dyke global resource; Indicated+Inferred;P2O5>=2.5%; not6500ppm high-grade TREO subset",
+      "statement_id": "cummins_global_202401",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 524.3,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "524.3",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "COMBINED",
+              "Total",
+              "524.3",
+              "3,120",
+              "Indicated",
+              "Inferred"
+            ]
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 3120.0,
+          "unit": "ppm",
+          "basis": "TREO",
+          "original_token": "3,120",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "COMBINED",
+              "Total",
+              "524.3",
+              "3,120",
+              "Indicated",
+              "Inferred"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Nd2O3_ppm",
+          "value": 520.0,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "520",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "COMBINED",
+              "Total",
+              "524.3",
+              "3,120",
+              "Indicated",
+              "Inferred"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Pr6O11_ppm",
+          "value": 150.0,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "150",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "COMBINED",
+              "Total",
+              "524.3",
+              "3,120",
+              "Indicated",
+              "Inferred"
+            ]
+          }
+        }
+      ],
+      "resource_categories": [
+        "INDICATED",
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 2,
+          "markers": [
+            "COMBINED",
+            "Total",
+            "524.3",
+            "3,120",
+            "Indicated",
+            "Inferred"
+          ]
+        }
+      ],
+      "selection_reason": "Newer2024 update replaces2023 combined resource within same stated global geological scope. Only two individual REO grades are reported; do not carry prior magnet-share or basket composition across dates.",
+      "deferred_fields": [
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "UPDATED_2024_RESOURCE_REPORTS_ND_PR_ONLY;OLDER_2023_MAGNET_RATIO_NOT_TRANSFERRED_ACROSS_RESOURCE_DATES",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "COMBINED",
+              "524.3",
+              "520",
+              "150"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "UPDATED_2024_RESOURCE_REPORTS_ND_PR_ONLY;OLDER_2023_MAGNET_RATIO_NOT_TRANSFERRED_ACROSS_RESOURCE_DATES",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "COMBINED",
+              "524.3",
+              "520",
+              "150"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "donald_min5532_202512",
+      "source_key": "asx_review_donald_min5532_202512",
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "source_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+      "asset_set": "technical",
+      "path": "data/snapshots/82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03067134",
+      "publication_date": "2026-02-27",
+      "effective_date": "2025-12-31",
+      "effective_date_role": "RESOURCE_EFFECTIVE_DATE",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Donald"
+        ]
+      },
+      "date_evidence": {
+        "page": 6,
+        "markers": [
+          "31 Dec 2025"
+        ]
+      },
+      "scope": "Donald MIN5532 only,2025MRE as at31Dec2025;530Mt Measured+Indicated+Inferred at1% totalHM cutoff; all REO percentages are ofHM; not RL2002 or Jackson or15Mt grade-control subset",
+      "statement_id": "donald_min5532_202512",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 530.0,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "530",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Total",
+              "530",
+              "4.0",
+              "1.4",
+              "percentages of the total HM component"
+            ]
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 0.056,
+          "unit": "%",
+          "basis": "TREO",
+          "original_token": "1.4",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Total",
+              "530",
+              "4.0",
+              "1.4",
+              "percentages of the total HM component"
+            ]
+          },
+          "original_unit": "%HM"
+        },
+        {
+          "variable": "reported_resource_CeO2_ppm",
+          "value": 180.0,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "original_token": "0.45",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Total",
+              "530",
+              "4.0",
+              "1.4",
+              "percentages of the total HM component"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Y2O3_ppm",
+          "value": 108.0,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "original_token": "0.27",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Total",
+              "530",
+              "4.0",
+              "1.4",
+              "percentages of the total HM component"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Pr6O11_ppm",
+          "value": 22.0,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "0.055",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Total",
+              "530",
+              "4.0",
+              "1.4",
+              "percentages of the total HM component"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Nd2O3_ppm",
+          "value": 80.0,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "0.20",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Total",
+              "530",
+              "4.0",
+              "1.4",
+              "percentages of the total HM component"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Dy2O3_ppm",
+          "value": 16.0,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "0.040",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Total",
+              "530",
+              "4.0",
+              "1.4",
+              "percentages of the total HM component"
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_Tb4O7_ppm",
+          "value": 2.48,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "0.0062",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Total",
+              "530",
+              "4.0",
+              "1.4",
+              "percentages of the total HM component"
+            ]
+          }
+        }
+      ],
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "27 February 2026"
+        ],
+        "header_title": "Donald Project - MIN5532 Mineral Resource and Ore Reserves Update"
+      },
+      "summary_resource_scope_label": "MIN5532",
+      "archive_index_date": "2026-03-02",
+      "bulk_hm_percent": {
+        "value": 4.0,
+        "original_token": "4.0",
+        "evidence": {
+          "page": 6,
+          "markers": [
+            "Total",
+            "530",
+            "4.0",
+            "1.4",
+            "percentages of the total HM component"
+          ]
+        },
+        "basis_markers": [
+          "Total HM is from within",
+          "percentage of the total material",
+          "percentages of the total HM component"
+        ]
+      },
+      "resource_categories": [
+        "MEASURED",
+        "INDICATED",
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 6,
+          "markers": [
+            "Total",
+            "530",
+            "4.0",
+            "1.4",
+            "percentages of the total HM component"
+          ]
+        }
+      ],
+      "selection_reason": "First source-bound bulk TREO/oxide conversion for existing Donald group. Explicit MIN5532 label prevents presenting this licensed resource subset as entire Donald/Jackson project.0.056%=4.0%HM*1.4%TREO-in-HM/100."
+    },
+    {
+      "review_id": "nolans_ndpr_forecast_202211",
+      "source_key": "asx_review_nolans_ndpr_forecast_202211",
+      "project_id": "AU-1345edd8165c10930e94",
+      "source_sha256": "9515f0ef55e0d108720907ce8a119357371aa781eb6d33c28466c8be822373b2",
+      "asset_set": "selected",
+      "path": "data/snapshots/9515f0ef55e0d108720907ce8a119357371aa781eb6d33c28466c8be822373b2.pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20221111/pdf/45hhscx5jhx0fh.pdf",
+      "publication_date": "2022-11-11",
+      "effective_date": "2022-11-11",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 2,
+        "markers": [
+          "Nolans"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "11 November 2022"
+        ]
+      },
+      "scope": "Nolans2022 DFS/feasibility update38year mixed Reserve+Inferred production schedule; average NdPr excludes2year ramp-up and final5years lowgrade stockpiles",
+      "statement_id": "nolans_ndpr_forecast_202211",
+      "observations": [],
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "11 November 2022"
+        ],
+        "header_title": "NOLANS PROJECT UPDATE"
+      },
+      "deferred_fields": [
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "SEG_HRE_PRODUCT_COMBINES_SAMARIUM_EUROPIUM_GADOLINIUM_AND_HRE;NOT_TEMPLATE_HREE8",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "SEG/HRE Oxide (tpa)",
+              "474"
+            ]
+          }
+        }
+      ],
+      "superseded_by_review": "nolans_forecast_clarification202606"
+    },
+    {
+      "review_id": "dubbo_ndpr_lom_202507",
+      "source_key": "dubbo_scoping2025",
+      "project_id": "AU-2cfeb25aefee0c4f95fb",
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "asset_set": "canonical",
+      "path": "data/snapshots/734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab.pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+      "publication_date": "2025-07-11",
+      "effective_date": "2025-07-11",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Dubbo"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "11 July 2025"
+        ]
+      },
+      "scope": "Dubbo2025 heap-leach first-phase42year Scoping Study;LOM average notyears3-15;separatedNdPr oxide",
+      "statement_id": "dubbo_ndpr_lom_202507",
+      "observations": [],
+      "study": {
+        "scale": "SCOPING_MODEL",
+        "stage": 2,
+        "endpoint": "SEPARATED_REO",
+        "element": "NdPr_OXIDES",
+        "parameters": {
+          "average_annual_ndpr_product_t": 1037
+        },
+        "annual_basis_evidence": {
+          "page": 17,
+          "markers": [
+            "Average annual production target",
+            "NdPr oxide (tpa)",
+            "1,037"
+          ]
+        },
+        "evidence": [
+          {
+            "page": 17,
+            "markers": [
+              "Average annual production target",
+              "LOM"
+            ]
+          },
+          {
+            "page": 52,
+            "markers": [
+              "1,037 tpa over LOM"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "review_id": "lyons_conflicting_totals_202310",
+      "source_key": "lyons_mre2023",
+      "project_id": "AU-7c198d219aa1db3e291f",
+      "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+      "asset_set": "canonical",
+      "path": "data/snapshots/3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4.pdf",
+      "url": "https://wcsecure.weblink.com.au/pdf/LNR/02729838.pdf",
+      "publication_date": "2023-10-25",
+      "effective_date": "2023-10-25",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "YEAR",
+      "effective_date_interval": [
+        "2023-01-01",
+        "2023-10-25"
+      ],
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Lyons"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "25 October 2023"
+        ]
+      },
+      "scope": "Lyons11,12,13 original2023 Inferred resource; unresolved contained-TREO row arithmetic",
+      "statement_id": "lyons_conflicting_totals_202310",
+      "observations": [],
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "25 October 2023"
+        ],
+        "header_title": "Maiden Mineral Resource Estimate at"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "SOURCE_TABLE_INTERNAL_CONFLICT;SUBROWS_2266_PLUS670_EQUALS2936T_NOT_TOTAL3221T;NO_INDEPENDENT_CORRECTION_VERIFIED",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "2,266",
+              "670",
+              "3,221",
+              "0.99",
+              "0.32"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "SOURCE_TABLE_INTERNAL_CONFLICT;SUBROWS_2266_PLUS670_EQUALS2936T_NOT_TOTAL3221T;NO_INDEPENDENT_CORRECTION_VERIFIED",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "2,266",
+              "670",
+              "3,221",
+              "0.99",
+              "0.32"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "SOURCE_TABLE_INTERNAL_CONFLICT;SUBROWS_2266_PLUS670_EQUALS2936T_NOT_TOTAL3221T;NO_INDEPENDENT_CORRECTION_VERIFIED",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "2,266",
+              "670",
+              "3,221",
+              "0.99",
+              "0.32"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "SOURCE_TABLE_INTERNAL_CONFLICT;SUBROWS_2266_PLUS670_EQUALS2936T_NOT_TOTAL3221T;NO_INDEPENDENT_CORRECTION_VERIFIED",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "2,266",
+              "670",
+              "3,221",
+              "0.99",
+              "0.32"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "SOURCE_TABLE_INTERNAL_CONFLICT;SUBROWS_2266_PLUS670_EQUALS2936T_NOT_TOTAL3221T;NO_INDEPENDENT_CORRECTION_VERIFIED",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "2,266",
+              "670",
+              "3,221",
+              "0.99",
+              "0.32"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "cummins_multiphase_forecast_202308",
+      "source_key": "asx_review_cummins_multiphase_forecast_202308",
+      "project_id": "AU-9b667066e6eb66753005",
+      "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "asset_set": "technical",
+      "path": "data/snapshots/1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02700381",
+      "publication_date": "2023-08-22",
+      "effective_date": "2023-08-22",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "YEAR",
+      "effective_date_interval": [
+        "2023-01-01",
+        "2023-08-22"
+      ],
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Cummins Range"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "22 August 2023"
+        ]
+      },
+      "scope": "Cummins2023 enhanced scoping; Stage1DSO3years,Stage2REEconcentrate10years,Stage3REEconcentrate5years; no singleREEannual acrossallphases",
+      "statement_id": "cummins_multiphase_forecast_202308",
+      "observations": [],
+      "deferred_fields": [
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "MULTIPHASE_SCOPING_REPORTS_12KTPA_STAGE2_AND7KTPA_STAGE3;NO_SINGLE_LOM_ANNUAL_OR_APPROVED_PHASE_SELECTION",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Stage 1",
+              "Stage 2",
+              "Stage 3",
+              "Average TREO production (ktpa)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "donald_bfs_product_202603",
+      "source_key": "asx_review_donald_bfs_product_202603",
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "source_sha256": "9d863e075258b45c84d5c29961c77331c6c1cff3ac0d6ee6f13d6b54fc6e999f",
+      "asset_set": "technical",
+      "path": "data/snapshots/9d863e075258b45c84d5c29961c77331c6c1cff3ac0d6ee6f13d6b54fc6e999f.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03077607",
+      "publication_date": "2026-03-31",
+      "effective_date": "2026-03-31",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Donald"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "31 March 2026"
+        ]
+      },
+      "scope": "Donald Phase1 MIN5532 2026BFS39.5year LOM; REEC concentrate includes monazite+xenotime; not first5years orPhase2",
+      "statement_id": "donald_bfs_product_202603",
+      "observations": [],
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "31 March 2026"
+        ],
+        "header_title": "Bankable Feasibility Study"
+      },
+      "deferred_fields": [],
+      "selection_reason": "LATER_MARCH_REPORT_CORROBORATES_PHASE1_7_1KTPA;FEBRUARY_TABLE4_IS_SELECTED_FOR_EXPLICIT_MATCHED_PRODUCT_GRADE;NO_RESERVE_GRADE_TRANSFER"
+    },
+    {
+      "review_id": "barkly_global_mre202511",
+      "source_key": "asx_barkly_prospectus20260128",
+      "project_id": "AU-ad64122c217f0dbfabc8",
+      "source_sha256": "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e",
+      "asset_set": "selected",
+      "path": "data/snapshots/d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03053500",
+      "publication_date": "2026-01-28",
+      "publication_date_role": "ASX_ARCHIVE_PUBLICATION_WITH_SEPARATE_DOCUMENT_ISSUE_DATE",
+      "document_issue_date": "2025-12-01",
+      "document_issue_evidence": {
+        "page": 2,
+        "markers": [
+          "This Prospectus is dated 1 December 2025"
+        ]
+      },
+      "publication_archive_evidence": {
+        "asset_set": "technical",
+        "path": "data/snapshots/0ec1897751df6e052978185d65cf107dd1a29b76a8ed581b1e07207966f9b536.html",
+        "sha256": "0ec1897751df6e052978185d65cf107dd1a29b76a8ed581b1e07207966f9b536",
+        "url": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode=BAK&timeframe=Y&year=2026"
+      },
+      "effective_date": "2025-11-17",
+      "effective_date_role": "RESOURCE_EFFECTIVE_DATE",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 32,
+        "markers": [
+          "Barkly Project",
+          "Rare Earth Element Mineral Resource"
+        ]
+      },
+      "date_evidence": {
+        "page": 189,
+        "markers": [
+          "effective 17 November 2025"
+        ]
+      },
+      "scope": "Barkly Vanadis+BenmaraNorth global Inferred MRE;430ppm NdPr cutoff;pit constrained;not exploration target or200Mt vanadiumresource;effective17Nov2025",
+      "statement_id": "barkly_global_mre202511",
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 189,
+          "markers": [
+            "Table 9-2",
+            "Table 9-3",
+            "Total Inferred",
+            "430-ppm NdPr cut-off"
+          ]
+        }
+      ],
+      "selection_reason": "Full independent technical report now acquired; original two-significant-figure resource, explicit effective date,15 individual oxides and rounding note resolve prior abbreviated-receipt conflict. Reported82000t retained with rounding interval, not automatically replaced by84000t product of roundedinputs.",
+      "oxide_sum_tolerance_ppm": 100,
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 40,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "40",
+          "rounding_half_width": 0.5,
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 2100,
+          "unit": "ppm",
+          "basis": "TREO",
+          "original_token": "2,100",
+          "rounding_half_width": 50,
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "contained_treo_kt",
+          "value": 82,
+          "unit": "kt TREO",
+          "basis": "TREO",
+          "original_token": "82,000",
+          "rounding_half_width": 0.5,
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          },
+          "original_unit": "t"
+        },
+        {
+          "variable": "reported_resource_Nd2O3_ppm",
+          "value": 560,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "560",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_Pr6O11_ppm",
+          "value": 130,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "130",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_Dy2O3_ppm",
+          "value": 20,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "20",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_Tb4O7_ppm",
+          "value": 6,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "6",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_Gd2O3_ppm",
+          "value": 60,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "original_token": "60",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_Ho2O3_ppm",
+          "value": 2,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "original_token": "2",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_Er2O3_ppm",
+          "value": 3,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "original_token": "3",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_Tm2O3_ppm",
+          "value": 2,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "original_token": "2",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_Yb2O3_ppm",
+          "value": 0.4,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "original_token": "0.4",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_Lu2O3_ppm",
+          "value": 0.3,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "original_token": "0.3",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_Y2O3_ppm",
+          "value": 40,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "original_token": "40",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_Sm2O3_ppm",
+          "value": 110,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "original_token": "110",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_Eu2O3_ppm",
+          "value": 20,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "original_token": "20",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_CeO2_ppm",
+          "value": 900,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "original_token": "900",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        },
+        {
+          "variable": "reported_resource_La2O3_ppm",
+          "value": 200,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "original_token": "200",
+          "evidence": {
+            "page": 189,
+            "markers": [
+              "Table 9-2",
+              "Table 9-3",
+              "Total Inferred"
+            ],
+            "render_sha256": "1a85de3f333810d3cd7f4641785085b61138f36087ad941a3e01b2920e7449e8",
+            "table_row": "Total Inferred;first table resource and second table fifteen REO grades",
+            "transcription": "VISUALLY_CHECKED_SOURCE_PAGE_AND_NATIVE_TOTAL_ROWS"
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "nolans_forecast_clarification202606",
+      "source_key": "asx_nolans_clarification202606",
+      "project_id": "AU-1345edd8165c10930e94",
+      "source_sha256": "03ee0d0da9323708e1ed5008c4a35981cdc85ec16ddb06b299da1a10ce59914b",
+      "asset_set": "selected",
+      "path": "data/snapshots/03ee0d0da9323708e1ed5008c4a35981cdc85ec16ddb06b299da1a10ce59914b.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03105109",
+      "publication_date": "2026-06-17",
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "17 June 2026"
+        ],
+        "header_title": "CLARIFICATION - PROJECT ECONOMICS"
+      },
+      "effective_date": "2026-06-17",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Nolans Project"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "17 June 2026"
+        ]
+      },
+      "scope": "Nolans2026clarification of existing38year DFS/feasibility production schedule; steady-state average excludes2year ramp-up andfinal5yearlowgradestockpiles;AverageREO total5013t andNdPr4440t;notnominal4518ormax4700",
+      "statement_id": "nolans_forecast_clarification202606",
+      "observations": [],
+      "study": {
+        "scale": "DFS_MODEL",
+        "stage": 4,
+        "endpoint": "SEPARATED_REO",
+        "element": "REPORTED_REO_PRODUCTS",
+        "parameters": {
+          "average_annual_treo_product_t": 5013,
+          "average_annual_ndpr_product_t": 4440
+        },
+        "annual_basis_evidence": {
+          "page": 15,
+          "markers": [
+            "Table 8: Nolans Rare Earth Products",
+            "Average REO",
+            "Total",
+            "5,013",
+            "4,440",
+            "arithmetic annual average"
+          ]
+        },
+        "evidence": [
+          {
+            "page": 1,
+            "markers": [
+              "NdPr Oxide (tpa)",
+              "4,440"
+            ]
+          },
+          {
+            "page": 14,
+            "markers": [
+              "nominal 4,518 tpa",
+              "maximum of approximately 4,700 tpa"
+            ]
+          },
+          {
+            "page": 15,
+            "markers": [
+              "5,013",
+              "arithmetic annual average"
+            ]
+          }
+        ]
+      },
+      "deferred_fields": [
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "SEG_HRE_573TPA_IS_COMBINED_SEG_AND_HRE_PRODUCT;NOT_COMPLETE_TEMPLATE_HREE8",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "SEG/HRE Oxide (tpa)",
+              "573"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "mtweld_capacity_and_composition_limits202408",
+      "source_key": "asx_mtweld_mre202408",
+      "project_id": "AU-efff91a06cf344122d88",
+      "source_sha256": "dd6bbb85714387a29b2c5498df5cd0cfbdacd63246782bd2a2beeca0793b193f",
+      "asset_set": "technical",
+      "path": "data/snapshots/dd6bbb85714387a29b2c5498df5cd0cfbdacd63246782bd2a2beeca0793b193f.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02836069",
+      "publication_date": "2024-08-05",
+      "effective_date": "2024-08-05",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2024-06-01",
+        "2024-08-05"
+      ],
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Mt",
+          "Weld"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "5 August 2024"
+        ]
+      },
+      "scope": "MtWeld2024 MRE and expansion capacity; existing in-situ resource scope retained, not tailings/stockpiles orOreReserve grades",
+      "statement_id": "mtweld_limits202408",
+      "observations": [],
+      "deferred_fields": [
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "12000TPA_NDPR_IS_EXPANSION_CAPACITY_NOT_REPORTED_AVERAGE_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "12,000tpa of NdPr",
+              "capacity"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "DETAILED_INSITU_RESOURCE_TABLE_HAS_TOTAL_TREO_ONLY;DY_IN_ORE_RESERVE_OR_INTERCEPT_NOT_SAME_RESOURCE_SCOPE_HREE8",
+          "evidence": {
+            "page": 9,
+            "markers": [
+              "Total Insitu",
+              "Resource",
+              "106.6"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "jupiter_latest_composition_limits202610",
+      "source_key": "asx_jupiter_latest_mre202610",
+      "project_id": "AU-dac3c8e40326b8244cdb",
+      "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+      "asset_set": "selected",
+      "path": "data/snapshots/bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03150890",
+      "publication_date": "2026-10-12",
+      "effective_date": "2026-10-12",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "YEAR",
+      "effective_date_interval": [
+        "2026-01-01",
+        "2026-10-12"
+      ],
+      "identity_evidence": {
+        "page": 2,
+        "markers": [
+          "Jupiter Rare Earths Project"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "12 October 2026"
+        ]
+      },
+      "scope": "Jupiter12Oct2026global1.7BtMRE;selectedoxidegradesreportedseparatelyforIndicatedandInferred;notolderFebruary2025compositionorsingle160MtIndicatedsubset",
+      "statement_id": "jupiter_latest_composition_limits202610",
+      "observations": [],
+      "deferred_fields": [
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "LATEST2026_RESOURCE_HAS_SELECTED_OXIDES_BY_CATEGORY_NOT_GLOBAL_TOTAL;NO_COMBINING_ROUNDED_CATEGORY_ROWS_OR_SUPERSEDED2025_COMPOSITION",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Indicated Resources",
+              "Inferred Resources",
+              "rounded to two significant figures"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "r3_kennedy_202509",
+      "project_id": "AU-cc4e217a90b7123dce0a",
+      "source_key": "asx_devex_ar2025",
+      "source_sha256": "d631b0e9edbc2162ee3cb12bf526834518b43cc5ce89c4d995e3497afbbf36fb",
+      "asset_set": "round3",
+      "path": "data/snapshots/d631b0e9edbc2162ee3cb12bf526834518b43cc5ce89c4d995e3497afbbf36fb.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02996030",
+      "publication_date": "2025-09-16",
+      "effective_date": "2025-09-16",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 65,
+        "markers": [
+          "Kennedy Project",
+          "Inferred"
+        ]
+      },
+      "date_evidence": {
+        "page": 35,
+        "markers": [
+          "16 September 2025"
+        ]
+      },
+      "scope": "Kennedy total Inferred MRE;325ppm TREO-CeO2 cutoff;unchanged 4July2024 estimate reaffirmed in 2025 annual report;not88Mt higher-cutoff subset",
+      "statement_id": "r3-kennedy_202509",
+      "scope_evidence": [
+        {
+          "page": 65,
+          "markers": [
+            "Inferred Mineral Resource",
+            "325",
+            "150"
+          ]
+        }
+      ],
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "selection_reason": "EXPLICIT_REVIEWED_TOTAL_OF_FIXED_SCOPE;NO_PEER_OR_SUBSET_AGGREGATION",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 150,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "150",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 1000,
+          "unit": "ppm",
+          "basis": "TREO",
+          "original_token": "1,000",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_la2o3_ppm",
+          "value": 93,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "original_token": "93",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_ceo2_ppm",
+          "value": 530,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "original_token": "530",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_pr6o11_ppm",
+          "value": 32,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "32",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_nd2o3_ppm",
+          "value": 120,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "120",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_sm2o3_ppm",
+          "value": 27,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "original_token": "27",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_eu2o3_ppm",
+          "value": 4.1,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "original_token": "4.1",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_gd2o3_ppm",
+          "value": 22,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "original_token": "22",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_tb4o7_ppm",
+          "value": 3.7,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "3.7",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_dy2o3_ppm",
+          "value": 22,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "22",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_ho2o3_ppm",
+          "value": 4.2,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "original_token": "4.2",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_er2o3_ppm",
+          "value": 12,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "original_token": "12",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_tm2o3_ppm",
+          "value": 1.8,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "original_token": "1.8",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_yb2o3_ppm",
+          "value": 12,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "original_token": "12",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_lu2o3_ppm",
+          "value": 1.7,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "original_token": "1.7",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_y2o3_ppm",
+          "value": 110,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "original_token": "110",
+          "evidence": {
+            "page": 65,
+            "markers": [
+              "325",
+              "150",
+              "Ho2O3",
+              "Table 1"
+            ],
+            "render_sha256": "fd53d5e848f91cfc220ef3702dd36140ddb8259636dd4aab960cb7c2568cc752",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        }
+      ],
+      "publication_date_role": "ASX_ARCHIVE_MATCHED_TO_AUTHORISATION_DATE",
+      "publication_archive_evidence": {
+        "asset_set": "technical",
+        "path": "data/snapshots/628ab4c1e21e32691a4e9f3b7dc8cae04576c52a9846659d3bab571ad9e3047e.html",
+        "sha256": "628ab4c1e21e32691a4e9f3b7dc8cae04576c52a9846659d3bab571ad9e3047e",
+        "url": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode=DEV&timeframe=Y&year=2025"
+      },
+      "document_issue_date": "2025-09-16",
+      "document_issue_evidence": {
+        "page": 35,
+        "markers": [
+          "authorised for issue",
+          "16 September 2025"
+        ]
+      },
+      "oxide_sum_tolerance_ppm": 15,
+      "attributes": [
+        {
+          "column": "開發商",
+          "value": "DevEx Resources Limited",
+          "evidence": {
+            "page": 35,
+            "markers": [
+              "DevEx Resources Limited"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "r3_redlings_202501",
+      "project_id": "AU-12cc237ae66c7a6508ca",
+      "source_key": "asx_redlings_mre202501",
+      "source_sha256": "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43",
+      "asset_set": "round3",
+      "path": "data/snapshots/1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02906350",
+      "publication_date": "2025-01-22",
+      "effective_date": "2025-01-22",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Redlings",
+          "Marquee"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "22 January 2025"
+        ]
+      },
+      "scope": "Redlings global Inferred MRE at reported800ppmTREO cutoff;11Mt;not33Mt lower-cutoff case or204-306Mt exploration target",
+      "statement_id": "r3-redlings_202501",
+      "scope_evidence": [
+        {
+          "page": 1,
+          "markers": [
+            "Inferred Mineral Resource",
+            "11Mt"
+          ]
+        },
+        {
+          "page": 2,
+          "markers": [
+            "800",
+            "1130"
+          ]
+        }
+      ],
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "selection_reason": "EXPLICIT_REVIEWED_TOTAL_OF_FIXED_SCOPE;NO_PEER_OR_SUBSET_AGGREGATION",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 11,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "11",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 1130,
+          "unit": "ppm",
+          "basis": "TREO",
+          "original_token": "1130",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          },
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "reported_resource_la2o3_ppm",
+          "value": 300,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "original_token": "300",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_ceo2_ppm",
+          "value": 580,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "original_token": "580",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_pr6o11_ppm",
+          "value": 51,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "51",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_nd2o3_ppm",
+          "value": 150,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "150",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_sm2o3_ppm",
+          "value": 18,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "original_token": "18",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_eu2o3_ppm",
+          "value": 2.3,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "original_token": "2.3",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_gd2o3_ppm",
+          "value": 11,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "original_token": "11",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_tb4o7_ppm",
+          "value": 1.5,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "1.5",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_dy2o3_ppm",
+          "value": 8.0,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "8.0",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_ho2o3_ppm",
+          "value": 1.5,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "original_token": "1.5",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_er2o3_ppm",
+          "value": 4.1,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "original_token": "4.1",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_tm2o3_ppm",
+          "value": 0.57,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "original_token": "0.57",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_yb2o3_ppm",
+          "value": 3.6,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "original_token": "3.6",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_lu2o3_ppm",
+          "value": 0.5,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "original_token": "0.5",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_y2o3_ppm",
+          "value": 0.05,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "original_token": "0.05",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Rounded estimates by TREO cut-off",
+              "800",
+              "1130"
+            ],
+            "render_sha256": "70654b06cbc078abee890d02c4df417c04ea4a939b121aeee24e683857a845f3",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        }
+      ],
+      "oxide_sum_tolerance_ppm": 15,
+      "rounding_note": "Source reports Y2O3=0.05ppm; preserved literally despite unusual small value. Sum1132.12ppm vs rounded1130ppm. No assay-based reinterpretation."
+    },
+    {
+      "review_id": "r3_yttria_202404",
+      "project_id": "AU-ee5ca893d12883df35f1",
+      "source_key": "yttria_maiden2024",
+      "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+      "asset_set": "canonical",
+      "path": "data/snapshots/73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51.pdf",
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739",
+      "publication_date": "2024-04-16",
+      "effective_date": "2024-04-16",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Yttria",
+          "ASRA"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "16 April 2024"
+        ]
+      },
+      "scope": "Yttria total Indicated+Inferred MRE;200ppmTREO-Ce cutoff;15Mt;not110-300Mt MtStirling exploration target",
+      "statement_id": "r3-yttria_202404",
+      "scope_evidence": [
+        {
+          "page": 2,
+          "markers": [
+            "Mineral Resource",
+            "Indicated",
+            "Inferred",
+            "Total"
+          ]
+        }
+      ],
+      "resource_categories": [
+        "INDICATED",
+        "INFERRED"
+      ],
+      "selection_reason": "EXPLICIT_REVIEWED_TOTAL_OF_FIXED_SCOPE;NO_PEER_OR_SUBSET_AGGREGATION",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 15,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "15",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Pr6O11",
+              "Nd2O3",
+              "Dy2O3",
+              "Tb4O7"
+            ],
+            "render_sha256": "45b58a842a981abfebefa3c9ce0ad2594b6da0c52009534ff62d32db9e2ca3dc",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 490,
+          "unit": "ppm",
+          "basis": "TREO",
+          "original_token": "490",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Pr6O11",
+              "Nd2O3",
+              "Dy2O3",
+              "Tb4O7"
+            ],
+            "render_sha256": "45b58a842a981abfebefa3c9ce0ad2594b6da0c52009534ff62d32db9e2ca3dc",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_pr6o11_ppm",
+          "value": 15,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "15",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Pr6O11",
+              "Nd2O3",
+              "Dy2O3",
+              "Tb4O7"
+            ],
+            "render_sha256": "45b58a842a981abfebefa3c9ce0ad2594b6da0c52009534ff62d32db9e2ca3dc",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_nd2o3_ppm",
+          "value": 64,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "64",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Pr6O11",
+              "Nd2O3",
+              "Dy2O3",
+              "Tb4O7"
+            ],
+            "render_sha256": "45b58a842a981abfebefa3c9ce0ad2594b6da0c52009534ff62d32db9e2ca3dc",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_dy2o3_ppm",
+          "value": 24,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "24",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Pr6O11",
+              "Nd2O3",
+              "Dy2O3",
+              "Tb4O7"
+            ],
+            "render_sha256": "45b58a842a981abfebefa3c9ce0ad2594b6da0c52009534ff62d32db9e2ca3dc",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        },
+        {
+          "variable": "reported_resource_tb4o7_ppm",
+          "value": 3.7,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "3.7",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Pr6O11",
+              "Nd2O3",
+              "Dy2O3",
+              "Tb4O7"
+            ],
+            "render_sha256": "45b58a842a981abfebefa3c9ce0ad2594b6da0c52009534ff62d32db9e2ca3dc",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        }
+      ],
+      "attributes": [
+        {
+          "column": "開發商",
+          "value": "Asra Minerals Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Asra Minerals Limited"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "r3_fingerboards_resource_202208",
+      "project_id": "AU-7537d9555628040fab40",
+      "source_key": "austrade_2026_prospectus_pdf",
+      "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+      "asset_set": "canonical",
+      "path": "data/snapshots/af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5.pdf",
+      "url": "https://international.austrade.gov.au/content/dam/austrade-assets/international/documents/reports/critical-minerals/australian-critical-minerals-prospectus-march-2026.pdf",
+      "publication_date": "2026-02-28",
+      "effective_date": "2022-08-31",
+      "effective_date_role": "RESOURCE_EFFECTIVE_DATE",
+      "date_precision": "MONTH",
+      "identity_evidence": {
+        "page": 36,
+        "markers": [
+          "Fingerboards",
+          "Gippsland Critical Minerals"
+        ]
+      },
+      "date_evidence": {
+        "page": 36,
+        "markers": [
+          "Mineral Resources as at Aug-22"
+        ]
+      },
+      "scope": "Fingerboards total Mineral Resources;August2022;A$5/t mine gate cutoff;1170Mt;TREO+Y2O3;not173MtOreReserve",
+      "statement_id": "r3-fingerboards_resource_202208",
+      "scope_evidence": [
+        {
+          "page": 36,
+          "markers": [
+            "Mineral Resources",
+            "Measured",
+            "Indicated",
+            "Inferred",
+            "Total"
+          ]
+        }
+      ],
+      "resource_categories": [
+        "MEASURED",
+        "INDICATED",
+        "INFERRED"
+      ],
+      "selection_reason": "EXPLICIT_REVIEWED_TOTAL_OF_FIXED_SCOPE;NO_PEER_OR_SUBSET_AGGREGATION",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 1170,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "1170",
+          "evidence": {
+            "page": 36,
+            "markers": [
+              "Mineral Resources as at Aug-22",
+              "1,170",
+              "0.05",
+              "580"
+            ],
+            "render_sha256": "27cc2289cd4a3489a4d116493b23b8f6958db40496b33794c915da110272b5bb",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          },
+          "rounding_half_width": 5
+        },
+        {
+          "variable": "grade",
+          "value": 0.05,
+          "unit": "%",
+          "basis": "TREO",
+          "original_token": "0.05",
+          "evidence": {
+            "page": 36,
+            "markers": [
+              "Mineral Resources as at Aug-22",
+              "1,170",
+              "0.05",
+              "580"
+            ],
+            "render_sha256": "27cc2289cd4a3489a4d116493b23b8f6958db40496b33794c915da110272b5bb",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          },
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "contained_treo_kt",
+          "value": 580,
+          "unit": "kt TREO",
+          "basis": "TREO",
+          "original_token": "580",
+          "evidence": {
+            "page": 36,
+            "markers": [
+              "Mineral Resources as at Aug-22",
+              "1,170",
+              "0.05",
+              "580"
+            ],
+            "render_sha256": "27cc2289cd4a3489a4d116493b23b8f6958db40496b33794c915da110272b5bb",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW"
+          }
+        }
+      ],
+      "source_kind": "GOVERNMENT_PROJECT_CATALOGUE",
+      "publication_date_precision": "MONTH",
+      "publication_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ],
+      "publication_date_role": "PUBLISHER_STATED_EDITION_MONTH_UPPER_BOUND;URL_MONTH_NOT_USED",
+      "publication_month_evidence": {
+        "page": 3,
+        "markers": [
+          "February 2026 edition"
+        ]
+      },
+      "effective_date_interval": [
+        "2022-08-01",
+        "2022-08-31"
+      ],
+      "source_limitations": "Government catalogue reporting, not independent re-estimation or original issuer JORC validation. Catalogue URL says March but foreword states February2026 edition; both roles retained.",
+      "deferred_fields": [
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "CATALOGUE_1800TPA_NDPR_DOES_NOT_EXPLICITLY_ESTABLISH_OXIDE_VS_ELEMENTAL_BASIS",
+          "evidence": {
+            "page": 36,
+            "markers": [
+              "1,800tpa",
+              "NdPr"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "CATALOGUE_200TPA_DYTB_IS_NOT_COMPLETE_HREE8",
+          "evidence": {
+            "page": 36,
+            "markers": [
+              "200tpa",
+              "DyTb"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "CATALOGUE_280KTPA_HMC_AND_2_6PCT_TREO_ARE_DESIGN_RATE_NOT_EXPLICIT_LOM_AVERAGE;UPDATED_DFS_NOT_ADMITTED",
+          "evidence": {
+            "page": 36,
+            "markers": [
+              "280ktpa",
+              "2.6% TREO",
+              "DFS underway"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "r3_burracoppin_fines_scope",
+      "project_id": "AU-4286ab9c245effb445ff",
+      "source_key": "burracoppin_maiden2023",
+      "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+      "asset_set": "canonical",
+      "path": "data/snapshots/fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c.pdf",
+      "url": "https://assets.birdsoftware.io/wp-content/uploads/2023/05/01-06-2023-Burracoppin-Project-96Mt-Mineral-Resource-Estimate.pdf",
+      "publication_date": "2023-06-01",
+      "effective_date": "2023-06-01",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Burracoppin"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "1st June 2023"
+        ]
+      },
+      "scope": "Burracoppin original MRE;35.709Mtbulk vs14.731Mtfines;1356.4ppm applies to-45um size fraction;not35.709Mtbulkgrade",
+      "statement_id": "r3-burracoppin_fines_scope",
+      "scope_evidence": [],
+      "resource_categories": [],
+      "selection_reason": "EXPLICIT_REVIEWED_TOTAL_OF_FIXED_SCOPE;NO_PEER_OR_SUBSET_AGGREGATION",
+      "observations": [],
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "1st June 2023",
+          "BURRACOPPIN PROJECT"
+        ],
+        "header_title": "BURRACOPPIN PROJECT"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "FINE_FRACTION_GRADE_NOT_BULK_ORE_GRADE;35709000T_BULK_14731000T_FINES_1356_4PPM_20000T;NO_COARSE_FRACTION_GRADE_ADMITTED",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "35,709,000",
+              "14,731,000",
+              "1356.4",
+              "20,000"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "FINE_FRACTION_GRADE_NOT_BULK_ORE_GRADE;35709000T_BULK_14731000T_FINES_1356_4PPM_20000T;NO_COARSE_FRACTION_GRADE_ADMITTED",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "35,709,000",
+              "14,731,000",
+              "1356.4",
+              "20,000"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "FINE_FRACTION_GRADE_NOT_BULK_ORE_GRADE;35709000T_BULK_14731000T_FINES_1356_4PPM_20000T;NO_COARSE_FRACTION_GRADE_ADMITTED",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "35,709,000",
+              "14,731,000",
+              "1356.4",
+              "20,000"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "FINE_FRACTION_GRADE_NOT_BULK_ORE_GRADE;35709000T_BULK_14731000T_FINES_1356_4PPM_20000T;NO_COARSE_FRACTION_GRADE_ADMITTED",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "35,709,000",
+              "14,731,000",
+              "1356.4",
+              "20,000"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "FINE_FRACTION_GRADE_NOT_BULK_ORE_GRADE;35709000T_BULK_14731000T_FINES_1356_4PPM_20000T;NO_COARSE_FRACTION_GRADE_ADMITTED",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "35,709,000",
+              "14,731,000",
+              "1356.4",
+              "20,000"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "r3_mtstirling_parent_overlap",
+      "project_id": "AU-d0ce731e1d8198ffaf58",
+      "source_key": "yttria_maiden2024",
+      "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+      "asset_set": "canonical",
+      "path": "data/snapshots/73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51.pdf",
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739",
+      "publication_date": "2024-04-16",
+      "effective_date": "2024-04-16",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Mt Stirling",
+          "Yttria"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "16 April 2024"
+        ]
+      },
+      "scope": "MtStirling parent project;15Mt490ppm is Yttria already separately counted;110-300Mt is exploration target",
+      "statement_id": "r3-mtstirling_parent_overlap",
+      "scope_evidence": [],
+      "resource_categories": [],
+      "selection_reason": "EXPLICIT_REVIEWED_TOTAL_OF_FIXED_SCOPE;NO_PEER_OR_SUBSET_AGGREGATION",
+      "observations": [],
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "PARENT_PROJECT_YTTRIA_RESOURCE_ALREADY_IN_AU_ee5ca893d12883df35f1;110_300MT_IS_EXPLORATION_TARGET_NOT_ADDITIONAL_MRE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "15Mt",
+              "490ppm",
+              "110-300 Mt",
+              "Mt Stirling"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "PARENT_PROJECT_YTTRIA_RESOURCE_ALREADY_IN_AU_ee5ca893d12883df35f1;110_300MT_IS_EXPLORATION_TARGET_NOT_ADDITIONAL_MRE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "15Mt",
+              "490ppm",
+              "110-300 Mt",
+              "Mt Stirling"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "PARENT_PROJECT_YTTRIA_RESOURCE_ALREADY_IN_AU_ee5ca893d12883df35f1;110_300MT_IS_EXPLORATION_TARGET_NOT_ADDITIONAL_MRE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "15Mt",
+              "490ppm",
+              "110-300 Mt",
+              "Mt Stirling"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "PARENT_PROJECT_YTTRIA_RESOURCE_ALREADY_IN_AU_ee5ca893d12883df35f1;110_300MT_IS_EXPLORATION_TARGET_NOT_ADDITIONAL_MRE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "15Mt",
+              "490ppm",
+              "110-300 Mt",
+              "Mt Stirling"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "PARENT_PROJECT_YTTRIA_RESOURCE_ALREADY_IN_AU_ee5ca893d12883df35f1;110_300MT_IS_EXPLORATION_TARGET_NOT_ADDITIONAL_MRE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "15Mt",
+              "490ppm",
+              "110-300 Mt",
+              "Mt Stirling"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "r3_kalkaroo_potential_only",
+      "project_id": "AU-f46f6d53e7196650495d",
+      "source_key": "kalkaroo_ree2020",
+      "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5",
+      "asset_set": "canonical",
+      "path": "data/snapshots/bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5.pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20200219/pdf/44f780ww5n6tbj.pdf",
+      "publication_date": "2020-02-19",
+      "effective_date": "2020-02-19",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Kalkaroo"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "19 February 2020"
+        ]
+      },
+      "scope": "Kalkaroo REE prospectivity and proposed mineralogical/metallurgical studies;not formal REE mineral resource",
+      "statement_id": "r3-kalkaroo_potential_only",
+      "scope_evidence": [],
+      "resource_categories": [],
+      "selection_reason": "EXPLICIT_REVIEWED_TOTAL_OF_FIXED_SCOPE;NO_PEER_OR_SUBSET_AGGREGATION",
+      "observations": [],
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "19 February 2020",
+          "Rare Earth Potential Confirmed by Expert"
+        ],
+        "header_title": "Rare Earth Potential Confirmed by Expert"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "REVIEWED_ORIGINAL_IS_REE_POTENTIAL_AND_PROPOSED_STUDIES;NO_MATCHED_REE_MRE;CU_AU_CO_RESOURCE_NOT_TRANSFERRED",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rare Earth Potential",
+              "proposes to carry out REE"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "REVIEWED_ORIGINAL_IS_REE_POTENTIAL_AND_PROPOSED_STUDIES;NO_MATCHED_REE_MRE;CU_AU_CO_RESOURCE_NOT_TRANSFERRED",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rare Earth Potential",
+              "proposes to carry out REE"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "REVIEWED_ORIGINAL_IS_REE_POTENTIAL_AND_PROPOSED_STUDIES;NO_MATCHED_REE_MRE;CU_AU_CO_RESOURCE_NOT_TRANSFERRED",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rare Earth Potential",
+              "proposes to carry out REE"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "REVIEWED_ORIGINAL_IS_REE_POTENTIAL_AND_PROPOSED_STUDIES;NO_MATCHED_REE_MRE;CU_AU_CO_RESOURCE_NOT_TRANSFERRED",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rare Earth Potential",
+              "proposes to carry out REE"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "REVIEWED_ORIGINAL_IS_REE_POTENTIAL_AND_PROPOSED_STUDIES;NO_MATCHED_REE_MRE;CU_AU_CO_RESOURCE_NOT_TRANSFERRED",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rare Earth Potential",
+              "proposes to carry out REE"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "r3_donald_annual_202602",
+      "source_key": "asx_review_donald_min5532_202512",
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "source_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+      "asset_set": "technical",
+      "path": "data/snapshots/82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03067134",
+      "publication_date": "2026-02-27",
+      "effective_date": "2026-02-27",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Donald"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "27 February 2026"
+        ]
+      },
+      "scope": "Donald Phase1 revised2025REEC Product Annual Forecast;matched7,100t/year60.6pctTREO and17.8pctNdPr oxides ofTREO;39.25yearplan;notfirst5yearsDyTb orPhase2",
+      "statement_id": "r3-donald-annual-202602",
+      "observations": [],
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "27 February 2026"
+        ],
+        "header_title": "Donald Project - MIN5532 Mineral Resource and Ore Reserves Update"
+      },
+      "archive_index_date": "2026-03-02",
+      "bulk_hm_percent": {
+        "value": 4.0,
+        "original_token": "4.0",
+        "evidence": {
+          "page": 6,
+          "markers": [
+            "Total",
+            "530",
+            "4.0",
+            "1.4",
+            "percentages of the total HM component"
+          ]
+        },
+        "basis_markers": [
+          "Total HM is from within",
+          "percentage of the total material",
+          "percentages of the total HM component"
+        ]
+      },
+      "resource_categories": [
+        "MEASURED",
+        "INDICATED",
+        "INFERRED"
+      ],
+      "scope_evidence": [],
+      "selection_reason": "First source-bound bulk TREO/oxide conversion for existing Donald group. Explicit MIN5532 label prevents presenting this licensed resource subset as entire Donald/Jackson project.0.056%=4.0%HM*1.4%TREO-in-HM/100.",
+      "study": {
+        "scale": "DFS_MODEL",
+        "stage": 3,
+        "endpoint": "REEC",
+        "element": "TREO_INCLUDING_Y",
+        "parameters": {
+          "average_annual_treo_product_t": 4302.6,
+          "average_annual_ndpr_product_t": 765.8628
+        },
+        "parameter_derivations": {
+          "average_annual_treo_product_t": {
+            "method": "ANNUAL_PRODUCT_MASS_X_TREO_FRACTION",
+            "inputs": [
+              {
+                "name": "annual_product_t",
+                "value": 7100,
+                "original_token": "7,100",
+                "unit": "t/year",
+                "evidence": {
+                  "page": 3,
+                  "markers": [
+                    "2025 REEC Product",
+                    "Annual Forecast",
+                    "REEC Production",
+                    "As a % of TREO"
+                  ],
+                  "render_sha256": "3fd19c896026a0429c22737b62097637fba7fc0a8324c65b6860011da3ee84cc",
+                  "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW",
+                  "table_row": "2025 REEC Product"
+                }
+              },
+              {
+                "name": "treo_percent",
+                "value": 60.6,
+                "original_token": "60.6",
+                "unit": "%",
+                "evidence": {
+                  "page": 3,
+                  "markers": [
+                    "2025 REEC Product",
+                    "Annual Forecast",
+                    "REEC Production",
+                    "As a % of TREO"
+                  ],
+                  "render_sha256": "3fd19c896026a0429c22737b62097637fba7fc0a8324c65b6860011da3ee84cc",
+                  "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW",
+                  "table_row": "2025 REEC Product"
+                }
+              }
+            ],
+            "precision_note": "UNROUNDED_ARITHMETIC_FROM_ROUNDED_INPUTS;EXTRA_DECIMALS_ARE_NOT_MEASUREMENT_PRECISION"
+          },
+          "average_annual_ndpr_product_t": {
+            "method": "ANNUAL_PRODUCT_MASS_X_TREO_FRACTION_X_NDPR_SHARE",
+            "inputs": [
+              {
+                "name": "annual_product_t",
+                "value": 7100,
+                "original_token": "7,100",
+                "unit": "t/year",
+                "evidence": {
+                  "page": 3,
+                  "markers": [
+                    "2025 REEC Product",
+                    "Annual Forecast",
+                    "REEC Production",
+                    "As a % of TREO"
+                  ],
+                  "render_sha256": "3fd19c896026a0429c22737b62097637fba7fc0a8324c65b6860011da3ee84cc",
+                  "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW",
+                  "table_row": "2025 REEC Product"
+                }
+              },
+              {
+                "name": "treo_percent",
+                "value": 60.6,
+                "original_token": "60.6",
+                "unit": "%",
+                "evidence": {
+                  "page": 3,
+                  "markers": [
+                    "2025 REEC Product",
+                    "Annual Forecast",
+                    "REEC Production",
+                    "As a % of TREO"
+                  ],
+                  "render_sha256": "3fd19c896026a0429c22737b62097637fba7fc0a8324c65b6860011da3ee84cc",
+                  "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW",
+                  "table_row": "2025 REEC Product"
+                }
+              },
+              {
+                "name": "nd_percent_of_treo",
+                "value": 13.9,
+                "original_token": "13.9",
+                "unit": "%TREO",
+                "evidence": {
+                  "page": 3,
+                  "markers": [
+                    "2025 REEC Product",
+                    "Annual Forecast",
+                    "REEC Production",
+                    "As a % of TREO"
+                  ],
+                  "render_sha256": "3fd19c896026a0429c22737b62097637fba7fc0a8324c65b6860011da3ee84cc",
+                  "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW",
+                  "table_row": "2025 REEC Product"
+                }
+              },
+              {
+                "name": "pr_percent_of_treo",
+                "value": 3.9,
+                "original_token": "3.9",
+                "unit": "%TREO",
+                "evidence": {
+                  "page": 3,
+                  "markers": [
+                    "2025 REEC Product",
+                    "Annual Forecast",
+                    "REEC Production",
+                    "As a % of TREO"
+                  ],
+                  "render_sha256": "3fd19c896026a0429c22737b62097637fba7fc0a8324c65b6860011da3ee84cc",
+                  "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW",
+                  "table_row": "2025 REEC Product"
+                }
+              }
+            ],
+            "precision_note": "UNROUNDED_ARITHMETIC_FROM_ROUNDED_INPUTS;EXTRA_DECIMALS_ARE_NOT_MEASUREMENT_PRECISION"
+          }
+        },
+        "evidence": [
+          {
+            "page": 3,
+            "markers": [
+              "2025 REEC Product",
+              "Annual Forecast",
+              "REEC Production",
+              "As a % of TREO"
+            ],
+            "render_sha256": "3fd19c896026a0429c22737b62097637fba7fc0a8324c65b6860011da3ee84cc",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW",
+            "table_row": "2025 REEC Product"
+          }
+        ],
+        "annual_basis_evidence": {
+          "page": 3,
+          "markers": [
+            "2025 REEC Product",
+            "Annual Forecast",
+            "REEC Production",
+            "As a % of TREO"
+          ],
+          "render_sha256": "3fd19c896026a0429c22737b62097637fba7fc0a8324c65b6860011da3ee84cc",
+          "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW",
+          "table_row": "2025 REEC Product"
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "DONALD_ANNUAL_REEC_TABLE_REPORTS_DY_TB_ONLY_NOT_COMPLETE_HREE8",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "2025 REEC Product",
+              "Annual Forecast",
+              "REEC Production",
+              "As a % of TREO"
+            ],
+            "render_sha256": "3fd19c896026a0429c22737b62097637fba7fc0a8324c65b6860011da3ee84cc",
+            "transcription": "VISUALLY_CHECKED_EXACT_RESOURCE_ROW",
+            "table_row": "2025 REEC Product"
+          }
+        }
+      ]
+    }
+  ]
+}

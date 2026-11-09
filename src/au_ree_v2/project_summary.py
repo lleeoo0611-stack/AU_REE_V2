@@ -96,6 +96,10 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                 acquired_through=selected.get(sha,{}).get('available_date',''))
             entry.update(publication_date=selected.get(sha,{}).get('publication_date',''),
                 publication_date_role=selected.get(sha,{}).get('publication_date_role',''),document_issue_date=selected.get(sha,{}).get('document_issue_date',''))
+            entry.update(publication_date_precision=selected.get(sha,{}).get('publication_date_precision',''),
+                publication_date_interval=canonical(selected.get(sha,{}).get('publication_date_interval')),
+                source_kind=selected.get(sha,{}).get('source_kind',''),
+                effective_date_interval=canonical(matches[0].get('effective_date_interval')) if matches else '')
         trace.append(entry)
     try:
         active=claim_evidence_ids(claims)
@@ -227,9 +231,12 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                     d=json.loads(s['raw']);v=d.get('parameters',{}).get(parameter)
                     if isinstance(v,(int,float)) and math.isfinite(v) and v>=0:
                         options.append(dict(evidence_id=s['case_id'],source_sha256=s['source_sha'],effective_date=s['effective_date'],
-                            scope=s['scope'],endpoint=s['endpoint'],element=s['element'],scale=s['scale'],value=v,locator=d['locator']))
+                            scope=s['scope'],endpoint=s['endpoint'],element=s['element'],scale=s['scale'],value=v,locator=d['locator'],
+                            derivation=d.get('parameter_derivations',{}).get(parameter)))
                 forecast,_=choose(options,('scope','endpoint','element','scale'))
-                if forecast:put(column,forecast['value'],forecast['source_sha256'],forecast['locator'],'DATED_ENGINEERING_FORECAST_T_PER_YEAR_NOT_OPERATING_OUTPUT',forecast['scope'])
+                if forecast:
+                    put(column,forecast['value'],forecast['source_sha256'],forecast['locator'],'DATED_ENGINEERING_FORECAST_T_PER_YEAR_NOT_OPERATING_OUTPUT',forecast['scope'])
+                    if review_ledger:trace[-1]['forecast_derivation']=canonical(forecast.get('derivation'))
             products=[dict(evidence_id=s['case_id'],source_sha256=s['source_sha'],effective_date=s['effective_date'],
                 scope=s['scope'],endpoint=s['endpoint'],scale=s['scale'],value=s['endpoint'],locator=json.loads(s['raw'])['locator']) for s in models]
             product,_=choose(products,('scope','endpoint','scale'))
@@ -270,7 +277,8 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
             w=csv.DictWriter(f,fields);w.writeheader();w.writerows(data)
     write('專案總表.csv',rows,columns)
     write('field_provenance.csv',trace,['project_id','column','value','source_sha256','source_url','locator','method','scope','observation_ids']+
-        (['effective_date','effective_date_role','date_precision','review_ids','acquired_through','publication_date','publication_date_role','document_issue_date'] if review_ledger else []))
+        (['effective_date','effective_date_role','date_precision','review_ids','acquired_through','publication_date','publication_date_role','document_issue_date',
+          'publication_date_precision','publication_date_interval','source_kind','effective_date_interval','forecast_derivation'] if review_ledger else []))
     write('missing_fields.csv',diagnostics,['project_id','column','reason']+(['source_sha256','physical_page','review_id'] if review_ledger else []))
     write('census_inventory.csv',inventory,['entity_id','kind','name','included_in_project_summary','source_sha256','unit_of_analysis'])
     result=dict(version='census-project-summary-v1',cutoff=cutoff,rows=len(rows),columns=len(columns),
