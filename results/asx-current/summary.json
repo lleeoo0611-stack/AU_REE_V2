@@ -1,30 +1,30 @@
 {
   "version": "census-project-summary-v3-asx-identity",
   "cutoff": "2026-11-05",
-  "rows": 59,
+  "rows": 60,
   "columns": 53,
-  "unique_project_ids": 59,
+  "unique_project_ids": 60,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "claims_sha256": "11bfc4842e4b1d391ff220d39d0d17ad000a645ca6ed19dad11294b3408940f2",
   "snapshot_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
   "configuration_sha256": "92774d210b9d5b55a3b7ced161381be1cb52a5a3959ea4e4a284bf554fb5ed1a",
   "columns_sha256": "f6389bc0ace6cccac5ef34ae0ffd651403e4dbec5fd9d9ee7602f22404ed5223",
   "filled_counts": {
-    "專案ID": 59,
-    "開發商": 58,
-    "未上市公司": 11,
-    "專案名稱": 59,
-    "所在地_中文": 59,
-    "所在地_英文": 59,
-    "國家": 59,
-    "州省地區": 59,
+    "專案ID": 60,
+    "開發商": 59,
+    "未上市公司": 14,
+    "專案名稱": 60,
+    "所在地_中文": 60,
+    "所在地_英文": 60,
+    "國家": 60,
+    "州省地區": 60,
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
-    "礦床型態": 19,
+    "礦床型態": 27,
     "開發階段代碼": 0,
     "開發階段類別": 0,
-    "開發階段": 9,
+    "開發階段": 25,
     "礦石蘊藏量_Mt": 33,
     "TREO品位_pct": 31,
     "總TREO蘊藏量_kt": 31,
@@ -37,9 +37,9 @@
     "預估年產重稀土_t_per_year": 0,
     "產品/產出": 11,
     "有TREO資源估計": 31,
-    "有來源文件": 57,
-    "資料來源名稱": 59,
-    "資料來源URL": 59,
+    "有來源文件": 59,
+    "資料來源名稱": 60,
+    "資料來源URL": 60,
     "已公布元素數_共15項": 18,
     "已公布元素總和_kt": 18,
     "元素總和/TREO": 16,
@@ -62,9 +62,9 @@
     "Yb2O3_氧化鐿_kt": 11,
     "Lu2O3_氧化鎦_kt": 12,
     "Y2O3_氧化釔_kt": 13,
-    "ASX代碼": 47
+    "ASX代碼": 48
   },
-  "verified_source_hashes": 98,
+  "verified_source_hashes": 100,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -74,7 +74,7 @@
     "PROJECT": 33,
     "SITE": 766,
     "DEPOSIT": 301,
-    "REVIEWED_PROJECT_EXTENSION": 26,
+    "REVIEWED_PROJECT_EXTENSION": 27,
     "DEPOSIT_SCOPE": 27,
     "PROSPECT": 191,
     "PROJECT_PROGRAM": 1,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "b3051b9f0b5d4156a1a3757612bb852900321aa7ca838e7051eb2b1e09abb3aa",
-    "field_provenance.csv": "f42c2ff71e01e32072af82c229df0e9e903d9de39ee12d8dd6bcff7bdbb6bc70",
-    "missing_fields.csv": "88b6ab6cbdfa49d89af93d74f4dd1daa12232e110c79a1b7388ad559b93ce0fb",
-    "census_inventory.csv": "376cb2c755ae14d93203a46ce26ccd73bd3d50d3e48f2e74d44670f935364e41"
+    "專案總表.csv": "6afd0df06aac39447601c29a73a5403e4dc93e4253a99ba05ec8913221f1de1a",
+    "field_provenance.csv": "cf8c9a09dbe99807aa616f2362bb518c4d933b0dd779239f3ae48e937ed0903b",
+    "missing_fields.csv": "e0f29a1d5dde586cdb418f31d15138e767c05bddd715d7870e1f870fcfee7e75",
+    "census_inventory.csv": "8d5bce0b01d3b1bb4b4735b0d463f4bff8d9de75f3b8e1de9c6d729a65c0bc9b"
   },
-  "review_ledger_sha256": "017eeda7ef46b2f00594acad03bd7028a0cc1ebd25a1f263e55d1ac71cd31b7a",
+  "review_ledger_sha256": "bba3fd29a19846aae85c169a13bf51394cd14f06d2a17533e00a09aa010b8646",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -1491,10 +1491,476 @@
       "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
       "date_precision": "DAY",
       "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation1_description_dubbo_ndpr_lom_202507",
+      "project_id": "AU-2cfeb25aefee0c4f95fb",
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "status": "VALIDATED",
+      "scope": "Source-dated literal project descriptions only; no scientific quantities or current legal certification",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2025-07-11",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation1_description_review_jupiter_scoping_output202610",
+      "project_id": "AU-dac3c8e40326b8244cdb",
+      "source_sha256": "5e88f8aaf0d5da1a9de7f64ec7628ffea48e1a22a7daf296b563e5ee5aa65328",
+      "status": "VALIDATED",
+      "scope": "Source-dated literal project descriptions only; no scientific quantities or current legal certification",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-10-20",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation1_description_review_yangibana_revised_dfs202607",
+      "project_id": "AU-908fd6f4461622e89548",
+      "source_sha256": "99233befa81a1e193848122f00dfaa25079d0b2adbc2f19ef96326ca63c38f2a",
+      "status": "VALIDATED",
+      "scope": "Source-dated literal project descriptions only; no scientific quantities or current legal certification",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-07-13",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation1_description_donald_min5532_202512",
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "source_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+      "status": "VALIDATED",
+      "scope": "Source-dated literal project descriptions only; no scientific quantities or current legal certification",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-27",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation1_description_r4_sandy_identity_and_limits",
+      "project_id": "AU-3eb7131e4daea18a60a0",
+      "source_sha256": "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089",
+      "status": "VALIDATED",
+      "scope": "Source-dated literal project descriptions only; no scientific quantities or current legal certification",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-10-29",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation1_description_r6_charley_indicated2012",
+      "project_id": "AU-d9fb1b1e3e2ec9fa0851",
+      "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
+      "status": "VALIDATED",
+      "scope": "Source-dated literal project descriptions only; no scientific quantities or current legal certification",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2013-04-15",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation1_catalogue_fingerboards",
+      "project_id": "AU-7537d9555628040fab40",
+      "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+      "status": "VALIDATED",
+      "scope": "Source-dated literal project descriptions only; no scientific quantities or current legal certification",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_STATED_EDITION_MONTH_UPPER_BOUND;URL_MONTH_NOT_USED",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-03-31",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-03-01",
+        "2026-03-31"
+      ]
+    },
+    {
+      "review_id": "continuation1_catalogue_avonbank",
+      "project_id": "AU-329908ab8d4c1d1d3e03",
+      "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+      "status": "VALIDATED",
+      "scope": "Source-dated literal project descriptions only; no scientific quantities or current legal certification",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_STATED_EDITION_MONTH_UPPER_BOUND;URL_MONTH_NOT_USED",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-03-31",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-03-01",
+        "2026-03-31"
+      ]
+    },
+    {
+      "review_id": "continuation1_catalogue_copi",
+      "project_id": "AU-fe65cb1bd28eacb7a67f",
+      "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+      "status": "VALIDATED",
+      "scope": "Source-dated literal project descriptions only; no scientific quantities or current legal certification",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_STATED_EDITION_MONTH_UPPER_BOUND;URL_MONTH_NOT_USED",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-03-31",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-03-01",
+        "2026-03-31"
+      ]
+    },
+    {
+      "review_id": "continuation1_wa_stage_AU-47d12ebe6b66df8e5936",
+      "project_id": "AU-47d12ebe6b66df8e5936",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Explicit government factsheet stage label at publication; no current status, classification code, resource number or parent-child merge inferred",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation1_wa_stage_AU-2262a37ca19531f08da3",
+      "project_id": "AU-2262a37ca19531f08da3",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Explicit government factsheet stage label at publication; no current status, classification code, resource number or parent-child merge inferred",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation1_wa_stage_AU-3651cf8448b9227adcf5",
+      "project_id": "AU-3651cf8448b9227adcf5",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Explicit government factsheet stage label at publication; no current status, classification code, resource number or parent-child merge inferred",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation1_wa_stage_AU-785536db5ff12c25350d",
+      "project_id": "AU-785536db5ff12c25350d",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Explicit government factsheet stage label at publication; no current status, classification code, resource number or parent-child merge inferred",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation1_wa_stage_AU-2a3a86a4d971e9f9838d",
+      "project_id": "AU-2a3a86a4d971e9f9838d",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Explicit government factsheet stage label at publication; no current status, classification code, resource number or parent-child merge inferred",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation1_wa_stage_AU-4286ab9c245effb445ff",
+      "project_id": "AU-4286ab9c245effb445ff",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Explicit government factsheet stage label at publication; no current status, classification code, resource number or parent-child merge inferred",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation1_wa_stage_AU-d2cd77f89298d6dae330",
+      "project_id": "AU-d2cd77f89298d6dae330",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Explicit government factsheet stage label at publication; no current status, classification code, resource number or parent-child merge inferred",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation1_wa_stage_AU-574465211976ec57b1ef",
+      "project_id": "AU-574465211976ec57b1ef",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Explicit government factsheet stage label at publication; no current status, classification code, resource number or parent-child merge inferred",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation1_wa_stage_AU-12cc237ae66c7a6508ca",
+      "project_id": "AU-12cc237ae66c7a6508ca",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Explicit government factsheet stage label at publication; no current status, classification code, resource number or parent-child merge inferred",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation1_wa_stage_AU-a8258e4989c7bd95b7af",
+      "project_id": "AU-a8258e4989c7bd95b7af",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Explicit government factsheet stage label at publication; no current status, classification code, resource number or parent-child merge inferred",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation1_wa_stage_AU-8f3fe174a998d20ee4cf",
+      "project_id": "AU-8f3fe174a998d20ee4cf",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Explicit government factsheet stage label at publication; no current status, classification code, resource number or parent-child merge inferred",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation1_wa_stage_AU-bb565f5348679a46d4a0",
+      "project_id": "AU-bb565f5348679a46d4a0",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Explicit government factsheet stage label at publication; no current status, classification code, resource number or parent-child merge inferred",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation1_wa_stage_AU-7c198d219aa1db3e291f",
+      "project_id": "AU-7c198d219aa1db3e291f",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Explicit government factsheet stage label at publication; no current status, classification code, resource number or parent-child merge inferred",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "921692e500062d0efcdb79ac74b8e0ae7cbf5e40abe0ea83f59745c73496aaa1",
+  "discovery_ledger_sha256": "365b18455b1d76a4dbcdba0382faa460245a448bebafb7b5470fa247c54d13e5",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -10910,20 +11376,87 @@
           }
         }
       ]
+    },
+    {
+      "candidate_key": "nutgrove-ree",
+      "name": "Nutgrove REE Project",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_ORIGINAL_NAMES_DISTINCT_AUSTRALIAN_REE_EXPLORATION_PROJECT;SAMPLE_GRADE_NOT_RESOURCE",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "continuation",
+          "path": "data/snapshots/0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126.pdf",
+          "sha256": "0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126",
+          "url": "https://investorpa.com/announcement-pdf/20251030/212822.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "30th October 2025",
+                "GREEN & GOLD MINERALS"
+              ]
+            },
+            {
+              "page": 3,
+              "markers": [
+                "Nutgrove REE discovery",
+                "southern Queensland",
+                "EPM28000"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-6f0ecda27d291720036d",
+      "scope": "Nutgrove EPM28000 in southern Queensland; historical issuer association at 30 October 2025, not current legal-title certification; rock-chip results excluded from resource fields",
+      "identity": {
+        "source_index": 0,
+        "source_key": "nutgrove20251030",
+        "publication_date": "2025-10-30",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "30th October 2025"
+          ]
+        },
+        "project_evidence": {
+          "page": 3,
+          "markers": [
+            "Nutgrove",
+            "Queensland"
+          ]
+        },
+        "name_marker": "Nutgrove",
+        "state": "QLD",
+        "state_marker": "Queensland",
+        "developer": {
+          "value": "Green & Gold Minerals",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Green & Gold Minerals",
+              "Nutgrove"
+            ]
+          }
+        }
+      },
+      "deferred_fields": []
     }
   ],
   "original_canonical_projects": 33,
-  "reviewed_project_extensions": 26,
+  "reviewed_project_extensions": 27,
   "base_contract_columns": 52,
   "base_projection_hashes": {
-    "census_inventory.csv": "376cb2c755ae14d93203a46ce26ccd73bd3d50d3e48f2e74d44670f935364e41",
-    "field_provenance.csv": "fe32ab76a92376aafcf56eb163b20bfe3bd6cdbaad304718752c3267111d2fed",
-    "missing_fields.csv": "9c7dc3dbadffa764581e87fbb01992a059681a005ce304009d776299aa28f9b8",
-    "專案總表.csv": "7bbcdafbac9a238b04a259528d2a0878da404af49faf470f339e9144e27ef88a"
+    "census_inventory.csv": "8d5bce0b01d3b1bb4b4735b0d463f4bff8d9de75f3b8e1de9c6d729a65c0bc9b",
+    "field_provenance.csv": "fe62e453d96ca9f522cd442602aa51282b9055d2ae7b6069a44573812dc23ccd",
+    "missing_fields.csv": "f7fc5b0c759db019fa08d91ec7d36bd265513615e4c5c32ef415d8f2ebb06fbd",
+    "專案總表.csv": "84fb030390c0de134bcc0fd88143e7c795ab4534fb683f7a16c1c1f3b6b9e10a"
   },
-  "identity_ledger_sha256": "c9bc808d4e9b657c6151fab8be4a14505b03dddb587382cfc663a9e8dbcd10e7",
+  "identity_ledger_sha256": "5d6d534c4fccc10851dffa3fd120008cee3d063dec3f08f60eedcd15eafcea0d",
   "identity_merges": [],
-  "validated_asx_codes": 47,
+  "validated_asx_codes": 48,
   "identity_sources": {
     "AU-12cc237ae66c7a6508ca": {
       "asset_set": "round3",
@@ -11285,6 +11818,12 @@
           ]
         }
       ]
+    },
+    "AU-6f0ecda27d291720036d": {
+      "asset_set": "continuation",
+      "path": "data/snapshots/0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126.pdf",
+      "sha256": "0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126",
+      "url": "https://investorpa.com/announcement-pdf/20251030/212822.pdf"
     }
   },
   "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS"

@@ -20,6 +20,8 @@ class CoverageCycle(unittest.TestCase):
             records=[dict(query='Primary source search', disposition='Reviewed, no further admissible facts')])
             for name in ('candidates', 'numeric')}, validation={name: dict(passed=True, evidence='test evidence')
             for name in ('sources', 'tests', 'reproducibility')})
+        self.manifest.update(search_scope=dict(columns=COLUMNS, all_blank_fields_reviewed=True),
+                             unresolved_acquisition_actions=[])
 
     def row(self, pid='P', fills=0):
         row = dict.fromkeys(COLUMNS, '')
@@ -57,12 +59,28 @@ class CoverageCycle(unittest.TestCase):
     def compare(self, old, new, manifest=None):
         return review_coverage_cycle(self.write('before', old), self.write('after', new), manifest or self.manifest)
 
-    def test_two_stops_and_three_continues(self):
-        for count, stop in [(2, True), (3, False)]:
+    def test_only_zero_stops(self):
+        for count, stop in [(0, True), (1, False), (2, False), (3, False)]:
             with self.subTest(count=count):
                 report = self.compare([self.row()], [self.row(fills=count)])
                 self.assertEqual(stop, report['stopping_rule']['stop'])
                 self.assertEqual(count, report['existing_projects']['scientific_newly_filled_cells'])
+
+    def test_all_fields_and_acquisition_must_be_complete(self):
+        for key, value in [('search_scope', {}), ('unresolved_acquisition_actions', ['blocked PDF']),
+                           ('unresolved_acquisition_actions', None)]:
+            with self.subTest(key=key, value=value):
+                manifest = copy.deepcopy(self.manifest)
+                manifest[key] = value
+                report = self.compare([self.row()], [self.row()], manifest)
+                self.assertEqual('INCOMPLETE', report['stopping_rule']['decision'])
+
+    def test_legacy_replay_requires_explicit_policy(self):
+        self.manifest['stopping_policy'] = 'LEGACY_BELOW_THREE'
+        self.assertTrue(self.compare([self.row()], [self.row(fills=2)])['stopping_rule']['stop'])
+        self.manifest['stopping_policy'] = 'UNKNOWN'
+        with self.assertRaisesRegex(ValueError, 'UNKNOWN_STOPPING_POLICY'):
+            self.compare([self.row()], [self.row()], self.manifest)
 
     def test_added_cells_are_separate_and_include_identity(self):
         report = self.compare([self.row()], [self.row(), self.row('Q', 2)])

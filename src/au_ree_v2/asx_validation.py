@@ -28,6 +28,16 @@ def catalogue_month_proof(doc,pub,content,role='EDITION_MONTH'):
     if explicit and explicit!={label}:raise ValueError('REVIEW_EDITION_CANNOT_OVERRIDE_PUBLICATION_MONTH')
     if role=='PUBLISHER_PUBLICATION_MONTH':
         if 'publication date: '+label not in content:raise ValueError('REVIEW_PUBLICATION_LABEL_MONTH_MISMATCH')
+    elif role=='PUBLISHER_ABBREVIATED_MONTH':
+        # A factsheet's explicit Published Feb2026 label is not its data-as-at date.
+        short=datetime.strptime(pub,'%Y-%m-%d').strftime('%b').casefold()
+        year=pub[:4]
+        pattern=r'\bpublished\s+'+short+r'\s*'+year+r'\b'
+        # Rotated footer labels may be interleaved by page-wide sort. Require
+        # the intact native block as well as the reviewed page's date markers.
+        blocks=[normalized(b[4]) for page in list(doc)[:3] for b in page.get_text('blocks')]
+        if 'published' not in content or not any(re.search(pattern,b) for b in blocks):
+            raise ValueError('REVIEW_PUBLICATION_LABEL_MONTH_MISMATCH')
     elif role=='EDITION_MONTH':
         if label not in content or 'edition' not in content:raise ValueError('REVIEW_PUBLICATION_EDITION_MONTH_MISMATCH')
     else:raise ValueError('REVIEW_PUBLICATION_MONTH_ROLE_REQUIRED')
@@ -164,7 +174,14 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     if normalized(header['header_title']) not in content:raise ValueError('REVIEW_PUBLICATION_HEADER_TITLE_MISMATCH')
             identity=evidence(review['identity_evidence'])
             aliases=registry[pid]['aliases']+[registry[pid]['name']]
-            if not any(normalized(a) in identity for a in aliases if len(a)>4):raise ValueError('REVIEW_PROJECT_NAME_NOT_IN_IDENTITY_PAGE')
+            if not any(normalized(a) in identity for a in aliases if len(a)>4):
+                # Short registered labels such as Copi/Mons need exact bounded
+                # project heading proofs, restricted to descriptive metadata.
+                attrs=review.get('attributes',[])
+                if role!='DATED_ISSUER_METADATA' or not attrs or not all(a.get('description_binding') for a in attrs):
+                    raise ValueError('REVIEW_PROJECT_NAME_NOT_IN_IDENTITY_PAGE:'+review['review_id'])
+                from .reviewed_metadata import validate_descriptive_attribute
+                for attribute in attrs:validate_descriptive_attribute(doc,attribute,aliases,evidence,review)
             date_content=evidence(review['date_evidence'])
             if review['date_precision'] not in ('DAY','MONTH','YEAR'):raise ValueError('REVIEW_DATE_PRECISION_REQUIRED')
             effective_day=datetime.strptime(effective,'%Y-%m-%d')
@@ -355,7 +372,10 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     element=study['element'],scale=study['scale'],status='PRIMARY_SCOPED_CASE_NOT_OPERATING_OUTCOME',raw=canonical(d)))
             for attribute in review.get('attributes',[]):
                 content=evidence(attribute['evidence']);column=attribute['column'];value=attribute['value']
-                if column=='未上市公司':
+                if attribute.get('description_binding'):
+                    from .reviewed_metadata import validate_descriptive_attribute
+                    validate_descriptive_attribute(doc,attribute,aliases,evidence,review)
+                elif column=='未上市公司':
                     proof=attribute.get('listing_proof')
                     if proof:
                         if value!='否':raise ValueError('REVIEW_LISTING_VALUE_INVALID')

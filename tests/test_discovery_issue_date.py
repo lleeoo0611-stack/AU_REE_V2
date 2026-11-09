@@ -11,6 +11,28 @@ from au_ree_v2.store import filehash
 
 
 class DiscoveryIssueDate(unittest.TestCase):
+    def test_ordinal_publication_header_preserves_exact_calendar_date(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp); doc=pymupdf.open(); page=doc.new_page()
+            page.insert_text((40,40),'30th October 2025\nKnown Project in Queensland')
+            doc.save(root/'original.pdf');doc.close();sha=filehash(root/'original.pdf')
+            source=dict(asset_set='test',path='original.pdf',sha256=sha,url='https://issuer.example/original.pdf',
+                kind='pdf',evidence=[dict(page=1,markers=['Known Project'])])
+            identity=dict(source_index=0,source_key='test',publication_date='2025-10-30',
+                date_evidence=dict(page=1,markers=['30th October 2025']),project_evidence=dict(page=1,markers=['Known Project']),
+                name_marker='Known Project',state='QLD',state_marker='Queensland')
+            candidate=dict(candidate_key='known',name='Known Project',aliases=[],decision='ADMIT_PROJECT',
+                reason='Test',country='AU',scope='Test',sources=[source],identity=identity)
+            cfg=dict(version='reviewed-project-discovery-v1',cutoff='2026-11-05',acquired_through='2026-11-10',candidates=[candidate])
+            ledger=root/'ledger.json'
+            (root/'downloads.json').write_text(json.dumps([dict(url=source['url'],document_sha256=sha,status='PDF_ACQUIRED')]))
+            for day,valid in [('2025-10-30',True),('2025-10-31',False),('2024-10-30',False)]:
+                identity['publication_date']=day;ledger.write_text(json.dumps(cfg))
+                if valid:self.assertEqual(1,len(validate_discovery(ledger,{'test':root},[],'2026-11-05')['projects']))
+                else:
+                    with self.assertRaisesRegex(ValueError,'PUBLICATION_DATE_PROOF'):
+                        validate_discovery(ledger,{'test':root},[],'2026-11-05')
+
     def setUp(self):
         self.identity = {
             "publication_date": "2023-09-06",

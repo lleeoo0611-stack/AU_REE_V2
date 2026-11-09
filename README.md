@@ -1,6 +1,6 @@
 # AU_REE_V2
 
-Experimental branch: [dual-track coverage cycles](docs/asx-coverage-cycles.md), [latest published cycle 4](results/asx-coverage-2026-11-10/cycle-4/validation.json). Current table: 59 projects × 53 columns, 1237 filled cells and 1890 unknowns. Existing/new projects and marginal-gain stopping are audited separately. Source-bound ASX and same-project rules remain in force; canonical SQLite is unchanged. [Previous 55-project baseline](docs/asx-gap-round6.md).
+Experimental branch: [all-field coverage cycles](docs/asx-coverage-cycles.md), [current continuation report](results/asx-continuation-2026-11-10/README.md). Current table: 60 projects × 53 columns, 1276 filled cells and 1904 unknowns. This series starts from 59 projects and stops only after a complete round adds zero verified cells; unresolved downloads cannot count as zero yield. Original 59, newly admitted projects and cumulative original 55 coverage are audited separately. Source-bound ASX and same-project rules remain in force; canonical SQLite is unchanged. [Previous series](results/asx-coverage-2026-11-10/README.md).
 
 Latest: **Phase 22 — native-candidate acquisition, source-bound evidence and shared-method MCDA**, cutoff **2026-11-05**, configuration `research-v8-native-candidate-shared-draws`. See [results, limits and reconstruction](results/phase22-2026-11-06/README.md), [verification](results/phase22-2026-11-06/evaluation.json), and [evidence priorities](results/phase22-2026-11-06/six_domain_gap_priority.csv).
 

@@ -101,7 +101,7 @@ def validate_discovery(path, assets, existing, cutoff):
                     validate_issue_date(identity, s, cutoff, text)
                 elif identity.get('date_evidence_role') or identity.get('document_issue_date'):
                     raise ValueError('DISCOVERY_UNSUPPORTED_DATE_ROLE')
-                elif label not in text or any(m.casefold() not in text for m in proof['markers']):raise ValueError('DISCOVERY_PUBLICATION_DATE_PROOF')
+                elif label not in re.sub(r'\b(\d{1,2})(?:st|nd|rd|th)\b',r'\1',text) or any(m.casefold() not in text for m in proof['markers']):raise ValueError('DISCOVERY_PUBLICATION_DATE_PROOF')
                 e=identity['project_evidence'];text=' '.join(d[e['page']-1].get_text(sort=True).split()).casefold()
                 if (not e['markers'] or not identity.get('name_marker') or identity['name_marker'].casefold() not in text or
                     any(m.casefold() not in text for m in e['markers']) or identity['state_marker'].casefold() not in text):

@@ -85,7 +85,7 @@ def package(before, after, repeat, manifest, snapshots, test_report, out):
                     for p in sorted(Path(folder).rglob('*')) if p.is_file() and p.suffix in ('.py', '.json')}
     fingerprints.update({'config/'+name:filehash(snapshots/name) for name in ledgers.values()})
     validation = dict(version='source-replayed-coverage-cycle-v1', cycle_id=review['cycle_id'],
-        baseline_commit='bc6a90139d58d8ede2bed94321b58f393709edf5',
+        baseline_commit=declaration.get('baseline_commit','bc6a90139d58d8ede2bed94321b58f393709edf5'),
         current_integrity=audit, database_sha256=summary['database_sha256'], database_modified=False,
         repeated_csv_exports_identical=True, stopping_rule=review['stopping_rule'],
         tests=dict(report_sha256=filehash(test_report),tests_including_subtests=int(suite.get('tests', '0')),

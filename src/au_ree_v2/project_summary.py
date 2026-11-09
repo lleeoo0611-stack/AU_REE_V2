@@ -288,6 +288,8 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                 labels={'CALCINED_MIXED_REO':'煅燒混合稀土氧化物','MINERAL_CONCENTRATE':'礦物精礦','MREC':'混合稀土碳酸鹽','REEC':'稀土精礦'}
                 put('產品/產出',labels.get(product['value'],product['value'])+'（'+product['scale']+'）',product['source_sha256'],product['locator'],'DATED_ENGINEERING_PRODUCT_ENDPOINT_NOT_OPERATING_OUTPUT',product['scope'])
             docs={r['source_sha'] for r in rs if selected[r['source_sha']]['kind']=='pdf'}|{o['source_sha'] for o in obs if selected[o['source_sha']]['kind']=='pdf'}
+            docs |= {a['source_sha'] for a in (supplement or {}).get('attributes',{}).get(pid,[])
+                     if selected[a['source_sha']]['kind']=='pdf'}
             if docs:put('有來源文件','是',sorted(docs)[0],method='VERIFIED_PDF_SOURCE_PRESENT_NOT_COMPLETENESS')
             if not row['資料來源URL'] and identity:
                 put('資料來源名稱',identity['key'],identity['sha256']);put('資料來源URL',identity['url'],identity['sha256'])

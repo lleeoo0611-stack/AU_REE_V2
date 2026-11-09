@@ -113,11 +113,22 @@ def review_coverage_cycle(before, after, manifest):
         item = manifest.get('validation', {}).get(check, {})
         if item.get('passed') is not True or not str(item.get('evidence', '')).strip():
             incomplete.append('validation:' + check)
+    # Historical manifests can explicitly replay the former policy. New runs
+    # require zero new cells; a small positive gain always continues.
+    policy = manifest.get('stopping_policy', 'ZERO_NEW_VERIFIED_CELLS')
+    if policy not in ('ZERO_NEW_VERIFIED_CELLS', 'LEGACY_BELOW_THREE'):
+        raise ValueError('CYCLE_UNKNOWN_STOPPING_POLICY')
+    if policy == 'ZERO_NEW_VERIFIED_CELLS':
+        scope = manifest.get('search_scope', {})
+        if scope.get('columns') != columns or scope.get('all_blank_fields_reviewed') is not True:
+            incomplete.append('search_scope:all_53_columns')
+        if manifest.get('unresolved_acquisition_actions') != []:
+            incomplete.append('acquisition:unresolved_or_undeclared')
     eligible = not incomplete
-    stopped = eligible and gain < 3
+    stopped = eligible and (gain == 0 if policy == 'ZERO_NEW_VERIFIED_CELLS' else gain < 3)
     counts['net_filled_cell_increase'] = counts['newly_filled_cells'] - counts['withdrawn_cells']
     return dict(
-        version='coverage-cycle-review-v1',
+        version='coverage-cycle-review-v2',
         cycle_id=manifest.get('cycle_id', ''),
         current=current,
         existing_projects=counts,
@@ -126,7 +137,8 @@ def review_coverage_cycle(before, after, manifest):
                             identity_and_other_metadata_cells=added_filled-added_scientific),
         removed_projects=dict(project_ids=removed, filled_cells=removed_filled, explanations=removals),
         total_filled_cell_delta=current['filled_cells']-previous['filled_cells'],
-        stopping_rule=dict(threshold=3, operator='<', newly_filled_cells=gain,
+        stopping_rule=dict(policy=policy, threshold=0 if policy == 'ZERO_NEW_VERIFIED_CELLS' else 3,
+                           operator='==' if policy == 'ZERO_NEW_VERIFIED_CELLS' else '<', newly_filled_cells=gain,
                            scientific_newly_filled_cells=counts['scientific_newly_filled_cells']+added_scientific,
                            counting_scope='EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA',
                            eligible=eligible, stop=stopped, incomplete=incomplete,
@@ -134,5 +146,5 @@ def review_coverage_cycle(before, after, manifest):
         baseline_csv_sha256=filehash(Path(before)/'專案總表.csv'),
         current_csv_sha256=filehash(Path(after)/'專案總表.csv'),
         review_manifest=manifest,
-        limitations='Search/source/test completion is declared by the reviewer manifest; table integrity is independently checked. STOP means marginal gain below threshold, not complete coverage.',
+        limitations='Search/source/test completion is declared by the reviewer manifest; table integrity is independently checked. STOP means no new admissible cells in the completed documented search round, not national completeness or proof of absence.',
     )

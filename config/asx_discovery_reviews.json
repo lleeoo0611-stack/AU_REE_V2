@@ -9533,6 +9533,75 @@
           }
         }
       ]
+    },
+    {
+      "candidate_key": "nutgrove-ree",
+      "name": "Nutgrove REE Project",
+      "aliases": [
+        "Nutgrove",
+        "Nutgrove REE"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_ORIGINAL_NAMES_DISTINCT_AUSTRALIAN_REE_EXPLORATION_PROJECT;SAMPLE_GRADE_NOT_RESOURCE",
+      "country": "AU",
+      "scope": "Nutgrove EPM28000 in southern Queensland; historical issuer association at 30 October 2025, not current legal-title certification; rock-chip results excluded from resource fields",
+      "sources": [
+        {
+          "asset_set": "continuation",
+          "path": "data/snapshots/0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126.pdf",
+          "sha256": "0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126",
+          "url": "https://investorpa.com/announcement-pdf/20251030/212822.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "30th October 2025",
+                "GREEN & GOLD MINERALS"
+              ]
+            },
+            {
+              "page": 3,
+              "markers": [
+                "Nutgrove REE discovery",
+                "southern Queensland",
+                "EPM28000"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "nutgrove20251030",
+        "publication_date": "2025-10-30",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "30th October 2025"
+          ]
+        },
+        "project_evidence": {
+          "page": 3,
+          "markers": [
+            "Nutgrove",
+            "Queensland"
+          ]
+        },
+        "name_marker": "Nutgrove",
+        "state": "QLD",
+        "state_marker": "Queensland",
+        "developer": {
+          "value": "Green & Gold Minerals",
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Green & Gold Minerals",
+              "Nutgrove"
+            ]
+          }
+        }
+      }
     }
   ]
 }
