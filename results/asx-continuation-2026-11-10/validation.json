@@ -7,9 +7,9 @@
   "current": {
     "projects": 68,
     "columns": 53,
-    "filled_cells": 1380,
+    "filled_cells": 1384,
     "total_cells": 3604,
-    "remaining_blank_cells": 2224,
+    "remaining_blank_cells": 2220,
     "scientific_columns": [
       "礦石蘊藏量_Mt",
       "TREO品位_pct",
@@ -40,20 +40,20 @@
     "scientific_filled_cells": 372,
     "scientific_total_cells": 1700,
     "output_hashes": {
-      "專案總表.csv": "a2eeb0ca0f845400e708cec40791c91135a104fbd1d80b671a0d61ec2c42718f",
-      "field_provenance.csv": "92745be2e45e40ef06d546b688091871688db58c85861789099e859cf29dc66d",
-      "missing_fields.csv": "299adef7f799386b2b88ea1a25cae86a77f76db1f2a6d6a0bafd31352203bbd2",
+      "專案總表.csv": "a45d7cc2e1f427e9b4b99386cb410230778727f5cd5c87af525ade39505d26a2",
+      "field_provenance.csv": "41ff5d18bf6270dffd46cf9382db995842fbd1ae7a8d25af063fa588d3939670",
+      "missing_fields.csv": "a1d1f50e545d69e7c092c05a4c315f71810a45cf1ce6fd144a17cacbb01b6f8e",
       "census_inventory.csv": "960bf6ff35ffd4d817c797a54fbbcba5f318ca0812eded023294a2a1c6859b1e"
     },
     "provenance_complete": true,
     "missing_diagnostics_complete": true
   },
-  "latest_cycle": "continuation-4",
+  "latest_cycle": "continuation-5",
   "stopping_rule": {
     "policy": "ZERO_NEW_VERIFIED_CELLS",
     "threshold": 0,
     "operator": "==",
-    "newly_filled_cells": 33,
+    "newly_filled_cells": 4,
     "scientific_newly_filled_cells": 0,
     "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
     "eligible": false,
@@ -69,7 +69,7 @@
     "all_four_csv_hashes_identical": true
   },
   "regression": {
-    "report_sha256": "35d967ac1e19561029459d5a25a98b546cc1180df9c727be4ecdf27dab2ab336",
+    "report_sha256": "e9dfcc27ac7ed603a35bb338afbdb839b6c05d040e948e4710db34e44b55acf1",
     "tests_including_subtests": 520,
     "failures": 0,
     "errors": 0,
@@ -95,13 +95,13 @@
   "original55_cumulative": {
     "rows": 55,
     "columns": 53,
-    "newly_filled_cells": 69,
+    "newly_filled_cells": 71,
     "newly_filled_column_types": 29,
-    "projects_with_new_values": 26,
+    "projects_with_new_values": 28,
     "new_cells_by_column": {
       "有來源文件": 2,
       "開發階段": 20,
-      "礦床型態": 14,
+      "礦床型態": 16,
       "未上市公司": 3,
       "已公布元素數_共15項": 2,
       "已公布元素總和_kt": 2,
@@ -137,11 +137,11 @@
     "numeric_format_only_cells": 0,
     "became_unknown_cells": 0,
     "became_unknown_by_column": {},
-    "net_filled_cell_increase": 69,
-    "remaining_blank_cells": 1678,
+    "net_filled_cell_increase": 71,
+    "remaining_blank_cells": 1676,
     "remaining_blanks_by_column": {
       "礦床型態代碼": 54,
-      "礦床型態": 22,
+      "礦床型態": 20,
       "開發階段代碼": 55,
       "開發階段類別": 55,
       "開發階段": 26,
@@ -186,7 +186,7 @@
       "開發商": 1
     },
     "baseline_csv_sha256": "73bbaf0e615b5d30505bead52e368c2910f9d97aff7a8e68799a93f8bd44d809",
-    "updated_csv_sha256": "a2eeb0ca0f845400e708cec40791c91135a104fbd1d80b671a0d61ec2c42718f",
+    "updated_csv_sha256": "a45d7cc2e1f427e9b4b99386cb410230778727f5cd5c87af525ade39505d26a2",
     "comparison_scope": "FIXED_BASELINE_COHORT;NEW_PROJECT_CELLS_REPORTED_SEPARATELY",
     "expanded_rows": 68,
     "added_project_ids": [
@@ -204,10 +204,10 @@
       "AU-ee34781b030807146e64",
       "AU-f81823bd8ba271840345"
     ],
-    "added_project_filled_cells": 143,
-    "added_project_blank_cells": 546,
-    "expanded_remaining_blank_cells": 2224,
-    "expanded_filled_cells": 1380
+    "added_project_filled_cells": 145,
+    "added_project_blank_cells": 544,
+    "expanded_remaining_blank_cells": 2220,
+    "expanded_filled_cells": 1384
   },
   "code_fingerprint": {
     "src/au_ree_v2/__init__.py": "10fca67b83d726c143d12481bd749dcd714ae7e369b68b372cc738fe0e1a1011",
@@ -216,7 +216,7 @@
     "src/au_ree_v2/analysis.py": "f2a37624488ac2ebaf0aa910a36d56666e223dd3048bbb3b5303b3ec8f93203a",
     "src/au_ree_v2/asx.py": "39e605f4df9243d975902371b4c832263f101bc89e40915fc6ddfbdc0ad83cc9",
     "src/au_ree_v2/asx_audit.py": "6ed57c27ecc6a4298a2a205250fc9891a341894e277cfb5b809471f86e8c0f1d",
-    "src/au_ree_v2/asx_validation.py": "ad84252ee96394f314fe2ff754d2a0a242f881d8415aea77558a794c01d10199",
+    "src/au_ree_v2/asx_validation.py": "b81b1856cb4d43609dffcf62b93ae3d5395112ecf4152f215efbaf1d0912ed21",
     "src/au_ree_v2/census.py": "c8e6080de876e57ca0d74bf6924bc65840ef8baa2acb76c93c0ffcf804ea388f",
     "src/au_ree_v2/cli.py": "5f9e9f57b24de833f593f88ed010adfae9f96c33ada5a0d4107f84e0b6f13a5b",
     "src/au_ree_v2/discovery.py": "153111a37e79d7c9ba3f1f9ce3c7cdc108bbd777c42654a9c104e334f629dc57",
@@ -284,7 +284,7 @@
     "tools/review_external_project_names.py": "cd2aa95a7377c3ff21ef00a12c562cfd5b967a1ec40cf6cfe98907dac9063644",
     "tools/screen_external_project_names.py": "41adf0c578c8025f2a6f6e26bb487d9567d0d171b87f4a62c6d721ae49a1a462",
     "tools/validate_asx_candidates.py": "10258491fd14b1ea134c10f4efd4a307720cdb8c0b68aafc7fdfc1f7add6f729",
-    "config/asx_discovery_reviews.json": "4fef1c76c72c872083b23e7ba4bc9e076900cd68a7deec1eb600a9c4005be854",
+    "config/asx_discovery_reviews.json": "c8aa8aae466d664f137cca6a07ced5098a6aa4f8431a506ff4d795d238119a5d",
     "config/asx_external_name_reviews.json": "99342f675e0a01ab04ab586d008a0a56dffc72a1b15843ee3f71c012db4d1083",
     "config/asx_iteration_sources.json": "5cc38aba0761d5bf9c061c7f95ecb43bca871ec305a49643021c7dea20c6e7fc",
     "config/asx_probe_cases.json": "cc72f4485bf76efe876cfac6b7732e2c354206763f06d5bc40cb52a5180a35fb",
@@ -295,7 +295,7 @@
     "config/asx_round4_research_urls.json": "ab1bb88b66765d2cc733ed2d4508386abbcf05e70192f76249fd098207620e9d",
     "config/asx_round5_research_urls.json": "4e4bfa517f93ebde8d44a2b2aee7618cf29820ec586183bada7a663338b74721",
     "config/asx_round6_research_urls.json": "7e07fd8cb83d9eab04aec1b7a877ec0625772daf675220bc4af696555a615d9f",
-    "config/asx_source_reviews.json": "0ecc165fa859922db251b0e49597e4d19eee056b2ca01ccc5fa7550f13230c7c",
+    "config/asx_source_reviews.json": "98a4e417eaeb9c978cbddba3ec757547f93d0ef17875c5a7fc78367514acf6dc",
     "config/discovery.json": "67c6d106883ae7daa69e91758c53d02ceb623dfa24378aed1602aef8878e181c",
     "config/eligibility_compatibility.json": "c148daacc46e525901e8655721256294c81213fadc352fa896de79a446c33115",
     "config/evidence_policy.json": "c1b7b03b14395e196a8ef817bc2e10110381ba1c74acc2aacca2156f93f9b0d9",
@@ -304,20 +304,21 @@
     "config/sources.json": "99319c889ce90704ffbfb145e1bb608d757823598b0158b81e1b166f0cbd95d7"
   },
   "artifact_hashes": {
-    "cohort_coverage.csv": "59f7a652725e717e1a51fa0070dff29c794119ea0a32ad75f96eaba81e56b080",
-    "cycle_summary.csv": "4e5a1668d751ea02ac09590468fd10eb5dc2f8a8b603590f4e960a8f28c1d4bf",
-    "external_name_review.json": "e5f194ad386a40cd1afe0e616cfd4e1f301af6b61063d3e81325bc79a66b08f9",
+    "cohort_coverage.csv": "1af70778d713270ac739a8235714dc02893e848f566a8cd3fc0f8afc7f4f053f",
+    "cycle_summary.csv": "c594c7d1de29c4b90db828c78329e72ca583ee345a25a8b4ea8666912a7acc98",
+    "external_name_review.json": "b4f0c3668832876a5d25eb7eec5cae333ce40857ff93a1fc52f966c944aea5ea",
     "external_name_reviews.csv": "683be1091c577fb935de5557a0d436a54056f17bad62c7c2b56a99042576beb8",
-    "field_changes.csv": "e3c0ba699e298d8ff9f3c11815f5a19c82655a0ebfbe94eb0decc335ebb64013",
-    "field_increment.json": "155c6dc30b2e45c37bc0923759c60dbea037b6a554c114dfd2c45e9109271624",
-    "original55_field_changes.csv": "f01a3109b57946c8e833c14cd01f4bde53da3eaaa82f0529236dadcf40e51324",
-    "original55_field_increment.json": "a8e17a9ddef6d9b2861efe68c7bbdd1b8f5d195545b077a0683e506861fb9a5e",
-    "project_gap_assessment.csv": "31c481e8fd5a06f3eb449cee35cc1dbadc8275de0d400f6942481188f1aec821",
-    "README.md": "f245c4d504b9062b3af61bf657e4bea0c488281192451c65a3df42cf250c1f45",
-    "remaining_gap_reasons.csv": "09df2cfbf8500bff52d262d25acb08f64ffdcf31a280c1c73cbdf7f879b3d32c",
+    "field_changes.csv": "f5c470857d041dbfb17a462dd3888c5a9ae23cd8e6285ef94a6fd8203333e310",
+    "field_increment.json": "e4b50827f128f4feee02fc885c1f3320cc1f01375c274fc76583c9a50ed1975e",
+    "government_original_review.csv": "f62dd27b060578e442c122bfcd3e70e439d4fb4f507cc5099919dca00b7180be",
+    "original55_field_changes.csv": "5eccfd151d47e05c0a340d57fa4596fbd25007afc1945b99948e1964131eadbe",
+    "original55_field_increment.json": "06d0d54a4879e61f3f330c659aa786fde6effcb962b2a9f0be488b4f9ab860fb",
+    "project_gap_assessment.csv": "067f9e20c09afe98059556a1f770b1f5d3d70982d7f5f83901b14fff296bd2dc",
+    "README.md": "a0d914608cdd039ba6ae972b75de621290b82a8e7dc1b9db1905d93568ee7ae1",
+    "remaining_gap_reasons.csv": "d2ba4c67e8d932daa58e89456316c06c5b6f7b8a9889d1fa0fd90947e8667e03",
     "reused_source.csv": "f0805486f044494769ed4ae7b38f30cd95dc7a168e698af6f59628c4f3607ce7",
-    "search_receipts.json": "959c5a6307e89271ef98242282a8a39e46daab4733f71b9c1c88e069f6255244",
-    "source_acquisition.csv": "e35a273af1b57f37f5be78faf1fdbb22f075e8c5d8d6504b15c5046ec6252dba",
+    "search_receipts.json": "44c16d932f10100d41e75d525565b0b642ccf5b545e0268fd87ab572698da7d4",
+    "source_acquisition.csv": "02d19e41e4ffb440f1992edc754e56029a294f0d973f40c566eff2d6bc0356fb",
     "cycle-1/audit.json": "506af4bea066d43a4f3c3cc194a4a7def8fd2e7cd38c20b142e946e1fe87f874",
     "cycle-1/cycle_review.json": "0fee2b4c757999a19f562be42aa87953e3fb43845c5e26c8c7fc330c90334861",
     "cycle-1/README.md": "4a4ba3276bd698cd0abaee8028627a809bf86fbc44b70f09e3f3a05dfed5a83a",
@@ -333,17 +334,21 @@
     "cycle-4/audit.json": "c906331e9d3e560cf983bf1084da0148781d32fb2be5e7e8ac3f01b449b83bbd",
     "cycle-4/cycle_review.json": "dda69995c199f78582121727b4f220d07a0fa0eaa46a095a28e554ad956e4acd",
     "cycle-4/README.md": "4a4ba3276bd698cd0abaee8028627a809bf86fbc44b70f09e3f3a05dfed5a83a",
-    "cycle-4/validation.json": "e9ae362e7ef1407b6fff30bca9a1f04295bf303a15e9398bce552bfdd3dfc385"
+    "cycle-4/validation.json": "4d0f6b480b174e5272f42e6d7d7d14f11443293bb6424adda8ee008099c38b39",
+    "cycle-5/audit.json": "ac72a776d20203532627ceef57b5356251506a54ae846fd67ad4c7f857705d4d",
+    "cycle-5/cycle_review.json": "1d56786fa456f7e2433297caa18f25e43be8833c4088eb3289d2b0600feabf3d",
+    "cycle-5/README.md": "4a4ba3276bd698cd0abaee8028627a809bf86fbc44b70f09e3f3a05dfed5a83a",
+    "cycle-5/validation.json": "92571c751d0e21f3115ed7a944b64c07f98457a45425c6781a935c3d379a23f8"
   },
   "current_projection_hashes": {
-    "audit.json": "c906331e9d3e560cf983bf1084da0148781d32fb2be5e7e8ac3f01b449b83bbd",
+    "audit.json": "ac72a776d20203532627ceef57b5356251506a54ae846fd67ad4c7f857705d4d",
     "census_inventory.csv": "960bf6ff35ffd4d817c797a54fbbcba5f318ca0812eded023294a2a1c6859b1e",
-    "field_provenance.csv": "92745be2e45e40ef06d546b688091871688db58c85861789099e859cf29dc66d",
-    "missing_fields.csv": "299adef7f799386b2b88ea1a25cae86a77f76db1f2a6d6a0bafd31352203bbd2",
+    "field_provenance.csv": "41ff5d18bf6270dffd46cf9382db995842fbd1ae7a8d25af063fa588d3939670",
+    "missing_fields.csv": "a1d1f50e545d69e7c092c05a4c315f71810a45cf1ce6fd144a17cacbb01b6f8e",
     "REVIEW.md": "82ac311aaea2f3660ee976000c88b2cc1487276e8600d1969c98594ed33e6da3",
     "source_consistency.csv": "09922af3f905e79f23f58c3e5c0fd84515a01dcf6bc6984660b86c0532fe41ba",
-    "summary.json": "c87a774fffc536961b0df87dae02c67b57b5b8a202300f5908103ab9c089dda4",
-    "validation.json": "0a19cc6d33cff3e5097b5feebcbceb118e806c36c7281b27b8d543ef4867bd95",
-    "專案總表.csv": "a2eeb0ca0f845400e708cec40791c91135a104fbd1d80b671a0d61ec2c42718f"
+    "summary.json": "4fbffea820d50039f76e6e4ddf28d0d20cd1589ac78c0255b874426ec9dda7c9",
+    "validation.json": "2e469230ccfa168d690de2bf3823476a8a0314dec9aa859beb40d4819b827416",
+    "專案總表.csv": "a45d7cc2e1f427e9b4b99386cb410230778727f5cd5c87af525ade39505d26a2"
   }
 }

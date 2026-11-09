@@ -169,7 +169,8 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     if parsed_publication is not None or not header or header['page']!=1:raise ValueError('REVIEW_PUBLICATION_DATE_MISMATCH')
                     content=evidence(header)
                     label=normalized(datetime.strptime(pub,'%Y-%m-%d').strftime('%d %B %Y').lstrip('0'))
-                    header_content=re.sub(r'\b(\d{1,2})(?:st|nd|rd|th)\b',r'\1',content)
+                    from .reviewed_discovery import calendar_date_text
+                    header_content=calendar_date_text(content)
                     if label not in header_content or not header.get('header_title'):raise ValueError('REVIEW_PUBLICATION_HEADER_DATE_MISMATCH')
                     if normalized(header['header_title']) not in content:raise ValueError('REVIEW_PUBLICATION_HEADER_TITLE_MISMATCH')
             identity=evidence(review['identity_evidence'])
