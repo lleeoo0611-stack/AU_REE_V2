@@ -13,6 +13,11 @@ def audit_summary(folder):
         with (folder/name).open(encoding='utf-8-sig',newline='') as f:return list(csv.DictReader(f))
     rows=read('專案總表.csv')
     columns=json.loads((Path(__file__).resolve().parents[2]/'config/project_summary_columns.json').read_text('utf8'))
+    summary=json.loads((folder/'summary.json').read_text('utf8'))
+    if summary.get('version')=='census-project-summary-v3-asx-identity':
+        if summary.get('base_contract_columns')!=52 or not summary.get('identity_ledger_sha256'):
+            raise ValueError('ITERATION_IDENTITY_CONTRACT_MISSING')
+        columns=columns+['ASX代碼']
     if not rows or list(rows[0])!=columns:raise ValueError('ITERATION_SUMMARY_CONTRACT_MISMATCH')
     keys=[r['專案ID'] for r in rows]
     if len(set(keys))!=len(keys):raise ValueError('ITERATION_DUPLICATE_PROJECT')
@@ -24,7 +29,6 @@ def audit_summary(folder):
     blanks={(r['專案ID'],c) for r in rows for c,v in r.items() if v==''}
     if set(trace)!=set(filled) or any(trace[k]['value']!=v for k,v in filled.items()):raise ValueError('ITERATION_PROVENANCE_CELL_MISMATCH')
     if set(gaps)!=blanks:raise ValueError('ITERATION_MISSING_DIAGNOSTIC_MISMATCH')
-    summary=json.loads((folder/'summary.json').read_text('utf8'))
     for name,sha in summary['output_hashes'].items():
         if filehash(folder/name)!=sha:raise ValueError('ITERATION_OUTPUT_HASH_MISMATCH')
     scientific=[columns[i] for i in SCIENCE_INDEXES]

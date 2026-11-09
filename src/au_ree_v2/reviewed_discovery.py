@@ -47,6 +47,7 @@ def validate_discovery(path, assets, existing, cutoff):
         receipt=dict(candidate_key=key,name=r['name'],decision=r['decision'],reason=r['reason'],
             existing_candidate_ids=r.get('existing_candidate_ids',[]),sources=r['sources'])
         if r.get('round5_review'):receipt['followup_review']=r['round5_review']
+        if r.get('round6_review'):receipt['round6_review']=r['round6_review']
         if r['decision']=='ADMIT_PROJECT':
             identity=r['identity'];s=r['sources'][identity['source_index']]
             if s['kind']!='pdf' or not r.get('scope') or r.get('country')!='AU':raise ValueError('DISCOVERY_ADMISSION_SCOPE_REQUIRED')

@@ -1,9 +1,9 @@
 {
   "version": "reviewed-project-discovery-v1",
-  "baseline_commit": "243381670e5e8a17bacb803c1dd5d3f91011913b",
+  "baseline_commit": "b494607047c6d54111b7b6ad58e3335b3b93e889",
   "acquired_through": "2026-11-10",
   "cutoff": "2026-11-05",
-  "scope": "Round5 follow-up of all16 prior candidates; explicit independent mining projects vs prospects/processors; not national completeness",
+  "scope": "Round6 follow-up of5 deferred candidates and external Gemini name leads; source-scoped research identities not current title/legal or national completeness certification",
   "candidates": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -1935,8 +1935,8 @@
       "candidate_key": "caralue-bluff",
       "name": "Caralue Bluff",
       "aliases": [],
-      "decision": "CANDIDATE_ONLY",
-      "reason": "ROUND5_SOURCE_CONFIRMS_PROSPECT_AND_EXPLORATION_TARGET_ONLY;DATED_DISTINCT_PROJECT_BOUNDARY_NOT_COMPLETED;NO_MRE_FROM110_220MT_RANGE",
+      "decision": "ALIAS_OR_CHILD",
+      "reason": "ROUND6_DATED_ITECH_ANNUAL_REPORT_IDENTIFIES_CARALUE_BLUFF_AS_PROSPECT_WITHIN_ITECH_EYRE_PENINSULA_PROJECT;TARGET_RANGE_NOT_MRE",
       "sources": [
         {
           "asset_set": "round4",
@@ -1952,6 +1952,22 @@
               ]
             }
           ]
+        },
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a.pdf",
+          "sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a",
+          "url": "https://announcements.asx.com.au/asxpdf/20230830/pdf/05t8tqxpqh6zr8.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 23,
+              "markers": [
+                "Caralue Bluff",
+                "Eyre Peninsula Kaolin Project"
+              ]
+            }
+          ]
         }
       ],
       "existing_candidate_ids": [
@@ -1963,6 +1979,11 @@
         "parent_or_scope": "iTech Eyre Peninsula REE–kaolin prospect",
         "developer_at_source": "iTech Minerals",
         "reason": "SOURCE_CONFIRMS_PROSPECT_AND_EXPLORATION_TARGET_ONLY;DATED_DISTINCT_PROJECT_BOUNDARY_NOT_COMPLETED;NO_MRE_FROM110_220MT_RANGE"
+      },
+      "round6_review": {
+        "status": "PARENT_SCOPE_RESOLVED",
+        "parent_project_key": "itech-eyre-peninsula",
+        "reason": "ROUND6_DATED_ITECH_ANNUAL_REPORT_IDENTIFIES_CARALUE_BLUFF_AS_PROSPECT_WITHIN_ITECH_EYRE_PENINSULA_PROJECT;TARGET_RANGE_NOT_MRE"
       }
     },
     {
@@ -2022,7 +2043,7 @@
       "name": "Franklyn",
       "aliases": [],
       "decision": "CANDIDATE_ONLY",
-      "reason": "ROUND5_GOVERNMENT_REVIEW_CONFIRMS_PROSPECT;CURRENT_ISSUER_PROJECT_BOUNDARY_AND_DATED_IDENTITY_UNRESOLVED;NO_MRE_FROM_DRILL_INTERVALS",
+      "reason": "ROUND6_DATED_ISSUER_CONFIRMS_FRANKLYN_PROSPECT_AND_DRILLING;NO_INDEPENDENT_RESOURCE_OR_CURRENT_PROJECT_BOUNDARY_VERIFIED",
       "sources": [
         {
           "asset_set": "round4",
@@ -2038,6 +2059,23 @@
               ]
             }
           ]
+        },
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9.pdf",
+          "sha256": "c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9",
+          "url": "https://announcements.asx.com.au/asxpdf/20220729/pdf/45c9m44hzcdy91.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Franklyn",
+                "South Australia",
+                "Exploration Targets"
+              ]
+            }
+          ]
         }
       ],
       "existing_candidate_ids": [],
@@ -2046,6 +2084,10 @@
         "parent_or_scope": "Franklyn kaolin–REE prospect near Terowie",
         "developer_at_source": "iTech Minerals",
         "reason": "GOVERNMENT_REVIEW_CONFIRMS_PROSPECT;CURRENT_ISSUER_PROJECT_BOUNDARY_AND_DATED_IDENTITY_UNRESOLVED;NO_MRE_FROM_DRILL_INTERVALS"
+      },
+      "round6_review": {
+        "status": "DATED_PROSPECT_CONFIRMED;ADMISSION_PENDING",
+        "reason": "45_91MT_IS_KAOLIN_EXPLORATION_TARGET_AND_AL2O3_IS_NOT_TREO"
       }
     },
     {
@@ -2604,7 +2646,7 @@
       "name": "Billeroo",
       "aliases": [],
       "decision": "CANDIDATE_ONLY",
-      "reason": "ROUND5_GEOLOGICAL_COMPLEX_AND_MINERAL_OCCURRENCE;NO_DATED_DEVELOPER_PROJECT_IDENTITY_OR_REE_MRE;SAMPLE_EUROPIUM_IS_NOT_RESOURCE_GRADE",
+      "reason": "ROUND6_GEOLOGICAL_BILLEROO_COMPLEX_NOT_IDENTIFIED_AS_HRE_URANIUM_PALAE0CHANNEL_BY_NAME_ALONE;REE_PROJECT_DEVELOPER_UNRESOLVED",
       "sources": [
         {
           "asset_set": "round4",
@@ -2620,6 +2662,22 @@
               ]
             }
           ]
+        },
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d.pdf",
+          "sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d",
+          "url": "https://announcements.asx.com.au/asxpdf/20250930/pdf/06py49c2g3fm9t.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Lake Namba-Billeroo",
+                "uranium"
+              ]
+            }
+          ]
         }
       ],
       "existing_candidate_ids": [],
@@ -2628,6 +2686,10 @@
         "parent_or_scope": "Billeroo North Alkaline Magmatic Complex",
         "developer_at_source": "NOT_ESTABLISHED_BY_REVIEWED_SOURCE",
         "reason": "GEOLOGICAL_COMPLEX_AND_MINERAL_OCCURRENCE;NO_DATED_DEVELOPER_PROJECT_IDENTITY_OR_REE_MRE;SAMPLE_EUROPIUM_IS_NOT_RESOURCE_GRADE"
+      },
+      "round6_review": {
+        "status": "CANDIDATE_ONLY",
+        "reason": "SAME_NAME_GEOLOGICAL_COMPLEX_VS_URANIUM_PROJECT_AMBIGUITY;NO_REE_MRE"
       }
     },
     {
@@ -2665,6 +2727,10 @@
         "parent_or_scope": "BHP Olympic Dam IOCG operation; potential REE byproduct",
         "developer_at_source": "BHP",
         "reason": "EXISTING_CU_AU_U_OPERATION_WITH_REE_MINERALS;NO_SEPARATE_REE_RESOURCE_RECOVERY_PROJECT_BOUNDARY_VALIDATED;NO_CU_ORE_TRANSFER"
+      },
+      "round6_review": {
+        "status": "CANDIDATE_ONLY",
+        "reason": "SOURCE_SEARCH_REPEATED;CU_U_OPERATION_OR_TAILINGS_RESEARCH_NOT_A_SEPARATELY_VALIDATED_REE_RESOURCE_AND_RECOVERY_PROJECT"
       }
     },
     {
@@ -2700,6 +2766,10 @@
         "parent_or_scope": "BHP Carrapateena IOCG operation; REE occurrence/tailings research",
         "developer_at_source": "BHP",
         "reason": "REE_INTERCEPTS_AND_TAILINGS_RESEARCH_NOT_DISTINCT_REE_MINING_RESOURCE_OR_ANNUAL_OUTPUT;NO_CU_ORE_TRANSFER"
+      },
+      "round6_review": {
+        "status": "CANDIDATE_ONLY",
+        "reason": "SOURCE_SEARCH_REPEATED;CU_U_OPERATION_OR_TAILINGS_RESEARCH_NOT_A_SEPARATELY_VALIDATED_REE_RESOURCE_AND_RECOVERY_PROJECT"
       }
     },
     {
@@ -3255,7 +3325,11 @@
         "AU-574465211976ec57b1ef",
         "AU-c5cb28f27c4027920582",
         "AU-f5d4d34f0ca0179bd87e"
-      ]
+      ],
+      "round6_review": {
+        "status": "MERGE_NOT_ELIGIBLE",
+        "reason": "WA_GOVERNMENT_LISTS_SPLINTER_AND_SPLINTER_ROCK_SEPARATELY_WITH_DIFFERENT_OWNERS;NO_SHARED_SOURCE_VERIFIED_ASX_CODE;USER_CONDITIONAL_MERGE_RULE_NOT_SATISFIED"
+      }
     },
     {
       "candidate_key": "lyons-review",
@@ -3684,6 +3758,4399 @@
             "markers": [
               "Charley Creek",
               "Northern Territory"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "itech-eyre-peninsula",
+      "name": "iTech Eyre Peninsula REE–Kaolin Project",
+      "aliases": [
+        "iTech Eyre Peninsula",
+        "Caralue Bluff within iTech Eyre Peninsula"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND6_DATED_PRIMARY_CONFIRMS_AU_REE_PROJECT_IDENTITY;NUMERIC_AND_CURRENT_TITLE_VALIDATION_SEPARATE",
+      "country": "AU",
+      "scope": "One iTech Eyre Peninsula REE-kaolin project containing Caralue Bluff/Ethiopia/Bartels prospects; distinct from Power Minerals Eyre Peninsula; exploration targets and leach samples are not MRE",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a.pdf",
+          "sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a",
+          "url": "https://announcements.asx.com.au/asxpdf/20230830/pdf/05t8tqxpqh6zr8.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 23,
+              "markers": [
+                "Eyre Peninsula Kaolin Project",
+                "rare earth",
+                "South Australia"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_itech_eyre_peninsula",
+        "publication_date": "2023-08-30",
+        "date_evidence": {
+          "page": 47,
+          "markers": [
+            "30 August 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 23,
+          "markers": [
+            "Eyre Peninsula Kaolin Project",
+            "rare earth",
+            "South Australia"
+          ]
+        },
+        "name_marker": "Eyre Peninsula",
+        "state": "SA",
+        "state_marker": "South Australia",
+        "developer": {
+          "value": "iTech Minerals Ltd",
+          "evidence": {
+            "page": 30,
+            "markers": [
+              "iTech Minerals Ltd"
+            ]
+          }
+        }
+      },
+      "existing_candidate_ids": [],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "One iTech Eyre Peninsula REE-kaolin project containing Caralue Bluff/Ethiopia/Bartels prospects; distinct from Power Minerals Eyre Peninsula; exploration targets and leach samples are not MRE",
+        "effective_disclosure_date": "2023-08-30",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "EXPLORATION_TARGET_AND_TESTWORK_ONLY;NO_CURRENT_MATCHED_REE_RESOURCE_PAIR_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Eyre Peninsula Kaolin Project",
+              "rare earth",
+              "South Australia"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "mukinbudin",
+      "name": "Mukinbudin REE Project",
+      "aliases": [
+        "Mukinbudin"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND6_DATED_PRIMARY_CONFIRMS_AU_REE_PROJECT_IDENTITY;NUMERIC_AND_CURRENT_TITLE_VALIDATION_SEPARATE",
+      "country": "AU",
+      "scope": "Caprice Mukinbudin exploration project E70/5939; 2025 annual report records surrender of E70/6519 and E70/6520; input Enterprise pairing rejected",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/1f5e83ea28b7b59ef46355ecb6d3f7d47d4eb88adcc7c0e4502f60362cab5b74.pdf",
+          "sha256": "1f5e83ea28b7b59ef46355ecb6d3f7d47d4eb88adcc7c0e4502f60362cab5b74",
+          "url": "https://announcements.asx.com.au/asxpdf/20240927/pdf/068fpszm6j002r.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Mukinbudin Project",
+                "Western Australia",
+                "rare earth"
+              ]
+            }
+          ]
+        },
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/aaba5f1b90baf6d110d9df4cf7ed7478e57c178d3a2114af3bdf4782a9965d6f.pdf",
+          "sha256": "aaba5f1b90baf6d110d9df4cf7ed7478e57c178d3a2114af3bdf4782a9965d6f",
+          "url": "https://announcements.asx.com.au/asxpdf/20250930/pdf/06pxh87rxcq7f3.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "surrendered",
+                "Mukinbudin"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_mukinbudin",
+        "publication_date": "2024-09-27",
+        "date_evidence": {
+          "page": 17,
+          "markers": [
+            "27 September 2024"
+          ]
+        },
+        "project_evidence": {
+          "page": 4,
+          "markers": [
+            "Mukinbudin Project",
+            "Western Australia",
+            "rare earth"
+          ]
+        },
+        "name_marker": "Mukinbudin",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Caprice Resources Ltd",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Caprice Resources Ltd"
+            ]
+          }
+        }
+      },
+      "existing_candidate_ids": [],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "Caprice Mukinbudin exploration project E70/5939; 2025 annual report records surrender of E70/6519 and E70/6520; input Enterprise pairing rejected",
+        "effective_disclosure_date": "2024-09-27",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "SURFACE_GEOCHEMISTRY_AND_PROSPECTIVITY_NOT_GLOBAL_MRE;PARTIAL_TENEMENT_SURRENDER_RECORDED_SEPARATELY",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mukinbudin Project",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "duke",
+      "name": "Duke Rare Earth Project",
+      "aliases": [
+        "Duke"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND6_DATED_PRIMARY_CONFIRMS_AU_REE_PROJECT_IDENTITY;NUMERIC_AND_CURRENT_TITLE_VALIDATION_SEPARATE",
+      "country": "AU",
+      "scope": "HRE Duke project EL33101/EL33194 near Tennant Creek; not Narryer Muckanippie Dukes prospect or DevEx uranium assets",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d.pdf",
+          "sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d",
+          "url": "https://announcements.asx.com.au/asxpdf/20250930/pdf/06py49c2g3fm9t.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 12,
+              "markers": [
+                "Duke",
+                "Northern Territory",
+                "rare earth"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_duke",
+        "publication_date": "2025-09-30",
+        "date_evidence": {
+          "page": 22,
+          "markers": [
+            "30 September 2025"
+          ]
+        },
+        "project_evidence": {
+          "page": 12,
+          "markers": [
+            "Duke",
+            "Northern Territory",
+            "rare earth"
+          ]
+        },
+        "name_marker": "Duke",
+        "state": "NT",
+        "state_marker": "Northern Territory",
+        "developer": {
+          "value": "Heavy Rare Earths Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Heavy Rare Earths Limited"
+            ]
+          }
+        }
+      },
+      "existing_candidate_ids": [],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "HRE Duke project EL33101/EL33194 near Tennant Creek; not Narryer Muckanippie Dukes prospect or DevEx uranium assets",
+        "effective_disclosure_date": "2025-09-30",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "REE_EXPLORATION_DISCLOSURE_NOT_MATCHED_GLOBAL_RESOURCE_OR_ANNUAL_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Duke",
+              "Northern Territory",
+              "rare earth"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "bencubbin",
+      "name": "Bencubbin REE Project",
+      "aliases": [
+        "Bencubbin"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND6_DATED_PRIMARY_CONFIRMS_AU_REE_PROJECT_IDENTITY;NUMERIC_AND_CURRENT_TITLE_VALIDATION_SEPARATE",
+      "country": "AU",
+      "scope": "Cygnus Bencubbin REE discovery; not Bencubbin lithium or meteorite; dated project evidence not current legal title certification",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8.pdf",
+          "sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8",
+          "url": "https://announcements.asx.com.au/asxpdf/20240328/pdf/061zwpgyygh38r.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Bencubbin",
+                "Western Australia",
+                "rare earth"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_bencubbin",
+        "publication_date": "2024-03-28",
+        "date_evidence": {
+          "page": 42,
+          "markers": [
+            "28 March 2024"
+          ]
+        },
+        "project_evidence": {
+          "page": 4,
+          "markers": [
+            "Bencubbin",
+            "Western Australia",
+            "rare earth"
+          ]
+        },
+        "name_marker": "Bencubbin",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Cygnus Metals Limited",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Cygnus Metals Limited"
+            ]
+          }
+        }
+      },
+      "existing_candidate_ids": [],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "Cygnus Bencubbin REE discovery; not Bencubbin lithium or meteorite; dated project evidence not current legal title certification",
+        "effective_disclosure_date": "2024-03-28",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "DRILL_INTERSECTIONS_AND_LITHIUM_RESOURCE_MUST_NOT_BECOME_REE_MRE_OR_OXIDE_COMPOSITION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Bencubbin",
+              "Western Australia",
+              "rare earth"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "rankin-dome",
+      "name": "Rankin Dome Rare Earth Project",
+      "aliases": [
+        "Rankin Dome"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND6_DATED_PRIMARY_CONFIRMS_AU_REE_PROJECT_IDENTITY;NUMERIC_AND_CURRENT_TITLE_VALIDATION_SEPARATE",
+      "country": "AU",
+      "scope": "Rankin Dome three-licence REE project; ACM earn-in with Kula; historical dated identity, current rights continuity not certified",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/f6f127c62e9c4ddcab67c5f01552f21cc9ee1c17095451b963e7b66e757981b3.pdf",
+          "sha256": "f6f127c62e9c4ddcab67c5f01552f21cc9ee1c17095451b963e7b66e757981b3",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02749716",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Rankin Dome",
+                "Western Australia",
+                "Rare Earth"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_rankin_dome",
+        "publication_date": "2023-12-04",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "4 December 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Rankin Dome",
+            "Western Australia",
+            "Rare Earth"
+          ]
+        },
+        "name_marker": "Rankin Dome",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Australian Critical Minerals Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Australian Critical Minerals Limited"
+            ]
+          }
+        }
+      },
+      "existing_candidate_ids": [],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "Rankin Dome three-licence REE project; ACM earn-in with Kula; historical dated identity, current rights continuity not certified",
+        "effective_disclosure_date": "2023-12-04",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "AUGER_AND_RC_DRILL_ASSAYS_NOT_RESOURCE;NO_ORE_MASS_OR_ANNUAL_OUTPUT;JV_INTEREST_NOT_AUTOMATICALLY100PCT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Rankin Dome",
+              "Western Australia",
+              "Rare Earth"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "condingup",
+      "name": "Condingup REE Project",
+      "aliases": [
+        "Condingup"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND6_DATED_PRIMARY_CONFIRMS_AU_REE_PROJECT_IDENTITY;NUMERIC_AND_CURRENT_TITLE_VALIDATION_SEPARATE",
+      "country": "AU",
+      "scope": "EMU Condingup REE exploration project near Esperance; not Pioneer or the neighbouring OD6 Splinter Rock resource",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/37f08bb13d2089d6601f424c4fa8a76b85843b901bfeff7ac84e0f6012f56720.pdf",
+          "sha256": "37f08bb13d2089d6601f424c4fa8a76b85843b901bfeff7ac84e0f6012f56720",
+          "url": "https://announcements.asx.com.au/asxpdf/20230314/pdf/45mmp2sy28f0ds.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Condingup Project",
+                "Esperance WA",
+                "rare earth"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_condingup",
+        "publication_date": "2023-03-14",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "14 March 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Condingup Project",
+            "Esperance WA",
+            "rare earth"
+          ]
+        },
+        "name_marker": "Condingup",
+        "state": "WA",
+        "state_marker": "WA",
+        "developer": {
+          "value": "EMU NL",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EMU NL"
+            ]
+          }
+        }
+      },
+      "existing_candidate_ids": [],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "EMU Condingup REE exploration project near Esperance; not Pioneer or the neighbouring OD6 Splinter Rock resource",
+        "effective_disclosure_date": "2023-03-14",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "ROCK_SAMPLE_GRADES_AND_MAGNET_SHARE_ARE_NOT_GLOBAL_RESOURCE_OR_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Condingup Project",
+              "Esperance WA",
+              "rare earth"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "merredin",
+      "name": "Merredin REE Project",
+      "aliases": [
+        "Merredin REE"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND6_DATED_PRIMARY_CONFIRMS_AU_REE_PROJECT_IDENTITY;NUMERIC_AND_CURRENT_TITLE_VALIDATION_SEPARATE",
+      "country": "AU",
+      "scope": "EMU Merredin E70/6300 exploration application at source date; not Kincora; permit grant/current rights not assumed",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7.pdf",
+          "sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02675888",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Merredin Project WA",
+                "Rare Earth"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_merredin",
+        "publication_date": "2023-06-14",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "14 June 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Merredin Project WA",
+            "Rare Earth"
+          ]
+        },
+        "name_marker": "Merredin",
+        "state": "WA",
+        "state_marker": "WA",
+        "developer": {
+          "value": "EMU NL",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EMU NL"
+            ]
+          }
+        }
+      },
+      "existing_candidate_ids": [],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "EMU Merredin E70/6300 exploration application at source date; not Kincora; permit grant/current rights not assumed",
+        "effective_disclosure_date": "2023-06-14",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "APPLICATION_AND_RECONNAISSANCE_SAMPLES_NOT_GLOBAL_MRE;NO_CURRENT_ENGINEERING_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Merredin Project WA",
+              "Rare Earth"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "peak-charles",
+      "name": "Peak Charles REE Project",
+      "aliases": [
+        "Peak Charles"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND6_DATED_PRIMARY_CONFIRMS_AU_REE_PROJECT_IDENTITY;NUMERIC_AND_CURRENT_TITLE_VALIDATION_SEPARATE",
+      "country": "AU",
+      "scope": "Moho Peak Charles project; distinct from OD6 Grass Patch and Meeka Circle Valley; historical project disclosure, no current title certification",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/7f46c1631aa6a6b9eab24314635bbc589905dd202e04de2203135e79f93b330a.pdf",
+          "sha256": "7f46c1631aa6a6b9eab24314635bbc589905dd202e04de2203135e79f93b330a",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02718470",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Peak Charles",
+                "Western Australia",
+                "REE"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_peak_charles",
+        "publication_date": "2023-09-28",
+        "date_evidence": {
+          "page": 30,
+          "markers": [
+            "28 September 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 4,
+          "markers": [
+            "Peak Charles",
+            "Western Australia",
+            "REE"
+          ]
+        },
+        "name_marker": "Peak Charles",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Moho Resources Limited",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Moho Resources Limited"
+            ]
+          }
+        }
+      },
+      "existing_candidate_ids": [],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "Moho Peak Charles project; distinct from OD6 Grass Patch and Meeka Circle Valley; historical project disclosure, no current title certification",
+        "effective_disclosure_date": "2023-09-28",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "EXPLORATION_INTERSECTIONS_NOT_GLOBAL_MRE_OR_PRODUCTION;SOURCE_REPORT_DATE_AND_ARCHIVE_DATE_KEPT_SEPARATE",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Peak Charles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "rocky-gully",
+      "name": "Rocky Gully Scandium–REE–Gallium Project",
+      "aliases": [
+        "Rocky Gully"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND6_DATED_PRIMARY_CONFIRMS_AU_REE_PROJECT_IDENTITY;NUMERIC_AND_CURRENT_TITLE_VALIDATION_SEPARATE",
+      "country": "AU",
+      "scope": "Narryer Rocky Gully Ivar exploration system; NYM not Pluto; separate from Muckanippie JV and Canadian REE projects",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0.pdf",
+          "sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03143538",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Rocky Gully Project",
+                "Western Australia",
+                "REE"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_rocky_gully",
+        "publication_date": "2026-09-24",
+        "date_evidence": {
+          "page": 30,
+          "markers": [
+            "24 September 2026"
+          ]
+        },
+        "project_evidence": {
+          "page": 4,
+          "markers": [
+            "Rocky Gully Project",
+            "Western Australia",
+            "REE"
+          ]
+        },
+        "name_marker": "Rocky Gully",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Narryer Metals Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Narryer Metals Limited"
+            ]
+          }
+        }
+      },
+      "existing_candidate_ids": [],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "Narryer Rocky Gully Ivar exploration system; NYM not Pluto; separate from Muckanippie JV and Canadian REE projects",
+        "effective_disclosure_date": "2026-09-24",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "TREO26_33MT850_1300PPM_IS_AN_EXPLORATION_TARGET_NOT_MINERAL_RESOURCE;SCANDIUM_AND_GALLIUM_ARE_NOT_REE_OXIDES",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rocky Gully Project",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "west-arunta-luni",
+      "name": "West Arunta Project — Luni Niobium–REE scope",
+      "aliases": [
+        "West Arunta Luni",
+        "Luni"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND6_DATED_PRIMARY_CONFIRMS_AU_REE_PROJECT_IDENTITY;NUMERIC_AND_CURRENT_TITLE_VALIDATION_SEPARATE",
+      "country": "AU",
+      "scope": "WA1 West Arunta Luni niobium project with REE exploration intercepts separately corroborated by 2024 original; not Encounter Aileron/Crean",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/ae8825f63b7ce1ac8bb26e0406fb9c75adf12fe31b8a86658a33fff4715f1766.pdf",
+          "sha256": "ae8825f63b7ce1ac8bb26e0406fb9c75adf12fe31b8a86658a33fff4715f1766",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03141190",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Luni",
+                "Western Australia"
+              ]
+            }
+          ]
+        },
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/51b800c61c0c805f4181988456a057fd6c9715c3c30c98b7b7d6073b9f144ed7.pdf",
+          "sha256": "51b800c61c0c805f4181988456a057fd6c9715c3c30c98b7b7d6073b9f144ed7",
+          "url": "https://announcements.asx.com.au/asxpdf/20241023/pdf/069ftv8h7wqjr7.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Luni",
+                "TREO"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_west_arunta_luni",
+        "publication_date": "2026-09-18",
+        "date_evidence": {
+          "page": 14,
+          "markers": [
+            "18 September 2026"
+          ]
+        },
+        "project_evidence": {
+          "page": 4,
+          "markers": [
+            "Luni",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Luni",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "WA1 Resources Ltd",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "WA1 Resources Ltd"
+            ]
+          }
+        }
+      },
+      "existing_candidate_ids": [],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "WA1 West Arunta Luni niobium project with REE exploration intercepts separately corroborated by 2024 original; not Encounter Aileron/Crean",
+        "effective_disclosure_date": "2026-09-18",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "NB2O5_RESOURCE_IS_NOT_TREO_RESOURCE;REE_DRILL_INTERCEPTS_NOT_MATCHED_GLOBAL_MRE;TREO17_INCLUDES_SC_PM_NOT_TEMPLATE15",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Luni",
+              "Western Australia"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "achilles-tambourah",
+      "name": "Achilles REE Project — Tambourah",
+      "aliases": [
+        "Achilles Tambourah",
+        "Windidda South within Achilles"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND6_DATED_PRIMARY_CONFIRMS_AU_REE_PROJECT_IDENTITY;NUMERIC_AND_CURRENT_TITLE_VALIDATION_SEPARATE",
+      "country": "AU",
+      "scope": "Tambourah Achilles/Windidda South exploration scope in WA; not AGC Achilles gold-silver discovery in NSW",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/a8d5bb873fb84f0884b3960b0eb48692843e3dbba55eb1eaaf8314924f635c4c.pdf",
+          "sha256": "a8d5bb873fb84f0884b3960b0eb48692843e3dbba55eb1eaaf8314924f635c4c",
+          "url": "https://announcements.asx.com.au/asxpdf/20230303/pdf/45m8ynbtjdrx2w.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Achilles",
+                "Western Australia",
+                "REE"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_achilles_tambourah",
+        "publication_date": "2023-03-03",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "3 March 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Achilles",
+            "Western Australia",
+            "REE"
+          ]
+        },
+        "name_marker": "Achilles",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Tambourah Metals Ltd",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Tambourah Metals Ltd"
+            ]
+          }
+        }
+      },
+      "existing_candidate_ids": [],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "Tambourah Achilles/Windidda South exploration scope in WA; not AGC Achilles gold-silver discovery in NSW",
+        "effective_disclosure_date": "2023-03-03",
+        "current_tenure_status": "NOT_CERTIFIED_BY_RESEARCH_ADMISSION"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "HISTORIC_AND_NEW_DRILL_ASSAYS_NOT_REE_MRE;NO_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Achilles",
+              "Western Australia",
+              "REE"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "grass-patch-od6",
+      "name": "Grass Patch REE Project — OD6 tenements",
+      "aliases": [
+        "OD6 Grass Patch"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND6_DATED_OD6_ANNUAL_CONFIRMS_DISTINCT_FOUR_LICENCE_AU_REE_PROJECT;NO_MRD_RESOURCE_TRANSFER",
+      "country": "AU",
+      "scope": "OD6 Grass Patch E63/2151 E63/2152 E63/2185 E63/2154; not Mount Ridley MRD Grass Patch Complex and not Meeka Circle Valley despite same geological province/prospect names",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c.pdf",
+          "sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c",
+          "url": "https://announcements.asx.com.au/asxpdf/20240910/pdf/067qnl3479xjb0.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 11,
+              "markers": [
+                "Grass Patch REE Project",
+                "Western Australia"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_grass_patch_od6",
+        "publication_date": "2024-09-10",
+        "date_evidence": {
+          "page": 4,
+          "markers": [
+            "10 September 2024"
+          ]
+        },
+        "project_evidence": {
+          "page": 11,
+          "markers": [
+            "Grass Patch REE Project",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Grass Patch",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "OD6 Metals Limited",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "OD6 Metals Limited"
+            ]
+          }
+        }
+      },
+      "existing_candidate_ids": [],
+      "round6_review": {
+        "status": "RESEARCH_PROJECT_ADMITTED",
+        "scope": "OD6 Grass Patch E63/2151 E63/2152 E63/2185 E63/2154; not Mount Ridley MRD Grass Patch Complex and not Meeka Circle Valley despite same geological province/prospect names",
+        "current_tenure_status": "DOCUMENTED_AT2024_SOURCE_DATE;CURRENT_TITLE_NOT_CERTIFIED"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "OD6_GRASS_PATCH_DRILL_AND_LEACH_TESTS_NOT_GLOBAL_MRE;MRD_GRASS_PATCH_RESOURCE_IS_DIFFERENT_ISSUER_AND_TENEMENT_SCOPE",
+          "evidence": {
+            "page": 15,
+            "markers": [
+              "Grass Patch Project",
+              "Significant Intercepts"
             ]
           }
         }

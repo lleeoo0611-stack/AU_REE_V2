@@ -218,8 +218,10 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 from .technical_tables import number_token
                 token_value=number_token(value.get('original_token',value['value']))
                 original_unit=value.get('original_unit',unit)
-                factors={('t','Mt'):1e-6,('kt','Mt'):.001,('t','kt TREO'):.001,('kt','kt TREO'):1,('ppm','%'):.0001}
+                factors={('t','Mt'):1e-6,('kt','Mt'):.001,('t','kt TREO'):.001,('kg','kt TREO'):1e-6,('kt','kt TREO'):1,('ppm','%'):.0001}
                 factor=1 if original_unit==unit else factors.get((original_unit,unit))
+                if original_unit=='%' and unit=='ppm' and basis in ELEMENTS and variable.startswith('reported_resource_'):
+                    factor=10000
                 if original_unit=='%HM':
                     if not hm or value['evidence']['page']!=hm['evidence']['page']:raise ValueError('REVIEW_HM_NORMALIZATION_REQUIRES_SAME_TABLE')
                     if not token_value or token_value['value'] is None or not 0<=token_value['value']<=100:raise ValueError('REVIEW_HM_PERCENT_OUT_OF_RANGE')

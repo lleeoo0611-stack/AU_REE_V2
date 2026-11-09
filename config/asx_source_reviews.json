@@ -25335,6 +25335,786 @@
         "element_sum_to_treo_ratio",
         "full15oxide_closure"
       ]
+    },
+    {
+      "review_id": "r6_brockman_y_bulk2026",
+      "project_id": "AU-2a3a86a4d971e9f9838d",
+      "source_key": "hastings_ar2026",
+      "source_sha256": "f03cdb2769d58dcc65159e1f3bc892b3525e871c4bf685e480aa428bcf47a260",
+      "asset_set": "round6",
+      "path": "data/snapshots/f03cdb2769d58dcc65159e1f3bc892b3525e871c4bf685e480aa428bcf47a260.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03146806",
+      "publication_date": "2026-09-30",
+      "effective_date": "2026-09-30",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 83,
+        "markers": [
+          "Brockman Rare Earths Project",
+          "Western Australia"
+        ]
+      },
+      "date_evidence": {
+        "page": 39,
+        "markers": [
+          "30 September 2026"
+        ]
+      },
+      "scope": "Brockman mainUpdatedJORC2012InferredResource41.6Mt0.20pctTREO;700ppmNb2O5cutoff;bulkY2O3grade0.11pct;notYangibanaorolder36.2Mtresource",
+      "statement_id": "r6_brockman_y_bulk2026",
+      "scope_evidence": [
+        {
+          "page": 14,
+          "markers": [
+            "Brockman",
+            "Inferred",
+            "41.6"
+          ]
+        }
+      ],
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "basis": "TREO",
+          "original_token": "41.6",
+          "value": 41.6,
+          "unit": "Mt",
+          "original_unit": "Mt",
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Brockman mainUpdatedJORC2012InferredResource41.6Mt0.20pctTREO;700ppmNb2O5cutoff;bulkY2O3grade0.11pct;notYangibanaorolder36.2Mtresource",
+            "page": 14,
+            "original_unit": "Mt",
+            "table_bbox": [
+              48,
+              698,
+              546,
+              778
+            ],
+            "row_bbox": [
+              52,
+              760,
+              544,
+              777
+            ],
+            "column_bbox": [
+              110,
+              698,
+              175,
+              778
+            ],
+            "table_label": "Table 4:",
+            "table_label_bbox": [
+              50.97349853515625,
+              700.610888671875,
+              88.05249481201172,
+              714.1709106445312
+            ],
+            "scope_anchor": "Brockman Project Mineral Resources.",
+            "scope_anchor_bbox": [
+              217.80350036621093,
+              700.610888671875,
+              394.9285400390625,
+              714.1709106445312
+            ],
+            "row_label": "TOTAL",
+            "row_label_bbox": [
+              55.22349853515625,
+              762.6585571289063,
+              84.20449523925781,
+              775.0345581054687
+            ],
+            "column_label": "Tonnes",
+            "column_label_bbox": [
+              132.9204895019531,
+              743.3696166992188,
+              165.4204833984375,
+              755.7456176757812
+            ],
+            "unit_label": "M Tonnes",
+            "unit_bbox": [
+              122.09349365234375,
+              743.3696166992188,
+              165.4204833984375,
+              755.7456176757812
+            ],
+            "section_id": "ore_mt"
+          },
+          "evidence": {
+            "page": 14,
+            "markers": [
+              "TREO"
+            ],
+            "render_sha256": "8c8ab767817fedf066ba9c314f0b0a95edc8b48d5b63dbe10af6a14b23cc50ec"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "grade",
+          "basis": "TREO",
+          "original_token": "0.20",
+          "value": 0.2,
+          "unit": "%",
+          "original_unit": "%",
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "grade",
+            "basis": "TREO",
+            "scope": "Brockman mainUpdatedJORC2012InferredResource41.6Mt0.20pctTREO;700ppmNb2O5cutoff;bulkY2O3grade0.11pct;notYangibanaorolder36.2Mtresource",
+            "page": 14,
+            "original_unit": "%",
+            "table_bbox": [
+              48,
+              698,
+              546,
+              778
+            ],
+            "row_bbox": [
+              52,
+              760,
+              544,
+              777
+            ],
+            "column_bbox": [
+              180,
+              698,
+              235,
+              778
+            ],
+            "table_label": "Table 4:",
+            "table_label_bbox": [
+              50.97349853515625,
+              700.610888671875,
+              88.05249481201172,
+              714.1709106445312
+            ],
+            "scope_anchor": "Brockman Project Mineral Resources.",
+            "scope_anchor_bbox": [
+              217.80350036621093,
+              700.610888671875,
+              394.9285400390625,
+              714.1709106445312
+            ],
+            "row_label": "TOTAL",
+            "row_label_bbox": [
+              55.22349853515625,
+              762.6585571289063,
+              84.20449523925781,
+              775.0345581054687
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              198.90848083496093,
+              743.3696166992188,
+              222.3634765625,
+              755.7456176757812
+            ],
+            "unit_label": "%",
+            "unit_bbox": [
+              188.45949096679686,
+              743.3696166992188,
+              196.66848449707032,
+              755.7456176757812
+            ],
+            "section_id": "grade"
+          },
+          "evidence": {
+            "page": 14,
+            "markers": [
+              "TREO"
+            ],
+            "render_sha256": "8c8ab767817fedf066ba9c314f0b0a95edc8b48d5b63dbe10af6a14b23cc50ec"
+          },
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_y_ppm",
+          "basis": "Y2O3",
+          "original_token": "0.11",
+          "value": 1100,
+          "unit": "ppm",
+          "original_unit": "%",
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_y_ppm",
+            "basis": "Y2O3",
+            "scope": "Brockman mainUpdatedJORC2012InferredResource41.6Mt0.20pctTREO;700ppmNb2O5cutoff;bulkY2O3grade0.11pct;notYangibanaorolder36.2Mtresource",
+            "page": 14,
+            "original_unit": "%",
+            "table_bbox": [
+              48,
+              698,
+              546,
+              778
+            ],
+            "row_bbox": [
+              52,
+              760,
+              544,
+              777
+            ],
+            "column_bbox": [
+              430,
+              698,
+              480,
+              778
+            ],
+            "table_label": "Table 4:",
+            "table_label_bbox": [
+              50.97349853515625,
+              700.610888671875,
+              88.05249481201172,
+              714.1709106445312
+            ],
+            "scope_anchor": "Brockman Project Mineral Resources.",
+            "scope_anchor_bbox": [
+              217.80350036621093,
+              700.610888671875,
+              394.9285400390625,
+              714.1709106445312
+            ],
+            "row_label": "TOTAL",
+            "row_label_bbox": [
+              55.22349853515625,
+              762.6585571289063,
+              84.20449523925781,
+              775.0345581054687
+            ],
+            "column_label": "Y2O3",
+            "column_label_bbox": [
+              447.80791015625,
+              743.3696166992188,
+              466.6853759765625,
+              757.63544921875
+            ],
+            "unit_label": "%",
+            "unit_bbox": [
+              437.35890502929686,
+              743.3696166992188,
+              445.5679138183594,
+              755.7456176757812
+            ],
+            "section_id": "reported_resource_y_ppm"
+          },
+          "evidence": {
+            "page": 14,
+            "markers": [
+              "TREO"
+            ],
+            "render_sha256": "8c8ab767817fedf066ba9c314f0b0a95edc8b48d5b63dbe10af6a14b23cc50ec"
+          }
+        }
+      ],
+      "selection_reason": "MATCHED_SOURCE_TABLE_ROW_GRADE_UNIT_DATE;NO_SCOPE_ADDITION",
+      "publication_archive_evidence": {
+        "asset_set": "round6-more-archives",
+        "path": "data/snapshots/fa5a2b1c985368621416393dcc70ee6981d80c3f94b4af4823d941fc6d392202.html",
+        "sha256": "fa5a2b1c985368621416393dcc70ee6981d80c3f94b4af4823d941fc6d392202",
+        "url": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode=HAS&timeframe=Y&year=2026"
+      },
+      "document_issue_date": "2026-09-30",
+      "document_issue_evidence": {
+        "page": 39,
+        "markers": [
+          "30 September 2026"
+        ]
+      },
+      "selected_resource_sections": {
+        "ore_mt": {
+          "page": 14,
+          "bbox": [
+            48,
+            698,
+            546,
+            778
+          ],
+          "anchor": "Brockman Project Mineral Resources.",
+          "anchor_bbox": [
+            217.80350036621093,
+            700.610888671875,
+            394.9285400390625,
+            714.1709106445312
+          ],
+          "row_label": "TOTAL"
+        },
+        "grade": {
+          "page": 14,
+          "bbox": [
+            48,
+            698,
+            546,
+            778
+          ],
+          "anchor": "Brockman Project Mineral Resources.",
+          "anchor_bbox": [
+            217.80350036621093,
+            700.610888671875,
+            394.9285400390625,
+            714.1709106445312
+          ],
+          "row_label": "TOTAL"
+        },
+        "reported_resource_y_ppm": {
+          "page": 14,
+          "bbox": [
+            48,
+            698,
+            546,
+            778
+          ],
+          "anchor": "Brockman Project Mineral Resources.",
+          "anchor_bbox": [
+            217.80350036621093,
+            700.610888671875,
+            394.9285400390625,
+            714.1709106445312
+          ],
+          "row_label": "TOTAL"
+        }
+      }
+    },
+    {
+      "review_id": "r6_charley_indicated2012",
+      "project_id": "AU-d9fb1b1e3e2ec9fa0851",
+      "source_key": "charley_jorc2013",
+      "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
+      "asset_set": "round6",
+      "path": "data/snapshots/40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70.pdf",
+      "url": "https://www.asx.com.au/asxpdf/20130415/pdf/42f7v06gx1svy4.pdf",
+      "publication_date": "2013-04-15",
+      "effective_date": "2012-05-15",
+      "effective_date_role": "RESOURCE_EFFECTIVE_DATE",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 2,
+        "markers": [
+          "Charley Creek",
+          "15 April 2013"
+        ]
+      },
+      "date_evidence": {
+        "page": 7,
+        "markers": [
+          "15 May 2012"
+        ]
+      },
+      "scope": "Charley Creek TOTAL INDICATED RESOURCES only;CattleCreekplusWesternDam;386.86Mt295ppmTREO114.05kt;15May2012MREreproducedApr2013;excludes418.442MtInferredandExplorationTarget",
+      "statement_id": "r6_charley_indicated2012",
+      "scope_evidence": [
+        {
+          "page": 7,
+          "markers": [
+            "Charley Creek Resource Estimate",
+            "TOTAL INDICATED",
+            "RESOURCES"
+          ]
+        }
+      ],
+      "resource_categories": [
+        "INDICATED"
+      ],
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "basis": "TREO",
+          "original_token": "386,860,000",
+          "value": 386.86,
+          "unit": "Mt",
+          "original_unit": "t",
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Charley Creek TOTAL INDICATED RESOURCES only;CattleCreekplusWesternDam;386.86Mt295ppmTREO114.05kt;15May2012MREreproducedApr2013;excludes418.442MtInferredandExplorationTarget",
+            "page": 7,
+            "original_unit": "t",
+            "table_bbox": [
+              70,
+              211,
+              575,
+              485
+            ],
+            "row_bbox": [
+              76,
+              356,
+              573,
+              383
+            ],
+            "column_bbox": [
+              175,
+              211,
+              240,
+              485
+            ],
+            "table_label": "Table 2:",
+            "table_label_bbox": [
+              71.02489013671875,
+              211.0728790283203,
+              103.93037872314453,
+              221.19288330078126
+            ],
+            "scope_anchor": "Charley Creek Resource Estimate.",
+            "scope_anchor_bbox": [
+              108.34939117431641,
+              211.0728790283203,
+              244.84966735839845,
+              221.19288330078126
+            ],
+            "row_label": "TOTAL INDICATED RESOURCES",
+            "row_label_bbox": [
+              89.5,
+              358.4,
+              165,
+              381.3
+            ],
+            "column_label": "Tonnes",
+            "column_label_bbox": [
+              190.50999755859374,
+              276.8947021484375,
+              220.71510009765626,
+              287.0147216796875
+            ],
+            "unit_label": "Tonnes",
+            "unit_bbox": [
+              190.50999755859374,
+              276.8947021484375,
+              220.71510009765626,
+              287.0147216796875
+            ],
+            "section_id": "ore_mt"
+          },
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "TREO"
+            ],
+            "render_sha256": "c5cf251c166189999bfc03533e69cb5c7e90a1c33aae9f523f790a0679a90838"
+          },
+          "rounding_half_width": 5e-06
+        },
+        {
+          "variable": "grade",
+          "basis": "TREO",
+          "original_token": "295",
+          "value": 295,
+          "unit": "ppm",
+          "original_unit": "ppm",
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "grade",
+            "basis": "TREO",
+            "scope": "Charley Creek TOTAL INDICATED RESOURCES only;CattleCreekplusWesternDam;386.86Mt295ppmTREO114.05kt;15May2012MREreproducedApr2013;excludes418.442MtInferredandExplorationTarget",
+            "page": 7,
+            "original_unit": "ppm",
+            "table_bbox": [
+              70,
+              211,
+              575,
+              485
+            ],
+            "row_bbox": [
+              76,
+              356,
+              573,
+              383
+            ],
+            "column_bbox": [
+              245,
+              211,
+              294,
+              485
+            ],
+            "table_label": "Table 2:",
+            "table_label_bbox": [
+              71.02489013671875,
+              211.0728790283203,
+              103.93037872314453,
+              221.19288330078126
+            ],
+            "scope_anchor": "Charley Creek Resource Estimate.",
+            "scope_anchor_bbox": [
+              108.34939117431641,
+              211.0728790283203,
+              244.84966735839845,
+              221.19288330078126
+            ],
+            "row_label": "TOTAL INDICATED RESOURCES",
+            "row_label_bbox": [
+              89.5,
+              358.4,
+              165,
+              381.3
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              258.189990234375,
+              260.1547119140625,
+              280.524365234375,
+              270.2747314453125
+            ],
+            "unit_label": "ppm",
+            "unit_bbox": [
+              259.87001342773436,
+              276.8947021484375,
+              278.863720703125,
+              287.0147216796875
+            ],
+            "section_id": "grade"
+          },
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "TREO"
+            ],
+            "render_sha256": "c5cf251c166189999bfc03533e69cb5c7e90a1c33aae9f523f790a0679a90838"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "contained_treo_kt",
+          "basis": "TREO",
+          "original_token": "114,050,000",
+          "value": 114.05,
+          "unit": "kt TREO",
+          "original_unit": "kg",
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "contained_treo_kt",
+            "basis": "TREO",
+            "scope": "Charley Creek TOTAL INDICATED RESOURCES only;CattleCreekplusWesternDam;386.86Mt295ppmTREO114.05kt;15May2012MREreproducedApr2013;excludes418.442MtInferredandExplorationTarget",
+            "page": 7,
+            "original_unit": "kg",
+            "table_bbox": [
+              70,
+              211,
+              575,
+              485
+            ],
+            "row_bbox": [
+              76,
+              356,
+              573,
+              383
+            ],
+            "column_bbox": [
+              300,
+              211,
+              365,
+              485
+            ],
+            "table_label": "Table 2:",
+            "table_label_bbox": [
+              71.02489013671875,
+              211.0728790283203,
+              103.93037872314453,
+              221.19288330078126
+            ],
+            "scope_anchor": "Charley Creek Resource Estimate.",
+            "scope_anchor_bbox": [
+              108.34939117431641,
+              211.0728790283203,
+              244.84966735839845,
+              221.19288330078126
+            ],
+            "row_label": "TOTAL INDICATED RESOURCES",
+            "row_label_bbox": [
+              89.5,
+              358.4,
+              165,
+              381.3
+            ],
+            "column_label": "Contained TREO",
+            "column_label_bbox": [
+              309.9,
+              235,
+              354,
+              259
+            ],
+            "unit_label": "kg",
+            "unit_bbox": [
+              326.95,
+              276.8947021484375,
+              336.600048828125,
+              287.0147216796875
+            ],
+            "section_id": "contained_treo_kt"
+          },
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "TREO"
+            ],
+            "render_sha256": "c5cf251c166189999bfc03533e69cb5c7e90a1c33aae9f523f790a0679a90838"
+          },
+          "rounding_half_width": 0.005
+        }
+      ],
+      "selection_reason": "MATCHED_SOURCE_TABLE_ROW_GRADE_UNIT_DATE;NO_SCOPE_ADDITION",
+      "summary_resource_scope_label": "TOTAL INDICATED RESOURCES",
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "15th April 2013"
+        ],
+        "header_title": "CHARLEY CREEK RARE EARTHS PROJECT"
+      },
+      "selected_resource_sections": {
+        "ore_mt": {
+          "page": 7,
+          "bbox": [
+            70,
+            211,
+            575,
+            485
+          ],
+          "anchor": "Charley Creek Resource Estimate.",
+          "anchor_bbox": [
+            108.34939117431641,
+            211.0728790283203,
+            244.84966735839845,
+            221.19288330078126
+          ],
+          "row_label": "TOTAL INDICATED RESOURCES"
+        },
+        "grade": {
+          "page": 7,
+          "bbox": [
+            70,
+            211,
+            575,
+            485
+          ],
+          "anchor": "Charley Creek Resource Estimate.",
+          "anchor_bbox": [
+            108.34939117431641,
+            211.0728790283203,
+            244.84966735839845,
+            221.19288330078126
+          ],
+          "row_label": "TOTAL INDICATED RESOURCES"
+        },
+        "contained_treo_kt": {
+          "page": 7,
+          "bbox": [
+            70,
+            211,
+            575,
+            485
+          ],
+          "anchor": "Charley Creek Resource Estimate.",
+          "anchor_bbox": [
+            108.34939117431641,
+            211.0728790283203,
+            244.84966735839845,
+            221.19288330078126
+          ],
+          "row_label": "TOTAL INDICATED RESOURCES"
+        }
+      }
+    },
+    {
+      "review_id": "r6_charley_scoping2013",
+      "project_id": "AU-d9fb1b1e3e2ec9fa0851",
+      "source_key": "charley_jorc2013",
+      "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
+      "asset_set": "round6",
+      "path": "data/snapshots/40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70.pdf",
+      "url": "https://www.asx.com.au/asxpdf/20130415/pdf/42f7v06gx1svy4.pdf",
+      "publication_date": "2013-04-15",
+      "effective_date": "2013-04-15",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 2,
+        "markers": [
+          "Charley Creek",
+          "Scoping Study"
+        ]
+      },
+      "date_evidence": {
+        "page": 2,
+        "markers": [
+          "15 April 2013"
+        ]
+      },
+      "scope": "CharleyCreek2013ScopingStudyMixedREECarbonate;historicmodelnotcurrentoperatingoutput",
+      "statement_id": "r6_charley_scoping2013",
+      "scope_evidence": [],
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "observations": [],
+      "selection_reason": "MATCHED_SOURCE_TABLE_ROW_GRADE_UNIT_DATE;NO_SCOPE_ADDITION",
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "15th April 2013"
+        ],
+        "header_title": "CHARLEY CREEK RARE EARTHS PROJECT"
+      },
+      "study": {
+        "stage": "SCOPING",
+        "endpoint": "MIXED_REE_CARBONATE",
+        "element": "TREO",
+        "scale": "SCOPING_MODEL",
+        "parameters": {},
+        "evidence": [
+          {
+            "page": 2,
+            "markers": [
+              "completion",
+              "Scoping Study"
+            ]
+          },
+          {
+            "page": 10,
+            "markers": [
+              "mixed rare earth carbonate"
+            ]
+          }
+        ]
+      },
+      "deferred_fields": [
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "HISTORIC_SCOPING_NAMEPLATE3645TPA_AND_PRODUCT_DISTRIBUTION_NOT_VALIDATED_LOM_ANNUAL_AVERAGE;NO_YEAR1_5_BASIS_TRANSFER;PRODUCT_IS_NOT_RESOURCE",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "nameplate production capacity",
+              "3,645"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "HISTORIC_SCOPING_NAMEPLATE3645TPA_AND_PRODUCT_DISTRIBUTION_NOT_VALIDATED_LOM_ANNUAL_AVERAGE;NO_YEAR1_5_BASIS_TRANSFER;PRODUCT_IS_NOT_RESOURCE",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "nameplate production capacity",
+              "3,645"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "HISTORIC_SCOPING_NAMEPLATE3645TPA_AND_PRODUCT_DISTRIBUTION_NOT_VALIDATED_LOM_ANNUAL_AVERAGE;NO_YEAR1_5_BASIS_TRANSFER;PRODUCT_IS_NOT_RESOURCE",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "nameplate production capacity",
+              "3,645"
+            ]
+          }
+        }
+      ]
     }
   ]
 }

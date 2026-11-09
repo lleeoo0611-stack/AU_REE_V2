@@ -204,6 +204,7 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     source_unit = anchor('unit_bbox', 'unit_label' if 'unit_label' in binding else 'original_unit', unit_container)
     source_unit = source_unit.strip('()')
     if source_unit == 'million' and unit == 'Mt': source_unit = 'mt'
+    if source_unit == 'm tonnes' and unit == 'Mt': source_unit = 'mt'
     if source_unit == 'tonnes' and unit == 't': source_unit = 't'
     if source_unit == "'000 t" and unit == 'kt': source_unit = 'kt'
     if unit == '%HM' and source_unit == '% of total hm': source_unit = '%hm'
@@ -226,10 +227,10 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     elif field == 'bulk_hm_percent':
         valid = label == 'hm' and source_unit == '%'
     elif field in ('grade', 'contained_treo_kt'):
-        valid = label.strip('()') in ('treo','treo*','treo1','treo +','contained treo','total reo') and source_unit in (('ppm', '%', '%hm') if field == 'grade' else ('t', 'kt','kt treo'))
+        valid = label.strip('()') in ('treo','treo*','treo1','treo +','contained treo','total reo') and source_unit in (('ppm', '%', '%hm') if field == 'grade' else ('kg','t', 'kt','kt treo'))
     elif field.startswith('reported_resource_'):
         # The binding must identify the exact oxide, including stoichiometry.
-        valid = label == norm(binding.get('basis', '')) and source_unit in ('ppm','%hm')
+        valid = label == norm(binding.get('basis', '')) and source_unit in ('ppm','%','%hm')
         if binding.get('resource_orientation')=='oxide_rows':
             valid=(source_unit=='%treo' and label=='total' and
                    norm(binding.get('row_label',''))==norm(binding.get('basis','')))
