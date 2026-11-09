@@ -1,23 +1,23 @@
 {
   "version": "census-project-summary-v3-asx-identity",
   "cutoff": "2026-11-05",
-  "rows": 65,
+  "rows": 68,
   "columns": 53,
-  "unique_project_ids": 65,
+  "unique_project_ids": 68,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "claims_sha256": "11bfc4842e4b1d391ff220d39d0d17ad000a645ca6ed19dad11294b3408940f2",
   "snapshot_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
   "configuration_sha256": "92774d210b9d5b55a3b7ced161381be1cb52a5a3959ea4e4a284bf554fb5ed1a",
   "columns_sha256": "f6389bc0ace6cccac5ef34ae0ffd651403e4dbec5fd9d9ee7602f22404ed5223",
   "filled_counts": {
-    "專案ID": 65,
-    "開發商": 64,
+    "專案ID": 68,
+    "開發商": 67,
     "未上市公司": 14,
-    "專案名稱": 65,
-    "所在地_中文": 65,
-    "所在地_英文": 65,
-    "國家": 65,
-    "州省地區": 65,
+    "專案名稱": 68,
+    "所在地_中文": 68,
+    "所在地_英文": 68,
+    "國家": 68,
+    "州省地區": 68,
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
@@ -37,9 +37,9 @@
     "預估年產重稀土_t_per_year": 0,
     "產品/產出": 11,
     "有TREO資源估計": 31,
-    "有來源文件": 65,
-    "資料來源名稱": 65,
-    "資料來源URL": 65,
+    "有來源文件": 68,
+    "資料來源名稱": 68,
+    "資料來源URL": 68,
     "已公布元素數_共15項": 19,
     "已公布元素總和_kt": 19,
     "元素總和/TREO": 17,
@@ -62,9 +62,9 @@
     "Yb2O3_氧化鐿_kt": 11,
     "Lu2O3_氧化鎦_kt": 12,
     "Y2O3_氧化釔_kt": 13,
-    "ASX代碼": 53
+    "ASX代碼": 56
   },
-  "verified_source_hashes": 102,
+  "verified_source_hashes": 104,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -74,7 +74,7 @@
     "PROJECT": 33,
     "SITE": 766,
     "DEPOSIT": 301,
-    "REVIEWED_PROJECT_EXTENSION": 32,
+    "REVIEWED_PROJECT_EXTENSION": 35,
     "DEPOSIT_SCOPE": 27,
     "PROSPECT": 191,
     "PROJECT_PROGRAM": 1,
@@ -94,10 +94,10 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "920b9d49dddde04cbe1d0375b431853306c2689ff556d88ceb3b0acbc600cf4d",
-    "field_provenance.csv": "5106335f09085b41c8738b74ca349ce56efa724ce8feab3028901d8dd5fc7703",
-    "missing_fields.csv": "c23073f0111a805d5d5627b59712ce324eb3dd1c6aa08952e36ba561413919a9",
-    "census_inventory.csv": "cf0ec68d69185c76c96fc6cd1d8c896438a58337a5e0c2df06513e312e70ddcf"
+    "專案總表.csv": "a2eeb0ca0f845400e708cec40791c91135a104fbd1d80b671a0d61ec2c42718f",
+    "field_provenance.csv": "92745be2e45e40ef06d546b688091871688db58c85861789099e859cf29dc66d",
+    "missing_fields.csv": "299adef7f799386b2b88ea1a25cae86a77f76db1f2a6d6a0bafd31352203bbd2",
+    "census_inventory.csv": "960bf6ff35ffd4d817c797a54fbbcba5f318ca0812eded023294a2a1c6859b1e"
   },
   "review_ledger_sha256": "0ecc165fa859922db251b0e49597e4d19eee056b2ca01ccc5fa7550f13230c7c",
   "acquired_through": "2026-11-10",
@@ -2147,7 +2147,7 @@
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "413116facb57697610c365e1fc1e08bf4b2397a5eea4780532b163a13305fc0b",
+  "discovery_ledger_sha256": "4fef1c76c72c872083b23e7ba4bc9e076900cd68a7deec1eb600a9c4005be854",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -11990,20 +11990,215 @@
         }
       },
       "deferred_fields": []
+    },
+    {
+      "candidate_key": "cascade-meeka",
+      "name": "Cascade Rare Earth Project — Meeka",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_PRIMARY_ISSUER_NAMES_DISTINCT_AU_REE_EXPLORATION_PROJECT;PARENT_SCOPE_PRESERVED;NO_RESOURCE_INFERENCE",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "continuation4",
+          "path": "data/snapshots/246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e.pdf",
+          "sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e",
+          "url": "https://api.investi.com.au/api/announcements/mek/6817bae2-b84.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "28th February 2022",
+                "Meeka Gold Limited"
+              ]
+            },
+            {
+              "page": 7,
+              "markers": [
+                "Cascade REE Project",
+                "Western Australia"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-b2dadf9c8046c3c68a02",
+      "scope": "Cascade REE Project: source-labelled Western Australian REE exploration project at 2022-02-28; historical reporting issuer only, current rights unknown. No drilling, soil or partial-suite sample grade is a whole-project MRE or annual production. Cascade is separately named from Circle Valley; no transfer of Circle Valley resource.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "cascade20220228",
+        "publication_date": "2022-02-28",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "28th February 2022"
+          ]
+        },
+        "project_evidence": {
+          "page": 7,
+          "markers": [
+            "Cascade REE Project",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Cascade REE Project",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Meeka Gold Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Meeka Gold Limited"
+            ]
+          }
+        }
+      },
+      "deferred_fields": []
+    },
+    {
+      "candidate_key": "ravensthorpe-mtm",
+      "name": "Ravensthorpe REE Exploration Project — Young River, Dalyup and Bremer",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_PRIMARY_ISSUER_NAMES_DISTINCT_AU_REE_EXPLORATION_PROJECT;PARENT_SCOPE_PRESERVED;NO_RESOURCE_INFERENCE",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "continuation4",
+          "path": "data/snapshots/c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0.pdf",
+          "sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+          "url": "https://announcements.asx.com.au/asxpdf/20230428/pdf/45p5s75djkxgp7.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "28 April, 2023",
+                "Mt Monger Resources Limited"
+              ]
+            },
+            {
+              "page": 13,
+              "markers": [
+                "Ravensthorpe",
+                "Western Australia"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-ee34781b030807146e64",
+      "scope": "Ravensthorpe: source-labelled Western Australian REE exploration project at 2023-04-28; historical reporting issuer only, current rights unknown. No drilling, soil or partial-suite sample grade is a whole-project MRE or annual production. Young River, Dalyup and Bremer are areas within one Ravensthorpe project, not three independent projects.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "ravensthorpe20230428",
+        "publication_date": "2023-04-28",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "28 April, 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 13,
+          "markers": [
+            "Ravensthorpe",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Ravensthorpe",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Mt Monger Resources Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Mt Monger Resources Limited"
+            ]
+          }
+        }
+      },
+      "deferred_fields": []
+    },
+    {
+      "candidate_key": "east-laverton-mtm",
+      "name": "East Laverton REE Exploration Project — Pt Kidman area",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_PRIMARY_ISSUER_NAMES_DISTINCT_AU_REE_EXPLORATION_PROJECT;PARENT_SCOPE_PRESERVED;NO_RESOURCE_INFERENCE",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "continuation4",
+          "path": "data/snapshots/c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0.pdf",
+          "sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+          "url": "https://announcements.asx.com.au/asxpdf/20230428/pdf/45p5s75djkxgp7.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "28 April, 2023",
+                "Mt Monger Resources Limited"
+              ]
+            },
+            {
+              "page": 10,
+              "markers": [
+                "East Laverton",
+                "Western Australia"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-557f0c9ad81bf84bbb6d",
+      "scope": "East Laverton: source-labelled Western Australian REE exploration project at 2023-04-28; historical reporting issuer only, current rights unknown. No drilling, soil or partial-suite sample grade is a whole-project MRE or annual production. Pt Kidman is an REE prospect within East Laverton, not an additional project.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "ravensthorpe20230428",
+        "publication_date": "2023-04-28",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "28 April, 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 10,
+          "markers": [
+            "East Laverton",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "East Laverton",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Mt Monger Resources Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Mt Monger Resources Limited"
+            ]
+          }
+        }
+      },
+      "deferred_fields": []
     }
   ],
   "original_canonical_projects": 33,
-  "reviewed_project_extensions": 32,
+  "reviewed_project_extensions": 35,
   "base_contract_columns": 52,
   "base_projection_hashes": {
-    "census_inventory.csv": "cf0ec68d69185c76c96fc6cd1d8c896438a58337a5e0c2df06513e312e70ddcf",
-    "field_provenance.csv": "303fd338825d93803e00e3b5c2c8fbfdf36f0470b915fa70d4494555430cf764",
-    "missing_fields.csv": "b8712812d884f8f401e7b8f245bd2764f53528bab5189b7da5c8c14eae14272f",
-    "專案總表.csv": "04dfb4818b07f2a2db7f6c385b02e4f2927363e68d014bdefffdfd7ce00632eb"
+    "census_inventory.csv": "960bf6ff35ffd4d817c797a54fbbcba5f318ca0812eded023294a2a1c6859b1e",
+    "field_provenance.csv": "2aa019800f09e672fdc9f6bd96537f41b79b2a29c9d405864d64288625922aaa",
+    "missing_fields.csv": "38d872cff7000ba827515a1dbad2f352424d2b96fb74a5774943eee0ea018bc7",
+    "專案總表.csv": "de29d8b7ce4fa9a11da64af31feb3208ccdf9cf643bddfd4bd3adced977697d9"
   },
-  "identity_ledger_sha256": "d789be84211dbfdf304a33c69771565141e01540c4b749e4521e32fa4046f6ba",
+  "identity_ledger_sha256": "2b8f0ead966714d1a35fe88faba30e159d2295f229fb2cb7df1c72be91eac9ca",
   "identity_merges": [],
-  "validated_asx_codes": 53,
+  "validated_asx_codes": 56,
   "identity_sources": {
     "AU-12cc237ae66c7a6508ca": {
       "asset_set": "round3",
@@ -12401,6 +12596,24 @@
       "path": "data/snapshots/9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425.pdf",
       "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
       "url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf"
+    },
+    "AU-b2dadf9c8046c3c68a02": {
+      "asset_set": "continuation4",
+      "path": "data/snapshots/246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e.pdf",
+      "sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e",
+      "url": "https://api.investi.com.au/api/announcements/mek/6817bae2-b84.pdf"
+    },
+    "AU-ee34781b030807146e64": {
+      "asset_set": "continuation4",
+      "path": "data/snapshots/c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0.pdf",
+      "sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+      "url": "https://announcements.asx.com.au/asxpdf/20230428/pdf/45p5s75djkxgp7.pdf"
+    },
+    "AU-557f0c9ad81bf84bbb6d": {
+      "asset_set": "continuation4",
+      "path": "data/snapshots/c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0.pdf",
+      "sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+      "url": "https://announcements.asx.com.au/asxpdf/20230428/pdf/45p5s75djkxgp7.pdf"
     }
   },
   "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS"

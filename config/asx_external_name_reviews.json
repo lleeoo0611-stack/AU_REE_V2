@@ -495,10 +495,20 @@
     {
       "input_row": 29,
       "input_name_sha256": "9527fb2b3d5ccb62606c88f7604ddb16febed19faead67b1edf263f6e0c8fe0b",
-      "status": "HISTORICAL_PROJECT_SCOPE_PENDING",
-      "matched_project_ids": [],
-      "reason": "MEEKA2023_REPORT_CONFIRMS_CASCADE50KM_FROM_CIRCLE_VALLEY;2026_CURRENT_TENURE_CONTINUITY_NOT_ESTABLISHED;NO_CIRCLE_VALLEY_RESOURCE_TRANSFER",
-      "source_references": [],
+      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "matched_project_ids": [
+        "AU-b2dadf9c8046c3c68a02"
+      ],
+      "reason": "PRIMARY_DATED_PROJECT_VERIFIED;INPUT_OWNER_AND_CODE_NOT_IMPORTED;HISTORICAL_CASCADE_DISTINCT_FROM_CIRCLE_VALLEY_CURRENT_RIGHTS_UNKNOWN",
+      "source_references": [
+        {
+          "source_sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e",
+          "source_url": "https://api.investi.com.au/api/announcements/mek/6817bae2-b84.pdf",
+          "locator": "physical PDF p7; date and reporting issuer p1",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "scope": "Cascade REE Project: source-labelled Western Australian REE exploration project at 2022-02-28; historical reporting issuer only, current rights unknown. No drilling, soil or partial-suite sample grade is a whole-project MRE or annual production. Cascade is separately named from Circle Valley; no transfer of Circle Valley resource."
+        }
+      ],
       "search_ids": [
         44,
         55
@@ -549,10 +559,20 @@
     {
       "input_row": 32,
       "input_name_sha256": "f3597ec5819bc3e4c79c58ccede859213afcf13c33507c024c9cd9ebfeb3f634",
-      "status": "HISTORICAL_PROJECT_COMPANY_MISMATCH",
-      "matched_project_ids": [],
-      "reason": "MTM2023_ORIGINAL_IDENTIFIES_YOUNG_RIVER;NOT_MOUNT_RIDLEY_AS_INPUT;CURRENT_BOUNDARY_AND_ISSUER_CONTINUITY_REMAIN_UNVERIFIED",
-      "source_references": [],
+      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "matched_project_ids": [
+        "AU-ee34781b030807146e64"
+      ],
+      "reason": "PRIMARY_DATED_PROJECT_VERIFIED;INPUT_OWNER_AND_CODE_NOT_IMPORTED;CHILD_YOUNG_RIVER_WITHIN_PARENT_RAVENSTHORPE_NO_SEPARATE_CHILD_ROW",
+      "source_references": [
+        {
+          "source_sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+          "source_url": "https://announcements.asx.com.au/asxpdf/20230428/pdf/45p5s75djkxgp7.pdf",
+          "locator": "physical PDF p13; date and reporting issuer p1",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "scope": "Ravensthorpe: source-labelled Western Australian REE exploration project at 2023-04-28; historical reporting issuer only, current rights unknown. No drilling, soil or partial-suite sample grade is a whole-project MRE or annual production. Young River, Dalyup and Bremer are areas within one Ravensthorpe project, not three independent projects."
+        }
+      ],
       "search_ids": [
         24,
         42,

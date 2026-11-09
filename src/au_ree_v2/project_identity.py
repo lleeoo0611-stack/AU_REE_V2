@@ -78,7 +78,8 @@ def validate_identity(ledger, assets, rows, cutoff):
         with pymupdf.open(path) as doc:
             content = proof(doc, entry['date_evidence'])
             labels = [datetime.strptime(day, '%Y-%m-%d').strftime(fmt).lstrip('0').casefold() for fmt in ('%d %B %Y','%d %b %Y')]
-            content = re.sub(r'\b(\d{1,2})(?:st|nd|rd|th)\b', r'\1', content)
+            from .reviewed_discovery import calendar_date_text
+            content = calendar_date_text(content)
             if not any(label in content for label in labels):
                 raise ValueError('IDENTITY_DATE_PROOF')
             content = proof(doc, entry['project_evidence'])

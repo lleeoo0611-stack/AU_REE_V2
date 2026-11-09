@@ -6,11 +6,16 @@ from pathlib import Path
 
 import pymupdf
 
-from au_ree_v2.reviewed_discovery import validate_issue_date, validate_discovery
+from au_ree_v2.reviewed_discovery import validate_issue_date, validate_discovery, calendar_date_text
 from au_ree_v2.store import filehash
 
 
 class DiscoveryIssueDate(unittest.TestCase):
+    def test_calendar_punctuation_changes_no_date_values(self):
+        self.assertEqual('28 april 2023',calendar_date_text('28th april, 2023'))
+        self.assertEqual('31 january 2023',calendar_date_text('31 january, 2023'))
+        self.assertEqual('28 april 2024',calendar_date_text('28 april, 2024'))
+        self.assertEqual('28, april 2023',calendar_date_text('28, april 2023'))
     def test_ordinal_publication_header_preserves_exact_calendar_date(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp); doc=pymupdf.open(); page=doc.new_page()

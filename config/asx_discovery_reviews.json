@@ -9967,6 +9967,207 @@
           }
         }
       }
+    },
+    {
+      "candidate_key": "cascade-meeka",
+      "name": "Cascade Rare Earth Project — Meeka",
+      "aliases": [
+        "Cascade",
+        "Cascade Rare Earth Project"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_PRIMARY_ISSUER_NAMES_DISTINCT_AU_REE_EXPLORATION_PROJECT;PARENT_SCOPE_PRESERVED;NO_RESOURCE_INFERENCE",
+      "country": "AU",
+      "scope": "Cascade REE Project: source-labelled Western Australian REE exploration project at 2022-02-28; historical reporting issuer only, current rights unknown. No drilling, soil or partial-suite sample grade is a whole-project MRE or annual production. Cascade is separately named from Circle Valley; no transfer of Circle Valley resource.",
+      "sources": [
+        {
+          "asset_set": "continuation4",
+          "path": "data/snapshots/246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e.pdf",
+          "sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e",
+          "url": "https://api.investi.com.au/api/announcements/mek/6817bae2-b84.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "28th February 2022",
+                "Meeka Gold Limited"
+              ]
+            },
+            {
+              "page": 7,
+              "markers": [
+                "Cascade REE Project",
+                "Western Australia"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "cascade20220228",
+        "publication_date": "2022-02-28",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "28th February 2022"
+          ]
+        },
+        "project_evidence": {
+          "page": 7,
+          "markers": [
+            "Cascade REE Project",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Cascade REE Project",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Meeka Gold Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Meeka Gold Limited"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "candidate_key": "ravensthorpe-mtm",
+      "name": "Ravensthorpe REE Exploration Project — Young River, Dalyup and Bremer",
+      "aliases": [
+        "Ravensthorpe",
+        "Ravensthorpe Project"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_PRIMARY_ISSUER_NAMES_DISTINCT_AU_REE_EXPLORATION_PROJECT;PARENT_SCOPE_PRESERVED;NO_RESOURCE_INFERENCE",
+      "country": "AU",
+      "scope": "Ravensthorpe: source-labelled Western Australian REE exploration project at 2023-04-28; historical reporting issuer only, current rights unknown. No drilling, soil or partial-suite sample grade is a whole-project MRE or annual production. Young River, Dalyup and Bremer are areas within one Ravensthorpe project, not three independent projects.",
+      "sources": [
+        {
+          "asset_set": "continuation4",
+          "path": "data/snapshots/c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0.pdf",
+          "sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+          "url": "https://announcements.asx.com.au/asxpdf/20230428/pdf/45p5s75djkxgp7.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "28 April, 2023",
+                "Mt Monger Resources Limited"
+              ]
+            },
+            {
+              "page": 13,
+              "markers": [
+                "Ravensthorpe",
+                "Western Australia"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "ravensthorpe20230428",
+        "publication_date": "2023-04-28",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "28 April, 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 13,
+          "markers": [
+            "Ravensthorpe",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Ravensthorpe",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Mt Monger Resources Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Mt Monger Resources Limited"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "candidate_key": "east-laverton-mtm",
+      "name": "East Laverton REE Exploration Project — Pt Kidman area",
+      "aliases": [
+        "East Laverton",
+        "East Laverton Project"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_PRIMARY_ISSUER_NAMES_DISTINCT_AU_REE_EXPLORATION_PROJECT;PARENT_SCOPE_PRESERVED;NO_RESOURCE_INFERENCE",
+      "country": "AU",
+      "scope": "East Laverton: source-labelled Western Australian REE exploration project at 2023-04-28; historical reporting issuer only, current rights unknown. No drilling, soil or partial-suite sample grade is a whole-project MRE or annual production. Pt Kidman is an REE prospect within East Laverton, not an additional project.",
+      "sources": [
+        {
+          "asset_set": "continuation4",
+          "path": "data/snapshots/c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0.pdf",
+          "sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+          "url": "https://announcements.asx.com.au/asxpdf/20230428/pdf/45p5s75djkxgp7.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "28 April, 2023",
+                "Mt Monger Resources Limited"
+              ]
+            },
+            {
+              "page": 10,
+              "markers": [
+                "East Laverton",
+                "Western Australia"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "ravensthorpe20230428",
+        "publication_date": "2023-04-28",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "28 April, 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 10,
+          "markers": [
+            "East Laverton",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "East Laverton",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Mt Monger Resources Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Mt Monger Resources Limited"
+            ]
+          }
+        }
+      }
     }
   ]
 }

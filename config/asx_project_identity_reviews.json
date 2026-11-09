@@ -400,6 +400,24 @@
       "path": "data/snapshots/9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425.pdf",
       "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
       "url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf"
+    },
+    "AU-b2dadf9c8046c3c68a02": {
+      "asset_set": "continuation4",
+      "path": "data/snapshots/246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e.pdf",
+      "sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e",
+      "url": "https://api.investi.com.au/api/announcements/mek/6817bae2-b84.pdf"
+    },
+    "AU-ee34781b030807146e64": {
+      "asset_set": "continuation4",
+      "path": "data/snapshots/c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0.pdf",
+      "sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+      "url": "https://announcements.asx.com.au/asxpdf/20230428/pdf/45p5s75djkxgp7.pdf"
+    },
+    "AU-557f0c9ad81bf84bbb6d": {
+      "asset_set": "continuation4",
+      "path": "data/snapshots/c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0.pdf",
+      "sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+      "url": "https://announcements.asx.com.au/asxpdf/20230428/pdf/45p5s75djkxgp7.pdf"
     }
   },
   "codes": [
@@ -2270,6 +2288,111 @@
       },
       "code_label": "ASX code White Cliff Minerals Limited is listed on theFor Australian Securities Exchange (Shares: WCN,",
       "scope": "Munbinia annual-report reporting issuer at 29September2023 only; FY end and release date separated"
+    },
+    {
+      "project_id": "AU-b2dadf9c8046c3c68a02",
+      "code": "MEK",
+      "issuer_name": "Meeka Gold Limited",
+      "source_key": "AU-b2dadf9c8046c3c68a02",
+      "review_id": "continuation4_code_cascade-meeka",
+      "evidence_date": "2022-02-28",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "28th February 2022"
+        ]
+      },
+      "project_evidence": {
+        "page": 7,
+        "markers": [
+          "Cascade REE Project"
+        ]
+      },
+      "project_marker": "Cascade REE Project",
+      "issuer_evidence": {
+        "page": 1,
+        "markers": [
+          "Meeka Gold Limited"
+        ]
+      },
+      "code_evidence": {
+        "page": 1,
+        "markers": [
+          "ASX:MEK"
+        ]
+      },
+      "code_label": "ASX:MEK",
+      "scope": "Cascade REE Project: source-labelled Western Australian REE exploration project at 2022-02-28; historical reporting issuer only, current rights unknown. No drilling, soil or partial-suite sample grade is a whole-project MRE or annual production. Cascade is separately named from Circle Valley; no transfer of Circle Valley resource."
+    },
+    {
+      "project_id": "AU-ee34781b030807146e64",
+      "code": "MTM",
+      "issuer_name": "Mt Monger Resources Limited",
+      "source_key": "AU-ee34781b030807146e64",
+      "review_id": "continuation4_code_ravensthorpe-mtm",
+      "evidence_date": "2023-04-28",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "28 April, 2023"
+        ]
+      },
+      "project_evidence": {
+        "page": 13,
+        "markers": [
+          "Ravensthorpe"
+        ]
+      },
+      "project_marker": "Ravensthorpe",
+      "issuer_evidence": {
+        "page": 1,
+        "markers": [
+          "Mt Monger Resources Limited"
+        ]
+      },
+      "code_evidence": {
+        "page": 1,
+        "markers": [
+          "ASX:MTM"
+        ]
+      },
+      "code_label": "ASX:MTM",
+      "scope": "Ravensthorpe: source-labelled Western Australian REE exploration project at 2023-04-28; historical reporting issuer only, current rights unknown. No drilling, soil or partial-suite sample grade is a whole-project MRE or annual production. Young River, Dalyup and Bremer are areas within one Ravensthorpe project, not three independent projects."
+    },
+    {
+      "project_id": "AU-557f0c9ad81bf84bbb6d",
+      "code": "MTM",
+      "issuer_name": "Mt Monger Resources Limited",
+      "source_key": "AU-557f0c9ad81bf84bbb6d",
+      "review_id": "continuation4_code_east-laverton-mtm",
+      "evidence_date": "2023-04-28",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "28 April, 2023"
+        ]
+      },
+      "project_evidence": {
+        "page": 10,
+        "markers": [
+          "East Laverton"
+        ]
+      },
+      "project_marker": "East Laverton",
+      "issuer_evidence": {
+        "page": 1,
+        "markers": [
+          "Mt Monger Resources Limited"
+        ]
+      },
+      "code_evidence": {
+        "page": 1,
+        "markers": [
+          "ASX:MTM"
+        ]
+      },
+      "code_label": "ASX:MTM",
+      "scope": "East Laverton: source-labelled Western Australian REE exploration project at 2023-04-28; historical reporting issuer only, current rights unknown. No drilling, soil or partial-suite sample grade is a whole-project MRE or annual production. Pt Kidman is an REE prospect within East Laverton, not an additional project."
     }
   ],
   "merges": [],
