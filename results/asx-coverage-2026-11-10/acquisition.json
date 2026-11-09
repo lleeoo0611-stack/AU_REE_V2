@@ -1,0 +1,14 @@
+{
+  "verified_pdf_receipts": 15,
+  "unique_pdf_hashes": 14,
+  "receipt_pages": 511,
+  "unique_document_pages": 478,
+  "denied_actions": [
+    {
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02874840-6A1235069",
+      "status": 403,
+      "action": "Stopped; no retry or alternate route for this document"
+    }
+  ],
+  "interpretation": "AUDITED_RESEARCH_ASSET_SETS;DUPLICATE_URLS_AND_PDF_BYTES_NOT_CALLED_INDEPENDENT_DOCUMENTS;NOT_ALL_SEARCH_HITS_DOWNLOADED"
+}

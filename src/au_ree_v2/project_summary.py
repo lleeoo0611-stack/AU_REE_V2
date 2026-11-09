@@ -278,7 +278,8 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                             derivation=d.get('parameter_derivations',{}).get(parameter)))
                 forecast,_=choose(options,('scope','endpoint','element','scale'))
                 if forecast:
-                    put(column,forecast['value'],forecast['source_sha256'],forecast['locator'],'DATED_ENGINEERING_FORECAST_T_PER_YEAR_NOT_OPERATING_OUTPUT',forecast['scope'])
+                    method='MODEL_ASSUMPTION_DERIVED_ANNUAL_NDPR_NOT_DIRECT_REPORTED_OUTPUT' if (forecast.get('derivation') or {}).get('method')=='MODEL_ANNUAL_TREO_X_BASE_CASE_NDPR_SHARE' else 'DATED_ENGINEERING_FORECAST_T_PER_YEAR_NOT_OPERATING_OUTPUT'
+                    put(column,forecast['value'],forecast['source_sha256'],forecast['locator'],method,forecast['scope'])
                     if review_ledger:trace[-1]['forecast_derivation']=canonical(forecast.get('derivation'))
             products=[dict(evidence_id=s['case_id'],source_sha256=s['source_sha'],effective_date=s['effective_date'],
                 scope=s['scope'],endpoint=s['endpoint'],scale=s['scale'],value=s['endpoint'],locator=json.loads(s['raw'])['locator']) for s in models]

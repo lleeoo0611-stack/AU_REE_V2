@@ -1,5 +1,7 @@
 # 雙線資料覆蓋循環
 
+本次完成四輪，第 4 輪新增 1 格而停止。目前 59 案 × 53 欄、1,237 格有值／1,890 格空白；原 55 案補 25 格，新四案另加 44 格。完整結果見[最終報告](../results/asx-coverage-2026-11-10/README.md)。
+
 沿用隔離分支 `experiment/asx-public-acquisition-20261109`，研究截止 2026-11-05。這次固定起點為 `bc6a901` 的 55 案 × 53 欄：1,168 格有值、1,747 格空白。
 
 每輪同時追查未解的候選／外部名稱，以及現有專案的資源量、TREO 品位、氧化物組成與平均年產量。搜尋命中先進審查；取得文件不等於允許填值。文件指紋、專案歸屬、實體頁面、格位、單位、物料分母、資源範圍與日期都須通過，才重新從唯讀 Census 產出總表。
@@ -34,10 +36,10 @@ python tools/review_coverage_cycle.py --before BEFORE_53 --after AFTER_53 --mani
 python tools/package_coverage_cycle.py --help
 ```
 
-沿用 [第六輪的重建方式](asx-gap-round6.md)，資產目錄另加入 `auto_numeric=work/auto-iteration-numeric`、`auto_candidates=work/auto-iteration-candidates`、`coverage_fresh=work/coverage-20261110/fresh`。每輪使用各自配置快照，不能以最終配置冒充較早一輪的來源驗證。
+沿用 [第六輪的重建方式](asx-gap-round6.md)，資產目錄另加入 `auto_numeric=work/auto-iteration-numeric`、`auto_candidates=work/auto-iteration-candidates`、`coverage_fresh=work/coverage-20261110/fresh`。每輪使用各自配置快照並分別提交；公開精簡索引以該輪 Git 提交及指紋指向當時配置，不能以最終配置冒充較早一輪的來源驗證。
 
 循環審查器檢查計數、來源與檔案指紋、測試收據及停止資格；搜尋完成與語意判讀由本次研究審查紀錄宣告，不把計數器說成獨立 PDF 金標審查。新資料仍需相同來源審查關卡，不能無條件自動填值。
 
-公開結果位於 `results/asx-coverage-2026-11-10/`，各輪保留總表、逐格來源、缺口、三份來源／歸屬／代碼配置、測試收據、增量及停止判斷。原始 PDF、SQLite、頁面影像／全文、原始 Gemini 輸入列與搜尋全文不公開；本機逐項對照另行交付。
+公開結果位於 `results/asx-coverage-2026-11-10/`，目前總表與逐格資料只保留在 `results/asx-current`；各輪只保留來源／配置指紋、測試收據、增量及停止判斷，歷史配置可由當時提交核對。原始 PDF、SQLite、頁面影像／全文、原始 Gemini 輸入列與搜尋全文不公開；本機逐項對照另行交付。
 
 歷史測試資料在精簡工作樹不完整時，使用本分支的程式與設定，連結 canonical 歷史資料作唯讀測試來源並限制寫入。沒有略過原測試斷言，不聲稱完整歷史／R 重建或新的遠端 CI 通過。

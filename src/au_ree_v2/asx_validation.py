@@ -324,7 +324,13 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     token=str(value) if not float(value).is_integer() else f'{int(value):,}'
                     annual_page=text(study['annual_basis_evidence']['page'])
                     derivation=study.get('parameter_derivations',{}).get(key)
-                    if derivation:
+                    model_derivation=bool(derivation and derivation.get('method')=='MODEL_ANNUAL_TREO_X_BASE_CASE_NDPR_SHARE')
+                    if model_derivation:
+                        if key!='average_annual_ndpr_product_t':raise ValueError('REVIEW_ANNUAL_DERIVATION_PARAMETER_MISMATCH')
+                        from .model_annual_derivation import validate_model_annual_derivation
+                        validate_model_annual_derivation(doc,review,study,derivation,value,evidence)
+                        parameter_methods[key]='MODEL_ASSUMPTION_DERIVED_ANNUAL_NDPR_NOT_DIRECT_REPORTED_OUTPUT'
+                    elif derivation:
                         expected='ANNUAL_PRODUCT_MASS_X_TREO_FRACTION' if key=='average_annual_treo_product_t' else 'ANNUAL_PRODUCT_MASS_X_TREO_FRACTION_X_NDPR_SHARE' if key=='average_annual_ndpr_product_t' else None
                         if derivation.get('method')!=expected:raise ValueError('REVIEW_ANNUAL_DERIVATION_PARAMETER_MISMATCH')
                         annual_product_derivation(derivation,value,study['annual_basis_evidence']['page'],evidence)
@@ -341,7 +347,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                         binding=study.get('parameter_bindings',{}).get(key)
                         if binding and binding.get('page')!=study['annual_basis_evidence']['page']:raise ValueError('REVIEW_CELL_EVIDENCE_PAGE_MISMATCH')
                         parameter_methods[key]=validate_cell(doc,binding,key,str(value),binding.get('original_unit') if binding else 'tpa',review['scope'],study.get('selected_scenario'))
-                    if key=='average_annual_ndpr_product_t' and not re.search(r'NdPr|Nd.Pr|Neodymium',annual_page,re.I):raise ValueError('REVIEW_NDPR_FORECAST_HEADER_MISSING')
+                    if key=='average_annual_ndpr_product_t' and not model_derivation and not re.search(r'NdPr|Nd.Pr|Neodymium',annual_page,re.I):raise ValueError('REVIEW_NDPR_FORECAST_HEADER_MISSING')
                 d=dict(case_id=review['review_id'],locator='physical PDF '+','.join(str(e['page']) for e in study['evidence']),
                     parameters=study['parameters'],parameter_derivations=study.get('parameter_derivations',{}),parameter_bindings=study.get('parameter_bindings',{}),parameter_review_methods=parameter_methods,review_id=review['review_id'],scope=review['scope'],effective_date_role=role)
                 studies.setdefault(pid,[]).append(dict(case_id=review['review_id'],project_id=pid,source_sha=sha,

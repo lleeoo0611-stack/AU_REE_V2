@@ -160,18 +160,22 @@
     "config/sources.json": "99319c889ce90704ffbfb145e1bb608d757823598b0158b81e1b166f0cbd95d7"
   },
   "artifact_hashes": {
-    "asx_discovery_reviews.json": "22a6a0f33432adf6f5b7be6ffc78723acae9f8516e38062a57be1ec73ce4ffe2",
-    "asx_project_identity_reviews.json": "f00303e57feef84b4d1031627cff03aee53c7d290cea3f0972c4389da87366cb",
-    "asx_source_reviews.json": "c061699dbca3990428098b731aef01c6f32ff1b036bb218f5626ae134f47c8f4",
     "audit.json": "6431fb4b6129193f0c8f36c09b22f692da12abfb6d55c16f8d31ea1fe705e51f",
-    "census_inventory.csv": "c4f2767cbce711d41c389d53eefb2945adc16f860d8b0f591b56f9e33f16f026",
     "cycle_review.json": "984e0d3da01ffbdb2afa23f9b83590d175e428acab0f78f53ba93effe0a8817c",
+    "README.md": "4a4ba3276bd698cd0abaee8028627a809bf86fbc44b70f09e3f3a05dfed5a83a"
+  },
+  "limitations": "Reviewer search declarations are recorded, not independently proven by the counter; no national completeness or remote CI claim.",
+  "source_replay_commit": "641f5d05f9243161e5d36901df42f98635bf5333",
+  "exported_csv_hashes": {
+    "專案總表.csv": "6ee5e061507e18eb45284aa67b2239651f66bbffcf599e77779af96f5a64f9c0",
     "field_provenance.csv": "a0f7253c8e8bf3686a8c31075dc924a8be4b9f5233f7cfb6399c00c0d58da35c",
     "missing_fields.csv": "b09ab3b37d3de865fe04eab04954f7d241ef292e5269d60f5383de29544b3528",
-    "README.md": "bb0225a57c558af4a79cea45f02983ee6f76663601019c5089dd935a08f97009",
-    "remaining_gap_reasons.csv": "381d194b9c12967b11adebf9fae1c9fa6dc492f711420d9a5f1598d8e0a7778d",
-    "summary.json": "647d3aa5d5e0f615d632313bb1457b2f16d7f448633f5be31c086af1890e7480",
-    "專案總表.csv": "6ee5e061507e18eb45284aa67b2239651f66bbffcf599e77779af96f5a64f9c0"
+    "census_inventory.csv": "c4f2767cbce711d41c389d53eefb2945adc16f860d8b0f591b56f9e33f16f026"
   },
-  "limitations": "Reviewer search declarations are recorded, not independently proven by the counter; no national completeness or remote CI claim."
+  "source_configuration_hashes": {
+    "config/asx_source_reviews.json": "c061699dbca3990428098b731aef01c6f32ff1b036bb218f5626ae134f47c8f4",
+    "config/asx_discovery_reviews.json": "22a6a0f33432adf6f5b7be6ffc78723acae9f8516e38062a57be1ec73ce4ffe2",
+    "config/asx_project_identity_reviews.json": "f00303e57feef84b4d1031627cff03aee53c7d290cea3f0972c4389da87366cb"
+  },
+  "compact_audit_only": true
 }

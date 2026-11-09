@@ -174,7 +174,7 @@
     {
       "input_row": 11,
       "input_name_sha256": "4973add7a18fb9f99b6676cc0593e5aad5e72f5f8a735edc7ea0377517801b0c",
-      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "status": "SOURCE_REVIEWED_EXISTING_PROJECT",
       "matched_project_ids": [
         "AU-cae6c11543b0da5f840d"
       ],
@@ -300,7 +300,7 @@
     {
       "input_row": 17,
       "input_name_sha256": "3e7642fe05df6c6f8f2f6cb2298ef5c82324bf7816b5ea0667be5cc29b012259",
-      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "status": "SOURCE_REVIEWED_EXISTING_PROJECT",
       "matched_project_ids": [
         "AU-1c907e00c797bf8b3ce1"
       ],
@@ -562,7 +562,7 @@
     {
       "input_row": 33,
       "input_name_sha256": "b8a41f7577292e16f92b9809b4633ee3274433723e0398e6e56ebb71b196bbf4",
-      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "status": "SOURCE_REVIEWED_EXISTING_PROJECT",
       "matched_project_ids": [
         "AU-3eaa906d8230334ef698"
       ],
@@ -613,7 +613,7 @@
     {
       "input_row": 36,
       "input_name_sha256": "4fe24b0dff4c8e23c5400fad54c414b50fc93fbd5019ab487ac6da55bf2a12a8",
-      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "status": "SOURCE_REVIEWED_EXISTING_PROJECT",
       "matched_project_ids": [
         "AU-2ab3e8eb7b5784e64f9b"
       ],
@@ -676,7 +676,7 @@
     {
       "input_row": 40,
       "input_name_sha256": "214dfda1db1be33a49459a931aa2e086c5c875314f67dc2cd56ccfbc3e65334f",
-      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "status": "SOURCE_REVIEWED_EXISTING_PROJECT",
       "matched_project_ids": [
         "AU-e50ba6a268ea89226495"
       ],
@@ -809,7 +809,7 @@
     {
       "input_row": 51,
       "input_name_sha256": "e868060ca0f53e6f0eb0d0ee385e2a25c566020e53863f1209b984d18d834cb6",
-      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "status": "SOURCE_REVIEWED_EXISTING_PROJECT",
       "matched_project_ids": [
         "AU-b31d00e2272ffa6ccbd3"
       ],
@@ -853,7 +853,7 @@
     {
       "input_row": 54,
       "input_name_sha256": "902010f69def01781de82908d76630e4f3b4ceb695c585376c07b79972301e82",
-      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "status": "SOURCE_REVIEWED_EXISTING_PROJECT",
       "matched_project_ids": [
         "AU-9d967ecaac6e02fc76a5"
       ],
@@ -887,10 +887,20 @@
     {
       "input_row": 56,
       "input_name_sha256": "f22ce7aa39bbbf2c64799879f79fd8776566f0993d2ab1ef67e27c93c96c92d8",
-      "status": "UNVERIFIED_EXTERNAL_LEAD",
-      "matched_project_ids": [],
-      "reason": "SEARCH_COMPLETED_NO_DATED_PRIMARY_PROJECT_IDENTITY_ADMITTED;UNVERIFIED_NOT_EVIDENCE_OF_ABSENCE",
-      "source_references": [],
+      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "matched_project_ids": [
+        "AU-d99cf357d160df73387c"
+      ],
+      "reason": "SOURCE_REVIEWED_ISSUER_PROJECT_IDENTITY;INPUT_COMPANY_OR_TICKER_NOT_IMPORTED;NO_AUTOMATIC_NUMERIC_IMPORT",
+      "source_references": [
+        {
+          "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5",
+          "source_url": "https://announcements.asx.com.au/asxpdf/20230922/pdf/05v5qdfqlg7vwx.pdf",
+          "locator": "physical PDF p1",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "scope": "Southern Cross Li-REE exploration project E77/3009-E77/3012 in Western Australia, GCX source-date reporting issuer. Not Zenith input pairing, not generic Southern Cross regional mines or Rankin Dome. Current ownership/status not inferred."
+        }
+      ],
       "search_ids": [
         9
       ]
@@ -984,10 +994,20 @@
     {
       "input_row": 64,
       "input_name_sha256": "8fdd5cdb185cdb2025b15ad5bf8a2b29aecfbe336340afc3cb4eaa45ec175aa6",
-      "status": "UNVERIFIED_EXTERNAL_LEAD",
-      "matched_project_ids": [],
-      "reason": "SEARCH_COMPLETED_NO_DATED_PRIMARY_PROJECT_IDENTITY_ADMITTED;UNVERIFIED_NOT_EVIDENCE_OF_ABSENCE",
-      "source_references": [],
+      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "matched_project_ids": [
+        "AU-c4391f8d2a6690076436"
+      ],
+      "reason": "SOURCE_REVIEWED_ISSUER_PROJECT_IDENTITY;INPUT_COMPANY_OR_TICKER_NOT_IMPORTED;NO_AUTOMATIC_NUMERIC_IMPORT",
+      "source_references": [
+        {
+          "source_sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+          "source_url": "https://wcsecure.weblink.com.au/pdf/NWM/02634405.pdf",
+          "locator": "physical PDF p1",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "scope": "Source-date Norwest reporting issuer for Arunta West REE project; not WA1 or real-time title certification"
+        }
+      ],
       "search_ids": [
         17
       ]
@@ -1098,10 +1118,20 @@
     {
       "input_row": 73,
       "input_name_sha256": "cea100a67c8ed13ba0be781334f3d9fe8914fd08269ee9dbb7b382e613ea9b7e",
-      "status": "UNVERIFIED_EXTERNAL_LEAD",
-      "matched_project_ids": [],
-      "reason": "SEARCH_COMPLETED_NO_DATED_PRIMARY_PROJECT_IDENTITY_ADMITTED;UNVERIFIED_NOT_EVIDENCE_OF_ABSENCE",
-      "source_references": [],
+      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "matched_project_ids": [
+        "AU-73549b8a9b1c6faf55eb"
+      ],
+      "reason": "SOURCE_REVIEWED_ISSUER_PROJECT_IDENTITY;INPUT_COMPANY_OR_TICKER_NOT_IMPORTED;NO_AUTOMATIC_NUMERIC_IMPORT",
+      "source_references": [
+        {
+          "source_sha256": "4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc",
+          "source_url": "https://announcements.asx.com.au/asxpdf/20230906/pdf/05tkl2byt4wfmn.pdf",
+          "locator": "physical PDF p4",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "scope": "Coburn mining and integrated mineral sands plant in Western Australia; monazite rare earths in zircon-in-concentrate product; source-date issuer association only, not current ownership or operating status. Ilmenite shipment and bulk HMC are not REO annual production."
+        }
+      ],
       "search_ids": [
         25
       ]
@@ -1120,10 +1150,20 @@
     {
       "input_row": 75,
       "input_name_sha256": "2497747807b3a9bd560a3adfdb1620ee66fbcf92bbb7aad0bf3bce5b81d569d8",
-      "status": "COMPANY_NAME_SCOPE_AMBIGUITY",
-      "matched_project_ids": [],
-      "reason": "ILUKA_ORIGINAL_CONFIRMS_OWN_WIM100;INPUT_WIM_RESOURCE_COMPANY_PAIR_NOT_VERIFIED;NO_AUTOMATIC_MERGE_WITH_AVONBANK",
-      "source_references": [],
+      "status": "SOURCE_REVIEWED_EXISTING_PROJECT",
+      "matched_project_ids": [
+        "AU-ff758cad5beb276d327d"
+      ],
+      "reason": "SOURCE_REVIEWED_ISSUER_PROJECT_IDENTITY;INPUT_COMPANY_OR_TICKER_NOT_IMPORTED;NO_AUTOMATIC_NUMERIC_IMPORT",
+      "source_references": [
+        {
+          "source_sha256": "c2a8b91970be9298bae77c8547268abd7f0969e8ceebeb7cf73530fa6d965e77",
+          "source_url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03053666",
+          "locator": "physical PDF p1",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "scope": "Wimmera Mineral Sands Project — Iluka WIM100; reporting issuer Iluka Resources Limited at 2026-01-29; historical issuer association is not current title; no resource or production inference"
+        }
+      ],
       "search_ids": [
         26
       ]
@@ -1131,7 +1171,7 @@
     {
       "input_row": 76,
       "input_name_sha256": "1d0f138e9ac8709803164f66fb22ca2272acbfcd89357b6a84e95a1ba92fbe0d",
-      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "status": "SOURCE_REVIEWED_EXISTING_PROJECT",
       "matched_project_ids": [
         "AU-630885ed0d74d8641d6c"
       ],
@@ -1152,7 +1192,7 @@
     {
       "input_row": 77,
       "input_name_sha256": "f972decacfee10393f4e390e2b2cc1bf44c9cfdc5c46f522816461e269b2ea20",
-      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "status": "SOURCE_REVIEWED_EXISTING_PROJECT",
       "matched_project_ids": [
         "AU-d1394abdef4c8d971c78"
       ],
@@ -1173,7 +1213,7 @@
     {
       "input_row": 78,
       "input_name_sha256": "8c22904e1d4cb1cd5572fa855e36048c70c318b468679da6332b0e5aca70a282",
-      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "status": "SOURCE_REVIEWED_EXISTING_PROJECT",
       "matched_project_ids": [
         "AU-d0827cf51def7e0014fc"
       ],
@@ -1286,7 +1326,7 @@
     {
       "input_row": 87,
       "input_name_sha256": "3a2f5cf80f3fe696b771b988563e7de37f485ef444c04b4eac051a2154a3ee48",
-      "status": "SOURCE_REVIEWED_NEW_PROJECT",
+      "status": "SOURCE_REVIEWED_EXISTING_PROJECT",
       "matched_project_ids": [
         "AU-81b21bdd06796fa2217d"
       ],
@@ -1338,5 +1378,6 @@
         40
       ]
     }
-  ]
+  ],
+  "comparison_baseline_commit": "bc6a90139d58d8ede2bed94321b58f393709edf5"
 }

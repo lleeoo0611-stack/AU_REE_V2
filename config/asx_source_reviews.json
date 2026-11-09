@@ -4490,7 +4490,8 @@
         "endpoint": "MREC",
         "element": "TREO_INCLUDING_Y",
         "parameters": {
-          "average_annual_treo_product_t": 8300
+          "average_annual_treo_product_t": 8300,
+          "average_annual_ndpr_product_t": 2056.74
         },
         "annual_basis_evidence": {
           "page": 21,
@@ -4507,6 +4508,14 @@
               "8,300",
               "9,300",
               "Process Design Basis"
+            ]
+          },
+          {
+            "page": 22,
+            "markers": [
+              "Key Rare Earth Distribution in MREC",
+              "19.27",
+              "5.51"
             ]
           }
         ],
@@ -4564,7 +4573,262 @@
             ]
           }
         },
-        "selected_scenario": "Base Case"
+        "selected_scenario": "Base Case",
+        "parameter_derivations": {
+          "average_annual_ndpr_product_t": {
+            "method": "MODEL_ANNUAL_TREO_X_BASE_CASE_NDPR_SHARE",
+            "profile": "JUPITER_SCOPING_BASE_CASE_MREC_TABLES_4_2_5_3",
+            "assurance": "MODEL_ASSUMPTION_DERIVED_NOT_DIRECT_REPORTED_OUTPUT",
+            "source_sha256": "5e88f8aaf0d5da1a9de7f64ec7628ffea48e1a22a7daf296b563e5ee5aa65328",
+            "statement_id": "review_jupiter_scoping_output202610",
+            "scope": "Jupiter Scoping Base Case107.3Mt scheduled feed14yr;MREC;8300tpa LOM average, not9300tpa nominal process-design basis",
+            "effective_date": "2026-10-20",
+            "annual_model_proof": {
+              "page": 21,
+              "bbox": [
+                71,
+                245,
+                524,
+                328
+              ],
+              "text": "Note: The Base Case reflects the metallurgical recovery and production assumptions adopted in the Scoping Study financial model. The Scoping Study Process Design Basis reflects the process design criteria developed for the Scoping Study and represents targeted process performance subject to further metallurgical testwork, optimisation and validation. Base Case annual production represents the life-of-mine annual average and includes ramp-up and scheduling effects, while Scoping Study Process Design Basis production represents performance at the nominal 8.0 Mtpa processing rate.",
+              "evidence": {
+                "page": 21,
+                "markers": [
+                  "Base Case annual production represents the life-of-mine annual average"
+                ]
+              }
+            },
+            "composition_model_proof": {
+              "page": 22,
+              "bbox": [
+                71,
+                325,
+                518,
+                395
+              ],
+              "text": "The distribution of the four principal magnet rare earth oxides and yttrium in the Base Case MREC is presented in Table 5.3. Yttrium is separately presented due to its material contribution to the Base Case gross MREC basket value. Based on the Base Case price assumptions, the four principal magnet rare earth oxides contribute approximately 59% of the gross MREC basket value, with yttrium contributing approximately 28%.",
+              "evidence": {
+                "page": 22,
+                "markers": [
+                  "The distribution of the four principal magnet rare earth oxides"
+                ]
+              }
+            },
+            "composition_origin_proof": {
+              "page": 22,
+              "bbox": [
+                71,
+                261,
+                528,
+                318
+              ],
+              "text": "The Base Case MREC composition is based on the high-grade MREC produced by Australian Minmet Metallurgical Laboratories (AMML), as reported in Critica’s ASX announcement dated 17 September 2026, Critica Delivers Second High-Grade 58% TREO MREC. This product graded 57.9% TREO, with approximately 15.0% magnet rare earth oxides, representing 25.9% of contained TREO.",
+              "evidence": {
+                "page": 22,
+                "markers": [
+                  "The Base Case MREC composition is based on"
+                ]
+              }
+            },
+            "inputs": [
+              {
+                "name": "annual_treo_t",
+                "value": 8300,
+                "unit": "tpa",
+                "original_token": "8,300",
+                "rounding_half_width": 50,
+                "evidence": {
+                  "page": 21,
+                  "markers": [
+                    "8,300",
+                    "Base Case"
+                  ]
+                },
+                "cell_binding": {
+                  "field": "average_annual_treo_product_t",
+                  "scope": "Jupiter Scoping Base Case107.3Mt scheduled feed14yr;MREC;8300tpa LOM average, not9300tpa nominal process-design basis",
+                  "page": 21,
+                  "mode": "native_cell",
+                  "original_unit": "tpa",
+                  "table_bbox": [
+                    70.6240020751953,
+                    49.72754058837891,
+                    585.3200073242188,
+                    221.188720703125
+                  ],
+                  "table_label": "Table 4.2 | Processing and Production Assumptions",
+                  "table_label_bbox": [
+                    71.6240020751953,
+                    50.72754058837891,
+                    302.01544799804685,
+                    63.688700103759764
+                  ],
+                  "row_bbox": [
+                    70.6240020751953,
+                    205.92755737304688,
+                    585.3200073242188,
+                    220.188720703125
+                  ],
+                  "row_label": "Average annual contained TREO in MREC",
+                  "row_label_bbox": [
+                    77.26400146484374,
+                    206.62755737304687,
+                    261.41766967773435,
+                    219.588720703125
+                  ],
+                  "column_bbox": [
+                    351.7099853515625,
+                    49.72754058837891,
+                    401.9096435546875,
+                    221.188720703125
+                  ],
+                  "column_label": "Base Case",
+                  "column_label_bbox": [
+                    352.7099853515625,
+                    69.92755279541015,
+                    400.9096435546875,
+                    82.88871612548829
+                  ],
+                  "unit_bbox": [
+                    309.1299987792969,
+                    206.62755737304687,
+                    323.9835571289062,
+                    219.588720703125
+                  ]
+                },
+                "source_sha256": "5e88f8aaf0d5da1a9de7f64ec7628ffea48e1a22a7daf296b563e5ee5aa65328",
+                "statement_id": "review_jupiter_scoping_output202610",
+                "scope": "Jupiter Scoping Base Case107.3Mt scheduled feed14yr;MREC;8300tpa LOM average, not9300tpa nominal process-design basis",
+                "effective_date": "2026-10-20"
+              },
+              {
+                "name": "nd_percent_of_treo",
+                "basis": "Nd2O3",
+                "value": 19.27,
+                "unit": "%TREO",
+                "original_token": "19.27",
+                "rounding_half_width": 0.005,
+                "evidence": {
+                  "page": 22,
+                  "markers": [
+                    "19.27",
+                    "Key Rare Earth Distribution in MREC"
+                  ]
+                },
+                "cell_binding": {
+                  "mode": "native_cell",
+                  "scope": "Jupiter Scoping Base Case107.3Mt scheduled feed14yr;MREC;8300tpa LOM average, not9300tpa nominal process-design basis",
+                  "page": 22,
+                  "table_bbox": [
+                    71,
+                    402,
+                    523,
+                    559
+                  ],
+                  "row_bbox": [
+                    73,
+                    442,
+                    522,
+                    457
+                  ],
+                  "column_bbox": [
+                    410,
+                    424,
+                    511,
+                    559
+                  ],
+                  "table_label_bbox": [
+                    71,
+                    403,
+                    282,
+                    418
+                  ],
+                  "column_label_bbox": [
+                    412,
+                    425,
+                    510,
+                    440
+                  ],
+                  "row_label_bbox": [
+                    76,
+                    442,
+                    170,
+                    457
+                  ]
+                },
+                "source_sha256": "5e88f8aaf0d5da1a9de7f64ec7628ffea48e1a22a7daf296b563e5ee5aa65328",
+                "statement_id": "review_jupiter_scoping_output202610",
+                "scope": "Jupiter Scoping Base Case107.3Mt scheduled feed14yr;MREC;8300tpa LOM average, not9300tpa nominal process-design basis",
+                "effective_date": "2026-10-20"
+              },
+              {
+                "name": "pr_percent_of_treo",
+                "basis": "Pr6O11",
+                "value": 5.51,
+                "unit": "%TREO",
+                "original_token": "5.51",
+                "rounding_half_width": 0.005,
+                "evidence": {
+                  "page": 22,
+                  "markers": [
+                    "5.51",
+                    "Key Rare Earth Distribution in MREC"
+                  ]
+                },
+                "cell_binding": {
+                  "mode": "native_cell",
+                  "scope": "Jupiter Scoping Base Case107.3Mt scheduled feed14yr;MREC;8300tpa LOM average, not9300tpa nominal process-design basis",
+                  "page": 22,
+                  "table_bbox": [
+                    71,
+                    402,
+                    523,
+                    559
+                  ],
+                  "row_bbox": [
+                    73,
+                    462,
+                    522,
+                    477
+                  ],
+                  "column_bbox": [
+                    410,
+                    424,
+                    511,
+                    559
+                  ],
+                  "table_label_bbox": [
+                    71,
+                    403,
+                    282,
+                    418
+                  ],
+                  "column_label_bbox": [
+                    412,
+                    425,
+                    510,
+                    440
+                  ],
+                  "row_label_bbox": [
+                    76,
+                    462,
+                    183,
+                    477
+                  ]
+                },
+                "source_sha256": "5e88f8aaf0d5da1a9de7f64ec7628ffea48e1a22a7daf296b563e5ee5aa65328",
+                "statement_id": "review_jupiter_scoping_output202610",
+                "scope": "Jupiter Scoping Base Case107.3Mt scheduled feed14yr;MREC;8300tpa LOM average, not9300tpa nominal process-design basis",
+                "effective_date": "2026-10-20"
+              }
+            ],
+            "rounding_interval_tpa": [
+              2043.525,
+              2069.965
+            ]
+          }
+        }
       },
       "attributes": [
         {
@@ -4592,17 +4856,6 @@
         }
       ],
       "deferred_fields": [
-        {
-          "column": "預估年產NdPr_t_per_year",
-          "reason": "TOTAL_TREO_FORECAST_DOES_NOT_ESTABLISH_COMPONENT_ANNUAL_OUTPUT",
-          "evidence": {
-            "page": 21,
-            "markers": [
-              "Average annual contained TREO in MREC",
-              "8,300"
-            ]
-          }
-        },
         {
           "column": "預估年產重稀土_t_per_year",
           "reason": "TOTAL_TREO_FORECAST_DOES_NOT_ESTABLISH_COMPONENT_ANNUAL_OUTPUT",

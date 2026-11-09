@@ -33,7 +33,7 @@
     "NdPr蘊藏量_kt_需兩者皆公布": 17,
     "完整重稀土組合蘊藏量_kt_需8元素皆公布": 11,
     "預估年產TREO_t_per_year": 6,
-    "預估年產NdPr_t_per_year": 6,
+    "預估年產NdPr_t_per_year": 7,
     "預估年產重稀土_t_per_year": 0,
     "產品/產出": 11,
     "有TREO資源估計": 31,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "cbcec1c9e2b908b0996aaaf481e325eeaf66e196f6c707a519a36d2c71407e72",
-    "field_provenance.csv": "fa3301ef2b5e50b1b880a87f52a3f65ebbd719ea712ffb336dabc0a4aabd7692",
-    "missing_fields.csv": "6061cd013e1861012a4517d1c0f16a3846f431ceafd3edc3e49b7d9bb0ee9212",
+    "專案總表.csv": "b3051b9f0b5d4156a1a3757612bb852900321aa7ca838e7051eb2b1e09abb3aa",
+    "field_provenance.csv": "f42c2ff71e01e32072af82c229df0e9e903d9de39ee12d8dd6bcff7bdbb6bc70",
+    "missing_fields.csv": "88b6ab6cbdfa49d89af93d74f4dd1daa12232e110c79a1b7388ad559b93ce0fb",
     "census_inventory.csv": "376cb2c755ae14d93203a46ce26ccd73bd3d50d3e48f2e74d44670f935364e41"
   },
-  "review_ledger_sha256": "c061699dbca3990428098b731aef01c6f32ff1b036bb218f5626ae134f47c8f4",
+  "review_ledger_sha256": "017eeda7ef46b2f00594acad03bd7028a0cc1ebd25a1f263e55d1ac71cd31b7a",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -281,6 +281,7 @@
       "status": "VALIDATED",
       "scope": "Jupiter Scoping Base Case107.3Mt scheduled feed14yr;MREC;8300tpa LOM average, not9300tpa nominal process-design basis",
       "review_methods": [
+        "MODEL_ASSUMPTION_DERIVED_ANNUAL_NDPR_NOT_DIRECT_REPORTED_OUTPUT",
         "NATIVE_TABLE_ROW_COLUMN_CELL_BINDING"
       ],
       "resource_selection_role": null,
@@ -289,7 +290,7 @@
       "public_release_date_unknown": false,
       "publication_date_role": "REVIEWED_RELEASE_HEADER",
       "new_observations": 0,
-      "forecast_parameters": 1,
+      "forecast_parameters": 2,
       "effective_date": "2026-10-20",
       "effective_date_role": "DATED_ENGINEERING_FORECAST",
       "date_precision": "DAY",
@@ -10916,9 +10917,9 @@
   "base_contract_columns": 52,
   "base_projection_hashes": {
     "census_inventory.csv": "376cb2c755ae14d93203a46ce26ccd73bd3d50d3e48f2e74d44670f935364e41",
-    "field_provenance.csv": "a930fadadaa99e15c951976f1230ba880d7bfb1a7f04e4b07a6c3661e51fab83",
-    "missing_fields.csv": "4a8f78efc8bbecd336235a880386f9c6dc9a03b98b37fa143d3c30727d06cbb3",
-    "專案總表.csv": "e6012cb192c742cb67a9902ee78684c5908ad415b8b562ff8ebdfcbe2c334166"
+    "field_provenance.csv": "fe32ab76a92376aafcf56eb163b20bfe3bd6cdbaad304718752c3267111d2fed",
+    "missing_fields.csv": "9c7dc3dbadffa764581e87fbb01992a059681a005ce304009d776299aa28f9b8",
+    "專案總表.csv": "7bbcdafbac9a238b04a259528d2a0878da404af49faf470f339e9144e27ef88a"
   },
   "identity_ledger_sha256": "c9bc808d4e9b657c6151fab8be4a14505b03dddb587382cfc663a9e8dbcd10e7",
   "identity_merges": [],

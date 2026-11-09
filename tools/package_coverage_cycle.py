@@ -10,6 +10,33 @@ from au_ree_v2.iteration_review import audit_summary, review_coverage_cycle
 from au_ree_v2.store import filehash
 
 
+def compact_cycle(out, source_commit):
+    """Keep audit indexes; the published current projection owns the data files.
+
+    Only the explicit generated files below are removed. Their hashes and the
+    commit holding the corresponding source configuration remain in the receipt.
+    """
+    out = Path(out)
+    path = out/'validation.json'
+    validation = json.loads(path.read_text('utf8'))
+    outputs = ('專案總表.csv', 'field_provenance.csv', 'missing_fields.csv', 'census_inventory.csv')
+    hashes = validation['current_integrity']['output_hashes']
+    if set(hashes) != set(outputs):
+        raise ValueError('COMPACT_OUTPUT_CONTRACT_REQUIRED')
+    if any(filehash(out/name) != hashes[name] for name in outputs):
+        raise ValueError('COMPACT_OUTPUT_HASH_MISMATCH')
+    validation['source_replay_commit'] = source_commit
+    validation['exported_csv_hashes'] = validation['current_integrity']['output_hashes']
+    ledgers = ('asx_source_reviews.json', 'asx_discovery_reviews.json', 'asx_project_identity_reviews.json')
+    validation['source_configuration_hashes'] = {'config/'+name:filehash(out/name) for name in ledgers}
+    for name in (*outputs, 'summary.json', *ledgers, 'remaining_gap_reasons.csv'):
+        (out/name).unlink()
+    (out/'README.md').write_text('# Compact coverage audit\n\nThis folder retains cycle counts, source/configuration hashes, tests, reproducibility and stopping review. The authoritative table and cell provenance are in results/asx-current. Historical configuration is available at source_replay_commit; no duplicate historical table is retained here.\n', encoding='utf8', newline='\n')
+    validation['compact_audit_only'] = True
+    validation['artifact_hashes'] = {p.name:filehash(p) for p in out.iterdir() if p.is_file() and p.name!='validation.json'}
+    path.write_text(json.dumps(validation, ensure_ascii=False, indent=2)+'\n', encoding='utf8')
+
+
 def package(before, after, repeat, manifest, snapshots, test_report, out):
     before, after, repeat, snapshots, out = map(Path, (before, after, repeat, snapshots, out))
     out.mkdir(parents=True, exist_ok=True)
