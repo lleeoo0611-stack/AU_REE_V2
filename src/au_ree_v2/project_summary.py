@@ -93,9 +93,12 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
             entry.update(effective_date=matches[0]['effective_date'] if matches else '',
                 effective_date_role=matches[0]['effective_date_role'] if matches else '',
                 date_precision=matches[0]['date_precision'] if matches else '',review_ids=canonical([r['review_id'] for r in matches]),
-                acquired_through=selected.get(sha,{}).get('available_date',''))
+                acquired_through=selected.get(sha,{}).get('available_date',''),
+                review_methods=canonical(sorted({m for receipt in matches for m in receipt.get('review_methods',[])})))
             entry.update(publication_date=selected.get(sha,{}).get('publication_date',''),
                 publication_date_role=selected.get(sha,{}).get('publication_date_role',''),document_issue_date=selected.get(sha,{}).get('document_issue_date',''))
+        # Current-only provenance: a later scoped replacement supersedes this cell.
+        trace[:]=[r for r in trace if (r['project_id'],r['column'])!=(pid,column)]
         trace.append(entry)
     try:
         active=claim_evidence_ids(claims)
@@ -270,7 +273,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
             w=csv.DictWriter(f,fields);w.writeheader();w.writerows(data)
     write('專案總表.csv',rows,columns)
     write('field_provenance.csv',trace,['project_id','column','value','source_sha256','source_url','locator','method','scope','observation_ids']+
-        (['effective_date','effective_date_role','date_precision','review_ids','acquired_through','publication_date','publication_date_role','document_issue_date'] if review_ledger else []))
+        (['effective_date','effective_date_role','date_precision','review_ids','acquired_through','publication_date','publication_date_role','document_issue_date','review_methods'] if review_ledger else []))
     write('missing_fields.csv',diagnostics,['project_id','column','reason']+(['source_sha256','physical_page','review_id'] if review_ledger else []))
     write('census_inventory.csv',inventory,['entity_id','kind','name','included_in_project_summary','source_sha256','unit_of_analysis'])
     result=dict(version='census-project-summary-v1',cutoff=cutoff,rows=len(rows),columns=len(columns),
@@ -287,6 +290,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
             acquired_through=supplement['acquired_through'],validated_reviews=supplement['receipts'],
             projection='READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE')
         result['limitations'].remove('NO_AUTOMATIC_PROMOTION_OF_NEW_ASX_CANDIDATES')
+        result['limitations'].append('IMAGE_CELL_TRANSCRIPTIONS_ARE_VISUALLY_REVIEWED_NOT_INDEPENDENT_OCR')
         result['limitations'].append('ONLY_SOURCE_REVIEW_LEDGER_VALUES_PROMOTED;NOT_FORMAL_C1_OR_INDEPENDENT_APPROVAL')
     (out/'summary.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     return result
