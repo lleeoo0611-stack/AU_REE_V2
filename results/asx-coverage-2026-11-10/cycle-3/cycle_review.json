@@ -1,0 +1,123 @@
+{
+  "version": "coverage-cycle-review-v1",
+  "cycle_id": "cycle-3",
+  "current": {
+    "projects": 59,
+    "columns": 53,
+    "filled_cells": 1236,
+    "total_cells": 3127,
+    "remaining_blank_cells": 1891,
+    "scientific_columns": [
+      "礦石蘊藏量_Mt",
+      "TREO品位_pct",
+      "總TREO蘊藏量_kt",
+      "磁鐵稀土氧化物蘊藏量_kt",
+      "磁鐵稀土佔TREO_pct",
+      "NdPr蘊藏量_kt_需兩者皆公布",
+      "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+      "預估年產TREO_t_per_year",
+      "預估年產NdPr_t_per_year",
+      "預估年產重稀土_t_per_year",
+      "La2O3_氧化鑭_kt",
+      "CeO2_氧化鈰_kt",
+      "Pr6O11_氧化鐠_kt",
+      "Nd2O3_氧化釹_kt",
+      "Sm2O3_氧化釤_kt",
+      "Eu2O3_氧化銪_kt",
+      "Gd2O3_氧化釓_kt",
+      "Tb4O7_氧化鋱_kt",
+      "Dy2O3_氧化鏑_kt",
+      "Ho2O3_氧化鈥_kt",
+      "Er2O3_氧化鉺_kt",
+      "Tm2O3_氧化銩_kt",
+      "Yb2O3_氧化鐿_kt",
+      "Lu2O3_氧化鎦_kt",
+      "Y2O3_氧化釔_kt"
+    ],
+    "scientific_filled_cells": 370,
+    "scientific_total_cells": 1475,
+    "output_hashes": {
+      "專案總表.csv": "cbcec1c9e2b908b0996aaaf481e325eeaf66e196f6c707a519a36d2c71407e72",
+      "field_provenance.csv": "fa3301ef2b5e50b1b880a87f52a3f65ebbd719ea712ffb336dabc0a4aabd7692",
+      "missing_fields.csv": "6061cd013e1861012a4517d1c0f16a3846f431ceafd3edc3e49b7d9bb0ee9212",
+      "census_inventory.csv": "376cb2c755ae14d93203a46ce26ccd73bd3d50d3e48f2e74d44670f935364e41"
+    },
+    "provenance_complete": true,
+    "missing_diagnostics_complete": true
+  },
+  "existing_projects": {
+    "newly_filled_cells": 0,
+    "scientific_newly_filled_cells": 0,
+    "updated_value_cells": 0,
+    "withdrawn_cells": 0,
+    "scientific_withdrawn_cells": 0,
+    "numeric_format_only_cells": 0,
+    "net_filled_cell_increase": 0
+  },
+  "added_projects": {
+    "project_ids": [
+      "AU-c4391f8d2a6690076436"
+    ],
+    "count": 1,
+    "filled_cells": 11,
+    "scientific_filled_cells": 0,
+    "identity_and_other_metadata_cells": 11
+  },
+  "removed_projects": {
+    "project_ids": [],
+    "filled_cells": 0,
+    "explanations": []
+  },
+  "total_filled_cell_delta": 11,
+  "stopping_rule": {
+    "threshold": 3,
+    "operator": "<",
+    "newly_filled_cells": 11,
+    "scientific_newly_filled_cells": 0,
+    "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
+    "eligible": true,
+    "stop": false,
+    "incomplete": [],
+    "decision": "CONTINUE"
+  },
+  "baseline_csv_sha256": "6ee5e061507e18eb45284aa67b2239651f66bbffcf599e77779af96f5a64f9c0",
+  "current_csv_sha256": "cbcec1c9e2b908b0996aaaf481e325eeaf66e196f6c707a519a36d2c71407e72",
+  "review_manifest": {
+    "cycle_id": "cycle-3",
+    "tracks": {
+      "candidates": {
+        "completed": true,
+        "records": [
+          {
+            "query": "sha256:cf09e63eb7459d93b6bf81f1e6250a13a59cf4604ec664740fcf0467deba7c59",
+            "disposition": "Admit Norwest Arunta West using 2023-02-22 original p1,p2,p20; E80/5031 distinct from WA1 Luni; all four original followups reviewed, Franklyn already admitted, three remain pending"
+          }
+        ]
+      },
+      "numeric": {
+        "completed": true,
+        "records": [
+          {
+            "query": "sha256:2e2d2a621c14a8ba624c32fae12766661f77ed7ad9bb51dbb340f897c4e28bac",
+            "disposition": "No additional compatible number; refinery mixed-feed production, HM mass, intercepts and unsupported component splits withheld"
+          }
+        ]
+      }
+    },
+    "validation": {
+      "sources": {
+        "passed": true,
+        "evidence": "Complete export replay; three source-ledger hashes verified"
+      },
+      "tests": {
+        "passed": true,
+        "evidence": "52ca4d97cb7a1b55b027ee6dd71059f6db9ee41e7d65164b6b24054ee60fb015"
+      },
+      "reproducibility": {
+        "passed": true,
+        "evidence": "All four CSVs match independent repeated export"
+      }
+    }
+  },
+  "limitations": "Search/source/test completion is declared by the reviewer manifest; table integrity is independently checked. STOP means marginal gain below threshold, not complete coverage."
+}

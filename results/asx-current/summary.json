@@ -1,23 +1,23 @@
 {
   "version": "census-project-summary-v3-asx-identity",
   "cutoff": "2026-11-05",
-  "rows": 58,
+  "rows": 59,
   "columns": 53,
-  "unique_project_ids": 58,
+  "unique_project_ids": 59,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "claims_sha256": "11bfc4842e4b1d391ff220d39d0d17ad000a645ca6ed19dad11294b3408940f2",
   "snapshot_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
   "configuration_sha256": "92774d210b9d5b55a3b7ced161381be1cb52a5a3959ea4e4a284bf554fb5ed1a",
   "columns_sha256": "f6389bc0ace6cccac5ef34ae0ffd651403e4dbec5fd9d9ee7602f22404ed5223",
   "filled_counts": {
-    "專案ID": 58,
-    "開發商": 57,
+    "專案ID": 59,
+    "開發商": 58,
     "未上市公司": 11,
-    "專案名稱": 58,
-    "所在地_中文": 58,
-    "所在地_英文": 58,
-    "國家": 58,
-    "州省地區": 58,
+    "專案名稱": 59,
+    "所在地_中文": 59,
+    "所在地_英文": 59,
+    "國家": 59,
+    "州省地區": 59,
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
@@ -37,9 +37,9 @@
     "預估年產重稀土_t_per_year": 0,
     "產品/產出": 11,
     "有TREO資源估計": 31,
-    "有來源文件": 56,
-    "資料來源名稱": 58,
-    "資料來源URL": 58,
+    "有來源文件": 57,
+    "資料來源名稱": 59,
+    "資料來源URL": 59,
     "已公布元素數_共15項": 18,
     "已公布元素總和_kt": 18,
     "元素總和/TREO": 16,
@@ -62,9 +62,9 @@
     "Yb2O3_氧化鐿_kt": 11,
     "Lu2O3_氧化鎦_kt": 12,
     "Y2O3_氧化釔_kt": 13,
-    "ASX代碼": 46
+    "ASX代碼": 47
   },
-  "verified_source_hashes": 97,
+  "verified_source_hashes": 98,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -74,7 +74,7 @@
     "PROJECT": 33,
     "SITE": 766,
     "DEPOSIT": 301,
-    "REVIEWED_PROJECT_EXTENSION": 25,
+    "REVIEWED_PROJECT_EXTENSION": 26,
     "DEPOSIT_SCOPE": 27,
     "PROSPECT": 191,
     "PROJECT_PROGRAM": 1,
@@ -94,10 +94,10 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "6ee5e061507e18eb45284aa67b2239651f66bbffcf599e77779af96f5a64f9c0",
-    "field_provenance.csv": "a0f7253c8e8bf3686a8c31075dc924a8be4b9f5233f7cfb6399c00c0d58da35c",
-    "missing_fields.csv": "b09ab3b37d3de865fe04eab04954f7d241ef292e5269d60f5383de29544b3528",
-    "census_inventory.csv": "c4f2767cbce711d41c389d53eefb2945adc16f860d8b0f591b56f9e33f16f026"
+    "專案總表.csv": "cbcec1c9e2b908b0996aaaf481e325eeaf66e196f6c707a519a36d2c71407e72",
+    "field_provenance.csv": "fa3301ef2b5e50b1b880a87f52a3f65ebbd719ea712ffb336dabc0a4aabd7692",
+    "missing_fields.csv": "6061cd013e1861012a4517d1c0f16a3846f431ceafd3edc3e49b7d9bb0ee9212",
+    "census_inventory.csv": "376cb2c755ae14d93203a46ce26ccd73bd3d50d3e48f2e74d44670f935364e41"
   },
   "review_ledger_sha256": "c061699dbca3990428098b731aef01c6f32ff1b036bb218f5626ae134f47c8f4",
   "acquired_through": "2026-11-10",
@@ -1493,7 +1493,7 @@
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "22a6a0f33432adf6f5b7be6ffc78723acae9f8516e38062a57be1ec73ce4ffe2",
+  "discovery_ledger_sha256": "921692e500062d0efcdb79ac74b8e0ae7cbf5e40abe0ea83f59745c73496aaa1",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -10559,20 +10559,370 @@
           }
         }
       ]
+    },
+    {
+      "candidate_key": "arunta-west-norwest",
+      "name": "Arunta West REE Project — Norwest",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_AND_TENEMENT_BOUND_REE_PROJECT;NOT_WA1_LUNI_OR_OTHER_WEST_ARUNTA_SCOPE",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "path": "data/snapshots/eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2.pdf",
+          "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+          "url": "https://wcsecure.weblink.com.au/pdf/NWM/02634405.pdf",
+          "kind": "pdf",
+          "asset_set": "coverage_fresh",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "22 February 2023",
+                "ASX: NWM",
+                "Arunta West Project"
+              ]
+            },
+            {
+              "page": 2,
+              "markers": [
+                "Norwest Minerals Limited",
+                "Arunta West Project",
+                "Western Australia",
+                "100% owned"
+              ]
+            },
+            {
+              "page": 20,
+              "markers": [
+                "E 80/5031"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-c4391f8d2a6690076436",
+      "scope": "Norwest 840 km2 Arunta West REE exploration project, Western Australia, E80/5031 source scope in 22 February 2023 original. Historical project/reporting issuer identity, not current title continuity. RC drill intersections are not a global MRE or average grade.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "norwest_arunta_20230222",
+        "publication_date": "2023-02-22",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "22 February 2023"
+          ]
+        },
+        "name_marker": "Arunta West Project",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "project_evidence": {
+          "page": 2,
+          "markers": [
+            "Arunta West Project",
+            "Western Australia"
+          ]
+        },
+        "developer": {
+          "value": "Norwest Minerals Limited",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Norwest Minerals Limited"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "ARUNTA_WEST_NWM_DRILL_INTERSECTIONS_NOT_GLOBAL_MRE_OR_RESOURCE_COMPOSITION;NO_ENGINEERING_ANNUAL_OUTPUT;WA1_LUNI_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "RC drill program",
+              "Significant REE mineralisation"
+            ]
+          }
+        }
+      ]
     }
   ],
   "original_canonical_projects": 33,
-  "reviewed_project_extensions": 25,
+  "reviewed_project_extensions": 26,
   "base_contract_columns": 52,
   "base_projection_hashes": {
-    "census_inventory.csv": "c4f2767cbce711d41c389d53eefb2945adc16f860d8b0f591b56f9e33f16f026",
-    "field_provenance.csv": "af874ff9683689ecda2e9074cb0e83bed633c35406e5c67b96ba696d1470e922",
-    "missing_fields.csv": "72af3788ea93aae7ce1153e169e6467983ef83cbfb742a5f0078cad4be9d7455",
-    "專案總表.csv": "494d9f01f8f4b98fb8c7f4c03ae3a65a86609b188d8f108281704f6d06bce9c5"
+    "census_inventory.csv": "376cb2c755ae14d93203a46ce26ccd73bd3d50d3e48f2e74d44670f935364e41",
+    "field_provenance.csv": "a930fadadaa99e15c951976f1230ba880d7bfb1a7f04e4b07a6c3661e51fab83",
+    "missing_fields.csv": "4a8f78efc8bbecd336235a880386f9c6dc9a03b98b37fa143d3c30727d06cbb3",
+    "專案總表.csv": "e6012cb192c742cb67a9902ee78684c5908ad415b8b562ff8ebdfcbe2c334166"
   },
-  "identity_ledger_sha256": "f00303e57feef84b4d1031627cff03aee53c7d290cea3f0972c4389da87366cb",
+  "identity_ledger_sha256": "c9bc808d4e9b657c6151fab8be4a14505b03dddb587382cfc663a9e8dbcd10e7",
   "identity_merges": [],
-  "validated_asx_codes": 46,
+  "validated_asx_codes": 47,
   "identity_sources": {
     "AU-12cc237ae66c7a6508ca": {
       "asset_set": "round3",
@@ -10899,6 +11249,38 @@
             "Franklyn Project in the Nackara Arc",
             "South Australia",
             "Rare earth element"
+          ]
+        }
+      ]
+    },
+    "AU-c4391f8d2a6690076436": {
+      "path": "data/snapshots/eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2.pdf",
+      "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+      "url": "https://wcsecure.weblink.com.au/pdf/NWM/02634405.pdf",
+      "kind": "pdf",
+      "asset_set": "coverage_fresh",
+      "evidence": [
+        {
+          "page": 1,
+          "markers": [
+            "22 February 2023",
+            "ASX: NWM",
+            "Arunta West Project"
+          ]
+        },
+        {
+          "page": 2,
+          "markers": [
+            "Norwest Minerals Limited",
+            "Arunta West Project",
+            "Western Australia",
+            "100% owned"
+          ]
+        },
+        {
+          "page": 20,
+          "markers": [
+            "E 80/5031"
           ]
         }
       ]

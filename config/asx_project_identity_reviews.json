@@ -332,6 +332,38 @@
           ]
         }
       ]
+    },
+    "coverage_arunta_nwm": {
+      "path": "data/snapshots/eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2.pdf",
+      "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+      "url": "https://wcsecure.weblink.com.au/pdf/NWM/02634405.pdf",
+      "kind": "pdf",
+      "asset_set": "coverage_fresh",
+      "evidence": [
+        {
+          "page": 1,
+          "markers": [
+            "22 February 2023",
+            "ASX: NWM",
+            "Arunta West Project"
+          ]
+        },
+        {
+          "page": 2,
+          "markers": [
+            "Norwest Minerals Limited",
+            "Arunta West Project",
+            "Western Australia",
+            "100% owned"
+          ]
+        },
+        {
+          "page": 20,
+          "markers": [
+            "E 80/5031"
+          ]
+        }
+      ]
     }
   },
   "codes": [
@@ -1946,6 +1978,42 @@
       },
       "code_label": "ASX: ITM",
       "scope": "Historical iTech reporting issuer for Franklyn at 2021-10-27; not real-time legal ownership"
+    },
+    {
+      "review_id": "coverage3_code_arunta_nwm",
+      "project_id": "AU-c4391f8d2a6690076436",
+      "code": "NWM",
+      "issuer_name": "Norwest Minerals Limited",
+      "source_key": "coverage_arunta_nwm",
+      "evidence_date": "2023-02-22",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "22 February 2023"
+        ]
+      },
+      "project_marker": "Arunta West",
+      "project_evidence": {
+        "page": 2,
+        "markers": [
+          "Arunta West Project",
+          "Western Australia"
+        ]
+      },
+      "issuer_evidence": {
+        "page": 2,
+        "markers": [
+          "Norwest Minerals Limited"
+        ]
+      },
+      "code_evidence": {
+        "page": 1,
+        "markers": [
+          "ASX: NWM"
+        ]
+      },
+      "code_label": "ASX: NWM",
+      "scope": "Source-date Norwest reporting issuer for Arunta West REE project; not WA1 or real-time title certification"
     }
   ],
   "merges": [],
