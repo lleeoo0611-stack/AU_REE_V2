@@ -247,13 +247,15 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                     if eo and len({o['value'] for o in eo})==1 and 0<=eo[0]['value']<=1000000:
                         elements[oxide]=bundle['value']['ore_mt']*eo[0]['value']*.001
                         column=next(c for c in columns if c.startswith(oxide+'_'))
-                        put(column,elements[oxide],sha,eo[0]['locator'],'ORE_MT_X_OXIDE_PPM_X_0_001',scope,[eo[0]['obs_id']]+ids)
+                        derived=json.loads(eo[0]['raw']).get('review_method','').startswith('DERIVED_SAME_ROW_TREO_MINUS_TREO_EX_CEO2')
+                        put(column,elements[oxide],sha,eo[0]['locator'],'DERIVED_SAME_ROW_TREO_MINUS_TREO_EX_CEO2_X_MATCHED_ORE_MT_X_0_001' if derived else 'ORE_MT_X_OXIDE_PPM_X_0_001',scope,[eo[0]['obs_id']]+ids)
                 if elements:
                     put('已公布元素數_共15項',len(elements),sha,scope=scope)
                     put('已公布元素總和_kt',sum(elements.values()),sha,method='SUM_AVAILABLE_MATCHED_OXIDES_NOT_TOTAL_RESOURCE',scope=scope)
                     if not is_partial and bundle['value']['contained_treo_kt']>0:put('元素總和/TREO',sum(elements.values())/bundle['value']['contained_treo_kt'],sha,method='AVAILABLE_OXIDE_SUM_DIVIDED_BY_MATCHED_TREO',scope=scope)
                     put('元素數據一致性檢查','以來源HM噸位與氧化物百分比推算；排除Sc；非來源公布TREO總量或品位；保留來源捨入區間' if is_partial and partial_contract.get('mode')=='BULK_ORE_AND_HM_HOSTED_OXIDES_ONLY' else
                         '來源使用Ce2O3；CeO2與TREO總量、品位及比率留白；僅加總相容氧化物' if is_partial else
+                        'CeO2由同列TREO與TREO-CeO2相減推導；來源值經捨入；部分元素未做15項閉合' if any(json.loads(o['raw']).get('review_method','').startswith('DERIVED_SAME_ROW_TREO_MINUS_TREO_EX_CEO2') for o in same) else
                         '部分元素；未進行完整15項閉合檢查' if len(elements)<15 else
                         '15項氧化物總和與TREO於來源有效位數範圍內一致' if supplement and sha in supplement['sources'] else
                         '15項已齊；須依來源有效位數檢查閉合',sha,scope=scope)

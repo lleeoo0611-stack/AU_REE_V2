@@ -6744,6 +6744,142 @@
             "scope_anchor": "TREO",
             "section_id": "p2-298.5-grade"
           }
+        },
+        {
+          "variable": "reported_resource_ce_ppm",
+          "value": 230.0,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "original_unit": "ppm",
+          "original_token": "230",
+          "original_token_role": "CALCULATED_NOT_A_SOURCE_REPORTED_TOKEN",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Total",
+              "890",
+              "660",
+              "TREO-CeO2 = TREO grade minus CeO2"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_oxide_difference",
+            "field": "reported_resource_ce_ppm",
+            "basis": "CeO2",
+            "scope": "Circle Valley Inferred pit-constrained global resource; >430ppm TREO-CeO2; US$145/kg basket pit; excludes13Mt high-grade nested subset",
+            "page": 2,
+            "section_id": "p2-298.5-grade",
+            "table_bbox": [
+              96.66999816894531,
+              280.5775451660156,
+              430.19000244140625,
+              348.11962890625
+            ],
+            "row_bbox": [
+              96.66999816894531,
+              333.57081909179686,
+              430.19000244140625,
+              346.91962890625
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              97.66999816894531,
+              334.2409973144531,
+              121.75630187988281,
+              346.260986328125
+            ],
+            "derivation_method": "TREO_PPM_MINUS_TREO_EX_CEO2_PPM",
+            "input_treo": {
+              "mode": "native_cell",
+              "field": "grade",
+              "basis": "TREO",
+              "scope": "Circle Valley Inferred pit-constrained global resource; >430ppm TREO-CeO2; US$145/kg basket pit; excludes13Mt high-grade nested subset",
+              "page": 2,
+              "original_unit": "ppm",
+              "unit_label": "(ppm)",
+              "table_bbox": [
+                96.66999816894531,
+                280.5775451660156,
+                430.19000244140625,
+                348.11962890625
+              ],
+              "table_label": "Table 1 – Circle Valley Rare Earth Mineral Resource",
+              "table_label_bbox": [
+                165.96807861328125,
+                281.0775451660156,
+                429.19000244140625,
+                294.32635498046875
+              ],
+              "row_bbox": [
+                96.66999816894531,
+                333.57081909179686,
+                430.19000244140625,
+                346.91962890625
+              ],
+              "row_label": "Total",
+              "row_label_bbox": [
+                97.66999816894531,
+                334.2409973144531,
+                121.75630187988281,
+                346.260986328125
+              ],
+              "column_bbox": [
+                221.44652557373047,
+                280.5775451660156,
+                298.7633972167969,
+                348.11962890625
+              ],
+              "column_label": "TREO",
+              "column_label_bbox": [
+                247.7899932861328,
+                298.4809875488281,
+                274.00299072265625,
+                310.5009765625
+              ],
+              "unit_bbox": [
+                246.58999633789062,
+                309.7610168457031,
+                275.506591796875,
+                321.781005859375
+              ],
+              "scope_anchor_bbox": [
+                247.7899932861328,
+                298.4809875488281,
+                274.00299072265625,
+                310.5009765625
+              ],
+              "scope_anchor": "TREO",
+              "section_id": "p2-298.5-grade"
+            },
+            "treo_token": "890",
+            "input_treo_ex_ceo2": {
+              "column_bbox": [
+                299,
+                280.5775451660156,
+                374.5,
+                348.11962890625
+              ],
+              "column_label_bbox": [
+                309.9,
+                298.4,
+                363,
+                310.7
+              ],
+              "unit_bbox": [
+                322.1,
+                309.7,
+                351.2,
+                321.9
+              ],
+              "token": "660"
+            },
+            "definition_bbox": [
+              71.8,
+              394.7,
+              263.6,
+              407.95
+            ]
+          }
         }
       ],
       "resource_categories": [
@@ -6810,7 +6946,8 @@
           "anchor": "TREO",
           "row_label": "Total"
         }
-      }
+      },
+      "composition_derivation_note": "CeO2 230ppm = same Total-row TREO890ppm minus TREO-CeO2660ppm; 98Mt x230ppm x0.001 =22.54kt. Published inputs are rounded; precision and estimation uncertainty not quantified. No Nd/Pr split, nested13Mt addition or full15 closure."
     },
     {
       "review_id": "mia_central_202405",
@@ -30461,6 +30598,209 @@
             ],
             "statement": "ionic clay-hosted",
             "literal_value": "ionic clay-hosted"
+          }
+        }
+      ]
+    },
+    {
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "source_key": "asx_review_donald_bfs_product_202603",
+      "source_sha256": "9d863e075258b45c84d5c29961c77331c6c1cff3ac0d6ee6f13d6b54fc6e999f",
+      "asset_set": "technical",
+      "path": "data/snapshots/9d863e075258b45c84d5c29961c77331c6c1cff3ac0d6ee6f13d6b54fc6e999f.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03077607",
+      "publication_date": "2026-03-31",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Donald"
+        ]
+      },
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "31 March 2026"
+        ],
+        "header_title": "Bankable Feasibility Study"
+      },
+      "review_id": "continuation3_stage_donald",
+      "statement_id": "continuation3_stage_donald",
+      "effective_date": "2026-03-31",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "31 March 2026"
+        ],
+        "header_title": "Bankable Feasibility Study"
+      },
+      "scope": "Literal disclosed study stage at document date; not current operating status or a new classification code",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發階段",
+          "value": "Bankable Feasibility Study（來源揭露：2026-03-31）",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Donald",
+              "Bankable Feasibility Study"
+            ]
+          },
+          "description_binding": {
+            "page": 1,
+            "project_marker": "Donald",
+            "project_bbox": [
+              261.45000610351565,
+              124.70997772216796,
+              314.29205932617185,
+              148.13997497558594
+            ],
+            "value_bbox": [
+              56.25000152587891,
+              124.70997772216796,
+              246.52022399902344,
+              148.13997497558594
+            ],
+            "statement": "bankable feasibility study",
+            "literal_value": "Bankable Feasibility Study"
+          }
+        }
+      ]
+    },
+    {
+      "project_id": "AU-3eb7131e4daea18a60a0",
+      "source_key": "r4_sandy_mitchell",
+      "source_sha256": "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089",
+      "asset_set": "round4",
+      "path": "data/snapshots/36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03159067",
+      "publication_date": "2026-10-29",
+      "identity_evidence": {
+        "page": 2,
+        "markers": [
+          "Sandy Mitchell",
+          "Queensland"
+        ]
+      },
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "29 October 2026"
+        ],
+        "header_title": "SANDY MITCHELL SCOPING STUDY:"
+      },
+      "review_id": "continuation3_stage_sandy_mitchell",
+      "statement_id": "continuation3_stage_sandy_mitchell",
+      "effective_date": "2026-10-29",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "29 October 2026"
+        ],
+        "header_title": "SANDY MITCHELL SCOPING STUDY:"
+      },
+      "scope": "Literal disclosed study stage at document date; not current operating status or a new classification code",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發階段",
+          "value": "Scoping Study Update（來源揭露：2026-10-29）",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Sandy Mitchell",
+              "Scoping Study Update"
+            ]
+          },
+          "description_binding": {
+            "page": 1,
+            "project_marker": "Sandy Mitchell",
+            "project_bbox": [
+              53.129998779296876,
+              117.88196716308593,
+              221.25658264160157,
+              142.33795776367188
+            ],
+            "value_bbox": [
+              77.2500015258789,
+              224.9075714111328,
+              180.99371948242188,
+              239.62198486328126
+            ],
+            "statement": "scoping study update",
+            "literal_value": "Scoping Study Update"
+          }
+        }
+      ]
+    },
+    {
+      "project_id": "AU-d9fb1b1e3e2ec9fa0851",
+      "source_key": "charley_jorc2013",
+      "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
+      "asset_set": "round6",
+      "path": "data/snapshots/40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70.pdf",
+      "url": "https://www.asx.com.au/asxpdf/20130415/pdf/42f7v06gx1svy4.pdf",
+      "publication_date": "2013-04-15",
+      "identity_evidence": {
+        "page": 2,
+        "markers": [
+          "Charley Creek",
+          "Scoping Study"
+        ]
+      },
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "15th April 2013"
+        ],
+        "header_title": "CHARLEY CREEK RARE EARTHS PROJECT"
+      },
+      "review_id": "continuation3_stage_charley_creek",
+      "statement_id": "continuation3_stage_charley_creek",
+      "effective_date": "2013-04-15",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "15th April 2013"
+        ],
+        "header_title": "CHARLEY CREEK RARE EARTHS PROJECT"
+      },
+      "scope": "Literal disclosed study stage at document date; not current operating status or a new classification code",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發階段",
+          "value": "Scoping Study（來源揭露：2013-04-15）",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Charley Creek",
+              "Scoping Study"
+            ]
+          },
+          "description_binding": {
+            "page": 2,
+            "project_marker": "Charley Creek",
+            "project_bbox": [
+              184.6500030517578,
+              131.38471374511718,
+              277.34381713867185,
+              145.66470947265626
+            ],
+            "value_bbox": [
+              223.59000549316406,
+              154.48468933105468,
+              318.58490600585935,
+              168.76468505859376
+            ],
+            "statement": "scoping study",
+            "literal_value": "Scoping Study"
           }
         }
       ]

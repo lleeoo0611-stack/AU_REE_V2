@@ -1,0 +1,805 @@
+{
+  "version": "coverage-cycle-review-v2",
+  "cycle_id": "continuation-3",
+  "current": {
+    "projects": 65,
+    "columns": 53,
+    "filled_cells": 1347,
+    "total_cells": 3445,
+    "remaining_blank_cells": 2098,
+    "scientific_columns": [
+      "礦石蘊藏量_Mt",
+      "TREO品位_pct",
+      "總TREO蘊藏量_kt",
+      "磁鐵稀土氧化物蘊藏量_kt",
+      "磁鐵稀土佔TREO_pct",
+      "NdPr蘊藏量_kt_需兩者皆公布",
+      "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+      "預估年產TREO_t_per_year",
+      "預估年產NdPr_t_per_year",
+      "預估年產重稀土_t_per_year",
+      "La2O3_氧化鑭_kt",
+      "CeO2_氧化鈰_kt",
+      "Pr6O11_氧化鐠_kt",
+      "Nd2O3_氧化釹_kt",
+      "Sm2O3_氧化釤_kt",
+      "Eu2O3_氧化銪_kt",
+      "Gd2O3_氧化釓_kt",
+      "Tb4O7_氧化鋱_kt",
+      "Dy2O3_氧化鏑_kt",
+      "Ho2O3_氧化鈥_kt",
+      "Er2O3_氧化鉺_kt",
+      "Tm2O3_氧化銩_kt",
+      "Yb2O3_氧化鐿_kt",
+      "Lu2O3_氧化鎦_kt",
+      "Y2O3_氧化釔_kt"
+    ],
+    "scientific_filled_cells": 372,
+    "scientific_total_cells": 1625,
+    "output_hashes": {
+      "專案總表.csv": "920b9d49dddde04cbe1d0375b431853306c2689ff556d88ceb3b0acbc600cf4d",
+      "field_provenance.csv": "5106335f09085b41c8738b74ca349ce56efa724ce8feab3028901d8dd5fc7703",
+      "missing_fields.csv": "c23073f0111a805d5d5627b59712ce324eb3dd1c6aa08952e36ba561413919a9",
+      "census_inventory.csv": "cf0ec68d69185c76c96fc6cd1d8c896438a58337a5e0c2df06513e312e70ddcf"
+    },
+    "provenance_complete": true,
+    "missing_diagnostics_complete": true
+  },
+  "existing_projects": {
+    "newly_filled_cells": 8,
+    "scientific_newly_filled_cells": 1,
+    "updated_value_cells": 0,
+    "withdrawn_cells": 0,
+    "scientific_withdrawn_cells": 0,
+    "numeric_format_only_cells": 0,
+    "net_filled_cell_increase": 8
+  },
+  "added_projects": {
+    "project_ids": [],
+    "count": 0,
+    "filled_cells": 0,
+    "scientific_filled_cells": 0,
+    "identity_and_other_metadata_cells": 0
+  },
+  "removed_projects": {
+    "project_ids": [],
+    "filled_cells": 0,
+    "explanations": []
+  },
+  "total_filled_cell_delta": 8,
+  "stopping_rule": {
+    "policy": "ZERO_NEW_VERIFIED_CELLS",
+    "threshold": 0,
+    "operator": "==",
+    "newly_filled_cells": 8,
+    "scientific_newly_filled_cells": 1,
+    "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
+    "eligible": false,
+    "stop": false,
+    "incomplete": [
+      "acquisition:unresolved_or_undeclared"
+    ],
+    "decision": "INCOMPLETE"
+  },
+  "baseline_csv_sha256": "c4ab322f7ae14714a1a1e80f787be6ebd28407cf2937f8705b0692c47487c745",
+  "current_csv_sha256": "920b9d49dddde04cbe1d0375b431853306c2689ff556d88ceb3b0acbc600cf4d",
+  "review_manifest": {
+    "cycle_id": "continuation-3",
+    "baseline_commit": "934f93ab3d6b8abd1d5ccf2ba4acea2dc04f90cd",
+    "series_baseline_projects": 59,
+    "original_comparison_baseline_commit": "bc6a90139d58d8ede2bed94321b58f393709edf5",
+    "stopping_policy": "ZERO_NEW_VERIFIED_CELLS",
+    "search_scope": {
+      "columns": [
+        "專案ID",
+        "開發商",
+        "未上市公司",
+        "專案名稱",
+        "所在地_中文",
+        "所在地_英文",
+        "國家",
+        "州省地區",
+        "緯度",
+        "經度",
+        "礦床型態代碼",
+        "礦床型態",
+        "開發階段代碼",
+        "開發階段類別",
+        "開發階段",
+        "礦石蘊藏量_Mt",
+        "TREO品位_pct",
+        "總TREO蘊藏量_kt",
+        "磁鐵稀土氧化物蘊藏量_kt",
+        "磁鐵稀土佔TREO_pct",
+        "NdPr蘊藏量_kt_需兩者皆公布",
+        "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+        "預估年產TREO_t_per_year",
+        "預估年產NdPr_t_per_year",
+        "預估年產重稀土_t_per_year",
+        "產品/產出",
+        "有TREO資源估計",
+        "有來源文件",
+        "資料來源名稱",
+        "資料來源URL",
+        "已公布元素數_共15項",
+        "已公布元素總和_kt",
+        "元素總和/TREO",
+        "元素數據一致性檢查",
+        "四項磁性元素皆公布",
+        "磁性元素重算值_NdPrTbDy_kt",
+        "重算磁性元素-HTML磁性稀土_kt",
+        "La2O3_氧化鑭_kt",
+        "CeO2_氧化鈰_kt",
+        "Pr6O11_氧化鐠_kt",
+        "Nd2O3_氧化釹_kt",
+        "Sm2O3_氧化釤_kt",
+        "Eu2O3_氧化銪_kt",
+        "Gd2O3_氧化釓_kt",
+        "Tb4O7_氧化鋱_kt",
+        "Dy2O3_氧化鏑_kt",
+        "Ho2O3_氧化鈥_kt",
+        "Er2O3_氧化鉺_kt",
+        "Tm2O3_氧化銩_kt",
+        "Yb2O3_氧化鐿_kt",
+        "Lu2O3_氧化鎦_kt",
+        "Y2O3_氧化釔_kt",
+        "ASX代碼"
+      ],
+      "all_blank_fields_reviewed": true
+    },
+    "unresolved_acquisition_actions": [
+      {
+        "url": "https://www.industry.gov.au/sites/default/files/2025-12/resources-and-energy-major-projects-2025.pdf",
+        "status": "TIMEOUT",
+        "interpretation": "NOT_ZERO_YIELD_OR_ABSENCE"
+      },
+      {
+        "url": "https://resourcingtheterritory.nt.gov.au/media/docs/commodity-factsheets/REE_Oct2025.pdf",
+        "status": "HTTP_403_RESTRICTED",
+        "interpretation": "NOT_ZERO_YIELD_OR_ABSENCE"
+      },
+      {
+        "url": "https://resourcingtheterritory.nt.gov.au/media/docs/rtt-reports/Critical-Minerals-and-Gold-in-the-Northern-Territory-2026.pdf",
+        "status": "HTTP_403_RESTRICTED",
+        "interpretation": "NOT_ZERO_YIELD_OR_ABSENCE"
+      }
+    ],
+    "tracks": {
+      "candidates": {
+        "completed": true,
+        "records": [
+          {
+            "query": "sha256:25fe6788d2a5c5e0ac95800e7ae000c6126310dccca0983adc6c3d7ba4def69e",
+            "disposition": "All-field gap and candidate review continued; Circle Valley same-row CeO2 subtraction and dated study stages verified; historical Cascade and Young River parent-scope leads queued for next round"
+          }
+        ]
+      },
+      "numeric": {
+        "completed": true,
+        "records": [
+          {
+            "query": "sha256:3ada0dbf4067a0fc24fe0cebd2cbe487f1a7cecc3be63b34fd0c10b7cdeaeec9",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "7b03fb8df3f35a3d91b8d222d31cc6508e436272b44bbc294724ead2762246c6"
+          },
+          {
+            "query": "sha256:2c28d65c87c70f12510f5f05f2b17da3cf2c4bc3dba882ee96b136894697b67a",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "6ecda5028fccc5689f8dddc1482cc5e078a8da42a2253370d6824657422c2eba"
+          },
+          {
+            "query": "sha256:c4f4c44b57f1248a831fd2e1d9888ae47e034edff9a0e3129f6e5d2e9297b825",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "c28e56bae0372154e5324287140021e50940419953314cf7b775a95d86cb5264"
+          },
+          {
+            "query": "sha256:c8321798eb21ec1de09b46d38a99992985ae23d9f2e2ce5edd45fd83facdcc68",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "d8b5f88836f380c463f534997f7945d7c1137b24dea48ca428fdeab62c3e14e7"
+          },
+          {
+            "query": "sha256:fe411eb4feead0e4b1f4c908c6c91da9e8874113c8a490a637a6cc02e00e4043",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "094c2934bd95be28916ea0aa4abf4c46da09aa5890d93ab4496ca2c6647a396f"
+          },
+          {
+            "query": "sha256:98d37d0a662976f708e01908c404aa46397052c94d0d94aadf079a9cb9255610",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "5a7de23f57396b7eeea523d1fdeffe602d7fa656f86bf95fe282841fdc7fa02c"
+          },
+          {
+            "query": "sha256:8a6e060b950b12f2c974eec880e69324d73be14de13cc0e035afa8962534945b",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "65e50bb803c1814bef88abcad37a15417d728438307ffde9c10774f74b27af56"
+          },
+          {
+            "query": "sha256:83eee6413461670ba84db5ecab66518016c8e32444802c9b9ec2174954e6c566",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "5de71b25f1e39fd0196ea80b1dd11207bd25a5025630752bef182db3642fc528"
+          },
+          {
+            "query": "sha256:08f47ba1cee420945bd4a2f34673733d8b0f1b8712e455a3da1fc5046c0424de",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "5969862d35221b5b7d63b754748dd1ec1af499a07e7edd81278dfaf6e280e467"
+          },
+          {
+            "query": "sha256:feb86667433edd111cefdc47110d7d1134ba64926056a5daae7de6405c4e09b8",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "a474e4c5d0a1431b3ab60c432831610d2234ac85a14033e83d6970a0d62bf016"
+          },
+          {
+            "query": "sha256:8550b6a85b3c6013b66e90026450acca8d2396e27cbb0058104b155b63f1ba45",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "07e992c6a99e5255669bd10cf0a66ef2d6eb4da3834f0cd63b909ebbed4eebdc"
+          },
+          {
+            "query": "sha256:4f421c8154365420082904a1751b3f45d355a1e1ea4351104d5d1a65abfcc5e8",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "02bd6d124ff2ec08387e5f12f18fccf18e9b38ddf600dc4c0890f7906d99f1f4"
+          },
+          {
+            "query": "sha256:c9c829dc29725ea8f0989052a824796369789577ab1aab90a07fa67d8b0a3586",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "2c84b3405f5cc7eb4ffdf61d37b474634207785e8794f0cf8e76a3a54ae0dbaf"
+          },
+          {
+            "query": "sha256:034e064e50e347f3f55116dabcf112fdeb58f534259c6036f6d3c420cbcca3ee",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "378b39c829735c92907abf585d3dbd495b0ce335ab53f8b5e8ccba5473aa0c0a"
+          },
+          {
+            "query": "sha256:8149bbad5c67423fef02a2427058a1b1889a722691760dd514010927b4369b18",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "15a702f4e8257ab1a0781e1595c0a67fbaa79d4196472788338a1d0f807f0cdc"
+          },
+          {
+            "query": "sha256:e57a2256c682fbffeb82af657c24dad0cb51345f4a6082353d73af690e286793",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "c4879639381aa3a3064df7abc136fbd5596e1646ba20487b804c48cb1bfbaaa5"
+          },
+          {
+            "query": "sha256:eeaca66f9443384f9e358c696ec080b18d668c67b646db8f467c73f26e1380a3",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "3a7f416c238bc3889a463c4924876ca0f98aa042a8f9881d43112e28f67a8811"
+          },
+          {
+            "query": "sha256:65cfa36a9686eb0ffc7c18c8dbc0b61cbdf1a4a3741ee2fd5aa269cbdad230f9",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "174f5d9ed0714a86ddf8ce488099a72c498b3f7fb6d41086549b1c168ea7c09b"
+          },
+          {
+            "query": "sha256:7090c200da903c02e60bcfa38556b07b74962e06063fe8db42e0de3ccee2b18d",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "d0bef01a5bf465b03e9c37c07204dde473c2d998d4d168b4cb5ded86b0043255"
+          },
+          {
+            "query": "sha256:24d5ebf42f7e70947102035c4431c5e61a1fe10cc5c655652265b511da0da31d",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "945427161031ff71a95a5d115db2b26e41adcf24567b21de84b22af5c35ba6e9"
+          },
+          {
+            "query": "sha256:7faf5a7c1943701d86fc91d011eabce4d1fe1ba3c20d098220a9fa3dabe75b50",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "7ade6e6fd43038013f75b0733582bbe7bdcf5627c4a453819d26abf81b3c2c22"
+          },
+          {
+            "query": "sha256:3594d046983e8e697a9b3c6fde7d886f6b15bcf998440bdaa91e2979f8d49c02",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "176cfa7376ad287696e3e7c86ff946362dc39e87b6a53f675824da8d8327247f"
+          },
+          {
+            "query": "sha256:83ba6c4f2a204ac4eabb56eb63b3481053691f24c33be7c102821596c9567ebf",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "8b764080a70eab5418d0d7b65d2d4f8ffd59a729fb5c6b937c0afc4641a94e28"
+          },
+          {
+            "query": "sha256:8de019a51d535cf55088531d625118fba62273b5b07bbc27e3690b83c2cc6d11",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "85c9759fa39c46dab42cd71e27907de3bd869bca250a1a97ef4d96f1b0d761c4"
+          },
+          {
+            "query": "sha256:ce02490cc8cf588e14b2ed39ff5893b4e61b6b31e5ae63c4c1176f9bf8c5c4c2",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "55a229d1767e7c8d5501bec4c16c2271f47bcdad3f7d5498a186ce302a59266a"
+          },
+          {
+            "query": "sha256:a59f121f478531e2ad3e804afbea5ebc283d48050abccf3b68beda6abf42b0ae",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "f4132b03ef941dc021c31f6caa24b990befe67d62fdb71aec48312b77357906f"
+          },
+          {
+            "query": "sha256:604c7acea2823ad9ca82711691dd77b1cc8e1929f27f865ab908edebf915c99d",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "5f9bdda829cb87f519cb03aca305a06d4961b09296d5bb6f1bb1094618a1d348"
+          },
+          {
+            "query": "sha256:7b9d6a82aa46320d2d7708b3de112359e800bfa39f6f6f0e13218f56d1410dcc",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "9e3bdc14c28aba02b04b8bccc5a358d8c589fc6a032e38fab9ad7de999713358"
+          },
+          {
+            "query": "sha256:72ed0800293884fadbceb6ab17655018be6f489b2a680b8abf0eec002e9661de",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "fbb8f68e02377f1c46ea6730f39b9c66bf5a526af91cecb9e72728e4c0b19c8a"
+          },
+          {
+            "query": "sha256:2698d66268e81477486de65d899e4cb1062088c73d85562b8dcaff5f85349697",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "904970f6ab00e382ff6e2fb838c3b53e7c96ad8204bf0619682d3aaa3e6252be"
+          },
+          {
+            "query": "sha256:7a65607bc7f2389e04b3e5184a82eea1f91cbdb188919d558413ef497c7e3914",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "46021b87c71a0774a48cbe78f9464f96c56e1088ffc07d7564daf39c54a28eb3"
+          },
+          {
+            "query": "sha256:3bd59613f2635a3f0690397344ca596c19a7acb887ca35cb1d04660c4311f7aa",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "7032099bd3b91f9976f5ec3151940755bfb2037d8ac5fc3c2c731930225b0e1d"
+          },
+          {
+            "query": "sha256:6d1ef6efb71eb486b927861e520d1c60e9e21f4573e9c4a3bcd41cfc6c4d2016",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "1c337e93005c0df3c63d1e62f77e83c04c22d61c2a525fbd55819b19e021ecf2"
+          },
+          {
+            "query": "sha256:84c329f270ebb46624fa3e2fa0f79eee669f70364cecf4e395aa3980655dfcb9",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "1f88d18f0bd677743c11ee20d612635dfe8f97b111489c0293fd6a1326624ca1"
+          },
+          {
+            "query": "sha256:22332968176bb8978dda0c3f03b82d971966d10968c4a89f2d326f1665a6f179",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "ab2d368127a7a9e33997365720379b6fba18196de61e5d52d92c3360ac3298c9"
+          },
+          {
+            "query": "sha256:63b3f7b55650aa4741316c07c17e9f538988b67adb4f591eae86be1577ec842a",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "d22d5b399d8ec5b351c4abc48f310375bcef003222059519e3de408fab200277"
+          },
+          {
+            "query": "sha256:4c8629d4d5d27ff6b22ba0d0e87cf3755db595f91bb6e8734cb9d9c857576396",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "75a8efc3df323fb9f79c04e71e7fdc32d36f19302f01d5cd59c17283a649e11b"
+          },
+          {
+            "query": "sha256:b043332b997f5c8f638feec18615bf2fb359f2eab82db5e8b97a9cc37c2e8d73",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "fb88c6087ac4128e947a5afb6fe0b62393e4e950870599d149bec860a31ef88c"
+          },
+          {
+            "query": "sha256:555642428460d75ad077467478aaf442a918db1c1c5412cc5156f86011d2466c",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "6da1a9024e3c65b7acb374052cc381816d00f9611b8246c32cd90ebc30386986"
+          },
+          {
+            "query": "sha256:e459a26a105c614031aa828fe116f7a3ed4499ee418fed6f0c4a22bc753539bc",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "9f3d6fed27507b6fa13e9968011ce2b1768ab379fb7dba92118a27fd330a2fa7"
+          },
+          {
+            "query": "sha256:2ba40a139b925aad91ece301dba1d3f13d3123a372e91c8ab3b8b2cbb2591837",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "fa644f6945683793e1cf0661644cd7c7c329dfdfb29e1b7bf94aaa560650dd41"
+          },
+          {
+            "query": "sha256:d5d4e9cf5e04f2680f49d22060da50327b0b7888ed950ddfeda0c69213e10ecb",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "90a20d415910ab447184f5bae2592eadf100bced63846e0b39d65fd50fd6e845"
+          },
+          {
+            "query": "sha256:5404104f9e9eb8f804cffb120a3631961fe87d5d527525e4ee7507888c602c73",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "913aa1b3520e7c2d65cf39a2fd81c12f46169c3ae32a2f5222547c2ecd659282"
+          },
+          {
+            "query": "sha256:931e3c9457a8354fcbc079a54739374a5bec601e4f84b58e80c228f343984dd3",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "c581b9bbb5d312ade8a6b5c0a7d62d1bd0dac44021745e3bc17287768e15aef2"
+          },
+          {
+            "query": "sha256:0ae30d2ecd822abb32d33e8c68b485d74ebf728cbcf1070e9cf27cf9a1fe7e06",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "ce67cb7d8a9349b96cd5c65c21ce31d44c95b10e7090a943d6c7fafbb330f40d"
+          },
+          {
+            "query": "sha256:400a9471324db5e704927d0b96c9d482dbfbbc31612bbf0905cf1229f6e942e3",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "26a816abd9426031494ec3b4ab76e76583138862fc197e2cc4bac1e5b64544bc"
+          },
+          {
+            "query": "sha256:468118edd7a46e3b1292c0f50b4dcebb8f76d3dd13cbeda5d02d7f49ba369543",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "fc2b5e82587455601599ecd3fd5967f95a4acf822bd82d0b1b39f0dd78d61d38"
+          },
+          {
+            "query": "sha256:77ca1b44ffd56c3dbfe072f54c53335655059fe4fd432cf0a46b606cda0d82fb",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "c096b487672bc517399f989533556a2c14bd5d5e67d84d01ff68f2ebdd9872b4"
+          },
+          {
+            "query": "sha256:f9ba064ecc9dd97981d0c1fd214725dc77254513bf44de1a0fb38f3e9af9074d",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "62fa3abf457a03e571210e6c2a2fdb8001d783e208d9e3a6c92d79383790b71d"
+          },
+          {
+            "query": "sha256:a36ce27a5eb6620a9621b0c178272d40a419f6e17d81a57599ac87d765fe9734",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "f336846d6a6619bc0d87b77aa5669f4e00a71d9dd3a356dc56a49535b32767a8"
+          },
+          {
+            "query": "sha256:af1340edf4f2244ee070b5a235bfe88afe14001a519ef2a54b81c0036a437ddc",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "fc782460e9d68baca67bbf0a778595495fc8fff490660f01e586f44c44184c37"
+          },
+          {
+            "query": "sha256:83b836fab36f76f7b02ce4db587341ab364a2f108e43dc3e510a989445961a44",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "9bd534099f493d97b223bd0c6c6e268ba8c21b90a50b1bd1d04719f26e09e3e1"
+          },
+          {
+            "query": "sha256:2add736382c8fb091ff2bd807a0973f3ea51f589dd890c5d79aeb24d815a4626",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "888f05b5ed4115097c92af1a6022b16a53fa0c8bd4d3acca3937ccefe481a7df"
+          },
+          {
+            "query": "sha256:dfa00a05f39b73e1807d3b4ec7c5e2e6491aabb2644126b2349927c20022d871",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "0a1940169c95ffa7ad2be8858203e46cf6570433f4a1d76d172b0168493a378b"
+          },
+          {
+            "query": "sha256:911abec7bf632d26de40caadbfd60ab34ae41b3f9571db6d9c5ac84c168787f7",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "bbc904ec8039b221832377f60fd76166e53f200b68c109f3f492bf97671d1ae2"
+          },
+          {
+            "query": "sha256:aa327bfc0310c8f23beb1315e4cc5d6ed8fdb29ff6b288566c3ca3ef81b4db87",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "1fe0a8cae00d04b1dc4ca5d6d331e929311d84cd706f254559e364c7a633cfc7"
+          },
+          {
+            "query": "sha256:083fd21e4d1034c5f37bc3a475ef8cdc5b3c41eb74ccc7e219c16655e83f2098",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "b16e4289f8b678d81b24320738385c6d28765b8409883a6e233f8a3e704e7b17"
+          },
+          {
+            "query": "sha256:1d8d30b332f7b675a3dada917065de488f3f82c2d9e2968b26d28f07b9008677",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "6fe2ca97ba7ce5cc0126099a4d25fa6ccea295343f0fd16ef6bbb50313a6807d"
+          },
+          {
+            "query": "sha256:b06f355b4e5025775aa65c4299d4eb618871010b64f24f7e6663b6a6b9771a8b",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "9986e5570966850309e1f39eb92977517e50d3c7146ee4d62ea65a4d1eeceb11"
+          },
+          {
+            "query": "sha256:893993dde68bda91c6e0fbeca13295fe3c9dc4b56cb51bfb2355b3f8193d4a90",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "c6dac8d8394caa45b2942a8432f1a1c67c0a60e4bd766199bd32e9bed2181412"
+          },
+          {
+            "query": "sha256:a723b0ae5a42a801cbe3b3ee74f62016787ee4411dcbb1cb6587d6f3c2bcd945",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "51f0af88175d41f88388cf5003cca8477d5963ff33933fb80bde7df4a3aff16e"
+          },
+          {
+            "query": "sha256:2495b5896ceb8703202a25b773ddddecd96a4b994bc5d0bf226937e2ea7d9f40",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "dad5196bad0dfdb8a442759cb0d61d53b23dac55c5fba0dc668fe2d0e5c66323"
+          },
+          {
+            "query": "sha256:15202d7c50472ece02c91192067ab73eee9aa3cbfcd18f1383b16318f181ee46",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "adaac12b6048017e32e91a928f0e5767cbf295e46f804561a104302c0f5a0ba9"
+          },
+          {
+            "query": "sha256:56dbbf3a3c7cd491ac53e4adcfcaafa529ec1eabc69bce92ccbf0666f8ecb38b",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "fcf5df73916e412ed00dbabdccec7b4092cb2e5dacb4a67ae701e1b57402284e"
+          },
+          {
+            "query": "sha256:44402865e41c465ce215fea43c29af0526c090f5c506d3823e8b2c44e0b5e066",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "ffe4d732b0ab700e84d60f69810aaff3fb97e28e7a9bc6d630eac9c2a0bea6e6"
+          },
+          {
+            "query": "sha256:b4ff7c4f10987369873b7be649a3f1719c281b4586de0b45617cd73553bfba07",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "f7f42ef4584bd0eea8560d5f53db5639675e068f2d4308bf71dc575d5fdb59b2"
+          },
+          {
+            "query": "sha256:6a804dd659173183c70d14d2ff93571abe862d77ca8e35e445474f78888c644e",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "488c6bae82e58b00bd4d087c518ff1c8ef58f9a8ec63cb4ab8ebd0556af0244f"
+          },
+          {
+            "query": "sha256:c63c150e64db0175070884b0a0f803d5694adc6d5d25cbdf5002c904b8512142",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "1f8357b27678ca77a1fada2ba7f816c03bb931ebf6241af34f92d3f11de566ae"
+          },
+          {
+            "query": "sha256:a3f749949d4fadb70f8a197e43d16e111230de95c173b38cb7c12e12b092921f",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "1502c5eb6502cac1129c9e369fc1b634441f92d24b0ba27779319ed2a948464f"
+          },
+          {
+            "query": "sha256:c28da9b606485bfa52fc0cb9f283f515ea33b8d0b37da93c2aee70d7d935fefa",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "13973a6ef8b5e320752f0fd43f60d9ff19c338d1f58ad40e8d534d4013ce7aa7"
+          },
+          {
+            "query": "sha256:fb6195c0a340d9474f42aecf8a8713c7d8b6d5fb360dddca010a781d07a5f0f0",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "ea8d47e0ab56b5f066191d39614ad9185320bc519df359edf433775ca39d36f3"
+          },
+          {
+            "query": "sha256:76203addd71c000cbb9c092d9f3e6c9f8454c3533acc863295219f9165e8f52b",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "7b554d536d8bb3c54c2bb934c13b8ca685d0feeb073429095e1567842c93b8b8"
+          },
+          {
+            "query": "sha256:4304a4ff2f2771fe0396d5c41f1e424281dee9053be73641a0cb63aabcc18614",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "2133e3b6312b15063964c25481e75b60bccbe865aa64307e67c309f061c590c9"
+          },
+          {
+            "query": "sha256:d250158346833d40c28ebd4abefcdcb821dc9fa9273415f93b26db188bc247af",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "c91472719a363c0c7cad721476cc23475188bc6852c4f2197dc1c5d676b6392e"
+          },
+          {
+            "query": "sha256:d006aa553c9507c5c75b13c94579fa503ec7b7755824281ba9f683ced6f31f40",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "4ebba9a1cc5f70cf7db364c83a12896f201713fa75bdf9215bfc42ce457b4fe8"
+          },
+          {
+            "query": "sha256:dee44d38bf98d6bd17fdd7ec6d6cbabf37865c640fbd850081e25481e4f59125",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "e0499f185070ef998cd18537d546e76e314c09463d836d290ffa1924810dbc25"
+          },
+          {
+            "query": "sha256:0811e6441d4732358bb3cfc0d45606f075d7f8ed5353c5a30777291e74941fd8",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "b7d41c5d439351c71ed8d94da14d08fea0deee80d75b7752fbc4dbd3a12529e8"
+          },
+          {
+            "query": "sha256:f3494c27dfdcc40af85f933ee7b389d6d29e651bd92737f461251735d082fdc8",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "9fa38ce2b6737d3913faf3e45325e76bcb533b2ff4446144a6e86884c0271b7a"
+          },
+          {
+            "query": "sha256:16145de3633cac0ae8569d9e677256e67cdb1bc0c166d530748b9dba8d8caa7a",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "13de9af96ce73b03ec290828a312b859fa0630b55e1325171ab3eaa94173dc0b"
+          },
+          {
+            "query": "sha256:056dde4742f04a82e3b51e2ee82b7c181043ffdeb445cd5ff8b1cfc7996637ae",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "f97a6cb27e31b9eb744e277eaf8b6b5d7d6932fd26fcf486b51b93cdfed17358"
+          },
+          {
+            "query": "sha256:ed8ba523b1c0e1c6f7f2ebd45b8f351d7f03248bcc1e5d49963e1fcce6ce7b18",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "65001ef537ab9eba809f1b50da80df2dcd76368da9c7109bb0313dc29a093e79"
+          },
+          {
+            "query": "sha256:d881a37392ec339aca3ee9e30df32d53235b1127160bcbe775e0ef51a7705d11",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "6d5b94c759390cccaede88f63ec823cb3eb012780b800390e0404378f3097bbe"
+          },
+          {
+            "query": "sha256:c913cb50301bd534d77c74d6d56e2db47113b65c047a043a582b6389a05800d7",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "ab60980493dd4ed8448fb32386b6f99ba327237898330bbf85505ac223bc50dd"
+          },
+          {
+            "query": "sha256:d476db1e329d3169bb2d851baf65dbe9edde26c418f48f5f2d3378c2319dfa27",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "1baac1ced7f28f2886b0dc48af80f925678f85bf257002ab1c1f13ce0435dde5"
+          },
+          {
+            "query": "sha256:e2f215992cd4f2d10199684f2f60d2fde6901ae9b8da5817c8581d20a3ee697b",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "e0a90b046527a5a3e8a8fa0bb5cb57df8503169db2d882cb839f655e561c7541"
+          },
+          {
+            "query": "sha256:4de5660f10c7ec29b8928dce7459729ede98b955ebef3f7a8f0379e811624101",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "581b699cbe1b5c710db3d2cfc3d7c7b4b9687f727c1c3cfcfea406f6da9e548e"
+          },
+          {
+            "query": "sha256:d89e35a60016d2eab1b4ad68c8810543661486a22984bd87221dc6616d7e7ef3",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "d10d6e146fcf8ffd903f0b724fc47d6341706b75e6a478e8eae71bfc4a0f4edd"
+          },
+          {
+            "query": "sha256:0bf5c6aede286832cc675f415135d79b9942fd7437af42120e0dab44e0b16172",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "edd6254648a3dfd4d98808ca4568177bdfa0af0832646f61041d2701c4ad4143"
+          },
+          {
+            "query": "sha256:6172b736d28843f84729349d78c1cd10f868bf49c55e3386ae84f1a78147578e",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "fce569df440430031257127cfcc3223f8615b341a6fec7ee40e66865baf6cede"
+          },
+          {
+            "query": "sha256:9219c80bb6567ab6c7d586953d631c782c6447515c053c6b9fcaea79132a02b9",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "ce5d1439a5116b1340fbf003feac088bc5a8e8fbdedcefdcca4e8378d9bb7f08"
+          },
+          {
+            "query": "sha256:cc9540b99605adb9725ede53b9b79761576702f8f7d9ed15c01e2155fed81169",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "80f6e2bf553a92bdecc9a25c9d374a36a2c9980ff24d3381773722fed36f407d"
+          },
+          {
+            "query": "sha256:b198c0240f9c92168eef4596364519e67c5d809c8ed5b2c0ca3e7662c85fee39",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "879f8be453374887b86fdd61d6e5732966e604e3c7b4634f0c68c45c1c779dbb"
+          },
+          {
+            "query": "sha256:2ab410f89886316534e82d67bfe420ccd1785ad591dcd291fe28dda6016d04de",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "27625fba3e9a7f6f2f7031e0288b58399b47f7a126f640bd3952ae77ec96631f"
+          },
+          {
+            "query": "sha256:8b8195912e11e48357d9524e15aebf44d17ac77e7feaf0967ba1f4880ed68dda",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "4b5dd4a407f3a7488498c3424165a5983c9db9ffa1e0c47e3b101d60d1867f24"
+          },
+          {
+            "query": "sha256:1201d97e3b78b9213585f2ec442b9cc6faacdb1cac63e4bc9144b0b1f540693a",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "77317524aa8f2ae4a8b69ae2f59980f7d77327fddbf49cb479c9ecd4a1d2efd3"
+          },
+          {
+            "query": "sha256:742fcbebaa9e182e7de5fae8cc677144e1a3d857bec4a7fb31164ffd814b2595",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "3785d910269033a53370c0575cf3a265ec441821550887d5a119733339d70ec6"
+          },
+          {
+            "query": "sha256:96a411542620b71961bb14e7c582dce4b68ba9170c55fac860757686d7af8b7d",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "f2e91847e4f3fa69e58ae0653e9abd35656bb987cdfa8bc1d75bc4a9a292ffc9"
+          },
+          {
+            "query": "sha256:567b27601ecaaa1b354f66aa8699055cbbbb17b6aafe042b33bad4967f438021",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "c1faba9cd638af6a9ef03ffb3ee7e016b39e4fabd55b6fd96a90ad287afb6ad6"
+          },
+          {
+            "query": "sha256:4df81466c5afd38c85dd706650c3112e0a377f993221f3d9b0de43b4c44effde",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "c6587b3ef25c75d6b8ea504c6bf7766fa1d47af84020ba0bcadd13850e401337"
+          },
+          {
+            "query": "sha256:65fbf38476ebeefa5749827d68f8ab8fd12ccd2acef4f9fd4c38f27964a087a9",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "48f6e2f2b0be8852199b37ac5ee36556672f7ea1fb0f3af6690173bb5a37165c"
+          },
+          {
+            "query": "sha256:497d5161be60440f49c655b520858d5049eb20890c56839391d4406457af8638",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "5f78699e7e8f8526a7d6f0a39e8d2b72402324bef1a8440b5b073b27c239a8bb"
+          },
+          {
+            "query": "sha256:3882c02779e52f0d4d351c1ae3bd921471e036c50fc3c44606c5e01d2b5b3b7d",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "ff659e263b54b9b376dcd33f05170f575c3b127775bceba2d63723b9b373de96"
+          },
+          {
+            "query": "sha256:80cbfff295f35e6e25eabcaf5516d2b0598bb6137d335e3310a980c6c9b61787",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "ff659e263b54b9b376dcd33f05170f575c3b127775bceba2d63723b9b373de96"
+          },
+          {
+            "query": "sha256:fbaf20b34c58a69476c3740e3a1a29edec7bcd49204f70e3d41d4e3c1847c14b",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "ff659e263b54b9b376dcd33f05170f575c3b127775bceba2d63723b9b373de96"
+          },
+          {
+            "query": "sha256:85d9852309f9917e9fabfe280af986b187bb3acb9d41812824b2b258c35cae65",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "ff659e263b54b9b376dcd33f05170f575c3b127775bceba2d63723b9b373de96"
+          },
+          {
+            "query": "sha256:2c025a2f79f379a9ccd3511b61ca5d631ef0842b71a4feec645e747ea9fea1e4",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "1e976221ac33a3a156689c8892534581069b2212299d499e51a15a06d0cf7c41"
+          },
+          {
+            "query": "sha256:990af96d1a95e356aa0c2f64a81188b62427ae83152bb451aba4fe233ea82f8d",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "1e976221ac33a3a156689c8892534581069b2212299d499e51a15a06d0cf7c41"
+          },
+          {
+            "query": "sha256:7a2d0fb57f5cb0461a913ce1f6290ebb3d2c91701bdde924b1484b0a152a1981",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "1e976221ac33a3a156689c8892534581069b2212299d499e51a15a06d0cf7c41"
+          },
+          {
+            "query": "sha256:683b6faa974f53fb617548958e036842576b5bb2236624eae4898cb09d99d4b8",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "1e976221ac33a3a156689c8892534581069b2212299d499e51a15a06d0cf7c41"
+          },
+          {
+            "query": "sha256:d4c89bfcb0a6c6fc5980f3d317f1119ed2b5f908a4ed3da710821a4b8b49d262",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "95a35d534a48a98a7134fc2938cf74327f3050442793d3f08cac4eb603b5f580"
+          },
+          {
+            "query": "sha256:5a3cefecffef0cb4dfef4c5985068b15f40e84d5ea6d24371a05d410b354738a",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "95a35d534a48a98a7134fc2938cf74327f3050442793d3f08cac4eb603b5f580"
+          },
+          {
+            "query": "sha256:f0ebf67c128394aad169cb5911009f249def4191eb586c09e9fa05c0b25a4f67",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "95a35d534a48a98a7134fc2938cf74327f3050442793d3f08cac4eb603b5f580"
+          },
+          {
+            "query": "sha256:ed1453e5b3dfd0e126590e5b1ca45899080cb3ddc5bbec9c1ba5717ab853c350",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "95a35d534a48a98a7134fc2938cf74327f3050442793d3f08cac4eb603b5f580"
+          },
+          {
+            "query": "sha256:afb1006a550555b3b6b1274dcef427fe2b93d803e45d0e58f09d083db30df9c2",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "38f7b7f188c5373a7027fe0c79e139f7762d83c055c05769f2c19542d51e0830"
+          },
+          {
+            "query": "sha256:0094f1e7d9de4e4dd8e56c1484768a45d25b0f199cb04f87a50ff74f35fd3a59",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "6364e90ec8b6ae5b2dbac934e8a16f3c0fc939d07996aa5a8111272ee26c0f27"
+          },
+          {
+            "query": "sha256:cbe0439ff82ed96dce86108e2b1268122c3ddca9805cf777cf18b644d7c9fd13",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "d6a52ff570b21152b4f3303c8d79e2a9a494babc03c2a77bf6144fae0d6104c4"
+          },
+          {
+            "query": "sha256:3e24517547a2c9ab275d9e6a9ea23843ef3630db284a987ca5b85c7db185f1d5",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "29ed83b20ddac38884ef3682c61576aa6c909ef5534b653ba6e868400f26e3cd"
+          },
+          {
+            "query": "sha256:e1b5e9c43d1dd4e1ec8c58254347bf5fc4cabe2be6e7f8c9e5f24e324607d789",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "5c30ad1a5a88aa268547adb316612f4c5f7f338331b3f8ea9eeb3cf44edfbee6"
+          },
+          {
+            "query": "sha256:878c43af53101ffe945526fbe873010fdaa521b56b6ccb037b76b9cc0c0f59bb",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "e73e849dbca960fae60d9aad2fa9ba78d8b354c8f4ab246496cdd10501676d51"
+          },
+          {
+            "query": "sha256:fbb46ccfefd8eb00607f0220d0965f11cc514433786630b5805cbf173ae3dc16",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "1523e63a748d498a29ce26cd6dd3c003a3eca013fbb58a09d75ba0363feec654"
+          },
+          {
+            "query": "sha256:448f081cc1e5ba6d522244b96430b2085edcb6f1c1db1af44c4ecfbf82fcffc1",
+            "disposition": "SEARCH_RESULTS_REVIEWED; DATED_PROJECT_SOURCE_REQUIRED; NO_RAW_INPUT_VALUES_IMPORTED",
+            "receipt_sha256": "434aad20175157dd7138391ca6ad4870951ba932a43c5bd529878da3ad68a9a6"
+          }
+        ]
+      }
+    },
+    "removed_projects": [],
+    "validation": {
+      "sources": {
+        "passed": true,
+        "evidence": "Complete export replay; three source-ledger hashes verified"
+      },
+      "tests": {
+        "passed": true,
+        "evidence": "fe43cffff8ef272149f8976b84ed33c6e1accb131ca325194a5e18ea7ce4e183"
+      },
+      "reproducibility": {
+        "passed": true,
+        "evidence": "All four CSVs match independent repeated export"
+      }
+    }
+  },
+  "limitations": "Search/source/test completion is declared by the reviewer manifest; table integrity is independently checked. STOP means no new admissible cells in the completed documented search round, not national completeness or proof of absence."
+}

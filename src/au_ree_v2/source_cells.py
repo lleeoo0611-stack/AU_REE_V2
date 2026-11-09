@@ -119,6 +119,9 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
                      if word.casefold() in ('inferred','unclassified','total')]
             if classes!=['inferred','unclassified','total']:
                 fail('CUTOFF_GROUP_CLASS_ROWS_MISMATCH')
+    if mode == 'native_oxide_difference':
+        from .oxide_difference import validate_oxide_difference
+        return validate_oxide_difference(doc,binding,field,token,unit,scope,selected_sections)
     if mode == 'native_statement':
         statement = norm(page.get_textbox(rect('statement_bbox')))
         if statement != norm(binding.get('statement', '')):

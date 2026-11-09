@@ -229,7 +229,10 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 if not isinstance(value['value'],(int,float)) or isinstance(value['value'],bool) or not math.isfinite(value['value']) or value['value']<0:
                     raise ValueError('REVIEW_NONFINITE_OR_NEGATIVE_VALUE')
                 e=value['evidence'];content=evidence(e)
-                if not e.get('render_sha256'):
+                difference=(value.get('cell_binding') or {}).get('mode')=='native_oxide_difference'
+                if difference and value.get('original_token_role')!='CALCULATED_NOT_A_SOURCE_REPORTED_TOKEN':
+                    raise ValueError('REVIEW_OXIDE_DIFFERENCE_TOKEN_ROLE_REQUIRED')
+                if not e.get('render_sha256') and not difference:
                     token=normalized(str(value.get('original_token',value['value'])))
                     if not re.search(r'(?<![\d.])'+re.escape(token)+r'(?![\d.])',content):raise ValueError('REVIEW_NUMERIC_TOKEN_NOT_ON_PAGE')
                 variable=value['variable'];unit=value['unit'];basis=value['basis']
@@ -272,6 +275,8 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     effective_date_interval=review.get('effective_date_interval'),rounding_half_width=value.get('rounding_half_width'),
                     source_kind=review.get('source_kind','ISSUER_TECHNICAL_DISCLOSURE'),
                     original_token=value.get('original_token'),evidence=e,cell_binding=binding,
+                    **({'original_token_role':value['original_token_role'],'source_rounding_quantified':False,
+                        'uncertainty_note':'Point derived from published rounded inputs; source precision and estimation uncertainty are not quantified'} if difference else {}),
                     original_unit=original_unit,bulk_hm_percent=hm,
                     grade_input=value.get('grade_input'),
                     normalization='REPORTED_HM_MASS_X_OXIDE_PERCENT_DIVIDED_BY_BULK_ORE' if hm_mass_contract and original_unit=='%HM' else 'RESOURCE_TREO_GRADE_X_REPORTED_OXIDE_PERCENT_OF_TREO' if original_unit=='%TREO' else None,
