@@ -37,6 +37,33 @@ def validate_descriptive_attribute(doc, attribute, aliases, evidence, review):
     statement = norm(binding.get('statement', ''))
     if not statement or extract('value_bbox') != statement:
         fail('STATEMENT')
+    legend = binding.get('legend_binding')
+    if legend:
+        if (column!='礦床型態' or review.get('source_kind')!='GOVERNMENT_PROJECT_CATALOGUE'
+                or not (urlsplit(review['url']).hostname or '').endswith('.gov.au')):
+            fail('LEGEND_SCOPE')
+        row_box=pymupdf.Rect(legend['row_swatch_bbox']);key_box=pymupdf.Rect(legend['legend_swatch_bbox'])
+        heading=pymupdf.Rect(binding['project_bbox']);label=pymupdf.Rect(binding['value_bbox'])
+        if (not row_box.y0 < (heading.y0+heading.y1)/2 < row_box.y1 or row_box.x1>heading.x0
+                or not key_box.y0 < (label.y0+label.y1)/2 < key_box.y1
+                or not 0 <= label.x0-key_box.x1 < 15):
+            fail('LEGEND_ROW_OR_LABEL_ALIGNMENT')
+        def swatch(box):
+            matches=[]
+            for drawing in page.get_drawings():
+                rect=drawing['rect']
+                if (drawing.get('fill') is not None and len(drawing['items'])==1
+                        and drawing['items'][0][0]=='re'
+                        and max(abs(a-b) for a,b in zip(rect,box))<.1):
+                    matches.append(drawing['fill'])
+            if len(matches)!=1 or max(matches[0])-min(matches[0])<.1:
+                fail('LEGEND_NATIVE_RECTANGLE')
+            return matches[0]
+        if max(abs(a-b) for a,b in zip(swatch(row_box),swatch(key_box)))>1e-5:
+            fail('LEGEND_COLOUR_MISMATCH')
+        if norm(attribute['value'])!=statement or norm(binding.get('literal_value',''))!=statement:
+            fail('LEGEND_LITERAL_LABEL')
+        return 'SOURCE_GOVERNMENT_NATIVE_VECTOR_LEGEND_CLASSIFICATION'
     if column == '未上市公司':
         if (attribute['value'] != '是' or review.get('source_kind') != 'GOVERNMENT_PROJECT_CATALOGUE'
                 or not (urlsplit(review['url']).hostname or '').endswith('.gov.au')

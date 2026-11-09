@@ -47,6 +47,23 @@ class DiscoveryRules(unittest.TestCase):
         return cfg
     def run_config(self,root,cfg,existing=()):
         path=root/'review.json';path.write_text(json.dumps(cfg));return validate_discovery(path,{'source':root},list(existing),'2026-11-05')
+    def test_shared_original_requires_one_stable_source_key(self):
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t);cfg=self.fixture(root);pdf=root/'source.pdf'
+            with pymupdf.open(pdf) as doc:
+                doc[0].insert_text((40,100),'Rubble Mound in Tasmania.')
+                doc.save(root/'updated.pdf')
+            (root/'updated.pdf').replace(pdf);sha=filehash(pdf)
+            cfg['candidates'][0]['sources'][0]['sha256']=sha
+            receipts=json.loads((root/'downloads.json').read_text());receipts[0]['document_sha256']=sha
+            (root/'downloads.json').write_text(json.dumps(receipts))
+            second=copy.deepcopy(cfg['candidates'][0]);second.update(candidate_key='rubble',name='Rubble Mound',aliases=['Rubble Mound'])
+            second['identity'].update(name_marker='Rubble Mound',source_key='different-key',project_evidence=dict(page=1,markers=['Rubble Mound']))
+            cfg['candidates'].append(second)
+            with self.assertRaisesRegex(ValueError,'SHARED_SOURCE_KEY_CONFLICT'):self.run_config(root,cfg)
+            second['identity']['source_key']='deep';result=self.run_config(root,cfg)
+            self.assertEqual(2,len(result['projects']));self.assertEqual(1,len(result['sources']))
+            self.assertEqual(['deep','deep'],[p['identity_source'] for p in result['projects']])
     def test_admission_does_not_invent_resource_observations(self):
         with tempfile.TemporaryDirectory() as t:
             root=Path(t);r=self.run_config(root,self.fixture(root));self.assertEqual(project_id('deep-leads'),r['projects'][0]['entity_id'])

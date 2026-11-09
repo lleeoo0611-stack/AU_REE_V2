@@ -123,6 +123,8 @@ def validate_discovery(path, assets, existing, cutoff):
             if pid in ids or normalized & names:raise ValueError('DISCOVERY_DUPLICATE_PROJECT_OR_ALIAS')
             ids.add(pid);names.update(normalized)
             source_key=identity['source_key'];sha=s['sha256']
+            if sha in sources and sources[sha]['key']!=source_key:
+                raise ValueError('DISCOVERY_SHARED_SOURCE_KEY_CONFLICT')
             sources[sha]=dict(sha256=sha,key=source_key,url=s['url'],path=s['path'],kind='pdf',publication_date=day,
                 document_issue_date=identity.get('document_issue_date'),publication_date_role=identity.get('publication_date_role'),
                 date_evidence_role=identity.get('date_evidence_role'),

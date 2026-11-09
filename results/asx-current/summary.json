@@ -1,30 +1,30 @@
 {
   "version": "census-project-summary-v3-asx-identity",
   "cutoff": "2026-11-05",
-  "rows": 60,
+  "rows": 65,
   "columns": 53,
-  "unique_project_ids": 60,
+  "unique_project_ids": 65,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "claims_sha256": "11bfc4842e4b1d391ff220d39d0d17ad000a645ca6ed19dad11294b3408940f2",
   "snapshot_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
   "configuration_sha256": "92774d210b9d5b55a3b7ced161381be1cb52a5a3959ea4e4a284bf554fb5ed1a",
   "columns_sha256": "f6389bc0ace6cccac5ef34ae0ffd651403e4dbec5fd9d9ee7602f22404ed5223",
   "filled_counts": {
-    "專案ID": 60,
-    "開發商": 59,
+    "專案ID": 65,
+    "開發商": 64,
     "未上市公司": 14,
-    "專案名稱": 60,
-    "所在地_中文": 60,
-    "所在地_英文": 60,
-    "國家": 60,
-    "州省地區": 60,
+    "專案名稱": 65,
+    "所在地_中文": 65,
+    "所在地_英文": 65,
+    "國家": 65,
+    "州省地區": 65,
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
-    "礦床型態": 27,
+    "礦床型態": 33,
     "開發階段代碼": 0,
     "開發階段類別": 0,
-    "開發階段": 25,
+    "開發階段": 26,
     "礦石蘊藏量_Mt": 33,
     "TREO品位_pct": 31,
     "總TREO蘊藏量_kt": 31,
@@ -37,9 +37,9 @@
     "預估年產重稀土_t_per_year": 0,
     "產品/產出": 11,
     "有TREO資源估計": 31,
-    "有來源文件": 59,
-    "資料來源名稱": 60,
-    "資料來源URL": 60,
+    "有來源文件": 65,
+    "資料來源名稱": 65,
+    "資料來源URL": 65,
     "已公布元素數_共15項": 18,
     "已公布元素總和_kt": 18,
     "元素總和/TREO": 16,
@@ -62,9 +62,9 @@
     "Yb2O3_氧化鐿_kt": 11,
     "Lu2O3_氧化鎦_kt": 12,
     "Y2O3_氧化釔_kt": 13,
-    "ASX代碼": 48
+    "ASX代碼": 53
   },
-  "verified_source_hashes": 100,
+  "verified_source_hashes": 101,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -74,7 +74,7 @@
     "PROJECT": 33,
     "SITE": 766,
     "DEPOSIT": 301,
-    "REVIEWED_PROJECT_EXTENSION": 27,
+    "REVIEWED_PROJECT_EXTENSION": 32,
     "DEPOSIT_SCOPE": 27,
     "PROSPECT": 191,
     "PROJECT_PROGRAM": 1,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "6afd0df06aac39447601c29a73a5403e4dc93e4253a99ba05ec8913221f1de1a",
-    "field_provenance.csv": "cf8c9a09dbe99807aa616f2362bb518c4d933b0dd779239f3ae48e937ed0903b",
-    "missing_fields.csv": "e0f29a1d5dde586cdb418f31d15138e767c05bddd715d7870e1f870fcfee7e75",
-    "census_inventory.csv": "8d5bce0b01d3b1bb4b4735b0d463f4bff8d9de75f3b8e1de9c6d729a65c0bc9b"
+    "專案總表.csv": "c4ab322f7ae14714a1a1e80f787be6ebd28407cf2937f8705b0692c47487c745",
+    "field_provenance.csv": "5687d0045ec2f931207fa6e8d84eb9e3ada7ab277e3afde56ac5441dac25795b",
+    "missing_fields.csv": "a3620d3e57b022a1632c475fc6c1a1412205d24ff81bb282a912191138e10e9c",
+    "census_inventory.csv": "cf0ec68d69185c76c96fc6cd1d8c896438a58337a5e0c2df06513e312e70ddcf"
   },
-  "review_ledger_sha256": "bba3fd29a19846aae85c169a13bf51394cd14f06d2a17533e00a09aa010b8646",
+  "review_ledger_sha256": "25dd337339511cabf4de666316270c82d1a5577e219c4dbe424fd03e3f3ce31d",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -1957,10 +1957,139 @@
         "2026-02-01",
         "2026-02-28"
       ]
+    },
+    {
+      "review_id": "continuation2_wa_legend_AU-47d12ebe6b66df8e5936",
+      "project_id": "AU-47d12ebe6b66df8e5936",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Publisher government host-rock legend classification at February2026; native vector swatch and adjacent literal label; no resource, IAC recovery, codebook or parent-child identity inference",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation2_wa_legend_AU-2a3a86a4d971e9f9838d",
+      "project_id": "AU-2a3a86a4d971e9f9838d",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Publisher government host-rock legend classification at February2026; native vector swatch and adjacent literal label; no resource, IAC recovery, codebook or parent-child identity inference",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation2_wa_legend_AU-4286ab9c245effb445ff",
+      "project_id": "AU-4286ab9c245effb445ff",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Publisher government host-rock legend classification at February2026; native vector swatch and adjacent literal label; no resource, IAC recovery, codebook or parent-child identity inference",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation2_wa_legend_AU-574465211976ec57b1ef",
+      "project_id": "AU-574465211976ec57b1ef",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Publisher government host-rock legend classification at February2026; native vector swatch and adjacent literal label; no resource, IAC recovery, codebook or parent-child identity inference",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation2_wa_legend_AU-d0ce731e1d8198ffaf58",
+      "project_id": "AU-d0ce731e1d8198ffaf58",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "status": "VALIDATED",
+      "scope": "Publisher government host-rock legend classification at February2026; native vector swatch and adjacent literal label; no resource, IAC recovery, codebook or parent-child identity inference",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "review_id": "continuation2_deep_leads_description",
+      "project_id": "AU-d1aeb21e18e60fe8e32e",
+      "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
+      "status": "VALIDATED",
+      "scope": "Direct source wording describing ABx northern Tasmanian rare earth resources; no numeric or formal IAC code inference",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2024-05-02",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "365b18455b1d76a4dbcdba0382faa460245a448bebafb7b5470fa247c54d13e5",
+  "discovery_ledger_sha256": "413116facb57697610c365e1fc1e08bf4b2397a5eea4780532b163a13305fc0b",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -11443,20 +11572,380 @@
         }
       },
       "deferred_fields": []
+    },
+    {
+      "candidate_key": "diemals-wcn",
+      "name": "Diemals Li–REE Project",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_ANNUAL_REPORT_EXPLICITLY_NAMES_SEPARATE_REE_EXPLORATION_PROJECT;NO_SAMPLE_TO_RESOURCE_TRANSFER",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "auto_candidates",
+          "path": "data/snapshots/9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425.pdf",
+          "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Diemals",
+                "Western Australia"
+              ]
+            },
+            {
+              "page": 30,
+              "markers": [
+                "authorised by the Board of directors for issue",
+                "29 September",
+                "2023"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-a9b72e86940271be45a3",
+      "scope": "Diemals source-labelled Western Australian exploration project at 29September2023; no current title continuity or spatial non-overlap certification; soil/rock/drill sample grades excluded from MRE and annual output",
+      "identity": {
+        "source_index": 0,
+        "source_key": "wcn_annual2023",
+        "publication_date": "2023-09-29",
+        "document_issue_date": "2023-09-29",
+        "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE",
+        "publication_date_role": "ASX_DATED_URL",
+        "date_evidence": {
+          "page": 30,
+          "markers": [
+            "29 September",
+            "2023",
+            "authorised by the Board of directors for issue"
+          ]
+        },
+        "project_evidence": {
+          "page": 4,
+          "markers": [
+            "Diemals",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Diemals",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "White Cliff Minerals Limited",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "White Cliff Minerals Limited",
+              "Diemals"
+            ]
+          }
+        }
+      },
+      "deferred_fields": []
+    },
+    {
+      "candidate_key": "hines-hill-wcn",
+      "name": "Hines Hill REE Project",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_ANNUAL_REPORT_EXPLICITLY_NAMES_SEPARATE_REE_EXPLORATION_PROJECT;NO_SAMPLE_TO_RESOURCE_TRANSFER",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "auto_candidates",
+          "path": "data/snapshots/9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425.pdf",
+          "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Hines Hill",
+                "Western Australia"
+              ]
+            },
+            {
+              "page": 30,
+              "markers": [
+                "authorised by the Board of directors for issue",
+                "29 September",
+                "2023"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-1103c5aa8bb63077ac61",
+      "scope": "Hines Hill source-labelled Western Australian exploration project at 29September2023; no current title continuity or spatial non-overlap certification; soil/rock/drill sample grades excluded from MRE and annual output",
+      "identity": {
+        "source_index": 0,
+        "source_key": "wcn_annual2023",
+        "publication_date": "2023-09-29",
+        "document_issue_date": "2023-09-29",
+        "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE",
+        "publication_date_role": "ASX_DATED_URL",
+        "date_evidence": {
+          "page": 30,
+          "markers": [
+            "29 September",
+            "2023",
+            "authorised by the Board of directors for issue"
+          ]
+        },
+        "project_evidence": {
+          "page": 4,
+          "markers": [
+            "Hines Hill",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Hines Hill",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "White Cliff Minerals Limited",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "White Cliff Minerals Limited",
+              "Hines Hill"
+            ]
+          }
+        }
+      },
+      "deferred_fields": []
+    },
+    {
+      "candidate_key": "lake-tay-wcn",
+      "name": "Lake Tay REE Project",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_ANNUAL_REPORT_EXPLICITLY_NAMES_SEPARATE_REE_EXPLORATION_PROJECT;NO_SAMPLE_TO_RESOURCE_TRANSFER",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "auto_candidates",
+          "path": "data/snapshots/9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425.pdf",
+          "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Lake Tay",
+                "Western Australia"
+              ]
+            },
+            {
+              "page": 30,
+              "markers": [
+                "authorised by the Board of directors for issue",
+                "29 September",
+                "2023"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-70cc41e3a7106f983f73",
+      "scope": "Lake Tay source-labelled Western Australian exploration project at 29September2023; no current title continuity or spatial non-overlap certification; soil/rock/drill sample grades excluded from MRE and annual output",
+      "identity": {
+        "source_index": 0,
+        "source_key": "wcn_annual2023",
+        "publication_date": "2023-09-29",
+        "document_issue_date": "2023-09-29",
+        "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE",
+        "publication_date_role": "ASX_DATED_URL",
+        "date_evidence": {
+          "page": 30,
+          "markers": [
+            "29 September",
+            "2023",
+            "authorised by the Board of directors for issue"
+          ]
+        },
+        "project_evidence": {
+          "page": 4,
+          "markers": [
+            "Lake Tay",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Lake Tay",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "White Cliff Minerals Limited",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "White Cliff Minerals Limited",
+              "Lake Tay"
+            ]
+          }
+        }
+      },
+      "deferred_fields": []
+    },
+    {
+      "candidate_key": "barballin-wcn",
+      "name": "Barballin REE Project",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_ANNUAL_REPORT_EXPLICITLY_NAMES_SEPARATE_REE_EXPLORATION_PROJECT;NO_SAMPLE_TO_RESOURCE_TRANSFER",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "auto_candidates",
+          "path": "data/snapshots/9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425.pdf",
+          "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Barballin",
+                "Western Australia"
+              ]
+            },
+            {
+              "page": 30,
+              "markers": [
+                "authorised by the Board of directors for issue",
+                "29 September",
+                "2023"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-b3ae34ac85d16018bd4b",
+      "scope": "Barballin source-labelled Western Australian exploration project at 29September2023; no current title continuity or spatial non-overlap certification; soil/rock/drill sample grades excluded from MRE and annual output",
+      "identity": {
+        "source_index": 0,
+        "source_key": "wcn_annual2023",
+        "publication_date": "2023-09-29",
+        "document_issue_date": "2023-09-29",
+        "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE",
+        "publication_date_role": "ASX_DATED_URL",
+        "date_evidence": {
+          "page": 30,
+          "markers": [
+            "29 September",
+            "2023",
+            "authorised by the Board of directors for issue"
+          ]
+        },
+        "project_evidence": {
+          "page": 4,
+          "markers": [
+            "Barballin",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Barballin",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "White Cliff Minerals Limited",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "White Cliff Minerals Limited",
+              "Barballin"
+            ]
+          }
+        }
+      },
+      "deferred_fields": []
+    },
+    {
+      "candidate_key": "munbinia-wcn",
+      "name": "Munbinia REE Project",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_ANNUAL_REPORT_EXPLICITLY_NAMES_SEPARATE_REE_EXPLORATION_PROJECT;NO_SAMPLE_TO_RESOURCE_TRANSFER",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "auto_candidates",
+          "path": "data/snapshots/9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425.pdf",
+          "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Munbinia",
+                "Western Australia"
+              ]
+            },
+            {
+              "page": 30,
+              "markers": [
+                "authorised by the Board of directors for issue",
+                "29 September",
+                "2023"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-f81823bd8ba271840345",
+      "scope": "Munbinia source-labelled Western Australian exploration project at 29September2023; no current title continuity or spatial non-overlap certification; soil/rock/drill sample grades excluded from MRE and annual output",
+      "identity": {
+        "source_index": 0,
+        "source_key": "wcn_annual2023",
+        "publication_date": "2023-09-29",
+        "document_issue_date": "2023-09-29",
+        "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE",
+        "publication_date_role": "ASX_DATED_URL",
+        "date_evidence": {
+          "page": 30,
+          "markers": [
+            "29 September",
+            "2023",
+            "authorised by the Board of directors for issue"
+          ]
+        },
+        "project_evidence": {
+          "page": 4,
+          "markers": [
+            "Munbinia",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Munbinia",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "White Cliff Minerals Limited",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "White Cliff Minerals Limited",
+              "Munbinia"
+            ]
+          }
+        }
+      },
+      "deferred_fields": []
     }
   ],
   "original_canonical_projects": 33,
-  "reviewed_project_extensions": 27,
+  "reviewed_project_extensions": 32,
   "base_contract_columns": 52,
   "base_projection_hashes": {
-    "census_inventory.csv": "8d5bce0b01d3b1bb4b4735b0d463f4bff8d9de75f3b8e1de9c6d729a65c0bc9b",
-    "field_provenance.csv": "fe62e453d96ca9f522cd442602aa51282b9055d2ae7b6069a44573812dc23ccd",
-    "missing_fields.csv": "f7fc5b0c759db019fa08d91ec7d36bd265513615e4c5c32ef415d8f2ebb06fbd",
-    "專案總表.csv": "84fb030390c0de134bcc0fd88143e7c795ab4534fb683f7a16c1c1f3b6b9e10a"
+    "census_inventory.csv": "cf0ec68d69185c76c96fc6cd1d8c896438a58337a5e0c2df06513e312e70ddcf",
+    "field_provenance.csv": "cdecaabf181c20f186e62c9f757880a9602bcaa0783f54d1e886a37c57f8992b",
+    "missing_fields.csv": "ef2359443f1f51076a460dcd03e7734a41946bea144c743217a02d2628d0f197",
+    "專案總表.csv": "28367407646a75792dea53e7ef83ac65626cae495516225d2445626f6439c01c"
   },
-  "identity_ledger_sha256": "5d6d534c4fccc10851dffa3fd120008cee3d063dec3f08f60eedcd15eafcea0d",
+  "identity_ledger_sha256": "d789be84211dbfdf304a33c69771565141e01540c4b749e4521e32fa4046f6ba",
   "identity_merges": [],
-  "validated_asx_codes": 48,
+  "validated_asx_codes": 53,
   "identity_sources": {
     "AU-12cc237ae66c7a6508ca": {
       "asset_set": "round3",
@@ -11824,6 +12313,36 @@
       "path": "data/snapshots/0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126.pdf",
       "sha256": "0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126",
       "url": "https://investorpa.com/announcement-pdf/20251030/212822.pdf"
+    },
+    "AU-a9b72e86940271be45a3": {
+      "asset_set": "auto_candidates",
+      "path": "data/snapshots/9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425.pdf",
+      "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+      "url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf"
+    },
+    "AU-1103c5aa8bb63077ac61": {
+      "asset_set": "auto_candidates",
+      "path": "data/snapshots/9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425.pdf",
+      "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+      "url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf"
+    },
+    "AU-70cc41e3a7106f983f73": {
+      "asset_set": "auto_candidates",
+      "path": "data/snapshots/9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425.pdf",
+      "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+      "url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf"
+    },
+    "AU-b3ae34ac85d16018bd4b": {
+      "asset_set": "auto_candidates",
+      "path": "data/snapshots/9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425.pdf",
+      "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+      "url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf"
+    },
+    "AU-f81823bd8ba271840345": {
+      "asset_set": "auto_candidates",
+      "path": "data/snapshots/9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425.pdf",
+      "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+      "url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf"
     }
   },
   "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS"

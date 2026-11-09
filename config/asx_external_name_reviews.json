@@ -667,14 +667,23 @@
     {
       "input_row": 39,
       "input_name_sha256": "4b7faa85ad4c63cb950f7c1670f11036a966f3fbacb62aec376293e6ec7db368",
-      "status": "UNVERIFIED_EXTERNAL_LEAD",
-      "matched_project_ids": [],
-      "reason": "SEARCH_COMPLETED_NO_DATED_PRIMARY_PROJECT_IDENTITY_ADMITTED;UNVERIFIED_NOT_EVIDENCE_OF_ABSENCE",
-      "source_references": [],
+      "status": "PARTIAL_NAME_SOURCE_REVIEWED_YALGOO_UNRESOLVED",
+      "matched_project_ids": [
+        "AU-a9b72e86940271be45a3"
+      ],
+      "reason": "DATED_PRIMARY_WCN_ANNUAL_REPORT_VERIFIES_DIEMALS_LI_REE_ONLY;YALGOO_NOT_ASSUMED_SEPARATE_PROJECT_OR_ALIAS;INPUT_PAIR_NOT_IMPORTED",
+      "source_references": [
+        {
+          "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "source_url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf",
+          "locator": "physical PDF p4,8,30",
+          "method": "SOURCE_BOUND_PARTIAL_NAME_IDENTITY_NOT_COMPOUND_NAME_VALIDATION",
+          "scope": "Diemals E77/2880–2885; Western Australia; 29September2023 issuer annual report; Yalgoo unresolved"
+        }
+      ],
       "search_ids": [
         66
-      ],
-      "continuation_review": "Fresh November10 search retained as unverified; no primary dated REE project admission; input company/code never imported"
+      ]
     },
     {
       "input_row": 40,
