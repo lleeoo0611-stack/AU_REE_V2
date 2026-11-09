@@ -18,6 +18,8 @@ def main():
     p.add_argument('--extra-selected-dir',action='append',default=[])
     p.add_argument('--extra-archive-dir',action='append',default=[])
     p.add_argument('--research-dir')
+    p.add_argument('--parallel-comparison')
+    p.add_argument('--parallel-base-commit')
     a=p.parse_args()
     before=Path(a.baseline);updated=Path(a.updated);out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
     summary=json.loads((updated/'summary.json').read_text('utf8'));increment=json.loads((Path(a.comparison)/'field_increment.json').read_text('utf8'))
@@ -67,14 +69,19 @@ def main():
     gaps_by_project=defaultdict(list)
     for g in gaps:gaps_by_project[g['project_id']].append(g)
     project_audit=[]
+    search_reviews=json.loads((Path(a.research_dir)/'research_gap_reviews.json').read_text('utf8'))['reviews'] if a.research_dir else []
     for row in rows:
         pid=row['專案ID'];reviews=[r for r in ledger['reviews'] if r['project_id']==pid]
         pending=gaps_by_project[pid];priority=[g for g in pending if g['column'] in PRIORITY or '_氧化' in g['column']]
         specific=[g for g in priority if g.get('review_id')]
+        searched=[r for r in search_reviews if r['project_id']==pid]
+        search_reasons={r['reason'] for r in searched if not r['decision'].startswith('FILLED')}
         project_audit.append(dict(project_id=pid,project_name=row['專案名稱'],remaining_blank_cells=len(pending),
             remaining_priority_cells=len(priority),newly_filled_cells=sum(c['project_id']==pid and c['status']=='NEWLY_FILLED' for c in changes),
-            review_ids=json.dumps([r['review_id'] for r in reviews]),source_specific_gap_reasons=json.dumps(sorted({g['reason'] for g in specific})),
-            review_state='SOURCE_SCOPES_REVIEWED;REMAINING_CELLS_NOT_PROVEN_ABSENT' if reviews else 'NO_NEW_COMPLETE_SOURCE_REVIEW;GAPS_REMAIN_UNRESOLVED'))
+            review_ids=json.dumps([r['review_id'] for r in reviews]),search_review_ids=json.dumps([r['review_id'] for r in searched]),
+            source_specific_gap_reasons=json.dumps(sorted({g['reason'] for g in specific}|search_reasons)),
+            review_state='SOURCE_SCOPES_REVIEWED;REMAINING_CELLS_NOT_PROVEN_ABSENT' if reviews else
+                'SOURCE_BOUND_SEARCH_REVIEWED;NO_EXTRA_VALUES_ADMITTED' if searched else 'NO_NEW_COMPLETE_SOURCE_REVIEW;GAPS_REMAIN_UNRESOLVED'))
     def write(name,data):
         with (out/name).open('w',encoding='utf-8-sig',newline='') as f:
             w=csv.DictWriter(f,list(data[0]));w.writeheader();w.writerows(data)
@@ -121,6 +128,13 @@ def main():
         if checked['config_sha256']!=filehash(research/'research_gap_reviews.json'):raise ValueError('RESEARCH_CONFIG_CHANGED')
         shutil.copyfile(research/'research_gap_validation.json',out/'research_gap_validation.json')
         evaluation['source_bound_search_review_groups']=checked['review_groups']
+    if a.parallel_comparison:
+        parallel=Path(a.parallel_comparison);delta=json.loads((parallel/'field_increment.json').read_text('utf8'))
+        if not re.fullmatch('[0-9a-f]{40}',a.parallel_base_commit or ''):raise ValueError('PARALLEL_BASE_COMMIT_REQUIRED')
+        if delta['updated_csv_sha256']!=filehash(updated/'專案總表.csv'):raise ValueError('PARALLEL_COMPARISON_CHANGED')
+        for name in ['field_increment.json','field_changes.csv']:shutil.copyfile(parallel/name,out/('parallel_'+name))
+        evaluation.update(parallel_remote_base_commit=a.parallel_base_commit,
+            additional_fills_after_parallel_commit=delta['newly_filled_cells'],parallel_remaining_blank_cells=delta['remaining_blank_cells'])
     (out/'evaluation.json').write_text(json.dumps(evaluation,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     repo=Path(__file__).resolve().parents[1]
     fingerprint=digest([(p.relative_to(repo).as_posix(),filehash(p)) for folder in ['src','tools'] for p in sorted((repo/folder).rglob('*.py'))])

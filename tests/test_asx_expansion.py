@@ -130,13 +130,17 @@ class ExportIntegration(unittest.TestCase):
             selected_obs=[dict(observation('ore_mt',20,'Mt'),source_sha=sha,scope='reviewed resource',statement_id='reviewed'),
                 dict(observation('grade',2000,'ppm'),source_sha=sha,scope='reviewed resource',statement_id='reviewed')]
             supplement=dict(sources={},observations={pid:selected_obs},studies={},resource_preferences={pid:sha},
-                resource_contracts={pid:(sha,'reviewed resource','reviewed','2025-01-01')},receipts=[],attributes={},deferred_fields={},resource_labels={},
+                resource_contracts={pid:(sha,'reviewed resource','reviewed','2025-01-01')},receipts=[],attributes={},deferred_fields={},resource_labels={pid:dict(label='MIN5532',source_sha256=sha)},
                 ledger_sha256='fixture',acquired_through='2026-11-09')
             with patch('au_ree_v2.asx_validation.validate_reviews',return_value=supplement):
                 reviewed=export_summary(root,path,run,Path(t)/'with-reviewed-statement',review_ledger='fixture')
             self.assertEqual(1,reviewed['filled_counts']['礦石蘊藏量_Mt'])
             with (Path(t)/'with-reviewed-statement/專案總表.csv').open(encoding='utf-8-sig') as f:reviewed_row=next(csv.DictReader(f))
             self.assertEqual('20',reviewed_row['礦石蘊藏量_Mt'])
+            self.assertIn('MIN5532',reviewed_row['專案名稱'])
+            with (Path(t)/'with-reviewed-statement/field_provenance.csv').open(encoding='utf-8-sig') as f:trace=list(csv.DictReader(f))
+            names=[r for r in trace if r['column']=='專案名稱']
+            self.assertEqual(1,len(names));self.assertEqual(reviewed_row['專案名稱'],names[0]['value'])
             sf.write_text('{}')
             with self.assertRaisesRegex(ValueError,'FROZEN_STUDY_CASES_DIFFER'):export_summary(root,path,run,Path(t)/'rejected')
 

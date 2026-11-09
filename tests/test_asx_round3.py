@@ -26,9 +26,9 @@ class MonthlyCatalogue(unittest.TestCase):
         for t in texts:p=d.new_page();p.insert_text((50,50),t,fontsize=10)
         d.save(self.pdf);d.close()
     def validate(self,r=None):
-        r=r or self.review
+        r=copy.deepcopy(r or self.review);r['observations']=[]
         (self.root/'downloads.json').write_text(json.dumps([dict(url=r['url'],document_sha256=r['source_sha256'],status='PDF_ACQUIRED')]))
-        p=self.root/'reviews.json';p.write_text(json.dumps(dict(version='asx-source-review-v1',acquired_through='2026-11-10',reviews=[r])))
+        p=self.root/'reviews.json';p.write_text(json.dumps(dict(version='asx-source-review-v2',acquired_through='2026-11-10',reviews=[r])))
         return validate_reviews(p,{'fixture':self.root},[dict(entity_id='P',name='Mock Project',aliases=['Mock Project'])])
     def test_real_edition_and_resource_months_keep_full_intervals(self):
         result=self.validate();s=result['sources'][self.review['source_sha256']]
@@ -138,5 +138,27 @@ class SearchEvidenceBinding(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'RECEIPT_BINDING'):audit(config,{'fixture':root},root/'out')
             source['url']='https://issuer.test/original.pdf';source['evidence'][0]['markers']=['imagined corrected resource'];config.write_text(json.dumps(cfg))
             with self.assertRaisesRegex(ValueError,'MARKER_MISMATCH'):audit(config,{'fixture':root},root/'out')
+
+class AnnualNativeCell(unittest.TestCase):
+    def test_attached_percent_is_bound_to_selected_product_row_and_oxide_header(self):
+        from au_ree_v2.source_cells import validate_cell
+        doc=pymupdf.open();self.addCleanup(doc.close);p=doc.new_page()
+        for point,text in [((50,50),'Table 4'),((250,80),'As a % of TREO'),((320,100),'Nd2O3'),((320,115),'(%)'),
+            ((50,145),'2025 REEC Product'),((320,145),'13.9%'),((50,175),'2023 REEC Product'),((320,175),'16.4%')]:
+            p.insert_text(point,text,fontsize=10)
+        def bbox(text):
+            a=p.search_for(text)[0];return [a.x0-.1,a.y0-.1,a.x1+.1,a.y1+.1]
+        field='annual_input_nd_percent_of_treo'
+        b=dict(mode='native_cell',field=field,scope='Selected 2025 product',page=1,original_unit='%',
+            table_bbox=[40,35,500,190],table_label='Table 4',table_label_bbox=bbox('Table 4'),
+            row_bbox=[40,132,500,150],row_label='2025 REEC Product',row_label_bbox=bbox('2025 REEC Product'),
+            column_bbox=[310,35,370,190],column_label='Nd2O3',column_label_bbox=bbox('Nd2O3'),unit_bbox=bbox('(%)'),unit_label='(%)',
+            scope_anchor='Nd2O3',scope_anchor_bbox=bbox('Nd2O3'),section_id='product',
+            metric_context='As a % of TREO',metric_context_bbox=bbox('As a % of TREO'))
+        sections=dict(product=dict(page=1,bbox=[40,35,500,190],anchor='Nd2O3',anchor_bbox=bbox('Nd2O3'),row_label='2025 REEC Product'))
+        self.assertEqual('NATIVE_TABLE_ROW_COLUMN_CELL_BINDING',validate_cell(doc,b,field,'13.9','%',b['scope'],selected_sections=sections))
+        with self.assertRaisesRegex(ValueError,'TOKEN_MISMATCH'):validate_cell(doc,b,field,'16.4','%',b['scope'],selected_sections=sections)
+        wrong=copy.deepcopy(b);wrong.update(row_bbox=[40,162,500,180],row_label='2023 REEC Product',row_label_bbox=bbox('2023 REEC Product'))
+        with self.assertRaisesRegex(ValueError,'RESOURCE_TOTAL_ROW_REQUIRED'):validate_cell(doc,wrong,field,'16.4','%',b['scope'],selected_sections=sections)
 
 if __name__=='__main__':unittest.main()

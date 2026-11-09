@@ -1,0 +1,50 @@
+{
+  "iteration": 3,
+  "base_commit": "f8975a0e93bb6430de68f8e27965228c7d76910f",
+  "requested_baseline_commit": "7ca6047a45d24a49ec5a5d9dd93679b029bf4ec3",
+  "tests": [
+    {
+      "report": "asx-round3-regression.xml",
+      "sha256": "219f7c810f03205b8825d5e91551bc962b956f067556521c10897bfcefac3599",
+      "tests": 239,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "report": "asx-round3-focused.xml",
+      "sha256": "22aeb19a30141ead88bd24658f4f7e1c2a34e3cadc0999055db9d9c62cc5ccbb",
+      "tests": 122,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "full_suite_not_claimed": true,
+  "repeated_export_identical": true,
+  "cohort_preserved": true,
+  "newly_filled_since_requested_baseline": 68,
+  "newly_filled_after_parallel_commit": 43,
+  "filled_cells": 793,
+  "remaining_blank_cells": 923,
+  "scientific_filled_cells": 276,
+  "scientific_total_cells": 825,
+  "ledger_sha256": "00fa31ef77e324e1e527a72b9054d2567fe9d5bfcc30ffe243c192dceb0248e0",
+  "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
+  "database_modified": false,
+  "code_fingerprint_src_tools": "34ec921efc73ac67d4149a0813a49074a8e5e07c94cebf02568a67f5bd329428",
+  "limitations": [
+    "NO_R_OR_MCDA_RECALCULATION",
+    "GOVERNMENT_CATALOGUE_IS_NOT_INDEPENDENT_ISSUER_JORC_VERIFICATION",
+    "VISUALLY_REVIEWED_IMAGE_TRANSCRIPTS_NOT_INDEPENDENT_OCR"
+  ],
+  "output_hashes": {
+    "audit.json": "87749fa607feba5bf7e1119ea563f7c73b98023d011425f332281715d86f451d",
+    "census_inventory.csv": "4f67808a0b05bb8271bd63c6ce2690d9234991d05937bce5092c6603e0d30509",
+    "field_provenance.csv": "44449f64262f7d81f4940515ea2ad5961a0e7ad6f5b451cb2820ff5c427a0fc4",
+    "missing_fields.csv": "ef54937e3fbd3038c42358da04ca95b49493dbf75cec459f5b5bf370e6e97a0f",
+    "REVIEW.md": "2264694fb2159a4fcd8a14e51d0b153148d94975a0cd8d6405a0186574141f07",
+    "summary.json": "6b28962b514b09a2ad86240130a1419a6369253fc6f753d89d253421057367c6",
+    "專案總表.csv": "7349ed53d74ba39193807b842f158c39842ebb53882ea765accfcefaf22d17e2"
+  }
+}

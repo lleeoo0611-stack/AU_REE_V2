@@ -239,3 +239,6 @@ Phase14 adds [bounded official WAMEX/GSQ report discovery and measured recovery]
 Phase16：來源限定的 Technical 操作化、MINEDEX 批次核對與驗證分層，見 [研究報告](docs/phase16-technical-model.md) 及 [可重建結果](results/phase16-2026-11-04/README.md)。
 
 Phase 16 remediation: [source scope, identity repair and process-specific MCDA](docs/phase16-remediation.md); [reconstructable results](results/phase16-remediation-2026-11-05).
+
+Current iterative ASX coverage and review: [results/asx-current](results/asx-current/REVIEW.md).
+This directory contains only the latest reviewed summary and verification, not duplicated iteration archives.

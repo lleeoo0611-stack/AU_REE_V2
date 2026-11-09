@@ -56,7 +56,7 @@ def annual_product_derivation(derivation,value,annual_page,evidence):
 def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
     import pymupdf
     ledger_path=Path(ledger_path);ledger=json.loads(ledger_path.read_text('utf8'))
-    if ledger.get('version')!='asx-source-review-v1':raise ValueError('REVIEW_VERSION_UNSUPPORTED')
+    if ledger.get('version')!='asx-source-review-v2':raise ValueError('REVIEW_VERSION_UNSUPPORTED')
     registry={p['entity_id']:p for p in projects};sources={};observations={};studies={};preferences={};receipts=[];attributes={};seen_reviews=set();resource_contracts={};deferred={};resource_labels={}
     for review in ledger['reviews']:
         if review['review_id'] in seen_reviews:raise ValueError('REVIEW_DUPLICATE_ID')
@@ -172,6 +172,8 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     raise ValueError('REVIEW_HM_FRACTION_TOKEN_MISMATCH')
                 if not hm.get('basis_markers') or any(normalized(m) not in content for m in hm['basis_markers']):
                     raise ValueError('REVIEW_HM_BASIS_EVIDENCE_REQUIRED')
+                from .source_cells import validate_cell
+                validate_cell(doc,hm.get('cell_binding'),'bulk_hm_percent',hm['original_token'],'%',review['scope'],selected_sections=review.get('selected_resource_sections'))
             rows=[]
             for value in review.get('observations',[]):
                 if not isinstance(value['value'],(int,float)) or isinstance(value['value'],bool) or not math.isfinite(value['value']) or value['value']<0:
@@ -184,7 +186,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 from .technical_tables import number_token
                 token_value=number_token(value.get('original_token',value['value']))
                 original_unit=value.get('original_unit',unit)
-                factors={('t','Mt'):1e-6,('kt','Mt'):.001,('t','kt TREO'):.001,('ppm','%'):.0001}
+                factors={('t','Mt'):1e-6,('kt','Mt'):.001,('t','kt TREO'):.001,('kt','kt TREO'):1,('ppm','%'):.0001}
                 factor=1 if original_unit==unit else factors.get((original_unit,unit))
                 if original_unit=='%HM':
                     if not hm or value['evidence']['page']!=hm['evidence']['page']:raise ValueError('REVIEW_HM_NORMALIZATION_REQUIRES_SAME_TABLE')
@@ -201,15 +203,20 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     raise ValueError('REVIEW_OXIDE_HEADER_NOT_ON_PAGE')
                 if variable not in ('ore_mt','grade','contained_treo_kt') and not variable.startswith('reported_resource_'):
                     raise ValueError('REVIEW_UNSUPPORTED_OBSERVATION')
+                from .source_cells import validate_cell
+                binding=value.get('cell_binding')
+                if binding and binding.get('page')!=e['page']:raise ValueError('REVIEW_CELL_EVIDENCE_PAGE_MISMATCH')
+                if binding and basis in ELEMENTS and binding.get('basis')!=basis:raise ValueError('REVIEW_CELL_BASIS_MISMATCH')
+                cell_method=validate_cell(doc,binding,variable,str(value.get('original_token',value['value'])),original_unit,review['scope'],selected_sections=review.get('selected_resource_sections'))
                 raw=dict(review_id=review['review_id'],variable=variable,value=value['value'],unit=unit,basis=basis,
                     source_sha256=sha,source_key=review['source_key'],scope=review['scope'],statement_id=review['statement_id'],
                     effective_date=effective,effective_date_role=role,date_precision=review['date_precision'],
                     effective_date_interval=review.get('effective_date_interval'),rounding_half_width=value.get('rounding_half_width'),
                     source_kind=review.get('source_kind','ISSUER_TECHNICAL_DISCLOSURE'),
-                    original_token=value.get('original_token'),evidence=e,
+                    original_token=value.get('original_token'),evidence=e,cell_binding=binding,
                     original_unit=original_unit,bulk_hm_percent=hm,
                     material_basis='RESOURCE_ORE_GRADE_OXIDE_PPM' if basis in ELEMENTS else 'RESOURCE_BULK_ORE',
-                    review_method='SOURCE_PAGE_AND_ROW_OR_RENDER_REVIEW_WITH_DETERMINISTIC_CHECKS_NOT_INDEPENDENT_APPROVAL')
+                    review_method=cell_method)
                 row=dict(obs_id=digest([pid,sha,raw]),entity_id=pid,variable=variable,value=value['value'],unit=unit,basis=basis,
                     source_sha=sha,scope=review['scope'],statement_id=review['statement_id'],effective_date=effective,
                     category='MEASURED_INDICATED_INFERRED_TOTAL',status='AUTO_VALIDATED',locator='physical PDF p'+str(e['page']),raw=canonical(raw))
@@ -249,7 +256,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 if label:
                     if normalized(label) not in scope_content:raise ValueError('REVIEW_SUMMARY_SCOPE_LABEL_NOT_IN_SOURCE')
                     resource_labels[pid]=dict(label=label,source_sha256=sha,scope=review['scope'])
-            study=review.get('study')
+            study=review.get('study');parameter_methods={}
             if study:
                 if study['scale'] not in ('PFS_MODEL','DFS_MODEL','SCOPING_MODEL'):raise ValueError('REVIEW_STUDY_SCALE_NOT_FORECAST')
                 for e in study['evidence']:evidence(e)
@@ -268,10 +275,22 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                         expected='ANNUAL_PRODUCT_MASS_X_TREO_FRACTION' if key=='average_annual_treo_product_t' else 'ANNUAL_PRODUCT_MASS_X_TREO_FRACTION_X_NDPR_SHARE' if key=='average_annual_ndpr_product_t' else None
                         if derivation.get('method')!=expected:raise ValueError('REVIEW_ANNUAL_DERIVATION_PARAMETER_MISMATCH')
                         annual_product_derivation(derivation,value,study['annual_basis_evidence']['page'],evidence)
-                    elif token not in annual_page and str(value) not in annual_page:raise ValueError('REVIEW_FORECAST_NUMBER_NOT_ON_PAGE')
+                        from .source_cells import validate_cell
+                        for item in derivation['inputs']:
+                            field='annual_input_'+item['name'];unit='t' if item['name']=='annual_product_t' else '%'
+                            binding=item.get('cell_binding')
+                            if binding and binding.get('page')!=study['annual_basis_evidence']['page']:raise ValueError('REVIEW_CELL_EVIDENCE_PAGE_MISMATCH')
+                            validate_cell(doc,binding,field,item['original_token'],unit,review['scope'],selected_sections=study.get('selected_input_sections'))
+                        parameter_methods[key]='DERIVED_FROM_SOURCE_BOUND_PRODUCT_CELLS'
+                    else:
+                        if token not in annual_page and str(value) not in annual_page:raise ValueError('REVIEW_FORECAST_NUMBER_NOT_ON_PAGE')
+                        from .source_cells import validate_cell
+                        binding=study.get('parameter_bindings',{}).get(key)
+                        if binding and binding.get('page')!=study['annual_basis_evidence']['page']:raise ValueError('REVIEW_CELL_EVIDENCE_PAGE_MISMATCH')
+                        parameter_methods[key]=validate_cell(doc,binding,key,str(value),binding.get('original_unit') if binding else 'tpa',review['scope'],study.get('selected_scenario'))
                     if key=='average_annual_ndpr_product_t' and not re.search(r'NdPr|Nd.Pr|Neodymium',annual_page,re.I):raise ValueError('REVIEW_NDPR_FORECAST_HEADER_MISSING')
                 d=dict(case_id=review['review_id'],locator='physical PDF '+','.join(str(e['page']) for e in study['evidence']),
-                    parameters=study['parameters'],parameter_derivations=study.get('parameter_derivations',{}),review_id=review['review_id'],scope=review['scope'],effective_date_role=role)
+                    parameters=study['parameters'],parameter_derivations=study.get('parameter_derivations',{}),parameter_bindings=study.get('parameter_bindings',{}),parameter_review_methods=parameter_methods,review_id=review['review_id'],scope=review['scope'],effective_date_role=role)
                 studies.setdefault(pid,[]).append(dict(case_id=review['review_id'],project_id=pid,source_sha=sha,
                     effective_date=effective,scope=review['scope'],stage=study['stage'],endpoint=study['endpoint'],
                     element=study['element'],scale=study['scale'],status='PRIMARY_SCOPED_CASE_NOT_OPERATING_OUTCOME',raw=canonical(d)))
@@ -298,6 +317,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 source_kind=review.get('source_kind','ISSUER_TECHNICAL_DISCLOSURE'),
                 effective_date_role=role,date_precision=review['date_precision'])
             receipts.append(dict(review_id=review['review_id'],project_id=pid,source_sha256=sha,status='VALIDATED',scope=review['scope'],
+                review_methods=sorted({json.loads(row['raw'])['review_method'] for row in rows}|set(parameter_methods.values())),
                 new_observations=len(rows),forecast_parameters=len(study['parameters']) if study else 0,
                 effective_date=effective,effective_date_role=role,date_precision=review['date_precision'],
                 effective_date_interval=review.get('effective_date_interval')))
