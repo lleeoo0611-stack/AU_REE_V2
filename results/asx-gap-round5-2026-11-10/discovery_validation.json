@@ -1,0 +1,37 @@
+{
+  "config_sha256": "4ba280fd54a391c8cfbb90cafee58b2198621f4533d8f343e206fd8dd8568f34",
+  "baseline_inventory_sha256": "4f67808a0b05bb8271bd63c6ce2690d9234991d05937bce5092c6603e0d30509",
+  "source_reviewed_names": 29,
+  "decisions": {
+    "ADMIT_PROJECT": 10,
+    "CANDIDATE_ONLY": 5,
+    "ALIAS_OR_CHILD": 8,
+    "PROCESSING_ONLY": 2,
+    "EXISTING_PROJECT": 4
+  },
+  "original_project_candidate_records": 129,
+  "linked_project_candidate_records": 7,
+  "pending_project_candidate_records": 122,
+  "admitted_project_ids": [
+    "AU-d1aeb21e18e60fe8e32e",
+    "AU-3eb7131e4daea18a60a0",
+    "AU-329908ab8d4c1d1d3e03",
+    "AU-fe65cb1bd28eacb7a67f",
+    "AU-ff758cad5beb276d327d",
+    "AU-524c37fc04cf47bf8dca",
+    "AU-3a0020b6daf659f62138",
+    "AU-02d486d425ca0792bdc5",
+    "AU-af44c2bd1173b453953f",
+    "AU-d9fb1b1e3e2ec9fa0851"
+  ],
+  "limitations": [
+    "CANDIDATE_RECORDS_ARE_NOT_COUNTS_OF_INDEPENDENT_PROJECTS",
+    "UNREVIEWED_IS_NOT_ABSENCE",
+    "SEARCH_SOURCES_ARE_NON_EXHAUSTIVE;NO_NATIONAL_COMPLETENESS_CLAIM",
+    "CANONICAL_SQLITE_AND_IDENTITY_RELATIONS_NOT_MUTATED"
+  ],
+  "output_hashes": {
+    "discovery_reviews.csv": "0144ae7d7f9f65c39a0b337c068f64e3fa0c3e2eb28b07a6d9d08377227f7743",
+    "discovery_candidate_queue.csv": "46f404b45edaa5cbe5c0fcbb75245bc3b8e37e5f7fd89b82311fea6ac4262ac6"
+  }
+}

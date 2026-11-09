@@ -1,0 +1,32 @@
+{
+  "input_sha256": "df9ffd95e6c5567cfc06b06570d9d05d9204355e65e0e17d4dad443e45f98f4f",
+  "input_rows": 89,
+  "status_counts": {
+    "UNVERIFIED_EXTERNAL_LEAD;NOT_AUTOMATIC_PROJECT_ADMISSION": 69,
+    "EXACT_REGISTERED_NAME_MATCH;DEVELOPER_TICKER_STILL_UNVERIFIED": 18,
+    "OVERSEAS_PROJECT_LEAD;AUSTRALIAN_COMPANY_ADDRESS_NOT_PROJECT_COUNTRY": 1,
+    "POSSIBLE_NARRABURRA_TYPO;NO_AUTOMATIC_IDENTITY_MERGE": 1
+  },
+  "numeric_values_imported": 0,
+  "projects_admitted_from_external_list_alone": 0,
+  "companies_or_tickers_overwritten": 0,
+  "raw_input_rows_published": false,
+  "interpretation": "NAME_TRIAGE_ONLY;MATCH_IS_NOT_CURRENT_DEVELOPER_LEGAL_OR_TECHNICAL_VALIDATION;UNMATCHED_IS_NOT_ABSENCE",
+  "followup_notes": [
+    {
+      "topic": "Caldeira",
+      "reason": "PRIMARY_ISSUER_IDENTIFIES_BRAZIL;HQ_IS_NOT_MINE_LOCATION",
+      "source_url": "https://meteoric.com.au/"
+    },
+    {
+      "topic": "WIM100",
+      "reason": "ILUKA_DATED_ORIGINAL_CONFIRMS_OWN_WIM100;DO_NOT_MERGE_WITH_WIM_RESOURCE_NAME_OR_AVONBANK",
+      "source_url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03053666"
+    },
+    {
+      "topic": "Cowalinya",
+      "reason": "REVIEWED_HRE_RESOURCE_ORIGINAL;GEMINI_HVY_COMPANY_TICKER_PAIR_NOT_IMPORTED",
+      "source_url": "https://wcsecure.weblink.com.au/pdf/HRE/02860130.pdf"
+    }
+  ]
+}

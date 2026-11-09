@@ -228,7 +228,8 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 if variable=='grade' and (unit not in ('ppm','%') or basis!='TREO' or value['value']<=0 or value['value']>(100 if unit=='%' else 1000000)):
                     raise ValueError('REVIEW_GRADE_UNIT_OR_BASIS')
                 if variable=='contained_treo_kt' and (unit!='kt TREO' or basis!='TREO'):raise ValueError('REVIEW_CONTAINED_UNIT_OR_BASIS')
-                if variable.startswith('reported_resource_') and (basis not in ELEMENTS or unit!='ppm' or value['value']>1000000):raise ValueError('REVIEW_RESOURCE_OXIDE_UNIT_OR_BASIS')
+                group=variable=='reported_resource_magnet_ppm' and basis=='PrNdDyTb_OXIDES'
+                if variable.startswith('reported_resource_') and ((basis not in ELEMENTS and not group) or unit!='ppm' or value['value']>1000000):raise ValueError('REVIEW_RESOURCE_OXIDE_UNIT_OR_BASIS')
                 if basis in ELEMENTS and not e.get('render_sha256') and normalized(basis) not in content:
                     raise ValueError('REVIEW_OXIDE_HEADER_NOT_ON_PAGE')
                 if variable not in ('ore_mt','grade','contained_treo_kt') and not variable.startswith('reported_resource_'):
@@ -248,7 +249,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     grade_input=value.get('grade_input'),
                     normalization='RESOURCE_TREO_GRADE_X_REPORTED_OXIDE_PERCENT_OF_TREO' if original_unit=='%TREO' else None,
                     **({'bulk_treo_grade_pct':treo_grade,'basis_transform':'TREO_PROPORTION_TO_BULK_PPM'} if original_unit=='%TREO' else {}),
-                    material_basis='RESOURCE_ORE_GRADE_OXIDE_PPM' if basis in ELEMENTS else 'RESOURCE_BULK_ORE',
+                    material_basis='RESOURCE_ORE_GRADE_MAGNET_OXIDE_GROUP_PPM' if group else 'RESOURCE_ORE_GRADE_OXIDE_PPM' if basis in ELEMENTS else 'RESOURCE_BULK_ORE',
                     review_method=cell_method)
                 row=dict(obs_id=digest([pid,sha,raw]),entity_id=pid,variable=variable,value=value['value'],unit=unit,basis=basis,
                     source_sha=sha,scope=review['scope'],statement_id=review['statement_id'],effective_date=effective,

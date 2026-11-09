@@ -46,6 +46,7 @@ def validate_discovery(path, assets, existing, cutoff):
                 if not s['evidence'] or any(not e['markers'] or any(' '.join(m.split()).casefold() not in text for m in e['markers']) for e in s['evidence']):raise ValueError('DISCOVERY_MARKER_MISMATCH:'+key)
         receipt=dict(candidate_key=key,name=r['name'],decision=r['decision'],reason=r['reason'],
             existing_candidate_ids=r.get('existing_candidate_ids',[]),sources=r['sources'])
+        if r.get('round5_review'):receipt['followup_review']=r['round5_review']
         if r['decision']=='ADMIT_PROJECT':
             identity=r['identity'];s=r['sources'][identity['source_index']]
             if s['kind']!='pdf' or not r.get('scope') or r.get('country')!='AU':raise ValueError('DISCOVERY_ADMISSION_SCOPE_REQUIRED')

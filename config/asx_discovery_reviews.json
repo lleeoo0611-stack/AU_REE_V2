@@ -1,9 +1,9 @@
 {
   "version": "reviewed-project-discovery-v1",
-  "baseline_commit": "b1625cf3f8f10155eec76f6f0ca5905251a7362b",
+  "baseline_commit": "243381670e5e8a17bacb803c1dd5d3f91011913b",
   "acquired_through": "2026-11-10",
   "cutoff": "2026-11-05",
-  "scope": "Federal and state primary-source name expansion plus complete frozen project-candidate inventory;bounded search,not national completeness",
+  "scope": "Round5 follow-up of all16 prior candidates; explicit independent mining projects vs prospects/processors; not national completeness",
   "candidates": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -825,85 +825,1118 @@
     },
     {
       "candidate_key": "wimmera",
-      "name": "Wimmera",
-      "aliases": [],
-      "decision": "CANDIDATE_ONLY",
-      "reason": "VIC_SEPARATE_MINING_PROJECT_CONFIRMED;NOT_THE_E﻿NEABBA_REFINERY;RESOURCE_AND_COMPOSITION_ORIGINAL_NOT_REVIEWED",
+      "name": "Wimmera Mineral Sands Project — Iluka WIM100",
+      "aliases": [
+        "Wimmera",
+        "Iluka WIM100"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND5_DATED_ORIGINAL_CONFIRMS_INDEPENDENT_AU_REE_MINING_PROJECT;RESOURCE_AND_FORECAST_ADMISSION_SEPARATE",
       "sources": [
         {
-          "asset_set": "round4",
-          "path": "data/snapshots/36a156ce1afcc5bd7dcc5eb91da2048c4533ececf273940a138c21e6adad44e0.html",
-          "sha256": "36a156ce1afcc5bd7dcc5eb91da2048c4533ececf273940a138c21e6adad44e0",
-          "url": "https://www.iluka.com/operations-resource-development/resource-development/wimmera",
-          "kind": "html",
+          "asset_set": "round5",
+          "path": "data/snapshots/c2a8b91970be9298bae77c8547268abd7f0969e8ceebeb7cf73530fa6d965e77.pdf",
+          "sha256": "c2a8b91970be9298bae77c8547268abd7f0969e8ceebeb7cf73530fa6d965e77",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03053666",
+          "kind": "pdf",
           "evidence": [
             {
+              "page": 1,
               "markers": [
                 "Wimmera",
+                "Victoria",
+                "WIM100"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [],
+      "country": "AU",
+      "scope": "Iluka Wimmera mining project; WIM100 initial focus; excludes Avonbank/WIM150 and Eneabba refinery",
+      "identity": {
+        "source_index": 0,
+        "source_key": "r5_identity_wimmera",
+        "publication_date": "2026-01-29",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "29 January 2026"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Wimmera",
+            "Victoria",
+            "WIM100"
+          ]
+        },
+        "name_marker": "Wimmera",
+        "state": "VIC",
+        "state_marker": "Victoria",
+        "developer": {
+          "value": "Iluka Resources Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Iluka Resources Limited"
+            ]
+          }
+        }
+      },
+      "round5_review": {
+        "status": "INDEPENDENT_PROJECT_ADMITTED",
+        "scope": "Iluka Wimmera mining project; WIM100 initial focus; excludes Avonbank/WIM150 and Eneabba refinery",
+        "resource_status": "NO_MATCHED_CURRENT_TREO_PAIR_ADMITTED"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "REVIEWED_WIM100_RESOURCE_IS_HM_AND_MINERAL_ASSEMBLAGE_NOT_TREO;NO_MATCHED_BULK_TREO_OR_ANNUAL_OXIDE_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Wimmera",
+              "Victoria",
+              "WIM100"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "balranald",
+      "name": "Balranald Mineral Sands Project",
+      "aliases": [
+        "Balranald"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND5_DATED_ORIGINAL_CONFIRMS_INDEPENDENT_AU_REE_MINING_PROJECT;RESOURCE_AND_FORECAST_ADMISSION_SEPARATE",
+      "sources": [
+        {
+          "asset_set": "round5",
+          "path": "data/snapshots/9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3.pdf",
+          "sha256": "9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03061353",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 23,
+              "markers": [
+                "Balranald",
+                "New South Wales",
+                "rare earths"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [],
+      "country": "AU",
+      "scope": "Balranald NSW mining project; excludes Euston deposits and Eneabba processing capacity",
+      "identity": {
+        "source_index": 0,
+        "source_key": "r5_identity_balranald",
+        "publication_date": "2026-02-18",
+        "date_evidence": {
+          "page": 42,
+          "markers": [
+            "18 February 2026"
+          ]
+        },
+        "project_evidence": {
+          "page": 23,
+          "markers": [
+            "Balranald",
+            "New South Wales",
+            "rare earths"
+          ]
+        },
+        "name_marker": "Balranald",
+        "state": "NSW",
+        "state_marker": "New South Wales",
+        "developer": {
+          "value": "Iluka Resources Limited",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Iluka Resources Limited"
+            ]
+          }
+        }
+      },
+      "round5_review": {
+        "status": "INDEPENDENT_PROJECT_ADMITTED",
+        "scope": "Balranald NSW mining project; excludes Euston deposits and Eneabba processing capacity",
+        "resource_status": "NO_MATCHED_CURRENT_TREO_PAIR_ADMITTED"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "MINERAL_SANDS_AND_REFINEABLE_FEED_NOT_MATCHED_TREO_GRADE;ENEABBA_MULTI_FEED_CAPACITY_NOT_MINE_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 23,
+            "markers": [
+              "Balranald",
+              "New South Wales",
+              "rare earths"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "euston",
+      "name": "Euston Mineral Sands Project",
+      "aliases": [
+        "Euston"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND5_DATED_ORIGINAL_CONFIRMS_INDEPENDENT_AU_REE_MINING_PROJECT;RESOURCE_AND_FORECAST_ADMISSION_SEPARATE",
+      "sources": [
+        {
+          "asset_set": "round5",
+          "path": "data/snapshots/095f218d0cd94fc8fdef24d38b16d8c67d10e778010c301a589277490e75ae70.pdf",
+          "sha256": "095f218d0cd94fc8fdef24d38b16d8c67d10e778010c301a589277490e75ae70",
+          "url": "https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=PDA-49591461%2120230119T024434.317+GMT",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 6,
+              "markers": [
+                "Euston",
+                "New South Wales",
                 "rare earth"
               ]
             }
           ]
         }
       ],
-      "existing_candidate_ids": []
-    },
-    {
-      "candidate_key": "balranald",
-      "name": "Balranald",
-      "aliases": [],
-      "decision": "CANDIDATE_ONLY",
-      "reason": "NSW_GOVERNMENT_IDENTIFIES_REE_BEARING_MINERAL_SANDS;NO_SOURCE_BOUND_TREO_RESOURCE_BUNDLE",
-      "sources": [
-        {
-          "asset_set": "round4",
-          "path": "data/snapshots/32adb459a2241692c992b4841d39a1d269d1a62dabff7a4b11a8e37556fd28ad.html",
-          "sha256": "32adb459a2241692c992b4841d39a1d269d1a62dabff7a4b11a8e37556fd28ad",
-          "url": "https://www.resources.nsw.gov.au/invest-nsw/investment-pathways/nsw-priority-metals/rare-earth-elements",
-          "kind": "html",
-          "evidence": [
-            {
-              "markers": [
-                "Balranald",
-                "monazite"
-              ]
-            }
+      "existing_candidate_ids": [],
+      "country": "AU",
+      "scope": "Euston six-deposit mining project Castaway/Earl/Kerribee/Koolaman/Yalong/Ki Downs; not Balranald; environmental scoping report is not an engineering Scoping Study",
+      "identity": {
+        "source_index": 0,
+        "source_key": "r5_identity_euston",
+        "publication_date": "2023-01-11",
+        "date_evidence": {
+          "page": 2,
+          "markers": [
+            "11 January 2023"
           ]
-        }
-      ],
-      "existing_candidate_ids": []
-    },
-    {
-      "candidate_key": "euston",
-      "name": "Euston",
-      "aliases": [],
-      "decision": "CANDIDATE_ONLY",
-      "reason": "NSW_GOVERNMENT_IDENTIFIES_REE_BEARING_MINERAL_SANDS;NO_SOURCE_BOUND_TREO_RESOURCE_BUNDLE",
-      "sources": [
-        {
-          "asset_set": "round4",
-          "path": "data/snapshots/32adb459a2241692c992b4841d39a1d269d1a62dabff7a4b11a8e37556fd28ad.html",
-          "sha256": "32adb459a2241692c992b4841d39a1d269d1a62dabff7a4b11a8e37556fd28ad",
-          "url": "https://www.resources.nsw.gov.au/invest-nsw/investment-pathways/nsw-priority-metals/rare-earth-elements",
-          "kind": "html",
-          "evidence": [
-            {
-              "markers": [
-                "Euston",
-                "monazite"
-              ]
-            }
+        },
+        "project_evidence": {
+          "page": 6,
+          "markers": [
+            "Euston",
+            "New South Wales",
+            "rare earth"
           ]
+        },
+        "name_marker": "Euston",
+        "state": "NSW",
+        "state_marker": "New South Wales",
+        "developer": {
+          "value": "Iluka Resources Limited",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Iluka Resources Limited"
+            ]
+          }
         }
-      ],
-      "existing_candidate_ids": []
+      },
+      "round5_review": {
+        "status": "INDEPENDENT_PROJECT_ADMITTED",
+        "scope": "Euston six-deposit mining project Castaway/Earl/Kerribee/Koolaman/Yalong/Ki Downs; not Balranald; environmental scoping report is not an engineering Scoping Study",
+        "resource_status": "NO_MATCHED_CURRENT_TREO_PAIR_ADMITTED"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "ENVIRONMENTAL_SCOPING_REPORT_NOT_ENGINEERING_SCOPING_STUDY;HMC_NOT_TREO;NO_MATCHED_RESOURCE_OXIDE_TABLE",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Euston",
+              "New South Wales",
+              "rare earth"
+            ]
+          }
+        }
+      ]
     },
     {
       "candidate_key": "caralue-bluff",
       "name": "Caralue Bluff",
       "aliases": [],
       "decision": "CANDIDATE_ONLY",
-      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "reason": "ROUND5_SOURCE_CONFIRMS_PROSPECT_AND_EXPLORATION_TARGET_ONLY;DATED_DISTINCT_PROJECT_BOUNDARY_NOT_COMPLETED;NO_MRE_FROM110_220MT_RANGE",
       "sources": [
         {
           "asset_set": "round4",
@@ -924,14 +1957,20 @@
       "existing_candidate_ids": [
         "AU-46bf0d96b8abf78e215c",
         "AU-4e40de25c12016e66988"
-      ]
+      ],
+      "round5_review": {
+        "status": "SOURCE_REVIEWED_DISPOSITION",
+        "parent_or_scope": "iTech Eyre Peninsula REE–kaolin prospect",
+        "developer_at_source": "iTech Minerals",
+        "reason": "SOURCE_CONFIRMS_PROSPECT_AND_EXPLORATION_TARGET_ONLY;DATED_DISTINCT_PROJECT_BOUNDARY_NOT_COMPLETED;NO_MRE_FROM110_220MT_RANGE"
+      }
     },
     {
       "candidate_key": "dickson-well",
       "name": "Dickson Well",
       "aliases": [],
-      "decision": "CANDIDATE_ONLY",
-      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "decision": "ALIAS_OR_CHILD",
+      "reason": "ROUND5_DICKSON_WELL_IS_A_PROSPECT_ON_EL6681_WITHIN_EYRE_PENINSULA_PROJECT;SCREENED_DRILL_ASSAYS_NOT_GLOBAL_MRE;PARENT_NOT_YET_ADMITTED",
       "sources": [
         {
           "asset_set": "round4",
@@ -947,6 +1986,22 @@
               ]
             }
           ]
+        },
+        {
+          "asset_set": "round5",
+          "path": "data/snapshots/467a21e4234b86390e9cfbd4d67de5346fce2f4a00ceb8d1555ef1fbc2bdcb49.pdf",
+          "sha256": "467a21e4234b86390e9cfbd4d67de5346fce2f4a00ceb8d1555ef1fbc2bdcb49",
+          "url": "https://announcements.asx.com.au/asxpdf/20240202/pdf/0600ssm3g21rh1.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Dickson Well",
+                "Eyre Peninsula"
+              ]
+            }
+          ]
         }
       ],
       "existing_candidate_ids": [
@@ -954,14 +2009,20 @@
         "AU-16b6e23e6097a0cde82e",
         "AU-729047243b4eb31181d6",
         "AU-dbd7cc493ad8fb45513b"
-      ]
+      ],
+      "round5_review": {
+        "status": "SOURCE_REVIEWED_DISPOSITION",
+        "parent_or_scope": "Power Minerals Eyre Peninsula Kaolin–Halloysite–REE Project",
+        "developer_at_source": "Power Minerals",
+        "reason": "DICKSON_WELL_IS_A_PROSPECT_ON_EL6681_WITHIN_EYRE_PENINSULA_PROJECT;SCREENED_DRILL_ASSAYS_NOT_GLOBAL_MRE;PARENT_NOT_YET_ADMITTED"
+      }
     },
     {
       "candidate_key": "franklyn",
       "name": "Franklyn",
       "aliases": [],
       "decision": "CANDIDATE_ONLY",
-      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "reason": "ROUND5_GOVERNMENT_REVIEW_CONFIRMS_PROSPECT;CURRENT_ISSUER_PROJECT_BOUNDARY_AND_DATED_IDENTITY_UNRESOLVED;NO_MRE_FROM_DRILL_INTERVALS",
       "sources": [
         {
           "asset_set": "round4",
@@ -979,14 +2040,20 @@
           ]
         }
       ],
-      "existing_candidate_ids": []
+      "existing_candidate_ids": [],
+      "round5_review": {
+        "status": "SOURCE_REVIEWED_DISPOSITION",
+        "parent_or_scope": "Franklyn kaolin–REE prospect near Terowie",
+        "developer_at_source": "iTech Minerals",
+        "reason": "GOVERNMENT_REVIEW_CONFIRMS_PROSPECT;CURRENT_ISSUER_PROJECT_BOUNDARY_AND_DATED_IDENTITY_UNRESOLVED;NO_MRE_FROM_DRILL_INTERVALS"
+      }
     },
     {
       "candidate_key": "minos",
       "name": "Minos",
       "aliases": [],
-      "decision": "CANDIDATE_ONLY",
-      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "decision": "ALIAS_OR_CHILD",
+      "reason": "ROUND5_MINOS_IS_A_PROSPECT_IN_CENTRAL_GAWLER_CRATON_PROJECT;REE_DRILL_INTERVALS_NOT_RESOURCE;NO_MERGE_WITH_COBRA_WUDINNA",
       "sources": [
         {
           "asset_set": "round4",
@@ -1002,16 +2069,39 @@
               ]
             }
           ]
+        },
+        {
+          "asset_set": "round5",
+          "path": "data/snapshots/dfd815df8bcb22082d60ffa97fb6d294892ed208b74a1e59843039326e967a69.pdf",
+          "sha256": "dfd815df8bcb22082d60ffa97fb6d294892ed208b74a1e59843039326e967a69",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02858532",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Minos",
+                "Central Gawler",
+                "Indiana"
+              ]
+            }
+          ]
         }
       ],
-      "existing_candidate_ids": []
+      "existing_candidate_ids": [],
+      "round5_review": {
+        "status": "SOURCE_REVIEWED_DISPOSITION",
+        "parent_or_scope": "Indiana Central Gawler Craton Gold Project",
+        "developer_at_source": "Indiana Resources",
+        "reason": "MINOS_IS_A_PROSPECT_IN_CENTRAL_GAWLER_CRATON_PROJECT;REE_DRILL_INTERVALS_NOT_RESOURCE;NO_MERGE_WITH_COBRA_WUDINNA"
+      }
     },
     {
       "candidate_key": "target-21",
       "name": "Target 21",
       "aliases": [],
-      "decision": "CANDIDATE_ONLY",
-      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "decision": "ALIAS_OR_CHILD",
+      "reason": "ROUND5_TARGET21_IS_AN_EXPLORATION_TARGET_WITHIN_EL6451_MULGATHING;NO_INDEPENDENT_MRE_OR_STANDALONE_PROJECT_ADMISSION",
       "sources": [
         {
           "asset_set": "round4",
@@ -1027,34 +2117,426 @@
               ]
             }
           ]
-        }
-      ],
-      "existing_candidate_ids": []
-    },
-    {
-      "candidate_key": "comet",
-      "name": "Comet",
-      "aliases": [],
-      "decision": "CANDIDATE_ONLY",
-      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
-      "sources": [
+        },
         {
-          "asset_set": "round4",
-          "path": "data/snapshots/2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601.pdf",
-          "sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601",
-          "url": "https://demstedpprodaue12.blob.core.windows.net/mesac-public/resources/files/5880056/RB24-28%20CMSA%20REE%202.pdf",
+          "asset_set": "round5",
+          "path": "data/snapshots/8159f962abab0cdaac67378bb7808f67dda5c2bdb424e736d0207b35ab09c039.pdf",
+          "sha256": "8159f962abab0cdaac67378bb7808f67dda5c2bdb424e736d0207b35ab09c039",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02784620",
           "kind": "pdf",
           "evidence": [
             {
-              "page": 17,
+              "page": 7,
               "markers": [
-                "Comet"
+                "Mulgathing"
               ]
             }
           ]
         }
       ],
-      "existing_candidate_ids": []
+      "existing_candidate_ids": [],
+      "round5_review": {
+        "status": "SOURCE_REVIEWED_DISPOSITION",
+        "parent_or_scope": "Marmota Mulgathing exploration project",
+        "developer_at_source": "Marmota",
+        "reason": "TARGET21_IS_AN_EXPLORATION_TARGET_WITHIN_EL6451_MULGATHING;NO_INDEPENDENT_MRE_OR_STANDALONE_PROJECT_ADMISSION"
+      }
+    },
+    {
+      "candidate_key": "comet",
+      "name": "Comet REE Project",
+      "aliases": [
+        "Comet"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND5_DATED_ORIGINAL_CONFIRMS_INDEPENDENT_AU_REE_MINING_PROJECT;RESOURCE_AND_FORECAST_ADMISSION_SEPARATE",
+      "sources": [
+        {
+          "asset_set": "round5",
+          "path": "data/snapshots/19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8.pdf",
+          "sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02861291",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 17,
+              "markers": [
+                "Comet REE Project",
+                "South Australia",
+                "Meteor",
+                "Artemis"
+              ]
+            }
+          ]
+        }
+      ],
+      "existing_candidate_ids": [],
+      "country": "AU",
+      "scope": "One Comet project including Meteor/Artemis prospects; separate from Muckanippie/Rosewood titanium resource",
+      "identity": {
+        "source_index": 0,
+        "source_key": "r5_identity_comet",
+        "publication_date": "2024-09-30",
+        "date_evidence": {
+          "page": 25,
+          "markers": [
+            "30 September 2024"
+          ]
+        },
+        "project_evidence": {
+          "page": 17,
+          "markers": [
+            "Comet REE Project",
+            "South Australia",
+            "Meteor",
+            "Artemis"
+          ]
+        },
+        "name_marker": "Comet",
+        "state": "SA",
+        "state_marker": "South Australia",
+        "developer": {
+          "value": "Petratherm Limited",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Petratherm Limited"
+            ]
+          }
+        }
+      },
+      "round5_review": {
+        "status": "INDEPENDENT_PROJECT_ADMITTED",
+        "scope": "One Comet project including Meteor/Artemis prospects; separate from Muckanippie/Rosewood titanium resource",
+        "resource_status": "NO_MATCHED_CURRENT_TREO_PAIR_ADMITTED"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "METEOR_ARTEMIS_DRILL_INTERCEPTS_NOT_GLOBAL_COMET_MRE;ROSEWOOD_TITANIUM_RESOURCE_NOT_TRANSFERABLE",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Comet REE Project",
+              "South Australia",
+              "Meteor",
+              "Artemis"
+            ]
+          }
+        }
+      ]
     },
     {
       "candidate_key": "morgan-s-creek",
@@ -1062,8 +2544,8 @@
       "aliases": [
         "MORGANS CREEK"
       ],
-      "decision": "CANDIDATE_ONLY",
-      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "decision": "ALIAS_OR_CHILD",
+      "reason": "ROUND5_MORGANS_CREEK_IS_A_PROSPECT_WITHIN_MT_CRAIG_PROJECT;FLINDERS_RANGES_IS_GEOGRAPHY_NOT_THE_SEPARATE_FLINDERS_PROJECT;NOT_PETRATHERM_COMET;PARENT_ADMISSION_NOT_COMPLETED",
       "sources": [
         {
           "asset_set": "round4",
@@ -1079,6 +2561,29 @@
               ]
             }
           ]
+        },
+        {
+          "asset_set": "round5",
+          "path": "data/snapshots/3b2f9c42d8134e4130e018582854f8df7333b41c5199b25da585b1853d13fd33.pdf",
+          "sha256": "3b2f9c42d8134e4130e018582854f8df7333b41c5199b25da585b1853d13fd33",
+          "url": "https://announcements.asx.com.au/asxpdf/20221215/pdf/45jvt81s65x7gh.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Morgans Creek",
+                "REE prospect"
+              ]
+            },
+            {
+              "page": 5,
+              "markers": [
+                "Morgans Creek",
+                "Mt Craig"
+              ]
+            }
+          ]
         }
       ],
       "existing_candidate_ids": [
@@ -1086,14 +2591,20 @@
         "AU-2a3535d7ccf5f874ab52",
         "AU-4bb3f3a9926ce922c31d",
         "AU-68657b0f98a146d465c1"
-      ]
+      ],
+      "round5_review": {
+        "status": "SOURCE_REVIEWED_DISPOSITION",
+        "parent_or_scope": "Taruga Mt Craig Project / Morgans Creek prospect; not Flinders Project",
+        "developer_at_source": "Taruga Minerals",
+        "reason": "MORGANS_CREEK_IS_A_PROSPECT_WITHIN_MT_CRAIG_PROJECT;FLINDERS_RANGES_IS_GEOGRAPHY_NOT_THE_SEPARATE_FLINDERS_PROJECT;NOT_PETRATHERM_COMET;PARENT_ADMISSION_NOT_COMPLETED"
+      }
     },
     {
       "candidate_key": "billeroo",
       "name": "Billeroo",
       "aliases": [],
       "decision": "CANDIDATE_ONLY",
-      "reason": "GOVERNMENT_IDENTIFIED_REE_PROSPECT;ASSAY_INTERVAL_OR_EXPLORATION_TARGET_NOT_PROJECT_GLOBAL_MRE;IDENTITY_SCOPE_REQUIRES_ORIGINAL",
+      "reason": "ROUND5_GEOLOGICAL_COMPLEX_AND_MINERAL_OCCURRENCE;NO_DATED_DEVELOPER_PROJECT_IDENTITY_OR_REE_MRE;SAMPLE_EUROPIUM_IS_NOT_RESOURCE_GRADE",
       "sources": [
         {
           "asset_set": "round4",
@@ -1111,14 +2622,20 @@
           ]
         }
       ],
-      "existing_candidate_ids": []
+      "existing_candidate_ids": [],
+      "round5_review": {
+        "status": "SOURCE_REVIEWED_DISPOSITION",
+        "parent_or_scope": "Billeroo North Alkaline Magmatic Complex",
+        "developer_at_source": "NOT_ESTABLISHED_BY_REVIEWED_SOURCE",
+        "reason": "GEOLOGICAL_COMPLEX_AND_MINERAL_OCCURRENCE;NO_DATED_DEVELOPER_PROJECT_IDENTITY_OR_REE_MRE;SAMPLE_EUROPIUM_IS_NOT_RESOURCE_GRADE"
+      }
     },
     {
       "candidate_key": "olympic-dam",
       "name": "Olympic Dam",
       "aliases": [],
       "decision": "CANDIDATE_ONLY",
-      "reason": "POLYMETALLIC_REE_POTENTIAL;REE_TECHNICAL_AND_PROJECT_BOUNDARY_REVIEW_REQUIRED",
+      "reason": "ROUND5_EXISTING_CU_AU_U_OPERATION_WITH_REE_MINERALS;NO_SEPARATE_REE_RESOURCE_RECOVERY_PROJECT_BOUNDARY_VALIDATED;NO_CU_ORE_TRANSFER",
       "sources": [
         {
           "asset_set": "round4",
@@ -1142,14 +2659,20 @@
         "AU-c287adad547f61f7c62e",
         "AU-e13b580a1e3b3e4ea93b",
         "AU-fcaabf5809af90f07fc4"
-      ]
+      ],
+      "round5_review": {
+        "status": "SOURCE_REVIEWED_DISPOSITION",
+        "parent_or_scope": "BHP Olympic Dam IOCG operation; potential REE byproduct",
+        "developer_at_source": "BHP",
+        "reason": "EXISTING_CU_AU_U_OPERATION_WITH_REE_MINERALS;NO_SEPARATE_REE_RESOURCE_RECOVERY_PROJECT_BOUNDARY_VALIDATED;NO_CU_ORE_TRANSFER"
+      }
     },
     {
       "candidate_key": "carrapateena",
       "name": "Carrapateena",
       "aliases": [],
       "decision": "CANDIDATE_ONLY",
-      "reason": "POLYMETALLIC_REE_POTENTIAL;REE_TECHNICAL_AND_PROJECT_BOUNDARY_REVIEW_REQUIRED",
+      "reason": "ROUND5_REE_INTERCEPTS_AND_TAILINGS_RESEARCH_NOT_DISTINCT_REE_MINING_RESOURCE_OR_ANNUAL_OUTPUT;NO_CU_ORE_TRANSFER",
       "sources": [
         {
           "asset_set": "round4",
@@ -1171,26 +2694,35 @@
         "AU-23d13f564b884e6610dd",
         "AU-b6fec91a00f2856114a7",
         "AU-baa792163f2c3cb23f34"
-      ]
+      ],
+      "round5_review": {
+        "status": "SOURCE_REVIEWED_DISPOSITION",
+        "parent_or_scope": "BHP Carrapateena IOCG operation; REE occurrence/tailings research",
+        "developer_at_source": "BHP",
+        "reason": "REE_INTERCEPTS_AND_TAILINGS_RESEARCH_NOT_DISTINCT_REE_MINING_RESOURCE_OR_ANNUAL_OUTPUT;NO_CU_ORE_TRANSFER"
+      }
     },
     {
       "candidate_key": "aileron",
-      "name": "Aileron",
-      "aliases": [],
-      "decision": "CANDIDATE_ONLY",
-      "reason": "REE_EXPLORATION_OR_STOCKPILE_PROCESSING_SCOPE_NEEDS_DISTINCTION;NOT_AUTOMATIC_RESOURCE_ADMISSION",
+      "name": "Aileron Niobium–REE Project",
+      "aliases": [
+        "Aileron"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND5_DATED_ORIGINAL_CONFIRMS_INDEPENDENT_AU_REE_MINING_PROJECT;RESOURCE_AND_FORECAST_ADMISSION_SEPARATE",
       "sources": [
         {
-          "asset_set": "canonical",
-          "path": "data/snapshots/a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb.pdf",
-          "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
-          "url": "https://www.wa.gov.au/media/159141/download?inline=",
+          "asset_set": "round5",
+          "path": "data/snapshots/fc466daa68b5f988ef61f0dc494b08cb14e2dcbed0e297b00a2c0a8379a975b3.pdf",
+          "sha256": "fc466daa68b5f988ef61f0dc494b08cb14e2dcbed0e297b00a2c0a8379a975b3",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03084938",
           "kind": "pdf",
           "evidence": [
             {
               "page": 1,
               "markers": [
-                "Aileron"
+                "Aileron",
+                "Western Australia"
               ]
             }
           ]
@@ -1199,26 +2731,343 @@
       "existing_candidate_ids": [
         "AU-760e554ef4bb1bb426cf",
         "AU-c66a11a08c779dcf096b"
+      ],
+      "country": "AU",
+      "scope": "One combined Green/Emily/Crean resource at 0.25% Nb2O5 cutoff; high-grade1% cutoff is nested and not additive; separate from WA1 Luni",
+      "identity": {
+        "source_index": 0,
+        "source_key": "r5_identity_aileron",
+        "publication_date": "2026-04-22",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "22 April 2026"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Aileron",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Aileron",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Encounter Resources",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Encounter Resources"
+            ]
+          }
+        }
+      },
+      "round5_review": {
+        "status": "INDEPENDENT_PROJECT_ADMITTED",
+        "scope": "One combined Green/Emily/Crean resource at 0.25% Nb2O5 cutoff; high-grade1% cutoff is nested and not additive; separate from WA1 Luni",
+        "resource_status": "SEPARATELY_REVIEWED"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "REVIEWED_CURRENT_RESOURCE_DISCLOSES_TOTAL_TREO_NOT_INDIVIDUAL_OXIDES_OR_ANNUAL_PRODUCTION",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "Western Australia"
+            ]
+          }
+        }
       ]
     },
     {
       "candidate_key": "eneabba",
       "name": "Eneabba",
       "aliases": [],
-      "decision": "CANDIDATE_ONLY",
-      "reason": "REE_EXPLORATION_OR_STOCKPILE_PROCESSING_SCOPE_NEEDS_DISTINCTION;NOT_AUTOMATIC_RESOURCE_ADMISSION",
+      "decision": "PROCESSING_ONLY",
+      "reason": "ROUND5_REFINERY_MULTIPLE_FEED_CAPACITY_AND_HISTORIC_STOCKPILE_NOT_AN_ADDITIONAL_IN_SITU_REE_MINING_PROJECT;NO_CAPACITY_ALLOCATION_TO_MINES",
       "sources": [
         {
-          "asset_set": "canonical",
-          "path": "data/snapshots/a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb.pdf",
-          "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
-          "url": "https://www.wa.gov.au/media/159141/download?inline=",
+          "asset_set": "round5",
+          "path": "data/snapshots/9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3.pdf",
+          "sha256": "9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03061353",
           "kind": "pdf",
           "evidence": [
             {
-              "page": 1,
+              "page": 23,
               "markers": [
-                "Eneabba"
+                "Eneabba",
+                "refinery",
+                "Balranald",
+                "Wimmera"
               ]
             }
           ]
@@ -1227,7 +3076,13 @@
       "existing_candidate_ids": [
         "AU-4c4f5b44c9e41963ad19",
         "AU-5ffc97f416d59faf4f9f"
-      ]
+      ],
+      "round5_review": {
+        "status": "SOURCE_REVIEWED_DISPOSITION",
+        "parent_or_scope": "Eneabba refinery plus historic mineral-sands stockpile",
+        "developer_at_source": "Iluka Resources",
+        "reason": "REFINERY_MULTIPLE_FEED_CAPACITY_AND_HISTORIC_STOCKPILE_NOT_AN_ADDITIONAL_IN_SITU_REE_MINING_PROJECT;NO_CAPACITY_ALLOCATION_TO_MINES"
+      }
     },
     {
       "candidate_key": "stinger",
@@ -1490,19 +3345,22 @@
     },
     {
       "candidate_key": "charley-creek",
-      "name": "Charley Creek",
-      "aliases": [],
-      "decision": "CANDIDATE_ONLY",
-      "reason": "SEPARATE_NT_AUSTRALIAN_PROJECT_CONFIRMED;HISTORICAL805MT_HEADLINE_NOT_PAIRED_WITH_NEW_CATTLE_CREEK_RESOURCE_DEFINITION;ORIGINAL_RESOURCE_SCOPE_AND_DATE_REVIEW_PENDING",
+      "name": "Charley Creek REE Project",
+      "aliases": [
+        "Charley Creek"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "ROUND5_DATED_ORIGINAL_CONFIRMS_INDEPENDENT_AU_REE_MINING_PROJECT;RESOURCE_AND_FORECAST_ADMISSION_SEPARATE",
       "sources": [
         {
-          "asset_set": "round4",
-          "path": "data/snapshots/1b18cf40345c1af98885887ebabedb857c6c624d49c9151c22afa20bb69d520c.html",
-          "sha256": "1b18cf40345c1af98885887ebabedb857c6c624d49c9151c22afa20bb69d520c",
-          "url": "https://enovamining.com/projects/charley-creek-rare-earth-project/",
-          "kind": "html",
+          "asset_set": "round5",
+          "path": "data/snapshots/7c39273cc15b4e56b59d0514a3134eadb203230add73e24d36eb8cd0094fda1e.pdf",
+          "sha256": "7c39273cc15b4e56b59d0514a3134eadb203230add73e24d36eb8cd0094fda1e",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03077988",
+          "kind": "pdf",
           "evidence": [
             {
+              "page": 17,
               "markers": [
                 "Charley Creek",
                 "Northern Territory"
@@ -1515,6 +3373,320 @@
         "AU-151482081987976466df",
         "AU-2f412ba290dbaa1e7c05",
         "AU-56bd4bad4255e543e0e0"
+      ],
+      "country": "AU",
+      "scope": "One NT Charley Creek project with Cattle Creek alluvial/saprolite exploration; no Brazilian Enova assets; historic805Mt not merged with current Cattle Creek",
+      "identity": {
+        "source_index": 0,
+        "source_key": "r5_identity_charley_creek",
+        "publication_date": "2026-03-31",
+        "date_evidence": {
+          "page": 2,
+          "markers": [
+            "31 March 2026"
+          ]
+        },
+        "project_evidence": {
+          "page": 17,
+          "markers": [
+            "Charley Creek",
+            "Northern Territory"
+          ]
+        },
+        "name_marker": "Charley Creek",
+        "state": "NT",
+        "state_marker": "Northern Territory",
+        "developer": {
+          "value": "Enova Mining Limited",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Enova Mining Limited"
+            ]
+          }
+        }
+      },
+      "round5_review": {
+        "status": "INDEPENDENT_PROJECT_ADMITTED",
+        "scope": "One NT Charley Creek project with Cattle Creek alluvial/saprolite exploration; no Brazilian Enova assets; historic805Mt not merged with current Cattle Creek",
+        "resource_status": "NO_MATCHED_CURRENT_TREO_PAIR_ADMITTED"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "CURRENT_CATTLE_CREEK_ALLUVIAL_AND_SAPROLITE_EXPLORATION_NOT_PAIRED_WITH_HISTORIC805MT;NO_CURRENT_MATCHED_TREO_RESOURCE_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Charley Creek",
+              "Northern Territory"
+            ]
+          }
+        }
       ]
     }
   ]

@@ -50,6 +50,7 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     if field.startswith('reported_resource_'):
         from .project_summary import ELEMENTS
         expected = {'reported_resource_'+re.match(r'[A-Z][a-z]?',e)[0].lower()+'_ppm':e for e in ELEMENTS}.get(field)
+        if field=='reported_resource_magnet_ppm':expected='PrNdDyTb_OXIDES'
         if not expected or binding.get('basis') != expected:
             fail('OXIDE_FIELD_BASIS_MISMATCH')
     page = doc[page_no - 1]
@@ -67,6 +68,10 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
             fail('RECT_OUTSIDE_PAGE')
         return r
 
+    if field=='reported_resource_magnet_ppm':
+        definition=norm(region_text(page,rect('group_definition_bbox')))
+        exact='Total permanent magnet REO (MREO) = Total permanent magnet REOs (Pr6O11 + Nd2O3 + Tb4O7 + Dy2O3)'
+        if unit!='ppm' or definition!=norm(exact):fail('MAGNET_GROUP_DEFINITION_REQUIRED')
     mode = binding.get('mode')
     if not field.startswith('average_annual_'):
         section = (selected_sections or {}).get(binding.get('section_id'))
@@ -195,6 +200,7 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
         if binding.get('resource_orientation')=='oxide_rows':
             valid=(source_unit=='%treo' and label=='total' and
                    norm(binding.get('row_label',''))==norm(binding.get('basis','')))
+        if field=='reported_resource_magnet_ppm':valid=label=='mreo' and source_unit=='ppm'
     elif field.startswith('annual_input_'):
         # An annual product forecast may be converted to contained oxides only
         # from the selected product row, with independent mass/grade/%TREO cells.

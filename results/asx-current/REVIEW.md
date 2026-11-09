@@ -1,17 +1,18 @@
 # Current ASX coverage review
 
-Iteration 6. Integrates parallel commits `9b85c84` and `bf58182` with the fourth acquisition/research round requested against the 923-gap baseline `b1625cf`.
+Iteration 7, research round5, baseline `2433816`: 37 rows,900filled,1024unknown.
 
-- Original 33 groups: 37 blanks filled, 886 remaining; 17 existing cells change with the explicit Ridley Blocks 1/2 scope. No values are withdrawn.
-- Four documentary research-project extensions: Deep Leads–Rubble Mound–Wind Break, Sandy Mitchell, Avonbank and Copi. Their 70 filled cells and 138 blanks are counted separately. Canonical SQLite identities and relations remain unchanged.
-- Expanded table: 37 × 52, 900 filled and 1,024 unknown. Scientific subset: original groups 302/825, new groups 22/100, expanded 324/925.
-- Relative to parallel `bf58182`, one additional existing-group fill: Goschen annual NdPr oxide 990 tpa, with the issuer's exact annual row and cross-page oxide-basis definition. The four new rows are additional.
-- Deduplicated the parallel Nolans full oxide suite, retaining its resource-grade input binding. Retained Ridley Blocks 1/2, the context-only Mia review and Ce/Y/Yb quarantine. No scope addition or geological downgrade is inferred.
-- The original six paired-resource gaps remain unknown for documented fraction, overlap, source-category or numerical-conflict reasons. New Sandy Mitchell/Avonbank/Copi resource numbers also remain withheld.
-- Reviewed 29 names: four admitted, 16 candidates, four parent/child scopes, four existing projects, one processing facility. Published all 129 frozen PROJECT_CANDIDATE records as a queue; those are not counts of independent projects.
-- Publisher-labelled March 2026 publication month takes precedence over the February edition in the Austrade catalogue. Month intervals remain explicit; month-end dates are ordering bounds.
-- Nine readable PDF captures from ten PDF URLs (668 document pages); eight of eight ASX URLs succeeded. Captured HTML shells do not themselves verify substantive content. Nine archive pages yielded 459 distinct dated links, not 459 downloaded documents.
+- All16prior candidates have explicit source-reviewed dispositions:6admitted,4parent/child scopes,5still require evidence,1processing/stockpile scope.
+- Six additional mining research rows:Iluka Wimmera/WIM100,Balranald,Euston,Aileron,Charley Creek,Comet. Canonical SQLite remains33groups; research extensions now10.
+- Fixed37cohort:4newfills(3numericresource fields and1resource-presence flag),1020remaining;5metadata/name changes,2numeric-format-only differences,0withdrawals.
+- New6:64filled,248unknown. Expanded43x52:968filled,1268unknown=1020old+248new. Science330/1075;fixed327/925,new3/150.
+- Lyons uses only the internally consistent12&13resource row:0.69Mt,0.33pctTREO,2.266ktTREO,above0.2pctcutoff. The whole-Lyons3221vs2266+670conflict remains unresolved; the master explicitly names the subset.
+- Aileron2026resource has120Mt,0.36pctTREO,433ktTREO,at0.25pctNb2O5cutoff. The1pctNb2O5cutoff high-grade resource is nested;0.77pctisniobium,notTREO. Reaffirmed by the27Oct2026annual report,with publication-index and25Sept2026issue-date proofs kept separate.
+- Narraburra's130.79ppmMREO is an explicitfour-oxidegroup. It confirms existing totals with image-cell and exact formula bindings;0newfills. It never fills individual oxides,NdPr-both,HREE8or published-element counts.
+- No new individual-oxide or annual-production values passed. NorthStanmore'sSeptember table covers initial10years; the PFSdry-tonnesAveragecolumn still lacks explicitannualdenominator. Mineralmass,refinerycapacity,partialHREEsets anddifferentresource scopes remain excluded.
+- Gemini89rows are name leads:18exactregistered-name matches,69unverified,1overseaslead,1possibletypo. Company/ticker pairs andnumericvalues are never imported. Rawinput-row crosswalk stayslocal.
+- Captured21PDFsfrom22PDFURLs,1033documentpages;2of23totalURLs unavailable(404,429).21archivepages,19parsed,1133distinctdatedlinks;notall downloaded or independently gold-standard reviewed.
 
-Final related regressions: 255 passed plus 27 subtests. Focused tests: 114 passed plus 19 subtests; overlapping, not additive. All four CSV exports replay byte-for-byte. Every filled cell has exactly one current provenance entry, every blank a diagnostic. Original SQLite hash is unchanged. No full historical rebuild, R/MCDA run, independent C1 approval or remote-CI success is claimed.
+Final tests and hashes:[validation](validation.json). Related and focused tests overlap. FourCSVexports replay byte-for-byte;one provenance perfilledcell andone diagnostic perblank. OriginalSQLite unchanged;no formalC1,fullhistoricalrebuild,MCDAor remoteCIclaim.
 
-Details: [research report](../../docs/asx-gap-round4.md), [cohort coverage](../asx-gap-round4-2026-11-10/cohort_coverage.csv), [discovery reviews](../asx-gap-round4-2026-11-10/discovery_reviews.csv), [gap reasons](missing_fields.csv). Prior result bundles and Git history are preserved. Raw PDFs, page text/renders and SQLite are excluded from publication.
+Details:[research report](../../docs/asx-gap-round5.md),[fixed/newcohort coverage](../asx-gap-round5-2026-11-10/cohort_coverage.csv),[16candidatefollowup](../asx-gap-round5-2026-11-10/candidate_followup.csv),[gapreasons](missing_fields.csv). Priorbundles preserved. RawPDFs,fullpagetext/images,SQLite anduploaded rawrows are excluded.

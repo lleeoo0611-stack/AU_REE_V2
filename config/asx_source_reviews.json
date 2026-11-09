@@ -22821,6 +22821,918 @@
           }
         }
       ]
+    },
+    {
+      "review_id": "r5_lyons_12_13_resource",
+      "source_key": "lyons_original2023",
+      "project_id": "AU-7c198d219aa1db3e291f",
+      "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+      "asset_set": "round5",
+      "path": "data/snapshots/3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4.pdf",
+      "url": "https://wcsecure.weblink.com.au/clients/lanthaneinresources/headline.aspx?headlineid=61176136",
+      "publication_date": "2023-10-25",
+      "effective_date": "2023-10-25",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Lyons",
+          "25 October 2023"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "25 October 2023"
+        ]
+      },
+      "scope": "Lyons 12&13 Inferred dry resource at0.2pctTREOcutoff only;excludes conflictingLyons11 andwholeLyonsTotal;0.69Mt0.33pct2266tTREO",
+      "statement_id": "r5_lyons_12_13_resource",
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 1,
+          "markers": [
+            "Inferred Mineral Resources at Lyons above 0.2% TREO"
+          ]
+        },
+        {
+          "page": 6,
+          "markers": [
+            "Lyons",
+            "12&13"
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "basis": "TREO",
+          "original_token": "0.69",
+          "value": 0.69,
+          "unit": "Mt",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Lyons",
+              "12&13"
+            ],
+            "render_sha256": "43a96273355501f1e3d165664394c2e7c869596023be9c938f4fe3a6b2fab472"
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Lyons 12&13 Inferred dry resource at0.2pctTREOcutoff only;excludes conflictingLyons11 andwholeLyonsTotal;0.69Mt0.33pct2266tTREO",
+            "page": 6,
+            "original_unit": "Mt",
+            "table_bbox": [
+              50,
+              110,
+              475,
+              258
+            ],
+            "table_label": "Appendix 1.",
+            "table_label_bbox": [
+              56.550000762939455,
+              115.51496276855468,
+              111.3767074584961,
+              126.79496612548829
+            ],
+            "row_bbox": [
+              132,
+              177,
+              458,
+              205
+            ],
+            "row_label": "Lyons 12&13",
+            "row_label_bbox": [
+              136,
+              178,
+              176,
+              204
+            ],
+            "column_bbox": [
+              187,
+              110,
+              237,
+              258
+            ],
+            "column_label": "Tonnes",
+            "column_label_bbox": [
+              196.01000366210937,
+              150.69495544433593,
+              229.35979309082032,
+              161.974951171875
+            ],
+            "unit_bbox": [
+              202.43000183105468,
+              164.13495788574218,
+              222.98811950683594,
+              175.41495361328126
+            ],
+            "unit_label": "(Mt)",
+            "scope_anchor": "Appendix 1.",
+            "scope_anchor_bbox": [
+              56.550000762939455,
+              115.51496276855468,
+              111.3767074584961,
+              126.79496612548829
+            ],
+            "section_id": "ore_mt"
+          },
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "grade",
+          "basis": "TREO",
+          "original_token": "0.33",
+          "value": 0.33,
+          "unit": "%",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Lyons",
+              "12&13"
+            ],
+            "render_sha256": "43a96273355501f1e3d165664394c2e7c869596023be9c938f4fe3a6b2fab472"
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "grade",
+            "basis": "TREO",
+            "scope": "Lyons 12&13 Inferred dry resource at0.2pctTREOcutoff only;excludes conflictingLyons11 andwholeLyonsTotal;0.69Mt0.33pct2266tTREO",
+            "page": 6,
+            "original_unit": "%",
+            "table_bbox": [
+              50,
+              110,
+              475,
+              258
+            ],
+            "table_label": "Appendix 1.",
+            "table_label_bbox": [
+              56.550000762939455,
+              115.51496276855468,
+              111.3767074584961,
+              126.79496612548829
+            ],
+            "row_bbox": [
+              132,
+              177,
+              458,
+              205
+            ],
+            "row_label": "Lyons 12&13",
+            "row_label_bbox": [
+              136,
+              178,
+              176,
+              204
+            ],
+            "column_bbox": [
+              244,
+              110,
+              294,
+              258
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              257.0299926757813,
+              150.69495544433593,
+              281.7275451660156,
+              161.974951171875
+            ],
+            "unit_bbox": [
+              261.83001098632815,
+              164.13495788574218,
+              276.9859375,
+              175.41495361328126
+            ],
+            "unit_label": "(%)",
+            "scope_anchor": "Appendix 1.",
+            "scope_anchor_bbox": [
+              56.550000762939455,
+              115.51496276855468,
+              111.3767074584961,
+              126.79496612548829
+            ],
+            "section_id": "grade"
+          },
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "contained_treo_kt",
+          "basis": "TREO",
+          "original_token": "2,266",
+          "value": 2.266,
+          "unit": "kt TREO",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Lyons",
+              "12&13"
+            ],
+            "render_sha256": "43a96273355501f1e3d165664394c2e7c869596023be9c938f4fe3a6b2fab472"
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "contained_treo_kt",
+            "basis": "TREO",
+            "scope": "Lyons 12&13 Inferred dry resource at0.2pctTREOcutoff only;excludes conflictingLyons11 andwholeLyonsTotal;0.69Mt0.33pct2266tTREO",
+            "page": 6,
+            "original_unit": "t",
+            "table_bbox": [
+              50,
+              110,
+              475,
+              258
+            ],
+            "table_label": "Appendix 1.",
+            "table_label_bbox": [
+              56.550000762939455,
+              115.51496276855468,
+              111.3767074584961,
+              126.79496612548829
+            ],
+            "row_bbox": [
+              132,
+              177,
+              458,
+              205
+            ],
+            "row_label": "Lyons 12&13",
+            "row_label_bbox": [
+              136,
+              178,
+              176,
+              204
+            ],
+            "column_bbox": [
+              414,
+              110,
+              464,
+              258
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              427.1499877929688,
+              150.69495544433593,
+              451.8475402832031,
+              161.974951171875
+            ],
+            "unit_bbox": [
+              434.0500122070313,
+              164.13495788574218,
+              444.9786437988281,
+              175.41495361328126
+            ],
+            "unit_label": "(t)",
+            "scope_anchor": "Appendix 1.",
+            "scope_anchor_bbox": [
+              56.550000762939455,
+              115.51496276855468,
+              111.3767074584961,
+              126.79496612548829
+            ],
+            "section_id": "contained_treo_kt"
+          },
+          "rounding_half_width": 0.0005,
+          "original_unit": "t"
+        }
+      ],
+      "selection_reason": "EXPLICIT_SELECTED_SOURCE_ROW_SCOPE_AND_CUTOFF;NO_NESTED_ADDITION",
+      "summary_resource_scope_label": "12&13",
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "25 October 2023"
+        ],
+        "header_title": "Maiden Mineral Resource Estimate at Lyons Project"
+      },
+      "selected_resource_sections": {
+        "ore_mt": {
+          "page": 6,
+          "bbox": [
+            50,
+            110,
+            475,
+            258
+          ],
+          "anchor": "Appendix 1.",
+          "anchor_bbox": [
+            56.550000762939455,
+            115.51496276855468,
+            111.3767074584961,
+            126.79496612548829
+          ],
+          "row_label": "Lyons 12&13"
+        },
+        "grade": {
+          "page": 6,
+          "bbox": [
+            50,
+            110,
+            475,
+            258
+          ],
+          "anchor": "Appendix 1.",
+          "anchor_bbox": [
+            56.550000762939455,
+            115.51496276855468,
+            111.3767074584961,
+            126.79496612548829
+          ],
+          "row_label": "Lyons 12&13"
+        },
+        "contained_treo_kt": {
+          "page": 6,
+          "bbox": [
+            50,
+            110,
+            475,
+            258
+          ],
+          "anchor": "Appendix 1.",
+          "anchor_bbox": [
+            56.550000762939455,
+            115.51496276855468,
+            111.3767074584961,
+            126.79496612548829
+          ],
+          "row_label": "Lyons 12&13"
+        }
+      }
+    },
+    {
+      "review_id": "r5_narraburra_magnet_group",
+      "source_key": "narraburra2023",
+      "project_id": "AU-d28382dfa82f1664065e",
+      "source_sha256": "9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f",
+      "asset_set": "round5",
+      "path": "data/snapshots/9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f.pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20230419/pdf/45nsv13j5vtntn.pdf",
+      "publication_date": "2023-04-19",
+      "effective_date": "2023-04-19",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Narraburra",
+          "19 April 2023"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "19 April 2023"
+        ]
+      },
+      "scope": "Narraburra globalAllIndicated+Inferred94.9Mt738.95ppmTREO;300ppmTREO-CeO2cutoff;reportedfourmagnetoxidegroup130.79ppm;notindividualoxidegrades",
+      "statement_id": "r5_narraburra_magnet_group",
+      "resource_categories": [
+        "INDICATED",
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 6,
+          "markers": [
+            "Mineral Resource Estimation figures",
+            "Total permanent magnet REO"
+          ]
+        },
+        {
+          "page": 7,
+          "markers": [
+            "47.6Mt of Indicated",
+            "47.4Mt of Inferred"
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "basis": "TREO",
+          "original_token": "94.9",
+          "value": 94.9,
+          "unit": "Mt",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Mineral Resource Estimation figures"
+            ],
+            "render_sha256": "4dca0b34dd1d4311c3a8288458302d9a248699a676cd652f95035f9e9860d0fd"
+          },
+          "cell_binding": {
+            "mode": "reviewed_image_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Narraburra globalAllIndicated+Inferred94.9Mt738.95ppmTREO;300ppmTREO-CeO2cutoff;reportedfourmagnetoxidegroup130.79ppm;notindividualoxidegrades",
+            "page": 6,
+            "original_unit": "Mt",
+            "table_bbox": [
+              56.6,
+              447.5,
+              539,
+              627.7
+            ],
+            "row_bbox": [
+              56.7,
+              616.4,
+              538.7,
+              627.4
+            ],
+            "column_bbox": [
+              196,
+              447.5,
+              253,
+              627.7
+            ],
+            "row_label": "All Ind + Inf",
+            "column_label": "Tonnes",
+            "table_label": "Narraburra Rare Earth Oxide Mineral Resources -4/2023",
+            "section_id": "image-global",
+            "reviewed_token": "94.9",
+            "review_note": "Visually reviewed original table and enlarged full-table render;lastAllInd+Infrow;MREOisfour-oxidegroupnotindividualgrades",
+            "cell_render_sha256": "7c58166497da6e8536c7c4ab61bb842acdff48b45e1ac670994d198083049814"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "grade",
+          "basis": "TREO",
+          "original_token": "738.95",
+          "value": 738.95,
+          "unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Mineral Resource Estimation figures"
+            ],
+            "render_sha256": "4dca0b34dd1d4311c3a8288458302d9a248699a676cd652f95035f9e9860d0fd"
+          },
+          "cell_binding": {
+            "mode": "reviewed_image_cell",
+            "field": "grade",
+            "basis": "TREO",
+            "scope": "Narraburra globalAllIndicated+Inferred94.9Mt738.95ppmTREO;300ppmTREO-CeO2cutoff;reportedfourmagnetoxidegroup130.79ppm;notindividualoxidegrades",
+            "page": 6,
+            "original_unit": "ppm",
+            "table_bbox": [
+              56.6,
+              447.5,
+              539,
+              627.7
+            ],
+            "row_bbox": [
+              56.7,
+              616.4,
+              538.7,
+              627.4
+            ],
+            "column_bbox": [
+              295.5,
+              447.5,
+              339.5,
+              627.7
+            ],
+            "row_label": "All Ind + Inf",
+            "column_label": "Total REO TREO",
+            "table_label": "Narraburra Rare Earth Oxide Mineral Resources -4/2023",
+            "section_id": "image-global",
+            "reviewed_token": "738.95",
+            "review_note": "Visually reviewed original table and enlarged full-table render;lastAllInd+Infrow;MREOisfour-oxidegroupnotindividualgrades",
+            "cell_render_sha256": "0a43507af39449245154388bffe92a6d17f0272d5c86f05f6d88c01f8200afa5"
+          },
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "reported_resource_magnet_ppm",
+          "basis": "PrNdDyTb_OXIDES",
+          "original_token": "130.79",
+          "value": 130.79,
+          "unit": "ppm",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Mineral Resource Estimation figures"
+            ],
+            "render_sha256": "4dca0b34dd1d4311c3a8288458302d9a248699a676cd652f95035f9e9860d0fd"
+          },
+          "cell_binding": {
+            "mode": "reviewed_image_cell",
+            "field": "reported_resource_magnet_ppm",
+            "basis": "PrNdDyTb_OXIDES",
+            "scope": "Narraburra globalAllIndicated+Inferred94.9Mt738.95ppmTREO;300ppmTREO-CeO2cutoff;reportedfourmagnetoxidegroup130.79ppm;notindividualoxidegrades",
+            "page": 6,
+            "original_unit": "ppm",
+            "table_bbox": [
+              56.6,
+              447.5,
+              539,
+              627.7
+            ],
+            "row_bbox": [
+              56.7,
+              616.4,
+              538.7,
+              627.4
+            ],
+            "column_bbox": [
+              425,
+              447.5,
+              468.3,
+              627.7
+            ],
+            "row_label": "All Ind + Inf",
+            "column_label": "MREO",
+            "table_label": "Narraburra Rare Earth Oxide Mineral Resources -4/2023",
+            "section_id": "image-global",
+            "reviewed_token": "130.79",
+            "review_note": "Visually reviewed original table and enlarged full-table render;lastAllInd+Infrow;MREOisfour-oxidegroupnotindividualgrades",
+            "cell_render_sha256": "f5eb24b052956db003eb72f9a2cdc6f95325df0dfcb97d7db2ffeb9b807df13d",
+            "group_definition_bbox": [
+              69,
+              752,
+              520,
+              765.5
+            ]
+          }
+        }
+      ],
+      "selection_reason": "EXPLICIT_SELECTED_SOURCE_ROW_SCOPE_AND_CUTOFF;NO_NESTED_ADDITION",
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "19 April 2023"
+        ],
+        "header_title": "Narraburra"
+      },
+      "selected_resource_sections": {
+        "image-global": {
+          "mode": "reviewed_image_section",
+          "page": 6,
+          "bbox": [
+            56.6,
+            447.5,
+            539,
+            627.7
+          ],
+          "anchor": "globalAllInd+Inf",
+          "row_label": "All Ind + Inf"
+        }
+      }
+    },
+    {
+      "review_id": "r5_aileron_resource2026",
+      "source_key": "enr_ar2026",
+      "project_id": "AU-af44c2bd1173b453953f",
+      "source_sha256": "88dfed30776b41d3739253fefaa1e5972a0b9969ec4db39dc1130efa2164775a",
+      "asset_set": "round5",
+      "path": "data/snapshots/88dfed30776b41d3739253fefaa1e5972a0b9969ec4db39dc1130efa2164775a.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03157945",
+      "publication_date": "2026-10-27",
+      "effective_date": "2026-10-27",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 9,
+        "markers": [
+          "Aileron",
+          "West Arunta",
+          "WA"
+        ]
+      },
+      "date_evidence": {
+        "page": 43,
+        "markers": [
+          "25 September 2026"
+        ]
+      },
+      "scope": "Aileron combinedGreenEmilyCreanInferred2026MRE;0.25pctNb2O5cutoff;120Mt0.36pctTREO433ktTREO;notnested1pctcutoff26Mtresource",
+      "statement_id": "r5_aileron_resource2026",
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 9,
+          "markers": [
+            "0.25% Nb205 cut-off",
+            "Total",
+            "Inferred Mineral Resource"
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "basis": "TREO",
+          "original_token": "120",
+          "value": 120.0,
+          "unit": "Mt",
+          "evidence": {
+            "page": 9,
+            "markers": [
+              "Total",
+              "TREO"
+            ],
+            "render_sha256": "dc43f9200ac95b54b92a6380f37bd88ecdf2b8ce09aa9507959ea57a4c193704"
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Aileron combinedGreenEmilyCreanInferred2026MRE;0.25pctNb2O5cutoff;120Mt0.36pctTREO433ktTREO;notnested1pctcutoff26Mtresource",
+            "page": 9,
+            "original_unit": "Mt",
+            "table_bbox": [
+              48,
+              427,
+              550,
+              550
+            ],
+            "table_label": "0.25% Nb205 cut-off",
+            "table_label_bbox": [
+              294.519189453125,
+              430.7425170898438,
+              374.457861328125,
+              443.2916015625
+            ],
+            "row_bbox": [
+              49,
+              533,
+              549,
+              547
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              53.74422607421875,
+              535.0661865234375,
+              75.59022369384766,
+              545.527197265625
+            ],
+            "column_bbox": [
+              117,
+              427,
+              167,
+              550
+            ],
+            "column_label": "Tonnage",
+            "column_label_bbox": [
+              123.13882598876953,
+              449.2375122070313,
+              160.33881225585938,
+              459.6265014648437
+            ],
+            "unit_bbox": [
+              134.03040466308593,
+              462.9577270507813,
+              149.43439331054688,
+              472.2257141113281
+            ],
+            "unit_label": "(Mt)",
+            "scope_anchor": "0.25% Nb205 cut-off",
+            "scope_anchor_bbox": [
+              294.519189453125,
+              430.7425170898438,
+              374.457861328125,
+              443.2916015625
+            ],
+            "section_id": "ore_mt"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "grade",
+          "basis": "TREO",
+          "original_token": "0.36",
+          "value": 0.36,
+          "unit": "%",
+          "evidence": {
+            "page": 9,
+            "markers": [
+              "Total",
+              "TREO"
+            ],
+            "render_sha256": "dc43f9200ac95b54b92a6380f37bd88ecdf2b8ce09aa9507959ea57a4c193704"
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "grade",
+            "basis": "TREO",
+            "scope": "Aileron combinedGreenEmilyCreanInferred2026MRE;0.25pctNb2O5cutoff;120Mt0.36pctTREO433ktTREO;notnested1pctcutoff26Mtresource",
+            "page": 9,
+            "original_unit": "%",
+            "table_bbox": [
+              48,
+              427,
+              550,
+              550
+            ],
+            "table_label": "0.25% Nb205 cut-off",
+            "table_label_bbox": [
+              294.519189453125,
+              430.7425170898438,
+              374.457861328125,
+              443.2916015625
+            ],
+            "row_bbox": [
+              49,
+              533,
+              549,
+              547
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              53.74422607421875,
+              535.0661865234375,
+              75.59022369384766,
+              545.527197265625
+            ],
+            "column_bbox": [
+              304,
+              427,
+              354,
+              550
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              316.9599853515625,
+              449.2357116699219,
+              340.6779846191406,
+              459.62470092773435
+            ],
+            "unit_bbox": [
+              322.9663940429688,
+              462.9577270507813,
+              334.65839233398435,
+              472.2257141113281
+            ],
+            "unit_label": "(%)",
+            "scope_anchor": "0.25% Nb205 cut-off",
+            "scope_anchor_bbox": [
+              294.519189453125,
+              430.7425170898438,
+              374.457861328125,
+              443.2916015625
+            ],
+            "section_id": "grade"
+          },
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "contained_treo_kt",
+          "basis": "TREO",
+          "original_token": "433",
+          "value": 433.0,
+          "unit": "kt TREO",
+          "evidence": {
+            "page": 9,
+            "markers": [
+              "Total",
+              "TREO"
+            ],
+            "render_sha256": "dc43f9200ac95b54b92a6380f37bd88ecdf2b8ce09aa9507959ea57a4c193704"
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "contained_treo_kt",
+            "basis": "TREO",
+            "scope": "Aileron combinedGreenEmilyCreanInferred2026MRE;0.25pctNb2O5cutoff;120Mt0.36pctTREO433ktTREO;notnested1pctcutoff26Mtresource",
+            "page": 9,
+            "original_unit": "kt",
+            "table_bbox": [
+              48,
+              427,
+              550,
+              550
+            ],
+            "table_label": "0.25% Nb205 cut-off",
+            "table_label_bbox": [
+              294.519189453125,
+              430.7425170898438,
+              374.457861328125,
+              443.2916015625
+            ],
+            "row_bbox": [
+              49,
+              533,
+              549,
+              547
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              53.74422607421875,
+              535.0661865234375,
+              75.59022369384766,
+              545.527197265625
+            ],
+            "column_bbox": [
+              366,
+              427,
+              416,
+              550
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              379.32097778320315,
+              449.2357116699219,
+              403.0389770507812,
+              459.62470092773435
+            ],
+            "unit_bbox": [
+              384.7903991699219,
+              462.9577270507813,
+              397.55438842773435,
+              472.2257141113281
+            ],
+            "unit_label": "(kt)",
+            "scope_anchor": "0.25% Nb205 cut-off",
+            "scope_anchor_bbox": [
+              294.519189453125,
+              430.7425170898438,
+              374.457861328125,
+              443.2916015625
+            ],
+            "section_id": "contained_treo_kt"
+          },
+          "rounding_half_width": 0.5,
+          "original_unit": "kt"
+        }
+      ],
+      "selection_reason": "EXPLICIT_SELECTED_SOURCE_ROW_SCOPE_AND_CUTOFF;NO_NESTED_ADDITION",
+      "publication_archive_evidence": {
+        "asset_set": "asx-round5-archives",
+        "path": "data/snapshots/431b25c4fc1b020a0d70c539a0b985de4b052e75b5e2444a7140fbe402083c75.html",
+        "sha256": "431b25c4fc1b020a0d70c539a0b985de4b052e75b5e2444a7140fbe402083c75",
+        "url": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode=ENR&timeframe=Y&year=2026"
+      },
+      "document_issue_date": "2026-09-25",
+      "document_issue_evidence": {
+        "page": 43,
+        "markers": [
+          "25 September 2026"
+        ]
+      },
+      "selected_resource_sections": {
+        "ore_mt": {
+          "page": 9,
+          "bbox": [
+            48,
+            427,
+            550,
+            550
+          ],
+          "anchor": "0.25% Nb205 cut-off",
+          "anchor_bbox": [
+            294.519189453125,
+            430.7425170898438,
+            374.457861328125,
+            443.2916015625
+          ],
+          "row_label": "Total"
+        },
+        "grade": {
+          "page": 9,
+          "bbox": [
+            48,
+            427,
+            550,
+            550
+          ],
+          "anchor": "0.25% Nb205 cut-off",
+          "anchor_bbox": [
+            294.519189453125,
+            430.7425170898438,
+            374.457861328125,
+            443.2916015625
+          ],
+          "row_label": "Total"
+        },
+        "contained_treo_kt": {
+          "page": 9,
+          "bbox": [
+            48,
+            427,
+            550,
+            550
+          ],
+          "anchor": "0.25% Nb205 cut-off",
+          "anchor_bbox": [
+            294.519189453125,
+            430.7425170898438,
+            374.457861328125,
+            443.2916015625
+          ],
+          "row_label": "Total"
+        }
+      }
     }
   ]
 }

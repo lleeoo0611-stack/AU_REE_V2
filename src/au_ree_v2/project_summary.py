@@ -58,6 +58,19 @@ def complete_sum(elements,required):
     return sum(elements[k] for k in required) if all(k in elements and elements[k] is not None for k in required) else None
 
 
+def reported_magnet_group(observations,bundle):
+    """A matched reported group can fill group totals, never individual oxides."""
+    key=(bundle['source_sha256'],bundle['statement_id'],bundle['scope'],bundle['effective_date'])
+    groups=[o for o in observations if (o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])==key and
+        o['variable']=='reported_resource_magnet_ppm' and o['unit']=='ppm' and o['basis']=='PrNdDyTb_OXIDES' and
+        json.loads(o['raw']).get('material_basis')=='RESOURCE_ORE_GRADE_MAGNET_OXIDE_GROUP_PPM']
+    grade=bundle['value']['grade_pct']*10000
+    if not math.isfinite(grade) or grade<=0:return None
+    if not groups or len({o['value'] for o in groups})!=1 or not 0<=groups[0]['value']<=grade:return None
+    g=groups[0]
+    return dict(observation=g,contained_kt=bundle['value']['ore_mt']*g['value']*.001,share_percent=g['value']/grade*100)
+
+
 def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',review_ledger=None,asset_roots=None,discovery_ledger=None):
     root=Path(root).resolve();database=Path(database).resolve();run_dir=Path(run_dir).resolve();out=Path(out).resolve()
     if out==root or out==database.parent or root in out.parents and out.relative_to(root).parts[0] in ('data','config','src'):
@@ -205,6 +218,12 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                 same=[o for o in obs if (o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])==
                       (sha,bundle['statement_id'],scope,bundle['effective_date'])]
                 shares=[o for o in same if o['variable']=='magnet_reo_share_pct' and o['unit']=='%' and o['basis'] in ('PrNdDyTb_OXIDES_OVER_TREO','PrNdDyTb_REO_DIV_TREO') and 0<=o['value']<=100]
+                # A reported four-oxide group is not disclosure of its four individual oxides.
+                group=reported_magnet_group(same,bundle)
+                if not shares and group:
+                    g=group['observation']
+                    put('磁鐵稀土氧化物蘊藏量_kt',group['contained_kt'],sha,g['locator'],'ORE_MT_X_REPORTED_MAGNET_OXIDE_GROUP_PPM_X_0_001',scope,ids+[g['obs_id']])
+                    put('磁鐵稀土佔TREO_pct',group['share_percent'],sha,g['locator'],'REPORTED_MAGNET_GROUP_PPM_DIV_MATCHED_TREO_PPM_X_100',scope,ids+[g['obs_id']])
                 if shares and len({o['value'] for o in shares})==1:
                     put('磁鐵稀土佔TREO_pct',shares[0]['value'],sha,shares[0]['locator'],scope=scope,obs_ids=[shares[0]['obs_id']])
                     put('磁鐵稀土氧化物蘊藏量_kt',bundle['value']['contained_treo_kt']*shares[0]['value']/100,sha,shares[0]['locator'],'TREO_KT_X_MAGNET_SHARE_PERCENT',scope,ids+[shares[0]['obs_id']])
