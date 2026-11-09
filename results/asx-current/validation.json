@@ -1,37 +1,38 @@
 {
-  "iteration": 4,
-  "base_commit": "b1625cf3f8f10155eec76f6f0ca5905251a7362b",
+  "iteration": 5,
+  "base_commit": "9b85c84547b8daa12362c7bc1dd3573580789d16",
   "tests": {
-    "total": 440,
-    "passed": 436,
+    "total": 446,
+    "passed": 442,
     "skipped": 4,
     "failed": 0,
     "skip_reason": "R_UNAVAILABLE"
   },
-  "full_test_log_sha256": "e1dcea25968a8e4cdcb2963f2f61f7a373d272700c417de0ba5c7c00b75cc052",
+  "full_test_log_sha256": "2b921c1a902976657325acd0ba9b7ec3ced66159097a1d66d088d3597284c581",
   "repeated_export_identical": true,
-  "newly_filled_cells": 28,
-  "new_scientific_cells": 17,
-  "new_diagnostic_cells": 6,
-  "new_metadata_cells": 5,
+  "newly_filled_cells": 8,
+  "new_scientific_cells": 8,
   "withdrawn_cells": 0,
-  "filled_cells": 821,
-  "remaining_blank_cells": 895,
-  "scientific_filled_cells": 293,
+  "changed_existing_cells": 17,
+  "filled_cells": 829,
+  "remaining_blank_cells": 887,
+  "scientific_filled_cells": 301,
   "scientific_total_cells": 825,
-  "ledger_sha256": "b5059d21ebb24464693b31d25d84eed87226ff71a9b2d0d0e67ebcbe32de5150",
+  "ledger_sha256": "a4be845d3e0f0f235e228d0428241ab4510cc125e553634a62cb05e11065660d",
+  "source_consistency_sha256": "09922af3f905e79f23f58c3e5c0fd84515a01dcf6bc6984660b86c0532fe41ba",
   "source_database_sha256": "77ee0254d6ddcf069fddcf508770ee794ed4a600b5a278134098901a43277bcc",
   "source_database_mode": "READ_ONLY_RECONSTRUCTED_CANONICAL",
   "limitations": [
     "NO_R_OR_MCDA_RECALCULATION",
     "NO_REMOTE_CI_SUCCESS_CLAIM",
-    "VISUALLY_REVIEWED_IMAGE_TRANSCRIPTS_NOT_INDEPENDENT_OCR",
-    "NOLANS_REPORTED_RESOURCE_PROPORTIONS_CONVERTED_NOT_RAW_BULK_ASSAYS"
+    "RIDLEY_BLOCKS_1_2_NOT_WHOLE_PROJECT_OR_ADDITIVE_WITH_MIA",
+    "RIDLEY_CE_Y_YB_QUARANTINED",
+    "VISUALLY_REVIEWED_IMAGE_TRANSCRIPTS_NOT_INDEPENDENT_OCR"
   ],
   "output_hashes": {
-    "\u5c08\u6848\u7e3d\u8868.csv": "975215b9dd69235d28fbff3953dc77535a273c4487a48c0565149c85281f6405",
+    "\u5c08\u6848\u7e3d\u8868.csv": "26848bdc48c117dea9c2b878cb61411ea2f8840961f5fa83118abc5e1ee32da3",
     "census_inventory.csv": "4f67808a0b05bb8271bd63c6ce2690d9234991d05937bce5092c6603e0d30509",
-    "missing_fields.csv": "e6fca915a655849d4021affde3f3e232066b09baf079e3684840aece07cc7126",
-    "field_provenance.csv": "dc92058b4337de09fa9e0228ef11cf6ead59263f6407d9b380eed139e94d360e"
+    "missing_fields.csv": "5f9b97892fee38dee7f46edebc2fe007efde1bbbfad7253d5c2506acb7acb9ca",
+    "field_provenance.csv": "f94a5b0acb766d03918534a602c84dd89ea2b3e0d36826c8bf0f8a9598a2a610"
   }
 }

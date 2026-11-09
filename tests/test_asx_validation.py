@@ -60,6 +60,42 @@ class SourceReviews(unittest.TestCase):
         if not receipt.exists():receipt.write_text(json.dumps([dict(url=self.review['url'],document_sha256=self.review['source_sha256'],status='PDF_ACQUIRED')]))
         path=self.root/'reviews.json';path.write_text(json.dumps(dict(version='asx-source-review-v2',acquired_through='2026-11-09',reviews=[review or self.review])))
         return validate_reviews(path,{'fixture':self.root},self.projects)
+    def test_context_resource_does_not_replace_selected_contract(self):
+        self.validate()
+        context=copy.deepcopy(self.review);context.update(review_id='context',statement_id='other-scope',resource_selection_role='CONTEXT_ONLY',context_selection_reason='Distinct alternative scope, not additive')
+        p=self.root/'reviews.json';ledger=json.loads(p.read_text());ledger['reviews']=[context,self.review];p.write_text(json.dumps(ledger))
+        result=validate_reviews(p,{'fixture':self.root},self.projects)
+        self.assertEqual('fixture-statement',result['resource_contracts']['P'][2])
+        self.assertEqual('CONTEXT_ONLY',result['receipts'][0]['resource_selection_role'])
+        self.assertEqual(2,len(result['observations']['P']))
+    def test_context_only_cannot_become_fallback_resource(self):
+        r=copy.deepcopy(self.review);r.update(resource_selection_role='CONTEXT_ONLY',context_selection_reason='Evidence only')
+        result=self.validate(r)
+        self.assertEqual({},result['observations']);self.assertEqual({},result['resource_preferences'])
+    def test_context_resource_requires_explicit_reason(self):
+        r=copy.deepcopy(self.review);r['resource_selection_role']='CONTEXT_ONLY'
+        with self.assertRaisesRegex(ValueError,'CONTEXT_SELECTION_REASON'):self.validate(r)
+    def test_unknown_selection_role_rejected(self):
+        r=copy.deepcopy(self.review);r['resource_selection_role']='IGNORE'
+        with self.assertRaisesRegex(ValueError,'SELECTION_ROLE_INVALID'):self.validate(r)
+
+    def parenthesized_grade_review(self, label='(TREO'):
+        r=copy.deepcopy(self.review);target=self.root/'data/paren.pdf'
+        with pymupdf.open(self.pdf) as d:
+            p=d[1];p.add_redact_annot(p.search_for('TREO')[0]);p.apply_redactions()
+            p.insert_text((200,90),label,fontsize=10)
+            a=p.search_for(label)[0]
+            r['observations'][1]['cell_binding'].update(column_label=label,column_label_bbox=[a.x0-.2,a.y0-.2,a.x1+.2,a.y1+.2])
+            d.save(target)
+        r.update(path='data/paren.pdf',source_sha256=filehash(target))
+        (self.root/'downloads.json').write_text(json.dumps([dict(url=r['url'],document_sha256=r['source_sha256'],status='PDF_ACQUIRED')]))
+        return r
+    def test_parenthesized_treo_header_keeps_exact_anchor(self):
+        self.assertEqual('VALIDATED',self.validate(self.parenthesized_grade_review())['receipts'][0]['status'])
+    def test_parenthesized_non_treo_header_rejected(self):
+        with self.assertRaisesRegex(ValueError,'HEADER_SEMANTICS'):
+            self.validate(self.parenthesized_grade_review('(HREO'))
+
     def treo_proportion_review(self):
         r=copy.deepcopy(self.review)
         target=self.root/'data/proportions.pdf'

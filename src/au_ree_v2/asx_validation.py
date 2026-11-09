@@ -267,16 +267,21 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                         basis='PrNdDyTb_OXIDES_OVER_TREO',transform='SUM_FOUR_RESOURCE_OXIDE_PPM_DIVIDED_BY_MATCHED_TREO_PPM')
                     rows.append(dict(rows[0],obs_id=digest([pid,sha,raw]),variable='magnet_reo_share_pct',value=pct,unit='%',
                         basis='PrNdDyTb_OXIDES_OVER_TREO',raw=canonical(raw)))
-                observations.setdefault(pid,[]).extend(rows)
-                contract=(sha,review['scope'],review['statement_id'],effective)
-                if pid in resource_contracts and resource_contracts[pid]!=contract:raise ValueError('REVIEW_MULTIPLE_PREFERRED_RESOURCE_SOURCES')
-                resource_contracts[pid]=contract
-                if not review.get('selection_reason'):raise ValueError('REVIEW_RESOURCE_SELECTION_REASON_REQUIRED')
-                preferences[pid]=sha
-                label=review.get('summary_resource_scope_label')
-                if label:
-                    if normalized(label) not in scope_content:raise ValueError('REVIEW_SUMMARY_SCOPE_LABEL_NOT_IN_SOURCE')
-                    resource_labels[pid]=dict(label=label,source_sha256=sha,scope=review['scope'])
+                selection_role=review.get('resource_selection_role','PREFERRED')
+                if selection_role not in ('PREFERRED','CONTEXT_ONLY'):raise ValueError('REVIEW_RESOURCE_SELECTION_ROLE_INVALID')
+                if selection_role=='CONTEXT_ONLY' and not review.get('context_selection_reason'):
+                    raise ValueError('REVIEW_CONTEXT_SELECTION_REASON_REQUIRED')
+                if selection_role=='PREFERRED':
+                    observations.setdefault(pid,[]).extend(rows)
+                    contract=(sha,review['scope'],review['statement_id'],effective)
+                    if pid in resource_contracts and resource_contracts[pid]!=contract:raise ValueError('REVIEW_MULTIPLE_PREFERRED_RESOURCE_SOURCES')
+                    resource_contracts[pid]=contract
+                    if not review.get('selection_reason'):raise ValueError('REVIEW_RESOURCE_SELECTION_REASON_REQUIRED')
+                    preferences[pid]=sha
+                    label=review.get('summary_resource_scope_label')
+                    if label:
+                        if normalized(label) not in scope_content:raise ValueError('REVIEW_SUMMARY_SCOPE_LABEL_NOT_IN_SOURCE')
+                        resource_labels[pid]=dict(label=label,source_sha256=sha,scope=review['scope'])
             study=review.get('study');parameter_methods={}
             if study:
                 if study['scale'] not in ('PFS_MODEL','DFS_MODEL','SCOPING_MODEL'):raise ValueError('REVIEW_STUDY_SCALE_NOT_FORECAST')
@@ -339,6 +344,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 effective_date_role=role,date_precision=review['date_precision'])
             receipts.append(dict(review_id=review['review_id'],project_id=pid,source_sha256=sha,status='VALIDATED',scope=review['scope'],
                 review_methods=sorted({json.loads(row['raw'])['review_method'] for row in rows}|set(parameter_methods.values())),
+                resource_selection_role=review.get('resource_selection_role','PREFERRED') if rows else None,
                 new_observations=len(rows),forecast_parameters=len(study['parameters']) if study else 0,
                 effective_date=effective,effective_date_role=role,date_precision=review['date_precision'],
                 effective_date_interval=review.get('effective_date_interval')))

@@ -171,7 +171,7 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     elif field == 'bulk_hm_percent':
         valid = label == 'hm' and source_unit == '%'
     elif field in ('grade', 'contained_treo_kt'):
-        valid = label in ('treo','treo*','treo1','treo +','contained treo','total reo') and source_unit in (('ppm', '%', '%hm') if field == 'grade' else ('t', 'kt','kt treo'))
+        valid = label.strip('()') in ('treo','treo*','treo1','treo +','contained treo','total reo') and source_unit in (('ppm', '%', '%hm') if field == 'grade' else ('t', 'kt','kt treo'))
     elif field.startswith('reported_resource_'):
         # The binding must identify the exact oxide, including stoichiometry.
         if transposed:
