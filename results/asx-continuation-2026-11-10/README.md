@@ -2,7 +2,17 @@
 
 本系列以 `934f93a` 的 59 案 × 53 欄固定為起點：1,237 格已填、1,890 格空白。研究截止仍為 2026-11-05，Census SQLite 唯讀。先前四輪及「少於三格停止」結果是歷史紀錄；本系列改為完整一輪 **零新增可驗證格值** 才有停止資格。所有欄位都納入，不設定數值欄優先次序。
 
-## 最新：第八輪
+## 最新：第九輪
+
+第九輪新增十格日期限定的描述：Wimmera、Coburn、Peak Charles及Balranald各兩格，Franklyn與iTech Eyre Peninsula各一格。現為 **71案 × 53欄，1,432格已填／2,331格空白**。本系列原59案累計補61格，新12案134格另計；原始55案直接比較累計補82格，空白由1,747減至1,665，目前已填1,250格。科學數值本輪新增0格。
+
+Wimmera保留完整的currently the subject of a definitive feasibility study (DFS)；Coburn為2023-09-06原件中的started production；Balranald為2026-02-18原件中的礦物組合及開始採礦／產出HMC，並未改稱商業稀土氧化物生產。Peak Charles保留potential，iTech保留prospective，均不是資源量或回收機制證實。Eyre Peninsula Kaolin Project為原件頁23明列的全名別名，不以相近地名併入其他專案。Balranald分欄文字以原生精確區域綁定核對，沒有從交錯的全文順序推定數值。
+
+44項相關測試通過，兩次完整重建四個CSV相同，原案撤回0格、實際合併0案。兩個已由ASX明示的直接PDF網址重新取得後，SHA分別與既有原件一致，來源URL更新2格，不計新增獨立文件或新填值。原三項候選、Gemini未驗證29列與三份政府下載障礙仍保留，停止資格INCOMPLETE。
+
+另外重查現行審查紀錄：Barkly完整募股原件、兩位有效數字的捨入及15項組成，已在本系列起點前收錄；Kennedy亦已有15項組成。新搜尋找到的連結僅作可選交叉比對，沒有將既有數值重算為本輪新增。
+
+## 第八輪
 
 第八輪補五格礦床描述：Wudinna的Tertiary palaeochannel systems、Rocky Gully與Bencubbin的clay-hosted、OD6 Grass Patch的Clay hosted、Hines Hill的clay horizon。現為 **71案 × 53欄，1,422格已填／2,341格空白**。本系列原59案累計補51格，新12案134格另列；原55案直接比較累計補75格，目前1,243已填／1,672空白。科學數值本輪新增0格。
 
