@@ -1,29 +1,44 @@
 # Current ASX coverage review
 
-Iteration 8, based on remote `b494607` and its unchanged 43-project cohort.
+Iteration 9, based on remote `b610eff5c1f0fce169dbb58e31bca4efe7a7f13b` and its unchanged 43-project cohort.
 
 ## Verified additions
 
-Four metadata blanks are filled, taking coverage from 968 to **972 / 2,236 cells**, with **1,264 blanks**. Scientific coverage remains **330 / 1,075** across the fixed 25 scientific columns. No scientific estimates change and no values are withdrawn.
+Splinter gains **23 previously blank cells**, including **17 scientific cells**. Two existing source-name/URL cells now identify the original technical report. No other project changes and no values are withdrawn.
 
-- Narraburra developer: **Orbit Resources Limited**. The [30 October 2026 issuer announcement](https://orbitresources.au/downloads/announcements/obt_2026103001.pdf), physical p1, says the Matrix IPO is deferred and Orbit retains 100% ownership. It also explicitly identifies ASX: OBT, supporting listed status `否` for the unlisted-company column. The former Godolphin name and proposed Matrix transaction are not treated as current ownership.
-- Wudinna developer: **Cobra Resources plc**. The [26 October 2026 issuer release](https://hermes-cdn.investorhub.com/announcement-pdfs/lse/7804646.pdf?v=63960217384) identifies Cobra and LSE: COBR on p1. Physical p23 binds Boland/Head tenements to LAM Wudinna Pty Ltd, wholly owned by Cobra. Listed status is supported across those exact pages in the same immutable PDF, not inferred from a company suffix.
+- Overall coverage: **995 / 2,236 cells**, with **1,241 blanks**.
+- Scientific coverage: **347 / 1,075 cells** across the fixed 25 scientific columns.
+- Complete ore/TREO resource pairs: **30 before and after**. This partial record does not add a complete TREO resource.
 
-The source ledger records URLs, hashes, dates, evidence markers and exact ownership text rectangles. Both listing proofs match the selected issuer, exchange/ticker, project wording and explicit 100% ownership statement. These are dated issuer disclosures, not current legal-title certification or resource-effective dates. The new `DATED_ISSUER_METADATA` role cannot admit resource or production observations.
+## Original source and selected scope
 
-## Validation and source recovery
+The source is CSA Global's R254.2015 technical report, Appendix 7 of [WAMEX report A109432](https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=109432). PDF SHA-256: `428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7`.
 
-Two complete local exports used the exact original canonical SQLite and hash-verified source caches. Compared with the latest merged 43-project baseline, every previously filled master-table value is unchanged; only the four metadata blanks above are filled. Four required HTML captures were recovered from existing local cache after public retrieval returned 403; the blocked pages were not bypassed. All 13 required round5 PDFs were verified and used directly from the local cache, preserving their newer evidence. One exact archived ASX index was restored into isolated source staging. Existing announcement URL/date relationships remain validated.
+Physical page 72, Table 35, binds **22.849 Mt** to the Splinter **Inferred** row at the source-defined **500 ppm TREO+Y2O3 cutoff**. Native cell positions bind that cutoff group, category, ore tonnage and 14 compatible oxide grades. Newmont, unclassified mineralisation, combined Total rows and other cutoffs are excluded. Splinter is not OD6's Splinter Rock.
 
-The metadata validator keeps its original checks and adds a constrained ASX/LSE proof route. Exact ownership rectangles avoid interleaved columns. Tests reject wrong issuers, tickers, projects, percentages, negated ownership, altered statements, unsupported exchanges and invalid rectangles. Every filled output cell has one current provenance record; every blank has a diagnostic. Final suite results and hashes appear in `validation.json`.
+The source explicitly uses **Ce2O3**, proven by its Table 33 conversion row on physical page 69 and the selected resource-table header. It is not substituted or normalized to the template's CeO2 basis.
 
-## Additional research awaiting compatible data
+The accepted partial record contains ore mass, 14 individually reported compatible oxides, and sums whose complete required oxide sets are present:
 
-- Sandy Mitchell: the original [22 September 2026 MRE](https://announcements.asx.com.au/asxpdf/20260922/pdf/074c2k0rwv83p1.pdf) is now visually verified despite its broken native font extraction. Physical pp88–89 contain the original 379,421,288 t resource and original oxide/element basis. This corrects the earlier research limitation: the unresolved issue is **the refined 373.3 Mt resource lacks a matching revised TREO grade/composition**, not that the original table remains unreadable. October scoping and quarterly reports give only revised MzEq. Annual monazite/xenotime mass and test-concentrate chemistry are not converted into oxide output.
-- Splinter: an original CSA technical appendix was recovered from public WAMEX records. It is distinct from OD6 Splinter Rock and contains individually reported oxides, but deliberately uses Ce2O3. Its evidence is under separate basis/partial-resource validation; this iteration does not import or normalize those quantities.
+- NdPr: 4.912535 kt.
+- HREE8 (Tb, Dy, Ho, Er, Tm, Yb, Lu and Y): 3.770085 kt.
+- Independent NdPrTbDy recalculation: 5.460911 kt.
+- Sum of known compatible oxides: 15.057491 kt, explicitly not total TREO.
 
-Only current outputs and review are replaced. No new historical result bundle, raw PDF, rendered page or SQLite database is published. No new research MCDA ranking or remote-CI success is claimed.
+These are arithmetic results from source-rounded ore and grade values; their decimal places do not add measurement precision.
 
-Cloud full suite: 484 tests, 480 passed, 4 optional R tests skipped, zero failures. Laptop focused ASX/metadata suite and three restored-fixture regressions: 162 tests passed. Two complete local exports matched byte for byte.
+## Values and dates kept unknown
 
-The laptop full-suite attempt was incomplete: 366 tests ran with 37 errors and one failure because the sparse checkout omitted historical fixtures. The frozen-policy assertion and SQLite cleanup failure were traced to missing historical configurations and passed after those exact fixtures were restored. This is not a claim that the complete historical suite passed on Windows.
+CeO2, generic TREO grade, total TREO, the legacy generic magnet-resource amount, magnet/TREO share, element-sum/TREO ratio and complete-resource indicator remain blank. Annual production and unrelated metadata gaps are unchanged.
+
+**2015-11-09 is the technical report's issue date and an ordering date only.** Geological/resource effective date and public release date remain unknown. Both unknown-date flags and their explicit roles are retained in current field provenance and summary limitations. No formal C1 approval or current legal-title certification is implied.
+
+## Validation and reproducibility
+
+Two complete local exports use the exact original canonical SQLite, unchanged at SHA-256 `99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0`, and hash-verified original sources. All four output CSVs match byte for byte between runs. Every filled cell has current provenance and every blank has a diagnostic.
+
+The default complete-resource path still requires paired ore and compatible TREO grade. Partial projection requires explicit source/statement/scope/date binding, native cutoff/category proof, compatible individual oxides and the declared incompatible cerium basis. Eight real-source negative controls rejected altered basis, category, cutoff, date and total/grouped-value claims.
+
+The integrated production code passed the cloud full suite: **506 tests, 502 passed, four optional R-dependent skips, zero failures/errors**. The laptop's **184-test ASX/metadata/partial-resource regression group passed with zero failures/errors/skips**. The earlier laptop full-suite attempt was limited by omitted historical fixtures; no complete Windows historical-suite pass is claimed.
+
+Only current summary, provenance, gaps, audit and review are updated. Raw PDFs, SQLite, temporary acquisition files and historical result bundles are not published. No new research MCDA ranking or remote-CI success is claimed.

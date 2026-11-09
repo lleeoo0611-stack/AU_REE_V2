@@ -72,7 +72,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
     import pymupdf
     ledger_path=Path(ledger_path);ledger=json.loads(ledger_path.read_text('utf8'))
     if ledger.get('version')!='asx-source-review-v2':raise ValueError('REVIEW_VERSION_UNSUPPORTED')
-    registry={p['entity_id']:p for p in projects};sources={};observations={};studies={};preferences={};receipts=[];attributes={};seen_reviews=set();resource_contracts={};deferred={};resource_labels={}
+    registry={p['entity_id']:p for p in projects};sources={};observations={};studies={};preferences={};receipts=[];attributes={};seen_reviews=set();resource_contracts={};deferred={};resource_labels={};partial_contracts={}
     for review in ledger['reviews']:
         if review['review_id'] in seen_reviews:raise ValueError('REVIEW_DUPLICATE_ID')
         seen_reviews.add(review['review_id'])
@@ -97,7 +97,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
         date.fromisoformat(pub);date.fromisoformat(effective)
         if effective>pub or pub>cutoff:raise ValueError('REVIEW_DATE_OUTSIDE_PUBLICATION_OR_CUTOFF')
         role=review['effective_date_role']
-        if role not in ('RESOURCE_EFFECTIVE_DATE','RESOURCE_REAFFIRMED_AT_PUBLICATION','DATED_ENGINEERING_FORECAST','DATED_ISSUER_METADATA'):
+        if role not in ('RESOURCE_EFFECTIVE_DATE','RESOURCE_REAFFIRMED_AT_PUBLICATION','DATED_ENGINEERING_FORECAST','DATED_ISSUER_METADATA','TECHNICAL_REPORT_RESOURCE_AS_REPORTED'):
             raise ValueError('REVIEW_EFFECTIVE_DATE_ROLE_REQUIRED')
         if role=='DATED_ISSUER_METADATA' and (review.get('observations') or review.get('study') or not review.get('attributes')):
             raise ValueError('REVIEW_METADATA_ROLE_REQUIRES_ATTRIBUTES_ONLY')
@@ -118,7 +118,9 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     if page not in rendered:rendered[page]=hashlib.sha256(doc[page-1].get_pixmap(matrix=pymupdf.Matrix(2,2)).tobytes('png')).hexdigest()
                     if rendered[page]!=expected:raise ValueError(f"REVIEW_RENDER_BINDING_MISMATCH:{review['review_id']}:p{page}:{rendered[page]}")
                 return content
-            parsed_publication=publication_date(text(1))
+            from .partial_resource import validate_technical_report_dates
+            technical_report_date=validate_technical_report_dates(review,doc,evidence)
+            parsed_publication=pub if technical_report_date else publication_date(text(1))
             month=review.get('publication_month_evidence')
             if month:
                 # Retain edition-month precision; never infer a release day
@@ -178,6 +180,8 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
             interval=review.get('effective_date_interval')
             if interval and not interval[0]<=effective==interval[1]<=pub:raise ValueError('REVIEW_EFFECTIVE_DATE_INTERVAL_MISMATCH')
             for e in review.get('scope_evidence',[]):evidence(e)
+            from .partial_resource import validate_partial_resource
+            partial_contract=validate_partial_resource(review,doc,evidence)
             hm=review.get('bulk_hm_percent')
             if hm:
                 content=evidence(hm['evidence'])
@@ -252,7 +256,8 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     normalization='RESOURCE_TREO_GRADE_X_REPORTED_OXIDE_PERCENT_OF_TREO' if original_unit=='%TREO' else None,
                     **({'bulk_treo_grade_pct':treo_grade,'basis_transform':'TREO_PROPORTION_TO_BULK_PPM'} if original_unit=='%TREO' else {}),
                     material_basis='RESOURCE_ORE_GRADE_MAGNET_OXIDE_GROUP_PPM' if group else 'RESOURCE_ORE_GRADE_OXIDE_PPM' if basis in ELEMENTS else 'RESOURCE_BULK_ORE',
-                    review_method=cell_method)
+                    review_method=cell_method,
+                    **({'partial_resource_projection':partial_contract} if partial_contract else {}))
                 row=dict(obs_id=digest([pid,sha,raw]),entity_id=pid,variable=variable,value=value['value'],unit=unit,basis=basis,
                     source_sha=sha,scope=review['scope'],statement_id=review['statement_id'],effective_date=effective,
                     category='MEASURED_INDICATED_INFERRED_TOTAL',status='AUTO_VALIDATED',locator='physical PDF p'+str(e['page']),raw=canonical(raw))
@@ -267,15 +272,15 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     raise ValueError('REVIEW_RESOURCE_CATEGORY_EVIDENCE_REQUIRED')
                 for row in rows:row['category']='_'.join(categories)+'_TOTAL'
                 from .project_summary import resource_bundle
-                bundle,reason=resource_bundle(rows)
+                bundle,reason=resource_bundle(rows,partial_resource=partial_contract)
                 if bundle is None:raise ValueError('REVIEW_RESOURCE_BUNDLE_'+reason)
                 grades={r['basis']:r['value'] for r in rows if r['basis'] in ELEMENTS}
-                if all(e in grades for e in ELEMENTS):
+                if not partial_contract and all(e in grades for e in ELEMENTS):
                     grade_ppm=bundle['value']['grade_pct']*10000
                     tolerance=review['oxide_sum_tolerance_ppm']
                     if tolerance<0 or tolerance>max(150,grade_ppm*.02):raise ValueError('REVIEW_OXIDE_TOLERANCE_EXCESSIVE')
                     if abs(sum(grades.values())-grade_ppm)>tolerance:raise ValueError('REVIEW_OXIDE_SUM_CONFLICT')
-                if all(e in grades for e in MAGNET):
+                if not partial_contract and all(e in grades for e in MAGNET):
                     pct=sum(grades[e] for e in MAGNET)/(bundle['value']['grade_pct']*10000)*100
                     if not 0<=pct<=100:raise ValueError('REVIEW_MAGNET_RATIO_OUT_OF_RANGE')
                     raw=dict(json.loads(rows[0]['raw']),variable='magnet_reo_share_pct',value=pct,unit='%',
@@ -293,6 +298,9 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     resource_contracts[pid]=contract
                     if not review.get('selection_reason'):raise ValueError('REVIEW_RESOURCE_SELECTION_REASON_REQUIRED')
                     preferences[pid]=sha
+                    if partial_contract:
+                        if pid in partial_contracts and partial_contracts[pid]!=partial_contract:raise ValueError('REVIEW_MULTIPLE_PARTIAL_RESOURCE_CONTRACTS')
+                        partial_contracts[pid]=partial_contract
                     label=review.get('summary_resource_scope_label')
                     if label:
                         if normalized(label) not in scope_content:raise ValueError('REVIEW_SUMMARY_SCOPE_LABEL_NOT_IN_SOURCE')
@@ -361,14 +369,20 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 publication_date_role=review.get('publication_date_role','REVIEWED_RELEASE_HEADER'),document_issue_date=review.get('document_issue_date'),
                 publication_date_precision=review.get('publication_date_precision','DAY'),publication_date_interval=review.get('publication_date_interval'),
                 source_kind=review.get('source_kind','ISSUER_TECHNICAL_DISCLOSURE'),
-                effective_date_role=role,date_precision=review['date_precision'])
+                effective_date_role=role,date_precision=review['date_precision'],
+                resource_effective_date_unknown=review.get('resource_effective_date_unknown',False),
+                public_release_date_unknown=review.get('public_release_date_unknown',False))
             receipts.append(dict(review_id=review['review_id'],project_id=pid,source_sha256=sha,status='VALIDATED',scope=review['scope'],
                 review_methods=sorted({json.loads(row['raw'])['review_method'] for row in rows}|set(parameter_methods.values())),
                 resource_selection_role=review.get('resource_selection_role','PREFERRED') if rows else None,
+                partial_resource_projection=partial_contract,
+                resource_effective_date_unknown=review.get('resource_effective_date_unknown',False),
+                public_release_date_unknown=review.get('public_release_date_unknown',False),
+                publication_date_role=review.get('publication_date_role','REVIEWED_RELEASE_HEADER'),
                 new_observations=len(rows),forecast_parameters=len(study['parameters']) if study else 0,
                 effective_date=effective,effective_date_role=role,date_precision=review['date_precision'],
                 effective_date_interval=review.get('effective_date_interval')))
-    return dict(sources=sources,observations=observations,studies=studies,resource_preferences=preferences,resource_contracts=resource_contracts,receipts=receipts,attributes=attributes,deferred_fields=deferred,resource_labels=resource_labels,
+    return dict(sources=sources,observations=observations,studies=studies,resource_preferences=preferences,resource_contracts=resource_contracts,receipts=receipts,attributes=attributes,deferred_fields=deferred,resource_labels=resource_labels,partial_resource_contracts=partial_contracts,
         ledger_sha256=filehash(ledger_path),acquired_through=ledger['acquired_through'])
 
 

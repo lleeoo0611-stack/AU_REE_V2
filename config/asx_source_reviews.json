@@ -23951,6 +23951,1390 @@
         ],
         "header_title": "Maiden Rare Earth Mineral Resource Estimate"
       }
+    },
+    {
+      "review_id": "splinter_inferred_20151109_partial",
+      "source_key": "wamex_splinter_r254_20151109",
+      "project_id": "AU-574465211976ec57b1ef",
+      "source_sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7",
+      "asset_set": "gap_splintercandidate",
+      "path": "data/snapshots/428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7.pdf",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=109432",
+      "source_kind": "PUBLIC_ARCHIVED_TECHNICAL_REPORT",
+      "publication_date": "2015-11-09",
+      "effective_date": "2015-11-09",
+      "publication_date_role": "TECHNICAL_REPORT_ISSUE_DATE_NOT_RELEASE",
+      "effective_date_role": "TECHNICAL_REPORT_RESOURCE_AS_REPORTED",
+      "resource_effective_date_unknown": true,
+      "public_release_date_unknown": true,
+      "document_issue_date": "2015-11-09",
+      "document_issue_date_precision": "DAY",
+      "document_issue_date_role": "TECHNICAL_REPORT_ISSUE_DATE_ONLY",
+      "document_issue_evidence": {
+        "page": 1,
+        "markers": [
+          "Date: 09 November 2015",
+          "Report No: R254.2015"
+        ],
+        "bbox": [
+          54.3,
+          184.4,
+          167.1,
+          198.9
+        ],
+        "text": "Date: 09 November 2015"
+      },
+      "date_evidence": {
+        "page": 2,
+        "markers": [
+          "09/11/2015",
+          "OK Micromine check model included"
+        ]
+      },
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 3,
+        "markers": [
+          "Salazar",
+          "Splinter and Newmont",
+          "E63/1415"
+        ]
+      },
+      "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+      "statement_id": "splinter-inferred500-r254-20151109",
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 72,
+          "markers": [
+            "Table 35.",
+            "Splinter Mineral Resource",
+            "22,849",
+            "Inferred",
+            "500"
+          ]
+        },
+        {
+          "page": 69,
+          "markers": [
+            "resource reporting",
+            "Ce2O3",
+            "1.171"
+          ]
+        }
+      ],
+      "selection_reason": "Recover the original Splinter technical resource evidence without transferring the incompatible Ce2O3-based total into canonical TREO. No source date is represented as a verified public-release or resource-effective day. Keep candidate pending date and partial-contract validation.",
+      "selected_resource_sections": {
+        "splinter_table35_500_inferred": {
+          "page": 72,
+          "bbox": [
+            71,
+            89,
+            803,
+            452
+          ],
+          "anchor_bbox": [
+            71.8,
+            90.1,
+            244.5,
+            104.7
+          ],
+          "anchor": "Table 35. Splinter Mineral Resource",
+          "row_label": "Inferred",
+          "cutoff_group": {
+            "bbox": [
+              71,
+              321.4,
+              803,
+              354.0
+            ],
+            "label": "500",
+            "label_bbox": [
+              100.57850158691406,
+              331.7844494628906,
+              112.45745574951172,
+              342.27835571289063
+            ],
+            "column_bbox": [
+              86,
+              136.4,
+              128,
+              452
+            ],
+            "header_label": "Cut off TREO+Y2O3",
+            "header_bbox": [
+              87.0,
+              136.4,
+              126.0,
+              159.5
+            ]
+          }
+        }
+      },
+      "partial_resource_projection": {
+        "mode": "ORE_AND_COMPATIBLE_OXIDES_ONLY",
+        "withholding_reason": "SOURCE_CE2O3_INCOMPATIBLE_WITH_CANONICAL_CEO2",
+        "source_species": "Ce2O3",
+        "canonical_species": "CeO2",
+        "basis_proof": {
+          "kind": "NATIVE_ELEMENT_TO_OXIDE_ROW",
+          "page": 69,
+          "table_bbox": [
+            89,
+            274,
+            390,
+            565
+          ],
+          "table_label": "Table 33. Factors used to convert elements to oxides.",
+          "table_label_bbox": [
+            89.6,
+            274.6,
+            333.1,
+            289.1
+          ],
+          "row_bbox": [
+            142.4,
+            334.6,
+            291.2,
+            349.1
+          ],
+          "conversion_factor": 1.171,
+          "evidence": {
+            "page": 69,
+            "markers": [
+              "resource reporting",
+              "Table 33.",
+              "Ce2O3"
+            ]
+          }
+        },
+        "resource_header": {
+          "page": 72,
+          "bbox": [
+            394.04290283203125,
+            136.49146545410156,
+            416.15057861328125,
+            147.03378784179688
+          ],
+          "section_id": "splinter_table35_500_inferred"
+        }
+      },
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 22.849,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "22,849",
+          "original_unit": "kt",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "22,849"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "kt",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              205.91765747070312,
+              136.4,
+              232.94054260253907,
+              452
+            ],
+            "column_label_bbox": [
+              207.19765747070312,
+              136.49146545410156,
+              231.66054260253907,
+              147.03378784179688
+            ],
+            "column_label": "Tonnes",
+            "unit_bbox": [
+              210.4,
+              148.8,
+              228.6,
+              159.5
+            ],
+            "unit_label": "'000 t"
+          },
+          "rounding_half_width": 0.0005
+        },
+        {
+          "variable": "reported_resource_la_ppm",
+          "value": 223,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "original_token": "223",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "223"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_la_ppm",
+            "basis": "La2O3",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              369.07305297851565,
+              136.4,
+              392.1245178222656,
+              452
+            ],
+            "column_label_bbox": [
+              370.3530529785156,
+              136.49146545410156,
+              390.84451782226563,
+              147.03378784179688
+            ],
+            "column_label": "La2O3",
+            "unit_bbox": [
+              373.04998291015625,
+              148.86207092285156,
+              388.472294921875,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_pr_ppm",
+          "value": 49,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "49",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "49"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_pr_ppm",
+            "basis": "Pr6O11",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              418.0681396484375,
+              136.4,
+              444.8923706054687,
+              452
+            ],
+            "column_label_bbox": [
+              419.3481396484375,
+              136.49146545410156,
+              443.61237060546875,
+              147.03378784179688
+            ],
+            "column_label": "Pr6O11",
+            "unit_bbox": [
+              423.66851318359375,
+              148.86207092285156,
+              439.0908251953125,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_nd_ppm",
+          "value": 166,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "166",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "166"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_nd_ppm",
+            "basis": "Nd2O3",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              445.529931640625,
+              136.4,
+              471.2734741210937,
+              452
+            ],
+            "column_label_bbox": [
+              446.809931640625,
+              136.49146545410156,
+              469.99347412109375,
+              147.03378784179688
+            ],
+            "column_label": "Nd2O3",
+            "unit_bbox": [
+              450.58916748046875,
+              148.86207092285156,
+              466.0114794921875,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_sm_ppm",
+          "value": 29,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "original_token": "29",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "29"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_sm_ppm",
+            "basis": "Sm2O3",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              471.9175048828125,
+              136.4,
+              498.19977416992185,
+              452
+            ],
+            "column_label_bbox": [
+              473.1975048828125,
+              136.49146545410156,
+              496.9197741699219,
+              147.03378784179688
+            ],
+            "column_label": "Sm2O3",
+            "unit_bbox": [
+              477.50982177734375,
+              148.86207092285156,
+              492.9321337890625,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_eu_ppm",
+          "value": 4,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "original_token": "4",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "4"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_eu_ppm",
+            "basis": "Eu2O3",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              498.8381591796875,
+              136.4,
+              522.9670776367187,
+              452
+            ],
+            "column_label_bbox": [
+              500.1181591796875,
+              136.49146545410156,
+              521.6870776367188,
+              147.03378784179688
+            ],
+            "column_label": "Eu2O3",
+            "unit_bbox": [
+              503.3562268066406,
+              148.86207092285156,
+              518.7785693359375,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_gd_ppm",
+          "value": 23,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "original_token": "23",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "23"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_gd_ppm",
+            "basis": "Gd2O3",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              523.6103149414063,
+              136.4,
+              549.353857421875,
+              452
+            ],
+            "column_label_bbox": [
+              524.8903149414062,
+              136.49146545410156,
+              548.073857421875,
+              147.03378784179688
+            ],
+            "column_label": "Gd2O3",
+            "unit_bbox": [
+              528.661494140625,
+              148.86207092285156,
+              544.0838061523438,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_tb_ppm",
+          "value": 3,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "3",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "3"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tb_ppm",
+            "basis": "Tb4O7",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              549.9978881835938,
+              136.4,
+              574.1268676757812,
+              452
+            ],
+            "column_label_bbox": [
+              551.2778881835937,
+              136.49146545410156,
+              572.8468676757813,
+              147.03378784179688
+            ],
+            "column_label": "Tb4O7",
+            "unit_bbox": [
+              554.5078686523437,
+              148.86207092285156,
+              569.9301806640625,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_dy_ppm",
+          "value": 21,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "21",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "21"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_dy_ppm",
+            "basis": "Dy2O3",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              574.7700439453125,
+              136.4,
+              599.4377197265625,
+              452
+            ],
+            "column_label_bbox": [
+              576.0500439453125,
+              136.49146545410156,
+              598.1577197265625,
+              147.03378784179688
+            ],
+            "column_label": "Dy2O3",
+            "unit_bbox": [
+              579.2800244140625,
+              148.86207092285156,
+              594.7023364257813,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_ho_ppm",
+          "value": 4,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "original_token": "4",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "4"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_ho_ppm",
+            "basis": "Ho2O3",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              600.0752807617188,
+              136.4,
+              625.2800048828125,
+              452
+            ],
+            "column_label_bbox": [
+              601.3552807617187,
+              136.49146545410156,
+              624.0000048828125,
+              147.03378784179688
+            ],
+            "column_label": "Ho2O3",
+            "unit_bbox": [
+              605.1263989257812,
+              148.86207092285156,
+              620.5487109375,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_er_ppm",
+          "value": 11,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "original_token": "11",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "11"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_er_ppm",
+            "basis": "Er2O3",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              625.9216552734375,
+              136.4,
+              648.4352172851562,
+              452
+            ],
+            "column_label_bbox": [
+              627.2016552734375,
+              136.49146545410156,
+              647.1552172851563,
+              147.03378784179688
+            ],
+            "column_label": "Er2O3",
+            "unit_bbox": [
+              629.3574169921875,
+              148.86207092285156,
+              644.7797290039063,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_tm_ppm",
+          "value": 2,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "original_token": "2",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "2"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tm_ppm",
+            "basis": "Tm2O3",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              649.0783935546875,
+              136.4,
+              675.3614868164062,
+              452
+            ],
+            "column_label_bbox": [
+              650.3583935546875,
+              136.49146545410156,
+              674.0814868164063,
+              147.03378784179688
+            ],
+            "column_label": "Tm2O3",
+            "unit_bbox": [
+              654.6626538085937,
+              148.86207092285156,
+              670.0849658203125,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_yb_ppm",
+          "value": 10,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "original_token": "10",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "10"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_yb_ppm",
+            "basis": "Yb2O3",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              675.9990478515625,
+              136.4,
+              700.6667236328125,
+              452
+            ],
+            "column_label_bbox": [
+              677.2790478515625,
+              136.49146545410156,
+              699.3867236328125,
+              147.03378784179688
+            ],
+            "column_label": "Yb2O3",
+            "unit_bbox": [
+              680.5090283203125,
+              148.86207092285156,
+              695.9313403320313,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_lu_ppm",
+          "value": 1,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "original_token": "1",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "1"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_lu_ppm",
+            "basis": "Lu2O3",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              701.3042846679688,
+              136.4,
+              724.8937133789062,
+              452
+            ],
+            "column_label_bbox": [
+              702.5842846679687,
+              136.49146545410156,
+              723.6137133789063,
+              147.03378784179688
+            ],
+            "column_label": "Lu2O3",
+            "unit_bbox": [
+              705.2811840820312,
+              148.86207092285156,
+              720.70349609375,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_y_ppm",
+          "value": 113,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "original_token": "113",
+          "original_unit": "ppm",
+          "evidence": {
+            "page": 72,
+            "markers": [
+              "Table 35.",
+              "Splinter",
+              "Inferred",
+              "113"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_y_ppm",
+            "basis": "Y2O3",
+            "scope": "Splinter only, Inferred resource at 500 ppm source-defined TREO+Y2O3 cutoff; Table 35 exact 22,849 thousand tonnes row. Excludes Newmont, unclassified mineralisation, combined Total rows, and all other cutoffs. Source uses Ce2O3 rather than canonical CeO2. Partial projection admits ore mass and 14 compatible individual oxide grades only.",
+            "page": 72,
+            "section_id": "splinter_table35_500_inferred",
+            "original_unit": "ppm",
+            "table_bbox": [
+              71,
+              89,
+              803,
+              452
+            ],
+            "table_label_bbox": [
+              71.8,
+              90.1,
+              116.2,
+              104.7
+            ],
+            "table_label": "Table 35.",
+            "scope_anchor_bbox": [
+              71.8,
+              90.1,
+              244.5,
+              104.7
+            ],
+            "scope_anchor": "Table 35. Splinter Mineral Resource",
+            "row_bbox": [
+              71,
+              321.4,
+              803,
+              332.15
+            ],
+            "row_label_bbox": [
+              136.76067626953125,
+              321.5250500488281,
+              164.395390625,
+              332.01895629882813
+            ],
+            "row_label": "Inferred",
+            "column_bbox": [
+              725.535302734375,
+              136.4,
+              745.8938354492187,
+              452
+            ],
+            "column_label_bbox": [
+              726.815302734375,
+              136.49146545410156,
+              744.6138354492188,
+              147.03378784179688
+            ],
+            "column_label": "Y2O3",
+            "unit_bbox": [
+              727.8967846679687,
+              148.86207092285156,
+              743.3190966796875,
+              159.40439331054688
+            ],
+            "unit_label": "ppm"
+          },
+          "rounding_half_width": 0.5
+        }
+      ],
+      "withheld_variables": [
+        "grade",
+        "contained_treo_kt",
+        "reported_resource_ce_ppm"
+      ],
+      "prohibited_derived_outputs": [
+        "canonical_treo_total",
+        "canonical_treo_grade",
+        "magnet_share_of_treo",
+        "element_sum_to_treo_ratio",
+        "full15oxide_closure"
+      ]
     }
   ]
 }

@@ -1,12 +1,12 @@
 {
-  "iteration": 8,
-  "baseline_commit": "b494607047c6d54111b7b6ad58e3335b3b93e889",
+  "iteration": 9,
+  "baseline_commit": "b610eff5c1f0fce169dbb58e31bca4efe7a7f13b",
   "current_integrity": {
     "projects": 43,
     "columns": 52,
-    "filled_cells": 972,
+    "filled_cells": 995,
     "total_cells": 2236,
-    "remaining_blank_cells": 1264,
+    "remaining_blank_cells": 1241,
     "scientific_columns": [
       "礦石蘊藏量_Mt",
       "TREO品位_pct",
@@ -34,78 +34,223 @@
       "Lu2O3_氧化鎦_kt",
       "Y2O3_氧化釔_kt"
     ],
-    "scientific_filled_cells": 330,
+    "scientific_filled_cells": 347,
     "scientific_total_cells": 1075,
     "output_hashes": {
       "census_inventory.csv": "1b69a12157d3228b0554943b6a12bf32775da97ae867a71962357c75b73f9ac4",
-      "field_provenance.csv": "4b440611c53cb5b93bef12678be4c7b174ea7f3bdbc6e2e7ce8353b124de9fbc",
-      "missing_fields.csv": "2ec791c83f41e3de78c9c4876e61bbac6731bb90525f093a705dd703e24b29ed",
-      "專案總表.csv": "7c73a7b79cde3eb6c46956aa8ef8b10c81660825c1f4537c3d214ee58b5097a7"
+      "field_provenance.csv": "456e4dcd160b9b57650dbcacb72fafa437ae32320cfb186f5c9be1a029614f42",
+      "missing_fields.csv": "a39fb791bae794513696cb405fedce1757b4bd10ec44e6d243604f0d57eb06d4",
+      "專案總表.csv": "b44a63ced6e7f3714ee57848acd4080e38d225af18ffe619c0d3c3399dc0d62b"
     },
     "provenance_complete": true,
     "missing_diagnostics_complete": true
   },
   "newly_filled_cells": [
     {
-      "project_id": "AU-0098e17a63e7c05c213f",
-      "column": "開發商",
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "礦石蘊藏量_Mt",
       "before": "",
-      "after": "Cobra Resources plc"
+      "after": "22.849"
     },
     {
-      "project_id": "AU-0098e17a63e7c05c213f",
-      "column": "未上市公司",
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "NdPr蘊藏量_kt_需兩者皆公布",
       "before": "",
-      "after": "否"
+      "after": "4.912535"
     },
     {
-      "project_id": "AU-d28382dfa82f1664065e",
-      "column": "開發商",
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
       "before": "",
-      "after": "Orbit Resources Limited"
+      "after": "3.770085"
     },
     {
-      "project_id": "AU-d28382dfa82f1664065e",
-      "column": "未上市公司",
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "有來源文件",
       "before": "",
-      "after": "否"
+      "after": "是"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "已公布元素數_共15項",
+      "before": "",
+      "after": "14"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "已公布元素總和_kt",
+      "before": "",
+      "after": "15.057491"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "元素數據一致性檢查",
+      "before": "",
+      "after": "來源使用Ce2O3；CeO2與TREO總量、品位及比率留白；僅加總相容氧化物"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "四項磁性元素皆公布",
+      "before": "",
+      "after": "是"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "磁性元素重算值_NdPrTbDy_kt",
+      "before": "",
+      "after": "5.460911"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "La2O3_氧化鑭_kt",
+      "before": "",
+      "after": "5.095327"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "Pr6O11_氧化鐠_kt",
+      "before": "",
+      "after": "1.119601"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "Nd2O3_氧化釹_kt",
+      "before": "",
+      "after": "3.7929340000000002"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "Sm2O3_氧化釤_kt",
+      "before": "",
+      "after": "0.662621"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "Eu2O3_氧化銪_kt",
+      "before": "",
+      "after": "0.091396"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "Gd2O3_氧化釓_kt",
+      "before": "",
+      "after": "0.5255270000000001"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "Tb4O7_氧化鋱_kt",
+      "before": "",
+      "after": "0.068547"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "Dy2O3_氧化鏑_kt",
+      "before": "",
+      "after": "0.479829"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "Ho2O3_氧化鈥_kt",
+      "before": "",
+      "after": "0.091396"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "Er2O3_氧化鉺_kt",
+      "before": "",
+      "after": "0.251339"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "Tm2O3_氧化銩_kt",
+      "before": "",
+      "after": "0.045698"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "Yb2O3_氧化鐿_kt",
+      "before": "",
+      "after": "0.22849000000000003"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "Lu2O3_氧化鎦_kt",
+      "before": "",
+      "after": "0.022849"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "Y2O3_氧化釔_kt",
+      "before": "",
+      "after": "2.581937"
     }
   ],
-  "scientific_newly_filled_cells": 0,
-  "tests": {
-    "environment": "cloud",
-    "total": 484,
-    "passed": 480,
-    "skipped": 4,
-    "failed": 0
-  },
-  "laptop_focused_tests": {
-    "total": 162,
-    "passed": 162,
-    "failed": 0,
-    "skipped": 0
-  },
-  "laptop_full_suite_attempt": {
-    "tests_run": 366,
-    "failures": 1,
-    "errors": 37,
-    "status": "INCOMPLETE_SPARSE_HISTORICAL_FIXTURES",
-    "limitation": "Historical fixtures excluded to preserve disk space. Frozen-policy assertion and SQLite cleanup failures were traced to omitted configuration files and passed in the focused rerun after exact fixtures were restored."
-  },
+  "replaced_source_cells": [
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "資料來源名稱",
+      "before": "wa_dmpe_ree_2026_table",
+      "after": "wamex_splinter_r254_20151109"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "column": "資料來源URL",
+      "before": "https://www.wa.gov.au/media/159141/download?inline=",
+      "after": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=109432"
+    }
+  ],
+  "scientific_newly_filled_cells": 17,
+  "withdrawals": 0,
+  "complete_resource_pairs_before": 30,
+  "complete_resource_pairs_after": 30,
+  "withheld_columns": [
+    "CeO2_氧化鈰_kt",
+    "TREO品位_pct",
+    "元素總和/TREO",
+    "有TREO資源估計",
+    "磁鐵稀土佔TREO_pct",
+    "磁鐵稀土氧化物蘊藏量_kt",
+    "總TREO蘊藏量_kt"
+  ],
+  "technical_report_issue_date": "2015-11-09",
+  "resource_effective_date_unknown": true,
+  "public_release_date_unknown": true,
+  "source_sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7",
   "repeat_exports_byte_identical": true,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "database_modified": false,
   "remote_ci_claimed": false,
-  "test_evidence_sha256": {
-    "iteration7-rebased-tests.log": "8eaf8866a41eeb8dbe8a8fc58d467eb88749e0d4363c1a6f4aca4441ae1bcfb7",
-    "iteration8-laptop-focused.log": "6a2a0400dba8a6c3268a2dac46ae366a78e8bda5785a7beb026c945fcb266f06",
-    "iteration8-laptop-tests.log": "3b5a0cf8b8c4ed3a874e38f5a70d25e2e846d67ff2ce9f4f575185cfcb057918"
+  "tests": {
+    "environment": "cloud_integrated_production",
+    "total": 506,
+    "passed": 502,
+    "skipped": 4,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 129.13,
+    "log_sha256": "6c5d50c7691762e73aeed6a8818b19b1f2bd1e97b49ad7a72eb4fb554fcd6bb8",
+    "base_commit": "b610eff5c1f0fce169dbb58e31bca4efe7a7f13b",
+    "patch_sha256": "c2cdc1d576185f76908f71175df1f5dafe2164211dece0282891c34257d0864d"
   },
-  "source_recovery": {
-    "round5_required_pdfs": 13,
-    "round5_original_hashes_verified": true,
-    "round5_acquisition_receipts_matched": 13,
-    "replay_environment": "isolated_laptop_checkout",
-    "database_original_bytes_verified": true
-  }
+  "laptop_focused_tests": {
+    "total": 184,
+    "passed": 184,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "log_sha256": "e9e096f9c8a91af98c4b18c3a0094ed13445f6c37318c922ce8611ce06b54ef7"
+  },
+  "laptop_full_suite_status": "NOT_CLAIMED; PRIOR_METADATA_ATTEMPT_LIMITED_BY_OMITTED_HISTORICAL_FIXTURES",
+  "real_source_negative_controls": {
+    "absent_flag": "REVIEW_PARTIAL_RESOURCE_TECHNICAL_REPORT_DATE_CONTRACT_REQUIRED",
+    "generic_grade": "REVIEW_PARTIAL_RESOURCE_TOTAL_GRADE_RATIO_OR_CERIUM_FORBIDDEN",
+    "incompatible_ceo2": "REVIEW_PARTIAL_RESOURCE_TOTAL_GRADE_RATIO_OR_CERIUM_FORBIDDEN",
+    "source_basis_row": "REVIEW_PARTIAL_RESOURCE_BASIS_CONVERSION_ROW_MISMATCH",
+    "wrong_cutoff_label": "REVIEW_CELL_CUTOFF_GROUP_LABEL_OR_HEADER_MISMATCH",
+    "unclassified_selected": "REVIEW_CELL_CUTOFF_GROUP_NATIVE_INFERRED_REQUIRED",
+    "report_date_overstated": "REVIEW_PARTIAL_RESOURCE_TECHNICAL_REPORT_DATE_CONTRACT_REQUIRED",
+    "grouped_magnet": "REVIEW_PARTIAL_RESOURCE_GROUPED_OXIDES_FORBIDDEN"
+  },
+  "source_receipt_sha256": "120b87ff5768b2ea435ba35d158990fbdcbfeeaf3bd9cdaf04d740d0b67f9f30",
+  "source_compatibility": "ORE_AND_14_COMPATIBLE_INDIVIDUAL_OXIDES_ONLY;NO_CEO2_CONVERSION_OR_GENERIC_TREO_PAIR"
 }

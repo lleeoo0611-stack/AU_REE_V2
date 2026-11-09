@@ -16,8 +16,16 @@ MAGNET=('Nd2O3','Pr6O11','Tb4O7','Dy2O3')
 HEAVY=('Tb4O7','Dy2O3','Ho2O3','Er2O3','Tm2O3','Yb2O3','Lu2O3','Y2O3')
 
 
-def resource_bundle(observations):
-    """Require one source/statement/scope/date. Never add nested resource scopes."""
+def resource_bundle(observations, partial_resource=None):
+    """Require paired ore/TREO by default; partial projection needs explicit proof."""
+    if partial_resource is not None:
+        from .partial_resource import partial_resource_bundle
+        return partial_resource_bundle(observations, partial_resource)
+    for o in observations:
+        try:raw=json.loads(o.get('raw','{}'))
+        except (TypeError,ValueError):raw={}
+        if isinstance(raw,dict) and raw.get('partial_resource_projection'):
+            return None,'PARTIAL_RESOURCE_OPT_IN_REQUIRED'
     grouped=defaultdict(list)
     for o in observations:
         if o['status']=='AUTO_VALIDATED' and o['variable'] in ('ore_mt','grade','contained_treo_kt') and o['basis']=='TREO':
@@ -60,6 +68,7 @@ def complete_sum(elements,required):
 
 def reported_magnet_group(observations,bundle):
     """A matched reported group can fill group totals, never individual oxides."""
+    if bundle.get('partial_resource_projection'):return None
     key=(bundle['source_sha256'],bundle['statement_id'],bundle['scope'],bundle['effective_date'])
     groups=[o for o in observations if (o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])==key and
         o['variable']=='reported_resource_magnet_ppm' and o['unit']=='ppm' and o['basis']=='PrNdDyTb_OXIDES' and
@@ -113,6 +122,8 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
             entry.update(publication_date_precision=selected.get(sha,{}).get('publication_date_precision',''),
                 publication_date_interval=canonical(selected.get(sha,{}).get('publication_date_interval')),
                 source_kind=selected.get(sha,{}).get('source_kind',''),
+                resource_effective_date_unknown=selected.get(sha,{}).get('resource_effective_date_unknown',False),
+                public_release_date_unknown=selected.get(sha,{}).get('public_release_date_unknown',False),
                 effective_date_interval=canonical(matches[0].get('effective_date_interval')) if matches else '')
         # Current-only provenance: a later scoped replacement supersedes this cell.
         trace[:]=[r for r in trace if (r['project_id'],r['column'])!=(pid,column)]
@@ -203,19 +214,22 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
             if supplement and pid in supplement['resource_preferences']:
                 contract=supplement['resource_contracts'][pid]
                 resource_obs=[o for o in obs if (o['source_sha'],o['scope'],o['statement_id'],o['effective_date'])==contract]
-            bundle,reason=resource_bundle(resource_obs)
+            partial_contract=(supplement or {}).get('partial_resource_contracts',{}).get(pid)
+            bundle,reason=resource_bundle(resource_obs,partial_resource=partial_contract)
             if bundle:
                 sha=bundle['source_sha256'];scope=bundle['scope'];ids=[o['obs_id'] for o in bundle['observations']]
                 label=(supplement or {}).get('resource_labels',{}).get(pid)
                 if label:
                     put('專案名稱',row['專案名稱']+' — '+label['label']+' resource scope',sha,
                         method='EXISTING_PROJECT_WITH_EXPLICIT_RESOURCE_SUBSCOPE_LABEL',scope=scope)
+                is_partial=bool(bundle.get('partial_resource_projection'))
                 for variable,column in [('ore_mt','礦石蘊藏量_Mt'),('grade_pct','TREO品位_pct'),('contained_treo_kt','總TREO蘊藏量_kt')]:
+                    if variable not in bundle['value']:continue
                     method=bundle['contained_method'] if variable=='contained_treo_kt' else 'SAME_SOURCE_STATEMENT_SCOPE_DATE'
                     put(column,bundle['value'][variable],sha,'; '.join(sorted({o['locator'] for o in bundle['observations']})),method,scope,ids)
-                put('有TREO資源估計','是',sha,method='COMPLETE_SOURCE_BOUND_RESOURCE_PAIR',scope=scope)
+                if not is_partial:put('有TREO資源估計','是',sha,method='COMPLETE_SOURCE_BOUND_RESOURCE_PAIR',scope=scope)
                 put('資料來源名稱',selected[sha]['key'],sha);put('資料來源URL',selected[sha]['url'],sha)
-                same=[o for o in obs if (o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])==
+                same=bundle['observations'] if is_partial else [o for o in obs if (o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])==
                       (sha,bundle['statement_id'],scope,bundle['effective_date'])]
                 shares=[o for o in same if o['variable']=='magnet_reo_share_pct' and o['unit']=='%' and o['basis'] in ('PrNdDyTb_OXIDES_OVER_TREO','PrNdDyTb_REO_DIV_TREO') and 0<=o['value']<=100]
                 # A reported four-oxide group is not disclosure of its four individual oxides.
@@ -224,7 +238,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                     g=group['observation']
                     put('磁鐵稀土氧化物蘊藏量_kt',group['contained_kt'],sha,g['locator'],'ORE_MT_X_REPORTED_MAGNET_OXIDE_GROUP_PPM_X_0_001',scope,ids+[g['obs_id']])
                     put('磁鐵稀土佔TREO_pct',group['share_percent'],sha,g['locator'],'REPORTED_MAGNET_GROUP_PPM_DIV_MATCHED_TREO_PPM_X_100',scope,ids+[g['obs_id']])
-                if shares and len({o['value'] for o in shares})==1:
+                if not is_partial and shares and len({o['value'] for o in shares})==1:
                     put('磁鐵稀土佔TREO_pct',shares[0]['value'],sha,shares[0]['locator'],scope=scope,obs_ids=[shares[0]['obs_id']])
                     put('磁鐵稀土氧化物蘊藏量_kt',bundle['value']['contained_treo_kt']*shares[0]['value']/100,sha,shares[0]['locator'],'TREO_KT_X_MAGNET_SHARE_PERCENT',scope,ids+[shares[0]['obs_id']])
                 elements={}
@@ -237,8 +251,9 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                 if elements:
                     put('已公布元素數_共15項',len(elements),sha,scope=scope)
                     put('已公布元素總和_kt',sum(elements.values()),sha,method='SUM_AVAILABLE_MATCHED_OXIDES_NOT_TOTAL_RESOURCE',scope=scope)
-                    if bundle['value']['contained_treo_kt']>0:put('元素總和/TREO',sum(elements.values())/bundle['value']['contained_treo_kt'],sha,method='AVAILABLE_OXIDE_SUM_DIVIDED_BY_MATCHED_TREO',scope=scope)
-                    put('元素數據一致性檢查','部分元素；未進行完整15項閉合檢查' if len(elements)<15 else
+                    if not is_partial and bundle['value']['contained_treo_kt']>0:put('元素總和/TREO',sum(elements.values())/bundle['value']['contained_treo_kt'],sha,method='AVAILABLE_OXIDE_SUM_DIVIDED_BY_MATCHED_TREO',scope=scope)
+                    put('元素數據一致性檢查','來源使用Ce2O3；CeO2與TREO總量、品位及比率留白；僅加總相容氧化物' if is_partial else
+                        '部分元素；未進行完整15項閉合檢查' if len(elements)<15 else
                         '15項氧化物總和與TREO於來源有效位數範圍內一致' if supplement and sha in supplement['sources'] else
                         '15項已齊；須依來源有效位數檢查閉合',sha,scope=scope)
                 for required,column in [(('Nd2O3','Pr6O11'),'NdPr蘊藏量_kt_需兩者皆公布'),(HEAVY,'完整重稀土組合蘊藏量_kt_需8元素皆公布'),(MAGNET,'磁性元素重算值_NdPrTbDy_kt')]:
@@ -286,6 +301,8 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                          'NO_COMPLETE_SAME_SCOPE_EIGHT_HEAVY_OXIDE_SET' if column=='完整重稀土組合蘊藏量_kt_需8元素皆公布' else
                          ('NO_COMPATIBLE_SOURCE_REVIEWED_ENGINEERING_FORECAST' if supplement else 'NO_COMPATIBLE_FROZEN_ENGINEERING_FORECAST') if column.startswith('預估年產') else
                          'NO_COMPATIBLE_VERIFIED_FIELD; BLANK_IS_UNKNOWN')
+                    from .partial_resource import WITHHELD_COLUMNS,REASON
+                    if partial_contract and column in WITHHELD_COLUMNS:why=REASON
                     d=dict(project_id=pid,column=column,reason=why)
                     deferred=((supplement or {}).get('deferred_fields',{}).get(pid,{}).get(column) or
                               (discovered or {}).get('deferred_fields',{}).get(pid,{}).get(column))
@@ -307,7 +324,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
     write('專案總表.csv',rows,columns)
     write('field_provenance.csv',trace,['project_id','column','value','source_sha256','source_url','locator','method','scope','observation_ids']+
         (['effective_date','effective_date_role','date_precision','review_ids','acquired_through','publication_date','publication_date_role','document_issue_date',
-          'publication_date_precision','publication_date_interval','source_kind','effective_date_interval','forecast_derivation','review_methods'] if review_ledger else []))
+          'publication_date_precision','publication_date_interval','source_kind','effective_date_interval','forecast_derivation','review_methods','resource_effective_date_unknown','public_release_date_unknown'] if review_ledger else []))
     write('missing_fields.csv',diagnostics,['project_id','column','reason']+(['source_sha256','physical_page','review_id'] if review_ledger else []))
     write('census_inventory.csv',inventory,['entity_id','kind','name','included_in_project_summary','source_sha256','unit_of_analysis'])
     result=dict(version='census-project-summary-v1',cutoff=cutoff,rows=len(rows),columns=len(columns),
@@ -326,6 +343,10 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
         result['limitations'].remove('NO_AUTOMATIC_PROMOTION_OF_NEW_ASX_CANDIDATES')
         result['limitations'].append('IMAGE_CELL_TRANSCRIPTIONS_ARE_VISUALLY_REVIEWED_NOT_INDEPENDENT_OCR')
         result['limitations'].append('ONLY_SOURCE_REVIEW_LEDGER_VALUES_PROMOTED;NOT_FORMAL_C1_OR_INDEPENDENT_APPROVAL')
+        if supplement.get('partial_resource_contracts'):
+            result['limitations'].append('EXPLICIT_PARTIAL_ORE_OXIDE_PROJECTIONS_ARE_NOT_COMPLETE_TREO_RESOURCE_PAIRS')
+        if any(r.get('effective_date_role')=='TECHNICAL_REPORT_RESOURCE_AS_REPORTED' for r in supplement['receipts']):
+            result['limitations'].append('TECHNICAL_REPORT_ISSUE_DATE_IS_ORDERING_DATE_ONLY;RESOURCE_EFFECTIVE_AND_PUBLIC_RELEASE_DATES_UNKNOWN')
     if discovered:
         result.update(discovery_ledger_sha256=discovered['ledger_sha256'],discovery_reviews=discovered['receipts'],
             original_canonical_projects=len(projects)-len(discovered['projects']),reviewed_project_extensions=len(discovered['projects']))

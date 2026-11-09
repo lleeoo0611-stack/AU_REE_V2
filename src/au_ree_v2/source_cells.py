@@ -87,6 +87,38 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
                 fail('SELECTED_SECTION_ANCHOR_MISMATCH')
         elif mode == 'reviewed_image_cell' and section.get('mode') != 'reviewed_image_section':
             fail('IMAGE_SECTION_REVIEW_REQUIRED')
+        cutoff_group = section.get('cutoff_group')
+        if cutoff_group:
+            # A vertically merged cutoff label can sit beside Unclassified,
+            # below the selected Inferred row. Bind the whole three-row group
+            # plus the exact class row, never borrow a nearby cutoff label.
+            if mode != 'native_cell' or norm(section.get('row_label','')) != 'inferred':
+                fail('CUTOFF_GROUP_NATIVE_INFERRED_REQUIRED')
+            def group_rect(key):
+                values = cutoff_group.get(key)
+                if (not isinstance(values,list) or len(values)!=4 or
+                    any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) for v in values)):
+                    fail('CUTOFF_GROUP_RECT_INVALID')
+                box=pymupdf.Rect(values)
+                if box.is_empty or box.is_infinite or not page_bounds.contains(box):
+                    fail('CUTOFF_GROUP_RECT_INVALID')
+                return box
+            group=group_rect('bbox');cutoff_label=group_rect('label_bbox')
+            cutoff_column=group_rect('column_bbox');cutoff_header=group_rect('header_bbox')
+            table=rect('table_bbox')
+            if (not table.contains(group) or not group.contains(rect('row_bbox')) or not group.contains(cutoff_label) or
+                not table.contains(cutoff_column) or not cutoff_column.contains(cutoff_label) or
+                not cutoff_column.contains(cutoff_header) or cutoff_header.y1>group.y0):
+                fail('CUTOFF_GROUP_BINDING_MISMATCH')
+            label=norm(region_text(page,cutoff_label))
+            if (label!=norm(cutoff_group.get('label','')) or not re.fullmatch(r'\d[\d,]*(?:\.\d+)?',label) or
+                norm(region_text(page,cutoff_header))!=norm(cutoff_group.get('header_label','')) or
+                norm(cutoff_group.get('header_label',''))!='cut off treo+y2o3'):
+                fail('CUTOFF_GROUP_LABEL_OR_HEADER_MISMATCH')
+            classes=[word.casefold() for word in region_text(page,group).split()
+                     if word.casefold() in ('inferred','unclassified','total')]
+            if classes!=['inferred','unclassified','total']:
+                fail('CUTOFF_GROUP_CLASS_ROWS_MISMATCH')
     if mode == 'native_statement':
         statement = norm(page.get_textbox(rect('statement_bbox')))
         if statement != norm(binding.get('statement', '')):
@@ -173,6 +205,7 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     source_unit = source_unit.strip('()')
     if source_unit == 'million' and unit == 'Mt': source_unit = 'mt'
     if source_unit == 'tonnes' and unit == 't': source_unit = 't'
+    if source_unit == "'000 t" and unit == 'kt': source_unit = 'kt'
     if unit == '%HM' and source_unit == '% of total hm': source_unit = '%hm'
     if unit == '%TREO':
         if source_unit!='percentage proportion of treo in the mineral resources':
