@@ -1,6 +1,6 @@
 # AU_REE_V2
 
-Experimental branch: [ASX candidate validation and reviewed summary values](docs/asx-validated-summary.md), with [updated results](results/asx-validated-summary-2026-11-09/evaluation.json). The [earlier 24-URL baseline](docs/asx-expanded-evaluation.md) is retained. This branch keeps the formal Phase 22 research results and admission rules unchanged.
+Experimental branch: [ASX gap expansion and 52-column summary](docs/asx-gap-expansion.md), with [latest results](results/asx-gap-expansion-2026-11-09/evaluation.json). The [first reviewed summary](docs/asx-validated-summary.md) and [earlier 24-URL baseline](docs/asx-expanded-evaluation.md) are retained. This branch keeps the formal Phase 22 research results and admission rules unchanged.
 
 Latest: **Phase 22 — native-candidate acquisition, source-bound evidence and shared-method MCDA**, cutoff **2026-11-05**, configuration `research-v8-native-candidate-shared-draws`. See [results, limits and reconstruction](results/phase22-2026-11-06/README.md), [verification](results/phase22-2026-11-06/evaluation.json), and [evidence priorities](results/phase22-2026-11-06/six_domain_gap_priority.csv).
 

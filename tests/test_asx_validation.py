@@ -103,6 +103,57 @@ class SourceReviews(unittest.TestCase):
         result=self.validate(r)
         self.assertEqual('HREE8_NOT_FULLY_SPECIFIED',result['deferred_fields']['P']['預估年產重稀土_t_per_year']['reason'])
         self.assertFalse(result['studies'])
+    def test_inferred_only_resource_does_not_require_other_categories(self):
+        r=copy.deepcopy(self.review);r['resource_categories']=['INFERRED']
+        result=self.validate(r)
+        self.assertEqual('INFERRED_TOTAL',result['observations']['P'][0]['category'])
+        r['resource_categories']=['PROVED']
+        with self.assertRaisesRegex(ValueError,'CATEGORY_INVALID'):self.validate(r)
+    def test_hm_grade_is_normalized_to_bulk_ore(self):
+        r=copy.deepcopy(self.review)
+        with pymupdf.open(self.pdf) as d:
+            d[1].insert_text((50,200),'Total HM 4.0 percent total material\nTREO 1.4 percent total HM component',fontsize=10)
+            target=self.root/'data/hm.pdf';d.save(target)
+        r.update(path='data/hm.pdf',source_sha256=filehash(target))
+        (self.root/'downloads.json').write_text(json.dumps([dict(url=r['url'],document_sha256=r['source_sha256'],status='PDF_ACQUIRED')]))
+        r['bulk_hm_percent']=dict(value=4.,original_token='4.0',basis_markers=['Total HM','percent total material','percent total HM component'],evidence=dict(page=2,markers=['Total HM']))
+        r['observations'][1].update(value=.056,unit='%',original_token='1.4',original_unit='%HM')
+        result=self.validate(r);self.assertAlmostEqual(.056,result['observations']['P'][1]['value'])
+        r['observations'][1]['value']=1.4
+        with self.assertRaisesRegex(ValueError,'TOKEN_UNIT_TRANSFORM'):self.validate(r)
+        r['observations'][1]['value']=.056;r.pop('bulk_hm_percent')
+        with self.assertRaisesRegex(ValueError,'HM_NORMALIZATION'):self.validate(r)
+    def test_source_must_be_in_canonical_manifest_when_no_download_receipt(self):
+        (self.root/'data/manifest.json').write_text(json.dumps(dict(snapshots=[dict(kind='pdf',url=self.review['url'],sha256=self.review['source_sha256'],path='data/source.pdf')])))
+        # Suppress creation of fixture download receipt, then test the manifest path.
+        ledger=self.root/'ledger.json';ledger.write_text(json.dumps(dict(version='asx-source-review-v1',acquired_through='2026-11-09',reviews=[self.review])))
+        self.assertEqual('VALIDATED',validate_reviews(ledger,{'fixture':self.root},self.projects)['receipts'][0]['status'])
+        bad=json.loads((self.root/'data/manifest.json').read_text());bad['snapshots'][0]['url']='https://example.test/other.pdf'
+        (self.root/'data/manifest.json').write_text(json.dumps(bad))
+        with self.assertRaisesRegex(ValueError,'RECEIPT_BINDING'):validate_reviews(ledger,{'fixture':self.root},self.projects)
+    def test_malformed_render_hash_is_rejected_before_rendering(self):
+        r=copy.deepcopy(self.review);r['observations'][0]['evidence']['render_sha256']='a'*65
+        with self.assertRaisesRegex(ValueError,'INVALID_RENDER_SHA256'):self.validate(r)
+    def test_scope_display_label_must_be_present_in_reviewed_source(self):
+        r=copy.deepcopy(self.review);r['summary_resource_scope_label']='Another licence'
+        with self.assertRaisesRegex(ValueError,'SCOPE_LABEL_NOT_IN_SOURCE'):self.validate(r)
+    def test_exact_reviewed_statement_contract_is_retained(self):
+        result=self.validate()
+        self.assertEqual((self.review['source_sha256'],self.review['scope'],self.review['statement_id'],self.review['effective_date']),result['resource_contracts']['P'])
+    def test_prospectus_publication_is_bound_to_archive_not_issue_date(self):
+        r=copy.deepcopy(self.review);target=self.root/'data/prospectus.pdf'
+        with pymupdf.open(self.pdf) as original:
+            d=pymupdf.open();p=d.new_page();p.insert_text((50,50),'PROSPECTUS\nMock Project\nThis document is dated 15 January 2025')
+            d.insert_pdf(original,from_page=1);d.save(target);d.close()
+        r.update(path='data/prospectus.pdf',source_sha256=filehash(target),document_issue_date='2025-01-15',
+            document_issue_evidence=dict(page=1,markers=['This document is dated 15 January 2025']))
+        (self.root/'downloads.json').write_text(json.dumps([dict(url=r['url'],document_sha256=r['source_sha256'],status='PDF_ACQUIRED')]))
+        html='<table><tr><td>16/01/2025</td><td><a href="'+r['url']+'">Prospectus</a></td></tr></table>'
+        index=self.root/'data/archive.html';index.write_text(html)
+        r['publication_archive_evidence']=dict(asset_set='fixture',path='data/archive.html',sha256=filehash(index),url='https://www.asx.com.au/archive')
+        result=self.validate(r);self.assertEqual('2025-01-15',result['sources'][r['source_sha256']]['document_issue_date'])
+        index.write_text(html.replace('16/01/2025','17/01/2025'));r['publication_archive_evidence']['sha256']=filehash(index)
+        with self.assertRaisesRegex(ValueError,'ARCHIVE_DATE_BINDING'):self.validate(r)
 
 
 class DateHeaders(unittest.TestCase):
@@ -124,6 +175,25 @@ class IncrementAccounting(unittest.TestCase):
             result=compare_summaries(before,after,root/'comparison')
             self.assertEqual(1,result['newly_filled_cells']);self.assertEqual(1,result['numeric_format_only_cells'])
             self.assertEqual(0,result['updated_value_cells'])
+    def test_withdrawn_values_count_against_net_increase_and_keep_reason(self):
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t);before=root/'before';after=root/'after';before.mkdir();after.mkdir()
+            for path,values in [(before,['P','Project','1','']),(after,['P','Project','','2'])]:
+                with (path/'專案總表.csv').open('w',encoding='utf-8-sig',newline='') as f:
+                    w=csv.writer(f);w.writerow(['專案ID','專案名稱','A','B']);w.writerow(values)
+            (after/'field_provenance.csv').write_text('project_id,column\nP,B\n')
+            (after/'missing_fields.csv').write_text('project_id,column,reason\nP,A,OLDER_SCOPE_NOT_TRANSFERRED\n')
+            r=compare_summaries(before,after,root/'comparison');self.assertEqual(1,r['became_unknown_cells']);self.assertEqual(0,r['net_filled_cell_increase'])
+            with (root/'comparison/field_changes.csv').open(encoding='utf-8-sig') as f:changes=list(csv.DictReader(f))
+            self.assertEqual('OLDER_SCOPE_NOT_TRANSFERRED',next(c for c in changes if c['status']=='BECAME_UNKNOWN')['withdrawal_reason'])
+
+
+class ArchiveAccounting(unittest.TestCase):
+    def test_http200_rejection_is_not_an_empty_archive(self):
+        from tools.expand_asx_technical import archive_rejected
+        self.assertTrue(archive_rejected(b'<title>Request Rejected</title>'))
+        self.assertTrue(archive_rejected(b'<h1>Access Denied</h1>'))
+        self.assertFalse(archive_rejected(b'<h2>Search results: Company announcements</h2>'))
 
 
 if __name__=='__main__':unittest.main()

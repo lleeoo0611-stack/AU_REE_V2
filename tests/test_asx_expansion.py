@@ -125,6 +125,18 @@ class ExportIntegration(unittest.TestCase):
             import csv
             with (Path(t)/'with-forecast/專案總表.csv').open(encoding='utf-8-sig') as stream:row=next(csv.DictReader(stream))
             self.assertEqual('1860',row['預估年產TREO_t_per_year'])
+            # A reviewed transcription from the same PDF must select its exact
+            # statement/scope/date, rather than conflicting with older parsing.
+            selected_obs=[dict(observation('ore_mt',20,'Mt'),source_sha=sha,scope='reviewed resource',statement_id='reviewed'),
+                dict(observation('grade',2000,'ppm'),source_sha=sha,scope='reviewed resource',statement_id='reviewed')]
+            supplement=dict(sources={},observations={pid:selected_obs},studies={},resource_preferences={pid:sha},
+                resource_contracts={pid:(sha,'reviewed resource','reviewed','2025-01-01')},receipts=[],attributes={},deferred_fields={},resource_labels={},
+                ledger_sha256='fixture',acquired_through='2026-11-09')
+            with patch('au_ree_v2.asx_validation.validate_reviews',return_value=supplement):
+                reviewed=export_summary(root,path,run,Path(t)/'with-reviewed-statement',review_ledger='fixture')
+            self.assertEqual(1,reviewed['filled_counts']['礦石蘊藏量_Mt'])
+            with (Path(t)/'with-reviewed-statement/專案總表.csv').open(encoding='utf-8-sig') as f:reviewed_row=next(csv.DictReader(f))
+            self.assertEqual('20',reviewed_row['礦石蘊藏量_Mt'])
             sf.write_text('{}')
             with self.assertRaisesRegex(ValueError,'FROZEN_STUDY_CASES_DIFFER'):export_summary(root,path,run,Path(t)/'rejected')
 

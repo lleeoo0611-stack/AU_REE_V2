@@ -94,6 +94,8 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                 effective_date_role=matches[0]['effective_date_role'] if matches else '',
                 date_precision=matches[0]['date_precision'] if matches else '',review_ids=canonical([r['review_id'] for r in matches]),
                 acquired_through=selected.get(sha,{}).get('available_date',''))
+            entry.update(publication_date=selected.get(sha,{}).get('publication_date',''),
+                publication_date_role=selected.get(sha,{}).get('publication_date_role',''),document_issue_date=selected.get(sha,{}).get('document_issue_date',''))
         trace.append(entry)
     try:
         active=claim_evidence_ids(claims)
@@ -174,10 +176,15 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                     if o['value'] in labels:put('開發階段',labels[o['value']]+'（'+latest+'）',o['source_sha'],o['locator'],'DATED_STUDY_DISCLOSURE_NOT_CURRENT_OPERATING_STATUS',o['scope'],[o['obs_id']])
             resource_obs=obs
             if supplement and pid in supplement['resource_preferences']:
-                resource_obs=[o for o in obs if o['source_sha']==supplement['resource_preferences'][pid]]
+                contract=supplement['resource_contracts'][pid]
+                resource_obs=[o for o in obs if (o['source_sha'],o['scope'],o['statement_id'],o['effective_date'])==contract]
             bundle,reason=resource_bundle(resource_obs)
             if bundle:
                 sha=bundle['source_sha256'];scope=bundle['scope'];ids=[o['obs_id'] for o in bundle['observations']]
+                label=(supplement or {}).get('resource_labels',{}).get(pid)
+                if label:
+                    put('專案名稱',row['專案名稱']+' — '+label['label']+' resource scope',sha,
+                        method='EXISTING_PROJECT_WITH_EXPLICIT_RESOURCE_SUBSCOPE_LABEL',scope=scope)
                 for variable,column in [('ore_mt','礦石蘊藏量_Mt'),('grade_pct','TREO品位_pct'),('contained_treo_kt','總TREO蘊藏量_kt')]:
                     method=bundle['contained_method'] if variable=='contained_treo_kt' else 'SAME_SOURCE_STATEMENT_SCOPE_DATE'
                     put(column,bundle['value'][variable],sha,'; '.join(sorted({o['locator'] for o in bundle['observations']})),method,scope,ids)
@@ -263,7 +270,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
             w=csv.DictWriter(f,fields);w.writeheader();w.writerows(data)
     write('專案總表.csv',rows,columns)
     write('field_provenance.csv',trace,['project_id','column','value','source_sha256','source_url','locator','method','scope','observation_ids']+
-        (['effective_date','effective_date_role','date_precision','review_ids','acquired_through'] if review_ledger else []))
+        (['effective_date','effective_date_role','date_precision','review_ids','acquired_through','publication_date','publication_date_role','document_issue_date'] if review_ledger else []))
     write('missing_fields.csv',diagnostics,['project_id','column','reason']+(['source_sha256','physical_page','review_id'] if review_ledger else []))
     write('census_inventory.csv',inventory,['entity_id','kind','name','included_in_project_summary','source_sha256','unit_of_analysis'])
     result=dict(version='census-project-summary-v1',cutoff=cutoff,rows=len(rows),columns=len(columns),

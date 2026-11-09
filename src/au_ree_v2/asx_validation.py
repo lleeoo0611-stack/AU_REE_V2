@@ -18,7 +18,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
     import pymupdf
     ledger_path=Path(ledger_path);ledger=json.loads(ledger_path.read_text('utf8'))
     if ledger.get('version')!='asx-source-review-v1':raise ValueError('REVIEW_VERSION_UNSUPPORTED')
-    registry={p['entity_id']:p for p in projects};sources={};observations={};studies={};preferences={};receipts=[];attributes={};seen_reviews=set();resource_contracts={};deferred={}
+    registry={p['entity_id']:p for p in projects};sources={};observations={};studies={};preferences={};receipts=[];attributes={};seen_reviews=set();resource_contracts={};deferred={};resource_labels={}
     for review in ledger['reviews']:
         if review['review_id'] in seen_reviews:raise ValueError('REVIEW_DUPLICATE_ID')
         seen_reviews.add(review['review_id'])
@@ -28,7 +28,15 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
         if asset not in path.parents:raise ValueError('REVIEW_SOURCE_PATH_ESCAPES_ASSET_ROOT')
         if filehash(path)!=sha:raise ValueError('REVIEW_SOURCE_HASH_MISMATCH')
         receipt_path=asset/'retest.json' if (asset/'retest.json').exists() else asset/'downloads.json'
-        captured=json.loads(receipt_path.read_text('utf8'));captured=captured.get('outcomes',[]) if isinstance(captured,dict) else captured
+        if receipt_path.exists():
+            captured=json.loads(receipt_path.read_text('utf8'));captured=captured.get('outcomes',[]) if isinstance(captured,dict) else captured
+        elif (asset/'data/manifest.json').exists():
+            # Re-review an immutable original already controlled by the Census.
+            # This is manifest membership, not a newly fabricated download receipt.
+            manifest=json.loads((asset/'data/manifest.json').read_text('utf8'))['snapshots']
+            captured=[dict(url=s['url'],document_sha256=s['sha256'],status='PDF_ACQUIRED') for s in manifest
+                      if s['kind']=='pdf' and (asset/s['path']).resolve()==path]
+        else:raise ValueError('REVIEW_SOURCE_RECEIPT_MISSING')
         if not any(r.get('url')==review['url'] and r.get('document_sha256')==sha and r.get('status')=='PDF_ACQUIRED' for r in captured):
             raise ValueError('REVIEW_DOWNLOAD_RECEIPT_BINDING_FAILED')
         pub=review['publication_date'];effective=review['effective_date']
@@ -50,21 +58,57 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 if any(normalized(m) not in content for m in markers):raise ValueError('REVIEW_PAGE_MARKER_MISMATCH')
                 expected=item.get('render_sha256')
                 if expected:
+                    if not re.fullmatch(r'[0-9a-f]{64}',expected):raise ValueError('REVIEW_INVALID_RENDER_SHA256')
                     if page not in rendered:rendered[page]=hashlib.sha256(doc[page-1].get_pixmap(matrix=pymupdf.Matrix(2,2)).tobytes('png')).hexdigest()
-                    if rendered[page]!=expected:raise ValueError('REVIEW_RENDER_BINDING_MISMATCH')
+                    if rendered[page]!=expected:raise ValueError(f"REVIEW_RENDER_BINDING_MISMATCH:{review['review_id']}:p{page}:{rendered[page]}")
                 return content
-            if publication_date(text(1))!=pub:raise ValueError('REVIEW_PUBLICATION_DATE_MISMATCH')
+            parsed_publication=publication_date(text(1))
+            if parsed_publication!=pub:
+                header=review.get('publication_header_evidence')
+                archive=review.get('publication_archive_evidence')
+                if parsed_publication is None and archive:
+                    from urllib.parse import urljoin,urldefrag
+                    from .discovery import Links
+                    index_root=Path(asset_roots[archive['asset_set']]).resolve();index_path=(index_root/archive['path']).resolve()
+                    if index_root not in index_path.parents or filehash(index_path)!=archive['sha256']:raise ValueError('REVIEW_PUBLICATION_ARCHIVE_HASH_MISMATCH')
+                    links=Links();links.feed(index_path.read_text('utf8'))
+                    if not any(urldefrag(urljoin(archive['url'],href))[0]==review['url'] and links.link_dates.get(href)==pub for href,_ in links.links):
+                        raise ValueError('REVIEW_PUBLICATION_ARCHIVE_DATE_BINDING_FAILED')
+                    issue=review['document_issue_date'];date.fromisoformat(issue)
+                    issue_content=evidence(review['document_issue_evidence'])
+                    if issue>pub or normalized(datetime.strptime(issue,'%Y-%m-%d').strftime('%d %B %Y').lstrip('0')) not in issue_content:
+                        raise ValueError('REVIEW_DOCUMENT_ISSUE_DATE_MISMATCH')
+                    parsed_publication=pub
+                # Some releases place the address before the dated title. Require
+                # an explicit reviewed first-page header, never a body citation.
+                if parsed_publication!=pub:
+                    if parsed_publication is not None or not header or header['page']!=1:raise ValueError('REVIEW_PUBLICATION_DATE_MISMATCH')
+                    content=evidence(header)
+                    label=normalized(datetime.strptime(pub,'%Y-%m-%d').strftime('%d %B %Y').lstrip('0'))
+                    if label not in content or not header.get('header_title'):raise ValueError('REVIEW_PUBLICATION_HEADER_DATE_MISMATCH')
+                    if normalized(header['header_title']) not in content:raise ValueError('REVIEW_PUBLICATION_HEADER_TITLE_MISMATCH')
             identity=evidence(review['identity_evidence'])
             aliases=registry[pid]['aliases']+[registry[pid]['name']]
             if not any(normalized(a) in identity for a in aliases if len(a)>4):raise ValueError('REVIEW_PROJECT_NAME_NOT_IN_IDENTITY_PAGE')
             date_content=evidence(review['date_evidence'])
             if review['date_precision'] not in ('DAY','MONTH','YEAR'):raise ValueError('REVIEW_DATE_PRECISION_REQUIRED')
-            if role=='RESOURCE_EFFECTIVE_DATE' and normalized(datetime.strptime(effective,'%Y-%m-%d').strftime('%d %B %Y').lstrip('0')) not in date_content:
+            effective_day=datetime.strptime(effective,'%Y-%m-%d')
+            date_labels=[normalized(effective_day.strftime(fmt).lstrip('0')) for fmt in ('%d %B %Y','%d %b %Y')]
+            if role=='RESOURCE_EFFECTIVE_DATE' and not any(label in date_content for label in date_labels):
                 raise ValueError('REVIEW_EFFECTIVE_DATE_NOT_IN_SOURCE')
             if role!='RESOURCE_EFFECTIVE_DATE' and effective!=pub:raise ValueError('REVIEW_DISCLOSURE_DATE_ROLE_MISMATCH')
             interval=review.get('effective_date_interval')
             if interval and not interval[0]<=effective==interval[1]<=pub:raise ValueError('REVIEW_EFFECTIVE_DATE_INTERVAL_MISMATCH')
             for e in review.get('scope_evidence',[]):evidence(e)
+            hm=review.get('bulk_hm_percent')
+            if hm:
+                content=evidence(hm['evidence'])
+                from .technical_tables import number_token
+                parsed=number_token(hm['original_token'])
+                if not parsed or parsed['value']!=hm['value'] or not 0<hm['value']<=100 or normalized(hm['original_token']) not in content:
+                    raise ValueError('REVIEW_HM_FRACTION_TOKEN_MISMATCH')
+                if not hm.get('basis_markers') or any(normalized(m) not in content for m in hm['basis_markers']):
+                    raise ValueError('REVIEW_HM_BASIS_EVIDENCE_REQUIRED')
             rows=[]
             for value in review.get('observations',[]):
                 if not isinstance(value['value'],(int,float)) or isinstance(value['value'],bool) or not math.isfinite(value['value']) or value['value']<0:
@@ -79,6 +123,10 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 original_unit=value.get('original_unit',unit)
                 factors={('t','Mt'):1e-6,('kt','Mt'):.001,('t','kt TREO'):.001,('ppm','%'):.0001}
                 factor=1 if original_unit==unit else factors.get((original_unit,unit))
+                if original_unit=='%HM':
+                    if not hm or value['evidence']['page']!=hm['evidence']['page']:raise ValueError('REVIEW_HM_NORMALIZATION_REQUIRES_SAME_TABLE')
+                    if not token_value or token_value['value'] is None or not 0<=token_value['value']<=100:raise ValueError('REVIEW_HM_PERCENT_OUT_OF_RANGE')
+                    factor=hm['value']/100 if variable=='grade' and unit=='%' else hm['value']*100 if basis in ELEMENTS and unit=='ppm' else None
                 if not token_value or token_value['value'] is None or factor is None or not math.isclose(token_value['value']*factor,value['value'],rel_tol=1e-12,abs_tol=1e-10):
                     raise ValueError('REVIEW_ORIGINAL_TOKEN_UNIT_TRANSFORM_MISMATCH')
                 if variable=='ore_mt' and (unit!='Mt' or basis!='TREO' or value['value']<=0):raise ValueError('REVIEW_ORE_UNIT_OR_BASIS')
@@ -95,6 +143,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     effective_date=effective,effective_date_role=role,date_precision=review['date_precision'],
                     effective_date_interval=review.get('effective_date_interval'),rounding_half_width=value.get('rounding_half_width'),
                     original_token=value.get('original_token'),evidence=e,
+                    original_unit=original_unit,bulk_hm_percent=hm,
                     material_basis='RESOURCE_ORE_GRADE_OXIDE_PPM' if basis in ELEMENTS else 'RESOURCE_BULK_ORE',
                     review_method='SOURCE_PAGE_AND_ROW_OR_RENDER_REVIEW_WITH_DETERMINISTIC_CHECKS_NOT_INDEPENDENT_APPROVAL')
                 row=dict(obs_id=digest([pid,sha,raw]),entity_id=pid,variable=variable,value=value['value'],unit=unit,basis=basis,
@@ -104,8 +153,12 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
             if rows:
                 if not review.get('scope_evidence'):raise ValueError('REVIEW_RESOURCE_SCOPE_EVIDENCE_REQUIRED')
                 scope_content=' '.join(evidence(e) for e in review['scope_evidence'])
-                if not all(word in scope_content for word in ('resource','measured','indicated','inferred')):
+                categories=review.get('resource_categories',['MEASURED','INDICATED','INFERRED'])
+                if not categories or len(set(categories))!=len(categories) or not set(categories)<={'MEASURED','INDICATED','INFERRED'}:
+                    raise ValueError('REVIEW_RESOURCE_CATEGORY_INVALID')
+                if 'resource' not in scope_content or not all(word.lower() in scope_content for word in categories):
                     raise ValueError('REVIEW_RESOURCE_CATEGORY_EVIDENCE_REQUIRED')
+                for row in rows:row['category']='_'.join(categories)+'_TOTAL'
                 from .project_summary import resource_bundle
                 bundle,reason=resource_bundle(rows)
                 if bundle is None:raise ValueError('REVIEW_RESOURCE_BUNDLE_'+reason)
@@ -128,6 +181,10 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 resource_contracts[pid]=contract
                 if not review.get('selection_reason'):raise ValueError('REVIEW_RESOURCE_SELECTION_REASON_REQUIRED')
                 preferences[pid]=sha
+                label=review.get('summary_resource_scope_label')
+                if label:
+                    if normalized(label) not in scope_content:raise ValueError('REVIEW_SUMMARY_SCOPE_LABEL_NOT_IN_SOURCE')
+                    resource_labels[pid]=dict(label=label,source_sha256=sha,scope=review['scope'])
             study=review.get('study')
             if study:
                 if study['scale'] not in ('PFS_MODEL','DFS_MODEL','SCOPING_MODEL'):raise ValueError('REVIEW_STUDY_SCALE_NOT_FORECAST')
@@ -167,11 +224,12 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 deferred.setdefault(pid,{})[field['column']]=dict(field,source_sha256=sha,review_id=review['review_id'])
             sources[sha]=dict(key=review['source_key'],kind='pdf',sha256=sha,path=str(path),url=review['url'],
                 publication_date=pub,available_date=ledger['acquired_through'],review_id=review['review_id'],
+                publication_date_role=review.get('publication_date_role','REVIEWED_RELEASE_HEADER'),document_issue_date=review.get('document_issue_date'),
                 effective_date_role=role,date_precision=review['date_precision'])
             receipts.append(dict(review_id=review['review_id'],project_id=pid,source_sha256=sha,status='VALIDATED',scope=review['scope'],
                 new_observations=len(rows),forecast_parameters=len(study['parameters']) if study else 0,
                 effective_date=effective,effective_date_role=role,date_precision=review['date_precision']))
-    return dict(sources=sources,observations=observations,studies=studies,resource_preferences=preferences,receipts=receipts,attributes=attributes,deferred_fields=deferred,
+    return dict(sources=sources,observations=observations,studies=studies,resource_preferences=preferences,resource_contracts=resource_contracts,receipts=receipts,attributes=attributes,deferred_fields=deferred,resource_labels=resource_labels,
         ledger_sha256=filehash(ledger_path),acquired_through=ledger['acquired_through'])
 
 
@@ -262,7 +320,10 @@ def compare_summaries(before,after,out):
     provenance={}
     with (after/'field_provenance.csv').open(encoding='utf-8-sig') as f:
         for row in csv.DictReader(f):provenance[row['project_id'],row['column']]=row
-    changes=[];filled=Counter();updated=Counter();format_only=0;remaining=Counter()
+    changes=[];filled=Counter();updated=Counter();withdrawn=Counter();format_only=0;remaining=Counter()
+    gaps={}
+    if (after/'missing_fields.csv').exists():
+        with (after/'missing_fields.csv').open(encoding='utf-8-sig') as f:gaps={(r['project_id'],r['column']):r for r in csv.DictReader(f)}
     for pid in old:
         for column in columns:
             a=old[pid][column];b=new[pid][column]
@@ -276,15 +337,19 @@ def compare_summaries(before,after,out):
             if status=='NEWLY_FILLED':filled[column]+=1
             elif status=='UPDATED_VALUE':updated[column]+=1
             elif status=='NUMERIC_FORMAT_ONLY':format_only+=1
-            p=provenance.get((pid,column),{})
+            elif status=='BECAME_UNKNOWN':withdrawn[column]+=1
+            p=provenance.get((pid,column),{});gap=gaps.get((pid,column),{})
             changes.append(dict(project_id=pid,project_name=new[pid]['專案名稱'],column=column,before=a,after=b,status=status,
                 source_sha256=p.get('source_sha256',''),source_url=p.get('source_url',''),locator=p.get('locator',''),method=p.get('method',''),
-                scope=p.get('scope',''),effective_date=p.get('effective_date',''),effective_date_role=p.get('effective_date_role',''),review_ids=p.get('review_ids','')))
+                scope=p.get('scope',''),effective_date=p.get('effective_date',''),effective_date_role=p.get('effective_date_role',''),review_ids=p.get('review_ids',''),
+                withdrawal_reason=gap.get('reason','') if status=='BECAME_UNKNOWN' else ''))
     with (out/'field_changes.csv').open('w',encoding='utf-8-sig',newline='') as f:
-        w=csv.DictWriter(f,list(changes[0]));w.writeheader();w.writerows(changes)
+        fields=list(changes[0]) if changes else ['project_id','project_name','column','before','after','status','source_sha256','source_url','locator','method','scope','effective_date','effective_date_role','review_ids','withdrawal_reason']
+        w=csv.DictWriter(f,fields);w.writeheader();w.writerows(changes)
     result=dict(rows=len(new),columns=len(columns),newly_filled_cells=sum(filled.values()),newly_filled_column_types=len(filled),
         projects_with_new_values=len({r['project_id'] for r in changes if r['status']=='NEWLY_FILLED'}),new_cells_by_column=dict(filled),
         updated_value_cells=sum(updated.values()),updated_cells_by_column=dict(updated),numeric_format_only_cells=format_only,
+        became_unknown_cells=sum(withdrawn.values()),became_unknown_by_column=dict(withdrawn),net_filled_cell_increase=sum(filled.values())-sum(withdrawn.values()),
         remaining_blank_cells=sum(remaining.values()),remaining_blanks_by_column=dict(remaining),
         baseline_csv_sha256=filehash(before/'專案總表.csv'),updated_csv_sha256=filehash(after/'專案總表.csv'))
     (out/'field_increment.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf8')

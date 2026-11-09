@@ -1,0 +1,48 @@
+{
+  "version": "asx-gap-expansion-validation-v1",
+  "tests": [
+    {
+      "report": "asx-round2-regression.xml",
+      "sha256": "ca328c2783da5e41fb9e3dce75ae5262fbbfcf4518da75347192ea919acd979e",
+      "tests": 192,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "report": "asx-round2-focused.xml",
+      "sha256": "deed9e6c0c1cb10491df38cb967c4c0f4da41fc8f2f0bba95d4fc1ad39dad2d4",
+      "tests": 75,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
+  "database_modified": false,
+  "review_ledger_sha256": "ce02095c4a236f6e97f95c18c8723035165711f4e0f537e265cee8a544d4215b",
+  "replay_csv_hashes_identical": true,
+  "template_columns": 52,
+  "unique_project_ids": 33,
+  "code_fingerprint_src_tools": "fccb173981eab5b3bbdeabfcfad382d2a4f09874bd271afa12e2eb7dbb2dcebf",
+  "output_hashes": {
+    "candidate_validation.csv": "7e9498fe2c316fc54af310f6b8a35511a4b9036a5410be742bf64837db905e84",
+    "candidate_validation.json": "4d35bf46da488301bd6bb2d3842e2e7ccf470e7169a704c700d79d3682d1a500",
+    "document_dispositions.csv": "ad6f8be6c7b3872b00404c400f4375d3777c26cb956e4fb6fef50a83516e00cc",
+    "evaluation.json": "b848232822a0111bf615290fcb74826c88920549b16771ee301c3687dd729f51",
+    "field_changes.csv": "0bc37c445a7d977a688b468b753b3f8e717a676762ec1d9b6ddbca5758dfdd96",
+    "field_increment.json": "4c54814a71cdc3c255ed5bffa8699d43be188bda20ade4a3e724f7e5694482ab",
+    "field_provenance.csv": "513a852d34c646fd1edcdb8da81b636494269dbeea818110e5403ef975bf2ba1",
+    "missing_fields.csv": "e1c237b654ed6e1a73e1b913118bd9a1af0b7b3c3f4975005426858363714afe",
+    "priority_missing_fields.csv": "25a7d37211278f6f6bb19b6e546f1ce915c5380ffeef4abaabd8ec7add6e6e1a",
+    "project_gap_assessment.csv": "669c4e027c69c74b5c5c42aa5881c2d0c5bc25f66305c33fa28bfc17f166d289",
+    "selected_downloads.json": "d35121ccd0e25f30fb2b6f5a4692de09d081310e14e275dc4d952c8790acc131",
+    "source_reviews.json": "ce02095c4a236f6e97f95c18c8723035165711f4e0f537e265cee8a544d4215b",
+    "summary.json": "597f90115bd16708084a216981c0c4fbab627bda368618f2202ef7cabfe2f824",
+    "technical_discovery.json": "1d9c6c317410ab40b048663c432acbd1ff2115f8bfeec8367756fe91100b27b4",
+    "technical_downloads.json": "69e16cf6d10eec870553fd5cbdb0c8f263dc3d17a74d0ded5c36f29ccb924db0",
+    "technical_native_inventory.json": "7ee8a6f54042696be90bbbac91dfe433bbc1688f5cfcc3a53a319c43574c16ca",
+    "專案總表.csv": "03c0e689a8abaa83d321cbef1150fccaecec0acaa3b32677307ee51de1bb162f",
+    "專案總表_補值前.csv": "957c9f026aa2aa1116aa7982254809c7660785dc2730e8ea5f4ee1ad0e90ba0d"
+  }
+}
