@@ -174,6 +174,21 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     raise ValueError('REVIEW_HM_BASIS_EVIDENCE_REQUIRED')
                 from .source_cells import validate_cell
                 validate_cell(doc,hm.get('cell_binding'),'bulk_hm_percent',hm['original_token'],'%',review['scope'],selected_sections=review.get('selected_resource_sections'))
+            treo_grade=review.get('bulk_treo_grade_pct')
+            if treo_grade:
+                content=evidence(treo_grade['evidence'])
+                from .technical_tables import number_token
+                parsed=number_token(treo_grade['original_token'])
+                if not parsed or parsed['value']!=treo_grade['value'] or not 0<treo_grade['value']<=100:
+                    raise ValueError('REVIEW_TREO_GRADE_TOKEN_MISMATCH')
+                # The conversion factor must be the selected resource's own grade,
+                # not an unrelated ore-reserve, concentrate, or assay percentage.
+                matching=[v for v in review.get('observations',[]) if v['variable']=='grade' and
+                    v['basis']=='TREO' and v['unit']=='%' and v['value']==treo_grade['value'] and
+                    v.get('cell_binding')==treo_grade.get('cell_binding')]
+                if len(matching)!=1:raise ValueError('REVIEW_TREO_FACTOR_REQUIRES_SELECTED_RESOURCE_GRADE')
+                from .source_cells import validate_cell
+                validate_cell(doc,treo_grade.get('cell_binding'),'grade',treo_grade['original_token'],'%',review['scope'],selected_sections=review.get('selected_resource_sections'))
             rows=[]
             for value in review.get('observations',[]):
                 if not isinstance(value['value'],(int,float)) or isinstance(value['value'],bool) or not math.isfinite(value['value']) or value['value']<0:
@@ -192,6 +207,11 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     if not hm or value['evidence']['page']!=hm['evidence']['page']:raise ValueError('REVIEW_HM_NORMALIZATION_REQUIRES_SAME_TABLE')
                     if not token_value or token_value['value'] is None or not 0<=token_value['value']<=100:raise ValueError('REVIEW_HM_PERCENT_OUT_OF_RANGE')
                     factor=hm['value']/100 if variable=='grade' and unit=='%' else hm['value']*100 if basis in ELEMENTS and unit=='ppm' else None
+                if original_unit=='%TREO':
+                    if not treo_grade:raise ValueError('REVIEW_TREO_NORMALIZATION_REQUIRES_SELECTED_GRADE')
+                    if not token_value or token_value['value'] is None or not 0<=token_value['value']<=100:
+                        raise ValueError('REVIEW_TREO_PROPORTION_OUT_OF_RANGE')
+                    factor=treo_grade['value']*100 if basis in ELEMENTS and unit=='ppm' else None
                 if not token_value or token_value['value'] is None or factor is None or not math.isclose(token_value['value']*factor,value['value'],rel_tol=1e-12,abs_tol=1e-10):
                     raise ValueError('REVIEW_ORIGINAL_TOKEN_UNIT_TRANSFORM_MISMATCH')
                 if variable=='ore_mt' and (unit!='Mt' or basis!='TREO' or value['value']<=0):raise ValueError('REVIEW_ORE_UNIT_OR_BASIS')
@@ -215,6 +235,7 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     source_kind=review.get('source_kind','ISSUER_TECHNICAL_DISCLOSURE'),
                     original_token=value.get('original_token'),evidence=e,cell_binding=binding,
                     original_unit=original_unit,bulk_hm_percent=hm,
+                    **({'bulk_treo_grade_pct':treo_grade,'basis_transform':'TREO_PROPORTION_TO_BULK_PPM'} if original_unit=='%TREO' else {}),
                     material_basis='RESOURCE_ORE_GRADE_OXIDE_PPM' if basis in ELEMENTS else 'RESOURCE_BULK_ORE',
                     review_method=cell_method)
                 row=dict(obs_id=digest([pid,sha,raw]),entity_id=pid,variable=variable,value=value['value'],unit=unit,basis=basis,

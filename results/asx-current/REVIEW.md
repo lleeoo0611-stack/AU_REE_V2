@@ -1,23 +1,45 @@
 # Current ASX coverage review
 
-Iteration 3: remaining-991 gap expansion, integrating source-cell hardening from `20d8ad2` and parallel Redlings work from `f8975a0`, with the third acquisition/review round based on `7ca6047`.
+Iteration 4, reconciled against remote `b1625cf` before applying changes.
 
-- Reconciled the 33-review v2 ledger, retaining the existing 25 reviewed sources and adding native source-cell bindings for 44 expanded resource observations plus the annual-product calculation inputs.
-- Filled 68 blanks relative to the requested 991-gap baseline (58 numeric); 25 Redlings fills were already present in parallel commit `f8975a0`, so 43 are additional to that 750-filled version. Overall, updated 12 existing values/source labels, and withdrew none. The unchanged 33 × 52 cohort now contains 793 filled cells and 923 blanks.
-- Fixed scientific subset: 276 / 825 cells, up from 230 / 825 across the same 25 columns. This denominator excludes identity and metadata.
-- Preserved current-only provenance: every filled cell has exactly one matching source entry, and every blank has a diagnostic.
-- Seven priority resource gaps were reviewed. Fingerboards is filled from a clearly labelled government catalogue, without claiming independent issuer-JORC verification; six remain withheld for documented scope/basis/conflict/source gaps.
-- Kennedy and Redlings add complete 15-oxide resource sets. Yttria adds four individual magnet oxides. Donald adds annual contained TREO/NdPr calculated from one product row with matched mass, grade, oxide fractions and annual units.
-- Added a repeatable current-only integrity audit: `tools/audit_summary_iteration.py`.
-- Six additional ASX original PDFs were acquired (410 pages), all six readable. Eight renamed-issuer/year archive pages were parsed; four contain zero dated links, which does not establish historical absence.
-- The live Barkly index changed bytes again during integration; its refreshed capture is bound explicitly and the same announcement URL/date relationship passes the retained archive check.
+## Result
 
-Image-cell transcripts remain visually reviewed, not independent OCR. Source contracts still require scientific review; deterministic checks do not prove arbitrary scope choices. No R/MCDA results are claimed.
+- 821 / 1,716 cells filled across the unchanged 33 × 52 cohort; 895 remain blank.
+- Fixed 25-column scientific subset: 293 / 825, up 17. Total new fills: 28 (17 scientific, six composition diagnostics, five metadata). No withdrawals. Two existing Nolans magnetic values change floating-point representation only.
+- Kennedy and Yttria values already merged by parallel work were independently checked, not counted again.
 
-This directory holds the latest output only. Subsequent iterations replace its contents; this change does not rewrite Git history or duplicate older result bundles. Source PDFs, full-page renders and SQLite are excluded from the current publication.
+## Nolans: complete reported resource composition
 
-Run `python tools/audit_summary_iteration.py --results results/asx-current --out work/current-audit.json` to verify the publication's cell/provenance/missing-data contract and exact output hashes.
+Original [ASX DFS release, 7 February 2019](https://announcements.asx.com.au/asxpdf/20190207/pdf/442fgrbxqwrxdd.pdf), SHA-256 `63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb`:
 
-Verification and exact test counts are in `validation.json`; these are targeted related regressions, not a new full historical rebuild or remote-CI claim. Repeated exports are byte-identical across all four CSVs, and the source database hash is unchanged.
+- Physical p36 Table 11: global Measured + Indicated + Inferred resource, 56 Mt at 2.6% TREO, 1% lower cutoff, effective 7 June 2017. This matches the selected resource, not a reserve or processing sample.
+- Physical p37 Table 12: all 15 individual oxide proportions of resource TREO, **Total** column. The selected Ho2O3 value is 0.04%, not the adjacent Indicated-column value 0.4%.
+- Each original proportion is bound to its exact row, column, title and unit. Bulk oxide ppm = reported percentage of TREO × selected bulk TREO grade (%) × 100. The conversion factor must be the exact selected resource-grade observation and cell. These are transparently converted reported proportions, not independently measured bulk ppm or an assumed mineral mixture.
+- Proportions sum 100.077%. No renormalization: the 20.02 ppm closure difference is below the 123.63 ppm sum of displayed proportion half-unit intervals × 260. Shared grade rounding is not added to that tolerance.
+- Added all 15 oxide contained amounts, NdPr (384.384 kt), and the complete eight-element heavy group (28.78512 kt), plus six composition diagnostics. The dated resource remains distinct from newer annual-production forecasts.
+- Code now supports strictly scoped transposed oxide rows and `%TREO` conversion; seven new tests cover valid conversion and reject missing/wrong factors, incorrect arithmetic, wrong categories/rows and out-of-range proportions. Existing scope and unit checks remain enforced.
 
-Details and gap dispositions: [third-round research report](../../docs/asx-gap-round3.md), [per-source search reviews](../asx-gap-round3-2026-11-10/research_gap_reviews.csv), and [field changes](../asx-gap-round3-2026-11-10/field_changes.csv).
+## Metadata
+
+The same source ledger adds Barkly Rare Earths Limited as developer from physical p7 of its prospectus, explicitly identifying the Company's flagship Barkly Project. Four listing-status cells are supported by explicit ASX ticker plus 100%-owned project statements: Salazar (2024 source p1), Cummins Range (2024 p1), Nolans (2022 p2), and Yttria (2024 p1). Dates and source provenance are retained; no listing inference is made from Barkly's proposed IPO.
+
+## Additional public-source searches reviewed, not filled
+
+- Circle Valley/Yttria: original tables duplicate current data. Circle Valley's additional NdPr column is combined, not separate oxides.
+- Yin/Mons: combined NdPr and metallurgical samples are not a resource-wide individual-oxide suite.
+- Narraburra: original [19 April 2023 release](https://announcements.asx.com.au/asxpdf/20230419/pdf/45nsv13j5vtntn.pdf) provides aggregate groups; detailed later compositions describe drillhole/metallurgical composites. Fresh bedrock is explicitly excluded from the resource.
+- Tower: the located research composition is inferred from test samples, not an issuer-reported resource mean.
+- Kennedy: [issuer 2025 annual report](https://www.devexresources.com.au/wp-content/uploads/2025/09/61284182.pdf), November update and current project page confirm the already-integrated 150 Mt estimate. No authoritative replacement for an unrelated 243 Mt search snippet was found.
+- Lyons: official 2026 annual report repeats tonnage/grade in a biography but does not reconcile conflicting contained totals.
+- Mt Weld: full oxide table is an Ore Reserve at a different cutoff, not the selected Mineral Resource. Nameplate capacity is not annual-average production.
+- Dubbo/Yangibana: peer baskets and historical/subdeposit compositions cannot replace matched global resource composition.
+- Cummins Range: remaining aggregate HREO cannot be split into individual oxides.
+- Goschen South/Central tables concern different deposits/issuers, not VHM's selected Area 1; Fingerboards' earlier government-catalogue addition was not duplicated.
+
+This pass stops at these evidence boundaries, not a claim that all public documents or remaining gaps have been exhausted. No paid services or access-control bypass were used.
+
+## Verification
+
+Full suite: 440 tests, 436 passed, four skipped because R is unavailable, zero failures. See `validation.json` for hashes. All four CSVs reproduce byte-for-byte. Every filled cell has one current provenance entry and every blank has a diagnostic. Missing is not zero. Newly needed live ASX archive captures changed bytes; exact announcement URL/date relationships were checked before binding replacement hashes. Source PDFs and databases are not published. No R/MCDA recalculation or remote-CI success is claimed; earlier image transcripts remain visually reviewed, not independent OCR.
+
+Only this current result set is replaced. No new historical results directory is added, and existing Git history or other contributors' result bundles are not rewritten.
