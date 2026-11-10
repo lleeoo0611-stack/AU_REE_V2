@@ -1,30 +1,30 @@
 {
   "version": "census-project-summary-v3-asx-identity",
   "cutoff": "2026-11-05",
-  "rows": 84,
+  "rows": 86,
   "columns": 53,
-  "unique_project_ids": 84,
+  "unique_project_ids": 86,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "claims_sha256": "11bfc4842e4b1d391ff220d39d0d17ad000a645ca6ed19dad11294b3408940f2",
   "snapshot_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
   "configuration_sha256": "92774d210b9d5b55a3b7ced161381be1cb52a5a3959ea4e4a284bf554fb5ed1a",
   "columns_sha256": "f6389bc0ace6cccac5ef34ae0ffd651403e4dbec5fd9d9ee7602f22404ed5223",
   "filled_counts": {
-    "專案ID": 84,
-    "開發商": 84,
+    "專案ID": 86,
+    "開發商": 86,
     "未上市公司": 39,
-    "專案名稱": 84,
-    "所在地_中文": 84,
-    "所在地_英文": 84,
-    "國家": 84,
-    "州省地區": 84,
+    "專案名稱": 86,
+    "所在地_中文": 86,
+    "所在地_英文": 86,
+    "國家": 86,
+    "州省地區": 86,
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
-    "礦床型態": 62,
+    "礦床型態": 64,
     "開發階段代碼": 0,
     "開發階段類別": 0,
-    "開發階段": 45,
+    "開發階段": 47,
     "礦石蘊藏量_Mt": 37,
     "TREO品位_pct": 35,
     "總TREO蘊藏量_kt": 35,
@@ -37,9 +37,9 @@
     "預估年產重稀土_t_per_year": 0,
     "產品/產出": 12,
     "有TREO資源估計": 35,
-    "有來源文件": 84,
-    "資料來源名稱": 84,
-    "資料來源URL": 84,
+    "有來源文件": 86,
+    "資料來源名稱": 86,
+    "資料來源URL": 86,
     "已公布元素數_共15項": 23,
     "已公布元素總和_kt": 23,
     "元素總和/TREO": 21,
@@ -62,9 +62,9 @@
     "Yb2O3_氧化鐿_kt": 15,
     "Lu2O3_氧化鎦_kt": 15,
     "Y2O3_氧化釔_kt": 17,
-    "ASX代碼": 79
+    "ASX代碼": 81
   },
-  "verified_source_hashes": 132,
+  "verified_source_hashes": 133,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -74,7 +74,7 @@
     "PROJECT": 33,
     "SITE": 766,
     "DEPOSIT": 301,
-    "REVIEWED_PROJECT_EXTENSION": 51,
+    "REVIEWED_PROJECT_EXTENSION": 53,
     "DEPOSIT_SCOPE": 27,
     "PROSPECT": 191,
     "PROJECT_PROGRAM": 1,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "f094a352f3e0f2bd3f81d4d72daa8fef616357119c0c8c083b46264b1a92f4f6",
-    "field_provenance.csv": "9d3844c7ca6990828f83d77c40a58d36b73042debaf92bb051d8436aadcb749b",
-    "missing_fields.csv": "022decd3b6b9f699453f134af3e43f5c751308e9566bc59b16a987179503ca8a",
-    "census_inventory.csv": "152a3ed50ac3fcfc44940b17b8ce9ad8c2e37016c0ad8bf90bf7ad096cb7ce52"
+    "專案總表.csv": "2670862780533fa4bfd548c0b447f8d843d954124a6f18c33c7e1325fee45c4a",
+    "field_provenance.csv": "ab797686e3922303364d5f6c8e9482e526c2699771fe2eff7c6b956dd4a1f46b",
+    "missing_fields.csv": "339d007c00f942a6e32b8e43b6585dd7bd49f958c76d97a99a0424b58173deaa",
+    "census_inventory.csv": "3d1dff1ca387a752e3d277726778ded02ee15e3703f14a40dcdb4af9ce788b6d"
   },
-  "review_ledger_sha256": "3934c6d45c62243031bc5692fa22a465c363067314661e9053867da73cee5c81",
+  "review_ledger_sha256": "d8c4c5e13dc9c4647bd5fc009be6d5df57ec7f3986322480c3940f0a521e905b",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -3453,10 +3453,48 @@
       "effective_date_role": "DATED_ISSUER_METADATA",
       "date_precision": "DAY",
       "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope4_description_gilberton-activex",
+      "project_id": "AU-7135b2eb1d3f193da9a6",
+      "source_sha256": "61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd",
+      "status": "VALIDATED",
+      "scope": "Oratava REE prospect within namedGilberton project EPM18615/18623/26232/26307;HorseshoeHillU andAu/LiresourcesnotREE. Distinct from Georgetown Project and Aramac; no duplicate childOratava row. Reportyear2024; subsequent18September2024JV75.5percenttransaction disclosed,p37;no100percentcurrentownershipassertion. Literalprojectexplorationtarget descriptionsonly,notconfirmedresourcegenesis,ownershiporproduction.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "ASX_DATED_URL",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2024-10-25",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope4_description_aramac-activex",
+      "project_id": "AU-88dfe58aac214c33e576",
+      "source_sha256": "61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd",
+      "status": "VALIDATED",
+      "scope": "Aramac EPM28644 andEPMA28645 NorthQueensland REEexploration target inWallumbillaFormation;formergranted,latterapplication atreportdate. Distinct fromGilbertonandGeorgetown;rocksample777ppmnotresourcegrade;noCoZnBaMnquantitiestransfer. Literalprojectexplorationtarget descriptionsonly,notconfirmedresourcegenesis,ownershiporproduction.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "ASX_DATED_URL",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2024-10-25",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "3f9c048b640c3ddb727343546b0d90e61c8ee08f3d513168a28121853c8e9a29",
+  "discovery_ledger_sha256": "9934d3e59c33e191a07c4ae78d7fa8f6fc7b689ab6ac031db4151f026627b6de",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -17562,20 +17600,710 @@
           }
         }
       ]
+    },
+    {
+      "candidate_key": "gilberton-activex",
+      "name": "Gilberton REE Exploration Project — ActivEX",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_NAMED_AU_REE_EXPLORATION_PROJECT;SOURCE_SCOPED_DISTINCT_TENURES;NO_MRE_OR_FORMAL_C1_INFERENCE",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "fullscope4",
+          "path": "data/snapshots/61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd.pdf",
+          "sha256": "61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd",
+          "url": "https://announcements.asx.com.au/asxpdf/20241025/pdf/069l2vscydzht4.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 8,
+              "markers": [
+                "Gilberton",
+                "Queensland",
+                "ActivEX"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Gilberton",
+                "REE"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-7135b2eb1d3f193da9a6",
+      "scope": "Oratava REE prospect within namedGilberton project EPM18615/18623/26232/26307;HorseshoeHillU andAu/LiresourcesnotREE. Distinct from Georgetown Project and Aramac; no duplicate childOratava row. Reportyear2024; subsequent18September2024JV75.5percenttransaction disclosed,p37;no100percentcurrentownershipassertion.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "aiv_ar2024_native",
+        "publication_date": "2024-10-25",
+        "document_issue_date": "2024-09-24",
+        "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE",
+        "publication_date_role": "ASX_DATED_URL",
+        "date_evidence": {
+          "page": 44,
+          "markers": [
+            "24 September 2024"
+          ]
+        },
+        "project_evidence": {
+          "page": 8,
+          "markers": [
+            "Gilberton",
+            "Queensland"
+          ]
+        },
+        "name_marker": "Gilberton",
+        "state": "QLD",
+        "state_marker": "Queensland",
+        "developer": {
+          "value": "ActivEX Limited",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "ActivEX Limited"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Gilberton",
+              "REE"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "aramac-activex",
+      "name": "Aramac Rare Earth Element Project — ActivEX",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_NAMED_AU_REE_EXPLORATION_PROJECT;SOURCE_SCOPED_DISTINCT_TENURES;NO_MRE_OR_FORMAL_C1_INFERENCE",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "fullscope4",
+          "path": "data/snapshots/61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd.pdf",
+          "sha256": "61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd",
+          "url": "https://announcements.asx.com.au/asxpdf/20241025/pdf/069l2vscydzht4.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 18,
+              "markers": [
+                "Aramac",
+                "Queensland",
+                "ActivEX"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Aramac",
+                "REE"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-88dfe58aac214c33e576",
+      "scope": "Aramac EPM28644 andEPMA28645 NorthQueensland REEexploration target inWallumbillaFormation;formergranted,latterapplication atreportdate. Distinct fromGilbertonandGeorgetown;rocksample777ppmnotresourcegrade;noCoZnBaMnquantitiestransfer.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "aiv_ar2024_native",
+        "publication_date": "2024-10-25",
+        "document_issue_date": "2024-09-24",
+        "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE",
+        "publication_date_role": "ASX_DATED_URL",
+        "date_evidence": {
+          "page": 44,
+          "markers": [
+            "24 September 2024"
+          ]
+        },
+        "project_evidence": {
+          "page": 18,
+          "markers": [
+            "Aramac",
+            "Queensland"
+          ]
+        },
+        "name_marker": "Aramac",
+        "state": "QLD",
+        "state_marker": "Queensland",
+        "developer": {
+          "value": "ActivEX Limited",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "ActivEX Limited"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "DATED_PROJECT_ORIGINAL_REPORTS_SURFACE_OR_DRILL_EXPLORATION_ONLY;NO_MATCHED_REE_MRE_OR_PROJECT_ANNUAL_OXIDE_FORECAST;OTHER_COMMODITY_AND_PXRF_MAXIMA_NOT_IMPORTED",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Aramac",
+              "REE"
+            ]
+          }
+        }
+      ]
     }
   ],
   "original_canonical_projects": 33,
-  "reviewed_project_extensions": 51,
+  "reviewed_project_extensions": 53,
   "base_contract_columns": 52,
   "base_projection_hashes": {
-    "census_inventory.csv": "152a3ed50ac3fcfc44940b17b8ce9ad8c2e37016c0ad8bf90bf7ad096cb7ce52",
-    "field_provenance.csv": "8321e3f8db319bb894eafa43e602cdf89968dec6803dba771b4f2ebe6b3ceabf",
-    "missing_fields.csv": "eb15258a518e2d256e383deb84ad8f354d0f20abf9bf8a1b90e893ccfae42829",
-    "專案總表.csv": "e74c60fb492960532ba46734cfaecb325b585ef5ad087111ff574394643398e5"
+    "census_inventory.csv": "3d1dff1ca387a752e3d277726778ded02ee15e3703f14a40dcdb4af9ce788b6d",
+    "field_provenance.csv": "7f2fda8e7de57fdb15b51a78db007d0b3f920caf1f17f4ae37e20a038394f22f",
+    "missing_fields.csv": "76bf176d0a619dcec608cf3590f78c4797fa931b02ed45e360e3071448521da7",
+    "專案總表.csv": "9d853436b9ce7b16949b2116f0366c7b8d5b40abfe137737119b0995b397bfdb"
   },
-  "identity_ledger_sha256": "f6337c4bc7f10b6c09da81d35b259b8e0a771b42204ca5d05cb0bd5b9907a14b",
+  "identity_ledger_sha256": "b37209486aae47537fbaac6e4205eeb234d835aab59268550159347a185fa027",
   "identity_merges": [],
-  "validated_asx_codes": 79,
+  "validated_asx_codes": 81,
   "identity_sources": {
     "AU-12cc237ae66c7a6508ca": {
       "asset_set": "round3",
@@ -18129,6 +18857,18 @@
       "path": "data/snapshots/b0faf81a98d605436700670fbaff7e6b3d10f733c5af9a5311fbe9ddf08bb246.pdf",
       "sha256": "b0faf81a98d605436700670fbaff7e6b3d10f733c5af9a5311fbe9ddf08bb246",
       "url": "https://announcements.asx.com.au/asxpdf/20240930/pdf/068jy1z4w261mt.pdf"
+    },
+    "AU-7135b2eb1d3f193da9a6": {
+      "asset_set": "fullscope4",
+      "path": "data/snapshots/61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd.pdf",
+      "sha256": "61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd",
+      "url": "https://announcements.asx.com.au/asxpdf/20241025/pdf/069l2vscydzht4.pdf"
+    },
+    "AU-88dfe58aac214c33e576": {
+      "asset_set": "fullscope4",
+      "path": "data/snapshots/61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd.pdf",
+      "sha256": "61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd",
+      "url": "https://announcements.asx.com.au/asxpdf/20241025/pdf/069l2vscydzht4.pdf"
     }
   },
   "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS"
