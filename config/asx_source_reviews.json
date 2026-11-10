@@ -44622,6 +44622,66 @@
           }
         }
       ]
+    },
+    {
+      "review_id": "fullscope12_balranald_dfs_product_only",
+      "project_id": "AU-524c37fc04cf47bf8dca",
+      "source_key": "iluka_balranald_fid20230221",
+      "source_sha256": "94a57655d74ead667ce7adbbb0923b68b011641b9249992ff12a017c2e96252f",
+      "asset_set": "fullscope12",
+      "path": "data/snapshots/94a57655d74ead667ce7adbbb0923b68b011641b9249992ff12a017c2e96252f.pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20230221/pdf/45lt9k5xy3ktnj.pdf",
+      "publication_date": "2023-02-21",
+      "effective_date": "2023-02-21",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "21 February 2023"
+        ]
+      },
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "21 February 2023",
+          "BALRANALD DEVELOPMENT"
+        ],
+        "header_title": "BALRANALD DEVELOPMENT"
+      },
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Iluka Resources Limited",
+          "Balranald"
+        ]
+      },
+      "scope": "WestBalranald2022DFSasreleased21February2023:plannedrareearthmineralconcentrateREC,mineproductendpointonly.NotseparatedREOatEneabbarefinery,noractual2026operatingannualoutput.4ktpaREC lacksTREOgrade;Table4normalizedREEoxidebasketincludingScisnotM+Xmineralpurity.NoMREmass,oregrade,containedoxideorannualTREOconversion.",
+      "statement_id": "fullscope12_balranald_dfs_product_only",
+      "observations": [],
+      "study": {
+        "stage": "DFS",
+        "scale": "DFS_MODEL",
+        "endpoint": "REEC",
+        "element": "TREO",
+        "parameters": {},
+        "evidence": [
+          {
+            "page": 1,
+            "markers": [
+              "definitive feasibility study (DFS)",
+              "rare earth concentrate (REC)"
+            ]
+          },
+          {
+            "page": 2,
+            "markers": [
+              "Average annual production (based on Production Target)",
+              "monazite and xenotime"
+            ]
+          }
+        ]
+      }
     }
   ]
 }
