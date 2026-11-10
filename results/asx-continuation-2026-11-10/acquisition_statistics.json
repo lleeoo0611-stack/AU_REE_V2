@@ -1,11 +1,11 @@
 {
   "version": "scoped-acquisition-statistics-v2",
-  "attempts": 33,
-  "successful_captures": 27,
-  "attempt_success_rate_percent": 81.81818181818181,
-  "successful_pdf_attempts": 24,
+  "attempts": 34,
+  "successful_captures": 28,
+  "attempt_success_rate_percent": 82.3529411764706,
+  "successful_pdf_attempts": 25,
   "successful_html_attempts": 3,
-  "unique_requested_urls_including_query": 32,
+  "unique_requested_urls_including_query": 33,
   "unavailable_attempts": 6,
   "failure_attempts_by_reason": {
     "TIMEOUT": 3,
@@ -13,8 +13,8 @@
     "IncompleteRead": 1
   },
   "asx_public_link_sample": {
-    "attempts": 13,
-    "successful_pdf_attempts": 13,
+    "attempts": 14,
+    "successful_pdf_attempts": 14,
     "success_rate_percent": 100.0,
     "limitation": "Known public original links selected in this series, not an ASX-wide or random anti-bot test."
   },
@@ -29,8 +29,8 @@
   "optional_prospectus_mirror_failed_but_original_already_verified": true,
   "browser_publisher_requests": 0,
   "official_public_api_link_discovery_requests_separate": 8,
-  "unique_successful_content_sha256": 26,
-  "asx_unique_successful_pdf_sha256": 12,
+  "unique_successful_content_sha256": 27,
+  "asx_unique_successful_pdf_sha256": 13,
   "within_series_duplicate_successful_capture_attempts": 1,
   "successful_pdf_recaptures_of_existing_branch_originals": 3,
   "interpretation": "Research originals and catalogues are counted here. Public configuration/HAL/catalogue requests are recorded separately. Industry PDF retry and catalogue failure remain distinct attempts belonging to one logical report; unavailable does not imply no values."

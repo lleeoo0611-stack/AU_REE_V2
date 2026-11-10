@@ -48,12 +48,12 @@
     "provenance_complete": true,
     "missing_diagnostics_complete": true
   },
-  "latest_cycle": "continuation-16",
+  "latest_cycle": "continuation-17",
   "stopping_rule": {
     "policy": "ZERO_NEW_VERIFIED_CELLS",
     "threshold": 0,
     "operator": "==",
-    "newly_filled_cells": 1,
+    "newly_filled_cells": 0,
     "scientific_newly_filled_cells": 0,
     "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
     "eligible": false,
@@ -69,8 +69,8 @@
     "all_four_csv_hashes_identical": true
   },
   "regression": {
-    "report_sha256": "d3ab7c7023b7d0c51d84713bff81962a99711471f0f43aec2fe1306b497915e9",
-    "tests_including_subtests": 529,
+    "report_sha256": "196ea18e6383c714a6fab59ea043f2f5452c9bd6af409607d46b3a956a403fc9",
+    "tests_including_subtests": 152,
     "failures": 0,
     "errors": 0,
     "skipped": 0
@@ -298,7 +298,7 @@
     "tools/screen_external_project_names.py": "41adf0c578c8025f2a6f6e26bb487d9567d0d171b87f4a62c6d721ae49a1a462",
     "tools/validate_asx_candidates.py": "10258491fd14b1ea134c10f4efd4a307720cdb8c0b68aafc7fdfc1f7add6f729",
     "config/asx_discovery_reviews.json": "7f5901ae523b3ac984f939070aac930ee660530bc6baafc90df87a8c8bcb2b68",
-    "config/asx_external_name_reviews.json": "b72c947360e69c49bf3ffafccadab220a5ac70acafe3a6dad3886e402cf1f06c",
+    "config/asx_external_name_reviews.json": "dcc6013fd17e4558d6b87acf88f8f5038380789876e9d2769ada8b0314c18d2a",
     "config/asx_iteration_sources.json": "5cc38aba0761d5bf9c061c7f95ecb43bca871ec305a49643021c7dea20c6e7fc",
     "config/asx_probe_cases.json": "cc72f4485bf76efe876cfac6b7732e2c354206763f06d5bc40cb52a5180a35fb",
     "config/asx_project_identity_reviews.json": "d7838bf99396c26648b1bc30eba7a7d39beae57596e136344d9b0810dea3d5a4",

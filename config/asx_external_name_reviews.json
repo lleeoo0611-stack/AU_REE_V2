@@ -1341,10 +1341,18 @@
     {
       "input_row": 83,
       "input_name_sha256": "e68ced92386fb17aa1bec363c4f30e584e801e0b37c547380cf4cc62e3b562aa",
-      "status": "UNVERIFIED_EXTERNAL_LEAD",
+      "status": "OTHER_COMMODITY_SCOPE_PENDING",
       "matched_project_ids": [],
-      "reason": "SEARCH_COMPLETED_NO_DATED_PRIMARY_PROJECT_IDENTITY_ADMITTED;UNVERIFIED_NOT_EVIDENCE_OF_ABSENCE",
-      "source_references": [],
+      "reason": "Dated Mount Ridley issuer original separately describes Weld Range West iron/BIF on physical pages4–6 and assigns REE impairment discussion to Mt Ridley Project. Same issuer is not same project. Independent REE scope remains pending; no iron, company, code or resource transferred from input or neighbouring project.",
+      "source_references": [
+        {
+          "source_sha256": "4ad788dcb17ca9c2cd590751869bcbcd3731204fe71857747adb06e6f3e562e9",
+          "source_url": "https://announcements.asx.com.au/asxpdf/20250312/pdf/06gk1wblf69mq4.pdf",
+          "locator": "physical PDF pages4–6",
+          "publication_date": "2025-03-12",
+          "publication_date_role": "ASX_DATED_URL;REPORTING_PERIOD_END_IS2024-12-31"
+        }
+      ],
       "search_ids": [
         32,
         33

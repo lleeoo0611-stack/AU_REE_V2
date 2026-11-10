@@ -1,0 +1,45 @@
+{
+  "version": "available-source-iteration-outcome-v1",
+  "latest_cycle": "continuation-17",
+  "observed_acquired_reviewed_source_new_cells": 0,
+  "global_source_stop_eligible": false,
+  "decision": "INCOMPLETE",
+  "reason": "Two required logical government originals remain unavailable; failed requests are not zero-yield evidence.",
+  "unresolved_acquisition_actions": [
+    {
+      "document": "Industry major projects2025 report",
+      "failed_urls": [
+        "https://www.industry.gov.au/publications/resources-and-energy-major-projects-2025",
+        "https://www.industry.gov.au/sites/default/files/2025-12/resources-and-energy-major-projects-2025.pdf"
+      ],
+      "statuses": [
+        "TIMEOUT"
+      ],
+      "interpretation": "NOT_ZERO_YIELD_OR_ABSENCE"
+    },
+    {
+      "document": "NT October2025 REE factsheet",
+      "failed_urls": [
+        "https://resourcingtheterritory.nt.gov.au/media/docs/commodity-factsheets/REE_Oct2025.pdf"
+      ],
+      "statuses": [
+        "HTTP_403_RESTRICTED"
+      ],
+      "interpretation": "NOT_ZERO_YIELD_OR_ABSENCE"
+    }
+  ],
+  "audited_cycles": 17,
+  "adopted_cycles": 16,
+  "rejected_cycle": "continuation-13",
+  "adopted_series_new_cells": 264,
+  "existing59_new_cells": 88,
+  "new15_project_cells": 176,
+  "original55_cumulative_new_cells": 108,
+  "scientific_new_cells": 1,
+  "final_projects": 74,
+  "columns": 53,
+  "filled_cells": 1501,
+  "blank_cells": 2421,
+  "national_exhaustiveness_claimed": false,
+  "formal_C1_or_ranking_created": false
+}
