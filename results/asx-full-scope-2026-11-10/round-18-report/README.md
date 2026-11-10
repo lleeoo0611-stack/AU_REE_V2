@@ -1,0 +1,22 @@
+# 全範圍延續輪 18
+
+本輪以第17輪已發布aeaed57e的93案例、1922已填及3007空白為基準；延續本次87014284起點的93案累計對帳，原76案歷史系列另計。先補經緯度、礦床型態、開發階段與資源資料，同一完整輪仍涵蓋全93案所有空白、3項候選與45列Gemini未解列。153項計畫查詢加4項官方替代來源追查共157項；工具批次不是獨立輪次，查詢與擷取不等於核准或所有基準PDF重新逐頁人工審查。
+
+完成第17輪未完成的GA原生座標審查與可重播支援。公開官方服務原生GDA94/EPSG4283，資料currency為December2025，礦床及營運／開發／維護四類合計538筆原生點資料（421、47、28、42），未見transfer-limit截斷標記。本輪3次新公開JSON文字擷取均成功，收據kind為html，不能計作PDF下載成功。GA原生JSON、服務metadata及原始PDF繼續留本機，公開清單只記核准案例、定位紀錄、來源網址及雜湊。
+
+核准9組既有案例代表點：Brockman、Burracoppin、Fingerboards、Kennedy、Avonbank、Aileron、Coburn、GoschenCentral、WIM150。原生record id、名稱、州別、REE商品、來源citation、latitude/longitude與geometry互相一致，並與既有註冊專案別名及最終總表州別交叉核對。逐格保存GDA94，沒有默認轉成WGS84。顯示最多4位小數，原生較粗的精度不被提升；這是顯示捨入，不是地面定位準確度。來源未載明測量準確度，保留未知。這些是官方命名專案的近似代表點，不是邊界、測量控制點、地質資源外框或計算質心。
+
+原生圖層的Donald、SandyMitchell及CharleyCreek母案點不能覆蓋總表的明選資源子範圍；DeepLeads單一礦床不能代表合併DeepLeads/RubbleMound/WindBreak範圍。Copi及Balranald在此圖層僅列Titanium/Zirconium，Luni為Lithium/Tantalum/Niobium、Ravensthorpe為Nickel/Cobalt/PGE，此專用REE點位路徑尚未建立同REE研究範圍的原生定位證據，未自動跨商品套點。其餘未匹配案例不等於不存在。所有保留原因列於spatial_location_holds.csv，不以辦公室、城市、試樣或鑽孔位置填補。
+
+新增驗證規則只可補空白經緯度對，拒絕既有任一座標已填、不同州別、名字／商品不符、錯誤datum、geometry數字不一致、非數值／非有限值、截斷JSON、未知／重複案例與未核准服務URL。選定資源子範圍另有最終投影攔截。此入口不能新增專案、公司或ASX代碼，不能匯入圖層status當成JORC開發階段，也不能填資源、年產量或礦床型態。公開重建與發布核對均納入第四份location清單及來源依賴；舊流程未指定該清單時維持原行為。
+
+六份目標作品仍無新核准同版副本；7個原URL未取得狀態與已完成的維州2024官方同版副本分開保留。Fingerboards新版referral原件先前403未重試，本輪官方頁確認2026為修改後新提案；其280000tpa是多種礦物產品總量，不是TREO年產量，不能與舊資源或年產分母拼接。同版2026維州Roadmap、TAS2025 prospectus的新增目錄查詢未給合格替代，亦不把政策新聞或其他版次當原件。新搜尋中的舊Koppamurra MRE、GreaterBrothers鑽孔、Lyons樣本、Salazar2024版本、AruntaWest舊截距等均不能替補現選資源版本的全球品位或組成。
+
+Yttria／MtStirling—Yttria共用15Mt／490ppm資源及10個科學欄的不得加總註記保持；未合併、未新增案。兩次獨立重建、逐格來源／空白對帳及403項相關測試與324項子測試通過，確認本輪經緯度各9格、合計18格，科學數值0，總表1940已填、2989空白。正式規則FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS；本輪有新增，發布後持續下一完整輪；受阻來源仍未完成，INCOMPLETE、stop=false，不宣稱所有來源窮盡、全國完整性或正式C1。
+
+
+本輪基準 aeaed57e505920a5b4432854c60d21a8bb141a9c；原93案補18格（科學0格），新增0案、0格（科學0格）。更新0、撤回0、合併0。現在93案×53欄，已填1940、空白2989。
+
+本輪157項查詢、40個工具批次，全部原案空白、新案剩餘空白、3項候選與全部凍結外部待驗證列均列入同一輪。批次不是獨立輪次。每個空白保留未知及具體診斷；查詢命中、既有證據重播及原件文字擷取均不代表全體PDF逐頁重新人工審核。
+
+判定：INCOMPLETE；stop=false。不可把未取得原件或未完成工作當成零新增收斂。若仍有存取阻礙，見source_actions。兩次獨立重建四份CSV雜湊一致，逐格來源及空白診斷吻合，Census未改。來源重播提交：abccbd087fb8a53292b5df5961cb80b338b518da。本機保存原始PDF、SQLite、Gemini原始列及完整查詢字串；公開的查詢只含雜湊及處理結果。不是全國完整性、正式C1批准、MCDA排名、遠端CI或全R測試結論。

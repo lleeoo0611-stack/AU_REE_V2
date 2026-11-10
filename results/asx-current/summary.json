@@ -18,8 +18,8 @@
     "所在地_英文": 93,
     "國家": 93,
     "州省地區": 93,
-    "緯度": 24,
-    "經度": 24,
+    "緯度": 33,
+    "經度": 33,
     "礦床型態代碼": 1,
     "礦床型態": 69,
     "開發階段代碼": 0,
@@ -64,7 +64,7 @@
     "Y2O3_氧化釔_kt": 17,
     "ASX代碼": 84
   },
-  "verified_source_hashes": 154,
+  "verified_source_hashes": 157,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -94,11 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "66d462d4f3fec22afd350731b295c96476e6b9cf31b78513019e8473a51e5ee8",
-    "field_provenance.csv": "8637e3e546f7a3c884b4cc2f1cc68abb8e853b1683bb3913c3312d4d60e4e49d",
-    "missing_fields.csv": "b8bd9861d0e48910908cd45e8207409b56c8e48507df5dc755b2b564ff128e39",
+    "專案總表.csv": "131d4a4a0d1c489571dd9ab747868baacc6a4b4292a914cc88dbf1ce88e86b24",
+    "field_provenance.csv": "340c07765e9c548956161de7a79883d2badf8d0bbe1dc029d98ef1b7c5831abf",
+    "missing_fields.csv": "c058696e475546d715c4869fbcfdd214c4dd0165557efbdd2674a745af0fb248",
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1"
   },
+  "location_ledger_sha256": "fc1c59d70c114645de30123ab0c39b1aec09eec24b5426afa98866291f637df1",
   "review_ledger_sha256": "5e2959c6858c36429b6d8693536c9674ab638659594c40ae391dbe2ddb6ae823",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
@@ -4614,6 +4615,150 @@
       "effective_date_role": "DATED_ISSUER_METADATA",
       "date_precision": "DAY",
       "effective_date_interval": null
+    },
+    {
+      "project_id": "AU-2a3a86a4d971e9f9838d",
+      "review_id": "fullscope18_ga_location_AU-2a3a86a4d971e9f9838d",
+      "source_sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b",
+      "scope": "{\"crs\":\"GDA94 / EPSG:4283\",\"dataset_currency\":\"December 2025; day unknown\",\"display_rounding\":\"at most 4 decimal places; does not improve coarse native precision\",\"meaning\":\"OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY\",\"objectid\":2429,\"positional_accuracy\":\"NOT_STATED;DISPLAY_ROUNDING_AND_SERVICE_TOLERANCE_ARE_NOT_GROUND_ACCURACY\",\"service_metadata_sha256\":\"979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558\",\"source_latitude\":-18.32087,\"source_longitude\":127.783709,\"source_project\":\"Brockman\",\"state\":\"WA\",\"unit\":\"decimal degrees\"}",
+      "effective_date": "2025-12-31",
+      "effective_date_interval": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "effective_date_role": "DATASET_CURRENCY_MONTH_UPPER_BOUND_NOT_RELEASE_OR_PROJECT_STATUS_DATE",
+      "date_precision": "MONTH",
+      "review_methods": [
+        "OFFICIAL_NATIVE_PAIRED_POINT_RECORD;DATUM_AND_CURRENCY_VERIFIED"
+      ]
+    },
+    {
+      "project_id": "AU-4286ab9c245effb445ff",
+      "review_id": "fullscope18_ga_location_AU-4286ab9c245effb445ff",
+      "source_sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b",
+      "scope": "{\"crs\":\"GDA94 / EPSG:4283\",\"dataset_currency\":\"December 2025; day unknown\",\"display_rounding\":\"at most 4 decimal places; does not improve coarse native precision\",\"meaning\":\"OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY\",\"objectid\":2591,\"positional_accuracy\":\"NOT_STATED;DISPLAY_ROUNDING_AND_SERVICE_TOLERANCE_ARE_NOT_GROUND_ACCURACY\",\"service_metadata_sha256\":\"979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558\",\"source_latitude\":-31.69725,\"source_longitude\":118.71199,\"source_project\":\"Burracoppin\",\"state\":\"WA\",\"unit\":\"decimal degrees\"}",
+      "effective_date": "2025-12-31",
+      "effective_date_interval": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "effective_date_role": "DATASET_CURRENCY_MONTH_UPPER_BOUND_NOT_RELEASE_OR_PROJECT_STATUS_DATE",
+      "date_precision": "MONTH",
+      "review_methods": [
+        "OFFICIAL_NATIVE_PAIRED_POINT_RECORD;DATUM_AND_CURRENCY_VERIFIED"
+      ]
+    },
+    {
+      "project_id": "AU-7537d9555628040fab40",
+      "review_id": "fullscope18_ga_location_AU-7537d9555628040fab40",
+      "source_sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b",
+      "scope": "{\"crs\":\"GDA94 / EPSG:4283\",\"dataset_currency\":\"December 2025; day unknown\",\"display_rounding\":\"at most 4 decimal places; does not improve coarse native precision\",\"meaning\":\"OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY\",\"objectid\":2193,\"positional_accuracy\":\"NOT_STATED;DISPLAY_ROUNDING_AND_SERVICE_TOLERANCE_ARE_NOT_GROUND_ACCURACY\",\"service_metadata_sha256\":\"979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558\",\"source_latitude\":-37.7909404,\"source_longitude\":147.3112326,\"source_project\":\"Fingerboards\",\"state\":\"VIC\",\"unit\":\"decimal degrees\"}",
+      "effective_date": "2025-12-31",
+      "effective_date_interval": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "effective_date_role": "DATASET_CURRENCY_MONTH_UPPER_BOUND_NOT_RELEASE_OR_PROJECT_STATUS_DATE",
+      "date_precision": "MONTH",
+      "review_methods": [
+        "OFFICIAL_NATIVE_PAIRED_POINT_RECORD;DATUM_AND_CURRENCY_VERIFIED"
+      ]
+    },
+    {
+      "project_id": "AU-cc4e217a90b7123dce0a",
+      "review_id": "fullscope18_ga_location_AU-cc4e217a90b7123dce0a",
+      "source_sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b",
+      "scope": "{\"crs\":\"GDA94 / EPSG:4283\",\"dataset_currency\":\"December 2025; day unknown\",\"display_rounding\":\"at most 4 decimal places; does not improve coarse native precision\",\"meaning\":\"OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY\",\"objectid\":2238,\"positional_accuracy\":\"NOT_STATED;DISPLAY_ROUNDING_AND_SERVICE_TOLERANCE_ARE_NOT_GROUND_ACCURACY\",\"service_metadata_sha256\":\"979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558\",\"source_latitude\":-17.80428,\"source_longitude\":145.10488,\"source_project\":\"Kennedy\",\"state\":\"QLD\",\"unit\":\"decimal degrees\"}",
+      "effective_date": "2025-12-31",
+      "effective_date_interval": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "effective_date_role": "DATASET_CURRENCY_MONTH_UPPER_BOUND_NOT_RELEASE_OR_PROJECT_STATUS_DATE",
+      "date_precision": "MONTH",
+      "review_methods": [
+        "OFFICIAL_NATIVE_PAIRED_POINT_RECORD;DATUM_AND_CURRENCY_VERIFIED"
+      ]
+    },
+    {
+      "project_id": "AU-329908ab8d4c1d1d3e03",
+      "review_id": "fullscope18_ga_location_AU-329908ab8d4c1d1d3e03",
+      "source_sha256": "a197d77204b48c235a566e0e54d039abaccca2b6b68807baa86f526d1af47841",
+      "scope": "{\"crs\":\"GDA94 / EPSG:4283\",\"dataset_currency\":\"December 2025; day unknown\",\"display_rounding\":\"at most 4 decimal places; does not improve coarse native precision\",\"meaning\":\"OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY\",\"objectid\":2286,\"positional_accuracy\":\"NOT_STATED;DISPLAY_ROUNDING_AND_SERVICE_TOLERANCE_ARE_NOT_GROUND_ACCURACY\",\"service_metadata_sha256\":\"979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558\",\"source_latitude\":-36.6370481,\"source_longitude\":142.3088796,\"source_project\":\"Avonbank\",\"state\":\"VIC\",\"unit\":\"decimal degrees\"}",
+      "effective_date": "2025-12-31",
+      "effective_date_interval": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "effective_date_role": "DATASET_CURRENCY_MONTH_UPPER_BOUND_NOT_RELEASE_OR_PROJECT_STATUS_DATE",
+      "date_precision": "MONTH",
+      "review_methods": [
+        "OFFICIAL_NATIVE_PAIRED_POINT_RECORD;DATUM_AND_CURRENCY_VERIFIED"
+      ]
+    },
+    {
+      "project_id": "AU-af44c2bd1173b453953f",
+      "review_id": "fullscope18_ga_location_AU-af44c2bd1173b453953f",
+      "source_sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b",
+      "scope": "{\"crs\":\"GDA94 / EPSG:4283\",\"dataset_currency\":\"December 2025; day unknown\",\"display_rounding\":\"at most 4 decimal places; does not improve coarse native precision\",\"meaning\":\"OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY\",\"objectid\":2419,\"positional_accuracy\":\"NOT_STATED;DISPLAY_ROUNDING_AND_SERVICE_TOLERANCE_ARE_NOT_GROUND_ACCURACY\",\"service_metadata_sha256\":\"979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558\",\"source_latitude\":-22.230368,\"source_longitude\":128.40221,\"source_project\":\"Aileron\",\"state\":\"WA\",\"unit\":\"decimal degrees\"}",
+      "effective_date": "2025-12-31",
+      "effective_date_interval": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "effective_date_role": "DATASET_CURRENCY_MONTH_UPPER_BOUND_NOT_RELEASE_OR_PROJECT_STATUS_DATE",
+      "date_precision": "MONTH",
+      "review_methods": [
+        "OFFICIAL_NATIVE_PAIRED_POINT_RECORD;DATUM_AND_CURRENCY_VERIFIED"
+      ]
+    },
+    {
+      "project_id": "AU-73549b8a9b1c6faf55eb",
+      "review_id": "fullscope18_ga_location_AU-73549b8a9b1c6faf55eb",
+      "source_sha256": "9e1ac5bb894d90776dc6622d671213fe64a5f01ebf595fb31b2111198e9ef0ab",
+      "scope": "{\"crs\":\"GDA94 / EPSG:4283\",\"dataset_currency\":\"December 2025; day unknown\",\"display_rounding\":\"at most 4 decimal places; does not improve coarse native precision\",\"meaning\":\"OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY\",\"objectid\":2676,\"positional_accuracy\":\"NOT_STATED;DISPLAY_ROUNDING_AND_SERVICE_TOLERANCE_ARE_NOT_GROUND_ACCURACY\",\"service_metadata_sha256\":\"979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558\",\"source_latitude\":-26.70377,\"source_longitude\":114.126953,\"source_project\":\"Coburn\",\"state\":\"WA\",\"unit\":\"decimal degrees\"}",
+      "effective_date": "2025-12-31",
+      "effective_date_interval": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "effective_date_role": "DATASET_CURRENCY_MONTH_UPPER_BOUND_NOT_RELEASE_OR_PROJECT_STATUS_DATE",
+      "date_precision": "MONTH",
+      "review_methods": [
+        "OFFICIAL_NATIVE_PAIRED_POINT_RECORD;DATUM_AND_CURRENCY_VERIFIED"
+      ]
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "review_id": "fullscope18_ga_location_AU-447261eed0e81eae88bf",
+      "source_sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b",
+      "scope": "{\"crs\":\"GDA94 / EPSG:4283\",\"dataset_currency\":\"December 2025; day unknown\",\"display_rounding\":\"at most 4 decimal places; does not improve coarse native precision\",\"meaning\":\"OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY\",\"objectid\":2264,\"positional_accuracy\":\"NOT_STATED;DISPLAY_ROUNDING_AND_SERVICE_TOLERANCE_ARE_NOT_GROUND_ACCURACY\",\"service_metadata_sha256\":\"979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558\",\"source_latitude\":-35.8787,\"source_longitude\":143.35671,\"source_project\":\"Goschen Central\",\"state\":\"VIC\",\"unit\":\"decimal degrees\"}",
+      "effective_date": "2025-12-31",
+      "effective_date_interval": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "effective_date_role": "DATASET_CURRENCY_MONTH_UPPER_BOUND_NOT_RELEASE_OR_PROJECT_STATUS_DATE",
+      "date_precision": "MONTH",
+      "review_methods": [
+        "OFFICIAL_NATIVE_PAIRED_POINT_RECORD;DATUM_AND_CURRENCY_VERIFIED"
+      ]
+    },
+    {
+      "project_id": "AU-fb4e914f86102baa414a",
+      "review_id": "fullscope18_ga_location_AU-fb4e914f86102baa414a",
+      "source_sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b",
+      "scope": "{\"crs\":\"GDA94 / EPSG:4283\",\"dataset_currency\":\"December 2025; day unknown\",\"display_rounding\":\"at most 4 decimal places; does not improve coarse native precision\",\"meaning\":\"OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY\",\"objectid\":2282,\"positional_accuracy\":\"NOT_STATED;DISPLAY_ROUNDING_AND_SERVICE_TOLERANCE_ARE_NOT_GROUND_ACCURACY\",\"service_metadata_sha256\":\"979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558\",\"source_latitude\":-36.8042843,\"source_longitude\":142.3678022,\"source_project\":\"Wim 150\",\"state\":\"VIC\",\"unit\":\"decimal degrees\"}",
+      "effective_date": "2025-12-31",
+      "effective_date_interval": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "effective_date_role": "DATASET_CURRENCY_MONTH_UPPER_BOUND_NOT_RELEASE_OR_PROJECT_STATUS_DATE",
+      "date_precision": "MONTH",
+      "review_methods": [
+        "OFFICIAL_NATIVE_PAIRED_POINT_RECORD;DATUM_AND_CURRENCY_VERIFIED"
+      ]
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
@@ -21945,9 +22090,9 @@
   "base_contract_columns": 52,
   "base_projection_hashes": {
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
-    "field_provenance.csv": "5925f54b149deb9722a6288af33f34418489ad489714bf351d8cfbd7fc888cbd",
-    "missing_fields.csv": "ccf3be48f2f0880babd662c3a1421d0de92bb5ed161ddc2b013e6ef85974c348",
-    "專案總表.csv": "d526855d8d63460d2927244cfe1abd34c60290572cfd2f3860949d7ffa24fead"
+    "field_provenance.csv": "ed174da8772b0b114ad21f88343474357ff65e6a0ccad4380c001900424a161b",
+    "missing_fields.csv": "a7dc6450e7d347ea91f83ba0d7db68dc803bd9101929421e11b413c309026014",
+    "專案總表.csv": "9d2425c1d037436bf64909dae588e3044bbb592f8280c24a3d459b6930a46931"
   },
   "identity_ledger_sha256": "f00606887c84c624ff2898e97433fcae250b8dd3fc422f2b451315f5768b4514",
   "identity_merges": [],
