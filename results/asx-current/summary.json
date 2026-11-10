@@ -1,30 +1,30 @@
 {
   "version": "census-project-summary-v3-asx-identity",
   "cutoff": "2026-11-05",
-  "rows": 87,
+  "rows": 89,
   "columns": 53,
-  "unique_project_ids": 87,
+  "unique_project_ids": 89,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "claims_sha256": "11bfc4842e4b1d391ff220d39d0d17ad000a645ca6ed19dad11294b3408940f2",
   "snapshot_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
   "configuration_sha256": "92774d210b9d5b55a3b7ced161381be1cb52a5a3959ea4e4a284bf554fb5ed1a",
   "columns_sha256": "f6389bc0ace6cccac5ef34ae0ffd651403e4dbec5fd9d9ee7602f22404ed5223",
   "filled_counts": {
-    "專案ID": 87,
-    "開發商": 87,
-    "未上市公司": 39,
-    "專案名稱": 87,
-    "所在地_中文": 87,
-    "所在地_英文": 87,
-    "國家": 87,
-    "州省地區": 87,
+    "專案ID": 89,
+    "開發商": 89,
+    "未上市公司": 44,
+    "專案名稱": 89,
+    "所在地_中文": 89,
+    "所在地_英文": 89,
+    "國家": 89,
+    "州省地區": 89,
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
-    "礦床型態": 65,
+    "礦床型態": 66,
     "開發階段代碼": 0,
     "開發階段類別": 0,
-    "開發階段": 48,
+    "開發階段": 50,
     "礦石蘊藏量_Mt": 37,
     "TREO品位_pct": 35,
     "總TREO蘊藏量_kt": 35,
@@ -37,9 +37,9 @@
     "預估年產重稀土_t_per_year": 0,
     "產品/產出": 12,
     "有TREO資源估計": 35,
-    "有來源文件": 87,
-    "資料來源名稱": 87,
-    "資料來源URL": 87,
+    "有來源文件": 89,
+    "資料來源名稱": 89,
+    "資料來源URL": 89,
     "已公布元素數_共15項": 23,
     "已公布元素總和_kt": 23,
     "元素總和/TREO": 21,
@@ -62,9 +62,9 @@
     "Yb2O3_氧化鐿_kt": 15,
     "Lu2O3_氧化鎦_kt": 15,
     "Y2O3_氧化釔_kt": 17,
-    "ASX代碼": 82
+    "ASX代碼": 84
   },
-  "verified_source_hashes": 135,
+  "verified_source_hashes": 137,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -74,7 +74,7 @@
     "PROJECT": 33,
     "SITE": 766,
     "DEPOSIT": 301,
-    "REVIEWED_PROJECT_EXTENSION": 54,
+    "REVIEWED_PROJECT_EXTENSION": 56,
     "DEPOSIT_SCOPE": 27,
     "PROSPECT": 191,
     "PROJECT_PROGRAM": 1,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "8fe3d9fec7add7e6cbfe93333635743fd83658e1c4f7293d79a79c614ea2351b",
-    "field_provenance.csv": "6d5ce33b9fdb56c183ca50fdf9e0cbfefa3e2cbd01a6f643e165e8fa5fc64b1e",
-    "missing_fields.csv": "332075b9b953f3806422c45ebcbb32a9d63e05becc8d2f0eda97c544c8f82455",
-    "census_inventory.csv": "3e250750f41038de75f778071cec45742902c7b83a034540e4aab0ea1267d441"
+    "專案總表.csv": "fd03808aacab27957577403ec3008755ffce45f819363609b16688185dea4801",
+    "field_provenance.csv": "ab2c00440e4b94374f135f1ca31eae0f68b4e79c86877c43bc8dbecc72cd4e82",
+    "missing_fields.csv": "a1b7bd8ac097bb6b8d4a92638e40917ce81e269aa5b5c4c2d5b7b39a2da7dcd4",
+    "census_inventory.csv": "43a56fd6242f3e5f1371f23129f2d8316b9ae296f4ceaf7d75b7be646a0608ef"
   },
-  "review_ledger_sha256": "353827fe2234c32a3440fefad73691d1e53341641900473f54ee45e02109f85f",
+  "review_ledger_sha256": "6b013ead07ca2850c865e70942f87ddf9727ba4ef738059f5a581a3d98fc1401",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -3529,10 +3529,124 @@
       "effective_date_role": "DATED_ISSUER_METADATA",
       "date_precision": "DAY",
       "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope6_listing_hre_cowalinya",
+      "project_id": "AU-4ec1fb08563b42352d29",
+      "source_sha256": "39699576fe9ebe47225c083dc285d7a561b732ab357a9050a67472e89a5512aa",
+      "status": "VALIDATED",
+      "scope": "Literal source-dated listed reporting issuer and full ownership of namedproject;notcurrenttitleorlistingcontinuity. Parent/subsetandotherprojectownershipnottransferred.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-10-03",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope6_listing_ptr_comet",
+      "project_id": "AU-02d486d425ca0792bdc5",
+      "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8",
+      "status": "VALIDATED",
+      "scope": "Literal source-dated listed reporting issuer and full ownership of namedproject;notcurrenttitleorlistingcontinuity. Parent/subsetandotherprojectownershipnottransferred.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2024-09-30",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope6_listing_od6_grass_patch",
+      "project_id": "AU-1c907e00c797bf8b3ce1",
+      "source_sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb",
+      "status": "VALIDATED",
+      "scope": "Literal source-dated listed reporting issuer and full ownership of namedproject;notcurrenttitleorlistingcontinuity. Parent/subsetandotherprojectownershipnottransferred.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-04-27",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope6_zmi_cascade_metadata",
+      "project_id": "AU-645024d708baf5b52bc2",
+      "source_sha256": "9e3227e2cfbc2c75259b78b5c8096d7fe02cc18629cf47d9ef1f2af49e0843eb",
+      "status": "VALIDATED",
+      "scope": "Zinc of Ireland NL Cascade E74/690 and E74/691,183km2,70kmNW ofEsperance;grantedtenuresacquiredinJune2023quarter;distinctfromMeekaMEKCascadeandOD6SplinterRock/GrassPatchandConsolidatedZincCZLWandagee. Source explicitlyplacesneighbouringMEK/OD6blocksoutsideZMIproject. Auger0-3m1031ppmmaxnotREE MRE;historicalreportingassociationnotcurrenttitlecontinuity.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-07-25",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope6_coondina_historical_stage",
+      "project_id": "AU-8c5887498873bf838e09",
+      "source_sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
+      "status": "VALIDATED",
+      "scope": "Historical 14 February 2023 MinRex MRR REE drilling case, E45/4266 East Pilbara WA. Not Achilles E38/3153/E38/3741 or generic Tambourah REE. MinRex September 2023 annual p11 states disappointing results/low remaining REE prospectivity and sale to Tambourah late June 2023; Tambourah September 2025 annual p73 lists Coondina E45/4266 in WA. Developer/code below are the dated historical MinRex reporting association, not current ownership or current MRR/NRL corporate code. No global REE resource: drill samples TREE elements in mixed ppb/ppm are not bulk TREO resource grades/composition. REE host unresolved in original p12; no alluvial tin geology transfer.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-02-14",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope6_coondina_historical_listing",
+      "project_id": "AU-8c5887498873bf838e09",
+      "source_sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
+      "status": "VALIDATED",
+      "scope": "Historical 14 February 2023 MinRex MRR REE drilling case, E45/4266 East Pilbara WA. Not Achilles E38/3153/E38/3741 or generic Tambourah REE. MinRex September 2023 annual p11 states disappointing results/low remaining REE prospectivity and sale to Tambourah late June 2023; Tambourah September 2025 annual p73 lists Coondina E45/4266 in WA. Developer/code below are the dated historical MinRex reporting association, not current ownership or current MRR/NRL corporate code. No global REE resource: drill samples TREE elements in mixed ppb/ppm are not bulk TREO resource grades/composition. REE host unresolved in original p12; no alluvial tin geology transfer.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-02-14",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "0e193fda67941fe4b2234ba76357ff81151aa1a220fa409845a8f44f147295da",
+  "discovery_ledger_sha256": "b1e93534cebfc9967e755a06232f43330390c706595342de99807a1e73289572",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -18694,20 +18808,751 @@
           }
         }
       ]
+    },
+    {
+      "candidate_key": "cascade-zinc-of-ireland",
+      "name": "Cascade REE Project — Zinc of Ireland",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_DISTINCT_AU_REE_PROJECT_AND_GRANTED_TENURES;SOURCE_EXPLICIT_NEIGHBOUR_DISTINCTION;DIFFERENT_ASX_CODE_NO_SAME_NAME_MERGE",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "fullscope6",
+          "path": "data/snapshots/9e3227e2cfbc2c75259b78b5c8096d7fe02cc18629cf47d9ef1f2af49e0843eb.pdf",
+          "sha256": "9e3227e2cfbc2c75259b78b5c8096d7fe02cc18629cf47d9ef1f2af49e0843eb",
+          "url": "https://company-announcements.afr.com/asx/zmi/afd79334-2ac1-11ee-9e97-fef68616d084.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Cascade",
+                "Zinc of Ireland NL",
+                "Western Australia",
+                "E74/690",
+                "E74/691"
+              ]
+            },
+            {
+              "page": 7,
+              "markers": [
+                "Cascade",
+                "Meeka Metals Ltd",
+                "OD6 Metals Ltd"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-645024d708baf5b52bc2",
+      "scope": "Zinc of Ireland NL Cascade E74/690 and E74/691,183km2,70kmNW ofEsperance;grantedtenuresacquiredinJune2023quarter;distinctfromMeekaMEKCascadeandOD6SplinterRock/GrassPatchandConsolidatedZincCZLWandagee. Source explicitlyplacesneighbouringMEK/OD6blocksoutsideZMIproject. Auger0-3m1031ppmmaxnotREE MRE;historicalreportingassociationnotcurrenttitlecontinuity.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "zmi_cascade20230725",
+        "publication_date": "2023-07-25",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "25 July 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 2,
+          "markers": [
+            "Cascade",
+            "Western Australia",
+            "Zinc of Ireland NL"
+          ]
+        },
+        "name_marker": "Cascade",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Zinc of Ireland NL",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Zinc of Ireland NL"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "SURFACE_AUGER_SAMPLES_NOT_GLOBAL_REE_MRE_OR_PROJECT_ANNUAL_FORECAST;LU_NOT_ALL_SAMPLES_REPORTED;NO_SAMPLE_GRADE_TRANSFER",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Cascade",
+              "1031ppm",
+              "Lu results were not reported"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "coondina-historical-minrex-ree",
+      "name": "Coondina REE Project — historical MinRex drilling",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_AU_REE_DRILLING_ORIGINAL_AND_EXACT_TENURE;HISTORICAL_CASE_WITH_LATER_DIVESTMENT_DISCLOSED;NOT_CURRENT_MRR_OWNERSHIP",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "fullscope6",
+          "path": "data/snapshots/cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f.pdf",
+          "sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02631363",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "14 February 2023",
+                "Coondina",
+                "MinRex Resources Limited",
+                "East Pilbara"
+              ]
+            },
+            {
+              "page": 2,
+              "markers": [
+                "Coondina",
+                "Pilbara (WA)"
+              ]
+            },
+            {
+              "page": 11,
+              "markers": [
+                "Coondina REE Project tenement E45/4266",
+                "estimation of a Mineral Resource"
+              ]
+            }
+          ]
+        },
+        {
+          "asset_set": "fullscope6",
+          "path": "data/snapshots/882722702b962388cf752df6adb002248c97ef909bb3f0a795a9a8ed16979d2d.pdf",
+          "sha256": "882722702b962388cf752df6adb002248c97ef909bb3f0a795a9a8ed16979d2d",
+          "url": "https://announcements.asx.com.au/asxpdf/20230928/pdf/05vfjfmmlp5pv8.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 11,
+              "markers": [
+                "Coondina REE Project",
+                "disappointing",
+                "sold to Tambourah Metals Limited late in June 2023"
+              ]
+            }
+          ]
+        },
+        {
+          "asset_set": "fullscope6",
+          "path": "data/snapshots/107027bdd5524a7983907c25fa16f91b0212cd66833007ef892f2d85a0a04822.pdf",
+          "sha256": "107027bdd5524a7983907c25fa16f91b0212cd66833007ef892f2d85a0a04822",
+          "url": "https://announcements.asx.com.au/asxpdf/20250930/pdf/06pvz3v8t3jjkx.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 73,
+              "markers": [
+                "Coondina",
+                "45/4266",
+                "WA"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-8c5887498873bf838e09",
+      "scope": "Historical 14 February 2023 MinRex MRR REE drilling case, E45/4266 East Pilbara WA. Not Achilles E38/3153/E38/3741 or generic Tambourah REE. MinRex September 2023 annual p11 states disappointing results/low remaining REE prospectivity and sale to Tambourah late June 2023; Tambourah September 2025 annual p73 lists Coondina E45/4266 in WA. Developer/code below are the dated historical MinRex reporting association, not current ownership or current MRR/NRL corporate code. No global REE resource: drill samples TREE elements in mixed ppb/ppm are not bulk TREO resource grades/composition. REE host unresolved in original p12; no alluvial tin geology transfer.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "coondina_ree20230214",
+        "publication_date": "2023-02-14",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "14 February 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 2,
+          "markers": [
+            "Coondina",
+            "MinRex Resources Limited",
+            "Pilbara (WA)"
+          ]
+        },
+        "name_marker": "Coondina",
+        "state": "WA",
+        "state_marker": "WA",
+        "developer": {
+          "value": "MinRex Resources Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "MinRex Resources Limited"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "HISTORICAL_REE_DRILL_INTERCEPTS_NOT_GLOBAL_MRE;SPACING_EXPLICITLY_INADEQUATE_FOR_RESOURCE;TREE_ELEMENTS_NOT_TREO_RESOURCE_DISTRIBUTION;NO_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 11,
+            "markers": [
+              "estimation of a Mineral Resource"
+            ]
+          }
+        }
+      ]
     }
   ],
   "original_canonical_projects": 33,
-  "reviewed_project_extensions": 54,
+  "reviewed_project_extensions": 56,
   "base_contract_columns": 52,
   "base_projection_hashes": {
-    "census_inventory.csv": "3e250750f41038de75f778071cec45742902c7b83a034540e4aab0ea1267d441",
-    "field_provenance.csv": "9c39745c444dadc66801df58f693674668c2406f67bb4edccd60e6d1e9cc9599",
-    "missing_fields.csv": "0e4247145735ece22708f9ceb8bf80b71df84757885758b1ae7b0ce1acd94e70",
-    "專案總表.csv": "27305bf117c205a2634878a28fb57954ed40c423f25aa5e9e9b79524ef5e086c"
+    "census_inventory.csv": "43a56fd6242f3e5f1371f23129f2d8316b9ae296f4ceaf7d75b7be646a0608ef",
+    "field_provenance.csv": "3a77d511fe57144990e66910368f878f66758432a397a1b108749828873dd565",
+    "missing_fields.csv": "c630f008bf2df921151af822a8eed0abc1a109fae2059b71449a616389434df5",
+    "專案總表.csv": "19726675a778904fa8a5685c9f7c2ed39c16725e0e307c0db063d4bf1c3a0a22"
   },
-  "identity_ledger_sha256": "ed99573ba500cda735395fe4675ed8382a1ac30a753a4f10da3c4d9b2c86981c",
+  "identity_ledger_sha256": "2f2e6d898d89ef2c12c89b722e1a8fe6b7488ea6082b50df5104e722b1bb71c6",
   "identity_merges": [],
-  "validated_asx_codes": 82,
+  "validated_asx_codes": 84,
   "identity_sources": {
     "AU-12cc237ae66c7a6508ca": {
       "asset_set": "round3",
@@ -19279,6 +20124,18 @@
       "path": "data/snapshots/9d23cfd05efad75d66ec9c2e86b701876f7bdbde332cc6b22a4fb8005fca6481.pdf",
       "sha256": "9d23cfd05efad75d66ec9c2e86b701876f7bdbde332cc6b22a4fb8005fca6481",
       "url": "https://announcements.asx.com.au/asxpdf/20240703/pdf/0656mxcyyksmfs.pdf"
+    },
+    "AU-645024d708baf5b52bc2": {
+      "asset_set": "fullscope6",
+      "path": "data/snapshots/9e3227e2cfbc2c75259b78b5c8096d7fe02cc18629cf47d9ef1f2af49e0843eb.pdf",
+      "sha256": "9e3227e2cfbc2c75259b78b5c8096d7fe02cc18629cf47d9ef1f2af49e0843eb",
+      "url": "https://company-announcements.afr.com/asx/zmi/afd79334-2ac1-11ee-9e97-fef68616d084.pdf"
+    },
+    "AU-8c5887498873bf838e09": {
+      "asset_set": "fullscope6",
+      "path": "data/snapshots/cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f.pdf",
+      "sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02631363"
     }
   },
   "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS"
