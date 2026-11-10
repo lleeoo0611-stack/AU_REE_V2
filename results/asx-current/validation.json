@@ -1,12 +1,12 @@
 {
-  "source_replay_commit": "aa26fd198ba1c5455084efde28135eb112994955",
-  "round": "full-scope-19",
-  "report": "../asx-full-scope-2026-11-10/round-19-report/README.md",
+  "source_replay_commit": "776aeac3f7ea390aa31a4cd3991d5724b9bc32b1",
+  "round": "full-scope-20",
+  "report": "../asx-full-scope-2026-11-10/round-20-report/README.md",
   "stopping_rule": {
     "policy": "FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS",
     "threshold": 0,
     "operator": "==",
-    "newly_filled_cells": 4,
+    "newly_filled_cells": 0,
     "scientific_newly_filled_cells": 0,
     "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
     "eligible": false,
@@ -18,7 +18,7 @@
     "decision": "INCOMPLETE"
   },
   "tests": {
-    "report_sha256": "ef4b0a0abaae43bfb11a88becf00970bb167011bbbaa015dbc8f45093f7274cc",
+    "report_sha256": "014baac46b1b835ebe475862af407b6c654ef27a2063127a03c6083d204344e7",
     "tests_including_subtests": 732,
     "failures": 0,
     "errors": 0,
@@ -32,7 +32,7 @@
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
     "field_provenance.csv": "8f8fc31b3d4c8776004ab6584b963968dd32194fab2efa86eb2094ae636c4251",
     "missing_fields.csv": "c51d06a5abbe2d89b96b3255921a44ea8da8f6a16a1b9793c71e9894296c85c4",
-    "REVIEW.md": "d4813899305ff1ca5805f8f20bda500ba0a485f75c38967bf5883ab2a1708605",
+    "REVIEW.md": "29f58673e0dd0a702f7758048f67b9a50fae1123201acfc60a0c6c9fc65e593e",
     "source_consistency.csv": "09922af3f905e79f23f58c3e5c0fd84515a01dcf6bc6984660b86c0532fe41ba",
     "summary.json": "c4d82742a113e2e0566f3f429b8be37589d81840a5b1ee6d9c97c244507ba3b4",
     "專案總表.csv": "a23015c68f0c10cceec63bb30ffdb13cdc010fd1fda801df07a0726997015864"
