@@ -1,0 +1,136 @@
+{
+  "version": "ga-native-project-location-v1",
+  "cutoff": "2026-11-05",
+  "acquired_through": "2026-11-10",
+  "effective_date": "2025-12-31",
+  "effective_date_interval": [
+    "2025-12-01",
+    "2025-12-31"
+  ],
+  "date_precision": "MONTH",
+  "interpretation": "NAMED_OFFICIAL_REPRESENTATIVE_POINTS;NOT_RESOURCE_EXTENTS_OWNERSHIP_OR_STATUS;GDA94_NATIVE;DISPLAY_ROUNDING_NOT_GROUND_ACCURACY",
+  "service_metadata": {
+    "asset_set": "fullscope17",
+    "path": "data/snapshots/979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558.html",
+    "sha256": "979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558",
+    "url": "https://services.ga.gov.au/gis/rest/services/AustralianCriticalMineralsOperatingMinesAndDeposits/MapServer?f=pjson"
+  },
+  "sources": {
+    "ga2025_l7": {
+      "asset_set": "fullscope17",
+      "path": "data/snapshots/521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b.html",
+      "sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b",
+      "url": "https://services.ga.gov.au/gis/rest/services/AustralianCriticalMineralsOperatingMinesAndDeposits/MapServer/7/query?where=1%3D1&outFields=*&outSR=4283&returnGeometry=true&f=pjson"
+    },
+    "ga2025_l4": {
+      "asset_set": "fullscope18",
+      "path": "data/snapshots/bb530d94b5efe69a1e670e2c61c7c5960b8928665c5579d452a41a1e83ba45f0.html",
+      "sha256": "bb530d94b5efe69a1e670e2c61c7c5960b8928665c5579d452a41a1e83ba45f0",
+      "url": "https://services.ga.gov.au/gis/rest/services/AustralianCriticalMineralsOperatingMinesAndDeposits/MapServer/4/query?where=1%3D1&outFields=*&outSR=4283&returnGeometry=true&f=pjson"
+    },
+    "ga2025_l5": {
+      "asset_set": "fullscope18",
+      "path": "data/snapshots/a197d77204b48c235a566e0e54d039abaccca2b6b68807baa86f526d1af47841.html",
+      "sha256": "a197d77204b48c235a566e0e54d039abaccca2b6b68807baa86f526d1af47841",
+      "url": "https://services.ga.gov.au/gis/rest/services/AustralianCriticalMineralsOperatingMinesAndDeposits/MapServer/5/query?where=1%3D1&outFields=*&outSR=4283&returnGeometry=true&f=pjson"
+    },
+    "ga2025_l6": {
+      "asset_set": "fullscope18",
+      "path": "data/snapshots/9e1ac5bb894d90776dc6622d671213fe64a5f01ebf595fb31b2111198e9ef0ab.html",
+      "sha256": "9e1ac5bb894d90776dc6622d671213fe64a5f01ebf595fb31b2111198e9ef0ab",
+      "url": "https://services.ga.gov.au/gis/rest/services/AustralianCriticalMineralsOperatingMinesAndDeposits/MapServer/6/query?where=1%3D1&outFields=*&outSR=4283&returnGeometry=true&f=pjson"
+    }
+  },
+  "reviews": [
+    {
+      "review_id": "fullscope18_ga_location_AU-2a3a86a4d971e9f9838d",
+      "project_id": "AU-2a3a86a4d971e9f9838d",
+      "reviewed_project_name": "Brockman Project",
+      "source_key": "ga2025_l7",
+      "objectid": 2429,
+      "source_project_name": "Brockman",
+      "state": "WA",
+      "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+    },
+    {
+      "review_id": "fullscope18_ga_location_AU-4286ab9c245effb445ff",
+      "project_id": "AU-4286ab9c245effb445ff",
+      "reviewed_project_name": "Burracoppin Project",
+      "source_key": "ga2025_l7",
+      "objectid": 2591,
+      "source_project_name": "Burracoppin",
+      "state": "WA",
+      "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+    },
+    {
+      "review_id": "fullscope18_ga_location_AU-7537d9555628040fab40",
+      "project_id": "AU-7537d9555628040fab40",
+      "reviewed_project_name": "Fingerboards",
+      "source_key": "ga2025_l7",
+      "objectid": 2193,
+      "source_project_name": "Fingerboards",
+      "state": "VIC",
+      "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+    },
+    {
+      "review_id": "fullscope18_ga_location_AU-cc4e217a90b7123dce0a",
+      "project_id": "AU-cc4e217a90b7123dce0a",
+      "reviewed_project_name": "Kennedy Rare Earths Project",
+      "source_key": "ga2025_l7",
+      "objectid": 2238,
+      "source_project_name": "Kennedy",
+      "state": "QLD",
+      "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+    },
+    {
+      "review_id": "fullscope18_ga_location_AU-329908ab8d4c1d1d3e03",
+      "project_id": "AU-329908ab8d4c1d1d3e03",
+      "reviewed_project_name": "Avonbank Mineral Sands Project",
+      "source_key": "ga2025_l5",
+      "objectid": 2286,
+      "source_project_name": "Avonbank",
+      "state": "VIC",
+      "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+    },
+    {
+      "review_id": "fullscope18_ga_location_AU-af44c2bd1173b453953f",
+      "project_id": "AU-af44c2bd1173b453953f",
+      "reviewed_project_name": "Aileron Niobium–REE Project",
+      "source_key": "ga2025_l7",
+      "objectid": 2419,
+      "source_project_name": "Aileron",
+      "state": "WA",
+      "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+    },
+    {
+      "review_id": "fullscope18_ga_location_AU-73549b8a9b1c6faf55eb",
+      "project_id": "AU-73549b8a9b1c6faf55eb",
+      "reviewed_project_name": "Coburn Mineral Sands Project",
+      "source_key": "ga2025_l6",
+      "objectid": 2676,
+      "source_project_name": "Coburn",
+      "state": "WA",
+      "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+    },
+    {
+      "review_id": "fullscope18_ga_location_AU-447261eed0e81eae88bf",
+      "project_id": "AU-447261eed0e81eae88bf",
+      "reviewed_project_name": "Goschen Central Rare Earths and Mineral Sands Project — ACDC",
+      "source_key": "ga2025_l7",
+      "objectid": 2264,
+      "source_project_name": "Goschen Central",
+      "state": "VIC",
+      "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+    },
+    {
+      "review_id": "fullscope18_ga_location_AU-fb4e914f86102baa414a",
+      "project_id": "AU-fb4e914f86102baa414a",
+      "reviewed_project_name": "WIM150 Rare-Earth-Bearing Mineral Sands Project — Australian Zircon 2015",
+      "source_key": "ga2025_l7",
+      "objectid": 2282,
+      "source_project_name": "Wim 150",
+      "state": "VIC",
+      "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+    }
+  ]
+}

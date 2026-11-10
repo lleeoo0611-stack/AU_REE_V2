@@ -90,7 +90,7 @@ def merge_summary_sources(selected, incoming, projects):
     selected.update(incoming)
 
 
-def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',review_ledger=None,asset_roots=None,discovery_ledger=None):
+def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',review_ledger=None,asset_roots=None,discovery_ledger=None,location_ledger=None):
     root=Path(root).resolve();database=Path(database).resolve();run_dir=Path(run_dir).resolve();out=Path(out).resolve()
     if out==root or out==database.parent or root in out.parents and out.relative_to(root).parts[0] in ('data','config','src'):
         raise ValueError('SUMMARY_OUTPUT_MUST_BE_ISOLATED')
@@ -162,6 +162,13 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
             from .asx_validation import validate_reviews
             supplement=validate_reviews(review_ledger,asset_roots or {},projects,cutoff)
             merge_summary_sources(selected,supplement['sources'],projects)
+        locations=None
+        if location_ledger:
+            if not review_ledger:raise ValueError('LOCATION_REQUIRES_REVIEWED_PROVENANCE')
+            from .reviewed_locations import validate_locations
+            locations=validate_locations(location_ledger,asset_roots or {},projects,cutoff)
+            merge_summary_sources(selected,locations['sources'],projects)
+            supplement['receipts'].extend(locations['receipts'])
         records=defaultdict(list);observations=defaultdict(list);studies=defaultdict(list)
         for r in (discovered or {}).get('records',[]):records[r['entity_id']].append(r)
         for r in db.execute('SELECT r.*,e.kind,e.native_id FROM records r JOIN entities e USING(entity_id)'):
@@ -203,6 +210,11 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
             if coords:
                 put('緯度',coords[0]['latitude'],coords[0]['source_sha'],method='REPRESENTATIVE_POINT_NOT_BOUNDARY')
                 put('經度',coords[0]['longitude'],coords[0]['source_sha'],method='REPRESENTATIVE_POINT_NOT_BOUNDARY')
+            spatial=(locations or {}).get('attributes',{}).get(pid,[])
+            if spatial:
+                from .reviewed_locations import validate_location_target
+                validate_location_target(row,spatial,STATES,resource_subscope=pid in (supplement or {}).get('resource_labels',{}))
+                for a in spatial:put(a['column'],a['value'],a['source_sha'],a['locator'],a['method'],a['scope'],review_id=a['review_id'])
             deposit=pick_record('deposit_type')
             if deposit:put('礦床型態',deposit['deposit_type'],deposit['source_sha'])
             owners=[]
@@ -358,6 +370,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
         'UNKNOWN_NOT_ZERO_OR_FALSE','DERIVATIONS_DECLARED_IN_FIELD_PROVENANCE','NO_AUTOMATIC_PROMOTION_OF_NEW_ASX_CANDIDATES',
         'HREE8=Tb,Dy,Ho,Er,Tm,Yb,Lu,Y; Gd_EXCLUDED_TO_MATCH_TEMPLATE','NO_HTML_COMPARATOR_IN_CENSUS_EXPORT'],
         output_hashes={p.name:filehash(p) for p in out.glob('*.csv')})
+    if location_ledger:result['location_ledger_sha256']=locations['ledger_sha256']
     if supplement:
         result.update(version='census-project-summary-v2-reviewed-asx',review_ledger_sha256=supplement['ledger_sha256'],
             acquired_through=supplement['acquired_through'],validated_reviews=supplement['receipts'],

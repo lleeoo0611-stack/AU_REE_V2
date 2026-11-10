@@ -28,6 +28,7 @@ def compact_cycle(out, source_commit):
     validation['source_replay_commit'] = source_commit
     validation['exported_csv_hashes'] = validation['current_integrity']['output_hashes']
     ledgers = ('asx_source_reviews.json', 'asx_discovery_reviews.json', 'asx_project_identity_reviews.json')
+    if (out/'asx_location_reviews.json').exists():ledgers+=('asx_location_reviews.json',)
     validation['source_configuration_hashes'] = {'config/'+name:filehash(out/name) for name in ledgers}
     for name in (*outputs, 'summary.json', *ledgers, 'remaining_gap_reasons.csv'):
         (out/name).unlink()
@@ -55,6 +56,7 @@ def package(before, after, repeat, manifest, snapshots, test_report, out):
     ledgers = dict(review_ledger_sha256='asx_source_reviews.json',
                    discovery_ledger_sha256='asx_discovery_reviews.json',
                    identity_ledger_sha256='asx_project_identity_reviews.json')
+    if summary.get('location_ledger_sha256'):ledgers['location_ledger_sha256']='asx_location_reviews.json'
     for key, name in ledgers.items():
         if filehash(snapshots/name) != summary[key]:
             raise ValueError('CYCLE_SNAPSHOT_LEDGER_MISMATCH:'+name)
@@ -66,7 +68,7 @@ def package(before, after, repeat, manifest, snapshots, test_report, out):
             query = str(record['query'])
             record['query'] = 'sha256:'+hashlib.sha256(query.encode('utf8')).hexdigest()
     declaration['validation'] = dict(
-        sources=dict(passed=True, evidence='Complete export replay; three source-ledger hashes verified'),
+        sources=dict(passed=True, evidence='Complete export replay; '+str(len(ledgers))+' source-ledger hashes verified'),
         tests=dict(passed=True, evidence=filehash(test_report)),
         reproducibility=dict(passed=True, evidence='All four CSVs match independent repeated export'))
     review = review_coverage_cycle(before, after, declaration)

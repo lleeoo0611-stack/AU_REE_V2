@@ -67,6 +67,8 @@ def rebuild(census_root, database, run_dir, out_prefix, asset_map, cutoff=None):
     paths = output_paths(out_prefix, census_root)
     ledger_paths = [REPO / 'config' / name for name in (
         'asx_source_reviews.json', 'asx_discovery_reviews.json', 'asx_project_identity_reviews.json')]
+    location_ledger=REPO/'config/asx_location_reviews.json'
+    if location_ledger.exists():ledger_paths.append(location_ledger)
     ledgers = [json.loads(p.read_text(encoding='utf8')) for p in ledger_paths]
     cutoff = review_cutoff(ledgers, cutoff)
     assets = load_assets(asset_map, census_root, ledgers)
@@ -76,7 +78,8 @@ def rebuild(census_root, database, run_dir, out_prefix, asset_map, cutoff=None):
         print('Rebuilding independently: ' + pass_name, flush=True)
         export_summary(census_root, database, run_dir, paths[pass_name + '-base52'],
                        cutoff=cutoff, review_ledger=ledger_paths[0],
-                       asset_roots=assets, discovery_ledger=ledger_paths[1])
+                       asset_roots=assets, discovery_ledger=ledger_paths[1],
+                       location_ledger=location_ledger if location_ledger.exists() else None)
         extend_summary(paths[pass_name + '-base52'], paths[pass_name + '-53'], ledger_paths[2], assets)
         audits.append(audit_summary(paths[pass_name + '-53']))
         if filehash(database) != before:
