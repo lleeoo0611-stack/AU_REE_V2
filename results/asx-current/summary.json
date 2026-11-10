@@ -18,8 +18,8 @@
     "所在地_英文": 93,
     "國家": 93,
     "州省地區": 93,
-    "緯度": 33,
-    "經度": 33,
+    "緯度": 35,
+    "經度": 35,
     "礦床型態代碼": 1,
     "礦床型態": 69,
     "開發階段代碼": 0,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "131d4a4a0d1c489571dd9ab747868baacc6a4b4292a914cc88dbf1ce88e86b24",
-    "field_provenance.csv": "340c07765e9c548956161de7a79883d2badf8d0bbe1dc029d98ef1b7c5831abf",
-    "missing_fields.csv": "c058696e475546d715c4869fbcfdd214c4dd0165557efbdd2674a745af0fb248",
+    "專案總表.csv": "a23015c68f0c10cceec63bb30ffdb13cdc010fd1fda801df07a0726997015864",
+    "field_provenance.csv": "8f8fc31b3d4c8776004ab6584b963968dd32194fab2efa86eb2094ae636c4251",
+    "missing_fields.csv": "c51d06a5abbe2d89b96b3255921a44ea8da8f6a16a1b9793c71e9894296c85c4",
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1"
   },
-  "location_ledger_sha256": "fc1c59d70c114645de30123ab0c39b1aec09eec24b5426afa98866291f637df1",
+  "location_ledger_sha256": "b5a1c0a26f3f3ae832be13b3772f2a24f541e129ef28b87a378c229eb0e36414",
   "review_ledger_sha256": "5e2959c6858c36429b6d8693536c9674ab638659594c40ae391dbe2ddb6ae823",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
@@ -4749,6 +4749,38 @@
       "review_id": "fullscope18_ga_location_AU-fb4e914f86102baa414a",
       "source_sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b",
       "scope": "{\"crs\":\"GDA94 / EPSG:4283\",\"dataset_currency\":\"December 2025; day unknown\",\"display_rounding\":\"at most 4 decimal places; does not improve coarse native precision\",\"meaning\":\"OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY\",\"objectid\":2282,\"positional_accuracy\":\"NOT_STATED;DISPLAY_ROUNDING_AND_SERVICE_TOLERANCE_ARE_NOT_GROUND_ACCURACY\",\"service_metadata_sha256\":\"979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558\",\"source_latitude\":-36.8042843,\"source_longitude\":142.3678022,\"source_project\":\"Wim 150\",\"state\":\"VIC\",\"unit\":\"decimal degrees\"}",
+      "effective_date": "2025-12-31",
+      "effective_date_interval": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "effective_date_role": "DATASET_CURRENCY_MONTH_UPPER_BOUND_NOT_RELEASE_OR_PROJECT_STATUS_DATE",
+      "date_precision": "MONTH",
+      "review_methods": [
+        "OFFICIAL_NATIVE_PAIRED_POINT_RECORD;DATUM_AND_CURRENCY_VERIFIED"
+      ]
+    },
+    {
+      "project_id": "AU-fe65cb1bd28eacb7a67f",
+      "review_id": "fullscope19_ga_hms_location_AU-fe65cb1bd28eacb7a67f",
+      "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+      "scope": "{\"crs\":\"GDA94 / EPSG:4283\",\"dataset_currency\":\"December 2025; day unknown\",\"display_rounding\":\"at most 4 decimal places; does not improve coarse native precision\",\"meaning\":\"OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY\",\"objectid\":2303,\"positional_accuracy\":\"NOT_STATED;DISPLAY_ROUNDING_AND_SERVICE_TOLERANCE_ARE_NOT_GROUND_ACCURACY\",\"ree_hms_material_proof\":{\"date_relationship\":\"LATER_CORROBORATION_NOT_BACKDATED_AS_DATASET_KNOWLEDGE\",\"page\":47,\"pdf_evidence_date_precision\":\"MONTH\",\"pdf_evidence_effective_date\":\"2026-03-31\",\"review_id\":\"continuation1_catalogue_copi\",\"sha256\":\"af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5\",\"statement_sha256\":\"a9f78f8bf1b43455ff3ed049b95014d61935191c40a5d0a0bddb2a56ffe37972\"},\"service_metadata_sha256\":\"979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558\",\"source_latitude\":-33.6199,\"source_longitude\":141.3496,\"source_project\":\"Copi\",\"state\":\"NSW\",\"unit\":\"decimal degrees\"}",
+      "effective_date": "2025-12-31",
+      "effective_date_interval": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "effective_date_role": "DATASET_CURRENCY_MONTH_UPPER_BOUND_NOT_RELEASE_OR_PROJECT_STATUS_DATE",
+      "date_precision": "MONTH",
+      "review_methods": [
+        "OFFICIAL_NATIVE_PAIRED_POINT_RECORD;DATUM_AND_CURRENCY_VERIFIED"
+      ]
+    },
+    {
+      "project_id": "AU-524c37fc04cf47bf8dca",
+      "review_id": "fullscope19_ga_hms_location_AU-524c37fc04cf47bf8dca",
+      "source_sha256": "9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3",
+      "scope": "{\"crs\":\"GDA94 / EPSG:4283\",\"dataset_currency\":\"December 2025; day unknown\",\"display_rounding\":\"at most 4 decimal places; does not improve coarse native precision\",\"meaning\":\"OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY\",\"objectid\":2262,\"positional_accuracy\":\"NOT_STATED;DISPLAY_ROUNDING_AND_SERVICE_TOLERANCE_ARE_NOT_GROUND_ACCURACY\",\"ree_hms_material_proof\":{\"date_relationship\":\"LATER_CORROBORATION_NOT_BACKDATED_AS_DATASET_KNOWLEDGE\",\"page\":23,\"pdf_evidence_date_precision\":\"DAY\",\"pdf_evidence_effective_date\":\"2026-02-18\",\"review_id\":\"continuation9_metadata_AU-524c37fc04cf47bf8dca\",\"sha256\":\"9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3\",\"statement_sha256\":\"881d6d828cbba34c67b3dca46306ae8036cccac3e2e4bdd99848cd20281c363c\"},\"service_metadata_sha256\":\"979faaf307ca21b803df58df152c1d9b65fcccf17f46bd4680d758839364f558\",\"source_latitude\":-34.45993,\"source_longitude\":143.461186,\"source_project\":\"Balranald\",\"state\":\"NSW\",\"unit\":\"decimal degrees\"}",
       "effective_date": "2025-12-31",
       "effective_date_interval": [
         "2025-12-01",
@@ -22090,9 +22122,9 @@
   "base_contract_columns": 52,
   "base_projection_hashes": {
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
-    "field_provenance.csv": "ed174da8772b0b114ad21f88343474357ff65e6a0ccad4380c001900424a161b",
-    "missing_fields.csv": "a7dc6450e7d347ea91f83ba0d7db68dc803bd9101929421e11b413c309026014",
-    "專案總表.csv": "9d2425c1d037436bf64909dae588e3044bbb592f8280c24a3d459b6930a46931"
+    "field_provenance.csv": "a39e7bb64f0adedb35ceb80781e6d658f33bb4c25ba621cc207441afb1351e67",
+    "missing_fields.csv": "aa1e5732c416d30a84ffa78d0fbc8722a835bd97b855f4531ee9fcf4491c207b",
+    "專案總表.csv": "94c826074cbc9eb2baff2b910952d187484300c34be484e77fba2e83a305513c"
   },
   "identity_ledger_sha256": "f00606887c84c624ff2898e97433fcae250b8dd3fc422f2b451315f5768b4514",
   "identity_merges": [],

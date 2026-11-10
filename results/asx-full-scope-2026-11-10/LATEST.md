@@ -1,15 +1,15 @@
-# 最新全範圍迭代：第18輪
+# 最新全範圍迭代：第19輪
 
-93研究案例×53欄，已填1940格、空白2989格。不是93個現行獨立礦案；Yttria／MtStirling共用資源10科學欄禁止重複加總。
+93研究案例×53欄，已填1944格、空白2985格。包含歷史、勘探與重疊母子範圍，不是93個現行獨立礦案；Yttria／MtStirling子範圍10個科學欄仍禁止重複加總。
 
-本輪從aeaed57e的93案／3007空白延續：既有案經緯度各補9格，共18格，科學數值0、新案0、更新／撤回／合併0。9組官方GDA94代表點經名稱、州別、REE商品、原生geometry及不可覆寫／不可借用資源子範圍檢查；精度與未知地面準確度保留於逐格來源及spatial_location_reviews.csv。60案其餘點位保留具體原因。
+本輪以3a0f124c的93案／2989空白起算，Copi與Balranald各新增一組GDA94經緯度，共4格；新增案0、科學數值0、更新／撤回／合併0。官方點位的HMS身分與同案已驗證PDF明示REE原文共同支持，原件區域與日期分開保留。沒有新下載，重審先前已取得的不可變原件；不能把0下載當資料不存在。
 
-本次93案起點87014284累計補23格（科學0），未新增案；包含第17輪5格描述與本輪18格座標。原76案系列累計補104格（科學24）；17個新增研究案例累計提供307格（科學66），另9項更新。統計均為研究列資訊覆蓋，不等於獨立礦產增量。
+本次93案起點87014284累計補27格：22個經緯度欄（11組代表點）、礦床／地質宿主3格、具日期歷史階段2格；未新增案或科學數值。原76案系列累計補108格（科學24）；17個先前新增案例累計提供307格（科學66），另9項更新。研究列資訊覆蓋不是獨立礦產增量。
 
-本輪157項查詢涵蓋全93案所有空白、3項候選及45條Gemini未解列。403項相關測試與324項子測試通過，兩次獨立重建四CSV一致，246項發布檔案／程式雜湊核對通過，Census未改。新增第四份受控location清單與重建／發布支援，舊未指定流程維持原樣。
+本輪153項查詢涵蓋全部93案空白、3項候選及45條Gemini未解列。405項相關測試與327項子測試通過，兩次獨立重建四CSV一致，247項發布檔案／程式雜湊核對通過，Census未改。58案座標仍有範圍、商品／空間對應或未匹配的保留原因。
 
-本輪有新增，繼續下一完整輪，不以子批次停止。正式規則FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS，受阻作品及Fingerboards新referral原件保持未完成，INCOMPLETE、stop=false。6份作品尚缺合格同版替代；7個原URL狀態與已完成的2024維州官方同版副本分開保留。未重試403原件，不把不同版、政策新聞、研究點位或礦物總年產量當同版原件／TREO產量。
+本輪有4格新增，推送後持續下一完整輪，正式規則仍為FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS。六份作品缺合格同版替代，原7個URL與其中1份已有官方2024同版副本分開保留，Fingerboards新版referral403仍未完成；INCOMPLETE、stop=false，未重試已知403，不宣稱全國完整性或正式C1。
 
-定向PDF樣本仍為105項邏輯網址、88成功、86個不同成功雜湊4078頁；本輪3份成功JSON文字回應不計PDF。原始PDF、GIS JSON、SQLite、Gemini原始列與完整搜尋字串留本機。不是全國完整性、正式C1或遠端CI結論。
+系列定向PDF樣本105邏輯網址、88成功、86不同成功雜湊4078頁；JSON／HTML不計PDF。原始PDF、GIS JSON、SQLite、Gemini原始列和完整搜尋字串留本機。
 
-詳見[第18輪報告](round-18-report/README.md)、[本次93案累計](round-18-report/continuation_summary.json)、[原76案累計](round-18-report/series_summary.json)、[位置來源](round-18-report/spatial_location_reviews.csv)、[位置保留原因](round-18-report/spatial_location_holds.csv)、[逐格缺口](../asx-current/missing_fields.csv)。
+詳見[第19輪報告](round-19-report/README.md)、[本次93案累計](round-19-report/continuation_summary.json)、[原76案累計](round-19-report/series_summary.json)、[同案原件補證](round-19-report/spatial_material_proofs.csv)、[座標來源](round-19-report/spatial_location_reviews.csv)、[逐格缺口](../asx-current/missing_fields.csv)。

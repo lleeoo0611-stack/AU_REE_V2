@@ -1,12 +1,12 @@
 {
-  "source_replay_commit": "abccbd087fb8a53292b5df5961cb80b338b518da",
-  "round": "full-scope-18",
-  "report": "../asx-full-scope-2026-11-10/round-18-report/README.md",
+  "source_replay_commit": "aa26fd198ba1c5455084efde28135eb112994955",
+  "round": "full-scope-19",
+  "report": "../asx-full-scope-2026-11-10/round-19-report/README.md",
   "stopping_rule": {
     "policy": "FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS",
     "threshold": 0,
     "operator": "==",
-    "newly_filled_cells": 18,
+    "newly_filled_cells": 4,
     "scientific_newly_filled_cells": 0,
     "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
     "eligible": false,
@@ -18,8 +18,8 @@
     "decision": "INCOMPLETE"
   },
   "tests": {
-    "report_sha256": "1ef3ef228a9a91ba5c2fdfffeff1253faead4b7a140fa3368bb474679384a1d4",
-    "tests_including_subtests": 727,
+    "report_sha256": "ef4b0a0abaae43bfb11a88becf00970bb167011bbbaa015dbc8f45093f7274cc",
+    "tests_including_subtests": 732,
     "failures": 0,
     "errors": 0,
     "skipped": 0
@@ -28,13 +28,13 @@
   "database_modified": false,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "artifact_hashes": {
-    "audit.json": "82fc6b1c0b79c424560ad3eb9c5c13e1cbe319b101118badc9240f31ff27b295",
+    "audit.json": "7e1841ee9df2a1746da02d40154003bda1b6d452c465788d0ef4a76d15f1b8f6",
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
-    "field_provenance.csv": "340c07765e9c548956161de7a79883d2badf8d0bbe1dc029d98ef1b7c5831abf",
-    "missing_fields.csv": "c058696e475546d715c4869fbcfdd214c4dd0165557efbdd2674a745af0fb248",
-    "REVIEW.md": "7f9d9f7401cf4e2f7bd5971b4188fae25b75afc0cf5e51741285d54a0c23b718",
+    "field_provenance.csv": "8f8fc31b3d4c8776004ab6584b963968dd32194fab2efa86eb2094ae636c4251",
+    "missing_fields.csv": "c51d06a5abbe2d89b96b3255921a44ea8da8f6a16a1b9793c71e9894296c85c4",
+    "REVIEW.md": "d4813899305ff1ca5805f8f20bda500ba0a485f75c38967bf5883ab2a1708605",
     "source_consistency.csv": "09922af3f905e79f23f58c3e5c0fd84515a01dcf6bc6984660b86c0532fe41ba",
-    "summary.json": "94271aec59e6bc5fb13ce5a995c365390e210af8fb27a8d421aee9b4a6a86684",
-    "專案總表.csv": "131d4a4a0d1c489571dd9ab747868baacc6a4b4292a914cc88dbf1ce88e86b24"
+    "summary.json": "c4d82742a113e2e0566f3f429b8be37589d81840a5b1ee6d9c97c244507ba3b4",
+    "專案總表.csv": "a23015c68f0c10cceec63bb30ffdb13cdc010fd1fda801df07a0726997015864"
   }
 }
