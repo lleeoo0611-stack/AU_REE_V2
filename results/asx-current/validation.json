@@ -7,9 +7,9 @@
   "current": {
     "projects": 73,
     "columns": 53,
-    "filled_cells": 1474,
+    "filled_cells": 1476,
     "total_cells": 3869,
-    "remaining_blank_cells": 2395,
+    "remaining_blank_cells": 2393,
     "scientific_columns": [
       "礦石蘊藏量_Mt",
       "TREO品位_pct",
@@ -40,20 +40,20 @@
     "scientific_filled_cells": 372,
     "scientific_total_cells": 1825,
     "output_hashes": {
-      "專案總表.csv": "73fd1f1a9c5f93f132461071292300e36930e08d4295d82e85730e7d48220d2f",
-      "field_provenance.csv": "afb680b05b0881fe102e42b50b83c067e87618430a3f1f583b75a41db2837ba1",
-      "missing_fields.csv": "10f238a61307de1d4c58f16f55745b1eb7469fe7cf2dd96dfd82515d845da82f",
+      "專案總表.csv": "3726c5c5b051f56ede3fbcdc1735898435ca1a6c74ff9dccc9a72760770e914a",
+      "field_provenance.csv": "a482568a7bb9999051b27084383c2d605bb1eae6ccf1a71210f4757704ddb8b9",
+      "missing_fields.csv": "5f83c0f8a9b417cae7cf15dac5c03d544577fe2f1ee4cf0356b61be336d795d3",
       "census_inventory.csv": "56a439ef512d9ce397629294532ead494af8656ed7d015f9be4be549b11acf81"
     },
     "provenance_complete": true,
     "missing_diagnostics_complete": true
   },
-  "latest_cycle": "continuation-13",
+  "latest_cycle": "continuation-12",
   "stopping_rule": {
     "policy": "ZERO_NEW_VERIFIED_CELLS",
     "threshold": 0,
     "operator": "==",
-    "newly_filled_cells": 12,
+    "newly_filled_cells": 33,
     "scientific_newly_filled_cells": 0,
     "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
     "eligible": false,
@@ -69,8 +69,8 @@
     "all_four_csv_hashes_identical": true
   },
   "regression": {
-    "report_sha256": "1f254a6d2a7ce599183fbcb0f30d906e5c68e1d38f519fb4ad2ee8a317931262",
-    "tests_including_subtests": 525,
+    "report_sha256": "4ff6003736efcaad7876d0b13cfced3ed44d846e13909d8eed9641818e75bbc0",
+    "tests_including_subtests": 114,
     "failures": 0,
     "errors": 0,
     "skipped": 0
@@ -100,13 +100,13 @@
   "original55_cumulative": {
     "rows": 55,
     "columns": 53,
-    "newly_filled_cells": 108,
+    "newly_filled_cells": 101,
     "newly_filled_column_types": 30,
-    "projects_with_new_values": 41,
+    "projects_with_new_values": 39,
     "new_cells_by_column": {
-      "礦床型態": 29,
+      "礦床型態": 25,
       "有來源文件": 2,
-      "未上市公司": 15,
+      "未上市公司": 12,
       "開發階段": 25,
       "ASX代碼": 7,
       "已公布元素數_共15項": 2,
@@ -141,13 +141,10 @@
       "資料來源URL": 4
     },
     "numeric_format_only_cells": 0,
-    "became_unknown_cells": 4,
-    "became_unknown_by_column": {
-      "資料來源名稱": 2,
-      "資料來源URL": 2
-    },
-    "net_filled_cell_increase": 104,
-    "remaining_blank_cells": 1643,
+    "became_unknown_cells": 0,
+    "became_unknown_by_column": {},
+    "net_filled_cell_increase": 101,
+    "remaining_blank_cells": 1646,
     "remaining_blanks_by_column": {
       "礦床型態代碼": 54,
       "開發階段代碼": 55,
@@ -182,7 +179,7 @@
       "Lu2O3_氧化鎦_kt": 43,
       "Y2O3_氧化釔_kt": 42,
       "ASX代碼": 5,
-      "未上市公司": 29,
+      "未上市公司": 32,
       "緯度": 31,
       "經度": 31,
       "磁鐵稀土氧化物蘊藏量_kt": 36,
@@ -191,13 +188,11 @@
       "TREO品位_pct": 24,
       "總TREO蘊藏量_kt": 24,
       "有TREO資源估計": 24,
-      "開發商": 1,
-      "礦床型態": 7,
-      "資料來源名稱": 2,
-      "資料來源URL": 2
+      "礦床型態": 11,
+      "開發商": 1
     },
     "baseline_csv_sha256": "73bbaf0e615b5d30505bead52e368c2910f9d97aff7a8e68799a93f8bd44d809",
-    "updated_csv_sha256": "73fd1f1a9c5f93f132461071292300e36930e08d4295d82e85730e7d48220d2f",
+    "updated_csv_sha256": "3726c5c5b051f56ede3fbcdc1735898435ca1a6c74ff9dccc9a72760770e914a",
     "comparison_scope": "FIXED_BASELINE_COHORT;NEW_PROJECT_CELLS_REPORTED_SEPARATELY",
     "expanded_rows": 73,
     "added_project_ids": [
@@ -220,10 +215,10 @@
       "AU-ee34781b030807146e64",
       "AU-f81823bd8ba271840345"
     ],
-    "added_project_filled_cells": 202,
-    "added_project_blank_cells": 752,
-    "expanded_remaining_blank_cells": 2395,
-    "expanded_filled_cells": 1474
+    "added_project_filled_cells": 207,
+    "added_project_blank_cells": 747,
+    "expanded_remaining_blank_cells": 2393,
+    "expanded_filled_cells": 1476
   },
   "code_fingerprint": {
     "src/au_ree_v2/__init__.py": "10fca67b83d726c143d12481bd749dcd714ae7e369b68b372cc738fe0e1a1011",
@@ -251,7 +246,7 @@
     "src/au_ree_v2/project_summary.py": "2c856e0eccb6b1d1479f00a1136b7ffef2ef42779cc5c736acbf8491312bd8d9",
     "src/au_ree_v2/resolution.py": "270f713a42583280ef4f4d72553467bfad31266048b6b7de74fee1a42775960e",
     "src/au_ree_v2/reviewed_discovery.py": "29a55ee0dd2bc3992b700cfb5bd2bb0365b5ace5e1ae5a08080fd5678c52fa4e",
-    "src/au_ree_v2/reviewed_metadata.py": "1956f44e93b4b4960c677d4207a96e675beca721245c0d5bd5fceafee28a9332",
+    "src/au_ree_v2/reviewed_metadata.py": "b293f95f57a69f8621b256590c9248df3160f98b6f444ef0f4128d66ba269be4",
     "src/au_ree_v2/screen_index.py": "d592946229279670d64b019c0304fd21527547560b58c082036c3ee32657d274",
     "src/au_ree_v2/security.py": "3c75e6425469d7379c0e5072a487ed2b83102951ebb71117995d6253360588f1",
     "src/au_ree_v2/selection.py": "dda3c28256eb707e2a4a0729581346f1455c604f65c437dd947be69ba2e118e4",
@@ -300,7 +295,7 @@
     "tools/review_external_project_names.py": "cd2aa95a7377c3ff21ef00a12c562cfd5b967a1ec40cf6cfe98907dac9063644",
     "tools/screen_external_project_names.py": "41adf0c578c8025f2a6f6e26bb487d9567d0d171b87f4a62c6d721ae49a1a462",
     "tools/validate_asx_candidates.py": "10258491fd14b1ea134c10f4efd4a307720cdb8c0b68aafc7fdfc1f7add6f729",
-    "config/asx_discovery_reviews.json": "943f94d518a2c39cef84989d3373bdecae4c487012a32e2d9ecbe909afff10c9",
+    "config/asx_discovery_reviews.json": "fc524ce4cb515095d06b5b229d19c9c1a89289798f8719887446330b803f1618",
     "config/asx_external_name_reviews.json": "b72c947360e69c49bf3ffafccadab220a5ac70acafe3a6dad3886e402cf1f06c",
     "config/asx_iteration_sources.json": "5cc38aba0761d5bf9c061c7f95ecb43bca871ec305a49643021c7dea20c6e7fc",
     "config/asx_probe_cases.json": "cc72f4485bf76efe876cfac6b7732e2c354206763f06d5bc40cb52a5180a35fb",
@@ -311,7 +306,7 @@
     "config/asx_round4_research_urls.json": "ab1bb88b66765d2cc733ed2d4508386abbcf05e70192f76249fd098207620e9d",
     "config/asx_round5_research_urls.json": "4e4bfa517f93ebde8d44a2b2aee7618cf29820ec586183bada7a663338b74721",
     "config/asx_round6_research_urls.json": "7e07fd8cb83d9eab04aec1b7a877ec0625772daf675220bc4af696555a615d9f",
-    "config/asx_source_reviews.json": "88b242518dd01ddb2ad5b302e5c27c7b09af2b0fe02419f32a3b4e23d3fcb506",
+    "config/asx_source_reviews.json": "05e6cc0756c0de7f7f936a68729d0a4c2c0a9741f0e5286fcb63bb3f364070a2",
     "config/discovery.json": "67c6d106883ae7daa69e91758c53d02ceb623dfa24378aed1602aef8878e181c",
     "config/eligibility_compatibility.json": "c148daacc46e525901e8655721256294c81213fadc352fa896de79a446c33115",
     "config/evidence_policy.json": "c1b7b03b14395e196a8ef817bc2e10110381ba1c74acc2aacca2156f93f9b0d9",
