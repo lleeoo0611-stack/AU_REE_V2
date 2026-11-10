@@ -44166,6 +44166,84 @@
         ],
         "header_title": "MAIDEN RC DRILLING RESULTS FROM COONDINA"
       }
+    },
+    {
+      "review_id": "fullscope7_nim_mons_listing",
+      "project_id": "AU-d2cd77f89298d6dae330",
+      "source_key": "nim_mons20260312",
+      "source_sha256": "d9211f418e3de534d69f8f7d599b434a8353d2293a53a0c63cf7f85d150d2828",
+      "asset_set": "fullscope7",
+      "path": "data/snapshots/d9211f418e3de534d69f8f7d599b434a8353d2293a53a0c63cf7f85d150d2828.pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20260312/pdf/06xcdmcg44zmqd.pdf",
+      "publication_date": "2026-03-12",
+      "effective_date": "2026-03-12",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 11,
+        "markers": [
+          "12 March 2026"
+        ]
+      },
+      "document_issue_date": "2026-03-12",
+      "document_issue_evidence": {
+        "page": 11,
+        "markers": [
+          "12 March 2026"
+        ]
+      },
+      "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE",
+      "publication_date_role": "ASX_DATED_URL",
+      "identity_evidence": {
+        "page": 4,
+        "markers": [
+          "Mons Project",
+          "Nimy Resources Limited"
+        ]
+      },
+      "scope": "Mons Project full ownership in March2026 Nimy half-year report;includes its Block3East resource case.Historical reporting/listing association only,not currenttitlecontinuity.Galliumresource or groupedNdPr cannot fillindividualoxides;existing selected7.23Mt538ppmcase unchanged.",
+      "statement_id": "fullscope7_nim_mons_listing",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Mons Project 100% Owned"
+            ]
+          },
+          "listing_proof": {
+            "exchange": "ASX",
+            "ticker": "NIM",
+            "issuer": "Nimy Resources Limited",
+            "issuer_alias": "Nimy Resources",
+            "project_marker": "Mons",
+            "registered_short_project_heading": true,
+            "listing_evidence": {
+              "page": 2,
+              "markers": [
+                "Nimy Resources Limited",
+                "ASX code: NIM"
+              ]
+            },
+            "ownership_evidence": {
+              "page": 4,
+              "markers": [
+                "Mons Project 100% Owned"
+              ]
+            },
+            "ownership_bbox": [
+              40,
+              20,
+              570,
+              407.18364868164065
+            ],
+            "ownership_statement_sha256": "4c83288bde8538e4a30c35131569a26624e55f8deaf08f8f9d90add6200cb372"
+          }
+        }
+      ]
     }
   ]
 }

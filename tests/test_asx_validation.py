@@ -101,6 +101,22 @@ class SourceReviews(unittest.TestCase):
         r['attributes']=[dict(column='開發商',value='Issuer',evidence=dict(page=1,markers=['Issuer']))]
         with self.assertRaisesRegex(ValueError,'PROJECT_NAME_NOT_IN_IDENTITY_PAGE'):self.validate(r)
 
+    def test_registered_four_letter_alias_requires_explicit_project_heading_and_full_proof(self):
+        r=self.qualified_listing_review();proof=r['attributes'][0]['listing_proof']
+        proof.update(project_marker='Mock',registered_short_project_heading=True)
+        self.projects=[dict(entity_id='P',name='Mock resource scope',aliases=['Mock'])]
+        result=self.validate(r)
+        self.assertEqual('否',result['attributes']['P'][0]['value'])
+        self.assertEqual({},result['observations'])
+        for change in ['unregistered','no_opt_in','wrong_ticker','wrong_page','resource_observation']:
+            bad=copy.deepcopy(r)
+            self.projects=[dict(entity_id='P',name='Mock resource scope',aliases=['Other' if change=='unregistered' else 'Mock'])]
+            if change=='no_opt_in':bad['attributes'][0]['listing_proof'].pop('registered_short_project_heading')
+            if change=='wrong_ticker':bad['attributes'][0]['listing_proof']['ticker']='OTH'
+            if change=='wrong_page':bad['identity_evidence']=dict(page=2,markers=['Mineral Resource'])
+            if change=='resource_observation':bad['observations']=copy.deepcopy(self.review['observations'])
+            with self.subTest(change=change),self.assertRaises(ValueError):self.validate(bad)
+
     def test_context_resource_does_not_replace_selected_contract(self):
         self.validate()
         context=copy.deepcopy(self.review);context.update(review_id='context',statement_id='other-scope',resource_selection_role='CONTEXT_ONLY',context_selection_reason='Distinct alternative scope, not additive')

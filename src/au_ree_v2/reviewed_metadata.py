@@ -113,21 +113,26 @@ def validate_descriptive_attribute(doc, attribute, aliases, evidence, review):
 
 
 def validate_qualified_listing_identity(doc, attribute, aliases, identity, evidence):
-    """Resolve an already registered ASX-qualified name from the same PDF.
+    """Resolve an existing qualified or opt-in short name from the same PDF.
 
-    This supplies no new alias or resource identity: both ticker and bare project
-    must form an exact existing alias, and the full listing/ownership proof runs.
+    This supplies no new alias or resource identity. A qualified alias, or an
+    explicitly bounded four-letter Project heading, still needs full proof.
     """
     proof = attribute.get('listing_proof', {})
     marker = norm(proof.get('project_marker', ''))
     qualified = norm(proof.get('ticker', '') + ' ' + marker)
+    registered = {norm(alias) for alias in aliases}
+    short_heading = (proof.get('registered_short_project_heading') is True
+                     and len(marker) == 4 and marker in registered
+                     and re.search(r'(?<!\w)' + re.escape(marker) + r'\s+project\b', norm(identity)))
     if (attribute.get('column') != '未上市公司' or attribute.get('value') != '否'
             or proof.get('exchange') != 'ASX' or len(marker) < 4
             or marker not in norm(identity)
-            or qualified not in {norm(alias) for alias in aliases}):
+            or (qualified not in registered and not short_heading)):
         raise ValueError('REVIEW_LISTING_QUALIFIED_PROJECT_IDENTITY')
     validate_listing_proof(doc, proof, evidence)
-    return 'EXISTING_ASX_QUALIFIED_ALIAS_WITH_SAME_PDF_LISTING_AND_OWNERSHIP'
+    return ('EXISTING_SHORT_ALIAS_AND_EXPLICIT_PROJECT_HEADING_WITH_FULL_LISTING_PROOF' if short_heading
+            else 'EXISTING_ASX_QUALIFIED_ALIAS_WITH_SAME_PDF_LISTING_AND_OWNERSHIP')
 
 
 def validate_listing_proof(doc, proof, evidence):
