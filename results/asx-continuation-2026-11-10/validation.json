@@ -5,11 +5,11 @@
   "series_baseline_filled_cells": 1237,
   "series_baseline_blank_cells": 1890,
   "current": {
-    "projects": 73,
+    "projects": 74,
     "columns": 53,
-    "filled_cells": 1488,
-    "total_cells": 3869,
-    "remaining_blank_cells": 2381,
+    "filled_cells": 1500,
+    "total_cells": 3922,
+    "remaining_blank_cells": 2422,
     "scientific_columns": [
       "礦石蘊藏量_Mt",
       "TREO品位_pct",
@@ -38,17 +38,17 @@
       "Y2O3_氧化釔_kt"
     ],
     "scientific_filled_cells": 372,
-    "scientific_total_cells": 1825,
+    "scientific_total_cells": 1850,
     "output_hashes": {
-      "專案總表.csv": "cc749b04c9277eaecb3a75f2124738b37edc813d4abf1615b35f139878fbf8c9",
-      "field_provenance.csv": "19f3eb31abbf7fcf8c7f98270a881f71dfc36c93fa50e848037b270554b54b53",
-      "missing_fields.csv": "2ef4b4e707051d1b6476e46790a89833c2406edfd28f400adf2ce0cc42936b99",
-      "census_inventory.csv": "56a439ef512d9ce397629294532ead494af8656ed7d015f9be4be549b11acf81"
+      "專案總表.csv": "e646ea17498f1055f480c660b15fbffb0789e3f3f07ec9384e39f43ea7138df0",
+      "field_provenance.csv": "78165b755a0ab2168179723b31e4a30b88638811c48cf0bbc3e80daa069ea015",
+      "missing_fields.csv": "aef617171f0abd7dda2e62dade1aeb168edf5fdd89f1a2c22fdb822aa6e3017a",
+      "census_inventory.csv": "88056f25752a6ee1a6367d7412a3f8775e0de207f49b8812d30397fe03fcfa13"
     },
     "provenance_complete": true,
     "missing_diagnostics_complete": true
   },
-  "latest_cycle": "continuation-14",
+  "latest_cycle": "continuation-15",
   "stopping_rule": {
     "policy": "ZERO_NEW_VERIFIED_CELLS",
     "threshold": 0,
@@ -69,7 +69,7 @@
     "all_four_csv_hashes_identical": true
   },
   "regression": {
-    "report_sha256": "9ee53e8b42ecbd12561353edf32f4cf38d45b38eb0232a84ae4f2c137c641509",
+    "report_sha256": "815b7a1883a94b6ab829ecee2d5ac4e1f02ec4195856fb0b1160c03c683d4109",
     "tests_including_subtests": 525,
     "failures": 0,
     "errors": 0,
@@ -77,23 +77,24 @@
   },
   "unresolved_acquisition_actions": [
     {
-      "url": "https://www.industry.gov.au/sites/default/files/2025-12/resources-and-energy-major-projects-2025.pdf",
-      "status": "TIMEOUT",
+      "document": "Industry major projects2025 report",
+      "failed_urls": [
+        "https://www.industry.gov.au/publications/resources-and-energy-major-projects-2025",
+        "https://www.industry.gov.au/sites/default/files/2025-12/resources-and-energy-major-projects-2025.pdf"
+      ],
+      "statuses": [
+        "TIMEOUT"
+      ],
       "interpretation": "NOT_ZERO_YIELD_OR_ABSENCE"
     },
     {
-      "url": "https://resourcingtheterritory.nt.gov.au/media/docs/commodity-factsheets/REE_Oct2025.pdf",
-      "status": "HTTP_403_RESTRICTED",
-      "interpretation": "NOT_ZERO_YIELD_OR_ABSENCE"
-    },
-    {
-      "url": "https://resourcingtheterritory.nt.gov.au/media/docs/rtt-reports/Critical-Minerals-and-Gold-in-the-Northern-Territory-2026.pdf",
-      "status": "HTTP_403_RESTRICTED",
-      "interpretation": "NOT_ZERO_YIELD_OR_ABSENCE"
-    },
-    {
-      "url": "https://staff-web.automicgroup.com.au/er/public/api/documents/BAK",
-      "status": "IncompleteRead",
+      "document": "NT October2025 REE factsheet",
+      "failed_urls": [
+        "https://resourcingtheterritory.nt.gov.au/media/docs/commodity-factsheets/REE_Oct2025.pdf"
+      ],
+      "statuses": [
+        "HTTP_403_RESTRICTED"
+      ],
       "interpretation": "NOT_ZERO_YIELD_OR_ABSENCE"
     }
   ],
@@ -192,12 +193,13 @@
       "礦床型態": 7
     },
     "baseline_csv_sha256": "73bbaf0e615b5d30505bead52e368c2910f9d97aff7a8e68799a93f8bd44d809",
-    "updated_csv_sha256": "cc749b04c9277eaecb3a75f2124738b37edc813d4abf1615b35f139878fbf8c9",
+    "updated_csv_sha256": "e646ea17498f1055f480c660b15fbffb0789e3f3f07ec9384e39f43ea7138df0",
     "comparison_scope": "FIXED_BASELINE_COHORT;NEW_PROJECT_CELLS_REPORTED_SEPARATELY",
-    "expanded_rows": 73,
+    "expanded_rows": 74,
     "added_project_ids": [
       "AU-0832169526bb5ec07626",
       "AU-1103c5aa8bb63077ac61",
+      "AU-203b4d90e5c23a323610",
       "AU-2af694147ae21c393820",
       "AU-557f0c9ad81bf84bbb6d",
       "AU-5ea2535a2de9a1a3327e",
@@ -215,10 +217,10 @@
       "AU-ee34781b030807146e64",
       "AU-f81823bd8ba271840345"
     ],
-    "added_project_filled_cells": 212,
-    "added_project_blank_cells": 742,
-    "expanded_remaining_blank_cells": 2381,
-    "expanded_filled_cells": 1488
+    "added_project_filled_cells": 224,
+    "added_project_blank_cells": 783,
+    "expanded_remaining_blank_cells": 2422,
+    "expanded_filled_cells": 1500
   },
   "code_fingerprint": {
     "src/au_ree_v2/__init__.py": "10fca67b83d726c143d12481bd749dcd714ae7e369b68b372cc738fe0e1a1011",
@@ -261,7 +263,7 @@
     "tools/audit_project_discovery.py": "264f5205f929d59844e4bf6efa73b4f6502d992dd0b37993c83f9ace4e0c1987",
     "tools/audit_summary_iteration.py": "4e9b41e36d083a8259f4d33f9953d1b9e641205dd7cc16c3030c5c8ebbcb2f85",
     "tools/benchmark_pipeline.py": "40709fcae0dae9741b91ccf9646abe39376da3694b38b7f1ef1509d5360fc8cb",
-    "tools/capture_research_sources.py": "7e76471f077e34f5d292620a9db587095c9f46f256649a456b4827f59c9629fe",
+    "tools/capture_research_sources.py": "a2ce9e30af1851733105b6114a90662a8af58ffa4c698968e46ce8bcea4da3cd",
     "tools/capture_wamex_appendix.py": "30aff1647d2344e9c5915106489a55d5d5d290627b6f669fd3f5f1bf31d697bf",
     "tools/check_phase11.py": "3f2c397fac9267443fc4cff7550425583a17addd6130c324fcbc3ca49ba7f837",
     "tools/check_phase15.py": "8cc244b1d1f211a9092b7cb700d8520298bf67fbf8c47b1697481aa540a47e75",
@@ -295,18 +297,18 @@
     "tools/review_external_project_names.py": "cd2aa95a7377c3ff21ef00a12c562cfd5b967a1ec40cf6cfe98907dac9063644",
     "tools/screen_external_project_names.py": "41adf0c578c8025f2a6f6e26bb487d9567d0d171b87f4a62c6d721ae49a1a462",
     "tools/validate_asx_candidates.py": "10258491fd14b1ea134c10f4efd4a307720cdb8c0b68aafc7fdfc1f7add6f729",
-    "config/asx_discovery_reviews.json": "943f94d518a2c39cef84989d3373bdecae4c487012a32e2d9ecbe909afff10c9",
+    "config/asx_discovery_reviews.json": "2dd7cb45981acba32bbf0eaefec9063d3360979827681133cac105747c2af6d2",
     "config/asx_external_name_reviews.json": "b72c947360e69c49bf3ffafccadab220a5ac70acafe3a6dad3886e402cf1f06c",
     "config/asx_iteration_sources.json": "5cc38aba0761d5bf9c061c7f95ecb43bca871ec305a49643021c7dea20c6e7fc",
     "config/asx_probe_cases.json": "cc72f4485bf76efe876cfac6b7732e2c354206763f06d5bc40cb52a5180a35fb",
-    "config/asx_project_identity_reviews.json": "403942a553aff89f96cdb4c76d2c407433ef9e886cf6140b2d7257e630ae2433",
+    "config/asx_project_identity_reviews.json": "d7838bf99396c26648b1bc30eba7a7d39beae57596e136344d9b0810dea3d5a4",
     "config/asx_round2_selected_urls.json": "ed1aa05838f60ed456992443eea1d8d18c4493ddf76fe92c6dac92a1e65d273e",
     "config/asx_round3_gap_research.json": "ab7d6a1a2e24dfa6c79e87e2fae1457de961facff6b8f0bd5636cc6d74b30046",
     "config/asx_round3_selected_urls.json": "a2a99088d662a396021d5ebb467d03aa332e8d34f01b499d589314a5ea0575f0",
     "config/asx_round4_research_urls.json": "ab1bb88b66765d2cc733ed2d4508386abbcf05e70192f76249fd098207620e9d",
     "config/asx_round5_research_urls.json": "4e4bfa517f93ebde8d44a2b2aee7618cf29820ec586183bada7a663338b74721",
     "config/asx_round6_research_urls.json": "7e07fd8cb83d9eab04aec1b7a877ec0625772daf675220bc4af696555a615d9f",
-    "config/asx_source_reviews.json": "4e87bc36aa4b596ab2e8b4f4a9249ab5f3c735c22b00165ab03e2ab2ad1d9153",
+    "config/asx_source_reviews.json": "41c76db09a77f34063a831e1c2326e97c44d901a9e2484d2a65f9499291712a3",
     "config/discovery.json": "67c6d106883ae7daa69e91758c53d02ceb623dfa24378aed1602aef8878e181c",
     "config/eligibility_compatibility.json": "c148daacc46e525901e8655721256294c81213fadc352fa896de79a446c33115",
     "config/evidence_policy.json": "c1b7b03b14395e196a8ef817bc2e10110381ba1c74acc2aacca2156f93f9b0d9",
@@ -315,27 +317,28 @@
     "config/sources.json": "99319c889ce90704ffbfb145e1bb608d757823598b0158b81e1b166f0cbd95d7"
   },
   "artifact_hashes": {
-    "acquisition_statistics.json": "b46d03dc53baf8bdbb2e9a9d20ce66ab5abdf72132649298495d93bfe9523686",
+    "acquisition_statistics.json": "b5b4b7a34b1e051cb0f2fe72884e8db63004fb584d9af6ab25d3c5a51f1f5b9f",
     "available_original_review.json": "308b8ca2a2863f70a2736c52b142164a5f5eed1d41deab698d999d632512b02b",
     "browser_fallback.json": "abaf5c37bb25ad659146c434d162093b177b18d85162de058c9aea28e7fa0f83",
-    "cohort_coverage.csv": "7fe9d61937629a8dfa447a34c5970f9dee5959b3796d73a013e225249e5b4079",
-    "column_gap_review.csv": "b046f742e877413cbd160f0eab2cb25597053d2fcb0038f7380ececce4a2e774",
-    "column_gap_review.json": "c24405e38e0985eb42908ca395bb4722155484c857b2ddb327fc1f253df55ee0",
-    "cycle_summary.csv": "481a7e357d457d5bf454342949793c3d66d363a675e2c5a1da53ca9d667aa1f7",
-    "external_name_review.json": "318affb6650375effdd0d64c176526997dbd1c39c051568dbc7c35f5120fca1e",
+    "cohort_coverage.csv": "0c67267a3a92ce6b70f23e27d733878060f1e6c0164ba4f150a864ec0703828c",
+    "column_gap_review.csv": "4c4faafccdcae9d4551c0b7f0ec63665ec902046783a274a1557ca7a466bd4fc",
+    "column_gap_review.json": "6c76262ba749ad7f56b4e787575ce23f9addd0b1947ab289f3d48d1c9c04e4eb",
+    "cycle_summary.csv": "85145eec903bb6c9fc3b84ebe42a63cb7e9abb37ec4839bbb6041ede4c7e16ff",
+    "external_name_review.json": "50980f58633908e4211b33382303e9f9f86dc3da0c8ff086e42eaefe8522920e",
     "external_name_reviews.csv": "32a3f67572defbd1f562e29e82c15a7a1070530b3f5a5c9a88b68bd61843802b",
     "field_changes.csv": "91f3e570415f42cbbf9855aabadd022aa1a5bae62ce62ae4233dff9d27b022b1",
-    "field_increment.json": "6a3c1a1a297e648a16968c796d84c3e4fd0036667a0f4b213e1dd02f9c3124d3",
+    "field_increment.json": "853c994727d807c0675c337ac7bd72b6859e5d6ce0843ff61de7fd0f40202cda",
     "government_original_review.csv": "f62dd27b060578e442c122bfcd3e70e439d4fb4f507cc5099919dca00b7180be",
+    "government_repository_review.json": "a8d24caca3a745d640e54adab5544c647e9d1ae516a5aadb9bca781c9b82fac2",
     "original55_field_changes.csv": "7b2b2aa674de872a47e29ce99364ddd505607cdada6156d95662a0adac9001f6",
-    "original55_field_increment.json": "44778733622bb808c9d49e76cc6beb058e22cfe7b8d7c91475c3b1769a151c7a",
-    "project_gap_assessment.csv": "9c83e402a9f9395b7e0be1e0591f9194bd7f7e544037eda64a5c49b90dfd4d63",
+    "original55_field_increment.json": "b64a54439272a93ed6c823fc7ecafd557e772006856b938a4a74fdd969db7611",
+    "project_gap_assessment.csv": "9bdc4db9d8e4d272de14a3c5ec07dcd5a3e0545ef9f9aec4c66d934f64eb0c14",
     "publication_correction.json": "69850587e88a48f08d9d455aff9a0cfcca2b762953d422a641d5a6fa20eef6bf",
-    "README.md": "48539c18d6b6b3919be8262d586104d04dc1e2afa83c5f81ad086670fd1bf3a5",
-    "remaining_gap_reasons.csv": "a077da4165c62e7e01db5bb648b1c94e01150fb04393bdcc654dbc5428eb3f9d",
+    "README.md": "8ab37c8722626ed2ee020eff724ccc3dc53067d964021d3b5b5dfab0fe856b4d",
+    "remaining_gap_reasons.csv": "f790e4263c9129e0f411232c1cbeba881eaef3430d650659e3603c8b28a6b88d",
     "reused_source.csv": "f0805486f044494769ed4ae7b38f30cd95dc7a168e698af6f59628c4f3607ce7",
-    "search_receipts.json": "98cf13df1a2ffdd63b26b7005b0b711978f2684968cf3f5c308632510e2c6712",
-    "source_acquisition.csv": "601b9284b66256c8e3cd1f41e717383965d129019ba9adf7c1a248b3ada9c9c0",
+    "search_receipts.json": "cc906258f2e61ca49dd86ec68cdbf4d165e89695067b1a1fa22e866f1ba5ca28",
+    "source_acquisition.csv": "4d0af1782a5f23fb1b423a3f5477f9d87fef940c35a18039dd6de113cd646e60",
     "cycle-1/audit.json": "506af4bea066d43a4f3c3cc194a4a7def8fd2e7cd38c20b142e946e1fe87f874",
     "cycle-1/cycle_review.json": "0fee2b4c757999a19f562be42aa87953e3fb43845c5e26c8c7fc330c90334861",
     "cycle-1/README.md": "4a4ba3276bd698cd0abaee8028627a809bf86fbc44b70f09e3f3a05dfed5a83a",
@@ -359,7 +362,11 @@
     "cycle-14/audit.json": "eecb179ca6a31f195d23a38c6bab26dc1d4b956a7bae573f56cb9feddd7de263",
     "cycle-14/cycle_review.json": "8e972dd1a6408e7b3879dc76b008c777829132fe4ddac52138053449000408e8",
     "cycle-14/README.md": "4a4ba3276bd698cd0abaee8028627a809bf86fbc44b70f09e3f3a05dfed5a83a",
-    "cycle-14/validation.json": "d9ca5b19d82d14ef55fa3f4e0a9f32d5f780ade278c393e4028eaecaef67e79e",
+    "cycle-14/validation.json": "709aac19837c211603fa326c93ed6078ae675a12d46d5009b779ad109036ca7f",
+    "cycle-15/audit.json": "0610fa54ea21a3db45b85b52c1d093af0114b8f219d7b3cf447e798fdb4f4212",
+    "cycle-15/cycle_review.json": "462b7cca31dd68ee3b9c58b017fe060bde89c8b537b262884d40ec2310090d3a",
+    "cycle-15/README.md": "4a4ba3276bd698cd0abaee8028627a809bf86fbc44b70f09e3f3a05dfed5a83a",
+    "cycle-15/validation.json": "2c35c6ae8385dd706f755caca43737b7615aeacc58df650af746ac5e74bcdae3",
     "cycle-2/audit.json": "aba10f8d7c53b534686f9882dcb8fe00b80e3b5de6e60e1c542d976c534a5213",
     "cycle-2/cycle_review.json": "88a6aee9461dc12ec4cf1d5158e7ea3734c3a0d0e0c740ae88e49a3bbc0b35fa",
     "cycle-2/README.md": "4a4ba3276bd698cd0abaee8028627a809bf86fbc44b70f09e3f3a05dfed5a83a",
@@ -394,14 +401,14 @@
     "cycle-9/validation.json": "543a2c678899c5f08b2433ab78e9ceae798772123ee3713eaa0ab16117dd4a3e"
   },
   "current_projection_hashes": {
-    "audit.json": "eecb179ca6a31f195d23a38c6bab26dc1d4b956a7bae573f56cb9feddd7de263",
-    "census_inventory.csv": "56a439ef512d9ce397629294532ead494af8656ed7d015f9be4be549b11acf81",
-    "field_provenance.csv": "19f3eb31abbf7fcf8c7f98270a881f71dfc36c93fa50e848037b270554b54b53",
-    "missing_fields.csv": "2ef4b4e707051d1b6476e46790a89833c2406edfd28f400adf2ce0cc42936b99",
+    "audit.json": "0610fa54ea21a3db45b85b52c1d093af0114b8f219d7b3cf447e798fdb4f4212",
+    "census_inventory.csv": "88056f25752a6ee1a6367d7412a3f8775e0de207f49b8812d30397fe03fcfa13",
+    "field_provenance.csv": "78165b755a0ab2168179723b31e4a30b88638811c48cf0bbc3e80daa069ea015",
+    "missing_fields.csv": "aef617171f0abd7dda2e62dade1aeb168edf5fdd89f1a2c22fdb822aa6e3017a",
     "REVIEW.md": "82ac311aaea2f3660ee976000c88b2cc1487276e8600d1969c98594ed33e6da3",
     "source_consistency.csv": "09922af3f905e79f23f58c3e5c0fd84515a01dcf6bc6984660b86c0532fe41ba",
-    "summary.json": "75b75a240edec365f3b35b673a1775dd70b604d5dd346888ee6e2aa58c1f2b6a",
-    "validation.json": "002a28e0e6eb1c9407399f3e8f871f0ee092dc0cea923020babe463445615040",
-    "專案總表.csv": "cc749b04c9277eaecb3a75f2124738b37edc813d4abf1615b35f139878fbf8c9"
+    "summary.json": "3dacf9e774e7d9a8ba6980c99e35f9e08201cee2f3a89312c886d6db9f998dd5",
+    "validation.json": "5c3aacfca61039fe802b289278d0bec5e5ed7bfffb9a30b46c956a39f912c22b",
+    "專案總表.csv": "e646ea17498f1055f480c660b15fbffb0789e3f3f07ec9384e39f43ea7138df0"
   }
 }

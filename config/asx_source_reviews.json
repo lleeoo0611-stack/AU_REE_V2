@@ -33916,6 +33916,72 @@
       "effective_date_role": "DATED_ISSUER_METADATA",
       "date_precision": "DAY",
       "scope": "Literal dated metadata with native project region and issuer/ownership proofs. Historical issuer/status only, not current tenure. Potential/regional/adjacent interpretations are not upgraded to confirmed mineralisation, MRE or annual output. Scientific selection and quantities remain unchanged."
+    },
+    {
+      "review_id": "continuation15_harts_range_stage",
+      "statement_id": "continuation15_harts_range_stage",
+      "project_id": "AU-203b4d90e5c23a323610",
+      "source_key": "nfm_hartsrange20250724",
+      "asset_set": "continuation15",
+      "path": "data/snapshots/e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226.pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20250724/pdf/06m2pqx9qtdgvb.pdf",
+      "source_sha256": "e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226",
+      "publication_date": "2025-07-24",
+      "effective_date": "2025-07-24",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "24 JULY 2025"
+        ]
+      },
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "24 JULY 2025"
+        ],
+        "header_title": "ASX RELEASE"
+      },
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Harts Range Project"
+        ]
+      },
+      "scope": "Historical Harts Range REE-Nb exploration project in Northern Territory at24July2025. Old Trafford, Cusp, Bobs, Paddington, Westminster and Bank are prospects within the project, not six additional projects. Rock-chip assays, sample coordinates and proposed RC work are not project MRE, representative coordinates, uniform deposit model or annual oxide output. Current title and independent spatial extent are not certified.",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發階段",
+          "value": "currently advancing regulatory approvals（來源揭露：2025-07-24）",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range",
+              "currently advancing regulatory approvals"
+            ]
+          },
+          "description_binding": {
+            "page": 1,
+            "project_marker": "Harts Range",
+            "project_bbox": [
+              49.460001373291014,
+              123.30400695800782,
+              173.83602294921874,
+              152.8080078125
+            ],
+            "value_bbox": [
+              50.539999389648436,
+              718.0334228515625,
+              548.8538452148438,
+              747.06923828125
+            ],
+            "literal_value": "currently advancing regulatory approvals",
+            "statement": "the company remains committed to unlocking the full mineral potential at harts range and is currently advancing regulatory approvals and reviewing quotes from drilling contractors to fast-track our maiden"
+          }
+        }
+      ]
     }
   ]
 }

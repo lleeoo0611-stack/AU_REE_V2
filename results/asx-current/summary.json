@@ -1,30 +1,30 @@
 {
   "version": "census-project-summary-v3-asx-identity",
   "cutoff": "2026-11-05",
-  "rows": 73,
+  "rows": 74,
   "columns": 53,
-  "unique_project_ids": 73,
+  "unique_project_ids": 74,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "claims_sha256": "11bfc4842e4b1d391ff220d39d0d17ad000a645ca6ed19dad11294b3408940f2",
   "snapshot_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
   "configuration_sha256": "92774d210b9d5b55a3b7ced161381be1cb52a5a3959ea4e4a284bf554fb5ed1a",
   "columns_sha256": "f6389bc0ace6cccac5ef34ae0ffd651403e4dbec5fd9d9ee7602f22404ed5223",
   "filled_counts": {
-    "專案ID": 73,
-    "開發商": 72,
+    "專案ID": 74,
+    "開發商": 73,
     "未上市公司": 32,
-    "專案名稱": 73,
-    "所在地_中文": 73,
-    "所在地_英文": 73,
-    "國家": 73,
-    "州省地區": 73,
+    "專案名稱": 74,
+    "所在地_中文": 74,
+    "所在地_英文": 74,
+    "國家": 74,
+    "州省地區": 74,
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
     "礦床型態": 55,
     "開發階段代碼": 0,
     "開發階段類別": 0,
-    "開發階段": 35,
+    "開發階段": 36,
     "礦石蘊藏量_Mt": 33,
     "TREO品位_pct": 31,
     "總TREO蘊藏量_kt": 31,
@@ -37,9 +37,9 @@
     "預估年產重稀土_t_per_year": 0,
     "產品/產出": 11,
     "有TREO資源估計": 31,
-    "有來源文件": 73,
-    "資料來源名稱": 73,
-    "資料來源URL": 73,
+    "有來源文件": 74,
+    "資料來源名稱": 74,
+    "資料來源URL": 74,
     "已公布元素數_共15項": 19,
     "已公布元素總和_kt": 19,
     "元素總和/TREO": 17,
@@ -62,9 +62,9 @@
     "Yb2O3_氧化鐿_kt": 11,
     "Lu2O3_氧化鎦_kt": 12,
     "Y2O3_氧化釔_kt": 13,
-    "ASX代碼": 68
+    "ASX代碼": 69
   },
-  "verified_source_hashes": 113,
+  "verified_source_hashes": 114,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -74,7 +74,7 @@
     "PROJECT": 33,
     "SITE": 766,
     "DEPOSIT": 301,
-    "REVIEWED_PROJECT_EXTENSION": 40,
+    "REVIEWED_PROJECT_EXTENSION": 41,
     "DEPOSIT_SCOPE": 27,
     "PROSPECT": 191,
     "PROJECT_PROGRAM": 1,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "cc749b04c9277eaecb3a75f2124738b37edc813d4abf1615b35f139878fbf8c9",
-    "field_provenance.csv": "19f3eb31abbf7fcf8c7f98270a881f71dfc36c93fa50e848037b270554b54b53",
-    "missing_fields.csv": "2ef4b4e707051d1b6476e46790a89833c2406edfd28f400adf2ce0cc42936b99",
-    "census_inventory.csv": "56a439ef512d9ce397629294532ead494af8656ed7d015f9be4be549b11acf81"
+    "專案總表.csv": "e646ea17498f1055f480c660b15fbffb0789e3f3f07ec9384e39f43ea7138df0",
+    "field_provenance.csv": "78165b755a0ab2168179723b31e4a30b88638811c48cf0bbc3e80daa069ea015",
+    "missing_fields.csv": "aef617171f0abd7dda2e62dade1aeb168edf5fdd89f1a2c22fdb822aa6e3017a",
+    "census_inventory.csv": "88056f25752a6ee1a6367d7412a3f8775e0de207f49b8812d30397fe03fcfa13"
   },
-  "review_ledger_sha256": "4e87bc36aa4b596ab2e8b4f4a9249ab5f3c735c22b00165ab03e2ab2ad1d9153",
+  "review_ledger_sha256": "41c76db09a77f34063a831e1c2326e97c44d901a9e2484d2a65f9499291712a3",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -2904,10 +2904,29 @@
       "effective_date_role": "DATED_ISSUER_METADATA",
       "date_precision": "DAY",
       "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation15_harts_range_stage",
+      "project_id": "AU-203b4d90e5c23a323610",
+      "source_sha256": "e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226",
+      "status": "VALIDATED",
+      "scope": "Historical Harts Range REE-Nb exploration project in Northern Territory at24July2025. Old Trafford, Cusp, Bobs, Paddington, Westminster and Bank are prospects within the project, not six additional projects. Rock-chip assays, sample coordinates and proposed RC work are not project MRE, representative coordinates, uniform deposit model or annual oxide output. Current title and independent spatial extent are not certified.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2025-07-24",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "943f94d518a2c39cef84989d3373bdecae4c487012a32e2d9ecbe909afff10c9",
+  "discovery_ledger_sha256": "2dd7cb45981acba32bbf0eaefec9063d3360979827681133cac105747c2af6d2",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -14128,20 +14147,79 @@
         }
       },
       "deferred_fields": []
+    },
+    {
+      "candidate_key": "harts-range-nfm",
+      "name": "Harts Range REE–Nb Exploration Project — New Frontier",
+      "decision": "ADMIT_PROJECT",
+      "reason": "GOVERNMENT_TECHNICAL_LEAD_FOLLOWED_BY_DATED_ASX_ORIGINAL_IDENTITY;NO_SAMPLE_TO_RESOURCE_TRANSFER",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "continuation15",
+          "path": "data/snapshots/e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226.pdf",
+          "sha256": "e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226",
+          "url": "https://announcements.asx.com.au/asxpdf/20250724/pdf/06m2pqx9qtdgvb.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Harts Range Project",
+                "Northern Territory, Australia",
+                "New Frontier Minerals Limited"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-203b4d90e5c23a323610",
+      "scope": "Historical Harts Range REE-Nb exploration project in Northern Territory at24July2025. Old Trafford, Cusp, Bobs, Paddington, Westminster and Bank are prospects within the project, not six additional projects. Rock-chip assays, sample coordinates and proposed RC work are not project MRE, representative coordinates, uniform deposit model or annual oxide output. Current title and independent spatial extent are not certified.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "nfm_hartsrange20250724",
+        "publication_date": "2025-07-24",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "24 JULY 2025"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Harts Range Project",
+            "Northern Territory, Australia"
+          ]
+        },
+        "name_marker": "Harts Range",
+        "state": "NT",
+        "state_marker": "Northern Territory",
+        "developer": {
+          "value": "New Frontier Minerals Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Frontier Minerals Limited"
+            ]
+          }
+        }
+      },
+      "deferred_fields": []
     }
   ],
   "original_canonical_projects": 33,
-  "reviewed_project_extensions": 40,
+  "reviewed_project_extensions": 41,
   "base_contract_columns": 52,
   "base_projection_hashes": {
-    "census_inventory.csv": "56a439ef512d9ce397629294532ead494af8656ed7d015f9be4be549b11acf81",
-    "field_provenance.csv": "aeec679fb97001f9da07950c08379abfdaf99a1fbea3abcc047b4de5d4e0146d",
-    "missing_fields.csv": "f36b2fb0784334fe9e88878da4a4a05aeae7d97b249e020c2ec11e24dd23d56d",
-    "專案總表.csv": "5af8aafc54907e8e2366898b1cb8d3f15ce896b763bed70f04708ee64fed89e0"
+    "census_inventory.csv": "88056f25752a6ee1a6367d7412a3f8775e0de207f49b8812d30397fe03fcfa13",
+    "field_provenance.csv": "1e287ef5ec41534e7f2c702a64d722891a1255a7c3937c093ed3e0c1bbc54cd9",
+    "missing_fields.csv": "856eb218bc1c8f805f90aa7f5a08b6b6b30193d1b4a0224f6d991b3bad5e5c82",
+    "專案總表.csv": "76062ad66b814f2b35bdbe7e0caf22fbd1813bf96ae7dd257ad2f1011730e584"
   },
-  "identity_ledger_sha256": "403942a553aff89f96cdb4c76d2c407433ef9e886cf6140b2d7257e630ae2433",
+  "identity_ledger_sha256": "d7838bf99396c26648b1bc30eba7a7d39beae57596e136344d9b0810dea3d5a4",
   "identity_merges": [],
-  "validated_asx_codes": 68,
+  "validated_asx_codes": 69,
   "identity_sources": {
     "AU-12cc237ae66c7a6508ca": {
       "asset_set": "round3",
@@ -14629,6 +14707,12 @@
       "path": "data/snapshots/72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7.pdf",
       "sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02675888"
+    },
+    "AU-203b4d90e5c23a323610": {
+      "asset_set": "continuation15",
+      "path": "data/snapshots/e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226.pdf",
+      "sha256": "e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226",
+      "url": "https://announcements.asx.com.au/asxpdf/20250724/pdf/06m2pqx9qtdgvb.pdf"
     }
   },
   "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS"

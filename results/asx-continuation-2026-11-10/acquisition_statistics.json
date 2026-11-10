@@ -1,27 +1,34 @@
 {
-  "version": "scoped-acquisition-statistics-v1",
-  "attempts": 26,
-  "successful_captures": 21,
-  "attempt_success_rate_percent": 80.76923076923077,
-  "successful_pdf_attempts": 19,
-  "successful_html_attempts": 2,
-  "unique_requested_urls_including_query": 25,
-  "unavailable_attempts": 5,
+  "version": "scoped-acquisition-statistics-v2",
+  "attempts": 30,
+  "successful_captures": 24,
+  "attempt_success_rate_percent": 80.0,
+  "successful_pdf_attempts": 21,
+  "successful_html_attempts": 3,
+  "unique_requested_urls_including_query": 29,
+  "unavailable_attempts": 6,
   "failure_attempts_by_reason": {
-    "TIMEOUT": 2,
+    "TIMEOUT": 3,
     "HTTP_403_RESTRICTED": 2,
     "IncompleteRead": 1
   },
   "asx_public_link_sample": {
-    "attempts": 9,
-    "successful_pdf_attempts": 9,
+    "attempts": 10,
+    "successful_pdf_attempts": 10,
     "success_rate_percent": 100.0,
-    "limitation": "Known public original links in this series, not ASX-wide anti-bot success or a random sample."
+    "limitation": "Known public original links selected in this series, not an ASX-wide or random anti-bot test."
   },
-  "required_government_unavailable_urls": 3,
-  "optional_prospectus_mirror_unavailable_urls": 1,
-  "original_prospectus_already_verified": true,
+  "required_logical_documents_still_unavailable": 2,
+  "required_logical_documents": [
+    "NT October2025 REE factsheet",
+    "Industry major projects2025 report"
+  ],
+  "official_revised_2026_nt_book_available_from_gemis": true,
+  "old_nt_book_url_still_failed": true,
+  "old_and_new_nt_pdf_byte_identity": "UNKNOWN_OLD_URL_DID_NOT_RETURN_A_PDF",
+  "optional_prospectus_mirror_failed_but_original_already_verified": true,
   "browser_publisher_requests": 0,
+  "official_public_api_link_discovery_requests_separate": 5,
   "successful_pdf_recaptures_of_existing_branch_originals": 3,
-  "interpretation": "Attempts and distinct URLs differ because Industry had one recorded retry. Failed requests remain unavailable; recaptured SHA-identical originals are not new documents or new values."
+  "interpretation": "Research originals and catalogues are counted here. Five public configuration/HAL link-discovery requests are recorded separately. Industry PDF retry and catalogue failure remain distinct attempts belonging to one logical report; unavailable does not imply no values."
 }

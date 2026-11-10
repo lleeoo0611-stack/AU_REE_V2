@@ -11373,6 +11373,67 @@
           }
         }
       }
+    },
+    {
+      "candidate_key": "harts-range-nfm",
+      "name": "Harts Range REE–Nb Exploration Project — New Frontier",
+      "aliases": [
+        "Harts Range",
+        "Harts Range Project"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "GOVERNMENT_TECHNICAL_LEAD_FOLLOWED_BY_DATED_ASX_ORIGINAL_IDENTITY;NO_SAMPLE_TO_RESOURCE_TRANSFER",
+      "country": "AU",
+      "scope": "Historical Harts Range REE-Nb exploration project in Northern Territory at24July2025. Old Trafford, Cusp, Bobs, Paddington, Westminster and Bank are prospects within the project, not six additional projects. Rock-chip assays, sample coordinates and proposed RC work are not project MRE, representative coordinates, uniform deposit model or annual oxide output. Current title and independent spatial extent are not certified.",
+      "sources": [
+        {
+          "asset_set": "continuation15",
+          "path": "data/snapshots/e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226.pdf",
+          "sha256": "e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226",
+          "url": "https://announcements.asx.com.au/asxpdf/20250724/pdf/06m2pqx9qtdgvb.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Harts Range Project",
+                "Northern Territory, Australia",
+                "New Frontier Minerals Limited"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "nfm_hartsrange20250724",
+        "publication_date": "2025-07-24",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "24 JULY 2025"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Harts Range Project",
+            "Northern Territory, Australia"
+          ]
+        },
+        "name_marker": "Harts Range",
+        "state": "NT",
+        "state_marker": "Northern Territory",
+        "developer": {
+          "value": "New Frontier Minerals Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Frontier Minerals Limited"
+            ]
+          }
+        }
+      }
     }
   ]
 }

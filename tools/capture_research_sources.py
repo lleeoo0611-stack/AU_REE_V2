@@ -1,5 +1,5 @@
 """Capture explicitly located public research sources with bounded, replayable receipts."""
-import argparse, hashlib, json
+import argparse, hashlib, json, re
 from pathlib import Path
 from urllib.parse import urlsplit
 from au_ree_v2.acquisition import request, failure_details
@@ -29,6 +29,15 @@ def capture(config, out):
             parts.port not in (None,443) or sensitive_reference(url)):
             raise ValueError('RESEARCH_PUBLIC_HTTPS_REQUIRED')
         row=dict(spec)
+        default_limit=40*1024*1024 if spec['kind']=='pdf' else 3*1024*1024
+        limit=spec.get('max_bytes',default_limit)
+        if (not isinstance(limit,int) or isinstance(limit,bool) or
+            not 0<limit<=(64*1024*1024 if spec['kind']=='pdf' else default_limit)):
+            raise ValueError('RESEARCH_INVALID_SIZE_LIMIT')
+        if is_asx_document(url) and limit!=default_limit:
+            raise ValueError('RESEARCH_ASX_SIZE_LIMIT_FIXED')
+        if spec.get('expected_md5') and not re.fullmatch(r'[0-9a-f]{32}',spec['expected_md5']):
+            raise ValueError('RESEARCH_INVALID_PUBLISHER_CHECKSUM')
         def archive(raw, resolved, suffix):
             sha=hashlib.sha256(raw).hexdigest();p=out/'data/snapshots'/(sha+suffix)
             if not p.exists():p.write_bytes(raw)
@@ -41,8 +50,13 @@ def capture(config, out):
             else:
                 hosts={parts.hostname,*spec.get('redirect_hosts',[])}
                 raw,headers=request(url,allowed_hosts=hosts,max_attempts=1,timeout=25,
-                    max_bytes=40*1024*1024 if spec['kind']=='pdf' else 3*1024*1024,min_interval=1)
+                    max_bytes=limit,min_interval=1)
                 resolved=headers.get('X-Resolved-URL',url)
+            if spec.get('expected_bytes') is not None and len(raw)!=spec['expected_bytes']:
+                raise ValueError('RESEARCH_PUBLISHER_LENGTH_MISMATCH')
+            if spec.get('expected_md5') and hashlib.md5(raw).hexdigest()!=spec['expected_md5']:
+                raise ValueError('RESEARCH_PUBLISHER_CHECKSUM_MISMATCH')
+            if spec.get('expected_md5'):row['publisher_checksum_verified']=True
             suffix='.pdf' if spec['kind']=='pdf' else '.html'
             sha=archive(raw,resolved,suffix)
             row.update(document_sha256=sha,path='data/snapshots/'+sha+suffix,resolved_url=resolved)
@@ -54,7 +68,6 @@ def capture(config, out):
                     if not any(p.get_text().strip() for p in d):raise ValueError('RESEARCH_NO_NATIVE_TEXT')
                 row['status']='PDF_ACQUIRED'
             else:
-                import re
                 if re.search(rb'request\s+rejected|access\s+denied|verify\s+you\s+are\s+human',raw,re.I):
                     raise ValueError('RESEARCH_HTTP200_DENIAL')
                 row['status']='HTML_CAPTURED'
