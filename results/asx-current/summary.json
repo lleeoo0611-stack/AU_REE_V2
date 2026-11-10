@@ -12,7 +12,7 @@
   "filled_counts": {
     "專案ID": 93,
     "開發商": 93,
-    "未上市公司": 84,
+    "未上市公司": 86,
     "專案名稱": 93,
     "所在地_中文": 93,
     "所在地_英文": 93,
@@ -64,7 +64,7 @@
     "Y2O3_氧化釔_kt": 17,
     "ASX代碼": 84
   },
-  "verified_source_hashes": 150,
+  "verified_source_hashes": 151,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "ebb7bad5c81be286914859a246ab0f25e6ccf52c1733850d7788645b391d8c64",
-    "field_provenance.csv": "d11268e0d40eb4e77c70ae0af122b5ce6c28111123d830561575d439618e899c",
-    "missing_fields.csv": "c7947d1fd48511af6f3006472096189f2851744bbadb18e665d24cf3dab27aeb",
+    "專案總表.csv": "fb8e80e732a7e3a7b2a8234409c4e7484a9e1be4183008d015f436446c853bd9",
+    "field_provenance.csv": "50cf0271fa970665feb4e57db8b547e7778e941c33d42ada7dc6ab9b5b2fe0ef",
+    "missing_fields.csv": "1d1dd8ea15e77608717c2f763bade7628a36708a3d7209eb63e82e36df0bf29c",
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1"
   },
-  "review_ledger_sha256": "4e86401caa6dfd6eda88fd43025b30e86301561f45b4ef3b1cc88bc6898023f1",
+  "review_ledger_sha256": "c112b9a5297c05ca8500c1cb8dd0a382373271cd5ca353fc6d2304f6cc5f9c63",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -4479,6 +4479,44 @@
       "forecast_parameters": 0,
       "effective_date": "2024-04-16",
       "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope14_issuer_AU-7c198d219aa1db3e291f",
+      "project_id": "AU-7c198d219aa1db3e291f",
+      "source_sha256": "c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4",
+      "status": "VALIDATED",
+      "scope": "Dated exact listed developer company property only. Native legal issuer, exchange and code plus captured publisher release archive and signed/authorised native report date. Final developer must match; no private subsidiary, JV, resource, scope extension, title or merger inference. LyonsCEO global0.99Mt summary does not replace selected12and13resource scope. GoldArc nativePDF differs in SHA from InvestorPA mirror, so all locators are checked independently.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-09-21",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope14_issuer_AU-d0ce731e1d8198ffaf58",
+      "project_id": "AU-d0ce731e1d8198ffaf58",
+      "source_sha256": "436db5f42cee6172bdb0efc023e997138c0c3eb8b979af60e2b60411b9cde095",
+      "status": "VALIDATED",
+      "scope": "Dated exact listed developer company property only. Native legal issuer, exchange and code plus captured publisher release archive and signed/authorised native report date. Final developer must match; no private subsidiary, JV, resource, scope extension, title or merger inference. LyonsCEO global0.99Mt summary does not replace selected12and13resource scope. GoldArc nativePDF differs in SHA from InvestorPA mirror, so all locators are checked independently.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-03-30",
+      "effective_date_role": "DATED_ISSUER_METADATA",
       "date_precision": "DAY",
       "effective_date_interval": null
     }
@@ -21812,11 +21850,11 @@
   "base_contract_columns": 52,
   "base_projection_hashes": {
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
-    "field_provenance.csv": "823cab87052c0224d8a8e385ff0870a50cfe48404e364c06a0f7317c798de979",
-    "missing_fields.csv": "1992645165ce1878af32a73e995dee7ef4aacc0ae17384ee14d8f132be17ec6b",
-    "專案總表.csv": "5c733f6289fa1a58758e40570341fcad3ec4f33ee613b9d7955f98e7d010d9cf"
+    "field_provenance.csv": "799b4eebf6874d6c4bfd6904b1d00d6d04c37f5f459d47be41644ae0e5ad6144",
+    "missing_fields.csv": "673d4af7d036e9edde965e5a8c61073959e90f179d6557b976d20b27e0ba8908",
+    "專案總表.csv": "fe7ac1b9216117c647d604aafe0b1af1395537849e0e49dab572f6fa3e693fec"
   },
-  "identity_ledger_sha256": "915c679016ddd2d373702e22982b336b4b64c0fe442ab7b237179d33b4462459",
+  "identity_ledger_sha256": "f00606887c84c624ff2898e97433fcae250b8dd3fc422f2b451315f5768b4514",
   "identity_merges": [],
   "validated_asx_codes": 84,
   "identity_sources": {
@@ -22290,10 +22328,10 @@
       "url": "https://announcements.asx.com.au/asxpdf/20230221/pdf/45lt2cdc8f40hv.pdf"
     },
     "AU-7c198d219aa1db3e291f": {
-      "asset_set": "continuation11",
-      "path": "data/snapshots/dd3653fe14f32c9b7ca83ea83ab42800a8c4308916271fe2e11be8ae90eb8950.pdf",
-      "sha256": "dd3653fe14f32c9b7ca83ea83ab42800a8c4308916271fe2e11be8ae90eb8950",
-      "url": "https://wcsecure.weblink.com.au/clients/fortunametals/headline.aspx?headlineid=61227362"
+      "asset_set": "fullscope14",
+      "path": "data/snapshots/c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4.pdf",
+      "sha256": "c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4",
+      "url": "https://wcsecure.weblink.com.au/clients/fortunametals/headline.aspx?headlineid=61344787"
     },
     "AU-5ea2535a2de9a1a3327e": {
       "asset_set": "round6",
