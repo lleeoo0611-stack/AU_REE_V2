@@ -81,3 +81,20 @@
 | 開發階段 | exploration and pre-development drilling program（來源揭露：2026-06-16） | 1 |
 | 開發階段 | planned and prepared for its Phase 1 drilling programme（來源揭露：2026-05-18） | 1 |
 | 開發階段 | ready for immediate drill testing（來源揭露：2023-07-25） | 1 |
+
+## 任務3：未知與結構性空白分開
+
+判斷條件及排除分母放在 `config/blank_classification.json`。`missing_fields.csv` 新增blank_class與blank_rule_id；原reason與補證欄保留。預設UNKNOWN，僅命中明確規則才改類別。每次export重算，分類不填資料格、不寫0，也不改field_provenance。
+
+NOT_APPLICABLE_STAGE僅適用設定中明列且有來源紀錄的歷史勘探原文，並同時沒有選定資源量、品位、TREO總量、資源估計標記、產品或任一年產預測。只有空白或無階段、模糊階段、已有資源或產品均不觸發。這是「在來源揭露階段的分析分母約定」，不是目前現況、永久不適用或證明沒有工程預測。當資料或規則改變必須重算。
+
+NO_COMPARATOR_SOURCE必須是指定HTML差值欄且原診斷為沒有獨立比對來源。PENDING_CODEBOOK為三分類欄等待核准／對照；仍計入調整後分母。UNKNOWN也全部計入。規則次序：PENDING_CODEBOOK、NO_COMPARATOR_SOURCE、NOT_APPLICABLE_STAGE，最後UNKNOWN。只排除空白中的NOT_APPLICABLE_STAGE與NO_COMPARATOR_SOURCE，填值分子不變。
+
+| 類別 | 空白格數 | 從調整分母排除 |
+|---|---:|---|
+| UNKNOWN | 2584 | 否 |
+| PENDING_CODEBOOK | 278 | 否 |
+| NO_COMPARATOR_SOURCE | 93 | 是 |
+| NOT_APPLICABLE_STAGE | 30（10列×3年產欄） | 是 |
+
+原覆蓋率1944/4929 = **39.44%**；排除123格後1944/4806 = **40.45%**。原表仍93×53、1944已填／2985空白，不把結構分類算成新增填值。完整計算保存在 `results/convergence-codebook/blank_coverage.json` 及當前summary.json；LATEST.md同時呈現兩個分母。來源、總表、inventory仍逐位元組一致。分類及codebook局部測試11項、6個子測試通過。

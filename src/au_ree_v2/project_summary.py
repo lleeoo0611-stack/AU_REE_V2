@@ -357,6 +357,9 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                 source_sha256=r['source_sha'],unit_of_analysis='EXPLICIT_SOURCE_REVIEWED_EXTENSION_NOT_CANONICAL_DB_MUTATION' if extension else 'EXISTING_CENSUS_ENTITY_NOT_AUTOMATIC_PROJECT_ADMISSION'))
     finally:db.close()
     if filehash(database)!=before:raise ValueError('READ_ONLY_DATABASE_CHANGED_DURING_EXPORT')
+    from .blank_classification import load_blank_rules,classify_blanks
+    blank_rules=load_blank_rules(Path(__file__).resolve().parents[2]/'config/blank_classification.json')
+    coverage=classify_blanks(rows,diagnostics,trace,blank_rules)
     out.mkdir(parents=True,exist_ok=True)
     def write(name,data,fields):
         with (out/name).open('w',encoding='utf-8-sig',newline='') as f:
@@ -365,7 +368,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
     write('field_provenance.csv',trace,['project_id','column','value','source_sha256','source_url','locator','method','scope','observation_ids']+
         (['effective_date','effective_date_role','date_precision','review_ids','acquired_through','publication_date','publication_date_role','document_issue_date',
           'publication_date_precision','publication_date_interval','source_kind','effective_date_interval','forecast_derivation','review_methods','resource_effective_date_unknown','public_release_date_unknown'] if review_ledger else []))
-    write('missing_fields.csv',diagnostics,['project_id','column','reason']+(['source_sha256','physical_page','review_id'] if review_ledger else []))
+    write('missing_fields.csv',diagnostics,['project_id','column','reason','blank_class','blank_rule_id']+(['source_sha256','physical_page','review_id'] if review_ledger else []))
     write('census_inventory.csv',inventory,['entity_id','kind','name','included_in_project_summary','source_sha256','unit_of_analysis'])
     result=dict(version='census-project-summary-v1',cutoff=cutoff,rows=len(rows),columns=len(columns),
         unique_project_ids=len({r['專案ID'] for r in rows}),database_sha256=before,claims_sha256=claims_sha,
@@ -378,6 +381,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
         output_hashes={p.name:filehash(p) for p in out.glob('*.csv')})
     if location_ledger:result['location_ledger_sha256']=locations['ledger_sha256']
     if codebook:result['classification_codebook']=dict(version=codebook['config']['version'],status=codebook['config']['status'],sha256=codebook['sha256'])
+    result['blank_coverage']=coverage
     if supplement:
         result.update(version='census-project-summary-v2-reviewed-asx',review_ledger_sha256=supplement['ledger_sha256'],
             acquired_through=supplement['acquired_through'],validated_reviews=supplement['receipts'],

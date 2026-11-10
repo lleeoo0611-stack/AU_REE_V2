@@ -96,7 +96,7 @@
   "output_hashes": {
     "專案總表.csv": "a23015c68f0c10cceec63bb30ffdb13cdc010fd1fda801df07a0726997015864",
     "field_provenance.csv": "8f8fc31b3d4c8776004ab6584b963968dd32194fab2efa86eb2094ae636c4251",
-    "missing_fields.csv": "c51d06a5abbe2d89b96b3255921a44ea8da8f6a16a1b9793c71e9894296c85c4",
+    "missing_fields.csv": "a3a5bab4f68e01fff932fd84c9e301dd0e5ed5482049ac91dfcf17cbcfd9b697",
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1"
   },
   "location_ledger_sha256": "b5a1c0a26f3f3ae832be13b3772f2a24f541e129ef28b87a378c229eb0e36414",
@@ -22714,5 +22714,32 @@
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02631363"
     }
   },
-  "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS"
+  "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS",
+  "blank_coverage": {
+    "total_cells": 4929,
+    "filled_cells": 1944,
+    "blank_cells": 2985,
+    "blank_class_counts": {
+      "NOT_APPLICABLE_STAGE": 30,
+      "NO_COMPARATOR_SOURCE": 93,
+      "PENDING_CODEBOOK": 278,
+      "UNKNOWN": 2584
+    },
+    "excluded_structural_blanks": 123,
+    "adjusted_denominator": 4806,
+    "raw_coverage": 0.3944004869141814,
+    "adjusted_coverage": 0.4044943820224719,
+    "excluded_classes": [
+      "NOT_APPLICABLE_STAGE",
+      "NO_COMPARATOR_SOURCE"
+    ],
+    "rules_version": "v1",
+    "rules_sha256": "da4d569f6f7655747b8ae090766982bc9d2b061ce92aa935b907775e1e678baa",
+    "limitation": "ADJUSTED_INFORMATION_COVERAGE_CONVENTION_NOT_CURRENT_STATUS_OR_PROOF_OF_ABSENCE"
+  },
+  "classification_codebook": {
+    "version": "v1",
+    "status": "DRAFT",
+    "sha256": "a1f174dae5378f7f7fe446e6979fd933c98b292e7b716f83b24ba1c9d70d7488"
+  }
 }

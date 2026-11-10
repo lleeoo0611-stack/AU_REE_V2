@@ -182,6 +182,10 @@ def extend_summary(baseline, out, ledger, assets):
         with (out/name).open('w',encoding='utf-8-sig',newline='') as f:
             w=csv.DictWriter(f,fields);w.writeheader();w.writerows(values)
     columns = columns+[ASX_COLUMN]
+    if 'blank_class' in missing_fields:
+        from .blank_classification import load_blank_rules,classify_blanks
+        rules=load_blank_rules(Path(__file__).resolve().parents[2]/'config/blank_classification.json')
+        summary['blank_coverage']=classify_blanks(rows,missing,trace,rules)
     write('專案總表.csv', rows, columns);write('field_provenance.csv',trace,trace_fields)
     write('missing_fields.csv',missing,missing_fields);write('census_inventory.csv',inventory,inventory_fields)
     summary.update(version='census-project-summary-v3-asx-identity', columns=len(columns), rows=len(rows), unique_project_ids=len(rows),

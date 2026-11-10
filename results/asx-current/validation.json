@@ -28,13 +28,20 @@
   "database_modified": false,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "artifact_hashes": {
-    "audit.json": "7e1841ee9df2a1746da02d40154003bda1b6d452c465788d0ef4a76d15f1b8f6",
+    "audit.json": "6f7dd4116987d5f6307bc746986e47cc637e3d57cd72ccc5e975116dec985583",
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
     "field_provenance.csv": "8f8fc31b3d4c8776004ab6584b963968dd32194fab2efa86eb2094ae636c4251",
-    "missing_fields.csv": "c51d06a5abbe2d89b96b3255921a44ea8da8f6a16a1b9793c71e9894296c85c4",
+    "missing_fields.csv": "a3a5bab4f68e01fff932fd84c9e301dd0e5ed5482049ac91dfcf17cbcfd9b697",
     "REVIEW.md": "29f58673e0dd0a702f7758048f67b9a50fae1123201acfc60a0c6c9fc65e593e",
     "source_consistency.csv": "09922af3f905e79f23f58c3e5c0fd84515a01dcf6bc6984660b86c0532fe41ba",
-    "summary.json": "c4d82742a113e2e0566f3f429b8be37589d81840a5b1ee6d9c97c244507ba3b4",
+    "summary.json": "ac7c0fcea15c876162fafb313d365042c0c235a503fd059ef0d481268111afa7",
     "專案總表.csv": "a23015c68f0c10cceec63bb30ffdb13cdc010fd1fda801df07a0726997015864"
+  },
+  "engineering_overlay": {
+    "only_blank_diagnostics_changed": true,
+    "no_new_data_round": true,
+    "blank_rules_sha256": "da4d569f6f7655747b8ae090766982bc9d2b061ce92aa935b907775e1e678baa",
+    "classification_codebook_status": "DRAFT",
+    "note": "Historical source_replay_commit/stopping_rule/tests refer to round20. Engineering validation recorded separately in results/convergence-codebook."
   }
 }

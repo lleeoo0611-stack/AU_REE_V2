@@ -33,11 +33,22 @@ def audit_summary(folder):
     for name,sha in summary['output_hashes'].items():
         if filehash(folder/name)!=sha:raise ValueError('ITERATION_OUTPUT_HASH_MISMATCH')
     scientific=[columns[i] for i in SCIENCE_INDEXES]
-    return dict(projects=len(rows),columns=len(columns),filled_cells=len(filled),total_cells=len(rows)*len(columns),
+    result = dict(projects=len(rows),columns=len(columns),filled_cells=len(filled),total_cells=len(rows)*len(columns),
                 remaining_blank_cells=len(blanks),scientific_columns=scientific,
                 scientific_filled_cells=sum(r[c]!='' for r in rows for c in scientific),
                 scientific_total_cells=len(rows)*len(scientific),output_hashes=summary['output_hashes'],
                 provenance_complete=True,missing_diagnostics_complete=True)
+    if summary.get('blank_coverage') is not None:
+        import copy
+        from .blank_classification import load_blank_rules,classify_blanks
+        rules=load_blank_rules(Path(__file__).resolve().parents[2]/'config/blank_classification.json')
+        checked=copy.deepcopy(missing)
+        coverage=classify_blanks(rows,checked,provenance,rules)
+        if coverage!=summary['blank_coverage'] or any(
+            (a.get('blank_class'),a.get('blank_rule_id'))!=(b['blank_class'],b['blank_rule_id']) for a,b in zip(missing,checked)):
+            raise ValueError('ITERATION_BLANK_CLASSIFICATION_MISMATCH')
+        result['blank_coverage']=coverage
+    return result
 
 
 def review_coverage_cycle(before, after, manifest):

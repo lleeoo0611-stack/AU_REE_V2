@@ -1,0 +1,46 @@
+{
+  "version": "v1",
+  "default_class": "UNKNOWN",
+  "excluded_from_adjusted_denominator": ["NOT_APPLICABLE_STAGE", "NO_COMPARATOR_SOURCE"],
+  "coverage_definition": "filled / (all cells - blank cells in excluded classes). PENDING_CODEBOOK and UNKNOWN remain in denominator. Labels never fill cells or establish mineral absence.",
+  "rules": [
+    {
+      "id": "pending-classification-mapping",
+      "blank_class": "PENDING_CODEBOOK",
+      "columns": ["礦床型態代碼", "開發階段代碼", "開發階段類別"],
+      "when": {"reason_in": ["NO_APPROVED_TEMPLATE_CLASSIFICATION_CODEBOOK"]},
+      "rationale": "Administrative taxonomy approval/mapping gap; included in adjusted denominator."
+    },
+    {
+      "id": "missing-independent-html-comparator",
+      "blank_class": "NO_COMPARATOR_SOURCE",
+      "columns": ["重算磁性元素-HTML磁性稀土_kt"],
+      "when": {"reason_in": ["NO_INDEPENDENT_HTML_COMPARATOR"]},
+      "rationale": "No independent comparator in this export, not a missing mineral measurement. Reassess when a comparator is added."
+    },
+    {
+      "id": "source-dated-exploration-no-resource-or-product",
+      "blank_class": "NOT_APPLICABLE_STAGE",
+      "columns": ["預估年產TREO_t_per_year", "預估年產NdPr_t_per_year", "預估年產重稀土_t_per_year"],
+      "when": {
+        "field_values_in": {
+          "開發階段": [
+            "Early exploration（來源揭露：2023-08-22）",
+            "Exploration（來源揭露：2026-02，月精度）",
+            "Initial field reconnaissance（來源揭露：2023-01-31）",
+            "REE Exploration（來源揭露：2023-09-28）",
+            "Rare Earth Exploration（來源揭露：2025-03-14）",
+            "early exploration activities（來源揭露：2024-03-21）",
+            "exploration activities（來源揭露：2024-10-25）",
+            "exploration focus（來源揭露：2024-10-25）",
+            "ongoing exploration activities（來源揭露：2026-09-09）",
+            "very early-stage（來源揭露：2023-05-04）"
+          ]
+        },
+        "empty_fields": ["礦石蘊藏量_Mt", "TREO品位_pct", "總TREO蘊藏量_kt", "有TREO資源估計", "產品/產出", "預估年產TREO_t_per_year", "預估年產NdPr_t_per_year", "預估年產重稀土_t_per_year"],
+        "require_source_provenance_for": ["開發階段"]
+      },
+      "rationale": "Analytical denominator convention at the disclosed historical exploration stage, conditional on no selected resource/product/forecast in this projection; not current operating status, no forecast exists, or permanent inapplicability. Reevaluate each export."
+    }
+  ]
+}
