@@ -24,7 +24,7 @@
     "礦床型態": 66,
     "開發階段代碼": 0,
     "開發階段類別": 0,
-    "開發階段": 51,
+    "開發階段": 52,
     "礦石蘊藏量_Mt": 37,
     "TREO品位_pct": 35,
     "總TREO蘊藏量_kt": 35,
@@ -64,7 +64,7 @@
     "Y2O3_氧化釔_kt": 17,
     "ASX代碼": 84
   },
-  "verified_source_hashes": 146,
+  "verified_source_hashes": 147,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "4994c7ef88e0a9642d4f33abbff27f2990a5b2e761d4c050e29bd2b34d5ef5ff",
-    "field_provenance.csv": "7a5c0deadec7cb2499906e2bc4b0ba63da943121f7be2d6b30f9aae24888880b",
-    "missing_fields.csv": "143f391a32c031b145eb03c20c78b4f8cdc938f530016e3ad1f8b5d4c2e5b529",
+    "專案總表.csv": "15ecbb949aafcedfd012abc514086ea1bf123597d12a6040e0884bb6d955ddf9",
+    "field_provenance.csv": "3b4bd2daec5fac808fe3e395e656909947398c6c821684161380d56ca7b84266",
+    "missing_fields.csv": "dd6b12faca56deadd174512579078e7f617b8863331740dacdf277cfdfb95475",
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1"
   },
-  "review_ledger_sha256": "c84a6c069cb69c4515f5734083176ea2c1a6b2a6611f22232cb80f7be1c2e2b2",
+  "review_ledger_sha256": "4922c24ecedb34698de696e23b1870b53d0632e803cc7a5fcdab4913593dc3f4",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -3738,10 +3738,29 @@
       "effective_date_role": "DATED_ISSUER_METADATA",
       "date_precision": "DAY",
       "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope11_arunta_west_stage",
+      "project_id": "AU-c4391f8d2a6690076436",
+      "source_sha256": "efaafa511113d00eda8fbccd8e407a364ddad320df36452091277a0f63052fb4",
+      "status": "VALIDATED",
+      "scope": "Historical June2023aircoredrillingresultsasdisclosed1August2023;actualsampleprogramnotplanned233holefutureprogram;noMineralResourceEstimateordrillinterceptgradeimport;5076ppmmaximumand35percentMREOinterceptnotglobalREEgradeorcomposition.Noannualforecast.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-08-01",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "2c545176c2e734ac968080e01c9df3b776651edddc80c11a54dd79a560a685af",
+  "discovery_ledger_sha256": "7e477d610550b7d9205c069d8eac651abc05336fa2a2c4de77474731e24631bd",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -20716,10 +20735,36 @@
               ]
             }
           ]
+        },
+        {
+          "asset_set": "fullscope11",
+          "path": "data/snapshots/5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59.pdf",
+          "sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59",
+          "url": "https://geoscience.nt.gov.au/gemis/server/api/core/bitstreams/dd35f2fd-4045-4f54-8894-eda7ce33681d/content",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Charley Creek South Project",
+                "EL33054 and EL33055",
+                "14 August 2025",
+                "Date of Report: October 2024"
+              ]
+            },
+            {
+              "page": 13,
+              "markers": [
+                "strategic decision to relinquish the ground",
+                "2–3 %",
+                "south of the tenement boundary"
+              ]
+            }
+          ]
         }
       ],
       "project_id": "AU-d1e3e2803f3c4287f6db",
-      "scope": "Historical distinct URO REE exploration footprint EL33054 and EL33055. 399surface samples overtwo licenses;2-3percentREE immediately beyond southern border is not this project MRE;2025finalreport catalogue lead prevents current title inference. Report month October 2023 only;date interval uses upper bound, not exact public release date. Distinct from Enova Charley Creek and other directional URO projects;no resource aggregation or ASX code inference.",
+      "scope": "Historical distinct URO REE exploration footprint EL33054 and EL33055. 399surface samples overtwo licenses;2-3percentREE immediately beyond southern border is not this project MRE;2025finalreport catalogue lead prevents current title inference. Report month October 2023 only;date interval uses upper bound, not exact public release date. Distinct from Enova Charley Creek and other directional URO projects;no resource aggregation or ASX code inference. Follow-up original GR617/24 receivedRound11 confirms relinquishment in nativep3/p13, but cover reportmonthOctober2024 conflicts with period ending14August2025;do not adopt exact publication/effective date or new numeric/metadata field from that contradictory-date original. Primary2023historicalcase retained.",
       "identity": {
         "source_index": 0,
         "source_key": "uro_charley_south_2023_public_content",
@@ -21043,9 +21088,9 @@
   "base_contract_columns": 52,
   "base_projection_hashes": {
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
-    "field_provenance.csv": "720e4cd44607440f475fdb4d14ecceb7f972e12cc72f3a4e971ad954c3d13d93",
-    "missing_fields.csv": "57a509156a9c8c9008d2d73c9844004e493185b70235ff8597cb04e1d07454e5",
-    "專案總表.csv": "9c75f13d2222e00d5526780f0e0508133c1f40a78eb854bc1c281803f50f5472"
+    "field_provenance.csv": "4f488e1848d700921ab3efffd01a1d7313baeed7ebc1de45fb5c332709f810aa",
+    "missing_fields.csv": "67be03981a3fd418def88953a379a82c8f98aec6133316e9181ae06f2a4efd4c",
+    "專案總表.csv": "4a9fd49756f842267f16c39819d75e8f296404cd982b8c40c25b8ca9af7e5cd0"
   },
   "identity_ledger_sha256": "2f2e6d898d89ef2c12c89b722e1a8fe6b7488ea6082b50df5104e722b1bb71c6",
   "identity_merges": [],
