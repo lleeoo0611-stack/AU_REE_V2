@@ -136,6 +136,81 @@ class CoverageCycle(unittest.TestCase):
                 self.assertEqual(stop, report['stopping_rule']['stop'])
                 self.assertEqual(0, report['stopping_rule']['threshold'])
 
+    def convergence_manifest(self, old, new, number=1, history=None):
+        from au_ree_v2.convergence import POLICY
+        manifest=self.full_manifest(old,new)
+        manifest.update(stopping_policy=POLICY,round_number=number,previous_cycle_reviews=history or [],
+            unresolved_acquisition_actions=['blocked'],blocked_acquisitions=[dict(action_id='blocked',
+                url='https://example.org/original.pdf',failure_type='HTTP_403',first_blocked_round=1,
+                project_ids=['P'],columns=[COLUMNS[15]],impact_scope='Potential resource evidence, not verified',
+                manual_route='Ask the publisher for an accessible same-edition copy',evidence_refs=['capture sha + 403 receipt'])])
+        manifest['full_scope']['source_actions'].append(dict(action_id='blocked',completed=False,evidence='403 capture receipt'))
+        return manifest
+
+    def test_consecutive_zero_with_blocked_backlog(self):
+        rows=[self.row()]
+        first=self.compare(rows,rows,self.convergence_manifest(rows,rows))
+        self.assertEqual('CONTINUE',first['stopping_rule']['decision'])
+        self.assertEqual(1,first['stopping_rule']['consecutive_zero_rounds'])
+        second=self.compare(rows,rows,self.convergence_manifest(rows,rows,2,[first]))
+        self.assertEqual('STOP_WITH_BLOCKED_BACKLOG',second['stopping_rule']['decision'])
+        self.assertEqual(2,second['stopping_rule']['consecutive_zero_rounds'])
+        self.assertTrue(second['stopping_rule']['stop'])
+        self.assertEqual(1,len(second['blocked_acquisitions']))
+
+    def test_consecutive_failed_checks_never_become_acquisition_exceptions(self):
+        rows=[self.row()]
+        for mutation in ('tests','sources','reproducibility','scope','cell','unreviewed_action','bad_block','missing_block','history'):
+            with self.subTest(mutation=mutation):
+                m=self.convergence_manifest(rows,rows)
+                m['consecutive_zero_rounds']=1
+                if mutation in ('tests','sources','reproducibility'):m['validation'][mutation]['passed']=False
+                elif mutation=='scope':m['search_scope']={}
+                elif mutation=='cell':m['full_scope']['cell_reviews'].pop()
+                elif mutation=='unreviewed_action':m['full_scope']['source_actions'].append(dict(action_id='review',completed=False,evidence='Not yet reviewed'))
+                elif mutation=='bad_block':m['blocked_acquisitions'][0]['failure_type']='TEST_FAILED'
+                elif mutation=='missing_block':m['blocked_acquisitions']=[]
+                else:m['previous_cycle_reviews']=[{}]
+                result=self.compare(rows,rows,m)['stopping_rule']
+                self.assertEqual('INCOMPLETE',result['decision'])
+                self.assertFalse(result['stop'])
+                self.assertEqual(0,result['consecutive_zero_rounds'])
+
+    def test_gain_resets_streak_and_threshold_is_configurable(self):
+        rows=[self.row()]; gained=[self.row(fills=1)]
+        first=self.compare(rows,rows,self.convergence_manifest(rows,rows))
+        second=self.compare(rows,gained,self.convergence_manifest(rows,gained,2,[first]))
+        self.assertEqual(0,second['stopping_rule']['consecutive_zero_rounds'])
+        third=self.compare(gained,gained,self.convergence_manifest(gained,gained,3,[first,second]))
+        self.assertEqual('CONTINUE',third['stopping_rule']['decision'])
+        self.assertEqual(1,third['stopping_rule']['consecutive_zero_rounds'])
+        m=self.convergence_manifest(rows,rows);m['consecutive_zero_rounds']=1
+        self.assertTrue(self.compare(rows,rows,m)['stopping_rule']['stop'])
+        for bad in (0,-1,True,'2'):
+            m['consecutive_zero_rounds']=bad
+            with self.assertRaisesRegex(ValueError,'INVALID_CONSECUTIVE'):
+                self.compare(rows,rows,m)
+
+    def test_history_must_be_consecutive_hash_linked_and_not_trust_counter(self):
+        rows=[self.row()]
+        first=self.compare(rows,rows,self.convergence_manifest(rows,rows))
+        for mutation in ('gap','hash','counter'):
+            with self.subTest(mutation=mutation):
+                prior=copy.deepcopy(first)
+                if mutation=='hash':prior['current_csv_sha256']='wrong'
+                prior['stopping_rule']['consecutive_zero_rounds']=999
+                m=self.convergence_manifest(rows,rows,3 if mutation=='gap' else 2,[prior])
+                result=self.compare(rows,rows,m)['stopping_rule']
+                self.assertEqual('STOP_WITH_BLOCKED_BACKLOG' if mutation=='counter' else 'INCOMPLETE',result['decision'])
+                self.assertEqual(2 if mutation=='counter' else 0,result['consecutive_zero_rounds'])
+
+    def test_convergence_without_blocked_items_is_plain_stop(self):
+        rows=[self.row()]
+        m=self.convergence_manifest(rows,rows)
+        m.update(blocked_acquisitions=[],unresolved_acquisition_actions=[],consecutive_zero_rounds=1)
+        m['full_scope']['source_actions'].pop()
+        self.assertEqual('STOP',self.compare(rows,rows,m)['stopping_rule']['decision'])
+
     def test_whole_cohort_omissions_and_unfinished_actions_never_stop(self):
         old = new = [self.row(), self.row('Q')]
         for collection in ('cell_reviews', 'project_reviews', 'candidate_reviews', 'external_lead_reviews', 'source_actions'):

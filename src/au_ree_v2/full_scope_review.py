@@ -1,7 +1,7 @@
 """Coverage gates for a single whole-cohort round, separate from legacy policies."""
 
 
-def review_full_scope(old, new, columns, manifest):
+def review_full_scope(old, new, columns, manifest, blocked_action_ids=()):
     """Return omissions; evidence references document review, not proof of semantics.
 
     Old blanks stay in scope even if filled. Newly admitted projects bring their
@@ -48,7 +48,9 @@ def review_full_scope(old, new, columns, manifest):
         ids = [a.get('action_id') for a in actions if isinstance(a, dict)]
         if len(ids) != len(actions) or None in ids or len(set(ids)) != len(ids):
             problems.append('full_scope:source_actions:invalid')
-        if any(not isinstance(a, dict) or a.get('completed') is not True
+        if any(not isinstance(a, dict) or (a.get('completed') is not True and a.get('action_id') not in blocked_action_ids)
                or not str(a.get('evidence', '')).strip() for a in actions):
             problems.append('full_scope:source_actions:unfinished')
+        if not set(blocked_action_ids) <= set(ids):
+            problems.append('full_scope:blocked_action_missing')
     return sorted(set(problems))

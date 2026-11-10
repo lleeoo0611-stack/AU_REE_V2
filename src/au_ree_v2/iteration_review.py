@@ -3,6 +3,7 @@ import csv
 import json
 from pathlib import Path
 from .store import filehash
+from .convergence import POLICY, blocked_backlog, consecutive_rule
 
 # Frozen 52-column contract: 10 resource/production and 15 oxide columns.
 SCIENCE_INDEXES = tuple(range(15,25)) + tuple(range(37,52))
@@ -119,22 +120,33 @@ def review_coverage_cycle(before, after, manifest):
     # the same full-scope and acquisition checks as the default zero policy.
     policy = manifest.get('stopping_policy', 'ZERO_NEW_VERIFIED_CELLS')
     if policy not in ('ZERO_NEW_VERIFIED_CELLS', 'LEGACY_BELOW_THREE', 'BELOW_THREE_COMPLETE_ROUND',
-                       'FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS'):
+                       'FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS', POLICY):
         raise ValueError('CYCLE_UNKNOWN_STOPPING_POLICY')
-    if policy in ('ZERO_NEW_VERIFIED_CELLS', 'BELOW_THREE_COMPLETE_ROUND', 'FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS'):
+    if policy in ('ZERO_NEW_VERIFIED_CELLS', 'BELOW_THREE_COMPLETE_ROUND', 'FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS', POLICY):
         scope = manifest.get('search_scope', {})
         if scope.get('columns') != columns or scope.get('all_blank_fields_reviewed') is not True:
             incomplete.append('search_scope:all_53_columns')
-        if manifest.get('unresolved_acquisition_actions') != []:
+        if policy != POLICY and manifest.get('unresolved_acquisition_actions') != []:
             incomplete.append('acquisition:unresolved_or_undeclared')
-    if policy == 'FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS':
+    blocked=[]
+    if policy == POLICY:
+        blocked, problems=blocked_backlog(manifest,columns,new)
+        incomplete.extend(problems)
+    if policy in ('FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS', POLICY):
         from .full_scope_review import review_full_scope
-        incomplete.extend(review_full_scope(old, new, columns, manifest))
+        incomplete.extend(review_full_scope(old, new, columns, manifest,
+                          blocked_action_ids=[b['action_id'] for b in blocked]))
     eligible = not incomplete
-    zero_policy = policy in ('ZERO_NEW_VERIFIED_CELLS', 'FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS')
+    zero_policy = policy in ('ZERO_NEW_VERIFIED_CELLS', 'FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS', POLICY)
     stopped = eligible and (gain == 0 if zero_policy else gain < 3)
+    convergence={}
+    if policy == POLICY:
+        convergence,problems=consecutive_rule(manifest,gain,eligible,filehash(Path(before)/'專案總表.csv'))
+        incomplete.extend(problems);eligible=not incomplete
+        stopped=eligible and convergence['consecutive_zero_rounds']>=convergence['required_zero_rounds']
+    decision='INCOMPLETE' if not eligible else ('STOP_WITH_BLOCKED_BACKLOG' if blocked else 'STOP') if stopped else 'CONTINUE'
     counts['net_filled_cell_increase'] = counts['newly_filled_cells'] - counts['withdrawn_cells']
-    return dict(
+    result = dict(
         version='coverage-cycle-review-v2',
         cycle_id=manifest.get('cycle_id', ''),
         current=current,
@@ -149,9 +161,13 @@ def review_coverage_cycle(before, after, manifest):
                            scientific_newly_filled_cells=counts['scientific_newly_filled_cells']+added_scientific,
                            counting_scope='EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA',
                            eligible=eligible, stop=stopped, incomplete=incomplete,
-                           decision='INCOMPLETE' if not eligible else 'STOP' if stopped else 'CONTINUE'),
+                           decision=decision, **convergence),
         baseline_csv_sha256=filehash(Path(before)/'專案總表.csv'),
         current_csv_sha256=filehash(Path(after)/'專案總表.csv'),
         review_manifest=manifest,
         limitations='Search/source/test completion is declared by the reviewer manifest; table integrity is independently checked. STOP means the selected threshold was met in the completed documented search round, not national completeness or proof of absence.',
     )
+    if policy == POLICY:
+        result.update(round_number=manifest['round_number'],blocked_acquisitions=blocked,
+                      limitations=result['limitations']+' STOP_WITH_BLOCKED_BACKLOG is operational convergence, NOT source exhaustion. Blocked originals remain unavailable and require the documented manual route.')
+    return result
