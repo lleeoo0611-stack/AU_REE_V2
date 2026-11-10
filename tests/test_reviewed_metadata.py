@@ -95,3 +95,17 @@ class ListingProof(unittest.TestCase):
                     with self.assertRaises(ValueError):validate_listing_proof(d,bad,e)
                 else:
                     with self.assertRaises(ValueError):validate_listing_proof(d,p,e)
+
+    def test_full_words_bind_exact_issuer_and_reject_future_or_partial(self):
+        for text in ['The Mock Project is fully owned by Example Resources Limited.',
+                     'The Mock Project is wholly owned by Example Resources Limited.',
+                     'The Mock Project is partially owned by Example Resources Limited.',
+                     'The Mock Project will be fully owned by Example Resources Limited.',
+                     'The Mock Project may be wholly owned by Example Resources Limited.',
+                     'The Mock Project is not fully owned by Example Resources Limited.',
+                     'Example holds the Mock Project, fully owned by Different Limited.']:
+            with self.subTest(text=text):
+                if text.startswith('The Mock Project is fully') or text.startswith('The Mock Project is wholly'):
+                    self.assertIn('SOURCE_BOUND',validate_listing_proof(*self.make(statement=text)))
+                else:
+                    with self.assertRaises(ValueError):validate_listing_proof(*self.make(statement=text))

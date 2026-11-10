@@ -171,6 +171,9 @@ def validate_listing_proof(doc, proof, evidence):
     if re.search(r'\b(?:may|might|could|would|should|will)\b[^.;]{0,40}\bacquired\s+100%',statement):
         fail('FULL_OWNERSHIP_REQUIRED')
     holding = bool(re.search(r'\bholds?\s+(?:a\s+)?100%\s+of\b',statement))
+    full_words = bool(re.search(r'\b(?:fully|wholly)\s+owned\s+by\s+' + re.escape(norm(issuer)) + r'\b', statement))
+    if full_words and re.search(r'\b(?:may|might|could|would|should|will|option|right)\b[^.;]{0,40}\b(?:fully|wholly)\s+owned',statement):
+        fail('FULL_OWNERSHIP_REQUIRED')
     heading_interest = False
     if proof.get('project_interest_heading'):
         heading = proof['project_interest_heading']
@@ -186,6 +189,6 @@ def validate_listing_proof(doc, proof, evidence):
         heading_interest = True
     if holding and re.search(r'\b(?:may|might|could|would|should|will|option|right)\b[^.;]{0,40}\bhold\b',statement):
         fail('FULL_OWNERSHIP_REQUIRED')
-    if not holding and not heading_interest and not re.search(r'100%\s*(?:[-\u2010\u2011]?\s*owned\b|ownership\b)|owned\s+100%|\bowns\s+100%\s+of\b|\bacquired\s+100%\s+of\b|\b100\s+per\s+cent\s*[-\u2010\u2011]?\s*owned\b',statement):fail('FULL_OWNERSHIP_REQUIRED')
+    if not holding and not full_words and not heading_interest and not re.search(r'100%\s*(?:[-\u2010\u2011]?\s*owned\b|ownership\b)|owned\s+100%|\bowns\s+100%\s+of\b|\bacquired\s+100%\s+of\b|\b100\s+per\s+cent\s*[-\u2010\u2011]?\s*owned\b',statement):fail('FULL_OWNERSHIP_REQUIRED')
     if proof.get('project_scope_evidence'):evidence(proof['project_scope_evidence'])
     return 'SOURCE_BOUND_LISTED_ISSUER_AND_PROJECT_OWNERSHIP'

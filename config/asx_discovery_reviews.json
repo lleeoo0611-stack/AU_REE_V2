@@ -16101,6 +16101,1420 @@
           }
         }
       ]
+    },
+    {
+      "candidate_key": "charley-creek-north-uro-el33004-historical",
+      "name": "Charley Creek North Project — historical URO EL33004 exploration",
+      "aliases": [
+        "Charley Creek North",
+        "URO Charley Creek North"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "OFFICIAL_ARCHIVED_DATED_MONTH_TECHNICAL_ORIGINAL;EXACT_DISTINCT_URO_TENURE_AND_REE_EXPLORATION;HISTORICAL_PARTIAL_RELINQUISHMENT_NOT_CURRENT_TITLE",
+      "country": "AU",
+      "scope": "Historical URO Corporation Pty Ltd Charley Creek North EL33004 exploration and eastern partial relinquishment, 22 August 2024, report month November2024. Not Enova Charley Creek EL24281/25230/27358/31947/28434/29789, nor a transfer of its 2013 MRE. EL33004 retained122blocks and relinquished122blocks as of reporting; later2025GR618final-report catalogue lead means no present-tenure continuity claim. Authoritative original retrieved through official public DSpace content endpoint after old URL returned frontend HTML. Report month bounded Nov1-Nov30, not exact public release date. Surface TREE pXRF anomalies not confirmed by lab assays, not TREO bulk mineral resource.",
+      "sources": [
+        {
+          "asset_set": "fullscope10",
+          "path": "data/snapshots/e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0.pdf",
+          "sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+          "url": "https://geoscience.nt.gov.au/gemis/server/api/core/bitstreams/9850665d-8b10-4b1d-8568-212867bd6782/content",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Charley Creek North Project",
+                "EL33004",
+                "Title Holder: URO Corporation Pty Ltd",
+                "Date of Report: November 2024",
+                "rare earth elements",
+                "NT"
+              ]
+            },
+            {
+              "page": 6,
+              "markers": [
+                "URO Corporation",
+                "122 Blocks"
+              ]
+            },
+            {
+              "page": 10,
+              "markers": [
+                "TREE >705 ppm",
+                "no anomalous results were seen in the laboratory assays"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "charley_creek_north_el33004_2024_public_content",
+        "publication_date": "2024-11-30",
+        "publication_date_precision": "MONTH",
+        "publication_date_interval": [
+          "2024-11-01",
+          "2024-11-30"
+        ],
+        "publication_month_role": "REPORT_MONTH",
+        "publication_date_role": "REPORT_MONTH_UPPER_BOUND_NOT_RELEASE_DATE",
+        "source_kind": "GOVERNMENT_ARCHIVED_TECHNICAL_REPORT",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "Date of Report: November 2024"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Charley Creek North Project",
+            "EL33004",
+            "NT"
+          ]
+        },
+        "name_marker": "Charley Creek North",
+        "state": "NT",
+        "state_marker": "NT",
+        "developer": {
+          "value": "URO Corporation Pty Ltd",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Title Holder: URO Corporation Pty Ltd"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "HISTORICAL_EXPLORATION_ONLY;PXRF_TREE_NOT_LAB_CONFIRMED_OR_GLOBAL_TREO_MRE;NO_RESOURCE_COMPOSITION_OR_PROJECT_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "TREE >705 ppm",
+              "no anomalous results were seen in the laboratory assays"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "charley-creek-north-east-uro-el33000-historical",
+      "name": "Charley Creek North-East Project — historical URO EL33000 exploration",
+      "aliases": [
+        "Charley Creek North-East",
+        "URO Charley Creek North-East"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "OFFICIAL_ARCHIVED_DATED_MONTH_ORIGINAL;DISTINCT_NAMED_URO_REE_EXPLORATION_TENURE;HISTORICAL_ONLY",
+      "country": "AU",
+      "scope": "Historical distinct URO REE exploration footprint EL33000. No field sampling in relinquished portions due to access and sacred sites;nearby Nolans MRE does not belong to this project. Report month November 2024 only;date interval uses upper bound, not exact public release date. Distinct from Enova Charley Creek and other directional URO projects;no resource aggregation or ASX code inference.",
+      "sources": [
+        {
+          "asset_set": "fullscope10",
+          "path": "data/snapshots/06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a.pdf",
+          "sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+          "url": "https://geoscience.nt.gov.au/gemis/server/api/core/bitstreams/96bd706a-287d-48dc-86f8-37301544145e/content",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Charley Creek North-East Project",
+                "EL33000",
+                "Title Holder: URO Corporation Pty Ltd",
+                "Date of Report: November 2024",
+                "rare earth elements",
+                "NT"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "uro_charley_ne_2024_public_content",
+        "publication_date": "2024-11-30",
+        "publication_date_precision": "MONTH",
+        "publication_date_interval": [
+          "2024-11-01",
+          "2024-11-30"
+        ],
+        "publication_month_role": "REPORT_MONTH",
+        "publication_date_role": "REPORT_MONTH_UPPER_BOUND_NOT_RELEASE_DATE",
+        "source_kind": "GOVERNMENT_ARCHIVED_TECHNICAL_REPORT",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "Date of Report: November 2024"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Charley Creek North-East Project",
+            "EL33000",
+            "NT"
+          ]
+        },
+        "name_marker": "Charley Creek North-East",
+        "state": "NT",
+        "state_marker": "NT",
+        "developer": {
+          "value": "URO Corporation Pty Ltd",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Title Holder: URO Corporation Pty Ltd"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33000",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "charley-creek-south-east-uro-el33006-historical",
+      "name": "Charley Creek South-East Project — historical URO EL33006 exploration",
+      "aliases": [
+        "Charley Creek South-East",
+        "URO Charley Creek South-East"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "OFFICIAL_ARCHIVED_DATED_MONTH_ORIGINAL;DISTINCT_NAMED_URO_REE_EXPLORATION_TENURE;HISTORICAL_ONLY",
+      "country": "AU",
+      "scope": "Historical distinct URO REE exploration footprint EL33006. 98surface samples;CeLaNd pXRF values not bulk oxide grades;lab anomalies not confirmed;westernpart relinquished;2025finalreport catalogue lead prevents current title inference. Report month November 2024 only;date interval uses upper bound, not exact public release date. Distinct from Enova Charley Creek and other directional URO projects;no resource aggregation or ASX code inference.",
+      "sources": [
+        {
+          "asset_set": "fullscope10",
+          "path": "data/snapshots/e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757.pdf",
+          "sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+          "url": "https://geoscience.nt.gov.au/gemis/server/api/core/bitstreams/081c4a79-20e1-475e-9c5a-53105d57aed9/content",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Charley Creek South-East Project",
+                "EL33006",
+                "Title Holder: URO Corporation Pty Ltd",
+                "Date of Report: November 2024",
+                "rare earth elements",
+                "NT"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "uro_charley_se_2024_public_content",
+        "publication_date": "2024-11-30",
+        "publication_date_precision": "MONTH",
+        "publication_date_interval": [
+          "2024-11-01",
+          "2024-11-30"
+        ],
+        "publication_month_role": "REPORT_MONTH",
+        "publication_date_role": "REPORT_MONTH_UPPER_BOUND_NOT_RELEASE_DATE",
+        "source_kind": "GOVERNMENT_ARCHIVED_TECHNICAL_REPORT",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "Date of Report: November 2024"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Charley Creek South-East Project",
+            "EL33006",
+            "NT"
+          ]
+        },
+        "name_marker": "Charley Creek South-East",
+        "state": "NT",
+        "state_marker": "NT",
+        "developer": {
+          "value": "URO Corporation Pty Ltd",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Title Holder: URO Corporation Pty Ltd"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33006",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "charley-creek-south-uro-gr617-historical",
+      "name": "Charley Creek South Project — historical URO EL33054 and EL33055 exploration",
+      "aliases": [
+        "Charley Creek South",
+        "URO Charley Creek South"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "OFFICIAL_ARCHIVED_DATED_MONTH_ORIGINAL;DISTINCT_NAMED_URO_REE_EXPLORATION_TENURE;HISTORICAL_ONLY",
+      "country": "AU",
+      "scope": "Historical distinct URO REE exploration footprint EL33054 and EL33055. 399surface samples overtwo licenses;2-3percentREE immediately beyond southern border is not this project MRE;2025finalreport catalogue lead prevents current title inference. Report month October 2023 only;date interval uses upper bound, not exact public release date. Distinct from Enova Charley Creek and other directional URO projects;no resource aggregation or ASX code inference.",
+      "sources": [
+        {
+          "asset_set": "fullscope10",
+          "path": "data/snapshots/edb1583a4bcc4eddb7142b233ced822c1ef711df9c7c72051399dd22c7ad9b75.pdf",
+          "sha256": "edb1583a4bcc4eddb7142b233ced822c1ef711df9c7c72051399dd22c7ad9b75",
+          "url": "https://geoscience.nt.gov.au/gemis/server/api/core/bitstreams/8d21ecb5-d25c-47ed-ad23-f612ec6564c9/content",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Charley Creek South Project",
+                "EL33054 and EL33055",
+                "Title Holder: URO Corporation Pty Ltd",
+                "Date of Report: October 2023",
+                "rare earth elements",
+                "NT"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "uro_charley_south_2023_public_content",
+        "publication_date": "2023-10-31",
+        "publication_date_precision": "MONTH",
+        "publication_date_interval": [
+          "2023-10-01",
+          "2023-10-31"
+        ],
+        "publication_month_role": "REPORT_MONTH",
+        "publication_date_role": "REPORT_MONTH_UPPER_BOUND_NOT_RELEASE_DATE",
+        "source_kind": "GOVERNMENT_ARCHIVED_TECHNICAL_REPORT",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "Date of Report: October 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Charley Creek South Project",
+            "EL33054 and EL33055",
+            "NT"
+          ]
+        },
+        "name_marker": "Charley Creek South",
+        "state": "NT",
+        "state_marker": "NT",
+        "developer": {
+          "value": "URO Corporation Pty Ltd",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Title Holder: URO Corporation Pty Ltd"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "HISTORICAL_EXPLORATION_REPORT;SAMPLE_OR_NEIGHBOUR_VALUES_NOT_GLOBAL_REE_MRE;NO_PROJECT_RESOURCE_OXIDE_DISTRIBUTION_OR_ANNUAL_FORECAST",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EL33054 and EL33055",
+              "Target Commodities: Uranium, rare earth elements"
+            ]
+          }
+        }
+      ]
     }
   ]
 }

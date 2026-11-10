@@ -136,11 +136,20 @@ def validate_discovery(path, assets, existing, cutoff):
                     from urllib.parse import urlsplit
                     from .asx_validation import month_interval,catalogue_month_proof
                     interval=month_interval(day);label=value.strftime('%B %Y').casefold()
-                    if (identity.get('source_kind')!='GOVERNMENT_PROJECT_CATALOGUE' or
+                    archived_report = identity.get('source_kind')=='GOVERNMENT_ARCHIVED_TECHNICAL_REPORT'
+                    if (identity.get('source_kind') not in ('GOVERNMENT_PROJECT_CATALOGUE','GOVERNMENT_ARCHIVED_TECHNICAL_REPORT') or
                         not (urlsplit(s['url']).hostname or '').endswith('.gov.au') or
                         identity.get('publication_date_interval')!=interval or day!=interval[1]):
                         raise ValueError('DISCOVERY_EDITION_MONTH_REQUIRED')
-                    catalogue_month_proof(d,day,text,identity.get('publication_month_role','EDITION_MONTH'))
+                    if archived_report:
+                        # A report's stated month bounds its dated evidence; it
+                        # is never an invented exact public release day.
+                        if (identity.get('publication_month_role')!='REPORT_MONTH'
+                            or identity.get('publication_date_role')!='REPORT_MONTH_UPPER_BOUND_NOT_RELEASE_DATE'
+                            or not re.search(r'\bdate\s+of\s+report\s*:\s*'+re.escape(label)+r'\b',text)):
+                            raise ValueError('DISCOVERY_REPORT_MONTH_PROOF')
+                    else:
+                        catalogue_month_proof(d,day,text,identity.get('publication_month_role','EDITION_MONTH'))
                 if identity.get('date_evidence_role') == 'DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE':
                     if identity.get('publication_date_precision', 'DAY') != 'DAY':raise ValueError('DISCOVERY_ISSUE_DATE_PRECISION')
                     validate_issue_date(identity, s, cutoff, text)

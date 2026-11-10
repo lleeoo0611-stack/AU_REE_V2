@@ -44477,6 +44477,83 @@
           }
         }
       ]
+    },
+    {
+      "review_id": "fullscope10_charley_creek_env_listing",
+      "project_id": "AU-d9fb1b1e3e2ec9fa0851",
+      "source_key": "charley_creek_env20240430",
+      "source_sha256": "2b5aa789537b0e291490b265995312b8a9111c097f9b65a6ce5ac96d4def3c12",
+      "asset_set": "fullscope10",
+      "path": "data/snapshots/2b5aa789537b0e291490b265995312b8a9111c097f9b65a6ce5ac96d4def3c12.pdf",
+      "url": "https://company-announcements.afr.com/asx/env/26c9f602-06ac-11ef-85a8-b29345b45cfb.pdf",
+      "publication_date": "2024-04-30",
+      "effective_date": "2024-04-30",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "30 April 2024"
+        ]
+      },
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "30 April 2024",
+          "QUARTERLY ACTIVITIES REPORT"
+        ],
+        "header_title": "QUARTERLY ACTIVITIES REPORT"
+      },
+      "identity_evidence": {
+        "page": 10,
+        "markers": [
+          "Charley Creek project",
+          "Enova Mining Limited"
+        ]
+      },
+      "scope": "Dated Enova ASX ENV full ownership of Charley Creek original alluvial project;page10 explicitly links to April2013ResourceandScopingStudy;not URO EL33004 North. Listing association only;no current title certification;no sample/intercept numbers or Brazilianproject numbers imported into selected2013Indicatedcase.",
+      "statement_id": "fullscope10_charley_creek_env_listing",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 10,
+            "markers": [
+              "is fully owned by Enova Mining Limited"
+            ]
+          },
+          "listing_proof": {
+            "exchange": "ASX",
+            "ticker": "ENV",
+            "issuer": "Enova Mining Limited",
+            "issuer_alias": "Enova",
+            "project_marker": "Charley Creek",
+            "listing_evidence": {
+              "page": 1,
+              "markers": [
+                "Enova Mining Limited",
+                "ASX: ENV"
+              ]
+            },
+            "ownership_evidence": {
+              "page": 10,
+              "markers": [
+                "Charley Creek project",
+                "is fully owned by Enova Mining Limited"
+              ]
+            },
+            "ownership_bbox": [
+              71.8,
+              70.8015869140625,
+              340,
+              109.63719482421875
+            ],
+            "ownership_statement_sha256": "f9cd12037a07868921dabe83e03c78ebc874271dcdc4b457fa1534815c405c6a"
+          }
+        }
+      ]
     }
   ]
 }

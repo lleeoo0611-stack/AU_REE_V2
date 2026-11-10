@@ -38,6 +38,25 @@ class DiscoveryIssueDate(unittest.TestCase):
                     with self.assertRaisesRegex(ValueError,'PUBLICATION_DATE_PROOF'):
                         validate_discovery(ledger,{'test':root},[],'2026-11-05')
 
+    def test_official_archived_report_month_preserves_interval_and_role(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);doc=pymupdf.open();page=doc.new_page()
+            page.insert_text((40,40),'Known Project in Northern Territory\nDate of Report: November 2024')
+            doc.save(root/'original.pdf');doc.close();sha=filehash(root/'original.pdf')
+            source=dict(asset_set='test',path='original.pdf',sha256=sha,url='https://archive.example.gov.au/original.pdf',kind='pdf',evidence=[dict(page=1,markers=['Known Project'])])
+            identity=dict(source_index=0,source_key='test',publication_date='2024-11-30',publication_date_precision='MONTH',publication_date_interval=['2024-11-01','2024-11-30'],publication_month_role='REPORT_MONTH',publication_date_role='REPORT_MONTH_UPPER_BOUND_NOT_RELEASE_DATE',source_kind='GOVERNMENT_ARCHIVED_TECHNICAL_REPORT',date_evidence=dict(page=1,markers=['Date of Report: November 2024']),project_evidence=dict(page=1,markers=['Known Project']),name_marker='Known Project',state='NT',state_marker='Northern Territory')
+            c=dict(candidate_key='known',name='Known Project',aliases=[],decision='ADMIT_PROJECT',reason='Test',country='AU',scope='Historical monthly report; release day unknown',sources=[source],identity=identity)
+            cfg=dict(version='reviewed-project-discovery-v1',cutoff='2026-11-05',acquired_through='2026-11-10',candidates=[c]);ledger=root/'ledger.json'
+            (root/'downloads.json').write_text(json.dumps([dict(url=source['url'],document_sha256=sha,status='PDF_ACQUIRED')]))
+            ledger.write_text(json.dumps(cfg));result=validate_discovery(ledger,{'test':root},[],'2026-11-05')
+            self.assertEqual(['2024-11-01','2024-11-30'],result['sources'][sha]['publication_date_interval'])
+            for change in [dict(publication_date='2024-11-15'),dict(publication_date='2024-10-31',publication_date_interval=['2024-10-01','2024-10-31']),dict(publication_date_role='EXACT_RELEASE_DAY'),dict(publication_month_role='EDITION_MONTH'),dict(source_kind='ISSUER_PROJECT_IDENTITY')]:
+                with self.subTest(change=change),self.assertRaises(ValueError):
+                    bad=copy.deepcopy(cfg);bad['candidates'][0]['identity'].update(change);ledger.write_text(json.dumps(bad));validate_discovery(ledger,{'test':root},[],'2026-11-05')
+            bad=copy.deepcopy(cfg);bad['candidates'][0]['sources'][0]['url']='https://issuer.example/original.pdf';ledger.write_text(json.dumps(bad))
+            (root/'downloads.json').write_text(json.dumps([dict(url='https://issuer.example/original.pdf',document_sha256=sha,status='PDF_ACQUIRED')]))
+            with self.assertRaises(ValueError):validate_discovery(ledger,{'test':root},[],'2026-11-05')
+
     def setUp(self):
         self.identity = {
             "publication_date": "2023-09-06",
