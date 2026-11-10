@@ -51,9 +51,27 @@ class ListingProof(unittest.TestCase):
                 validate_listing_proof(*self.make(statement=text))
     def test_negated_ownership(self):
         with self.assertRaisesRegex(ValueError,'NOT_AFFIRMED'):validate_listing_proof(*self.make(statement='Example does not retain 100% ownership of the Mock Project.'))
+    def test_completed_full_acquisition_is_not_an_option_or_future_acquisition(self):
+        self.assertIn('SOURCE_BOUND',validate_listing_proof(*self.make(statement='Example acquired 100% of the Mock Project.')))
+        for text in ['Example will acquire 100% of the Mock Project.',
+                     'Example will have acquired 100% of the Mock Project.',
+                     'Example may have acquired 100% of the Mock Project.',
+                     'Example has an option to acquire 100% of the Mock Project.',
+                     'Example acquired 80% of the Mock Project.',
+                     'Example has not acquired 100% of the Mock Project.']:
+            with self.subTest(text=text),self.assertRaises(ValueError):validate_listing_proof(*self.make(statement=text))
     def test_mutated_statement(self):
         d,p,e=self.make();p['ownership_statement']='Example owns the Mock Project.'
         with self.assertRaisesRegex(ValueError,'STATEMENT_MISMATCH'):validate_listing_proof(d,p,e)
+    def test_named_project_full_holding_requires_affirmed_present_interest(self):
+        for text in ['Example holds 100% of the Mock Project.', 'Example hold a 100% of the Mock Project.']:
+            with self.subTest(text=text):self.assertIn('SOURCE_BOUND',validate_listing_proof(*self.make(statement=text)))
+        for text in ['Example will hold 100% of the Mock Project.',
+                     'Example may hold a 100% of the Mock Project.',
+                     'Example has an option to hold 100% of the Mock Project.',
+                     'Example does not hold 100% of the Mock Project.',
+                     'Example holds 80% of the Mock Project.']:
+            with self.subTest(text=text),self.assertRaises(ValueError):validate_listing_proof(*self.make(statement=text))
     def test_invalid_exchange(self):
         d,p,e=self.make();p['exchange']='UNVERIFIED'
         with self.assertRaisesRegex(ValueError,'EXCHANGE_OR_TICKER'):validate_listing_proof(d,p,e)

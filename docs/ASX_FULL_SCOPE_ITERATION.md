@@ -17,3 +17,17 @@ An acquisition size limit is distinct from a publisher denial. For Carrapateena'
 Native resource cells may explicitly label heavy minerals as `THM`, `Total Heavy Mineral (THM)` or `Total Heavy Minerals (THM)`. Oxide percentages described as a "percentage of in situ THM content" retain the HM denominator; bulk-ore and TREO-share denominators cannot substitute for it. A numeric cell's trailing percent sign is accepted only after its separately bound header and unit establish a percentage. Values with extra text or mismatched tokens remain rejected.
 
 Round 3 distinguishes Cannie's explicit 3.05% THM calculation footnote (reviewed image transcription with fixed crop hash) from its rounded 3.1% headline table. Nowie's 16.4 Mt, 3.8% bulk THM and 1.80% TREO within THM produce a calculated 0.0684% bulk grade and 11.2176 kt contained TREO. Those are point calculations from rounded inputs, not separately reported precise measurements. The nested 6.4 Mt strandline is excluded, and Goschen production forecasts are not allocated to these satellite projects. Component rounding compatibility is not exact chemical closure or quantified estimation uncertainty.
+
+The current 53-column projection can be rebuilt with one entry point:
+
+```powershell
+.venv/Scripts/python.exe tools/rebuild_asx_census.py --census-root ../AU_REE_V2 --out-prefix work/auto-iteration/replay-new
+```
+
+`config/asx_local_asset_roots.json` records the local evidence roots relative to this repository. A different local layout can be supplied with `--asset-map`; `--database` and `--run-dir` can select the frozen Census inputs explicitly. The default cutoff is the single consistent cutoff declared by the discovery and identity ledgers; the v2 source-review ledger has no top-level cutoff. A conflicting override is rejected, and acquisition dates cannot replace the research cutoff. Every required PDF and nested archive proof must already exist locally and pass the existing URL/hash/date/cell checks. Missing roots fail before export. The command produces two independent base-52 and ASX-extended exports, verifies all four CSV hashes and unchanged SQLite bytes, and writes a rebuild receipt. It refuses output inside the Census or over an existing replay prefix.
+
+This entry point replays approved evidence. Fresh searching, acquisition and review are recorded separately in the whole-cohort manifest, including unavailable originals. An identical rebuild alone is insufficient for a zero-new-data stopping decision. Historical reporting-issuer associations, exploration-only cases and withdrawn options remain source-scoped; row count is not an active-project count.
+
+An already registered qualified alias such as `OD6 Grass Patch` can bind a bare project name in the same PDF only through the exact registered ticker-plus-name pair and a complete listed-issuer/full-ownership proof. This supplies no new alias, numerical resource identity or merge permission. Other issuers, other projects and unbound developer attributes are rejected. A completed statement that an issuer "acquired 100% of" a named project can establish dated full ownership; an option, future acquisition, partial interest or negated acquisition cannot.
+
+An affirmative present-tense "hold(s) (a) 100% of" statement can bind the same named project and issuer. Future, possible, option and partial interests are rejected. This proves the disclosure-date association, not current title continuity.

@@ -181,13 +181,20 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
             identity=evidence(review['identity_evidence'])
             aliases=registry[pid]['aliases']+[registry[pid]['name']]
             if not any(normalized(a) in identity for a in aliases if len(a)>4):
-                # Short registered labels such as Copi/Mons need exact bounded
-                # project heading proofs, restricted to descriptive metadata.
+                # Descriptive headings or an existing ASX-qualified alias need
+                # explicit source proofs. Neither route admits a new alias or
+                # any resource observation through metadata validation.
                 attrs=review.get('attributes',[])
-                if role!='DATED_ISSUER_METADATA' or not attrs or not all(a.get('description_binding') for a in attrs):
+                if role!='DATED_ISSUER_METADATA' or not attrs:
                     raise ValueError('REVIEW_PROJECT_NAME_NOT_IN_IDENTITY_PAGE:'+review['review_id'])
-                from .reviewed_metadata import validate_descriptive_attribute
-                for attribute in attrs:validate_descriptive_attribute(doc,attribute,aliases,evidence,review)
+                from .reviewed_metadata import validate_descriptive_attribute, validate_qualified_listing_identity
+                for attribute in attrs:
+                    if attribute.get('description_binding'):
+                        validate_descriptive_attribute(doc,attribute,aliases,evidence,review)
+                    elif attribute.get('listing_proof'):
+                        validate_qualified_listing_identity(doc,attribute,aliases,identity,evidence)
+                    else:
+                        raise ValueError('REVIEW_PROJECT_NAME_NOT_IN_IDENTITY_PAGE:'+review['review_id'])
             date_content=evidence(review['date_evidence'])
             if review['date_precision'] not in ('DAY','MONTH','YEAR'):raise ValueError('REVIEW_DATE_PRECISION_REQUIRED')
             effective_day=datetime.strptime(effective,'%Y-%m-%d')

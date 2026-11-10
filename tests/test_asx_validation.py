@@ -69,6 +69,38 @@ class SourceReviews(unittest.TestCase):
         r=copy.deepcopy(self.review);r['effective_date_role']='DATED_ISSUER_METADATA'
         with self.assertRaisesRegex(ValueError,'METADATA_ROLE_REQUIRES_ATTRIBUTES_ONLY'):self.validate(r)
 
+    def qualified_listing_review(self):
+        r=copy.deepcopy(self.review)
+        with pymupdf.open(self.pdf) as d:
+            b=d[0].search_for('Issuer (ASX: TST) 100%-owned Mock Project')[0]
+            bbox=[b.x0-.1,b.y0-.1,b.x1+.1,b.y1+.1]
+        statement='Issuer (ASX: TST) 100%-owned Mock Project'
+        proof=dict(exchange='ASX',ticker='TST',issuer='Issuer',issuer_alias='Issuer',project_marker='Mock Project',
+                   listing_evidence=dict(page=1,markers=['Issuer']),ownership_evidence=dict(page=1,markers=['Mock Project']),
+                   ownership_bbox=bbox,ownership_statement=statement)
+        r.update(observations=[],effective_date_role='DATED_ISSUER_METADATA',effective_date=r['publication_date'],
+                 date_evidence=dict(page=1,markers=['16 January 2025']),
+                 attributes=[dict(column='未上市公司',value='否',evidence=dict(page=1,markers=['Mock Project']),listing_proof=proof)])
+        self.projects=[dict(entity_id='P',name='TST Mock Project',aliases=['TST Mock Project'])]
+        return r
+
+    def test_existing_asx_qualified_name_uses_full_listing_and_ownership_proof(self):
+        result=self.validate(self.qualified_listing_review())
+        self.assertEqual('否',result['attributes']['P'][0]['value'])
+        self.assertEqual({},result['observations'])
+
+    def test_qualified_listing_cannot_match_other_issuer_or_other_project(self):
+        r=self.qualified_listing_review()
+        for alias in ['OTHER Mock Project','TST Other Project']:
+            with self.subTest(alias=alias):
+                self.projects=[dict(entity_id='P',name=alias,aliases=[alias])]
+                with self.assertRaisesRegex(ValueError,'QUALIFIED_PROJECT_IDENTITY'):self.validate(r)
+
+    def test_qualified_name_does_not_admit_unbound_developer_attribute(self):
+        r=self.qualified_listing_review()
+        r['attributes']=[dict(column='開發商',value='Issuer',evidence=dict(page=1,markers=['Issuer']))]
+        with self.assertRaisesRegex(ValueError,'PROJECT_NAME_NOT_IN_IDENTITY_PAGE'):self.validate(r)
+
     def test_context_resource_does_not_replace_selected_contract(self):
         self.validate()
         context=copy.deepcopy(self.review);context.update(review_id='context',statement_id='other-scope',resource_selection_role='CONTEXT_ONLY',context_selection_reason='Distinct alternative scope, not additive')

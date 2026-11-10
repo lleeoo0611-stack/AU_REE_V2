@@ -112,6 +112,24 @@ def validate_descriptive_attribute(doc, attribute, aliases, evidence, review):
     return 'SOURCE_BOUND_LITERAL_DESCRIPTION_AT_DISCLOSURE_DATE'
 
 
+def validate_qualified_listing_identity(doc, attribute, aliases, identity, evidence):
+    """Resolve an already registered ASX-qualified name from the same PDF.
+
+    This supplies no new alias or resource identity: both ticker and bare project
+    must form an exact existing alias, and the full listing/ownership proof runs.
+    """
+    proof = attribute.get('listing_proof', {})
+    marker = norm(proof.get('project_marker', ''))
+    qualified = norm(proof.get('ticker', '') + ' ' + marker)
+    if (attribute.get('column') != '未上市公司' or attribute.get('value') != '否'
+            or proof.get('exchange') != 'ASX' or len(marker) < 4
+            or marker not in norm(identity)
+            or qualified not in {norm(alias) for alias in aliases}):
+        raise ValueError('REVIEW_LISTING_QUALIFIED_PROJECT_IDENTITY')
+    validate_listing_proof(doc, proof, evidence)
+    return 'EXISTING_ASX_QUALIFIED_ALIAS_WITH_SAME_PDF_LISTING_AND_OWNERSHIP'
+
+
 def validate_listing_proof(doc, proof, evidence):
     import pymupdf
     def fail(code):
@@ -145,6 +163,11 @@ def validate_listing_proof(doc, proof, evidence):
         if not statement or native!=statement:fail('OWNERSHIP_STATEMENT_MISMATCH')
     if norm(alias) not in statement or norm(project) not in statement:fail('OWNERSHIP_ISSUER_PROJECT_MISMATCH')
     if re.search(r'\bnot\b|\bno longer\b|\bless than\b',statement):fail('OWNERSHIP_NOT_AFFIRMED')
-    if not re.search(r'100%\s*(?:[-\u2010\u2011]?\s*owned\b|ownership\b)|owned\s+100%|\bowns\s+100%\s+of\b|\b100\s+per\s+cent\s*[-\u2010\u2011]?\s*owned\b',statement):fail('FULL_OWNERSHIP_REQUIRED')
+    if re.search(r'\b(?:may|might|could|would|should|will)\b[^.;]{0,40}\bacquired\s+100%',statement):
+        fail('FULL_OWNERSHIP_REQUIRED')
+    holding = bool(re.search(r'\bholds?\s+(?:a\s+)?100%\s+of\b',statement))
+    if holding and re.search(r'\b(?:may|might|could|would|should|will|option|right)\b[^.;]{0,40}\bhold\b',statement):
+        fail('FULL_OWNERSHIP_REQUIRED')
+    if not holding and not re.search(r'100%\s*(?:[-\u2010\u2011]?\s*owned\b|ownership\b)|owned\s+100%|\bowns\s+100%\s+of\b|\bacquired\s+100%\s+of\b|\b100\s+per\s+cent\s*[-\u2010\u2011]?\s*owned\b',statement):fail('FULL_OWNERSHIP_REQUIRED')
     if proof.get('project_scope_evidence'):evidence(proof['project_scope_evidence'])
     return 'SOURCE_BOUND_LISTED_ISSUER_AND_PROJECT_OWNERSHIP'
