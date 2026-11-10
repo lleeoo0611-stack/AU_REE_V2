@@ -1,12 +1,12 @@
 {
-  "source_replay_commit": "9ef2a984790361fea3f53fa957ea5b89ae25d95e",
-  "round": "full-scope-7",
-  "report": "../asx-full-scope-2026-11-10/round-7-report/README.md",
+  "source_replay_commit": "92556c6581afaae60c2d7c98c0b2b661351dd9e2",
+  "round": "full-scope-8",
+  "report": "../asx-full-scope-2026-11-10/round-8-report/README.md",
   "stopping_rule": {
     "policy": "FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS",
     "threshold": 0,
     "operator": "==",
-    "newly_filled_cells": 1,
+    "newly_filled_cells": 2,
     "scientific_newly_filled_cells": 0,
     "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
     "eligible": false,
@@ -18,7 +18,7 @@
     "decision": "INCOMPLETE"
   },
   "tests": {
-    "report_sha256": "fbf50ff40511b62a96ddadb6bdd20786fe382c947c10c17cb36e8f2bfdc74086",
+    "report_sha256": "a6eafa623c4c0789233de33f78000acab146f9e80f62d6afcb75e272e0222fa5",
     "tests_including_subtests": 625,
     "failures": 0,
     "errors": 0,
@@ -28,13 +28,13 @@
   "database_modified": false,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "artifact_hashes": {
-    "audit.json": "3582e710049cf04e826cdd7afcaee07cded0eeff1e0eeb2ae4fa0e8864480fb3",
+    "audit.json": "cf488b2f382416fbcb17736be6da72627f07d8345702f5455b47f81b04586f15",
     "census_inventory.csv": "43a56fd6242f3e5f1371f23129f2d8316b9ae296f4ceaf7d75b7be646a0608ef",
-    "field_provenance.csv": "69cc5de05bcceb1e6035f50a81307692a30537cbbf00b01f2dc8e0bb6e97b495",
-    "missing_fields.csv": "913d08e66448a3b9df8c5c96421b4da3c25437de6ef9954e3e5e66c7a4cdfcdf",
-    "REVIEW.md": "976144ed4bbbccbf90af904aaedde5e0e567169fd253a02f54c9631ab93fe594",
+    "field_provenance.csv": "55f2e616babb1a3e030de7f2868b65c0692f77618df503ed264686206c0705a7",
+    "missing_fields.csv": "662ab7f9209aa203c9e7c856df4472dc10d0d4faee1e0e06864fb0e2c4aa1d26",
+    "REVIEW.md": "86ac3f0119c6500d319ad0f6bbd4707d0754d671d9e1db2e54c2329967d5efbf",
     "source_consistency.csv": "09922af3f905e79f23f58c3e5c0fd84515a01dcf6bc6984660b86c0532fe41ba",
-    "summary.json": "5cce74d771d25fa6dc2df44fbd36e6772b91ceb786de150542c53d26ce8fcdd0",
-    "專案總表.csv": "0eacb75a4f5280cd0ddf29b178f40df7e48089abd76fda73ecd39594f2559029"
+    "summary.json": "df1f86c4a4f66a58b7a95ad7c63d967b7fea6cc715a96cbb62979d763ff146d0",
+    "專案總表.csv": "c159be33adc0907c5f610eba7f2189d9c4aa52c3c44c77cb797ac163b6ab3177"
   }
 }
