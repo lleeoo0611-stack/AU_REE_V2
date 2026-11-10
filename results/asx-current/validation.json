@@ -1,13 +1,13 @@
 {
-  "source_replay_commit": "c0aaf539892a9d1bc8beddb07f4448e7e170528d",
-  "round": "full-scope-2",
-  "report": "../asx-full-scope-2026-11-10/round-2-report/README.md",
+  "source_replay_commit": "56a8f43fa9da4c9a873bc05f8d3075a285f6b44b",
+  "round": "full-scope-3",
+  "report": "../asx-full-scope-2026-11-10/round-3-report/README.md",
   "stopping_rule": {
     "policy": "FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS",
     "threshold": 0,
     "operator": "==",
-    "newly_filled_cells": 54,
-    "scientific_newly_filled_cells": 0,
+    "newly_filled_cells": 116,
+    "scientific_newly_filled_cells": 58,
     "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
     "eligible": false,
     "stop": false,
@@ -18,8 +18,8 @@
     "decision": "INCOMPLETE"
   },
   "tests": {
-    "report_sha256": "42f9edb3ed81d4c3bdc95d2f6c5acd851f9e7853610a11c03bab7d74097b239d",
-    "tests_including_subtests": 588,
+    "report_sha256": "afeec10c3c367506b170a0293bb6fdfb4ef7c3335010327a87d34709fd25f5fd",
+    "tests_including_subtests": 592,
     "failures": 0,
     "errors": 0,
     "skipped": 0
@@ -28,13 +28,13 @@
   "database_modified": false,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "artifact_hashes": {
-    "audit.json": "b06405f2a427a8b1ec5df47bfa6f843f2500a735ffcf0639f9cb15256ea658fb",
-    "census_inventory.csv": "772d7fd6a83f7466be18da75ba013e515e73fb2f1631679e3897de91d580082e",
-    "field_provenance.csv": "c061639d04747637d0025abe1a53c3862660be4dd32e8e27ee29b2729b701b74",
-    "missing_fields.csv": "b322d36c32042d2344d91d64e21c458e292e155b2cb7e3906dbbeb4caae31b03",
-    "REVIEW.md": "b58f99e137bc3de8e81cea83fa2af67862a7d768e0eb234bf82b2f2c298599db",
+    "audit.json": "b7a979601d1c38214d163601808434af1dfd49b87901466970bd84c0d5b37b46",
+    "census_inventory.csv": "152a3ed50ac3fcfc44940b17b8ce9ad8c2e37016c0ad8bf90bf7ad096cb7ce52",
+    "field_provenance.csv": "9d3844c7ca6990828f83d77c40a58d36b73042debaf92bb051d8436aadcb749b",
+    "missing_fields.csv": "022decd3b6b9f699453f134af3e43f5c751308e9566bc59b16a987179503ca8a",
+    "REVIEW.md": "22b0c144e53d69746bfec61c2d9eb7adc38d84906701a042aea1fb10d6f58661",
     "source_consistency.csv": "09922af3f905e79f23f58c3e5c0fd84515a01dcf6bc6984660b86c0532fe41ba",
-    "summary.json": "850e11609dc7470b7cce32924d2bce562ece1f8ff2820c654e5335493b191a18",
-    "專案總表.csv": "ca05b062139b8f97385a77a42bd48f5779a86ba104e8deed4f53036553ebf411"
+    "summary.json": "16792ee6f57d650de479713d48651fdf1da0b8e4f7db77ac2d87172d7c4d59b8",
+    "專案總表.csv": "f094a352f3e0f2bd3f81d4d72daa8fef616357119c0c8c083b46264b1a92f4f6"
   }
 }
