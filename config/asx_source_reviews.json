@@ -43481,6 +43481,138 @@
           }
         }
       ]
+    },
+    {
+      "review_id": "fullscope5_durack_host",
+      "project_id": "AU-75fe0f1a81005bd19586",
+      "source_key": "durack_20240703",
+      "source_sha256": "9d23cfd05efad75d66ec9c2e86b701876f7bdbde332cc6b22a4fb8005fca6481",
+      "asset_set": "fullscope5",
+      "path": "data/snapshots/9d23cfd05efad75d66ec9c2e86b701876f7bdbde332cc6b22a4fb8005fca6481.pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20240703/pdf/0656mxcyyksmfs.pdf",
+      "publication_date": "2024-07-03",
+      "effective_date": "2024-07-03",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "3rd July 2024"
+        ]
+      },
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "3rd July 2024"
+        ],
+        "header_title": "Acquisition of High-Grade Rare Earth Element Durack Project (WA)"
+      },
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Durack"
+        ]
+      },
+      "scope": "Historical Durack REE exploration footprint,EasternKimberleyWA;BPM2024exclusiveoptiononapplications,notcompletedacquisitionorcurrenttitle. BPM16July2026quarterlyp6,p9explicitlywithdrawsoptionduringJune2026quarter. NotBrownsRangeorHallsCreekbyregion;notactiveBPMtenureorREE MRE. Historicalcatalogueonly;currentlegalproponentunverified;excludeformalC1/activeprojectcount.",
+      "statement_id": "fullscope5_durack_host",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "礦床型態",
+          "value": "heavy mineral bearing sandstone unit",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Durack",
+              "sandstone"
+            ]
+          },
+          "description_binding": {
+            "page": 1,
+            "project_marker": "Durack",
+            "project_bbox": [
+              385.5732482910156,
+              75.67952575683594,
+              434.0849548339844,
+              92.7977310180664
+            ],
+            "value_bbox": [
+              231.28600158691407,
+              242.17301025390626,
+              397.43694458007815,
+              253.2179962158203
+            ],
+            "literal_value": "heavy mineral bearing sandstone unit",
+            "statement": "heavy mineral bearing sandstone unit"
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "fullscope5_durack_withdrawal",
+      "project_id": "AU-75fe0f1a81005bd19586",
+      "source_key": "bpm_quarter20260716",
+      "source_sha256": "5ebb04f84564bebc1f8e96073fe45b1e3792b6b6115414c28be94d4886bcea28",
+      "asset_set": "fullscope5",
+      "path": "data/snapshots/5ebb04f84564bebc1f8e96073fe45b1e3792b6b6115414c28be94d4886bcea28.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03115395",
+      "publication_date": "2026-07-16",
+      "effective_date": "2026-07-16",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "16th July 2026"
+        ]
+      },
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "16th July 2026"
+        ],
+        "header_title": "QUARTERLY ACTIVITIES REPORT"
+      },
+      "identity_evidence": {
+        "page": 6,
+        "markers": [
+          "Durack"
+        ]
+      },
+      "scope": "Historical Durack REE exploration footprint,EasternKimberleyWA;BPM2024exclusiveoptiononapplications,notcompletedacquisitionorcurrenttitle. BPM16July2026quarterlyp6,p9explicitlywithdrawsoptionduringJune2026quarter. NotBrownsRangeorHallsCreekbyregion;notactiveBPMtenureorREE MRE. Historicalcatalogueonly;currentlegalproponentunverified;excludeformalC1/activeprojectcount.",
+      "statement_id": "fullscope5_durack_withdrawal",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發階段",
+          "value": "decided to withdraw from the ‘option to acquire’ agreement（來源揭露：2026-07-16）",
+          "evidence": {
+            "page": 6,
+            "markers": [
+              "Durack",
+              "withdraw"
+            ]
+          },
+          "description_binding": {
+            "page": 6,
+            "project_marker": "Durack",
+            "project_bbox": [
+              71.92400207519532,
+              501.098486328125,
+              115.05159149169921,
+              513.3003173828125
+            ],
+            "value_bbox": [
+              226.0649169921875,
+              525.3384765625,
+              500.0455261230469,
+              537.5403076171875
+            ],
+            "literal_value": "decided to withdraw from the ‘option to acquire’ agreement",
+            "statement": "decided to withdraw from the ‘option to acquire’ agreement"
+          }
+        }
+      ]
     }
   ]
 }

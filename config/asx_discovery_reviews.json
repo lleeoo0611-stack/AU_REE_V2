@@ -14993,6 +14993,376 @@
           }
         }
       ]
+    },
+    {
+      "candidate_key": "durack-bpm-historical-option",
+      "name": "Durack REE–Ti–Zr Exploration Project — historical BPM option",
+      "aliases": [
+        "Durack",
+        "Durack Project",
+        "Durack REE-Ti-Zr Project"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_DISTINCT_HISTORICAL_AU_REE_EXPLORATION_FOOTPRINT;OPTION_WITHDRAWAL_EXPLICIT;NOT_CURRENT_BPM_OWNERSHIP_OR_ACTIVE_PROJECT_PROMOTION",
+      "country": "AU",
+      "scope": "Historical Durack REE exploration footprint,EasternKimberleyWA;BPM2024exclusiveoptiononapplications,notcompletedacquisitionorcurrenttitle. BPM16July2026quarterlyp6,p9explicitlywithdrawsoptionduringJune2026quarter. NotBrownsRangeorHallsCreekbyregion;notactiveBPMtenureorREE MRE. Historicalcatalogueonly;currentlegalproponentunverified;excludeformalC1/activeprojectcount.",
+      "sources": [
+        {
+          "asset_set": "fullscope5",
+          "path": "data/snapshots/9d23cfd05efad75d66ec9c2e86b701876f7bdbde332cc6b22a4fb8005fca6481.pdf",
+          "sha256": "9d23cfd05efad75d66ec9c2e86b701876f7bdbde332cc6b22a4fb8005fca6481",
+          "url": "https://announcements.asx.com.au/asxpdf/20240703/pdf/0656mxcyyksmfs.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Durack",
+                "Western Australia",
+                "option agreements"
+              ]
+            },
+            {
+              "page": 15,
+              "markers": [
+                "Heavy Mineral Sand",
+                "No drilling to report"
+              ]
+            }
+          ]
+        },
+        {
+          "asset_set": "fullscope5",
+          "path": "data/snapshots/5ebb04f84564bebc1f8e96073fe45b1e3792b6b6115414c28be94d4886bcea28.pdf",
+          "sha256": "5ebb04f84564bebc1f8e96073fe45b1e3792b6b6115414c28be94d4886bcea28",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03115395",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 6,
+              "markers": [
+                "DURACK",
+                "withdraw",
+                "option to acquire"
+              ]
+            },
+            {
+              "page": 1,
+              "markers": [
+                "16th July 2026"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "durack_20240703",
+        "publication_date": "2024-07-03",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "3rd July 2024"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Durack",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Durack",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "BPM Minerals Ltd",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "BPM Minerals Ltd",
+              "option agreements"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "HISTORICAL_OPTION_WITHDRAWN;ROCKCHIP_ASSAYS_NOT_GLOBAL_REE_MRE_OR_ANNUAL_OXIDE_FORECAST;NO_CURRENT_BPM_TENURE_OR_ACTIVE_PROJECT_INFERENCE",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "rock chips",
+              "option agreements"
+            ]
+          }
+        }
+      ]
     }
   ]
 }
