@@ -1,0 +1,20 @@
+{
+  "rounds_included": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "logical_url_requests": 53,
+  "pdf_url_requests": 48,
+  "pdf_successes": 42,
+  "distinct_successful_pdf_hashes": 41,
+  "distinct_successful_pdf_pages": 2491,
+  "limitations": [
+    "TARGETED_SAMPLE_NOT_GENERAL_ASX_RATE",
+    "SOME_HASHES_ALREADY_EXISTED_IN_CENSUS",
+    "OFFICE_TIMEOUTS_AND_HEAD_CHECKS_EXCLUDED_FROM_PDF_DENOMINATOR",
+    "RAW_ORIGINALS_STAY_LOCAL"
+  ]
+}
