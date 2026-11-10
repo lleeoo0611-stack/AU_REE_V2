@@ -1,0 +1,64 @@
+{
+  "version": "reviewed-asx-census-rebuild-v1",
+  "cutoff": "2026-11-05",
+  "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
+  "database_modified": false,
+  "ledger_sha256": {
+    "asx_source_reviews.json": "5e2959c6858c36429b6d8693536c9674ab638659594c40ae391dbe2ddb6ae823",
+    "asx_discovery_reviews.json": "7e477d610550b7d9205c069d8eac651abc05336fa2a2c4de77474731e24631bd",
+    "asx_project_identity_reviews.json": "f00606887c84c624ff2898e97433fcae250b8dd3fc422f2b451315f5768b4514"
+  },
+  "asset_map_sha256": "183c5d6a4e2de278f82b0761cb6a859fec89d72c21d9995d8fe8c4b3473a5de0",
+  "independent_rebuilds": 2,
+  "output_hashes": {
+    "專案總表.csv": "66d462d4f3fec22afd350731b295c96476e6b9cf31b78513019e8473a51e5ee8",
+    "field_provenance.csv": "8637e3e546f7a3c884b4cc2f1cc68abb8e853b1683bb3913c3312d4d60e4e49d",
+    "missing_fields.csv": "b8bd9861d0e48910908cd45e8207409b56c8e48507df5dc755b2b564ff128e39",
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1"
+  },
+  "audit": {
+    "projects": 93,
+    "columns": 53,
+    "filled_cells": 1922,
+    "total_cells": 4929,
+    "remaining_blank_cells": 3007,
+    "scientific_columns": [
+      "礦石蘊藏量_Mt",
+      "TREO品位_pct",
+      "總TREO蘊藏量_kt",
+      "磁鐵稀土氧化物蘊藏量_kt",
+      "磁鐵稀土佔TREO_pct",
+      "NdPr蘊藏量_kt_需兩者皆公布",
+      "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+      "預估年產TREO_t_per_year",
+      "預估年產NdPr_t_per_year",
+      "預估年產重稀土_t_per_year",
+      "La2O3_氧化鑭_kt",
+      "CeO2_氧化鈰_kt",
+      "Pr6O11_氧化鐠_kt",
+      "Nd2O3_氧化釹_kt",
+      "Sm2O3_氧化釤_kt",
+      "Eu2O3_氧化銪_kt",
+      "Gd2O3_氧化釓_kt",
+      "Tb4O7_氧化鋱_kt",
+      "Dy2O3_氧化鏑_kt",
+      "Ho2O3_氧化鈥_kt",
+      "Er2O3_氧化鉺_kt",
+      "Tm2O3_氧化銩_kt",
+      "Yb2O3_氧化鐿_kt",
+      "Lu2O3_氧化鎦_kt",
+      "Y2O3_氧化釔_kt"
+    ],
+    "scientific_filled_cells": 465,
+    "scientific_total_cells": 2325,
+    "output_hashes": {
+      "專案總表.csv": "66d462d4f3fec22afd350731b295c96476e6b9cf31b78513019e8473a51e5ee8",
+      "field_provenance.csv": "8637e3e546f7a3c884b4cc2f1cc68abb8e853b1683bb3913c3312d4d60e4e49d",
+      "missing_fields.csv": "b8bd9861d0e48910908cd45e8207409b56c8e48507df5dc755b2b564ff128e39",
+      "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1"
+    },
+    "provenance_complete": true,
+    "missing_diagnostics_complete": true
+  },
+  "limitation": "REPLAY_OF_APPROVED_EVIDENCE;NOT_A_FRESH_SEARCH_OR_FULL_SCOPE_STOP_DECISION"
+}

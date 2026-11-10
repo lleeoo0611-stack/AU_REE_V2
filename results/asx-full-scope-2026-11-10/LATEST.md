@@ -1,13 +1,15 @@
-# 最新全範圍迭代：第16輪
+# 最新全範圍迭代：第17輪
 
-93個研究案例×53欄，已填1917格、剩餘3012格。案例包含歷史、勘探及重疊的母案／礦床子範圍，不是93個現行獨立開發專案。
+93個研究案例×53欄，已填1922格、剩餘3007格。案例包含歷史、勘探及重疊母子範圍，不是93個現行獨立礦案。
 
-第16輪以364d5cd5已發布93案為延續基準：既有案補值0、新案0、科學新增0、更新0、撤回0、合併0。全部93案3012個空白、3項候選及45條Gemini未解列同輪檢查，168項查詢、701個搜尋上下文。4份PDF取得共146頁；具體核對頁位見來源範圍紀錄，不代表全146頁重新逐頁人工審查。
+本輪從87014284的93案／3012空白延續，既有案補5格：礦床型態3格、具日期的歷史勘探階段2格；新案0、科學新增0、更新0、撤回0、合併0。258項查詢涵蓋全案所有空白、3項候選及45列Gemini未解列。新增11份PDF369頁；相關原件頁位及描述核准見metadata_source_dispositions.csv。
 
-本次16輪系列：原76案新增86格（科學24）；17個新增研究案例提供302格（科學66）。合計新增388格、科學90格，另有9項更新。這是研究列資訊覆蓋；Yttria及MtStirling—Yttria兩列共用16April2024的15Mt、490ppm資源，10個科學欄重疊，禁止把兩列資源相加。來源明示礦床位於母案內，未證明整案同義名，日期代碼亦不同，未放寬合併條件。
+原76案系列累計補90格（科學24）；新增17個研究案例累計提供303格（科學66），另9項更新。這是研究列資訊覆蓋，Yttria／MtStirling子範圍10格重疊不能當獨立資源加總。
 
-393項相關測試及304項子測試通過，兩次獨立重建四份CSV一致、Census未改，241項發布檔案／程式雜湊核對通過。本輪全範圍可取得且已審查來源新增0格；6份作品尚缺合格同版替代，正式完整性審查仍為INCOMPLETE、stop=false。零新增不代表已完成正式完整性審查、所有可能來源已窮盡或全國完整性。7個受追蹤原網址仍未取得，其中維州2024路線圖已取得合格同作品同版官方圖書館副本（原網址狀態及未證明位元一致另列），6份作品仍無合格同版替代。正式審查保持INCOMPLETE、stop=false，不能稱正式完整STOP或把未知當不存在。
+393項相關測試及304項子測試通過；兩次獨立重建四CSV一致，240項發布檔案／程式雜湊核對通過，Census未改。正式規則FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS，本輪有5格且尚有可執行GA座標逐案審查及重播支援工作，持續下一完整輪；INCOMPLETE、stop=false，不能以部分範圍零值停止。
 
-定向下載樣本：93項邏輯PDF網址、77項成功（82.80%）；76個不同成功PDF雜湊、3788頁，部分雜湊已存在Census、同內容不同位元版本分別計數，不代表一般ASX成功率。本輪6個PDF網址4成功，3個HTML未完成；2份Word替代請求403另列，不算PDF分母。既知403原PDF網址未重試；REMP只有一次基於新公開可用性證據的有界PDF重取，仍逾時後停止。
+6份作品仍缺合格同版替代，7個原URL取得狀態與其中1份已有VGLS官方2024同版副本分開保留。Fingerboards新環評原件403亦保留未完成；STPI公開REMP閱覽頁擷取URLError不是403或不存在。未重試已知403原件。
 
-詳見 [第16輪報告](round-16-report/README.md)、[逐格缺口](../asx-current/missing_fields.csv)、[原件範圍審查](round-16-report/source_scope_dispositions.csv)、[93案延續統計](round-16-report/resumption_summary.json)、[原76案累積統計](round-16-report/series_summary.json)、[重疊資源](round-16-report/resource_scope_overlaps.csv) 與 [受阻原件及替代副本](round-16-report/government_checks.json)。
+系列定向下載105個邏輯PDF網址、88成功，86個不同成功PDF雜湊4078頁；包括既有Census或同內容不同位元版本，不代表一般ASX成功率。GIS JSON與HTML文字回應不計PDF成功。原始PDF、GIS JSON、SQLite、Gemini原始列及完整搜尋字串留本機。
+
+詳見[第17輪報告](round-17-report/README.md)、[本次93案對帳](round-17-report/resumption_summary.json)、[原76案累積對帳](round-17-report/series_summary.json)、[逐格缺口](../asx-current/missing_fields.csv)、[待完成來源行動](round-17-report/source_actions.csv)。

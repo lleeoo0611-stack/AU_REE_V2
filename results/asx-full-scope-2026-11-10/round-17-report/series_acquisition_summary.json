@@ -1,0 +1,32 @@
+{
+  "rounds_included": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "logical_url_requests": 123,
+  "pdf_url_requests": 105,
+  "pdf_successes": 88,
+  "distinct_successful_pdf_hashes": 86,
+  "distinct_successful_pdf_pages": 4078,
+  "limitations": [
+    "TARGETED_SAMPLE_NOT_GENERAL_ASX_RATE",
+    "SOME_HASHES_ALREADY_EXISTED_IN_CENSUS",
+    "OFFICE_TIMEOUTS_AND_HEAD_CHECKS_EXCLUDED_FROM_PDF_DENOMINATOR",
+    "RAW_ORIGINALS_STAY_LOCAL"
+  ]
+}
