@@ -97,6 +97,8 @@ class CoverageCycle(unittest.TestCase):
         new[COLUMNS[16]] = '10.0'
         report = self.compare([old], [new])
         self.assertEqual(1, report['existing_projects']['withdrawn_cells'])
+        self.assertFalse(report['stopping_rule']['eligible'])
+        self.assertIn('validation:cell_withdrawals_require_separate_review',report['stopping_rule']['incomplete'])
         self.assertEqual(1, report['existing_projects']['updated_value_cells'])
         self.assertEqual(1, report['existing_projects']['numeric_format_only_cells'])
         self.assertEqual(-1, report['total_filled_cell_delta'])

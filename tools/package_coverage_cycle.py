@@ -70,6 +70,8 @@ def package(before, after, repeat, manifest, snapshots, test_report, out):
         tests=dict(passed=True, evidence=filehash(test_report)),
         reproducibility=dict(passed=True, evidence='All four CSVs match independent repeated export'))
     review = review_coverage_cycle(before, after, declaration)
+    if review['existing_projects']['withdrawn_cells']:
+        raise ValueError('CYCLE_CELL_WITHDRAWALS_REQUIRE_SEPARATE_REVIEW')
     for name in (*summary['output_hashes'], 'summary.json'):
         shutil.copyfile(after/name, out/name)
     for name in ledgers.values():

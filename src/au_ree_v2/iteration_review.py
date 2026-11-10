@@ -101,6 +101,8 @@ def review_coverage_cycle(before, after, manifest):
     removed_filled = sum(value != '' for pid in removed for value in old[pid].values())
     gain = counts['newly_filled_cells'] + added_filled
     incomplete = []
+    if counts['withdrawn_cells']:
+        incomplete.append('validation:cell_withdrawals_require_separate_review')
     for track in ('candidates', 'numeric'):
         item = manifest.get('tracks', {}).get(track, {})
         records = item.get('records', [])

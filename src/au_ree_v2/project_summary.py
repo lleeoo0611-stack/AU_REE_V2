@@ -80,6 +80,16 @@ def reported_magnet_group(observations,bundle):
     return dict(observation=g,contained_kt=bundle['value']['ore_mt']*g['value']*.001,share_percent=g['value']/grade*100)
 
 
+def merge_summary_sources(selected, incoming, projects):
+    """Do not replace a source key used by a project's existing identity."""
+    required={p['identity_source'] for p in projects}
+    for sha,source in incoming.items():
+        previous=selected.get(sha)
+        if previous and previous['key'] in required and source['key']!=previous['key']:
+            raise ValueError('SUMMARY_IDENTITY_SOURCE_KEY_REPLACEMENT')
+    selected.update(incoming)
+
+
 def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',review_ledger=None,asset_roots=None,discovery_ledger=None):
     root=Path(root).resolve();database=Path(database).resolve();run_dir=Path(run_dir).resolve();out=Path(out).resolve()
     if out==root or out==database.parent or root in out.parents and out.relative_to(root).parts[0] in ('data','config','src'):
@@ -147,11 +157,11 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
         if discovery_ledger:
             from .reviewed_discovery import validate_discovery
             discovered=validate_discovery(discovery_ledger,asset_roots or {},projects,cutoff)
-            projects.extend(discovered['projects']);selected.update(discovered['sources'])
+            projects.extend(discovered['projects']);merge_summary_sources(selected,discovered['sources'],projects)
         if review_ledger:
             from .asx_validation import validate_reviews
             supplement=validate_reviews(review_ledger,asset_roots or {},projects,cutoff)
-            selected.update(supplement['sources'])
+            merge_summary_sources(selected,supplement['sources'],projects)
         records=defaultdict(list);observations=defaultdict(list);studies=defaultdict(list)
         for r in (discovered or {}).get('records',[]):records[r['entity_id']].append(r)
         for r in db.execute('SELECT r.*,e.kind,e.native_id FROM records r JOIN entities e USING(entity_id)'):

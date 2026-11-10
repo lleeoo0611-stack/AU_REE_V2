@@ -6,5 +6,11 @@
   "adopted_cycle": "continuation-12",
   "reason": "Twelve new metadata cells were accompanied by fourteen lost source-label/URL cells due to conflicting keys for the same PDF SHA. Scientific values unchanged. Failed shell audit did not stop the next commands; publication rejected retrospectively. Current table restored byte-for-byte to tested cycle12 pending corrected replay.",
   "historical_failed_audit_retained": true,
-  "history_rewritten": false
+  "history_rewritten": false,
+  "status": "CORRECTED_REPLAY_VALIDATED",
+  "corrected_cycle": "continuation-14",
+  "gain_comparison_baseline": "continuation-12",
+  "newly_filled_cells": 12,
+  "withdrawn_cells": 0,
+  "actual_rejected_output_blocked_by_new_packager": true
 }
