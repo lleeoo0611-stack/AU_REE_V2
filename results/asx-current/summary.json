@@ -1,27 +1,27 @@
 {
   "version": "census-project-summary-v3-asx-identity",
   "cutoff": "2026-11-05",
-  "rows": 71,
+  "rows": 73,
   "columns": 53,
-  "unique_project_ids": 71,
+  "unique_project_ids": 73,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "claims_sha256": "11bfc4842e4b1d391ff220d39d0d17ad000a645ca6ed19dad11294b3408940f2",
   "snapshot_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
   "configuration_sha256": "92774d210b9d5b55a3b7ced161381be1cb52a5a3959ea4e4a284bf554fb5ed1a",
   "columns_sha256": "f6389bc0ace6cccac5ef34ae0ffd651403e4dbec5fd9d9ee7602f22404ed5223",
   "filled_counts": {
-    "專案ID": 71,
-    "開發商": 70,
-    "未上市公司": 15,
-    "專案名稱": 71,
-    "所在地_中文": 71,
-    "所在地_英文": 71,
-    "國家": 71,
-    "州省地區": 71,
+    "專案ID": 73,
+    "開發商": 72,
+    "未上市公司": 25,
+    "專案名稱": 73,
+    "所在地_中文": 73,
+    "所在地_英文": 73,
+    "國家": 73,
+    "州省地區": 73,
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
-    "礦床型態": 49,
+    "礦床型態": 50,
     "開發階段代碼": 0,
     "開發階段類別": 0,
     "開發階段": 35,
@@ -37,9 +37,9 @@
     "預估年產重稀土_t_per_year": 0,
     "產品/產出": 11,
     "有TREO資源估計": 31,
-    "有來源文件": 71,
-    "資料來源名稱": 71,
-    "資料來源URL": 71,
+    "有來源文件": 73,
+    "資料來源名稱": 73,
+    "資料來源URL": 73,
     "已公布元素數_共15項": 19,
     "已公布元素總和_kt": 19,
     "元素總和/TREO": 17,
@@ -62,9 +62,9 @@
     "Yb2O3_氧化鐿_kt": 11,
     "Lu2O3_氧化鎦_kt": 12,
     "Y2O3_氧化釔_kt": 13,
-    "ASX代碼": 66
+    "ASX代碼": 68
   },
-  "verified_source_hashes": 112,
+  "verified_source_hashes": 113,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -74,7 +74,7 @@
     "PROJECT": 33,
     "SITE": 766,
     "DEPOSIT": 301,
-    "REVIEWED_PROJECT_EXTENSION": 38,
+    "REVIEWED_PROJECT_EXTENSION": 40,
     "DEPOSIT_SCOPE": 27,
     "PROSPECT": 191,
     "PROJECT_PROGRAM": 1,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "10dd1e57a090c65e757243601aa4a06f8ce574c3e0a95847c2800f249b76bac0",
-    "field_provenance.csv": "901a1e377ea29f570e9db93e780fc30f881b092d1e9f39af12a268f3e1b73fa6",
-    "missing_fields.csv": "96124e659328e9809a29814a0ff344bbeac12107c3df0cfc76e9290ed884a142",
-    "census_inventory.csv": "0b235d802ac3045e0130ba1e157802a2e8c8684593cb7bc419353325740b0108"
+    "專案總表.csv": "3726c5c5b051f56ede3fbcdc1735898435ca1a6c74ff9dccc9a72760770e914a",
+    "field_provenance.csv": "a482568a7bb9999051b27084383c2d605bb1eae6ccf1a71210f4757704ddb8b9",
+    "missing_fields.csv": "5f83c0f8a9b417cae7cf15dac5c03d544577fe2f1ee4cf0356b61be336d795d3",
+    "census_inventory.csv": "56a439ef512d9ce397629294532ead494af8656ed7d015f9be4be549b11acf81"
   },
-  "review_ledger_sha256": "a331732ecf0a753dd73912ce1d49a5e11dfc9c5cf3f1bfe8c2b56d96110c67bc",
+  "review_ledger_sha256": "05e6cc0756c0de7f7f936a68729d0a4c2c0a9741f0e5286fcb63bb3f364070a2",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -2467,10 +2467,219 @@
       "effective_date_role": "DATED_ISSUER_METADATA",
       "date_precision": "DAY",
       "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation12_listing_AU-12cc237ae66c7a6508ca",
+      "project_id": "AU-12cc237ae66c7a6508ca",
+      "source_sha256": "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43",
+      "status": "VALIDATED",
+      "scope": "Explicit dated listed reporting issuer plus native same-project100% ownership statement only; historical metadata, not current title. Existing resource scopes, mineral quantities and forecasts remain unchanged. Application and adjacent/subdeposit qualifiers retained.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2025-01-22",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation12_listing_AU-2262a37ca19531f08da3",
+      "project_id": "AU-2262a37ca19531f08da3",
+      "source_sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+      "status": "VALIDATED",
+      "scope": "Explicit dated listed reporting issuer plus native same-project100% ownership statement only; historical metadata, not current title. Existing resource scopes, mineral quantities and forecasts remain unchanged. Application and adjacent/subdeposit qualifiers retained.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2024-05-29",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation12_listing_AU-4286ab9c245effb445ff",
+      "project_id": "AU-4286ab9c245effb445ff",
+      "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+      "status": "VALIDATED",
+      "scope": "Explicit dated listed reporting issuer plus native same-project100% ownership statement only; historical metadata, not current title. Existing resource scopes, mineral quantities and forecasts remain unchanged. Application and adjacent/subdeposit qualifiers retained.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-06-01",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation12_listing_AU-f46f6d53e7196650495d",
+      "project_id": "AU-f46f6d53e7196650495d",
+      "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5",
+      "status": "VALIDATED",
+      "scope": "Explicit dated listed reporting issuer plus native same-project100% ownership statement only; historical metadata, not current title. Existing resource scopes, mineral quantities and forecasts remain unchanged. Application and adjacent/subdeposit qualifiers retained.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2020-02-19",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation12_listing_AU-3eb7131e4daea18a60a0",
+      "project_id": "AU-3eb7131e4daea18a60a0",
+      "source_sha256": "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089",
+      "status": "VALIDATED",
+      "scope": "Explicit dated listed reporting issuer plus native same-project100% ownership statement only; historical metadata, not current title. Existing resource scopes, mineral quantities and forecasts remain unchanged. Application and adjacent/subdeposit qualifiers retained.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-10-29",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation12_listing_AU-af44c2bd1173b453953f",
+      "project_id": "AU-af44c2bd1173b453953f",
+      "source_sha256": "88dfed30776b41d3739253fefaa1e5972a0b9969ec4db39dc1130efa2164775a",
+      "status": "VALIDATED",
+      "scope": "Explicit dated listed reporting issuer plus native same-project100% ownership statement only; historical metadata, not current title. Existing resource scopes, mineral quantities and forecasts remain unchanged. Application and adjacent/subdeposit qualifiers retained.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-10-27",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation12_listing_AU-8f3fe174a998d20ee4cf",
+      "project_id": "AU-8f3fe174a998d20ee4cf",
+      "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+      "status": "VALIDATED",
+      "scope": "Explicit dated listed reporting issuer plus native same-project100% ownership statement only; historical metadata, not current title. Existing resource scopes, mineral quantities and forecasts remain unchanged. Application and adjacent/subdeposit qualifiers retained.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-11-30",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation12_listing_AU-81b21bdd06796fa2217d",
+      "project_id": "AU-81b21bdd06796fa2217d",
+      "source_sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+      "status": "VALIDATED",
+      "scope": "Explicit dated listed reporting issuer plus native same-project100% ownership statement only; historical metadata, not current title. Existing resource scopes, mineral quantities and forecasts remain unchanged. Application and adjacent/subdeposit qualifiers retained.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-06-14",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation12_listing_AU-5ea2535a2de9a1a3327e",
+      "project_id": "AU-5ea2535a2de9a1a3327e",
+      "source_sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+      "status": "VALIDATED",
+      "scope": "Explicit dated listed reporting issuer plus native same-project100% ownership statement only; historical metadata, not current title. Existing resource scopes, mineral quantities and forecasts remain unchanged. Application and adjacent/subdeposit qualifiers retained.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-06-14",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation12_listing_AU-7157ac0201b7d1e93ff7",
+      "project_id": "AU-7157ac0201b7d1e93ff7",
+      "source_sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+      "status": "VALIDATED",
+      "scope": "Explicit dated listed reporting issuer plus native same-project100% ownership statement only; historical metadata, not current title. Existing resource scopes, mineral quantities and forecasts remain unchanged. Application and adjacent/subdeposit qualifiers retained.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-06-14",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "continuation12_graceland_type",
+      "project_id": "AU-7157ac0201b7d1e93ff7",
+      "source_sha256": "3f9db544c68335bbaf29ee2018280e28633df2b58395cf5d6d0eb906b3749226",
+      "status": "VALIDATED",
+      "scope": "Literal historical Graceland host description in issuer original. Drilling intervals and assays remain exploration evidence and are not project MRE, average resource grade, annual output or proof of economic ionic extraction.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-05-25",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "69fde75447071742044588061fd213f37dc3a31664cc6dfa3b1acacbce645af6",
+  "discovery_ledger_sha256": "fc524ce4cb515095d06b5b229d19c9c1a89289798f8719887446330b803f1618",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -13565,20 +13774,146 @@
           }
         }
       ]
+    },
+    {
+      "candidate_key": "viper-emu",
+      "name": "Viper REE Project — EMU",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_NATIVE_ORIGINAL_NAMES_AUSTRALIAN_REE_EXPLORATION_PROJECT;NO_GEMINI_ONLY_OR_NEIGHBOUR_RESOURCE_IMPORT",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7.pdf",
+          "sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02675888",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "REE discoveries",
+                "100% owned projects in WA",
+                "Viper",
+                "Jerramungup",
+                "EMU NL"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-5ea2535a2de9a1a3327e",
+      "scope": "Historical EMU REE exploration project near Jerramungup, Western Australia, explicitly named on14June2023 with same issuer. No Merredin assay/resource transfer or current rights certification.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_merredin",
+        "publication_date": "2023-06-14",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "14 June 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Viper",
+            "Jerramungup",
+            "100% owned projects in WA",
+            "REE discoveries"
+          ]
+        },
+        "name_marker": "Viper",
+        "state": "WA",
+        "state_marker": "WA",
+        "developer": {
+          "value": "EMU NL",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EMU NL"
+            ]
+          }
+        }
+      },
+      "deferred_fields": []
+    },
+    {
+      "candidate_key": "graceland-emu",
+      "name": "Graceland REE Project — EMU",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_NATIVE_ORIGINAL_NAMES_AUSTRALIAN_REE_EXPLORATION_PROJECT;NO_GEMINI_ONLY_OR_NEIGHBOUR_RESOURCE_IMPORT",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7.pdf",
+          "sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02675888",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "REE discoveries",
+                "100% owned projects in WA",
+                "Graceland",
+                "Lake Grace",
+                "EMU NL"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-7157ac0201b7d1e93ff7",
+      "scope": "Historical EMU REE exploration project near Lake Grace, Western Australia, explicitly named on14June2023 with same issuer. No Merredin assay/resource transfer or current rights certification.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_merredin",
+        "publication_date": "2023-06-14",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "14 June 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Graceland",
+            "Lake Grace",
+            "100% owned projects in WA",
+            "REE discoveries"
+          ]
+        },
+        "name_marker": "Graceland",
+        "state": "WA",
+        "state_marker": "WA",
+        "developer": {
+          "value": "EMU NL",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EMU NL"
+            ]
+          }
+        }
+      },
+      "deferred_fields": []
     }
   ],
   "original_canonical_projects": 33,
-  "reviewed_project_extensions": 38,
+  "reviewed_project_extensions": 40,
   "base_contract_columns": 52,
   "base_projection_hashes": {
-    "census_inventory.csv": "0b235d802ac3045e0130ba1e157802a2e8c8684593cb7bc419353325740b0108",
-    "field_provenance.csv": "3fbbd16aaf58d226c567857faaaeb8d2d1b57d09516aed44eb342b8fed5295a4",
-    "missing_fields.csv": "0bfb44a9e181d0ef7a6155245b899c47623ae50aec882dffb0aa8c5a468b6347",
-    "專案總表.csv": "22083ab3899113d7ce75062b26e60b3cdd28b5094cc2422bb53cadb0a658a231"
+    "census_inventory.csv": "56a439ef512d9ce397629294532ead494af8656ed7d015f9be4be549b11acf81",
+    "field_provenance.csv": "8f958d4b92f3b4226cfbb1788d1a6a7b576b5ec53987cf556f52c69285f3a9c7",
+    "missing_fields.csv": "9e58a324ed04e0b38ba1486bf88769fc9f9860039236ffe171fc1d84043e9545",
+    "專案總表.csv": "4b5a77a3c3dcee082f452f6dc2b986531ba1614f2ec4224b812c311d07c9b336"
   },
-  "identity_ledger_sha256": "3a5a6566bc4c6ebf110ae68b9f48861868a6164fe95627cc2509b6aa57ac1f65",
+  "identity_ledger_sha256": "403942a553aff89f96cdb4c76d2c407433ef9e886cf6140b2d7257e630ae2433",
   "identity_merges": [],
-  "validated_asx_codes": 66,
+  "validated_asx_codes": 68,
   "identity_sources": {
     "AU-12cc237ae66c7a6508ca": {
       "asset_set": "round3",
@@ -14054,6 +14389,18 @@
       "path": "data/snapshots/dd3653fe14f32c9b7ca83ea83ab42800a8c4308916271fe2e11be8ae90eb8950.pdf",
       "sha256": "dd3653fe14f32c9b7ca83ea83ab42800a8c4308916271fe2e11be8ae90eb8950",
       "url": "https://wcsecure.weblink.com.au/clients/fortunametals/headline.aspx?headlineid=61227362"
+    },
+    "AU-5ea2535a2de9a1a3327e": {
+      "asset_set": "round6",
+      "path": "data/snapshots/72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7.pdf",
+      "sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02675888"
+    },
+    "AU-7157ac0201b7d1e93ff7": {
+      "asset_set": "round6",
+      "path": "data/snapshots/72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7.pdf",
+      "sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02675888"
     }
   },
   "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS"

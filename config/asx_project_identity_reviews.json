@@ -478,6 +478,18 @@
       "path": "data/snapshots/dd3653fe14f32c9b7ca83ea83ab42800a8c4308916271fe2e11be8ae90eb8950.pdf",
       "sha256": "dd3653fe14f32c9b7ca83ea83ab42800a8c4308916271fe2e11be8ae90eb8950",
       "url": "https://wcsecure.weblink.com.au/clients/fortunametals/headline.aspx?headlineid=61227362"
+    },
+    "AU-5ea2535a2de9a1a3327e": {
+      "asset_set": "round6",
+      "path": "data/snapshots/72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7.pdf",
+      "sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02675888"
+    },
+    "AU-7157ac0201b7d1e93ff7": {
+      "asset_set": "round6",
+      "path": "data/snapshots/72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7.pdf",
+      "sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02675888"
     }
   },
   "codes": [
@@ -2809,6 +2821,78 @@
         ]
       },
       "scope": "Historical Lyons reporting issuer Lanthanein; current Fortuna developer label is not assigned an inferred code. Report mentions11,12,13 but selected12&13 resource scope is unchanged. Reporting issuer at document date only; not current legal title, resource scope expansion or numeric transfer."
+    },
+    {
+      "review_id": "continuation12_code_viper-emu",
+      "project_id": "AU-5ea2535a2de9a1a3327e",
+      "code": "EMU",
+      "issuer_name": "EMU NL",
+      "source_key": "AU-5ea2535a2de9a1a3327e",
+      "evidence_date": "2023-06-14",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "14 June 2023"
+        ]
+      },
+      "project_marker": "Viper",
+      "project_evidence": {
+        "page": 1,
+        "markers": [
+          "Viper",
+          "Jerramungup"
+        ]
+      },
+      "issuer_evidence": {
+        "page": 1,
+        "markers": [
+          "EMU NL"
+        ]
+      },
+      "code_label": "ASX:EMU",
+      "code_evidence": {
+        "page": 1,
+        "markers": [
+          "ASX:EMU"
+        ]
+      },
+      "scope": "Historical EMU REE exploration project near Jerramungup, Western Australia, explicitly named on14June2023 with same issuer. No Merredin assay/resource transfer or current rights certification."
+    },
+    {
+      "review_id": "continuation12_code_graceland-emu",
+      "project_id": "AU-7157ac0201b7d1e93ff7",
+      "code": "EMU",
+      "issuer_name": "EMU NL",
+      "source_key": "AU-7157ac0201b7d1e93ff7",
+      "evidence_date": "2023-06-14",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "14 June 2023"
+        ]
+      },
+      "project_marker": "Graceland",
+      "project_evidence": {
+        "page": 1,
+        "markers": [
+          "Graceland",
+          "Lake Grace"
+        ]
+      },
+      "issuer_evidence": {
+        "page": 1,
+        "markers": [
+          "EMU NL"
+        ]
+      },
+      "code_label": "ASX:EMU",
+      "code_evidence": {
+        "page": 1,
+        "markers": [
+          "ASX:EMU"
+        ]
+      },
+      "scope": "Historical EMU REE exploration project near Lake Grace, Western Australia, explicitly named on14June2023 with same issuer. No Merredin assay/resource transfer or current rights certification."
     }
   ],
   "merges": [],

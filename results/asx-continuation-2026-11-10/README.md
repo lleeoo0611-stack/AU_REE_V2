@@ -2,7 +2,15 @@
 
 本系列以 `934f93a` 的 59 案 × 53 欄固定為起點：1,237 格已填、1,890 格空白。研究截止仍為 2026-11-05，Census SQLite 唯讀。先前四輪及「少於三格停止」結果是歷史紀錄；本系列改為完整一輪 **零新增可驗證格值** 才有停止資格。所有欄位都納入，不設定數值欄優先次序。
 
-## 最新：第十一輪
+## 最新：第十二輪
+
+第十二輪新增Viper與Graceland兩個歷史REE勘探專案，共25格；八個既有案補上市狀態八格，合計33格。本系列新案增至14案。原件明文列西澳、同名專案及EMU，未把Merredin的岩屑品位移入兩案；Graceland另由2023-05-25原件補Clay Saprolite/Granitoid文字，14頁公告的鑽孔不是MRE或產量。八個既有案為Redlings、Splinter Rock、Burracoppin、Kalkaroo、Sandy Mitchell、Aileron、Mangaroon及Merredin；上市狀態須有同原件公司／代碼與明文100%持有，Mangaroon不因此擴張Yin資源範圍。
+
+現為 **73案 × 53欄，1,476格已填／2,393格空白**；原59案累計補80格，目前1,317已填／1,810空白。新14案159格及583格未知另列；原始55案累計補101格，目前1,269已填／1,646空白。原案空白下降，新增案空白另計。ASX代碼68案、科學數值本輪0格、撤回0格、實際合併0案。
+
+53項相關測試通過，兩次完整來源重建四個CSV相同；程式沿用第十一輪356項回歸與169個子測試已通過版本，本輪未改程式。三個原始待補證候選與Gemini未驗證29列仍保留，停止資格INCOMPLETE。下一輪核對其餘原件描述及年度報告的上市證據，沒有宣告零新增。
+
+## 第十一輪
 
 第十一輪補八格：Mt Stirling、Greater Brothers、Balranald、Circle Valley、Euston、Lyons的六個原件日期下ASX代碼，以及Euston的礦砂礦床與推進中初步可行性工作兩格描述。原件的全稱Australian Securities Exchange與LNR採用精確原生分欄區域，避免相鄰郵寄地址插入；錯誤區域、無效座標及代碼仍拒絕。Greater Brothers的凍結身分來源正是Brothers/Jupiter研究原件；只記錄父專案報告公司，不移入Jupiter資源。歷史Asra/Lanthanein代碼不冒充現列Gold Arc/Fortuna的現時代碼。
 

@@ -11238,6 +11238,138 @@
           }
         }
       ]
+    },
+    {
+      "candidate_key": "viper-emu",
+      "name": "Viper REE Project — EMU",
+      "aliases": [
+        "Viper",
+        "Viper Project",
+        "Viper REE Project"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_NATIVE_ORIGINAL_NAMES_AUSTRALIAN_REE_EXPLORATION_PROJECT;NO_GEMINI_ONLY_OR_NEIGHBOUR_RESOURCE_IMPORT",
+      "country": "AU",
+      "scope": "Historical EMU REE exploration project near Jerramungup, Western Australia, explicitly named on14June2023 with same issuer. No Merredin assay/resource transfer or current rights certification.",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7.pdf",
+          "sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02675888",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "REE discoveries",
+                "100% owned projects in WA",
+                "Viper",
+                "Jerramungup",
+                "EMU NL"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_merredin",
+        "publication_date": "2023-06-14",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "14 June 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Viper",
+            "Jerramungup",
+            "100% owned projects in WA",
+            "REE discoveries"
+          ]
+        },
+        "name_marker": "Viper",
+        "state": "WA",
+        "state_marker": "WA",
+        "developer": {
+          "value": "EMU NL",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EMU NL"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "candidate_key": "graceland-emu",
+      "name": "Graceland REE Project — EMU",
+      "aliases": [
+        "Graceland",
+        "Graceland Project",
+        "Graceland REE Project"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_NATIVE_ORIGINAL_NAMES_AUSTRALIAN_REE_EXPLORATION_PROJECT;NO_GEMINI_ONLY_OR_NEIGHBOUR_RESOURCE_IMPORT",
+      "country": "AU",
+      "scope": "Historical EMU REE exploration project near Lake Grace, Western Australia, explicitly named on14June2023 with same issuer. No Merredin assay/resource transfer or current rights certification.",
+      "sources": [
+        {
+          "asset_set": "round6",
+          "path": "data/snapshots/72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7.pdf",
+          "sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02675888",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "REE discoveries",
+                "100% owned projects in WA",
+                "Graceland",
+                "Lake Grace",
+                "EMU NL"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "r6_identity_merredin",
+        "publication_date": "2023-06-14",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "14 June 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Graceland",
+            "Lake Grace",
+            "100% owned projects in WA",
+            "REE discoveries"
+          ]
+        },
+        "name_marker": "Graceland",
+        "state": "WA",
+        "state_marker": "WA",
+        "developer": {
+          "value": "EMU NL",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EMU NL"
+            ]
+          }
+        }
+      }
     }
   ]
 }
