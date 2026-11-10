@@ -1,30 +1,30 @@
 {
   "version": "census-project-summary-v3-asx-identity",
   "cutoff": "2026-11-05",
-  "rows": 77,
+  "rows": 81,
   "columns": 53,
-  "unique_project_ids": 77,
+  "unique_project_ids": 81,
   "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
   "claims_sha256": "11bfc4842e4b1d391ff220d39d0d17ad000a645ca6ed19dad11294b3408940f2",
   "snapshot_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
   "configuration_sha256": "92774d210b9d5b55a3b7ced161381be1cb52a5a3959ea4e4a284bf554fb5ed1a",
   "columns_sha256": "f6389bc0ace6cccac5ef34ae0ffd651403e4dbec5fd9d9ee7602f22404ed5223",
   "filled_counts": {
-    "專案ID": 77,
-    "開發商": 77,
-    "未上市公司": 32,
-    "專案名稱": 77,
-    "所在地_中文": 77,
-    "所在地_英文": 77,
-    "國家": 77,
-    "州省地區": 77,
+    "專案ID": 81,
+    "開發商": 81,
+    "未上市公司": 37,
+    "專案名稱": 81,
+    "所在地_中文": 81,
+    "所在地_英文": 81,
+    "國家": 81,
+    "州省地區": 81,
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
-    "礦床型態": 57,
+    "礦床型態": 60,
     "開發階段代碼": 0,
     "開發階段類別": 0,
-    "開發階段": 42,
+    "開發階段": 44,
     "礦石蘊藏量_Mt": 35,
     "TREO品位_pct": 33,
     "總TREO蘊藏量_kt": 33,
@@ -37,9 +37,9 @@
     "預估年產重稀土_t_per_year": 0,
     "產品/產出": 12,
     "有TREO資源估計": 33,
-    "有來源文件": 77,
-    "資料來源名稱": 77,
-    "資料來源URL": 77,
+    "有來源文件": 81,
+    "資料來源名稱": 81,
+    "資料來源URL": 81,
     "已公布元素數_共15項": 20,
     "已公布元素總和_kt": 20,
     "元素總和/TREO": 18,
@@ -62,9 +62,9 @@
     "Yb2O3_氧化鐿_kt": 12,
     "Lu2O3_氧化鎦_kt": 13,
     "Y2O3_氧化釔_kt": 14,
-    "ASX代碼": 72
+    "ASX代碼": 76
   },
-  "verified_source_hashes": 120,
+  "verified_source_hashes": 126,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -74,7 +74,7 @@
     "PROJECT": 33,
     "SITE": 766,
     "DEPOSIT": 301,
-    "REVIEWED_PROJECT_EXTENSION": 44,
+    "REVIEWED_PROJECT_EXTENSION": 48,
     "DEPOSIT_SCOPE": 27,
     "PROSPECT": 191,
     "PROJECT_PROGRAM": 1,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "9701913a09bb99970cb1d9c9de470e447fd2136248d9cf22279b708b0b0d5427",
-    "field_provenance.csv": "0fc41bee5d9145558d738862459aa7a5ade67987c471b67c703649a0a327ab45",
-    "missing_fields.csv": "611f896180459bfba276be315800871104d756ae375630f54fa679561b3f0235",
-    "census_inventory.csv": "a57713171b02d9e963c4561915ff41537a7b4579dfaece4e5c8f95c36ff45f63"
+    "專案總表.csv": "ca05b062139b8f97385a77a42bd48f5779a86ba104e8deed4f53036553ebf411",
+    "field_provenance.csv": "c061639d04747637d0025abe1a53c3862660be4dd32e8e27ee29b2729b701b74",
+    "missing_fields.csv": "b322d36c32042d2344d91d64e21c458e292e155b2cb7e3906dbbeb4caae31b03",
+    "census_inventory.csv": "772d7fd6a83f7466be18da75ba013e515e73fb2f1631679e3897de91d580082e"
   },
-  "review_ledger_sha256": "6bb123c6e03400b73ccb019992bf24255329b11a45d3f8b45adc72024aae0c05",
+  "review_ledger_sha256": "01de0448917a20bf5f6de40d0b9d972ab52527ec7d9c9d418a2898b4f5d96bf5",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -3124,10 +3124,181 @@
         "2026-02-01",
         "2026-02-28"
       ]
+    },
+    {
+      "review_id": "fullscope2_descriptions_central-gawler-indiana",
+      "project_id": "AU-14f7cb8ca1fcd58f536c",
+      "source_sha256": "abd44d8d94bc3bf89e8186d260982e8652d723e3eca2b571bc6c96d4ab8569a1",
+      "status": "VALIDATED",
+      "scope": "Indiana Central Gawler 5713km2 project; distinct from Petratherm Comet, Cobra Wudinna and regional Gawler province. Historical 14June2022 issuer association; three-oxide drill intercepts are not full TREO or a mineral resource.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2022-06-14",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope2_descriptions_wim150-australian-zircon",
+      "project_id": "AU-fb4e914f86102baa414a",
+      "source_sha256": "915ba8ed727c24113d27d9510c50bee05a03b080955df6d867a6ee5f22aa0f5e",
+      "status": "VALIDATED",
+      "scope": "WIM150 StHelens and Danube mineral sands project, Australian Zircon 80percent historical reporting scope. Explicit REE minerals monazite/xenotime p4, not measured bulk TREO oxide grade. Does not include Donald, WIM100, or later Cadoux Danube extensions; no current ownership claim.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "ASX_DATED_URL",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2015-10-30",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope2_listing_AU-c4391f8d2a6690076436",
+      "project_id": "AU-c4391f8d2a6690076436",
+      "source_sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+      "status": "VALIDATED",
+      "scope": "Source-dated listed reporting issuer and explicitly stated full ownership; historical association only, not current title, listing or tenure continuity.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-02-22",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope2_listing_AU-14f7cb8ca1fcd58f536c",
+      "project_id": "AU-14f7cb8ca1fcd58f536c",
+      "source_sha256": "abd44d8d94bc3bf89e8186d260982e8652d723e3eca2b571bc6c96d4ab8569a1",
+      "status": "VALIDATED",
+      "scope": "Source-dated listed reporting issuer and explicitly stated full ownership; historical association only, not current title, listing or tenure continuity.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2022-06-14",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope2_listing_AU-e6d859a831ed5954b440",
+      "project_id": "AU-e6d859a831ed5954b440",
+      "source_sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64",
+      "status": "VALIDATED",
+      "scope": "Source-dated listed reporting issuer and explicitly stated full ownership; historical association only, not current title, listing or tenure continuity.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-07-31",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope2_circle_valley_listing",
+      "project_id": "AU-785536db5ff12c25350d",
+      "source_sha256": "38df62723a26b2d94bacfe0f0673b3e6ece3dc09465e36620a57c11bab461000",
+      "status": "VALIDATED",
+      "scope": "Historical 2June2022 listed issuer and 100percent ownership of Circle Valley, not current legal title or current listing guarantee. Does not change selected2023resource.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2022-06-02",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope2_perenjori_listing",
+      "project_id": "AU-794821a2df9b7a244f96",
+      "source_sha256": "d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d",
+      "status": "VALIDATED",
+      "scope": "HRE Perenjori historical listed reporting issuer and explicit 100per-cent project ownership at13June2025, not current title certification.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2025-06-13",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope2_literal_ida_half20250314",
+      "project_id": "AU-14f7cb8ca1fcd58f536c",
+      "source_sha256": "c0684f1fa2358241c68110d1c1ac471239caa5995c79da9872108423e32f0986",
+      "status": "VALIDATED",
+      "scope": "Literal source-dated exploration stage/target-host description only. Potential target host does not prove mineralisation, MRE, recovery or current legal title.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "ASX_DATED_URL",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2025-03-14",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope2_literal_hre_perenjori20250613",
+      "project_id": "AU-794821a2df9b7a244f96",
+      "source_sha256": "d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d",
+      "status": "VALIDATED",
+      "scope": "Literal source-dated exploration stage/target-host description only. Potential target host does not prove mineralisation, MRE, recovery or current legal title.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2025-06-13",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "87c0a97bef89e6e793866de3137f24754bc2c23dd3000d273ce2ca56d3c87bd1",
+  "discovery_ledger_sha256": "17ec73470297e339ebf14b8189dd5e9b7afc27d8d82e78a55ef629b923302692",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -15410,20 +15581,1362 @@
         }
       },
       "deferred_fields": []
+    },
+    {
+      "candidate_key": "central-gawler-indiana",
+      "name": "Central Gawler REE Exploration Project — Indiana",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_NAMED_AU_REE_PROJECT;HISTORICAL_REPORTING_SCOPE;NO_RESOURCE_OR_ANNUAL_INFERENCE",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "fullscope2",
+          "path": "data/snapshots/abd44d8d94bc3bf89e8186d260982e8652d723e3eca2b571bc6c96d4ab8569a1.pdf",
+          "sha256": "abd44d8d94bc3bf89e8186d260982e8652d723e3eca2b571bc6c96d4ab8569a1",
+          "url": "https://www.asx.com.au/asxpdf/20220614/pdf/459whszj3hf2sp.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Central Gawler Project",
+                "South Australia"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-14f7cb8ca1fcd58f536c",
+      "scope": "Indiana Central Gawler 5713km2 project; distinct from Petratherm Comet, Cobra Wudinna and regional Gawler province. Historical 14June2022 issuer association; three-oxide drill intercepts are not full TREO or a mineral resource.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "central_gawler_ida20220614",
+        "publication_date": "2022-06-14",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "14th June 2022"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Central Gawler Project",
+            "South Australia"
+          ]
+        },
+        "name_marker": "Central Gawler Project",
+        "state": "SA",
+        "state_marker": "South Australia",
+        "developer": {
+          "value": "Indiana Resources Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Indiana Resources Limited"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "ONLY_THREE_OXIDE_DRILL_INTERCEPTS_NOT_FULL_TREO_MRE_OR_MATCHED_RESOURCE_COMPOSITION_AND_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "three of the fifteen",
+              "Central Gawler"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "wim150-australian-zircon",
+      "name": "WIM150 Rare-Earth-Bearing Mineral Sands Project — Australian Zircon 2015",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_NAMED_AU_REE_PROJECT;HISTORICAL_REPORTING_SCOPE;NO_RESOURCE_OR_ANNUAL_INFERENCE",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "fullscope2",
+          "path": "data/snapshots/915ba8ed727c24113d27d9510c50bee05a03b080955df6d867a6ee5f22aa0f5e.pdf",
+          "sha256": "915ba8ed727c24113d27d9510c50bee05a03b080955df6d867a6ee5f22aa0f5e",
+          "url": "https://announcements.asx.com.au/asxpdf/20151030/pdf/432lnhn1tgsl2l.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "WIM150",
+                "Victoria"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-fb4e914f86102baa414a",
+      "scope": "WIM150 StHelens and Danube mineral sands project, Australian Zircon 80percent historical reporting scope. Explicit REE minerals monazite/xenotime p4, not measured bulk TREO oxide grade. Does not include Donald, WIM100, or later Cadoux Danube extensions; no current ownership claim.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "wim150_20151030",
+        "publication_date": "2015-10-30",
+        "date_evidence": {
+          "page": 2,
+          "markers": [
+            "30 October 2015"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "WIM150",
+            "Victoria"
+          ]
+        },
+        "name_marker": "WIM150",
+        "state": "VIC",
+        "state_marker": "Victoria",
+        "developer": {
+          "value": "Australian Zircon NL",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Australian Zircon NL"
+            ]
+          }
+        },
+        "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE",
+        "publication_date_role": "ASX_DATED_URL",
+        "document_issue_date": "2015-10-30"
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "RESOURCE_IS_TOTAL_HEAVY_MINERALS_AND_MONAZITE_XENOTIME_MINERAL_PERCENT_NOT_BULK_TREO_OR_OXIDE_RESOURCE;NO_MINERAL_TO_OXIDE_ASSUMPTION",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Rare earth minerals",
+              "WIM150"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "kenny-evergreen",
+      "name": "Kenny Li–REE Exploration Project — EverGreen",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_NAMED_AU_REE_PROJECT;HISTORICAL_REPORTING_SCOPE;NO_RESOURCE_OR_ANNUAL_INFERENCE",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "fullscope2",
+          "path": "data/snapshots/6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64.pdf",
+          "sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02692316",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Kenny",
+                "Western Australia"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-e6d859a831ed5954b440",
+      "scope": "EverGreen Kenny Western Australia dated 31July2023 exploration targets. Not Bynoe or Core Finniss. Maximum CeO2 auger assays are not a global resource grade or oxide composition; no mineral resource or annual output admitted.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "eg1_kenny20230731",
+        "publication_date": "2023-07-31",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "31 July 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 4,
+          "markers": [
+            "Kenny",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "Kenny",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "EverGreen Lithium Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "EverGreen Lithium Limited"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "AUGER_CEO2_MAXIMUM_AND_REE_TARGETS_NOT_GLOBAL_RESOURCE_GRADE_COMPOSITION_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Kenny",
+              "451ppm"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate_key": "perenjori-hre",
+      "name": "Perenjori Uranium–REE Exploration Project — HRE",
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_NAMED_AU_REE_EXPLORATION_TARGET;HRE_NOT_INPUT_SUREFIRE_PAIR;NO_MRE_CLAIM",
+      "existing_candidate_ids": [],
+      "sources": [
+        {
+          "asset_set": "fullscope2",
+          "path": "data/snapshots/d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d.pdf",
+          "sha256": "d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d",
+          "url": "https://announcements.asx.com.au/asxpdf/20250613/pdf/06kpv73yk1418b.pdf",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Perenjori",
+                "Heavy Rare Earths Limited",
+                "Western Australia",
+                "rare earth"
+              ]
+            }
+          ]
+        }
+      ],
+      "project_id": "AU-794821a2df9b7a244f96",
+      "scope": "HRE Perenjori dated 13June2025 palaeochannel uranium/REE exploration targets. HRE explicitly targets REE in the same drainage system; 29-343ppm total rare earth soil assays show no spatially coherent anomaly. Not Surefire and not an REE Mineral Resource. Uranium targets or other project resources are not transferred.",
+      "identity": {
+        "source_index": 0,
+        "source_key": "hre_perenjori20250613",
+        "publication_date": "2025-06-13",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "13 June 2025"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Perenjori",
+            "Western Australia",
+            "rare earth"
+          ]
+        },
+        "name_marker": "Perenjori",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "Heavy Rare Earths Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Heavy Rare Earths Limited"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "PERENJORI_URANIUM_TARGET_AND_TOTAL_RARE_EARTH_SOIL_ASSAYS_NOT_BULK_TREO_MINERAL_RESOURCE_OR_ENGINEERING_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "29 and 343 ppm",
+              "no spatially coherent anomalous zones"
+            ]
+          }
+        }
+      ]
     }
   ],
   "original_canonical_projects": 33,
-  "reviewed_project_extensions": 44,
+  "reviewed_project_extensions": 48,
   "base_contract_columns": 52,
   "base_projection_hashes": {
-    "census_inventory.csv": "a57713171b02d9e963c4561915ff41537a7b4579dfaece4e5c8f95c36ff45f63",
-    "field_provenance.csv": "f646642214736584a83a0fe15a43952e5a67d276e59d57a5692d307809db8958",
-    "missing_fields.csv": "a6cd8d93d439e8c31f299487067b8787a9e7f13b9fdf0af18c6c96121b7374f1",
-    "專案總表.csv": "732d1896eb5c9e2606a2e8b03fd78f66da017f365ee38dc807ff971c4666b8ab"
+    "census_inventory.csv": "772d7fd6a83f7466be18da75ba013e515e73fb2f1631679e3897de91d580082e",
+    "field_provenance.csv": "f028074e459b8bab24e985e408ea22055772517a3745ac019c2c39ccfb831f20",
+    "missing_fields.csv": "ec51c2d0ee67d2620d99247cfd7c52e7a4b83dad1dcaa00f5b26a174e24e5778",
+    "專案總表.csv": "7516637c1adb6a2a46abc8c284bfbec570e913ba32d66757719c5230ceb9eade"
   },
-  "identity_ledger_sha256": "a0071d8a8ac3188fae20031b36ddaa6f9e0429cf907f4337dc267b002cbb06ed",
+  "identity_ledger_sha256": "35bfc75a95b514b58967ba42563a76d70f5151694680934c62118df64c7b9006",
   "identity_merges": [],
-  "validated_asx_codes": 72,
+  "validated_asx_codes": 76,
   "identity_sources": {
     "AU-12cc237ae66c7a6508ca": {
       "asset_set": "round3",
@@ -15935,6 +17448,30 @@
       "path": "data/snapshots/22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59.pdf",
       "sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59",
       "url": "https://wcsecure.weblink.com.au/clients/acdcmetals/headline.aspx?headlineid=3657278"
+    },
+    "AU-14f7cb8ca1fcd58f536c": {
+      "asset_set": "fullscope2",
+      "path": "data/snapshots/abd44d8d94bc3bf89e8186d260982e8652d723e3eca2b571bc6c96d4ab8569a1.pdf",
+      "sha256": "abd44d8d94bc3bf89e8186d260982e8652d723e3eca2b571bc6c96d4ab8569a1",
+      "url": "https://www.asx.com.au/asxpdf/20220614/pdf/459whszj3hf2sp.pdf"
+    },
+    "AU-fb4e914f86102baa414a": {
+      "asset_set": "fullscope2",
+      "path": "data/snapshots/915ba8ed727c24113d27d9510c50bee05a03b080955df6d867a6ee5f22aa0f5e.pdf",
+      "sha256": "915ba8ed727c24113d27d9510c50bee05a03b080955df6d867a6ee5f22aa0f5e",
+      "url": "https://announcements.asx.com.au/asxpdf/20151030/pdf/432lnhn1tgsl2l.pdf"
+    },
+    "AU-e6d859a831ed5954b440": {
+      "asset_set": "fullscope2",
+      "path": "data/snapshots/6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64.pdf",
+      "sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02692316"
+    },
+    "AU-794821a2df9b7a244f96": {
+      "asset_set": "fullscope2",
+      "path": "data/snapshots/d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d.pdf",
+      "sha256": "d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d",
+      "url": "https://announcements.asx.com.au/asxpdf/20250613/pdf/06kpv73yk1418b.pdf"
     }
   },
   "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS"

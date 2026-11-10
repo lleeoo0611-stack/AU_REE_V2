@@ -1,0 +1,17 @@
+# 全範圍延續輪 2
+
+本輪同時涵蓋77個既有專案的2,505個原空白、全部3項原候選及48條Gemini待驗證列；新案剩餘空白亦加入同輪。各欄位同等範圍。
+
+新增CentralGawler（Indiana/IDA）、WIM150（AustralianZircon/AZC，2015歷史報告範圍）、Kenny（EverGreen/EG1）、Perenjori（HRE）。Gemini的CentralGawler、WIM150、Perenjori三條改為來源驗證的新案對應；公司與代碼以原件為準，沒有匯入Gemini原始公司配對。Kenny來自搜尋中辨識出的正確發行人；一個錯誤標為Haoma的搜尋命中實際為EverGreen，沒有用來證明NorthShaw。WIM150與Donald/WIM100不同，CentralGawler與Comet/Wudinna不同，均未合併。Splinter與SplinterRock仍未有同代碼的受驗證據，未合併。
+
+既有案補值為CircleValley與AruntaWest的來源日期持有/上市身分描述。本輪沒有新增科學量值，另依新案原文補CentralGawler的REE探勘階段及Perenjori仍屬探索目標的palaeochannel類型描述。CentralGawler初始原件只有三種氧化物的鑽孔區間，後續Minos原件仍為探勘與冶金試驗；WIM150揭露HM與monazite/xenotime礦物百分比；Kenny為CeO2土壤採樣最高值；Perenjori為U目標與29–343ppm總稀土土壤值，且無連續異常。這些均未冒充REE資源量、資源品位、完整氧化物組成或年產量。
+
+13份PDF原件共691頁下載成功，14個指定PDF請求中1個回應因HTML前綴而未通過PDF格式驗證。另有政府DOCX單次逾時與Carrapateena大小HEAD檢查，詳見government_checks。此為指定研究樣本，不是一般ASX成功率。Carrapateena超過40MiB的問題已透過政府回傳的精確大小核對及64MiB界限解除；438頁原件摘要列銅金銀產品，未新增獨立REE案例。MickWell/Gascoyne的31March2026區域整合已核對，但沒有把共享新業主當作不同名稱專案可合併的證據。NorthShaw保留Haoma探索脈絡及版本/邊界缺證，未重用已下市HAO代碼。
+
+REMP原件、NT2025年10月版、TAS2025年12月prospectus及Victoria roadmap仍有具體原件存取阻礙。這些不得宣告完成或被當成零新增收斂；本輪屬可取得證據覆核完成但取得程序仍INCOMPLETE，下一輪仍繼續全範圍搜尋。搜尋路由清單不是每個命中原件已逐頁批准的清單。
+
+本輪基準 1e8b52ed4b3f90e32b7a523e2f8b7d87adc9fb5f；原77案補2格（科學0格），新增4案、52格（科學0格）。更新0、撤回0、合併0。現在81案×53欄，已填1630、空白2663。
+
+本輪145項查詢、38個工具批次，全部原案空白、新案剩餘空白、3項候選與全部凍結外部待驗證列均列入同一輪。批次不是獨立輪次。每個空白保留未知及具體診斷；查詢命中、既有證據重播及原件文字擷取均不代表全體PDF逐頁重新人工審核。
+
+判定：INCOMPLETE；stop=false。不可把未取得原件或未完成工作當成零新增收斂。若仍有存取阻礙，見source_actions。兩次獨立重建四份CSV雜湊一致，逐格來源及空白診斷吻合，Census未改。來源重播提交：c0aaf539892a9d1bc8beddb07f4448e7e170528d。本機保存原始PDF、SQLite、Gemini原始列及完整查詢字串；公開的查詢只含雜湊及處理結果。不是全國完整性、正式C1批准、MCDA排名、遠端CI或全R測試結論。

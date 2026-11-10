@@ -1,0 +1,23 @@
+[
+  {
+    "action": "REMP2025-official-DOCX-alternate",
+    "url": "https://www.industry.gov.au/sites/default/files/2025-12/resources-and-energy-major-projects-2025.docx",
+    "attempts": 1,
+    "status": "UNAVAILABLE",
+    "failure_status": "TIMEOUT",
+    "http_status": null,
+    "retry_after_seconds": null,
+    "reason": "TimeoutError",
+    "interpretation": "URL_FAILURE_NOT_DOCUMENT_ABSENCE"
+  },
+  {
+    "action": "Carrapateena-original-size-only",
+    "url": "https://energymining.sa.gov.au/__data/assets/pdf_file/0007/1187566/20250620-ML-6471-BHP-Carra-Ops-PEPR-2025_Vol1-Main-Doc.PDF",
+    "attempts": 1,
+    "method": "HEAD",
+    "status": "HEAD_OK",
+    "http_status": 200,
+    "content_length": "65653127",
+    "content_type": "application/pdf"
+  }
+]
