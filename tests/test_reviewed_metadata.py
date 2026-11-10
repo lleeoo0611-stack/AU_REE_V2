@@ -131,11 +131,18 @@ class ListingProof(unittest.TestCase):
         from au_ree_v2.reviewed_metadata import validate_issuer_code_association
         texts=['The company is listed as Example Resources Limited with an ASX code of EXM.',
                'Example Resources Limited listed on Australian Securities Exchange (ASX) under the code EXM',
-               'ASX code Example Resources Limited is listed on the Australian Securities Exchange (Shares: EXM)']
+               'ASX code Example Resources Limited is listed on the Australian Securities Exchange (Shares: EXM)',
+               'Example Resources Limited\nStock Exchange\nAustralian Securities Exchange - EXM',
+               'Example Resources Limited\nStock Exchange\nAustralian Securities Exchange – EXM']
         for text in texts:
             with self.subTest(text=text):
                 d,p,e=self.make(statement='Mock Project exploration')
-                d[0].add_redact_annot(d[0].rect);d[0].apply_redactions();d[0].insert_textbox((40,40,550,200),text,fontsize=10)
+                d[0].add_redact_annot(d[0].rect);d[0].apply_redactions()
+                if '–' in text:
+                    import html
+                    d[0].insert_htmlbox((40,40,550,200),html.escape(text).replace('\n','<br>'))
+                    self.assertIn('–',d[0].get_text())
+                else:d[0].insert_textbox((40,40,550,200),text,fontsize=10)
                 a=dict(column='未上市公司',value='否',issuer_code_association=dict(exchange='ASX',ticker='EXM',issuer='Example Resources Limited',project_marker='Mock Project',listing_evidence=dict(page=1,markers=['Example Resources Limited']),project_evidence=dict(page=2,markers=['Mock Project']),interpretation='DATED_DEVELOPER_LISTING_NOT_PROJECT_OWNERSHIP'))
                 r=dict(effective_date_role='DATED_ISSUER_METADATA',observations=[],identity_evidence=dict(page=2,markers=['Mock Project']))
                 self.assertIn('NOT_OWNERSHIP',validate_issuer_code_association(d,a,['Mock Project'],e,r))
@@ -179,3 +186,23 @@ class ListingProof(unittest.TestCase):
         validate_issuer_release_url(r,'2026-11-05')
         for change in [dict(url=r['url']+'?date=20240328'),dict(url=r['url']+'#anchor'),dict(url=r['url'].replace('announcements.asx.com.au','announcements.asx.com.au.evil.test')),dict(url=r['url'].replace('https://','https://user@')),dict(publication_date='2024-03-27'),dict(date_precision='MONTH'),dict(effective_date_role='RESOURCE_EFFECTIVE_DATE'),dict(observations=[{'value':1}]),dict(study={'scale':'DFS_MODEL'}),dict(attributes=[dict(column='TREO品位_pct',value=1,issuer_code_association={'issuer':'Example Limited'})])]:
             with self.subTest(change=change),self.assertRaises(ValueError):validate_issuer_release_url(dict(r,**change),'2026-11-05')
+
+    def test_public_issuer_archive_binds_document_code_date_and_metadata_scope(self):
+        import json
+        from au_ree_v2.reviewed_metadata import validate_issuer_jsonp_archive
+        url='https://wcsecure.weblink.com.au/clients/example/headline.aspx?headlineid=1234'
+        archive=dict(url='https://wcsecure.weblink.com.au/clients/example/HeadlineJsonP.aspx?hdGroup=1&numberHdPerPage=20&pageNumber=1&year=0&search=',date_basis='UTC_AEST_AEDT_DATE_AGREEMENT')
+        review=dict(url=url,publication_date='2026-03-30',effective_date_role='DATED_ISSUER_METADATA',observations=[],attributes=[dict(column='未上市公司',value='否',issuer_code_association={'ticker':'EXM'})])
+        row=dict(datetime='/Date(1774855378000)/',pdfLink=url,HeadlineText='Annual Report to shareholders',Symbol='EXM',pages=100)
+        def payload(rows):return 'wl_headlinesFunction('+','.join(json.dumps(x) for x in [dict(headlines=rows),dict(totalHeadlines=len(rows)),dict(maxYear=2026),dict(minYear=2023)])+')'
+        validate_issuer_jsonp_archive(review,archive,payload([row]),100)
+        for change in [dict(pdfLink=url+'0'),dict(Symbol='WRG'),dict(pages=99),dict(pages=True),dict(datetime='/Date(0)/'),dict(HeadlineText='Investor presentation')]:
+            with self.subTest(change=change),self.assertRaises(ValueError):validate_issuer_jsonp_archive(review,archive,payload([dict(row,**change)]),100)
+        for text in [payload([row,row]),payload([]),payload([row])+';evil()',payload([row]).replace('wl_headlinesFunction','otherCallback')]:
+            with self.subTest(text=text),self.assertRaises(ValueError):validate_issuer_jsonp_archive(review,archive,text,100)
+        for change in [dict(publication_date='2026-03-29'),dict(observations=[{'value':1}]),dict(study={'scale':'DFS_MODEL'}),dict(attributes=[dict(column='開發商',value='Example',issuer_code_association={'ticker':'EXM'})])]:
+            with self.subTest(change=change),self.assertRaises(ValueError):validate_issuer_jsonp_archive(dict(review,**change),archive,payload([row]),100)
+        for url2 in [archive['url'].replace('wcsecure.weblink.com.au','wcsecure.weblink.com.au.evil.test'),archive['url'].replace('/example/','/other/'),archive['url'].replace('hdGroup=1','hdGroup=0')]:
+            with self.subTest(url=url2),self.assertRaises(ValueError):validate_issuer_jsonp_archive(review,dict(archive,url=url2),payload([row]),100)
+        with self.assertRaises(ValueError):validate_issuer_jsonp_archive(review,dict(archive,date_basis='GUESSED_LOCAL_DATE'),payload([row]),100)
+        with self.assertRaises(ValueError):validate_issuer_jsonp_archive(review,archive,payload([dict(row,datetime='/Date(1774882800000)/')]),100)

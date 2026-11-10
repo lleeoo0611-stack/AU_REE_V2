@@ -592,6 +592,12 @@
       "path": "data/snapshots/c016a2d9fae34fa766a461d7011c18bc56db0a43f843949807e039cb91df6e77.pdf",
       "sha256": "c016a2d9fae34fa766a461d7011c18bc56db0a43f843949807e039cb91df6e77",
       "url": "https://investorpa.com/announcement-pdf/20260330/275183.pdf"
+    },
+    "lyons_fortuna_annual2026": {
+      "asset_set": "fullscope14",
+      "path": "data/snapshots/c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4.pdf",
+      "sha256": "c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4",
+      "url": "https://wcsecure.weblink.com.au/clients/fortunametals/headline.aspx?headlineid=61344787"
     }
   },
   "codes": [
@@ -2886,45 +2892,46 @@
       "scope": "Historical Euston reporting issuer; mineral-sands/HM quantities and synthetic rutile capacity do not establish REO resource or production. Reporting issuer at document date only; not current legal title, resource scope expansion or numeric transfer."
     },
     {
-      "review_id": "continuation11_code_AU-7c198d219aa1db3e291f",
+      "review_id": "fullscope14_code_lyons_fortuna",
       "project_id": "AU-7c198d219aa1db3e291f",
-      "code": "LNR",
-      "issuer_name": "Lanthanein Resources Ltd",
-      "source_key": "AU-7c198d219aa1db3e291f",
-      "evidence_date": "2024-09-26",
+      "code": "FUN",
+      "issuer_name": "Fortuna Metals Ltd",
+      "source_key": "lyons_fortuna_annual2026",
+      "evidence_date": "2026-09-21",
       "date_evidence": {
-        "page": 19,
+        "page": 30,
         "markers": [
-          "26 September 2024"
+          "21 September 2026",
+          "financial report was authorised for issue"
         ]
       },
       "project_marker": "Lyons",
       "project_evidence": {
-        "page": 4,
+        "page": 19,
         "markers": [
-          "Lyons Project"
+          "Lyons"
         ]
       },
       "issuer_evidence": {
         "page": 2,
         "markers": [
-          "LANTHANEIN RESOURCES LTD"
+          "Fortuna Metals Ltd"
         ]
       },
-      "code_label": "Australian Securities Exchange – LNR",
+      "code_label": "Australian Securities Exchange – FUN",
       "code_evidence": {
         "page": 2,
-        "markers": [
-          "Australian Securities Exchange – LNR"
-        ],
         "bbox": [
-          62.22399978637695,
-          586.9099853515625,
-          153.8254425048828,
-          611.7899658203125
+          60,
+          585,
+          180,
+          615
+        ],
+        "markers": [
+          "Australian Securities Exchange – FUN"
         ]
       },
-      "scope": "Historical Lyons reporting issuer Lanthanein; current Fortuna developer label is not assigned an inferred code. Report mentions11,12,13 but selected12&13 resource scope is unchanged. Reporting issuer at document date only; not current legal title, resource scope expansion or numeric transfer."
+      "scope": "Native2026annual p2FortunaMetalsLtd/StockExchangeAustralianSecuritiesExchangeFUN,p19LyonsREEProject,p30signedauthorised21September2026; exactFortuna developer also appears in the independently reviewed2026governmentcatalogue; p19is a historicalCEO biography, not an ownership reaffirmation. Reporting-companycodeLNR replacedFUN, notprojectadmission, newMRE, merger or currenttitlecertificate."
     },
     {
       "review_id": "continuation12_code_viper-emu",

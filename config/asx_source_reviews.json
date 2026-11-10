@@ -47638,6 +47638,162 @@
           }
         }
       ]
+    },
+    {
+      "review_id": "fullscope14_issuer_AU-7c198d219aa1db3e291f",
+      "project_id": "AU-7c198d219aa1db3e291f",
+      "source_key": "discovery_lanthanein_reports_page_3ebae993bf18",
+      "source_sha256": "c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4",
+      "asset_set": "fullscope14",
+      "path": "data/snapshots/c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4.pdf",
+      "url": "https://wcsecure.weblink.com.au/clients/fortunametals/headline.aspx?headlineid=61344787",
+      "publication_date": "2026-09-21",
+      "effective_date": "2026-09-21",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 30,
+        "markers": [
+          "21 September 2026",
+          "financial report was authorised for issue"
+        ]
+      },
+      "document_issue_date": "2026-09-21",
+      "document_issue_evidence": {
+        "page": 30,
+        "markers": [
+          "21 September 2026",
+          "financial report was authorised for issue"
+        ]
+      },
+      "publication_archive_evidence": {
+        "asset_set": "fullscope14",
+        "path": "data/snapshots/205d0fd86e65edfd7e6c8993c13123146722cb9373e045529b26f90533001dd7.html",
+        "sha256": "205d0fd86e65edfd7e6c8993c13123146722cb9373e045529b26f90533001dd7",
+        "url": "https://fortunametals.limited/financial-and-quarterly-reports/"
+      },
+      "identity_evidence": {
+        "page": 19,
+        "markers": [
+          "Lyons"
+        ]
+      },
+      "scope": "Dated exact listed developer company property only. Native legal issuer, exchange and code plus captured publisher release archive and signed/authorised native report date. Final developer must match; no private subsidiary, JV, resource, scope extension, title or merger inference. LyonsCEO global0.99Mt summary does not replace selected12and13resource scope. GoldArc nativePDF differs in SHA from InvestorPA mirror, so all locators are checked independently.",
+      "statement_id": "fullscope14_issuer_AU-7c198d219aa1db3e291f",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Fortuna Metals Ltd",
+              "Exchange – FUN"
+            ]
+          },
+          "issuer_code_association": {
+            "exchange": "ASX",
+            "ticker": "FUN",
+            "issuer": "Fortuna Metals Ltd",
+            "project_marker": "Lyons",
+            "listing_evidence": {
+              "page": 2,
+              "markers": [
+                "Fortuna Metals Ltd",
+                "Exchange – FUN"
+              ]
+            },
+            "project_evidence": {
+              "page": 19,
+              "markers": [
+                "Lyons"
+              ]
+            },
+            "company_level_only": true,
+            "interpretation": "DATED_DEVELOPER_LISTING_NOT_PROJECT_OWNERSHIP"
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "fullscope14_issuer_AU-d0ce731e1d8198ffaf58",
+      "project_id": "AU-d0ce731e1d8198ffaf58",
+      "source_key": "goldarc_annual2025_native",
+      "source_sha256": "436db5f42cee6172bdb0efc023e997138c0c3eb8b979af60e2b60411b9cde095",
+      "asset_set": "fullscope14",
+      "path": "data/snapshots/436db5f42cee6172bdb0efc023e997138c0c3eb8b979af60e2b60411b9cde095.pdf",
+      "url": "https://wcsecure.weblink.com.au/clients/goldarcresources/headline.aspx?headlineid=61318517",
+      "publication_date": "2026-03-30",
+      "effective_date": "2026-03-30",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 34,
+        "markers": [
+          "30 March 2026",
+          "financial statements were authorised for issue"
+        ]
+      },
+      "document_issue_date": "2026-03-30",
+      "document_issue_evidence": {
+        "page": 34,
+        "markers": [
+          "30 March 2026",
+          "financial statements were authorised for issue"
+        ]
+      },
+      "publication_archive_evidence": {
+        "asset_set": "fullscope14",
+        "path": "data/snapshots/221c2b492e81b8425adbb8d21dcdb6cfe4548a9d8ceccfa2dfd6a8da7fed615a.html",
+        "sha256": "221c2b492e81b8425adbb8d21dcdb6cfe4548a9d8ceccfa2dfd6a8da7fed615a",
+        "url": "https://wcsecure.weblink.com.au/clients/goldarcresources/HeadlineJsonP.aspx?hdGroup=1&numberHdPerPage=20&pageNumber=1&year=0&search=",
+        "format": "WEBLINK_PUBLIC_HEADLINES_JSONP",
+        "date_basis": "UTC_AEST_AEDT_DATE_AGREEMENT"
+      },
+      "identity_evidence": {
+        "page": 16,
+        "markers": [
+          "Mt Stirling"
+        ]
+      },
+      "scope": "Dated exact listed developer company property only. Native legal issuer, exchange and code plus captured publisher release archive and signed/authorised native report date. Final developer must match; no private subsidiary, JV, resource, scope extension, title or merger inference. LyonsCEO global0.99Mt summary does not replace selected12and13resource scope. GoldArc nativePDF differs in SHA from InvestorPA mirror, so all locators are checked independently.",
+      "statement_id": "fullscope14_issuer_AU-d0ce731e1d8198ffaf58",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 34,
+            "markers": [
+              "GoldArc Resources Limited",
+              "ASX:GA8"
+            ]
+          },
+          "issuer_code_association": {
+            "exchange": "ASX",
+            "ticker": "GA8",
+            "issuer": "GoldArc Resources Limited",
+            "project_marker": "Mt Stirling",
+            "listing_evidence": {
+              "page": 34,
+              "markers": [
+                "GoldArc Resources Limited",
+                "ASX:GA8"
+              ]
+            },
+            "project_evidence": {
+              "page": 16,
+              "markers": [
+                "Mt Stirling"
+              ]
+            },
+            "company_level_only": true,
+            "interpretation": "DATED_DEVELOPER_LISTING_NOT_PROJECT_OWNERSHIP"
+          }
+        }
+      ]
     }
   ]
 }

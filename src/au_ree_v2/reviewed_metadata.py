@@ -29,6 +29,52 @@ def validate_issuer_release_url(review, cutoff):
         raise ValueError('REVIEW_ISSUER_RELEASE_DATE')
 
 
+def validate_issuer_jsonp_archive(review, archive, content, physical_pages):
+    """Read the publisher's public widget data as data, never executable code.
+
+    Restricted to dated listed-developer metadata; the caller verifies the
+    immutable capture hash and the signed native report date separately.
+    """
+    import json
+    from urllib.parse import urlsplit,parse_qs
+    from datetime import datetime,timezone,timedelta
+    def fail():raise ValueError('REVIEW_ISSUER_PUBLIC_ARCHIVE_BINDING')
+    attrs=review.get('attributes',[])
+    if (review.get('effective_date_role')!='DATED_ISSUER_METADATA'
+        or review.get('observations') or review.get('study') or not attrs
+        or not all(a.get('column')=='未上市公司' and a.get('value')=='否'
+                   and a.get('issuer_code_association') for a in attrs)):fail()
+    u=urlsplit(archive['url']);v=urlsplit(review['url']);client=re.fullmatch(r'/clients/([a-z0-9]+)/HeadlineJsonP\.aspx',u.path)
+    if (u.scheme!='https' or u.netloc!='wcsecure.weblink.com.au' or u.fragment or not client
+        or v.scheme!='https' or v.netloc!=u.netloc or v.fragment
+        or v.path!='/clients/'+client[1]+'/headline.aspx'
+        or archive.get('date_basis')!='UTC_AEST_AEDT_DATE_AGREEMENT'
+        or not re.fullmatch(r'headlineid=\d+',v.query)
+        or parse_qs(u.query,keep_blank_values=True)!={'hdGroup':['1'],'numberHdPerPage':['20'],'pageNumber':['1'],'year':['0'],'search':['']}):fail()
+    match=re.fullmatch(r'\s*wl_headlinesFunction\((.*)\)\s*;?\s*',content,re.S)
+    if not match:fail()
+    decoder=json.JSONDecoder();remaining=match[1];parts=[]
+    try:
+        for i in range(4):
+            obj,end=decoder.raw_decode(remaining.lstrip());remaining=remaining.lstrip()[end:].lstrip();parts.append(obj)
+            if i<3:
+                if not remaining.startswith(','):fail()
+                remaining=remaining[1:]
+        if remaining:fail()
+        hits=[r for r in parts[0]['headlines'] if r['pdfLink']==review['url']]
+        if len(hits)!=1:fail()
+        r=hits[0];stamp=re.fullmatch(r'/Date\((\d{13})\)/',r['datetime'])
+        if (not stamp or r['HeadlineText']!='Annual Report to shareholders'
+            or r['pages']!=physical_pages or isinstance(r['pages'],bool)
+            or {a['issuer_code_association']['ticker'] for a in attrs}!={r['Symbol']}):fail()
+        instant=datetime.fromtimestamp(int(stamp[1])/1000,timezone.utc)
+        # Avoid guessing daylight-saving rules or adding an environment-specific
+        # timezone database: all plausible ASX offsets must agree with UTC.
+        days={instant.astimezone(timezone(timedelta(hours=h))).date().isoformat() for h in (0,10,11)}
+        if days!={review['publication_date']}:fail()
+    except (KeyError,TypeError,ValueError,OverflowError):fail()
+
+
 def validate_issuer_code_association(doc, attribute, aliases, evidence, review):
     """Dated listing of the named developer, independent of project ownership.
 
@@ -49,6 +95,7 @@ def validate_issuer_code_association(doc, attribute, aliases, evidence, review):
     listing=evidence(proof['listing_evidence'])
     native=doc[proof['listing_evidence']['page']-1].get_text()
     bound=bool(re.search(r'\bASX\s*(?:code\s*)?:\s*'+re.escape(ticker)+r'\b',native,re.I))
+    bound=bound or bool(re.search(r'\bstock exchange\s+australian securities exchange\s*[-\u2013]\s*'+re.escape(ticker)+r'\b',norm(native),re.I))
     bound=bound or bool(re.search(r'\basx\s+code\s+of\s+'+re.escape(ticker)+r'\b',listing,re.I))
     bound=bound or bool(re.search(r'australian securities exchange\s*\(asx\)\s+under the code\s+'+re.escape(ticker)+r'\b',listing,re.I))
     bound=bound or ('asx code' in listing and 'australian securities exchange' in listing

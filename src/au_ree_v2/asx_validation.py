@@ -164,9 +164,14 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     from .discovery import Links
                     index_root=Path(asset_roots[archive['asset_set']]).resolve();index_path=(index_root/archive['path']).resolve()
                     if index_root not in index_path.parents or filehash(index_path)!=archive['sha256']:raise ValueError('REVIEW_PUBLICATION_ARCHIVE_HASH_MISMATCH')
-                    links=Links();links.feed(index_path.read_text('utf8'))
-                    if not any(urldefrag(urljoin(archive['url'],href))[0]==review['url'] and links.link_dates.get(href)==pub for href,_ in links.links):
-                        raise ValueError('REVIEW_PUBLICATION_ARCHIVE_DATE_BINDING_FAILED')
+                    archive_content=index_path.read_text('utf8')
+                    if archive.get('format')=='WEBLINK_PUBLIC_HEADLINES_JSONP':
+                        from .reviewed_metadata import validate_issuer_jsonp_archive
+                        validate_issuer_jsonp_archive(review,archive,archive_content,len(doc))
+                    else:
+                        links=Links();links.feed(archive_content)
+                        if not any(urldefrag(urljoin(archive['url'],href))[0]==review['url'] and links.link_dates.get(href)==pub for href,_ in links.links):
+                            raise ValueError('REVIEW_PUBLICATION_ARCHIVE_DATE_BINDING_FAILED')
                     issue=review['document_issue_date'];date.fromisoformat(issue)
                     issue_content=evidence(review['document_issue_evidence'])
                     if issue>pub or normalized(datetime.strptime(issue,'%Y-%m-%d').strftime('%d %B %Y').lstrip('0')) not in issue_content:
