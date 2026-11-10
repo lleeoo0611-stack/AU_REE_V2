@@ -44244,6 +44244,150 @@
           }
         }
       ]
+    },
+    {
+      "review_id": "fullscope8_mrd_ree_listing",
+      "project_id": "AU-3651cf8448b9227adcf5",
+      "source_key": "mrd_ree20230112",
+      "source_sha256": "ce906009372d81146577ceaea0c670ff082e277ebdd7b122b6b48de7ac299e66",
+      "asset_set": "fullscope8",
+      "path": "data/snapshots/ce906009372d81146577ceaea0c670ff082e277ebdd7b122b6b48de7ac299e66.pdf",
+      "url": "https://company-announcements.afr.com/asx/mrd/eb7f361c-91f5-11ed-b701-befebebb5124.pdf",
+      "publication_date": "2023-01-12",
+      "effective_date": "2023-01-12",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "12 January 2023"
+        ]
+      },
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "12 January 2023",
+          "RESOURCE DELINEATION DRILLING COMMENCING"
+        ],
+        "header_title": "RESOURCE DELINEATION DRILLING COMMENCING"
+      },
+      "identity_evidence": {
+        "page": 2,
+        "markers": [
+          "Mount Ridley REE Project",
+          "Mount Ridley Mines Limited"
+        ]
+      },
+      "scope": "Dated listed issuer/fullownership of MountRidleyREEProject;tenuremapincludesE63/1547,E63/1564,E63/2111,E63/2112underlyingselectedBlocks1/2case.Historical2023associationnotcurrenttitlecontinuity.No2023samplegradeorfootprinttonnageisimportedintothe2026resource.",
+      "statement_id": "fullscope8_mrd_ree_listing",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "100% owned Mount Ridley REE Project"
+            ]
+          },
+          "listing_proof": {
+            "exchange": "ASX",
+            "ticker": "MRD",
+            "issuer": "Mount Ridley Mines Limited",
+            "issuer_alias": "Mount Ridley Mines",
+            "project_marker": "Mount Ridley",
+            "listing_evidence": {
+              "page": 2,
+              "markers": [
+                "Mount Ridley Mines Limited",
+                "ASX: MRD"
+              ]
+            },
+            "ownership_evidence": {
+              "page": 2,
+              "markers": [
+                "100% owned Mount Ridley REE Project"
+              ]
+            },
+            "ownership_bbox": [
+              40,
+              95,
+              575,
+              172.0599822998047
+            ],
+            "ownership_statement_sha256": "cab3f5fb7c0079988cf9cb8240a334b34234f27a18a4334726ae80b57647651a"
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "fullscope8_aileron_stage",
+      "project_id": "AU-af44c2bd1173b453953f",
+      "source_key": "aileron_drilling20260616",
+      "source_sha256": "8d4f0bb34133cea1d8ac9704e9abdaa3c62ce829895bc8cdbf1115689594b399",
+      "asset_set": "fullscope8",
+      "path": "data/snapshots/8d4f0bb34133cea1d8ac9704e9abdaa3c62ce829895bc8cdbf1115689594b399.pdf",
+      "url": "https://newswire.iguana2.com/2fee0049d633f441/announcements/enr.asx/6A1329558/ENR_70_000m_Drill_Program_in_Full_Swing_at_Aileron.pdf",
+      "publication_date": "2026-06-16",
+      "effective_date": "2026-06-16",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "16 June 2026"
+        ]
+      },
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "16 June 2026",
+          "70,000m Drill Program in Full Swing at Aileron"
+        ],
+        "header_title": "70,000m Drill Program in Full Swing at Aileron"
+      },
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Aileron",
+          "Encounter Resources"
+        ]
+      },
+      "scope": "Aileron currentexploration/pre-developmentdrillingactivity asdisclosed16June2026;notcompletedPFS/DFS,OreReserve,permittingapprovalorcommittedproduction.NoNbresourceorothercutofftransferred;nativeghostXXMaytemplateisnotreleasedate,renderedheader16June2026reviewed.",
+      "statement_id": "fullscope8_aileron_stage",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發階段",
+          "value": "exploration and pre-development drilling program（來源揭露：2026-06-16）",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Aileron",
+              "exploration and pre-development drilling program"
+            ]
+          },
+          "description_binding": {
+            "page": 1,
+            "project_marker": "Aileron",
+            "project_bbox": [
+              447.72260131835935,
+              159.71782531738282,
+              516.78603515625,
+              182.21549377441406
+            ],
+            "value_bbox": [
+              56.599981689453124,
+              209.8628143310547,
+              541.7788940429688,
+              235.9360595703125
+            ],
+            "literal_value": "exploration and pre-development drilling program",
+            "statement": "the Aileron Project (“Aileron”) in the West Arunta region of WA, part of a ~70,000m exploration and pre-development drilling program in 2026. One rig is focussed on infill of potential high-grade starter"
+          }
+        }
+      ]
     }
   ]
 }
