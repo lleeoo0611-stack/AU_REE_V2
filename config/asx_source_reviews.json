@@ -34412,6 +34412,2315 @@
           }
         }
       ]
+    },
+    {
+      "review_id": "fullscope1_goschen_central_mre2024",
+      "project_id": "AU-447261eed0e81eae88bf",
+      "source_key": "goschen_central_mre2024",
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59",
+      "asset_set": "fullscope",
+      "path": "data/snapshots/22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59.pdf",
+      "url": "https://wcsecure.weblink.com.au/clients/acdcmetals/headline.aspx?headlineid=3657278",
+      "publication_date": "2024-12-03",
+      "effective_date": "2024-12-03",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "3 December 2024"
+        ]
+      },
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Goschen Central"
+        ]
+      },
+      "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+      "statement_id": "goschen-central-total-20241203",
+      "resource_categories": [
+        "INDICATED",
+        "INFERRED"
+      ],
+      "selection_reason": "SELECTED_DATED_GLOBAL_TOTAL;P12_HM_PERCENTAGES_NORMALIZED_WITH_SAME_SOURCE_BULK_HM;Pr6O11_AND_Tb4O7_TAKEN_DIRECTLY_FROM_P3_CANONICAL_PPM_COLUMNS_NOT_CONVERTED_FROM_P12_ALTERNATE_OXIDES;PUBLICATION_AND_RESOURCE_SCOPE_MATCH",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 620,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "620",
+          "original_unit": "Mt",
+          "rounding_half_width": 5,
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Total",
+              "620",
+              "584"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 3,
+            "original_unit": "Mt",
+            "table_bbox": [
+              48,
+              501,
+              563,
+              611
+            ],
+            "row_bbox": [
+              48,
+              598,
+              563,
+              611
+            ],
+            "column_bbox": [
+              95,
+              501,
+              134,
+              611
+            ],
+            "table_label": "Table 2: Goschen Central Project Magnet Rare Earth assemblage at 1% Cut-off; for full results refer to Appendix 1.",
+            "table_label_bbox": [
+              49,
+              502,
+              464,
+              514
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              54.6,
+              598.7,
+              73.8,
+              609.8
+            ],
+            "column_label": "Tonnes",
+            "column_label_bbox": [
+              100.3,
+              538.7,
+              127.6,
+              549.8
+            ],
+            "unit_bbox": [
+              108.4,
+              553.7,
+              119.6,
+              564.8
+            ],
+            "scope_anchor_bbox": [
+              100.3,
+              538.7,
+              127.6,
+              549.8
+            ],
+            "scope_anchor": "Tonnes",
+            "section_id": "p3-ore_mt"
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 0.0584,
+          "unit": "%",
+          "basis": "TREO",
+          "original_token": "584",
+          "original_unit": "ppm",
+          "rounding_half_width": 5e-05,
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Total",
+              "620",
+              "584"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "grade",
+            "basis": "TREO",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 3,
+            "original_unit": "ppm",
+            "table_bbox": [
+              48,
+              501,
+              563,
+              611
+            ],
+            "row_bbox": [
+              48,
+              598,
+              563,
+              611
+            ],
+            "column_bbox": [
+              518,
+              501,
+              563,
+              611
+            ],
+            "table_label": "Table 2: Goschen Central Project Magnet Rare Earth assemblage at 1% Cut-off; for full results refer to Appendix 1.",
+            "table_label_bbox": [
+              49,
+              502,
+              464,
+              514
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              54.6,
+              598.7,
+              73.8,
+              609.8
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              531.8,
+              538.7,
+              552,
+              549.8
+            ],
+            "unit_bbox": [
+              533.3,
+              553.7,
+              550.4,
+              564.8
+            ],
+            "scope_anchor_bbox": [
+              531.8,
+              538.7,
+              552,
+              549.8
+            ],
+            "scope_anchor": "TREO",
+            "section_id": "p3-grade"
+          }
+        },
+        {
+          "variable": "reported_resource_y_ppm",
+          "value": 99.00000000000001,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "original_token": "0.45",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Y2O3",
+              "0.45",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_y_ppm",
+            "basis": "Y2O3",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "row_bbox": [
+              35,
+              338.4,
+              712,
+              348.4
+            ],
+            "column_bbox": [
+              103.22990036010742,
+              85,
+              135.22990036010742,
+              349
+            ],
+            "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+            "table_label_bbox": [
+              35,
+              85,
+              516,
+              106
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              40.9,
+              338.5,
+              61.5,
+              348.2
+            ],
+            "column_label": "Y2O3",
+            "column_label_bbox": [
+              115.86999816894532,
+              288.27968139648436,
+              122.58980255126953,
+              297.88767700195314
+            ],
+            "unit_bbox": [
+              379.5,
+              253.5,
+              433.5,
+              263.3
+            ],
+            "scope_anchor_bbox": [
+              115.86999816894532,
+              288.27968139648436,
+              122.58980255126953,
+              297.88767700195314
+            ],
+            "scope_anchor": "Y2O3",
+            "section_id": "p12-reported_resource_y_ppm",
+            "unit_scope_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "unit_label": "% of total HM"
+          }
+        },
+        {
+          "variable": "reported_resource_la_ppm",
+          "value": 96.80000000000001,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "original_token": "0.44",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "La2O3",
+              "0.44",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_la_ppm",
+            "basis": "La2O3",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "row_bbox": [
+              35,
+              338.4,
+              712,
+              348.4
+            ],
+            "column_bbox": [
+              131.8144989013672,
+              85,
+              163.8144989013672,
+              349
+            ],
+            "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+            "table_label_bbox": [
+              35,
+              85,
+              516,
+              106
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              40.9,
+              338.5,
+              61.5,
+              348.2
+            ],
+            "column_label": "La2O3",
+            "column_label_bbox": [
+              136.39000244140624,
+              288.27968139648436,
+              159.23899536132814,
+              297.88767700195314
+            ],
+            "unit_bbox": [
+              379.5,
+              253.5,
+              433.5,
+              263.3
+            ],
+            "scope_anchor_bbox": [
+              136.39000244140624,
+              288.27968139648436,
+              159.23899536132814,
+              297.88767700195314
+            ],
+            "scope_anchor": "La2O3",
+            "section_id": "p12-reported_resource_la_ppm",
+            "unit_scope_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "unit_label": "% of total HM"
+          }
+        },
+        {
+          "variable": "reported_resource_ce_ppm",
+          "value": 198.00000000000003,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "original_token": "0.9",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "CeO2",
+              "0.9",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_ce_ppm",
+            "basis": "CeO2",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "row_bbox": [
+              35,
+              338.4,
+              712,
+              348.4
+            ],
+            "column_bbox": [
+              164.09449005126953,
+              85,
+              196.09449005126953,
+              349
+            ],
+            "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+            "table_label_bbox": [
+              35,
+              85,
+              516,
+              106
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              40.9,
+              338.5,
+              61.5,
+              348.2
+            ],
+            "column_label": "CeO2",
+            "column_label_bbox": [
+              169.74998779296874,
+              288.27968139648436,
+              190.43899230957032,
+              297.88767700195314
+            ],
+            "unit_bbox": [
+              379.5,
+              253.5,
+              433.5,
+              263.3
+            ],
+            "scope_anchor_bbox": [
+              169.74998779296874,
+              288.27968139648436,
+              190.43899230957032,
+              297.88767700195314
+            ],
+            "scope_anchor": "CeO2",
+            "section_id": "p12-reported_resource_ce_ppm",
+            "unit_scope_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "unit_label": "% of total HM"
+          }
+        },
+        {
+          "variable": "reported_resource_nd_ppm",
+          "value": 83.60000000000001,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "0.38",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Nd2O3",
+              "0.38",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_nd_ppm",
+            "basis": "Nd2O3",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "row_bbox": [
+              35,
+              338.4,
+              712,
+              348.4
+            ],
+            "column_bbox": [
+              231.47450256347656,
+              85,
+              263.47450256347656,
+              349
+            ],
+            "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+            "table_label_bbox": [
+              35,
+              85,
+              516,
+              106
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              40.9,
+              338.5,
+              61.5,
+              348.2
+            ],
+            "column_label": "Nd2O3",
+            "column_label_bbox": [
+              235.39000244140624,
+              288.27968139648436,
+              259.5590026855469,
+              297.88767700195314
+            ],
+            "unit_bbox": [
+              379.5,
+              253.5,
+              433.5,
+              263.3
+            ],
+            "scope_anchor_bbox": [
+              235.39000244140624,
+              288.27968139648436,
+              259.5590026855469,
+              297.88767700195314
+            ],
+            "scope_anchor": "Nd2O3",
+            "section_id": "p12-reported_resource_nd_ppm",
+            "unit_scope_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "unit_label": "% of total HM"
+          }
+        },
+        {
+          "variable": "reported_resource_sm_ppm",
+          "value": 15.620000000000001,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "original_token": "0.071",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Sm2O3",
+              "0.071",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_sm_ppm",
+            "basis": "Sm2O3",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "row_bbox": [
+              35,
+              338.4,
+              712,
+              348.4
+            ],
+            "column_bbox": [
+              267.2344970703125,
+              85,
+              299.2344970703125,
+              349
+            ],
+            "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+            "table_label_bbox": [
+              35,
+              85,
+              516,
+              106
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              40.9,
+              338.5,
+              61.5,
+              348.2
+            ],
+            "column_label": "Sm2O3",
+            "column_label_bbox": [
+              270.189990234375,
+              288.27968139648436,
+              296.27900390625,
+              297.88767700195314
+            ],
+            "unit_bbox": [
+              379.5,
+              253.5,
+              433.5,
+              263.3
+            ],
+            "scope_anchor_bbox": [
+              270.189990234375,
+              288.27968139648436,
+              296.27900390625,
+              297.88767700195314
+            ],
+            "scope_anchor": "Sm2O3",
+            "section_id": "p12-reported_resource_sm_ppm",
+            "unit_scope_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "unit_label": "% of total HM"
+          }
+        },
+        {
+          "variable": "reported_resource_eu_ppm",
+          "value": 0.792,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "original_token": "0.0036",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Eu2O3",
+              "0.0036",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_eu_ppm",
+            "basis": "Eu2O3",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "row_bbox": [
+              35,
+              338.4,
+              712,
+              348.4
+            ],
+            "column_bbox": [
+              304.0744934082031,
+              85,
+              336.0744934082031,
+              349
+            ],
+            "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+            "table_label_bbox": [
+              35,
+              85,
+              516,
+              106
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              40.9,
+              338.5,
+              61.5,
+              348.2
+            ],
+            "column_label": "Eu2O3",
+            "column_label_bbox": [
+              308.22999877929686,
+              288.27968139648436,
+              331.9189880371094,
+              297.88767700195314
+            ],
+            "unit_bbox": [
+              379.5,
+              253.5,
+              433.5,
+              263.3
+            ],
+            "scope_anchor_bbox": [
+              308.22999877929686,
+              288.27968139648436,
+              331.9189880371094,
+              297.88767700195314
+            ],
+            "scope_anchor": "Eu2O3",
+            "section_id": "p12-reported_resource_eu_ppm",
+            "unit_scope_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "unit_label": "% of total HM"
+          }
+        },
+        {
+          "variable": "reported_resource_gd_ppm",
+          "value": 15.400000000000002,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "original_token": "0.070",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Gd2O3",
+              "0.070",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_gd_ppm",
+            "basis": "Gd2O3",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "row_bbox": [
+              35,
+              338.4,
+              712,
+              348.4
+            ],
+            "column_bbox": [
+              340.1945037841797,
+              85,
+              372.1945037841797,
+              349
+            ],
+            "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+            "table_label_bbox": [
+              35,
+              85,
+              516,
+              106
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              40.9,
+              338.5,
+              61.5,
+              348.2
+            ],
+            "column_label": "Gd2O3",
+            "column_label_bbox": [
+              343.86998291015624,
+              288.27968139648436,
+              368.51902465820314,
+              297.88767700195314
+            ],
+            "unit_bbox": [
+              379.5,
+              253.5,
+              433.5,
+              263.3
+            ],
+            "scope_anchor_bbox": [
+              343.86998291015624,
+              288.27968139648436,
+              368.51902465820314,
+              297.88767700195314
+            ],
+            "scope_anchor": "Gd2O3",
+            "section_id": "p12-reported_resource_gd_ppm",
+            "unit_scope_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "unit_label": "% of total HM"
+          }
+        },
+        {
+          "variable": "reported_resource_dy_ppm",
+          "value": 14.520000000000003,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "0.066",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Dy2O3",
+              "0.066",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_dy_ppm",
+            "basis": "Dy2O3",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "row_bbox": [
+              35,
+              338.4,
+              712,
+              348.4
+            ],
+            "column_bbox": [
+              409.01451110839844,
+              85,
+              441.01451110839844,
+              349
+            ],
+            "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+            "table_label_bbox": [
+              35,
+              85,
+              516,
+              106
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              40.9,
+              338.5,
+              61.5,
+              348.2
+            ],
+            "column_label": "Dy2O3",
+            "column_label_bbox": [
+              413.11000366210936,
+              288.27968139648436,
+              436.9190185546875,
+              297.88767700195314
+            ],
+            "unit_bbox": [
+              379.5,
+              253.5,
+              433.5,
+              263.3
+            ],
+            "scope_anchor_bbox": [
+              413.11000366210936,
+              288.27968139648436,
+              436.9190185546875,
+              297.88767700195314
+            ],
+            "scope_anchor": "Dy2O3",
+            "section_id": "p12-reported_resource_dy_ppm",
+            "unit_scope_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "unit_label": "% of total HM"
+          }
+        },
+        {
+          "variable": "reported_resource_ho_ppm",
+          "value": 3.0800000000000005,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "original_token": "0.014",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Ho2O3",
+              "0.014",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_ho_ppm",
+            "basis": "Ho2O3",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "row_bbox": [
+              35,
+              338.4,
+              712,
+              348.4
+            ],
+            "column_bbox": [
+              443.6344757080078,
+              85,
+              475.6344757080078,
+              349
+            ],
+            "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+            "table_label_bbox": [
+              35,
+              85,
+              516,
+              106
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              40.9,
+              338.5,
+              61.5,
+              348.2
+            ],
+            "column_label": "Ho2O3",
+            "column_label_bbox": [
+              447.5499755859375,
+              288.27968139648436,
+              471.71897583007814,
+              297.88767700195314
+            ],
+            "unit_bbox": [
+              379.5,
+              253.5,
+              433.5,
+              263.3
+            ],
+            "scope_anchor_bbox": [
+              447.5499755859375,
+              288.27968139648436,
+              471.71897583007814,
+              297.88767700195314
+            ],
+            "scope_anchor": "Ho2O3",
+            "section_id": "p12-reported_resource_ho_ppm",
+            "unit_scope_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "unit_label": "% of total HM"
+          }
+        },
+        {
+          "variable": "reported_resource_er_ppm",
+          "value": 9.9,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "original_token": "0.045",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Er2O3",
+              "0.045",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_er_ppm",
+            "basis": "Er2O3",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "row_bbox": [
+              35,
+              338.4,
+              712,
+              348.4
+            ],
+            "column_bbox": [
+              477.41448974609375,
+              85,
+              509.41448974609375,
+              349
+            ],
+            "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+            "table_label_bbox": [
+              35,
+              85,
+              516,
+              106
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              40.9,
+              338.5,
+              61.5,
+              348.2
+            ],
+            "column_label": "Er2O3",
+            "column_label_bbox": [
+              482.46998901367186,
+              288.27968139648436,
+              504.35899047851564,
+              297.88767700195314
+            ],
+            "unit_bbox": [
+              379.5,
+              253.5,
+              433.5,
+              263.3
+            ],
+            "scope_anchor_bbox": [
+              482.46998901367186,
+              288.27968139648436,
+              504.35899047851564,
+              297.88767700195314
+            ],
+            "scope_anchor": "Er2O3",
+            "section_id": "p12-reported_resource_er_ppm",
+            "unit_scope_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "unit_label": "% of total HM"
+          }
+        },
+        {
+          "variable": "reported_resource_tm_ppm",
+          "value": 1.5400000000000003,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "original_token": "0.007",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Tm2O3",
+              "0.007",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tm_ppm",
+            "basis": "Tm2O3",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "row_bbox": [
+              35,
+              338.4,
+              712,
+              348.4
+            ],
+            "column_bbox": [
+              511.7944641113281,
+              85,
+              543.7944641113281,
+              349
+            ],
+            "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+            "table_label_bbox": [
+              35,
+              85,
+              516,
+              106
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              40.9,
+              338.5,
+              61.5,
+              348.2
+            ],
+            "column_label": "Tm2O3",
+            "column_label_bbox": [
+              514.9899780273438,
+              288.27968139648436,
+              540.5989501953125,
+              297.88767700195314
+            ],
+            "unit_bbox": [
+              379.5,
+              253.5,
+              433.5,
+              263.3
+            ],
+            "scope_anchor_bbox": [
+              514.9899780273438,
+              288.27968139648436,
+              540.5989501953125,
+              297.88767700195314
+            ],
+            "scope_anchor": "Tm2O3",
+            "section_id": "p12-reported_resource_tm_ppm",
+            "unit_scope_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "unit_label": "% of total HM"
+          }
+        },
+        {
+          "variable": "reported_resource_yb_ppm",
+          "value": 10.56,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "original_token": "0.048",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Yb2O3",
+              "0.048",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_yb_ppm",
+            "basis": "Yb2O3",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "row_bbox": [
+              35,
+              338.4,
+              712,
+              348.4
+            ],
+            "column_bbox": [
+              547.1944885253906,
+              85,
+              579.1944885253906,
+              349
+            ],
+            "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+            "table_label_bbox": [
+              35,
+              85,
+              516,
+              106
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              40.9,
+              338.5,
+              61.5,
+              348.2
+            ],
+            "column_label": "Yb2O3",
+            "column_label_bbox": [
+              551.3500244140625,
+              288.27968139648436,
+              575.0389526367187,
+              297.88767700195314
+            ],
+            "unit_bbox": [
+              379.5,
+              253.5,
+              433.5,
+              263.3
+            ],
+            "scope_anchor_bbox": [
+              551.3500244140625,
+              288.27968139648436,
+              575.0389526367187,
+              297.88767700195314
+            ],
+            "scope_anchor": "Yb2O3",
+            "section_id": "p12-reported_resource_yb_ppm",
+            "unit_scope_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "unit_label": "% of total HM"
+          }
+        },
+        {
+          "variable": "reported_resource_lu_ppm",
+          "value": 1.76,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "original_token": "0.008",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Lu2O3",
+              "0.008",
+              "Total"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_lu_ppm",
+            "basis": "Lu2O3",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "row_bbox": [
+              35,
+              338.4,
+              712,
+              348.4
+            ],
+            "column_bbox": [
+              581.2745056152344,
+              85,
+              613.2745056152344,
+              349
+            ],
+            "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+            "table_label_bbox": [
+              35,
+              85,
+              516,
+              106
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              40.9,
+              338.5,
+              61.5,
+              348.2
+            ],
+            "column_label": "Lu2O3",
+            "column_label_bbox": [
+              585.6700317382813,
+              288.27968139648436,
+              608.8789794921875,
+              297.88767700195314
+            ],
+            "unit_bbox": [
+              379.5,
+              253.5,
+              433.5,
+              263.3
+            ],
+            "scope_anchor_bbox": [
+              585.6700317382813,
+              288.27968139648436,
+              608.8789794921875,
+              297.88767700195314
+            ],
+            "scope_anchor": "Lu2O3",
+            "section_id": "p12-reported_resource_lu_ppm",
+            "unit_scope_bbox": [
+              35,
+              85,
+              712,
+              349
+            ],
+            "unit_label": "% of total HM"
+          }
+        },
+        {
+          "variable": "reported_resource_pr_ppm",
+          "value": 25,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "25",
+          "original_unit": "ppm",
+          "rounding_half_width": 0.5,
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Goschen Central",
+              "Total",
+              "620",
+              "584",
+              "Pr6O11",
+              "25"
+            ],
+            "render_sha256": "41904c3c02c911bd9a9c0719ea801d57b99ceb41fe152826ae89b80dcb8a1d11"
+          },
+          "cell_binding": {
+            "mode": "reviewed_image_cell",
+            "field": "reported_resource_pr_ppm",
+            "basis": "Pr6O11",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 3,
+            "original_unit": "ppm",
+            "table_bbox": [
+              48,
+              501,
+              563,
+              611
+            ],
+            "row_bbox": [
+              48,
+              598,
+              563,
+              611
+            ],
+            "column_bbox": [
+              223,
+              501,
+              252,
+              611
+            ],
+            "table_label": "Table 2: Goschen Central Project Magnet Rare Earth assemblage at 1% Cut-off; for full results refer to Appendix 1.",
+            "table_label_bbox": [
+              49,
+              502,
+              464,
+              514
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              54.6,
+              598.7,
+              73.8,
+              609.8
+            ],
+            "column_label": "Pr6O11",
+            "column_label_bbox": [
+              100.3,
+              538.7,
+              127.6,
+              549.8
+            ],
+            "unit_bbox": [
+              108.4,
+              553.7,
+              119.6,
+              564.8
+            ],
+            "scope_anchor_bbox": [
+              100.3,
+              538.7,
+              127.6,
+              549.8
+            ],
+            "scope_anchor": "Tonnes",
+            "section_id": "p3-image-pr",
+            "unit_label": "ppm",
+            "reviewed_token": "25",
+            "review_note": "Visually checked Table2 Total row, canonical Pr6O11 grouped header and ppm subcolumn, not adjacent %TREO subcolumn. P12 alternate oxide form is not relabelled or converted. Native grouped header spans two subcolumns; this receipt is an explicitly reviewed image transcription, not independent OCR.",
+            "cell_render_sha256": "9d6e5a1c0eac8f1643a47a4f879743500e8c52adb7e211602f36b794bb976bb0"
+          }
+        },
+        {
+          "variable": "reported_resource_tb_ppm",
+          "value": 2,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "2",
+          "original_unit": "ppm",
+          "rounding_half_width": 0.5,
+          "evidence": {
+            "page": 3,
+            "markers": [
+              "Goschen Central",
+              "Total",
+              "620",
+              "584",
+              "Tb4O7",
+              "2"
+            ],
+            "render_sha256": "41904c3c02c911bd9a9c0719ea801d57b99ceb41fe152826ae89b80dcb8a1d11"
+          },
+          "cell_binding": {
+            "mode": "reviewed_image_cell",
+            "field": "reported_resource_tb_ppm",
+            "basis": "Tb4O7",
+            "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+            "page": 3,
+            "original_unit": "ppm",
+            "table_bbox": [
+              48,
+              501,
+              563,
+              611
+            ],
+            "row_bbox": [
+              48,
+              598,
+              563,
+              611
+            ],
+            "column_bbox": [
+              360,
+              501,
+              386,
+              611
+            ],
+            "table_label": "Table 2: Goschen Central Project Magnet Rare Earth assemblage at 1% Cut-off; for full results refer to Appendix 1.",
+            "table_label_bbox": [
+              49,
+              502,
+              464,
+              514
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              54.6,
+              598.7,
+              73.8,
+              609.8
+            ],
+            "column_label": "Tb4O7",
+            "column_label_bbox": [
+              100.3,
+              538.7,
+              127.6,
+              549.8
+            ],
+            "unit_bbox": [
+              108.4,
+              553.7,
+              119.6,
+              564.8
+            ],
+            "scope_anchor_bbox": [
+              100.3,
+              538.7,
+              127.6,
+              549.8
+            ],
+            "scope_anchor": "Tonnes",
+            "section_id": "p3-image-tb",
+            "unit_label": "ppm",
+            "reviewed_token": "2",
+            "review_note": "Visually checked Table2 Total row, canonical Tb4O7 grouped header and ppm subcolumn, not adjacent %TREO subcolumn. P12 alternate oxide form is not relabelled or converted. Native grouped header spans two subcolumns; this receipt is an explicitly reviewed image transcription, not independent OCR.",
+            "cell_render_sha256": "0a117e4172545aa30299f9dcd9e5d9080383212118f14694f9c9d0615ae99fa7"
+          }
+        }
+      ],
+      "selected_resource_sections": {
+        "p3-ore_mt": {
+          "page": 3,
+          "bbox": [
+            48,
+            501,
+            563,
+            611
+          ],
+          "anchor_bbox": [
+            100.3,
+            538.7,
+            127.6,
+            549.8
+          ],
+          "anchor": "Tonnes",
+          "row_label": "Total"
+        },
+        "p3-grade": {
+          "page": 3,
+          "bbox": [
+            48,
+            501,
+            563,
+            611
+          ],
+          "anchor_bbox": [
+            531.8,
+            538.7,
+            552,
+            549.8
+          ],
+          "anchor": "TREO",
+          "row_label": "Total"
+        },
+        "p12-hm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            580,
+            211
+          ],
+          "anchor_bbox": [
+            159.5,
+            139.1,
+            172.9,
+            148.8
+          ],
+          "anchor": "HM",
+          "row_label": "Total"
+        },
+        "p12-reported_resource_y_ppm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            712,
+            349
+          ],
+          "anchor_bbox": [
+            115.86999816894532,
+            288.27968139648436,
+            122.58980255126953,
+            297.88767700195314
+          ],
+          "anchor": "Y2O3",
+          "row_label": "Total"
+        },
+        "p12-reported_resource_la_ppm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            712,
+            349
+          ],
+          "anchor_bbox": [
+            136.39000244140624,
+            288.27968139648436,
+            159.23899536132814,
+            297.88767700195314
+          ],
+          "anchor": "La2O3",
+          "row_label": "Total"
+        },
+        "p12-reported_resource_ce_ppm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            712,
+            349
+          ],
+          "anchor_bbox": [
+            169.74998779296874,
+            288.27968139648436,
+            190.43899230957032,
+            297.88767700195314
+          ],
+          "anchor": "CeO2",
+          "row_label": "Total"
+        },
+        "p12-reported_resource_nd_ppm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            712,
+            349
+          ],
+          "anchor_bbox": [
+            235.39000244140624,
+            288.27968139648436,
+            259.5590026855469,
+            297.88767700195314
+          ],
+          "anchor": "Nd2O3",
+          "row_label": "Total"
+        },
+        "p12-reported_resource_sm_ppm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            712,
+            349
+          ],
+          "anchor_bbox": [
+            270.189990234375,
+            288.27968139648436,
+            296.27900390625,
+            297.88767700195314
+          ],
+          "anchor": "Sm2O3",
+          "row_label": "Total"
+        },
+        "p12-reported_resource_eu_ppm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            712,
+            349
+          ],
+          "anchor_bbox": [
+            308.22999877929686,
+            288.27968139648436,
+            331.9189880371094,
+            297.88767700195314
+          ],
+          "anchor": "Eu2O3",
+          "row_label": "Total"
+        },
+        "p12-reported_resource_gd_ppm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            712,
+            349
+          ],
+          "anchor_bbox": [
+            343.86998291015624,
+            288.27968139648436,
+            368.51902465820314,
+            297.88767700195314
+          ],
+          "anchor": "Gd2O3",
+          "row_label": "Total"
+        },
+        "p12-reported_resource_dy_ppm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            712,
+            349
+          ],
+          "anchor_bbox": [
+            413.11000366210936,
+            288.27968139648436,
+            436.9190185546875,
+            297.88767700195314
+          ],
+          "anchor": "Dy2O3",
+          "row_label": "Total"
+        },
+        "p12-reported_resource_ho_ppm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            712,
+            349
+          ],
+          "anchor_bbox": [
+            447.5499755859375,
+            288.27968139648436,
+            471.71897583007814,
+            297.88767700195314
+          ],
+          "anchor": "Ho2O3",
+          "row_label": "Total"
+        },
+        "p12-reported_resource_er_ppm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            712,
+            349
+          ],
+          "anchor_bbox": [
+            482.46998901367186,
+            288.27968139648436,
+            504.35899047851564,
+            297.88767700195314
+          ],
+          "anchor": "Er2O3",
+          "row_label": "Total"
+        },
+        "p12-reported_resource_tm_ppm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            712,
+            349
+          ],
+          "anchor_bbox": [
+            514.9899780273438,
+            288.27968139648436,
+            540.5989501953125,
+            297.88767700195314
+          ],
+          "anchor": "Tm2O3",
+          "row_label": "Total"
+        },
+        "p12-reported_resource_yb_ppm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            712,
+            349
+          ],
+          "anchor_bbox": [
+            551.3500244140625,
+            288.27968139648436,
+            575.0389526367187,
+            297.88767700195314
+          ],
+          "anchor": "Yb2O3",
+          "row_label": "Total"
+        },
+        "p12-reported_resource_lu_ppm": {
+          "page": 12,
+          "bbox": [
+            35,
+            85,
+            712,
+            349
+          ],
+          "anchor_bbox": [
+            585.6700317382813,
+            288.27968139648436,
+            608.8789794921875,
+            297.88767700195314
+          ],
+          "anchor": "Lu2O3",
+          "row_label": "Total"
+        },
+        "p3-image-pr": {
+          "page": 3,
+          "bbox": [
+            48,
+            501,
+            563,
+            611
+          ],
+          "mode": "reviewed_image_section",
+          "anchor": "Goschen Central Table2 global Total at1% HM cutoff; canonical Pr6O11 ppm subcolumn visually reviewed",
+          "row_label": "Total"
+        },
+        "p3-image-tb": {
+          "page": 3,
+          "bbox": [
+            48,
+            501,
+            563,
+            611
+          ],
+          "mode": "reviewed_image_section",
+          "anchor": "Goschen Central Table2 global Total at1% HM cutoff; canonical Tb4O7 ppm subcolumn visually reviewed",
+          "row_label": "Total"
+        }
+      },
+      "scope_evidence": [
+        {
+          "page": 8,
+          "markers": [
+            "Dry bulk density",
+            "total HM"
+          ]
+        },
+        {
+          "page": 12,
+          "markers": [
+            "percentages of the total HM component",
+            "1.0% total heavy minerals"
+          ]
+        }
+      ],
+      "bulk_hm_percent": {
+        "value": 2.2,
+        "original_token": "2.2",
+        "evidence": {
+          "page": 12,
+          "markers": [
+            "2.2",
+            "percentage of the total material",
+            "percentages of the total HM component"
+          ]
+        },
+        "basis_markers": [
+          "Total HM is from within",
+          "percentage of the total material",
+          "percentages of the total HM component"
+        ],
+        "cell_binding": {
+          "mode": "native_cell",
+          "field": "bulk_hm_percent",
+          "basis": "HM",
+          "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+          "page": 12,
+          "original_unit": "%",
+          "table_bbox": [
+            35,
+            85,
+            580,
+            211
+          ],
+          "row_bbox": [
+            35,
+            199.9,
+            580,
+            210.1
+          ],
+          "column_bbox": [
+            150,
+            85,
+            190,
+            211
+          ],
+          "table_label": "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+          "table_label_bbox": [
+            35,
+            85,
+            516,
+            106
+          ],
+          "row_label": "Total",
+          "row_label_bbox": [
+            40.9,
+            200,
+            61.5,
+            209.7
+          ],
+          "column_label": "HM",
+          "column_label_bbox": [
+            159.5,
+            139.1,
+            172.9,
+            148.8
+          ],
+          "unit_bbox": [
+            175.1,
+            139.1,
+            182.9,
+            148.8
+          ],
+          "scope_anchor_bbox": [
+            159.5,
+            139.1,
+            172.9,
+            148.8
+          ],
+          "scope_anchor": "HM",
+          "section_id": "p12-hm"
+        }
+      },
+      "oxide_sum_tolerance_ppm": 30,
+      "oxide_rounding_review": {
+        "method": "CONSERVATIVE_SUM_OF_ROUNDED_INPUT_HALF_UNITS",
+        "bound_ppm": 29.55,
+        "accepted_tolerance_ppm": 30,
+        "explanation": "13 HM oxide fractions: sum half-last-displayed-digit errors times2.2HM*100, plus summed fractions times0.05HM*100 and cross term; two direct integer-ppm half-units plus TREO integer-ppm half-unit. No conversion of Pr2O3 or Tb2O3."
+      }
+    },
+    {
+      "review_id": "fullscope1_goschen_central_descriptions",
+      "project_id": "AU-447261eed0e81eae88bf",
+      "source_key": "goschen_central_study2025",
+      "source_sha256": "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5",
+      "asset_set": "fullscope",
+      "path": "data/snapshots/f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5.pdf",
+      "url": "https://wcsecure.weblink.com.au/clients/acdcmetals/headline.aspx?headlineid=3669765",
+      "publication_date": "2025-06-12",
+      "effective_date": "2025-06-12",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "12 June 2025"
+        ]
+      },
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Goschen Central"
+        ]
+      },
+      "scope": "Goschen Central ACDC EL5278 dated 12 June 2025 study descriptions; no transfer of first-five-year average, nameplate output or processing-only plant to a LOM oxide forecast",
+      "statement_id": "goschen-central-descriptions-20250612",
+      "attributes": [
+        {
+          "column": "礦床型態",
+          "value": "sheet-style HMS",
+          "evidence": {
+            "page": 4,
+            "markers": [
+              "Goschen Central",
+              "sheet-style HMS"
+            ]
+          },
+          "description_binding": {
+            "page": 4,
+            "project_marker": "Goschen Central",
+            "project_bbox": [
+              49.03000183105469,
+              243.92998046875,
+              326.28196411132814,
+              637.8
+            ],
+            "value_bbox": [
+              490.00999755859374,
+              625.7,
+              574.23798828125,
+              637.8
+            ],
+            "literal_value": "sheet-style HMS",
+            "statement": "sheet-style HMS"
+          }
+        },
+        {
+          "column": "開發階段",
+          "value": "Scoping Study（來源揭露：2025-06-12）",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Goschen Central",
+              "Scoping Study"
+            ]
+          },
+          "description_binding": {
+            "page": 1,
+            "project_marker": "Goschen Central",
+            "project_bbox": [
+              119.96999664306641,
+              116.75996704101563,
+              549.6141479492187,
+              775.435986328125
+            ],
+            "value_bbox": [
+              319.21998901367186,
+              136.19996948242186,
+              412.255078125,
+              152.25997619628907
+            ],
+            "literal_value": "Scoping Study",
+            "statement": "Scoping Study."
+          }
+        }
+      ],
+      "deferred_fields": [
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "TABLE10_REPORTS_3041TPA_AVERAGE_MIXED_REO_PRODUCT_BUT_NO_EXPLICIT_TREO_EQUIVALENT_OR_PURITY_BOUND;480TPA_XMC_IS_SEPARATE_MINERAL_PRODUCT;FIRST5Y_NDPR_SHARE_NOT_A_MATCHED_LOM_OXIDE_SHARE;HREE8_NOT_COMPLETE",
+          "evidence": {
+            "page": 21,
+            "markers": [
+              "Mixed rare earth oxide",
+              "3,041",
+              "Phase 1 and 2",
+              "Ave tpa"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "TABLE10_REPORTS_3041TPA_AVERAGE_MIXED_REO_PRODUCT_BUT_NO_EXPLICIT_TREO_EQUIVALENT_OR_PURITY_BOUND;480TPA_XMC_IS_SEPARATE_MINERAL_PRODUCT;FIRST5Y_NDPR_SHARE_NOT_A_MATCHED_LOM_OXIDE_SHARE;HREE8_NOT_COMPLETE",
+          "evidence": {
+            "page": 21,
+            "markers": [
+              "Mixed rare earth oxide",
+              "3,041",
+              "Phase 1 and 2",
+              "Ave tpa"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "TABLE10_REPORTS_3041TPA_AVERAGE_MIXED_REO_PRODUCT_BUT_NO_EXPLICIT_TREO_EQUIVALENT_OR_PURITY_BOUND;480TPA_XMC_IS_SEPARATE_MINERAL_PRODUCT;FIRST5Y_NDPR_SHARE_NOT_A_MATCHED_LOM_OXIDE_SHARE;HREE8_NOT_COMPLETE",
+          "evidence": {
+            "page": 21,
+            "markers": [
+              "Mixed rare earth oxide",
+              "3,041",
+              "Phase 1 and 2",
+              "Ave tpa"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "project_id": "AU-cc4e217a90b7123dce0a",
+      "source_key": "asx_devex_ar2025",
+      "source_sha256": "d631b0e9edbc2162ee3cb12bf526834518b43cc5ce89c4d995e3497afbbf36fb",
+      "asset_set": "round3",
+      "path": "data/snapshots/d631b0e9edbc2162ee3cb12bf526834518b43cc5ce89c4d995e3497afbbf36fb.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02996030",
+      "publication_date": "2025-09-16",
+      "identity_evidence": {
+        "page": 65,
+        "markers": [
+          "Kennedy Project",
+          "Inferred"
+        ]
+      },
+      "publication_archive_evidence": {
+        "asset_set": "round6-integration-archives",
+        "path": "data/snapshots/bfbc0ce90ab470d997802356d5b6d1ca0f282df09dd97895a06704af6d078016.html",
+        "sha256": "bfbc0ce90ab470d997802356d5b6d1ca0f282df09dd97895a06704af6d078016",
+        "url": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode=DEV&timeframe=Y&year=2025",
+        "prior_remote_archive_sha256": "6bd04f4c492176694d59e268d4144b5c64a977bd0c5adabe6da8a655e6c0bf53",
+        "prior_round6_integration_archive_sha256": "628ab4c1e21e32691a4e9f3b7dc8cae04576c52a9846659d3bab571ad9e3047e"
+      },
+      "document_issue_date": "2025-09-16",
+      "document_issue_evidence": {
+        "page": 35,
+        "markers": [
+          "authorised for issue",
+          "16 September 2025"
+        ]
+      },
+      "publication_date_role": "ASX_ARCHIVE_MATCHED_TO_AUTHORISATION_DATE",
+      "date_evidence": {
+        "page": 35,
+        "markers": [
+          "16 September 2025"
+        ]
+      },
+      "review_id": "fullscope1_kennedy_stage",
+      "statement_id": "fullscope1_kennedy_stage",
+      "effective_date": "2025-09-16",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "observations": [],
+      "scope": "Kennedy project stage expressly described in the 16 September 2025 annual report; not current-title or a completed feasibility claim",
+      "attributes": [
+        {
+          "column": "開發階段",
+          "value": "advanced exploration project（來源揭露：2025-09-16）",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Kennedy",
+              "advanced exploration project"
+            ]
+          },
+          "description_binding": {
+            "page": 17,
+            "project_marker": "Kennedy",
+            "project_bbox": [
+              59.300001525878905,
+              118.94865264892579,
+              104.01146850585937,
+              134.27057800292968
+            ],
+            "value_bbox": [
+              239.06110229492188,
+              163.82295837402344,
+              354.44048461914065,
+              176.3079620361328
+            ],
+            "literal_value": "advanced exploration project",
+            "statement": "advanced exploration project"
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "fullscope1_kalkaroo_developer",
+      "project_id": "AU-f46f6d53e7196650495d",
+      "source_key": "kalkaroo_ree2020",
+      "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5",
+      "asset_set": "canonical",
+      "path": "data/snapshots/bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5.pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20200219/pdf/44f780ww5n6tbj.pdf",
+      "publication_date": "2020-02-19",
+      "effective_date": "2020-02-19",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Kalkaroo"
+        ]
+      },
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "19 February 2020"
+        ]
+      },
+      "scope": "Havilah Resources Limited reporting developer of Kalkaroo at 19 February 2020; historical association, not proof of current ownership; no Cu-Au resource transferred",
+      "statement_id": "fullscope1_kalkaroo_developer",
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "19 February 2020",
+          "Rare Earth Potential Confirmed by Expert"
+        ],
+        "header_title": "Rare Earth Potential Confirmed by Expert"
+      },
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發商",
+          "value": "Havilah Resources Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Havilah Resources Limited",
+              "Kalkaroo"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "fullscope1_goschen_central_product",
+      "project_id": "AU-447261eed0e81eae88bf",
+      "source_key": "goschen_central_study2025",
+      "source_sha256": "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5",
+      "asset_set": "fullscope",
+      "path": "data/snapshots/f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5.pdf",
+      "url": "https://wcsecure.weblink.com.au/clients/acdcmetals/headline.aspx?headlineid=3669765",
+      "publication_date": "2025-06-12",
+      "effective_date": "2025-06-12",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "12 June 2025"
+        ]
+      },
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Goschen Central"
+        ]
+      },
+      "scope": "Goschen Central 12 June 2025 Scoping Study Phase2 mixed rare earth oxide product endpoint only; first-five-year average and nameplate numbers are not imported as LOM average annual output",
+      "statement_id": "fullscope1_goschen_central_product",
+      "study": {
+        "scale": "SCOPING_MODEL",
+        "stage": 3,
+        "endpoint": "Mixed Rare Earth Oxide (MREO)",
+        "element": "TREO_INCLUDING_Y",
+        "parameters": {},
+        "evidence": [
+          {
+            "page": 4,
+            "markers": [
+              "MREO",
+              "phase 2",
+              "Goschen Central"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "asset_set": "round6",
+      "path": "data/snapshots/a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb.pdf",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "url": "https://www.wa.gov.au/media/159141/download?inline=",
+      "review_id": "fullscope1_wa_stage_AU-efff91a06cf344122d88",
+      "source_key": "wa_ree_published_feb2026",
+      "project_id": "AU-efff91a06cf344122d88",
+      "publication_date": "2026-02-28",
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "source_kind": "GOVERNMENT_PROJECT_CATALOGUE",
+      "publication_date_precision": "MONTH",
+      "publication_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ],
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "publication_month_role": "PUBLISHER_ABBREVIATED_MONTH",
+      "publication_month_evidence": {
+        "page": 2,
+        "markers": [
+          "Published",
+          "Feb2026"
+        ]
+      },
+      "date_evidence": {
+        "page": 2,
+        "markers": [
+          "Published",
+          "Feb2026"
+        ]
+      },
+      "identity_evidence": {
+        "page": 2,
+        "markers": [
+          "Mt Weld"
+        ]
+      },
+      "statement_id": "fullscope1_wa_stage_AU-efff91a06cf344122d88",
+      "scope": "Explicit WA government project-status label at February2026 publication, using January2026 data snapshot; historical government disclosure, not real-time ownership or issuer JORC validation. No government resource/grade imported.",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發階段",
+          "value": "Operating（來源揭露：2026-02，月精度）",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Mt Weld",
+              "Operating"
+            ]
+          },
+          "description_binding": {
+            "page": 2,
+            "project_marker": "Mt Weld",
+            "project_bbox": [
+              47.342298889160155,
+              87.8404525756836,
+              78.90599975585937,
+              99.25194702148437
+            ],
+            "value_bbox": [
+              120,
+              87.8404525756836,
+              165,
+              99.25194702148437
+            ],
+            "statement": "Operating",
+            "literal_value": "Operating"
+          }
+        }
+      ],
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
+    },
+    {
+      "asset_set": "round6",
+      "path": "data/snapshots/a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb.pdf",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "url": "https://www.wa.gov.au/media/159141/download?inline=",
+      "review_id": "fullscope1_wa_stage_AU-4ec1fb08563b42352d29",
+      "source_key": "wa_ree_published_feb2026",
+      "project_id": "AU-4ec1fb08563b42352d29",
+      "publication_date": "2026-02-28",
+      "effective_date": "2026-02-28",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "MONTH",
+      "source_kind": "GOVERNMENT_PROJECT_CATALOGUE",
+      "publication_date_precision": "MONTH",
+      "publication_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ],
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "publication_month_role": "PUBLISHER_ABBREVIATED_MONTH",
+      "publication_month_evidence": {
+        "page": 2,
+        "markers": [
+          "Published",
+          "Feb2026"
+        ]
+      },
+      "date_evidence": {
+        "page": 2,
+        "markers": [
+          "Published",
+          "Feb2026"
+        ]
+      },
+      "identity_evidence": {
+        "page": 2,
+        "markers": [
+          "Cowalinya"
+        ]
+      },
+      "statement_id": "fullscope1_wa_stage_AU-4ec1fb08563b42352d29",
+      "scope": "Explicit WA government project-status label at February2026 publication, using January2026 data snapshot; historical government disclosure, not real-time ownership or issuer JORC validation. No government resource/grade imported.",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發階段",
+          "value": "Exploration（來源揭露：2026-02，月精度）",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Cowalinya",
+              "Exploration"
+            ]
+          },
+          "description_binding": {
+            "page": 2,
+            "project_marker": "Cowalinya",
+            "project_bbox": [
+              47.598898315429686,
+              130.31487121582032,
+              87.1218048095703,
+              141.72637329101562
+            ],
+            "value_bbox": [
+              120,
+              130.31487121582032,
+              165,
+              141.72637329101562
+            ],
+            "statement": "Exploration",
+            "literal_value": "Exploration"
+          }
+        }
+      ],
+      "effective_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ]
     }
   ]
 }

@@ -118,16 +118,21 @@ def review_coverage_cycle(before, after, manifest):
     # Historical policies stay replayable. The new below-three policy keeps
     # the same full-scope and acquisition checks as the default zero policy.
     policy = manifest.get('stopping_policy', 'ZERO_NEW_VERIFIED_CELLS')
-    if policy not in ('ZERO_NEW_VERIFIED_CELLS', 'LEGACY_BELOW_THREE', 'BELOW_THREE_COMPLETE_ROUND'):
+    if policy not in ('ZERO_NEW_VERIFIED_CELLS', 'LEGACY_BELOW_THREE', 'BELOW_THREE_COMPLETE_ROUND',
+                       'FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS'):
         raise ValueError('CYCLE_UNKNOWN_STOPPING_POLICY')
-    if policy in ('ZERO_NEW_VERIFIED_CELLS', 'BELOW_THREE_COMPLETE_ROUND'):
+    if policy in ('ZERO_NEW_VERIFIED_CELLS', 'BELOW_THREE_COMPLETE_ROUND', 'FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS'):
         scope = manifest.get('search_scope', {})
         if scope.get('columns') != columns or scope.get('all_blank_fields_reviewed') is not True:
             incomplete.append('search_scope:all_53_columns')
         if manifest.get('unresolved_acquisition_actions') != []:
             incomplete.append('acquisition:unresolved_or_undeclared')
+    if policy == 'FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS':
+        from .full_scope_review import review_full_scope
+        incomplete.extend(review_full_scope(old, new, columns, manifest))
     eligible = not incomplete
-    stopped = eligible and (gain == 0 if policy == 'ZERO_NEW_VERIFIED_CELLS' else gain < 3)
+    zero_policy = policy in ('ZERO_NEW_VERIFIED_CELLS', 'FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS')
+    stopped = eligible and (gain == 0 if zero_policy else gain < 3)
     counts['net_filled_cell_increase'] = counts['newly_filled_cells'] - counts['withdrawn_cells']
     return dict(
         version='coverage-cycle-review-v2',
@@ -139,8 +144,8 @@ def review_coverage_cycle(before, after, manifest):
                             identity_and_other_metadata_cells=added_filled-added_scientific),
         removed_projects=dict(project_ids=removed, filled_cells=removed_filled, explanations=removals),
         total_filled_cell_delta=current['filled_cells']-previous['filled_cells'],
-        stopping_rule=dict(policy=policy, threshold=0 if policy == 'ZERO_NEW_VERIFIED_CELLS' else 3,
-                           operator='==' if policy == 'ZERO_NEW_VERIFIED_CELLS' else '<', newly_filled_cells=gain,
+        stopping_rule=dict(policy=policy, threshold=0 if zero_policy else 3,
+                           operator='==' if zero_policy else '<', newly_filled_cells=gain,
                            scientific_newly_filled_cells=counts['scientific_newly_filled_cells']+added_scientific,
                            counting_scope='EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA',
                            eligible=eligible, stop=stopped, incomplete=incomplete,

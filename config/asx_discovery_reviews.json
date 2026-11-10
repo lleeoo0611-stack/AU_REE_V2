@@ -12390,6 +12390,67 @@
           }
         }
       ]
+    },
+    {
+      "candidate_key": "goschen-central-acdc",
+      "name": "Goschen Central Rare Earths and Mineral Sands Project — ACDC",
+      "aliases": [
+        "Goschen Central",
+        "Goschen Central Project"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_ISSUER_DISTINCT_ADC_PROJECT_EL5278;VHM_GOSCHEN_IS_A_DIFFERENT_CODE_AND_TENURE",
+      "country": "AU",
+      "scope": "Goschen Central ACDC EL5278 global Indicated+Inferred resource at 1% total HM cutoff, 3 December 2024; 620 Mt dry bulk ore; TREO includes Y2O3. Oxides in Appendix1 are percentages of HM, not bulk ore. Excludes 2% HM nested subset, VHM Goschen Areas1-4, Ore Reserves and scheduled feed.",
+      "sources": [
+        {
+          "asset_set": "fullscope",
+          "path": "data/snapshots/22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59.pdf",
+          "sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59",
+          "url": "https://wcsecure.weblink.com.au/clients/acdcmetals/headline.aspx?headlineid=3657278",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Goschen Central",
+                "ACDC Metals Limited",
+                "Victoria"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "goschen_central_mre2024",
+        "publication_date": "2024-12-03",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "3 December 2024"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "Goschen Central",
+            "western Victoria"
+          ]
+        },
+        "name_marker": "Goschen Central",
+        "state": "VIC",
+        "state_marker": "Victoria",
+        "developer": {
+          "value": "ACDC Metals Limited",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "ACDC Metals Limited"
+            ]
+          }
+        }
+      }
     }
   ]
 }

@@ -110,6 +110,62 @@ class CoverageCycle(unittest.TestCase):
         self.assertEqual(1, report['added_projects']['identity_and_other_metadata_cells'])
         self.assertFalse(report['stopping_rule']['stop'])
 
+    def full_manifest(self, old, new):
+        manifest = copy.deepcopy(self.manifest)
+        manifest['stopping_policy'] = 'FULL_SCOPE_ZERO_NEW_VERIFIED_CELLS'
+        def reviewed(**identity):
+            return dict(identity, completed=True, query_ids=['search-1'],
+                        source_review_ids=['review-1'], disposition='Reviewed source scope')
+        old_ids = {r[COLUMNS[0]] for r in old}
+        cells = {(r[COLUMNS[0]], c) for r in old for c in COLUMNS if not r[c]}
+        cells |= {(r[COLUMNS[0]], c) for r in new if r[COLUMNS[0]] not in old_ids
+                  for c in COLUMNS if not r[c]}
+        manifest['full_scope'] = dict(baseline_project_ids=sorted(old_ids),
+            cell_reviews=[reviewed(project_id=p, column=c) for p, c in sorted(cells)],
+            project_reviews=[reviewed(project_id=p) for p in sorted(old_ids|{r[COLUMNS[0]] for r in new})],
+            expected_candidate_ids=['candidate'], candidate_reviews=[reviewed(lead_id='candidate')],
+            expected_external_lead_ids=['external'], external_lead_reviews=[reviewed(lead_id='external')],
+            source_actions=[dict(action_id='source-1', completed=True, evidence='hash + locator')])
+        return manifest
+
+    def test_whole_cohort_policy_stops_only_at_zero(self):
+        for count, stop in [(0, True), (1, False), (2, False), (3, False)]:
+            with self.subTest(count=count):
+                old, new = [self.row()], [self.row(fills=count)]
+                report = self.compare(old, new, self.full_manifest(old, new))
+                self.assertEqual(stop, report['stopping_rule']['stop'])
+                self.assertEqual(0, report['stopping_rule']['threshold'])
+
+    def test_whole_cohort_omissions_and_unfinished_actions_never_stop(self):
+        old = new = [self.row(), self.row('Q')]
+        for collection in ('cell_reviews', 'project_reviews', 'candidate_reviews', 'external_lead_reviews', 'source_actions'):
+            for mutation in ('omit', 'duplicate', 'unfinished', 'no_evidence'):
+                with self.subTest(collection=collection, mutation=mutation):
+                    manifest = self.full_manifest(old, new)
+                    records = manifest['full_scope'][collection]
+                    if mutation == 'omit': records.pop()
+                    elif mutation == 'duplicate': records.append(copy.deepcopy(records[0]))
+                    elif mutation == 'unfinished': records[0]['completed'] = False
+                    elif collection == 'source_actions': records[0]['evidence'] = ''
+                    else: records[0]['source_review_ids'] = []
+                    result = self.compare(old, new, manifest)['stopping_rule']
+                    self.assertEqual('INCOMPLETE', result['decision'])
+                    self.assertFalse(result['stop'])
+
+    def test_whole_cohort_new_project_gaps_join_same_round(self):
+        old, new = [self.row()], [self.row(), self.row('Q', 2)]
+        manifest = self.full_manifest(old, new)
+        self.assertTrue(self.compare(old, new, manifest)['stopping_rule']['eligible'])
+        manifest['full_scope']['cell_reviews'] = [r for r in manifest['full_scope']['cell_reviews'] if r['project_id'] != 'Q']
+        self.assertFalse(self.compare(old, new, manifest)['stopping_rule']['eligible'])
+
+    def test_whole_cohort_requires_frozen_lead_sets_and_baseline(self):
+        old = new = [self.row()]
+        for key in ('baseline_project_ids', 'expected_candidate_ids', 'expected_external_lead_ids'):
+            manifest = self.full_manifest(old, new)
+            manifest['full_scope'].pop(key)
+            self.assertEqual('INCOMPLETE', self.compare(old, new, manifest)['stopping_rule']['decision'])
+
     def test_updates_withdrawals_not_new_fills(self):
         old = self.row(fills=3)
         new = self.row(fills=2)
