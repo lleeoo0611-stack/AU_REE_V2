@@ -1,0 +1,139 @@
+{
+  "version": "eight-public-work-repair-v1",
+  "baseline_commit": "48d0849ff219fe140120cef71aaffc403b19323c",
+  "implementation_commit": "0ed0c389539e371287d3726a418858c414fed317",
+  "research_cutoff": "2026-11-05",
+  "works": 8,
+  "qualified_works": 2,
+  "new_downloaded_documents": 1,
+  "reused_documents": 1,
+  "qualified_pages": 63,
+  "new_document_identity_evidence": 1,
+  "revalidated_existing_identity_evidence": 1,
+  "new_scientific_observations": 0,
+  "raw_numeric_fills": 0,
+  "derived_fills": 0,
+  "text_or_classification_fills": 0,
+  "new_projects": 0,
+  "denominator_change": 0,
+  "http_network_requests": 14,
+  "http_status_counts": {
+    "200": 5,
+    "403": 9
+  },
+  "original_url_network_requests": 5,
+  "original_urls_recovered": 1,
+  "unresolved_original_actions": 7,
+  "unavailable_work_contents": 6,
+  "local_capture_receipts_checked": 74,
+  "rows": 93,
+  "columns": 53,
+  "filled_cells": 1944,
+  "blank_cells": 2985,
+  "coverage": {
+    "total_cells": 4929,
+    "filled_cells": 1944,
+    "blank_cells": 2985,
+    "blank_class_counts": {
+      "NOT_APPLICABLE_STAGE": 30,
+      "NO_COMPARATOR_SOURCE": 93,
+      "PENDING_CODEBOOK": 278,
+      "UNKNOWN": 2584
+    },
+    "excluded_structural_blanks": 123,
+    "adjusted_denominator": 4806,
+    "raw_coverage": 0.3944004869141814,
+    "adjusted_coverage": 0.4044943820224719,
+    "excluded_classes": [
+      "NOT_APPLICABLE_STAGE",
+      "NO_COMPARATOR_SOURCE"
+    ],
+    "rules_version": "v1",
+    "rules_sha256": "da4d569f6f7655747b8ae090766982bc9d2b061ce92aa935b907775e1e678baa",
+    "limitation": "ADJUSTED_INFORMATION_COVERAGE_CONVENTION_NOT_CURRENT_STATUS_OR_PROOF_OF_ABSENCE"
+  },
+  "codebook_status": "DRAFT",
+  "protected": {
+    "passed": true,
+    "protected_filled_cells": 1944,
+    "cell_values_and_provenance_byte_identical": true,
+    "census_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
+    "census_unchanged": true,
+    "historical_files_unchanged": 921,
+    "review_ledgers_unchanged": true
+  },
+  "all_current_outputs_unchanged": true,
+  "policy": "CONSECUTIVE_ZERO_GAIN_WITH_BLOCKED_BACKLOG",
+  "consecutive_zero_rounds_before": 1,
+  "consecutive_zero_rounds_after": 1,
+  "full_coverage_rounds_added": 0,
+  "coverage_cycle_created": false,
+  "full_scope_decision": "UNCHANGED_CONTINUE_STREAK1;NOT_ROUND21",
+  "tests": {
+    "acquisition-tests.xml": {
+      "methods": 49,
+      "subtests": 23,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "a4d286cf52c035859cf37881c0fce3917c8d675641c590456fa5d429e5bc1eaf"
+    },
+    "regression-tests.xml": {
+      "methods": 426,
+      "subtests": 353,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "8836d64a6c47da2ccd39f90f91e78c8472ff48f1dcd7cb75ebdbb5da3149dbc3"
+    }
+  },
+  "unique_test_methods": 448,
+  "old_405_methods_passed": true,
+  "independent_rebuilds": 2,
+  "four_csvs_equal_to_current": true,
+  "reproducibility_receipt_sha256": "09080f29159b99f3e9f921bcfe40c4182ea91d2712ead0b94d030fbf52dd2638",
+  "browser_runtime": {
+    "playwright": "1.65.0",
+    "channel": "msedge",
+    "observed_browser_versions": [
+      "157.0.4341.42"
+    ],
+    "initial_tool_errors": "CUA and Node tool initialization OS error3, no website HTTP response; replaced with normal installed Edge workflow"
+  },
+  "apify_enabled": false,
+  "paid_services_used": false,
+  "automated_login_or_captcha": false,
+  "limitations": [
+    "Initial live browser 403 diagnostics did not retain redirect chains. They remain UNKNOWN; final adapter captures chains and was verified offline, without extra live retries. HTTP-session redirect chains are retained.",
+    "No WAF cause, removed file or source exhaustion inferred from403. No values admitted from investment aggregates, gallium/copper capacities, drill samples or neighboring resource scopes.",
+    "Research rows are not independent mines; Yttria/Mt Stirling resources must not be summed. Same verified ASX/name merge rule and all historical reports unchanged."
+  ],
+  "rerun_validation": {
+    "passed": true,
+    "network_requests_added": 0,
+    "sources_added": 0,
+    "cells_filled": 0,
+    "before": {
+      "http_network_requests": 14,
+      "browser_navigation_receipts": 4,
+      "source_sha256s": [
+        "b4a882278894c26780c531beed947d35add62ec43d1918adc1ce218a1f58646e",
+        "c31024a4a94e94aa7bb0187a7c845975c43dc0c406ab9bba2a5a192e45825d73"
+      ],
+      "downloads_sha256": "6d9c1f544f2767ee9d2bf69dd5457c3a08c4e9c92e0b5a4e7de1854a39a538ee",
+      "table_sha256": "a23015c68f0c10cceec63bb30ffdb13cdc010fd1fda801df07a0726997015864",
+      "provenance_sha256": "8f8fc31b3d4c8776004ab6584b963968dd32194fab2efa86eb2094ae636c4251"
+    },
+    "after": {
+      "http_network_requests": 14,
+      "browser_navigation_receipts": 4,
+      "source_sha256s": [
+        "b4a882278894c26780c531beed947d35add62ec43d1918adc1ce218a1f58646e",
+        "c31024a4a94e94aa7bb0187a7c845975c43dc0c406ab9bba2a5a192e45825d73"
+      ],
+      "downloads_sha256": "6d9c1f544f2767ee9d2bf69dd5457c3a08c4e9c92e0b5a4e7de1854a39a538ee",
+      "table_sha256": "a23015c68f0c10cceec63bb30ffdb13cdc010fd1fda801df07a0726997015864",
+      "provenance_sha256": "8f8fc31b3d4c8776004ab6584b963968dd32194fab2efa86eb2094ae636c4251"
+    }
+  }
+}

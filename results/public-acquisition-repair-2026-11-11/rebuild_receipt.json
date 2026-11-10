@@ -1,0 +1,91 @@
+{
+  "version": "reviewed-asx-census-rebuild-v1",
+  "cutoff": "2026-11-05",
+  "database_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
+  "database_modified": false,
+  "ledger_sha256": {
+    "asx_source_reviews.json": "5e2959c6858c36429b6d8693536c9674ab638659594c40ae391dbe2ddb6ae823",
+    "asx_discovery_reviews.json": "7e477d610550b7d9205c069d8eac651abc05336fa2a2c4de77474731e24631bd",
+    "asx_project_identity_reviews.json": "f00606887c84c624ff2898e97433fcae250b8dd3fc422f2b451315f5768b4514",
+    "asx_location_reviews.json": "b5a1c0a26f3f3ae832be13b3772f2a24f541e129ef28b87a378c229eb0e36414"
+  },
+  "asset_map_sha256": "108c37e0bf0b4d46c5837881227e29f3f2ca319591729c7851332556e8198474",
+  "independent_rebuilds": 2,
+  "projection_configuration_sha256": {
+    "classification_codebook.json": "a1f174dae5378f7f7fe446e6979fd933c98b292e7b716f83b24ba1c9d70d7488",
+    "blank_classification.json": "da4d569f6f7655747b8ae090766982bc9d2b061ce92aa935b907775e1e678baa"
+  },
+  "output_hashes": {
+    "專案總表.csv": "a23015c68f0c10cceec63bb30ffdb13cdc010fd1fda801df07a0726997015864",
+    "field_provenance.csv": "8f8fc31b3d4c8776004ab6584b963968dd32194fab2efa86eb2094ae636c4251",
+    "missing_fields.csv": "a3a5bab4f68e01fff932fd84c9e301dd0e5ed5482049ac91dfcf17cbcfd9b697",
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1"
+  },
+  "audit": {
+    "projects": 93,
+    "columns": 53,
+    "filled_cells": 1944,
+    "total_cells": 4929,
+    "remaining_blank_cells": 2985,
+    "scientific_columns": [
+      "礦石蘊藏量_Mt",
+      "TREO品位_pct",
+      "總TREO蘊藏量_kt",
+      "磁鐵稀土氧化物蘊藏量_kt",
+      "磁鐵稀土佔TREO_pct",
+      "NdPr蘊藏量_kt_需兩者皆公布",
+      "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+      "預估年產TREO_t_per_year",
+      "預估年產NdPr_t_per_year",
+      "預估年產重稀土_t_per_year",
+      "La2O3_氧化鑭_kt",
+      "CeO2_氧化鈰_kt",
+      "Pr6O11_氧化鐠_kt",
+      "Nd2O3_氧化釹_kt",
+      "Sm2O3_氧化釤_kt",
+      "Eu2O3_氧化銪_kt",
+      "Gd2O3_氧化釓_kt",
+      "Tb4O7_氧化鋱_kt",
+      "Dy2O3_氧化鏑_kt",
+      "Ho2O3_氧化鈥_kt",
+      "Er2O3_氧化鉺_kt",
+      "Tm2O3_氧化銩_kt",
+      "Yb2O3_氧化鐿_kt",
+      "Lu2O3_氧化鎦_kt",
+      "Y2O3_氧化釔_kt"
+    ],
+    "scientific_filled_cells": 465,
+    "scientific_total_cells": 2325,
+    "output_hashes": {
+      "專案總表.csv": "a23015c68f0c10cceec63bb30ffdb13cdc010fd1fda801df07a0726997015864",
+      "field_provenance.csv": "8f8fc31b3d4c8776004ab6584b963968dd32194fab2efa86eb2094ae636c4251",
+      "missing_fields.csv": "a3a5bab4f68e01fff932fd84c9e301dd0e5ed5482049ac91dfcf17cbcfd9b697",
+      "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1"
+    },
+    "provenance_complete": true,
+    "missing_diagnostics_complete": true,
+    "blank_coverage": {
+      "total_cells": 4929,
+      "filled_cells": 1944,
+      "blank_cells": 2985,
+      "blank_class_counts": {
+        "NOT_APPLICABLE_STAGE": 30,
+        "NO_COMPARATOR_SOURCE": 93,
+        "PENDING_CODEBOOK": 278,
+        "UNKNOWN": 2584
+      },
+      "excluded_structural_blanks": 123,
+      "adjusted_denominator": 4806,
+      "raw_coverage": 0.3944004869141814,
+      "adjusted_coverage": 0.4044943820224719,
+      "excluded_classes": [
+        "NOT_APPLICABLE_STAGE",
+        "NO_COMPARATOR_SOURCE"
+      ],
+      "rules_version": "v1",
+      "rules_sha256": "da4d569f6f7655747b8ae090766982bc9d2b061ce92aa935b907775e1e678baa",
+      "limitation": "ADJUSTED_INFORMATION_COVERAGE_CONVENTION_NOT_CURRENT_STATUS_OR_PROOF_OF_ABSENCE"
+    }
+  },
+  "limitation": "REPLAY_OF_APPROVED_EVIDENCE;NOT_A_FRESH_SEARCH_OR_FULL_SCOPE_STOP_DECISION"
+}
