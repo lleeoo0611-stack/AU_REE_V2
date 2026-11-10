@@ -73,14 +73,16 @@ def rebuild(census_root, database, run_dir, out_prefix, asset_map, cutoff=None):
     cutoff = review_cutoff(ledgers, cutoff)
     assets = load_assets(asset_map, census_root, ledgers)
     before = filehash(database)
-    projection_configs={p.name:filehash(p) for p in (REPO/'config/classification_codebook.json',REPO/'config/blank_classification.json') if p.exists()}
+    mapping=REPO/'config/user_template_mapping.json'
+    projection_configs={p.name:filehash(p) for p in (REPO/'config/classification_codebook.json',REPO/'config/blank_classification.json',mapping) if p.exists()}
     audits = []
     for pass_name in ('a', 'b'):
         print('Rebuilding independently: ' + pass_name, flush=True)
         export_summary(census_root, database, run_dir, paths[pass_name + '-base52'],
                        cutoff=cutoff, review_ledger=ledger_paths[0],
                        asset_roots=assets, discovery_ledger=ledger_paths[1],
-                       location_ledger=location_ledger if location_ledger.exists() else None)
+                       location_ledger=location_ledger if location_ledger.exists() else None,
+                       user_template_mapping=mapping if mapping.exists() else None)
         extend_summary(paths[pass_name + '-base52'], paths[pass_name + '-53'], ledger_paths[2], assets)
         audits.append(audit_summary(paths[pass_name + '-53']))
         if filehash(database) != before:

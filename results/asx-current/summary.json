@@ -20,10 +20,10 @@
     "州省地區": 93,
     "緯度": 35,
     "經度": 35,
-    "礦床型態代碼": 1,
+    "礦床型態代碼": 29,
     "礦床型態": 69,
-    "開發階段代碼": 0,
-    "開發階段類別": 0,
+    "開發階段代碼": 4,
+    "開發階段類別": 4,
     "開發階段": 54,
     "礦石蘊藏量_Mt": 38,
     "TREO品位_pct": 36,
@@ -40,10 +40,10 @@
     "有來源文件": 93,
     "資料來源名稱": 93,
     "資料來源URL": 93,
-    "已公布元素數_共15項": 24,
-    "已公布元素總和_kt": 24,
-    "元素總和/TREO": 22,
-    "元素數據一致性檢查": 24,
+    "已公布元素數_共15項": 25,
+    "已公布元素總和_kt": 25,
+    "元素總和/TREO": 23,
+    "元素數據一致性檢查": 25,
     "四項磁性元素皆公布": 21,
     "磁性元素重算值_NdPrTbDy_kt": 21,
     "重算磁性元素-HTML磁性稀土_kt": 0,
@@ -61,7 +61,7 @@
     "Tm2O3_氧化銩_kt": 16,
     "Yb2O3_氧化鐿_kt": 15,
     "Lu2O3_氧化鎦_kt": 15,
-    "Y2O3_氧化釔_kt": 17,
+    "Y2O3_氧化釔_kt": 18,
     "ASX代碼": 84
   },
   "verified_source_hashes": 157,
@@ -94,9 +94,9 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "a23015c68f0c10cceec63bb30ffdb13cdc010fd1fda801df07a0726997015864",
-    "field_provenance.csv": "8f8fc31b3d4c8776004ab6584b963968dd32194fab2efa86eb2094ae636c4251",
-    "missing_fields.csv": "a3a5bab4f68e01fff932fd84c9e301dd0e5ed5482049ac91dfcf17cbcfd9b697",
+    "專案總表.csv": "f8e0c03c7f147308eb448ecb2d117add4d52d541401940577fcc07cfa6ae5c93",
+    "field_provenance.csv": "a216166cebb3e0acae928062732be47047ead6989f815efb9a896b7207f80772",
+    "missing_fields.csv": "9e43490631b19ae288f5e839ec91a4b12e87d6904e56c281f52ee7e4f06be62a",
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1"
   },
   "location_ledger_sha256": "b5a1c0a26f3f3ae832be13b3772f2a24f541e129ef28b87a378c229eb0e36414",
@@ -105,20 +105,26 @@
     "status": "DRAFT",
     "sha256": "a1f174dae5378f7f7fe446e6979fd933c98b292e7b716f83b24ba1c9d70d7488"
   },
+  "user_template_mapping": {
+    "version": "user-template-mapping-v1",
+    "sha256": "3a92308a301a9b43daebba54c0e71bca456675056e2ecdad24ce1891a519381b",
+    "source_sha256": "cadf4b7068d4be5a090d803bbc7c747314c9aa601f51e7bbe1296797a756f5ad",
+    "status": "USER_PROVIDED_SCOPED_MAPPING"
+  },
   "blank_coverage": {
     "total_cells": 4929,
-    "filled_cells": 1944,
-    "blank_cells": 2985,
+    "filled_cells": 1985,
+    "blank_cells": 2944,
     "blank_class_counts": {
       "NOT_APPLICABLE_STAGE": 30,
       "NO_COMPARATOR_SOURCE": 93,
-      "PENDING_CODEBOOK": 278,
-      "UNKNOWN": 2584
+      "PENDING_CODEBOOK": 242,
+      "UNKNOWN": 2579
     },
     "excluded_structural_blanks": 123,
     "adjusted_denominator": 4806,
-    "raw_coverage": 0.3944004869141814,
-    "adjusted_coverage": 0.4044943820224719,
+    "raw_coverage": 0.40271860417934674,
+    "adjusted_coverage": 0.4130253849354973,
     "excluded_classes": [
       "NOT_APPLICABLE_STAGE",
       "NO_COMPARATOR_SOURCE"
@@ -22149,9 +22155,9 @@
   "base_contract_columns": 52,
   "base_projection_hashes": {
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
-    "field_provenance.csv": "a39e7bb64f0adedb35ceb80781e6d658f33bb4c25ba621cc207441afb1351e67",
-    "missing_fields.csv": "64bc000b7cbe7d17d43fe9e5db22cfdbb020f675ba10e9a9ff847d52f6e59232",
-    "專案總表.csv": "94c826074cbc9eb2baff2b910952d187484300c34be484e77fba2e83a305513c"
+    "field_provenance.csv": "6f0ab4668964073f5cd8364097729e7ca3fac72062884f141d03b9f2420c5a6f",
+    "missing_fields.csv": "f7e10ae9e48077e96dda8777f2ced3dffe4d7a95fc58bd72b2e45be1dd92701a",
+    "專案總表.csv": "c939f461fad7f07740a0841d444120a9c3bc6a2a89d7d323261c01a0f7527618"
   },
   "identity_ledger_sha256": "f00606887c84c624ff2898e97433fcae250b8dd3fc422f2b451315f5768b4514",
   "identity_merges": [],
@@ -22741,5 +22747,73 @@
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02631363"
     }
   },
-  "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS"
+  "asx_code_definition": "SOURCE_VERIFIED_PROJECT_REPORTING_ISSUER_AT_EVIDENCE_DATE;NOT_REAL_TIME_OWNERSHIP_OR_LISTING_STATUS",
+  "archived_element_additions": {
+    "ledger_sha256": "ed32a1eaa76c5145f7a60be749eee38fbb0d974c8fe47baf8bfa0d2c8ea28111",
+    "new_raw_individual_oxide_cells": 0,
+    "derived_numeric_cells": 4,
+    "new_text_cells": 1,
+    "reviews": [
+      {
+        "project_id": "AU-2cfeb25aefee0c4f95fb",
+        "column": "Y2O3_氧化釔_kt",
+        "value": 105.25200000000002,
+        "method": "DERIVED_SAME_SOURCE_TOTAL_ORE_MT_X_Y2O3_PPM_X_0_001",
+        "scope": "{\"category\":\"MEASURED_INFERRED_TOTAL\",\"cell_binding\":{\"bbox\":[323.8857421875,340.3929443359375,349.0447998046875,355.1644592285156],\"header_bbox\":[315,183,356,220],\"header_marker\":\"Y2O3 (ppm)\",\"original_token\":\"1,400\",\"oxide\":\"Y2O3\",\"precision\":\"Oxide reported to100ppm; ore to0.01Mt\",\"review_method\":\"VISUALLY_CHECKED_NATIVE_HEADER_TOTAL_CELL;NOT_MEASURED_ONLY_OR_COMPOSITE_SAMPLE\",\"row_label_bbox\":[43.560001373291016,340.3929443359375,66.36753845214844,355.1644592285156],\"unit\":\"ppm bulk ore\"},\"cutoff\":\"Same selected source/table/resource total; no cross-document cutoff transfer\",\"effective_date_inherited_from_canonical\":\"2017-09-19\",\"formula\":\"Mt * bulk-ore oxide ppm * 0.001 = kt\",\"native_date_precision\":\"YEAR\",\"native_year\":\"2017\",\"original_values\":{\"ore_mt\":75.18,\"y2o3_ppm\":1400.0},\"pdf\":{\"asset_set\":\"canonical\",\"page\":26,\"path\":\"data/snapshots/734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab.pdf\",\"render_sha256\":\"a9d0aadc6e31974d42d58ea1a4a58ca548b76675ab0bf6d780b90727f648d3c3\",\"sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\"},\"resource_scope\":\"Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target\",\"rounding\":\"Ore rounded to0.01Mt; oxide rounded to100ppm; not full15-oxide closure\",\"source_sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\",\"statement_id\":\"dubbo-project-2017-09-19\",\"treo_basis\":\"Native TREO7400ppm excludes Y2O3; existing canonical8800ppm includes1400ppmY2O3. No changes to original grade or provenance.\",\"underlying_resource_provenance\":{\"acquired_through\":\"2026-11-10\",\"column\":\"礦石蘊藏量_Mt\",\"date_precision\":\"\",\"document_issue_date\":\"\",\"effective_date\":\"\",\"effective_date_interval\":\"\",\"effective_date_role\":\"\",\"forecast_derivation\":\"\",\"locator\":\"physical PDF p.26\",\"method\":\"SAME_SOURCE_STATEMENT_SCOPE_DATE\",\"observation_ids\":\"[\\\"ecc20d27e4dd1de5296a0c78eafc36b4226d6e92bace73c56085f403c14809c8\\\",\\\"f3ca084fe2f54fa4ed341c5aeafc042a0bd84c2bae3fabbc1ef33334e7ee97cf\\\"]\",\"project_id\":\"AU-2cfeb25aefee0c4f95fb\",\"public_release_date_unknown\":\"False\",\"publication_date\":\"2025-07-11\",\"publication_date_interval\":\"null\",\"publication_date_precision\":\"DAY\",\"publication_date_role\":\"ASX_DATED_URL_NATIVE_ISSUER\",\"resource_effective_date_unknown\":\"False\",\"review_ids\":\"[]\",\"review_methods\":\"[]\",\"scope\":\"Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target\",\"source_kind\":\"ISSUER_TECHNICAL_DISCLOSURE\",\"source_sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\",\"source_url\":\"https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf\",\"value\":\"75.18\"}}",
+        "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "source_url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+        "locator": "physical PDF p26 Table2 Total row / Y2O3(ppm) column",
+        "observation_ids": "[\"ecc20d27e4dd1de5296a0c78eafc36b4226d6e92bace73c56085f403c14809c8\",\"f3ca084fe2f54fa4ed341c5aeafc042a0bd84c2bae3fabbc1ef33334e7ee97cf\"]",
+        "review_id": "archived_dubbo_2017_total_y2o3"
+      },
+      {
+        "project_id": "AU-2cfeb25aefee0c4f95fb",
+        "column": "已公布元素數_共15項",
+        "value": 1,
+        "method": "DERIVED_COUNT_VERIFIED_MATCHED_INDIVIDUAL_OXIDES",
+        "scope": "{\"category\":\"MEASURED_INFERRED_TOTAL\",\"cell_binding\":{\"bbox\":[323.8857421875,340.3929443359375,349.0447998046875,355.1644592285156],\"header_bbox\":[315,183,356,220],\"header_marker\":\"Y2O3 (ppm)\",\"original_token\":\"1,400\",\"oxide\":\"Y2O3\",\"precision\":\"Oxide reported to100ppm; ore to0.01Mt\",\"review_method\":\"VISUALLY_CHECKED_NATIVE_HEADER_TOTAL_CELL;NOT_MEASURED_ONLY_OR_COMPOSITE_SAMPLE\",\"row_label_bbox\":[43.560001373291016,340.3929443359375,66.36753845214844,355.1644592285156],\"unit\":\"ppm bulk ore\"},\"cutoff\":\"Same selected source/table/resource total; no cross-document cutoff transfer\",\"effective_date_inherited_from_canonical\":\"2017-09-19\",\"formula\":\"Mt * bulk-ore oxide ppm * 0.001 = kt\",\"native_date_precision\":\"YEAR\",\"native_year\":\"2017\",\"original_values\":{\"ore_mt\":75.18,\"y2o3_ppm\":1400.0},\"pdf\":{\"asset_set\":\"canonical\",\"page\":26,\"path\":\"data/snapshots/734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab.pdf\",\"render_sha256\":\"a9d0aadc6e31974d42d58ea1a4a58ca548b76675ab0bf6d780b90727f648d3c3\",\"sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\"},\"resource_scope\":\"Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target\",\"rounding\":\"Ore rounded to0.01Mt; oxide rounded to100ppm; not full15-oxide closure\",\"source_sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\",\"statement_id\":\"dubbo-project-2017-09-19\",\"treo_basis\":\"Native TREO7400ppm excludes Y2O3; existing canonical8800ppm includes1400ppmY2O3. No changes to original grade or provenance.\",\"underlying_resource_provenance\":{\"acquired_through\":\"2026-11-10\",\"column\":\"礦石蘊藏量_Mt\",\"date_precision\":\"\",\"document_issue_date\":\"\",\"effective_date\":\"\",\"effective_date_interval\":\"\",\"effective_date_role\":\"\",\"forecast_derivation\":\"\",\"locator\":\"physical PDF p.26\",\"method\":\"SAME_SOURCE_STATEMENT_SCOPE_DATE\",\"observation_ids\":\"[\\\"ecc20d27e4dd1de5296a0c78eafc36b4226d6e92bace73c56085f403c14809c8\\\",\\\"f3ca084fe2f54fa4ed341c5aeafc042a0bd84c2bae3fabbc1ef33334e7ee97cf\\\"]\",\"project_id\":\"AU-2cfeb25aefee0c4f95fb\",\"public_release_date_unknown\":\"False\",\"publication_date\":\"2025-07-11\",\"publication_date_interval\":\"null\",\"publication_date_precision\":\"DAY\",\"publication_date_role\":\"ASX_DATED_URL_NATIVE_ISSUER\",\"resource_effective_date_unknown\":\"False\",\"review_ids\":\"[]\",\"review_methods\":\"[]\",\"scope\":\"Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target\",\"source_kind\":\"ISSUER_TECHNICAL_DISCLOSURE\",\"source_sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\",\"source_url\":\"https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf\",\"value\":\"75.18\"}}",
+        "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "source_url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+        "locator": "physical PDF p26 Table2 Total row / Y2O3(ppm) column",
+        "observation_ids": "[\"ecc20d27e4dd1de5296a0c78eafc36b4226d6e92bace73c56085f403c14809c8\",\"f3ca084fe2f54fa4ed341c5aeafc042a0bd84c2bae3fabbc1ef33334e7ee97cf\"]",
+        "review_id": "archived_dubbo_2017_total_y2o3"
+      },
+      {
+        "project_id": "AU-2cfeb25aefee0c4f95fb",
+        "column": "已公布元素總和_kt",
+        "value": 105.25200000000002,
+        "method": "DERIVED_SUM_AVAILABLE_MATCHED_OXIDES_NOT_TOTAL_RESOURCE",
+        "scope": "{\"category\":\"MEASURED_INFERRED_TOTAL\",\"cell_binding\":{\"bbox\":[323.8857421875,340.3929443359375,349.0447998046875,355.1644592285156],\"header_bbox\":[315,183,356,220],\"header_marker\":\"Y2O3 (ppm)\",\"original_token\":\"1,400\",\"oxide\":\"Y2O3\",\"precision\":\"Oxide reported to100ppm; ore to0.01Mt\",\"review_method\":\"VISUALLY_CHECKED_NATIVE_HEADER_TOTAL_CELL;NOT_MEASURED_ONLY_OR_COMPOSITE_SAMPLE\",\"row_label_bbox\":[43.560001373291016,340.3929443359375,66.36753845214844,355.1644592285156],\"unit\":\"ppm bulk ore\"},\"cutoff\":\"Same selected source/table/resource total; no cross-document cutoff transfer\",\"effective_date_inherited_from_canonical\":\"2017-09-19\",\"formula\":\"Mt * bulk-ore oxide ppm * 0.001 = kt\",\"native_date_precision\":\"YEAR\",\"native_year\":\"2017\",\"original_values\":{\"ore_mt\":75.18,\"y2o3_ppm\":1400.0},\"pdf\":{\"asset_set\":\"canonical\",\"page\":26,\"path\":\"data/snapshots/734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab.pdf\",\"render_sha256\":\"a9d0aadc6e31974d42d58ea1a4a58ca548b76675ab0bf6d780b90727f648d3c3\",\"sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\"},\"resource_scope\":\"Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target\",\"rounding\":\"Ore rounded to0.01Mt; oxide rounded to100ppm; not full15-oxide closure\",\"source_sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\",\"statement_id\":\"dubbo-project-2017-09-19\",\"treo_basis\":\"Native TREO7400ppm excludes Y2O3; existing canonical8800ppm includes1400ppmY2O3. No changes to original grade or provenance.\",\"underlying_resource_provenance\":{\"acquired_through\":\"2026-11-10\",\"column\":\"礦石蘊藏量_Mt\",\"date_precision\":\"\",\"document_issue_date\":\"\",\"effective_date\":\"\",\"effective_date_interval\":\"\",\"effective_date_role\":\"\",\"forecast_derivation\":\"\",\"locator\":\"physical PDF p.26\",\"method\":\"SAME_SOURCE_STATEMENT_SCOPE_DATE\",\"observation_ids\":\"[\\\"ecc20d27e4dd1de5296a0c78eafc36b4226d6e92bace73c56085f403c14809c8\\\",\\\"f3ca084fe2f54fa4ed341c5aeafc042a0bd84c2bae3fabbc1ef33334e7ee97cf\\\"]\",\"project_id\":\"AU-2cfeb25aefee0c4f95fb\",\"public_release_date_unknown\":\"False\",\"publication_date\":\"2025-07-11\",\"publication_date_interval\":\"null\",\"publication_date_precision\":\"DAY\",\"publication_date_role\":\"ASX_DATED_URL_NATIVE_ISSUER\",\"resource_effective_date_unknown\":\"False\",\"review_ids\":\"[]\",\"review_methods\":\"[]\",\"scope\":\"Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target\",\"source_kind\":\"ISSUER_TECHNICAL_DISCLOSURE\",\"source_sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\",\"source_url\":\"https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf\",\"value\":\"75.18\"}}",
+        "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "source_url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+        "locator": "physical PDF p26 Table2 Total row / Y2O3(ppm) column",
+        "observation_ids": "[\"ecc20d27e4dd1de5296a0c78eafc36b4226d6e92bace73c56085f403c14809c8\",\"f3ca084fe2f54fa4ed341c5aeafc042a0bd84c2bae3fabbc1ef33334e7ee97cf\"]",
+        "review_id": "archived_dubbo_2017_total_y2o3"
+      },
+      {
+        "project_id": "AU-2cfeb25aefee0c4f95fb",
+        "column": "元素總和/TREO",
+        "value": 0.15909090909090912,
+        "method": "DERIVED_AVAILABLE_OXIDE_SUM_DIVIDED_BY_MATCHED_TREO",
+        "scope": "{\"category\":\"MEASURED_INFERRED_TOTAL\",\"cell_binding\":{\"bbox\":[323.8857421875,340.3929443359375,349.0447998046875,355.1644592285156],\"header_bbox\":[315,183,356,220],\"header_marker\":\"Y2O3 (ppm)\",\"original_token\":\"1,400\",\"oxide\":\"Y2O3\",\"precision\":\"Oxide reported to100ppm; ore to0.01Mt\",\"review_method\":\"VISUALLY_CHECKED_NATIVE_HEADER_TOTAL_CELL;NOT_MEASURED_ONLY_OR_COMPOSITE_SAMPLE\",\"row_label_bbox\":[43.560001373291016,340.3929443359375,66.36753845214844,355.1644592285156],\"unit\":\"ppm bulk ore\"},\"cutoff\":\"Same selected source/table/resource total; no cross-document cutoff transfer\",\"effective_date_inherited_from_canonical\":\"2017-09-19\",\"formula\":\"Mt * bulk-ore oxide ppm * 0.001 = kt\",\"native_date_precision\":\"YEAR\",\"native_year\":\"2017\",\"original_values\":{\"ore_mt\":75.18,\"y2o3_ppm\":1400.0},\"pdf\":{\"asset_set\":\"canonical\",\"page\":26,\"path\":\"data/snapshots/734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab.pdf\",\"render_sha256\":\"a9d0aadc6e31974d42d58ea1a4a58ca548b76675ab0bf6d780b90727f648d3c3\",\"sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\"},\"resource_scope\":\"Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target\",\"rounding\":\"Ore rounded to0.01Mt; oxide rounded to100ppm; not full15-oxide closure\",\"source_sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\",\"statement_id\":\"dubbo-project-2017-09-19\",\"treo_basis\":\"Native TREO7400ppm excludes Y2O3; existing canonical8800ppm includes1400ppmY2O3. No changes to original grade or provenance.\",\"underlying_resource_provenance\":{\"acquired_through\":\"2026-11-10\",\"column\":\"礦石蘊藏量_Mt\",\"date_precision\":\"\",\"document_issue_date\":\"\",\"effective_date\":\"\",\"effective_date_interval\":\"\",\"effective_date_role\":\"\",\"forecast_derivation\":\"\",\"locator\":\"physical PDF p.26\",\"method\":\"SAME_SOURCE_STATEMENT_SCOPE_DATE\",\"observation_ids\":\"[\\\"ecc20d27e4dd1de5296a0c78eafc36b4226d6e92bace73c56085f403c14809c8\\\",\\\"f3ca084fe2f54fa4ed341c5aeafc042a0bd84c2bae3fabbc1ef33334e7ee97cf\\\"]\",\"project_id\":\"AU-2cfeb25aefee0c4f95fb\",\"public_release_date_unknown\":\"False\",\"publication_date\":\"2025-07-11\",\"publication_date_interval\":\"null\",\"publication_date_precision\":\"DAY\",\"publication_date_role\":\"ASX_DATED_URL_NATIVE_ISSUER\",\"resource_effective_date_unknown\":\"False\",\"review_ids\":\"[]\",\"review_methods\":\"[]\",\"scope\":\"Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target\",\"source_kind\":\"ISSUER_TECHNICAL_DISCLOSURE\",\"source_sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\",\"source_url\":\"https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf\",\"value\":\"75.18\"}}",
+        "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "source_url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+        "locator": "physical PDF p26 Table2 Total row / Y2O3(ppm) column",
+        "observation_ids": "[\"ecc20d27e4dd1de5296a0c78eafc36b4226d6e92bace73c56085f403c14809c8\",\"f3ca084fe2f54fa4ed341c5aeafc042a0bd84c2bae3fabbc1ef33334e7ee97cf\"]",
+        "review_id": "archived_dubbo_2017_total_y2o3"
+      },
+      {
+        "project_id": "AU-2cfeb25aefee0c4f95fb",
+        "column": "元素數據一致性檢查",
+        "value": "已核實同範圍Y2O3；部分元素，未進行完整15項閉合檢查",
+        "method": "SOURCE_REVIEWED_PARTIAL_OXIDE_DISCLOSURE",
+        "scope": "{\"category\":\"MEASURED_INFERRED_TOTAL\",\"cell_binding\":{\"bbox\":[323.8857421875,340.3929443359375,349.0447998046875,355.1644592285156],\"header_bbox\":[315,183,356,220],\"header_marker\":\"Y2O3 (ppm)\",\"original_token\":\"1,400\",\"oxide\":\"Y2O3\",\"precision\":\"Oxide reported to100ppm; ore to0.01Mt\",\"review_method\":\"VISUALLY_CHECKED_NATIVE_HEADER_TOTAL_CELL;NOT_MEASURED_ONLY_OR_COMPOSITE_SAMPLE\",\"row_label_bbox\":[43.560001373291016,340.3929443359375,66.36753845214844,355.1644592285156],\"unit\":\"ppm bulk ore\"},\"cutoff\":\"Same selected source/table/resource total; no cross-document cutoff transfer\",\"effective_date_inherited_from_canonical\":\"2017-09-19\",\"formula\":\"Mt * bulk-ore oxide ppm * 0.001 = kt\",\"native_date_precision\":\"YEAR\",\"native_year\":\"2017\",\"original_values\":{\"ore_mt\":75.18,\"y2o3_ppm\":1400.0},\"pdf\":{\"asset_set\":\"canonical\",\"page\":26,\"path\":\"data/snapshots/734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab.pdf\",\"render_sha256\":\"a9d0aadc6e31974d42d58ea1a4a58ca548b76675ab0bf6d780b90727f648d3c3\",\"sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\"},\"resource_scope\":\"Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target\",\"rounding\":\"Ore rounded to0.01Mt; oxide rounded to100ppm; not full15-oxide closure\",\"source_sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\",\"statement_id\":\"dubbo-project-2017-09-19\",\"treo_basis\":\"Native TREO7400ppm excludes Y2O3; existing canonical8800ppm includes1400ppmY2O3. No changes to original grade or provenance.\",\"underlying_resource_provenance\":{\"acquired_through\":\"2026-11-10\",\"column\":\"礦石蘊藏量_Mt\",\"date_precision\":\"\",\"document_issue_date\":\"\",\"effective_date\":\"\",\"effective_date_interval\":\"\",\"effective_date_role\":\"\",\"forecast_derivation\":\"\",\"locator\":\"physical PDF p.26\",\"method\":\"SAME_SOURCE_STATEMENT_SCOPE_DATE\",\"observation_ids\":\"[\\\"ecc20d27e4dd1de5296a0c78eafc36b4226d6e92bace73c56085f403c14809c8\\\",\\\"f3ca084fe2f54fa4ed341c5aeafc042a0bd84c2bae3fabbc1ef33334e7ee97cf\\\"]\",\"project_id\":\"AU-2cfeb25aefee0c4f95fb\",\"public_release_date_unknown\":\"False\",\"publication_date\":\"2025-07-11\",\"publication_date_interval\":\"null\",\"publication_date_precision\":\"DAY\",\"publication_date_role\":\"ASX_DATED_URL_NATIVE_ISSUER\",\"resource_effective_date_unknown\":\"False\",\"review_ids\":\"[]\",\"review_methods\":\"[]\",\"scope\":\"Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target\",\"source_kind\":\"ISSUER_TECHNICAL_DISCLOSURE\",\"source_sha256\":\"734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab\",\"source_url\":\"https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf\",\"value\":\"75.18\"}}",
+        "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "source_url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
+        "locator": "physical PDF p26 Table2 Total row / Y2O3(ppm) column",
+        "observation_ids": "[\"ecc20d27e4dd1de5296a0c78eafc36b4226d6e92bace73c56085f403c14809c8\",\"f3ca084fe2f54fa4ed341c5aeafc042a0bd84c2bae3fabbc1ef33334e7ee97cf\"]",
+        "review_id": "archived_dubbo_2017_total_y2o3"
+      }
+    ]
+  }
 }

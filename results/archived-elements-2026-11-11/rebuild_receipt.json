@@ -1,0 +1,19 @@
+{
+  "core_receipt_sha256": "21060a04cdb7fd6de41bd122ad48e1ee5fb9991d2ee45103fb4758875365b6e0",
+  "mapping_sha256": "3a92308a301a9b43daebba54c0e71bca456675056e2ecdad24ce1891a519381b",
+  "element_additions_sha256": "ed32a1eaa76c5145f7a60be749eee38fbb0d974c8fe47baf8bfa0d2c8ea28111",
+  "input_csv_sha256": "cadf4b7068d4be5a090d803bbc7c747314c9aa601f51e7bbe1296797a756f5ad",
+  "mapping_hash_in_both_core_summaries_verified": true,
+  "independently_rebuilt_outputs_identical": true,
+  "source_replays": 2,
+  "additive_replays": 2,
+  "final_hashes": {
+    "專案總表.csv": "f8e0c03c7f147308eb448ecb2d117add4d52d541401940577fcc07cfa6ae5c93",
+    "field_provenance.csv": "a216166cebb3e0acae928062732be47047ead6989f815efb9a896b7207f80772",
+    "missing_fields.csv": "9e43490631b19ae288f5e839ec91a4b12e87d6904e56c281f52ee7e4f06be62a",
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
+    "summary.json": "e670d88d20b16835678bbdc87febd5af189350caaacb7f40ac81fcf27962ad7f",
+    "audit.json": "fce64cdcf650402155536f4dee71215e2aa74f88ed060c03021c7db718998023"
+  },
+  "core_receipt_note": "Core replay launched before the wrapper added the mapping hash to its config inventory. Both core summary files carry and match the mapping hash; this envelope binds it explicitly."
+}

@@ -1,0 +1,103 @@
+{
+  "version": "user-template-and-archived-elements-20261111",
+  "baseline_commit": "47232f71b72de69e97d7a77d342cfc23f7ab707e",
+  "research_cutoff": "2026-11-05",
+  "rows": 93,
+  "columns": 53,
+  "filled_before": 1944,
+  "filled_after": 1985,
+  "blank_before": 2985,
+  "blank_after": 2944,
+  "existing_project_fills": 41,
+  "new_projects": 0,
+  "new_project_cells": 0,
+  "fill_types": {
+    "TEMPLATE_MAPPING": 36,
+    "DERIVED_NUMERIC": 4,
+    "SCIENTIFIC_DISCLOSURE_TEXT": 1
+  },
+  "new_individual_oxide_grade_inputs": 1,
+  "new_direct_reported_table_numeric_cells": 0,
+  "new_source_downloads": 0,
+  "asx_requests": 0,
+  "new_coordinates": 0,
+  "template": {
+    "local_copy": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2-asx-test\\work\\attachment-elements-20261111\\template-original.csv",
+    "bytes": 31375,
+    "sha256": "cadf4b7068d4be5a090d803bbc7c747314c9aa601f51e7bbe1296797a756f5ad",
+    "rows": 92,
+    "columns": 52,
+    "library_byte_identity": "NOT_VERIFIED_LIBRARY_MATERIALIZATION_TOOL_UNAVAILABLE;LOCAL_USER_NAMED_ORIGINAL_USED"
+  },
+  "codebook_status": "DRAFT",
+  "codebook_approval_changed": false,
+  "extraction": {
+    "projects": 25,
+    "documents": 45,
+    "pages": 2615,
+    "candidate_pages": 194,
+    "native_tables": 252,
+    "table_errors": 0,
+    "preexisting_complete_set_derivation_gaps": 0,
+    "limitation": "194 candidate pages found; not all252 tables have newly completed cell-by-cell scientific review."
+  },
+  "coverage": {
+    "total_cells": 4929,
+    "filled_cells": 1985,
+    "blank_cells": 2944,
+    "blank_class_counts": {
+      "NOT_APPLICABLE_STAGE": 30,
+      "NO_COMPARATOR_SOURCE": 93,
+      "PENDING_CODEBOOK": 242,
+      "UNKNOWN": 2579
+    },
+    "excluded_structural_blanks": 123,
+    "adjusted_denominator": 4806,
+    "raw_coverage": 0.40271860417934674,
+    "adjusted_coverage": 0.4130253849354973,
+    "excluded_classes": [
+      "NOT_APPLICABLE_STAGE",
+      "NO_COMPARATOR_SOURCE"
+    ],
+    "rules_version": "v1",
+    "rules_sha256": "da4d569f6f7655747b8ae090766982bc9d2b061ce92aa935b907775e1e678baa",
+    "limitation": "ADJUSTED_INFORMATION_COVERAGE_CONVENTION_NOT_CURRENT_STATUS_OR_PROOF_OF_ABSENCE"
+  },
+  "tests": {
+    "targeted-tests.xml": {
+      "methods": 29,
+      "subtests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "regression-tests.xml": {
+      "methods": 434,
+      "subtests": 353,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "independent_full_source_replays": 2,
+  "independent_additive_replays": 2,
+  "protected_existing_filled_cells": 1944,
+  "existing_values_and_provenance_unchanged": true,
+  "protected_materialized_files": 947,
+  "sparse_not_materialized_files": 3886,
+  "census_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0",
+  "census_unchanged": true,
+  "inventory_unchanged": true,
+  "government_data": "METADATA_RESEARCH_ONLY;NO_FEATURE_DOWNLOAD_OR_PIPELINE_INTEGRATION",
+  "full_scope_rounds_added": 0,
+  "convergence_streak_changed": false,
+  "round21_created": false,
+  "output_hashes": {
+    "專案總表.csv": "f8e0c03c7f147308eb448ecb2d117add4d52d541401940577fcc07cfa6ae5c93",
+    "field_provenance.csv": "a216166cebb3e0acae928062732be47047ead6989f815efb9a896b7207f80772",
+    "missing_fields.csv": "9e43490631b19ae288f5e839ec91a4b12e87d6904e56c281f52ee7e4f06be62a",
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1"
+  },
+  "scientific_contract_cells_before": 465,
+  "scientific_contract_cells_after": 466
+}

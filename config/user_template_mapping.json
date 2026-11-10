@@ -1,0 +1,563 @@
+{
+  "version": "user-template-mapping-v1",
+  "status": "USER_PROVIDED_SCOPED_MAPPING",
+  "authorization": "User: 按照提供的csv填補對照代碼; scoped clear vocabulary only, no whole DRAFT approval",
+  "source": {
+    "local_path": "work/attachment-elements-20261111/template-original.csv",
+    "sha256": "cadf4b7068d4be5a090d803bbc7c747314c9aa601f51e7bbe1296797a756f5ad",
+    "bytes": 31375,
+    "rows": 92,
+    "columns": 52,
+    "library_identity": "NOT_VERIFIED_LIBRARY_MATERIALIZATION_TOOL_UNAVAILABLE;LOCAL_USER_NAMED_ORIGINAL_USED"
+  },
+  "vocabulary": {
+    "deposit_type": [
+      [
+        "hard",
+        "硬岩型"
+      ],
+      [
+        "iac",
+        "離子吸附型黏土"
+      ],
+      [
+        "placer",
+        "砂礦型"
+      ]
+    ],
+    "development_stage": [
+      [
+        "A1",
+        "探勘",
+        "初期探索階段"
+      ],
+      [
+        "A2",
+        "探勘",
+        "資源調查階段"
+      ],
+      [
+        "A3",
+        "探勘",
+        "細部探勘階段"
+      ],
+      [
+        "B1",
+        "評估",
+        "初期可行性評估"
+      ],
+      [
+        "B2",
+        "評估",
+        "經濟評估"
+      ],
+      [
+        "C1",
+        "開發",
+        "最終投資決定"
+      ],
+      [
+        "C2",
+        "開發",
+        "建設中"
+      ],
+      [
+        "D3",
+        "開採",
+        "產能達設計目標"
+      ],
+      [
+        "X1",
+        "暫停",
+        "尋求合資"
+      ],
+      [
+        "X2",
+        "暫停",
+        "超過4季未更新"
+      ],
+      [
+        "XX",
+        "暫停",
+        "中止"
+      ]
+    ]
+  },
+  "mappings": {
+    "deposit_type": {
+      "Apatite/carbonatite": {
+        "code": "hard",
+        "template_label": "硬岩型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "Booanya suite granites": {
+        "code": "hard",
+        "template_label": "硬岩型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "Carbonatite/monazite": {
+        "code": "hard",
+        "template_label": "硬岩型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "Carbonatite/weathered": {
+        "code": "hard",
+        "template_label": "硬岩型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "HMS placer deposits": {
+        "code": "placer",
+        "template_label": "砂礦型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "Ion-adsorption clay (IAC) host rock": {
+        "code": "iac",
+        "template_label": "離子吸附型黏土",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "Ionic Clay-Hosted": {
+        "code": "iac",
+        "template_label": "離子吸附型黏土",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "Ionic adsorption clay": {
+        "code": "iac",
+        "template_label": "離子吸附型黏土",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "Ironstone": {
+        "code": "hard",
+        "template_label": "硬岩型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "Mineral Sands": {
+        "code": "placer",
+        "template_label": "砂礦型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "Mineral sands / monazite-xenotime": {
+        "code": "placer",
+        "template_label": "砂礦型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "REE-bearing quartz sandstone": {
+        "code": "hard",
+        "template_label": "硬岩型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "Trachytic tuff host rock": {
+        "code": "hard",
+        "template_label": "硬岩型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "Xenotime hard rock": {
+        "code": "hard",
+        "template_label": "硬岩型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "carbonatite intrusions": {
+        "code": "hard",
+        "template_label": "硬岩型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "ferrocarbonatite": {
+        "code": "hard",
+        "template_label": "硬岩型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "fine-grained heavy mineral (HM) deposits": {
+        "code": "placer",
+        "template_label": "砂礦型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "heavy mineral sands": {
+        "code": "placer",
+        "template_label": "砂礦型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "hydrothermal-related REE mineralisation": {
+        "code": "hard",
+        "template_label": "硬岩型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "ionic clay-hosted": {
+        "code": "iac",
+        "template_label": "離子吸附型黏土",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "microporphyritic trachyte": {
+        "code": "hard",
+        "template_label": "硬岩型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "mineral sands": {
+        "code": "placer",
+        "template_label": "砂礦型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "multiple high-grade strandline systems": {
+        "code": "placer",
+        "template_label": "砂礦型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "sheet-style HMS": {
+        "code": "placer",
+        "template_label": "砂礦型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      },
+      "traditional mineral sands deposit": {
+        "code": "placer",
+        "template_label": "砂礦型",
+        "rationale": "Explicit source host/deposit type; broad user CSV category only; no mechanism inferred from generic clay/regolith."
+      }
+    },
+    "development_stage": {
+      "Early exploration（來源揭露：2023-08-22）": {
+        "code": "A1",
+        "category": "探勘",
+        "template_label": "初期探索階段",
+        "rationale": "Explicit early/initial exploration at native disclosure date; no A2/A3 or current-status inference."
+      },
+      "Initial field reconnaissance（來源揭露：2023-01-31）": {
+        "code": "A1",
+        "category": "探勘",
+        "template_label": "初期探索階段",
+        "rationale": "Explicit early/initial exploration at native disclosure date; no A2/A3 or current-status inference."
+      },
+      "early exploration activities（來源揭露：2024-03-21）": {
+        "code": "A1",
+        "category": "探勘",
+        "template_label": "初期探索階段",
+        "rationale": "Explicit early/initial exploration at native disclosure date; no A2/A3 or current-status inference."
+      },
+      "very early-stage（來源揭露：2023-05-04）": {
+        "code": "A1",
+        "category": "探勘",
+        "template_label": "初期探索階段",
+        "rationale": "Explicit early/initial exploration at native disclosure date; no A2/A3 or current-status inference."
+      }
+    }
+  },
+  "unmapped": [
+    {
+      "group": "deposit_type",
+      "source_text": "Clay Saprolite/Granitoid",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "Clay hosted",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "Clay/regolith",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "Palaeochannel-hosted rare earth deposits within the same drainage system are also being targeted.",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "Rare Earth Elements (REE) hosted in clays",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "Regolith / granite",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "Regolith and/or carbonatite/ alkaline intrusive host rock",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "Regolith/clay",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "Regolith/granite",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "Regolith/oxide-transition",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "TREO enrichment in regolith",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "Tertiary palaeochannel systems",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "The data suggests a clay hosted ionic REE type mineralisation style on the project. This interpretation is subject to amendment with additional data from follow up drilling and metallurgical test work.",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "alluvial sand",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "assemblage rich in natural rutile and premium zircon",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "clay horizon",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "clay-hosted",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "consistent with a highly evolved pegmatite system",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "deeply weathered granites",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "halloysite-kaolinite",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "heavily weathered pegmatites and saprolitic outcrops",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "heavy mineral bearing sandstone unit",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "kaolinitic fine-grained sediments",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "potential for REE, Niobium–yttrium–fluorine Pegmatites to exist",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "potential for large scale, clay-hosted REE mineralisation",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "prospective for halloysite-kaolinite and rare earth elements (REE)",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "saprolitic clays",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "deposit_type",
+      "source_text": "weathered clay horizon",
+      "reason": "HOST_OR_MECHANISM_AMBIGUOUS;GENERIC_CLAY_NOT_PROVEN_ION_ADSORPTION;NO_HARD_DEFAULT"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "Bankable Feasibility Study and optimisation studies（來源揭露：2015-10-30）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "Bankable Feasibility Study（來源揭露：2026-03-31）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "Bankable Feasibility Study（來源揭露：2026-03，月精度）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "Exploration（來源揭露：2026-02，月精度）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "Feasibility Study（來源揭露：2026-03，月精度）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "June 2023 aircore drilling program（來源揭露：2023-08-01）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "Mining has now commenced and heavy mineral concentrate has been produced（來源揭露：2026-02-18）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "Operating（來源揭露：2026-02，月精度）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "Preliminary feasibility study work was progressed in 2022（來源揭露：2023-02-21）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "REE Exploration（來源揭露：2023-09-28）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "Rare Earth Exploration（來源揭露：2025-03-14）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "Scoping Study Update（來源揭露：2026-10-29）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "Scoping Study（來源揭露：2013-04-15）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "Scoping Study（來源揭露：2025-06-12）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "Scoping（來源揭露：2026-02，月精度）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "advanced exploration project（來源揭露：2025-09-16）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "completed the maiden drilling program（來源揭露：2023-02-14）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "continued to follow up on the high-priority target areas（來源揭露：2026-09-29）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "currently the subject of a definitive feasibility study (DFS)（來源揭露：2026-01-29）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "decided to withdraw from the ‘option to acquire’ agreement（來源揭露：2026-07-16）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "exploration activities（來源揭露：2024-10-25）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "exploration and pre-development drilling program（來源揭露：2026-06-16）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "exploration focus（來源揭露：2024-10-25）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "ongoing exploration activities（來源揭露：2026-09-09）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "planned and prepared for its Phase 1 drilling programme（來源揭露：2026-05-18）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "ready for immediate drill testing（來源揭露：2023-07-25）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "started production（來源揭露：2023-09-06）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "已揭露完成 DFS（2025-06-30）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "已揭露完成 DFS（2025-09-15）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "已揭露完成 DFS（2025-10-15）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "已揭露完成 DFS（2026-10-30）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "已揭露完成 PFS（2026-06-25）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "已揭露完成 PFS（2026-10-30）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "已揭露完成 Scoping Study（2023-08-22）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "已揭露完成 Scoping Study（2025-07-11）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    },
+    {
+      "group": "development_stage",
+      "source_text": "已揭露完成 Scoping Study（2026-10-20）",
+      "reason": "NO_UNAMBIGUOUS_CSV_SUBSTAGE;GENERIC_EXPLORATION_NOT_A1_A2_A3;STUDY_LABEL_NOT_DEFINED_B1_B2;OPERATING_NOT_TARGET_CAPACITY_D3"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "version": "archived-element-additions-v1",
+  "acquired_through": "2026-11-11",
+  "reviews": [
+    {
+      "review_id": "archived_dubbo_2017_total_y2o3",
+      "mode": "SAME_SELECTED_PDF_SINGLE_OXIDE",
+      "project_id": "AU-2cfeb25aefee0c4f95fb",
+      "selected_source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+      "statement_id": "dubbo-project-2017-09-19",
+      "category": "MEASURED_INFERRED_TOTAL",
+      "effective_date": "2017-09-19",
+      "publication_date": "2025-07-11",
+      "required_variables": [
+        "ore_mt",
+        "grade"
+      ],
+      "raw_contract": {
+        "pdf_page": 26,
+        "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION"
+      },
+      "pdf": {
+        "asset_set": "canonical",
+        "path": "data/snapshots/734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab.pdf",
+        "sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "page": 26,
+        "render_sha256": "a9d0aadc6e31974d42d58ea1a4a58ca548b76675ab0bf6d780b90727f648d3c3"
+      },
+      "same_version_markers": [
+        "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+        "Total 75.18",
+        "1,400",
+        "7,400",
+        "11 July 2025",
+        "has not been updated",
+        "Y2O3",
+        "TREO is the sum of all rare earth oxides excluding"
+      ],
+      "cell_binding": {
+        "oxide": "Y2O3",
+        "unit": "ppm bulk ore",
+        "original_token": "1,400",
+        "bbox": [
+          323.8857421875,
+          340.3929443359375,
+          349.0447998046875,
+          355.1644592285156
+        ],
+        "header_bbox": [
+          315,
+          183,
+          356,
+          220
+        ],
+        "header_marker": "Y2O3 (ppm)",
+        "row_label_bbox": [
+          43.560001373291016,
+          340.3929443359375,
+          66.36753845214844,
+          355.1644592285156
+        ],
+        "review_method": "VISUALLY_CHECKED_NATIVE_HEADER_TOTAL_CELL;NOT_MEASURED_ONLY_OR_COMPOSITE_SAMPLE",
+        "precision": "Oxide reported to100ppm; ore to0.01Mt"
+      }
+    }
+  ],
+  "corroboration_only": [
+    {
+      "review_id": "archived_wudinna_20261022_magnet_group",
+      "project_id": "AU-0098e17a63e7c05c213f",
+      "selected_source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+      "scope": "Wudinna Boland and Head combined Garford and Pidinga MRE; in situ, undiluted",
+      "statement_id": "wudinna-20261022",
+      "category": "INDICATED_INFERRED_TOTAL",
+      "effective_date": "2026-10-22",
+      "publication_date": "2026-10-26",
+      "raw_contract": {
+        "cutoff_grade": "200ppm TREO-Ce open pit; ISR economic cut-over US$5.27/t",
+        "reo_definition": "15 RE oxides including Y2O3; cut-off excludes Ce but reported TREO includes Ce"
+      },
+      "primary": {
+        "asset_set": "canonical",
+        "path": "data/snapshots/e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950.html",
+        "text_contract": "LSE_ARTICLE_BODY_JS_STRING_V1"
+      },
+      "pdf": {
+        "asset_set": "metadata",
+        "path": "data/snapshots/89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864.pdf",
+        "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/lse/7804646.pdf?v=63960217384",
+        "sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864",
+        "page": 3,
+        "render_sha256": "868eb57c780d2557afa33462b41cb53c228d17d0da0d196c124b271a1813cd20"
+      },
+      "identity_markers": [
+        "RNS Number : 4065A",
+        "Cobra Resources PLC",
+        "26 October 2026",
+        "Wudinna Rare Earth"
+      ],
+      "same_version_markers": [
+        "Wudinna REE Project Mineral Resource Estimate",
+        "200 ppm TREO-Ce",
+        "Garford",
+        "Pidinga",
+        "Mineral Resources are classified as Indicated and Inferred",
+        "Effective Date of 22 October, 2026",
+        "in situ and undiluted",
+        "MREO = Magnet Rare Earth Oxide(Nd2O3, Pr6O11, Dy2O3, Tb4O7)",
+        "US$5.27/t"
+      ],
+      "total_row": "Total 150 470 101 10 112",
+      "column_header": "Formation JORC Classification Mt TREO NdPr DyTb MREO",
+      "unit_evidence": {
+        "page": 15,
+        "method": "VISUALLY_CHECKED_NATIVE_TABLE_HEADERS_P15",
+        "unit": "ppm bulk ore",
+        "render_sha256": "cd7b3d1c834a5c3e7ba0c1993784ac732afb94ef230c8276224bd42fc816e6be",
+        "note": "Combined Estimate native image columns Nd+Pr ppm and Dy+Tb ppm; P3 defines MREO as their four oxides. Global total149.92Mt rounds to150Mt; no subset addition. P3 group112ppm remains rounded."
+      },
+      "disposition": "CORROBORATION_ONLY;EXISTING_FIELDS_ALREADY_FILLED;NOT_A_NEW_OBSERVATION",
+      "existing_group_mass_kt": 16.77617021276596,
+      "existing_method": "70.4kt reported TREO * (112ppm / 470ppm)",
+      "alternate_rounded_ore_calculation_kt": 16.8,
+      "decision": "PRESERVE_EXISTING_VALUES_AND_PROVENANCE;DO_NOT_REPLACE_BY_ALTERNATE_ROUNDED_INPUTS"
+    }
+  ]
+}
