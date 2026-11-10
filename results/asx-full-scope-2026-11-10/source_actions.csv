@@ -1,0 +1,12 @@
+﻿action_id,completed,evidence
+NT-REE-October2025-original,False,Previously HTTP403; no fresh request to denied path; no verified same-edition public alternative
+REMP2025-original-PDF,False,Previous native timeouts; indexed text is not a local original; no repeated PDF attempt
+REMP2025-original-data-XLSX,False,New official publication link attempted once; TIMEOUT; remp_xlsx_receipt.json
+TAS-December2025-prospectus,False,HTTP403_RESTRICTED; no retry
+Victoria-critical-minerals-roadmap,False,HTTP403_RESTRICTED; no retry
+Carrapateena-2025-PEPR,False,DOCUMENT_BYTE_BUDGET_EXCEEDED; not an HTTP403 or document absence
+Wudinna-current-page,True,HTTP429 not retried; dated 26October2026 original already locally validated; new page is not needed to replay the current accepted case
+Native-baseline-source-inventory,True,118 source hashes resolved:110PDFs6590pages plus8structured/HTML sources; extraction is not page-by-page scientific approval
+Whole-cohort-human-source-review,False,All 77 projects and 2509 scope cells listed; records still marked pending are not a completed no-fill review
+External-lead-original-review,False,All48 pending leads searched twice;46 remain pending comprehensive original review; other-commodity partial context for2is not REE admission
+Harts-Range-and-Kendenup-originals,False,"Captured HTML shells/metadata interface, not downloadable technical originals"
