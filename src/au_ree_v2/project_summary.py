@@ -90,11 +90,15 @@ def merge_summary_sources(selected, incoming, projects):
     selected.update(incoming)
 
 
-def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',review_ledger=None,asset_roots=None,discovery_ledger=None,location_ledger=None):
+def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',review_ledger=None,asset_roots=None,discovery_ledger=None,location_ledger=None,classification_codebook=None):
     root=Path(root).resolve();database=Path(database).resolve();run_dir=Path(run_dir).resolve();out=Path(out).resolve()
     if out==root or out==database.parent or root in out.parents and out.relative_to(root).parts[0] in ('data','config','src'):
         raise ValueError('SUMMARY_OUTPUT_MUST_BE_ISOLATED')
     columns=json.loads((Path(__file__).resolve().parents[2]/'config/project_summary_columns.json').read_text('utf8'))
+    from .classification import load_codebook,classification_fills
+    codebook_path=Path(classification_codebook) if classification_codebook else Path(__file__).resolve().parents[2]/'config/classification_codebook.json'
+    if classification_codebook and not codebook_path.is_file():raise ValueError('CODEBOOK_EXPLICIT_PATH_MISSING')
+    codebook=load_codebook(codebook_path) if codebook_path.exists() else None
     if template:
         with Path(template).open(encoding='utf-8-sig',newline='') as stream:given=next(csv.reader(stream))
         if given!=columns:raise ValueError('TEMPLATE_COLUMNS_DO_NOT_MATCH_CONTRACT')
@@ -326,6 +330,8 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                     if issuer_label(final_developer)!=issuer_label(association['issuer']):continue
                 put(attribute['column'],attribute['value'],attribute['source_sha'],'physical PDF p'+str(attribute['evidence']['page']),
                     'SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP' if association else 'SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION',review_id=attribute['review_id'])
+            if codebook:
+                for fill in classification_fills(row,trace,codebook):put(**fill)
             for column in columns:
                 if row[column]=='':
                     why=(reason if column in ('礦石蘊藏量_Mt','TREO品位_pct','總TREO蘊藏量_kt') else
@@ -371,6 +377,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
         'HREE8=Tb,Dy,Ho,Er,Tm,Yb,Lu,Y; Gd_EXCLUDED_TO_MATCH_TEMPLATE','NO_HTML_COMPARATOR_IN_CENSUS_EXPORT'],
         output_hashes={p.name:filehash(p) for p in out.glob('*.csv')})
     if location_ledger:result['location_ledger_sha256']=locations['ledger_sha256']
+    if codebook:result['classification_codebook']=dict(version=codebook['config']['version'],status=codebook['config']['status'],sha256=codebook['sha256'])
     if supplement:
         result.update(version='census-project-summary-v2-reviewed-asx',review_ledger_sha256=supplement['ledger_sha256'],
             acquired_through=supplement['acquired_through'],validated_reviews=supplement['receipts'],

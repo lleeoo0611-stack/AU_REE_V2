@@ -28,3 +28,56 @@
 四項任務依序各一個commit。不可變基準及驗證工具保存1944格總表、完整field_provenance、inventory、審查ledger、Census及既有ASX歷史檔案SHA256。後三項結果與最終完整回歸、兩次獨立重建和差異鏈還原證據會在相應commit補入本文件。
 
 任務1針對停止規則測試：28 passed、67 subtests passed。第一次在受限暫存目錄執行因WinError5失敗；在正常本機權限重跑全數通過，沒有改小測試範圍或放寬規則。
+
+## 任務2：分類草稿（尚未核准）
+
+`config/classification_codebook.json` 交付為DRAFT，approved_by與approved_date均為null。工具列出所有非空的完整原文與次數：礦床型態53種／69筆、開發階段40種／54筆；空白不當成類型。提出的助記代碼僅供研究者審查，無權取代既有分類標準或認定當前營運狀態。
+
+只有APPROVED且有核准人、合法核准日的完整對照可填空白代碼。按包含日期的完整原文精確對應，不模糊配對、不改文字、不覆蓋已填值。新代碼的field_provenance包含codebook版本、SHA256、來源欄、原文及原欄完整來源。DRAFT不新增任何值或來源紀錄。本次全部APPROVED情境僅在暫存測試夾具中建立。
+
+重新盤點工具：`tools/draft_classification_codebook.py --table results/asx-current/專案總表.csv --out <新的草稿路徑>`；已有檔案拒絕覆寫，避免刪掉人工審查。6項測試通過。
+
+### UNMAPPED完整清單
+
+| 來源欄 | 完整原文 | 次數 |
+|---|---|---:|
+| 礦床型態 | Booanya suite granites | 1 |
+| 礦床型態 | Clay Saprolite/Granitoid | 1 |
+| 礦床型態 | Palaeochannel-hosted rare earth deposits within the same drainage system are also being targeted. | 1 |
+| 礦床型態 | REE-bearing quartz sandstone | 1 |
+| 礦床型態 | Regolith / granite | 1 |
+| 礦床型態 | Regolith and/or carbonatite/ alkaline intrusive host rock | 3 |
+| 礦床型態 | Regolith/granite | 1 |
+| 礦床型態 | Regolith/oxide-transition | 1 |
+| 礦床型態 | TREO enrichment in regolith | 1 |
+| 礦床型態 | Tertiary palaeochannel systems | 1 |
+| 礦床型態 | The data suggests a clay hosted ionic REE type mineralisation style on the project. This interpretation is subject to amendment with additional data from follow up drilling and metallurgical test work. | 1 |
+| 礦床型態 | Trachytic tuff host rock | 1 |
+| 礦床型態 | alluvial sand | 1 |
+| 礦床型態 | assemblage rich in natural rutile and premium zircon | 1 |
+| 礦床型態 | consistent with a highly evolved pegmatite system | 1 |
+| 礦床型態 | deeply weathered granites | 1 |
+| 礦床型態 | fine-grained heavy mineral (HM) deposits | 1 |
+| 礦床型態 | halloysite-kaolinite | 1 |
+| 礦床型態 | heavily weathered pegmatites and saprolitic outcrops | 1 |
+| 礦床型態 | heavy mineral bearing sandstone unit | 1 |
+| 礦床型態 | hydrothermal-related REE mineralisation | 1 |
+| 礦床型態 | kaolinitic fine-grained sediments | 1 |
+| 礦床型態 | microporphyritic trachyte | 1 |
+| 礦床型態 | multiple high-grade strandline systems | 1 |
+| 礦床型態 | potential for REE, Niobium–yttrium–fluorine Pegmatites to exist | 1 |
+| 礦床型態 | potential for large scale, clay-hosted REE mineralisation | 1 |
+| 礦床型態 | prospective for halloysite-kaolinite and rare earth elements (REE) | 1 |
+| 開發階段 | Bankable Feasibility Study and optimisation studies（來源揭露：2015-10-30） | 1 |
+| 開發階段 | Bankable Feasibility Study（來源揭露：2026-03-31） | 1 |
+| 開發階段 | Bankable Feasibility Study（來源揭露：2026-03，月精度） | 1 |
+| 開發階段 | Feasibility Study（來源揭露：2026-03，月精度） | 2 |
+| 開發階段 | June 2023 aircore drilling program（來源揭露：2023-08-01） | 1 |
+| 開發階段 | Preliminary feasibility study work was progressed in 2022（來源揭露：2023-02-21） | 1 |
+| 開發階段 | completed the maiden drilling program（來源揭露：2023-02-14） | 1 |
+| 開發階段 | continued to follow up on the high-priority target areas（來源揭露：2026-09-29） | 1 |
+| 開發階段 | currently the subject of a definitive feasibility study (DFS)（來源揭露：2026-01-29） | 1 |
+| 開發階段 | decided to withdraw from the ‘option to acquire’ agreement（來源揭露：2026-07-16） | 1 |
+| 開發階段 | exploration and pre-development drilling program（來源揭露：2026-06-16） | 1 |
+| 開發階段 | planned and prepared for its Phase 1 drilling programme（來源揭露：2026-05-18） | 1 |
+| 開發階段 | ready for immediate drill testing（來源揭露：2023-07-25） | 1 |
