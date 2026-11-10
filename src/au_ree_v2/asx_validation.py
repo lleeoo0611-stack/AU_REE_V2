@@ -131,7 +131,11 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
             from .partial_resource import validate_technical_report_dates
             technical_report_date=validate_technical_report_dates(review,doc,evidence)
             parsed_publication=pub if technical_report_date else publication_date(text(1))
-            if review.get('date_evidence_role'):
+            if review.get('publication_date_role')=='ASX_DATED_URL_NATIVE_ISSUER':
+                from .reviewed_metadata import validate_issuer_release_url
+                validate_issuer_release_url(review,cutoff)
+                parsed_publication=pub
+            elif review.get('date_evidence_role'):
                 if parsed_publication not in (None,pub):raise ValueError('REVIEW_PUBLICATION_DATE_MISMATCH')
                 from .reviewed_metadata import validate_metadata_issue_date
                 validate_metadata_issue_date(review,evidence,cutoff)
@@ -193,6 +197,9 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                         validate_descriptive_attribute(doc,attribute,aliases,evidence,review)
                     elif attribute.get('listing_proof'):
                         validate_qualified_listing_identity(doc,attribute,aliases,identity,evidence)
+                    elif attribute.get('issuer_code_association'):
+                        from .reviewed_metadata import validate_issuer_code_association
+                        validate_issuer_code_association(doc,attribute,aliases,evidence,review)
                     else:
                         raise ValueError('REVIEW_PROJECT_NAME_NOT_IN_IDENTITY_PAGE:'+review['review_id'])
             date_content=evidence(review['date_evidence'])
@@ -390,7 +397,10 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     element=study['element'],scale=study['scale'],status='PRIMARY_SCOPED_CASE_NOT_OPERATING_OUTCOME',raw=canonical(d)))
             for attribute in review.get('attributes',[]):
                 content=evidence(attribute['evidence']);column=attribute['column'];value=attribute['value']
-                if attribute.get('description_binding'):
+                if attribute.get('issuer_code_association'):
+                    from .reviewed_metadata import validate_issuer_code_association
+                    validate_issuer_code_association(doc,attribute,aliases,evidence,review)
+                elif attribute.get('description_binding'):
                     from .reviewed_metadata import validate_descriptive_attribute
                     validate_descriptive_attribute(doc,attribute,aliases,evidence,review)
                 elif column=='未上市公司':

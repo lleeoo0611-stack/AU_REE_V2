@@ -586,6 +586,12 @@
       "path": "data/snapshots/cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f.pdf",
       "sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02631363"
+    },
+    "mt_stirling_goldarc_annual2025": {
+      "asset_set": "fullscope13",
+      "path": "data/snapshots/c016a2d9fae34fa766a461d7011c18bc56db0a43f843949807e039cb91df6e77.pdf",
+      "sha256": "c016a2d9fae34fa766a461d7011c18bc56db0a43f843949807e039cb91df6e77",
+      "url": "https://investorpa.com/announcement-pdf/20260330/275183.pdf"
     }
   },
   "codes": [
@@ -2703,39 +2709,41 @@
       "scope": "Post-IPO issuer metadata at amended quarter publication18May2026; trading began30January2026; only planning/preparation reported for quarter ended31March2026, with mobilisation/drilling still forward looking. No MRE duplicate, actual drilling completion, current title or annual oxide-output inference."
     },
     {
-      "review_id": "continuation11_code_AU-d0ce731e1d8198ffaf58",
+      "review_id": "fullscope13_code_mt_stirling_goldarc",
       "project_id": "AU-d0ce731e1d8198ffaf58",
-      "code": "ASR",
-      "issuer_name": "Asra Minerals Limited",
-      "source_key": "AU-d0ce731e1d8198ffaf58",
-      "evidence_date": "2024-04-16",
+      "code": "GA8",
+      "issuer_name": "GoldArc Resources Ltd",
+      "source_key": "mt_stirling_goldarc_annual2025",
+      "evidence_date": "2026-03-30",
       "date_evidence": {
-        "page": 1,
+        "page": 34,
         "markers": [
-          "16 April 2024"
+          "30 March 2026",
+          "financial statements were authorised for issue"
         ]
       },
       "project_marker": "Mt Stirling",
       "project_evidence": {
-        "page": 1,
+        "page": 16,
         "markers": [
-          "Mt Stirling"
+          "Mt Stirling",
+          "Yttria REE Mineral Resource"
         ]
       },
       "issuer_evidence": {
         "page": 1,
         "markers": [
-          "Asra Minerals Limited"
+          "GoldArc Resources Ltd"
         ]
       },
-      "code_label": "ASX: ASR",
+      "code_label": "ASX:GA8",
       "code_evidence": {
         "page": 1,
         "markers": [
-          "ASX: ASR"
+          "ASX:GA8"
         ]
       },
-      "scope": "Historical Mt Stirling reporting issuer Asra; current developer label Gold Arc is not assigned this code. Yttria is a nested deposit and is not merged with its parent. Reporting issuer at document date only; not current legal title, resource scope expansion or numeric transfer."
+      "scope": "Same issuer: annual p13 explicitly changes Asra Minerals Limited to GoldArc Resources Limited, GA8 trading17September2025; sameABN72002261565 on2024MREp1 and2026annualp1. Native MtStirling/Yttria resources p16; reportingissuer asof signedissue30March2026. Code correction ASR toGA8, not second company, project admission, identity merger or proof of all current legal rights."
     },
     {
       "review_id": "continuation11_code_AU-47d12ebe6b66df8e5936",

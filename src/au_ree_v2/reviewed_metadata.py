@@ -3,12 +3,87 @@ import re
 from .source_cells import norm, region_text
 
 
+def issuer_label(value):
+    """Only spelling of legal suffixes; never corporate renames or subsidiaries."""
+    return re.sub(r'\s+(?:limited|ltd\.?|nl)\s*$', '', norm(value)).strip()
+
+
+def validate_issuer_release_url(review, cutoff):
+    """Official dated release URL for literal developer-listing metadata only."""
+    from urllib.parse import urlsplit
+    from datetime import datetime, date
+    attrs=review.get('attributes',[])
+    if (review.get('publication_date_role')!='ASX_DATED_URL_NATIVE_ISSUER'
+        or review.get('effective_date_role')!='DATED_ISSUER_METADATA'
+        or review.get('date_precision')!='DAY' or review.get('observations')
+        or review.get('study') or not attrs
+        or not all(a.get('column')=='未上市公司' and a.get('value')=='否'
+                   and a.get('issuer_code_association') for a in attrs)):
+        raise ValueError('REVIEW_ISSUER_RELEASE_METADATA_ONLY')
+    u=urlsplit(review['url']);m=re.fullmatch(r'/asxpdf/(\d{8})/pdf/[A-Za-z0-9]+\.pdf',u.path)
+    if (u.scheme!='https' or u.netloc!='announcements.asx.com.au'
+        or u.query or u.fragment or not m):
+        raise ValueError('REVIEW_ISSUER_RELEASE_OFFICIAL_URL')
+    day=datetime.strptime(m[1],'%Y%m%d').date()
+    if day!=date.fromisoformat(review['publication_date']) or day>date.fromisoformat(cutoff):
+        raise ValueError('REVIEW_ISSUER_RELEASE_DATE')
+
+
+def validate_issuer_code_association(doc, attribute, aliases, evidence, review):
+    """Dated listing of the named developer, independent of project ownership.
+
+    The final projection also matches this exact issuer against its developer.
+    This cannot establish a resource identity, merge, title or interest share.
+    """
+    def fail(code):
+        raise ValueError('REVIEW_ISSUER_ASSOCIATION_' + code)
+    proof=attribute.get('issuer_code_association',{})
+    if (attribute.get('column')!='未上市公司' or attribute.get('value')!='否'
+            or review.get('effective_date_role')!='DATED_ISSUER_METADATA'
+            or review.get('observations') or review.get('study')
+            or proof.get('interpretation')!='DATED_DEVELOPER_LISTING_NOT_PROJECT_OWNERSHIP'):
+        fail('METADATA_ONLY')
+    issuer=proof.get('issuer','');ticker=proof.get('ticker','');marker=norm(proof.get('project_marker',''))
+    if proof.get('exchange')!='ASX' or not re.fullmatch(r'[A-Z0-9]{2,6}',ticker) or not issuer:
+        fail('ISSUER_OR_CODE')
+    listing=evidence(proof['listing_evidence'])
+    native=doc[proof['listing_evidence']['page']-1].get_text()
+    bound=bool(re.search(r'\bASX\s*(?:code\s*)?:\s*'+re.escape(ticker)+r'\b',native,re.I))
+    bound=bound or bool(re.search(r'\basx\s+code\s+of\s+'+re.escape(ticker)+r'\b',listing,re.I))
+    bound=bound or bool(re.search(r'australian securities exchange\s*\(asx\)\s+under the code\s+'+re.escape(ticker)+r'\b',listing,re.I))
+    bound=bound or ('asx code' in listing and 'australian securities exchange' in listing
+                    and bool(re.search(r'\bshares\s*:\s*'+re.escape(ticker)+r'\b',listing,re.I)))
+    legal_bound=norm(issuer) in listing
+    if not legal_bound and proof.get('issuer_listing_affirmation_evidence'):
+        affirmation=evidence(proof['issuer_listing_affirmation_evidence'])
+        legal_bound=bool(re.search(re.escape(norm(issuer))+r'\s+is a listed public company\b',affirmation)
+                         or re.search(re.escape(norm(issuer))+r'\s+is a company[^.;]{0,220}\bwhose shares are publicly traded on the australian securities exchange\b',affirmation))
+    if (not legal_bound or not bound
+            or re.search(r'\bdelisted\b|\bnot listed\b|\bno longer listed\b|\bremoved from (?:the )?official list\b|\bformerly\s+(?:ASX|listed)\b',listing,re.I)):
+        fail('NATIVE_LISTING')
+    if proof.get('company_level_only'):
+        if not all(a.get('column')=='未上市公司' and a.get('value')=='否'
+                   and a.get('issuer_code_association') for a in review.get('attributes',[attribute])):
+            fail('COMPANY_PROPERTY_ONLY')
+        return 'SOURCE_BOUND_DATED_LISTED_DEVELOPER_COMPANY_PROPERTY_ONLY'
+    project=evidence(proof['project_evidence'])
+    def label(s):return re.sub(r'\bmt\.?\s+','mount ',norm(s))
+    short_label=(len(marker)==4 and proof.get('registered_short_project_phrase') is True
+                   and bool(re.search(r'(?<!\w)'+re.escape(marker)+r'\s+(?:(?:rare earths?|ree|niobium)\s+)?project\b',project)))
+    if (len(marker)<5 and not short_label or not any(label(marker)==label(a) for a in aliases)
+            or not re.search(r'(?<!\w)'+re.escape(marker)+r'(?!\w)',project)):
+        fail('REGISTERED_PROJECT')
+    if proof['project_evidence']['page']!=review['identity_evidence']['page']:
+        fail('IDENTITY_PROJECT_PAGE')
+    return 'SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP'
+
+
 def validate_metadata_issue_date(review, evidence, cutoff):
     """Signed-issue/ASX-release proof for source-checked metadata only."""
     def supported(attribute):
         return bool(attribute.get('description_binding')) or (
             attribute.get('column')=='未上市公司' and attribute.get('value')=='否'
-            and bool(attribute.get('listing_proof')))
+            and bool(attribute.get('listing_proof') or attribute.get('issuer_code_association')))
     if (review.get('effective_date_role')!='DATED_ISSUER_METADATA'
             or review.get('observations') or review.get('study')
             or not review.get('attributes')

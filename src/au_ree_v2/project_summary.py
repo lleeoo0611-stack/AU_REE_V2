@@ -305,9 +305,15 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
             if docs:put('有來源文件','是',sorted(docs)[0],method='VERIFIED_PDF_SOURCE_PRESENT_NOT_COMPLETENESS')
             if not row['資料來源URL'] and identity:
                 put('資料來源名稱',identity['key'],identity['sha256']);put('資料來源URL',identity['url'],identity['sha256'])
-            for attribute in (supplement or {}).get('attributes',{}).get(pid,[]):
+            project_attributes=(supplement or {}).get('attributes',{}).get(pid,[])
+            final_developer=next((a['value'] for a in reversed(project_attributes) if a['column']=='開發商'),row['開發商'])
+            for attribute in project_attributes:
+                association=attribute.get('issuer_code_association')
+                if association:
+                    from .reviewed_metadata import issuer_label
+                    if issuer_label(final_developer)!=issuer_label(association['issuer']):continue
                 put(attribute['column'],attribute['value'],attribute['source_sha'],'physical PDF p'+str(attribute['evidence']['page']),
-                    'SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION',review_id=attribute['review_id'])
+                    'SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP' if association else 'SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION',review_id=attribute['review_id'])
             for column in columns:
                 if row[column]=='':
                     why=(reason if column in ('礦石蘊藏量_Mt','TREO品位_pct','總TREO蘊藏量_kt') else
