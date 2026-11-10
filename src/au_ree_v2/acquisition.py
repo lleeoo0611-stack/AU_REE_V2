@@ -14,6 +14,93 @@ from .spatial import project_windows
 _last_request = {}
 
 
+class PublicDownloadSession:
+    """Normal urllib/TLS/cookie session for bounded streaming document downloads.
+
+    No browser impersonation, proxy changes or challenge handling. Legacy request()
+    remains unchanged. Cookies stay in memory and are never included in receipts.
+    """
+    def __init__(self, allowed_hosts, connect_timeout=10, read_timeout=20, max_redirects=5):
+        import http.client
+        import http.cookiejar
+        import ssl
+        self.allowed_hosts=set(allowed_hosts)
+        self.connect_timeout=connect_timeout;self.read_timeout=read_timeout
+        self.redirects=[];self.max_redirects=max_redirects
+        owner=self
+        class Connection(http.client.HTTPSConnection):
+            def connect(self):
+                super().connect()
+                self.sock.settimeout(owner.read_timeout)
+        class Handler(urllib.request.HTTPSHandler):
+            def https_open(self,req):
+                return self.do_open(Connection,req,context=ssl.create_default_context())
+        class Redirect(urllib.request.HTTPRedirectHandler):
+            def redirect_request(self,req,fp,code,msg,headers,newurl):
+                owner.guard(newurl)
+                if len(owner.redirects)>=owner.max_redirects:raise ValueError('REQUEST_REDIRECT_BUDGET_EXCEEDED')
+                owner.redirects.append(dict(status=code,from_url=req.full_url,to_url=newurl))
+                return super().redirect_request(req,fp,code,msg,headers,newurl)
+        self.opener=urllib.request.build_opener(Handler(),Redirect(),urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+
+    def guard(self,url):
+        parts=urllib.parse.urlsplit(url)
+        if (parts.scheme!='https' or parts.hostname not in self.allowed_hosts or parts.username or parts.password
+                or parts.port not in (None,443)):
+            raise ValueError('REQUEST_DESTINATION_NOT_ALLOWED')
+
+    def download(self,url,path,*,max_bytes,total_timeout=60,referer=None,clock=time.monotonic):
+        """Write only a staging file; caller validates format before snapshot admission."""
+        import zlib
+        self.guard(url);self.redirects=[];started=clock();path=Path(path)
+        headers={'User-Agent':'AU_REE_V2/0.1 public research','Accept':'application/pdf,text/html;q=0.9,*/*;q=0.5',
+                 'Accept-Encoding':'gzip'}
+        if referer:
+            self.guard(referer);headers['Referer']=referer
+        req=urllib.request.Request(url,headers=headers)
+        receipt=dict(requested_url=url,http_status=None,redirects=self.redirects,final_url=None,
+                     content_type=None,retry_after=None,tls_verification=True,client=headers['User-Agent'])
+        try:
+            with self.opener.open(req,timeout=min(self.connect_timeout,total_timeout)) as response:
+                receipt.update(http_status=response.status,final_url=response.geturl(),
+                    content_type=response.headers.get('Content-Type'),retry_after=response.headers.get('Retry-After'),
+                    content_encoding=response.headers.get('Content-Encoding'),content_length=response.headers.get('Content-Length'))
+                self.guard(response.geturl())
+                encoding=(receipt['content_encoding'] or 'identity').lower()
+                if encoding not in ('identity','gzip'):raise ValueError('UNSUPPORTED_CONTENT_ENCODING')
+                unzip=zlib.decompressobj(16+zlib.MAX_WBITS) if encoding=='gzip' else None
+                wire=decoded=0
+                with path.open('xb') as handle:
+                    while True:
+                        remaining=total_timeout-(clock()-started)
+                        if remaining<=0:raise TimeoutError('DOCUMENT_TOTAL_TIMEOUT')
+                        # urllib response exposes the live socket; cap each read by the remaining job budget.
+                        try:response.fp.raw._sock.settimeout(min(self.read_timeout,remaining))
+                        except AttributeError:pass
+                        chunk=response.read(64*1024)
+                        if not chunk:break
+                        wire+=len(chunk)
+                        if wire>max_bytes:raise ValueError('DOCUMENT_BYTE_BUDGET_EXCEEDED')
+                        data=unzip.decompress(chunk,max_bytes-decoded+1) if unzip else chunk
+                        decoded+=len(data)
+                        if decoded>max_bytes or (unzip and unzip.unconsumed_tail):raise ValueError('DOCUMENT_BYTE_BUDGET_EXCEEDED')
+                        handle.write(data)
+                    if unzip:
+                        tail=unzip.flush(max_bytes-decoded+1);decoded+=len(tail)
+                        if decoded>max_bytes or not unzip.eof:raise ValueError('INCOMPLETE_COMPRESSED_RESPONSE')
+                        handle.write(tail)
+                if receipt['content_length'] is not None and wire!=int(receipt['content_length']):raise ValueError('HTTP_CONTENT_LENGTH_MISMATCH')
+                receipt.update(wire_bytes=wire,bytes=decoded,elapsed_seconds=round(clock()-started,3))
+                return receipt
+        except Exception as exc:
+            if isinstance(exc,urllib.error.HTTPError):
+                receipt.update(http_status=exc.code,final_url=exc.geturl(),
+                    content_type=exc.headers.get('Content-Type'),retry_after=exc.headers.get('Retry-After'))
+            receipt['elapsed_seconds']=round(clock()-started,3)
+            exc.public_download_receipt=receipt
+            raise
+
+
 def failure_details(exc):
     """One public failure vocabulary for refresh and discovery; absence is unknown."""
     code=getattr(exc,'code',None)
