@@ -12,7 +12,7 @@
   "filled_counts": {
     "專案ID": 89,
     "開發商": 89,
-    "未上市公司": 46,
+    "未上市公司": 47,
     "專案名稱": 89,
     "所在地_中文": 89,
     "所在地_英文": 89,
@@ -64,7 +64,7 @@
     "Y2O3_氧化釔_kt": 17,
     "ASX代碼": 84
   },
-  "verified_source_hashes": 140,
+  "verified_source_hashes": 141,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "c159be33adc0907c5f610eba7f2189d9c4aa52c3c44c77cb797ac163b6ab3177",
-    "field_provenance.csv": "55f2e616babb1a3e030de7f2868b65c0692f77618df503ed264686206c0705a7",
-    "missing_fields.csv": "662ab7f9209aa203c9e7c856df4472dc10d0d4faee1e0e06864fb0e2c4aa1d26",
+    "專案總表.csv": "8dd748f31f7cc0a5caa50190c7756f91f5f22bf166a4025fd8edd798683237ef",
+    "field_provenance.csv": "539337e8ca8fe335b559bfe84f05c539d01dab44a2904605e99a18b18a7553d9",
+    "missing_fields.csv": "717687e0d81c62b52ee852fc064af883712abe05ba2cddbc235682223299bdc5",
     "census_inventory.csv": "43a56fd6242f3e5f1371f23129f2d8316b9ae296f4ceaf7d75b7be646a0608ef"
   },
-  "review_ledger_sha256": "f10bfcac5d76a952a55e72e7b1b43987377fdbe3e6125a6fb5c8b5afd9a7a024",
+  "review_ledger_sha256": "984fb8ef2b877cc871073ec8cffda286eb59b1d31d836e0c3eb1dc1b7ad8e3a2",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -3697,6 +3697,25 @@
       "new_observations": 0,
       "forecast_parameters": 0,
       "effective_date": "2026-06-16",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope9_kennedy_listing",
+      "project_id": "AU-cc4e217a90b7123dce0a",
+      "source_sha256": "a40893cb537f1d9cdeb2eeb9cc7b2289d3cfee4e11974dc33e8ab765dafd6376",
+      "status": "VALIDATED",
+      "scope": "Dated DevEx listed issuer association with Kennedy Rare Earth Project (100%) heading in directors report;no current legal-title continuity inference;150Mt and alternative88Mt resource cases are already reviewed and not added;127kg testwork recoveries not bulk oxide composition or annual output.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "ASX_DATED_URL",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2026-03-13",
       "effective_date_role": "DATED_ISSUER_METADATA",
       "date_precision": "DAY",
       "effective_date_interval": null
@@ -19603,9 +19622,9 @@
   "base_contract_columns": 52,
   "base_projection_hashes": {
     "census_inventory.csv": "43a56fd6242f3e5f1371f23129f2d8316b9ae296f4ceaf7d75b7be646a0608ef",
-    "field_provenance.csv": "9baf1cefb2ac15a2976b3f050612025a3ad30a4ae96c5cbdf80a8c1679dabf66",
-    "missing_fields.csv": "6e7e556e090c03b0103caec31bfb5802af4bb4be51aa42d5c1a9a23ec9180eec",
-    "專案總表.csv": "1a038c87570848dca87692ea0746d11bebace393162ca109c82614c383708878"
+    "field_provenance.csv": "a592d5dda1a2712c389956ae121b0a8720a9bb4f4823e8948b7c366c0a8a75f8",
+    "missing_fields.csv": "05fa36d4847a0595a64602af7c0dcc0ee0cdbd758771ef59b957f3814411645b",
+    "專案總表.csv": "8f6606e4b1d093368863fa4222e33946da564fcb1f9481b7b9c2c590fbace23d"
   },
   "identity_ledger_sha256": "2f2e6d898d89ef2c12c89b722e1a8fe6b7488ea6082b50df5104e722b1bb71c6",
   "identity_merges": [],
