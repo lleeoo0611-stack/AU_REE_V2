@@ -1036,14 +1036,22 @@
     {
       "input_row": 63,
       "input_name_sha256": "b1252b8eada17a921638a67dd95ec9fa2b6661f0b0330d67550cafc39373f72d",
-      "status": "UNVERIFIED_EXTERNAL_LEAD",
+      "status": "OTHER_COMMODITY_SCOPE_PENDING",
       "matched_project_ids": [],
-      "reason": "SEARCH_COMPLETED_NO_DATED_PRIMARY_PROJECT_IDENTITY_ADMITTED;UNVERIFIED_NOT_EVIDENCE_OF_ABSENCE",
-      "source_references": [],
+      "reason": "PRIMARY_20260619_ORIGINAL_CONFIRMS_CONDITIONAL_BYNOE_LITHIUM_TENEMENT_AGREEMENT;REE_PROJECT_SCOPE_AND_RIGHTS_CONTINUITY_STILL_PENDING;NO_LITHIUM_RESOURCE_OR_OUTPUT_IMPORTED",
+      "source_references": [
+        {
+          "source_sha256": "09b43befad8853e42e928a38d935c1c3ddf12f981eecee99d5f68f03313eca24",
+          "source_url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03105727",
+          "locator": "physical PDF p1 and p5",
+          "method": "DATED_PRIMARY_LITHIUM_AGREEMENT_SCOPE_REVIEW_NOT_REE_PROJECT_ADMISSION",
+          "scope": "EL30897; acquisition agreement conditional on regulatory approvals at19June2026; no completed-title or currentREE exploration claim"
+        }
+      ],
       "search_ids": [
         16
       ],
-      "continuation_review": "Fresh November10 search retained as unverified; no primary dated REE project admission; input company/code never imported"
+      "continuation_review": "Round20 primary original replaces an entirely unverified lead with other-commodity scope pending. The sameEL is discussed in lithium agreements; this does not establish an activeREE project, transferREE rights or permit a source/date/issuer merge."
     },
     {
       "input_row": 64,
@@ -1311,7 +1319,15 @@
       "search_ids": [
         30
       ],
-      "continuation_review": "Fresh November10 search retained as unverified; no primary dated REE project admission; input company/code never imported"
+      "continuation_review": "Round20: downloaded and visually reviewedMTM2023annual physicalp16. Coramup Gneiss appears in the regional geological legend, not as proof of the external lead project/issuer association. Preserve unverified status; no source-bound same-code alias or numeric admission.",
+      "additional_primary_context": [
+        {
+          "source_sha256": "c87c1420f661503358d7c8de02e6a9daaf5ad639e49e8ae650e4aef7e7ba2469",
+          "source_url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vh6603rny9hh.pdf",
+          "locator": "physical PDF p16 Figure18",
+          "role": "REGIONAL_GEOLOGICAL_CONTEXT_ONLY_NOT_IDENTITY_PROOF"
+        }
+      ]
     },
     {
       "input_row": 81,

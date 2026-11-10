@@ -7,14 +7,14 @@
   ],
   "historical_fourth": "Lake Campion already admitted before this74-project baseline; not counted again",
   "gemini_unverified_names_searched": 28,
-  "gemini_unverified_remaining": 28,
+  "gemini_unverified_remaining": 27,
   "admitted_from_raw_input_alone": 0,
   "merge_rule": "Same validated ASX code and same normalized project name or source-bound alias; no substring or same-issuer-only merge",
   "findings": [
     {
       "subject": "Bynoe",
-      "decision": "HOLD_IDENTITY",
-      "reason": "Government report and external lead have different issuer associations; no issuer/tenure continuity proved"
+      "decision": "OTHER_COMMODITY_SCOPE_PENDING",
+      "reason": "June2026official original establishes a conditional acquisition agreement for the lithium tenement EL30897; this improves asset association evidence, but does not establish currentREE scope or completedREE-rights continuity"
     },
     {
       "subject": "Coramup",
@@ -43,5 +43,8 @@
     }
   ],
   "round19_new_independently_source_reviewed_projects": 2,
-  "new_projects_are_not_verified_Gemini_company_ticker_rows": true
+  "new_projects_are_not_verified_Gemini_company_ticker_rows": true,
+  "latest_round": 20,
+  "initial_unverified_count": 28,
+  "latest_external_queue_summary": "89rows replayed against current table and exact private input hash;1lead moved toOTHER_COMMODITY_SCOPE_PENDING after dated primary lithium acquisition-agreement review; no newREE project admitted from the external list alone"
 }
