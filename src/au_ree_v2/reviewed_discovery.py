@@ -39,7 +39,7 @@ def validate_issue_date(identity, source, cutoff, text):
         raise ValueError('DISCOVERY_ISSUE_RELEASE_DATE_ORDER')
     proof = identity['date_evidence']
     label = issued.strftime('%d %B %Y').lstrip('0').casefold()
-    if not proof.get('markers') or label not in text or any(m.casefold() not in text for m in proof['markers']):
+    if not proof.get('markers') or label not in calendar_date_text(text) or any(m.casefold() not in text for m in proof['markers']):
         raise ValueError('DISCOVERY_DOCUMENT_ISSUE_DATE_PROOF')
 
 

@@ -57,6 +57,16 @@ class DiscoveryIssueDate(unittest.TestCase):
     def test_valid_roles(self):
         self.check()
 
+    def test_ordinal_signed_date_preserves_day_month_year_and_native_markers(self):
+        identity=copy.deepcopy(self.identity)
+        identity['date_evidence']['markers']=['Signed 5th September 2023']
+        self.check(identity=identity,text='signed 5th september 2023')
+        for day in ['2023-09-04','2023-08-05','2022-09-05']:
+            with self.subTest(day=day),self.assertRaises(ValueError):
+                self.check(identity=dict(identity,document_issue_date=day),text='signed 5th september 2023')
+        with self.assertRaises(ValueError):
+            self.check(identity=identity,text='5th september 2023')
+
     def test_reject_url_variants(self):
         urls = [
             "https://example.org/asxpdf/20230906/pdf/abc123.pdf",

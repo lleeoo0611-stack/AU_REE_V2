@@ -21,7 +21,7 @@
     "緯度": 24,
     "經度": 24,
     "礦床型態代碼": 1,
-    "礦床型態": 55,
+    "礦床型態": 56,
     "開發階段代碼": 0,
     "開發階段類別": 0,
     "開發階段": 36,
@@ -64,7 +64,7 @@
     "Y2O3_氧化釔_kt": 13,
     "ASX代碼": 69
   },
-  "verified_source_hashes": 114,
+  "verified_source_hashes": 115,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "e646ea17498f1055f480c660b15fbffb0789e3f3f07ec9384e39f43ea7138df0",
-    "field_provenance.csv": "78165b755a0ab2168179723b31e4a30b88638811c48cf0bbc3e80daa069ea015",
-    "missing_fields.csv": "aef617171f0abd7dda2e62dade1aeb168edf5fdd89f1a2c22fdb822aa6e3017a",
+    "專案總表.csv": "63a40aa5dd6f59300db073b01cd3e9035a0d782039b2e63c711aa0d225923abd",
+    "field_provenance.csv": "0b12a4ef267d4e631880b3248946801f1f8d30c88e74b0edc6af4400927d5535",
+    "missing_fields.csv": "0696214d360730ac81892cde29ea3db60ac8d22a1f444efcc9d7de5d792e7fc2",
     "census_inventory.csv": "88056f25752a6ee1a6367d7412a3f8775e0de207f49b8812d30397fe03fcfa13"
   },
-  "review_ledger_sha256": "41c76db09a77f34063a831e1c2326e97c44d901a9e2484d2a65f9499291712a3",
+  "review_ledger_sha256": "c90b700cf4d44da87fe9b5b30036033a7512d80e31f97990c888ec6b471a1f18",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -2906,27 +2906,27 @@
       "effective_date_interval": null
     },
     {
-      "review_id": "continuation15_harts_range_stage",
+      "review_id": "continuation16_harts_range_stage",
       "project_id": "AU-203b4d90e5c23a323610",
-      "source_sha256": "e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226",
+      "source_sha256": "9c4f1f01212bbc65471d4bcb1806688390ed5aba16ce958a5fcbb0f51e8a9471",
       "status": "VALIDATED",
-      "scope": "Historical Harts Range REE-Nb exploration project in Northern Territory at24July2025. Old Trafford, Cusp, Bobs, Paddington, Westminster and Bank are prospects within the project, not six additional projects. Rock-chip assays, sample coordinates and proposed RC work are not project MRE, representative coordinates, uniform deposit model or annual oxide output. Current title and independent spatial extent are not certified.",
+      "scope": "Later29September2026 literal Harts Range activity replaces older preparatory stage, not a new fill. Different-project Big One copper MRE, Canadian Pomme testwork, sample concentrates and Cu-Ni conductor interpretation are excluded.100% ownership of EL34147 is not proof of full parent-project ownership. Host wording retains consistent with: geochemical interpretation after first scout targets did not return anticipated HREE grades. It is not a proved uniform deposit model, global resource or economic result.",
       "review_methods": [],
       "resource_selection_role": null,
       "partial_resource_projection": null,
       "resource_effective_date_unknown": false,
       "public_release_date_unknown": false,
-      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "publication_date_role": "ASX_DATED_URL",
       "new_observations": 0,
       "forecast_parameters": 0,
-      "effective_date": "2025-07-24",
+      "effective_date": "2026-09-29",
       "effective_date_role": "DATED_ISSUER_METADATA",
       "date_precision": "DAY",
       "effective_date_interval": null
     }
   ],
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
-  "discovery_ledger_sha256": "2dd7cb45981acba32bbf0eaefec9063d3360979827681133cac105747c2af6d2",
+  "discovery_ledger_sha256": "7f5901ae523b3ac984f939070aac930ee660530bc6baafc90df87a8c8bcb2b68",
   "discovery_reviews": [
     {
       "candidate_key": "deep-leads-rubble-mound-wind-break",
@@ -14205,7 +14205,283 @@
           }
         }
       },
-      "deferred_fields": []
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "HARTS_RANGE_ROCK_CHIP_ASSAYS_AND_PLANNED_RC_NOT_SELECTED_PROJECT_MRE_OR_ENGINEERING_ANNUAL_OUTPUT;NO_ELEMENT_GROUP_OR_PROSPECT_TRANSFER",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Harts Range Project",
+              "Rock chip assay results"
+            ]
+          }
+        }
+      ]
     }
   ],
   "original_canonical_projects": 33,
@@ -14213,9 +14489,9 @@
   "base_contract_columns": 52,
   "base_projection_hashes": {
     "census_inventory.csv": "88056f25752a6ee1a6367d7412a3f8775e0de207f49b8812d30397fe03fcfa13",
-    "field_provenance.csv": "1e287ef5ec41534e7f2c702a64d722891a1255a7c3937c093ed3e0c1bbc54cd9",
-    "missing_fields.csv": "856eb218bc1c8f805f90aa7f5a08b6b6b30193d1b4a0224f6d991b3bad5e5c82",
-    "專案總表.csv": "76062ad66b814f2b35bdbe7e0caf22fbd1813bf96ae7dd257ad2f1011730e584"
+    "field_provenance.csv": "48365ec410092bdb42cf6173b5b048a89ca68f6c9a381f58261aa6e8cea72dfd",
+    "missing_fields.csv": "97419f86578c7a7b2126297914da6d891b4e0cc3561f863214429b0e440152e1",
+    "專案總表.csv": "549cc81f9b158bc8702a7d81777d56a2d78cf3dbd741896247eddff71ed43373"
   },
   "identity_ledger_sha256": "d7838bf99396c26648b1bc30eba7a7d39beae57596e136344d9b0810dea3d5a4",
   "identity_merges": [],

@@ -33918,70 +33918,107 @@
       "scope": "Literal dated metadata with native project region and issuer/ownership proofs. Historical issuer/status only, not current tenure. Potential/regional/adjacent interpretations are not upgraded to confirmed mineralisation, MRE or annual output. Scientific selection and quantities remain unchanged."
     },
     {
-      "review_id": "continuation15_harts_range_stage",
-      "statement_id": "continuation15_harts_range_stage",
+      "review_id": "continuation16_harts_range_stage",
+      "statement_id": "continuation16_harts_range_stage",
       "project_id": "AU-203b4d90e5c23a323610",
-      "source_key": "nfm_hartsrange20250724",
-      "asset_set": "continuation15",
-      "path": "data/snapshots/e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226.pdf",
-      "url": "https://announcements.asx.com.au/asxpdf/20250724/pdf/06m2pqx9qtdgvb.pdf",
-      "source_sha256": "e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226",
-      "publication_date": "2025-07-24",
-      "effective_date": "2025-07-24",
+      "source_key": "nfm_annual2026",
+      "source_sha256": "9c4f1f01212bbc65471d4bcb1806688390ed5aba16ce958a5fcbb0f51e8a9471",
+      "asset_set": "continuation16",
+      "path": "data/snapshots/9c4f1f01212bbc65471d4bcb1806688390ed5aba16ce958a5fcbb0f51e8a9471.pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20260929/pdf/074nqg9s1b67ll.pdf",
+      "publication_date": "2026-09-29",
+      "effective_date": "2026-09-29",
       "effective_date_role": "DATED_ISSUER_METADATA",
       "date_precision": "DAY",
-      "date_evidence": {
-        "page": 1,
-        "markers": [
-          "24 JULY 2025"
-        ]
-      },
-      "publication_header_evidence": {
-        "page": 1,
-        "markers": [
-          "24 JULY 2025"
-        ],
-        "header_title": "ASX RELEASE"
-      },
       "identity_evidence": {
-        "page": 1,
+        "page": 4,
         "markers": [
-          "Harts Range Project"
+          "Harts Range",
+          "Northern Territory"
         ]
       },
-      "scope": "Historical Harts Range REE-Nb exploration project in Northern Territory at24July2025. Old Trafford, Cusp, Bobs, Paddington, Westminster and Bank are prospects within the project, not six additional projects. Rock-chip assays, sample coordinates and proposed RC work are not project MRE, representative coordinates, uniform deposit model or annual oxide output. Current title and independent spatial extent are not certified.",
+      "date_evidence": {
+        "page": 26,
+        "markers": [
+          "29th September 2026"
+        ]
+      },
+      "document_issue_date": "2026-09-29",
+      "document_issue_evidence": {
+        "page": 26,
+        "markers": [
+          "authorised for issue",
+          "29th September 2026"
+        ]
+      },
+      "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE",
+      "publication_date_role": "ASX_DATED_URL",
       "observations": [],
+      "scope": "Later29September2026 literal Harts Range activity replaces older preparatory stage, not a new fill. Different-project Big One copper MRE, Canadian Pomme testwork, sample concentrates and Cu-Ni conductor interpretation are excluded.100% ownership of EL34147 is not proof of full parent-project ownership. Host wording retains consistent with: geochemical interpretation after first scout targets did not return anticipated HREE grades. It is not a proved uniform deposit model, global resource or economic result.",
       "attributes": [
         {
           "column": "開發階段",
-          "value": "currently advancing regulatory approvals（來源揭露：2025-07-24）",
+          "value": "continued to follow up on the high-priority target areas（來源揭露：2026-09-29）",
           "evidence": {
-            "page": 1,
+            "page": 4,
             "markers": [
               "Harts Range",
-              "currently advancing regulatory approvals"
+              "continued to follow up on the high-priority target areas"
             ]
           },
           "description_binding": {
-            "page": 1,
+            "page": 4,
             "project_marker": "Harts Range",
             "project_bbox": [
-              49.460001373291014,
-              123.30400695800782,
-              173.83602294921874,
-              152.8080078125
+              60.86002197265625,
+              224.03998413085938,
+              116.42688903808593,
+              235.27997741699218
             ],
             "value_bbox": [
-              50.539999389648436,
-              718.0334228515625,
-              548.8538452148438,
-              747.06923828125
+              200.14009704589844,
+              405.67194213867185,
+              456.1467224121094,
+              416.9119506835938
             ],
-            "literal_value": "currently advancing regulatory approvals",
-            "statement": "the company remains committed to unlocking the full mineral potential at harts range and is currently advancing regulatory approvals and reviewing quotes from drilling contractors to fast-track our maiden"
+            "literal_value": "continued to follow up on the high-priority target areas",
+            "statement": "continued to follow up on the high-priority target areas"
+          }
+        },
+        {
+          "column": "礦床型態",
+          "value": "consistent with a highly evolved pegmatite system",
+          "evidence": {
+            "page": 16,
+            "markers": [
+              "Harts Range",
+              "consistent with a highly evolved pegmatite system"
+            ]
+          },
+          "description_binding": {
+            "page": 16,
+            "project_marker": "Harts Range",
+            "project_bbox": [
+              60.859999084472655,
+              652.65,
+              106.8699966430664,
+              661.85
+            ],
+            "value_bbox": [
+              192.64000549316407,
+              239.56000366210938,
+              411.0454040527344,
+              250.79999694824218
+            ],
+            "literal_value": "consistent with a highly evolved pegmatite system",
+            "statement": "consistent with a highly evolved pegmatite system,"
           }
         }
-      ]
+      ],
+      "supersedes_review_ids": [
+        "continuation15_harts_range_stage"
+      ],
+      "supersession_reason": "Explicit later29September2026 activity description replaces24July2025 preparatory status; old review retained at8d8718bd9a8a0efa597a2fb04431d168a85c2797"
     }
   ]
 }
