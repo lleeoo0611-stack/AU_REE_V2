@@ -11711,6 +11711,685 @@
           }
         }
       ]
+    },
+    {
+      "candidate_key": "north-dam-cufe",
+      "name": "North Dam Li–Nb–REE Exploration Project — CuFe",
+      "aliases": [
+        "North Dam",
+        "North Dam Project"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_PRIMARY_ASX_IDENTITY_AND_OWN_PROJECT_REE_EXPLORATION_CONFIRMED;NO_ASSAY_TO_RESOURCE_TRANSFER",
+      "country": "AU",
+      "scope": "Dated historical North Dam Li–Nb–REE Exploration Project — CuFe; source reports early exploration and potential REE mineralisation, not a Mineral Resource or annual oxide output. E15/1495 only; neighbouring Mt Marion, Manna and Bald Hill are not this project. Western Australia location visually confirmed on physicalp2 Figure1, independent of the issuer address. Current title, uniform deposit model and representative project coordinates not certified.",
+      "sources": [
+        {
+          "asset_set": "new19",
+          "path": "data/snapshots/075a54f0b388184f869ea1a9f0aec59119405b46661cbe7173d78be7f05f3ce0.pdf",
+          "sha256": "075a54f0b388184f869ea1a9f0aec59119405b46661cbe7173d78be7f05f3ce0",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02700097",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "North Dam",
+                "REE"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "north_dam20230822",
+        "publication_date": "2023-08-22",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "22 August 2023"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "North Dam",
+            "Western Australia"
+          ]
+        },
+        "name_marker": "North Dam",
+        "state": "WA",
+        "state_marker": "Western Australia",
+        "developer": {
+          "value": "CuFe Ltd",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "CuFe Ltd"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "North Dam",
+              "REE"
+            ]
+          }
+        }
+      ],
+      "location_review": {
+        "method": "VISUAL_LOCATION_MAP_CHECK",
+        "physical_page": 2,
+        "render_sha256": "f84ead8fe32ff10a1102bddb6319c03850c0cbec68d2b544bd921ae161659656",
+        "finding": "North Dam E15/1495 is explicitly mapped in Western Australia; issuer footer alone is not the location proof"
+      }
+    },
+    {
+      "candidate_key": "new-goldfield-cape-gdm",
+      "name": "New Goldfield Li–REE Exploration Project — Cape",
+      "aliases": [
+        "New Goldfield"
+      ],
+      "decision": "ADMIT_PROJECT",
+      "reason": "DATED_PRIMARY_ASX_IDENTITY_AND_OWN_PROJECT_REE_EXPLORATION_CONFIRMED;NO_ASSAY_TO_RESOURCE_TRANSFER",
+      "country": "AU",
+      "scope": "Dated historical New Goldfield Li–REE Exploration Project — Cape; source reports early exploration and potential REE mineralisation, not a Mineral Resource or annual oxide output. New Goldfield EPM26646 and application28913 within Cape; do not also count Cape or its separate Bonanza copper-gold tenement. No alias to Chillagoe or Nutgrove inferred. Current title, uniform deposit model and representative project coordinates not certified.",
+      "sources": [
+        {
+          "asset_set": "new19",
+          "path": "data/snapshots/eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c.pdf",
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02787845",
+          "kind": "pdf",
+          "evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "New Goldfield",
+                "REE"
+              ]
+            }
+          ]
+        }
+      ],
+      "identity": {
+        "source_index": 0,
+        "source_key": "new_goldfield20240321",
+        "publication_date": "2024-03-21",
+        "date_evidence": {
+          "page": 1,
+          "markers": [
+            "21 March 2024"
+          ]
+        },
+        "project_evidence": {
+          "page": 1,
+          "markers": [
+            "New Goldfield",
+            "Queensland"
+          ]
+        },
+        "name_marker": "New Goldfield",
+        "state": "QLD",
+        "state_marker": "Queensland",
+        "developer": {
+          "value": "Great Divide Mining Ltd",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Great Divide Mining Ltd"
+            ]
+          }
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "礦石蘊藏量_Mt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "TREO品位_pct",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "總TREO蘊藏量_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "磁鐵稀土佔TREO_pct",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "NdPr蘊藏量_kt_需兩者皆公布",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產TREO_t_per_year",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產NdPr_t_per_year",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "預估年產重稀土_t_per_year",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "La2O3_氧化鑭_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "CeO2_氧化鈰_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Pr6O11_氧化鐠_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Nd2O3_氧化釹_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Sm2O3_氧化釤_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Eu2O3_氧化銪_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Gd2O3_氧化釓_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tb4O7_氧化鋱_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Dy2O3_氧化鏑_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Er2O3_氧化鉺_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Tm2O3_氧化銩_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Yb2O3_氧化鐿_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        },
+        {
+          "column": "Y2O3_氧化釔_kt",
+          "reason": "EARLY_EXPLORATION_ROCK_CHIPS_OR_REE_POTENTIAL_NOT_SELECTED_RESOURCE_OR_ENGINEERING_ANNUAL_OUTPUT",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "New Goldfield",
+              "REE"
+            ]
+          }
+        }
+      ]
     }
   ]
 }

@@ -38,5 +38,26 @@
     "composition_finding": "Appendix1 pages88-89 reports elemental ppm. No validated elemental-to-canonical-oxide conversion, resource-source blending or transfer from prior2025 resource admitted.",
     "annual_output_finding": "Resource inventory, testwork concentrate grades and recovery percentages do not supply compatible project annual oxide output"
   },
-  "government_capture": "Native originals remain unresolved despite readable indexed official text; no government numeric value imported"
+  "government_capture": "Native originals remain unresolved despite readable indexed official text; no government numeric value imported",
+  "round19_candidates": [
+    {
+      "name": "North Dam Li–Nb–REE Exploration Project — CuFe",
+      "project_id": "AU-cefbde90dc34312547d3",
+      "source_sha256": "075a54f0b388184f869ea1a9f0aec59119405b46661cbe7173d78be7f05f3ce0",
+      "date": "2023-08-22",
+      "ASX": "CUF",
+      "scientific_cells": 0,
+      "scope": "E15/1495; rock chip results are explicitly unsuitable for Mineral Resource estimation; no BDL-to-zero conversion; Ce2O3 not CeO2; neighbouring Mt Marion not this project"
+    },
+    {
+      "name": "New Goldfield Li–REE Exploration Project — Cape",
+      "project_id": "AU-41ee0148c804293cfc39",
+      "source_sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+      "date": "2024-03-21",
+      "ASX": "GDM",
+      "scientific_cells": 0,
+      "scope": "EPM26646 and application28913 within Cape; early REE potential; no duplicate Cape/Bonanza or sample-to-resource transfer"
+    }
+  ],
+  "historical_scope_limitation": "The9/22Sandy resource case is historical. The10/29Scoping original explicitly refines tonnes to373.3Mt with no matched refined TREO grade. Do not treat9/22tonnage/grade as the current refined resource, or pair340ppm with373.3Mt. The annual report separately reports TREO+Y; the selected340ppm is the source-reported TREO excluding separately reported Y, not a standardized15-oxide normalization."
 }

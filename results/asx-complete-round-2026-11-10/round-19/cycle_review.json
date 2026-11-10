@@ -1,0 +1,700 @@
+{
+  "version": "coverage-cycle-review-v2",
+  "cycle_id": "complete-round-19",
+  "current": {
+    "projects": 76,
+    "columns": 53,
+    "filled_cells": 1529,
+    "total_cells": 4028,
+    "remaining_blank_cells": 2499,
+    "scientific_columns": [
+      "礦石蘊藏量_Mt",
+      "TREO品位_pct",
+      "總TREO蘊藏量_kt",
+      "磁鐵稀土氧化物蘊藏量_kt",
+      "磁鐵稀土佔TREO_pct",
+      "NdPr蘊藏量_kt_需兩者皆公布",
+      "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+      "預估年產TREO_t_per_year",
+      "預估年產NdPr_t_per_year",
+      "預估年產重稀土_t_per_year",
+      "La2O3_氧化鑭_kt",
+      "CeO2_氧化鈰_kt",
+      "Pr6O11_氧化鐠_kt",
+      "Nd2O3_氧化釹_kt",
+      "Sm2O3_氧化釤_kt",
+      "Eu2O3_氧化銪_kt",
+      "Gd2O3_氧化釓_kt",
+      "Tb4O7_氧化鋱_kt",
+      "Dy2O3_氧化鏑_kt",
+      "Ho2O3_氧化鈥_kt",
+      "Er2O3_氧化鉺_kt",
+      "Tm2O3_氧化銩_kt",
+      "Yb2O3_氧化鐿_kt",
+      "Lu2O3_氧化鎦_kt",
+      "Y2O3_氧化釔_kt"
+    ],
+    "scientific_filled_cells": 375,
+    "scientific_total_cells": 1900,
+    "output_hashes": {
+      "專案總表.csv": "dbc2baf1d96b1e4b28cfcdfca2e7c27f2b188b8f8736d8695b9d18303a35eb94",
+      "field_provenance.csv": "e31235116b6145e4fb23ec85372a3efadd4c6e9856ce13b3c1a48c4d99af0982",
+      "missing_fields.csv": "a586f3a003cc88a0b7db1614b6006ae1ebe6f94e56daac4f1a9affc2a8ef5d2f",
+      "census_inventory.csv": "c7568e947cb99d684de45387b7ab232c33a2fba018fd055e62a40c9b5fc2d6fe"
+    },
+    "provenance_complete": true,
+    "missing_diagnostics_complete": true
+  },
+  "existing_projects": {
+    "newly_filled_cells": 0,
+    "scientific_newly_filled_cells": 0,
+    "updated_value_cells": 0,
+    "withdrawn_cells": 0,
+    "scientific_withdrawn_cells": 0,
+    "numeric_format_only_cells": 0,
+    "net_filled_cell_increase": 0
+  },
+  "added_projects": {
+    "project_ids": [
+      "AU-41ee0148c804293cfc39",
+      "AU-cefbde90dc34312547d3"
+    ],
+    "count": 2,
+    "filled_cells": 24,
+    "scientific_filled_cells": 0,
+    "identity_and_other_metadata_cells": 24
+  },
+  "removed_projects": {
+    "project_ids": [],
+    "filled_cells": 0,
+    "explanations": []
+  },
+  "total_filled_cell_delta": 24,
+  "stopping_rule": {
+    "policy": "BELOW_THREE_COMPLETE_ROUND",
+    "threshold": 3,
+    "operator": "<",
+    "newly_filled_cells": 24,
+    "scientific_newly_filled_cells": 0,
+    "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
+    "eligible": false,
+    "stop": false,
+    "incomplete": [
+      "acquisition:unresolved_or_undeclared"
+    ],
+    "decision": "INCOMPLETE"
+  },
+  "baseline_csv_sha256": "3588543458296b3efe6abe9d35a955e1c0ba39de1c0d6bb4a2fe1a308da21f94",
+  "current_csv_sha256": "dbc2baf1d96b1e4b28cfcdfca2e7c27f2b188b8f8736d8695b9d18303a35eb94",
+  "review_manifest": {
+    "cycle_id": "complete-round-19",
+    "baseline_commit": "df8c6bf11295254070f7d912b98e375411df9df5",
+    "series_baseline_projects": 74,
+    "stopping_policy": "BELOW_THREE_COMPLETE_ROUND",
+    "search_scope": {
+      "columns": [
+        "專案ID",
+        "開發商",
+        "未上市公司",
+        "專案名稱",
+        "所在地_中文",
+        "所在地_英文",
+        "國家",
+        "州省地區",
+        "緯度",
+        "經度",
+        "礦床型態代碼",
+        "礦床型態",
+        "開發階段代碼",
+        "開發階段類別",
+        "開發階段",
+        "礦石蘊藏量_Mt",
+        "TREO品位_pct",
+        "總TREO蘊藏量_kt",
+        "磁鐵稀土氧化物蘊藏量_kt",
+        "磁鐵稀土佔TREO_pct",
+        "NdPr蘊藏量_kt_需兩者皆公布",
+        "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+        "預估年產TREO_t_per_year",
+        "預估年產NdPr_t_per_year",
+        "預估年產重稀土_t_per_year",
+        "產品/產出",
+        "有TREO資源估計",
+        "有來源文件",
+        "資料來源名稱",
+        "資料來源URL",
+        "已公布元素數_共15項",
+        "已公布元素總和_kt",
+        "元素總和/TREO",
+        "元素數據一致性檢查",
+        "四項磁性元素皆公布",
+        "磁性元素重算值_NdPrTbDy_kt",
+        "重算磁性元素-HTML磁性稀土_kt",
+        "La2O3_氧化鑭_kt",
+        "CeO2_氧化鈰_kt",
+        "Pr6O11_氧化鐠_kt",
+        "Nd2O3_氧化釹_kt",
+        "Sm2O3_氧化釤_kt",
+        "Eu2O3_氧化銪_kt",
+        "Gd2O3_氧化釓_kt",
+        "Tb4O7_氧化鋱_kt",
+        "Dy2O3_氧化鏑_kt",
+        "Ho2O3_氧化鈥_kt",
+        "Er2O3_氧化鉺_kt",
+        "Tm2O3_氧化銩_kt",
+        "Yb2O3_氧化鐿_kt",
+        "Lu2O3_氧化鎦_kt",
+        "Y2O3_氧化釔_kt",
+        "ASX代碼"
+      ],
+      "all_blank_fields_reviewed": true
+    },
+    "unresolved_acquisition_actions": [
+      {
+        "document": "Industry major projects 2025 original",
+        "status": "TIMEOUT_NATIVE_PDF_CAPTURE",
+        "web_text_review": "Aggregate REE section readable through search tool; source bytes and complete listing not replayable"
+      },
+      {
+        "document": "NT October 2025 REE factsheet original",
+        "status": "HTTP_403_NATIVE_PDF_CAPTURE",
+        "alternative": "Current official August 2026 factsheet text found; native capture HTTP403; edition identity with October2025 is unknown"
+      }
+    ],
+    "tracks": {
+      "candidates": {
+        "completed": true,
+        "records": [
+          {
+            "query": "sha256:5d6274507976ac5c0ea5ed013e877b648d790c2bcbc12110a6654210e96c6827",
+            "disposition": "See candidate_scope_review.json and source_review.json"
+          },
+          {
+            "query": "sha256:040dfe5cd791ade93dcf94d58329a1dc583073e4b8468aa9459a58c9f9357e24",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "daa84a6da31f2cb1a1c3d64402389d143afb12d07b755dcccab96bfd80a3ae1f"
+          },
+          {
+            "query": "sha256:f840e1c41d96862a543501a5725118e5dd12fa465f0650913e78e495044700ff",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "daa84a6da31f2cb1a1c3d64402389d143afb12d07b755dcccab96bfd80a3ae1f"
+          },
+          {
+            "query": "sha256:1169e1c0c2af2cf40cd192436325df661a2241c76f25fe0a1b474f54977a5952",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "daa84a6da31f2cb1a1c3d64402389d143afb12d07b755dcccab96bfd80a3ae1f"
+          },
+          {
+            "query": "sha256:dd72713a33b059bc49ded66bdb9d0e5972c4d177fdb9a408e3a4aec60ee87b55",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "daa84a6da31f2cb1a1c3d64402389d143afb12d07b755dcccab96bfd80a3ae1f"
+          },
+          {
+            "query": "sha256:7465fdc08f6b48fb107f1c30d38f6f70084bd4637172848f793d6079fb5d7b7a",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "689728c1ed8dca147f9b7dea8c2dcb95838b8f10633035154822618aea78f24c"
+          },
+          {
+            "query": "sha256:fb7518598ee73f47ecc7ef5e76d308e88c20031cdbff2d928389aa36e248fec3",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "689728c1ed8dca147f9b7dea8c2dcb95838b8f10633035154822618aea78f24c"
+          },
+          {
+            "query": "sha256:5bcd1729142cbc0f807de398adf030dd600403a8bde87343cc90596130d39d4e",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "689728c1ed8dca147f9b7dea8c2dcb95838b8f10633035154822618aea78f24c"
+          },
+          {
+            "query": "sha256:dd3c1aaaf8dc8a8979819c919fea2660f2d640c10984d3036940707669bec6e7",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "689728c1ed8dca147f9b7dea8c2dcb95838b8f10633035154822618aea78f24c"
+          },
+          {
+            "query": "sha256:07cfb40ca057b57230ab6c0044d481f442985cb42ffcf311ac7866d5be889309",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "49b7555289804b74f648326c27e48b07d51f0a70e2ff0a8cd5e89f1a36b9cef3"
+          },
+          {
+            "query": "sha256:cd4805e3c748f5e8a87e5a506c58c789512f198462777cfe88885dc29bdc0646",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "49b7555289804b74f648326c27e48b07d51f0a70e2ff0a8cd5e89f1a36b9cef3"
+          },
+          {
+            "query": "sha256:169adfa488c030a65dd6936e4f2dbd3885a2c22ccf2a729feb14f81c2ae70da4",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "49b7555289804b74f648326c27e48b07d51f0a70e2ff0a8cd5e89f1a36b9cef3"
+          },
+          {
+            "query": "sha256:0a10afb51007725c49d28ee10a74d7d91138d27b792ce8fa626cd818220709e5",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "49b7555289804b74f648326c27e48b07d51f0a70e2ff0a8cd5e89f1a36b9cef3"
+          },
+          {
+            "query": "sha256:4ad0af26b52c33bac408e2033262a522e33411c9fdaef007e9f43d6acdb03bd9",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "79869e9473d312012506ad0068751a5946c3d73a3a487f2f889901c9e8869f60"
+          },
+          {
+            "query": "sha256:540367390d41808a5fd3ccc31d1636213bd6efedf6e34370995aef81c2f9aafa",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "79869e9473d312012506ad0068751a5946c3d73a3a487f2f889901c9e8869f60"
+          },
+          {
+            "query": "sha256:3030be42dd8a48f7345fd23a0f10991f6d45a825b95199d91baa273f8434b808",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "79869e9473d312012506ad0068751a5946c3d73a3a487f2f889901c9e8869f60"
+          },
+          {
+            "query": "sha256:2647a7b112cca1b137ebc3bdb808d637debfbe57f3dd84e81af2c0363f8620b0",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "79869e9473d312012506ad0068751a5946c3d73a3a487f2f889901c9e8869f60"
+          },
+          {
+            "query": "sha256:05482def19c845a61ca96764c3730a6c69fb613173d0d53676725da4d42adf6e",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "de41f04181e02f0f9e14c78a0728a18f694c707d16a3725aba06761adf938bb7"
+          },
+          {
+            "query": "sha256:8de019a51d535cf55088531d625118fba62273b5b07bbc27e3690b83c2cc6d11",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "de41f04181e02f0f9e14c78a0728a18f694c707d16a3725aba06761adf938bb7"
+          },
+          {
+            "query": "sha256:7efc15d567f37c989c7b9095820124817840d20c9c40f0e39d5477ef853a5577",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "de41f04181e02f0f9e14c78a0728a18f694c707d16a3725aba06761adf938bb7"
+          },
+          {
+            "query": "sha256:a7ebe9ad56293623bfa5f5bcbedaecb51ed1f0080efeab043c49cb595cc5dae5",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "de41f04181e02f0f9e14c78a0728a18f694c707d16a3725aba06761adf938bb7"
+          },
+          {
+            "query": "sha256:c4ef5e2193009265dd10ca821913ebcb2811ab5db8cda13a96eb57bcd1040c6b",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7b1aabbe0e19d387f1df7ccbf9fbcb9fb048db112e3fc298aaf6eaa0083f76a0"
+          },
+          {
+            "query": "sha256:05afcafc4b0daf72c5a0923797fc2f2f49aaadc7e39af02efd63e381e3f16467",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7b1aabbe0e19d387f1df7ccbf9fbcb9fb048db112e3fc298aaf6eaa0083f76a0"
+          },
+          {
+            "query": "sha256:944aec5e2ea86cd0a20346ecf741959c24be5f306cafd292d061139ebaa5545f",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7b1aabbe0e19d387f1df7ccbf9fbcb9fb048db112e3fc298aaf6eaa0083f76a0"
+          },
+          {
+            "query": "sha256:7dc97a30d3a1459b0be2d3601122109990fdced2827cda46019c37ec795d4a4c",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7b1aabbe0e19d387f1df7ccbf9fbcb9fb048db112e3fc298aaf6eaa0083f76a0"
+          },
+          {
+            "query": "sha256:97da62fd3b7fa984ae1824af63d1b61a82d11f467d07e6490487b057eae990b4",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "8a81682884c80008d86f44da8a325288cb5d1a0fe5cc42dd1e059a4616a44ffa"
+          },
+          {
+            "query": "sha256:ecd8c164658dc907f581ee216fab05266e3a19e95adcc5bd5504026ab2fb7cb5",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "8a81682884c80008d86f44da8a325288cb5d1a0fe5cc42dd1e059a4616a44ffa"
+          },
+          {
+            "query": "sha256:5035436e961da90bf1038f5557ad96543e624ec0c181f8e3eb16d58b0d52373f",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "8a81682884c80008d86f44da8a325288cb5d1a0fe5cc42dd1e059a4616a44ffa"
+          },
+          {
+            "query": "sha256:97274fd42bb4e5789d24ec37a1f6ae8bdc8e60125b1d7d26dcc5e79e8d6b3f32",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "8a81682884c80008d86f44da8a325288cb5d1a0fe5cc42dd1e059a4616a44ffa"
+          },
+          {
+            "query": "sha256:07e9ffb0a319c9e304b02abbfa39c51381d0ba51f4e5da53f90dc8a620cdedf9",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "3e3e3afe62fbed2de0df89e1b2b089dd26ec78b3587d1a5d8376276d4676464a"
+          },
+          {
+            "query": "sha256:eed2f56a0f30e7cc98d7dbfb77b4f25563c285f813e48483f12db8406d7019f1",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "3e3e3afe62fbed2de0df89e1b2b089dd26ec78b3587d1a5d8376276d4676464a"
+          },
+          {
+            "query": "sha256:59dbfdc6472972d0883830f5a4ef2b686f54d4ec3fe0897c3f55ba8bc6019db6",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "3e3e3afe62fbed2de0df89e1b2b089dd26ec78b3587d1a5d8376276d4676464a"
+          },
+          {
+            "query": "sha256:aef6232d3e8bfd31cf9de64d06b7332d4571cf419df8905c2cb86222e023b3a5",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "3e3e3afe62fbed2de0df89e1b2b089dd26ec78b3587d1a5d8376276d4676464a"
+          },
+          {
+            "query": "sha256:45636dd16c6390f501fecd57922213b0735e9d94559e4c324d92a3216933da45",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "eb0a89e713b0f97bed906f7bab691c989a9fdfe70279dd229df93f5d7c49b493"
+          },
+          {
+            "query": "sha256:e1b97afa95cd8fe19dca2651eea7b3477f319342495a5e59a4f446922377573b",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "eb0a89e713b0f97bed906f7bab691c989a9fdfe70279dd229df93f5d7c49b493"
+          },
+          {
+            "query": "sha256:624b12ef95c316c8034229cbcae07f54adde2cbc0d97d2cda0f2daecb3c6d47b",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "eb0a89e713b0f97bed906f7bab691c989a9fdfe70279dd229df93f5d7c49b493"
+          },
+          {
+            "query": "sha256:77b7e3e64bf7b386a99a912ba34a652b2840771e6acef591d61578d17fb0b479",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "eb0a89e713b0f97bed906f7bab691c989a9fdfe70279dd229df93f5d7c49b493"
+          },
+          {
+            "query": "sha256:ee92ac5b41dcbeeb022fce3a17acf1c43d445c3e8921a7f8ca2929847d7a8f66",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7064110a068ec16d1ac018f471fde9d5463acdc334e37354a9e1e6991d0eec1e"
+          },
+          {
+            "query": "sha256:ef3dc18c9c0fe2e7be243cfec681b4dea89736089a143b9824f902f2323216c5",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7064110a068ec16d1ac018f471fde9d5463acdc334e37354a9e1e6991d0eec1e"
+          },
+          {
+            "query": "sha256:084723ed085b23000c0cd33e450be2a491148382e9bcb14c2dcb76ae72b7df21",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "fdc610e2c364a812ea0a3b887a92d8987ee92399eba114facdbc5301a8d2180c"
+          },
+          {
+            "query": "sha256:c0915066266b41df89dde6867391da21c29cdf75f6170ce43809d90de2474aaf",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "fdc610e2c364a812ea0a3b887a92d8987ee92399eba114facdbc5301a8d2180c"
+          },
+          {
+            "query": "sha256:36349a07bf77167c650e60e651dbc20dfbf4469f24d379c677bf0bf6bada4dc9",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "fdc610e2c364a812ea0a3b887a92d8987ee92399eba114facdbc5301a8d2180c"
+          },
+          {
+            "query": "sha256:c1a45ca8e1be0fc037418d403ee62e94d4d74668a64497658d057607f4e84c89",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "fdc610e2c364a812ea0a3b887a92d8987ee92399eba114facdbc5301a8d2180c"
+          },
+          {
+            "query": "sha256:9a21eaaede217c10a7e23b58510f14397f5f84df0b4941ec3d07b3bc7f9614ee",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "f176d34979e2a976ca938c8cab2516dde7d25eab4848c0d49cc7d2f98b68fa90"
+          },
+          {
+            "query": "sha256:029490adad8a06a2b46a808fe69a92f164d0b2ce02b9fd71ff6d522e3190cc72",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "f176d34979e2a976ca938c8cab2516dde7d25eab4848c0d49cc7d2f98b68fa90"
+          },
+          {
+            "query": "sha256:e0ea16a6ff546511e8b817cb12d73bd7090aab131881c2c4ff9766df79209fd1",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "f176d34979e2a976ca938c8cab2516dde7d25eab4848c0d49cc7d2f98b68fa90"
+          },
+          {
+            "query": "sha256:12a654e849492a6f83a430aacfa2d59d0250a284b464f2384625ed7d70a5aa6c",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "f176d34979e2a976ca938c8cab2516dde7d25eab4848c0d49cc7d2f98b68fa90"
+          },
+          {
+            "query": "sha256:37cb1544a4eb24c3780c92ab61209bf8c5bab8fc332e590a189dcc85dceaa8b4",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "b37e4534ebbebbe4647c1a629e909222a33eae5317246fe04384dcf160c80447"
+          },
+          {
+            "query": "sha256:90f7defce3b256bd407df995314af085470514c473ed9cd12a62e593b0ee1d34",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "b37e4534ebbebbe4647c1a629e909222a33eae5317246fe04384dcf160c80447"
+          },
+          {
+            "query": "sha256:250ae343e69fc5d5c9a952063d871c61fb92925959ce9c09117513b5d42ace2b",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "b37e4534ebbebbe4647c1a629e909222a33eae5317246fe04384dcf160c80447"
+          },
+          {
+            "query": "sha256:ec1a1b5fa124082b302ded208675b6186ab159e32d366c4524e5925188a43eb4",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "b37e4534ebbebbe4647c1a629e909222a33eae5317246fe04384dcf160c80447"
+          }
+        ]
+      },
+      "numeric": {
+        "completed": true,
+        "records": [
+          {
+            "query": "sha256:cb59bf52a012c8290ad3bd61116ef1c2ceb4ea850d398fb174bbb925750d5cac",
+            "disposition": "Sandy resource Total row validated; elemental assays and grouped/unsupported output bases withheld; all remaining column gap reasons reconciled"
+          },
+          {
+            "query": "sha256:040dfe5cd791ade93dcf94d58329a1dc583073e4b8468aa9459a58c9f9357e24",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "daa84a6da31f2cb1a1c3d64402389d143afb12d07b755dcccab96bfd80a3ae1f"
+          },
+          {
+            "query": "sha256:f840e1c41d96862a543501a5725118e5dd12fa465f0650913e78e495044700ff",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "daa84a6da31f2cb1a1c3d64402389d143afb12d07b755dcccab96bfd80a3ae1f"
+          },
+          {
+            "query": "sha256:1169e1c0c2af2cf40cd192436325df661a2241c76f25fe0a1b474f54977a5952",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "daa84a6da31f2cb1a1c3d64402389d143afb12d07b755dcccab96bfd80a3ae1f"
+          },
+          {
+            "query": "sha256:dd72713a33b059bc49ded66bdb9d0e5972c4d177fdb9a408e3a4aec60ee87b55",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "daa84a6da31f2cb1a1c3d64402389d143afb12d07b755dcccab96bfd80a3ae1f"
+          },
+          {
+            "query": "sha256:7465fdc08f6b48fb107f1c30d38f6f70084bd4637172848f793d6079fb5d7b7a",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "689728c1ed8dca147f9b7dea8c2dcb95838b8f10633035154822618aea78f24c"
+          },
+          {
+            "query": "sha256:fb7518598ee73f47ecc7ef5e76d308e88c20031cdbff2d928389aa36e248fec3",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "689728c1ed8dca147f9b7dea8c2dcb95838b8f10633035154822618aea78f24c"
+          },
+          {
+            "query": "sha256:5bcd1729142cbc0f807de398adf030dd600403a8bde87343cc90596130d39d4e",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "689728c1ed8dca147f9b7dea8c2dcb95838b8f10633035154822618aea78f24c"
+          },
+          {
+            "query": "sha256:dd3c1aaaf8dc8a8979819c919fea2660f2d640c10984d3036940707669bec6e7",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "689728c1ed8dca147f9b7dea8c2dcb95838b8f10633035154822618aea78f24c"
+          },
+          {
+            "query": "sha256:07cfb40ca057b57230ab6c0044d481f442985cb42ffcf311ac7866d5be889309",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "49b7555289804b74f648326c27e48b07d51f0a70e2ff0a8cd5e89f1a36b9cef3"
+          },
+          {
+            "query": "sha256:cd4805e3c748f5e8a87e5a506c58c789512f198462777cfe88885dc29bdc0646",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "49b7555289804b74f648326c27e48b07d51f0a70e2ff0a8cd5e89f1a36b9cef3"
+          },
+          {
+            "query": "sha256:169adfa488c030a65dd6936e4f2dbd3885a2c22ccf2a729feb14f81c2ae70da4",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "49b7555289804b74f648326c27e48b07d51f0a70e2ff0a8cd5e89f1a36b9cef3"
+          },
+          {
+            "query": "sha256:0a10afb51007725c49d28ee10a74d7d91138d27b792ce8fa626cd818220709e5",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "49b7555289804b74f648326c27e48b07d51f0a70e2ff0a8cd5e89f1a36b9cef3"
+          },
+          {
+            "query": "sha256:4ad0af26b52c33bac408e2033262a522e33411c9fdaef007e9f43d6acdb03bd9",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "79869e9473d312012506ad0068751a5946c3d73a3a487f2f889901c9e8869f60"
+          },
+          {
+            "query": "sha256:540367390d41808a5fd3ccc31d1636213bd6efedf6e34370995aef81c2f9aafa",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "79869e9473d312012506ad0068751a5946c3d73a3a487f2f889901c9e8869f60"
+          },
+          {
+            "query": "sha256:3030be42dd8a48f7345fd23a0f10991f6d45a825b95199d91baa273f8434b808",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "79869e9473d312012506ad0068751a5946c3d73a3a487f2f889901c9e8869f60"
+          },
+          {
+            "query": "sha256:2647a7b112cca1b137ebc3bdb808d637debfbe57f3dd84e81af2c0363f8620b0",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "79869e9473d312012506ad0068751a5946c3d73a3a487f2f889901c9e8869f60"
+          },
+          {
+            "query": "sha256:05482def19c845a61ca96764c3730a6c69fb613173d0d53676725da4d42adf6e",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "de41f04181e02f0f9e14c78a0728a18f694c707d16a3725aba06761adf938bb7"
+          },
+          {
+            "query": "sha256:8de019a51d535cf55088531d625118fba62273b5b07bbc27e3690b83c2cc6d11",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "de41f04181e02f0f9e14c78a0728a18f694c707d16a3725aba06761adf938bb7"
+          },
+          {
+            "query": "sha256:7efc15d567f37c989c7b9095820124817840d20c9c40f0e39d5477ef853a5577",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "de41f04181e02f0f9e14c78a0728a18f694c707d16a3725aba06761adf938bb7"
+          },
+          {
+            "query": "sha256:a7ebe9ad56293623bfa5f5bcbedaecb51ed1f0080efeab043c49cb595cc5dae5",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "de41f04181e02f0f9e14c78a0728a18f694c707d16a3725aba06761adf938bb7"
+          },
+          {
+            "query": "sha256:c4ef5e2193009265dd10ca821913ebcb2811ab5db8cda13a96eb57bcd1040c6b",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7b1aabbe0e19d387f1df7ccbf9fbcb9fb048db112e3fc298aaf6eaa0083f76a0"
+          },
+          {
+            "query": "sha256:05afcafc4b0daf72c5a0923797fc2f2f49aaadc7e39af02efd63e381e3f16467",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7b1aabbe0e19d387f1df7ccbf9fbcb9fb048db112e3fc298aaf6eaa0083f76a0"
+          },
+          {
+            "query": "sha256:944aec5e2ea86cd0a20346ecf741959c24be5f306cafd292d061139ebaa5545f",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7b1aabbe0e19d387f1df7ccbf9fbcb9fb048db112e3fc298aaf6eaa0083f76a0"
+          },
+          {
+            "query": "sha256:7dc97a30d3a1459b0be2d3601122109990fdced2827cda46019c37ec795d4a4c",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7b1aabbe0e19d387f1df7ccbf9fbcb9fb048db112e3fc298aaf6eaa0083f76a0"
+          },
+          {
+            "query": "sha256:97da62fd3b7fa984ae1824af63d1b61a82d11f467d07e6490487b057eae990b4",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "8a81682884c80008d86f44da8a325288cb5d1a0fe5cc42dd1e059a4616a44ffa"
+          },
+          {
+            "query": "sha256:ecd8c164658dc907f581ee216fab05266e3a19e95adcc5bd5504026ab2fb7cb5",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "8a81682884c80008d86f44da8a325288cb5d1a0fe5cc42dd1e059a4616a44ffa"
+          },
+          {
+            "query": "sha256:5035436e961da90bf1038f5557ad96543e624ec0c181f8e3eb16d58b0d52373f",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "8a81682884c80008d86f44da8a325288cb5d1a0fe5cc42dd1e059a4616a44ffa"
+          },
+          {
+            "query": "sha256:97274fd42bb4e5789d24ec37a1f6ae8bdc8e60125b1d7d26dcc5e79e8d6b3f32",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "8a81682884c80008d86f44da8a325288cb5d1a0fe5cc42dd1e059a4616a44ffa"
+          },
+          {
+            "query": "sha256:07e9ffb0a319c9e304b02abbfa39c51381d0ba51f4e5da53f90dc8a620cdedf9",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "3e3e3afe62fbed2de0df89e1b2b089dd26ec78b3587d1a5d8376276d4676464a"
+          },
+          {
+            "query": "sha256:eed2f56a0f30e7cc98d7dbfb77b4f25563c285f813e48483f12db8406d7019f1",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "3e3e3afe62fbed2de0df89e1b2b089dd26ec78b3587d1a5d8376276d4676464a"
+          },
+          {
+            "query": "sha256:59dbfdc6472972d0883830f5a4ef2b686f54d4ec3fe0897c3f55ba8bc6019db6",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "3e3e3afe62fbed2de0df89e1b2b089dd26ec78b3587d1a5d8376276d4676464a"
+          },
+          {
+            "query": "sha256:aef6232d3e8bfd31cf9de64d06b7332d4571cf419df8905c2cb86222e023b3a5",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "3e3e3afe62fbed2de0df89e1b2b089dd26ec78b3587d1a5d8376276d4676464a"
+          },
+          {
+            "query": "sha256:45636dd16c6390f501fecd57922213b0735e9d94559e4c324d92a3216933da45",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "eb0a89e713b0f97bed906f7bab691c989a9fdfe70279dd229df93f5d7c49b493"
+          },
+          {
+            "query": "sha256:e1b97afa95cd8fe19dca2651eea7b3477f319342495a5e59a4f446922377573b",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "eb0a89e713b0f97bed906f7bab691c989a9fdfe70279dd229df93f5d7c49b493"
+          },
+          {
+            "query": "sha256:624b12ef95c316c8034229cbcae07f54adde2cbc0d97d2cda0f2daecb3c6d47b",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "eb0a89e713b0f97bed906f7bab691c989a9fdfe70279dd229df93f5d7c49b493"
+          },
+          {
+            "query": "sha256:77b7e3e64bf7b386a99a912ba34a652b2840771e6acef591d61578d17fb0b479",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "eb0a89e713b0f97bed906f7bab691c989a9fdfe70279dd229df93f5d7c49b493"
+          },
+          {
+            "query": "sha256:ee92ac5b41dcbeeb022fce3a17acf1c43d445c3e8921a7f8ca2929847d7a8f66",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7064110a068ec16d1ac018f471fde9d5463acdc334e37354a9e1e6991d0eec1e"
+          },
+          {
+            "query": "sha256:ef3dc18c9c0fe2e7be243cfec681b4dea89736089a143b9824f902f2323216c5",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7064110a068ec16d1ac018f471fde9d5463acdc334e37354a9e1e6991d0eec1e"
+          },
+          {
+            "query": "sha256:084723ed085b23000c0cd33e450be2a491148382e9bcb14c2dcb76ae72b7df21",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "fdc610e2c364a812ea0a3b887a92d8987ee92399eba114facdbc5301a8d2180c"
+          },
+          {
+            "query": "sha256:c0915066266b41df89dde6867391da21c29cdf75f6170ce43809d90de2474aaf",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "fdc610e2c364a812ea0a3b887a92d8987ee92399eba114facdbc5301a8d2180c"
+          },
+          {
+            "query": "sha256:36349a07bf77167c650e60e651dbc20dfbf4469f24d379c677bf0bf6bada4dc9",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "fdc610e2c364a812ea0a3b887a92d8987ee92399eba114facdbc5301a8d2180c"
+          },
+          {
+            "query": "sha256:c1a45ca8e1be0fc037418d403ee62e94d4d74668a64497658d057607f4e84c89",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "fdc610e2c364a812ea0a3b887a92d8987ee92399eba114facdbc5301a8d2180c"
+          },
+          {
+            "query": "sha256:9a21eaaede217c10a7e23b58510f14397f5f84df0b4941ec3d07b3bc7f9614ee",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "f176d34979e2a976ca938c8cab2516dde7d25eab4848c0d49cc7d2f98b68fa90"
+          },
+          {
+            "query": "sha256:029490adad8a06a2b46a808fe69a92f164d0b2ce02b9fd71ff6d522e3190cc72",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "f176d34979e2a976ca938c8cab2516dde7d25eab4848c0d49cc7d2f98b68fa90"
+          },
+          {
+            "query": "sha256:e0ea16a6ff546511e8b817cb12d73bd7090aab131881c2c4ff9766df79209fd1",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "f176d34979e2a976ca938c8cab2516dde7d25eab4848c0d49cc7d2f98b68fa90"
+          },
+          {
+            "query": "sha256:12a654e849492a6f83a430aacfa2d59d0250a284b464f2384625ed7d70a5aa6c",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "f176d34979e2a976ca938c8cab2516dde7d25eab4848c0d49cc7d2f98b68fa90"
+          },
+          {
+            "query": "sha256:37cb1544a4eb24c3780c92ab61209bf8c5bab8fc332e590a189dcc85dceaa8b4",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "b37e4534ebbebbe4647c1a629e909222a33eae5317246fe04384dcf160c80447"
+          },
+          {
+            "query": "sha256:90f7defce3b256bd407df995314af085470514c473ed9cd12a62e593b0ee1d34",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "b37e4534ebbebbe4647c1a629e909222a33eae5317246fe04384dcf160c80447"
+          },
+          {
+            "query": "sha256:250ae343e69fc5d5c9a952063d871c61fb92925959ce9c09117513b5d42ace2b",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "b37e4534ebbebbe4647c1a629e909222a33eae5317246fe04384dcf160c80447"
+          },
+          {
+            "query": "sha256:ec1a1b5fa124082b302ded208675b6186ab159e32d366c4524e5925188a43eb4",
+            "disposition": "SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "b37e4534ebbebbe4647c1a629e909222a33eae5317246fe04384dcf160c80447"
+          }
+        ]
+      }
+    },
+    "validation": {
+      "sources": {
+        "passed": true,
+        "evidence": "Complete export replay; three source-ledger hashes verified"
+      },
+      "tests": {
+        "passed": true,
+        "evidence": "97e6a08f8dfe545d07a2edaecacf6df95ca94807040d5f38042ee816202dce3b"
+      },
+      "reproducibility": {
+        "passed": true,
+        "evidence": "All four CSVs match independent repeated export"
+      }
+    }
+  },
+  "limitations": "Search/source/test completion is declared by the reviewer manifest; table integrity is independently checked. STOP means the selected threshold was met in the completed documented search round, not national completeness or proof of absence."
+}
