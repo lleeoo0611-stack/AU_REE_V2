@@ -115,12 +115,12 @@ def review_coverage_cycle(before, after, manifest):
         item = manifest.get('validation', {}).get(check, {})
         if item.get('passed') is not True or not str(item.get('evidence', '')).strip():
             incomplete.append('validation:' + check)
-    # Historical manifests can explicitly replay the former policy. New runs
-    # require zero new cells; a small positive gain always continues.
+    # Historical policies stay replayable. The new below-three policy keeps
+    # the same full-scope and acquisition checks as the default zero policy.
     policy = manifest.get('stopping_policy', 'ZERO_NEW_VERIFIED_CELLS')
-    if policy not in ('ZERO_NEW_VERIFIED_CELLS', 'LEGACY_BELOW_THREE'):
+    if policy not in ('ZERO_NEW_VERIFIED_CELLS', 'LEGACY_BELOW_THREE', 'BELOW_THREE_COMPLETE_ROUND'):
         raise ValueError('CYCLE_UNKNOWN_STOPPING_POLICY')
-    if policy == 'ZERO_NEW_VERIFIED_CELLS':
+    if policy in ('ZERO_NEW_VERIFIED_CELLS', 'BELOW_THREE_COMPLETE_ROUND'):
         scope = manifest.get('search_scope', {})
         if scope.get('columns') != columns or scope.get('all_blank_fields_reviewed') is not True:
             incomplete.append('search_scope:all_53_columns')
@@ -148,5 +148,5 @@ def review_coverage_cycle(before, after, manifest):
         baseline_csv_sha256=filehash(Path(before)/'專案總表.csv'),
         current_csv_sha256=filehash(Path(after)/'專案總表.csv'),
         review_manifest=manifest,
-        limitations='Search/source/test completion is declared by the reviewer manifest; table integrity is independently checked. STOP means no new admissible cells in the completed documented search round, not national completeness or proof of absence.',
+        limitations='Search/source/test completion is declared by the reviewer manifest; table integrity is independently checked. STOP means the selected threshold was met in the completed documented search round, not national completeness or proof of absence.',
     )

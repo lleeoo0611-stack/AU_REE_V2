@@ -25,9 +25,9 @@
     "開發階段代碼": 0,
     "開發階段類別": 0,
     "開發階段": 36,
-    "礦石蘊藏量_Mt": 33,
-    "TREO品位_pct": 31,
-    "總TREO蘊藏量_kt": 31,
+    "礦石蘊藏量_Mt": 34,
+    "TREO品位_pct": 32,
+    "總TREO蘊藏量_kt": 32,
     "磁鐵稀土氧化物蘊藏量_kt": 19,
     "磁鐵稀土佔TREO_pct": 19,
     "NdPr蘊藏量_kt_需兩者皆公布": 17,
@@ -36,7 +36,7 @@
     "預估年產NdPr_t_per_year": 7,
     "預估年產重稀土_t_per_year": 0,
     "產品/產出": 11,
-    "有TREO資源估計": 31,
+    "有TREO資源估計": 32,
     "有來源文件": 74,
     "資料來源名稱": 74,
     "資料來源URL": 74,
@@ -64,7 +64,7 @@
     "Y2O3_氧化釔_kt": 13,
     "ASX代碼": 69
   },
-  "verified_source_hashes": 115,
+  "verified_source_hashes": 116,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "63a40aa5dd6f59300db073b01cd3e9035a0d782039b2e63c711aa0d225923abd",
-    "field_provenance.csv": "0b12a4ef267d4e631880b3248946801f1f8d30c88e74b0edc6af4400927d5535",
-    "missing_fields.csv": "0696214d360730ac81892cde29ea3db60ac8d22a1f444efcc9d7de5d792e7fc2",
+    "專案總表.csv": "3588543458296b3efe6abe9d35a955e1c0ba39de1c0d6bb4a2fe1a308da21f94",
+    "field_provenance.csv": "e22e07c80585f5e9a10b03cf8d8b087bb0b59aa691bd030f362389377ad98732",
+    "missing_fields.csv": "e3c6d3f5de35b0063911da11aeeee1a6fe80c6d6578228fedee0cf12e8a90feb",
     "census_inventory.csv": "88056f25752a6ee1a6367d7412a3f8775e0de207f49b8812d30397fe03fcfa13"
   },
-  "review_ledger_sha256": "c90b700cf4d44da87fe9b5b30036033a7512d80e31f97990c888ec6b471a1f18",
+  "review_ledger_sha256": "2c04a433042141d959b8e97bdac42a5fece5d47a1099c15ef1570e918ec01ed2",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -2921,6 +2921,27 @@
       "forecast_parameters": 0,
       "effective_date": "2026-09-29",
       "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "sandy_global_20260922_annual",
+      "project_id": "AU-3eb7131e4daea18a60a0",
+      "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+      "status": "VALIDATED",
+      "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+      "review_methods": [
+        "NATIVE_TABLE_ROW_COLUMN_CELL_BINDING"
+      ],
+      "resource_selection_role": "PREFERRED",
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "ASX_ARCHIVE_RELEASE_DATE",
+      "new_observations": 2,
+      "forecast_parameters": 0,
+      "effective_date": "2026-09-22",
+      "effective_date_role": "RESOURCE_EFFECTIVE_DATE",
       "date_precision": "DAY",
       "effective_date_interval": null
     }
@@ -14489,9 +14510,9 @@
   "base_contract_columns": 52,
   "base_projection_hashes": {
     "census_inventory.csv": "88056f25752a6ee1a6367d7412a3f8775e0de207f49b8812d30397fe03fcfa13",
-    "field_provenance.csv": "48365ec410092bdb42cf6173b5b048a89ca68f6c9a381f58261aa6e8cea72dfd",
-    "missing_fields.csv": "97419f86578c7a7b2126297914da6d891b4e0cc3561f863214429b0e440152e1",
-    "專案總表.csv": "549cc81f9b158bc8702a7d81777d56a2d78cf3dbd741896247eddff71ed43373"
+    "field_provenance.csv": "3820db9901f583054f185714c5947b93ffe353b361afe3fe9ecd7f9455b95dc1",
+    "missing_fields.csv": "83adca04ad0099e5d560c61c300e811d879681e23fabb2f383cea8b154bf43a5",
+    "專案總表.csv": "3374499ea1f30607a7df6f0190af12f7c866446ac781b48a6db613e9533e48a0"
   },
   "identity_ledger_sha256": "d7838bf99396c26648b1bc30eba7a7d39beae57596e136344d9b0810dea3d5a4",
   "identity_merges": [],

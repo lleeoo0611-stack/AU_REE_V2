@@ -226,6 +226,10 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     if source_unit == 'm tonnes' and unit == 'Mt': source_unit = 'mt'
     if source_unit == 'tonnes' and unit == 't': source_unit = 't'
     if source_unit == "'000 t" and unit == 'kt': source_unit = 'kt'
+    # A Tonnes column headed (000) reports thousands of tonnes. Restrict
+    # this interpretation to bulk ore mass; it is never an oxide grade unit.
+    if field == 'ore_mt' and label == 'tonnes' and source_unit == '000' and unit == 'kt':
+        source_unit = 'kt'
     if unit == '%HM' and source_unit == '% of total hm': source_unit = '%hm'
     if unit == '%TREO':
         if source_unit!='percentage proportion of treo in the mineral resources':

@@ -1,0 +1,45 @@
+{
+  "round": 18,
+  "original_pending": [
+    "Billeroo",
+    "Olympic Dam",
+    "Carrapateena"
+  ],
+  "historical_fourth": "Lake Campion already admitted before this74-project baseline; not counted again",
+  "gemini_unverified_names_searched": 28,
+  "gemini_unverified_remaining": 28,
+  "admitted_from_raw_input_alone": 0,
+  "merge_rule": "Same validated ASX code and same normalized project name or source-bound alias; no substring or same-issuer-only merge",
+  "findings": [
+    {
+      "subject": "Bynoe",
+      "decision": "HOLD_IDENTITY",
+      "reason": "Government Lithium Australia report is not the input Core Lithium association; no issuer/tenure continuity proved"
+    },
+    {
+      "subject": "Coramup",
+      "decision": "HOLD_IDENTITY",
+      "reason": "Regional Coramup Gneiss label is not proof of an OD6 project or alias"
+    },
+    {
+      "subject": "Casterton",
+      "decision": "HOLD_IDENTITY",
+      "reason": "Government report lead identified with expiring signed link; not fetched or used to admit a project"
+    },
+    {
+      "subject": "Pine Creek",
+      "decision": "HOLD_IDENTITY",
+      "reason": "Regional and multiple-issuer projects distinguished; no automatic alias"
+    },
+    {
+      "subject": "Billeroo",
+      "decision": "HOLD",
+      "reason": "Prospective alkaline complex lacks dated stand-alone admitted project scope"
+    },
+    {
+      "subject": "Olympic Dam / Carrapateena",
+      "decision": "HOLD",
+      "reason": "REE occurrence and Cu-Au-U resources do not supply an official compatible REE resource or byproduct development case"
+    }
+  ]
+}

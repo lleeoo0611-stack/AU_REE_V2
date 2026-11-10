@@ -82,6 +82,26 @@ class CoverageCycle(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'UNKNOWN_STOPPING_POLICY'):
             self.compare([self.row()], [self.row()], self.manifest)
 
+    def test_complete_below_three_policy_has_strict_threshold(self):
+        self.manifest['stopping_policy']='BELOW_THREE_COMPLETE_ROUND'
+        for count,stop in [(0,True),(1,True),(2,True),(3,False)]:
+            with self.subTest(count=count):
+                report=self.compare([self.row()],[self.row(fills=count)])
+                self.assertEqual(stop,report['stopping_rule']['stop'])
+                self.assertEqual(3,report['stopping_rule']['threshold'])
+
+    def test_complete_below_three_never_stops_with_unfinished_prerequisites(self):
+        self.manifest['stopping_policy']='BELOW_THREE_COMPLETE_ROUND'
+        for count in (0,1,2):
+            for key,value in [('unresolved_acquisition_actions',['blocked PDF']),
+                              ('unresolved_acquisition_actions',None),('search_scope',{}),
+                              ('tracks',{}),('validation',{})]:
+                with self.subTest(count=count,prerequisite=key):
+                    manifest=copy.deepcopy(self.manifest);manifest[key]=value
+                    report=self.compare([self.row()],[self.row(fills=count)],manifest)
+                    self.assertEqual('INCOMPLETE',report['stopping_rule']['decision'])
+                    self.assertFalse(report['stopping_rule']['stop'])
+
     def test_added_cells_are_separate_and_include_identity(self):
         report = self.compare([self.row()], [self.row(), self.row('Q', 2)])
         self.assertEqual(0, report['existing_projects']['newly_filled_cells'])

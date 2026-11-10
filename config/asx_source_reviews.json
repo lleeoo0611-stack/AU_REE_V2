@@ -34019,6 +34019,278 @@
         "continuation15_harts_range_stage"
       ],
       "supersession_reason": "Explicit later29September2026 activity description replaces24July2025 preparatory status; old review retained at8d8718bd9a8a0efa597a2fb04431d168a85c2797"
+    },
+    {
+      "review_id": "sandy_global_20260922_annual",
+      "source_key": "ark_annual2026",
+      "project_id": "AU-3eb7131e4daea18a60a0",
+      "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+      "asset_set": "new18",
+      "path": "data/snapshots/4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03145754",
+      "publication_date": "2026-09-30",
+      "publication_date_role": "ASX_ARCHIVE_RELEASE_DATE",
+      "effective_date": "2026-09-22",
+      "effective_date_role": "RESOURCE_EFFECTIVE_DATE",
+      "date_precision": "DAY",
+      "publication_archive_evidence": {
+        "asset_set": "new18_archive",
+        "path": "data/snapshots/547e8c5d8e9f03611f65114ebff6b864d9dd513a79fd19fbabf31bfb4d692e00.html",
+        "sha256": "547e8c5d8e9f03611f65114ebff6b864d9dd513a79fd19fbabf31bfb4d692e00",
+        "url": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode=AHK&timeframe=Y&year=2026"
+      },
+      "document_issue_date": "2026-09-29",
+      "document_issue_evidence": {
+        "page": 26,
+        "markers": [
+          "Sydney, 29 September 2026"
+        ]
+      },
+      "identity_evidence": {
+        "page": 55,
+        "markers": [
+          "SANDY MITCHELL"
+        ]
+      },
+      "date_evidence": {
+        "page": 55,
+        "markers": [
+          "As at 22 September 2026"
+        ]
+      },
+      "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+      "statement_id": "sandy-global-mre-20260922",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 379.421,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "379,421",
+          "original_unit": "kt",
+          "rounding_half_width": 0.0005,
+          "evidence": {
+            "page": 55,
+            "markers": [
+              "MINERAL RESOURCE STATEMENT",
+              "SANDY MITCHELL",
+              "As at 22 September 2026",
+              "379,421",
+              "340"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+            "page": 55,
+            "original_unit": "kt",
+            "table_bbox": [
+              39,
+              38,
+              812,
+              221
+            ],
+            "row_bbox": [
+              39,
+              209.9,
+              812,
+              220
+            ],
+            "column_bbox": [
+              90,
+              38,
+              126,
+              221
+            ],
+            "table_label": "MINERAL RESOURCE STATEMENT – SANDY MITCHELL",
+            "table_label_bbox": [
+              460,
+              39,
+              811,
+              54
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              41,
+              210,
+              57,
+              219
+            ],
+            "column_label": "Tonnes",
+            "column_label_bbox": [
+              97,
+              111,
+              122,
+              120
+            ],
+            "unit_label": "(000)",
+            "unit_bbox": [
+              103,
+              122,
+              122,
+              131
+            ],
+            "scope_anchor_bbox": [
+              41,
+              81.5,
+              139,
+              92
+            ],
+            "scope_anchor": "As at 22 September 2026",
+            "section_id": "p55-20260922-total"
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 340,
+          "unit": "ppm",
+          "basis": "TREO",
+          "original_token": "340",
+          "original_unit": "ppm",
+          "rounding_half_width": 5,
+          "evidence": {
+            "page": 55,
+            "markers": [
+              "MINERAL RESOURCE STATEMENT",
+              "SANDY MITCHELL",
+              "As at 22 September 2026",
+              "379,421",
+              "340"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "grade",
+            "basis": "TREO",
+            "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+            "page": 55,
+            "original_unit": "ppm",
+            "table_bbox": [
+              39,
+              38,
+              812,
+              221
+            ],
+            "row_bbox": [
+              39,
+              209.9,
+              812,
+              220
+            ],
+            "column_bbox": [
+              477,
+              38,
+              510,
+              221
+            ],
+            "table_label": "MINERAL RESOURCE STATEMENT – SANDY MITCHELL",
+            "table_label_bbox": [
+              460,
+              39,
+              811,
+              54
+            ],
+            "row_label": "Total",
+            "row_label_bbox": [
+              41,
+              210,
+              57,
+              219
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              487,
+              111,
+              505,
+              120
+            ],
+            "unit_label": "(ppm)",
+            "unit_bbox": [
+              482,
+              122,
+              505,
+              131
+            ],
+            "scope_anchor_bbox": [
+              41,
+              81.5,
+              139,
+              92
+            ],
+            "scope_anchor": "As at 22 September 2026",
+            "section_id": "p55-20260922-total"
+          }
+        }
+      ],
+      "resource_categories": [
+        "MEASURED",
+        "INDICATED",
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 55,
+          "markers": [
+            "Measured",
+            "Indicated",
+            "Inferred",
+            "Resource",
+            "379,421",
+            "340"
+          ]
+        },
+        {
+          "page": 6,
+          "markers": [
+            "1,957ppm MzEq lower cut-off grade",
+            "dry in-situ basis",
+            "no metallurgical recovery applied"
+          ]
+        },
+        {
+          "page": 12,
+          "markers": [
+            "not directly comparable",
+            "700 ppm to 1,957 ppm MzEq"
+          ]
+        }
+      ],
+      "selected_resource_sections": {
+        "p55-20260922-total": {
+          "page": 55,
+          "bbox": [
+            39,
+            38,
+            812,
+            221
+          ],
+          "anchor_bbox": [
+            41,
+            81.5,
+            139,
+            92
+          ],
+          "anchor": "As at 22 September 2026",
+          "row_label": "Total"
+        }
+      },
+      "selection_reason": "Annual report separates 340 ppm TREO from 370 ppm TREO+Y and 5430 ppm MzEq, with the exact same dated Total row. Do not use Monazite Equivalent as TREO or combine the exploration target.",
+      "deferred_fields": [
+        {
+          "column": "磁鐵稀土氧化物蘊藏量_kt",
+          "reason": "90_PPM_MAGREO_GROUP_REPORTED_BUT_CANONICAL_INDIVIDUAL_OXIDE_STOICHIOMETRY_NOT_BOUND;NO_BACKFILL_FROM_2025_RESOURCE",
+          "evidence": {
+            "page": 55,
+            "markers": [
+              "Magreo",
+              "90",
+              "TREO"
+            ]
+          }
+        }
+      ]
     }
   ]
 }

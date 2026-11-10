@@ -1,0 +1,317 @@
+{
+  "version": "coverage-cycle-review-v2",
+  "cycle_id": "complete-round-18",
+  "current": {
+    "projects": 74,
+    "columns": 53,
+    "filled_cells": 1505,
+    "total_cells": 3922,
+    "remaining_blank_cells": 2417,
+    "scientific_columns": [
+      "礦石蘊藏量_Mt",
+      "TREO品位_pct",
+      "總TREO蘊藏量_kt",
+      "磁鐵稀土氧化物蘊藏量_kt",
+      "磁鐵稀土佔TREO_pct",
+      "NdPr蘊藏量_kt_需兩者皆公布",
+      "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+      "預估年產TREO_t_per_year",
+      "預估年產NdPr_t_per_year",
+      "預估年產重稀土_t_per_year",
+      "La2O3_氧化鑭_kt",
+      "CeO2_氧化鈰_kt",
+      "Pr6O11_氧化鐠_kt",
+      "Nd2O3_氧化釹_kt",
+      "Sm2O3_氧化釤_kt",
+      "Eu2O3_氧化銪_kt",
+      "Gd2O3_氧化釓_kt",
+      "Tb4O7_氧化鋱_kt",
+      "Dy2O3_氧化鏑_kt",
+      "Ho2O3_氧化鈥_kt",
+      "Er2O3_氧化鉺_kt",
+      "Tm2O3_氧化銩_kt",
+      "Yb2O3_氧化鐿_kt",
+      "Lu2O3_氧化鎦_kt",
+      "Y2O3_氧化釔_kt"
+    ],
+    "scientific_filled_cells": 375,
+    "scientific_total_cells": 1850,
+    "output_hashes": {
+      "專案總表.csv": "3588543458296b3efe6abe9d35a955e1c0ba39de1c0d6bb4a2fe1a308da21f94",
+      "field_provenance.csv": "e22e07c80585f5e9a10b03cf8d8b087bb0b59aa691bd030f362389377ad98732",
+      "missing_fields.csv": "e3c6d3f5de35b0063911da11aeeee1a6fe80c6d6578228fedee0cf12e8a90feb",
+      "census_inventory.csv": "88056f25752a6ee1a6367d7412a3f8775e0de207f49b8812d30397fe03fcfa13"
+    },
+    "provenance_complete": true,
+    "missing_diagnostics_complete": true
+  },
+  "existing_projects": {
+    "newly_filled_cells": 4,
+    "scientific_newly_filled_cells": 3,
+    "updated_value_cells": 2,
+    "withdrawn_cells": 0,
+    "scientific_withdrawn_cells": 0,
+    "numeric_format_only_cells": 0,
+    "net_filled_cell_increase": 4
+  },
+  "added_projects": {
+    "project_ids": [],
+    "count": 0,
+    "filled_cells": 0,
+    "scientific_filled_cells": 0,
+    "identity_and_other_metadata_cells": 0
+  },
+  "removed_projects": {
+    "project_ids": [],
+    "filled_cells": 0,
+    "explanations": []
+  },
+  "total_filled_cell_delta": 4,
+  "stopping_rule": {
+    "policy": "BELOW_THREE_COMPLETE_ROUND",
+    "threshold": 3,
+    "operator": "<",
+    "newly_filled_cells": 4,
+    "scientific_newly_filled_cells": 3,
+    "counting_scope": "EXISTING_BLANK_FILLS_PLUS_ALL_NEW_PROJECT_FILLED_CELLS_INCLUDING_IDENTITY_METADATA",
+    "eligible": false,
+    "stop": false,
+    "incomplete": [
+      "acquisition:unresolved_or_undeclared"
+    ],
+    "decision": "INCOMPLETE"
+  },
+  "baseline_csv_sha256": "63a40aa5dd6f59300db073b01cd3e9035a0d782039b2e63c711aa0d225923abd",
+  "current_csv_sha256": "3588543458296b3efe6abe9d35a955e1c0ba39de1c0d6bb4a2fe1a308da21f94",
+  "review_manifest": {
+    "cycle_id": "complete-round-18",
+    "baseline_commit": "df8c6bf11295254070f7d912b98e375411df9df5",
+    "series_baseline_projects": 74,
+    "stopping_policy": "BELOW_THREE_COMPLETE_ROUND",
+    "search_scope": {
+      "columns": [
+        "專案ID",
+        "開發商",
+        "未上市公司",
+        "專案名稱",
+        "所在地_中文",
+        "所在地_英文",
+        "國家",
+        "州省地區",
+        "緯度",
+        "經度",
+        "礦床型態代碼",
+        "礦床型態",
+        "開發階段代碼",
+        "開發階段類別",
+        "開發階段",
+        "礦石蘊藏量_Mt",
+        "TREO品位_pct",
+        "總TREO蘊藏量_kt",
+        "磁鐵稀土氧化物蘊藏量_kt",
+        "磁鐵稀土佔TREO_pct",
+        "NdPr蘊藏量_kt_需兩者皆公布",
+        "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+        "預估年產TREO_t_per_year",
+        "預估年產NdPr_t_per_year",
+        "預估年產重稀土_t_per_year",
+        "產品/產出",
+        "有TREO資源估計",
+        "有來源文件",
+        "資料來源名稱",
+        "資料來源URL",
+        "已公布元素數_共15項",
+        "已公布元素總和_kt",
+        "元素總和/TREO",
+        "元素數據一致性檢查",
+        "四項磁性元素皆公布",
+        "磁性元素重算值_NdPrTbDy_kt",
+        "重算磁性元素-HTML磁性稀土_kt",
+        "La2O3_氧化鑭_kt",
+        "CeO2_氧化鈰_kt",
+        "Pr6O11_氧化鐠_kt",
+        "Nd2O3_氧化釹_kt",
+        "Sm2O3_氧化釤_kt",
+        "Eu2O3_氧化銪_kt",
+        "Gd2O3_氧化釓_kt",
+        "Tb4O7_氧化鋱_kt",
+        "Dy2O3_氧化鏑_kt",
+        "Ho2O3_氧化鈥_kt",
+        "Er2O3_氧化鉺_kt",
+        "Tm2O3_氧化銩_kt",
+        "Yb2O3_氧化鐿_kt",
+        "Lu2O3_氧化鎦_kt",
+        "Y2O3_氧化釔_kt",
+        "ASX代碼"
+      ],
+      "all_blank_fields_reviewed": true
+    },
+    "unresolved_acquisition_actions": [
+      {
+        "document": "Industry major projects 2025 original",
+        "status": "TIMEOUT_NATIVE_PDF_CAPTURE",
+        "web_text_review": "Aggregate REE section readable through search tool; source bytes and complete listing not replayable"
+      },
+      {
+        "document": "NT October 2025 REE factsheet original",
+        "status": "HTTP_403_NATIVE_PDF_CAPTURE",
+        "alternative": "Current official August 2026 factsheet text found; native capture HTTP403; edition identity with October2025 is unknown"
+      }
+    ],
+    "tracks": {
+      "candidates": {
+        "completed": true,
+        "records": [
+          {
+            "query": "sha256:5d6274507976ac5c0ea5ed013e877b648d790c2bcbc12110a6654210e96c6827",
+            "disposition": "See candidate_scope_review.json and source_review.json"
+          },
+          {
+            "query": "sha256:e3dd18a93103d5699a8049c7d8a2e83a1ffdfeb93d704b444e53ac6e9cd589b3",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "daa84a6da31f2cb1a1c3d64402389d143afb12d07b755dcccab96bfd80a3ae1f"
+          },
+          {
+            "query": "sha256:2fe45f81413a989fe43b0e0c9d6018b5e596ecc8f28148a5e9e54b56044efe83",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "689728c1ed8dca147f9b7dea8c2dcb95838b8f10633035154822618aea78f24c"
+          },
+          {
+            "query": "sha256:f513df97d1db60c4447b4ba913d88a7483488bb2a7cceb9204c7fbb8b4d661e3",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "49b7555289804b74f648326c27e48b07d51f0a70e2ff0a8cd5e89f1a36b9cef3"
+          },
+          {
+            "query": "sha256:a99d84781da7a9566c7790f6da80766aa225c51f90087b307b05080ce065f852",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "79869e9473d312012506ad0068751a5946c3d73a3a487f2f889901c9e8869f60"
+          },
+          {
+            "query": "sha256:c0c95778b521d76c3c5b26bc340a18d9a1b3c6acfe37150f4bfd5b678146c0f2",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "de41f04181e02f0f9e14c78a0728a18f694c707d16a3725aba06761adf938bb7"
+          },
+          {
+            "query": "sha256:03070b0cbe694dea44ac1f27b10350b27956c201f73a009ea74e7e1d78733306",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7b1aabbe0e19d387f1df7ccbf9fbcb9fb048db112e3fc298aaf6eaa0083f76a0"
+          },
+          {
+            "query": "sha256:c7eb0b8c2651b9d163473740afb005de2fbdfff4febfe5b52bf764a043a1a539",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "8a81682884c80008d86f44da8a325288cb5d1a0fe5cc42dd1e059a4616a44ffa"
+          },
+          {
+            "query": "sha256:168cf85e9acb9429f53754db33f8fbc234e9f182d49e125c923c688e31f71b6f",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "8bf8c6e9e01ffe60ee27d35eb1c3b83732c098af50b67d816598f8c4dc585420"
+          },
+          {
+            "query": "sha256:bc320196a13764cf8553236657264e37b8de0b77ecd4346a749aaab902c3880e",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "b3b19ce38d7ab7492ab193d7df164a211bd25b0967a2544010b9448df9ea1acf"
+          },
+          {
+            "query": "sha256:83306a15147fefe471da5374e57dfe7f2aef6f0d466d57e7aff82cc20c170466",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "a834e23c9f37a4262896f445eaddf9cdb272df44cc6ce29be0eff8d9fb8d2ac7"
+          },
+          {
+            "query": "sha256:1fdaf0ee088c27fabdff4124d96ffa133d7a21faccfe0e019c5e267a5505fa4f",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "ed37772ef28646dd3db7762645a646f73dd050b177e9da44b2672fe3eb4241a8"
+          },
+          {
+            "query": "sha256:ff2f630faad9bc83d68f77264b30a46b81bb1c127b8038d1a22e11c2f6e726b7",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "3e3e3afe62fbed2de0df89e1b2b089dd26ec78b3587d1a5d8376276d4676464a"
+          }
+        ]
+      },
+      "numeric": {
+        "completed": true,
+        "records": [
+          {
+            "query": "sha256:cb59bf52a012c8290ad3bd61116ef1c2ceb4ea850d398fb174bbb925750d5cac",
+            "disposition": "Sandy resource Total row validated; elemental assays and grouped/unsupported output bases withheld; all remaining column gap reasons reconciled"
+          },
+          {
+            "query": "sha256:e3dd18a93103d5699a8049c7d8a2e83a1ffdfeb93d704b444e53ac6e9cd589b3",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "daa84a6da31f2cb1a1c3d64402389d143afb12d07b755dcccab96bfd80a3ae1f"
+          },
+          {
+            "query": "sha256:2fe45f81413a989fe43b0e0c9d6018b5e596ecc8f28148a5e9e54b56044efe83",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "689728c1ed8dca147f9b7dea8c2dcb95838b8f10633035154822618aea78f24c"
+          },
+          {
+            "query": "sha256:f513df97d1db60c4447b4ba913d88a7483488bb2a7cceb9204c7fbb8b4d661e3",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "49b7555289804b74f648326c27e48b07d51f0a70e2ff0a8cd5e89f1a36b9cef3"
+          },
+          {
+            "query": "sha256:a99d84781da7a9566c7790f6da80766aa225c51f90087b307b05080ce065f852",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "79869e9473d312012506ad0068751a5946c3d73a3a487f2f889901c9e8869f60"
+          },
+          {
+            "query": "sha256:c0c95778b521d76c3c5b26bc340a18d9a1b3c6acfe37150f4bfd5b678146c0f2",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "de41f04181e02f0f9e14c78a0728a18f694c707d16a3725aba06761adf938bb7"
+          },
+          {
+            "query": "sha256:03070b0cbe694dea44ac1f27b10350b27956c201f73a009ea74e7e1d78733306",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "7b1aabbe0e19d387f1df7ccbf9fbcb9fb048db112e3fc298aaf6eaa0083f76a0"
+          },
+          {
+            "query": "sha256:c7eb0b8c2651b9d163473740afb005de2fbdfff4febfe5b52bf764a043a1a539",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "8a81682884c80008d86f44da8a325288cb5d1a0fe5cc42dd1e059a4616a44ffa"
+          },
+          {
+            "query": "sha256:168cf85e9acb9429f53754db33f8fbc234e9f182d49e125c923c688e31f71b6f",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "8bf8c6e9e01ffe60ee27d35eb1c3b83732c098af50b67d816598f8c4dc585420"
+          },
+          {
+            "query": "sha256:bc320196a13764cf8553236657264e37b8de0b77ecd4346a749aaab902c3880e",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "b3b19ce38d7ab7492ab193d7df164a211bd25b0967a2544010b9448df9ea1acf"
+          },
+          {
+            "query": "sha256:83306a15147fefe471da5374e57dfe7f2aef6f0d466d57e7aff82cc20c170466",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "a834e23c9f37a4262896f445eaddf9cdb272df44cc6ce29be0eff8d9fb8d2ac7"
+          },
+          {
+            "query": "sha256:1fdaf0ee088c27fabdff4124d96ffa133d7a21faccfe0e019c5e267a5505fa4f",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "ed37772ef28646dd3db7762645a646f73dd050b177e9da44b2672fe3eb4241a8"
+          },
+          {
+            "query": "sha256:ff2f630faad9bc83d68f77264b30a46b81bb1c127b8038d1a22e11c2f6e726b7",
+            "disposition": "FRESH_SEARCH_RESULTS_REVIEWED;ONLY_DATED_SOURCE_BOUND_LEDGER_VALUES_ADMITTED;UNVERIFIED_IS_NOT_ABSENCE",
+            "receipt_sha256": "3e3e3afe62fbed2de0df89e1b2b089dd26ec78b3587d1a5d8376276d4676464a"
+          }
+        ]
+      }
+    },
+    "validation": {
+      "sources": {
+        "passed": true,
+        "evidence": "Complete export replay; three source-ledger hashes verified"
+      },
+      "tests": {
+        "passed": true,
+        "evidence": "9531c615a5d18287f2b722947d5ada47d04e7b7ddb34346378f9312b6740a635"
+      },
+      "reproducibility": {
+        "passed": true,
+        "evidence": "All four CSVs match independent repeated export"
+      }
+    }
+  },
+  "limitations": "Search/source/test completion is declared by the reviewer manifest; table integrity is independently checked. STOP means the selected threshold was met in the completed documented search round, not national completeness or proof of absence."
+}
