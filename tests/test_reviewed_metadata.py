@@ -78,3 +78,20 @@ class ListingProof(unittest.TestCase):
     def test_outside_page_region(self):
         d,p,e=self.make();p['ownership_bbox']=[-1,0,100,100]
         with self.assertRaisesRegex(ValueError,'REGION_INVALID'):validate_listing_proof(d,p,e)
+
+    def test_reviewed_percentage_heading_requires_exact_project_region(self):
+        for label in ['Mock Project (100%)', 'Mock Project (50%)',
+                      'Different Project (100%)', 'Mock Project (100% recovery)',
+                      'Option for Mock Project (100%)', 'Mock Project (100%) target']:
+            with self.subTest(label=label):
+                d,p,e=self.make(statement='Example Resources Limited. '+label)
+                b=d[1].search_for(label)[0]
+                p['project_interest_heading']=dict(page=2,markers=[label],bbox=list(b))
+                if label=='Mock Project (100%)':
+                    self.assertIn('SOURCE_BOUND',validate_listing_proof(d,p,e))
+                    bad=copy.deepcopy(p);bad['project_interest_heading']['page']=1
+                    with self.assertRaises(ValueError):validate_listing_proof(d,bad,e)
+                    bad=copy.deepcopy(p);bad.pop('project_interest_heading')
+                    with self.assertRaises(ValueError):validate_listing_proof(d,bad,e)
+                else:
+                    with self.assertRaises(ValueError):validate_listing_proof(d,p,e)

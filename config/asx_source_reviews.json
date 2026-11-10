@@ -44388,6 +44388,95 @@
           }
         }
       ]
+    },
+    {
+      "review_id": "fullscope9_kennedy_listing",
+      "project_id": "AU-cc4e217a90b7123dce0a",
+      "source_key": "devex_kennedy_halfyear20260313",
+      "source_sha256": "a40893cb537f1d9cdeb2eeb9cc7b2289d3cfee4e11974dc33e8ab765dafd6376",
+      "asset_set": "fullscope9",
+      "path": "data/snapshots/a40893cb537f1d9cdeb2eeb9cc7b2289d3cfee4e11974dc33e8ab765dafd6376.pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20260313/pdf/06xdgw8tr21hqs.pdf",
+      "publication_date": "2026-03-13",
+      "effective_date": "2026-03-13",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 10,
+        "markers": [
+          "13 March 2026"
+        ]
+      },
+      "document_issue_date": "2026-03-13",
+      "document_issue_evidence": {
+        "page": 10,
+        "markers": [
+          "13 March 2026"
+        ]
+      },
+      "date_evidence_role": "DOCUMENT_ISSUE_DATE_WITH_ASX_URL_RELEASE_DATE",
+      "publication_date_role": "ASX_DATED_URL",
+      "identity_evidence": {
+        "page": 9,
+        "markers": [
+          "Kennedy Rare Earth Project (100%)",
+          "DevEx Resources Limited"
+        ]
+      },
+      "scope": "Dated DevEx listed issuer association with Kennedy Rare Earth Project (100%) heading in directors report;no current legal-title continuity inference;150Mt and alternative88Mt resource cases are already reviewed and not added;127kg testwork recoveries not bulk oxide composition or annual output.",
+      "statement_id": "fullscope9_kennedy_listing",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 9,
+            "markers": [
+              "Kennedy Rare Earth Project (100%)"
+            ]
+          },
+          "listing_proof": {
+            "exchange": "ASX",
+            "ticker": "DEV",
+            "issuer": "DevEx Resources Limited",
+            "issuer_alias": "DevEx Resources",
+            "project_marker": "Kennedy Rare Earth Project",
+            "listing_evidence": {
+              "page": 3,
+              "markers": [
+                "DevEx Resources Limited",
+                "ASX Code: DEV"
+              ]
+            },
+            "ownership_evidence": {
+              "page": 9,
+              "markers": [
+                "Kennedy Rare Earth Project (100%)"
+              ]
+            },
+            "ownership_bbox": [
+              0,
+              0,
+              595.3200073242188,
+              841.9199829101562
+            ],
+            "ownership_statement_sha256": "ca4dd86aa25c406bde950299d84af95d23c11a01581452531e7c4ff5845faa72",
+            "project_interest_heading": {
+              "page": 9,
+              "markers": [
+                "Kennedy Rare Earth Project (100%)"
+              ],
+              "bbox": [
+                49.560001373291016,
+                74.73001098632812,
+                284.1029968261719,
+                100.60501098632812
+              ]
+            }
+          }
+        }
+      ]
     }
   ]
 }
