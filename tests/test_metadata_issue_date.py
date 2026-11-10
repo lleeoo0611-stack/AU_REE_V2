@@ -11,6 +11,10 @@ class LiteralMetadataIssueDate(unittest.TestCase):
         def evidence(p):
             self.assertEqual(4,p['page']);return 'signed 5 september 2023'
         validate_metadata_issue_date(r,evidence,'2026-11-05')
+        listing=dict(copy.deepcopy(r),attributes=[dict(column='未上市公司',value='否',listing_proof={'exchange':'ASX'})])
+        validate_metadata_issue_date(listing,evidence,'2026-11-05')
+        for attr in [dict(column='未上市公司',value='是',listing_proof={'exchange':'ASX'}),dict(column='礦石蘊藏量_Mt',value=1,listing_proof={'exchange':'ASX'}),dict(column='未上市公司',value='否')]:
+            with self.subTest(attribute=attr),self.assertRaises(ValueError):validate_metadata_issue_date(dict(listing,attributes=[attr]),evidence,'2026-11-05')
         for change in [dict(observations=[{'value':12}]),dict(study={'kind':'PFS'}),dict(attributes=[]),
                        dict(attributes=[{'column':'礦石蘊藏量_Mt'}]),dict(effective_date_role='RESOURCE_EFFECTIVE_DATE'),
                        dict(document_issue_date='2023-09-07'),dict(publication_date='2023-09-07'),

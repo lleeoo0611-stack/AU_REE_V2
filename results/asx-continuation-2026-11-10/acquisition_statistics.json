@@ -1,0 +1,27 @@
+{
+  "version": "scoped-acquisition-statistics-v1",
+  "attempts": 26,
+  "successful_captures": 21,
+  "attempt_success_rate_percent": 80.76923076923077,
+  "successful_pdf_attempts": 19,
+  "successful_html_attempts": 2,
+  "unique_requested_urls_including_query": 25,
+  "unavailable_attempts": 5,
+  "failure_attempts_by_reason": {
+    "TIMEOUT": 2,
+    "HTTP_403_RESTRICTED": 2,
+    "IncompleteRead": 1
+  },
+  "asx_public_link_sample": {
+    "attempts": 9,
+    "successful_pdf_attempts": 9,
+    "success_rate_percent": 100.0,
+    "limitation": "Known public original links in this series, not ASX-wide anti-bot success or a random sample."
+  },
+  "required_government_unavailable_urls": 3,
+  "optional_prospectus_mirror_unavailable_urls": 1,
+  "original_prospectus_already_verified": true,
+  "browser_publisher_requests": 0,
+  "successful_pdf_recaptures_of_existing_branch_originals": 3,
+  "interpretation": "Attempts and distinct URLs differ because Industry had one recorded retry. Failed requests remain unavailable; recaptured SHA-identical originals are not new documents or new values."
+}

@@ -1,14 +1,14 @@
 {
   "version": "remaining-column-scope-review-v1",
-  "table_sha256": "3726c5c5b051f56ede3fbcdc1735898435ca1a6c74ff9dccc9a72760770e914a",
+  "table_sha256": "73fd1f1a9c5f93f132461071292300e36930e08d4295d82e85730e7d48220d2f",
   "all_columns": 53,
-  "blank_cells": 2393,
+  "blank_cells": 2395,
   "table_audit": {
     "projects": 73,
     "columns": 53,
-    "filled_cells": 1476,
+    "filled_cells": 1474,
     "total_cells": 3869,
-    "remaining_blank_cells": 2393,
+    "remaining_blank_cells": 2395,
     "scientific_columns": [
       "礦石蘊藏量_Mt",
       "TREO品位_pct",
@@ -39,15 +39,15 @@
     "scientific_filled_cells": 372,
     "scientific_total_cells": 1825,
     "output_hashes": {
-      "專案總表.csv": "3726c5c5b051f56ede3fbcdc1735898435ca1a6c74ff9dccc9a72760770e914a",
-      "field_provenance.csv": "a482568a7bb9999051b27084383c2d605bb1eae6ccf1a71210f4757704ddb8b9",
-      "missing_fields.csv": "5f83c0f8a9b417cae7cf15dac5c03d544577fe2f1ee4cf0356b61be336d795d3",
+      "專案總表.csv": "73fd1f1a9c5f93f132461071292300e36930e08d4295d82e85730e7d48220d2f",
+      "field_provenance.csv": "afb680b05b0881fe102e42b50b83c067e87618430a3f1f583b75a41db2837ba1",
+      "missing_fields.csv": "10f238a61307de1d4c58f16f55745b1eb7469fe7cf2dd96dfd82515d845da82f",
       "census_inventory.csv": "56a439ef512d9ce397629294532ead494af8656ed7d015f9be4be549b11acf81"
     },
     "provenance_complete": true,
     "missing_diagnostics_complete": true
   },
-  "additional_accepted_cells": 33,
+  "additional_accepted_cells": 12,
   "limitation": "This records reviewer scope/semantics declarations and reconciles all current gaps; it is not independent source-completeness proof. Failed acquisitions remain incomplete and are not zero-yield evidence.",
   "case_checks": [
     "Barkly full 255-page original already source-reviewed at series baseline, including rounding and fifteen oxides; new amended quarter reaffirms same resource; dated issuer code, listing status and preparatory stage supply three metadata cells in cycle10.",

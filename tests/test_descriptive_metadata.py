@@ -65,6 +65,19 @@ class DescriptiveMetadata(unittest.TestCase):
         for change in [dict(ownership_statement_sha256='0'*64),dict(ownership_statement=statement),dict(ownership_bbox=[39,160,50,175])]:
             with self.subTest(change=change),self.assertRaises(ValueError):validate_listing_proof(doc,dict(proof,**change),evidence)
 
+    def test_exact_native_asx_code_and_share_listing_labels(self):
+        import hashlib
+        from au_ree_v2.reviewed_metadata import validate_listing_proof
+        for label in ['ASX Code: EXM','ASX code Example Metals Limited is listed on the Australian Securities Exchange (Shares: EXM,']:
+            with self.subTest(label=label):
+                doc,a,aliases,evidence,review=self.fixture();page=doc[0]
+                page.insert_textbox(pymupdf.Rect(40,130,560,190),'Example Metals Limited '+label,fontsize=8)
+                statement='Example Metals 100% owned Known Project';page.insert_text((40,220),statement,fontsize=10)
+                b=page.search_for(statement)[0]
+                proof=dict(exchange='ASX',ticker='EXM',issuer='Example Metals Limited',issuer_alias='Example Metals',project_marker='Known Project',listing_evidence=dict(page=1,markers=['Example Metals Limited']),ownership_evidence=dict(page=1,markers=['100% owned']),ownership_bbox=[b.x0-.1,b.y0-.1,b.x1+.1,b.y1+.1],ownership_statement_sha256=hashlib.sha256(statement.casefold().encode()).hexdigest(),code_label=label)
+                self.assertIn('SOURCE_BOUND',validate_listing_proof(doc,proof,evidence))
+                for change in [dict(ticker='OTH'),dict(issuer='Other Metals Limited'),dict(ownership_statement_sha256='0'*64)]:
+                    with self.subTest(change=change),self.assertRaises(ValueError):validate_listing_proof(doc,dict(proof,**change),evidence)
     def test_wrong_alias_statement_region_value_and_column_fail_closed(self):
         for key, value in [('project_marker', 'Other Project'), ('statement', 'Known Project has carbonatite mineralisation.'),
                            ('value_bbox', [-1, 0, 100, 100]), ('literal_value', 'carbonatite')]:

@@ -1,13 +1,13 @@
 {
   "rows": 59,
   "columns": 53,
-  "newly_filled_cells": 80,
+  "newly_filled_cells": 88,
   "newly_filled_column_types": 10,
-  "projects_with_new_values": 42,
+  "projects_with_new_values": 44,
   "new_cells_by_column": {
-    "礦床型態": 28,
+    "礦床型態": 32,
     "有來源文件": 2,
-    "未上市公司": 12,
+    "未上市公司": 16,
     "開發階段": 26,
     "ASX代碼": 7,
     "已公布元素數_共15項": 1,
@@ -22,10 +22,13 @@
     "資料來源URL": 3
   },
   "numeric_format_only_cells": 0,
-  "became_unknown_cells": 0,
-  "became_unknown_by_column": {},
-  "net_filled_cell_increase": 80,
-  "remaining_blank_cells": 1810,
+  "became_unknown_cells": 4,
+  "became_unknown_by_column": {
+    "資料來源名稱": 2,
+    "資料來源URL": 2
+  },
+  "net_filled_cell_increase": 84,
+  "remaining_blank_cells": 1806,
   "remaining_blanks_by_column": {
     "礦床型態代碼": 58,
     "開發階段代碼": 59,
@@ -60,7 +63,7 @@
     "Lu2O3_氧化鎦_kt": 47,
     "Y2O3_氧化釔_kt": 46,
     "ASX代碼": 5,
-    "未上市公司": 36,
+    "未上市公司": 32,
     "緯度": 35,
     "經度": 35,
     "磁鐵稀土氧化物蘊藏量_kt": 40,
@@ -69,11 +72,13 @@
     "TREO品位_pct": 28,
     "總TREO蘊藏量_kt": 28,
     "有TREO資源估計": 28,
-    "礦床型態": 12,
-    "開發商": 1
+    "開發商": 1,
+    "礦床型態": 8,
+    "資料來源名稱": 2,
+    "資料來源URL": 2
   },
   "baseline_csv_sha256": "b3051b9f0b5d4156a1a3757612bb852900321aa7ca838e7051eb2b1e09abb3aa",
-  "updated_csv_sha256": "3726c5c5b051f56ede3fbcdc1735898435ca1a6c74ff9dccc9a72760770e914a",
+  "updated_csv_sha256": "73fd1f1a9c5f93f132461071292300e36930e08d4295d82e85730e7d48220d2f",
   "comparison_scope": "FIXED_BASELINE_COHORT;NEW_PROJECT_CELLS_REPORTED_SEPARATELY",
   "expanded_rows": 73,
   "added_project_ids": [
@@ -92,8 +97,8 @@
     "AU-ee34781b030807146e64",
     "AU-f81823bd8ba271840345"
   ],
-  "added_project_filled_cells": 159,
-  "added_project_blank_cells": 583,
-  "expanded_remaining_blank_cells": 2393,
-  "expanded_filled_cells": 1476
+  "added_project_filled_cells": 153,
+  "added_project_blank_cells": 589,
+  "expanded_remaining_blank_cells": 2395,
+  "expanded_filled_cells": 1474
 }

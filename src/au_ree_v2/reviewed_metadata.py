@@ -4,11 +4,15 @@ from .source_cells import norm, region_text
 
 
 def validate_metadata_issue_date(review, evidence, cutoff):
-    """Signed-issue/ASX-release proof for literal descriptions only."""
+    """Signed-issue/ASX-release proof for source-checked metadata only."""
+    def supported(attribute):
+        return bool(attribute.get('description_binding')) or (
+            attribute.get('column')=='未上市公司' and attribute.get('value')=='否'
+            and bool(attribute.get('listing_proof')))
     if (review.get('effective_date_role')!='DATED_ISSUER_METADATA'
             or review.get('observations') or review.get('study')
             or not review.get('attributes')
-            or not all(a.get('description_binding') for a in review['attributes'])):
+            or not all(supported(a) for a in review['attributes'])):
         raise ValueError('REVIEW_ISSUE_DATE_LITERAL_METADATA_ONLY')
     from .reviewed_discovery import validate_issue_date
     proof=review['document_issue_evidence']
@@ -117,7 +121,14 @@ def validate_listing_proof(doc, proof, evidence):
     if exchange not in ('ASX','LSE') or not re.fullmatch(r'[A-Z0-9]{2,6}',ticker):fail('EXCHANGE_OR_TICKER')
     if not issuer or not alias or not project or norm(alias) not in norm(issuer):fail('ISSUER_OR_PROJECT_REQUIRED')
     listing=evidence(proof['listing_evidence'])
-    if norm(issuer) not in listing or not re.search(r'\b'+exchange+r'\s*:\s*'+re.escape(ticker)+r'\b',doc[proof['listing_evidence']['page']-1].get_text()):fail('ISSUER_TICKER_NOT_BOUND')
+    native_listing=doc[proof['listing_evidence']['page']-1].get_text()
+    code_bound=bool(re.search(r'\b'+exchange+r'\s*(?:code\s*)?:\s*'+re.escape(ticker)+r'\b',native_listing,re.I))
+    if not code_bound and exchange=='ASX' and proof.get('code_label'):
+        label=norm(proof['code_label'])
+        code_bound=(label in listing and 'asx code' in label
+                    and 'australian securities exchange' in label
+                    and bool(re.search(r'\bshares\s*:\s*'+re.escape(ticker)+r'\b',label,re.I)))
+    if norm(issuer) not in listing or not code_bound:fail('ISSUER_TICKER_NOT_BOUND')
     ownership=proof['ownership_evidence'];evidence(ownership)
     page=doc[ownership['page']-1];box=pymupdf.Rect(proof['ownership_bbox'])
     if box.is_empty or box.is_infinite or not page.rect.contains(box):fail('OWNERSHIP_REGION_INVALID')
