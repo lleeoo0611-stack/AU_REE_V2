@@ -21,3 +21,5 @@
 總表及1944格來源不變。當前missing_fields新增可設定的空白分類：UNKNOWN2584、PENDING_CODEBOOK278、NO_COMPARATOR_SOURCE93、NOT_APPLICABLE_STAGE30。只排除最後兩類123格，原覆蓋率1944/4929=39.44%，調整分母後1944/4806=40.45%；分類不代表資料已補齊、現況確認或證明資料不存在。歷史具日期的勘探階段且無選定資源／產品／預測才適用階段條件；無階段仍UNKNOWN。codebook保持DRAFT，278個分類空白仍計入分母。
 
 新CONSECUTIVE_ZERO_GAIN_WITH_BLOCKED_BACKLOG政策離線重新判定：第19輪新增4格、連續零增量0輪；第20輪0格、連續1輪，均CONTINUE，尚未達預設2輪。舊歷史INCOMPLETE判定不改，停止不等於來源窮盡。此修訂不進行新搜尋或下載。詳見[四項工程修改](../../docs/CHANGES_convergence_codebook.md)與[重新判定收據](../convergence-codebook/historical_rejudgment.json)。
+
+工程驗證完成：426項相關回歸／350子測試，全分支離線680項／428子測試，最後新增防覆寫測試另經任務4的10項／8子測試驗證，均0失敗、0錯誤、0跳過；最終不同測試方法聯集681。兩次重建四CSV與當前投影一致，1944格及來源、Census、921份歷史檔案未變。差異鏈還原原報告SHA256一致。完整收據見[工程驗證](../convergence-codebook/verification.json)。

@@ -73,6 +73,7 @@ def rebuild(census_root, database, run_dir, out_prefix, asset_map, cutoff=None):
     cutoff = review_cutoff(ledgers, cutoff)
     assets = load_assets(asset_map, census_root, ledgers)
     before = filehash(database)
+    projection_configs={p.name:filehash(p) for p in (REPO/'config/classification_codebook.json',REPO/'config/blank_classification.json') if p.exists()}
     audits = []
     for pass_name in ('a', 'b'):
         print('Rebuilding independently: ' + pass_name, flush=True)
@@ -86,10 +87,12 @@ def rebuild(census_root, database, run_dir, out_prefix, asset_map, cutoff=None):
             raise ValueError('REBUILD_CENSUS_DATABASE_CHANGED')
     if audits[0]['output_hashes'] != audits[1]['output_hashes']:
         raise ValueError('REBUILD_INDEPENDENT_OUTPUT_MISMATCH')
+    if any(filehash(REPO/'config'/name)!=value for name,value in projection_configs.items()):
+        raise ValueError('REBUILD_PROJECTION_CONFIGURATION_CHANGED')
     receipt = dict(version='reviewed-asx-census-rebuild-v1', cutoff=cutoff,
                    database_sha256=before, database_modified=False,
                    ledger_sha256={p.name: filehash(p) for p in ledger_paths},
-                   asset_map_sha256=filehash(asset_map), independent_rebuilds=2,
+                   asset_map_sha256=filehash(asset_map), independent_rebuilds=2,projection_configuration_sha256=projection_configs,
                    output_hashes=audits[0]['output_hashes'], audit=audits[0],
                    limitation='REPLAY_OF_APPROVED_EVIDENCE;NOT_A_FRESH_SEARCH_OR_FULL_SCOPE_STOP_DECISION')
     paths['receipt'].write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + '\n', encoding='utf8')

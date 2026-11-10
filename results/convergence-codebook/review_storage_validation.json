@@ -1,0 +1,47 @@
+{
+  "version": "review-storage-examples-v1",
+  "historical_reports_modified": false,
+  "all_restored_original_sha256": true,
+  "examples": [
+    {
+      "kind": "historical",
+      "round": 19,
+      "path": "results\\convergence-codebook\\historical-19\\cycle_review.json",
+      "full_sha256": "8674f50d01399943113c556d3785fc2b0310a335824e2064523e18ffd86ae4f0",
+      "full_bytes": 2022357,
+      "index_bytes": 220,
+      "gzip_bytes": 74377,
+      "restored_byte_identical": true
+    },
+    {
+      "kind": "historical",
+      "round": 20,
+      "path": "results\\convergence-codebook\\historical-20\\cycle_review.json",
+      "full_sha256": "2bb51daa0aef3233f1b61c4ee5e1732e9318313fbac554253c71ee693fcb56fb",
+      "full_bytes": 2021136,
+      "index_bytes": 800722,
+      "gzip_bytes": 74609,
+      "restored_byte_identical": true
+    },
+    {
+      "kind": "rejudged",
+      "round": 19,
+      "path": "results\\convergence-codebook\\rejudged-19\\cycle_review.json",
+      "full_sha256": "a2242d94863e9277a6c32a45e9c486c00cbb3431f4fc12461045655c38319039",
+      "full_bytes": 2075017,
+      "index_bytes": 220,
+      "gzip_bytes": 78782,
+      "restored_byte_identical": true
+    },
+    {
+      "kind": "rejudged",
+      "round": 20,
+      "path": "results\\convergence-codebook\\rejudged-20\\cycle_review.json",
+      "full_sha256": "3f30cc8ad6acf3a41d50788d4ce9cea2af8d76adeee2e3b24a5af38d141e1760",
+      "full_bytes": 2074643,
+      "index_bytes": 809541,
+      "gzip_bytes": 79352,
+      "restored_byte_identical": true
+    }
+  ]
+}

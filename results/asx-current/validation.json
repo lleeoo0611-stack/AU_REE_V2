@@ -34,7 +34,7 @@
     "missing_fields.csv": "a3a5bab4f68e01fff932fd84c9e301dd0e5ed5482049ac91dfcf17cbcfd9b697",
     "REVIEW.md": "29f58673e0dd0a702f7758048f67b9a50fae1123201acfc60a0c6c9fc65e593e",
     "source_consistency.csv": "09922af3f905e79f23f58c3e5c0fd84515a01dcf6bc6984660b86c0532fe41ba",
-    "summary.json": "ac7c0fcea15c876162fafb313d365042c0c235a503fd059ef0d481268111afa7",
+    "summary.json": "5d3c687fffaeb32e8f2247e110bddb1ce6a3fd51f1ed76f576a65dbea865b447",
     "專案總表.csv": "a23015c68f0c10cceec63bb30ffdb13cdc010fd1fda801df07a0726997015864"
   },
   "engineering_overlay": {
@@ -43,5 +43,11 @@
     "blank_rules_sha256": "da4d569f6f7655747b8ae090766982bc9d2b061ce92aa935b907775e1e678baa",
     "classification_codebook_status": "DRAFT",
     "note": "Historical source_replay_commit/stopping_rule/tests refer to round20. Engineering validation recorded separately in results/convergence-codebook."
+  },
+  "engineering_verification": {
+    "report": "../convergence-codebook/verification.json",
+    "sha256": "557ec72f0f5c854ae029f34dac63a4352cb11c147506ecb644d97166bc00176f",
+    "data_values_and_provenance_unchanged": true,
+    "no_new_data_round": true
   }
 }
