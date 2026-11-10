@@ -35,7 +35,7 @@
     "預估年產TREO_t_per_year": 6,
     "預估年產NdPr_t_per_year": 7,
     "預估年產重稀土_t_per_year": 0,
-    "產品/產出": 12,
+    "產品/產出": 13,
     "有TREO資源估計": 35,
     "有來源文件": 93,
     "資料來源名稱": 93,
@@ -64,7 +64,7 @@
     "Y2O3_氧化釔_kt": 17,
     "ASX代碼": 84
   },
-  "verified_source_hashes": 147,
+  "verified_source_hashes": 148,
   "database_modified": false,
   "census_by_kind": {
     "TENEMENT": 5525,
@@ -94,12 +94,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "output_hashes": {
-    "專案總表.csv": "15ecbb949aafcedfd012abc514086ea1bf123597d12a6040e0884bb6d955ddf9",
-    "field_provenance.csv": "3b4bd2daec5fac808fe3e395e656909947398c6c821684161380d56ca7b84266",
-    "missing_fields.csv": "dd6b12faca56deadd174512579078e7f617b8863331740dacdf277cfdfb95475",
+    "專案總表.csv": "5e5294b2fe2ad4354015abb6aa67522b12a68857bc518985403acc5bee998d7c",
+    "field_provenance.csv": "601eca9b626688f36ece5132853f2a6ab375980a99f7b2bc96723bbffa7d1f73",
+    "missing_fields.csv": "9231f58464c0a2316cb85a618dd7b4a192451b6db0a5999e998c0191d02f304a",
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1"
   },
-  "review_ledger_sha256": "4922c24ecedb34698de696e23b1870b53d0632e803cc7a5fcdab4913593dc3f4",
+  "review_ledger_sha256": "d83508d44c30a79dbb9f0e61b13e925c2a7e6cf52afcbea36bfb77d63e110ce5",
   "acquired_through": "2026-11-10",
   "validated_reviews": [
     {
@@ -3755,6 +3755,25 @@
       "forecast_parameters": 0,
       "effective_date": "2023-08-01",
       "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "effective_date_interval": null
+    },
+    {
+      "review_id": "fullscope12_balranald_dfs_product_only",
+      "project_id": "AU-524c37fc04cf47bf8dca",
+      "source_sha256": "94a57655d74ead667ce7adbbb0923b68b011641b9249992ff12a017c2e96252f",
+      "status": "VALIDATED",
+      "scope": "WestBalranald2022DFSasreleased21February2023:plannedrareearthmineralconcentrateREC,mineproductendpointonly.NotseparatedREOatEneabbarefinery,noractual2026operatingannualoutput.4ktpaREC lacksTREOgrade;Table4normalizedREEoxidebasketincludingScisnotM+Xmineralpurity.NoMREmass,oregrade,containedoxideorannualTREOconversion.",
+      "review_methods": [],
+      "resource_selection_role": null,
+      "partial_resource_projection": null,
+      "resource_effective_date_unknown": false,
+      "public_release_date_unknown": false,
+      "publication_date_role": "REVIEWED_RELEASE_HEADER",
+      "new_observations": 0,
+      "forecast_parameters": 0,
+      "effective_date": "2023-02-21",
+      "effective_date_role": "DATED_ENGINEERING_FORECAST",
       "date_precision": "DAY",
       "effective_date_interval": null
     }
@@ -21088,9 +21107,9 @@
   "base_contract_columns": 52,
   "base_projection_hashes": {
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
-    "field_provenance.csv": "4f488e1848d700921ab3efffd01a1d7313baeed7ebc1de45fb5c332709f810aa",
-    "missing_fields.csv": "67be03981a3fd418def88953a379a82c8f98aec6133316e9181ae06f2a4efd4c",
-    "專案總表.csv": "4a9fd49756f842267f16c39819d75e8f296404cd982b8c40c25b8ca9af7e5cd0"
+    "field_provenance.csv": "0fc81f39edc68169b7dbe262befdfd5af32a416f894de441707e41019cee0228",
+    "missing_fields.csv": "e6b552682a254641275e654425426cc12651be9d6735d06464c124681979b4c4",
+    "專案總表.csv": "ea4c4d1bfe13282e61763504ed89b73ecd81064e62f9ba71ce9a6a0e46dc73cb"
   },
   "identity_ledger_sha256": "2f2e6d898d89ef2c12c89b722e1a8fe6b7488ea6082b50df5104e722b1bb71c6",
   "identity_merges": [],
