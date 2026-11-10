@@ -145,6 +145,6 @@ def validate_listing_proof(doc, proof, evidence):
         if not statement or native!=statement:fail('OWNERSHIP_STATEMENT_MISMATCH')
     if norm(alias) not in statement or norm(project) not in statement:fail('OWNERSHIP_ISSUER_PROJECT_MISMATCH')
     if re.search(r'\bnot\b|\bno longer\b|\bless than\b',statement):fail('OWNERSHIP_NOT_AFFIRMED')
-    if not re.search(r'100%\s*(?:[-\u2010\u2011]?\s*owned\b|ownership\b)|owned\s+100%',statement):fail('FULL_OWNERSHIP_REQUIRED')
+    if not re.search(r'100%\s*(?:[-\u2010\u2011]?\s*owned\b|ownership\b)|owned\s+100%|\bowns\s+100%\s+of\b|\b100\s+per\s+cent\s*[-\u2010\u2011]?\s*owned\b',statement):fail('FULL_OWNERSHIP_REQUIRED')
     if proof.get('project_scope_evidence'):evidence(proof['project_scope_evidence'])
     return 'SOURCE_BOUND_LISTED_ISSUER_AND_PROJECT_OWNERSHIP'

@@ -33,6 +33,22 @@ class ListingProof(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'ISSUER_PROJECT_MISMATCH'):validate_listing_proof(d,p,e)
     def test_partial_ownership(self):
         with self.assertRaisesRegex(ValueError,'FULL_OWNERSHIP'):validate_listing_proof(*self.make(statement='Example retains 50% ownership of the Mock Project.'))
+    def test_owns_full_interest_of_named_project(self):
+        self.assertIn('SOURCE_BOUND',validate_listing_proof(*self.make(statement='Example owns 100% of the Mock Project.')))
+        for text in ['Example owns 80% of the Mock Project.',
+                     'Example no longer owns 100% of the Mock Project.']:
+            with self.subTest(text=text),self.assertRaises(ValueError):
+                validate_listing_proof(*self.make(statement=text))
+        doc,proof,evidence=self.make(statement='Example owns 100% of the Mock Project.')
+        proof['project_marker']='Unrelated Project'
+        with self.assertRaisesRegex(ValueError,'ISSUER_PROJECT_MISMATCH'):
+            validate_listing_proof(doc,proof,evidence)
+    def test_spelled_percentage_keeps_full_ownership_requirement(self):
+        self.assertIn('SOURCE_BOUND',validate_listing_proof(*self.make(statement='Example operates the 100 per cent-owned Mock Project.')))
+        for text in ['Example operates the 50 per cent-owned Mock Project.',
+                     'Example no longer operates the 100 per cent-owned Mock Project.']:
+            with self.subTest(text=text),self.assertRaises(ValueError):
+                validate_listing_proof(*self.make(statement=text))
     def test_negated_ownership(self):
         with self.assertRaisesRegex(ValueError,'NOT_AFFIRMED'):validate_listing_proof(*self.make(statement='Example does not retain 100% ownership of the Mock Project.'))
     def test_mutated_statement(self):

@@ -9,3 +9,7 @@ The gate checks exact coverage sets, duplicate records, evidence references and 
 Only a completed whole-cohort round with zero existing blank fills plus zero new-project filled cells can STOP. Report scientific values separately from identity/metadata, updates, reformatting and withdrawals. Withdrawals require separate review. Use two independent exports, provenance/missing-cell reconciliation, tests and an unchanged Census hash before each publication; verify the pushed remote SHA.
 
 Access failures remain unresolved acquisition actions. Seek materially new permitted public official versions, without repeating known denied paths or treating different editions as byte-identical originals. No access-control or anti-bot bypass, paid services or private-input publication.
+
+The ownership verifier accepts the exact affirmative forms `owns 100% of` and `100 per cent-owned` in addition to the existing full-ownership forms. The same captured PDF must still bind the listed issuer and ticker, project name, exact native ownership region, and dated review. Partial or negated statements remain rejected. These records describe historical reporting scope, not current legal title or listing continuity.
+
+An acquisition size limit is distinct from a publisher denial. For Carrapateena's public 2025 PEPR, a single government HEAD response supplied a 65,653,127-byte size. A bounded 64 MiB capture verified that exact length and the PDF structure. This does not relax fixed ASX budgets or authorize retrying a denied URL.
