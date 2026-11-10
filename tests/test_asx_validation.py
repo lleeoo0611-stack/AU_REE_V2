@@ -444,6 +444,53 @@ class SourceReviews(unittest.TestCase):
         self.assertEqual('NATIVE_TABLE_ROW_COLUMN_CELL_BINDING',raw['parameter_review_methods']['average_annual_treo_product_t'])
 
 
+class ExplicitTHMDenominator(unittest.TestCase):
+    def test_abbreviated_thm_with_percent_token(self):
+        from au_ree_v2.source_cells import validate_cell
+        doc=pymupdf.open();self.addCleanup(doc.close);p=doc.new_page()
+        for x,y,text in [(50,50,'Resource table'),(50,65,'Mock scope'),(150,90,'THM'),(150,105,'%'),(50,125,'Total'),(150,125,'3.8%')]:
+            p.insert_text((x,y),text,fontsize=9)
+        def box(text):
+            r=p.search_for(text)[0];return [r.x0-.1,r.y0-.1,r.x1+.1,r.y1+.1]
+        b=dict(mode='native_cell',page=1,scope='scope',field='bulk_hm_percent',original_unit='%',section_id='total',
+               table_bbox=[40,35,300,140],row_bbox=[40,113,300,130],row_label='Total',row_label_bbox=box('Total'),
+               column_bbox=[140,35,200,140],column_label='THM',column_label_bbox=box('THM'),unit_bbox=box('%'),
+               table_label='Resource table',table_label_bbox=box('Resource table'),scope_anchor='Mock scope',scope_anchor_bbox=box('Mock scope'))
+        sections={'total':dict(page=1,bbox=b['table_bbox'],anchor='Mock scope',anchor_bbox=box('Mock scope'),row_label='Total')}
+        self.assertIn('NATIVE',validate_cell(doc,b,'bulk_hm_percent','3.8%','%','scope',selected_sections=sections))
+        with self.assertRaisesRegex(ValueError,'TOKEN_MISMATCH'):
+            validate_cell(doc,b,'bulk_hm_percent','38%','%','scope',selected_sections=sections)
+
+    def test_native_total_heavy_minerals_and_oxide_denominator(self):
+        from au_ree_v2.source_cells import validate_cell
+        doc=pymupdf.open();self.addCleanup(doc.close);p=doc.new_page()
+        for x,y,text in [(50,50,'Resource table'),(50,65,'Mock scope'),
+                         (100,90,'Total Heavy Minerals (THM)'),(100,105,'%'),
+                         (300,90,'CeO2'),(50,125,'Total'),(100,125,'3.0'),(300,125,'1.2'),
+                         (50,180,'percentage of in situ THM content'),
+                         (50,195,'percentage of bulk ore content'),(50,210,'percentage of TREO content')]:
+            p.insert_text((x,y),text,fontsize=9)
+        def box(text):
+            r=p.search_for(text)[0];return [r.x0-.1,r.y0-.1,r.x1+.1,r.y1+.1]
+        common=dict(mode='native_cell',page=1,scope='scope',section_id='total',table_bbox=[40,35,560,220],
+                    row_bbox=[40,113,560,130],row_label='Total',row_label_bbox=box('Total'),
+                    table_label='Resource table',table_label_bbox=box('Resource table'),
+                    scope_anchor='Mock scope',scope_anchor_bbox=box('Mock scope'))
+        # Pick the row label rather than the word Total in the column header.
+        common['row_label_bbox']=[49,115,75,129]
+        sections={'total':dict(page=1,bbox=[40,35,560,220],anchor='Mock scope',anchor_bbox=box('Mock scope'),row_label='Total')}
+        hm=dict(common,field='bulk_hm_percent',original_unit='%',column_bbox=[95,35,285,220],
+                column_label='Total Heavy Minerals (THM)',column_label_bbox=box('Total Heavy Minerals (THM)'),unit_bbox=box('%'))
+        self.assertIn('NATIVE',validate_cell(doc,hm,'bulk_hm_percent','3.0','%','scope',selected_sections=sections))
+        denom='percentage of in situ THM content'
+        oxide=dict(common,field='reported_resource_ce_ppm',basis='CeO2',original_unit='%HM',column_bbox=[295,35,375,220],
+                   column_label='CeO2',column_label_bbox=box('CeO2'),unit_label=denom,unit_bbox=box(denom),unit_scope_bbox=[40,35,560,220])
+        self.assertIn('NATIVE',validate_cell(doc,oxide,'reported_resource_ce_ppm','1.2','%HM','scope',selected_sections=sections))
+        for wrong in ['percentage of bulk ore content','percentage of TREO content']:
+            changed=dict(oxide,unit_label=wrong,unit_bbox=box(wrong))
+            with self.subTest(denominator=wrong),self.assertRaisesRegex(ValueError,'UNIT_SEMANTICS'):
+                validate_cell(doc,changed,'reported_resource_ce_ppm','1.2','%HM','scope',selected_sections=sections)
+
 class DateHeaders(unittest.TestCase):
     def test_split_header_and_exchange_code(self):
         self.assertEqual('2025-01-16',publication_date('ASX Announcement\n16 January 2025\nBody'))

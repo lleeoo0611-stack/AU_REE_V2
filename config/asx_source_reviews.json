@@ -25715,7 +25715,21 @@
         "magnet_share_of_treo",
         "element_sum_to_treo_ratio",
         "full15oxide_closure"
-      ]
+      ],
+      "attributes": [
+        {
+          "column": "開發商",
+          "value": "Salazar Gold Pty Ltd",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "SALAZAR GOLD PTY LTD",
+              "Esperance Rare Earth Project"
+            ]
+          }
+        }
+      ],
+      "attribution_scope_note": "Report client Salazar Gold Pty Ltd on the 9November2015 technical-report issue-date basis only; not a verified public-release date, current title, current ASX issuer, or identity merge with OD6 Splinter Rock. Resource scope and all selected native resource cells are unchanged."
     },
     {
       "review_id": "r6_brockman_y_bulk2026",
@@ -37386,6 +37400,5893 @@
         ],
         "header_title": "SOIL ASSAYS CONFIRM URANIUM TARGET FOR DRILLING AT PERENJORI"
       }
+    },
+    {
+      "review_id": "fullscope3_goschen_area1_composition",
+      "project_id": "AU-6d807eb7caec9db0f35e",
+      "source_key": "goschen_mre2025",
+      "source_sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
+      "asset_set": "canonical",
+      "path": "data/snapshots/5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0.pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20251015/pdf/06qkvvhp20rxx2.pdf",
+      "publication_date": "2025-10-15",
+      "effective_date": "2025-10-15",
+      "effective_date_role": "RESOURCE_EFFECTIVE_DATE",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 12,
+        "markers": [
+          "15 October 2025"
+        ]
+      },
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Goschen Project"
+        ]
+      },
+      "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+      "statement_id": "goschen-area1-table8-20251015",
+      "resource_categories": [
+        "MEASURED",
+        "INDICATED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 12,
+          "markers": [
+            "Area 1",
+            "Measured",
+            "Indicated",
+            "1% THM",
+            "percentage of in situ THM content"
+          ]
+        }
+      ],
+      "selection_reason": "SOURCE_AREA1_TOTAL_ONLY;EXACT94_2MT_AND74000T_BULK_ROW_NOT_ROUNDED94MT_OR_COMPANY890MT;SOURCE_DENOMINATOR_RETAINED;Ho_Lu_NOT_REPORTED_NOT_ZERO",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 94.2,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "94,200,000",
+          "original_unit": "t",
+          "rounding_half_width": 0.05,
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Area 1 Mineral Resource",
+              "94,200,000",
+              "74,000"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "t",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              423,
+              805,
+              441
+            ],
+            "row_label": "Area 1 Mineral Resource (M+Ind+Inf)",
+            "row_label_bbox": [
+              63,
+              423,
+              244,
+              441
+            ],
+            "column_bbox": [
+              285,
+              85,
+              363,
+              510
+            ],
+            "column_label": "Material",
+            "column_label_bbox": [
+              307.2,
+              392.5550109863281,
+              341.329052734375,
+              402.6900146484375
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              319.6800109863281,
+              410.0750305175781,
+              328.7770202636719,
+              420.2100341796875
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "bottom-ore_mt",
+            "unit_label": "(t)"
+          }
+        },
+        {
+          "variable": "grade",
+          "value": 0.08,
+          "unit": "%",
+          "basis": "TREO",
+          "original_token": "0.08",
+          "original_unit": "%",
+          "rounding_half_width": 0.005,
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Area 1 Mineral Resource",
+              "94,200,000",
+              "74,000"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "grade",
+            "basis": "TREO",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              423,
+              805,
+              441
+            ],
+            "row_label": "Area 1 Mineral Resource (M+Ind+Inf)",
+            "row_label_bbox": [
+              63,
+              423,
+              244,
+              441
+            ],
+            "column_bbox": [
+              440,
+              85,
+              570,
+              510
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              475.1900207519531,
+              392.5550109863281,
+              500.3190124511719,
+              402.6900146484375
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              499.939990234375,
+              410.0750305175781,
+              513.9539916992187,
+              420.2100341796875
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "bottom-grade",
+            "unit_label": "(%)"
+          }
+        },
+        {
+          "variable": "contained_treo_kt",
+          "value": 74.0,
+          "unit": "kt TREO",
+          "basis": "TREO",
+          "original_token": "74,000",
+          "original_unit": "t",
+          "rounding_half_width": 0.5,
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Area 1 Mineral Resource",
+              "94,200,000",
+              "74,000"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "contained_treo_kt",
+            "basis": "TREO",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "t",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              423,
+              805,
+              441
+            ],
+            "row_label": "Area 1 Mineral Resource (M+Ind+Inf)",
+            "row_label_bbox": [
+              63,
+              423,
+              244,
+              441
+            ],
+            "column_bbox": [
+              640,
+              85,
+              749,
+              510
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              682.1000244140625,
+              392.5550109863281,
+              707.2290161132812,
+              402.6900146484375
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              691.4899780273438,
+              410.0750305175781,
+              700.5869873046875,
+              420.2100341796875
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "bottom-contained_treo_kt",
+            "unit_label": "(t)"
+          }
+        },
+        {
+          "variable": "reported_resource_la_ppm",
+          "value": 134.39999999999998,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "original_token": "0.48",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "La2O3",
+              "0.48",
+              "TOTAL"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_la_ppm",
+            "basis": "La2O3",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              354,
+              805,
+              373
+            ],
+            "row_label": "TOTAL(1)",
+            "row_label_bbox": [
+              106,
+              354,
+              148,
+              373
+            ],
+            "column_bbox": [
+              155.66998291015625,
+              85,
+              195.66998291015625,
+              510
+            ],
+            "column_label": "La2O3",
+            "column_label_bbox": [
+              161.84999389648436,
+              282.4950439453125,
+              189.48997192382814,
+              292.6300476074219
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              378.47999877929686,
+              484.26503295898436,
+              513.6720092773437,
+              494.38203125
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "oxide-reported_resource_la_ppm",
+            "unit_label": "percentage of in situ THM content",
+            "unit_scope_bbox": [
+              60,
+              85,
+              805,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_ce_ppm",
+          "value": 280.0,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "original_token": "1.00",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "CeO2",
+              "1.00",
+              "TOTAL"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_ce_ppm",
+            "basis": "CeO2",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              354,
+              805,
+              373
+            ],
+            "row_label": "TOTAL(1)",
+            "row_label_bbox": [
+              106,
+              354,
+              148,
+              373
+            ],
+            "column_bbox": [
+              195.2939910888672,
+              85,
+              235.2939910888672,
+              510
+            ],
+            "column_label": "CeO2",
+            "column_label_bbox": [
+              203.4899932861328,
+              282.4950439453125,
+              227.09798889160157,
+              292.6300476074219
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              378.47999877929686,
+              484.26503295898436,
+              513.6720092773437,
+              494.38203125
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "oxide-reported_resource_ce_ppm",
+            "unit_label": "percentage of in situ THM content",
+            "unit_scope_bbox": [
+              60,
+              85,
+              805,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_pr_ppm",
+          "value": 33.599999999999994,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "0.12",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Pr6O11",
+              "0.12",
+              "TOTAL"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_pr_ppm",
+            "basis": "Pr6O11",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              354,
+              805,
+              373
+            ],
+            "row_label": "TOTAL(1)",
+            "row_label_bbox": [
+              106,
+              354,
+              148,
+              373
+            ],
+            "column_bbox": [
+              234.0989990234375,
+              85,
+              274.0989990234375,
+              510
+            ],
+            "column_label": "Pr6O11",
+            "column_label_bbox": [
+              238.2899963378906,
+              282.4950439453125,
+              269.9080017089844,
+              292.6300476074219
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              378.47999877929686,
+              484.26503295898436,
+              513.6720092773437,
+              494.38203125
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "oxide-reported_resource_pr_ppm",
+            "unit_label": "percentage of in situ THM content",
+            "unit_scope_bbox": [
+              60,
+              85,
+              805,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_nd_ppm",
+          "value": 120.39999999999999,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "0.43",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Nd2O3",
+              "0.43",
+              "TOTAL"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_nd_ppm",
+            "basis": "Nd2O3",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              354,
+              805,
+              373
+            ],
+            "row_label": "TOTAL(1)",
+            "row_label_bbox": [
+              106,
+              354,
+              148,
+              373
+            ],
+            "column_bbox": [
+              279.4244842529297,
+              85,
+              319.4244842529297,
+              510
+            ],
+            "column_label": "Nd2O3",
+            "column_label_bbox": [
+              284.87999267578124,
+              282.4950439453125,
+              313.96897583007814,
+              292.6300476074219
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              378.47999877929686,
+              484.26503295898436,
+              513.6720092773437,
+              494.38203125
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "oxide-reported_resource_nd_ppm",
+            "unit_label": "percentage of in situ THM content",
+            "unit_scope_bbox": [
+              60,
+              85,
+              805,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_sm_ppm",
+          "value": 22.4,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "original_token": "0.08",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Sm2O3",
+              "0.08",
+              "TOTAL"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_sm_ppm",
+            "basis": "Sm2O3",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              354,
+              805,
+              373
+            ],
+            "row_label": "TOTAL(1)",
+            "row_label_bbox": [
+              106,
+              354,
+              148,
+              373
+            ],
+            "column_bbox": [
+              324.1214904785156,
+              85,
+              364.1214904785156,
+              510
+            ],
+            "column_label": "Sm2O3",
+            "column_label_bbox": [
+              328.5599853515625,
+              282.4950439453125,
+              359.68299560546876,
+              292.6300476074219
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              378.47999877929686,
+              484.26503295898436,
+              513.6720092773437,
+              494.38203125
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "oxide-reported_resource_sm_ppm",
+            "unit_label": "percentage of in situ THM content",
+            "unit_scope_bbox": [
+              60,
+              85,
+              805,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_eu_ppm",
+          "value": 1.1199999999999999,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "original_token": "0.004",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Eu2O3",
+              "0.004",
+              "TOTAL"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_eu_ppm",
+            "basis": "Eu2O3",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              354,
+              805,
+              373
+            ],
+            "row_label": "TOTAL(1)",
+            "row_label_bbox": [
+              106,
+              354,
+              148,
+              373
+            ],
+            "column_bbox": [
+              370.50599670410156,
+              85,
+              410.50599670410156,
+              510
+            ],
+            "column_label": "Eu2O3",
+            "column_label_bbox": [
+              376.2,
+              282.4950439453125,
+              404.81199340820314,
+              292.6300476074219
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              378.47999877929686,
+              484.26503295898436,
+              513.6720092773437,
+              494.38203125
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "oxide-reported_resource_eu_ppm",
+            "unit_label": "percentage of in situ THM content",
+            "unit_scope_bbox": [
+              60,
+              85,
+              805,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_gd_ppm",
+          "value": 16.799999999999997,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "original_token": "0.06",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Gd2O3",
+              "0.06",
+              "TOTAL"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_gd_ppm",
+            "basis": "Gd2O3",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              354,
+              805,
+              373
+            ],
+            "row_label": "TOTAL(1)",
+            "row_label_bbox": [
+              106,
+              354,
+              148,
+              373
+            ],
+            "column_bbox": [
+              416.2229919433594,
+              85,
+              456.2229919433594,
+              510
+            ],
+            "column_label": "Gd2O3",
+            "column_label_bbox": [
+              421.439990234375,
+              282.4950439453125,
+              451.00599365234376,
+              292.6300476074219
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              378.47999877929686,
+              484.26503295898436,
+              513.6720092773437,
+              494.38203125
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "oxide-reported_resource_gd_ppm",
+            "unit_label": "percentage of in situ THM content",
+            "unit_scope_bbox": [
+              60,
+              85,
+              805,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_tb_ppm",
+          "value": 2.8,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "0.01",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Tb4O7",
+              "0.01",
+              "TOTAL"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tb_ppm",
+            "basis": "Tb4O7",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              354,
+              805,
+              373
+            ],
+            "row_label": "TOTAL(1)",
+            "row_label_bbox": [
+              106,
+              354,
+              148,
+              373
+            ],
+            "column_bbox": [
+              455.8429870605469,
+              85,
+              495.8429870605469,
+              510
+            ],
+            "column_label": "Tb4O7",
+            "column_label_bbox": [
+              461.7799865722656,
+              282.4950439453125,
+              489.90598754882814,
+              292.6300476074219
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              378.47999877929686,
+              484.26503295898436,
+              513.6720092773437,
+              494.38203125
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "oxide-reported_resource_tb_ppm",
+            "unit_label": "percentage of in situ THM content",
+            "unit_scope_bbox": [
+              60,
+              85,
+              805,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_dy_ppm",
+          "value": 19.6,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "0.07",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Dy2O3",
+              "0.07",
+              "TOTAL"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_dy_ppm",
+            "basis": "Dy2O3",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              354,
+              805,
+              373
+            ],
+            "row_label": "TOTAL(1)",
+            "row_label_bbox": [
+              106,
+              354,
+              148,
+              373
+            ],
+            "column_bbox": [
+              504.2060546875,
+              85,
+              544.2060546875,
+              510
+            ],
+            "column_label": "Dy2O3",
+            "column_label_bbox": [
+              509.90001220703124,
+              282.4950439453125,
+              538.5120971679687,
+              292.6300476074219
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              378.47999877929686,
+              484.26503295898436,
+              513.6720092773437,
+              494.38203125
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "oxide-reported_resource_dy_ppm",
+            "unit_label": "percentage of in situ THM content",
+            "unit_scope_bbox": [
+              60,
+              85,
+              805,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_er_ppm",
+          "value": 13.999999999999998,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "original_token": "0.05",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Er2O3",
+              "0.05",
+              "TOTAL"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_er_ppm",
+            "basis": "Er2O3",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              354,
+              805,
+              373
+            ],
+            "row_label": "TOTAL(1)",
+            "row_label_bbox": [
+              106,
+              354,
+              148,
+              373
+            ],
+            "column_bbox": [
+              555.5135498046875,
+              85,
+              595.5135498046875,
+              510
+            ],
+            "column_label": "Er2O3",
+            "column_label_bbox": [
+              562.22001953125,
+              282.4950439453125,
+              588.807080078125,
+              292.6300476074219
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              378.47999877929686,
+              484.26503295898436,
+              513.6720092773437,
+              494.38203125
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "oxide-reported_resource_er_ppm",
+            "unit_label": "percentage of in situ THM content",
+            "unit_scope_bbox": [
+              60,
+              85,
+              805,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_tm_ppm",
+          "value": 1.96,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "original_token": "0.007",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Tm2O3",
+              "0.007",
+              "TOTAL"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tm_ppm",
+            "basis": "Tm2O3",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              354,
+              805,
+              373
+            ],
+            "row_label": "TOTAL(1)",
+            "row_label_bbox": [
+              106,
+              354,
+              148,
+              373
+            ],
+            "column_bbox": [
+              602.6630554199219,
+              85,
+              642.6630554199219,
+              510
+            ],
+            "column_label": "Tm2O3",
+            "column_label_bbox": [
+              607.3400146484375,
+              282.4950439453125,
+              637.9860961914062,
+              292.6300476074219
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              378.47999877929686,
+              484.26503295898436,
+              513.6720092773437,
+              494.38203125
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "oxide-reported_resource_tm_ppm",
+            "unit_label": "percentage of in situ THM content",
+            "unit_scope_bbox": [
+              60,
+              85,
+              805,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_yb_ppm",
+          "value": 11.2,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "original_token": "0.04",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Yb2O3",
+              "0.04",
+              "TOTAL"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_yb_ppm",
+            "basis": "Yb2O3",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              354,
+              805,
+              373
+            ],
+            "row_label": "TOTAL(1)",
+            "row_label_bbox": [
+              106,
+              354,
+              148,
+              373
+            ],
+            "column_bbox": [
+              653.0360717773438,
+              85,
+              693.0360717773438,
+              510
+            ],
+            "column_label": "Yb2O3",
+            "column_label_bbox": [
+              658.730029296875,
+              282.4950439453125,
+              687.3421142578125,
+              292.6300476074219
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              378.47999877929686,
+              484.26503295898436,
+              513.6720092773437,
+              494.38203125
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "oxide-reported_resource_yb_ppm",
+            "unit_label": "percentage of in situ THM content",
+            "unit_scope_bbox": [
+              60,
+              85,
+              805,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_y_ppm",
+          "value": 128.8,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "original_token": "0.46",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Y2O3",
+              "0.46",
+              "TOTAL"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_y_ppm",
+            "basis": "Y2O3",
+            "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+            "page": 12,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              805,
+              510
+            ],
+            "row_bbox": [
+              60,
+              354,
+              805,
+              373
+            ],
+            "row_label": "TOTAL(1)",
+            "row_label_bbox": [
+              106,
+              354,
+              148,
+              373
+            ],
+            "column_bbox": [
+              708.3575134277344,
+              85,
+              748.3575134277344,
+              510
+            ],
+            "column_label": "Y2O3",
+            "column_label_bbox": [
+              716.8099853515625,
+              282.4950439453125,
+              739.9050415039062,
+              292.6300476074219
+            ],
+            "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "table_label_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "unit_bbox": [
+              378.47999877929686,
+              484.26503295898436,
+              513.6720092773437,
+              494.38203125
+            ],
+            "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+            "scope_anchor_bbox": [
+              63,
+              85,
+              400,
+              100
+            ],
+            "section_id": "oxide-reported_resource_y_ppm",
+            "unit_label": "percentage of in situ THM content",
+            "unit_scope_bbox": [
+              60,
+              85,
+              805,
+              510
+            ]
+          }
+        }
+      ],
+      "selected_resource_sections": {
+        "bottom-ore_mt": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "Area 1 Mineral Resource (M+Ind+Inf)"
+        },
+        "bottom-grade": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "Area 1 Mineral Resource (M+Ind+Inf)"
+        },
+        "bottom-contained_treo_kt": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "Area 1 Mineral Resource (M+Ind+Inf)"
+        },
+        "bulk-thm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        },
+        "oxide-reported_resource_la_ppm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        },
+        "oxide-reported_resource_ce_ppm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        },
+        "oxide-reported_resource_pr_ppm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        },
+        "oxide-reported_resource_nd_ppm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        },
+        "oxide-reported_resource_sm_ppm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        },
+        "oxide-reported_resource_eu_ppm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        },
+        "oxide-reported_resource_gd_ppm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        },
+        "oxide-reported_resource_tb_ppm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        },
+        "oxide-reported_resource_dy_ppm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        },
+        "oxide-reported_resource_er_ppm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        },
+        "oxide-reported_resource_tm_ppm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        },
+        "oxide-reported_resource_yb_ppm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        },
+        "oxide-reported_resource_y_ppm": {
+          "page": 12,
+          "bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "row_label": "TOTAL(1)"
+        }
+      },
+      "bulk_hm_percent": {
+        "value": 2.8,
+        "original_token": "2.8",
+        "evidence": {
+          "page": 12,
+          "markers": [
+            "Total",
+            "THM",
+            "2.8",
+            "percentage of in situ THM content"
+          ]
+        },
+        "basis_markers": [
+          "percentage of in situ THM content",
+          "In-situ TREO"
+        ],
+        "cell_binding": {
+          "mode": "native_cell",
+          "field": "bulk_hm_percent",
+          "basis": "HM",
+          "scope": "Goschen Area1 only, 15October2025 Table8 Measured+Indicated total at1percentTHMcutoff;94.2Mt in-situ bulk ore,0.08percent reported bulkTREO includingY,74000t reported containedTREO. Oxides are percent of in-situTHM, normalized with same-row2.8percent bulkTHM. Excludes Areas2/3/4,Cannie,Nowie,companygrandtotal and OreReserves.",
+          "page": 12,
+          "original_unit": "%",
+          "table_bbox": [
+            60,
+            85,
+            805,
+            510
+          ],
+          "row_bbox": [
+            60,
+            220,
+            805,
+            240
+          ],
+          "row_label": "TOTAL(1)",
+          "row_label_bbox": [
+            106,
+            220,
+            148,
+            240
+          ],
+          "column_bbox": [
+            276,
+            85,
+            322,
+            510
+          ],
+          "column_label": "Total Heavy Minerals (THM)",
+          "column_label_bbox": [
+            281.1599914550781,
+            118.42502899169922,
+            320.32005004882814,
+            159.6400115966797
+          ],
+          "table_label": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "table_label_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "unit_bbox": [
+            292.439990234375,
+            172.45502014160155,
+            306.4540222167969,
+            182.59002380371095
+          ],
+          "scope_anchor": "Table 8: Area 1Mineral Resource Statement as of 15 October 2025",
+          "scope_anchor_bbox": [
+            63,
+            85,
+            400,
+            100
+          ],
+          "section_id": "bulk-thm",
+          "unit_label": "(%)"
+        }
+      },
+      "deferred_fields": [
+        {
+          "column": "Ho2O3_氧化鈥_kt",
+          "reason": "AREA1_TABLE8_REPORTS13OXIDES_ONLY;Ho_Lu_NOT_REPORTED;NO_HREE8_OR_15_OXIDE_CLOSURE;COMPANY_GRAND_TOTAL_OR_OTHER_AREAS_NOT_TRANSFERRED",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Table 8",
+              "Area 1",
+              "Rare Earth Oxides"
+            ]
+          }
+        },
+        {
+          "column": "Lu2O3_氧化鎦_kt",
+          "reason": "AREA1_TABLE8_REPORTS13OXIDES_ONLY;Ho_Lu_NOT_REPORTED;NO_HREE8_OR_15_OXIDE_CLOSURE;COMPANY_GRAND_TOTAL_OR_OTHER_AREAS_NOT_TRANSFERRED",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Table 8",
+              "Area 1",
+              "Rare Earth Oxides"
+            ]
+          }
+        },
+        {
+          "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+          "reason": "AREA1_TABLE8_REPORTS13OXIDES_ONLY;Ho_Lu_NOT_REPORTED;NO_HREE8_OR_15_OXIDE_CLOSURE;COMPANY_GRAND_TOTAL_OR_OTHER_AREAS_NOT_TRANSFERRED",
+          "evidence": {
+            "page": 12,
+            "markers": [
+              "Table 8",
+              "Area 1",
+              "Rare Earth Oxides"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "fullscope3_listing_brockman",
+      "project_id": "AU-2a3a86a4d971e9f9838d",
+      "source_key": "hastings_brockman20260127",
+      "source_sha256": "83d558a6e132c3b280fa45449f07b5ac8ee1d27b5da603b7c0bf9876925adce5",
+      "asset_set": "fullscope3",
+      "path": "data/snapshots/83d558a6e132c3b280fa45449f07b5ac8ee1d27b5da603b7c0bf9876925adce5.pdf",
+      "url": "https://company-announcements.afr.com/asx/has/6140bba0-faff-11f0-823d-aaf2f6c17b1e.pdf",
+      "publication_date": "2026-01-27",
+      "effective_date": "2026-01-27",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "27 January 2026"
+        ]
+      },
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Brockman",
+          "Hastings Technology Metals Ltd"
+        ]
+      },
+      "scope": "Literal historical listed reporting issuer and 100percent ownership of the named project. Not current title/listing certification or resource/annual production evidence.",
+      "statement_id": "fullscope3_listing_brockman",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Brockman",
+              "100% owned"
+            ]
+          },
+          "listing_proof": {
+            "exchange": "ASX",
+            "ticker": "HAS",
+            "issuer": "Hastings Technology Metals Ltd",
+            "issuer_alias": "Hastings",
+            "project_marker": "Brockman",
+            "listing_evidence": {
+              "page": 1,
+              "markers": [
+                "Hastings Technology Metals Ltd"
+              ]
+            },
+            "ownership_evidence": {
+              "page": 1,
+              "markers": [
+                "Brockman",
+                "100% owned"
+              ]
+            },
+            "ownership_bbox": [
+              71.88997497558594,
+              245.09271850585938,
+              525.6582885742188,
+              346.33696899414065
+            ],
+            "ownership_statement_sha256": "acd94bfcccdbb1d8f1192b7086ab8b7929875041fbc4854b49337b151a598444"
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "fullscope3_listing_cascade",
+      "project_id": "AU-b2dadf9c8046c3c68a02",
+      "source_key": "cascade20220530",
+      "source_sha256": "9f049399b0e97a04d85c1842d4401187d04dcbb59bd86c37fd80e4921d45c43d",
+      "asset_set": "fullscope3",
+      "path": "data/snapshots/9f049399b0e97a04d85c1842d4401187d04dcbb59bd86c37fd80e4921d45c43d.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02526230",
+      "publication_date": "2022-05-30",
+      "effective_date": "2022-05-30",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "30 May 2022"
+        ]
+      },
+      "identity_evidence": {
+        "page": 2,
+        "markers": [
+          "Cascade",
+          "Meeka Gold Limited"
+        ]
+      },
+      "scope": "Literal historical listed reporting issuer and 100percent ownership of the named project. Not current title/listing certification or resource/annual production evidence.",
+      "statement_id": "fullscope3_listing_cascade",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "evidence": {
+            "page": 2,
+            "markers": [
+              "Cascade",
+              "100% owned"
+            ]
+          },
+          "listing_proof": {
+            "exchange": "ASX",
+            "ticker": "MEK",
+            "issuer": "Meeka Gold Limited",
+            "issuer_alias": "Meeka",
+            "project_marker": "Cascade",
+            "listing_evidence": {
+              "page": 2,
+              "markers": [
+                "Meeka Gold Limited"
+              ]
+            },
+            "ownership_evidence": {
+              "page": 2,
+              "markers": [
+                "Cascade",
+                "100% owned"
+              ]
+            },
+            "ownership_bbox": [
+              50,
+              599.2316650390625,
+              550,
+              644.3316650390625
+            ],
+            "ownership_statement_sha256": "5af3d7dfdc990e3738037e746bb74cc4b3e1567286e7b76d0820065892b267a8"
+          }
+        },
+        {
+          "column": "礦床型態",
+          "value": "saprolitic clays",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Cascade",
+              "saprolitic clays"
+            ]
+          },
+          "description_binding": {
+            "page": 1,
+            "project_marker": "Cascade",
+            "project_bbox": [
+              318.62116088867185,
+              143.2459930419922,
+              395.0799499511719,
+              166.93599853515624
+            ],
+            "value_bbox": [
+              390.619970703125,
+              179.0239471435547,
+              485.9679809570313,
+              194.88395080566406
+            ],
+            "literal_value": "saprolitic clays",
+            "statement": "saprolitic clays"
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "fullscope3_nowie_developer",
+      "project_id": "AU-176852ef1348ac10d154",
+      "source_key": "vhm_ar2026",
+      "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9",
+      "asset_set": "fullscope3",
+      "path": "data/snapshots/51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03137624",
+      "publication_date": "2026-09-09",
+      "effective_date": "2026-09-09",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 103,
+        "markers": [
+          "9 September 2026"
+        ]
+      },
+      "document_issue_date": "2026-09-09",
+      "document_issue_evidence": {
+        "page": 103,
+        "markers": [
+          "9 September 2026"
+        ]
+      },
+      "publication_archive_evidence": {
+        "asset_set": "fullscope3_vhm2026_archive",
+        "path": "data/snapshots/fe4ccdeb8d546d52041c1426f1edd85fefca3e4d15be3191cb7e81b39f3e5933.html",
+        "sha256": "fe4ccdeb8d546d52041c1426f1edd85fefca3e4d15be3191cb7e81b39f3e5933",
+        "url": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode=VHM&timeframe=Y&year=2026"
+      },
+      "identity_evidence": {
+        "page": 111,
+        "markers": [
+          "Nowie"
+        ]
+      },
+      "scope": "Nowie dated9September2026 VHM reportingdeveloper and projecttenureschedule,notcurrent-titlecertification or resource/production transfer.",
+      "statement_id": "fullscope3_nowie_developer",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發商",
+          "value": "VHM Limited",
+          "evidence": {
+            "page": 111,
+            "markers": [
+              "Nowie",
+              "VHM Limited"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "fullscope3_cannie_resource_composition",
+      "project_id": "AU-410159af7b79ea498ec2",
+      "source_key": "cannie_mre20230516",
+      "source_sha256": "7de6021ce23b5622e920f8a3169fe6252ea4ba24d7b616f19a1e90454ee4294c",
+      "asset_set": "fullscope3",
+      "path": "data/snapshots/7de6021ce23b5622e920f8a3169fe6252ea4ba24d7b616f19a1e90454ee4294c.pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20230516/pdf/05pqwkp4jszx7d.pdf",
+      "publication_date": "2023-05-16",
+      "effective_date": "2023-05-16",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "16 May 2023"
+        ]
+      },
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Cannie Critical Mineral Project"
+        ]
+      },
+      "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+      "statement_id": "cannie-table3-20230516",
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 7,
+          "markers": [
+            "Mineral Resource",
+            "Inferred",
+            "1.75% THM",
+            "percentage of in situ THM content"
+          ]
+        }
+      ],
+      "selection_reason": "SINGLE_DISTINCT_PROJECT_MRE;NO_NESTED_SUBSET_OR_COMPANY_TOTAL;ALL15_CANONICAL_OXIDES;ROUNDED_SOURCE_POINT_DERIVATIONS",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 192.0,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "192,000,000",
+          "original_unit": "t",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "192,000,000"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "t",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              365,
+              790,
+              387
+            ],
+            "row_label": "Mineral Resource (Inf)",
+            "row_label_bbox": [
+              70,
+              365,
+              300,
+              387
+            ],
+            "column_bbox": [
+              380,
+              115,
+              510,
+              475
+            ],
+            "column_label": "Material",
+            "column_label_bbox": [
+              419.8183068847656,
+              358.90113159179685,
+              448.75307373046877,
+              367.2264929199219
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "(t)",
+            "unit_bbox": [
+              450.7489404296875,
+              358.90113159179685,
+              458.9082861328125,
+              367.2264929199219
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "ore_mt"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "grade",
+          "value": 0.09,
+          "unit": "%",
+          "basis": "TREO",
+          "original_token": "0.09",
+          "original_unit": "%",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.09"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "grade",
+            "basis": "TREO",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              365,
+              790,
+              387
+            ],
+            "row_label": "Mineral Resource (Inf)",
+            "row_label_bbox": [
+              70,
+              365,
+              300,
+              387
+            ],
+            "column_bbox": [
+              515,
+              115,
+              640,
+              475
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              558.9027490234375,
+              360.28598876953123,
+              577.6490087890625,
+              368.61135009765627
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "(%)",
+            "unit_bbox": [
+              609.2345971679688,
+              360.28598876953123,
+              620.8316259765625,
+              368.61135009765627
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "grade"
+          },
+          "rounding_half_width": 0.005
+        },
+        {
+          "variable": "contained_treo_kt",
+          "value": 176.0,
+          "unit": "kt TREO",
+          "basis": "TREO",
+          "original_token": "176,000",
+          "original_unit": "t",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "176,000"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "contained_treo_kt",
+            "basis": "TREO",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "t",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              365,
+              790,
+              387
+            ],
+            "row_label": "Mineral Resource (Inf)",
+            "row_label_bbox": [
+              70,
+              365,
+              300,
+              387
+            ],
+            "column_bbox": [
+              650,
+              115,
+              790,
+              475
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              713.871376953125,
+              358.901162109375,
+              732.6176977539062,
+              367.2265234375
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "(t)",
+            "unit_bbox": [
+              734.4889916992188,
+              358.901162109375,
+              742.6483374023437,
+              367.2265234375
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "contained_treo_kt"
+          },
+          "rounding_half_width": 0.5
+        },
+        {
+          "variable": "reported_resource_la_ppm",
+          "value": 152.5,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "original_token": "0.5",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.5"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_la_ppm",
+            "basis": "La2O3",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              201.3321533203125,
+              115,
+              233.3321533203125,
+              475
+            ],
+            "column_label": "La2O3",
+            "column_label_bbox": [
+              208.2298974609375,
+              296.26841064453123,
+              226.4344091796875,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-La2O3",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_ce_ppm",
+          "value": 335.5,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "original_token": "1.1",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "1.1"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_ce_ppm",
+            "basis": "CeO2",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              237.9826202392578,
+              115,
+              269.9826202392578,
+              475
+            ],
+            "column_label": "CeO2",
+            "column_label_bbox": [
+              245.97571655273438,
+              296.26841064453123,
+              261.98952392578127,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-CeO2",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_pr_ppm",
+          "value": 30.5,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "0.1",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.1"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_pr_ppm",
+            "basis": "Pr6O11",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              274.9396057128906,
+              115,
+              306.9396057128906,
+              475
+            ],
+            "column_label": "Pr6O11",
+            "column_label_bbox": [
+              280.46970458984373,
+              296.26841064453123,
+              301.4095068359375,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-Pr6O11",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_nd_ppm",
+          "value": 122.0,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "0.4",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.4"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_nd_ppm",
+            "basis": "Nd2O3",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              311.59312438964844,
+              115,
+              343.59312438964844,
+              475
+            ],
+            "column_label": "Nd2O3",
+            "column_label_bbox": [
+              318.21555419921873,
+              296.26841064453123,
+              336.97069458007815,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-Nd2O3",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_sm_ppm",
+          "value": 24.4,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "original_token": "0.08",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.08"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_sm_ppm",
+            "basis": "Sm2O3",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              348.2657928466797,
+              115,
+              380.2657928466797,
+              475
+            ],
+            "column_label": "Sm2O3",
+            "column_label_bbox": [
+              353.79590698242185,
+              296.26841064453123,
+              374.7356787109375,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-Sm2O3",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_eu_ppm",
+          "value": 1.22,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "original_token": "0.004",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.004"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_eu_ppm",
+            "basis": "Eu2O3",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              385.19078063964844,
+              115,
+              417.19078063964844,
+              475
+            ],
+            "column_label": "Eu2O3",
+            "column_label_bbox": [
+              392.0885400390625,
+              296.26841064453123,
+              410.2930212402344,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-Eu2O3",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_gd_ppm",
+          "value": 21.349999999999998,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "original_token": "0.07",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.07"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_gd_ppm",
+            "basis": "Gd2O3",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              421.8729248046875,
+              115,
+              453.8729248046875,
+              475
+            ],
+            "column_label": "Gd2O3",
+            "column_label_bbox": [
+              428.22303100585935,
+              296.26841064453123,
+              447.52281860351565,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-Gd2O3",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_tb_ppm",
+          "value": 3.05,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "0.01",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.01"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tb_ppm",
+            "basis": "Tb4O7",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              458.2497863769531,
+              115,
+              490.2497863769531,
+              475
+            ],
+            "column_label": "Tb4O7",
+            "column_label_bbox": [
+              464.87522216796873,
+              296.26841064453123,
+              483.6243505859375,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-Tb4O7",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_dy_ppm",
+          "value": 21.349999999999998,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "0.07",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.07"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_dy_ppm",
+            "basis": "Dy2O3",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              495.2013397216797,
+              115,
+              527.2013397216797,
+              475
+            ],
+            "column_label": "Dy2O3",
+            "column_label_bbox": [
+              502.09607788085935,
+              296.26841064453123,
+              520.3066015625,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-Dy2O3",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_ho_ppm",
+          "value": 6.1,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "original_token": "0.02",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.02"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_ho_ppm",
+            "basis": "Ho2O3",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              531.5862731933594,
+              115,
+              563.5862731933594,
+              475
+            ],
+            "column_label": "Ho2O3",
+            "column_label_bbox": [
+              538.2086572265625,
+              296.26841064453123,
+              556.9638891601562,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-Ho2O3",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_er_ppm",
+          "value": 15.25,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "original_token": "0.05",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.05"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_er_ppm",
+            "basis": "Er2O3",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              568.5309448242188,
+              115,
+              600.5309448242188,
+              475
+            ],
+            "column_label": "Er2O3",
+            "column_label_bbox": [
+              575.976357421875,
+              296.26841064453123,
+              593.0855322265625,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-Er2O3",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_tm_ppm",
+          "value": 3.05,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "original_token": "0.01",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.01"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tm_ppm",
+            "basis": "Tm2O3",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              604.9080810546875,
+              115,
+              636.9080810546875,
+              475
+            ],
+            "column_label": "Tm2O3",
+            "column_label_bbox": [
+              610.441201171875,
+              296.26841064453123,
+              631.3749609375,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-Tm2O3",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_yb_ppm",
+          "value": 15.25,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "original_token": "0.05",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.05"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_yb_ppm",
+            "basis": "Yb2O3",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              641.58642578125,
+              115,
+              673.58642578125,
+              475
+            ],
+            "column_label": "Yb2O3",
+            "column_label_bbox": [
+              648.2088403320313,
+              296.26841064453123,
+              666.9640112304687,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-Yb2O3",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_lu_ppm",
+          "value": 3.05,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "original_token": "0.01",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.01"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_lu_ppm",
+            "basis": "Lu2O3",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              678.2428894042969,
+              115,
+              710.2428894042969,
+              475
+            ],
+            "column_label": "Lu2O3",
+            "column_label_bbox": [
+              684.8683251953125,
+              296.26841064453123,
+              703.6174536132812,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-Lu2O3",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_y_ppm",
+          "value": 152.5,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "original_token": "0.5",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 7,
+            "markers": [
+              "Mineral Resource",
+              "0.5"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_y_ppm",
+            "basis": "Y2O3",
+            "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+            "page": 7,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              115,
+              810,
+              475
+            ],
+            "row_bbox": [
+              70,
+              338,
+              790,
+              353
+            ],
+            "row_label": "Total(1)",
+            "row_label_bbox": [
+              155,
+              338,
+              199,
+              353
+            ],
+            "column_bbox": [
+              715.1876525878906,
+              115,
+              747.1876525878906,
+              475
+            ],
+            "column_label": "Y2O3",
+            "column_label_bbox": [
+              723.7223901367188,
+              296.26841064453123,
+              738.6529150390625,
+              303.03990844726565
+            ],
+            "table_label": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              395.1595849609375,
+              440.66944213867185,
+              510.0525427246094,
+              448.9948034667969
+            ],
+            "scope_anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              70,
+              130,
+              470,
+              150
+            ],
+            "section_id": "oxide-Y2O3",
+            "unit_scope_bbox": [
+              60,
+              115,
+              810,
+              475
+            ]
+          }
+        }
+      ],
+      "selected_resource_sections": {
+        "ore_mt": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Mineral Resource (Inf)"
+        },
+        "grade": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Mineral Resource (Inf)"
+        },
+        "contained_treo_kt": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Mineral Resource (Inf)"
+        },
+        "hm-formula": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "mode": "reviewed_image_section",
+          "row_label": "Formula footnote3"
+        },
+        "oxide-La2O3": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-CeO2": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-Pr6O11": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-Nd2O3": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-Sm2O3": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-Eu2O3": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-Gd2O3": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-Tb4O7": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-Dy2O3": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-Ho2O3": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-Er2O3": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-Tm2O3": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-Yb2O3": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-Lu2O3": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        },
+        "oxide-Y2O3": {
+          "page": 7,
+          "bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "anchor": "Table 3: Cannie Project Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            70,
+            130,
+            470,
+            150
+          ],
+          "row_label": "Total(1)"
+        }
+      },
+      "oxide_sum_tolerance_ppm": 50,
+      "rounding_review_note": "Oxide point sum937.57ppm versus reported900ppm;37.57ppm difference is within50ppm half-step of printed0.09percent grade. Component inputs are rounded; no exact chemical closure or measurement precision is asserted. BulkHM3.05 is a separately labelled reviewed image transcription of the explicit printed calculation footnote; all other numeric inputs use native cell binding.",
+      "bulk_hm_percent": {
+        "value": 3.05,
+        "original_token": "3.05%",
+        "evidence": {
+          "page": 7,
+          "markers": [
+            "THM Grade (3.05%)",
+            "percentage of in situ THM content"
+          ]
+        },
+        "basis_markers": [
+          "THM Grade",
+          "percentage of in situ THM content"
+        ],
+        "cell_binding": {
+          "mode": "reviewed_image_cell",
+          "field": "bulk_hm_percent",
+          "basis": "HM",
+          "scope": "Cannie only, Table3 Inferred Mineral Resource at1.75percentTHM cutoff;192Mt in-situ bulk ore,reported0.09percent bulkTREO includingY and176000t containedTREO;15oxides percent in-situTHM normalized with explicit3.05percentTHM formula footnote3 (not rounded3.1percent header row). Excludes Goschen Area1/other areas,Nowie,companygrandtotal and OreReserves.",
+          "page": 7,
+          "original_unit": "%",
+          "table_bbox": [
+            60,
+            115,
+            810,
+            475
+          ],
+          "row_bbox": [
+            160,
+            450,
+            700,
+            472
+          ],
+          "row_label": "Formula footnote3",
+          "column_bbox": [
+            324.2886499023437,
+            115,
+            350.4590307617188,
+            475
+          ],
+          "column_label": "THM Grade (%)",
+          "table_label": "Cannie Table3 calculation footnote3",
+          "section_id": "hm-formula",
+          "reviewed_token": "3.05%",
+          "review_note": "Visually reviewed printed footnote3: THM Grade (3.05%) multiplied by TREO Grade (3.00%). Explicit formula precision is used instead of rounded3.1percent table header. Reviewed image transcription, not independent OCR.",
+          "cell_render_sha256": "0545fe5fca365b0e6327837fa6ab05d51f9a4f94dc7b26a8bcfafb849fa27d08"
+        }
+      }
+    },
+    {
+      "review_id": "fullscope3_nowie_resource_composition",
+      "project_id": "AU-176852ef1348ac10d154",
+      "source_key": "nowie_mre20240124",
+      "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4",
+      "asset_set": "fullscope3",
+      "path": "data/snapshots/77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02765469",
+      "publication_date": "2024-01-24",
+      "effective_date": "2024-01-24",
+      "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "24 January 2024"
+        ]
+      },
+      "identity_evidence": {
+        "page": 4,
+        "markers": [
+          "Nowie"
+        ]
+      },
+      "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+      "statement_id": "nowie-appendix2-table1-20240124",
+      "resource_categories": [
+        "INFERRED"
+      ],
+      "scope_evidence": [
+        {
+          "page": 17,
+          "markers": [
+            "Mineral Resource",
+            "Inferred",
+            "1% TVHM",
+            "percentage of in situ THM content"
+          ]
+        }
+      ],
+      "selection_reason": "SINGLE_DISTINCT_PROJECT_MRE;NO_NESTED_SUBSET_OR_COMPANY_TOTAL;ALL15_CANONICAL_OXIDES;ROUNDED_SOURCE_POINT_DERIVATIONS",
+      "observations": [
+        {
+          "variable": "ore_mt",
+          "value": 16.4,
+          "unit": "Mt",
+          "basis": "TREO",
+          "original_token": "16.4",
+          "original_unit": "Mt",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "16.4"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "ore_mt",
+            "basis": "TREO",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "Mt",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              187,
+              730,
+              202
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              187,
+              143,
+              202
+            ],
+            "column_bbox": [
+              166,
+              85,
+              210,
+              510
+            ],
+            "column_label": "Material",
+            "column_label_bbox": [
+              171.70000549316407,
+              115.14942260742187,
+              203.98560241699218,
+              124.72922424316407
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "(Mt)",
+            "unit_bbox": [
+              179.98000427246095,
+              137.94941040039063,
+              195.7197637939453,
+              147.5292120361328
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "ore"
+          },
+          "rounding_half_width": 0.05
+        },
+        {
+          "variable": "grade",
+          "value": 0.0684,
+          "unit": "%",
+          "basis": "TREO",
+          "original_token": "1.80%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "1.80%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "grade",
+            "basis": "TREO",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              775,
+              85,
+              810,
+              510
+            ],
+            "column_label": "TREO",
+            "column_label_bbox": [
+              783.6600122070313,
+              240.81940551757813,
+              807.400107421875,
+              250.3992071533203
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "treo-grade",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          },
+          "rounding_half_width": 0.0011
+        },
+        {
+          "variable": "reported_resource_la_ppm",
+          "value": 106.4,
+          "unit": "ppm",
+          "basis": "La2O3",
+          "original_token": "0.28%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.28%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_la_ppm",
+            "basis": "La2O3",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              164.4745635986328,
+              85,
+              202.4745635986328,
+              510
+            ],
+            "column_label": "La2O3",
+            "column_label_bbox": [
+              172.06000610351563,
+              257.8594140625,
+              194.88912109375,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-La2O3",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_ce_ppm",
+          "value": 231.8,
+          "unit": "ppm",
+          "basis": "CeO2",
+          "original_token": "0.61%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.61%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_ce_ppm",
+            "basis": "CeO2",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              205.2745590209961,
+              85,
+              243.2745590209961,
+              510
+            ],
+            "column_label": "CeO2",
+            "column_label_bbox": [
+              213.93999572753907,
+              257.8594140625,
+              234.60912231445312,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-CeO2",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_pr_ppm",
+          "value": 26.6,
+          "unit": "ppm",
+          "basis": "Pr6O11",
+          "original_token": "0.07%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.07%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_pr_ppm",
+            "basis": "Pr6O11",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              246.14957427978516,
+              85,
+              284.14957427978516,
+              510
+            ],
+            "column_label": "Pr6O11",
+            "column_label_bbox": [
+              252.70000549316407,
+              257.8594140625,
+              277.59914306640627,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-Pr6O11",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_nd_ppm",
+          "value": 98.8,
+          "unit": "ppm",
+          "basis": "Nd2O3",
+          "original_token": "0.26%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.26%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_nd_ppm",
+            "basis": "Nd2O3",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              286.9645538330078,
+              85,
+              324.9645538330078,
+              510
+            ],
+            "column_label": "Nd2O3",
+            "column_label_bbox": [
+              293.88999267578123,
+              257.8594140625,
+              318.0391149902344,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-Nd2O3",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_sm_ppm",
+          "value": 19.0,
+          "unit": "ppm",
+          "basis": "Sm2O3",
+          "original_token": "0.05%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.05%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_sm_ppm",
+            "basis": "Sm2O3",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              327.8845672607422,
+              85,
+              365.8845672607422,
+              510
+            ],
+            "column_label": "Sm2O3",
+            "column_label_bbox": [
+              333.8500146484375,
+              257.8594140625,
+              359.9191198730469,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-Sm2O3",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_eu_ppm",
+          "value": 1.1400000000000001,
+          "unit": "ppm",
+          "basis": "Eu2O3",
+          "original_token": "0.003%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.003%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_eu_ppm",
+            "basis": "Eu2O3",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              368.56455993652344,
+              85,
+              406.56455993652344,
+              510
+            ],
+            "column_label": "Eu2O3",
+            "column_label_bbox": [
+              375.72998901367185,
+              257.8594140625,
+              399.399130859375,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-Eu2O3",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_gd_ppm",
+          "value": 15.2,
+          "unit": "ppm",
+          "basis": "Gd2O3",
+          "original_token": "0.04%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.04%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_gd_ppm",
+            "basis": "Gd2O3",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              409.60455322265625,
+              85,
+              447.60455322265625,
+              510
+            ],
+            "column_label": "Gd2O3",
+            "column_label_bbox": [
+              416.2899865722656,
+              257.8594140625,
+              440.9191198730469,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-Gd2O3",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_tb_ppm",
+          "value": 3.8,
+          "unit": "ppm",
+          "basis": "Tb4O7",
+          "original_token": "0.01%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.01%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tb_ppm",
+            "basis": "Tb4O7",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              450.36456298828125,
+              85,
+              488.36456298828125,
+              510
+            ],
+            "column_label": "Tb4O7",
+            "column_label_bbox": [
+              457.71,
+              257.8594140625,
+              481.0191259765625,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-Tb4O7",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_dy_ppm",
+          "value": 19.0,
+          "unit": "ppm",
+          "basis": "Dy2O3",
+          "original_token": "0.05%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.05%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_dy_ppm",
+            "basis": "Dy2O3",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              491.2845458984375,
+              85,
+              529.2845458984375,
+              510
+            ],
+            "column_label": "Dy2O3",
+            "column_label_bbox": [
+              498.38999267578123,
+              257.8594140625,
+              522.1790991210937,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-Dy2O3",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_ho_ppm",
+          "value": 3.8,
+          "unit": "ppm",
+          "basis": "Ho2O3",
+          "original_token": "0.01%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.01%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_ho_ppm",
+            "basis": "Ho2O3",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              532.0245361328125,
+              85,
+              570.0245361328125,
+              510
+            ],
+            "column_label": "Ho2O3",
+            "column_label_bbox": [
+              538.949990234375,
+              257.8594140625,
+              563.09908203125,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-Ho2O3",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_er_ppm",
+          "value": 15.2,
+          "unit": "ppm",
+          "basis": "Er2O3",
+          "original_token": "0.04%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.04%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_er_ppm",
+            "basis": "Er2O3",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              572.8845520019531,
+              85,
+              610.8845520019531,
+              510
+            ],
+            "column_label": "Er2O3",
+            "column_label_bbox": [
+              580.949990234375,
+              257.8594140625,
+              602.8191137695312,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-Er2O3",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_tm_ppm",
+          "value": 3.8,
+          "unit": "ppm",
+          "basis": "Tm2O3",
+          "original_token": "0.01%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.01%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_tm_ppm",
+            "basis": "Tm2O3",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              613.8945617675781,
+              85,
+              651.8945617675781,
+              510
+            ],
+            "column_label": "Tm2O3",
+            "column_label_bbox": [
+              620.1000146484375,
+              257.8594140625,
+              645.6891088867187,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-Tm2O3",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_yb_ppm",
+          "value": 15.2,
+          "unit": "ppm",
+          "basis": "Yb2O3",
+          "original_token": "0.04%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.04%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_yb_ppm",
+            "basis": "Yb2O3",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              654.5745544433594,
+              85,
+              692.5745544433594,
+              510
+            ],
+            "column_label": "Yb2O3",
+            "column_label_bbox": [
+              661.740029296875,
+              257.8594140625,
+              685.4090795898437,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-Yb2O3",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_lu_ppm",
+          "value": 2.6599999999999997,
+          "unit": "ppm",
+          "basis": "Lu2O3",
+          "original_token": "0.007%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.007%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_lu_ppm",
+            "basis": "Lu2O3",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              695.4945373535156,
+              85,
+              733.4945373535156,
+              510
+            ],
+            "column_label": "Lu2O3",
+            "column_label_bbox": [
+              702.9000024414063,
+              257.8594140625,
+              726.089072265625,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-Lu2O3",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        },
+        {
+          "variable": "reported_resource_y_ppm",
+          "value": 125.4,
+          "unit": "ppm",
+          "basis": "Y2O3",
+          "original_token": "0.33%",
+          "original_unit": "%HM",
+          "evidence": {
+            "page": 17,
+            "markers": [
+              "Mineral Resource",
+              "0.33%"
+            ]
+          },
+          "cell_binding": {
+            "mode": "native_cell",
+            "field": "reported_resource_y_ppm",
+            "basis": "Y2O3",
+            "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+            "page": 17,
+            "original_unit": "%HM",
+            "table_bbox": [
+              60,
+              85,
+              810,
+              510
+            ],
+            "row_bbox": [
+              60,
+              332,
+              810,
+              347
+            ],
+            "row_label": "Total 1",
+            "row_label_bbox": [
+              115,
+              332,
+              143,
+              347
+            ],
+            "column_bbox": [
+              739.2142944335938,
+              85,
+              777.2142944335938,
+              510
+            ],
+            "column_label": "Y2O3",
+            "column_label_bbox": [
+              754.8600244140625,
+              257.8594140625,
+              761.568564453125,
+              267.43923095703127
+            ],
+            "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "table_label_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "unit_label": "percentage of in situ THM content.",
+            "unit_bbox": [
+              347.37513061523435,
+              496.65979858398435,
+              467.6803503417969,
+              505.68834594726565
+            ],
+            "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+            "scope_anchor_bbox": [
+              60,
+              85,
+              410,
+              101
+            ],
+            "section_id": "oxide-Y2O3",
+            "unit_scope_bbox": [
+              60,
+              85,
+              810,
+              510
+            ]
+          }
+        }
+      ],
+      "selected_resource_sections": {
+        "ore": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "bulk-hm": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "treo-grade": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-La2O3": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-CeO2": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-Pr6O11": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-Nd2O3": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-Sm2O3": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-Eu2O3": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-Gd2O3": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-Tb4O7": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-Dy2O3": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-Ho2O3": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-Er2O3": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-Tm2O3": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-Yb2O3": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-Lu2O3": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        },
+        "oxide-Y2O3": {
+          "page": 17,
+          "bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "row_label": "Total 1"
+        }
+      },
+      "oxide_sum_tolerance_ppm": 12,
+      "rounding_review_note": "Bulkgrade is1.80percentTHM x3.8percentTHM/100=0.0684percent. 15oxide sum687.8ppm versus calculated684ppm differs3.8ppm, within12ppm propagated printed-factor rounding bound. Contained11.2176kt is calculated from rounded16.4Mt and0.0684percent, not a separately reported mass. No estimation uncertainty is quantified.",
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "24 January 2024",
+          "Quarterly Activities Report"
+        ],
+        "header_title": "Quarterly Activities Report"
+      },
+      "bulk_hm_percent": {
+        "value": 3.8,
+        "original_token": "3.8%",
+        "evidence": {
+          "page": 17,
+          "markers": [
+            "THM",
+            "3.8%",
+            "percentage of in situ THM content"
+          ]
+        },
+        "basis_markers": [
+          "THM",
+          "percentage of in situ THM content"
+        ],
+        "cell_binding": {
+          "mode": "native_cell",
+          "field": "bulk_hm_percent",
+          "basis": "HM",
+          "scope": "Nowie only, Appendix2 Table1 Inferred Mineral Resource at1percentTVHM cutoff (THM x VHM);16.4Mt in-situ bulk ore,3.8percentbulkTHM and1.80percentTREOincludingY inTHM. BulkTREOgrade0.0684percent andcontained11.2176kt are point calculations from rounded inputs, not separately reported quantities. Excludes nested6.4Mt strandline subsection Table2,Goschen,Cannie,companygrandtotal and OreReserves.",
+          "page": 17,
+          "original_unit": "%",
+          "table_bbox": [
+            60,
+            85,
+            810,
+            510
+          ],
+          "row_bbox": [
+            60,
+            187,
+            730,
+            202
+          ],
+          "row_label": "Total 1",
+          "row_label_bbox": [
+            115,
+            187,
+            143,
+            202
+          ],
+          "column_bbox": [
+            300,
+            85,
+            338,
+            510
+          ],
+          "column_label": "THM",
+          "column_label_bbox": [
+            309.8500146484375,
+            115.14942260742187,
+            328.4183874511719,
+            124.72922424316407
+          ],
+          "table_label": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "table_label_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "unit_label": "(%)",
+          "unit_bbox": [
+            312.37000366210935,
+            137.94941040039063,
+            325.5963659667969,
+            147.5292120361328
+          ],
+          "scope_anchor": "Table 1: Nowie Mineral Resource estimate (Inferred)",
+          "scope_anchor_bbox": [
+            60,
+            85,
+            410,
+            101
+          ],
+          "section_id": "bulk-hm"
+        }
+      }
+    },
+    {
+      "review_id": "fullscope3_description_cannie",
+      "project_id": "AU-410159af7b79ea498ec2",
+      "source_key": "vhm_ar2026",
+      "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9",
+      "asset_set": "fullscope3",
+      "path": "data/snapshots/51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03137624",
+      "publication_date": "2026-09-09",
+      "effective_date": "2026-09-09",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 103,
+        "markers": [
+          "9 September 2026"
+        ]
+      },
+      "document_issue_date": "2026-09-09",
+      "document_issue_evidence": {
+        "page": 103,
+        "markers": [
+          "9 September 2026"
+        ]
+      },
+      "publication_archive_evidence": {
+        "asset_set": "fullscope3_vhm2026_archive",
+        "path": "data/snapshots/fe4ccdeb8d546d52041c1426f1edd85fefca3e4d15be3191cb7e81b39f3e5933.html",
+        "sha256": "fe4ccdeb8d546d52041c1426f1edd85fefca3e4d15be3191cb7e81b39f3e5933",
+        "url": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode=VHM&timeframe=Y&year=2026"
+      },
+      "identity_evidence": {
+        "page": 16,
+        "markers": [
+          "Cannie"
+        ]
+      },
+      "scope": "Literal project description from its own panel at9September2026. No production or scope transfer from Goschen.",
+      "statement_id": "fullscope3_description_cannie",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發階段",
+          "value": "ongoing exploration activities（來源揭露：2026-09-09）",
+          "evidence": {
+            "page": 16,
+            "markers": [
+              "Cannie",
+              "exploration"
+            ]
+          },
+          "description_binding": {
+            "page": 16,
+            "project_marker": "Cannie",
+            "project_bbox": [
+              71.92400207519532,
+              52.176168823242186,
+              175.68465576171874,
+              70.17157135009765
+            ],
+            "value_bbox": [
+              71.92400207519532,
+              541.0488037109375,
+              282.78936157226565,
+              566.2784057617188
+            ],
+            "literal_value": "ongoing exploration activities",
+            "statement": "category as part of the Company’s ongoing exploration activities."
+          }
+        }
+      ]
+    },
+    {
+      "review_id": "fullscope3_description_nowie",
+      "project_id": "AU-176852ef1348ac10d154",
+      "source_key": "vhm_ar2026",
+      "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9",
+      "asset_set": "fullscope3",
+      "path": "data/snapshots/51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9.pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03137624",
+      "publication_date": "2026-09-09",
+      "effective_date": "2026-09-09",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 103,
+        "markers": [
+          "9 September 2026"
+        ]
+      },
+      "document_issue_date": "2026-09-09",
+      "document_issue_evidence": {
+        "page": 103,
+        "markers": [
+          "9 September 2026"
+        ]
+      },
+      "publication_archive_evidence": {
+        "asset_set": "fullscope3_vhm2026_archive",
+        "path": "data/snapshots/fe4ccdeb8d546d52041c1426f1edd85fefca3e4d15be3191cb7e81b39f3e5933.html",
+        "sha256": "fe4ccdeb8d546d52041c1426f1edd85fefca3e4d15be3191cb7e81b39f3e5933",
+        "url": "https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCode&asxCode=VHM&timeframe=Y&year=2026"
+      },
+      "identity_evidence": {
+        "page": 16,
+        "markers": [
+          "Nowie"
+        ]
+      },
+      "scope": "Literal project description from its own panel at9September2026. No production or scope transfer from Goschen.",
+      "statement_id": "fullscope3_description_nowie",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "礦床型態",
+          "value": "multiple high-grade strandline systems",
+          "evidence": {
+            "page": 16,
+            "markers": [
+              "Nowie",
+              "strandline"
+            ]
+          },
+          "description_binding": {
+            "page": 16,
+            "project_marker": "Nowie",
+            "project_bbox": [
+              315.57001342773435,
+              50.136190795898436,
+              413.2057739257813,
+              68.1315933227539
+            ],
+            "value_bbox": [
+              315.57001342773435,
+              475.8587707519531,
+              526.42275390625,
+              500.9683776855469
+            ],
+            "literal_value": "multiple high-grade strandline systems",
+            "statement": "from multiple high-grade strandline systems occurring above a 20 metre thick"
+          }
+        }
+      ]
     }
   ]
 }

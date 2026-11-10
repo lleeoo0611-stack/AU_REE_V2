@@ -231,6 +231,7 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     if field == 'ore_mt' and label == 'tonnes' and source_unit == '000' and unit == 'kt':
         source_unit = 'kt'
     if unit == '%HM' and source_unit == '% of total hm': source_unit = '%hm'
+    if unit == '%HM' and source_unit.rstrip('.') == 'percentage of in situ thm content': source_unit = '%hm'
     if unit == '%TREO':
         if source_unit!='percentage proportion of treo in the mineral resources':
             context=anchor('metric_context_bbox','metric_context',table)
@@ -250,7 +251,7 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     elif field == 'hm_mass_mt':
         valid = label == 'in situ hm tonnes' and source_unit == 'mt'
     elif field == 'bulk_hm_percent':
-        valid = label == 'hm' and source_unit == '%'
+        valid = label in ('hm', 'thm', 'total heavy mineral (thm)', 'total heavy minerals (thm)') and source_unit == '%'
     elif field in ('grade', 'contained_treo_kt'):
         valid = label.strip('()') in ('treo','treo*','treo1','treo +','contained treo','total reo') and source_unit in (('ppm', '%', '%hm') if field == 'grade' else ('kg','t', 'kt','kt treo'))
     elif field.startswith('reported_resource_'):
@@ -299,7 +300,9 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
     if not valid:
         fail('HEADER_SEMANTICS_MISMATCH')
     actual = norm(region_text(page, cell))
-    if field.startswith('annual_input_') and unit=='%' and re.fullmatch(r'[+\-]?\d[\d,]*(?:\.\d+)?%',actual):
+    # A trailing percent sign belongs to the numeric cell only after the
+    # independently bound header and denominator establish a percent unit.
+    if source_unit in ('%','%hm','%treo') and re.fullmatch(r'[+\-]?\d[\d,]*(?:\.\d+)?%',actual):
         actual=actual[:-1]
     # Whole-cell equality rejects borrowed numbers, substrings and extra values.
     parsed = number_token(actual)
