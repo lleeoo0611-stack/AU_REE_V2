@@ -166,7 +166,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
         if location_ledger:
             if not review_ledger:raise ValueError('LOCATION_REQUIRES_REVIEWED_PROVENANCE')
             from .reviewed_locations import validate_locations
-            locations=validate_locations(location_ledger,asset_roots or {},projects,cutoff)
+            locations=validate_locations(location_ledger,asset_roots or {},projects,cutoff,verified_pdf_reviews=supplement['receipts'])
             merge_summary_sources(selected,locations['sources'],projects)
             supplement['receipts'].extend(locations['receipts'])
         records=defaultdict(list);observations=defaultdict(list);studies=defaultdict(list)

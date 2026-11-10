@@ -107,6 +107,45 @@ class NativeGAPoints(unittest.TestCase):
         self.cfg['date_precision']='DAY'
         with self.assertRaisesRegex(ValueError,'CURRENCY_CONTRACT'):self.run_review()
 
+    def material_fixture(self):
+        import pymupdf,hashlib
+        from au_ree_v2.source_cells import norm,region_text
+        self.projects[0]['name']='Brockman Mineral Sands Project'
+        self.cfg['reviews'][0]['reviewed_project_name']=self.projects[0]['name']
+        self.data['features'][0]['attributes']['commodities']='Heavy mineral sands - Titanium, Zirconium'
+        self.refresh();path=self.root/'material.pdf'
+        with pymupdf.open() as doc:
+            p=doc.new_page(width=450,height=200)
+            p.insert_text((30,40),'Brockman mineral sands: zircon and rare earth bearing monazite',fontsize=10)
+            doc.save(path)
+        with pymupdf.open(path) as doc:text=norm(region_text(doc[0],pymupdf.Rect(20,20,430,65)))
+        proof=dict(review_id='verified-material',sha256=filehash(path),asset_set='test',path=path.name,
+                   page=1,bbox=[20,20,430,65],project_marker='Brockman',
+                   statement_sha256=hashlib.sha256(text.encode()).hexdigest())
+        self.cfg['reviews'][0]['ree_hms_material_proof']=proof
+        return [dict(status='VALIDATED',project_id='P',review_id=proof['review_id'],source_sha256=proof['sha256'],
+                     effective_date='2026-03-31',date_precision='MONTH')]
+
+    def test_hms_byproduct_role_needs_independently_validated_same_project_pdf(self):
+        receipts=self.material_fixture()
+        with self.assertRaisesRegex(ValueError,'COMMODITY_OR_SOURCE'):self.run_review()
+        p=self.root/'ledger.json';p.write_text(json.dumps(self.cfg),encoding='utf8')
+        result=validate_locations(p,{'test':self.root},self.projects,'2026-11-05',verified_pdf_reviews=receipts)
+        self.assertEqual('verified-material',json.loads(result['attributes']['P'][0]['scope'])['ree_hms_material_proof']['review_id'])
+        receipts[0]['project_id']='other'
+        with self.assertRaisesRegex(ValueError,'COMMODITY_OR_SOURCE'):
+            validate_locations(p,{'test':self.root},self.projects,'2026-11-05',verified_pdf_reviews=receipts)
+
+    def test_hms_material_region_and_hash_cannot_borrow_neighbour(self):
+        receipts=self.material_fixture();proof=self.cfg['reviews'][0]['ree_hms_material_proof']
+        p=self.root/'ledger.json'
+        for key,value in [('project_marker','Another Mine'),('statement_sha256','0'*64),('bbox',[0,100,400,150])]:
+            with self.subTest(key=key):
+                old=proof[key];proof[key]=value;p.write_text(json.dumps(self.cfg),encoding='utf8')
+                with self.assertRaisesRegex(ValueError,'MATERIAL_PDF_PROJECT_OR_REE_ROLE'):
+                    validate_locations(p,{'test':self.root},self.projects,'2026-11-05',verified_pdf_reviews=receipts)
+                proof[key]=old
+
     def test_target_pair_cannot_overwrite_or_cross_state_or_subscope(self):
         a=self.run_review()['attributes']['P'];row={'專案名稱':'Brockman Project','州省地區':'WA','緯度':'','經度':''}
         validate_location_target(row,a,{'WA':'WA'})

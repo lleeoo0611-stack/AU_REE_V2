@@ -131,6 +131,56 @@
       "source_project_name": "Wim 150",
       "state": "VIC",
       "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+    },
+    {
+      "review_id": "fullscope19_ga_hms_location_AU-fe65cb1bd28eacb7a67f",
+      "project_id": "AU-fe65cb1bd28eacb7a67f",
+      "reviewed_project_name": "Copi Mineral Sands Project",
+      "source_key": "ga2025_l7",
+      "objectid": 2303,
+      "source_project_name": "Copi",
+      "state": "NSW",
+      "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT",
+      "ree_hms_material_proof": {
+        "review_id": "continuation1_catalogue_copi",
+        "sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+        "asset_set": "canonical",
+        "path": "data/snapshots/af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5.pdf",
+        "page": 47,
+        "bbox": [
+          10.0,
+          10.0,
+          585.2760009765625,
+          470.0
+        ],
+        "project_marker": "Copi",
+        "statement_sha256": "a9f78f8bf1b43455ff3ed049b95014d61935191c40a5d0a0bddb2a56ffe37972"
+      }
+    },
+    {
+      "review_id": "fullscope19_ga_hms_location_AU-524c37fc04cf47bf8dca",
+      "project_id": "AU-524c37fc04cf47bf8dca",
+      "reviewed_project_name": "Balranald Mineral Sands Project",
+      "source_key": "ga2025_l5",
+      "objectid": 2262,
+      "source_project_name": "Balranald",
+      "state": "NSW",
+      "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT",
+      "ree_hms_material_proof": {
+        "review_id": "continuation9_metadata_AU-524c37fc04cf47bf8dca",
+        "sha256": "9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3",
+        "asset_set": "continuation9",
+        "path": "data/snapshots/9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3.pdf",
+        "page": 23,
+        "bbox": [
+          53.692901611328125,
+          204.2823486328125,
+          210.0,
+          290.70050048828125
+        ],
+        "project_marker": "Balranald",
+        "statement_sha256": "881d6d828cbba34c67b3dca46306ae8036cccac3e2e4bdd99848cd20281c363c"
+      }
     }
   ]
 }

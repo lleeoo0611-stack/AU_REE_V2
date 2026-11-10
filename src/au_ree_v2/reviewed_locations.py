@@ -22,7 +22,7 @@ def validate_location_target(row, attributes, states, resource_subscope=False):
         raise ValueError('LOCATION_PROJECT_STATE_MISMATCH')
 
 
-def validate_locations(ledger_path, asset_roots, projects, cutoff):
+def validate_locations(ledger_path, asset_roots, projects, cutoff, verified_pdf_reviews=()):
     cfg = json.loads(Path(ledger_path).read_text('utf8'))
     def fail(code):
         raise ValueError('LOCATION_' + code)
@@ -87,9 +87,47 @@ def validate_locations(ledger_path, asset_roots, projects, cutoff):
         f = hits[0]; a = f['attributes']; g = f.get('geometry', {})
         if (a.get('projectname') != case['source_project_name'] or a.get('state') != case['state']
                 or normalized_name(a['projectname']) not in {normalized_name(x) for x in p['aliases']+[p['name']]}
-                or not re.search(r'\bREE\b|rare earth|monazite|xenotime', a.get('commodities') or '', re.I)
                 or '150802' not in (a.get('source') or '')):
             fail('NAME_STATE_COMMODITY_OR_SOURCE')
+        material_proof = None
+        if not re.search(r'\bREE\b|rare earth|monazite|xenotime', a.get('commodities') or '', re.I):
+            # A location catalogue need not list every by-product. A second,
+            # independently validated PDF must establish this same HMS project's
+            # REE role; neither commodity quantities nor a neighbouring mine pass.
+            proof=case.get('ree_hms_material_proof')
+            if (not isinstance(proof,dict) or 'mineral sands' not in p['name'].lower()
+                    or not (a.get('commodities') or '').lower().startswith('heavy mineral sands')
+                    or not any(r.get('status')=='VALIDATED' and r['project_id']==pid
+                        and r['review_id']==proof.get('review_id') and r['source_sha256']==proof.get('sha256')
+                        for r in verified_pdf_reviews)):
+                fail('NAME_STATE_COMMODITY_OR_SOURCE')
+            material_review=next(r for r in verified_pdf_reviews if r.get('status')=='VALIDATED'
+                and r['project_id']==pid and r['review_id']==proof['review_id'] and r['source_sha256']==proof['sha256'])
+            if date.fromisoformat(material_review['effective_date'])>date.fromisoformat(cutoff):
+                fail('MATERIAL_DATE_OUTSIDE_CUTOFF')
+            import pymupdf,hashlib
+            from .source_cells import norm,region_text
+            root=Path(asset_roots[proof['asset_set']]).resolve();path=(root/proof['path']).resolve()
+            if root not in path.parents or filehash(path)!=proof['sha256']:
+                fail('MATERIAL_PDF_HASH_OR_PATH')
+            with pymupdf.open(path) as doc:
+                pn=proof.get('page');raw=proof.get('bbox')
+                if (isinstance(pn,bool) or not isinstance(pn,int) or not 1<=pn<=len(doc)
+                        or not isinstance(raw,list) or len(raw)!=4
+                        or any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) for v in raw)):
+                    fail('MATERIAL_PDF_REGION')
+                pg=doc[pn-1];box=pymupdf.Rect(raw)
+                if box.is_empty or box.is_infinite or not pg.rect.contains(box):fail('MATERIAL_PDF_REGION')
+                text=norm(region_text(pg,box));marker=norm(proof.get('project_marker',''))
+                if (normalized_name(marker)!=normalized_name(a['projectname']) or marker not in text
+                        or hashlib.sha256(text.encode()).hexdigest()!=proof.get('statement_sha256')
+                        or not re.search(r'\bree\b|rare earth|monazite|xenotime',text)
+                        or not re.search(r'heavy mineral|mineral sands|rutile|zircon',text)):
+                    fail('MATERIAL_PDF_PROJECT_OR_REE_ROLE')
+            material_proof=dict(review_id=proof['review_id'],sha256=proof['sha256'],page=pn,
+                statement_sha256=proof['statement_sha256'],pdf_evidence_effective_date=material_review['effective_date'],
+                pdf_evidence_date_precision=material_review['date_precision'],
+                date_relationship='LATER_CORROBORATION_NOT_BACKDATED_AS_DATASET_KNOWLEDGE')
         values = [a.get('latitude'), a.get('longitude'), g.get('y'), g.get('x')]
         if any(isinstance(v, bool) or not isinstance(v, (int,float)) or not math.isfinite(v) for v in values):
             fail('FINITE_PAIRED_COORDINATES')
@@ -97,12 +135,14 @@ def validate_locations(ledger_path, asset_roots, projects, cutoff):
         if (not -44 < lat < -10 or not 110 < lon < 155
                 or abs(lat-y) > 1e-6 or abs(lon-x) > 1e-6):
             fail('AU_RANGE_OR_GEOMETRY_ATTRIBUTE_DISAGREEMENT')
-        scope = canonical(dict(meaning='OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY',
+        scope_data = dict(meaning='OFFICIAL_NAMED_PROJECT_REPRESENTATIVE_POINT_NOT_RESOURCE_EXTENT_OR_BOUNDARY',
             source_project=a['projectname'], state=a['state'], objectid=oid, crs='GDA94 / EPSG:4283',
             unit='decimal degrees', source_latitude=lat, source_longitude=lon,
             display_rounding='at most 4 decimal places; does not improve coarse native precision',
             positional_accuracy='NOT_STATED;DISPLAY_ROUNDING_AND_SERVICE_TOLERANCE_ARE_NOT_GROUND_ACCURACY',
-            service_metadata_sha256=meta_proof['sha256'], dataset_currency='December 2025; day unknown'))
+            service_metadata_sha256=meta_proof['sha256'],dataset_currency='December 2025; day unknown')
+        if material_proof:scope_data['ree_hms_material_proof']=material_proof
+        scope=canonical(scope_data)
         attributes[pid] = [dict(column=col, value=round(value,4), source_sha=proof['sha256'],
             locator='GA native feature objectid='+str(oid)+'; attributes.'+field+' checked against geometry; '+scope,
             method='REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY',scope=scope,
