@@ -44554,6 +44554,74 @@
           }
         }
       ]
+    },
+    {
+      "review_id": "fullscope11_arunta_west_stage",
+      "project_id": "AU-c4391f8d2a6690076436",
+      "source_key": "nwm_arunta_west_20230801",
+      "source_sha256": "efaafa511113d00eda8fbccd8e407a364ddad320df36452091277a0f63052fb4",
+      "asset_set": "fullscope11",
+      "path": "data/snapshots/efaafa511113d00eda8fbccd8e407a364ddad320df36452091277a0f63052fb4.pdf",
+      "url": "https://www.aspecthuntley.com.au/asxdata/20230801/pdf/02692965.pdf",
+      "publication_date": "2023-08-01",
+      "effective_date": "2023-08-01",
+      "effective_date_role": "DATED_ISSUER_METADATA",
+      "date_precision": "DAY",
+      "date_evidence": {
+        "page": 1,
+        "markers": [
+          "1 August 2023"
+        ]
+      },
+      "publication_header_evidence": {
+        "page": 1,
+        "markers": [
+          "1 August 2023",
+          "Arunta West drillhole assays confirm significant clay"
+        ],
+        "header_title": "Arunta West drillhole assays confirm significant clay"
+      },
+      "identity_evidence": {
+        "page": 1,
+        "markers": [
+          "Arunta West",
+          "Norwest Minerals Limited"
+        ]
+      },
+      "scope": "Historical June2023aircoredrillingresultsasdisclosed1August2023;actualsampleprogramnotplanned233holefutureprogram;noMineralResourceEstimateordrillinterceptgradeimport;5076ppmmaximumand35percentMREOinterceptnotglobalREEgradeorcomposition.Noannualforecast.",
+      "statement_id": "fullscope11_arunta_west_stage",
+      "observations": [],
+      "attributes": [
+        {
+          "column": "開發階段",
+          "value": "June 2023 aircore drilling program（來源揭露：2023-08-01）",
+          "evidence": {
+            "page": 1,
+            "markers": [
+              "Arunta West",
+              "June 2023 aircore drilling program"
+            ]
+          },
+          "description_binding": {
+            "page": 1,
+            "project_marker": "Arunta West",
+            "project_bbox": [
+              81.40399780273438,
+              158.64996948242188,
+              186.78975830078124,
+              178.88996276855468
+            ],
+            "value_bbox": [
+              326.9700073242187,
+              589.17001953125,
+              494.5519958496094,
+              601.37001953125
+            ],
+            "literal_value": "June 2023 aircore drilling program",
+            "statement": "June 2023 aircore drilling program"
+          }
+        }
+      ]
     }
   ]
 }
