@@ -299,6 +299,15 @@
       "decided_date": "2026-11-11",
       "notes": "僅離線封存政府來源；同州唯一且公司一致才採用；多 site、新 VIC/TAS 來源與 datum 未驗證維持空白。",
       "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-annual-source-stated-20261111",
+      "rule": "SOURCE_STATED_ANNUAL_PRODUCTION",
+      "scope": "CENSUS_ARCHIVED_SOURCE_STATED_OXIDE_ANNUAL_PRODUCTION",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅用 census 已封存原件明寫的氧化物年產；禁止進料×品位×回收率推算，混合產品須有來源明寫 REO 當量。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
     }
   ]
 }
