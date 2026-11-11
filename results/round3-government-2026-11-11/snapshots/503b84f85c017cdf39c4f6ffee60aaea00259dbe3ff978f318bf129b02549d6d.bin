@@ -1,0 +1,2705 @@
+<!DOCTYPE html>
+<!--[if IE 9]> <html lang="en-AU" class="ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-AU"  > <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+      <meta name="csrf_field_name" content="_csrf_token" />
+      <meta name="_csrf_token" content="ImMyN2MxZWFkYmIyODQ1N2JjZGMwYWU2OWJlNjcyYTI3OGQwNTQzNDgi.avSZyg.A1RPB8WFbJP7RTmP2ehn8D8MGok" />
+
+      <meta name="generator" content="ckan 2.11.7" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset - DataVic</title>
+
+    
+    
+    <link rel="shortcut icon" href="/favicon.ico" />
+    
+    
+        <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MD2QX4G');</script>
+<!-- End Google Tag Manager -->
+    
+
+    
+  
+    
+  
+  
+      
+      
+      
+    
+  
+
+  
+
+    
+
+  
+
+    
+
+
+    
+    <link href="/webassets/base/c5c63dee_main.css" rel="stylesheet"/>
+<link href="/webassets/ckanext-activity/8dd77216_activity.css" rel="stylesheet"/>
+<link href="/webassets/ckanext-scheming/728ec589_scheming_css.css" rel="stylesheet"/>
+<link href="/webassets/ckanext-search_autocomplete/6189a052-search_autocomplete.css" rel="stylesheet"/>
+<link href="/webassets/datavic_odp_theme/14c7750e_datavic_odp_theme.css" rel="stylesheet"/>
+<link href="/webassets/ckanext-auth/f9dbc039-auth.css" rel="stylesheet"/>
+    
+  
+    
+    
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+</script>  
+
+  
+        <!-- Hotjar Tracking Code for http://www.data.vic.gov.au -->
+    <script>
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) }
+      h._hjSettings = {hjid: 139604, hjsv: 6}
+      a = o.getElementsByTagName('head')[0]
+      r = o.createElement('script'); r.async = 1
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+      a.appendChild(r)
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+    </script>
+  
+
+  
+        <script type="text/javascript">
+    var _monsido = _monsido || [];
+    _monsido.push(['_setDomainToken', '6btH_pcVmgd2xyzSEv6H3g']);
+    _monsido.push(['_withStatistics', 'false']);
+    </script>
+    <script src="//cdn.monsido.com/tool/javascripts/monsido.js"></script>
+  
+
+  
+    <script src="https://caretaker.dpc.vic.gov.au/message.js" defer="true"></script>
+  
+
+
+  </head>
+
+  
+  <body data-site-root="https://discover.data.vic.gov.au/" data-locale-root="https://discover.data.vic.gov.au/" >
+
+    
+    
+        
+            
+                <!-- Google Tag Manager (noscript) -->
+                <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD2QX4G"
+                                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+                <!-- End Google Tag Manager (noscript) -->
+            
+        
+    
+
+    
+  
+    <div class="visually-hidden-focusable"><a href="#content">Skip to main content</a></div>
+  
+
+
+  
+  <header>
+    
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <nav id="mobile-menu" class="rpl-site-header hidden" data-module="datavic-odp-header datavic-odp-breadcrumb">
+    <div class="rpl-site-header__inner">
+      <div class="rpl-site-header__top">
+        <div class="rpl-site-header__logo-container">
+          <button id="btn-mobile-menu-close" aria-expanded="true" class="rpl-site-header__btn rpl-site-header__btn--menu rpl-site-header__btn--menu-open">
+            <svg focusable="false" class="rpl-icon rpl-icon--close rpl-icon--color_white" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M15 0.3C14.6-0.1 14-0.1 13.6 0.3L7.6 6.2 1.7 0.3C1.3-0.1 0.7-0.1 0.3 0.3 -0.1 0.7-0.1 1.3 0.3 1.7L6.2 7.6 0.7 13.2C0.3 13.6 0.3 14.2 0.7 14.6 1 15 1.7 15 2.1 14.6L7.6 9.1 13.2 14.6C13.6 15 14.2 15 14.6 14.6 15 14.2 15 13.6 14.6 13.2L9.1 7.6 15 1.7C15.4 1.3 15.4 0.7 15 0.3Z" fill="inherit"/></svg>
+            <span>Close menu</span>
+          </button>
+        </div>
+        <div class="rpl-site-header__menu-container rpl-site-header__menu-container--vertical">
+          <div class="rpl-site-header__menu">
+            <div data-vpos="0" data-visibledepth="0" class="rpl-menu rpl-menu--open rpl-menu--root rpl-menu--vertical">
+              <div class="rpl-menu__inner">
+                <div class="rpl-menu__inner_root">
+                  <div class="rpl-menu__column">
+                    <div class="rpl-menu__header"><!----> <!----></div>
+                    <ul class="rpl-menu__items rpl-menu__items--root" data-module="datavic-dropdown" data-module-is-mobile="true">
+                      
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      <a href="#" class="rpl-link rpl-menu__item-link dropdown-toggle"><span>Data publishing</span></a>
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Data publishing</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/data-publishing" class="dropdown-item">
+                <span>Data publishing</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/data-publishing-victorian-public-service" class="dropdown-item">
+                <span>Data publishing for the Victorian Public Service (VPS)</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/open-data-publishing-victorian-public-sector" class="dropdown-item">
+                <span>Open data publishing for the Victorian public sector</span>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      
+    
+    <a href="/dataset/" class="rpl-link rpl-menu__item-link">Search data</a>
+    
+  
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Search data</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li><p>No child items was created yet</p></li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      <a href="#" class="rpl-link rpl-menu__item-link dropdown-toggle"><span>About DataVic</span></a>
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>About DataVic</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/about-datavic" class="dropdown-item">
+                <span>About DataVic</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/datavic-access-policy" class="dropdown-item">
+                <span>DataVic Access Policy</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/datavic-access-policy-guidelines" class="dropdown-item">
+                <span>DataVic Access Policy guidelines</span>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      
+    
+    <a href="https://www.data.vic.gov.au/contact-us" class="rpl-link rpl-menu__item-link">Contact us</a>
+    
+  
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Contact us</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li><p>No child items was created yet</p></li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      
+    
+    <a href="/user/login" class="rpl-link rpl-menu__item-link">Log in</a>
+    
+  
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Log in</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li><p>No child items was created yet</p></li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+  
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rpl-site-header__btn-container"><!----> <!----></div>
+      </div> <!---->
+    </div>
+  </nav>
+
+  <nav id="main-menu" class="rpl-site-header">
+    <div class="rpl-site-header__inner">
+      <div class="rpl-site-header__top">
+        <div class="rpl-site-header__logo-container">
+          <button id="btn-mobile-menu-open" aria-expanded="false" class="rpl-site-header__btn rpl-site-header__btn--menu">
+            <svg focusable="false" class="rpl-icon rpl-icon--hamburger rpl-icon--color_white" width="18" height="14" viewBox="0 0 18 14" xmlns="http://www.w3.org/2000/svg"><style>.a{fill:inherit;}</style><path d="M0 1C0 0.4 0.4 0 1 0H9C9.6 0 10 0.4 10 1 10 1.6 9.6 2 9 2H1C0.4 2 0 1.6 0 1Z" class="a"/><path d="M0 5C0 4.4 0.4 4 1 4H17C17.6 4 18 4.4 18 5 18 5.6 17.6 6 17 6H1C0.4 6 0 5.6 0 5Z" class="a"/><path d="M0 9C0 8.4 0.4 8 1 8H13C13.6 8 14 8.4 14 9 14 9.6 13.6 10 13 10H1C0.4 10 0 9.6 0 9Z" class="a"/><path d="M0 13C0 12.4 0.4 12 1 12H17C17.6 12 18 12.4 18 13 18 13.6 17.6 14 17 14H1C0.4 14 0 13.6 0 13Z" class="a"/></svg>
+            <span>Menu</span>
+          </button>
+          
+          <div class="rpl-site-header__title rpl-site-header__logo-container--vic-logo-primary rpl-site-header__logo-container--vic-logo-primary--cobrand">
+            <a href="https://www.vic.gov.au/" class="rpl-link" target="_blank">
+              <img src="/images/vic-header-logo.png" alt="vic_logo">
+            </a>
+          </div>
+          
+          <div class="rpl-site-header__title cobrand">
+            <a href="https://www.data.vic.gov.au" class="rpl-link">
+              <img src="/images/data-vic-logo-x3.png" alt="Data.Vic logo">
+            </a>
+          </div>
+        </div>
+        
+        <div class="rpl-site-header__menu-container rpl-site-header__menu-container--horizontal">
+          <div class="rpl-site-header__menu">
+            <div data-vpos="0" data-visibledepth="0" class="rpl-menu rpl-menu--root rpl-menu--horizontal">
+              <div class="rpl-menu__inner">
+                <div class="rpl-menu__inner_root">
+                  <div class="rpl-menu__column">
+                    <div class="rpl-menu__header">
+                      
+                    </div>
+                    <ul class="rpl-menu__items rpl-menu__items--root" data-module="datavic-dropdown">
+                      
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      <a href="#" class="rpl-link  dropdown-toggle"><span>Data publishing</span></a>
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Data publishing</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/data-publishing" class="dropdown-item">
+                <span>Data publishing</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/data-publishing-victorian-public-service" class="dropdown-item">
+                <span>Data publishing for the Victorian Public Service (VPS)</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/open-data-publishing-victorian-public-sector" class="dropdown-item">
+                <span>Open data publishing for the Victorian public sector</span>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      
+    
+    <a href="/dataset/" class="rpl-link rpl-menu__item-link">Search data</a>
+    
+  
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Search data</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li><p>No child items was created yet</p></li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      <a href="#" class="rpl-link  dropdown-toggle"><span>About DataVic</span></a>
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>About DataVic</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/about-datavic" class="dropdown-item">
+                <span>About DataVic</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/datavic-access-policy" class="dropdown-item">
+                <span>DataVic Access Policy</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/datavic-access-policy-guidelines" class="dropdown-item">
+                <span>DataVic Access Policy guidelines</span>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      
+    
+    <a href="https://www.data.vic.gov.au/contact-us" class="rpl-link rpl-menu__item-link">Contact us</a>
+    
+  
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Contact us</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li><p>No child items was created yet</p></li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      
+    
+    <a href="/user/login" class="rpl-link rpl-menu__item-link">Log in</a>
+    
+  
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Log in</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li><p>No child items was created yet</p></li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+  
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rpl-site-header__btn-container">
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  
+  </header>
+
+  
+  <div id="breadcrumbs" class="rpl-breadcrumbs" role="breadcrumbs">
+      <nav aria-label="breadcrumbs">
+          <ul class="rpl-breadcrumbs__items">
+              <li class="rpl-breadcrumbs__item"><a href="https://www.data.vic.gov.au" class="rpl-link rpl-breadcrumbs__link">Home</a></li>
+              
+  <li class="active"><a href="/dataset/">Datasets</a></li>
+
+          </ul>
+      </nav>
+  </div>
+  
+
+    <div id="main-content" role="main">
+      <div id="content" class="container">
+        
+          
+            <div class="flash-messages">
+              
+                
+              
+            </div>
+          
+
+          
+            <div class="toolbar">
+              
+              
+            </div>
+          
+
+          <div class="row  no-nav">
+            
+            
+
+            
+              
+              
+            
+
+            
+              
+              <div class="primary span12">
+                
+  <section class="module">
+    <div class="module-content">
+      
+        
+      
+      
+        
+        
+        
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+    
+    
+    
+
+    <div class="search-form-wrapper" data-module="datavic-odp-advanced-search">
+      <div class="rpl-search-form da-search rpl-site-constrain--on-all">
+        
+          <h1>
+            Search Results (2 datasets found)
+          </h1>
+        
+        <form id="dataset-search-form" class="rpl-form" action="/dataset/" method="get">
+          <input type="hidden" id="field-order-by" name="sort" value="score desc, metadata_modified desc" />
+          <div class="rpl-search-form__field" data-module="datavic-search-autocomplete" data-module-suggestion-box="#search-autocomplete--suggestion-box" data-module-autocomplete-input="#search-query">
+            <label for="search-query">
+              <span class="rpl-search-form__label-text">Search for</span>
+              <input id="search-query" type="text" name="q" value="mineral deposits" autocomplete="off" placeholder="Search for open data" class="rpl-search-form__input">
+            </label>
+
+            <!-- Spinner load icon -->
+            <span class="pending-request">
+              <i class="fa fa-spinner" aria-hidden="true"></i>
+            </span>
+
+            
+            <button class="rpl-search-form__btn">
+              <span class="">Search</span>
+              <svg focusable="false" aria-hidden="true" class="rpl-icon rpl-icon--search rpl-icon--color_primary" style="width:24px;height:24px;" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path id="search-vector" fill-rule="evenodd" clip-rule="evenodd" d="M10.9895 9.24258C12.587 6.79233 12.2144 3.42261 9.85748 1.40991C7.58966 -0.526184 4.13776 -0.45993 1.94049 1.55707C-0.581665 3.87222 -0.645325 7.81287 1.75031 10.2102C3.79315 12.2547 6.95502 12.503 9.2771 10.967C9.30811 10.9465 9.37885 10.8841 9.47473 10.7944L13.8181 14.9887C14.192 15.3498 14.7879 15.3394 15.1489 14.9655C15.51 14.5916 15.4996 13.9958 15.1257 13.6347L10.8018 9.45914C10.8997 9.35345 10.9681 9.27545 10.9895 9.24258ZM2.96704 8.99216C1.3045 7.3284 1.3045 4.62128 2.96704 2.95752C4.62952 1.29376 7.33447 1.29334 8.99695 2.95752C10.6594 4.62128 10.6594 7.3284 8.99695 8.99216C7.33447 10.6559 4.62952 10.6559 2.96704 8.99216Z"
+                  fill="inherit" />
+              </svg>
+            </button>
+            <ul id="search-autocomplete--suggestion-box" class="suggestion-box">
+              
+
+              
+                  <li data-section="datasets" class="suggestion-section">
+                      <ul class="suggestions" data-label="Relevant datasets" role="list" aria-label="Relevant datasets"></ul>
+                  </li>
+              
+                  <li data-section="categories" class="suggestion-section">
+                      <ul class="suggestions" data-label="Browse filters" role="list" aria-label="Browse filters"></ul>
+                  </li>
+              
+            </ul>
+            
+          </div>
+          
+            
+            
+
+            <button class="rpl-search-form__show-filters rpl-search-form__show-filters--expanded" aria-expanded="true">
+              <span>Advanced search</span>
+            </button>
+            <div class="rpl-search-form__filters">
+              <div class="vue-form-generator">
+                  <div class="rpl-fieldset">
+                    <div class="rpl-fieldset__inner">
+                      <div class="form-group form-group--col-two field-rplchecklist">
+                        <div class="pseudo-label">
+                          <span>Organisation</span>
+                        </div>
+                        <div class="field-wrap">
+                          <div id="checklist-organization" class="rpl-checklist rpl-wrapper">
+                            <input type="hidden" id="organization" name="organization" value="" />
+                            <div class="rpl-checklist__combobox">
+                              <div class="rpl-checklist__main-row">
+                                <button type="button" class="rpl-checklist__info" data-checklist="checklist-organization">
+                                  
+                                    <span>Please select an organisation</span>
+                                  
+
+                                  <svg focusable="false" aria-hidden="true" class="rpl-icon rpl-icon--down rpl-icon--color_primary" style="width: 8px; height: 5px;" width="8" height="5" viewBox="0 0 8 5" xmlns="http://www.w3.org/2000/svg">
+                                    <path id="arrow-vector-1" fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L4 2.58579L6.29289 0.292893C6.68342 -0.0976311 7.31658 -0.0976311 7.70711 0.292893C8.09763 0.683417 8.09763 1.31658 7.70711 1.70711L4.70711 4.70711C4.31658 5.09763 3.68342 5.09763 3.29289 4.70711L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z"
+                                      fill="inherit" />
+                                  </svg>
+                                </button>
+                              </div>
+
+                              
+                                <div aria-hidden="true" class="rpl-checklist__list rpl-checklist__list--dropdown" style="display: none;">
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item default"
+                                            data-value=""
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Please select an organisation</span>
+                                    </button><!---->
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="accountability-and-oversight"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Accountability and Oversight</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="agriculture-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Agriculture Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="alpine-resorts-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Alpine Resorts Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="alpine-shire-council"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Alpine Shire Council</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="ambulance-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Ambulance Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="barwon-water"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Barwon Water</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="building-and-plumbing-commission"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Building and Plumbing Commission</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="cameras-save-lives"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Cameras Save Lives</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="cenitex"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Cenitex</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="central-highlands-water"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Central Highlands Water</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="city-of-ballarat"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>City of Ballarat</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="city-of-casey"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>City of Casey</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="city-of-greater-geelong"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>City of Greater Geelong</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="city-of-melbourne"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>City of Melbourne</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="communicable-disease"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Communicable Disease</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="consumer-affairs-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Consumer Affairs Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="coronavirus-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Coronavirus Victoria </span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="country-fire-authority"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Country Fire Authority</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="crime-statistics-agency"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Crime Statistics Agency</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="strategy-and-performance"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>DEECA Strategy and Performance</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="infrastructure-and-planning-branch"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>DE - Infrastructure and Planning Branch</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="department-of-education"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Department of Education</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="performance-and-evaluation-division"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Department of Education - Performance and Evaluation Division</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="department-of-energy-environment-climate-action"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Department of Energy, Environment and Climate Action</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="department-of-families-fairness-and-housing"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Department of Families, Fairness and Housing</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="department-of-government-services"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Department of Government Services</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="department-of-health"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Department of Health</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="department-of-health-and-human-services"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Department of Health and Human Services</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="department-of-jobs-skills-industry-regions"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Department of Jobs, Skills, Industry and Regions</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="department-of-justice-and-community-safety"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Department of Justice and Community Safety</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="department-of-premier-and-cabinet"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Department of Premier and Cabinet</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="department-transport-planning"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Department of Transport and Planning </span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="department-of-treasury-and-finance"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Department of Treasury and Finance</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="dtf-corporate-and-government-services"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>DTF - Corporate and Government Services</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="emergency-management-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Emergency Management Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="energy-safe-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Energy Safe Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="environment-protection-authority-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Environment Protection Authority Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="water-sciences"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>EPA Water Sciences</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="fire-rescue-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Fire Rescue Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="first-peoples-state-relations"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>First Peoples State Relations</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="goulburn-murray-water"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Goulburn Murray Water</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="homes-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Homes Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="independent-broad-based-anti-corruption-commission"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Independent Broad-based Anti-corruption Commission</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="liquor-control-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Liquor Control Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="mallee-catchment-management-authority"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Mallee Catchment Management Authority</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="melbourne-water-corporation"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Melbourne Water Corporation</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="freedom-of-information-commissioner"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Office of the Freedom of Information Commissioner</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="public-records-office-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Public Records Office Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="recycling-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Recycling Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="registry-of-births-deaths-and-marriages-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Registry of Births, Deaths and Marriages Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="security-and-emergency-management-division"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Security and Emergency Management Division</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="solar-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Solar Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="state-library-of-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>State Library of Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="state-revenue-office"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>State Revenue Office</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="strategy-policy-and-governance"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Strategy Policy and Governance</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="suburban-rail-loop-authority"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Suburban Rail Loop Authority</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="sustainability-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Sustainability Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="transport-accident-commission"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Transport Accident Commission</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="transport-safety-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Transport Safety Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="treasury-corporation-of-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Treasury Corporation of Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="vicforests"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>VicForests</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="vicgrid"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>VicGrid</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="vicmap"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Vicmap</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victorian-agency-for-health-information"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victorian Agency for Health Information</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victorian-assisted-reproductive-treatment-authority"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victorian Assisted Reproductive Treatment Authority</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victorian-auditor-general-s-office"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victorian Auditor General&#39;s Office</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victorian-child-and-adolescent-monitoring-system"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victorian Child and Adolescent Monitoring System</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victorian-electoral-commission"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victorian Electoral Commission</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victorian-fisheries-authority"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victorian Fisheries Authority</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victorian-gaming-and-casino-control-commission-regulation"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victorian Gambling and Casino Control Commission</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victorian-managed-insurance-authority"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victorian Managed Insurance Authority</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victorian-planning-authority"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victorian Planning Authority</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victorian-ports-corporation"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victorian Ports Corporation</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victorian-public-sector-commission"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victorian Public Sector Commission</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victorian-skills-authority"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victorian Skills Authority</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victorian-state-budget"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victorian State Budget</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victoria-police-org"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victoria Police</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="victoria-state-emergency-services"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Victoria State Emergency Service</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="water-and-catchments"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>Water and Catchments</span>
+                                    </button>
+                                  </div>
+                                
+                                  <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                    <button type="button" class="rpl-checklist__single-item"
+                                            data-value="worksafe-victoria"
+                                            data-target="organization"
+                                            data-checklist="checklist-organization"
+                                    >
+                                      <span>WorkSafe Victoria</span>
+                                    </button>
+                                  </div>
+                                
+                                </div>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group form-group--col-two field-rplchecklist">
+                        <div class="pseudo-label">
+                          <span>Category</span>
+                        </div>
+                        <div class="field-wrap">
+                          <div id="checklist-group" class="rpl-checklist rpl-wrapper">
+                            <input type="hidden" id="groups" name="groups" value="" />
+                            <div class="rpl-checklist__combobox">
+                              <div class="rpl-checklist__main-row">
+                                <button type="button" class="rpl-checklist__info" data-checklist="checklist-group">
+                                  
+                                  <span>Please select a category</span>
+                                  
+                                  <svg focusable="false" aria-hidden="true" class="rpl-icon rpl-icon--down rpl-icon--color_primary" style="width: 8px; height: 5px;" width="8" height="5" viewBox="0 0 8 5" xmlns="http://www.w3.org/2000/svg">
+                                    <path id="arrow-vector-2" fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L4 2.58579L6.29289 0.292893C6.68342 -0.0976311 7.31658 -0.0976311 7.70711 0.292893C8.09763 0.683417 8.09763 1.31658 7.70711 1.70711L4.70711 4.70711C4.31658 5.09763 3.68342 5.09763 3.29289 4.70711L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z"
+                                      fill="inherit" />
+                                  </svg>
+                                </button>
+                              </div>
+                              
+                                
+                                  <div aria-hidden="true" class="rpl-checklist__list rpl-checklist__list--dropdown" style="display: none;">
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item default"
+                                              data-value=""
+                                              data-target="groups"
+                                              data-checklist="checklist-group"
+                                      >
+                                        <span>Please select a category</span>
+                                      </button><!---->
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="business"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Business</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="communication"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Communication</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="community"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Community</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="education"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Education</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="employment"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Employment</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="environment"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Environment</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="finance"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Finance</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="general"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>General</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="health"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Health</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="local-government"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Local government</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="planning"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Planning</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="recreation"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Recreation</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="science-technology"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Science &amp; Technology</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="society"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Society</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="spatial-data"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Spatial Data</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="transport"
+                                              data-target="groups"
+                                              data-checklist="checklist-group "
+                                      >
+                                        <span>Transport</span>
+                                      </button>
+                                    </div>
+                                  
+                                  </div>
+                                
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                  <div class="rpl-fieldset"><div class="rpl-fieldset__inner">
+                    <!---->
+                      <div class="form-group form-group--col-two field-rplchecklist">
+                        <div class="pseudo-label">
+                          <span>Format</span>
+                        </div>
+                        <div class="field-wrap">
+                          <div id="checklist-format" class="rpl-checklist rpl-wrapper">
+                            <input type="hidden" id="res_format" name="res_format" value="" />
+                            <div class="rpl-checklist__combobox">
+                              <div class="rpl-checklist__main-row">
+                                <button type="button" class="rpl-checklist__info" data-checklist="checklist-format">
+                                  
+                                    <span>Please select a format</span>
+                                  
+                                  <svg focusable="false" aria-hidden="true" class="rpl-icon rpl-icon--down rpl-icon--color_primary" style="width: 8px; height: 5px;" width="8" height="5" viewBox="0 0 8 5" xmlns="http://www.w3.org/2000/svg">
+                                    <path id="arrow-vector-3" fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L4 2.58579L6.29289 0.292893C6.68342 -0.0976311 7.31658 -0.0976311 7.70711 0.292893C8.09763 0.683417 8.09763 1.31658 7.70711 1.70711L4.70711 4.70711C4.31658 5.09763 3.68342 5.09763 3.29289 4.70711L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z"
+                                      fill="inherit" />
+                                  </svg>
+                                </button>
+                              </div>
+                              
+                                
+                                  <div aria-hidden="true" class="rpl-checklist__list rpl-checklist__list--dropdown" style="display: none;">
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item default"
+                                              data-value=""
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>Please select a format</span>
+                                      </button><!---->
+                                    </div>
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="ALL_API"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>All API formats</span>
+                                      </button><!---->
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="API"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>API</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="ARCGIS GEOSERVICES REST API"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>ARCGIS GEOSERVICES REST API</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="ASHX"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>ASHX</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="ASP"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>ASP</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="BIN"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>BIN</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="CSV"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>CSV</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="DATA TOOL"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>DATA TOOL</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="DOC"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>DOC</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="DOCX"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>DOCX</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="DWG"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>DWG</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="DXF"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>DXF</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="ECW"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>ECW</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="ESRI REST"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>ESRI REST</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="EXTENDED TAB"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>EXTENDED TAB</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="GDB"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>GDB</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="GEOJSON"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>GEOJSON</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="GEOTIFF"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>GEOTIFF</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="GPKG"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>GPKG</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="HOSTED FEATURE LAYER"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>HOSTED FEATURE LAYER</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="HTML"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>HTML</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="JPEG"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>JPEG</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="JPEG 2000"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>JPEG 2000</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="JSON"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>JSON</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="KML"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>KML</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="MIF"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>MIF</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="PARQUET"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>PARQUET</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="PDF"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>PDF</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="RSS"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>RSS</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="SHP"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>SHP</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="SPS"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>SPS</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="TAB"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>TAB</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="TIFF"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>TIFF</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="TXT"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>TXT</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="URL"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>URL</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="VIDEO"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>VIDEO</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="WEBSITE"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>WEBSITE</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="WFS"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>WFS</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="WMS"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>WMS</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="WORD"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>WORD</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="XLS"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>XLS</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="XLSB"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>XLSB</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="XLSL"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>XLSL</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="XLSM"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>XLSM</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="XLSX"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>XLSX</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="XLXS"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>XLXS</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="XML"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>XML</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="XSLX"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>XSLX</span>
+                                      </button>
+                                    </div>
+                                  
+                                    <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                      <button type="button" class="rpl-checklist__single-item"
+                                              data-value="ZIP"
+                                              data-target="res_format"
+                                              data-checklist="checklist-format"
+                                      >
+                                        <span>ZIP</span>
+                                      </button>
+                                    </div>
+                                  
+                                  </div>
+                                
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="form-group form-group--col-four field-rplclearform"><!---->
+                      <div class="field-wrap">
+                        <button class="rpl-clearform" href="/dataset/">
+                          <span>
+                            <span class="rpl-text-icon__group">
+                              <svg focusable="false" aria-hidden="true" class="rpl-text-icon--before rpl-icon rpl-icon--cross_circle rpl-icon--color_danger" style="width: 20px; height: 20px;" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="inherit" fill-rule="nonzero" d="M12 0C5.371 0 0 5.371 0 12s5.371 12 12 12 12-5.371 12-12S18.629 0 12 0zm5.884 15.15a.581.581 0 0 1 0 .823l-1.916 1.91a.581.581 0 0 1-.823 0L12 14.71l-3.15 3.174a.581.581 0 0 1-.823 0l-1.91-1.916a.581.581 0 0 1 0-.823L9.29 12 6.116 8.85a.581.581 0 0 1 0-.823l1.916-1.916a.581.581 0 0 1 .823 0L12 9.291l3.15-3.175a.581.581 0 0 1 .823 0l1.916 1.916a.581.581 0 0 1 0 .823L14.709 12l3.175 3.15z" />
+                              </svg>
+                              Clear
+                            </span>
+                            <span> search filters</span><!---->
+                          </span>
+                        </button> <!---->
+                      </div> <!----> <!---->
+                    </div>
+                    <div class="form-group form-group--col-four field-rplsubmitloader"><!---->
+                      <div class="field-wrap">
+                        <button type="submit" class="rpl-submit-loader">
+                          <span class="rpl-submit-loader__text">Apply search filters</span><!---->
+                        </button> <!---->
+                      </div> <!----> <!---->
+                    </div>
+                  </div>
+                </div>
+                </div>
+            </div>
+          
+        </form>
+      </div>
+    </div>
+
+  
+
+  
+    
+  
+
+  
+    
+        
+          <div class="rpl-search-form__filters order-by">
+            <div class="vue-form-generator">
+                <div class="rpl-fieldset">
+                  <div class="rpl-fieldset__inner">
+                    <div class="form-group form-group--col-two field-rplchecklist">
+                      <div class="pseudo-label">
+                        <span>Order by</span>
+                      </div>
+                      <div class="field-wrap">
+                        <div id="checklist-order-by" class="rpl-checklist">
+                          <div class="rpl-checklist__combobox">
+                            <div class="rpl-checklist__main-row">
+                              <button type="button" class="rpl-checklist__info" data-checklist="checklist-order-by">
+                                
+                                
+                                  
+                                  <span>Relevance</span>
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                <svg focusable="false" aria-hidden="true" class="rpl-icon rpl-icon--down rpl-icon--color_light_primary" style="width: 8px; height: 5px;" width="8" height="5" viewBox="0 0 8 5" xmlns="http://www.w3.org/2000/svg">
+                                  <path id="arrow-vector-4" fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L4 2.58579L6.29289 0.292893C6.68342 -0.0976311 7.31658 -0.0976311 7.70711 0.292893C8.09763 0.683417 8.09763 1.31658 7.70711 1.70711L4.70711 4.70711C4.31658 5.09763 3.68342 5.09763 3.29289 4.70711L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z"
+                                    fill="inherit" />
+                                </svg>
+                              </button>
+                            </div>
+                            
+                              <div aria-hidden="true" class="rpl-checklist__list rpl-checklist__list--dropdown" style="display: none;">
+                              
+                                
+                                <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                  <button type="button" class="rpl-checklist__single-item"
+                                          data-value="score desc, metadata_modified desc"
+                                          data-target="field-order-by"
+                                          data-checklist="checklist-order-by"
+                                  >
+                                    <span>Relevance</span>
+                                    
+                                    <span class="rpl-visually-hidden">(Selected)</span>
+                                    
+                                  </button>
+                                </div>
+                                
+                              
+                                
+                                <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                  <button type="button" class="rpl-checklist__single-item"
+                                          data-value="title_string asc"
+                                          data-target="field-order-by"
+                                          data-checklist="checklist-order-by"
+                                  >
+                                    <span>Name Ascending</span>
+                                    
+                                  </button>
+                                </div>
+                                
+                              
+                                
+                                <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                  <button type="button" class="rpl-checklist__single-item"
+                                          data-value="title_string desc"
+                                          data-target="field-order-by"
+                                          data-checklist="checklist-order-by"
+                                  >
+                                    <span>Name Descending</span>
+                                    
+                                  </button>
+                                </div>
+                                
+                              
+                                
+                                <div class="rpl-checklist__list-row rpl-checklist__list-row--single">
+                                  <button type="button" class="rpl-checklist__single-item"
+                                          data-value="metadata_modified desc"
+                                          data-target="field-order-by"
+                                          data-checklist="checklist-order-by"
+                                  >
+                                    <span>Last Modified</span>
+                                    
+                                  </button>
+                                </div>
+                                
+                              
+                              </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        
+    
+  
+
+  
+    
+      <h2>
+
+  
+  
+  
+  
+
+2 datasets found for &#34;mineral deposits&#34;</h2>
+    
+  
+
+  
+  
+
+
+
+
+
+
+
+      
+      
+        
+
+  
+    <ul class="dataset-list list-unstyled">
+    	
+	      
+	        
+
+
+
+
+
+
+  <li class="dataset-item">
+    
+      <div class="dataset-content">
+        
+          <h3 class="dataset-heading">
+            
+              
+            
+            
+              <a href="/dataset/mines-and-mineral-occurrence-sites">Mines and Mineral Occurrence Sites</a>
+            
+            
+              
+              
+            
+          </h3>
+        
+        
+          
+        
+        
+          
+            <div>Sites where earth resources have been demonstrated. This includes metallics, industrial minerals and construction materials, but excludes oil, gas and groundwater resources...</div>
+          
+          
+            <h4 class="search-result-organisation">
+                <a href="/organization/department-of-energy-environment-climate-action">
+                    Department of Energy, Environment and Climate Action
+                </a>
+            </h4>
+        
+        
+        
+          
+            
+              <ul class="dataset-resources unstyled">
+                
+                  
+                  <li>
+                    <a href="/dataset/mines-and-mineral-occurrence-sites" class="label" data-format="dwg">DWG</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mines-and-mineral-occurrence-sites" class="label" data-format="dxf">DXF</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mines-and-mineral-occurrence-sites" class="label" data-format="gdb">GDB</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mines-and-mineral-occurrence-sites" class="label" data-format="shp">SHP</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mines-and-mineral-occurrence-sites" class="label" data-format="mif">MIF</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mines-and-mineral-occurrence-sites" class="label" data-format="tab">TAB</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mines-and-mineral-occurrence-sites" class="label" data-format="extended tab">Extended TAB</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mines-and-mineral-occurrence-sites" class="label" data-format="wms">WMS</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mines-and-mineral-occurrence-sites" class="label" data-format="wfs">WFS</a>
+                  </li>
+                  
+                
+              </ul>
+            
+        
+        <ul class="list-unstyled dataset-api">
+          <ul>
+              
+              
+
+              
+                  
+                  
+
+                  <li class="preview ">
+                      <i class="fa-solid fa-map-location-dot"></i>
+                      <span class="">Preview</span>
+                  </li>
+              
+
+              
+          </ul>
+
+          
+          
+        </ul>
+        
+      </div>
+    
+  </li>
+
+	      
+	        
+
+
+
+
+
+
+  <li class="dataset-item">
+    
+      <div class="dataset-content">
+        
+          <h3 class="dataset-heading">
+            
+              
+            
+            
+              <a href="/dataset/mineral-points-1-1000000">Mineral Points (1:1,000,000)</a>
+            
+            
+              
+              
+            
+          </h3>
+        
+        
+          
+        
+        
+          
+            <div>Location of known mineral occurrences and deposits presented in the 1:1,000,000 Minerals of Victoria map compiled in 1993 by the Geological Survey of Victoria. NOTES CONCERNING...</div>
+          
+          
+            <h4 class="search-result-organisation">
+                <a href="/organization/department-of-energy-environment-climate-action">
+                    Department of Energy, Environment and Climate Action
+                </a>
+            </h4>
+        
+        
+        
+          
+            
+              <ul class="dataset-resources unstyled">
+                
+                  
+                  <li>
+                    <a href="/dataset/mineral-points-1-1000000" class="label" data-format="dwg">DWG</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mineral-points-1-1000000" class="label" data-format="dxf">DXF</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mineral-points-1-1000000" class="label" data-format="gdb">GDB</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mineral-points-1-1000000" class="label" data-format="shp">SHP</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mineral-points-1-1000000" class="label" data-format="mif">MIF</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mineral-points-1-1000000" class="label" data-format="tab">TAB</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mineral-points-1-1000000" class="label" data-format="extended tab">Extended TAB</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mineral-points-1-1000000" class="label" data-format="wms">WMS</a>
+                  </li>
+                  
+                  <li>
+                    <a href="/dataset/mineral-points-1-1000000" class="label" data-format="wfs">WFS</a>
+                  </li>
+                  
+                
+              </ul>
+            
+        
+        <ul class="list-unstyled dataset-api">
+          <ul>
+              
+              
+
+              
+                  
+                  
+
+                  <li class="preview ">
+                      <i class="fa-solid fa-map-location-dot"></i>
+                      <span class="">Preview</span>
+                  </li>
+              
+
+              
+          </ul>
+
+          
+          
+        </ul>
+        
+      </div>
+    
+  </li>
+
+	      
+	    
+    </ul>
+  
+
+      
+    </div>
+
+    
+      
+    
+  </section>
+
+  
+
+
+              </div>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+    <footer>
+  <div class="rpl-site-footer">
+    <div class="rpl-site-footer__main">
+      <ul class="rpl-footer-nav">
+        <li class="rpl-footer-nav__menu-item rpl-footer-nav__menu-item--parent">
+          <h2 class="rpl-footer-nav__heading">
+            <a href="/dataset/" class="rpl-link rpl-menu__item-link">Data</a>
+          </h2>
+        </li>
+        <li class="rpl-footer-nav__menu-item rpl-footer-nav__menu-item--parent">
+          <h2 class="rpl-footer-nav__heading">
+            <a href="https://www.data.vic.gov.au/about-datavic" class="rpl-link rpl-menu__item-link">About DataVic</a>
+          </h2>
+        </li>
+        <li class="rpl-footer-nav__menu-item rpl-footer-nav__menu-item--parent">
+          <h2 class="rpl-footer-nav__heading">
+            <a href="https://www.data.vic.gov.au/contact-us" class="rpl-link rpl-menu__item-link">Contact us</a>
+          </h2>
+        </li>
+      </ul>
+      <div class="rpl-acknowledgement rpl-site-footer__acknowledgement">
+        <img class="rpl-acknowledgement__flag" src="/images/aboriginal-flag.png" alt="Aboriginal flag" />
+        <img class="rpl-acknowledgement__flag" src="/images/torres-strait-islander-flag.png" alt="Torres Strait Islander flag" />
+        <div class="rpl-acknowledgement__text">The Victorian Government acknowledges Aboriginal Traditional Owners of Country throughout Victoria and pays respect to their cultures and Elders past, present and emerging.</div>
+      </div>
+    </div>
+    <div class="rpl-site-footer__bottom">
+      <div class="rpl-site-footer__bottom-main">
+        <div class="rpl-links-and-copyright">
+          <ul class="rpl-links-and-copyright__links"><!-- 
+            --><li><a href="https://www.data.vic.gov.au/privacy-vicgovau">Privacy</a></li><!--
+            --><li><a href="https://www.data.vic.gov.au/disclaimer">Disclaimer</a></li><!--
+            --><li><a href="https://www.data.vic.gov.au/copyright">Copyright</a></li><!--
+            --><li><a href="https://www.data.vic.gov.au/accessibility">Accessibility</a></li><!--
+            --><li><a href="/sitemap">Sitemap</a></li><!--
+            --><li><a href="https://www.data.vic.gov.au/contact-us">Contact us</a></li><!--
+          --></ul>
+          <div class="rpl-links-and-copyright__copyright">© Copyright State Government of Victoria</div>
+        </div>
+      </div>
+      <div class="rpl-site-footer__logos">
+        <a href="https://vic.gov.au" target="_blank" class="rpl-link rpl-site-footer__logo">
+          <img src="/images/vic-footer-logo.svg" alt="Victoria Government Website">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+
+  
+  
+    
+    
+  
+  
+  
+  
+    
+    
+    
+    
+        
+        
+        <div class="js-hide" data-module="google-analytics"
+             data-module-googleanalytics_resource_prefix="/downloads/">
+        </div>
+    
+
+    
+
+  
+
+
+    
+
+
+    
+
+  
+
+  
+
+
+    
+    
+    <link href="/webassets/vendor/f3b8236b_select2.css" rel="stylesheet"/>
+<link href="/webassets/vendor/53df638c_fontawesome.css" rel="stylesheet"/>
+    <script src="/webassets/vendor/240e5086_jquery.js" type="text/javascript"></script>
+<script src="/webassets/vendor/794b5440_vendor.js" type="text/javascript"></script>
+<script src="/webassets/vendor/6d1ad7e6_bootstrap.js" type="text/javascript"></script>
+<script src="/webassets/vendor/529a0eb7_htmx.js" type="text/javascript"></script>
+<script src="/webassets/base/ebc2f0b9_main.js" type="text/javascript"></script>
+<script src="/webassets/base/78ac888d_ckan.js" type="text/javascript"></script>
+<script src="/webassets/ckanext-googleanalytics/event_tracking.js?71ae8997" type="text/javascript"></script>
+<script src="/webassets/ckanext-search_autocomplete/3aae4f75-search_autocomplete.js" type="text/javascript"></script>
+<script src="/webassets/datavic_odp_theme/176a29a0_datavic_odp_theme.js" type="text/javascript"></script>
+<script src="/webassets/ckanext-auth/e85bdf83-auth.js" type="text/javascript"></script>
+<script src="/webassets/ckanext-alias/f3df63a9-alias.js" type="text/javascript"></script>
+<script src="/webassets/activity/0fdb5ee0_activity.js" type="text/javascript"></script>
+  </body>
+</html>

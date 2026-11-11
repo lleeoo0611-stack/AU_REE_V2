@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<!--[if IE 9]> <html lang="en-AU" class="ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-AU"  > <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+      <meta name="csrf_field_name" content="_csrf_token" />
+      <meta name="_csrf_token" content="ImZlMTMzYmNiZjViZWFkMGE5ZmZiODJhYjUxMjEyNjNmMzRiNDYxYmUi.avSZ5g.Kiy-vKn4V19gULXZ6Wt7b2UfMWE" />
+
+      <meta name="generator" content="ckan 2.11.7" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mines and Mineral Occurrence Sites - Dataset - DataVic</title>
+
+    
+    
+    <link rel="shortcut icon" href="/favicon.ico" />
+    
+    
+        <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MD2QX4G');</script>
+<!-- End Google Tag Manager -->
+    
+
+    
+  
+    
+  
+  
+      
+      
+      
+    
+  
+
+  
+
+    
+
+  
+
+    
+
+
+    
+    <link href="/webassets/base/c5c63dee_main.css" rel="stylesheet"/>
+<link href="/webassets/ckanext-activity/8dd77216_activity.css" rel="stylesheet"/>
+<link href="/webassets/ckanext-scheming/728ec589_scheming_css.css" rel="stylesheet"/>
+<link href="/webassets/ckanext-search_autocomplete/6189a052-search_autocomplete.css" rel="stylesheet"/>
+<link href="/webassets/datavic_odp_theme/14c7750e_datavic_odp_theme.css" rel="stylesheet"/>
+<link href="/webassets/ckanext-auth/f9dbc039-auth.css" rel="stylesheet"/>
+    
+  
+  
+  
+    
+    
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+</script>  
+
+  
+        <!-- Hotjar Tracking Code for http://www.data.vic.gov.au -->
+    <script>
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) }
+      h._hjSettings = {hjid: 139604, hjsv: 6}
+      a = o.getElementsByTagName('head')[0]
+      r = o.createElement('script'); r.async = 1
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+      a.appendChild(r)
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+    </script>
+  
+
+  
+        <script type="text/javascript">
+    var _monsido = _monsido || [];
+    _monsido.push(['_setDomainToken', '6btH_pcVmgd2xyzSEv6H3g']);
+    _monsido.push(['_withStatistics', 'false']);
+    </script>
+    <script src="//cdn.monsido.com/tool/javascripts/monsido.js"></script>
+  
+
+  
+    <script src="https://caretaker.dpc.vic.gov.au/message.js" defer="true"></script>
+  
+
+
+  
+  <meta property="og:title" content="Mines and Mineral Occurrence Sites - DataVic">
+  <meta property="og:description" content="Sites where earth resources have been demonstrated...">
+
+
+  </head>
+
+  
+  <body data-site-root="https://discover.data.vic.gov.au/" data-locale-root="https://discover.data.vic.gov.au/" >
+
+    
+    
+        
+            
+                <!-- Google Tag Manager (noscript) -->
+                <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD2QX4G"
+                                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+                <!-- End Google Tag Manager (noscript) -->
+            
+        
+    
+
+    
+  
+    <div class="visually-hidden-focusable"><a href="#content">Skip to main content</a></div>
+  
+
+
+  
+  <header>
+    
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <nav id="mobile-menu" class="rpl-site-header hidden" data-module="datavic-odp-header datavic-odp-breadcrumb">
+    <div class="rpl-site-header__inner">
+      <div class="rpl-site-header__top">
+        <div class="rpl-site-header__logo-container">
+          <button id="btn-mobile-menu-close" aria-expanded="true" class="rpl-site-header__btn rpl-site-header__btn--menu rpl-site-header__btn--menu-open">
+            <svg focusable="false" class="rpl-icon rpl-icon--close rpl-icon--color_white" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M15 0.3C14.6-0.1 14-0.1 13.6 0.3L7.6 6.2 1.7 0.3C1.3-0.1 0.7-0.1 0.3 0.3 -0.1 0.7-0.1 1.3 0.3 1.7L6.2 7.6 0.7 13.2C0.3 13.6 0.3 14.2 0.7 14.6 1 15 1.7 15 2.1 14.6L7.6 9.1 13.2 14.6C13.6 15 14.2 15 14.6 14.6 15 14.2 15 13.6 14.6 13.2L9.1 7.6 15 1.7C15.4 1.3 15.4 0.7 15 0.3Z" fill="inherit"/></svg>
+            <span>Close menu</span>
+          </button>
+        </div>
+        <div class="rpl-site-header__menu-container rpl-site-header__menu-container--vertical">
+          <div class="rpl-site-header__menu">
+            <div data-vpos="0" data-visibledepth="0" class="rpl-menu rpl-menu--open rpl-menu--root rpl-menu--vertical">
+              <div class="rpl-menu__inner">
+                <div class="rpl-menu__inner_root">
+                  <div class="rpl-menu__column">
+                    <div class="rpl-menu__header"><!----> <!----></div>
+                    <ul class="rpl-menu__items rpl-menu__items--root" data-module="datavic-dropdown" data-module-is-mobile="true">
+                      
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      <a href="#" class="rpl-link rpl-menu__item-link dropdown-toggle"><span>Data publishing</span></a>
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Data publishing</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/data-publishing" class="dropdown-item">
+                <span>Data publishing</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/data-publishing-victorian-public-service" class="dropdown-item">
+                <span>Data publishing for the Victorian Public Service (VPS)</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/open-data-publishing-victorian-public-sector" class="dropdown-item">
+                <span>Open data publishing for the Victorian public sector</span>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      
+    
+    <a href="/dataset/" class="rpl-link rpl-menu__item-link">Search data</a>
+    
+  
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Search data</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li><p>No child items was created yet</p></li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      <a href="#" class="rpl-link rpl-menu__item-link dropdown-toggle"><span>About DataVic</span></a>
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>About DataVic</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/about-datavic" class="dropdown-item">
+                <span>About DataVic</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/datavic-access-policy" class="dropdown-item">
+                <span>DataVic Access Policy</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/datavic-access-policy-guidelines" class="dropdown-item">
+                <span>DataVic Access Policy guidelines</span>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      
+    
+    <a href="https://www.data.vic.gov.au/contact-us" class="rpl-link rpl-menu__item-link">Contact us</a>
+    
+  
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Contact us</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li><p>No child items was created yet</p></li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      
+    
+    <a href="/user/login" class="rpl-link rpl-menu__item-link">Log in</a>
+    
+  
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Log in</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li><p>No child items was created yet</p></li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+  
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rpl-site-header__btn-container"><!----> <!----></div>
+      </div> <!---->
+    </div>
+  </nav>
+
+  <nav id="main-menu" class="rpl-site-header">
+    <div class="rpl-site-header__inner">
+      <div class="rpl-site-header__top">
+        <div class="rpl-site-header__logo-container">
+          <button id="btn-mobile-menu-open" aria-expanded="false" class="rpl-site-header__btn rpl-site-header__btn--menu">
+            <svg focusable="false" class="rpl-icon rpl-icon--hamburger rpl-icon--color_white" width="18" height="14" viewBox="0 0 18 14" xmlns="http://www.w3.org/2000/svg"><style>.a{fill:inherit;}</style><path d="M0 1C0 0.4 0.4 0 1 0H9C9.6 0 10 0.4 10 1 10 1.6 9.6 2 9 2H1C0.4 2 0 1.6 0 1Z" class="a"/><path d="M0 5C0 4.4 0.4 4 1 4H17C17.6 4 18 4.4 18 5 18 5.6 17.6 6 17 6H1C0.4 6 0 5.6 0 5Z" class="a"/><path d="M0 9C0 8.4 0.4 8 1 8H13C13.6 8 14 8.4 14 9 14 9.6 13.6 10 13 10H1C0.4 10 0 9.6 0 9Z" class="a"/><path d="M0 13C0 12.4 0.4 12 1 12H17C17.6 12 18 12.4 18 13 18 13.6 17.6 14 17 14H1C0.4 14 0 13.6 0 13Z" class="a"/></svg>
+            <span>Menu</span>
+          </button>
+          
+          <div class="rpl-site-header__title rpl-site-header__logo-container--vic-logo-primary rpl-site-header__logo-container--vic-logo-primary--cobrand">
+            <a href="https://www.vic.gov.au/" class="rpl-link" target="_blank">
+              <img src="/images/vic-header-logo.png" alt="vic_logo">
+            </a>
+          </div>
+          
+          <div class="rpl-site-header__title cobrand">
+            <a href="https://www.data.vic.gov.au" class="rpl-link">
+              <img src="/images/data-vic-logo-x3.png" alt="Data.Vic logo">
+            </a>
+          </div>
+        </div>
+        
+        <div class="rpl-site-header__menu-container rpl-site-header__menu-container--horizontal">
+          <div class="rpl-site-header__menu">
+            <div data-vpos="0" data-visibledepth="0" class="rpl-menu rpl-menu--root rpl-menu--horizontal">
+              <div class="rpl-menu__inner">
+                <div class="rpl-menu__inner_root">
+                  <div class="rpl-menu__column">
+                    <div class="rpl-menu__header">
+                      
+                    </div>
+                    <ul class="rpl-menu__items rpl-menu__items--root" data-module="datavic-dropdown">
+                      
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      <a href="#" class="rpl-link  dropdown-toggle"><span>Data publishing</span></a>
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Data publishing</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/data-publishing" class="dropdown-item">
+                <span>Data publishing</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/data-publishing-victorian-public-service" class="dropdown-item">
+                <span>Data publishing for the Victorian Public Service (VPS)</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/open-data-publishing-victorian-public-sector" class="dropdown-item">
+                <span>Open data publishing for the Victorian public sector</span>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      
+    
+    <a href="/dataset/" class="rpl-link rpl-menu__item-link">Search data</a>
+    
+  
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Search data</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li><p>No child items was created yet</p></li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      <a href="#" class="rpl-link  dropdown-toggle"><span>About DataVic</span></a>
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>About DataVic</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/about-datavic" class="dropdown-item">
+                <span>About DataVic</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/datavic-access-policy" class="dropdown-item">
+                <span>DataVic Access Policy</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="https://www.data.vic.gov.au/datavic-access-policy-guidelines" class="dropdown-item">
+                <span>DataVic Access Policy guidelines</span>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      
+    
+    <a href="https://www.data.vic.gov.au/contact-us" class="rpl-link rpl-menu__item-link">Contact us</a>
+    
+  
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Contact us</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li><p>No child items was created yet</p></li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li class="vic-dropdown-menu rpl-menu__item">
+      
+      
+    
+    <a href="/user/login" class="rpl-link rpl-menu__item-link">Log in</a>
+    
+  
+      
+      
+      <div class="dropdown" style="display: none;">
+        <div class="container">
+          <div class="dropdown-header">
+            <h3>Log in</h3>
+          </div>
+          <ul class="dropdown-items">
+            
+            <li><p>No child items was created yet</p></li>
+            
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+  
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rpl-site-header__btn-container">
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  
+  </header>
+
+  
+  <div id="breadcrumbs" class="rpl-breadcrumbs" role="breadcrumbs">
+      <nav aria-label="breadcrumbs">
+          <ul class="rpl-breadcrumbs__items">
+              <li class="rpl-breadcrumbs__item"><a href="https://www.data.vic.gov.au" class="rpl-link rpl-breadcrumbs__link">Home</a></li>
+              
+    
+        
+        
+            
+            <li><a href="/organization/">Organisations</a></li>
+            
+            
+            <li><a href="/organization/department-of-energy-environment-climate-action">Department of Energy,...</a></li>
+        
+        <li class="active"><a href="/dataset/mines-and-mineral-occurrence-sites">Mines and Mineral Occurrence Sites</a></li>
+    
+
+
+          </ul>
+      </nav>
+  </div>
+  
+
+    <div id="main-content" role="main">
+      <div id="content" class="container">
+        
+          
+            <div class="flash-messages">
+              
+                
+              
+            </div>
+          
+
+          
+            <div class="toolbar">
+              
+              
+            </div>
+          
+
+          <div class="row  no-nav">
+            
+            
+
+            
+              
+              
+            
+
+            
+              
+              <div class="primary span12">
+                
+                  
+                  <article class="module">
+                    
+    <div class="module-content page-header">
+        
+        <ul class="nav nav-tabs">
+            
+  <li><a href="/dataset/mines-and-mineral-occurrence-sites">Dataset</a></li>
+  
+
+  
+
+        </ul>
+    </div>
+
+                    <div class="module-content">
+                      
+                      
+  
+
+    
+        
+    
+    <h1>
+      
+        Mines and Mineral Occurrence Sites
+        
+        
+      
+    </h1>
+    
+    <div class="notes embedded-content">
+      <p>Sites where earth resources have been demonstrated. This includes metallics, industrial minerals and construction materials, but excludes oil, gas and groundwater resources which are recorded in OILGAS and BORES datasets. OILGAS will be available for external users within Petroleum Mapshare. It is thought that groundwater resources will be available to external users within a CLPR (Catchment and Land Protection) Mapshare View. </p>
+<p>The data is derived from Minerals and Petroleums RDBMS, which is known as VICMINE.
+Information on each site has been compiled mostly from historical literature, with only selected major sites visited in the field.</p>
+<h2>NOTES CONCERNING GEOVIC "Mines and Mineral Occurrence" DISPLAY</h2>
+<p>The type of mine/mineral occurrence displayed varies with the scale of the map view.
+Major and Intermediate size mines are displayed at all scales.
+Minor and Unknown size Mines are displayed at scales ranging from 1:1 to 1:500,000
+MAJOR is for mine_size greater than= 85000000
+MINOR is for mine_size less than 8500000
+INTERMEDIATE is for mine_size between the two
+UNKNOWN is when the mine_size is unknown</p>
+<p>MINE_SIZE (better name would be MINE_VALUE) is a calculated dollar amount based on the total production and resource for each commodity multiplied by the commodity price (NOTE: these commodity prices have not been updated in some time eg: as of 13/1/2013 the gold price per ounce used was $526.70 - April 1985 prices) </p>
+<h2>NOTES CONCERNING GEOVIC "Deposit Styles" DISPLAY</h2>
+<p>A number of deposit style layers exist in GeoVic.
+The layers are based on particular values of the dep_style attribute - within this dataset.
+The dep_style attribute contains the results of classifying the mineral deposits of Victoria east of approximately 142°30' and west of 145°30', but excluding the Willaura (7422) 1:100 000 map sheet area. The classification is described in detail in Moore, D.H., 2007. "Classifying gold deposits in central and western Victoria, Australia. GeoScience Victoria Gold Undercover Report". </p>
+<h2>GENERAL NOTES CONCERNING GEOVIC</h2>
+<p>Refer to Mineral Regions 1M (MINERAL) for extent of brown and black coal fields, Heavy Mineral Sands 1M (MINSAND1M) for extent of strandline mineral sand deposits, and Heavy Minerals Sands WIM 1M (MINSAND1M) for extent of WIM style mineral sand deposits.</p>
+    </div>
+  
+
+  
+    
+
+    
+        
+
+        
+            
+<section id="dataset-resources" class="resources">
+  
+      <h2>Data and Resources</h2>
+  
+
+  
+    
+      <ul class="resource-list">
+        
+          
+          
+            
+
+
+<li class="resource-item" data-id="d893acc0-3bb0-4f31-8330-af04b28f1ac3">
+    
+    <div class="resource-icon">
+        <span class="format-label" property="dc:format" data-format="dwg">DWG</span>
+    </div>
+    <div class="resource-summary">
+        <p>
+            
+              MINSITE DWG<br/>
+            
+            
+        </p>
+    </div>
+    
+
+  
+  
+  
+
+  <ul class="list-unstyled buttons">
+    
+      
+      
+      <li>
+        <a class="btn btn-primary btn-outline" href="/dataset/mines-and-mineral-occurrence-sites/resource/d893acc0-3bb0-4f31-8330-af04b28f1ac3">
+          <i class="fa fa-info-circle"></i>
+          More information
+        </a>
+      </li>
+      
+        <li>
+          <a href="https://datashare.maps.vic.gov.au/search?md=d14f89bd-34fd-55c9-9af4-12575f92976b" class="btn btn-primary" target="_blank">
+            
+              <i class="fa fa-external-link"></i>
+              Go to Resource
+            
+          </a>
+        </li>
+      
+    
+  </ul>
+
+
+</li>
+
+          
+            
+
+
+<li class="resource-item" data-id="e6f3f8bd-937b-40c0-8d5f-e6fcdfa65347">
+    
+    <div class="resource-icon">
+        <span class="format-label" property="dc:format" data-format="dxf">DXF</span>
+    </div>
+    <div class="resource-summary">
+        <p>
+            
+              MINSITE DXF<br/>
+            
+            
+        </p>
+    </div>
+    
+
+  
+  
+  
+
+  <ul class="list-unstyled buttons">
+    
+      
+      
+      <li>
+        <a class="btn btn-primary btn-outline" href="/dataset/mines-and-mineral-occurrence-sites/resource/e6f3f8bd-937b-40c0-8d5f-e6fcdfa65347">
+          <i class="fa fa-info-circle"></i>
+          More information
+        </a>
+      </li>
+      
+        <li>
+          <a href="https://datashare.maps.vic.gov.au/search?md=d14f89bd-34fd-55c9-9af4-12575f92976b" class="btn btn-primary" target="_blank">
+            
+              <i class="fa fa-external-link"></i>
+              Go to Resource
+            
+          </a>
+        </li>
+      
+    
+  </ul>
+
+
+</li>
+
+          
+            
+
+
+<li class="resource-item" data-id="6548f3a0-ac7a-4f28-8f6b-e394b7b5647e">
+    
+    <div class="resource-icon">
+        <span class="format-label" property="dc:format" data-format="gdb">GDB</span>
+    </div>
+    <div class="resource-summary">
+        <p>
+            
+              MINSITE GDB<br/>
+            
+            
+        </p>
+    </div>
+    
+
+  
+  
+  
+
+  <ul class="list-unstyled buttons">
+    
+      
+      
+      <li>
+        <a class="btn btn-primary btn-outline" href="/dataset/mines-and-mineral-occurrence-sites/resource/6548f3a0-ac7a-4f28-8f6b-e394b7b5647e">
+          <i class="fa fa-info-circle"></i>
+          More information
+        </a>
+      </li>
+      
+        <li>
+          <a href="https://datashare.maps.vic.gov.au/search?md=d14f89bd-34fd-55c9-9af4-12575f92976b" class="btn btn-primary" target="_blank">
+            
+              <i class="fa fa-external-link"></i>
+              Go to Resource
+            
+          </a>
+        </li>
+      
+    
+  </ul>
+
+
+</li>
+
+          
+            
+
+
+<li class="resource-item" data-id="3ec1f3ac-3a39-474e-bcab-5431f6588367">
+    
+    <div class="resource-icon">
+        <span class="format-label" property="dc:format" data-format="shp">SHP</span>
+    </div>
+    <div class="resource-summary">
+        <p>
+            
+              MINSITE SHP<br/>
+            
+            
+        </p>
+    </div>
+    
+
+  
+  
+  
+
+  <ul class="list-unstyled buttons">
+    
+      
+      
+      <li>
+        <a class="btn btn-primary btn-outline" href="/dataset/mines-and-mineral-occurrence-sites/resource/3ec1f3ac-3a39-474e-bcab-5431f6588367">
+          <i class="fa fa-info-circle"></i>
+          More information
+        </a>
+      </li>
+      
+        <li>
+          <a href="https://datashare.maps.vic.gov.au/search?md=d14f89bd-34fd-55c9-9af4-12575f92976b" class="btn btn-primary" target="_blank">
+            
+              <i class="fa fa-external-link"></i>
+              Go to Resource
+            
+          </a>
+        </li>
+      
+    
+  </ul>
+
+
+</li>
+
+          
+            
+
+
+<li class="resource-item" data-id="7288d7b6-79ff-4bb1-a4a4-176880ece36e">
+    
+    <div class="resource-icon">
+        <span class="format-label" property="dc:format" data-format="mif">MIF</span>
+    </div>
+    <div class="resource-summary">
+        <p>
+            
+              MINSITE MIF<br/>
+            
+            
+        </p>
+    </div>
+    
+
+  
+  
+  
+
+  <ul class="list-unstyled buttons">
+    
+      
+      
+      <li>
+        <a class="btn btn-primary btn-outline" href="/dataset/mines-and-mineral-occurrence-sites/resource/7288d7b6-79ff-4bb1-a4a4-176880ece36e">
+          <i class="fa fa-info-circle"></i>
+          More information
+        </a>
+      </li>
+      
+        <li>
+          <a href="https://datashare.maps.vic.gov.au/search?md=d14f89bd-34fd-55c9-9af4-12575f92976b" class="btn btn-primary" target="_blank">
+            
+              <i class="fa fa-external-link"></i>
+              Go to Resource
+            
+          </a>
+        </li>
+      
+    
+  </ul>
+
+
+</li>
+
+          
+            
+
+
+<li class="resource-item" data-id="11497c0d-fc29-4ba1-be02-753ac1ac10a3">
+    
+    <div class="resource-icon">
+        <span class="format-label" property="dc:format" data-format="tab">TAB</span>
+    </div>
+    <div class="resource-summary">
+        <p>
+            
+              MINSITE TAB<br/>
+            
+            
+        </p>
+    </div>
+    
+
+  
+  
+  
+
+  <ul class="list-unstyled buttons">
+    
+      
+      
+      <li>
+        <a class="btn btn-primary btn-outline" href="/dataset/mines-and-mineral-occurrence-sites/resource/11497c0d-fc29-4ba1-be02-753ac1ac10a3">
+          <i class="fa fa-info-circle"></i>
+          More information
+        </a>
+      </li>
+      
+        <li>
+          <a href="https://datashare.maps.vic.gov.au/search?md=d14f89bd-34fd-55c9-9af4-12575f92976b" class="btn btn-primary" target="_blank">
+            
+              <i class="fa fa-external-link"></i>
+              Go to Resource
+            
+          </a>
+        </li>
+      
+    
+  </ul>
+
+
+</li>
+
+          
+            
+
+
+<li class="resource-item" data-id="9f9be736-9363-4739-a4c6-f950b8df46b8">
+    
+    <div class="resource-icon">
+        <span class="format-label" property="dc:format" data-format="extended tab">Extended TAB</span>
+    </div>
+    <div class="resource-summary">
+        <p>
+            
+              MINSITE Extended TAB<br/>
+            
+            
+        </p>
+    </div>
+    
+
+  
+  
+  
+
+  <ul class="list-unstyled buttons">
+    
+      
+      
+      <li>
+        <a class="btn btn-primary btn-outline" href="/dataset/mines-and-mineral-occurrence-sites/resource/9f9be736-9363-4739-a4c6-f950b8df46b8">
+          <i class="fa fa-info-circle"></i>
+          More information
+        </a>
+      </li>
+      
+        <li>
+          <a href="https://datashare.maps.vic.gov.au/search?md=d14f89bd-34fd-55c9-9af4-12575f92976b" class="btn btn-primary" target="_blank">
+            
+              <i class="fa fa-external-link"></i>
+              Go to Resource
+            
+          </a>
+        </li>
+      
+    
+  </ul>
+
+
+</li>
+
+          
+            
+
+
+<li class="resource-item" data-id="17644777-32b0-4dd8-853f-5246b4c3664a">
+    
+    <div class="resource-icon">
+        <span class="format-label" property="dc:format" data-format="wms">WMS</span>
+    </div>
+    <div class="resource-summary">
+        <p>
+            
+              MINSITE WMS<br/>
+            
+            
+        </p>
+    </div>
+    
+
+  
+  
+  
+
+  <ul class="list-unstyled buttons">
+    
+      
+      
+      <li>
+        <a class="btn btn-primary btn-outline" href="/dataset/mines-and-mineral-occurrence-sites/resource/17644777-32b0-4dd8-853f-5246b4c3664a">
+          <i class="fa fa-info-circle"></i>
+          More information
+        </a>
+      </li>
+      
+        <li>
+          <a href="https://opendata.maps.vic.gov.au/geoserver/wms?service=wms&amp;request=getmap&amp;format=image%2Fpng8&amp;transparent=true&amp;layers=open-data-platform:minsite&amp;width=512&amp;height=512&amp;crs=epsg%3A3857&amp;bbox=16114148.554967716%2C-4456584.4971389165%2C16119040.524777967%2C-4451692.527328665" class="btn btn-primary" target="_blank">
+            
+              <i class="fa fa-external-link"></i>
+              Go to Resource
+            
+          </a>
+        </li>
+      
+    
+  </ul>
+
+
+</li>
+
+          
+            
+
+
+<li class="resource-item" data-id="500199fc-a782-47ca-8b2a-7c0ffca347cd">
+    
+    <div class="resource-icon">
+        <span class="format-label" property="dc:format" data-format="wfs">WFS</span>
+    </div>
+    <div class="resource-summary">
+        <p>
+            
+              MINSITE WFS<br/>
+            
+            
+        </p>
+    </div>
+    
+
+  
+  
+  
+
+  <ul class="list-unstyled buttons">
+    
+      
+      
+      <li>
+        <a class="btn btn-primary btn-outline" href="/dataset/mines-and-mineral-occurrence-sites/resource/500199fc-a782-47ca-8b2a-7c0ffca347cd">
+          <i class="fa fa-info-circle"></i>
+          More information
+        </a>
+      </li>
+      
+        <li>
+          <a href="https://opendata.maps.vic.gov.au/geoserver/wfs?request=GetCapabilities&amp;service=WFS" class="btn btn-primary" target="_blank">
+            
+              <i class="fa fa-external-link"></i>
+              Go to Resource
+            
+          </a>
+        </li>
+      
+    
+  </ul>
+
+
+</li>
+
+          
+        
+      </ul>
+    
+
+  
+</section>
+        
+
+        
+
+
+
+
+
+
+    <section class="datapreview resource-preview">
+        <div class="header-container">
+            <h3>Map preview</h3>
+            <a href="https://digitaltwin.vic.gov.au/public/?utm_source=DataVic&utm_medium=datarecordwebpage+&utm_campaign=DataVicDTVlink#https://discover.data.vic.gov.au/dtv_config/WyIxNzY0NDc3Ny0zMmIwLTRkZDgtODUzZi01MjQ2YjRjMzY2NGEiXQ%253D%253D/config.json" target="_blank" class="dtv-external-link">
+                See this dataset in the Digital Twin Victoria
+                <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+  <path d="M14 1.53906V12.6016C14 13.3008 13.3008 14 12.4609 14H1.53906C0.699219 14 0 13.3008 0 12.4609V1.53906C0 0.699219 0.699219 0 1.53906 0H12.6016C13.3008 0 14 0.699219 14 1.53906ZM11.1992 1.96094H7.69922C7.14063 1.96094 6.71875 2.80078 7.28125 3.21875L8.26172 4.19922L2.10156 10.3594C1.96094 10.5 1.96094 10.7812 2.10156 10.9219L3.07812 11.8984C3.21875 12.0391 3.5 12.0391 3.64062 11.8984L9.80078 5.73828L10.7812 6.71875C11.1992 7.28125 12.0391 6.85937 12.0391 6.30078V2.80078C12.0391 2.37891 11.6211 1.96094 11.1992 1.96094Z"
+    fill="inherit" />
+</svg>
+            </a>
+        </div>
+        <div class="resource-view resource-view">
+            <iframe frameborder="0"
+                    src="https://map.digitaltwin.vic.gov.au/#https://discover.data.vic.gov.au/dtv_config/WyIxNzY0NDc3Ny0zMmIwLTRkZDgtODUzZi01MjQ2YjRjMzY2NGEiXQ%253D%253D/embedded/config.json&hideWelcomeMessage=1&hideWorkbench=1&zoomOnEnable=1"
+                    height="600px" width="100%"></iframe>
+        </div>
+    </section>
+
+    
+
+    
+        
+
+
+
+    
+
+    
+  <section class="additional-info">
+  <h3>Additional Information</h3>
+
+  <table class="table table-striped table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th scope="col">Field</th>
+        <th scope="col">Value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      
+        
+
+        
+          
+          <tr>
+            <th scope="row" class="dataset-label">Published (Metadata Record)</th>
+            <td class="dataset-details" property="dct:issued">
+              26/09/2023
+            </td>
+          </tr>
+        
+
+        
+          <tr>
+            <th scope="row" class="dataset-label">Last updated</th>
+            <td class="dataset-details" property="dct:updated">
+              08/11/2026
+            </td>
+          </tr>
+        
+
+        
+          
+          <tr>
+            <th scope="row" class="dataset-label">Organisation</th>
+            <td class="dataset-details" property="dc:contributor">Department of Energy, Environment and Climate Action</td>
+          </tr>
+        
+
+        
+        
+          <tr>
+            <th scope="row" class="dataset-label">Category</th>
+            <td class="dataset-details">
+              <ul>
+                
+                  <li>
+                      <a href="/dataset/?groups=spatial-data">Spatial Data</a>
+                  </li>
+                
+              </ul>
+            </td>
+          </tr>
+        
+
+        
+          <tr>
+            <th scope="row" class="dataset-label">License</th>
+            <td class="dataset-details">
+              
+                <a href="https://creativecommons.org/licenses/by/4.0/" rel="dc:rights" target="_blank">Creative Commons Attribution 4.0 International</a>
+              
+            </td>
+          </tr>
+        
+
+        
+          <tr>
+            <th scope="row" class="dataset-label">Full metadata URL</th>
+            <td class="dataset-details">
+            
+              <a href="https://metashare.maps.vic.gov.au/geonetwork/srv/eng/catalog.search#/metadata/d14f89bd-34fd-55c9-9af4-12575f92976b/formatters/sdm-html?root=div-sdm" target="_blank" rel="nofollow">https://metashare.maps.vic.gov.au/geonetwork/srv/eng/catalog.search#/metadata/d14f89bd-34fd-55c9-9af4-12575f92976b/formatters/sdm-html?root=div-sdm</a>
+            
+            </td>
+          </tr>
+        
+
+        <tr>
+          <th scope="row" class="dataset-label">Update Frequency</th>
+          <td class="dataset-details">Continual</td>
+        </tr>
+
+        
+          <tr>
+            <th scope="row" class="dataset-label">Point of contact</th>
+            <td class="dataset-details">
+              
+                <a href="mailto:gsv_info@deeca.vic.gov.au">gsv_info@deeca.vic.gov.au</a>
+              
+            </td>
+          </tr>
+        
+      
+    </tbody>
+  </table>
+</section>
+
+
+
+  <section class="data-publisher-notice">
+  <p>
+    Responsibility for legislative and policy compliance rests with the publisher.
+  </p>
+</section>
+
+                    </div>
+                  </article>
+                
+                
+              </div>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+    <footer>
+  <div class="rpl-site-footer">
+    <div class="rpl-site-footer__main">
+      <ul class="rpl-footer-nav">
+        <li class="rpl-footer-nav__menu-item rpl-footer-nav__menu-item--parent">
+          <h2 class="rpl-footer-nav__heading">
+            <a href="/dataset/" class="rpl-link rpl-menu__item-link">Data</a>
+          </h2>
+        </li>
+        <li class="rpl-footer-nav__menu-item rpl-footer-nav__menu-item--parent">
+          <h2 class="rpl-footer-nav__heading">
+            <a href="https://www.data.vic.gov.au/about-datavic" class="rpl-link rpl-menu__item-link">About DataVic</a>
+          </h2>
+        </li>
+        <li class="rpl-footer-nav__menu-item rpl-footer-nav__menu-item--parent">
+          <h2 class="rpl-footer-nav__heading">
+            <a href="https://www.data.vic.gov.au/contact-us" class="rpl-link rpl-menu__item-link">Contact us</a>
+          </h2>
+        </li>
+      </ul>
+      <div class="rpl-acknowledgement rpl-site-footer__acknowledgement">
+        <img class="rpl-acknowledgement__flag" src="/images/aboriginal-flag.png" alt="Aboriginal flag" />
+        <img class="rpl-acknowledgement__flag" src="/images/torres-strait-islander-flag.png" alt="Torres Strait Islander flag" />
+        <div class="rpl-acknowledgement__text">The Victorian Government acknowledges Aboriginal Traditional Owners of Country throughout Victoria and pays respect to their cultures and Elders past, present and emerging.</div>
+      </div>
+    </div>
+    <div class="rpl-site-footer__bottom">
+      <div class="rpl-site-footer__bottom-main">
+        <div class="rpl-links-and-copyright">
+          <ul class="rpl-links-and-copyright__links"><!-- 
+            --><li><a href="https://www.data.vic.gov.au/privacy-vicgovau">Privacy</a></li><!--
+            --><li><a href="https://www.data.vic.gov.au/disclaimer">Disclaimer</a></li><!--
+            --><li><a href="https://www.data.vic.gov.au/copyright">Copyright</a></li><!--
+            --><li><a href="https://www.data.vic.gov.au/accessibility">Accessibility</a></li><!--
+            --><li><a href="/sitemap">Sitemap</a></li><!--
+            --><li><a href="https://www.data.vic.gov.au/contact-us">Contact us</a></li><!--
+          --></ul>
+          <div class="rpl-links-and-copyright__copyright">© Copyright State Government of Victoria</div>
+        </div>
+      </div>
+      <div class="rpl-site-footer__logos">
+        <a href="https://vic.gov.au" target="_blank" class="rpl-link rpl-site-footer__logo">
+          <img src="/images/vic-footer-logo.svg" alt="Victoria Government Website">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+
+  
+  
+    
+    
+  
+  
+  
+  
+    
+    
+    
+    
+        
+        
+        <div class="js-hide" data-module="google-analytics"
+             data-module-googleanalytics_resource_prefix="/downloads/">
+        </div>
+    
+
+    
+
+  
+
+
+    
+
+
+    
+
+  
+
+  
+
+
+    
+    
+    <link href="/webassets/vendor/f3b8236b_select2.css" rel="stylesheet"/>
+<link href="/webassets/vendor/53df638c_fontawesome.css" rel="stylesheet"/>
+    <script src="/webassets/vendor/240e5086_jquery.js" type="text/javascript"></script>
+<script src="/webassets/vendor/794b5440_vendor.js" type="text/javascript"></script>
+<script src="/webassets/vendor/6d1ad7e6_bootstrap.js" type="text/javascript"></script>
+<script src="/webassets/vendor/529a0eb7_htmx.js" type="text/javascript"></script>
+<script src="/webassets/base/ebc2f0b9_main.js" type="text/javascript"></script>
+<script src="/webassets/base/78ac888d_ckan.js" type="text/javascript"></script>
+<script src="/webassets/ckanext-googleanalytics/event_tracking.js?71ae8997" type="text/javascript"></script>
+<script src="/webassets/ckanext-search_autocomplete/3aae4f75-search_autocomplete.js" type="text/javascript"></script>
+<script src="/webassets/datavic_odp_theme/176a29a0_datavic_odp_theme.js" type="text/javascript"></script>
+<script src="/webassets/ckanext-auth/e85bdf83-auth.js" type="text/javascript"></script>
+<script src="/webassets/ckanext-alias/f3df63a9-alias.js" type="text/javascript"></script>
+<script src="/webassets/activity/0fdb5ee0_activity.js" type="text/javascript"></script>
+  </body>
+</html>

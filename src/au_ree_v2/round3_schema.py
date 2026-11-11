@@ -117,7 +117,7 @@ def write_projection(before,out,rows,trace,missing,repo,archive=None):
 def migrate(before,out,repo):
     before,out,repo=map(Path,(before,out,repo));columns,rows=read_csv(before/'專案總表.csv');_,trace=read_csv(before/'field_provenance.csv');_,missing=read_csv(before/'missing_fields.csv')
     if len(columns)!=53 or any(r[c] for r in rows for c in RETIRED):raise ValueError('ROUND3_RETIREMENT_PRECONDITION')
-    archive=dict(version='retired-columns-trace-v1',original_columns=columns,files=pack(before,FILES),presentation_files=pack(repo/'results/asx-current',('專案總表.csv','field_provenance.csv')),retired_columns=list(RETIRED),limitation=LIMITATION)
+    archive=dict(version='retired-columns-trace-v1',original_columns=columns,files=pack(before,FILES),presentation_files=frozen_presentation_files(repo),retired_columns=list(RETIRED),limitation=LIMITATION)
     old_missing=copy.deepcopy(missing);newrows=[{c:v for c,v in r.items() if c not in RETIRED} for r in rows]
     write_projection(before,out,newrows,trace,[m for m in missing if m['column'] not in RETIRED],repo,archive)
     _,updated=read_csv(out/'missing_fields.csv');g={(r['project_id'],r['column']):r for r in updated}
@@ -163,3 +163,30 @@ def present(source,out,repo):
     summary=json.loads((source/'summary.json').read_text('utf8'));summary.update(version=PRESENTATION,presentation_note_policy='PRESERVE_PREEXISTING_VALUES_AND_PROVENANCE_NO_REFRESH',columns_sha256=digest(cols),filled_counts={c:sum(bool(r[c]) for r in output) for c in cols})
     summary['output_hashes']={n:filehash(out/n) for n in (*FILES[:4],ARCHIVE,'presentation_core_trace.json')}
     write_json(out/'summary.json',summary);write_json(out/'audit.json',audit(out))
+
+FROZEN_PRESENTATION_PATH='results/round2-partial-publication-2026-11-11/presentation-a'
+FROZEN_PRESENTATION_SHA256={
+    'field_provenance.csv':'385541f38c02a23c5aaf49410b420f157b4080e408b1d63f0ec2fe64692ceed1',
+    '專案總表.csv':'6730182f9815f67e5b2b591bcf9496c7924ca5e565630fd4bafe530234af10ea',
+}
+
+
+def frozen_presentation_files(repo):
+    """Return original53-column publication bytes, independent of mutable current.
+
+    `pack` reads each original once. Verify its digest AFTER packing so a changed
+    original cannot pass a read/check/read gap. Never fall back to current.
+    """
+    root=Path(repo)/FROZEN_PRESENTATION_PATH
+    if (not root.is_dir() or root.is_symlink()
+            or (hasattr(root,'is_junction') and root.is_junction())):
+        raise ValueError('ROUND3_FROZEN_PRESENTATION_MISSING_OR_LINKED')
+    for name in FROZEN_PRESENTATION_SHA256:
+        p=root/name
+        if not p.is_file() or p.is_symlink():
+            raise ValueError('ROUND3_FROZEN_PRESENTATION_FILE_MISSING_OR_LINKED:'+name)
+    files=pack(root,tuple(FROZEN_PRESENTATION_SHA256))
+    if {name:record['sha256'] for name,record in files.items()} != FROZEN_PRESENTATION_SHA256:
+        raise ValueError('ROUND3_FROZEN_PRESENTATION_SHA_MISMATCH')
+    return files
+

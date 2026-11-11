@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:open-data-platform="http://www.delwp.vic.gov.au/open-data-platform" xmlns:wfs="http://www.opengis.net/wfs/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.delwp.vic.gov.au/open-data-platform">
+  <xsd:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://opendata.maps.vic.gov.au/geoserver/schemas/gml/3.2.1/gml.xsd"/>
+  <xsd:complexType name="minsiteType">
+    <xsd:complexContent>
+      <xsd:extension base="gml:AbstractFeatureType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="feature" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="siteid" nillable="true" type="xsd:int"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="mine_type" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="mine_name" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="field_name" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="feat_type" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="dep_ty_gen" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="dep_ty_sp" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="dep_style" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="mine_size" nillable="true" type="xsd:double"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="size_cat" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="ore_d" nillable="true" type="xsd:int"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="ore_dd" nillable="true" type="xsd:int"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="depth" nillable="true" type="xsd:double"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="minedleng" nillable="true" type="xsd:double"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="adit" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="in_situ" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="open_cut" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="shaft" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="decline" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="sluicing" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="dredging" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="prod_comm" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="prod" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="prod_units" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="ore" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="ore_units" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="gold_p_gms" nillable="true" type="xsd:int"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="gold_ore_t" nillable="true" type="xsd:int"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="pri_comm" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="sec_comm" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="min_ass" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="host_lith" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="ref_ids" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="plan_nos" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="miningmeth" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="project" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="rot_angle" nillable="true" type="xsd:short"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="plottype" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="audintrend" nillable="true" type="xsd:int"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="mi_symbol" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="av_symbol" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="ai_symbol" nillable="true" type="xsd:short"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="site_type" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="map25" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="map50" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="map100" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="map250" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="datum" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="zone" nillable="true" type="xsd:short"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="easting" nillable="true" type="xsd:double"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="northing" nillable="true" type="xsd:double"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="latitude" nillable="true" type="xsd:double"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="longitude" nillable="true" type="xsd:double"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="locn_acc" nillable="true" type="xsd:int"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="locn_meth" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="elev_gl" nillable="true" type="xsd:double"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="elev_acc" nillable="true" type="xsd:short"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="elev_meth" nillable="true" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="geom" nillable="true" type="gml:PointPropertyType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="minsite" substitutionGroup="gml:AbstractFeature" type="open-data-platform:minsiteType"/>
+</xsd:schema>

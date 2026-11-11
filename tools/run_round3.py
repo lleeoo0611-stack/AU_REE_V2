@@ -86,13 +86,11 @@ def round3_collect(task,before,decisions,census):
         settings=json.loads((REPO/'config/round3_stage.json').read_text('utf8'))
         return collect_stage_absence(rows,trace,decisions,REPO,census,settings)
     if task==3:
-        from au_ree_v2.round3_locations import collect
+        from au_ree_v2.round3_locations import collect, verify_official_acquisition
         fills,reviews,extra=collect(rows,trace,decisions,REPO)
-        official=REPO/f'results/round3-government-{DATE}/acquisition.json'
-        if official.exists():
-            acquisition=json.loads(official.read_text('utf8'));extra['new_official_acquisition']=acquisition
-            for item in acquisition['datasets']:
-                reviews.append(dict(project_id='',project=item['state'],reason=item['status'],details=item))
+        acquisition=verify_official_acquisition(REPO);extra['new_official_acquisition']=acquisition
+        for item in acquisition['datasets']:
+            reviews.append(dict(project_id='',project=item['state'],reason=item['status'],details=item))
         return fills,reviews,extra
     if task==4:
         from au_ree_v2.round3_annual import collect
@@ -140,9 +138,12 @@ def sequential(task,work,census,publish=False):
     if prior.implementation_hashes()!=implementation:raise ValueError('IMPLEMENTATION_CHANGED')
     prior.verify_protected(protection)
     write_json(out/'summary.json',summary);write_json(out/'rebuild_receipt.json',dict(output_hashes=hashes,census_sha256=protection['census_sha256'],independent_full_rebuilds=2,tests=summary['tests'],implementation_sha256=implementation))
-    details={1:'刪除兩個原本全空欄位，只重分類空白。Wimmera/WIM100 雖無 TREO 總量，仍有已選礦石資源量，因此實測有MRE38列／無MRE55列，與題示估計37／56不同。第2層已填資源格同時計入分子及分母。被刪欄及每格分類變更見 changed_cells.csv。'+schema.LIMITATION,2:'僅在每份關聯封存原件皆完整可讀、日期可知，且沒有任一關鍵字時推定。命中、未讀頁、缺檔或未知日期全部入 review queue；影像主導／無可抽取文字的PDF頁必須有原件與完整頁面渲染SHA相符的人工視覺審查，否則保留待審；沒有宣稱OCR已完成。視覺結果、渲染方法及關鍵字版本保存在每份原件的manifest。增加relinquish保守搜尋詞，部分退還礦權只進待審、不判成整個專案退出。不為湊數放寬。原始開發階段欄不填推定。',3:'只採同州唯一精確名稱／單site且公司不矛盾的代表點。NT以完整同名控制點比較三種datum，不能辨別GDA94/GDA2020時明確標註並取GDA94。Mt Stirling與Yttria同一2024-04-16礦床估計，不可直接加總；保留既有Yttria點，距離見shared_deposit_points.json。VIC/TAS僅官方資料且授權明確才接納；遇存取限制立即停止。',4:'只限Cummins Range，依p60設計基準及p76分期解釋選首個全產期，不把價目表NdPr價格當年產量。',5:'彙總各任務實測增量與三種覆蓋率；既有總說明與provenance保留，不隨新增證據改寫。'}
+    details={1:'刪除兩個原本全空欄位，只重分類空白。Wimmera/WIM100 雖無 TREO 總量，仍有已選礦石資源量，因此實測有MRE38列／無MRE55列，與題示估計37／56不同。第2層已填資源格同時計入分子及分母。被刪欄及每格分類變更見 changed_cells.csv。'+schema.LIMITATION,2:'僅在每份關聯封存原件皆完整可讀、日期可知，且沒有任一關鍵字時推定。命中、未讀頁、缺檔或未知日期全部入 review queue；影像主導／無可抽取文字的PDF頁必須有原件與完整頁面渲染SHA相符的逐頁視覺核查，否則保留待審；沒有宣稱OCR已完成。視覺結果、渲染方法及關鍵字版本保存在每份原件的manifest。增加relinquish保守搜尋詞，部分退還礦權只進待審、不判成整個專案退出。不為湊數放寬。原始開發階段欄不填推定。',3:'只採同州唯一精確名稱／單site且公司不矛盾的代表點。NT以完整同名控制點比較三種datum，不能辨別GDA94/GDA2020時明確標註並取GDA94。Mt Stirling與Yttria同一2024-04-16礦床估計，不可直接加總；保留既有Yttria點，距離見shared_deposit_points.json。VIC/TAS僅官方資料且授權明確才接納；遇存取限制立即停止。',4:'只限Cummins Range，依p60設計基準及p76分期解釋選首個全產期，不把價目表NdPr價格當年產量。',5:'彙總各任務實測增量與三種覆蓋率；既有總說明與provenance保留，不隨新增證據改寫。'}
     text=f'# 第三輪任務 {task}\n\n新增 {summary["new_cells"]} 格；變更／刪除空白分類 {summary["changed_cells"]} 格。\n\n{details[task]}\n\n兩次獨立完整離線來源重建；四份CSV、summary及audit逐位元一致，完整回歸通過。Census、inventory、凍結歷史與INCOMPLETE／CONTINUE結論不動。\n'
     if task==1:text+='\n資源欄明確清單：\n'+''.join('- '+c+'\n' for c in s['tiered_coverage']['resource_columns'])+'\n第2層一般欄：\n'+''.join('- '+c+'\n' for c in s['tiered_coverage']['nonresource_columns'])
+    if task==3:
+        distances=data['extra']['shared_deposit_points']
+        text+='\nYttria既有點與MINEDEX點距離：'+', '.join(f"{d['distance_to_minedex_m']:.3f} m" for d in distances)+'；既有點保持不變。本輪新增WA10格、NT4格、Mt Stirling2格。VIC完整封存18794筆、39筆REE/monazite候選，但指定空白列沒有同州、公司、唯一site可同時成立的匹配，新增0；TAS HTTP403後停止，新增0。VIC來源project欄為目錄來源類別，不冒充採礦專案群組。\n'
     (out/'README.md').write_text(text,encoding='utf8')
     if task==5:
         summary_out=REPO/f'results/round3-summary-{DATE}';summary_out.mkdir()

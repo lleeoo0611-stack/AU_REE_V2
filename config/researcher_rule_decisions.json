@@ -344,6 +344,44 @@
       "decided_by": "USER_EXPLICIT_APPROVAL",
       "decided_date": "2026-11-11",
       "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
+    },
+    {
+      "decision_id": "round3-wa-empty-operator-20261111",
+      "rule": "NO_OPERATOR_VALUE",
+      "scope": "SAME_STATE_UNIQUE_EXACT_SITE_OR_PROJECT_TITLE_EMPTY_OPERATOR_VALUE",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
+    },
+    {
+      "decision_id": "round3-nt-controls-20261111",
+      "rule": "NT_DATUM_FROM_ARCHIVED_CONTROL_POINTS",
+      "scope": "NT_ARCHIVED_GA_CONTROL_DATUM_MIN3",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
+    },
+    {
+      "decision_id": "round3-shared-yttria-20261111",
+      "rule": "SHARED_DEPOSIT_POINT_RESEARCHER_APPROVED",
+      "scope": [
+        "Mt Stirling — Yttria resource scope",
+        "Yttria REE Project"
+      ],
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
+    },
+    {
+      "decision_id": "round3-vic-tas-official-20261111",
+      "rule": "ACQUIRE_OFFICIAL_VIC_TAS_OPEN_DATA",
+      "scope": [
+        "VIC",
+        "TAS"
+      ],
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
     }
   ]
 }
