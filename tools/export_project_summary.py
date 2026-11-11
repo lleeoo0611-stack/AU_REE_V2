@@ -1,4 +1,4 @@
-"""Export the existing Census using the uploaded 52-column project table contract."""
+"""Historical replay exporter: legacy52 internal Census contract. For the approved current51 table use tools/run_round3.py and results/asx-current."""
 import argparse,json
 from au_ree_v2.project_summary import export_summary
 

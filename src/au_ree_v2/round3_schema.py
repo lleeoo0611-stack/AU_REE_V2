@@ -63,6 +63,7 @@ def verify_archive(folder,rows,trace):
 def audit(folder):
     folder=Path(folder);repo=Path(__file__).resolve().parents[2]
     summary=json.loads((folder/'summary.json').read_text('utf8'))
+    if summary.get('version') not in (CORE,PRESENTATION):raise ValueError('ROUND3_UNKNOWN_SCHEMA_VERSION')
     columns,rows=read_csv(folder/'專案總表.csv');_,trace=read_csv(folder/'field_provenance.csv');_,missing=read_csv(folder/'missing_fields.csv')
     cfg=config(repo);expected=json.loads((repo/'config/project_summary_columns.json').read_text('utf8'))+['ASX代碼']
     presentation=summary['version']==PRESENTATION
@@ -135,6 +136,7 @@ def fill(before,out,fills,decisions,repo):
     for f in fills:
         k=f['project_id'],f['column']
         if k[0] not in index or k[1] not in index[k[0]] or index[k[0]][k[1]] or k in known or f['decision_id'] not in approved:raise ValueError('ROUND3_FILL_NOT_APPROVED_BLANK')
+        if str(f['value'])=='':raise ValueError('ROUND3_EMPTY_FILL')
         p=dict.fromkeys(pf,'');p.update({k:v for k,v in f.get('provenance',{}).items() if k in p});p.update(project_id=k[0],column=k[1],value=str(f['value']))
         if not all(p.get(s) for s in ('source_sha256','locator','method')):raise ValueError('ROUND3_FILL_TRACE_REQUIRED')
         index[k[0]][k[1]]=p['value'];trace.append(p);known.add(k)
