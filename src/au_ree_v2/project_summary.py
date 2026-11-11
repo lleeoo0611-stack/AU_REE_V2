@@ -101,8 +101,11 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
     codebook=load_codebook(codebook_path) if codebook_path.exists() else None
     from .template_mapping import load_template_mapping,template_mapping_fills
     template_mapping=load_template_mapping(user_template_mapping) if user_template_mapping is not None else None
-    from .stage_rules import decision_records,stage_rule_fills
-    researcher_rows=decision_records(researcher_decisions) if researcher_decisions is not None else []
+    from .scoped_oxide_exceptions import decision_rows, scoped_exception_fills, RULES, DERIVED_CHANGE_COLUMNS
+    researcher_rows=decision_rows(researcher_decisions)
+    exception_reviews={}
+    if review_ledger and any(isinstance(d,dict) and d.get('rule') in RULES.values() and isinstance(d.get('decided_by'),str) and d['decided_by'].strip() for d in researcher_rows):
+        exception_reviews={r['statement_id']:r for r in json.loads(Path(review_ledger).read_text('utf8'))['reviews']}
     if template:
         with Path(template).open(encoding='utf-8-sig',newline='') as stream:given=next(csv.reader(stream))
         if given!=columns:raise ValueError('TEMPLATE_COLUMNS_DO_NOT_MATCH_CONTRACT')
@@ -293,6 +296,18 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                     value=complete_sum(elements,required)
                     if value is not None:put(column,value,sha,method='SUM_COMPLETE_MATCHED_OXIDE_SET',scope=scope)
                 if complete_sum(elements,MAGNET) is not None:put('四項磁性元素皆公布','是',sha,scope=scope)
+                if pid in RULES and bundle['statement_id'] in exception_reviews:
+                    review=exception_reviews[bundle['statement_id']]
+                    source_path=Path(selected[sha].get('asset_root',root))/selected[sha]['path']
+                    for fill in scoped_exception_fills(review,source_path,bundle,elements,row,researcher_rows):
+                        column=fill['column']
+                        if row[column]!='' and column not in DERIVED_CHANGE_COLUMNS:
+                            raise ValueError('RESEARCHER_EXCEPTION_EXISTING_CELL_PROTECTED:'+column)
+                        # Replace provenance only for the explicitly allowed derived
+                        # counters/checks. Every existing native cell stays untouched.
+                        if row[column]!='':
+                            trace[:]=[t for t in trace if not (t['project_id']==pid and t['column']==column)]
+                        put(column,fill['value'],sha,canonical(fill['provenance']),fill['method'],scope,ids)
                 # The template's HTML comparison belongs to its original HTML data;
                 # no independent HTML comparator exists in this Census export.
             # Forecast products belong to their engineering study scope, not the
@@ -339,6 +354,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
             if template_mapping:
                 for fill in template_mapping_fills(row,trace,template_mapping):put(**fill)
             if researcher_rows:
+                from .stage_rules import stage_rule_fills
                 for fill in stage_rule_fills(row,trace,researcher_rows):put(**fill)
             for column in columns:
                 if row[column]=='':

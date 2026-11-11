@@ -160,6 +160,30 @@
       "decided_by": null,
       "decided_date": "2026-11-11",
       "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。"
+    },
+    {
+      "decision_id": "task4-splinter-ce2o3-to-ceo2",
+      "project_id": "AU-574465211976ec57b1ef",
+      "rule": "CE2O3_TO_CEO2_STOICHIOMETRIC",
+      "scope": {
+        "statement_id": "splinter-inferred500-r254-20151109",
+        "source_sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7"
+      },
+      "decided_by": null,
+      "decided_date": "2026-11-11",
+      "notes": "研究者核准前不生效；僅限指定專案、statement 與來源 SHA。"
+    },
+    {
+      "decision_id": "task4-circle-valley-combined-ndpr",
+      "project_id": "AU-785536db5ff12c25350d",
+      "rule": "ACCEPT_SOURCE_COMBINED_NDPR_OXIDE",
+      "scope": {
+        "statement_id": "circle_valley_global_202306",
+        "source_sha256": "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad"
+      },
+      "decided_by": null,
+      "decided_date": "2026-11-11",
+      "notes": "研究者核准前不生效；僅限指定專案、statement 與來源 SHA。"
     }
   ]
 }

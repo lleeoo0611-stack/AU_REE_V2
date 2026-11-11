@@ -1,0 +1,63 @@
+{
+  "baseline_commit": "2cce9fd89b92fd2d8ce4969d2c738a1dffb78e2d",
+  "task_order": [
+    "task1",
+    "task3",
+    "task2",
+    "task4"
+  ],
+  "tasks": [
+    {
+      "task": "task1",
+      "new_cells": 0,
+      "changed_cells": 0,
+      "decision_sha256": "6fdb054d6077dbdde5331757e959cb2431f97708165aa682548651fde37d3fc9",
+      "source_rebuilds": 2
+    },
+    {
+      "task": "task3",
+      "new_cells": 0,
+      "changed_cells": 0,
+      "decision_sha256": "78eb995edc52e1618f64d013be8e49d6509bb668088bf6c796c2277f0a09ee33",
+      "source_rebuilds": 2
+    },
+    {
+      "task": "task2",
+      "new_cells": 0,
+      "changed_cells": 0,
+      "decision_sha256": "b78b2d399ab4ccdcf2308ce521847179c0deeb7b7329104433a0380fcf848185",
+      "source_rebuilds": 2
+    },
+    {
+      "task": "task4",
+      "new_cells": 0,
+      "changed_cells": 0,
+      "decision_sha256": "44f1e16a2068bf7fc92be02ca72f78f5aa7aa883b6ee1470dcc0d806bf72fb3c",
+      "source_rebuilds": 2
+    }
+  ],
+  "formal_filled": 1985,
+  "formal_blank": 2944,
+  "formal_new_cells": 0,
+  "formal_changed_cells": 0,
+  "decisions": 19,
+  "approved_decisions": 0,
+  "decision_sha256": "44f1e16a2068bf7fc92be02ca72f78f5aa7aa883b6ee1470dcc0d806bf72fb3c",
+  "full_repository_tests": {
+    "passed": 834,
+    "subtests_passed": 532,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "network_denied": true
+  },
+  "protected": {
+    "protected_files": 978,
+    "census_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0"
+  },
+  "preexisting_dirty_files_unchanged": 18,
+  "asx_current_bitwise_unchanged": true,
+  "network_requests": 0,
+  "published_current": false,
+  "pushed_remote": false
+}
