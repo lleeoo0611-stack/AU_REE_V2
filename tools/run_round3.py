@@ -103,6 +103,8 @@ def sequential(task,work,census,publish=False):
     out=REPO/f'results/round3-{task}-{DATE}'
     if work.exists() or out.exists():raise ValueError('FRESH_OUTPUT_REQUIRED')
     if not (REPO/f'results/round3-{task-1}-{DATE}/rebuild_receipt.json').exists():raise ValueError('PREVIOUS_TASK_MUST_PASS_FIRST')
+    from au_ree_v2.round3_publication import tree_hashes
+    current_at_runner_start=tree_hashes(REPO/'results/asx-current') if task==5 and publish else None
     protection=prior.protected_snapshot(census);implementation=prior.implementation_hashes()
     decisions=json.loads((REPO/'config/researcher_rule_decisions.json').read_text('utf8'));passes={};stage_data={}
     for pass_name in ('a','b'):
@@ -150,14 +152,12 @@ def sequential(task,work,census,publish=False):
         records=[json.loads((REPO/f'results/round3-{i}-{DATE}/summary.json').read_text('utf8')) for i in range(5)]
         write_json(summary_out/'coverage_comparison.json',dict(baseline=dict(commit='cde12ab',filled=2141,denominator=4929),tasks=records,total_new_cells=sum(r['new_cells'] for r in records),**{k:s[k] for k in ('original_53_columns','all_retained_columns','tiered_coverage')}))
         if publish:
-            schema.present(out/'projection',work/'presentation-a',REPO);schema.present(out/'projection',work/'presentation-b',REPO)
-            identical_replays(work/'presentation-a',work/'presentation-b')
-            for source in (work/'presentation-a').iterdir():
-                if source.is_file():shutil.copyfile(source,REPO/'results/asx-current'/source.name)
-            schema.audit(REPO/'results/asx-current')
-            status=dict(published=True,status='ROUND3_RESEARCHER_APPROVED_PUBLISHED',new_cells=sum(r['new_cells'] for r in records),existing_conclusion='INCOMPLETE/CONTINUE_UNCHANGED')
-            write_json(summary_out/'publication_status.json',status);write_json(REPO/'results/asx-current/publication_status.json',status)
-            (REPO/'results/asx-current/README.md').write_text(text,encoding='utf8')
+            from au_ree_v2.round3_release import publish_round3
+            from au_ree_v2.round3_locations import nt_candidates
+            def verify_nt_fresh():
+                acquisitions=json.loads((REPO/'results/coverage-approved-2026-11-11/government/acquisitions.json').read_text('utf8'))
+                return nt_candidates(acquisitions,decisions)[1]
+            publish_round3(REPO,DATE,work,out,summary_out,current_at_runner_start,schema,prior.tests_pass,verify_nt_fresh)
     print(json.dumps(summary,ensure_ascii=False),flush=True)
 
 if __name__=='__main__':
