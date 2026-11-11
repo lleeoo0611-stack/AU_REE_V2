@@ -1,13 +1,53 @@
 {
   "passed": true,
-  "delivery": "results/archived-elements-2026-11-11",
-  "protected_existing_cells": 1944,
-  "old_values_and_provenance_unchanged": true,
-  "independent_rebuilds": 2,
+  "delivery": "results/coverage-approved-2026-11-11",
+  "new_evidence_cells": 84,
+  "authorized_numeric_changes": 2,
+  "retired_column": "元素數據一致性檢查",
+  "replacement_column": "總說明",
+  "all_retained_52_values_and_provenance_preserved_from_approved_core": true,
+  "independent_source_rebuilds": 2,
+  "independent_government_replays": 2,
+  "independent_presentation_replays": 2,
+  "coverage_metrics": {
+    "original_53_column_evidence": {
+      "filled_cells": 2069,
+      "total_cells": 4929,
+      "columns": 53,
+      "raw_coverage": 0.41976060052749037
+    },
+    "remaining_52_columns": {
+      "filled_cells": 2044,
+      "total_cells": 4836,
+      "columns": 52,
+      "raw_coverage": 0.4226633581472291
+    },
+    "final_53_column_presentation": {
+      "filled_cells": 2103,
+      "total_cells": 4929,
+      "columns": 53,
+      "raw_coverage": 0.4266585514303104
+    },
+    "retired_consistency_cells": 25,
+    "total_note_cells": 59,
+    "note_cells_are_scientific_evidence_gain": false
+  },
   "output_hashes": {
-    "專案總表.csv": "f8e0c03c7f147308eb448ecb2d117add4d52d541401940577fcc07cfa6ae5c93",
-    "field_provenance.csv": "a216166cebb3e0acae928062732be47047ead6989f815efb9a896b7207f80772",
-    "missing_fields.csv": "9e43490631b19ae288f5e839ec91a4b12e87d6904e56c281f52ee7e4f06be62a",
-    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1"
-  }
+    "audit.json": "7db166cd5c5c343d2c7e7252507955dbe60bdd5e990ccb706940adcb752989b6",
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
+    "field_provenance.csv": "0488df7ccdef64adb188bf3b82dc3868532669d5a7d7b6821844c402f6176460",
+    "missing_fields.csv": "c14f1eb363aa80bb79a1e04c08c46f47e131b00080867d9fc615619db1c0708a",
+    "retired_consistency_trace.json": "827d5198b0af1996218837ed28d4bfe6ad9caf80a49cb09dab9b95b954a62a01",
+    "summary.json": "63d77a309f6a7cad81d89619417d900b6b6a36dfbf6d05dd4d023d10779634fb",
+    "專案總表.csv": "7106d6bad62020a4d39e3641fd2306693a9058c7a0d94fb13febbc0d7a74f030"
+  },
+  "final_regression": {
+    "tests_passed": 878,
+    "subtests_passed": 532,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "network_denied": true
+  },
+  "decision_sha256": "7a87f94cad340ebd19e3a06df6f9bba013c71ce60772519def4f2777d0559ca2"
 }

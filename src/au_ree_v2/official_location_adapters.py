@@ -68,7 +68,9 @@ def native_state(value):
     return STATES.get(value, value.upper())
 
 
-def commodity_filter(fields):
+def commodity_filter(fields,dialect="sql"):
+    if dialect=="cql":
+        return "("+" OR ".join(field+" ILIKE '%"+term+"%'" for field in fields for term in ("REE","RARE EARTH","MONAZITE","XENOTIME"))+")"
     # Only documented text fields; unknown commodity codes never inferred.
     return '('+' OR '.join("UPPER("+field+") LIKE '%"+term+"%'" for field in fields
         for term in ('REE','RARE EARTH','MONAZITE','XENOTIME'))+')'
@@ -175,7 +177,7 @@ def acquire_dataset(dataset,decisions,snapshot_dir,fetch=None,page_size=500,max_
         ids=sorted(set(str(x) for x in linked_deposit_ids))
         if not ids or any(not re.fullmatch(r'[0-9]+',x) for x in ids):raise ValueError('LOCATION_SA_LINKED_REE_IDS_REQUIRED')
         where=cfg['id']+' IN ('+','.join(ids)+')'
-    else:where=commodity_filter(cfg['commodity'])
+    else:where=commodity_filter(cfg['commodity'],dialect='sql' if cfg['kind']=='arcgis' else 'cql')
     features=[];seen=set();total=None
     while total is None or len(features)<total:
         if cfg['kind']=='arcgis':
@@ -259,7 +261,7 @@ def verify_acquisition_snapshots(result,decisions=None):
     if not expected_decision or (decisions is not None and not decision):raise ValueError('LOCATION_APPROVAL_REQUIRED')
     if result.get('decision_id')!=expected_decision:raise ValueError('LOCATION_RECEIPT_DECISION')
     if result.get('network_requests')!=len(receipts):raise ValueError('LOCATION_RECEIPT_PAGE_COUNT')
-    expected_where=commodity_filter(cfg['commodity']) if cfg['kind']!='wfs_linked' else inventory.get('filter')
+    expected_where=commodity_filter(cfg['commodity'],dialect='sql' if cfg['kind']=='arcgis' else 'cql') if cfg['kind']!='wfs_linked' else inventory.get('filter')
     if cfg['kind']=='wfs_linked' and not re.fullmatch(re.escape(cfg['id'])+r' IN \([0-9]+(?:,[0-9]+)*\)',str(expected_where)):
         raise ValueError('LOCATION_LINKED_FILTER_INVALID')
     if inventory.get('filter')!=expected_where:raise ValueError('LOCATION_FILTER_CHANGED')
@@ -269,6 +271,9 @@ def verify_acquisition_snapshots(result,decisions=None):
         if (receipt.get('dataset')!=dataset or receipt.get('layer')!=cfg['layer']
             or receipt.get('decision_id')!=expected_decision):raise ValueError('LOCATION_RECEIPT_SCOPE')
         snapshot=Path(receipt['path'])
+        if not snapshot.is_absolute():
+            repo=Path(__file__).resolve().parents[2];snapshot=(repo/snapshot).resolve()
+            if not snapshot.is_relative_to(repo):raise ValueError('LOCATION_SNAPSHOT_PATH_ESCAPE')
         archived_receipt=json.loads(snapshot.with_suffix('.receipt.json').read_text('utf8'))
         if archived_receipt!=receipt:raise ValueError('LOCATION_ARCHIVED_RECEIPT_MISMATCH')
         raw=snapshot.read_bytes()

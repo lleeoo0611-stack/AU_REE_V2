@@ -15,10 +15,15 @@ def audit_summary(folder):
     rows=read('專案總表.csv')
     columns=json.loads((Path(__file__).resolve().parents[2]/'config/project_summary_columns.json').read_text('utf8'))
     summary=json.loads((folder/'summary.json').read_text('utf8'))
-    if summary.get('version')=='census-project-summary-v3-asx-identity':
+    from .presentation_notes import VERSION, OLD, NEW, validate_presentation
+    canonical_columns = list(columns)
+    presentation = summary.get('version') == VERSION
+    if summary.get('version')=='census-project-summary-v3-asx-identity' or presentation:
         if summary.get('base_contract_columns')!=52 or not summary.get('identity_ledger_sha256'):
             raise ValueError('ITERATION_IDENTITY_CONTRACT_MISSING')
         columns=columns+['ASX代碼']
+    if presentation:
+        columns=[NEW if c == OLD else c for c in columns]
     if not rows or list(rows[0])!=columns:raise ValueError('ITERATION_SUMMARY_CONTRACT_MISMATCH')
     keys=[r['專案ID'] for r in rows]
     if len(set(keys))!=len(keys):raise ValueError('ITERATION_DUPLICATE_PROJECT')
@@ -48,6 +53,8 @@ def audit_summary(folder):
             (a.get('blank_class'),a.get('blank_rule_id'))!=(b['blank_class'],b['blank_rule_id']) for a,b in zip(missing,checked)):
             raise ValueError('ITERATION_BLANK_CLASSIFICATION_MISMATCH')
         result['blank_coverage']=coverage
+    if presentation:
+        result['coverage_metrics'] = validate_presentation(folder, summary, rows, provenance, canonical_columns)
     return result
 
 
@@ -62,6 +69,8 @@ def review_coverage_cycle(before, after, manifest):
         manifest = json.loads(Path(manifest).read_text(encoding='utf-8-sig'))
     previous = audit_summary(before)
     current = audit_summary(after)
+    if 'coverage_metrics' in previous or 'coverage_metrics' in current:
+        raise ValueError('CYCLE_REQUIRES_CANONICAL_EVIDENCE_NOT_PRESENTATION_NOTES')
     if previous['columns'] != 53 or current['columns'] != 53:
         raise ValueError('CYCLE_REQUIRES_53_COLUMNS')
 

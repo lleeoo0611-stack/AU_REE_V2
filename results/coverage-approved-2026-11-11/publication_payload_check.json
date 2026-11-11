@@ -1,0 +1,19 @@
+{
+  "scoped_payload_files_scanned": 77,
+  "archive_members_scanned": 1,
+  "credential_like_references": 0,
+  "government_manifest_verified": true,
+  "exact_current_presentation_hashes_verified": true,
+  "legacy_whole_checkout_scan": {
+    "passed": false,
+    "scope": "Read-only historical fixture overlay, including files outside this release payload",
+    "preexisting_flagged_paths": [
+      "results/asx-gap-round6-2026-11-10/external_search_receipts.json",
+      "tests/test_asx.py",
+      "tests/test_asx_locations.py",
+      "tests/test_public_document_repair.py"
+    ],
+    "flagged_paths_changed_by_this_release": false,
+    "release_payload_scan_passed": true
+  }
+}

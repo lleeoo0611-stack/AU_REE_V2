@@ -1,0 +1,12 @@
+[
+  {
+    "dataset": "SA_SARIG",
+    "url": "https://services.sarig.sa.gov.au/vector/mines_and_mineral_deposits/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mines_and_mineral_deposits%3Aall_mines_and_mineral_deposits&outputFormat=application%2Fjson&count=500&startIndex=0&sortBy=MINERAL_DEPOSIT_NO&CQL_FILTER=%28UPPER%28DEPOSIT_COMMODITIES%29+LIKE+%27%25REE%25%27+OR+UPPER%28DEPOSIT_COMMODITIES%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28DEPOSIT_COMMODITIES%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28DEPOSIT_COMMODITIES%29+LIKE+%27%25XENOTIME%25%27%29",
+    "started_at": "2026-11-11T10:02:53.420624+00:00",
+    "status": "FAILED",
+    "error_type": "HTTPError",
+    "error": "HTTP Error 400: Bad Request",
+    "http_status": 400,
+    "error_body_path": "results/coverage-approved-2026-11-11/government/failures/SA_SARIG-http-error.bin"
+  }
+]

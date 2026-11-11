@@ -1,0 +1,10 @@
+{
+  "sha256": "fbc064b1a0b8c4fa13bc83db4fcef4c45cc2c24d3ecc7d2ed0b51b5106e54d98",
+  "acquired_at": "2026-11-11T10:02:53.343922+00:00",
+  "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining_WFS/MapServer/0/query?f=json&where=%28UPPER%28site_commo%29+LIKE+%27%25REE%25%27+OR+UPPER%28site_commo%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28site_commo%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28site_commo%29+LIKE+%27%25XENOTIME%25%27+OR+UPPER%28commodity%29+LIKE+%27%25REE%25%27+OR+UPPER%28commodity%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28commodity%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28commodity%29+LIKE+%27%25XENOTIME%25%27%29&outFields=%2A&returnGeometry=true&resultOffset=415&resultRecordCount=500&orderByFields=site_code",
+  "dataset": "WA_MINEDEX",
+  "layer": "0",
+  "source_version": "\"cc110803\"",
+  "path": "results/coverage-approved-2026-11-11/government/snapshots/WA_MINEDEX/fbc064b1a0b8c4fa13bc83db4fcef4c45cc2c24d3ecc7d2ed0b51b5106e54d98.bin",
+  "decision_id": "official-location-wa_minedex-20261111"
+}

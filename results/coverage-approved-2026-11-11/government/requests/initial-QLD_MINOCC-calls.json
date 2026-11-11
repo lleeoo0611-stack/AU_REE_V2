@@ -1,0 +1,18 @@
+[
+  {
+    "dataset": "QLD_MINOCC",
+    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/GeoscientificInformation/MiningResources/MapServer/12/query?f=json&where=%28UPPER%28main_commodity%29+LIKE+%27%25REE%25%27+OR+UPPER%28main_commodity%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28main_commodity%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28main_commodity%29+LIKE+%27%25XENOTIME%25%27+OR+UPPER%28all_commodities%29+LIKE+%27%25REE%25%27+OR+UPPER%28all_commodities%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28all_commodities%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28all_commodities%29+LIKE+%27%25XENOTIME%25%27%29&outFields=%2A&returnGeometry=true&resultOffset=0&resultRecordCount=500&orderByFields=site_no",
+    "started_at": "2026-11-11T10:02:54.334221+00:00",
+    "status": "RECEIVED",
+    "bytes": 21915,
+    "sha256": "2124894a7e7bcecf73745981d8bb0e3f5a2889ca52f09f958fd706cb0e61b963"
+  },
+  {
+    "dataset": "QLD_MINOCC",
+    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/GeoscientificInformation/MiningResources/MapServer/12/query?f=json&where=%28UPPER%28main_commodity%29+LIKE+%27%25REE%25%27+OR+UPPER%28main_commodity%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28main_commodity%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28main_commodity%29+LIKE+%27%25XENOTIME%25%27+OR+UPPER%28all_commodities%29+LIKE+%27%25REE%25%27+OR+UPPER%28all_commodities%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28all_commodities%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28all_commodities%29+LIKE+%27%25XENOTIME%25%27%29&outFields=%2A&returnGeometry=true&resultOffset=19&resultRecordCount=500&orderByFields=site_no",
+    "started_at": "2026-11-11T10:03:03.175202+00:00",
+    "status": "RECEIVED",
+    "bytes": 3715,
+    "sha256": "2b06bb215a5fdaa0d042ad06e82641bd1137552aea85f5b49f2880dc0e95c2eb"
+  }
+]

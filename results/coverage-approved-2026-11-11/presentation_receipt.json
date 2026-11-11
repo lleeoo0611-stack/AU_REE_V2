@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "presentation_schema": 53,
+  "rows": 93,
+  "retired_column": "元素數據一致性檢查",
+  "replacement_column": "總說明",
+  "unchanged_data_columns": 52,
+  "all_52_data_values_and_provenance_preserved": true,
+  "independent_presentation_replays": 2,
+  "all_files_byte_identical": true,
+  "output_hashes": {
+    "audit.json": "7db166cd5c5c343d2c7e7252507955dbe60bdd5e990ccb706940adcb752989b6",
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
+    "field_provenance.csv": "0488df7ccdef64adb188bf3b82dc3868532669d5a7d7b6821844c402f6176460",
+    "missing_fields.csv": "c14f1eb363aa80bb79a1e04c08c46f47e131b00080867d9fc615619db1c0708a",
+    "retired_consistency_trace.json": "827d5198b0af1996218837ed28d4bfe6ad9caf80a49cb09dab9b95b954a62a01",
+    "summary.json": "63d77a309f6a7cad81d89619417d900b6b6a36dfbf6d05dd4d023d10779634fb",
+    "專案總表.csv": "7106d6bad62020a4d39e3641fd2306693a9058c7a0d94fb13febbc0d7a74f030"
+  },
+  "canonical_core_output_hashes": {
+    "專案總表.csv": "6c90e71828fb5dc44dd05a7b09e074af939b8c8722893df1928eb44de8e7f85e",
+    "field_provenance.csv": "e12f96127fb85474cf9f14a9e8f71c0a7b809ffe448f15fe17299a4d3e45614f",
+    "missing_fields.csv": "3e821910a90abdff509367bfe588a43f4bf714875af4fca72beaa8a8de33bdab",
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
+    "summary.json": "8f3179cfdfa546028ee1f925a9f994324684bb142930c181b717389308962ef8",
+    "audit.json": "626a6ad4a279286ac603c59480f80c9582548caaacb042d141160c83f2e879cb"
+  },
+  "coverage_metrics": {
+    "original_53_column_evidence": {
+      "filled_cells": 2069,
+      "total_cells": 4929,
+      "columns": 53,
+      "raw_coverage": 0.41976060052749037
+    },
+    "remaining_52_columns": {
+      "filled_cells": 2044,
+      "total_cells": 4836,
+      "columns": 52,
+      "raw_coverage": 0.4226633581472291
+    },
+    "final_53_column_presentation": {
+      "filled_cells": 2103,
+      "total_cells": 4929,
+      "columns": 53,
+      "raw_coverage": 0.4266585514303104
+    },
+    "retired_consistency_cells": 25,
+    "total_note_cells": 59,
+    "note_cells_are_scientific_evidence_gain": false
+  },
+  "core_new_evidence_cells": 84,
+  "core_changed_cells": 4,
+  "decision_sha256": "7a87f94cad340ebd19e3a06df6f9bba013c71ce60772519def4f2777d0559ca2"
+}

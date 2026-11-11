@@ -13,7 +13,7 @@ from au_ree_v2.official_location_adapters import (DATASETS,proposed_decisions,de
 from au_ree_v2.iteration_review import audit_summary
 from au_ree_v2.blank_classification import load_blank_rules,classify_blanks
 
-BASE_FILES=('專案總表.csv','field_provenance.csv','missing_fields.csv','source_consistency.csv','summary.json','audit.json')
+BASE_FILES=('專案總表.csv','field_provenance.csv','missing_fields.csv','census_inventory.csv','summary.json','audit.json')
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def read_csv(path):
     with Path(path).open(encoding='utf-8-sig',newline='') as f:
@@ -96,11 +96,14 @@ def run(before,out,decisions_path=None,acquisitions_path=None,acquire=False,refe
         decision_file_sha256=sha(decisions_path) if decisions_path else None,
         reference_mapping_sha256=sha(references_path) if enabled and references_path else None,
         alias_mapping_sha256=sha(aliases_path) if enabled and aliases_path else None,
-        approved_counts='NOT_MEASURED_WITHOUT_APPROVED_SNAPSHOTS',excluded_states=['VIC','TAS'])
+        approved_counts='MEASURED_FROM_COMPLETE_APPROVED_SNAPSHOTS' if acquisitions else 'NOT_MEASURED_WITHOUT_APPROVED_SNAPSHOTS',
+        complete_datasets=[x['dataset'] for x in acquisitions if x.get('status')=='COMPLETE'],
+        approved_datasets_without_complete_snapshot=[k for k in enabled if k not in {x['dataset'] for x in acquisitions if x.get('status') in ('COMPLETE','SCHEMA_REPORT_ONLY')}],excluded_states=['VIC','TAS'])
     (out/'summary.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     (out/'proposed_decisions.json').write_text(json.dumps(proposed_decisions(),ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+    measured='依完整核准快照驗得新增 '+str(len(new))+' 格；未成功取得的資料集不計增量，仍待審。' if acquisitions else '核准後數量尚未測得，不能估算為已補值。'
     licenses='\n'.join('- '+k+'：CC BY 4.0，'+v['license'] for k,v in DATASETS.items())
-    (out/'README.md').write_text('# 任務 2：政府座標\n\n新增 '+str(len(new))+' 格。未核准時零網路請求，projection/ 六份基線檔逐位元一致。\n\n只接受同州、確定名稱、唯一官方礦點；位置為代表點，非資源邊界。QLD 僅採 GDA94 屬性對，不混用 EPSG3857 geometry。NT 僅欄位報告，SA projects 僅輔助連結。VIC／TAS 無文件端點，維持空白。\n\n核准後數量尚未測得，不能估算為已補值。每次正式取得須明確傳 --acquire；離線重播使用 --acquisitions。\n\n## 授權\n'+licenses+'\n',encoding='utf8')
+    (out/'README.md').write_text('# 任務 2：政府座標\n\n新增 '+str(len(new))+' 格。未核准時零網路請求，projection/ 六份基線檔逐位元一致。\n\n只接受同州、確定名稱、唯一官方礦點；位置為代表點，非資源邊界。QLD 僅採 GDA94 屬性對，不混用 EPSG3857 geometry。NT 僅欄位報告，SA projects 僅輔助連結。VIC／TAS 無文件端點，維持空白。\n\n'+measured+'每次正式取得須明確傳 --acquire；離線重播使用 --acquisitions。\n\n## 授權\n'+licenses+'\n',encoding='utf8')
     return report
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--before',type=Path,required=True);p.add_argument('--out',type=Path,required=True)

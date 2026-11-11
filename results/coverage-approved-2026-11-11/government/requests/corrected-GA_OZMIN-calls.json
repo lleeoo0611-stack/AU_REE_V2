@@ -1,0 +1,10 @@
+[
+  {
+    "dataset": "GA_OZMIN",
+    "url": "https://services.ga.gov.au/gis/earthresource/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ama%3AMineralOccurrences&outputFormat=application%2Fjson&count=500&startIndex=0&sortBy=ENO&CQL_FILTER=%28COMMODITY_CODES+ILIKE+%27%25REE%25%27+OR+COMMODITY_CODES+ILIKE+%27%25RARE+EARTH%25%27+OR+COMMODITY_CODES+ILIKE+%27%25MONAZITE%25%27+OR+COMMODITY_CODES+ILIKE+%27%25XENOTIME%25%27+OR+COMMODITY_NAMES+ILIKE+%27%25REE%25%27+OR+COMMODITY_NAMES+ILIKE+%27%25RARE+EARTH%25%27+OR+COMMODITY_NAMES+ILIKE+%27%25MONAZITE%25%27+OR+COMMODITY_NAMES+ILIKE+%27%25XENOTIME%25%27%29",
+    "started_at": "2026-11-11T10:04:12.214305+00:00",
+    "status": "RECEIVED",
+    "bytes": 234369,
+    "sha256": "50bd299dce64d1b5409196c98d250b51e65ca8c9c24bef5ccdcb194ae9a41b82"
+  }
+]

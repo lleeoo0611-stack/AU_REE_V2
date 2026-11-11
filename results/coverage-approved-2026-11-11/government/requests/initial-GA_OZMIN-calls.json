@@ -1,0 +1,12 @@
+[
+  {
+    "dataset": "GA_OZMIN",
+    "url": "https://services.ga.gov.au/gis/earthresource/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ama%3AMineralOccurrences&outputFormat=application%2Fjson&count=500&startIndex=0&sortBy=ENO&CQL_FILTER=%28UPPER%28COMMODITY_CODES%29+LIKE+%27%25REE%25%27+OR+UPPER%28COMMODITY_CODES%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28COMMODITY_CODES%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28COMMODITY_CODES%29+LIKE+%27%25XENOTIME%25%27+OR+UPPER%28COMMODITY_NAMES%29+LIKE+%27%25REE%25%27+OR+UPPER%28COMMODITY_NAMES%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28COMMODITY_NAMES%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28COMMODITY_NAMES%29+LIKE+%27%25XENOTIME%25%27%29",
+    "started_at": "2026-11-11T10:03:08.204463+00:00",
+    "status": "FAILED",
+    "error_type": "HTTPError",
+    "error": "HTTP Error 400: ",
+    "http_status": 400,
+    "error_body_path": "results/coverage-approved-2026-11-11/government/failures/GA_OZMIN-http-error.bin"
+  }
+]

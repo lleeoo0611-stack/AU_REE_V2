@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><ows:ExceptionReport xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0.0" xsi:schemaLocation="http://www.opengis.net/ows/1.1 https://services.ga.gov.au/gis/earthresource/schemas/ows/1.1.0/owsAll.xsd">
+  <ows:Exception exceptionCode="NoApplicableCode">
+    <ows:ExceptionText>Could not parse CQL filter list.
+Function not found. Parsing : (UPPER(COMMODITY_CODES) LIKE &amp;apos;%REE%&amp;apos; OR UPPER(COMMODITY_CODES) LIKE &amp;apos;%RARE EARTH%&amp;apos; OR UPPER(COMMODITY_CODES) LIKE &amp;apos;%MONAZITE%&amp;apos; OR UPPER(COMMODITY_CODES) LIKE &amp;apos;%XENOTIME%&amp;apos; OR UPPER(COMMODITY_NAMES) LIKE &amp;apos;%REE%&amp;apos; OR UPPER(COMMODITY_NAMES) LIKE &amp;apos;%RARE EARTH%&amp;apos; OR UPPER(COMMODITY_NAMES) LIKE &amp;apos;%MONAZITE%&amp;apos; OR UPPER(COMMODITY_NAMES) LIKE &amp;apos;%XENOTIME%&amp;apos;).</ows:ExceptionText>
+  </ows:Exception>
+</ows:ExceptionReport>

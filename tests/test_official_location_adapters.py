@@ -17,6 +17,32 @@ def wa(name='Example Project'):
 R={'sha256':'a'*64,'url':DATASETS['WA_MINEDEX']['url']+'/query','acquired_at':'2026-11-11T00:00:00+00:00','source_version':'fixture'}
 ROW={'專案ID':'test','專案名稱':'Example Deposit','州省地區':'西澳大利亞州','緯度':'','經度':''}
 
+def fixture_baseline(folder,m):
+    """Generated one-project baseline; independent of mutable current coverage."""
+    folder=Path(folder);folder.mkdir()
+    cols=json.loads((ROOT/'config/project_summary_columns.json').read_text('utf8'))+['ASX代碼']
+    row={c:'' for c in cols};row.update(ROW)
+    pcols=['project_id','column','value','source_sha256','source_url','locator','method','scope','observation_ids',
+        'effective_date','effective_date_role','date_precision','review_ids','acquired_through','publication_date',
+        'publication_date_role','document_issue_date','publication_date_precision','publication_date_interval',
+        'source_kind','effective_date_interval','forecast_derivation','review_methods',
+        'resource_effective_date_unknown','public_release_date_unknown']
+    provenance=[];missing=[]
+    for col,value in row.items():
+        if value:
+            trace={c:'' for c in pcols};trace.update(project_id=row['專案ID'],column=col,value=value);provenance.append(trace)
+        else:missing.append(dict(project_id=row['專案ID'],column=col,reason='FIXTURE_UNKNOWN',blank_class='UNKNOWN',blank_rule_id='default-unknown'))
+    coverage=m.classify_blanks([row],missing,provenance,m.load_blank_rules(ROOT/'config/blank_classification.json'))
+    m.write_csv(folder/'專案總表.csv',cols,[row]);m.write_csv(folder/'field_provenance.csv',pcols,provenance)
+    m.write_csv(folder/'missing_fields.csv',['project_id','column','reason','blank_class','blank_rule_id'],missing)
+    m.write_csv(folder/'census_inventory.csv',['entity_id','name'],[dict(entity_id=row['專案ID'],name=row['專案名稱'])])
+    summary=dict(version='census-project-summary-v3-asx-identity',base_contract_columns=52,identity_ledger_sha256='f'*64,
+        filled_counts={c:int(bool(row[c])) for c in cols},blank_coverage=coverage,
+        output_hashes={n:m.sha(folder/n) for n in ['專案總表.csv','field_provenance.csv','missing_fields.csv','census_inventory.csv']})
+    (folder/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+    (folder/'audit.json').write_text(json.dumps(m.audit_summary(folder),ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+    return folder,[row]
+
 class OfficialLocationTests(unittest.TestCase):
     def test_unapproved_no_transport_or_directory(self):
         f=Mock(side_effect=AssertionError('network'))
@@ -93,9 +119,10 @@ class OfficialLocationTests(unittest.TestCase):
     def test_cli_null_bitwise_six_files(self):
         spec=importlib.util.spec_from_file_location('location_cli',ROOT/'tools/integrate_official_locations.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
         with tempfile.TemporaryDirectory() as tmp,patch('au_ree_v2.acquisition.request',side_effect=AssertionError('network')):
-            result=m.run(ROOT/'results/asx-current',Path(tmp)/'out',acquisitions_path='nonexistent.json',acquire=True)
+            before,_=fixture_baseline(Path(tmp)/'before',m)
+            result=m.run(before,Path(tmp)/'out',acquisitions_path='nonexistent.json',acquire=True)
             self.assertTrue(result['baseline_bitwise_identical']);self.assertEqual(result['new_cells'],0)
-            for name in m.BASE_FILES:self.assertEqual((ROOT/'results/asx-current'/name).read_bytes(),(Path(tmp)/'out/projection'/name).read_bytes())
+            for name in m.BASE_FILES:self.assertEqual((before/name).read_bytes(),(Path(tmp)/'out/projection'/name).read_bytes())
 
 if __name__=='__main__':unittest.main()
 
@@ -103,17 +130,15 @@ if __name__=='__main__':unittest.main()
 class OfficialLocationApprovedCliTests(unittest.TestCase):
     def test_approved_snapshot_pair_audits_and_preserves_old_values(self):
         spec=importlib.util.spec_from_file_location('location_cli_approved',ROOT/'tools/integrate_official_locations.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
-        _,rows=m.read_csv(ROOT/'results/asx-current/專案總表.csv')
-        row=next(r for r in rows if not r['緯度'] and not r['經度'] and native_state(r['州省地區'])=='WA')
         with tempfile.TemporaryDirectory() as tmp:
-            tmp=Path(tmp);d=decision('WA_MINEDEX');(tmp/'decisions.json').write_text(json.dumps(d),encoding='utf8')
+            tmp=Path(tmp);before,rows=fixture_baseline(tmp/'before',m);row=rows[0];d=decision('WA_MINEDEX');(tmp/'decisions.json').write_text(json.dumps(d),encoding='utf8')
             f=Mock(return_value=(json.dumps({'features':[wa(row['專案名稱'])],'exceededTransferLimit':False}).encode(),{'Last-Modified':'Wed, 11 Nov 2026 00:00:00 GMT'}))
             acquired=acquire_dataset('WA_MINEDEX',d,tmp/'snapshots',fetch=f)
             (tmp/'acquired.json').write_text(json.dumps([acquired]),encoding='utf8')
             with patch('au_ree_v2.acquisition.request',side_effect=AssertionError('network')):
-                result=m.run(ROOT/'results/asx-current',tmp/'out',tmp/'decisions.json',tmp/'acquired.json')
+                result=m.run(before,tmp/'out',tmp/'decisions.json',tmp/'acquired.json')
             self.assertEqual(result['new_cells'],2)
-            audited=m.audit_summary(tmp/'out/projection');self.assertEqual(audited['filled_cells'],1987)
+            audited=m.audit_summary(tmp/'out/projection');self.assertEqual(audited['filled_cells'],sum(bool(v) for r in rows for v in r.values())+2)
             _,after=m.read_csv(tmp/'out/projection/專案總表.csv')
             for old,new in zip(rows,after):
                 for col,value in old.items():
@@ -174,15 +199,13 @@ class OfficialLocationDistancePromotionTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'SOURCE_HASH'):validate_reference(ref)
     def test_cli_far_reference_prevents_promotion(self):
         spec=importlib.util.spec_from_file_location('location_cli_distance',ROOT/'tools/integrate_official_locations.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
-        _,rows=m.read_csv(ROOT/'results/asx-current/專案總表.csv')
-        row=next(r for r in rows if not r['緯度'] and not r['經度'] and native_state(r['州省地區'])=='WA')
         with tempfile.TemporaryDirectory() as tmp:
-            tmp=Path(tmp);d=decision('WA_MINEDEX');(tmp/'decisions.json').write_text(json.dumps(d),encoding='utf8')
+            tmp=Path(tmp);before,rows=fixture_baseline(tmp/'before',m);row=rows[0];d=decision('WA_MINEDEX');(tmp/'decisions.json').write_text(json.dumps(d),encoding='utf8')
             f=Mock(return_value=(json.dumps({'features':[wa(row['專案名稱'])],'exceededTransferLimit':False}).encode(),{}))
             a=acquire_dataset('WA_MINEDEX',d,tmp/'snapshots',fetch=f);(tmp/'acquired.json').write_text(json.dumps([a]),encoding='utf8')
             ref=self.proof(tmp);(tmp/'references.json').write_text(json.dumps({row['專案ID']:ref}),encoding='utf8')
             with patch('au_ree_v2.acquisition.request',side_effect=AssertionError('network')):
-                result=m.run(ROOT/'results/asx-current',tmp/'out',tmp/'decisions.json',tmp/'acquired.json',references_path=tmp/'references.json')
+                result=m.run(before,tmp/'out',tmp/'decisions.json',tmp/'acquired.json',references_path=tmp/'references.json')
             self.assertEqual(result['new_cells'],0);self.assertTrue(result['baseline_bitwise_identical'])
             _,queue=m.read_csv(tmp/'out/review_queue.csv');self.assertTrue(any(q['project_id']==row['專案ID'] and q['reason']=='DISTANT_FROM_VERIFIED_REFERENCE' for q in queue))
     def test_explicit_alias_context_proof(self):
@@ -231,3 +254,35 @@ class OfficialLocationCompleteInventoryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             r=self.acquired(tmp);r['features']=r['features'][:1];r['inventory']['count']=1
             with self.assertRaises(ValueError):build_location_candidates([r],decision('WA_MINEDEX'))
+
+
+class OfficialLocationWfsDialectTests(unittest.TestCase):
+    def test_wfs_filter_uses_native_ilike_not_unsupported_upper(self):
+        query=commodity_filter(['COMMODITY_NAMES'],dialect='cql')
+        self.assertIn("COMMODITY_NAMES ILIKE '%RARE EARTH%'",query)
+        self.assertNotIn('UPPER(',query)
+    def test_formal_projection_requires_four_csv_without_source_consistency(self):
+        spec=importlib.util.spec_from_file_location('location_cli_formal',ROOT/'tools/integrate_official_locations.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+        with tempfile.TemporaryDirectory() as tmp:
+            before,_=fixture_baseline(Path(tmp)/'before',m)
+            self.assertFalse((before/'source_consistency.csv').exists())
+            r=m.run(before,Path(tmp)/'out')
+            self.assertTrue(r['baseline_bitwise_identical']);self.assertIn('census_inventory.csv',m.BASE_FILES)
+
+class OfficialLocationPortableReplayTests(unittest.TestCase):
+    def test_repo_relative_receipt_paths_reverify_from_other_cwd(self):
+        import os
+        from au_ree_v2 import official_location_adapters as production_module
+        receipt_root=Path(production_module.__file__).resolve().parents[2]
+        with tempfile.TemporaryDirectory(dir=receipt_root) as tmp:
+            tmp=Path(tmp);f=Mock(return_value=(json.dumps({'features':[wa()],'exceededTransferLimit':False}).encode(),{}))
+            r=acquire_dataset('WA_MINEDEX',decision('WA_MINEDEX'),tmp,fetch=f)
+            for receipt in r['receipts']:
+                absolute=Path(receipt['path']);receipt['path']=absolute.relative_to(receipt_root).as_posix()
+                absolute.with_suffix('.receipt.json').write_text(json.dumps(receipt),encoding='utf8')
+            for item in r['features']:item['receipt']=r['receipts'][0]
+            old=os.getcwd()
+            try:
+                os.chdir(tmp);checked=verify_acquisition_snapshots(r,decision('WA_MINEDEX'))
+                self.assertEqual(checked['inventory']['count'],1)
+            finally:os.chdir(old)

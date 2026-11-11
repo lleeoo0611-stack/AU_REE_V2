@@ -1,0 +1,56 @@
+{
+  "task": "task2",
+  "new_cells": 6,
+  "changed_cells": 0,
+  "review_queue": 55,
+  "enabled_datasets": [
+    "WA_MINEDEX",
+    "GA_OZMIN",
+    "SA_SARIG",
+    "QLD_MINOCC",
+    "NSW_MINVIEW",
+    "NT_STRIKE"
+  ],
+  "network_requests": 0,
+  "baseline_bitwise_identical": false,
+  "baseline_hashes": {
+    "專案總表.csv": "71f62798338c2eccca2b9cafa1e6e80d598cf13dea3269b86c25b7912dd3298f",
+    "field_provenance.csv": "211453c780710ebbb7c42d0def0dd4d826bb7b8c830e24f1b657fea147c8086e",
+    "missing_fields.csv": "f9dcc0c1f22854e4a3382d479181afc73a3ab59ee623299ed87ac8a99bdd77f1",
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
+    "summary.json": "0fa8f3e73ab9b886f96ec7f94f7004eb431f2bf987ebf00fe56380676d0df6bc",
+    "audit.json": "bef873eecbad9fbb1a9a20d07f21e5bd666723f47c07fda9ff2237f42ca75196"
+  },
+  "output_hashes": {
+    "專案總表.csv": "6c90e71828fb5dc44dd05a7b09e074af939b8c8722893df1928eb44de8e7f85e",
+    "field_provenance.csv": "e12f96127fb85474cf9f14a9e8f71c0a7b809ffe448f15fe17299a4d3e45614f",
+    "missing_fields.csv": "3e821910a90abdff509367bfe588a43f4bf714875af4fca72beaa8a8de33bdab",
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
+    "summary.json": "8f3179cfdfa546028ee1f925a9f994324684bb142930c181b717389308962ef8",
+    "audit.json": "626a6ad4a279286ac603c59480f80c9582548caaacb042d141160c83f2e879cb"
+  },
+  "decision_file_sha256": "7a87f94cad340ebd19e3a06df6f9bba013c71ce60772519def4f2777d0559ca2",
+  "reference_mapping_sha256": null,
+  "alias_mapping_sha256": null,
+  "approved_counts": "MEASURED_FROM_COMPLETE_APPROVED_SNAPSHOTS",
+  "complete_datasets": [
+    "WA_MINEDEX",
+    "QLD_MINOCC",
+    "NSW_MINVIEW",
+    "GA_OZMIN"
+  ],
+  "approved_datasets_without_complete_snapshot": [
+    "SA_SARIG"
+  ],
+  "excluded_states": [
+    "VIC",
+    "TAS"
+  ],
+  "formal_core_filled": 2063,
+  "formal_after_filled": 2069,
+  "formal_after_blank": 2860,
+  "independent_offline_replays": 2,
+  "six_files_identical": true,
+  "existing_values_and_provenance_unchanged": true,
+  "replay_receipt_sha256": "53597bc29c9340dd69acc08fff55b428a85264e3d75f77acb32a718889358ee5"
+}

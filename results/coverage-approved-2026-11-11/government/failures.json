@@ -1,0 +1,62 @@
+[
+  {
+    "dataset": "SA_SARIG",
+    "endpoint": "https://services.sarig.sa.gov.au/vector/mines_and_mineral_deposits/wfs",
+    "error_type": "HTTPError",
+    "reason": "HTTP Error 400: Bad Request",
+    "http_status": 400,
+    "calls": [
+      {
+        "dataset": "SA_SARIG",
+        "url": "https://services.sarig.sa.gov.au/vector/mines_and_mineral_deposits/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mines_and_mineral_deposits%3Aall_mines_and_mineral_deposits&outputFormat=application%2Fjson&count=500&startIndex=0&sortBy=MINERAL_DEPOSIT_NO&CQL_FILTER=%28UPPER%28DEPOSIT_COMMODITIES%29+LIKE+%27%25REE%25%27+OR+UPPER%28DEPOSIT_COMMODITIES%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28DEPOSIT_COMMODITIES%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28DEPOSIT_COMMODITIES%29+LIKE+%27%25XENOTIME%25%27%29",
+        "started_at": "2026-11-11T10:02:53.420624+00:00",
+        "status": "FAILED",
+        "error_type": "HTTPError",
+        "error": "HTTP Error 400: Bad Request",
+        "http_status": 400,
+        "error_body_path": "results/coverage-approved-2026-11-11/government/failures/SA_SARIG-http-error.bin"
+      }
+    ],
+    "disposition": "STOPPED_NO_RETRY_NO_ALTERNATE_ENDPOINT"
+  },
+  {
+    "dataset": "NSW_MINVIEW",
+    "endpoint": "https://public-gs.geoscience.nsw.gov.au/geoserver/ows",
+    "error_type": "HTTPError",
+    "reason": "HTTP Error 400: ",
+    "http_status": 400,
+    "calls": [
+      {
+        "dataset": "NSW_MINVIEW",
+        "url": "https://public-gs.geoscience.nsw.gov.au/geoserver/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=mineral-occurrence%3Amineral_occurrence&outputFormat=application%2Fjson&count=500&startIndex=0&sortBy=occurrence_id&CQL_FILTER=%28UPPER%28major_comm%29+LIKE+%27%25REE%25%27+OR+UPPER%28major_comm%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28major_comm%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28major_comm%29+LIKE+%27%25XENOTIME%25%27+OR+UPPER%28minor_comm%29+LIKE+%27%25REE%25%27+OR+UPPER%28minor_comm%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28minor_comm%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28minor_comm%29+LIKE+%27%25XENOTIME%25%27%29",
+        "started_at": "2026-11-11T10:03:04.258472+00:00",
+        "status": "FAILED",
+        "error_type": "HTTPError",
+        "error": "HTTP Error 400: ",
+        "http_status": 400,
+        "error_body_path": "results/coverage-approved-2026-11-11/government/failures/NSW_MINVIEW-http-error.bin"
+      }
+    ],
+    "disposition": "CORRECTED_UNSUPPORTED_UPPER_FUNCTION_TO_NATIVE_CQL_ILIKE_SAME_ENDPOINT_ONCE;SUCCESS"
+  },
+  {
+    "dataset": "GA_OZMIN",
+    "endpoint": "https://services.ga.gov.au/gis/earthresource/ows",
+    "error_type": "HTTPError",
+    "reason": "HTTP Error 400: ",
+    "http_status": 400,
+    "calls": [
+      {
+        "dataset": "GA_OZMIN",
+        "url": "https://services.ga.gov.au/gis/earthresource/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ama%3AMineralOccurrences&outputFormat=application%2Fjson&count=500&startIndex=0&sortBy=ENO&CQL_FILTER=%28UPPER%28COMMODITY_CODES%29+LIKE+%27%25REE%25%27+OR+UPPER%28COMMODITY_CODES%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28COMMODITY_CODES%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28COMMODITY_CODES%29+LIKE+%27%25XENOTIME%25%27+OR+UPPER%28COMMODITY_NAMES%29+LIKE+%27%25REE%25%27+OR+UPPER%28COMMODITY_NAMES%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28COMMODITY_NAMES%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28COMMODITY_NAMES%29+LIKE+%27%25XENOTIME%25%27%29",
+        "started_at": "2026-11-11T10:03:08.204463+00:00",
+        "status": "FAILED",
+        "error_type": "HTTPError",
+        "error": "HTTP Error 400: ",
+        "http_status": 400,
+        "error_body_path": "results/coverage-approved-2026-11-11/government/failures/GA_OZMIN-http-error.bin"
+      }
+    ],
+    "disposition": "CORRECTED_UNSUPPORTED_UPPER_FUNCTION_TO_NATIVE_CQL_ILIKE_SAME_ENDPOINT_ONCE;SUCCESS"
+  }
+]
