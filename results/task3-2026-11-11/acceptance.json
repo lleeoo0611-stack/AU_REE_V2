@@ -1,0 +1,107 @@
+{
+  "task": "task3",
+  "decided_by_default": null,
+  "decision_sha256": "78eb995edc52e1618f64d013be8e49d6509bb668088bf6c796c2277f0a09ee33",
+  "before": {
+    "rows": 93,
+    "columns": 53,
+    "filled": 1985,
+    "blank": 2944,
+    "all_denominator": 4929,
+    "all_coverage": 0.40271860417934674,
+    "treo_rows": 36,
+    "treo_filled": 1181,
+    "treo_denominator": 1908,
+    "existing_exclusion_policy": {
+      "total_cells": 4929,
+      "filled_cells": 1985,
+      "blank_cells": 2944,
+      "blank_class_counts": {
+        "NOT_APPLICABLE_STAGE": 30,
+        "NO_COMPARATOR_SOURCE": 93,
+        "PENDING_CODEBOOK": 242,
+        "UNKNOWN": 2579
+      },
+      "excluded_structural_blanks": 123,
+      "adjusted_denominator": 4806,
+      "raw_coverage": 0.40271860417934674,
+      "adjusted_coverage": 0.4130253849354973,
+      "excluded_classes": [
+        "NOT_APPLICABLE_STAGE",
+        "NO_COMPARATOR_SOURCE"
+      ],
+      "rules_version": "v1",
+      "rules_sha256": "da4d569f6f7655747b8ae090766982bc9d2b061ce92aa935b907775e1e678baa",
+      "limitation": "ADJUSTED_INFORMATION_COVERAGE_CONVENTION_NOT_CURRENT_STATUS_OR_PROOF_OF_ABSENCE"
+    }
+  },
+  "after": {
+    "rows": 93,
+    "columns": 53,
+    "filled": 1985,
+    "blank": 2944,
+    "all_denominator": 4929,
+    "all_coverage": 0.40271860417934674,
+    "treo_rows": 36,
+    "treo_filled": 1181,
+    "treo_denominator": 1908,
+    "existing_exclusion_policy": {
+      "total_cells": 4929,
+      "filled_cells": 1985,
+      "blank_cells": 2944,
+      "blank_class_counts": {
+        "NOT_APPLICABLE_STAGE": 30,
+        "NO_COMPARATOR_SOURCE": 93,
+        "PENDING_CODEBOOK": 242,
+        "UNKNOWN": 2579
+      },
+      "excluded_structural_blanks": 123,
+      "adjusted_denominator": 4806,
+      "raw_coverage": 0.40271860417934674,
+      "adjusted_coverage": 0.4130253849354973,
+      "excluded_classes": [
+        "NOT_APPLICABLE_STAGE",
+        "NO_COMPARATOR_SOURCE"
+      ],
+      "rules_version": "v1",
+      "rules_sha256": "da4d569f6f7655747b8ae090766982bc9d2b061ce92aa935b907775e1e678baa",
+      "limitation": "ADJUSTED_INFORMATION_COVERAGE_CONVENTION_NOT_CURRENT_STATUS_OR_PROOF_OF_ABSENCE"
+    }
+  },
+  "new_cells": 0,
+  "changed_cells": 0,
+  "independent_source_rebuilds": 2,
+  "identical_six_output_files": true,
+  "core_rebuild_receipt_sha256": "554ed1fef28f7d320248b0c430068c4fe28dbedc6327780be7b6293e1ae48281",
+  "tests": [
+    {
+      "file": "task3-regression.xml",
+      "sha256": "b131b6cf359b57eb8008e45929bebce69fd6a1ec9e8a3a83860c5129b9468da5",
+      "tests": 787,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "task3-targeted.xml",
+      "sha256": "1ce94a1808699e2e5e7fa49491964b3d8df558b72c74616b1a292eb8d296a06d",
+      "tests": 117,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "protection": {
+    "protected_files": 978,
+    "census_sha256": "99ed9c0fc004960f92680ee782ef8764c189a08d98bce4d14c2d0e5ad99091d0"
+  },
+  "output_hashes": {
+    "專案總表.csv": "f8e0c03c7f147308eb448ecb2d117add4d52d541401940577fcc07cfa6ae5c93",
+    "field_provenance.csv": "a216166cebb3e0acae928062732be47047ead6989f815efb9a896b7207f80772",
+    "missing_fields.csv": "9e43490631b19ae288f5e839ec91a4b12e87d6904e56c281f52ee7e4f06be62a",
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
+    "summary.json": "e670d88d20b16835678bbdc87febd5af189350caaacb7f40ac81fcf27962ad7f",
+    "audit.json": "fce64cdcf650402155536f4dee71215e2aa74f88ed060c03021c7db718998023"
+  },
+  "published_current": false
+}

@@ -90,7 +90,7 @@ def merge_summary_sources(selected, incoming, projects):
     selected.update(incoming)
 
 
-def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',review_ledger=None,asset_roots=None,discovery_ledger=None,location_ledger=None,classification_codebook=None,user_template_mapping=None):
+def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',review_ledger=None,asset_roots=None,discovery_ledger=None,location_ledger=None,classification_codebook=None,user_template_mapping=None,researcher_decisions=None):
     root=Path(root).resolve();database=Path(database).resolve();run_dir=Path(run_dir).resolve();out=Path(out).resolve()
     if out==root or out==database.parent or root in out.parents and out.relative_to(root).parts[0] in ('data','config','src'):
         raise ValueError('SUMMARY_OUTPUT_MUST_BE_ISOLATED')
@@ -101,6 +101,8 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
     codebook=load_codebook(codebook_path) if codebook_path.exists() else None
     from .template_mapping import load_template_mapping,template_mapping_fills
     template_mapping=load_template_mapping(user_template_mapping) if user_template_mapping is not None else None
+    from .stage_rules import decision_records,stage_rule_fills
+    researcher_rows=decision_records(researcher_decisions) if researcher_decisions is not None else []
     if template:
         with Path(template).open(encoding='utf-8-sig',newline='') as stream:given=next(csv.reader(stream))
         if given!=columns:raise ValueError('TEMPLATE_COLUMNS_DO_NOT_MATCH_CONTRACT')
@@ -336,6 +338,8 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
                 for fill in classification_fills(row,trace,codebook):put(**fill)
             if template_mapping:
                 for fill in template_mapping_fills(row,trace,template_mapping):put(**fill)
+            if researcher_rows:
+                for fill in stage_rule_fills(row,trace,researcher_rows):put(**fill)
             for column in columns:
                 if row[column]=='':
                     why=(reason if column in ('礦石蘊藏量_Mt','TREO品位_pct','總TREO蘊藏量_kt') else

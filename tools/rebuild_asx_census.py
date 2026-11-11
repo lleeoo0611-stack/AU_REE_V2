@@ -82,7 +82,8 @@ def rebuild(census_root, database, run_dir, out_prefix, asset_map, cutoff=None):
                        cutoff=cutoff, review_ledger=ledger_paths[0],
                        asset_roots=assets, discovery_ledger=ledger_paths[1],
                        location_ledger=location_ledger if location_ledger.exists() else None,
-                       user_template_mapping=mapping if mapping.exists() else None)
+                       user_template_mapping=mapping if mapping.exists() else None,
+                       researcher_decisions=REPO/'config/researcher_rule_decisions.json' if (REPO/'config/researcher_rule_decisions.json').exists() else None)
         extend_summary(paths[pass_name + '-base52'], paths[pass_name + '-53'], ledger_paths[2], assets)
         audits.append(audit_summary(paths[pass_name + '-53']))
         if filehash(database) != before:
