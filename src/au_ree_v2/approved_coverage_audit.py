@@ -42,6 +42,7 @@ def validate_decisions(decisions):
     # explicitly named registry extensions are checked, but never authorize
     # first-round additions or alter the returned historical decision set.
     extensions = {
+        'round2-partial-publication-20261111': ('PUBLISH_VERIFIED_ROUND2_WITH_NT_PENDING','ROUND2_72_VERIFIED_CELLS_NT_UNCHANGED'),
         'round2-deposit-clay-20261111': ('RESEARCHER_RULE_CLAY_REGOLITH_TO_IAC','ROUND2_NATIVE_DEPOSIT_DESCRIPTION_AND_ARCHIVED_HOST'),
         'round2-deposit-potential-20261111': ('SPECULATIVE_DEPOSIT_STYLE_ALLOWED','ROUND2_NATIVE_DEPOSIT_DESCRIPTION_AND_ARCHIVED_HOST'),
         'round2-deposit-hard-20261111': ('RESEARCHER_RULE_PEGMATITE_TO_HARD','ROUND2_NATIVE_DEPOSIT_DESCRIPTION_AND_ARCHIVED_HOST'),
