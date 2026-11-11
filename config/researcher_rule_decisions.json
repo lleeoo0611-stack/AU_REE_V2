@@ -281,6 +281,24 @@
       "decided_date": "2026-11-11",
       "notes": "限定本輪 15 案，僅補空白；D 為來源揭露已生產而非設計產能；X 保留研究列與分母。",
       "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-normalized-name-20261111",
+      "rule": "NORMALIZED_NAME_MATCH",
+      "scope": "OFFLINE_ARCHIVED_SAME_STATE_UNIQUE_OPERATOR_MATCH",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅離線封存政府來源；同州唯一且公司一致才採用；多 site、新 VIC/TAS 來源與 datum 未驗證維持空白。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-nt-mga-20261111",
+      "rule": "NT_STRIKE_MGA_TO_GEOGRAPHIC",
+      "scope": "ARCHIVED_NT_CSV_VERIFIED_DATUM_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅離線封存政府來源；同州唯一且公司一致才採用；多 site、新 VIC/TAS 來源與 datum 未驗證維持空白。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
     }
   ]
 }

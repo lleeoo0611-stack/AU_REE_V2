@@ -1,0 +1,88 @@
+{
+  "after": {
+    "all_coverage": 0.4339622641509434,
+    "all_denominator": 4929,
+    "blank": 2790,
+    "columns": 53,
+    "existing_exclusion_policy": {
+      "adjusted_coverage": 0.44506866416978774,
+      "adjusted_denominator": 4806,
+      "blank_cells": 2790,
+      "blank_class_counts": {
+        "NOT_APPLICABLE_STAGE": 30,
+        "NO_COMPARATOR_SOURCE": 93,
+        "PENDING_CODEBOOK": 104,
+        "UNKNOWN": 2563
+      },
+      "excluded_classes": [
+        "NOT_APPLICABLE_STAGE",
+        "NO_COMPARATOR_SOURCE"
+      ],
+      "excluded_structural_blanks": 123,
+      "filled_cells": 2139,
+      "limitation": "ADJUSTED_INFORMATION_COVERAGE_CONVENTION_NOT_CURRENT_STATUS_OR_PROOF_OF_ABSENCE",
+      "raw_coverage": 0.4339622641509434,
+      "rules_sha256": "da4d569f6f7655747b8ae090766982bc9d2b061ce92aa935b907775e1e678baa",
+      "rules_version": "v1",
+      "total_cells": 4929
+    },
+    "filled": 2139,
+    "rows": 93,
+    "treo_coverage": 0.6654767975522693,
+    "treo_denominator": 1961,
+    "treo_filled": 1305,
+    "treo_rows": 37
+  },
+  "before": {
+    "all_coverage": 0.4335565023331305,
+    "all_denominator": 4929,
+    "blank": 2792,
+    "columns": 53,
+    "existing_exclusion_policy": {
+      "adjusted_coverage": 0.44465251768622555,
+      "adjusted_denominator": 4806,
+      "blank_cells": 2792,
+      "blank_class_counts": {
+        "NOT_APPLICABLE_STAGE": 30,
+        "NO_COMPARATOR_SOURCE": 93,
+        "PENDING_CODEBOOK": 104,
+        "UNKNOWN": 2565
+      },
+      "excluded_classes": [
+        "NOT_APPLICABLE_STAGE",
+        "NO_COMPARATOR_SOURCE"
+      ],
+      "excluded_structural_blanks": 123,
+      "filled_cells": 2137,
+      "limitation": "ADJUSTED_INFORMATION_COVERAGE_CONVENTION_NOT_CURRENT_STATUS_OR_PROOF_OF_ABSENCE",
+      "raw_coverage": 0.4335565023331305,
+      "rules_sha256": "da4d569f6f7655747b8ae090766982bc9d2b061ce92aa935b907775e1e678baa",
+      "rules_version": "v1",
+      "total_cells": 4929
+    },
+    "filled": 2137,
+    "rows": 93,
+    "treo_coverage": 0.6654767975522693,
+    "treo_denominator": 1961,
+    "treo_filled": 1305,
+    "treo_rows": 37
+  },
+  "bitwise_identical_files": {
+    "audit.json": "7107bb656c976e0a8f4127b1957ef1f7be27ce6a5345c659fd5175c05dbe3703",
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
+    "field_provenance.csv": "0c1f3bbcd3a8f66e11b8217a1304fbd15274244e66bdecd7c06249c81f348583",
+    "missing_fields.csv": "d09a4eec82afa0342ab574b0aab1ca03ab725bce7df8a2fa4ce8bd776b7915d4",
+    "summary.json": "6cdc8ce222dc86fa2938b0cbda3fdd4e49a8ea7077f7551e28e7bf9395b56e40",
+    "專案總表.csv": "ae55d44f55087d5a59b96d0fcb4af76fae993cc67e245807014f176507857894"
+  },
+  "changed_cells": 0,
+  "decision_file_sha256": "6dcb173b87aa3e5b3aed36076f4f1e05fbd6b1a171accb58a51ee9602008ceaa",
+  "independent_full_rebuilds": 2,
+  "network_requests": 0,
+  "new_cells": 2,
+  "nt_conversion_status": "BLOCKED_ARCHIVED_DATUM_METADATA_UNVERIFIED",
+  "nt_real_control_point_validated": false,
+  "preexisting_values_and_provenance_unchanged": true,
+  "review_queue": 54,
+  "task": "C"
+}
