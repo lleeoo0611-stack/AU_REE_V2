@@ -1,0 +1,72 @@
+{
+  "version": "round2-deposit-reviews-v1",
+  "accepted": [
+    {
+      "project_id": "AU-d0ce731e1d8198ffaf58",
+      "code": "iac",
+      "qualifiers": [
+        "IONIC_NOT_CONFIRMED"
+      ],
+      "asset_set": "fullscope13",
+      "path": "data/snapshots/bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726.pdf",
+      "source_sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726",
+      "page": 25,
+      "quote": "REE mineralisation at Yttria is within the weathered regolith (saprolite)",
+      "locator": "physical PDF p25; deposit host",
+      "selected_mre_required": true,
+      "note": "資源量／礦化位於風化殼腐岩層。",
+      "publication_date": "2024-04-16",
+      "source_url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739"
+    },
+    {
+      "project_id": "AU-4286ab9c245effb445ff",
+      "code": "iac",
+      "qualifiers": [
+        "IONIC_NOT_CONFIRMED"
+      ],
+      "asset_set": "canonical",
+      "path": "data/snapshots/fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c.pdf",
+      "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+      "page": 10,
+      "quote": "concentrated within the kaolinite zone above through either adsorption onto the clay particles or",
+      "locator": "physical PDF p10; deposit host",
+      "selected_mre_required": false,
+      "note": "原封存來源明確將稀土富集定位於高嶺土帶；不採納未選入的細粒資源量。",
+      "publication_date": "2023-06-01",
+      "source_url": "https://assets.birdsoftware.io/wp-content/uploads/2023/05/01-06-2023-Burracoppin-Project-96Mt-Mineral-Resource-Estimate.pdf"
+    },
+    {
+      "project_id": "AU-0098e17a63e7c05c213f",
+      "code": "iac",
+      "qualifiers": [
+        "IONIC_NOT_CONFIRMED"
+      ],
+      "asset_set": "canonical",
+      "path": "data/snapshots/e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950.html",
+      "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+      "page": null,
+      "quote": "REEs are interpreted to have been mobilised from the underlying",
+      "locator": "RNS 4065A; Geological setting and mineralisation; Pidinga and Garford formations",
+      "selected_mre_required": true,
+      "note": "黏土／有機物吸附而非重礦物砂；依本次 G4 核准規則保留 IONIC_NOT_CONFIRMED，部分 Pidinga 的離子交換測試不外推整體所選 MRE。",
+      "publication_date": "2026-10-26",
+      "source_url": "https://www.londonstockexchange.com/en/news/article/COBR/maiden-rare-earth-mineral-resource-estimate/637e-cb-eb-9d-8e-465a87"
+    }
+  ],
+  "review_queue": [
+    {
+      "project_id": "AU-47d12ebe6b66df8e5936",
+      "reason": "PROJECT_WIDE_DOMINANT_HOST_NOT_ESTABLISHED",
+      "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+      "locator": "physical PDF p26",
+      "notes": "Brothers 僅被描述為潛力區；肯定黏土主體描述限 Jupiter 子案，不外推 Greater Brothers。"
+    },
+    {
+      "project_id": "AU-794821a2df9b7a244f96",
+      "reason": "PALAECHANNEL_MINERAL_HOST_UNRESOLVED",
+      "source_sha256": "d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d",
+      "locator": "physical PDF pp1,3,12",
+      "notes": "封存原件僅寫古河道目標，未辨明黏土吸附或 monazite/xenotime 主體。"
+    }
+  ]
+}

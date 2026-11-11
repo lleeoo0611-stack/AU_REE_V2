@@ -38,6 +38,31 @@ def validate_decisions(decisions):
             project_id=identity[0], scope=dict(statement_id=identity[1], source_sha256=identity[2])))
     records = decision_records(decisions)
     require(all(isinstance(d, dict) for d in records), 'DECISION_RECORD')
+    # This audit validates the frozen first-round 19-decision contract. Later
+    # explicitly named registry extensions are checked, but never authorize
+    # first-round additions or alter the returned historical decision set.
+    extensions = {
+        'round2-deposit-clay-20261111': ('RESEARCHER_RULE_CLAY_REGOLITH_TO_IAC','ROUND2_NATIVE_DEPOSIT_DESCRIPTION_AND_ARCHIVED_HOST'),
+        'round2-deposit-potential-20261111': ('SPECULATIVE_DEPOSIT_STYLE_ALLOWED','ROUND2_NATIVE_DEPOSIT_DESCRIPTION_AND_ARCHIVED_HOST'),
+        'round2-deposit-hard-20261111': ('RESEARCHER_RULE_PEGMATITE_TO_HARD','ROUND2_NATIVE_DEPOSIT_DESCRIPTION_AND_ARCHIVED_HOST'),
+        'round2-deposit-placer-20261111': ('RESEARCHER_RULE_SANDS_TO_PLACER','ROUND2_NATIVE_DEPOSIT_DESCRIPTION_AND_ARCHIVED_HOST'),
+        'round2-deposit-g4-20261111': ('RESEARCHER_RULE_CASE_SPECIFIC_ARCHIVED_HOST','ROUND2_NATIVE_DEPOSIT_DESCRIPTION_AND_ARCHIVED_HOST'),
+        'round2-stage-named-20261111': ('NAMED_STUDY_TREATED_AS_COMPLETED','DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY'),
+        'round2-stage-progress-20261111': ('IN_PROGRESS_STUDY_IMPLIES_B1','DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY'),
+        'round2-stage-production-20261111': ('OPERATING_OR_PRODUCTION_COMMENCED','DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY'),
+        'round2-stage-withdrawn-20261111': ('PROJECT_WITHDRAWN','DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY'),
+        'round2-normalized-name-20261111': ('NORMALIZED_NAME_MATCH','OFFLINE_ARCHIVED_SAME_STATE_UNIQUE_OPERATOR_MATCH'),
+        'round2-nt-mga-20261111': ('NT_STRIKE_MGA_TO_GEOGRAPHIC','ARCHIVED_NT_CSV_VERIFIED_DATUM_ONLY'),
+        'round2-annual-source-stated-20261111': ('SOURCE_STATED_ANNUAL_PRODUCTION','CENSUS_ARCHIVED_SOURCE_STATED_OXIDE_ANNUAL_PRODUCTION'),
+    }
+    require(len({d.get('decision_id') for d in records}) == len(records), 'DECISION_SET')
+    for d in records:
+        if d.get('decision_id') in extensions:
+            rule,scope=extensions[d['decision_id']]
+            require(d.get('rule')==rule and d.get('scope')==scope and not d.get('project_id'), 'EXTENSION_SCOPE')
+            require(d.get('decided_by')=='USER_EXPLICIT_APPROVAL' and d.get('decided_date')=='2026-11-11'
+                    and isinstance(d.get('approval_evidence'),str) and bool(d['approval_evidence'].strip()), 'EXTENSION_APPROVAL')
+    records = [d for d in records if d.get('decision_id') not in extensions]
     indexed = {d.get('decision_id'): d for d in records}
     require(len(indexed)==len(records)==19 and set(indexed)=={d['decision_id'] for d in expected}, 'DECISION_SET')
     for e in expected:

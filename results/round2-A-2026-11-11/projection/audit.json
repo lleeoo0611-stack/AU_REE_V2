@@ -1,0 +1,66 @@
+{
+  "blank_coverage": {
+    "adjusted_coverage": 0.4384103204327923,
+    "adjusted_denominator": 4806,
+    "blank_cells": 2822,
+    "blank_class_counts": {
+      "NOT_APPLICABLE_STAGE": 30,
+      "NO_COMPARATOR_SOURCE": 93,
+      "PENDING_CODEBOOK": 134,
+      "UNKNOWN": 2565
+    },
+    "excluded_classes": [
+      "NOT_APPLICABLE_STAGE",
+      "NO_COMPARATOR_SOURCE"
+    ],
+    "excluded_structural_blanks": 123,
+    "filled_cells": 2107,
+    "limitation": "ADJUSTED_INFORMATION_COVERAGE_CONVENTION_NOT_CURRENT_STATUS_OR_PROOF_OF_ABSENCE",
+    "raw_coverage": 0.4274700750659363,
+    "rules_sha256": "da4d569f6f7655747b8ae090766982bc9d2b061ce92aa935b907775e1e678baa",
+    "rules_version": "v1",
+    "total_cells": 4929
+  },
+  "columns": 53,
+  "filled_cells": 2107,
+  "missing_diagnostics_complete": true,
+  "output_hashes": {
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
+    "field_provenance.csv": "09eb6a93a1d2df5b10e9fbcde562d172c5389385b0d29fc99d9b19cf6fdf1a39",
+    "missing_fields.csv": "9198d9f8b442f07c1ff7b4010cb174241b826f14a323b61e77f77f3e6e1ac985",
+    "專案總表.csv": "5a0ae4e180f8edded7126a88ef739acea5dcc0e5c2beed8545e0b57edd0e92f5"
+  },
+  "projects": 93,
+  "provenance_complete": true,
+  "remaining_blank_cells": 2822,
+  "scientific_columns": [
+    "礦石蘊藏量_Mt",
+    "TREO品位_pct",
+    "總TREO蘊藏量_kt",
+    "磁鐵稀土氧化物蘊藏量_kt",
+    "磁鐵稀土佔TREO_pct",
+    "NdPr蘊藏量_kt_需兩者皆公布",
+    "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+    "預估年產TREO_t_per_year",
+    "預估年產NdPr_t_per_year",
+    "預估年產重稀土_t_per_year",
+    "La2O3_氧化鑭_kt",
+    "CeO2_氧化鈰_kt",
+    "Pr6O11_氧化鐠_kt",
+    "Nd2O3_氧化釹_kt",
+    "Sm2O3_氧化釤_kt",
+    "Eu2O3_氧化銪_kt",
+    "Gd2O3_氧化釓_kt",
+    "Tb4O7_氧化鋱_kt",
+    "Dy2O3_氧化鏑_kt",
+    "Ho2O3_氧化鈥_kt",
+    "Er2O3_氧化鉺_kt",
+    "Tm2O3_氧化銩_kt",
+    "Yb2O3_氧化鐿_kt",
+    "Lu2O3_氧化鎦_kt",
+    "Y2O3_氧化釔_kt"
+  ],
+  "scientific_filled_cells": 472,
+  "scientific_total_cells": 2325,
+  "total_cells": 4929
+}
