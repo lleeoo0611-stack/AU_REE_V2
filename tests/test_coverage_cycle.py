@@ -8,7 +8,7 @@ from au_ree_v2.iteration_review import review_coverage_cycle
 from au_ree_v2.store import filehash
 
 ROOT = Path(__file__).resolve().parents[1]
-COLUMNS = json.loads((ROOT/'config/project_summary_columns.json').read_text('utf8')) + ['ASX代碼']
+COLUMNS = json.loads((ROOT/'config/project_summary_columns_legacy52.json').read_text('utf8')) + ['ASX代碼']
 
 
 class CoverageCycle(unittest.TestCase):

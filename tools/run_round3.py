@@ -78,7 +78,88 @@ def task0(work,census,publish=False):
         write_json(out/'publication_status.json',dict(published=True,status='VERIFIED_EXISTING_PUBLICATION_NO_CELL_CHANGE',current_preserved=True,nt_acceptance='DEFERRED_TASK_3B'))
     print(json.dumps(summary,ensure_ascii=False),flush=True)
 
+# Runner extension (integrated after task 0 acceptance)
+def round3_collect(task,before,decisions,census):
+    _,rows=read_csv(Path(before)/'專案總表.csv');_,trace=read_csv(Path(before)/'field_provenance.csv')
+    if task==2:
+        from au_ree_v2.round3_stage import collect_stage_absence
+        settings=json.loads((REPO/'config/round3_stage.json').read_text('utf8'))
+        return collect_stage_absence(rows,trace,decisions,REPO,census,settings)
+    if task==3:
+        from au_ree_v2.round3_locations import collect
+        fills,reviews,extra=collect(rows,trace,decisions,REPO)
+        official=REPO/f'results/round3-government-{DATE}/acquisition.json'
+        if official.exists():
+            acquisition=json.loads(official.read_text('utf8'));extra['new_official_acquisition']=acquisition
+            for item in acquisition['datasets']:
+                reviews.append(dict(project_id='',project=item['state'],reason=item['status'],details=item))
+        return fills,reviews,extra
+    if task==4:
+        from au_ree_v2.round3_annual import collect
+        return collect(rows,trace,decisions,REPO)
+    return [],[],{}
+
+def sequential(task,work,census,publish=False):
+    from au_ree_v2 import round3_schema as schema
+    os.chdir(REPO);sys.addaudithook(prior.offline_guard)
+    out=REPO/f'results/round3-{task}-{DATE}'
+    if work.exists() or out.exists():raise ValueError('FRESH_OUTPUT_REQUIRED')
+    if not (REPO/f'results/round3-{task-1}-{DATE}/rebuild_receipt.json').exists():raise ValueError('PREVIOUS_TASK_MUST_PASS_FIRST')
+    protection=prior.protected_snapshot(census);implementation=prior.implementation_hashes()
+    decisions=json.loads((REPO/'config/researcher_rule_decisions.json').read_text('utf8'));passes={};stage_data={}
+    for pass_name in ('a','b'):
+        print('Task',task,'full independent offline replay',pass_name,flush=True)
+        before=historical_replay(work/pass_name,census)
+        for stage in range(1,min(task,4)+1):
+            after=work/pass_name/f'round3-{stage}'
+            if stage==1:
+                new,changed,reviews=schema.migrate(before,after,REPO);extra={}
+            else:
+                fills,reviews,extra=round3_collect(stage,before,decisions,census)
+                new,changed=schema.fill(before,after,fills,decisions,REPO)
+            if stage<task:identical_replays(after,REPO/f'results/round3-{stage}-{DATE}/projection')
+            stage_data[stage]=dict(new=new,changed=changed,reviews=reviews,extra=extra)
+            before=after
+        passes[pass_name]=before;prior.verify_protected(protection)
+    hashes=identical_replays(passes['a'],passes['b'])
+    out.mkdir(parents=True);shutil.copytree(passes['a'],out/'projection')
+    data=stage_data.get(task,dict(new=[],changed=[],reviews=[],extra={}))
+    for name,key,basefields in [('new_cells.csv','new',['project_id','column','new_value']),('changed_cells.csv','changed',['project_id','column','old_value','new_value','reason']),('review_queue.csv','reviews',['project_id','project','reason'])]:
+        records=data[key];fields=list(dict.fromkeys(basefields+[k for r in records for k in r]))
+        normalized=[{k:json.dumps(v,ensure_ascii=False,sort_keys=True) if isinstance(v,(dict,list)) else v for k,v in r.items()} for r in records]
+        write_csv(out/name,fields,normalized)
+    if task==1:shutil.copyfile(REPO/'config/retired_columns.json',out/'retired_columns.json')
+    for key,value in data['extra'].items():
+        if isinstance(value,(dict,list)):write_json(out/(key+'.json'),value)
+    s=json.loads((out/'projection/summary.json').read_text('utf8'))
+    summary=dict(task=task,new_cells=len(data['new']),changed_cells=len(data['changed']),review_queue=len(data['reviews']),independent_full_rebuilds=2,bitwise_identical_files=hashes,network_requests=0,preexisting_values_and_provenance_unchanged=True,existing_conclusion='INCOMPLETE/CONTINUE_UNCHANGED',**{k:s[k] for k in ('original_53_columns','all_retained_columns','tiered_coverage')})
+    write_json(out/'summary.json',summary)
+    xml=out/'offline-tests.xml';completed=subprocess.run([sys.executable,str(REPO/'tools/run_offline_regression.py'),'--fixture-root',str(census),'--overlay',str(work/'regression'),'--junitxml',str(xml)],cwd=REPO)
+    if completed.returncode:raise ValueError('FULL_OFFLINE_REGRESSION_FAILED')
+    summary['tests']=prior.tests_pass(xml)
+    if prior.implementation_hashes()!=implementation:raise ValueError('IMPLEMENTATION_CHANGED')
+    prior.verify_protected(protection)
+    write_json(out/'summary.json',summary);write_json(out/'rebuild_receipt.json',dict(output_hashes=hashes,census_sha256=protection['census_sha256'],independent_full_rebuilds=2,tests=summary['tests'],implementation_sha256=implementation))
+    details={1:'刪除兩個原本全空欄位，只重分類空白。Wimmera/WIM100 雖無 TREO 總量，仍有已選礦石資源量，因此實測有MRE38列／無MRE55列，與題示估計37／56不同。第2層已填資源格同時計入分子及分母。被刪欄及每格分類變更見 changed_cells.csv。'+schema.LIMITATION,2:'僅在每份關聯封存原件皆完整可讀、日期可知，且沒有任一關鍵字時推定。命中、未讀頁、缺檔或未知日期全部入 review queue；不為湊數放寬。原始開發階段欄不填推定。',3:'只採同州唯一精確名稱／單site且公司不矛盾的代表點。NT以完整同名控制點比較三種datum，不能辨別GDA94/GDA2020時明確標註並取GDA94。Mt Stirling與Yttria同一2024-04-16礦床估計，不可直接加總；保留既有Yttria點，距離見shared_deposit_points.json。VIC/TAS僅官方資料且授權明確才接納；遇存取限制立即停止。',4:'只限Cummins Range，依p60設計基準及p76分期解釋選首個全產期，不把價目表NdPr價格當年產量。',5:'彙總各任務實測增量與三種覆蓋率；既有總說明與provenance保留，不隨新增證據改寫。'}
+    text=f'# 第三輪任務 {task}\n\n新增 {summary["new_cells"]} 格；變更／刪除空白分類 {summary["changed_cells"]} 格。\n\n{details[task]}\n\n兩次獨立完整離線來源重建；四份CSV、summary及audit逐位元一致，完整回歸通過。Census、inventory、凍結歷史與INCOMPLETE／CONTINUE結論不動。\n'
+    if task==1:text+='\n資源欄明確清單：\n'+''.join('- '+c+'\n' for c in s['tiered_coverage']['resource_columns'])+'\n第2層一般欄：\n'+''.join('- '+c+'\n' for c in s['tiered_coverage']['nonresource_columns'])
+    (out/'README.md').write_text(text,encoding='utf8')
+    if task==5:
+        summary_out=REPO/f'results/round3-summary-{DATE}';summary_out.mkdir()
+        records=[json.loads((REPO/f'results/round3-{i}-{DATE}/summary.json').read_text('utf8')) for i in range(5)]
+        write_json(summary_out/'coverage_comparison.json',dict(baseline=dict(commit='cde12ab',filled=2141,denominator=4929),tasks=records,total_new_cells=sum(r['new_cells'] for r in records),**{k:s[k] for k in ('original_53_columns','all_retained_columns','tiered_coverage')}))
+        if publish:
+            schema.present(out/'projection',work/'presentation-a',REPO);schema.present(out/'projection',work/'presentation-b',REPO)
+            identical_replays(work/'presentation-a',work/'presentation-b')
+            for source in (work/'presentation-a').iterdir():
+                if source.is_file():shutil.copyfile(source,REPO/'results/asx-current'/source.name)
+            schema.audit(REPO/'results/asx-current')
+            status=dict(published=True,status='ROUND3_RESEARCHER_APPROVED_PUBLISHED',new_cells=sum(r['new_cells'] for r in records),existing_conclusion='INCOMPLETE/CONTINUE_UNCHANGED')
+            write_json(summary_out/'publication_status.json',status);write_json(REPO/'results/asx-current/publication_status.json',status)
+            (REPO/'results/asx-current/README.md').write_text(text,encoding='utf8')
+    print(json.dumps(summary,ensure_ascii=False),flush=True)
+
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--task',type=int,required=True);parser.add_argument('--work',type=Path,required=True);parser.add_argument('--census-root',type=Path,default=REPO.parent/'AU_REE_V2');parser.add_argument('--publish-current',action='store_true');args=parser.parse_args()
-    if args.task!=0:raise ValueError('TASK_NOT_IMPLEMENTED')
-    task0(args.work.resolve(),args.census_root.resolve(),args.publish_current)
+    if args.task==0:task0(args.work.resolve(),args.census_root.resolve(),args.publish_current)
+    else:sequential(args.task,args.work.resolve(),args.census_root.resolve(),args.publish_current)

@@ -61,7 +61,7 @@ def apply_fills(before, out, fills, decisions, repo):
     missing = [m for m in missing if (m['project_id'],m['column']) not in filled_keys]
     summary = json.loads((before/'summary.json').read_text('utf8'))
     summary['filled_counts'] = {c: sum(r[c] != '' for r in rows) for c in columns}
-    summary['blank_coverage'] = classify_blanks(rows, missing, trace, load_blank_rules(repo/'config/blank_classification.json'))
+    summary['blank_coverage'] = classify_blanks(rows, missing, trace, load_blank_rules(repo/'config/blank_classification_legacy53.json'))
     out.mkdir(parents=True)
     for name,fields,records in [('專案總表.csv',columns,rows),('field_provenance.csv',pfields,trace),('missing_fields.csv',mfields,missing)]:
         write_csv(out/name,fields,records)

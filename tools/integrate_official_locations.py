@@ -80,7 +80,7 @@ def run(before,out,decisions_path=None,acquisitions_path=None,acquire=False,refe
         changed={(x['project_id'],x['column']) for x in new};missing=[x for x in missing if (x['project_id'],x['column']) not in changed]
         summary=json.loads((projection/'summary.json').read_text('utf8'))
         summary['filled_counts']={c:sum(bool(r[c]) for r in rows) for c in cols}
-        summary['blank_coverage']=classify_blanks(rows,missing,provenance,load_blank_rules(REPO/'config/blank_classification.json'))
+        summary['blank_coverage']=classify_blanks(rows,missing,provenance,load_blank_rules(REPO/'config/blank_classification_legacy53.json'))
         write_csv(projection/'專案總表.csv',cols,rows);write_csv(projection/'field_provenance.csv',pcols,provenance);write_csv(projection/'missing_fields.csv',mcols,missing)
         summary['output_hashes']={n:sha(projection/n) for n in summary['output_hashes']}
         (projection/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf8')

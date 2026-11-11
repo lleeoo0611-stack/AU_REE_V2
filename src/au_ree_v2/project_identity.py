@@ -184,7 +184,7 @@ def extend_summary(baseline, out, ledger, assets):
     columns = columns+[ASX_COLUMN]
     if 'blank_class' in missing_fields:
         from .blank_classification import load_blank_rules,classify_blanks
-        rules=load_blank_rules(Path(__file__).resolve().parents[2]/'config/blank_classification.json')
+        rules=load_blank_rules(Path(__file__).resolve().parents[2]/'config/blank_classification_legacy53.json')
         summary['blank_coverage']=classify_blanks(rows,missing,trace,rules)
     write('專案總表.csv', rows, columns);write('field_provenance.csv',trace,trace_fields)
     write('missing_fields.csv',missing,missing_fields);write('census_inventory.csv',inventory,inventory_fields)

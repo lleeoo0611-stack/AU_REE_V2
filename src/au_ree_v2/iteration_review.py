@@ -10,10 +10,14 @@ SCIENCE_INDEXES = tuple(range(15,25)) + tuple(range(37,52))
 
 def audit_summary(folder):
     folder=Path(folder)
+    detected=json.loads((folder/'summary.json').read_text('utf8'))
+    if detected.get('version','').startswith('census-project-summary-round3'):
+        from .round3_schema import audit
+        return audit(folder)
     def read(name):
         with (folder/name).open(encoding='utf-8-sig',newline='') as f:return list(csv.DictReader(f))
     rows=read('專案總表.csv')
-    columns=json.loads((Path(__file__).resolve().parents[2]/'config/project_summary_columns.json').read_text('utf8'))
+    columns=json.loads((Path(__file__).resolve().parents[2]/'config/project_summary_columns_legacy52.json').read_text('utf8'))
     summary=json.loads((folder/'summary.json').read_text('utf8'))
     from .presentation_notes import VERSION, OLD, NEW, validate_presentation
     canonical_columns = list(columns)
@@ -46,7 +50,7 @@ def audit_summary(folder):
     if summary.get('blank_coverage') is not None:
         import copy
         from .blank_classification import load_blank_rules,classify_blanks
-        rules=load_blank_rules(Path(__file__).resolve().parents[2]/'config/blank_classification.json')
+        rules=load_blank_rules(Path(__file__).resolve().parents[2]/'config/blank_classification_legacy53.json')
         checked=copy.deepcopy(missing)
         coverage=classify_blanks(rows,checked,provenance,rules)
         if coverage!=summary['blank_coverage'] or any(

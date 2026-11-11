@@ -12,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[1]
 @pytest.fixture
 def sample(tmp_path):
     before=tmp_path/'before';before.mkdir()
-    columns=json.loads((ROOT/'config/project_summary_columns.json').read_text('utf8'))+['ASX代碼']
+    columns=json.loads((ROOT/'config/project_summary_columns_legacy52.json').read_text('utf8'))+['ASX代碼']
     row=dict.fromkeys(columns,'');row.update({'專案ID':'test','專案名稱':'Test','礦床型態':'Clay hosted'})
     pfields=['project_id','column','value','source_sha256','source_url','locator','method','scope']
     trace=[dict(project_id='test',column=k,value=v,source_sha256='a'*64,source_url='https://example.org/source',locator='p.1',method='SOURCE',scope='') for k,v in row.items() if v]

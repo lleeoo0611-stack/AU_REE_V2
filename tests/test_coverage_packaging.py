@@ -63,7 +63,7 @@ class PackageDeltaIntegration(unittest.TestCase):
             root=Path(temp);snapshots=root/'snapshots';snapshots.mkdir()
             names=['asx_source_reviews.json','asx_discovery_reviews.json','asx_project_identity_reviews.json']
             for name in names:(snapshots/name).write_text('{}',encoding='utf8')
-            columns=json.loads((Path(__file__).resolve().parents[1]/'config/project_summary_columns.json').read_text('utf8'))+['ASX代碼']
+            columns=json.loads((Path(__file__).resolve().parents[1]/'config/project_summary_columns_legacy52.json').read_text('utf8'))+['ASX代碼']
             def export(name):
                 folder=root/name;folder.mkdir()
                 row=dict.fromkeys(columns,'');row['專案ID']='P'

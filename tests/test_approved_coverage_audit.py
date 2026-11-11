@@ -21,14 +21,15 @@ def decisions():
     # Independent of whether the production registry subsequently changes status.
     for d in data['decisions']:
         d['decided_by']=None if d['decision_id'] in NULL_IDS else 'USER_EXPLICIT_APPROVAL'
-        if d['decided_by']: d['approval_evidence']='Explicit approval fixture'
+        # Round-three extensions bind the exact quote; retain it while testing the historical gate.
+        if d['decided_by'] and not d['decision_id'].startswith('round3-'): d['approval_evidence']='Explicit approval fixture'
     return data
 
 @pytest.fixture
 def projections(tmp_path):
     a=tmp_path/'before'; b=tmp_path/'after'
     a.mkdir()
-    columns=json.loads((ROOT/'config/project_summary_columns.json').read_text('utf8'))+['ASX代碼']
+    columns=json.loads((ROOT/'config/project_summary_columns_legacy52.json').read_text('utf8'))+['ASX代碼']
     row=dict.fromkeys(columns,'');row.update({'專案ID':'test','專案名稱':'Test Project','開發階段':'Exploration'})
     write(a/'專案總表.csv',[row])
     traces=[dict(project_id='test',column=c,value=v,source_sha256='a'*64,source_url='https://example.org/source',
@@ -55,7 +56,7 @@ def seal(folder):
     missing=[m for m in missing if (m['project_id'],m['column']) not in filled]
     summary=json.loads((folder/'summary.json').read_text('utf8'))
     summary['filled_counts']={c:sum(bool(r[c]) for r in rows) for c in rows[0]}
-    summary['blank_coverage']=classify_blanks(rows,missing,provenance,load_blank_rules(ROOT/'config/blank_classification.json'))
+    summary['blank_coverage']=classify_blanks(rows,missing,provenance,load_blank_rules(ROOT/'config/blank_classification_legacy53.json'))
     write(folder/'missing_fields.csv',missing)
     summary['output_hashes']={name:filehash(folder/name) for name in summary['output_hashes']}
     (folder/'summary.json').write_text(json.dumps(summary,ensure_ascii=False),encoding='utf8')

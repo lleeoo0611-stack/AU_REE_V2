@@ -1,0 +1,9 @@
+# 第三輪 51 欄總表與歷史重建
+
+維護中的主表欄序為 config/project_summary_columns.json（50欄）加ASX代碼，共51欄。舊的低階Census來源擷取器保留明確legacy52契約，用於重建凍結53欄，再由run_round3遷移為新51欄。舊測試明確引用legacy設定，原驗收斷言保留，並新增新結構測試。
+
+新51欄表的retired_columns_trace.json封存舊六份檔案的原始位元及SHA，可逐份還原與驗證。歷史結果完全不改。主表刪除兩個全空欄位後，保留每個既有值及provenance。
+
+呈現轉換仍以總說明替代元素一致性檢查，但凍結既有總說明文字及provenance，避免新證據造成未核准改寫。因此舊總說明未必描述本輪新增推定或座標；完整新證據以各欄provenance和本輪README為準。
+
+NOT_APPLICABLE_NO_MRE_IS_DENOMINATOR_CONVENTION_NOT_PROOF_OF_ABSENCE。資源欄與非資源欄明確清單在config/round3_coverage.json；已填資源格例外同時計入第2層分子及分母。

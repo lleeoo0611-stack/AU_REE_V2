@@ -18,7 +18,7 @@ class PresentationNotesTests(unittest.TestCase):
         self.root = Path(self.tmp.name)
         self.source = self.root / 'core'
         self.source.mkdir()
-        self.cols = json.loads((Path(__file__).resolve().parents[1] / 'config/project_summary_columns.json').read_text('utf8')) + ['ASX代碼']
+        self.cols = json.loads((Path(__file__).resolve().parents[1] / 'config/project_summary_columns_legacy52.json').read_text('utf8')) + ['ASX代碼']
         rows = []
         for pid in ('splinter', 'circle', 'dated', 'point', 'no-note'):
             row = dict.fromkeys(self.cols, '')

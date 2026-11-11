@@ -56,9 +56,21 @@ def validate_decisions(decisions):
         'round2-nt-mga-20261111': ('NT_STRIKE_MGA_TO_GEOGRAPHIC','ARCHIVED_NT_CSV_VERIFIED_DATUM_ONLY'),
         'round2-annual-source-stated-20261111': ('SOURCE_STATED_ANNUAL_PRODUCTION','CENSUS_ARCHIVED_SOURCE_STATED_OXIDE_ANNUAL_PRODUCTION'),
     }
+    extensions.update({
+        'round3-tiered-coverage-20261111': ('TIERED_COVERAGE_WITHOUT_SELECTED_MRE','甲1: all selected-MRE rows plus nonresource columns of verified no-selected-MRE rows'),
+        'round3-retire-columns-20261111': ('RETIRE_TWO_EMPTY_COLUMNS',['重算磁性元素-HTML磁性稀土_kt','預估年產重稀土_t_per_year']),
+        'round3-stage-absence-20261111': ('STAGE_INFERRED_FROM_EVIDENCE_ABSENCE','ALL_ASSOCIATED_ARCHIVED_ORIGINALS_ALL_PHYSICAL_PAGES'),
+        'round3-wa-empty-operator-20261111': ('NO_OPERATOR_VALUE','SAME_STATE_UNIQUE_EXACT_SITE_OR_PROJECT_TITLE_EMPTY_OPERATOR_VALUE'),
+        'round3-nt-controls-20261111': ('NT_DATUM_FROM_ARCHIVED_CONTROL_POINTS','NT_ARCHIVED_GA_CONTROL_DATUM_MIN3'),
+        'round3-shared-yttria-20261111': ('SHARED_DEPOSIT_POINT_RESEARCHER_APPROVED',['Mt Stirling — Yttria resource scope','Yttria REE Project']),
+        'round3-vic-tas-official-20261111': ('ACQUIRE_OFFICIAL_VIC_TAS_OPEN_DATA',['VIC','TAS']),
+        'round3-cummins-full-stage-20261111': ('STAGED_ANNUAL_USE_FIRST_FULL_PRODUCTION_STAGE','CUMMINS_RANGE_FIRST_FULL_PRODUCTION_STAGE_ONLY'),
+    })
     require(len({d.get('decision_id') for d in records}) == len(records), 'DECISION_SET')
     for d in records:
         if d.get('decision_id') in extensions:
+            if d['decision_id'].startswith('round3-'):
+                require(d.get('approval_evidence')=='甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期','EXTENSION_APPROVAL_EVIDENCE')
             rule,scope=extensions[d['decision_id']]
             require(d.get('rule')==rule and d.get('scope')==scope and not d.get('project_id'), 'EXTENSION_SCOPE')
             require(d.get('decided_by')=='USER_EXPLICIT_APPROVAL' and d.get('decided_date')=='2026-11-11'

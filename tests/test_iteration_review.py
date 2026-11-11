@@ -6,7 +6,7 @@ from au_ree_v2.store import filehash
 class IterationAuditTests(unittest.TestCase):
  def setUp(self):
   self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.p=Path(self.tmp.name)
-  self.cols=json.loads((Path(__file__).resolve().parents[1]/'config/project_summary_columns.json').read_text('utf8'))
+  self.cols=json.loads((Path(__file__).resolve().parents[1]/'config/project_summary_columns_legacy52.json').read_text('utf8'))
   row={c:'' for c in self.cols};row['專案ID']='p';row[self.cols[15]]='0'
   self.write('專案總表.csv',self.cols,[row]);self.write('field_provenance.csv',['project_id','column','value'],[dict(project_id='p',column=c,value=v) for c,v in row.items() if v!=''])
   self.write('missing_fields.csv',['project_id','column','reason'],[dict(project_id='p',column=c,reason='UNKNOWN') for c,v in row.items() if v=='']);self.hashes()

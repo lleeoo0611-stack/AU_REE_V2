@@ -8,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 class BlankClasses(unittest.TestCase):
     def setUp(self):
-        self.rules=load_blank_rules(ROOT/'config/blank_classification.json')
+        self.rules=load_blank_rules(ROOT/'config/blank_classification_legacy53.json')
         self.row={'專案ID':'P','開發階段':'Exploration（來源揭露：2026-02，月精度）',
             **{c:'' for c in ['礦石蘊藏量_Mt','TREO品位_pct','總TREO蘊藏量_kt','有TREO資源估計','產品/產出',
                              '預估年產TREO_t_per_year','預估年產NdPr_t_per_year','預估年產重稀土_t_per_year',

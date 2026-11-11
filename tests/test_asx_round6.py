@@ -106,7 +106,7 @@ class SourceBoundIdentity(unittest.TestCase):
             root=Path(t);c=self.fixture(root);other=copy.deepcopy(c['codes'][0]);other['project_id']='Q';c['codes'].append(other)
             c['merges']=[dict(target_id='P',absorbed_id='Q',source_key='s',same_project_evidence=dict(page=1,markers=['Known Project','Known Rare Earth Project']))]
             baseline=root/'baseline';baseline.mkdir()
-            columns=json.loads((Path(__file__).resolve().parents[1]/'config/project_summary_columns.json').read_text('utf8'))
+            columns=json.loads((Path(__file__).resolve().parents[1]/'config/project_summary_columns_legacy52.json').read_text('utf8'))
             a=dict.fromkeys(columns,'');a.update({'專案ID':'P','專案名稱':'Known Project','礦石蘊藏量_Mt':'10'})
             b=dict.fromkeys(columns,'');b.update({'專案ID':'Q','專案名稱':'Known Rare Earth Project','礦石蘊藏量_Mt':'7','TREO品位_pct':'1'})
             def write(name,rows,fields):

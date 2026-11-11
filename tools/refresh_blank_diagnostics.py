@@ -17,7 +17,7 @@ def refresh(folder):
             reader=csv.DictReader(f);return list(reader),reader.fieldnames
     protected={n:filehash(folder/n) for n in ('專案總表.csv','field_provenance.csv','census_inventory.csv')}
     rows,_=read('專案總表.csv');trace,_=read('field_provenance.csv');gaps,fields=read('missing_fields.csv')
-    rules=load_blank_rules(ROOT/'config/blank_classification.json')
+    rules=load_blank_rules(ROOT/'config'/('blank_classification_legacy53.json' if len(rows[0])==53 else 'blank_classification.json'))
     coverage=classify_blanks(rows,gaps,trace,rules)
     # Match the canonical exporter schema; preserve all existing diagnostic columns.
     fields=['project_id','column','reason','blank_class','blank_rule_id']+[c for c in fields if c not in ('project_id','column','reason','blank_class','blank_rule_id')]

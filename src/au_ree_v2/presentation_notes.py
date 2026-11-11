@@ -90,6 +90,11 @@ def convert_summary(source, destination):
     from .iteration_review import audit_summary
     from .blank_classification import classify_blanks, load_blank_rules
     source, destination = Path(source), Path(destination)
+    detected=json.loads((source/'summary.json').read_text('utf8'))
+    if detected.get('version')=='census-project-summary-round3-v1':
+        from .round3_schema import present, audit
+        present(source,destination,Path(__file__).resolve().parents[2])
+        return audit(destination)
     if source.resolve() == destination.resolve() or source.resolve() in destination.resolve().parents:
         raise ValueError('PRESENTATION_REQUIRES_SEPARATE_OUTPUT')
     if destination.exists():
@@ -133,7 +138,7 @@ def convert_summary(source, destination):
     row_order = {r['專案ID']: i for i, r in enumerate(rows)}
     for records in (new_provenance, new_missing):
         records.sort(key=lambda r: (row_order[r['project_id']], order[r['column']]))
-    rules = load_blank_rules(Path(__file__).resolve().parents[2] / 'config/blank_classification.json')
+    rules = load_blank_rules(Path(__file__).resolve().parents[2] / 'config/blank_classification_legacy53.json')
     summary['blank_coverage'] = classify_blanks(output_rows, new_missing, new_provenance, rules)
     old_count = sum(bool(r[OLD]) for r in rows)
     note_count = sum(bool(r[NEW]) for r in output_rows)

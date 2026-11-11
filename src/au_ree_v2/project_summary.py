@@ -94,7 +94,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
     root=Path(root).resolve();database=Path(database).resolve();run_dir=Path(run_dir).resolve();out=Path(out).resolve()
     if out==root or out==database.parent or root in out.parents and out.relative_to(root).parts[0] in ('data','config','src'):
         raise ValueError('SUMMARY_OUTPUT_MUST_BE_ISOLATED')
-    columns=json.loads((Path(__file__).resolve().parents[2]/'config/project_summary_columns.json').read_text('utf8'))
+    columns=json.loads((Path(__file__).resolve().parents[2]/'config/project_summary_columns_legacy52.json').read_text('utf8'))
     from .classification import load_codebook,classification_fills
     codebook_path=Path(classification_codebook) if classification_codebook else Path(__file__).resolve().parents[2]/'config/classification_codebook.json'
     if classification_codebook and not codebook_path.is_file():raise ValueError('CODEBOOK_EXPLICIT_PATH_MISSING')
@@ -382,7 +382,7 @@ def export_summary(root,database,run_dir,out,template=None,cutoff='2026-11-05',r
     finally:db.close()
     if filehash(database)!=before:raise ValueError('READ_ONLY_DATABASE_CHANGED_DURING_EXPORT')
     from .blank_classification import load_blank_rules,classify_blanks
-    blank_rules=load_blank_rules(Path(__file__).resolve().parents[2]/'config/blank_classification.json')
+    blank_rules=load_blank_rules(Path(__file__).resolve().parents[2]/'config/blank_classification_legacy53.json')
     coverage=classify_blanks(rows,diagnostics,trace,blank_rules)
     out.mkdir(parents=True,exist_ok=True)
     def write(name,data,fields):

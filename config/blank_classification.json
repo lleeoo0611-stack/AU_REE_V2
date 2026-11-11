@@ -1,27 +1,79 @@
 {
-  "version": "v1",
+  "version": "round3-v1",
   "default_class": "UNKNOWN",
-  "excluded_from_adjusted_denominator": ["NOT_APPLICABLE_STAGE", "NO_COMPARATOR_SOURCE"],
+  "excluded_from_adjusted_denominator": [
+    "NOT_APPLICABLE_STAGE",
+    "NO_COMPARATOR_SOURCE",
+    "NOT_APPLICABLE_NO_MRE"
+  ],
   "coverage_definition": "filled / (all cells - blank cells in excluded classes). PENDING_CODEBOOK and UNKNOWN remain in denominator. Labels never fill cells or establish mineral absence.",
   "rules": [
     {
-      "id": "pending-classification-mapping",
-      "blank_class": "PENDING_CODEBOOK",
-      "columns": ["礦床型態代碼", "開發階段代碼", "開發階段類別"],
-      "when": {"reason_in": ["NO_APPROVED_TEMPLATE_CLASSIFICATION_CODEBOOK"]},
-      "rationale": "Administrative taxonomy approval/mapping gap; included in adjusted denominator."
+      "id": "no-selected-mre-denominator-convention",
+      "blank_class": "NOT_APPLICABLE_NO_MRE",
+      "columns": [
+        "礦石蘊藏量_Mt",
+        "TREO品位_pct",
+        "總TREO蘊藏量_kt",
+        "磁鐵稀土氧化物蘊藏量_kt",
+        "磁鐵稀土佔TREO_pct",
+        "NdPr蘊藏量_kt_需兩者皆公布",
+        "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+        "預估年產TREO_t_per_year",
+        "預估年產NdPr_t_per_year",
+        "有TREO資源估計",
+        "已公布元素數_共15項",
+        "已公布元素總和_kt",
+        "元素總和/TREO",
+        "元素數據一致性檢查",
+        "四項磁性元素皆公布",
+        "磁性元素重算值_NdPrTbDy_kt",
+        "La2O3_氧化鑭_kt",
+        "CeO2_氧化鈰_kt",
+        "Pr6O11_氧化鐠_kt",
+        "Nd2O3_氧化釹_kt",
+        "Sm2O3_氧化釤_kt",
+        "Eu2O3_氧化銪_kt",
+        "Gd2O3_氧化釓_kt",
+        "Tb4O7_氧化鋱_kt",
+        "Dy2O3_氧化鏑_kt",
+        "Ho2O3_氧化鈥_kt",
+        "Er2O3_氧化鉺_kt",
+        "Tm2O3_氧化銩_kt",
+        "Yb2O3_氧化鐿_kt",
+        "Lu2O3_氧化鎦_kt",
+        "Y2O3_氧化釔_kt"
+      ],
+      "when": {
+        "empty_fields": [
+          "總TREO蘊藏量_kt"
+        ],
+        "no_selected_mre": true
+      },
+      "rationale": "NOT_APPLICABLE_NO_MRE_IS_DENOMINATOR_CONVENTION_NOT_PROOF_OF_ABSENCE"
     },
     {
-      "id": "missing-independent-html-comparator",
-      "blank_class": "NO_COMPARATOR_SOURCE",
-      "columns": ["重算磁性元素-HTML磁性稀土_kt"],
-      "when": {"reason_in": ["NO_INDEPENDENT_HTML_COMPARATOR"]},
-      "rationale": "No independent comparator in this export, not a missing mineral measurement. Reassess when a comparator is added."
+      "id": "pending-classification-mapping",
+      "blank_class": "PENDING_CODEBOOK",
+      "columns": [
+        "礦床型態代碼",
+        "開發階段代碼",
+        "開發階段類別"
+      ],
+      "when": {
+        "reason_in": [
+          "NO_APPROVED_TEMPLATE_CLASSIFICATION_CODEBOOK"
+        ]
+      },
+      "rationale": "Administrative taxonomy approval/mapping gap; included in adjusted denominator."
     },
     {
       "id": "source-dated-exploration-no-resource-or-product",
       "blank_class": "NOT_APPLICABLE_STAGE",
-      "columns": ["預估年產TREO_t_per_year", "預估年產NdPr_t_per_year", "預估年產重稀土_t_per_year"],
+      "columns": [
+        "預估年產TREO_t_per_year",
+        "預估年產NdPr_t_per_year"
+      ],
       "when": {
         "field_values_in": {
           "開發階段": [
@@ -37,8 +89,18 @@
             "very early-stage（來源揭露：2023-05-04）"
           ]
         },
-        "empty_fields": ["礦石蘊藏量_Mt", "TREO品位_pct", "總TREO蘊藏量_kt", "有TREO資源估計", "產品/產出", "預估年產TREO_t_per_year", "預估年產NdPr_t_per_year", "預估年產重稀土_t_per_year"],
-        "require_source_provenance_for": ["開發階段"]
+        "empty_fields": [
+          "礦石蘊藏量_Mt",
+          "TREO品位_pct",
+          "總TREO蘊藏量_kt",
+          "有TREO資源估計",
+          "產品/產出",
+          "預估年產TREO_t_per_year",
+          "預估年產NdPr_t_per_year"
+        ],
+        "require_source_provenance_for": [
+          "開發階段"
+        ]
       },
       "rationale": "Analytical denominator convention at the disclosed historical exploration stage, conditional on no selected resource/product/forecast in this projection; not current operating status, no forecast exists, or permanent inapplicability. Reevaluate each export."
     }

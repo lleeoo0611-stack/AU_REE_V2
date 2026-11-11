@@ -317,6 +317,25 @@
       "decided_date": "2026-11-11",
       "notes": "使用者知悉 NT datum 與真實控制點驗收未完成後要求更新總表；僅發布已驗證72格，NT 保持原值／空白待審，不視為 NT 驗收完成。",
       "approval_evidence": "助理：「沒有合併主線或更新 asx-current；NT 座標基準與控制點驗收仍待完成。」\n使用者：「更新總表」"
+    },
+    {
+      "decision_id": "round3-tiered-coverage-20261111",
+      "rule": "TIERED_COVERAGE_WITHOUT_SELECTED_MRE",
+      "scope": "甲1: all selected-MRE rows plus nonresource columns of verified no-selected-MRE rows",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
+    },
+    {
+      "decision_id": "round3-retire-columns-20261111",
+      "rule": "RETIRE_TWO_EMPTY_COLUMNS",
+      "scope": [
+        "重算磁性元素-HTML磁性稀土_kt",
+        "預估年產重稀土_t_per_year"
+      ],
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
     }
   ]
 }

@@ -20,7 +20,7 @@ ROW={'專案ID':'test','專案名稱':'Example Deposit','州省地區':'西澳�
 def fixture_baseline(folder,m):
     """Generated one-project baseline; independent of mutable current coverage."""
     folder=Path(folder);folder.mkdir()
-    cols=json.loads((ROOT/'config/project_summary_columns.json').read_text('utf8'))+['ASX代碼']
+    cols=json.loads((ROOT/'config/project_summary_columns_legacy52.json').read_text('utf8'))+['ASX代碼']
     row={c:'' for c in cols};row.update(ROW)
     pcols=['project_id','column','value','source_sha256','source_url','locator','method','scope','observation_ids',
         'effective_date','effective_date_role','date_precision','review_ids','acquired_through','publication_date',
@@ -32,7 +32,7 @@ def fixture_baseline(folder,m):
         if value:
             trace={c:'' for c in pcols};trace.update(project_id=row['專案ID'],column=col,value=value);provenance.append(trace)
         else:missing.append(dict(project_id=row['專案ID'],column=col,reason='FIXTURE_UNKNOWN',blank_class='UNKNOWN',blank_rule_id='default-unknown'))
-    coverage=m.classify_blanks([row],missing,provenance,m.load_blank_rules(ROOT/'config/blank_classification.json'))
+    coverage=m.classify_blanks([row],missing,provenance,m.load_blank_rules(ROOT/'config/blank_classification_legacy53.json'))
     m.write_csv(folder/'專案總表.csv',cols,[row]);m.write_csv(folder/'field_provenance.csv',pcols,provenance)
     m.write_csv(folder/'missing_fields.csv',['project_id','column','reason','blank_class','blank_rule_id'],missing)
     m.write_csv(folder/'census_inventory.csv',['entity_id','name'],[dict(entity_id=row['專案ID'],name=row['專案名稱'])])

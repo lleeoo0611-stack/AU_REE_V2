@@ -172,7 +172,7 @@ def validate_discovery(path, assets, existing, cutoff):
                     raw['developer']=developer['value']
                 pending=[]
                 from .iteration_review import SCIENCE_INDEXES
-                columns=json.loads((Path(__file__).resolve().parents[2]/'config/project_summary_columns.json').read_text('utf8'))
+                columns=json.loads((Path(__file__).resolve().parents[2]/'config/project_summary_columns_legacy52.json').read_text('utf8'))
                 for field in r.get('deferred_fields',[]):
                     proof=field['evidence'];content=' '.join(d[proof['page']-1].get_text(sort=True).split()).casefold()
                     if field['column'] not in {columns[i] for i in SCIENCE_INDEXES} or not proof['markers'] or any(m.casefold() not in content for m in proof['markers']):raise ValueError('DISCOVERY_DEFERRED_FIELD_PROOF')

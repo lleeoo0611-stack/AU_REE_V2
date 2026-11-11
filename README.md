@@ -242,3 +242,7 @@ Phase 16 remediation: [source scope, identity repair and process-specific MCDA](
 
 Current iterative ASX coverage and review: [results/asx-current](results/asx-current/REVIEW.md).
 This directory contains only the latest reviewed summary and verification, not duplicated iteration archives.
+
+## 第三輪核准 51 欄總表
+
+第三輪核准的總表入口是 tools/run_round3.py，依 --task 0 到 5 逐步完整離線重建；最終使用 --task 5 --publish-current 發布 results/asx-current。config/project_summary_columns.json 為維護中的50欄加ASX代碼共51欄。既有 export_summary／export-project-summary 及 round2 工具是歷史來源重建器，明確使用 legacy52 設定產生內部53欄中間表，不是新的51欄交付入口。結構與逐位元歷史還原契約見 docs/ROUND3_COLUMN_CONTRACT.md。

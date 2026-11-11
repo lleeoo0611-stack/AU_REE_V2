@@ -35,7 +35,7 @@ def apply(before,out,ledger,database):
     if filehash(database)!=olddb:raise ValueError('ADDITIONS_DATABASE_CHANGED')
     keys={(f['project_id'],f['column']) for f in receipts};missing=[m for m in missing if (m['project_id'],m['column']) not in keys]
     summary=json.loads((before/'summary.json').read_text('utf8'))
-    summary['blank_coverage']=classify_blanks(rows,missing,trace,load_blank_rules(REPO/'config/blank_classification.json'))
+    summary['blank_coverage']=classify_blanks(rows,missing,trace,load_blank_rules(REPO/'config/blank_classification_legacy53.json'))
     out.mkdir(parents=True)
     for name,values,fields in [('專案總表.csv',rows,columns),('field_provenance.csv',trace,tracefields),('missing_fields.csv',missing,missingfields)]:
         with (out/name).open('w',encoding='utf-8-sig',newline='') as f:
