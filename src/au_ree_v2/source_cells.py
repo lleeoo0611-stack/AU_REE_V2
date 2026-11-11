@@ -256,7 +256,7 @@ def validate_cell(doc, binding, field, token, unit, scope, selected_scenario=Non
         valid = label.strip('()') in ('treo','treo*','treo1','treo +','contained treo','total reo') and source_unit in (('ppm', '%', '%hm') if field == 'grade' else ('kg','t', 'kt','kt treo'))
     elif field.startswith('reported_resource_'):
         # The binding must identify the exact oxide, including stoichiometry.
-        valid = label == norm(binding.get('basis', '')) and source_unit in ('ppm','%','%hm')
+        valid = label == norm(binding.get('basis', '')) and source_unit in ('ppm','%','%hm','kg/t','t','kt')
         if binding.get('resource_orientation')=='oxide_rows':
             valid=(source_unit=='%treo' and label=='total' and
                    norm(binding.get('row_label',''))==norm(binding.get('basis','')))

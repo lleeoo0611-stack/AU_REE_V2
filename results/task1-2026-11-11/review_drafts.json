@@ -1,0 +1,46 @@
+{
+  "method": "AUTO_MATCHED_SAME_SCOPE_TABLE",
+  "reviews": [],
+  "corroborations": [
+    {
+      "project": "Dubbo Project",
+      "project_id": "AU-2cfeb25aefee0c4f95fb",
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "page": 26,
+      "table_index": 0,
+      "oxide": "Y2O3",
+      "original_token": "1,400",
+      "unit": "ppm",
+      "value_kt": 105.252,
+      "method": "AUTO_MATCHED_SAME_SCOPE_TABLE",
+      "row": 10,
+      "column": 6,
+      "table_bbox": [
+        42.930373668670654,
+        183.50142778669084,
+        525.8964477539063,
+        360.0239852905273
+      ],
+      "tolerances": {
+        "row": 10,
+        "label": "Total",
+        "ore_tolerance": {
+          "token": "75.18",
+          "expected": "75.18",
+          "half_width": "0.005",
+          "absolute_difference": "0.00",
+          "calculation": "0.5 * 10**printed_decimal_exponent"
+        },
+        "grade_tolerance": {
+          "token": "7,400",
+          "expected": "7400",
+          "half_width": "0.5",
+          "absolute_difference": "0",
+          "calculation": "0.5 * 10**printed_decimal_exponent"
+        }
+      },
+      "validation": "EXISTING_VERIFY_SINGLE_OXIDE_PASSED",
+      "new_cells": 0
+    }
+  ]
+}

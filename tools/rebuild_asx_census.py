@@ -74,7 +74,7 @@ def rebuild(census_root, database, run_dir, out_prefix, asset_map, cutoff=None):
     assets = load_assets(asset_map, census_root, ledgers)
     before = filehash(database)
     mapping=REPO/'config/user_template_mapping.json'
-    projection_configs={p.name:filehash(p) for p in (REPO/'config/classification_codebook.json',REPO/'config/blank_classification.json',mapping) if p.exists()}
+    projection_configs={p.name:filehash(p) for p in (REPO/'config/classification_codebook.json',REPO/'config/blank_classification.json',mapping,REPO/'config/researcher_rule_decisions.json') if p.exists()}
     audits = []
     for pass_name in ('a', 'b'):
         print('Rebuilding independently: ' + pass_name, flush=True)

@@ -268,6 +268,24 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 factor=1 if original_unit==unit else factors.get((original_unit,unit))
                 if original_unit=='%' and unit=='ppm' and basis in ELEMENTS and variable.startswith('reported_resource_'):
                     factor=10000
+                if original_unit in ('kg/t','t','kt') and unit=='ppm' and basis in ELEMENTS and variable.startswith('reported_resource_'):
+                    # New source units require the independently checked candidate
+                    # receipt. Mass is never mislabeled as a bulk-ore grade.
+                    if not value.get('candidate_match'):raise ValueError('REVIEW_CANDIDATE_UNIT_PROOF_REQUIRED')
+                    if original_unit=='kg/t':factor=1000
+                    else:
+                        ore_inputs=[o for o in review.get('observations',[]) if o['variable']=='ore_mt']
+                        from .candidate_table_matcher import same_row_band
+                        binding=value.get('cell_binding',{})
+                        if len(ore_inputs)!=1 or ore_inputs[0]['unit']!='Mt' or ore_inputs[0]['value']<=0:
+                            raise ValueError('REVIEW_OXIDE_MASS_REQUIRES_ORE')
+                        ore_binding=ore_inputs[0].get('cell_binding',{})
+                        if binding.get('page')!=ore_binding.get('page') or not same_row_band(binding.get('row_bbox'),ore_binding.get('row_bbox')):
+                            raise ValueError('REVIEW_OXIDE_MASS_REQUIRES_SAME_ROW')
+                        from .source_cells import validate_cell
+                        ore_input=ore_inputs[0]
+                        validate_cell(doc,ore_binding,'ore_mt',str(ore_input.get('original_token',ore_input['value'])),ore_input.get('original_unit',ore_input['unit']),review['scope'],selected_sections=review.get('selected_resource_sections'))
+                        factor=(1000 if original_unit=='kt' else 1)/ore_inputs[0]['value']
                 if original_unit=='%HM':
                     if not hm_mass_contract and (not hm or value['evidence']['page']!=hm['evidence']['page']):raise ValueError('REVIEW_HM_NORMALIZATION_REQUIRES_SAME_TABLE')
                     if not token_value or token_value['value'] is None or not 0<=token_value['value']<=100:raise ValueError('REVIEW_HM_PERCENT_OUT_OF_RANGE')
@@ -294,6 +312,8 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                 if binding and binding.get('page')!=e['page']:raise ValueError('REVIEW_CELL_EVIDENCE_PAGE_MISMATCH')
                 if binding and basis in ELEMENTS and binding.get('basis')!=basis:raise ValueError('REVIEW_CELL_BASIS_MISMATCH')
                 cell_method=validate_cell(doc,binding,variable,str(value.get('original_token',value['value'])),original_unit,review['scope'],selected_sections=review.get('selected_resource_sections'))
+                from .candidate_table_matcher import validate_candidate_metadata
+                candidate_match=validate_candidate_metadata(doc,review,value)
                 raw=dict(review_id=review['review_id'],variable=variable,value=value['value'],unit=unit,basis=basis,
                     source_sha256=sha,source_key=review['source_key'],scope=review['scope'],statement_id=review['statement_id'],
                     effective_date=effective,effective_date_role=role,date_precision=review['date_precision'],
@@ -307,7 +327,8 @@ def validate_reviews(ledger_path,asset_roots,projects,cutoff='2026-11-05'):
                     normalization='REPORTED_HM_MASS_X_OXIDE_PERCENT_DIVIDED_BY_BULK_ORE' if hm_mass_contract and original_unit=='%HM' else 'RESOURCE_TREO_GRADE_X_REPORTED_OXIDE_PERCENT_OF_TREO' if original_unit=='%TREO' else None,
                     **({'bulk_treo_grade_pct':treo_grade,'basis_transform':'TREO_PROPORTION_TO_BULK_PPM'} if original_unit=='%TREO' else {}),
                     material_basis='RESOURCE_ORE_GRADE_MAGNET_OXIDE_GROUP_PPM' if group else 'RESOURCE_ORE_GRADE_OXIDE_PPM' if basis in ELEMENTS else 'RESOURCE_BULK_ORE',
-                    review_method=cell_method,
+                    review_method='AUTO_MATCHED_SAME_SCOPE_TABLE' if candidate_match else cell_method,
+                    **({'candidate_match':candidate_match,'validated_cell_method':cell_method} if candidate_match else {}),
                     **({'partial_resource_projection':partial_contract} if partial_contract else {}))
                 row=dict(obs_id=digest([pid,sha,raw]),entity_id=pid,variable=variable,value=value['value'],unit=unit,basis=basis,
                     source_sha=sha,scope=review['scope'],statement_id=review['statement_id'],effective_date=effective,
