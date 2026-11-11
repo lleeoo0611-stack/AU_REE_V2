@@ -15,3 +15,7 @@ config/user_template_mapping.json -text whitespace=cr-at-eol
 config/asx_archived_element_additions.json -text whitespace=cr-at-eol
 config/researcher_rule_decisions.json -text whitespace=cr-at-eol
 results/coverage-approved-2026-11-11/government/**/*.bin binary
+
+# Preserve byte-bound historical configuration digests across fresh worktrees.
+config/classification_codebook.json -text whitespace=cr-at-eol
+config/asx_location_reviews.json -text whitespace=cr-at-eol
