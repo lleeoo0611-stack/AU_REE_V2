@@ -63,6 +63,9 @@ def verify_archive(folder,rows,trace):
 def audit(folder):
     folder=Path(folder);repo=Path(__file__).resolve().parents[2]
     summary=json.loads((folder/'summary.json').read_text('utf8'))
+    if summary.get('version')=='round3-source-decimal-presentation-v1':
+        from .numeric_presentation import audit as numeric_audit
+        return numeric_audit(folder,repo)
     if summary.get('version') not in (CORE,PRESENTATION):raise ValueError('ROUND3_UNKNOWN_SCHEMA_VERSION')
     columns,rows=read_csv(folder/'專案總表.csv');_,trace=read_csv(folder/'field_provenance.csv');_,missing=read_csv(folder/'missing_fields.csv')
     cfg=config(repo);expected=json.loads((repo/'config/project_summary_columns.json').read_text('utf8'))+['ASX代碼']

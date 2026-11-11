@@ -15,3 +15,8 @@ WA 的唯一候選／單一 site 判定限於已核准的 REE／稀土／獨居�
 總說明為既有內容，不因新增證據改寫。source_consistency.csv 與 retired_consistency_trace.json 僅為既有說明的歷史支持，未重新估算。
 validation.json 保存本次驗收與來源雜湊；各任務的新增格、變更格、待審清單及中文說明在相應 round3 結果目錄。
 發布採同一檔案系統兩次重新命名，並非單一步驟原子交換；失敗會回復原 current，原版本保留在 publication_status.json 指定的備份。
+
+
+## 十進位呈現修正
+
+僅移除已核實 HM 衍生量的二進位浮點尾數；不增加資料格，不改原始來源精度或不確定性。完整原值、原 provenance 與發布驗收保存在 numeric_presentation_original.json；本次逐格差異在 numeric_presentation_changes.json。核心證據表與歷史結果不變。

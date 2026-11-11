@@ -18108,6 +18108,12 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "location_ledger_sha256": "b5a1c0a26f3f3ae832be13b3772f2a24f541e129ef28b87a378c229eb0e36414",
+  "numeric_presentation": {
+    "changed_display_cells": 9,
+    "core_values_preserved": true,
+    "method": "EXACT_SOURCE_DECIMAL_ARITHMETIC_BINARY_TAIL_ONLY",
+    "new_cells": 0
+  },
   "original_53_columns": {
     "coverage": 0.44025157232704404,
     "denominator": 4929,
@@ -18116,11 +18122,13 @@
   "original_canonical_projects": 33,
   "output_hashes": {
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
-    "field_provenance.csv": "08afc373c6df1b923e69ab4dc090896fe3d8240971a20050800651713cb5a2ad",
+    "field_provenance.csv": "fef68a183f315c3653fbc543ab9b547068c8bf3d27e964a467374ddcabe74924",
     "missing_fields.csv": "9558ae37221bba2a8b7ef2ffef4bd371dedda0039db9f9bb5978da23f6aef50e",
+    "numeric_presentation_changes.json": "e0e9970bb169b343f66c15c23369ab6f6e2885f16e5276288c454da9d22a42af",
+    "numeric_presentation_original.json": "f2f439249007d77dc2c8ffaaaf70b98f148fd960ffd35326c43459762b462de5",
     "presentation_core_trace.json": "2d1c633e35f9cd573cd7c7f5d7290e7d378baae72ae421dd811c6540a55ee461",
     "retired_columns_trace.json": "8d17a6637e78afc52ea78dde2ee6c352db6e0b4e3a0fd72a306159ce160870f9",
-    "專案總表.csv": "37054881dacd4fc6fb2b15d09cb8dfadf940e29d134ee7eae9e9567862d05ada"
+    "專案總表.csv": "2225245cdb93a36175ef107b842d69c6455a6ae8f83fbab9b7ad9193cba5874c"
   },
   "presentation_note_policy": "PRESERVE_PREEXISTING_VALUES_AND_PROVENANCE_NO_REFRESH",
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
@@ -22906,5 +22914,5 @@
     }
   ],
   "verified_source_hashes": 157,
-  "version": "census-project-summary-round3-presentation-v1"
+  "version": "round3-source-decimal-presentation-v1"
 }
