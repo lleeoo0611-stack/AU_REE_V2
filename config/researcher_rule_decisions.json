@@ -70,7 +70,8 @@
       "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
       "decided_by": null,
       "decided_date": "2026-11-11",
-      "notes": "Operating／started production 不自動對照 D3。"
+      "notes": "Operating／started production 不自動對照 D3。",
+      "superseded_by": "round2-stage-production-20261111"
     },
     {
       "decision_id": "stage-withdrawal_requires_researcher_review-20261111",
@@ -243,6 +244,42 @@
       "decided_by": "USER_EXPLICIT_APPROVAL",
       "decided_date": "2026-11-11",
       "notes": "僅新增空白礦床型態代碼；既有原文與代碼不變；歧義留待審查。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-stage-named-20261111",
+      "rule": "NAMED_STUDY_TREATED_AS_COMPLETED",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "限定本輪 15 案，僅補空白；D 為來源揭露已生產而非設計產能；X 保留研究列與分母。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-stage-progress-20261111",
+      "rule": "IN_PROGRESS_STUDY_IMPLIES_B1",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "限定本輪 15 案，僅補空白；D 為來源揭露已生產而非設計產能；X 保留研究列與分母。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-stage-production-20261111",
+      "rule": "OPERATING_OR_PRODUCTION_COMMENCED",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "限定本輪 15 案，僅補空白；D 為來源揭露已生產而非設計產能；X 保留研究列與分母。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-stage-withdrawn-20261111",
+      "rule": "PROJECT_WITHDRAWN",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "限定本輪 15 案，僅補空白；D 為來源揭露已生產而非設計產能；X 保留研究列與分母。",
       "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
     }
   ]

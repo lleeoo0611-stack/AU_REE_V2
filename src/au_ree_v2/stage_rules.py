@@ -8,7 +8,7 @@ from pathlib import Path
 from .store import canonical
 
 SCOPE = 'DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY'
-CATEGORIES = {'A1': '探勘', 'A2': '探勘', 'B1': '評估', 'B2': '評估', 'C1': '開發', 'C2': '開發'}
+CATEGORIES = {'A1': '探勘', 'A2': '探勘', 'B1': '評估', 'B2': '評估', 'C1': '開發', 'C2': '開發', 'D': '生產', 'X': '退出'}
 RULES = {
     'A1': 'EXPLORATION_WITHOUT_SELECTED_MRE',
     'A2': 'EXPLORATION_WITH_SELECTED_MRE',
@@ -161,6 +161,63 @@ def classify_stage(text, has_mre):
     return finish('UNMAPPED_STAGE_REQUIRES_REVIEW')
 
 
+# Scope the second-round exceptions to the explicitly reviewed research rows.
+ROUND2_STAGE_CASES = {
+    'AU-2a3a86a4d971e9f9838d': ('B1', 'NAMED_STUDY_TREATED_AS_COMPLETED'),
+    'AU-3eb7131e4daea18a60a0': ('B1', 'NAMED_STUDY_TREATED_AS_COMPLETED'),
+    'AU-d9fb1b1e3e2ec9fa0851': ('B1', 'NAMED_STUDY_TREATED_AS_COMPLETED'),
+    'AU-447261eed0e81eae88bf': ('B1', 'NAMED_STUDY_TREATED_AS_COMPLETED'),
+    'AU-2fc429d0556dfa0b95c4': ('B2', 'NAMED_STUDY_TREATED_AS_COMPLETED'),
+    'AU-7537d9555628040fab40': ('B2', 'NAMED_STUDY_TREATED_AS_COMPLETED'),
+    'AU-329908ab8d4c1d1d3e03': ('B2', 'NAMED_STUDY_TREATED_AS_COMPLETED'),
+    'AU-fe65cb1bd28eacb7a67f': ('B2', 'NAMED_STUDY_TREATED_AS_COMPLETED'),
+    'AU-fb4e914f86102baa414a': ('B2', 'NAMED_STUDY_TREATED_AS_COMPLETED'),
+    'AU-ff758cad5beb276d327d': ('B1', 'IN_PROGRESS_STUDY_IMPLIES_B1'),
+    'AU-3a0020b6daf659f62138': ('B1', 'IN_PROGRESS_STUDY_IMPLIES_B1'),
+    'AU-efff91a06cf344122d88': ('D', 'OPERATING_OR_PRODUCTION_COMMENCED'),
+    'AU-524c37fc04cf47bf8dca': ('D', 'OPERATING_OR_PRODUCTION_COMMENCED'),
+    'AU-73549b8a9b1c6faf55eb': ('D', 'OPERATING_OR_PRODUCTION_COMMENCED'),
+    'AU-75fe0f1a81005bd19586': ('X', 'PROJECT_WITHDRAWN'),
+}
+ROUND2_REASONS = {
+    'NAMED_STUDY_TREATED_AS_COMPLETED': 'STUDY_COMPLETION_NOT_EXPLICIT',
+    'IN_PROGRESS_STUDY_IMPLIES_B1': 'IN_PROGRESS_WITHOUT_COMPLETED_PREVIOUS_STUDY',
+    'OPERATING_OR_PRODUCTION_COMMENCED': 'OPERATING_NOT_EVIDENCE_OF_DESIGN_CAPACITY',
+    'PROJECT_WITHDRAWN': 'WITHDRAWAL_REQUIRES_RESEARCHER_REVIEW',
+}
+
+
+def round2_stage_proposal(row, proposal, native):
+    """Explicitly scoped proposal; approval is still checked by the caller."""
+    case = ROUND2_STAGE_CASES.get(row['專案ID'])
+    if case is None or proposal['code'] is not None:
+        return proposal
+    code, rule = case
+    if proposal['reason'] != ROUND2_REASONS[rule]:
+        return proposal
+    if rule == 'NAMED_STUDY_TREATED_AS_COMPLETED':
+        # Reject a changed study name that no longer supports the reviewed level.
+        text = str(row.get('開發階段', '')).lower()
+        lower = bool(re.search(r'scoping|pre[ -]?feasibility|preliminary feasibility|\bpfs\b', text))
+        higher = bool(re.search(r'bankable|definitive|\bbfs\b|\bdfs\b|(?<!pre-)feasibility study', text))
+        if (code == 'B1' and not lower) or (code == 'B2' and (lower or not higher)):
+            return proposal
+    result = dict(proposal, code=code, category=CATEGORIES[code], rule=rule,
+                  ongoing_study=False)
+    qualifiers = []
+    if rule == 'IN_PROGRESS_STUDY_IMPLIES_B1':
+        qualifiers.append('IN_PROGRESS_STUDY')
+    dates = [str(native.get(k) or '') for k in ('publication_date', 'document_issue_date', 'effective_date')]
+    if any(re.fullmatch(r'\d{4}-\d{2}(?:-\d{2})?', d) and d < '2021-01-01' for d in dates):
+        qualifiers.append('STAGE_SOURCE_DATED')
+    result['qualifier'] = '|'.join(qualifiers)
+    if code == 'D':
+        result['production_scope'] = 'PRODUCTION_COMMENCED_AT_SOURCE_DATE_NOT_DESIGN_CAPACITY'
+    if code == 'X':
+        result['withdrawal_scope'] = 'RESEARCH_ROW_RETAINED_DENOMINATOR_UNCHANGED'
+    return result
+
+
 def stage_rule_fills(row, provenance, decisions):
     native = _native(row, provenance, '開發階段')
     if native is None or not native.get('locator'):
@@ -181,7 +238,7 @@ def stage_rule_fills(row, provenance, decisions):
     if not dated:
         return []
     has_mre, mre_evidence = selected_mre(row, provenance)
-    proposal = classify_stage(row.get('開發階段'), has_mre)
+    proposal = round2_stage_proposal(row, classify_stage(row.get('開發階段'), has_mre), native)
     if proposal['code'] is None:
         return []
     decision = approved_decision(decisions, proposal['rule'])
@@ -202,7 +259,8 @@ def stage_rule_fills(row, provenance, decisions):
                  scope=canonical(dict(decision_id=decision['decision_id'], rule=decision['rule'],
                      decision=decision, additional_decision=extra, source_value=row['開發階段'],
                      source_provenance=native, selected_mre=has_mre, mre_basis=mre_evidence,
-                     temporal_scope='AT_NATIVE_SOURCE_DATE_NOT_CURRENT_STATUS')))
+                     temporal_scope='AT_NATIVE_SOURCE_DATE_NOT_CURRENT_STATUS',
+                     **{k: proposal[k] for k in ('qualifier', 'production_scope', 'withdrawal_scope') if proposal.get(k)})))
             for c, value in values.items() if row.get(c, '') == '']
 
 

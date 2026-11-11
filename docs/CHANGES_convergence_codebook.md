@@ -31,6 +31,8 @@
 
 ## 任務2：分類草稿（尚未核准）
 
+> 2026-11-11 第二輪補充：整份 `config/classification_codebook.json` 仍為 DRAFT，總體核准欄維持 null。研究者另行核准限定案例的 D＝生產、X＝退出，以及九案研究名稱與兩案進行中研究規則；詳細適用範圍、來源日期 qualifier、D 不代表設計產能、X 保留研究列與分母等語義，見 [第二輪開發階段核准補充](ROUND2_STAGE_CODEBOOK.md)。下列內容保留原始草稿交付時點的敘述，不代表取消後續個別規則核准。
+
 `config/classification_codebook.json` 交付為DRAFT，approved_by與approved_date均為null。工具列出所有非空的完整原文與次數：礦床型態53種／69筆、開發階段40種／54筆；空白不當成類型。提出的助記代碼僅供研究者審查，無權取代既有分類標準或認定當前營運狀態。
 
 只有APPROVED且有核准人、合法核准日的完整對照可填空白代碼。按包含日期的完整原文精確對應，不模糊配對、不改文字、不覆蓋已填值。新代碼的field_provenance包含codebook版本、SHA256、來源欄、原文及原欄完整來源。DRAFT不新增任何值或來源紀錄。本次全部APPROVED情境僅在暫存測試夾具中建立。
