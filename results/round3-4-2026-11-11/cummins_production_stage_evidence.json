@@ -1,0 +1,81 @@
+{
+  "all_stages": [
+    {
+      "annual_treo_t": null,
+      "full_design_throughput": null,
+      "ramp_up": null,
+      "stage": "1"
+    },
+    {
+      "actual_hours": 8000,
+      "annual_feed_mt": 2.0,
+      "annual_treo_t": 17000,
+      "full_design_throughput": true,
+      "ramp_up": false,
+      "stage": "2a"
+    },
+    {
+      "actual_hours": 8000,
+      "annual_feed_mt": 2.0,
+      "annual_treo_t": 11000,
+      "full_design_throughput": true,
+      "ramp_up": false,
+      "stage": "2b"
+    },
+    {
+      "annual_treo_t": 7000,
+      "full_design_throughput": null,
+      "ramp_up": null,
+      "stage": "3"
+    }
+  ],
+  "decision_id": "round3-cummins-full-stage-20261111",
+  "evidence": [
+    {
+      "physical_page": 60,
+      "quote": "Table 10-3: Stage 2 bene plant process design basis"
+    },
+    {
+      "physical_page": 60,
+      "quote": "Availability % 91.3% 91.3%"
+    },
+    {
+      "physical_page": 60,
+      "quote": "Actual operating hours h/annum 8,000 8,000"
+    },
+    {
+      "physical_page": 60,
+      "quote": "Annual tonnage (dry) Mtpa 2.0 2.0"
+    },
+    {
+      "physical_page": 76,
+      "quote": "Stage 2a – Considers high grade bene feed."
+    },
+    {
+      "physical_page": 76,
+      "quote": "Stage 2b – Considers low grade bene feed for the remainder of the regolith resource."
+    },
+    {
+      "physical_page": 76,
+      "quote": "This is preferentially mined to increase revenues in earlier periods to payback the cost of Stage 2 as quick as possible."
+    },
+    {
+      "physical_page": 76,
+      "quote": "Duration (yr) 3.0 2.0 8.0 5.0"
+    },
+    {
+      "physical_page": 77,
+      "quote": "Production outcomes Stage 1 Stage 2a Stage 2b Stage 3"
+    },
+    {
+      "physical_page": 77,
+      "quote": "Average annual TREO production (ktpa) - 17 11 7"
+    }
+  ],
+  "full_stage_basis": "Both Stage 2a and 2b use the same 2.0 Mtpa annual design feed, 8000 actual operating hours and 91.3% availability. The phase distinction is high-grade versus lower-grade feed, not ramp-up. Stage 1 has no reported TREO annual output. Earliest full-design TREO-producing stage is 2a.",
+  "limitation": "SCOPING_STUDY_FORECAST_NOT_OPERATING_OUTPUT;CUMMINS_RANGE_ONLY",
+  "qualifier": "STAGED_PRODUCTION_FIRST_FULL_STAGE",
+  "selected_stage": "2a",
+  "source_unit": "ktpa",
+  "unit_conversion": "17 ktpa * 1000 = 17000 t/year"
+}
