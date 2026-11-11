@@ -1,0 +1,52 @@
+{
+  "task": "task2",
+  "new_cells": 0,
+  "changed_cells": 0,
+  "review_queue": 58,
+  "enabled_datasets": [],
+  "network_requests": 0,
+  "baseline_bitwise_identical": true,
+  "baseline_hashes": {
+    "專案總表.csv": "f8e0c03c7f147308eb448ecb2d117add4d52d541401940577fcc07cfa6ae5c93",
+    "field_provenance.csv": "a216166cebb3e0acae928062732be47047ead6989f815efb9a896b7207f80772",
+    "missing_fields.csv": "9e43490631b19ae288f5e839ec91a4b12e87d6904e56c281f52ee7e4f06be62a",
+    "source_consistency.csv": "09922af3f905e79f23f58c3e5c0fd84515a01dcf6bc6984660b86c0532fe41ba",
+    "summary.json": "e670d88d20b16835678bbdc87febd5af189350caaacb7f40ac81fcf27962ad7f",
+    "audit.json": "fce64cdcf650402155536f4dee71215e2aa74f88ed060c03021c7db718998023"
+  },
+  "output_hashes": {
+    "專案總表.csv": "f8e0c03c7f147308eb448ecb2d117add4d52d541401940577fcc07cfa6ae5c93",
+    "field_provenance.csv": "a216166cebb3e0acae928062732be47047ead6989f815efb9a896b7207f80772",
+    "missing_fields.csv": "9e43490631b19ae288f5e839ec91a4b12e87d6904e56c281f52ee7e4f06be62a",
+    "source_consistency.csv": "09922af3f905e79f23f58c3e5c0fd84515a01dcf6bc6984660b86c0532fe41ba",
+    "summary.json": "e670d88d20b16835678bbdc87febd5af189350caaacb7f40ac81fcf27962ad7f",
+    "audit.json": "fce64cdcf650402155536f4dee71215e2aa74f88ed060c03021c7db718998023"
+  },
+  "decision_file_sha256": "b78b2d399ab4ccdcf2308ce521847179c0deeb7b7329104433a0380fcf848185",
+  "approved_counts": "NOT_MEASURED_WITHOUT_APPROVED_SNAPSHOTS",
+  "excluded_states": [
+    "VIC",
+    "TAS"
+  ],
+  "filled_cells": 1985,
+  "blank_cells": 2944,
+  "total_cells": 4929,
+  "actual_approved_new_cells": null,
+  "actual_approved_counts_status": "NOT_DOWNLOADED_NOT_QUANTIFIABLE",
+  "offline_projection_runs": 2,
+  "offline_projection_runs_identical": true,
+  "projection_artifacts": "work/coverage-task2-null-a/projection; work/coverage-task2-null-b/projection",
+  "full_rebuild_status": "PARENT_INTEGRATION_REQUIRED;THESE_ARE_TWO_INDEPENDENT_TASK_PROJECTION_RUNS",
+  "baseline_note": "results/asx-current; task1 and task3 must retain this baseline or regenerate task2 report",
+  "offline_unit_tests": {
+    "run": 33,
+    "failures": 0,
+    "errors": 0,
+    "synthetic_fixtures_only": true
+  },
+  "formal_complete_source_rebuilds": 2,
+  "formal_six_files_byte_identical": true,
+  "preceding_task": "task3",
+  "formal_filled": 1985,
+  "formal_blank": 2944
+}

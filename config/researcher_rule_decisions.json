@@ -72,6 +72,94 @@
       "decided_by": null,
       "decided_date": "2026-11-11",
       "notes": "退出／中止不自動對照 X 類。"
+    },
+    {
+      "decision_id": "official-location-wa_minedex-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "WA_MINEDEX",
+        "layer": "0"
+      },
+      "decided_by": null,
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。"
+    },
+    {
+      "decision_id": "official-location-ga_ozmin-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "GA_OZMIN",
+        "layer": "ama:MineralOccurrences"
+      },
+      "decided_by": null,
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。"
+    },
+    {
+      "decision_id": "official-location-sa_sarig-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "SA_SARIG",
+        "layer": "mines_and_mineral_deposits:all_mines_and_mineral_deposits"
+      },
+      "decided_by": null,
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。"
+    },
+    {
+      "decision_id": "official-location-qld_minocc-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "QLD_MINOCC",
+        "layer": "12"
+      },
+      "decided_by": null,
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。"
+    },
+    {
+      "decision_id": "official-location-nsw_minview-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "NSW_MINVIEW",
+        "layer": "mineral-occurrence:mineral_occurrence"
+      },
+      "decided_by": null,
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。"
+    },
+    {
+      "decision_id": "official-location-nt_strike-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "NT_STRIKE",
+        "layer": "CSV_SCHEMA_UNVERIFIED"
+      },
+      "decided_by": null,
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。"
+    },
+    {
+      "decision_id": "official-location-sa_projects_major-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "SA_PROJECTS_MAJOR",
+        "layer": "south_australia_mining_projects:major_mines___minerals"
+      },
+      "decided_by": null,
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。"
+    },
+    {
+      "decision_id": "official-location-sa_projects_developing-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "SA_PROJECTS_DEVELOPING",
+        "layer": "south_australia_mining_projects:developing_projects___minerals"
+      },
+      "decided_by": null,
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。"
     }
   ]
 }
