@@ -1,47 +1,18 @@
 {
-  "changed_display_cells": 9,
   "columns": 51,
   "existing_conclusion": "INCOMPLETE/CONTINUE_UNCHANGED",
-  "filled_cells": 2204,
-  "missing_diagnostics_complete": true,
-  "new_cells": 0,
-  "original_presentation_hashes": {
-    "README.md": "e01af933c5a228c198face5947683015b3703968bdc84f2e4fa85d7d5fe922ac",
-    "REVIEW.md": "ffb24e8f79283bac3219fd903059a9f9218f9b51ca8e825155db27eab69fa41c",
-    "audit.json": "97f6c4a5ef33fadad0a7be4d42ea76d894522c47b32d3242d4287ae71b68a8a2",
-    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
-    "field_provenance.csv": "08afc373c6df1b923e69ab4dc090896fe3d8240971a20050800651713cb5a2ad",
-    "missing_fields.csv": "9558ae37221bba2a8b7ef2ffef4bd371dedda0039db9f9bb5978da23f6aef50e",
-    "presentation_core_trace.json": "2d1c633e35f9cd573cd7c7f5d7290e7d378baae72ae421dd811c6540a55ee461",
-    "publication_status.json": "0f59e66765f497d010761fe20f71e30dab067ccd81452c07a5e398d4564dac41",
-    "retired_columns_trace.json": "8d17a6637e78afc52ea78dde2ee6c352db6e0b4e3a0fd72a306159ce160870f9",
-    "retired_consistency_trace.json": "b5955b56ee3861ecce566c06cc5258b92109f903444e147ec9ccc6dfef3f2018",
-    "source_consistency.csv": "09922af3f905e79f23f58c3e5c0fd84515a01dcf6bc6984660b86c0532fe41ba",
-    "summary.json": "39b0264a28e1eff7bc8b5c7324435c9cd4863c1e8211db364047b2dcb4ca4b66",
-    "validation.json": "51abdfc3f0107720f5e7c074265c21e30e8274f1fa2c5b9f87ba198fe42d91db",
-    "專案總表.csv": "37054881dacd4fc6fb2b15d09cb8dfadf940e29d134ee7eae9e9567862d05ada"
-  },
+  "filled_cells": 2183,
   "output_hashes": {
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
-    "field_provenance.csv": "fef68a183f315c3653fbc543ab9b547068c8bf3d27e964a467374ddcabe74924",
-    "missing_fields.csv": "9558ae37221bba2a8b7ef2ffef4bd371dedda0039db9f9bb5978da23f6aef50e",
-    "numeric_presentation_changes.json": "e0e9970bb169b343f66c15c23369ab6f6e2885f16e5276288c454da9d22a42af",
-    "numeric_presentation_original.json": "f2f439249007d77dc2c8ffaaaf70b98f148fd960ffd35326c43459762b462de5",
-    "presentation_core_trace.json": "2d1c633e35f9cd573cd7c7f5d7290e7d378baae72ae421dd811c6540a55ee461",
+    "field_provenance.csv": "2a3d44804396924da973f26c77b0d05430c94826cee25e15582b75af172e0218",
+    "missing_fields.csv": "44ad4aceedcd0281af41f22d9b5e669c7121c32857e28c7f0bbda336f8349a37",
     "retired_columns_trace.json": "8d17a6637e78afc52ea78dde2ee6c352db6e0b4e3a0fd72a306159ce160870f9",
-    "專案總表.csv": "2225245cdb93a36175ef107b842d69c6455a6ae8f83fbab9b7ad9193cba5874c"
+    "round4_baseline_archive.json": "1b0d9398ad666d891a6b58616b049a8aca09cbfbc628d6b13166b8415b63a3a5",
+    "round4_presentation_core.json": "0c8301d3b753d4b1d59a685af55c4aad5fada3b5339b9202611986fb63d9a1b6",
+    "專案總表.csv": "0f635fbb65b937b5ff1492edff85be5afeee6251b596e2992014fddfc0dfee5b"
   },
-  "projects": 93,
+  "preexisting_notes_preserved": true,
+  "projects": 92,
   "provenance_complete": true,
-  "reconstructed_historical_sha256": {
-    "audit.json": "81c338163734ee77fcd91f60c2e8d53c3a45ee1c3346e9375b0f7f9160dfe5fa",
-    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
-    "field_provenance.csv": "daf93b65ad003d66f31fb02e124a4ce4096dde40612258a31f6825e90ce5470e",
-    "missing_fields.csv": "78c1a51cba2b88e324fe85adfbdb0da46b7f4866bb6f3c42322e5d57158ad731",
-    "summary.json": "a550af67df49f114a92cbcfde8ecef347347ba80a61c9e5656a9947c0088df0f",
-    "專案總表.csv": "b5b8aec2ca1aa08da2587e8e24cff06a1e2193e59f4fc5049f6101e3ac58cfe7"
-  },
-  "remaining_blank_cells": 2539,
-  "total_cells": 4743,
-  "version": "round3-source-decimal-presentation-v1"
+  "version": "round4-presentation-audit-v1"
 }

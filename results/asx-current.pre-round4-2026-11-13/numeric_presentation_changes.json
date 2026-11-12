@@ -1,0 +1,1880 @@
+{
+  "changes": [
+    {
+      "column": "Er2O3_氧化鉺_kt",
+      "limitation": "Display-only exact arithmetic; original source rounding uncertainty remains.",
+      "maximum_difference_kt": "7.1054273576010020E-15",
+      "method": "EXACT_SOURCE_DECIMAL_ARITHMETIC_BINARY_TAIL_ONLY",
+      "new_value": "9",
+      "old_value": "8.999999999999998",
+      "original_provenance": {
+        "acquired_through": "2026-11-10",
+        "column": "Er2O3_氧化鉺_kt",
+        "date_precision": "DAY",
+        "document_issue_date": "",
+        "effective_date": "2026-01-29",
+        "effective_date_interval": "null",
+        "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+        "forecast_derivation": "",
+        "locator": "physical PDF p4",
+        "method": "ORE_MT_X_OXIDE_PPM_X_0_001",
+        "observation_ids": "[\"f57b397f4e94a32db12e6bdca454bbba731a0401ceb215ae6b0ff7e9a4990c7a\",\"6b66c1e385d332df53e9d418858819e4c6880cd29e3e5be4961fa7766eecf4e0\",\"53c8c27e520057dcf1c25784839f1fcbcb21a56e85a0629c0ef13e1c77c299ae\",\"aa753a8c935fcae65d578c14062f7eb97aba724eb10a0e1f57f6d5cf4839afe5\",\"f57b397f4e94a32db12e6bdca454bbba731a0401ceb215ae6b0ff7e9a4990c7a\",\"e70b8771b7f63043015dc421a994b79abbad54386c9b8f91661b6145af2cee03\",\"d7cd4b085f91c36aa84222f1c4d226a3660a1a9e31c0c8cdb8ff528604b2167a\",\"890d5111d72a8b2f5e5feb4973984052019f0b5e9178aff862b5409bc11387f6\",\"3c4496d34abf331a2cb11ac1c3652c671024518e432df20a725527417a001e5e\",\"05c0779eb89cd3b383fa8a0d2be39c7ff520ce01bcc577479b5bc1440a0d81dc\",\"670522bf6762aa2e9a92949b3ccc2211819a99865cccf347070a752827cf781f\",\"3394fee5e81f22328a4578541a5920101e5ed4e7b335aecf6841b0dd8c0f2301\",\"2b4e31114df84b504ecf8e95d7f832feef95f79078270cddfe0c2d6318ab05fc\",\"c2e2fe6638f89d1bb4caabac6ee17c6752682fd29c67da71952287f547ede0f0\",\"c40eb77a8ae9b34b067a5df40a5999932b56cf72a46c1c2d1063902fc79c0b9a\",\"e4443ed878e8d7ffd0c62074029eefe70eebeb3b259fffa0d50d77c96c9730c5\",\"4ecdfeea3bd71c5a2ff2178db0310df542317e41eb36fc2a3f44423cec743ec5\"]",
+        "project_id": "AU-ff758cad5beb276d327d",
+        "public_release_date_unknown": "False",
+        "publication_date": "2026-01-29",
+        "publication_date_interval": "null",
+        "publication_date_precision": "DAY",
+        "publication_date_role": "REVIEWED_RELEASE_HEADER",
+        "resource_effective_date_unknown": "False",
+        "review_ids": "[\"cycle1_wim100_hm_oxides2026\"]",
+        "review_methods": "[\"NATIVE_TABLE_ROW_COLUMN_CELL_BINDING\"]",
+        "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+        "source_kind": "ISSUER_TECHNICAL_DISCLOSURE",
+        "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+        "source_url": "https://www.marketindex.com.au/data-api/api/v1/announcements/XASX%3AILU%3A6A1308937/pdf/inline/wim100-mineral-resource-estimate-increase",
+        "value": "8.999999999999998"
+      },
+      "project_id": "AU-ff758cad5beb276d327d",
+      "review_id": "cycle1_wim100_hm_oxides2026",
+      "source_decimal_inputs": {
+        "hm_mass": {
+          "cell_binding": {
+            "column_bbox": [
+              167,
+              230,
+              201,
+              338
+            ],
+            "column_label": "In situ HM Tonnes",
+            "column_label_bbox": [
+              169,
+              232,
+              198,
+              263
+            ],
+            "field": "hm_mass_mt",
+            "mode": "native_cell",
+            "original_unit": "Mt",
+            "page": 3,
+            "row_bbox": [
+              78,
+              326,
+              508,
+              338
+            ],
+            "row_label": "Total3",
+            "row_label_bbox": [
+              87,
+              326,
+              110,
+              338
+            ],
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+            "scope_anchor_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "section_id": "mass2026",
+            "table_bbox": [
+              77,
+              210,
+              510,
+              338
+            ],
+            "table_label": "2026 WIM100 Mineral Resource estimate",
+            "table_label_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "unit_bbox": [
+              167,
+              269,
+              201,
+              281
+            ],
+            "unit_label": "Mt3"
+          },
+          "evidence": {
+            "markers": [
+              "2026 WIM100 Mineral Resource estimate",
+              "25"
+            ],
+            "page": 3
+          },
+          "original_token": "25",
+          "rounding_half_width": 0.5,
+          "unit": "Mt",
+          "value": 25
+        },
+        "oxides": [
+          {
+            "basis": "CeO2",
+            "original_token": "0.67",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Dy2O3",
+            "original_token": "0.051",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Er2O3",
+            "original_token": "0.036",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Eu2O3",
+            "original_token": "0.003",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Gd2O3",
+            "original_token": "0.048",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Ho2O3",
+            "original_token": "0.012",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "La2O3",
+            "original_token": "0.32",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Lu2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Nd2O3",
+            "original_token": "0.28",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Pr6O11",
+            "original_token": "0.079",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Sm2O3",
+            "original_token": "0.055",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tb4O7",
+            "original_token": "0.008",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tm2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Y2O3",
+            "original_token": "0.29",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Yb2O3",
+            "original_token": "0.041",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          }
+        ]
+      },
+      "source_scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "statement_id": "wim1002026hm_mre"
+    },
+    {
+      "column": "Nd2O3_氧化釹_kt",
+      "limitation": "Display-only exact arithmetic; original source rounding uncertainty remains.",
+      "maximum_difference_kt": "5.6843418860808016E-14",
+      "method": "EXACT_SOURCE_DECIMAL_ARITHMETIC_BINARY_TAIL_ONLY",
+      "new_value": "70",
+      "old_value": "70.00000000000001",
+      "original_provenance": {
+        "acquired_through": "2026-11-10",
+        "column": "Nd2O3_氧化釹_kt",
+        "date_precision": "DAY",
+        "document_issue_date": "",
+        "effective_date": "2026-01-29",
+        "effective_date_interval": "null",
+        "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+        "forecast_derivation": "",
+        "locator": "physical PDF p4",
+        "method": "ORE_MT_X_OXIDE_PPM_X_0_001",
+        "observation_ids": "[\"670522bf6762aa2e9a92949b3ccc2211819a99865cccf347070a752827cf781f\",\"6b66c1e385d332df53e9d418858819e4c6880cd29e3e5be4961fa7766eecf4e0\",\"53c8c27e520057dcf1c25784839f1fcbcb21a56e85a0629c0ef13e1c77c299ae\",\"aa753a8c935fcae65d578c14062f7eb97aba724eb10a0e1f57f6d5cf4839afe5\",\"f57b397f4e94a32db12e6bdca454bbba731a0401ceb215ae6b0ff7e9a4990c7a\",\"e70b8771b7f63043015dc421a994b79abbad54386c9b8f91661b6145af2cee03\",\"d7cd4b085f91c36aa84222f1c4d226a3660a1a9e31c0c8cdb8ff528604b2167a\",\"890d5111d72a8b2f5e5feb4973984052019f0b5e9178aff862b5409bc11387f6\",\"3c4496d34abf331a2cb11ac1c3652c671024518e432df20a725527417a001e5e\",\"05c0779eb89cd3b383fa8a0d2be39c7ff520ce01bcc577479b5bc1440a0d81dc\",\"670522bf6762aa2e9a92949b3ccc2211819a99865cccf347070a752827cf781f\",\"3394fee5e81f22328a4578541a5920101e5ed4e7b335aecf6841b0dd8c0f2301\",\"2b4e31114df84b504ecf8e95d7f832feef95f79078270cddfe0c2d6318ab05fc\",\"c2e2fe6638f89d1bb4caabac6ee17c6752682fd29c67da71952287f547ede0f0\",\"c40eb77a8ae9b34b067a5df40a5999932b56cf72a46c1c2d1063902fc79c0b9a\",\"e4443ed878e8d7ffd0c62074029eefe70eebeb3b259fffa0d50d77c96c9730c5\",\"4ecdfeea3bd71c5a2ff2178db0310df542317e41eb36fc2a3f44423cec743ec5\"]",
+        "project_id": "AU-ff758cad5beb276d327d",
+        "public_release_date_unknown": "False",
+        "publication_date": "2026-01-29",
+        "publication_date_interval": "null",
+        "publication_date_precision": "DAY",
+        "publication_date_role": "REVIEWED_RELEASE_HEADER",
+        "resource_effective_date_unknown": "False",
+        "review_ids": "[\"cycle1_wim100_hm_oxides2026\"]",
+        "review_methods": "[\"NATIVE_TABLE_ROW_COLUMN_CELL_BINDING\"]",
+        "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+        "source_kind": "ISSUER_TECHNICAL_DISCLOSURE",
+        "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+        "source_url": "https://www.marketindex.com.au/data-api/api/v1/announcements/XASX%3AILU%3A6A1308937/pdf/inline/wim100-mineral-resource-estimate-increase",
+        "value": "70.00000000000001"
+      },
+      "project_id": "AU-ff758cad5beb276d327d",
+      "review_id": "cycle1_wim100_hm_oxides2026",
+      "source_decimal_inputs": {
+        "hm_mass": {
+          "cell_binding": {
+            "column_bbox": [
+              167,
+              230,
+              201,
+              338
+            ],
+            "column_label": "In situ HM Tonnes",
+            "column_label_bbox": [
+              169,
+              232,
+              198,
+              263
+            ],
+            "field": "hm_mass_mt",
+            "mode": "native_cell",
+            "original_unit": "Mt",
+            "page": 3,
+            "row_bbox": [
+              78,
+              326,
+              508,
+              338
+            ],
+            "row_label": "Total3",
+            "row_label_bbox": [
+              87,
+              326,
+              110,
+              338
+            ],
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+            "scope_anchor_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "section_id": "mass2026",
+            "table_bbox": [
+              77,
+              210,
+              510,
+              338
+            ],
+            "table_label": "2026 WIM100 Mineral Resource estimate",
+            "table_label_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "unit_bbox": [
+              167,
+              269,
+              201,
+              281
+            ],
+            "unit_label": "Mt3"
+          },
+          "evidence": {
+            "markers": [
+              "2026 WIM100 Mineral Resource estimate",
+              "25"
+            ],
+            "page": 3
+          },
+          "original_token": "25",
+          "rounding_half_width": 0.5,
+          "unit": "Mt",
+          "value": 25
+        },
+        "oxides": [
+          {
+            "basis": "CeO2",
+            "original_token": "0.67",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Dy2O3",
+            "original_token": "0.051",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Er2O3",
+            "original_token": "0.036",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Eu2O3",
+            "original_token": "0.003",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Gd2O3",
+            "original_token": "0.048",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Ho2O3",
+            "original_token": "0.012",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "La2O3",
+            "original_token": "0.32",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Lu2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Nd2O3",
+            "original_token": "0.28",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Pr6O11",
+            "original_token": "0.079",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Sm2O3",
+            "original_token": "0.055",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tb4O7",
+            "original_token": "0.008",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tm2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Y2O3",
+            "original_token": "0.29",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Yb2O3",
+            "original_token": "0.041",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          }
+        ]
+      },
+      "source_scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "statement_id": "wim1002026hm_mre"
+    },
+    {
+      "column": "Sm2O3_氧化釤_kt",
+      "limitation": "Display-only exact arithmetic; original source rounding uncertainty remains.",
+      "maximum_difference_kt": "7.1054273576010020E-15",
+      "method": "EXACT_SOURCE_DECIMAL_ARITHMETIC_BINARY_TAIL_ONLY",
+      "new_value": "13.75",
+      "old_value": "13.750000000000002",
+      "original_provenance": {
+        "acquired_through": "2026-11-10",
+        "column": "Sm2O3_氧化釤_kt",
+        "date_precision": "DAY",
+        "document_issue_date": "",
+        "effective_date": "2026-01-29",
+        "effective_date_interval": "null",
+        "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+        "forecast_derivation": "",
+        "locator": "physical PDF p4",
+        "method": "ORE_MT_X_OXIDE_PPM_X_0_001",
+        "observation_ids": "[\"2b4e31114df84b504ecf8e95d7f832feef95f79078270cddfe0c2d6318ab05fc\",\"6b66c1e385d332df53e9d418858819e4c6880cd29e3e5be4961fa7766eecf4e0\",\"53c8c27e520057dcf1c25784839f1fcbcb21a56e85a0629c0ef13e1c77c299ae\",\"aa753a8c935fcae65d578c14062f7eb97aba724eb10a0e1f57f6d5cf4839afe5\",\"f57b397f4e94a32db12e6bdca454bbba731a0401ceb215ae6b0ff7e9a4990c7a\",\"e70b8771b7f63043015dc421a994b79abbad54386c9b8f91661b6145af2cee03\",\"d7cd4b085f91c36aa84222f1c4d226a3660a1a9e31c0c8cdb8ff528604b2167a\",\"890d5111d72a8b2f5e5feb4973984052019f0b5e9178aff862b5409bc11387f6\",\"3c4496d34abf331a2cb11ac1c3652c671024518e432df20a725527417a001e5e\",\"05c0779eb89cd3b383fa8a0d2be39c7ff520ce01bcc577479b5bc1440a0d81dc\",\"670522bf6762aa2e9a92949b3ccc2211819a99865cccf347070a752827cf781f\",\"3394fee5e81f22328a4578541a5920101e5ed4e7b335aecf6841b0dd8c0f2301\",\"2b4e31114df84b504ecf8e95d7f832feef95f79078270cddfe0c2d6318ab05fc\",\"c2e2fe6638f89d1bb4caabac6ee17c6752682fd29c67da71952287f547ede0f0\",\"c40eb77a8ae9b34b067a5df40a5999932b56cf72a46c1c2d1063902fc79c0b9a\",\"e4443ed878e8d7ffd0c62074029eefe70eebeb3b259fffa0d50d77c96c9730c5\",\"4ecdfeea3bd71c5a2ff2178db0310df542317e41eb36fc2a3f44423cec743ec5\"]",
+        "project_id": "AU-ff758cad5beb276d327d",
+        "public_release_date_unknown": "False",
+        "publication_date": "2026-01-29",
+        "publication_date_interval": "null",
+        "publication_date_precision": "DAY",
+        "publication_date_role": "REVIEWED_RELEASE_HEADER",
+        "resource_effective_date_unknown": "False",
+        "review_ids": "[\"cycle1_wim100_hm_oxides2026\"]",
+        "review_methods": "[\"NATIVE_TABLE_ROW_COLUMN_CELL_BINDING\"]",
+        "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+        "source_kind": "ISSUER_TECHNICAL_DISCLOSURE",
+        "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+        "source_url": "https://www.marketindex.com.au/data-api/api/v1/announcements/XASX%3AILU%3A6A1308937/pdf/inline/wim100-mineral-resource-estimate-increase",
+        "value": "13.750000000000002"
+      },
+      "project_id": "AU-ff758cad5beb276d327d",
+      "review_id": "cycle1_wim100_hm_oxides2026",
+      "source_decimal_inputs": {
+        "hm_mass": {
+          "cell_binding": {
+            "column_bbox": [
+              167,
+              230,
+              201,
+              338
+            ],
+            "column_label": "In situ HM Tonnes",
+            "column_label_bbox": [
+              169,
+              232,
+              198,
+              263
+            ],
+            "field": "hm_mass_mt",
+            "mode": "native_cell",
+            "original_unit": "Mt",
+            "page": 3,
+            "row_bbox": [
+              78,
+              326,
+              508,
+              338
+            ],
+            "row_label": "Total3",
+            "row_label_bbox": [
+              87,
+              326,
+              110,
+              338
+            ],
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+            "scope_anchor_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "section_id": "mass2026",
+            "table_bbox": [
+              77,
+              210,
+              510,
+              338
+            ],
+            "table_label": "2026 WIM100 Mineral Resource estimate",
+            "table_label_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "unit_bbox": [
+              167,
+              269,
+              201,
+              281
+            ],
+            "unit_label": "Mt3"
+          },
+          "evidence": {
+            "markers": [
+              "2026 WIM100 Mineral Resource estimate",
+              "25"
+            ],
+            "page": 3
+          },
+          "original_token": "25",
+          "rounding_half_width": 0.5,
+          "unit": "Mt",
+          "value": 25
+        },
+        "oxides": [
+          {
+            "basis": "CeO2",
+            "original_token": "0.67",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Dy2O3",
+            "original_token": "0.051",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Er2O3",
+            "original_token": "0.036",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Eu2O3",
+            "original_token": "0.003",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Gd2O3",
+            "original_token": "0.048",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Ho2O3",
+            "original_token": "0.012",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "La2O3",
+            "original_token": "0.32",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Lu2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Nd2O3",
+            "original_token": "0.28",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Pr6O11",
+            "original_token": "0.079",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Sm2O3",
+            "original_token": "0.055",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tb4O7",
+            "original_token": "0.008",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tm2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Y2O3",
+            "original_token": "0.29",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Yb2O3",
+            "original_token": "0.041",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          }
+        ]
+      },
+      "source_scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "statement_id": "wim1002026hm_mre"
+    },
+    {
+      "column": "Tb4O7_氧化鋱_kt",
+      "limitation": "Display-only exact arithmetic; original source rounding uncertainty remains.",
+      "maximum_difference_kt": "1.7763568394002504E-15",
+      "method": "EXACT_SOURCE_DECIMAL_ARITHMETIC_BINARY_TAIL_ONLY",
+      "new_value": "2",
+      "old_value": "2.0000000000000004",
+      "original_provenance": {
+        "acquired_through": "2026-11-10",
+        "column": "Tb4O7_氧化鋱_kt",
+        "date_precision": "DAY",
+        "document_issue_date": "",
+        "effective_date": "2026-01-29",
+        "effective_date_interval": "null",
+        "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+        "forecast_derivation": "",
+        "locator": "physical PDF p4",
+        "method": "ORE_MT_X_OXIDE_PPM_X_0_001",
+        "observation_ids": "[\"c2e2fe6638f89d1bb4caabac6ee17c6752682fd29c67da71952287f547ede0f0\",\"6b66c1e385d332df53e9d418858819e4c6880cd29e3e5be4961fa7766eecf4e0\",\"53c8c27e520057dcf1c25784839f1fcbcb21a56e85a0629c0ef13e1c77c299ae\",\"aa753a8c935fcae65d578c14062f7eb97aba724eb10a0e1f57f6d5cf4839afe5\",\"f57b397f4e94a32db12e6bdca454bbba731a0401ceb215ae6b0ff7e9a4990c7a\",\"e70b8771b7f63043015dc421a994b79abbad54386c9b8f91661b6145af2cee03\",\"d7cd4b085f91c36aa84222f1c4d226a3660a1a9e31c0c8cdb8ff528604b2167a\",\"890d5111d72a8b2f5e5feb4973984052019f0b5e9178aff862b5409bc11387f6\",\"3c4496d34abf331a2cb11ac1c3652c671024518e432df20a725527417a001e5e\",\"05c0779eb89cd3b383fa8a0d2be39c7ff520ce01bcc577479b5bc1440a0d81dc\",\"670522bf6762aa2e9a92949b3ccc2211819a99865cccf347070a752827cf781f\",\"3394fee5e81f22328a4578541a5920101e5ed4e7b335aecf6841b0dd8c0f2301\",\"2b4e31114df84b504ecf8e95d7f832feef95f79078270cddfe0c2d6318ab05fc\",\"c2e2fe6638f89d1bb4caabac6ee17c6752682fd29c67da71952287f547ede0f0\",\"c40eb77a8ae9b34b067a5df40a5999932b56cf72a46c1c2d1063902fc79c0b9a\",\"e4443ed878e8d7ffd0c62074029eefe70eebeb3b259fffa0d50d77c96c9730c5\",\"4ecdfeea3bd71c5a2ff2178db0310df542317e41eb36fc2a3f44423cec743ec5\"]",
+        "project_id": "AU-ff758cad5beb276d327d",
+        "public_release_date_unknown": "False",
+        "publication_date": "2026-01-29",
+        "publication_date_interval": "null",
+        "publication_date_precision": "DAY",
+        "publication_date_role": "REVIEWED_RELEASE_HEADER",
+        "resource_effective_date_unknown": "False",
+        "review_ids": "[\"cycle1_wim100_hm_oxides2026\"]",
+        "review_methods": "[\"NATIVE_TABLE_ROW_COLUMN_CELL_BINDING\"]",
+        "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+        "source_kind": "ISSUER_TECHNICAL_DISCLOSURE",
+        "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+        "source_url": "https://www.marketindex.com.au/data-api/api/v1/announcements/XASX%3AILU%3A6A1308937/pdf/inline/wim100-mineral-resource-estimate-increase",
+        "value": "2.0000000000000004"
+      },
+      "project_id": "AU-ff758cad5beb276d327d",
+      "review_id": "cycle1_wim100_hm_oxides2026",
+      "source_decimal_inputs": {
+        "hm_mass": {
+          "cell_binding": {
+            "column_bbox": [
+              167,
+              230,
+              201,
+              338
+            ],
+            "column_label": "In situ HM Tonnes",
+            "column_label_bbox": [
+              169,
+              232,
+              198,
+              263
+            ],
+            "field": "hm_mass_mt",
+            "mode": "native_cell",
+            "original_unit": "Mt",
+            "page": 3,
+            "row_bbox": [
+              78,
+              326,
+              508,
+              338
+            ],
+            "row_label": "Total3",
+            "row_label_bbox": [
+              87,
+              326,
+              110,
+              338
+            ],
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+            "scope_anchor_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "section_id": "mass2026",
+            "table_bbox": [
+              77,
+              210,
+              510,
+              338
+            ],
+            "table_label": "2026 WIM100 Mineral Resource estimate",
+            "table_label_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "unit_bbox": [
+              167,
+              269,
+              201,
+              281
+            ],
+            "unit_label": "Mt3"
+          },
+          "evidence": {
+            "markers": [
+              "2026 WIM100 Mineral Resource estimate",
+              "25"
+            ],
+            "page": 3
+          },
+          "original_token": "25",
+          "rounding_half_width": 0.5,
+          "unit": "Mt",
+          "value": 25
+        },
+        "oxides": [
+          {
+            "basis": "CeO2",
+            "original_token": "0.67",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Dy2O3",
+            "original_token": "0.051",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Er2O3",
+            "original_token": "0.036",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Eu2O3",
+            "original_token": "0.003",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Gd2O3",
+            "original_token": "0.048",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Ho2O3",
+            "original_token": "0.012",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "La2O3",
+            "original_token": "0.32",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Lu2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Nd2O3",
+            "original_token": "0.28",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Pr6O11",
+            "original_token": "0.079",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Sm2O3",
+            "original_token": "0.055",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tb4O7",
+            "original_token": "0.008",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tm2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Y2O3",
+            "original_token": "0.29",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Yb2O3",
+            "original_token": "0.041",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          }
+        ]
+      },
+      "source_scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "statement_id": "wim1002026hm_mre"
+    },
+    {
+      "column": "Y2O3_氧化釔_kt",
+      "limitation": "Display-only exact arithmetic; original source rounding uncertainty remains.",
+      "maximum_difference_kt": "5.6843418860808016E-14",
+      "method": "EXACT_SOURCE_DECIMAL_ARITHMETIC_BINARY_TAIL_ONLY",
+      "new_value": "72.5",
+      "old_value": "72.49999999999999",
+      "original_provenance": {
+        "acquired_through": "2026-11-10",
+        "column": "Y2O3_氧化釔_kt",
+        "date_precision": "DAY",
+        "document_issue_date": "",
+        "effective_date": "2026-01-29",
+        "effective_date_interval": "null",
+        "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+        "forecast_derivation": "",
+        "locator": "physical PDF p4",
+        "method": "ORE_MT_X_OXIDE_PPM_X_0_001",
+        "observation_ids": "[\"e4443ed878e8d7ffd0c62074029eefe70eebeb3b259fffa0d50d77c96c9730c5\",\"6b66c1e385d332df53e9d418858819e4c6880cd29e3e5be4961fa7766eecf4e0\",\"53c8c27e520057dcf1c25784839f1fcbcb21a56e85a0629c0ef13e1c77c299ae\",\"aa753a8c935fcae65d578c14062f7eb97aba724eb10a0e1f57f6d5cf4839afe5\",\"f57b397f4e94a32db12e6bdca454bbba731a0401ceb215ae6b0ff7e9a4990c7a\",\"e70b8771b7f63043015dc421a994b79abbad54386c9b8f91661b6145af2cee03\",\"d7cd4b085f91c36aa84222f1c4d226a3660a1a9e31c0c8cdb8ff528604b2167a\",\"890d5111d72a8b2f5e5feb4973984052019f0b5e9178aff862b5409bc11387f6\",\"3c4496d34abf331a2cb11ac1c3652c671024518e432df20a725527417a001e5e\",\"05c0779eb89cd3b383fa8a0d2be39c7ff520ce01bcc577479b5bc1440a0d81dc\",\"670522bf6762aa2e9a92949b3ccc2211819a99865cccf347070a752827cf781f\",\"3394fee5e81f22328a4578541a5920101e5ed4e7b335aecf6841b0dd8c0f2301\",\"2b4e31114df84b504ecf8e95d7f832feef95f79078270cddfe0c2d6318ab05fc\",\"c2e2fe6638f89d1bb4caabac6ee17c6752682fd29c67da71952287f547ede0f0\",\"c40eb77a8ae9b34b067a5df40a5999932b56cf72a46c1c2d1063902fc79c0b9a\",\"e4443ed878e8d7ffd0c62074029eefe70eebeb3b259fffa0d50d77c96c9730c5\",\"4ecdfeea3bd71c5a2ff2178db0310df542317e41eb36fc2a3f44423cec743ec5\"]",
+        "project_id": "AU-ff758cad5beb276d327d",
+        "public_release_date_unknown": "False",
+        "publication_date": "2026-01-29",
+        "publication_date_interval": "null",
+        "publication_date_precision": "DAY",
+        "publication_date_role": "REVIEWED_RELEASE_HEADER",
+        "resource_effective_date_unknown": "False",
+        "review_ids": "[\"cycle1_wim100_hm_oxides2026\"]",
+        "review_methods": "[\"NATIVE_TABLE_ROW_COLUMN_CELL_BINDING\"]",
+        "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+        "source_kind": "ISSUER_TECHNICAL_DISCLOSURE",
+        "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+        "source_url": "https://www.marketindex.com.au/data-api/api/v1/announcements/XASX%3AILU%3A6A1308937/pdf/inline/wim100-mineral-resource-estimate-increase",
+        "value": "72.49999999999999"
+      },
+      "project_id": "AU-ff758cad5beb276d327d",
+      "review_id": "cycle1_wim100_hm_oxides2026",
+      "source_decimal_inputs": {
+        "hm_mass": {
+          "cell_binding": {
+            "column_bbox": [
+              167,
+              230,
+              201,
+              338
+            ],
+            "column_label": "In situ HM Tonnes",
+            "column_label_bbox": [
+              169,
+              232,
+              198,
+              263
+            ],
+            "field": "hm_mass_mt",
+            "mode": "native_cell",
+            "original_unit": "Mt",
+            "page": 3,
+            "row_bbox": [
+              78,
+              326,
+              508,
+              338
+            ],
+            "row_label": "Total3",
+            "row_label_bbox": [
+              87,
+              326,
+              110,
+              338
+            ],
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+            "scope_anchor_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "section_id": "mass2026",
+            "table_bbox": [
+              77,
+              210,
+              510,
+              338
+            ],
+            "table_label": "2026 WIM100 Mineral Resource estimate",
+            "table_label_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "unit_bbox": [
+              167,
+              269,
+              201,
+              281
+            ],
+            "unit_label": "Mt3"
+          },
+          "evidence": {
+            "markers": [
+              "2026 WIM100 Mineral Resource estimate",
+              "25"
+            ],
+            "page": 3
+          },
+          "original_token": "25",
+          "rounding_half_width": 0.5,
+          "unit": "Mt",
+          "value": 25
+        },
+        "oxides": [
+          {
+            "basis": "CeO2",
+            "original_token": "0.67",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Dy2O3",
+            "original_token": "0.051",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Er2O3",
+            "original_token": "0.036",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Eu2O3",
+            "original_token": "0.003",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Gd2O3",
+            "original_token": "0.048",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Ho2O3",
+            "original_token": "0.012",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "La2O3",
+            "original_token": "0.32",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Lu2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Nd2O3",
+            "original_token": "0.28",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Pr6O11",
+            "original_token": "0.079",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Sm2O3",
+            "original_token": "0.055",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tb4O7",
+            "original_token": "0.008",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tm2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Y2O3",
+            "original_token": "0.29",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Yb2O3",
+            "original_token": "0.041",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          }
+        ]
+      },
+      "source_scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "statement_id": "wim1002026hm_mre"
+    },
+    {
+      "column": "Yb2O3_氧化鐿_kt",
+      "limitation": "Display-only exact arithmetic; original source rounding uncertainty remains.",
+      "maximum_difference_kt": "7.1054273576010020E-15",
+      "method": "EXACT_SOURCE_DECIMAL_ARITHMETIC_BINARY_TAIL_ONLY",
+      "new_value": "10.25",
+      "old_value": "10.250000000000002",
+      "original_provenance": {
+        "acquired_through": "2026-11-10",
+        "column": "Yb2O3_氧化鐿_kt",
+        "date_precision": "DAY",
+        "document_issue_date": "",
+        "effective_date": "2026-01-29",
+        "effective_date_interval": "null",
+        "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+        "forecast_derivation": "",
+        "locator": "physical PDF p4",
+        "method": "ORE_MT_X_OXIDE_PPM_X_0_001",
+        "observation_ids": "[\"4ecdfeea3bd71c5a2ff2178db0310df542317e41eb36fc2a3f44423cec743ec5\",\"6b66c1e385d332df53e9d418858819e4c6880cd29e3e5be4961fa7766eecf4e0\",\"53c8c27e520057dcf1c25784839f1fcbcb21a56e85a0629c0ef13e1c77c299ae\",\"aa753a8c935fcae65d578c14062f7eb97aba724eb10a0e1f57f6d5cf4839afe5\",\"f57b397f4e94a32db12e6bdca454bbba731a0401ceb215ae6b0ff7e9a4990c7a\",\"e70b8771b7f63043015dc421a994b79abbad54386c9b8f91661b6145af2cee03\",\"d7cd4b085f91c36aa84222f1c4d226a3660a1a9e31c0c8cdb8ff528604b2167a\",\"890d5111d72a8b2f5e5feb4973984052019f0b5e9178aff862b5409bc11387f6\",\"3c4496d34abf331a2cb11ac1c3652c671024518e432df20a725527417a001e5e\",\"05c0779eb89cd3b383fa8a0d2be39c7ff520ce01bcc577479b5bc1440a0d81dc\",\"670522bf6762aa2e9a92949b3ccc2211819a99865cccf347070a752827cf781f\",\"3394fee5e81f22328a4578541a5920101e5ed4e7b335aecf6841b0dd8c0f2301\",\"2b4e31114df84b504ecf8e95d7f832feef95f79078270cddfe0c2d6318ab05fc\",\"c2e2fe6638f89d1bb4caabac6ee17c6752682fd29c67da71952287f547ede0f0\",\"c40eb77a8ae9b34b067a5df40a5999932b56cf72a46c1c2d1063902fc79c0b9a\",\"e4443ed878e8d7ffd0c62074029eefe70eebeb3b259fffa0d50d77c96c9730c5\",\"4ecdfeea3bd71c5a2ff2178db0310df542317e41eb36fc2a3f44423cec743ec5\"]",
+        "project_id": "AU-ff758cad5beb276d327d",
+        "public_release_date_unknown": "False",
+        "publication_date": "2026-01-29",
+        "publication_date_interval": "null",
+        "publication_date_precision": "DAY",
+        "publication_date_role": "REVIEWED_RELEASE_HEADER",
+        "resource_effective_date_unknown": "False",
+        "review_ids": "[\"cycle1_wim100_hm_oxides2026\"]",
+        "review_methods": "[\"NATIVE_TABLE_ROW_COLUMN_CELL_BINDING\"]",
+        "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+        "source_kind": "ISSUER_TECHNICAL_DISCLOSURE",
+        "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+        "source_url": "https://www.marketindex.com.au/data-api/api/v1/announcements/XASX%3AILU%3A6A1308937/pdf/inline/wim100-mineral-resource-estimate-increase",
+        "value": "10.250000000000002"
+      },
+      "project_id": "AU-ff758cad5beb276d327d",
+      "review_id": "cycle1_wim100_hm_oxides2026",
+      "source_decimal_inputs": {
+        "hm_mass": {
+          "cell_binding": {
+            "column_bbox": [
+              167,
+              230,
+              201,
+              338
+            ],
+            "column_label": "In situ HM Tonnes",
+            "column_label_bbox": [
+              169,
+              232,
+              198,
+              263
+            ],
+            "field": "hm_mass_mt",
+            "mode": "native_cell",
+            "original_unit": "Mt",
+            "page": 3,
+            "row_bbox": [
+              78,
+              326,
+              508,
+              338
+            ],
+            "row_label": "Total3",
+            "row_label_bbox": [
+              87,
+              326,
+              110,
+              338
+            ],
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+            "scope_anchor_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "section_id": "mass2026",
+            "table_bbox": [
+              77,
+              210,
+              510,
+              338
+            ],
+            "table_label": "2026 WIM100 Mineral Resource estimate",
+            "table_label_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "unit_bbox": [
+              167,
+              269,
+              201,
+              281
+            ],
+            "unit_label": "Mt3"
+          },
+          "evidence": {
+            "markers": [
+              "2026 WIM100 Mineral Resource estimate",
+              "25"
+            ],
+            "page": 3
+          },
+          "original_token": "25",
+          "rounding_half_width": 0.5,
+          "unit": "Mt",
+          "value": 25
+        },
+        "oxides": [
+          {
+            "basis": "CeO2",
+            "original_token": "0.67",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Dy2O3",
+            "original_token": "0.051",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Er2O3",
+            "original_token": "0.036",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Eu2O3",
+            "original_token": "0.003",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Gd2O3",
+            "original_token": "0.048",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Ho2O3",
+            "original_token": "0.012",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "La2O3",
+            "original_token": "0.32",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Lu2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Nd2O3",
+            "original_token": "0.28",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Pr6O11",
+            "original_token": "0.079",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Sm2O3",
+            "original_token": "0.055",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tb4O7",
+            "original_token": "0.008",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tm2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Y2O3",
+            "original_token": "0.29",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Yb2O3",
+            "original_token": "0.041",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          }
+        ]
+      },
+      "source_scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "statement_id": "wim1002026hm_mre"
+    },
+    {
+      "column": "NdPr蘊藏量_kt_需兩者皆公布",
+      "limitation": "Display-only exact arithmetic; original source rounding uncertainty remains.",
+      "maximum_difference_kt": "5.6843418860808016E-14",
+      "method": "EXACT_SOURCE_DECIMAL_ARITHMETIC_BINARY_TAIL_ONLY",
+      "new_value": "89.75",
+      "old_value": "89.75000000000001",
+      "original_provenance": {
+        "acquired_through": "2026-11-10",
+        "column": "NdPr蘊藏量_kt_需兩者皆公布",
+        "date_precision": "DAY",
+        "document_issue_date": "",
+        "effective_date": "2026-01-29",
+        "effective_date_interval": "null",
+        "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+        "forecast_derivation": "",
+        "locator": "",
+        "method": "SUM_COMPLETE_MATCHED_OXIDE_SET",
+        "observation_ids": "[]",
+        "project_id": "AU-ff758cad5beb276d327d",
+        "public_release_date_unknown": "False",
+        "publication_date": "2026-01-29",
+        "publication_date_interval": "null",
+        "publication_date_precision": "DAY",
+        "publication_date_role": "REVIEWED_RELEASE_HEADER",
+        "resource_effective_date_unknown": "False",
+        "review_ids": "[\"cycle1_wim100_hm_oxides2026\"]",
+        "review_methods": "[\"NATIVE_TABLE_ROW_COLUMN_CELL_BINDING\"]",
+        "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+        "source_kind": "ISSUER_TECHNICAL_DISCLOSURE",
+        "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+        "source_url": "https://www.marketindex.com.au/data-api/api/v1/announcements/XASX%3AILU%3A6A1308937/pdf/inline/wim100-mineral-resource-estimate-increase",
+        "value": "89.75000000000001"
+      },
+      "project_id": "AU-ff758cad5beb276d327d",
+      "review_id": "cycle1_wim100_hm_oxides2026",
+      "source_decimal_inputs": {
+        "hm_mass": {
+          "cell_binding": {
+            "column_bbox": [
+              167,
+              230,
+              201,
+              338
+            ],
+            "column_label": "In situ HM Tonnes",
+            "column_label_bbox": [
+              169,
+              232,
+              198,
+              263
+            ],
+            "field": "hm_mass_mt",
+            "mode": "native_cell",
+            "original_unit": "Mt",
+            "page": 3,
+            "row_bbox": [
+              78,
+              326,
+              508,
+              338
+            ],
+            "row_label": "Total3",
+            "row_label_bbox": [
+              87,
+              326,
+              110,
+              338
+            ],
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+            "scope_anchor_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "section_id": "mass2026",
+            "table_bbox": [
+              77,
+              210,
+              510,
+              338
+            ],
+            "table_label": "2026 WIM100 Mineral Resource estimate",
+            "table_label_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "unit_bbox": [
+              167,
+              269,
+              201,
+              281
+            ],
+            "unit_label": "Mt3"
+          },
+          "evidence": {
+            "markers": [
+              "2026 WIM100 Mineral Resource estimate",
+              "25"
+            ],
+            "page": 3
+          },
+          "original_token": "25",
+          "rounding_half_width": 0.5,
+          "unit": "Mt",
+          "value": 25
+        },
+        "oxides": [
+          {
+            "basis": "CeO2",
+            "original_token": "0.67",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Dy2O3",
+            "original_token": "0.051",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Er2O3",
+            "original_token": "0.036",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Eu2O3",
+            "original_token": "0.003",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Gd2O3",
+            "original_token": "0.048",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Ho2O3",
+            "original_token": "0.012",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "La2O3",
+            "original_token": "0.32",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Lu2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Nd2O3",
+            "original_token": "0.28",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Pr6O11",
+            "original_token": "0.079",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Sm2O3",
+            "original_token": "0.055",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tb4O7",
+            "original_token": "0.008",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tm2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Y2O3",
+            "original_token": "0.29",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Yb2O3",
+            "original_token": "0.041",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          }
+        ]
+      },
+      "source_scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "statement_id": "wim1002026hm_mre"
+    },
+    {
+      "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+      "limitation": "Display-only exact arithmetic; original source rounding uncertainty remains.",
+      "maximum_difference_kt": "5.6843418860808016E-14",
+      "method": "EXACT_SOURCE_DECIMAL_ARITHMETIC_BINARY_TAIL_ONLY",
+      "new_value": "112.5",
+      "old_value": "112.49999999999999",
+      "original_provenance": {
+        "acquired_through": "2026-11-10",
+        "column": "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+        "date_precision": "DAY",
+        "document_issue_date": "",
+        "effective_date": "2026-01-29",
+        "effective_date_interval": "null",
+        "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+        "forecast_derivation": "",
+        "locator": "",
+        "method": "SUM_COMPLETE_MATCHED_OXIDE_SET",
+        "observation_ids": "[]",
+        "project_id": "AU-ff758cad5beb276d327d",
+        "public_release_date_unknown": "False",
+        "publication_date": "2026-01-29",
+        "publication_date_interval": "null",
+        "publication_date_precision": "DAY",
+        "publication_date_role": "REVIEWED_RELEASE_HEADER",
+        "resource_effective_date_unknown": "False",
+        "review_ids": "[\"cycle1_wim100_hm_oxides2026\"]",
+        "review_methods": "[\"NATIVE_TABLE_ROW_COLUMN_CELL_BINDING\"]",
+        "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+        "source_kind": "ISSUER_TECHNICAL_DISCLOSURE",
+        "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+        "source_url": "https://www.marketindex.com.au/data-api/api/v1/announcements/XASX%3AILU%3A6A1308937/pdf/inline/wim100-mineral-resource-estimate-increase",
+        "value": "112.49999999999999"
+      },
+      "project_id": "AU-ff758cad5beb276d327d",
+      "review_id": "cycle1_wim100_hm_oxides2026",
+      "source_decimal_inputs": {
+        "hm_mass": {
+          "cell_binding": {
+            "column_bbox": [
+              167,
+              230,
+              201,
+              338
+            ],
+            "column_label": "In situ HM Tonnes",
+            "column_label_bbox": [
+              169,
+              232,
+              198,
+              263
+            ],
+            "field": "hm_mass_mt",
+            "mode": "native_cell",
+            "original_unit": "Mt",
+            "page": 3,
+            "row_bbox": [
+              78,
+              326,
+              508,
+              338
+            ],
+            "row_label": "Total3",
+            "row_label_bbox": [
+              87,
+              326,
+              110,
+              338
+            ],
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+            "scope_anchor_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "section_id": "mass2026",
+            "table_bbox": [
+              77,
+              210,
+              510,
+              338
+            ],
+            "table_label": "2026 WIM100 Mineral Resource estimate",
+            "table_label_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "unit_bbox": [
+              167,
+              269,
+              201,
+              281
+            ],
+            "unit_label": "Mt3"
+          },
+          "evidence": {
+            "markers": [
+              "2026 WIM100 Mineral Resource estimate",
+              "25"
+            ],
+            "page": 3
+          },
+          "original_token": "25",
+          "rounding_half_width": 0.5,
+          "unit": "Mt",
+          "value": 25
+        },
+        "oxides": [
+          {
+            "basis": "CeO2",
+            "original_token": "0.67",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Dy2O3",
+            "original_token": "0.051",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Er2O3",
+            "original_token": "0.036",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Eu2O3",
+            "original_token": "0.003",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Gd2O3",
+            "original_token": "0.048",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Ho2O3",
+            "original_token": "0.012",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "La2O3",
+            "original_token": "0.32",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Lu2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Nd2O3",
+            "original_token": "0.28",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Pr6O11",
+            "original_token": "0.079",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Sm2O3",
+            "original_token": "0.055",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tb4O7",
+            "original_token": "0.008",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tm2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Y2O3",
+            "original_token": "0.29",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Yb2O3",
+            "original_token": "0.041",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          }
+        ]
+      },
+      "source_scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "statement_id": "wim1002026hm_mre"
+    },
+    {
+      "column": "磁性元素重算值_NdPrTbDy_kt",
+      "limitation": "Display-only exact arithmetic; original source rounding uncertainty remains.",
+      "maximum_difference_kt": "5.6843418860808016E-14",
+      "method": "EXACT_SOURCE_DECIMAL_ARITHMETIC_BINARY_TAIL_ONLY",
+      "new_value": "104.5",
+      "old_value": "104.50000000000001",
+      "original_provenance": {
+        "acquired_through": "2026-11-10",
+        "column": "磁性元素重算值_NdPrTbDy_kt",
+        "date_precision": "DAY",
+        "document_issue_date": "",
+        "effective_date": "2026-01-29",
+        "effective_date_interval": "null",
+        "effective_date_role": "RESOURCE_REAFFIRMED_AT_PUBLICATION",
+        "forecast_derivation": "",
+        "locator": "",
+        "method": "SUM_COMPLETE_MATCHED_OXIDE_SET",
+        "observation_ids": "[]",
+        "project_id": "AU-ff758cad5beb276d327d",
+        "public_release_date_unknown": "False",
+        "publication_date": "2026-01-29",
+        "publication_date_interval": "null",
+        "publication_date_precision": "DAY",
+        "publication_date_role": "REVIEWED_RELEASE_HEADER",
+        "resource_effective_date_unknown": "False",
+        "review_ids": "[\"cycle1_wim100_hm_oxides2026\"]",
+        "review_methods": "[\"NATIVE_TABLE_ROW_COLUMN_CELL_BINDING\"]",
+        "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+        "source_kind": "ISSUER_TECHNICAL_DISCLOSURE",
+        "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+        "source_url": "https://www.marketindex.com.au/data-api/api/v1/announcements/XASX%3AILU%3A6A1308937/pdf/inline/wim100-mineral-resource-estimate-increase",
+        "value": "104.50000000000001"
+      },
+      "project_id": "AU-ff758cad5beb276d327d",
+      "review_id": "cycle1_wim100_hm_oxides2026",
+      "source_decimal_inputs": {
+        "hm_mass": {
+          "cell_binding": {
+            "column_bbox": [
+              167,
+              230,
+              201,
+              338
+            ],
+            "column_label": "In situ HM Tonnes",
+            "column_label_bbox": [
+              169,
+              232,
+              198,
+              263
+            ],
+            "field": "hm_mass_mt",
+            "mode": "native_cell",
+            "original_unit": "Mt",
+            "page": 3,
+            "row_bbox": [
+              78,
+              326,
+              508,
+              338
+            ],
+            "row_label": "Total3",
+            "row_label_bbox": [
+              87,
+              326,
+              110,
+              338
+            ],
+            "scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+            "scope_anchor": "2026 WIM100 Mineral Resource estimate",
+            "scope_anchor_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "section_id": "mass2026",
+            "table_bbox": [
+              77,
+              210,
+              510,
+              338
+            ],
+            "table_label": "2026 WIM100 Mineral Resource estimate",
+            "table_label_bbox": [
+              77,
+              213,
+              252,
+              226
+            ],
+            "unit_bbox": [
+              167,
+              269,
+              201,
+              281
+            ],
+            "unit_label": "Mt3"
+          },
+          "evidence": {
+            "markers": [
+              "2026 WIM100 Mineral Resource estimate",
+              "25"
+            ],
+            "page": 3
+          },
+          "original_token": "25",
+          "rounding_half_width": 0.5,
+          "unit": "Mt",
+          "value": 25
+        },
+        "oxides": [
+          {
+            "basis": "CeO2",
+            "original_token": "0.67",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Dy2O3",
+            "original_token": "0.051",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Er2O3",
+            "original_token": "0.036",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Eu2O3",
+            "original_token": "0.003",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Gd2O3",
+            "original_token": "0.048",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Ho2O3",
+            "original_token": "0.012",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "La2O3",
+            "original_token": "0.32",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Lu2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Nd2O3",
+            "original_token": "0.28",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Pr6O11",
+            "original_token": "0.079",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Sm2O3",
+            "original_token": "0.055",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tb4O7",
+            "original_token": "0.008",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Tm2O3",
+            "original_token": "0.006",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Y2O3",
+            "original_token": "0.29",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          },
+          {
+            "basis": "Yb2O3",
+            "original_token": "0.041",
+            "original_unit": "%HM",
+            "rounding_half_width": null
+          }
+        ]
+      },
+      "source_scope": "WIM100 2026 Mineral Resource; Measured+Indicated+Inferred; cutoff 1.0% HM; bulk ore 540Mt and reported HM 25Mt; oxide composition in HM; exclude Sc; no reported bulk TREO grade",
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "statement_id": "wim1002026hm_mre"
+    }
+  ],
+  "method": "EXACT_SOURCE_DECIMAL_ARITHMETIC_BINARY_TAIL_ONLY",
+  "new_cells": 0,
+  "precision_policy": "REMOVE_BINARY_TAIL_ONLY_NOT_REESTIMATE_SOURCE_UNCERTAINTY",
+  "version": "round3-source-decimal-presentation-v1"
+}
