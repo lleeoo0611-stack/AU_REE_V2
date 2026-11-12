@@ -47,7 +47,7 @@ def apply(stage,before,after,decisions,census):
 def protection(census):
     p=prior.protected_snapshot(census)
     # All frozen results through round three are protected, not just round two.
-    names=subprocess.check_output(['git','ls-tree','-r','--name-only',BASELINE,'results'],cwd=REPO,text=True).splitlines()
+    names=subprocess.check_output(['git','ls-tree','-rz','--name-only',BASELINE,'results'],cwd=REPO).decode('utf8').split('\0')
     for name in names:
         if name.startswith('results/asx-current/') or name=='results/round3-3-2026-11-11/README.md':continue
         if (REPO/name).is_file():p['protected'][name]=filehash(REPO/name)

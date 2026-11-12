@@ -14,7 +14,7 @@ from shapely.ops import transform, unary_union
 network.set_network_enabled(False)
 
 
-def centroid(features, source_crs, limit_m=25000):
+def centroid(features, source_crs, limit_m=25000, id_field=None):
     """Union ALL exact-matched tenements; measure ALL vertices after fallback."""
     crs=CRS.from_user_input(source_crs)
     to_ll=Transformer.from_crs(crs,7844,always_xy=True,allow_ballpark=False)
@@ -30,9 +30,14 @@ def centroid(features, source_crs, limit_m=25000):
     forward=Transformer.from_crs(7844,metric,always_xy=True)
     backward=Transformer.from_crs(metric,7844,always_xy=True)
     native=[transform(forward.transform,g) for g in geometries]
-    combined=unary_union(native);point=combined.centroid;method='TENEMENT_CENTROID'
+    titles={}
+    for index,(feature,geometry) in enumerate(zip(features,native)):
+        key=identifier_key(feature['properties'][id_field]) if id_field else index
+        titles.setdefault(key,[]).append(geometry)
+    title_geometries=[unary_union(parts) for parts in titles.values()]
+    combined=unary_union(title_geometries);point=combined.centroid;method='TENEMENT_CENTROID'
     if not combined.covers(point):
-        point=max(native,key=lambda g:g.area).centroid;method='LARGEST_TENEMENT_CENTROID'
+        point=max(title_geometries,key=lambda g:g.area).centroid;method='LARGEST_TENEMENT_CENTROID'
         if not combined.covers(point):return dict(accepted=False,reason='LARGEST_TENEMENT_CENTROID_OUTSIDE_UNION')
     lon,lat=backward.transform(point.x,point.y)
     geod=Geod(ellps='GRS80')
@@ -51,8 +56,60 @@ def identifier_key(value):
     return (match[1],int(match[2]),int(match[3]) if match[3] else None)
 
 
+def read_shapefile_zip(raw,member):
+    """Read every native DBF/SHP/SHX record, preserving polygon rings and IDs."""
+    import io,struct,zipfile
+    from shapely.geometry import Polygon,MultiPolygon,mapping
+    with zipfile.ZipFile(io.BytesIO(raw)) as z:
+        dbf=z.read(member+'.dbf');shp=z.read(member+'.shp');shx=z.read(member+'.shx')
+        crs=CRS.from_wkt(z.read(member+'.prj').decode('ascii'))
+        encoding=z.read(member+'.cpg').decode('ascii').strip() if member+'.cpg' in z.namelist() else 'ascii'
+        n,header,width=struct.unpack_from('<IHH',dbf,4)
+        fields=[(dbf[i:i+11].split(b'\x00')[0].decode('ascii'),dbf[i+16]) for i in range(32,header-1,32)]
+        if sum(w for _,w in fields)+1!=width or len(dbf)<header+n*width:raise ValueError('NT_DBF_LENGTH')
+        if struct.unpack_from('>i',shp,24)[0]*2!=len(shp) or struct.unpack_from('>i',shx,24)[0]*2!=len(shx) or (len(shx)-100)//8!=n:raise ValueError('NT_SHP_SHX_COMPLETENESS')
+        features=[]
+        for i in range(n):
+            row=dbf[header+i*width:header+(i+1)*width]
+            if row[0]!=32:raise ValueError('NT_DELETED_DBF_RECORD')
+            props={};pos=1
+            for name,size in fields:props[name]=row[pos:pos+size].decode(encoding).strip();pos+=size
+            offset,length=struct.unpack_from('>ii',shx,100+i*8);offset*=2;length*=2
+            recno,reclen=struct.unpack_from('>ii',shp,offset)
+            if recno!=i+1 or reclen*2!=length:raise ValueError('NT_SHP_RECORD_ALIGNMENT')
+            b=shp[offset+8:offset+8+length]
+            if struct.unpack_from('<i',b)[0] not in (5,15,25):raise ValueError('NT_POLYGON_SHAPE_REQUIRED')
+            parts,count=struct.unpack_from('<ii',b,36)
+            starts=list(struct.unpack_from('<'+'i'*parts,b,44))+[count]
+            if starts[0]!=0 or starts!=sorted(starts):raise ValueError('NT_POLYGON_PARTS')
+            points=[struct.unpack_from('<dd',b,44+parts*4+j*16) for j in range(count)]
+            rings=[points[a:c] for a,c in zip(starts,starts[1:])]
+            polys=[Polygon(r) for r in rings]
+            if any(not p.is_valid or p.is_empty for p in polys):raise ValueError('NT_INVALID_RING')
+            parents=[]
+            for j,poly in enumerate(polys):
+                containers=[k for k,other in enumerate(polys) if k!=j and other.area>poly.area and other.covers(poly)]
+                parents.append(min(containers,key=lambda k:polys[k].area) if containers else None)
+            def depth(index):
+                d=0
+                while parents[index] is not None:d+=1;index=parents[index]
+                return d
+            polygons=[Polygon(rings[j],[rings[k] for k in range(len(rings)) if parents[k]==j]) for j in range(len(rings)) if depth(j)%2==0]
+            geom=MultiPolygon(polygons)
+            if not geom.is_valid:raise ValueError('NT_INVALID_MULTIPOLYGON')
+            features.append(dict(type='Feature',id=member+'.'+str(i+1),properties=props,geometry=mapping(geom)))
+        return features,crs
+
+
 def verify_feature_pages(repo,dataset,log):
     features=[];sha=[];offset=0;expected=None
+    if dataset.get('format')=='NT_SHAPEFILE_ZIP':
+        page=dataset['pages'][0]
+        if len(dataset['pages'])!=1 or not any(r['source_sha256']==page['source_sha256'] and r.get('http_status')==200 for r in log):raise ValueError('GEOMETRY_REQUEST_RECEIPT_REQUIRED')
+        features,crs=read_shapefile_zip(verified_bytes(repo,page),dataset['zip_member'])
+        if crs!=CRS.from_user_input(dataset['source_crs']):raise ValueError('TENEMENT_SOURCE_CRS_MISMATCH')
+        if len(features)!=dataset['native_record_count']:raise ValueError('NT_NATIVE_RECORD_COUNT')
+        return features,[page['source_sha256']]
     for page in dataset['pages']:
         matches=[r for r in log if r['source_sha256']==page['source_sha256'] and r.get('http_status')==200]
         if len(matches)!=1:raise ValueError('GEOMETRY_REQUEST_RECEIPT_REQUIRED')
@@ -125,6 +182,9 @@ def collect(rows,trace,decisions,repo,census=None):
         if record:
             try:
                 validate_original(record,pid,repo,trace)
+                if record.get('review_only_reason'):
+                    result.update(record.get('historical_title_conflict',{}))
+                    raise ValueError(record['review_only_reason'])
                 state=record['state']
                 if state=='TAS':raise ValueError('TAS_PRIOR_403_NO_ATTEMPT')
                 if state in stopped:raise ValueError('OFFICIAL_TARGET_STOPPED')
@@ -138,7 +198,7 @@ def collect(rows,trace,decisions,repo,census=None):
                 chosen=[f for f in features if identifier_key(f['properties'][field]) in {identifier_key(i) for i in wanted}]
                 if {identifier_key(f['properties'][field]) for f in chosen}!={identifier_key(i) for i in wanted}:raise ValueError('EXACT_TENEMENT_IDS_NOT_ALL_FOUND')
                 if dataset.get('active_field') and any(f['properties'][dataset['active_field']] not in dataset['accepted_active_values'] for f in chosen):raise ValueError('TENEMENT_NOT_CURRENT_REQUIRES_HISTORICAL_REVIEW')
-                result=centroid(chosen,dataset['source_crs'],cfg['precision_limit_m']);reason=result['reason']
+                result=centroid(chosen,dataset['source_crs'],cfg['precision_limit_m'],id_field=field);reason=result['reason']
                 if result['accepted']:
                     holders=sorted({str(f['properties'].get(dataset['holder_field'],'')).strip() for f in chosen})
                     scope=dict(result,decision_id=decision,tenement_ids=wanted,official_tenement_ids=[f['properties'][field] for f in chosen],identifier_rule='TYPE_AND_INTEGER_COMPONENTS_ONLY_NO_NAME_MATCH',layer_sha256=sha,holders=holders,holder_mismatch=any(h!=row.get('開發商','') for h in holders),original_references=record['original_references'],feature_properties=[f['properties'] for f in chosen],scope_note='Tenement centroid, NOT mineral occurrence point; existing notes preserved')

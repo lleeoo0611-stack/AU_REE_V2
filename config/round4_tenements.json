@@ -46,6 +46,52 @@
       ],
       "acquired_at": "2026-11-12T19:48:02.291012+00:00",
       "scope": "All 13 response features retained; exact type/numeric IDs only; multiple native polygon records for one tenement are all unioned."
+    },
+    "NT_MINTEN": {
+      "state": "NT",
+      "catalogue_url": "https://data.nt.gov.au/dataset/strike---northern-territory-mineral-titles",
+      "license_url": "http://www.opendefinition.org/licenses/cc-by",
+      "license_evidence": {
+        "state": "NT",
+        "url": "https://data.nt.gov.au/dataset/strike---northern-territory-mineral-titles",
+        "final_url": "https://data.nt.gov.au/dataset/strike---northern-territory-mineral-titles",
+        "http_status": 200,
+        "requested_at": "2026-11-12T19:50:20.282026+00:00",
+        "source_sha256": "781fb18c918dcf050293fb784af10c3faf5e39081c752063cc5a10e689da8e96",
+        "path": "results/round4-4-2026-11-13/acquisition/781fb18c918dcf050293fb784af10c3faf5e39081c752063cc5a10e689da8e96.raw",
+        "version": "retrieval snapshot",
+        "decision_id": "round4-tenement-centroid-20261113",
+        "status": "COMPLETE"
+      },
+      "endpoint": "https://geoscience.nt.gov.au/contents/prod/Downloads/NT_MineralTitles_shp.zip",
+      "source_crs": "EPSG:4283",
+      "format": "NT_SHAPEFILE_ZIP",
+      "zip_member": "MIN_TITLE_EXPL_GRNT",
+      "native_record_count": 2090,
+      "id_field": "TITLEID",
+      "holder_field": "PTY_NAME",
+      "active_field": "STATUS",
+      "accepted_active_values": [
+        "Current"
+      ],
+      "historical": false,
+      "pagination_complete": true,
+      "pages": [
+        {
+          "state": "NT",
+          "url": "https://geoscience.nt.gov.au/contents/prod/Downloads/NT_MineralTitles_shp.zip",
+          "final_url": "https://geoscience.nt.gov.au/contents/prod/Downloads/NT_MineralTitles_shp.zip",
+          "http_status": 200,
+          "requested_at": "2026-11-12T20:13:58.805849+00:00",
+          "source_sha256": "cf91d27516b4212b7dd795877356827ad042cc90c8fc63d854a74983fed043f2",
+          "path": "results/round4-4-2026-11-13/acquisition/cf91d27516b4212b7dd795877356827ad042cc90c8fc63d854a74983fed043f2.raw",
+          "version": "retrieval snapshot",
+          "decision_id": "round4-tenement-centroid-20261113",
+          "status": "COMPLETE"
+        }
+      ],
+      "acquired_at": "2026-11-12T20:13:58.805849+00:00",
+      "scope": "Complete granted exploration layer from official bulk package; 2090 SHP/SHX/DBF records agree, all geometry and holders retained; .prj explicitly EPSG4283 GDA94. Duplicate title rows for co-holders are unioned per title before largest-title calculation."
     }
   },
   "projects": [
@@ -493,6 +539,70 @@
         }
       ],
       "dataset": "QLD_MINTEN"
+    },
+    {
+      "project_id": "AU-ad64122c217f0dbfabc8",
+      "state": "NT",
+      "tenement_ids": [
+        "EL32452",
+        "EL32453",
+        "EL32454",
+        "EL32455",
+        "EL32456",
+        "EL32473",
+        "EL32474"
+      ],
+      "complete_project_scope": true,
+      "historical": false,
+      "scope_note": "Complete Barkly (not Buntine) schedule March2026.",
+      "original_references": [
+        {
+          "path": "results/round4-4-2026-11-13/acquisition/aaa865cfb08d10c134cd7fa562fc88064821c4f64cfec5af34085ba7bdddfc14.pdf",
+          "source_sha256": "aaa865cfb08d10c134cd7fa562fc88064821c4f64cfec5af34085ba7bdddfc14",
+          "page": 6,
+          "quote": "ASX ANNOUNCEMENT \n \nQUARTERLY ACTIVITIES REPORT MARCH 2026 \n \nwww.barklyrareearths.com \n5 \n \n^ The period between being admitted to the Official List of the ASX and the end of the quarter was \n59 days. During this time only preparatory work in respect to exploration was carried out with the \nCompany anticipating a higher rate of expenditure in future quarters. \n# The period between being admitted to the Official List of the ASX and the end of the quarter was \n59 days, whereas the Use of Funds statement is forecasting expenditure for the subsequent 24-\nmonth period. Accordingly, expenditure is significantly lower than forecast. \nMINERAL TENEMENT HOLDINGS \nProject \nTenement \nID \nActivity \nduring \nthe \nquarter \nInterest at \nbeginning of \nquarter \nInterest at end \nof quarter \nBarkly Project \nEL32452 \n- \n100% \n100% \nEL32453 \n- \n100% \n100% \nEL32454 \n- \n100% \n100% \nEL32455 \n- \n100% \n100% \nEL32456 \n- \n100% \n100% \nEL32473 \n- \n100% \n100% \nEL32474 \n- \n100% \n100% \nBuntine Project \nEL32529 \n- \n100% \n100% \nEL32530 \n- \n100% \n100% \nEL32531 \n- \n100% \n100% \nEL32532 \n- \n100% \n100% \nEL32534 \n- \n100% \n100% \nEL32535 \n- \n100% \n100% \nEL33086 \n- \n100% \n100% \nEL33087 \n- \n100% \n100% \nEL33162 \n- \n100% \n100% \n \n \nThis announcement has been authorised for release by the Board of Barkly Rare Earths Limited. \nEnd of Release \nEnquiries \nBarkly Rare Earths Investor Relations \n+61 8 9386 0855  \nir@barklyrareearths.com \nAbout Barkly Rare Earths Limited: \nBarkly Rare Earths Limited (ASX:BAK) is an Australian mineral exploration company focussed on the \ndiscovery and development of economic mineral deposits, driven by technical expertise, and disciplined \nexecution. Its strategy is to discover, delineate, and develop deposits capable of supporting long-term \nproduction to meet growing global demand.  \nThe Company’s flagship Barkly Project in Australia’s Northern Territory, has an initial Inferred Mineral \nResource of 40 Mt @ 710 ppm Magnet Rare Earth Oxide (MREO) within 2,100 ppm Total Rare Earth Oxide \n(TREO) (reported above a 430-ppm NdPr cut-off grade). The Mineral Resource includes a high terbium \nFor personal use only\n",
+          "url": "https://investorpa.com/announcement-pdf/20260518/293797.pdf",
+          "publication_date": "2026-05-18"
+        }
+      ],
+      "dataset": "NT_MINTEN"
+    },
+    {
+      "project_id": "AU-203b4d90e5c23a323610",
+      "state": "NT",
+      "tenement_ids": [
+        "EL34022",
+        "EL32406",
+        "EL32513",
+        "EL34147",
+        "EL34273"
+      ],
+      "complete_project_scope": true,
+      "historical": false,
+      "scope_note": "Complete HART RANGE year-end2026 tenement schedule; p63 switches to Pomme. Earlier2024 source gives EL32046, not adopted over later explicit schedule; royalty contingent list p52 differs and must be noted as older contractual scope, not current tenure.",
+      "original_references": [
+        {
+          "path": "results/round4-4-2026-11-13/acquisition/9c4f1f01212bbc65471d4bcb1806688390ed5aba16ce958a5fcbb0f51e8a9471.pdf",
+          "source_sha256": "9c4f1f01212bbc65471d4bcb1806688390ed5aba16ce958a5fcbb0f51e8a9471",
+          "page": 62,
+          "quote": "TENEMENT INFORMATION AS REQUIRED BY LISTING RULE 5.3.3 \nHART RANGE \n \nTenement ID \nOwnership at \nend of year \nStatus \nEL34022 \n100% \nGranted \nEL32406 \n- \nUnder application on 14 April 2025 \nEL32513 \n85% \nGranted \nEL34147 \n100% \nGranted \nEL34273 \n100% \nGranted  \n \n \n \nFor personal use only\n",
+          "url": "https://announcements.asx.com.au/asxpdf/20260929/pdf/074nqg9s1b67ll.pdf",
+          "publication_date": "2026-09-29"
+        }
+      ],
+      "dataset": "NT_MINTEN",
+      "review_only_reason": "CURRENT_SOURCE_HISTORICAL_TITLE_CONFLICT",
+      "historical_title_conflict": {
+        "title": "EL32406",
+        "source_archive_sha256": "cf91d27516b4212b7dd795877356827ad042cc90c8fc63d854a74983fed043f2",
+        "member": "TITLES_MIN_HISTORICAL.dbf",
+        "STATUS": "Historical",
+        "TS_TYPE": "Ceased",
+        "DT_CEASED": "20230308",
+        "PTY_NAME": "MICRONISED MINERAL SOLUTIONS PTY LTD",
+        "UNIQ_ID": "18664",
+        "decision": "Do not mix a title ceased in 2023 with a 2026 current schedule; no historical substitution without resolving scope."
+      }
     }
   ],
   "state_status": {
@@ -501,7 +611,7 @@
     "QLD": "STOPPED_HTTP_202_EMPTY_CATALOGUE_UNVERIFIED_LICENSE",
     "NSW": "STOPPED_HTTP_202_EMPTY_CATALOGUE_UNVERIFIED_LICENSE",
     "SA": "STOPPED_HTTP_403",
-    "NT": "CATALOGUE_CC_BY_CONFIRMED_NO_VERIFIED_OWN_SOURCE_IDS_GEOMETRY_NOT_REQUESTED",
+    "NT": "COMPLETE_OFFICIAL_BULK_ZIP_GRANTED_LAYER_2090_NATIVE_RECORDS_TWO_SOURCE_BACKED_PROJECTS",
     "TAS": "PRIOR_HTTP_403_NO_ATTEMPT"
   }
 }

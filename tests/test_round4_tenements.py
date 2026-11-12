@@ -64,3 +64,26 @@ def test_incomplete_geometry_page_refused(tmp_path):
     dataset={'pages':[page],'native_crs_uri':'CRS'}
     with pytest.raises(ValueError,match='TENEMENT_PAGINATION_INCOMPLETE'):
         verify_feature_pages(tmp_path,dataset,[{'source_sha256':sha,'http_status':200}])
+
+
+def test_largest_tenement_uses_sum_of_all_native_features():
+    # A's two adjacent parts each smaller than B, but their union is larger.
+    a1=feature(143,-36,.02,.02);a1['properties']['title']='EL1'
+    a2=feature(143.02,-36,.02,.02);a2['properties']['title']='EL001'
+    b=feature(143.12,-36,.03,.02);b['properties']['title']='EL2'
+    result=centroid([a1,a2,b],7844,id_field='title')
+    assert result['accepted'] and result['location_method']=='LARGEST_TENEMENT_CENTROID'
+    assert 143.019<result['longitude']<143.021
+    assert result['precision_m']>11000
+
+
+def test_nt_official_archive_record_alignment_and_datum():
+    from pathlib import Path
+    from au_ree_v2.round4_tenements import read_shapefile_zip
+    repo=Path(__file__).resolve().parents[1]
+    archive=repo/'results/round4-4-2026-11-13/acquisition/cf91d27516b4212b7dd795877356827ad042cc90c8fc63d854a74983fed043f2.raw'
+    features,crs=read_shapefile_zip(archive.read_bytes(),'MIN_TITLE_EXPL_GRNT')
+    assert len(features)==2090 and crs.to_epsg()==4283
+    assert len({f['id'] for f in features})==2090
+    assert len([f for f in features if f['properties']['TITLEID']=='EL32455'])==2
+    assert not any(f['properties']['TITLEID']=='EL32406' for f in features)

@@ -30,7 +30,7 @@ def publish(repo,date,work,out,expected,tests_pass):
         if (current/f).is_file():shutil.copyfile(current/f,staged/f)
     status=json.loads((current/'publication_status.json').read_text('utf8'))
     previous=json.loads(json.dumps(status));status.setdefault('history',[]).append(dict(status='ROUND4_RESEARCHER_APPROVED_PUBLISHED',previous_publication_status=previous,published=True,accepted_tasks=list(range(6)),date=date,new_research_cells=sum(r['new_cells'] for r in records[2:]),merge_not_new_evidence=True,existing_conclusion='INCOMPLETE/CONTINUE_UNCHANGED'))
-    status.update(published=True,status='ROUND4_RESEARCHER_APPROVED_PUBLISHED')
+    status.update(published=True,status='ROUND4_RESEARCHER_APPROVED_PUBLISHED',new_cells=sum(r['new_cells'] for r in records[2:]),accepted_tasks=list(range(6)),backup=backup.relative_to(repo).as_posix(),swap_semantics='TWO_SAME_FILESYSTEM_RENAMES_WITH_ROLLBACK_NOT_ATOMIC_EXCHANGE')
     write_json(staged/'publication_status.json',status)
     cov=json.loads((out/'projection/summary.json').read_text('utf8'))
     _,rows=read_csv(staged/'專案總表.csv');_,trace=read_csv(staged/'field_provenance.csv')
