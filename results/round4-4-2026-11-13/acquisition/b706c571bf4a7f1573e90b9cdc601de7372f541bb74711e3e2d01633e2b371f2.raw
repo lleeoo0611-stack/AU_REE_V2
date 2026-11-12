@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:SLIP_Public_Services_Industry_and_Mining_WFS="https://public-admin.slip.wa.gov.au:443/arcgis/services/SLIP_Public_Services/Industry_and_Mining_WFS/MapServer/WFSServer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" targetNamespace="https://public-admin.slip.wa.gov.au:443/arcgis/services/SLIP_Public_Services/Industry_and_Mining_WFS/MapServer/WFSServer" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xsd:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+<xsd:element name="Mining_Tenements__DMIRS-003_" type="SLIP_Public_Services_Industry_and_Mining_WFS:Mining_Tenements__DMIRS-003_FeatureType" substitutionGroup="gml:AbstractFeature"/>
+<xsd:complexType name="Mining_Tenements__DMIRS-003_FeatureType">
+  <xsd:complexContent>
+    <xsd:extension base="gml:AbstractFeatureType">
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="1" name="oid" type="xsd:int"/>
+        <xsd:element minOccurs="0" maxOccurs="1" name="gid" nillable="true" type="xsd:int"/>
+        <xsd:element minOccurs="0" maxOccurs="1" name="tenid" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="12"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="type" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="50"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="survstatus" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="15"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="tenstatus" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="10"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="holdercnt" nillable="true" type="xsd:double"/>
+        <xsd:element minOccurs="0" maxOccurs="1" name="holder1" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="80"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="addr1" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="150"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="holder2" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="80"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="addr2" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="150"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="holder3" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="80"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="addr3" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="150"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="holder4" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="80"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="addr4" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="150"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="holder5" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="80"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="addr5" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="150"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="holder6" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="80"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="addr6" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="150"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="holder7" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="80"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="addr7" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="150"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="holder8" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="80"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="addr8" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="150"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="holder9" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="80"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="addr9" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="150"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="fmt_tenid" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="16"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="legal_area" nillable="true" type="xsd:double"/>
+        <xsd:element minOccurs="0" maxOccurs="1" name="unit_of_me" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="4"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="special_in" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="1"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="extract_da" nillable="true" type="xsd:dateTime"/>
+        <xsd:element minOccurs="0" maxOccurs="1" name="grantdate" nillable="true" type="xsd:dateTime"/>
+        <xsd:element minOccurs="0" maxOccurs="1" name="granttime" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="8"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="startdate" nillable="true" type="xsd:dateTime"/>
+        <xsd:element minOccurs="0" maxOccurs="1" name="starttime" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="8"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="enddate" nillable="true" type="xsd:dateTime"/>
+        <xsd:element minOccurs="0" maxOccurs="1" name="endtime" nillable="true">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="8"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="1" name="the_geom" nillable="true" type="gml:MultiSurfacePropertyType"/>
+        <xsd:element minOccurs="0" maxOccurs="1" name="st_area_the_geom_" nillable="true" type="xsd:double"/>
+        <xsd:element minOccurs="0" maxOccurs="1" name="st_perimeter_the_geom_" nillable="true" type="xsd:double"/>
+      </xsd:sequence>
+    </xsd:extension>
+  </xsd:complexContent>
+</xsd:complexType>
+</xsd:schema>
