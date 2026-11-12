@@ -57,6 +57,29 @@ def write_records(path,records,fields):
     fields=list(dict.fromkeys(fields+[k for r in records for k in r]))
     write_csv(path,fields,[{k:json.dumps(v,ensure_ascii=False,sort_keys=True) if isinstance(v,(dict,list)) else v for k,v in r.items()} for r in records])
 
+def comparison_report(tasks,baseline,projection,coordinate_distribution):
+    """Separate de-duplication, applicability and genuinely new evidence."""
+    keys=('original_53_columns','all_retained_columns','tiered_coverage')
+    def denominators(record):
+        return {'original_53_columns':record['original_53_columns']['denominator'],
+                'all_retained_columns':record['all_retained_columns']['denominator'],
+                'tiered_combined':record['tiered_coverage']['combined']['denominator']}
+    initial=denominators(baseline);merged=denominators(tasks[0]);final=denominators(projection)
+    merge_delta={k:merged[k]-initial[k] for k in initial}
+    excluded=projection.get('not_applicable_stage_excluded',0)
+    applicability={'original_53_columns':0,'all_retained_columns':-excluded,'tiered_combined':-excluded}
+    if any(final[k]!=initial[k]+merge_delta[k]+applicability[k] for k in initial):raise ValueError('ROUND4_DENOMINATOR_RECONCILIATION')
+    research=sum(t['new_cells'] for t in tasks[2:5])
+    removed=tasks[0]['original_53_columns']['filled']-baseline['original_53_columns']['filled']
+    if projection['original_53_columns']['filled']!=baseline['original_53_columns']['filled']+removed+research:raise ValueError('ROUND4_EVIDENCE_RECONCILIATION')
+    return dict(version='round4-coverage-comparison-v1',baseline_commit=BASELINE,
+        baseline={k:baseline[k] for k in keys},tasks=tasks,new_research_cells=research,
+        merge_not_new_evidence=True,not_applicable_not_filled=True,
+        evidence_changes=dict(baseline=baseline['original_53_columns']['filled'],merge_delta=removed,new_research=research,final=projection['original_53_columns']['filled']),
+        denominator_changes=dict(baseline=initial,merge=merge_delta,not_applicable_stage=applicability,final=final),
+        applicability=dict(after_task1=tasks[1].get('not_applicable_stage_excluded',0),final=excluded,additional_after_task1=excluded-tasks[1].get('not_applicable_stage_excluded',0),tier1=projection['tiered_coverage']['tier1']['not_applicable_stage_excluded'],tier2=projection['tiered_coverage']['tier2']['not_applicable_stage_excluded']),
+        coordinate_source_distribution=coordinate_distribution,**{k:projection[k] for k in keys})
+
 def run(task,work,census,publish=False):
     from au_ree_v2 import round4_schema as schema
     os.chdir(REPO);sys.addaudithook(prior.offline_guard)
@@ -95,6 +118,9 @@ def run(task,work,census,publish=False):
     summary['network_requests']=extra.get('request_count',0)
     summary['not_applicable_stage_excluded']=projection.get('not_applicable_stage_excluded',0)
     write_json(out/'summary.json',summary)
+    # Fail before expensive regression on oversized or unsafe publication payloads.
+    from au_ree_v2.round3_release import verify_public_tree
+    verify_public_tree(out)
     xml=out/'offline-tests.xml'
     result=subprocess.run([sys.executable,str(REPO/'tools/run_offline_regression.py'),'--fixture-root',str(census),'--overlay',str(work/'regression'),'--junitxml',str(xml)],cwd=REPO)
     if result.returncode:raise ValueError('FULL_OFFLINE_REGRESSION_FAILED')
@@ -108,7 +134,7 @@ def run(task,work,census,publish=False):
     if task==5:
         tasks=[json.loads((REPO/f'results/round4-{n}-{DATE}/summary.json').read_text('utf8')) for n in range(6)]
         baseline=json.loads((REPO/'results/round3-4-2026-11-11/projection/summary.json').read_text('utf8'))
-        write_json(out/'coverage_comparison.json',dict(baseline_commit=BASELINE,baseline={k:baseline[k] for k in ('original_53_columns','all_retained_columns','tiered_coverage')},tasks=tasks,new_research_cells=sum(t['new_cells'] for t in tasks[2:]),merge_not_new_evidence=True,not_applicable_not_filled=True,denominator_changes=dict(merge=tasks[0]['tiered_coverage']['combined']['denominator']-baseline['tiered_coverage']['combined']['denominator'],not_applicable_stage=-projection.get('not_applicable_stage_excluded',0)),coordinate_source_distribution=summary['coordinate_source_distribution'],**{k:projection[k] for k in ('original_53_columns','all_retained_columns','tiered_coverage')}))
+        write_json(out/'coverage_comparison.json',comparison_report(tasks,baseline,projection,summary['coordinate_source_distribution']))
         summary_out=REPO/f'results/round4-summary-{DATE}';summary_out.mkdir(exist_ok=True)
         shutil.copyfile(out/'coverage_comparison.json',summary_out/'coverage_comparison.json')
         if publish:

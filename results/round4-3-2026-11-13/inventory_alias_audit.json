@@ -1,0 +1,324 @@
+[
+  {
+    "absorbed_project_ids": [
+      "AU-ee5ca893d12883df35f1"
+    ],
+    "inventory_issues": [],
+    "originals": [
+      {
+        "associations": [
+          "census:observations",
+          "census:relations"
+        ],
+        "dates": [],
+        "issuer_alias_decision_id": "round4-issuer-merge-20261113",
+        "original_association_records": [
+          {
+            "associations": [
+              "census:relations"
+            ],
+            "dates": [],
+            "project_id": "AU-d0ce731e1d8198ffaf58",
+            "source_url": "https://www.aspecthuntley.com.au/asxdata/20240402/pdf/02790601.pdf"
+          },
+          {
+            "associations": [
+              "census:observations",
+              "census:relations"
+            ],
+            "dates": [],
+            "project_id": "AU-ee5ca893d12883df35f1",
+            "source_url": "https://www.aspecthuntley.com.au/asxdata/20240402/pdf/02790601.pdf"
+          }
+        ],
+        "original_project_ids": [
+          "AU-d0ce731e1d8198ffaf58",
+          "AU-ee5ca893d12883df35f1"
+        ],
+        "point1": "PASS",
+        "sha256": "288f07ef6630bb20031240f92d99114cfab43385bd493f45ef000213747c4e70",
+        "source_type_reason": "Project-associated original; no documented general-source exclusion"
+      },
+      {
+        "associations": [
+          "census:records",
+          "census:relations"
+        ],
+        "dates": [],
+        "issuer_alias_decision_id": "round4-issuer-merge-20261113",
+        "original_association_records": [
+          {
+            "associations": [
+              "census:records",
+              "census:relations"
+            ],
+            "dates": [],
+            "project_id": "AU-ee5ca893d12883df35f1",
+            "source_url": "https://services.ga.gov.au/gis/rest/services/AustraliasIdentifiedMineralResources/MapServer/52"
+          }
+        ],
+        "original_project_ids": [
+          "AU-ee5ca893d12883df35f1"
+        ],
+        "point1": "FAIL",
+        "sha256": "41347cefdf736db20dde9184f0f0a84e0d75b5a5f2a8ab93dd526f163d9ce4c9",
+        "source_type_reason": "NATIONAL_OR_STATE_GIS: Official services.ga.gov.au GIS REST MapServer metadata represent national/state infrastructure or resource layers, not project-specific stage documents; URLs and source SHA recorded per manifest."
+      },
+      {
+        "associations": [
+          "source-review:fullscope14_issuer_AU-d0ce731e1d8198ffaf58"
+        ],
+        "dates": [
+          "2026-03-30"
+        ],
+        "issuer_alias_decision_id": "round4-issuer-merge-20261113",
+        "original_association_records": [
+          {
+            "associations": [
+              "source-review:fullscope14_issuer_AU-d0ce731e1d8198ffaf58"
+            ],
+            "dates": [
+              "2026-03-30"
+            ],
+            "project_id": "AU-d0ce731e1d8198ffaf58",
+            "source_url": "https://wcsecure.weblink.com.au/clients/goldarcresources/headline.aspx?headlineid=61318517"
+          }
+        ],
+        "original_project_ids": [
+          "AU-d0ce731e1d8198ffaf58"
+        ],
+        "point1": "PASS",
+        "sha256": "436db5f42cee6172bdb0efc023e997138c0c3eb8b979af60e2b60411b9cde095",
+        "source_type_reason": "Project-associated original; no documented general-source exclusion"
+      },
+      {
+        "associations": [
+          "census:observations",
+          "census:relations",
+          "identity:r6_code_AU-ee5ca893d12883df35f1",
+          "source-review:r3_mtstirling_parent_overlap",
+          "source-review:r3_yttria_202404"
+        ],
+        "dates": [
+          "2024-04-16"
+        ],
+        "issuer_alias_decision_id": "round4-issuer-merge-20261113",
+        "original_association_records": [
+          {
+            "associations": [
+              "census:relations",
+              "source-review:r3_mtstirling_parent_overlap"
+            ],
+            "dates": [
+              "2024-04-16"
+            ],
+            "project_id": "AU-d0ce731e1d8198ffaf58",
+            "source_url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739"
+          },
+          {
+            "associations": [
+              "census:observations",
+              "census:relations",
+              "identity:r6_code_AU-ee5ca893d12883df35f1",
+              "source-review:r3_yttria_202404"
+            ],
+            "dates": [
+              "2024-04-16"
+            ],
+            "project_id": "AU-ee5ca893d12883df35f1",
+            "source_url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739"
+          }
+        ],
+        "original_project_ids": [
+          "AU-d0ce731e1d8198ffaf58",
+          "AU-ee5ca893d12883df35f1"
+        ],
+        "point1": "PASS",
+        "sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+        "source_type_reason": "Project-associated original; no documented general-source exclusion"
+      },
+      {
+        "associations": [
+          "source-review:continuation2_wa_legend_AU-d0ce731e1d8198ffaf58"
+        ],
+        "dates": [
+          "2026-02-28"
+        ],
+        "issuer_alias_decision_id": "round4-issuer-merge-20261113",
+        "original_association_records": [
+          {
+            "associations": [
+              "source-review:continuation2_wa_legend_AU-d0ce731e1d8198ffaf58"
+            ],
+            "dates": [
+              "2026-02-28"
+            ],
+            "project_id": "AU-d0ce731e1d8198ffaf58",
+            "source_url": "https://www.wa.gov.au/media/159141/download?inline="
+          }
+        ],
+        "original_project_ids": [
+          "AU-d0ce731e1d8198ffaf58"
+        ],
+        "point1": "PASS",
+        "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+        "source_type_reason": "Project-associated original; no documented general-source exclusion"
+      },
+      {
+        "associations": [
+          "census:observations",
+          "census:records",
+          "census:relations"
+        ],
+        "dates": [
+          "2026-02-01"
+        ],
+        "issuer_alias_decision_id": "round4-issuer-merge-20261113",
+        "original_association_records": [
+          {
+            "associations": [
+              "census:observations",
+              "census:records",
+              "census:relations"
+            ],
+            "dates": [
+              "2026-02-01"
+            ],
+            "project_id": "AU-d0ce731e1d8198ffaf58",
+            "source_url": "https://www.wa.gov.au/media/159141/download?inline="
+          }
+        ],
+        "original_project_ids": [
+          "AU-d0ce731e1d8198ffaf58"
+        ],
+        "point1": "PASS",
+        "sha256": "ae76952cae874b34aa01430e042b5e85b0a983699f584383583bf9f2f4e1a56b",
+        "source_type_reason": "Project-associated original; no documented general-source exclusion"
+      },
+      {
+        "associations": [
+          "source-review:fullscope13_mt_stirling_yttria_mre20240416"
+        ],
+        "dates": [
+          "2024-04-16"
+        ],
+        "issuer_alias_decision_id": "round4-issuer-merge-20261113",
+        "original_association_records": [
+          {
+            "associations": [
+              "source-review:fullscope13_mt_stirling_yttria_mre20240416"
+            ],
+            "dates": [
+              "2024-04-16"
+            ],
+            "project_id": "AU-d0ce731e1d8198ffaf58",
+            "source_url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739"
+          }
+        ],
+        "original_project_ids": [
+          "AU-d0ce731e1d8198ffaf58"
+        ],
+        "point1": "PASS",
+        "sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726",
+        "source_type_reason": "Project-associated original; no documented general-source exclusion"
+      },
+      {
+        "associations": [
+          "identity:fullscope13_code_mt_stirling_goldarc"
+        ],
+        "dates": [
+          "2026-03-30"
+        ],
+        "issuer_alias_decision_id": "round4-issuer-merge-20261113",
+        "original_association_records": [
+          {
+            "associations": [
+              "identity:fullscope13_code_mt_stirling_goldarc"
+            ],
+            "dates": [
+              "2026-03-30"
+            ],
+            "project_id": "AU-d0ce731e1d8198ffaf58",
+            "source_url": "https://investorpa.com/announcement-pdf/20260330/275183.pdf"
+          }
+        ],
+        "original_project_ids": [
+          "AU-d0ce731e1d8198ffaf58"
+        ],
+        "point1": "PASS",
+        "sha256": "c016a2d9fae34fa766a461d7011c18bc56db0a43f843949807e039cb91df6e77",
+        "source_type_reason": "Project-associated original; no documented general-source exclusion"
+      },
+      {
+        "associations": [
+          "census:relations"
+        ],
+        "dates": [
+          "2025-08-11"
+        ],
+        "issuer_alias_decision_id": "round4-issuer-merge-20261113",
+        "original_association_records": [
+          {
+            "associations": [
+              "census:relations"
+            ],
+            "dates": [
+              "2025-08-11"
+            ],
+            "project_id": "AU-d0ce731e1d8198ffaf58",
+            "source_url": "https://victorymetalsaustralia.com/wp-content/uploads/2025/11/02976976.pdf"
+          },
+          {
+            "associations": [
+              "census:relations"
+            ],
+            "dates": [
+              "2025-08-11"
+            ],
+            "project_id": "AU-ee5ca893d12883df35f1",
+            "source_url": "https://victorymetalsaustralia.com/wp-content/uploads/2025/11/02976976.pdf"
+          }
+        ],
+        "original_project_ids": [
+          "AU-d0ce731e1d8198ffaf58",
+          "AU-ee5ca893d12883df35f1"
+        ],
+        "point1": "PASS",
+        "sha256": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84",
+        "source_type_reason": "Project-associated original; no documented general-source exclusion"
+      },
+      {
+        "associations": [
+          "census:observations",
+          "census:records",
+          "census:relations"
+        ],
+        "dates": [
+          "2025-07-31"
+        ],
+        "issuer_alias_decision_id": "round4-issuer-merge-20261113",
+        "original_association_records": [
+          {
+            "associations": [
+              "census:observations",
+              "census:records",
+              "census:relations"
+            ],
+            "dates": [
+              "2025-07-31"
+            ],
+            "project_id": "AU-ee5ca893d12883df35f1",
+            "source_url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mdccyq4dppkh.pdf"
+          }
+        ],
+        "original_project_ids": [
+          "AU-ee5ca893d12883df35f1"
+        ],
+        "point1": "PASS",
+        "sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+        "source_type_reason": "Project-associated original; no documented general-source exclusion"
+      }
+    ],
+    "project_id": "AU-d0ce731e1d8198ffaf58"
+  }
+]

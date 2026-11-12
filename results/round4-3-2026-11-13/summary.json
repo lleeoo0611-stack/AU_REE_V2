@@ -1,0 +1,122 @@
+{
+  "all_retained_columns": {
+    "coverage": 0.46069587628865977,
+    "denominator": 4656,
+    "filled": 2145
+  },
+  "baseline_commit": "e87d679ae1e05a0516849ba15da536b9ed039a00",
+  "bitwise_identical_files": {
+    "audit.json": "3f6237cf662568c6b250860cbd58799128cd212eedf8cd49a3b83e8a85533241",
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
+    "field_provenance.csv": "d59d7f183d3c53d0ac0f1d1d618c202f9fb2a15eb16157b3eabfb94bdd850b57",
+    "missing_fields.csv": "6ab5d75f5d41c09917b606b0fc5642b9a64363078ad8e55e3d86de4967452768",
+    "summary.json": "deaf2c453fd0c3e2ed63399602a8f61d9f9ffdd3b3250881faa3d8f92f8d1369",
+    "專案總表.csv": "202788501746d5e773e8026b6a87c4292ae699cb5544113727a0c1cc55bdcf93"
+  },
+  "changed_cells": 0,
+  "coordinate_source_distribution": {
+    "coordinate_pair_rows": 46,
+    "occurrence_point_rows": 46,
+    "tenement_centroid_rows": 0
+  },
+  "existing_conclusion": "INCOMPLETE/CONTINUE_UNCHANGED",
+  "independent_full_rebuilds": 2,
+  "network_requests": 0,
+  "new_cells": 0,
+  "not_applicable_stage_excluded": 36,
+  "offline_rebuild_network_requests": 0,
+  "original_53_columns": {
+    "coverage": 0.43990976210008204,
+    "denominator": 4876,
+    "filled": 2145
+  },
+  "review_queue": 28,
+  "task": 3,
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "junit_sha256": "3f607794bb5fcd2be5a9c5e237895b3aaa9c12ac4c4d97910376c72633029957",
+    "skipped": 0,
+    "tests": 1638
+  },
+  "tiered_coverage": {
+    "combined": {
+      "coverage": 0.7268722466960352,
+      "denominator": 2951,
+      "filled": 2145
+    },
+    "filled_resource_exception_convention": "COUNT_IN_BOTH_NUMERATOR_AND_DENOMINATOR",
+    "limitation": "NOT_APPLICABLE_NO_MRE_IS_DENOMINATOR_CONVENTION_NOT_PROOF_OF_ABSENCE",
+    "nonresource_columns": [
+      "專案ID",
+      "開發商",
+      "未上市公司",
+      "專案名稱",
+      "所在地_中文",
+      "所在地_英文",
+      "國家",
+      "州省地區",
+      "緯度",
+      "經度",
+      "礦床型態代碼",
+      "礦床型態",
+      "開發階段代碼",
+      "開發階段類別",
+      "開發階段",
+      "產品/產出",
+      "有來源文件",
+      "資料來源名稱",
+      "資料來源URL",
+      "ASX代碼"
+    ],
+    "resource_columns": [
+      "礦石蘊藏量_Mt",
+      "TREO品位_pct",
+      "總TREO蘊藏量_kt",
+      "磁鐵稀土氧化物蘊藏量_kt",
+      "磁鐵稀土佔TREO_pct",
+      "NdPr蘊藏量_kt_需兩者皆公布",
+      "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+      "預估年產TREO_t_per_year",
+      "預估年產NdPr_t_per_year",
+      "有TREO資源估計",
+      "已公布元素數_共15項",
+      "已公布元素總和_kt",
+      "元素總和/TREO",
+      "元素數據一致性檢查",
+      "四項磁性元素皆公布",
+      "磁性元素重算值_NdPrTbDy_kt",
+      "La2O3_氧化鑭_kt",
+      "CeO2_氧化鈰_kt",
+      "Pr6O11_氧化鐠_kt",
+      "Nd2O3_氧化釹_kt",
+      "Sm2O3_氧化釤_kt",
+      "Eu2O3_氧化銪_kt",
+      "Gd2O3_氧化釓_kt",
+      "Tb4O7_氧化鋱_kt",
+      "Dy2O3_氧化鏑_kt",
+      "Ho2O3_氧化鈥_kt",
+      "Er2O3_氧化鉺_kt",
+      "Tm2O3_氧化銩_kt",
+      "Yb2O3_氧化鐿_kt",
+      "Lu2O3_氧化鎦_kt",
+      "Y2O3_氧化釔_kt"
+    ],
+    "tier1": {
+      "coverage": 0.7049706039551042,
+      "denominator": 1871,
+      "filled": 1319,
+      "not_applicable_stage_excluded": 16,
+      "rows": 37
+    },
+    "tier2": {
+      "base_denominator": 1100,
+      "coverage": 0.7648148148148148,
+      "denominator": 1080,
+      "existing_filled_resource_cells": 0,
+      "filled": 826,
+      "not_applicable_stage_excluded": 20,
+      "rows": 55
+    }
+  }
+}

@@ -123,6 +123,73 @@ def make_fills(row, code, rule, decision_id, source, scope, locator, category):
     return output
 
 
+
+MERGE_KEEP = 'AU-d0ce731e1d8198ffaf58'
+MERGE_DROP = 'AU-ee5ca893d12883df35f1'
+
+
+def round4_original_inventory(repo, census_root, project_ids):
+    """Union exactly the approved renamed-issuer project without changing round3."""
+    import copy
+    repo = Path(repo)
+    config_path = repo / 'config/issuer_aliases.json'
+    alias_map = {}
+    if config_path.is_file():
+        config = legacy.read_json(config_path)
+        expected = dict(rule='SAME_ISSUER_RENAME_RESEARCHER_APPROVED',
+                        decision_id='round4-issuer-merge-20261113',
+                        current_name='GoldArc Resources Limited', current_asx='GA8',
+                        former_name='Asra Minerals Limited', former_asx='ASR',
+                        keep_project_id=MERGE_KEEP, drop_project_id=MERGE_DROP)
+        records = config.get('aliases', [])
+        if len(records) != 1 or any(records[0].get(k) != v for k,v in expected.items()):
+            raise ValueError('ROUND4_STAGE_ALIAS_SCOPE_NOT_APPROVED')
+        approve(legacy.read_json(repo/'config/researcher_rule_decisions.json'),
+                expected['decision_id'], expected['rule'])
+        alias_map[MERGE_DROP] = MERGE_KEEP
+    wanted = set(project_ids)
+    expanded = set(wanted)
+    for drop,keep in alias_map.items():
+        if keep in wanted or drop in wanted:
+            expanded.update((keep,drop))
+    raw, raw_issues = legacy.original_inventory(repo,census_root,expanded)
+    inventories, issues = {}, defaultdict(list)
+    for pid in sorted(expanded):
+        canonical = alias_map.get(pid,pid)
+        inventory = inventories.setdefault(canonical,{})
+        for source in raw.get(pid,[]):
+            entry = copy.deepcopy(source)
+            origin = dict(project_id=pid, associations=list(entry.get('associations',[])),
+                          dates=list(entry.get('dates',[])), source_url=entry.get('url',''))
+            if entry['sha256'] not in inventory:
+                entry['original_project_ids'] = []
+                entry['original_association_records'] = []
+                inventory[entry['sha256']] = entry
+            merged = inventory[entry['sha256']]
+            for field in ('dates','paths','associations'):
+                values = entry.get(field, [entry['path']] if field=='paths' else [])
+                merged[field] = sorted(set(merged.get(field,[]) + values))
+            merged['original_project_ids'] = sorted(set(merged['original_project_ids']+[pid]))
+            merged['original_association_records'].append(origin)
+            if canonical == MERGE_KEEP and MERGE_DROP in alias_map:
+                merged['issuer_alias_decision_id'] = 'round4-issuer-merge-20261113'
+        for issue in raw_issues.get(pid,[]):
+            issues[canonical].append(dict(copy.deepcopy(issue), original_project_id=pid))
+    return ({pid:[sources[sha] for sha in sorted(sources)] for pid,sources in inventories.items()},
+            dict(issues), alias_map)
+
+
+def canonical_shared_projects(inventories, baseline, alias_map):
+    shared = defaultdict(set)
+    for pid,entries in inventories.items():
+        for entry in entries:
+            shared[entry['sha256']].add(alias_map.get(pid,pid))
+    for manifest in baseline:
+        for sha in manifest['original_sha256s']:
+            shared[sha].add(alias_map.get(manifest['project_id'],manifest['project_id']))
+    return shared
+
+
 def collect_stage_three_point(rows, provenance, decisions, repo, census_root, settings=None):
     from .stage_rules import selected_mre
     repo=Path(repo)
@@ -135,12 +202,11 @@ def collect_stage_three_point(rows, provenance, decisions, repo, census_root, se
              and not any(r.get(k) for k in ('開發階段','開發階段代碼','開發階段類別'))]
     # Complete row set prevents two-project general sources becoming apparently single-project
     # merely because one project already has a stage.
-    inventories,issues=legacy.original_inventory(repo,census_root,{r['專案ID'] for r in rows})
-    shared=defaultdict(set)
-    for pid,entries in inventories.items():
-        for e in entries:shared[e['sha256']].add(pid)
-    for m in baseline:
-        for sha in m['original_sha256s']:shared[sha].add(m['project_id'])
+    inventories,issues,alias_map=round4_original_inventory(repo,census_root,{r['專案ID'] for r in rows})
+    shared=canonical_shared_projects(inventories,baseline,alias_map)
+    alias_audit=[dict(project_id=keep, absorbed_project_ids=sorted(drop for drop,target in alias_map.items() if target==keep),
+                      originals=[dict({k:e.get(k) for k in ('sha256','dates','associations','original_project_ids','original_association_records','issuer_alias_decision_id')}, point1=source_assessment(e,shared[e['sha256']],settings)[0], source_type_reason=source_assessment(e,shared[e['sha256']],settings)[1]) for e in inventories.get(keep,[])],
+                      inventory_issues=issues.get(keep,[])) for keep in sorted(set(alias_map.values())) if keep in inventories]
     proof=legacy.read_json(repo/old['visual_review_file']) if old.get('visual_review_file') else {}
     fills,reviews,manifests,hit_reviews=[],[],[],[]
     cache={}
@@ -150,6 +216,21 @@ def collect_stage_three_point(rows, provenance, decisions, repo, census_root, se
         if not entries:blockers.append(dict(reason='NO_ASSOCIATED_ARCHIVED_ORIGINALS'))
         for e in entries:
             excluded,reason=source_assessment(e,shared[e['sha256']],settings)
+            if excluded == 'FAIL':
+                # General layers/reports are out of scope before opening or parsing.
+                # Retain known round3 hit contexts, explicitly not a fresh sentence scan.
+                previous = old_by_id.get(pid,{})
+                ignored = [b for b in previous.get('blockers',[]) if b.get('source_sha256',b.get('sha256'))==e['sha256']]
+                ignored += [b for b in blockers if b.get('source_sha256',b.get('sha256'))==e['sha256']]
+                blockers = [b for b in blockers if b.get('source_sha256',b.get('sha256'))!=e['sha256']]
+                scans.append(dict(source_sha256=e['sha256'],source_url=e['url'],dates=e['dates'],associations=e['associations'],
+                                  point1='FAIL',source_type_reason=reason,physical_pages_scanned=0,
+                                  scan_status='EXCLUDED_POINT1_FAIL_NOT_OPENED_OR_SCANNED',
+                                  original_project_ids=e.get('original_project_ids',[pid]),
+                                  original_association_records=e.get('original_association_records',[]),
+                                  ignored_blockers=ignored,verified_visual_page_reviews=[],
+                                  excluded_prior_hit_contexts=[dict(hit,point1='FAIL',review_basis='FROZEN_ROUND3_CONTEXT_NOT_RESCANNED') for hit in previous.get('hits',[]) if hit.get('source_sha256')==e['sha256']]))
+                continue
             if excluded == 'UNCLEAR':
                 blockers.append(dict(reason='SOURCE_TYPE_UNCLEAR',source_sha256=e['sha256'],detail=reason))
             key=(e['sha256'],tuple(e.get('paths',[e['path']])))
@@ -165,7 +246,8 @@ def collect_stage_three_point(rows, provenance, decisions, repo, census_root, se
                 blockers.extend(problems)
                 if not e['dates']:blockers.append(dict(reason='ARCHIVED_ORIGINAL_DATE_UNKNOWN',source_sha256=e['sha256']))
             scans.append(dict(source_sha256=e['sha256'],source_url=e['url'],dates=e['dates'],associations=e['associations'],
-                              point1=excluded,source_type_reason=reason,physical_pages_scanned=pages,
+                              point1=excluded,source_type_reason=reason,physical_pages_scanned=pages,scan_status='SCANNED_PROJECT_ASSOCIATED_ORIGINAL',
+                              original_project_ids=e.get('original_project_ids',[pid]),original_association_records=e.get('original_association_records',[]),
                               ignored_blockers=problems if excluded=='FAIL' else [],verified_visual_page_reviews=visual))
             for h in found:
                 r=assess_hit(h,row,e,shared[e['sha256']],settings)
@@ -191,7 +273,7 @@ def collect_stage_three_point(rows, provenance, decisions, repo, census_root, se
                    interpretation='SOURCE_SET_AS_OF_DATE_INFERENCE_NOT_NATIVE_STAGE_STATEMENT_OR_CURRENT_STATUS')
         fills.extend(make_fills(row,'A2' if has_mre else 'A1',legacy.RULE,settings['decision_id'],source,scope,
                                'All originals, documented exclusions, and complete sentences; hit_reviews.csv rows '+str(manifest['hit_review_rows']),'探勘'))
-    return fills,reviews,dict(stage_search_manifests=manifests,hit_reviews=hit_reviews,scanned_projects=len(targets),network_requests=0)
+    return fills,reviews,dict(stage_search_manifests=manifests,hit_reviews=hit_reviews,scanned_projects=len(targets),inventory_alias_audit=alias_audit,network_requests=0)
 
 
 def collect_charley_exit(rows, provenance, decisions, repo, census_root=None, settings=None):
