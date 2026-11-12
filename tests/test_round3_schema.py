@@ -68,7 +68,7 @@ def test_migration_rebuilds_archive_and_is_bitwise_deterministic(tmp_path):
 def test_presentation_keeps_existing_notes_and_traces(tmp_path):
     source=ROOT/'results/round2-D-2026-11-11/projection';s.migrate(source,tmp_path/'core',ROOT)
     s.present(tmp_path/'core',tmp_path/'shown',ROOT)
-    _,old=read_csv(ROOT/'results/asx-current/field_provenance.csv');_,new=read_csv(tmp_path/'shown/field_provenance.csv')
+    old=s.archive_csv(json.loads((ROOT/'config/round4_baseline_presentation.json').read_text('utf8'))['files'],'field_provenance.csv');_,new=read_csv(tmp_path/'shown/field_provenance.csv')
     assert [p for p in old if p['column']=='總說明']==[p for p in new if p['column']=='總說明']
     assert s.audit(tmp_path/'shown')['columns']==51
 

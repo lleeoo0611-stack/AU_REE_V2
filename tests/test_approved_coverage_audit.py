@@ -22,7 +22,7 @@ def decisions():
     for d in data['decisions']:
         d['decided_by']=None if d['decision_id'] in NULL_IDS else 'USER_EXPLICIT_APPROVAL'
         # Round-three extensions bind the exact quote; retain it while testing the historical gate.
-        if d['decided_by'] and not d['decision_id'].startswith('round3-'): d['approval_evidence']='Explicit approval fixture'
+        if d['decided_by'] and not d['decision_id'].startswith(('round3-','round4-')): d['approval_evidence']='Explicit approval fixture'
     return data
 
 @pytest.fixture

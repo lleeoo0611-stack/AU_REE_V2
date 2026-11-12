@@ -11,6 +11,9 @@ SCIENCE_INDEXES = tuple(range(15,25)) + tuple(range(37,52))
 def audit_summary(folder):
     folder=Path(folder)
     detected=json.loads((folder/'summary.json').read_text('utf8'))
+    if detected.get('version','') in ('round4-core-v1','round4-presentation-v1'):
+        from .round4_schema import audit
+        return audit(folder)
     if detected.get('version','').startswith('census-project-summary-round3'):
         from .round3_schema import audit
         return audit(folder)

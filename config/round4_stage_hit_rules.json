@@ -1,0 +1,58 @@
+{
+  "version": "round4-three-point-v1",
+  "decision_id": "round4-stage-three-point-20261113",
+  "rule": "STAGE_THREE_POINT_EVIDENCE_REVIEW",
+  "baseline_manifests": "results/round3-2-2026-11-11/stage_search_manifests.json",
+  "legacy_settings": "config/round3_stage.json",
+  "future_patterns": [
+    "\\bwill\\b",
+    "\\bplans?\\s+to\\b",
+    "\\bintends?\\s+to\\b",
+    "\\baims?\\s+to\\b",
+    "\\bexpected\\s+to\\b",
+    "\\btargeting\\b",
+    "\\bto\\s+underpin\\b",
+    "\\btowards?\\b",
+    "\\bpath\\s+to\\b",
+    "\\badvance\\s+to\\b",
+    "\\bif\\b",
+    "\\bwould\\b",
+    "\\bcould\\b",
+    "\\bsubject\\s+to\\b",
+    "\\bproposed\\b",
+    "\\bplanned\\b",
+    "\\bpotential\\s+production\\b",
+    "\\bproduction\\s+(?:costs?|profile)\\b",
+    "\\bnot\\b",
+    "\\bno\\b"
+  ],
+  "completed_patterns": [
+    "\\bcompleted\\b",
+    "\\bresults\\b",
+    "\\bcommenced\\b",
+    "\\bunderway\\b",
+    "\\bin\\s+production\\b",
+    "\\bhas\\s+relinquished\\b",
+    "\\b(?:tenement|ground)\\s+(?:was\\s+)?relinquished\\b",
+    "\\bwithdrew\\b"
+  ],
+  "source_type_rules": {
+    "national_or_state_gis": "Official services.ga.gov.au GIS REST MapServer metadata represent national/state infrastructure or resource layers, not project-specific stage documents; URLs and source SHA recorded per manifest.",
+    "shared_general_document": "Exclude only explicitly reviewed general company annual/quarterly reports associated to >=2 distinct project IDs across the complete baseline inventory. Mere sharing of a project-specific technical report does not qualify."
+  },
+  "source_classifications": {
+    "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425": {
+      "type": "SHARED_GENERAL_DOCUMENT",
+      "evidence": "Physical page 1: White Cliff Minerals Limited, Annual report for the year ended 30 June 2023. Baseline manifest associates Diemals, Hines Hill, Lake Tay, Barballin and Munbinia.",
+      "minimum_associated_projects": 2
+    },
+    "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0": {
+      "type": "SHARED_GENERAL_DOCUMENT",
+      "evidence": "Physical page 1: Mt Monger Resources, QUARTERLY ACTIVITIES REPORT FOR THE PERIOD ENDED 31 MARCH 2023; overview covers Pomme and East Laverton; baseline associates East Laverton and Ravensthorpe / Young River.",
+      "minimum_associated_projects": 2
+    }
+  },
+  "project_aliases": {},
+  "interpretation": "Conservative literal, complete-sentence and paragraph-heading review; ambiguous completion remains UNCLEAR. No new B-stage classification.",
+  "minimum_inference_evidence": "At least one dated own-project original with point1 PASS; excluded generic originals cannot provide the as-of date or substitute for searched project-specific coverage."
+}

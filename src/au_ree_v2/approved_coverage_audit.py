@@ -66,14 +66,17 @@ def validate_decisions(decisions):
         'round3-vic-tas-official-20261111': ('ACQUIRE_OFFICIAL_VIC_TAS_OPEN_DATA',['VIC','TAS']),
         'round3-cummins-full-stage-20261111': ('STAGED_ANNUAL_USE_FIRST_FULL_PRODUCTION_STAGE','CUMMINS_RANGE_FIRST_FULL_PRODUCTION_STAGE_ONLY'),
     })
+    extensions.update({'round4-issuer-merge-20261113': ('SAME_ISSUER_RENAME_RESEARCHER_APPROVED', 'AU-d0ce731e1d8198ffaf58 + AU-ee5ca893d12883df35f1 ONLY'), 'round4-product-na-20261113': ('NO_PRODUCT_BEFORE_STUDY_STAGE', 'BLANK_PRODUCT_A1_A2_ONLY'), 'round4-charley-exit-20261113': ('STAGE_EXIT_RESEARCHER_DECISION_RELINQUISHMENT', 'FOUR_CHARLEY_PROJECTS_ONLY'), 'round4-stage-three-point-20261113': ('STAGE_THREE_POINT_EVIDENCE_REVIEW', 'THREE_POINT_PROJECT_SPECIFIC_CURRENT_STAGE_ONLY'), 'round4-tenement-centroid-20261113': ('TENEMENT_CENTROID_RESEARCHER_APPROVED', 'BLANK_COORDINATE_PAIRS_OFFICIAL_WA_NT_SA_QLD_VIC_NSW_NO_TAS')})
     require(len({d.get('decision_id') for d in records}) == len(records), 'DECISION_SET')
     for d in records:
         if d.get('decision_id') in extensions:
             if d['decision_id'].startswith('round3-'):
                 require(d.get('approval_evidence')=='甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期','EXTENSION_APPROVAL_EVIDENCE')
+            if d['decision_id'].startswith('round4-'):
+                require(d.get('approval_evidence')=='1.三點判斷 2.Asra Minerals Limited和GoldArc Resources Limited視同家公司改名 3.使用，標註 4.標註NOT_APPLICABLE_STAGE 5,判成X','EXTENSION_APPROVAL_EVIDENCE')
             rule,scope=extensions[d['decision_id']]
             require(d.get('rule')==rule and d.get('scope')==scope and not d.get('project_id'), 'EXTENSION_SCOPE')
-            require(d.get('decided_by')=='USER_EXPLICIT_APPROVAL' and d.get('decided_date')=='2026-11-11'
+            require(d.get('decided_by')=='USER_EXPLICIT_APPROVAL' and d.get('decided_date')==('2026-11-13' if d['decision_id'].startswith('round4-') else '2026-11-11')
                     and isinstance(d.get('approval_evidence'),str) and bool(d['approval_evidence'].strip()), 'EXTENSION_APPROVAL')
     records = [d for d in records if d.get('decision_id') not in extensions]
     indexed = {d.get('decision_id'): d for d in records}
