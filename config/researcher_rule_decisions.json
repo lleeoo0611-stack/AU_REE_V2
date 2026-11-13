@@ -430,6 +430,30 @@
       "decided_by": "USER_EXPLICIT_APPROVAL",
       "decided_date": "2026-11-13",
       "approval_evidence": "1.三點判斷 2.Asra Minerals Limited和GoldArc Resources Limited視同家公司改名 3.使用，標註 4.標註NOT_APPLICABLE_STAGE 5,判成X"
+    },
+    {
+      "decision_id": "round5-stage-priority-aliases-20261113",
+      "rule": "STAGE_THREE_POINT_PRIORITY_ALIAS_REVIEW",
+      "scope": "812_ROUND4_HITS_FAIL_PRIORITY_AND_SOURCE_BOUND_ALIASES",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-13",
+      "approval_evidence": "1.修正優先邏輯，補上別名表 2.離線OCR套三點判斷 3.拿掉sortby"
+    },
+    {
+      "decision_id": "round5-offline-ocr-20261113",
+      "rule": "STAGE_OFFLINE_OCR_REVIEW",
+      "scope": "ONLY_REMAINING_IMAGE_OR_NO_TEXT_BLOCKER_PAGES_FIXED_OFFLINE_OCR",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-13",
+      "approval_evidence": "1.修正優先邏輯，補上別名表 2.離線OCR套三點判斷 3.拿掉sortby"
+    },
+    {
+      "decision_id": "round5-wa-sortby-20261113",
+      "rule": "WA_REMOVE_SORTBY_ONLY",
+      "scope": "EXACT_ROUND4_WA_REQUEST_REMOVE_SORTBY_ONLY_WITH_COMPLETENESS_VALIDATION",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-13",
+      "approval_evidence": "1.修正優先邏輯，補上別名表 2.離線OCR套三點判斷 3.拿掉sortby"
     }
   ]
 }

@@ -67,6 +67,7 @@ def validate_decisions(decisions):
         'round3-cummins-full-stage-20261111': ('STAGED_ANNUAL_USE_FIRST_FULL_PRODUCTION_STAGE','CUMMINS_RANGE_FIRST_FULL_PRODUCTION_STAGE_ONLY'),
     })
     extensions.update({'round4-issuer-merge-20261113': ('SAME_ISSUER_RENAME_RESEARCHER_APPROVED', 'AU-d0ce731e1d8198ffaf58 + AU-ee5ca893d12883df35f1 ONLY'), 'round4-product-na-20261113': ('NO_PRODUCT_BEFORE_STUDY_STAGE', 'BLANK_PRODUCT_A1_A2_ONLY'), 'round4-charley-exit-20261113': ('STAGE_EXIT_RESEARCHER_DECISION_RELINQUISHMENT', 'FOUR_CHARLEY_PROJECTS_ONLY'), 'round4-stage-three-point-20261113': ('STAGE_THREE_POINT_EVIDENCE_REVIEW', 'THREE_POINT_PROJECT_SPECIFIC_CURRENT_STAGE_ONLY'), 'round4-tenement-centroid-20261113': ('TENEMENT_CENTROID_RESEARCHER_APPROVED', 'BLANK_COORDINATE_PAIRS_OFFICIAL_WA_NT_SA_QLD_VIC_NSW_NO_TAS')})
+    extensions.update({'round5-stage-priority-aliases-20261113': ('STAGE_THREE_POINT_PRIORITY_ALIAS_REVIEW', '812_ROUND4_HITS_FAIL_PRIORITY_AND_SOURCE_BOUND_ALIASES'), 'round5-offline-ocr-20261113': ('STAGE_OFFLINE_OCR_REVIEW', 'ONLY_REMAINING_IMAGE_OR_NO_TEXT_BLOCKER_PAGES_FIXED_OFFLINE_OCR'), 'round5-wa-sortby-20261113': ('WA_REMOVE_SORTBY_ONLY', 'EXACT_ROUND4_WA_REQUEST_REMOVE_SORTBY_ONLY_WITH_COMPLETENESS_VALIDATION')})
     require(len({d.get('decision_id') for d in records}) == len(records), 'DECISION_SET')
     for d in records:
         if d.get('decision_id') in extensions:
@@ -74,9 +75,11 @@ def validate_decisions(decisions):
                 require(d.get('approval_evidence')=='甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期','EXTENSION_APPROVAL_EVIDENCE')
             if d['decision_id'].startswith('round4-'):
                 require(d.get('approval_evidence')=='1.三點判斷 2.Asra Minerals Limited和GoldArc Resources Limited視同家公司改名 3.使用，標註 4.標註NOT_APPLICABLE_STAGE 5,判成X','EXTENSION_APPROVAL_EVIDENCE')
+            if d['decision_id'].startswith('round5-'):
+                require(d.get('approval_evidence')=='1.修正優先邏輯，補上別名表 2.離線OCR套三點判斷 3.拿掉sortby','EXTENSION_APPROVAL_EVIDENCE')
             rule,scope=extensions[d['decision_id']]
             require(d.get('rule')==rule and d.get('scope')==scope and not d.get('project_id'), 'EXTENSION_SCOPE')
-            require(d.get('decided_by')=='USER_EXPLICIT_APPROVAL' and d.get('decided_date')==('2026-11-13' if d['decision_id'].startswith('round4-') else '2026-11-11')
+            require(d.get('decided_by')=='USER_EXPLICIT_APPROVAL' and d.get('decided_date')==('2026-11-13' if d['decision_id'].startswith(('round4-','round5-')) else '2026-11-11')
                     and isinstance(d.get('approval_evidence'),str) and bool(d['approval_evidence'].strip()), 'EXTENSION_APPROVAL')
     records = [d for d in records if d.get('decision_id') not in extensions]
     indexed = {d.get('decision_id'): d for d in records}

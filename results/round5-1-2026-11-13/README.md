@@ -1,0 +1,2500 @@
+# 第五輪任務 1
+
+修正三點優先順序並以有來源的別名重判全部 812 筆命中；不推定新階段。
+
+新增 0 格，變更 0 項，待審 28 項。兩次完整離線來源重建逐位元一致，完整測試通過。既有填值、provenance、Census、inventory、凍結結果及 INCOMPLETE／CONTINUE 不變。
+三種覆蓋率與分層分子分母見 summary.json。不為預估新增量放寬條件。
+## 任務1階段核查
+全部812筆命中已以原件重新擷取核對並重判；不填階段，保留全部既有阻擋。
+### 逐專案狀態（ALL_FAIL=全部FAIL；HAS_UNCLEAR=仍有UNCLEAR；HAS_PASS=有PASS；NO_HITS=無命中）
+- AU-0098e17a63e7c05c213f Wudinna Rare Earths Project: HAS_UNCLEAR (150 hits)
+- AU-d28382dfa82f1664065e Narraburra Rare Earths Project: HAS_PASS (24 hits)
+- AU-f46f6d53e7196650495d Kalkaroo: HAS_UNCLEAR (100 hits)
+- AU-d1aeb21e18e60fe8e32e Deep Leads – Rubble Mound – Wind Break REE Project: ALL_FAIL (8 hits)
+- AU-0832169526bb5ec07626 Franklyn Kaolin–REE Project — Nackara Arc: HAS_UNCLEAR (27 hits)
+- AU-02d486d425ca0792bdc5 Comet REE Project: ALL_FAIL (4 hits)
+- AU-6a5615e0ed95d955c2dd iTech Eyre Peninsula REE–Kaolin Project: ALL_FAIL (7 hits)
+- AU-2ab3e8eb7b5784e64f9b Duke Rare Earth Project: ALL_FAIL (7 hits)
+- AU-630885ed0d74d8641d6c Bencubbin REE Project: ALL_FAIL (10 hits)
+- AU-d0827cf51def7e0014fc Rocky Gully Scandium–REE–Gallium Project: ALL_FAIL (13 hits)
+- AU-cae6c11543b0da5f840d West Arunta Project — Luni Niobium–REE scope: HAS_UNCLEAR (19 hits)
+- AU-1c907e00c797bf8b3ce1 Grass Patch REE Project — OD6 tenements: HAS_UNCLEAR (40 hits)
+- AU-d99cf357d160df73387c Southern Cross Li-REE Project — GCX: ALL_FAIL (11 hits)
+- AU-6f0ecda27d291720036d Nutgrove REE Project: ALL_FAIL (1 hits)
+- AU-a9b72e86940271be45a3 Diemals Li–REE Project: NO_HITS (0 hits)
+- AU-1103c5aa8bb63077ac61 Hines Hill REE Project: NO_HITS (0 hits)
+- AU-70cc41e3a7106f983f73 Lake Tay REE Project: NO_HITS (0 hits)
+- AU-b3ae34ac85d16018bd4b Barballin REE Project: NO_HITS (0 hits)
+- AU-f81823bd8ba271840345 Munbinia REE Project: NO_HITS (0 hits)
+- AU-b2dadf9c8046c3c68a02 Cascade Rare Earth Project — Meeka: HAS_UNCLEAR (8 hits)
+- AU-ee34781b030807146e64 Ravensthorpe REE Exploration Project — Young River, Dalyup and Bremer: NO_HITS (0 hits)
+- AU-557f0c9ad81bf84bbb6d East Laverton REE Exploration Project — Pt Kidman area: NO_HITS (0 hits)
+- AU-b50a5b57669586191c33 Wandagee REE Exploration Project — Consolidated Zinc: ALL_FAIL (14 hits)
+- AU-68da41afe874c3bd66d4 Voyager Rare Earth Project — Tasmania: ALL_FAIL (36 hits)
+- AU-2af694147ae21c393820 Lake Campion REE Exploration Project — IGO: ALL_FAIL (259 hits)
+- AU-e6d859a831ed5954b440 Kenny Li–REE Exploration Project — EverGreen: ALL_FAIL (1 hits)
+- AU-176852ef1348ac10d154 Nowie Rare Earths and Mineral Sands Project — VHM: ALL_FAIL (64 hits)
+- AU-c5e94422a89a23f82408 Mt Craig Copper–REE Exploration Project — Taruga: HAS_UNCLEAR (9 hits)
+### 別名導致FAIL轉為PASS或UNCLEAR
+- Row 175, AU-d28382dfa82f1664065e, ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28 p.4: ['Narraburra', 'Narraburra REE Project'] → PASS
+
+## 別名造成原 FAIL 轉為 PASS／UNCLEAR
+- {"alias_matched": ["Narraburra", "Narraburra REE Project"], "alias_source": [{"alias": "Narraburra", "original_name": "Narraburra Rare Earths Project", "source": "ROW_FULL_NAME_SUFFIX_REMOVAL"}, {"alias": "Narraburra REE Project", "physical_page": 4, "quote": "PREVIOUS DISCLOSURES The information in this announcement that relates to Exploration Results and Mineral Resources associated with the Company’s projects is extracted from the following ASX Announcements: • ASX Announcement Titled “Addendum to Maiden Narraburra Mineral Resource Announcement dated 19 April 2023” dated 21 April 2023 • ASX Announcement Titled “Significant progress on Narraburra REE Project with production of second, cleaner Mixed Rare Earth Carbonate (MREC)” dated 10 December 2024 • ASX Announcement Titled “Geophysics Indicates Large Clay Basin Hosting the Narraburra Rare Earth Elements Deposit Indicating Significant Resource Expansion Potential” dated 23 July 2024", "source": "ARCHIVED_ORIGINAL_PROJECT_LABEL", "source_sha256": "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28"}], "keyword": "production", "outcome": "PASS", "paragraph_heading": "COMPLIANCE STATEMENT The information in this report that relates to Exploration Results is based", "physical_page": 4, "point1": "PASS", "point2": "PASS", "point3": "PASS", "project": "Narraburra Rare Earths Project", "project_id": "AU-d28382dfa82f1664065e", "reason1": "Project-associated original; no documented general-source exclusion", "reason2": "UNIQUE_PROJECT_ALIAS_IN_SENTENCE_OR_HEADING", "reason3": "Completed/current activity wording: \\bresults\\b", "round4_outcome": "FAIL", "row_number": 175, "rule_version": "round5-three-point-v2", "sentence": "PREVIOUS DISCLOSURES The information in this announcement that relates to Exploration Results and Mineral Resources associated with the Company’s projects is extracted from the following ASX Announcements: • ASX Announcement Titled “Addendum to Maiden Narraburra Mineral Resource Announcement dated 19 April 2023” dated 21 April 2023 • ASX Announcement Titled “Significant progress on Narraburra REE Project with production of second, cleaner Mixed Rare Earth Carbonate (MREC)” dated 10 December 2024 • ASX Announcement Titled “Geophysics Indicates Large Clay Basin Hosting the Narraburra Rare Earth Elements Deposit Indicating Significant Resource Expansion Potential” dated 23 July 2024", "source_sha256": "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28"}
+
+## 每列狀態
+[
+  {
+    "project_id": "AU-0098e17a63e7c05c213f",
+    "project": "Wudinna Rare Earths Project",
+    "status": "HAS_UNCLEAR",
+    "hit_count": 150,
+    "blockers": [
+      {
+        "image_area_fraction": 0.453738,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864"
+      },
+      {
+        "image_area_fraction": 0.415283,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864"
+      },
+      {
+        "image_area_fraction": 0.523589,
+        "physical_page": 15,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864"
+      },
+      {
+        "physical_page": 15,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864"
+      },
+      {
+        "image_area_fraction": 0.288736,
+        "physical_page": 17,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864"
+      },
+      {
+        "reason": "ARCHIVED_ORIGINAL_DATE_UNKNOWN",
+        "source_sha256": "adcf276ce1ab953163f2ab14c2abf13261e8699e03bc9e4c66c5340f744904c9"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-d28382dfa82f1664065e",
+    "project": "Narraburra Rare Earths Project",
+    "status": "HAS_PASS",
+    "hit_count": 24,
+    "blockers": [
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "physical_page": 1,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.262994,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.327428,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.440137,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.329259,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.366023,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.324433,
+        "physical_page": 8,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.44009,
+        "physical_page": 9,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.569871,
+        "physical_page": 12,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.737646,
+        "physical_page": 13,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.372364,
+        "physical_page": 14,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.69703,
+        "physical_page": 17,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.387161,
+        "physical_page": 18,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.470069,
+        "physical_page": 19,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.474288,
+        "physical_page": 96,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "physical_page": 96,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
+      },
+      {
+        "image_area_fraction": 0.272947,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f"
+      },
+      {
+        "image_area_fraction": 0.264253,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f"
+      },
+      {
+        "image_area_fraction": 0.281652,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f"
+      },
+      {
+        "image_area_fraction": 0.392422,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f"
+      },
+      {
+        "image_area_fraction": 0.281431,
+        "physical_page": 8,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f"
+      },
+      {
+        "image_area_fraction": 0.291206,
+        "physical_page": 9,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f"
+      },
+      {
+        "image_area_fraction": 0.467622,
+        "physical_page": 40,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f"
+      },
+      {
+        "image_area_fraction": 0.995432,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28"
+      },
+      {
+        "image_area_fraction": 1.142224,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 4,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-f46f6d53e7196650495d",
+    "project": "Kalkaroo",
+    "status": "HAS_UNCLEAR",
+    "hit_count": 100,
+    "blockers": [
+      {
+        "reason": "ARCHIVED_ORIGINAL_DATE_UNKNOWN",
+        "source_sha256": "61e62011fe4a16d1de872553ec9c7edf58d28373cc6ffdf7831dbb5adf972a40"
+      },
+      {
+        "image_area_fraction": 0.264308,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5"
+      },
+      {
+        "image_area_fraction": 0.266001,
+        "physical_page": 4,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5"
+      },
+      {
+        "image_area_fraction": 0.2755,
+        "physical_page": 16,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5"
+      },
+      {
+        "image_area_fraction": 0.287806,
+        "physical_page": 20,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5"
+      },
+      {
+        "image_area_fraction": 0.40005,
+        "physical_page": 21,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5"
+      },
+      {
+        "image_area_fraction": 0.415266,
+        "physical_page": 24,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-d1aeb21e18e60fe8e32e",
+    "project": "Deep Leads – Rubble Mound – Wind Break REE Project",
+    "status": "ALL_FAIL",
+    "hit_count": 8,
+    "blockers": [
+      {
+        "image_area_fraction": 0.780468,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b"
+      },
+      {
+        "image_area_fraction": 0.360816,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b"
+      },
+      {
+        "image_area_fraction": 1.268418,
+        "physical_page": 8,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b"
+      },
+      {
+        "image_area_fraction": 0.274276,
+        "physical_page": 9,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b"
+      },
+      {
+        "image_area_fraction": 0.421479,
+        "physical_page": 10,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b"
+      },
+      {
+        "image_area_fraction": 0.389366,
+        "physical_page": 16,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b"
+      },
+      {
+        "image_area_fraction": 1.125647,
+        "physical_page": 18,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-0832169526bb5ec07626",
+    "project": "Franklyn Kaolin–REE Project — Nackara Arc",
+    "status": "HAS_UNCLEAR",
+    "hit_count": 27,
+    "blockers": [
+      {
+        "image_area_fraction": 0.610144,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601"
+      },
+      {
+        "image_area_fraction": 0.523117,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601"
+      },
+      {
+        "image_area_fraction": 0.298733,
+        "physical_page": 16,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601"
+      },
+      {
+        "image_area_fraction": 0.519915,
+        "physical_page": 21,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601"
+      },
+      {
+        "reason": "ARCHIVED_ORIGINAL_DATE_UNKNOWN",
+        "source_sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601"
+      },
+      {
+        "image_area_fraction": 1.138885,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631"
+      },
+      {
+        "physical_page": 2,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631"
+      },
+      {
+        "image_area_fraction": 0.308159,
+        "physical_page": 4,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631"
+      },
+      {
+        "image_area_fraction": 0.347833,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631"
+      },
+      {
+        "image_area_fraction": 0.383855,
+        "physical_page": 8,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631"
+      },
+      {
+        "image_area_fraction": 0.698533,
+        "physical_page": 13,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631"
+      },
+      {
+        "physical_page": 13,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631"
+      },
+      {
+        "image_area_fraction": 0.749061,
+        "physical_page": 30,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631"
+      },
+      {
+        "physical_page": 30,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631"
+      },
+      {
+        "image_area_fraction": 0.724138,
+        "physical_page": 31,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631"
+      },
+      {
+        "physical_page": 31,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631"
+      },
+      {
+        "image_area_fraction": 0.305861,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9"
+      },
+      {
+        "image_area_fraction": 0.45843,
+        "physical_page": 4,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9"
+      },
+      {
+        "reason": "ARCHIVED_ORIGINAL_DATE_UNKNOWN",
+        "source_sha256": "c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-02d486d425ca0792bdc5",
+    "project": "Comet REE Project",
+    "status": "ALL_FAIL",
+    "hit_count": 4,
+    "blockers": [
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8"
+      },
+      {
+        "physical_page": 1,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8"
+      },
+      {
+        "image_area_fraction": 0.469245,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8"
+      },
+      {
+        "image_area_fraction": 0.310666,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8"
+      },
+      {
+        "image_area_fraction": 0.40122,
+        "physical_page": 9,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8"
+      },
+      {
+        "image_area_fraction": 0.327533,
+        "physical_page": 10,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8"
+      },
+      {
+        "image_area_fraction": 0.304023,
+        "physical_page": 11,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8"
+      },
+      {
+        "image_area_fraction": 0.30363,
+        "physical_page": 12,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8"
+      },
+      {
+        "image_area_fraction": 0.287181,
+        "physical_page": 14,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8"
+      },
+      {
+        "image_area_fraction": 0.361298,
+        "physical_page": 16,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8"
+      },
+      {
+        "image_area_fraction": 0.258438,
+        "physical_page": 18,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-6a5615e0ed95d955c2dd",
+    "project": "iTech Eyre Peninsula REE–Kaolin Project",
+    "status": "ALL_FAIL",
+    "hit_count": 7,
+    "blockers": [
+      {
+        "image_area_fraction": 0.999585,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "physical_page": 1,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.341489,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 1.009207,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "physical_page": 7,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.423773,
+        "physical_page": 9,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.372127,
+        "physical_page": 12,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.286298,
+        "physical_page": 13,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.965243,
+        "physical_page": 14,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.591311,
+        "physical_page": 15,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.505426,
+        "physical_page": 16,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.499922,
+        "physical_page": 17,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.445524,
+        "physical_page": 18,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 1.088758,
+        "physical_page": 20,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.377547,
+        "physical_page": 21,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.26261,
+        "physical_page": 23,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.557282,
+        "physical_page": 24,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.548434,
+        "physical_page": 27,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.456898,
+        "physical_page": 28,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.926005,
+        "physical_page": 29,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "physical_page": 29,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.540196,
+        "physical_page": 31,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 1.002866,
+        "physical_page": 32,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "physical_page": 32,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 1.009202,
+        "physical_page": 34,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "physical_page": 34,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.41398,
+        "physical_page": 40,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.486349,
+        "physical_page": 43,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.41803,
+        "physical_page": 45,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.641311,
+        "physical_page": 48,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "physical_page": 48,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 1.009202,
+        "physical_page": 49,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "physical_page": 49,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.628708,
+        "physical_page": 74,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "physical_page": 74,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.664082,
+        "physical_page": 75,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "physical_page": 75,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "image_area_fraction": 0.658139,
+        "physical_page": 76,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      },
+      {
+        "physical_page": 76,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-2ab3e8eb7b5784e64f9b",
+    "project": "Duke Rare Earth Project",
+    "status": "ALL_FAIL",
+    "hit_count": 7,
+    "blockers": [
+      {
+        "physical_page": 1,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d"
+      },
+      {
+        "image_area_fraction": 0.453568,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d"
+      },
+      {
+        "image_area_fraction": 0.438333,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d"
+      },
+      {
+        "image_area_fraction": 0.38385,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d"
+      },
+      {
+        "image_area_fraction": 0.347341,
+        "physical_page": 8,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-630885ed0d74d8641d6c",
+    "project": "Bencubbin REE Project",
+    "status": "ALL_FAIL",
+    "hit_count": 10,
+    "blockers": [
+      {
+        "image_area_fraction": 2.0,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "physical_page": 1,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.537987,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "physical_page": 7,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 5.179217,
+        "physical_page": 8,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "physical_page": 8,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.39101,
+        "physical_page": 9,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.295069,
+        "physical_page": 11,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 1.999637,
+        "physical_page": 13,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "physical_page": 13,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.309247,
+        "physical_page": 14,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.395011,
+        "physical_page": 15,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.276962,
+        "physical_page": 16,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.504491,
+        "physical_page": 17,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 2.928501,
+        "physical_page": 18,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "physical_page": 18,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 1.731123,
+        "physical_page": 19,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.252983,
+        "physical_page": 20,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.277699,
+        "physical_page": 21,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 1.999636,
+        "physical_page": 22,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "physical_page": 22,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.325807,
+        "physical_page": 23,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.441877,
+        "physical_page": 24,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.678735,
+        "physical_page": 25,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.516586,
+        "physical_page": 26,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.53142,
+        "physical_page": 27,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.290642,
+        "physical_page": 28,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.416376,
+        "physical_page": 30,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.370806,
+        "physical_page": 32,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 0.286585,
+        "physical_page": 33,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 135,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      },
+      {
+        "physical_page": 135,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-d0827cf51def7e0014fc",
+    "project": "Rocky Gully Scandium–REE–Gallium Project",
+    "status": "ALL_FAIL",
+    "hit_count": 13,
+    "blockers": [
+      {
+        "image_area_fraction": 0.936311,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0"
+      },
+      {
+        "image_area_fraction": 0.403519,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0"
+      },
+      {
+        "image_area_fraction": 0.266721,
+        "physical_page": 8,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0"
+      },
+      {
+        "image_area_fraction": 0.385318,
+        "physical_page": 9,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0"
+      },
+      {
+        "image_area_fraction": 0.311257,
+        "physical_page": 10,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0"
+      },
+      {
+        "image_area_fraction": 0.413387,
+        "physical_page": 12,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0"
+      },
+      {
+        "image_area_fraction": 0.428162,
+        "physical_page": 14,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-cae6c11543b0da5f840d",
+    "project": "West Arunta Project — Luni Niobium–REE scope",
+    "status": "HAS_UNCLEAR",
+    "hit_count": 19,
+    "blockers": [
+      {
+        "image_area_fraction": 0.258578,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51b800c61c0c805f4181988456a057fd6c9715c3c30c98b7b7d6073b9f144ed7"
+      },
+      {
+        "image_area_fraction": 0.443284,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51b800c61c0c805f4181988456a057fd6c9715c3c30c98b7b7d6073b9f144ed7"
+      },
+      {
+        "image_area_fraction": 0.521015,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51b800c61c0c805f4181988456a057fd6c9715c3c30c98b7b7d6073b9f144ed7"
+      },
+      {
+        "image_area_fraction": 0.364009,
+        "physical_page": 4,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51b800c61c0c805f4181988456a057fd6c9715c3c30c98b7b7d6073b9f144ed7"
+      },
+      {
+        "image_area_fraction": 0.839289,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51b800c61c0c805f4181988456a057fd6c9715c3c30c98b7b7d6073b9f144ed7"
+      },
+      {
+        "image_area_fraction": 0.431226,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51b800c61c0c805f4181988456a057fd6c9715c3c30c98b7b7d6073b9f144ed7"
+      },
+      {
+        "reason": "ARCHIVED_ORIGINAL_DATE_UNKNOWN",
+        "source_sha256": "51b800c61c0c805f4181988456a057fd6c9715c3c30c98b7b7d6073b9f144ed7"
+      },
+      {
+        "image_area_fraction": 0.995095,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "ae8825f63b7ce1ac8bb26e0406fb9c75adf12fe31b8a86658a33fff4715f1766"
+      },
+      {
+        "physical_page": 1,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "ae8825f63b7ce1ac8bb26e0406fb9c75adf12fe31b8a86658a33fff4715f1766"
+      },
+      {
+        "image_area_fraction": 1.394492,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "ae8825f63b7ce1ac8bb26e0406fb9c75adf12fe31b8a86658a33fff4715f1766"
+      },
+      {
+        "image_area_fraction": 0.427361,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "ae8825f63b7ce1ac8bb26e0406fb9c75adf12fe31b8a86658a33fff4715f1766"
+      },
+      {
+        "image_area_fraction": 0.46505,
+        "physical_page": 11,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "ae8825f63b7ce1ac8bb26e0406fb9c75adf12fe31b8a86658a33fff4715f1766"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-1c907e00c797bf8b3ce1",
+    "project": "Grass Patch REE Project — OD6 tenements",
+    "status": "HAS_UNCLEAR",
+    "hit_count": 40,
+    "blockers": [
+      {
+        "image_area_fraction": 0.998713,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "physical_page": 1,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.328943,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.29279,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.465803,
+        "physical_page": 8,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.467799,
+        "physical_page": 9,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.328943,
+        "physical_page": 12,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.506557,
+        "physical_page": 14,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.295414,
+        "physical_page": 15,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.258682,
+        "physical_page": 18,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.276681,
+        "physical_page": 21,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 34,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "physical_page": 34,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.574448,
+        "physical_page": 47,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.573037,
+        "physical_page": 71,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.574569,
+        "physical_page": 72,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "physical_page": 72,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.574569,
+        "physical_page": 73,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "physical_page": 73,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.573778,
+        "physical_page": 74,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "physical_page": 74,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.57461,
+        "physical_page": 75,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "physical_page": 75,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.574673,
+        "physical_page": 76,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "physical_page": 76,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.99822,
+        "physical_page": 82,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "physical_page": 82,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c"
+      },
+      {
+        "image_area_fraction": 0.384318,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb"
+      },
+      {
+        "image_area_fraction": 0.339896,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb"
+      },
+      {
+        "image_area_fraction": 0.255271,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb"
+      },
+      {
+        "image_area_fraction": 0.253015,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb"
+      },
+      {
+        "image_area_fraction": 0.302538,
+        "physical_page": 11,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-d99cf357d160df73387c",
+    "project": "Southern Cross Li-REE Project — GCX",
+    "status": "ALL_FAIL",
+    "hit_count": 11,
+    "blockers": [
+      {
+        "image_area_fraction": 0.539913,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "physical_page": 1,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "image_area_fraction": 0.9876,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "image_area_fraction": 0.345116,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "image_area_fraction": 0.377339,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "image_area_fraction": 0.286743,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "image_area_fraction": 0.691295,
+        "physical_page": 19,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "physical_page": 19,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "image_area_fraction": 0.691295,
+        "physical_page": 45,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "physical_page": 45,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "image_area_fraction": 0.692285,
+        "physical_page": 46,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "image_area_fraction": 0.673312,
+        "physical_page": 47,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "image_area_fraction": 0.673318,
+        "physical_page": 48,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "image_area_fraction": 0.671668,
+        "physical_page": 55,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      },
+      {
+        "physical_page": 55,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-6f0ecda27d291720036d",
+    "project": "Nutgrove REE Project",
+    "status": "ALL_FAIL",
+    "hit_count": 1,
+    "blockers": [
+      {
+        "image_area_fraction": 0.450651,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126"
+      },
+      {
+        "image_area_fraction": 0.438237,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-a9b72e86940271be45a3",
+    "project": "Diemals Li–REE Project",
+    "status": "NO_HITS",
+    "hit_count": 0,
+    "blockers": [
+      {
+        "reason": "NO_DATED_PROJECT_SPECIFIC_ORIGINAL_FOR_INFERENCE"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-1103c5aa8bb63077ac61",
+    "project": "Hines Hill REE Project",
+    "status": "NO_HITS",
+    "hit_count": 0,
+    "blockers": [
+      {
+        "reason": "NO_DATED_PROJECT_SPECIFIC_ORIGINAL_FOR_INFERENCE"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-70cc41e3a7106f983f73",
+    "project": "Lake Tay REE Project",
+    "status": "NO_HITS",
+    "hit_count": 0,
+    "blockers": [
+      {
+        "reason": "NO_DATED_PROJECT_SPECIFIC_ORIGINAL_FOR_INFERENCE"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-b3ae34ac85d16018bd4b",
+    "project": "Barballin REE Project",
+    "status": "NO_HITS",
+    "hit_count": 0,
+    "blockers": [
+      {
+        "reason": "NO_DATED_PROJECT_SPECIFIC_ORIGINAL_FOR_INFERENCE"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-f81823bd8ba271840345",
+    "project": "Munbinia REE Project",
+    "status": "NO_HITS",
+    "hit_count": 0,
+    "blockers": [
+      {
+        "reason": "NO_DATED_PROJECT_SPECIFIC_ORIGINAL_FOR_INFERENCE"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-b2dadf9c8046c3c68a02",
+    "project": "Cascade Rare Earth Project — Meeka",
+    "status": "HAS_UNCLEAR",
+    "hit_count": 8,
+    "blockers": [
+      {
+        "image_area_fraction": 0.329257,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e"
+      },
+      {
+        "image_area_fraction": 0.544366,
+        "physical_page": 4,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e"
+      },
+      {
+        "physical_page": 4,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e"
+      },
+      {
+        "image_area_fraction": 0.544366,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e"
+      },
+      {
+        "physical_page": 5,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e"
+      },
+      {
+        "image_area_fraction": 0.297342,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e"
+      },
+      {
+        "image_area_fraction": 0.99913,
+        "physical_page": 8,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e"
+      },
+      {
+        "physical_page": 18,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e"
+      },
+      {
+        "image_area_fraction": 0.297846,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9f049399b0e97a04d85c1842d4401187d04dcbb59bd86c37fd80e4921d45c43d"
+      },
+      {
+        "image_area_fraction": 0.527453,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9f049399b0e97a04d85c1842d4401187d04dcbb59bd86c37fd80e4921d45c43d"
+      },
+      {
+        "image_area_fraction": 0.998794,
+        "physical_page": 10,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "9f049399b0e97a04d85c1842d4401187d04dcbb59bd86c37fd80e4921d45c43d"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-ee34781b030807146e64",
+    "project": "Ravensthorpe REE Exploration Project — Young River, Dalyup and Bremer",
+    "status": "NO_HITS",
+    "hit_count": 0,
+    "blockers": [
+      {
+        "reason": "NO_DATED_PROJECT_SPECIFIC_ORIGINAL_FOR_INFERENCE"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-557f0c9ad81bf84bbb6d",
+    "project": "East Laverton REE Exploration Project — Pt Kidman area",
+    "status": "NO_HITS",
+    "hit_count": 0,
+    "blockers": [
+      {
+        "reason": "NO_DATED_PROJECT_SPECIFIC_ORIGINAL_FOR_INFERENCE"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-b50a5b57669586191c33",
+    "project": "Wandagee REE Exploration Project — Consolidated Zinc",
+    "status": "ALL_FAIL",
+    "hit_count": 14,
+    "blockers": [
+      {
+        "image_area_fraction": 0.379338,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7"
+      },
+      {
+        "image_area_fraction": 0.329931,
+        "physical_page": 4,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-68da41afe874c3bd66d4",
+    "project": "Voyager Rare Earth Project — Tasmania",
+    "status": "ALL_FAIL",
+    "hit_count": 36,
+    "blockers": [
+      {
+        "image_area_fraction": 0.999713,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "physical_page": 1,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 1.039869,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 0.967537,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 0.974274,
+        "physical_page": 4,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 0.943606,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 0.94954,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 1.138156,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 1.087161,
+        "physical_page": 8,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 1.151354,
+        "physical_page": 9,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 0.888557,
+        "physical_page": 10,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 0.898696,
+        "physical_page": 11,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 0.350145,
+        "physical_page": 12,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "physical_page": 12,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 1.063001,
+        "physical_page": 13,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 2.005224,
+        "physical_page": 45,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      },
+      {
+        "image_area_fraction": 1.99342,
+        "physical_page": 86,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-2af694147ae21c393820",
+    "project": "Lake Campion REE Exploration Project — IGO",
+    "status": "ALL_FAIL",
+    "hit_count": 259,
+    "blockers": [
+      {
+        "image_area_fraction": 0.638499,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "physical_page": 1,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.30236,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.511019,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "physical_page": 5,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.263691,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.509975,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "physical_page": 7,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.509933,
+        "physical_page": 9,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.27845,
+        "physical_page": 10,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.277904,
+        "physical_page": 11,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.509836,
+        "physical_page": 14,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.460083,
+        "physical_page": 15,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.534485,
+        "physical_page": 18,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.265725,
+        "physical_page": 26,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.478899,
+        "physical_page": 28,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.359891,
+        "physical_page": 29,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.643186,
+        "physical_page": 30,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.571588,
+        "physical_page": 33,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.483739,
+        "physical_page": 34,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.317699,
+        "physical_page": 35,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.341443,
+        "physical_page": 36,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.310078,
+        "physical_page": 39,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.333619,
+        "physical_page": 40,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.275007,
+        "physical_page": 42,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.618714,
+        "physical_page": 43,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.440236,
+        "physical_page": 44,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.477178,
+        "physical_page": 45,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.414075,
+        "physical_page": 46,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.290876,
+        "physical_page": 48,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.287518,
+        "physical_page": 49,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.379005,
+        "physical_page": 50,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 0.423989,
+        "physical_page": 51,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "reason": "ARCHIVED_ORIGINAL_DATE_UNKNOWN",
+        "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23"
+      },
+      {
+        "image_area_fraction": 2.494977,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "physical_page": 1,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 2.556711,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 8,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "physical_page": 8,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 0.284522,
+        "physical_page": 10,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 0.308179,
+        "physical_page": 11,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 15,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 0.401057,
+        "physical_page": 16,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 2.0,
+        "physical_page": 18,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 2.0,
+        "physical_page": 19,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 20,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "physical_page": 20,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 26,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "physical_page": 26,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 30,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 33,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "physical_page": 33,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 42,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 0.489913,
+        "physical_page": 43,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 0.44244,
+        "physical_page": 47,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 48,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "physical_page": 48,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 1.0,
+        "physical_page": 49,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 0.858244,
+        "physical_page": 52,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "physical_page": 52,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 0.496131,
+        "physical_page": 56,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 0.526936,
+        "physical_page": 87,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "physical_page": 166,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      },
+      {
+        "image_area_fraction": 0.381257,
+        "physical_page": 9,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "b9a3a4b2356530e0f30e0a17a8c481cc0c024f6a717ae67f0a9c70063a37e8f1"
+      },
+      {
+        "image_area_fraction": 0.272519,
+        "physical_page": 12,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "b9a3a4b2356530e0f30e0a17a8c481cc0c024f6a717ae67f0a9c70063a37e8f1"
+      },
+      {
+        "reason": "ARCHIVED_ORIGINAL_DATE_UNKNOWN",
+        "source_sha256": "b9a3a4b2356530e0f30e0a17a8c481cc0c024f6a717ae67f0a9c70063a37e8f1"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-e6d859a831ed5954b440",
+    "project": "Kenny Li–REE Exploration Project — EverGreen",
+    "status": "ALL_FAIL",
+    "hit_count": 1,
+    "blockers": [
+      {
+        "image_area_fraction": 1.04619,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64"
+      },
+      {
+        "image_area_fraction": 1.169107,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64"
+      },
+      {
+        "image_area_fraction": 1.064274,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64"
+      },
+      {
+        "image_area_fraction": 1.336684,
+        "physical_page": 4,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64"
+      },
+      {
+        "image_area_fraction": 0.940091,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64"
+      },
+      {
+        "image_area_fraction": 0.940091,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64"
+      },
+      {
+        "image_area_fraction": 0.940091,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-176852ef1348ac10d154",
+    "project": "Nowie Rare Earths and Mineral Sands Project — VHM",
+    "status": "ALL_FAIL",
+    "hit_count": 64,
+    "blockers": [
+      {
+        "image_area_fraction": 1.001808,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9"
+      },
+      {
+        "physical_page": 1,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9"
+      },
+      {
+        "image_area_fraction": 0.329156,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9"
+      },
+      {
+        "image_area_fraction": 0.251259,
+        "physical_page": 12,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9"
+      },
+      {
+        "image_area_fraction": 0.435921,
+        "physical_page": 13,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9"
+      },
+      {
+        "image_area_fraction": 0.309952,
+        "physical_page": 17,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9"
+      },
+      {
+        "image_area_fraction": 0.417974,
+        "physical_page": 19,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9"
+      },
+      {
+        "image_area_fraction": 0.313429,
+        "physical_page": 20,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9"
+      },
+      {
+        "image_area_fraction": 0.289915,
+        "physical_page": 28,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9"
+      },
+      {
+        "image_area_fraction": 0.997312,
+        "physical_page": 1,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 1.174687,
+        "physical_page": 2,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.996346,
+        "physical_page": 3,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 1.124462,
+        "physical_page": 4,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 1.415322,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 1.187957,
+        "physical_page": 6,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.996346,
+        "physical_page": 7,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.996346,
+        "physical_page": 8,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.996346,
+        "physical_page": 9,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.996346,
+        "physical_page": 10,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997934,
+        "physical_page": 11,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 12,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 13,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 14,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.998826,
+        "physical_page": 15,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.998894,
+        "physical_page": 16,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.998894,
+        "physical_page": 17,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 18,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 19,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 20,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 21,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 22,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 23,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 24,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 25,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 26,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 27,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 28,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 29,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 30,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 31,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 32,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 33,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 34,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 35,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 1.315491,
+        "physical_page": 36,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 37,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997933,
+        "physical_page": 38,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997626,
+        "physical_page": 39,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      },
+      {
+        "image_area_fraction": 0.997626,
+        "physical_page": 40,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      }
+    ]
+  },
+  {
+    "project_id": "AU-c5e94422a89a23f82408",
+    "project": "Mt Craig Copper–REE Exploration Project — Taruga",
+    "status": "HAS_UNCLEAR",
+    "hit_count": 9,
+    "blockers": [
+      {
+        "physical_page": 1,
+        "reason": "PAGE_WITHOUT_EXTRACTABLE_TEXT",
+        "source_sha256": "b0faf81a98d605436700670fbaff7e6b3d10f733c5af9a5311fbe9ddf08bb246"
+      },
+      {
+        "image_area_fraction": 0.355975,
+        "physical_page": 5,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "b0faf81a98d605436700670fbaff7e6b3d10f733c5af9a5311fbe9ddf08bb246"
+      },
+      {
+        "image_area_fraction": 0.271224,
+        "physical_page": 8,
+        "reason": "IMAGE_DOMINATED_PAGE_REQUIRES_OCR_REVIEW",
+        "source_sha256": "b0faf81a98d605436700670fbaff7e6b3d10f733c5af9a5311fbe9ddf08bb246"
+      }
+    ]
+  }
+]

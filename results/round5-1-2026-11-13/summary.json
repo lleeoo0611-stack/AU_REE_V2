@@ -1,0 +1,138 @@
+{
+  "all_retained_columns": {
+    "coverage": 0.46155498281786944,
+    "denominator": 4656,
+    "filled": 2149
+  },
+  "baseline_commit": "a35b151c92cc982dc0758cb4966c1655cf9fe9bb",
+  "bitwise_identical_audit_files": {
+    "audit_payload.json": "d1485e64b1a9dddbbd99fb6745b6909de6a47afe05117b21b1fb500e78f52f1a",
+    "changed_cells.csv": "ddd80a85925dd21a08c6a3137ea213894c746eb63295f26365d9fdf0c8e546f8",
+    "hit_reviews.csv": "bd8ea94f8700603ce1513553ac7ec57a4b643aab0312eed0ecccfcf665c455d5",
+    "hit_reviews.json": "71cb5cb4ca515d314e54d0ace0169442b05a270a79cbc0ebb2447e8d23bcf330",
+    "new_cells.csv": "8e4a772b3eeeb88e60ec2163c03d88e9015623f6239784c6813a705a56cdb98a",
+    "outcome_diff.csv": "efdd79dadb2d67dd7bdba72296b278596262258e5a945e7f7da92ce366722279",
+    "outcome_diff.json": "83742d07546d3cceb627b7f18bc65e8de68e6dc121b3367fbd3ee2d481d6d4f0",
+    "project_aliases.json": "5dbed1eeaef8018533d448f92b70945d71e61afac433daae54d7e831541896cf",
+    "project_stage_status.json": "297097844c308daf3cf7921fdc323fe59e1231c8395392eb5f4fc1d23b6a573b",
+    "readme_lines.json": "0a3dc1c97b894e6fbdda94c6f2a1ff4383d4dc4460136257525055e3366966ab",
+    "review_queue.csv": "e7b3de098be4226a0221c49376485acc6386ce5ce98a06d6647b8dbe12f6931c",
+    "source_reextraction_verification.json": "ffddde9ebae6d5d01ca2f4b2e34326dffd6c8a075295decd140a79c665972c73",
+    "stage_search_manifests.json": "0d784e8cbb22aa76efdd377430d1670597da7411f13dbe5aaaa8dbd371c008c9"
+  },
+  "bitwise_identical_files": {
+    "audit.json": "82a3db9ae9f793619448a13d5330d628aecb5c25fb2f8bdeef695e324ec0095f",
+    "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
+    "field_provenance.csv": "c60835a9531d8b27e552317a5e5056b5cd6e3d4d7d41055a81ac86f31dbbdec9",
+    "missing_fields.csv": "e51736448c183d56b3d005e331c135cdaa9dc9dc68c38f5275551cfb23473be1",
+    "summary.json": "a7cd66c416c4071cd520366e40adb32a47a2a9fcd6481b6bff4d6fcc4feec696",
+    "專案總表.csv": "fb49f7b979305df2d4c6090eb9d5419a2dbee03efb0f985a0ab80fd70a7956fb"
+  },
+  "changed_cells": 0,
+  "coordinate_source_distribution": {
+    "coordinate_pair_rows": 48,
+    "occurrence_point_rows": 46,
+    "tenement_centroid_rows": 2
+  },
+  "existing_conclusion": "INCOMPLETE/CONTINUE_UNCHANGED",
+  "independent_full_rebuilds": 2,
+  "network_requests": 0,
+  "new_cells": 0,
+  "not_applicable_stage_excluded": 36,
+  "ocr_statistics": {},
+  "offline_rebuild_network_requests": 0,
+  "original_53_columns": {
+    "coverage": 0.4407301066447908,
+    "denominator": 4876,
+    "filled": 2149
+  },
+  "review_queue": 28,
+  "task": 1,
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "junit_sha256": "5a05395cae280f60eba27cfcdebc6777c75a6f491277749643a5c268282bc2c2",
+    "skipped": 0,
+    "tests": 1703
+  },
+  "tiered_coverage": {
+    "combined": {
+      "coverage": 0.7282277194171467,
+      "denominator": 2951,
+      "filled": 2149
+    },
+    "filled_resource_exception_convention": "COUNT_IN_BOTH_NUMERATOR_AND_DENOMINATOR",
+    "limitation": "NOT_APPLICABLE_NO_MRE_IS_DENOMINATOR_CONVENTION_NOT_PROOF_OF_ABSENCE",
+    "nonresource_columns": [
+      "專案ID",
+      "開發商",
+      "未上市公司",
+      "專案名稱",
+      "所在地_中文",
+      "所在地_英文",
+      "國家",
+      "州省地區",
+      "緯度",
+      "經度",
+      "礦床型態代碼",
+      "礦床型態",
+      "開發階段代碼",
+      "開發階段類別",
+      "開發階段",
+      "產品/產出",
+      "有來源文件",
+      "資料來源名稱",
+      "資料來源URL",
+      "ASX代碼"
+    ],
+    "resource_columns": [
+      "礦石蘊藏量_Mt",
+      "TREO品位_pct",
+      "總TREO蘊藏量_kt",
+      "磁鐵稀土氧化物蘊藏量_kt",
+      "磁鐵稀土佔TREO_pct",
+      "NdPr蘊藏量_kt_需兩者皆公布",
+      "完整重稀土組合蘊藏量_kt_需8元素皆公布",
+      "預估年產TREO_t_per_year",
+      "預估年產NdPr_t_per_year",
+      "有TREO資源估計",
+      "已公布元素數_共15項",
+      "已公布元素總和_kt",
+      "元素總和/TREO",
+      "元素數據一致性檢查",
+      "四項磁性元素皆公布",
+      "磁性元素重算值_NdPrTbDy_kt",
+      "La2O3_氧化鑭_kt",
+      "CeO2_氧化鈰_kt",
+      "Pr6O11_氧化鐠_kt",
+      "Nd2O3_氧化釹_kt",
+      "Sm2O3_氧化釤_kt",
+      "Eu2O3_氧化銪_kt",
+      "Gd2O3_氧化釓_kt",
+      "Tb4O7_氧化鋱_kt",
+      "Dy2O3_氧化鏑_kt",
+      "Ho2O3_氧化鈥_kt",
+      "Er2O3_氧化鉺_kt",
+      "Tm2O3_氧化銩_kt",
+      "Yb2O3_氧化鐿_kt",
+      "Lu2O3_氧化鎦_kt",
+      "Y2O3_氧化釔_kt"
+    ],
+    "tier1": {
+      "coverage": 0.7071084981293426,
+      "denominator": 1871,
+      "filled": 1323,
+      "not_applicable_stage_excluded": 16,
+      "rows": 37
+    },
+    "tier2": {
+      "base_denominator": 1100,
+      "coverage": 0.7648148148148148,
+      "denominator": 1080,
+      "existing_filled_resource_cells": 0,
+      "filled": 826,
+      "not_applicable_stage_excluded": 20,
+      "rows": 55
+    }
+  }
+}
