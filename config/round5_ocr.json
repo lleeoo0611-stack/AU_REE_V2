@@ -1,0 +1,15 @@
+{
+  "version": "round5-ocr-v1",
+  "decision_id": "round5-offline-ocr-20261113",
+  "rule": "STAGE_OFFLINE_OCR_REVIEW",
+  "keyword_rule": "round5-three-point-v2",
+  "page_mean_confidence": 70,
+  "valid_word_confidence": 60,
+  "valid_word_min_length": 2,
+  "valid_word_count": 20,
+  "hit_line_confidence": 80,
+  "renderer": {"engine": "PyMuPDF", "dpi": 300, "colorspace": "GRAY", "alpha": false, "annots": true},
+  "ocr": {"engine": "Tesseract", "language": "eng", "oem": 1, "psm": 3, "format": "tsv", "OMP_THREAD_LIMIT": "1"},
+  "output_dir": "results/round5-2-2026-11-13/ocr",
+  "manifest_path": "results/round5-2-2026-11-13/ocr_manifest.json"
+}
