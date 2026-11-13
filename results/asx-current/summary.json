@@ -1,9 +1,9 @@
 {
   "acquired_through": "2026-11-10",
   "all_retained_columns": {
-    "coverage": 0.46155498281786944,
-    "denominator": 4656,
-    "filled": 2149
+    "coverage": 0.4642012470436465,
+    "denominator": 4651,
+    "filled": 2159
   },
   "archived_element_additions": {
     "derived_numeric_cells": 4,
@@ -84,8 +84,8 @@
   "blank_coverage": {
     "blank_class_counts": {
       "NOT_APPLICABLE_NO_MRE": 1705,
-      "NOT_APPLICABLE_STAGE": 36,
-      "UNKNOWN": 802
+      "NOT_APPLICABLE_STAGE": 41,
+      "UNKNOWN": 787
     }
   },
   "census_by_kind": {
@@ -17487,8 +17487,8 @@
     "資料來源名稱": 92,
     "開發商": 92,
     "開發階段": 54,
-    "開發階段代碼": 64,
-    "開發階段類別": 64,
+    "開發階段代碼": 69,
+    "開發階段類別": 69,
     "預估年產NdPr_t_per_year": 7,
     "預估年產TREO_t_per_year": 9
   },
@@ -18093,21 +18093,21 @@
     "EXPLICIT_RESEARCH_PROJECT_EXTENSIONS_NOT_CANONICAL_IDENTITY_MERGES_OR_FORMAL_C1"
   ],
   "location_ledger_sha256": "b5a1c0a26f3f3ae832be13b3772f2a24f541e129ef28b87a378c229eb0e36414",
-  "not_applicable_stage_excluded": 36,
+  "not_applicable_stage_excluded": 41,
   "original_53_columns": {
-    "coverage": 0.4407301066447908,
+    "coverage": 0.44278096800656275,
     "denominator": 4876,
-    "filled": 2149
+    "filled": 2159
   },
   "original_canonical_projects": 33,
   "output_hashes": {
     "census_inventory.csv": "9aecfa2c7dd542330efa5ceebf7731dd1bec4c30526f1abc106fc3c8090e9ca1",
-    "field_provenance.csv": "2a3d44804396924da973f26c77b0d05430c94826cee25e15582b75af172e0218",
-    "missing_fields.csv": "44ad4aceedcd0281af41f22d9b5e669c7121c32857e28c7f0bbda336f8349a37",
+    "field_provenance.csv": "728fc8387db0e7152706aaf9659a540d7806227c5ebb6e617f43436a3b314e3a",
+    "missing_fields.csv": "affca2b18d1f1ee4c76df029f4361a6428b0f8c730791883fe3b4b64fc7518c5",
     "retired_columns_trace.json": "8d17a6637e78afc52ea78dde2ee6c352db6e0b4e3a0fd72a306159ce160870f9",
     "round4_baseline_archive.json": "1b0d9398ad666d891a6b58616b049a8aca09cbfbc628d6b13166b8415b63a3a5",
-    "round4_presentation_core.json": "0c8301d3b753d4b1d59a685af55c4aad5fada3b5339b9202611986fb63d9a1b6",
-    "專案總表.csv": "0f635fbb65b937b5ff1492edff85be5afeee6251b596e2992014fddfc0dfee5b"
+    "round4_presentation_core.json": "26ad189b7f0d5c44eaaba2574c3179508e5039b95d0869c13690ed3995328f7a",
+    "專案總表.csv": "41d2137742b46c6e2a503736f2bb6628c3d50cafe55602b34af29e2bff4f4831"
   },
   "presentation_note_policy": "PRESERVE_KEEPER_NOTE_AND_EXISTING_DECIMAL_DISPLAY",
   "projection": "READ_ONLY_CANONICAL_CENSUS_PLUS_SOURCE_VALIDATED_OBSERVATIONS_NO_SECOND_RESEARCH_DATABASE",
@@ -18118,9 +18118,9 @@
   "snapshot_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
   "tiered_coverage": {
     "combined": {
-      "coverage": 0.7282277194171467,
-      "denominator": 2951,
-      "filled": 2149
+      "coverage": 0.7328581126951799,
+      "denominator": 2946,
+      "filled": 2159
     },
     "filled_resource_exception_convention": "COUNT_IN_BOTH_NUMERATOR_AND_DENOMINATOR",
     "limitation": "NOT_APPLICABLE_NO_MRE_IS_DENOMINATOR_CONVENTION_NOT_PROOF_OF_ABSENCE",
@@ -18188,11 +18188,11 @@
     },
     "tier2": {
       "base_denominator": 1100,
-      "coverage": 0.7648148148148148,
-      "denominator": 1080,
+      "coverage": 0.7776744186046511,
+      "denominator": 1075,
       "existing_filled_resource_cells": 0,
-      "filled": 826,
-      "not_applicable_stage_excluded": 20,
+      "filled": 836,
+      "not_applicable_stage_excluded": 25,
       "rows": 55
     }
   },
