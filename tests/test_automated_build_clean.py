@@ -52,6 +52,8 @@ class AutomatedBuildCleanTests(unittest.TestCase):
             self.assertFalse((checkout / 'work').exists())
             probe = r'''
 import json, os, pathlib, sys
+from urllib.parse import urlsplit
+from urllib.request import url2pathname
 root = pathlib.Path(sys.argv[1]).resolve()
 sys.path.insert(0, str(root / 'src'))
 from au_ree_v2.cli import research_configuration
@@ -66,7 +68,13 @@ for value in sys.path:
 reads = []
 def audit(event, args):
     if event == 'sqlite3.connect':
-        database = pathlib.Path(args[0]).resolve()
+        value = str(args[0])
+        if value.startswith('file:'):
+            uri = urlsplit(value)
+            if uri.netloc not in ('', 'localhost'):
+                raise AssertionError('DATABASE_OUTSIDE_CHECKOUT: ' + value)
+            value = url2pathname(uri.path)
+        database = pathlib.Path(value).resolve()
         if database != root and root not in database.parents:
             raise AssertionError('DATABASE_OUTSIDE_CHECKOUT: ' + str(database))
         return

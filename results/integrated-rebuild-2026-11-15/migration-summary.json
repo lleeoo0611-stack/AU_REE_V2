@@ -1,0 +1,662 @@
+{
+  "raw_missing_references": 76,
+  "atomic_missing_sources": 50,
+  "composite_references": 26,
+  "actions": {
+    "REGISTER_FIXED_GOVERNMENT_SOURCE": 12,
+    "REFERENCE_COMMITTED_SNAPSHOT": 31,
+    "REGISTER_REVIEWED_EXACT_PDF": 4,
+    "ASX_STATISTICS_NOT_ENABLED": 3
+  },
+  "projects": 99,
+  "elements": {
+    "MIGRATED": 157,
+    "ENRICHED_EXISTING_SAME_SOURCE_OBSERVATION": 1
+  },
+  "attributes": {
+    "MIGRATED": 350,
+    "NOT_MIGRATED": 87
+  },
+  "charley": [
+    {
+      "project_id": "AU-97137ef07af49e3607b2",
+      "name": "Charley Creek North Project — historical URO EL33004 exploration",
+      "source_sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+      "status": "RESTORED_DECLARATION_REVERIFY_AT_BUILD",
+      "reason": ""
+    },
+    {
+      "project_id": "AU-70fc8a7de18ad8209c32",
+      "name": "Charley Creek North-East Project — historical URO EL33000 exploration",
+      "source_sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+      "status": "RESTORED_DECLARATION_REVERIFY_AT_BUILD",
+      "reason": ""
+    },
+    {
+      "project_id": "AU-430f216ca620b69af5f9",
+      "name": "Charley Creek South-East Project — historical URO EL33006 exploration",
+      "source_sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+      "status": "RESTORED_DECLARATION_REVERIFY_AT_BUILD",
+      "reason": ""
+    },
+    {
+      "project_id": "AU-d1e3e2803f3c4287f6db",
+      "name": "Charley Creek South Project — historical URO EL33054 and EL33055 exploration",
+      "source_sha256": "edb1583a4bcc4eddb7142b233ced822c1ef711df9c7c72051399dd22c7ad9b75",
+      "status": "RESTORED_DECLARATION_REVERIFY_AT_BUILD",
+      "reason": ""
+    }
+  ],
+  "original_cohort": [
+    {
+      "project_id": "AU-0098e17a63e7c05c213f",
+      "name": "Wudinna Rare Earths Project",
+      "namespace": "SA_MINING_PROJECT_SITE_NO",
+      "native_id": "1123290"
+    },
+    {
+      "project_id": "AU-02d486d425ca0792bdc5",
+      "name": "Comet REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "comet"
+    },
+    {
+      "project_id": "AU-0832169526bb5ec07626",
+      "name": "Franklyn Kaolin–REE Project — Nackara Arc",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "franklyn"
+    },
+    {
+      "project_id": "AU-1103c5aa8bb63077ac61",
+      "name": "Hines Hill REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "hines-hill-wcn"
+    },
+    {
+      "project_id": "AU-12cc237ae66c7a6508ca",
+      "name": "Redlings Rare Earth Project",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "redlings"
+    },
+    {
+      "project_id": "AU-1345edd8165c10930e94",
+      "name": "Nolans Project",
+      "namespace": "AUSTRADE_2026_REE_PROJECT",
+      "native_id": "nolans-rare-earths-project"
+    },
+    {
+      "project_id": "AU-14f7cb8ca1fcd58f536c",
+      "name": "Central Gawler REE Exploration Project — Indiana",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "central-gawler-indiana"
+    },
+    {
+      "project_id": "AU-176852ef1348ac10d154",
+      "name": "Nowie Rare Earths and Mineral Sands Project — VHM",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "nowie-vhm"
+    },
+    {
+      "project_id": "AU-1c907e00c797bf8b3ce1",
+      "name": "Grass Patch REE Project — OD6 tenements",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "grass-patch-od6"
+    },
+    {
+      "project_id": "AU-203b4d90e5c23a323610",
+      "name": "Harts Range REE–Nb Exploration Project — New Frontier",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "harts-range-nfm"
+    },
+    {
+      "project_id": "AU-216d0983f6892f9b58f9",
+      "name": "North Stanmore Heavy Rare Earth Project",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "north-stanmore"
+    },
+    {
+      "project_id": "AU-2262a37ca19531f08da3",
+      "name": "Splinter Rock Rare Earth Project",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "splinter-rock"
+    },
+    {
+      "project_id": "AU-2a3a86a4d971e9f9838d",
+      "name": "Brockman Project",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "brockman"
+    },
+    {
+      "project_id": "AU-2ab3e8eb7b5784e64f9b",
+      "name": "Duke Rare Earth Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "duke"
+    },
+    {
+      "project_id": "AU-2af694147ae21c393820",
+      "name": "Lake Campion REE Exploration Project — IGO",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "lake-campion-igo"
+    },
+    {
+      "project_id": "AU-2cfeb25aefee0c4f95fb",
+      "name": "Dubbo Project",
+      "namespace": "AUSTRADE_2026_REE_PROJECT",
+      "native_id": "dubbo-project"
+    },
+    {
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "name": "Donald Rare Earth and Mineral Sands Project",
+      "namespace": "AUSTRADE_2026_REE_PROJECT",
+      "native_id": "donald-rare-earth-mineral-sands-project"
+    },
+    {
+      "project_id": "AU-329908ab8d4c1d1d3e03",
+      "name": "Avonbank Mineral Sands Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "avonbank"
+    },
+    {
+      "project_id": "AU-3651cf8448b9227adcf5",
+      "name": "Mount Ridley",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "mount-ridley"
+    },
+    {
+      "project_id": "AU-3a0020b6daf659f62138",
+      "name": "Euston Mineral Sands Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "euston"
+    },
+    {
+      "project_id": "AU-3eaa906d8230334ef698",
+      "name": "Mukinbudin REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "mukinbudin"
+    },
+    {
+      "project_id": "AU-3eb7131e4daea18a60a0",
+      "name": "Sandy Mitchell Rare Earths and Heavy Minerals Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "sandy-mitchell"
+    },
+    {
+      "project_id": "AU-410159af7b79ea498ec2",
+      "name": "Cannie Critical Mineral Project — VHM",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "cannie-vhm"
+    },
+    {
+      "project_id": "AU-41ee0148c804293cfc39",
+      "name": "New Goldfield Li–REE Exploration Project — Cape",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "new-goldfield-cape-gdm"
+    },
+    {
+      "project_id": "AU-4286ab9c245effb445ff",
+      "name": "Burracoppin Project",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "burracoppin"
+    },
+    {
+      "project_id": "AU-430f216ca620b69af5f9",
+      "name": "Charley Creek South-East Project — historical URO EL33006 exploration",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "charley-creek-south-east-uro-el33006-historical"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "name": "Goschen Central Rare Earths and Mineral Sands Project — ACDC",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "goschen-central-acdc"
+    },
+    {
+      "project_id": "AU-47d12ebe6b66df8e5936",
+      "name": "Greater Brothers",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "greater-brothers"
+    },
+    {
+      "project_id": "AU-49b538453133bd968e8d",
+      "name": "Koppamurra Rare Earths Project",
+      "namespace": "SA_MINING_PROJECT_SITE_NO",
+      "native_id": "2298466"
+    },
+    {
+      "project_id": "AU-4ec1fb08563b42352d29",
+      "name": "Cowalinya Rare Earth Project",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "cowalinya"
+    },
+    {
+      "project_id": "AU-524c37fc04cf47bf8dca",
+      "name": "Balranald Mineral Sands Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "balranald"
+    },
+    {
+      "project_id": "AU-557f0c9ad81bf84bbb6d",
+      "name": "East Laverton REE Exploration Project — Pt Kidman area",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "east-laverton-mtm"
+    },
+    {
+      "project_id": "AU-574465211976ec57b1ef",
+      "name": "Splinter",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "splinter"
+    },
+    {
+      "project_id": "AU-5ea2535a2de9a1a3327e",
+      "name": "Viper REE Project — EMU",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "viper-emu"
+    },
+    {
+      "project_id": "AU-630885ed0d74d8641d6c",
+      "name": "Bencubbin REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "bencubbin"
+    },
+    {
+      "project_id": "AU-645024d708baf5b52bc2",
+      "name": "Cascade REE Project — Zinc of Ireland",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "cascade-zinc-of-ireland"
+    },
+    {
+      "project_id": "AU-68da41afe874c3bd66d4",
+      "name": "Voyager Rare Earth Project — Tasmania",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "voyager-lu7"
+    },
+    {
+      "project_id": "AU-6a5615e0ed95d955c2dd",
+      "name": "iTech Eyre Peninsula REE–Kaolin Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "itech-eyre-peninsula"
+    },
+    {
+      "project_id": "AU-6d807eb7caec9db0f35e",
+      "name": "Goschen — Area 1 resource scope",
+      "namespace": "AUSTRADE_2026_REE_PROJECT",
+      "native_id": "goschen"
+    },
+    {
+      "project_id": "AU-6f0ecda27d291720036d",
+      "name": "Nutgrove REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "nutgrove-ree"
+    },
+    {
+      "project_id": "AU-70cc41e3a7106f983f73",
+      "name": "Lake Tay REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "lake-tay-wcn"
+    },
+    {
+      "project_id": "AU-70fc8a7de18ad8209c32",
+      "name": "Charley Creek North-East Project — historical URO EL33000 exploration",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "charley-creek-north-east-uro-el33000-historical"
+    },
+    {
+      "project_id": "AU-7135b2eb1d3f193da9a6",
+      "name": "Gilberton REE Exploration Project — ActivEX",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "gilberton-activex"
+    },
+    {
+      "project_id": "AU-7157ac0201b7d1e93ff7",
+      "name": "Graceland REE Project — EMU",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "graceland-emu"
+    },
+    {
+      "project_id": "AU-73549b8a9b1c6faf55eb",
+      "name": "Coburn Mineral Sands Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "coburn-mineral-sands"
+    },
+    {
+      "project_id": "AU-7537d9555628040fab40",
+      "name": "Fingerboards",
+      "namespace": "AUSTRADE_2026_REE_PROJECT",
+      "native_id": "fingerboards"
+    },
+    {
+      "project_id": "AU-75fe0f1a81005bd19586",
+      "name": "Durack REE–Ti–Zr Exploration Project — historical BPM option",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "durack-bpm-historical-option"
+    },
+    {
+      "project_id": "AU-785536db5ff12c25350d",
+      "name": "Circle Valley",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "circle-valley"
+    },
+    {
+      "project_id": "AU-794821a2df9b7a244f96",
+      "name": "Perenjori Uranium–REE Exploration Project — HRE",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "perenjori-hre"
+    },
+    {
+      "project_id": "AU-7c198d219aa1db3e291f",
+      "name": "Lyons",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "lyons"
+    },
+    {
+      "project_id": "AU-81b21bdd06796fa2217d",
+      "name": "Merredin REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "merredin"
+    },
+    {
+      "project_id": "AU-88dfe58aac214c33e576",
+      "name": "Aramac Rare Earth Element Project — ActivEX",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "aramac-activex"
+    },
+    {
+      "project_id": "AU-8c5887498873bf838e09",
+      "name": "Coondina REE Project — historical MinRex drilling",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "coondina-historical-minrex-ree"
+    },
+    {
+      "project_id": "AU-8f3fe174a998d20ee4cf",
+      "name": "Mangaroon Project — Yin resource scope",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "mangaroon"
+    },
+    {
+      "project_id": "AU-908fd6f4461622e89548",
+      "name": "Yangibana Rare Earths and Niobium Project",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "yangibana"
+    },
+    {
+      "project_id": "AU-97137ef07af49e3607b2",
+      "name": "Charley Creek North Project — historical URO EL33004 exploration",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "charley-creek-north-uro-el33004-historical"
+    },
+    {
+      "project_id": "AU-9b667066e6eb66753005",
+      "name": "Cummins Range Rare Earths-Phosphate Project",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "cummins-range"
+    },
+    {
+      "project_id": "AU-9bd8e5ed8408cd84d876",
+      "name": "Browns Range Project — Wolverine scope",
+      "namespace": "project_registry_v1",
+      "native_id": "browns-range"
+    },
+    {
+      "project_id": "AU-9d967ecaac6e02fc76a5",
+      "name": "Rankin Dome Rare Earth Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "rankin-dome"
+    },
+    {
+      "project_id": "AU-a8258e4989c7bd95b7af",
+      "name": "Mt Clere Project — Tower resource scope",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "mt-clere"
+    },
+    {
+      "project_id": "AU-a9b72e86940271be45a3",
+      "name": "Diemals Li–REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "diemals-wcn"
+    },
+    {
+      "project_id": "AU-ad64122c217f0dbfabc8",
+      "name": "Barkly Rare Earths Project",
+      "namespace": "project_registry_v1",
+      "native_id": "barkly-ree"
+    },
+    {
+      "project_id": "AU-af44c2bd1173b453953f",
+      "name": "Aileron Niobium–REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "aileron"
+    },
+    {
+      "project_id": "AU-b2dadf9c8046c3c68a02",
+      "name": "Cascade Rare Earth Project — Meeka",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "cascade-meeka"
+    },
+    {
+      "project_id": "AU-b31d00e2272ffa6ccbd3",
+      "name": "Peak Charles REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "peak-charles"
+    },
+    {
+      "project_id": "AU-b3ae34ac85d16018bd4b",
+      "name": "Barballin REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "barballin-wcn"
+    },
+    {
+      "project_id": "AU-b50a5b57669586191c33",
+      "name": "Wandagee REE Exploration Project — Consolidated Zinc",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "wandagee-czl"
+    },
+    {
+      "project_id": "AU-bb565f5348679a46d4a0",
+      "name": "Salazar Critical Minerals Project",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "salazar"
+    },
+    {
+      "project_id": "AU-c4391f8d2a6690076436",
+      "name": "Arunta West REE Project — Norwest",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "arunta-west-norwest"
+    },
+    {
+      "project_id": "AU-c5e94422a89a23f82408",
+      "name": "Mt Craig Copper–REE Exploration Project — Taruga",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "mt-craig-taruga"
+    },
+    {
+      "project_id": "AU-cae6c11543b0da5f840d",
+      "name": "West Arunta Project — Luni Niobium–REE scope",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "west-arunta-luni"
+    },
+    {
+      "project_id": "AU-cc4e217a90b7123dce0a",
+      "name": "Kennedy Rare Earths Project",
+      "namespace": "project_registry_v1",
+      "native_id": "candidate-b17e9292e0cb34972770"
+    },
+    {
+      "project_id": "AU-cefbde90dc34312547d3",
+      "name": "North Dam Li–Nb–REE Exploration Project — CuFe",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "north-dam-cufe"
+    },
+    {
+      "project_id": "AU-d0827cf51def7e0014fc",
+      "name": "Rocky Gully Scandium–REE–Gallium Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "rocky-gully"
+    },
+    {
+      "project_id": "AU-d0ce731e1d8198ffaf58",
+      "name": "Mt Stirling",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "mt-stirling"
+    },
+    {
+      "project_id": "AU-d1394abdef4c8d971c78",
+      "name": "Condingup REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "condingup"
+    },
+    {
+      "project_id": "AU-d1aeb21e18e60fe8e32e",
+      "name": "Deep Leads – Rubble Mound – Wind Break REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "deep-leads-rubble-mound-wind-break"
+    },
+    {
+      "project_id": "AU-d1e3e2803f3c4287f6db",
+      "name": "Charley Creek South Project — historical URO EL33054 and EL33055 exploration",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "charley-creek-south-uro-gr617-historical"
+    },
+    {
+      "project_id": "AU-d28382dfa82f1664065e",
+      "name": "Narraburra Rare Earths Project",
+      "namespace": "project_registry_v1",
+      "native_id": "narraburra"
+    },
+    {
+      "project_id": "AU-d2cd77f89298d6dae330",
+      "name": "Mons Project — Block3 East resource scope",
+      "namespace": "WA_DMPE_REE_2026_PROJECT",
+      "native_id": "mons"
+    },
+    {
+      "project_id": "AU-d99cf357d160df73387c",
+      "name": "Southern Cross Li-REE Project — GCX",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "southern-cross-gcx"
+    },
+    {
+      "project_id": "AU-d9fb1b1e3e2ec9fa0851",
+      "name": "Charley Creek REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "charley-creek"
+    },
+    {
+      "project_id": "AU-dac3c8e40326b8244cdb",
+      "name": "Jupiter development study within Brothers",
+      "namespace": "project_registry_v1",
+      "native_id": "jupiter"
+    },
+    {
+      "project_id": "AU-e50ba6a268ea89226495",
+      "name": "Achilles REE Project — Tambourah",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "achilles-tambourah"
+    },
+    {
+      "project_id": "AU-e6d859a831ed5954b440",
+      "name": "Kenny Li–REE Exploration Project — EverGreen",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "kenny-evergreen"
+    },
+    {
+      "project_id": "AU-ee34781b030807146e64",
+      "name": "Ravensthorpe REE Exploration Project — Young River, Dalyup and Bremer",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "ravensthorpe-mtm"
+    },
+    {
+      "project_id": "AU-efff91a06cf344122d88",
+      "name": "Mt Weld Project",
+      "namespace": "project_registry_v1",
+      "native_id": "mt-weld"
+    },
+    {
+      "project_id": "AU-f46f6d53e7196650495d",
+      "name": "Kalkaroo",
+      "namespace": "SA_MINING_PROJECT_SITE_NO",
+      "native_id": "1130520"
+    },
+    {
+      "project_id": "AU-f81823bd8ba271840345",
+      "name": "Munbinia REE Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "munbinia-wcn"
+    },
+    {
+      "project_id": "AU-fb4e914f86102baa414a",
+      "name": "WIM150 Rare-Earth-Bearing Mineral Sands Project — Australian Zircon 2015",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "wim150-australian-zircon"
+    },
+    {
+      "project_id": "AU-fe65cb1bd28eacb7a67f",
+      "name": "Copi Mineral Sands Project",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "copi"
+    },
+    {
+      "project_id": "AU-ff758cad5beb276d327d",
+      "name": "Wimmera Mineral Sands Project — Iluka WIM100",
+      "namespace": "reviewed_project_extension_v1",
+      "native_id": "wimmera"
+    },
+    {
+      "project_id": "AU-ee5ca893d12883df35f1",
+      "name": "Yttria REE Project",
+      "namespace": "project_registry_v1",
+      "native_id": "yttria",
+      "reason": "T2_EXPLICIT_ONE_TO_MANY_UNMERGED_ENTITY_EXCEPTION"
+    }
+  ],
+  "excluded": [
+    {
+      "project_id": "AU-0c085ce114ad2a4aa495",
+      "name": "Benmara prospect within Barkly",
+      "namespace": "ISSUER_DOCUMENTED_PROSPECT",
+      "native_id": "barkly-benmara",
+      "disposition": "EXCLUDED_SCOPE_OR_PROSPECT"
+    },
+    {
+      "project_id": "AU-435cac8afc319d50e811",
+      "name": "Vanadis prospect within Barkly",
+      "namespace": "ISSUER_DOCUMENTED_PROSPECT",
+      "native_id": "barkly-vanadis",
+      "disposition": "EXCLUDED_SCOPE_OR_PROSPECT"
+    },
+    {
+      "project_id": "AU-5a557134d57805141647",
+      "name": "Boland prospect within Wudinna",
+      "namespace": "ISSUER_DOCUMENTED_PROSPECT",
+      "native_id": "wudinna-boland",
+      "disposition": "EXCLUDED_SCOPE_OR_PROSPECT"
+    },
+    {
+      "project_id": "AU-6898a8e4d5225785f507",
+      "name": "Head prospect within Wudinna",
+      "namespace": "ISSUER_DOCUMENTED_PROSPECT",
+      "native_id": "wudinna-head",
+      "disposition": "EXCLUDED_SCOPE_OR_PROSPECT"
+    },
+    {
+      "project_id": "AU-73183907b9a389385bc8",
+      "name": "Mount Ridley Project — Central Mia scope",
+      "namespace": "project_registry_v1",
+      "native_id": "mount-ridley-mia",
+      "disposition": "EXCLUDED_SCOPE_OR_PROSPECT"
+    },
+    {
+      "project_id": "AU-e4413e45c01b536895cb",
+      "name": "Australian Strategic Materials Limited",
+      "namespace": "issuer_v1",
+      "native_id": "asm",
+      "disposition": "EXCLUDED_SCOPE_OR_PROSPECT"
+    },
+    {
+      "project_id": "AU-ee5ca893d12883df35f1",
+      "name": "Yttria REE Project",
+      "namespace": "project_registry_v1",
+      "native_id": "yttria",
+      "disposition": "INCLUDED_BY_T2_EXPLICIT_EXCEPTION"
+    }
+  ]
+}

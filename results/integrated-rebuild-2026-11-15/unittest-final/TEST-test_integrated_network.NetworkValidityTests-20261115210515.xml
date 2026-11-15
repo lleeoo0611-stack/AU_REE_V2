@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_integrated_network.NetworkValidityTests-20261115210515" tests="11" file="test_integrated_network.py" time="2.599" timestamp="2026-11-15T21:06:50" failures="0" errors="0" skipped="0">
+	<testcase classname="test_integrated_network.NetworkValidityTests" name="test_cli_network_failure_exits_nonzero_before_build" time="0.371" timestamp="2026-11-15T21:06:47" file="tests\test_integrated_network.py" line="116"/>
+	<testcase classname="test_integrated_network.NetworkValidityTests" name="test_dns_and_connection_errors_never_become_unavailable_or_fallback" time="1.012" timestamp="2026-11-15T21:06:48" file="tests\test_integrated_network.py" line="40"/>
+	<testcase classname="test_integrated_network.NetworkValidityTests" name="test_dns_checks_all_hosts_and_does_not_fetch" time="0.001" timestamp="2026-11-15T21:06:48" file="tests\test_integrated_network.py" line="18"/>
+	<testcase classname="test_integrated_network.NetworkValidityTests" name="test_dns_failure_aborts_before_http_cache_or_database" time="0.244" timestamp="2026-11-15T21:06:49" file="tests\test_integrated_network.py" line="28"/>
+	<testcase classname="test_integrated_network.NetworkValidityTests" name="test_failed_probe_is_not_retried_in_main_acquisition" time="0.291" timestamp="2026-11-15T21:06:49" file="tests\test_integrated_network.py" line="97"/>
+	<testcase classname="test_integrated_network.NetworkValidityTests" name="test_five_percent_boundary_and_no_fallback_masking" time="0.006" timestamp="2026-11-15T21:06:49" file="tests\test_integrated_network.py" line="50"/>
+	<testcase classname="test_integrated_network.NetworkValidityTests" name="test_http_and_stopped_host_are_not_network_error" time="0.000" timestamp="2026-11-15T21:06:49" file="tests\test_integrated_network.py" line="60"/>
+	<testcase classname="test_integrated_network.NetworkValidityTests" name="test_probe_denial_stops_only_that_host_and_requests_no_indexes" time="0.059" timestamp="2026-11-15T21:06:49" file="tests\test_integrated_network.py" line="69"/>
+	<testcase classname="test_integrated_network.NetworkValidityTests" name="test_stopped_asx_cannot_use_committed_snapshot_fallback" time="0.283" timestamp="2026-11-15T21:06:49" file="tests\test_integrated_network.py" line="106"/>
+	<testcase classname="test_integrated_network.NetworkValidityTests" name="test_successful_probe_is_reused_without_refetch" time="0.280" timestamp="2026-11-15T21:06:50" file="tests\test_integrated_network.py" line="87"/>
+	<testcase classname="test_integrated_network.NetworkValidityTests" name="test_swallowed_official_exception_retains_network_classification" time="0.051" timestamp="2026-11-15T21:06:50" file="tests\test_integrated_network.py" line="128"/>
+</testsuite>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_disclosure.Disclosure-20261115210515" tests="12" file="test_disclosure.py" time="0.193" timestamp="2026-11-15T21:06:47" failures="0" errors="0" skipped="0">
+	<testcase classname="test_disclosure.Disclosure" name="test_all_three_input_categories_required" time="0.005" timestamp="2026-11-15T21:06:46" file="tests\test_disclosure.py" line="54"/>
+	<testcase classname="test_disclosure.Disclosure" name="test_archived_public_html_does_not_invent_publication_date" time="0.005" timestamp="2026-11-15T21:06:46" file="tests\test_disclosure.py" line="78"/>
+	<testcase classname="test_disclosure.Disclosure" name="test_cutoff_version_and_duplicate_ids_fail_closed" time="0.004" timestamp="2026-11-15T21:06:46" file="tests\test_disclosure.py" line="85"/>
+	<testcase classname="test_disclosure.Disclosure" name="test_explicit_unknown_requires_specific_reason" time="0.004" timestamp="2026-11-15T21:06:46" file="tests\test_disclosure.py" line="51"/>
+	<testcase classname="test_disclosure.Disclosure" name="test_fixed_denominator_and_missing_not_midpoint" time="0.003" timestamp="2026-11-15T21:06:46" file="tests\test_disclosure.py" line="40"/>
+	<testcase classname="test_disclosure.Disclosure" name="test_good_result_vague_disclosure_scores_zero_only_after_review" time="0.005" timestamp="2026-11-15T21:06:46" file="tests\test_disclosure.py" line="59"/>
+	<testcase classname="test_disclosure.Disclosure" name="test_hash_quote_date_failures_are_unknown" time="0.005" timestamp="2026-11-15T21:06:46" file="tests\test_disclosure.py" line="65"/>
+	<testcase classname="test_disclosure.Disclosure" name="test_new_T1_never_retains_recovery_score" time="0.004" timestamp="2026-11-15T21:06:46" file="tests\test_disclosure.py" line="89"/>
+	<testcase classname="test_disclosure.Disclosure" name="test_no_experiment_but_explicit_limit_can_score" time="0.004" timestamp="2026-11-15T21:06:46" file="tests\test_disclosure.py" line="47"/>
+	<testcase classname="test_disclosure.Disclosure" name="test_other_project_document_cannot_support_facet" time="0.004" timestamp="2026-11-15T21:06:46" file="tests\test_disclosure.py" line="74"/>
+	<testcase classname="test_disclosure.Disclosure" name="test_ties_unknown_envelopes_and_order_independence" time="0.003" timestamp="2026-11-15T21:06:46" file="tests\test_disclosure.py" line="93"/>
+	<testcase classname="test_disclosure.Disclosure" name="test_weights_are_fixed_across_groups_and_zero_domain_excluded" time="0.147" timestamp="2026-11-15T21:06:47" file="tests\test_disclosure.py" line="99"/>
+</testsuite>

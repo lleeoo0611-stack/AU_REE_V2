@@ -390,7 +390,7 @@ def select_snapshots(root, cutoff, keys=None, acquired_through=None):
             if filehash(Path(root)/page['path'])!=page['sha256']:raise ValueError('Original service response checksum mismatch: '+page['path'])
     return [selected[k] for k in sorted(selected)]
 
-gov={'services.ga.gov.au','public-services.slip.wa.gov.au','spatial-gis.information.qld.gov.au','data.stategrowth.tas.gov.au','public-gs.geoscience.nsw.gov.au','opendata.maps.vic.gov.au','geology.data.nt.gov.au','services.sarig.sa.gov.au','wamex.dmp.wa.gov.au','dasc.dmirs.wa.gov.au','geoscience.data.qld.gov.au'}
+gov={'services.ga.gov.au','public-services.slip.wa.gov.au','spatial-gis.information.qld.gov.au','data.stategrowth.tas.gov.au','public-gs.geoscience.nsw.gov.au','opendata.maps.vic.gov.au','geology.data.nt.gov.au','services.sarig.sa.gov.au','wamex.dmp.wa.gov.au','dasc.dmirs.wa.gov.au','geoscience.data.qld.gov.au','geoscience.nt.gov.au','strike.nt.gov.au','majorprojects.planningportal.nsw.gov.au'}
 delivery={'warsydprdstagsdspub.blob.core.windows.net','gsq-prod-ckan-horizon-public.s3.ap-southeast-2.amazonaws.com'}
 groups={
     'government-api':gov,
@@ -604,17 +604,24 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
         if source['kind'] in ('pdf','html'):expected.update(by_url.get(source['url'],set()))
         if source['kind'] in managed and not expected and old:expected={max(old,key=lambda x:x['acquired_at'])['sha256']}
         row=dict(key=key,host=host,http_status=None,sha_match=None,status='UNAVAILABLE',stop_reason='',expected_sha256=';'.join(sorted(expected)))
+        if source.get('enabled') is False:
+            row.update(status='SOURCE_NOT_ACQUIRED',stop_reason=source.get('disabled_reason','SOURCE_DISABLED'));outcomes.append(row);continue
         if source['url']=='https://www.gippslandcriticalminerals.com/project-overview/':
             row.update(status='SOURCE_NOT_ACQUIRED',stop_reason='INDEX_LANDING_DISABLED');outcomes.append(row);continue
         candidate_mismatch=False
         try:
             if len(expected)>1:raise ValueError('CONFLICTING_DECLARED_SOURCE_SHA')
+            if host in transport.stopped:raise ValueError('HOST_STOPPED:'+transport.stopped[host])
+            if source.get('committed_snapshot_sha256'):
+                candidates=[s for s in old if committed(s,{source['committed_snapshot_sha256']})]
+                if not candidates:raise ValueError('DECLARED_COMMITTED_SNAPSHOT_UNAVAILABLE')
+                selected.append(dict(max(candidates,key=lambda s:s['acquired_at']),**source))
+                row.update(status='COMMITTED_SNAPSHOT_SAME_SHA',sha_match=True);outcomes.append(row);continue
             if source['kind'] in managed:
                 candidates=[s for s in old if committed(s,expected)]
                 if not candidates:raise ValueError('DECLARED_COMMITTED_DERIVATIVE_UNAVAILABLE')
                 selected.append(max(candidates,key=lambda s:s['acquired_at']));row.update(status='COMMITTED_MANAGED_SAME_SHA',sha_match=True)
                 outcomes.append(row);continue
-            if host in transport.stopped:raise ValueError('HOST_STOPPED:'+transport.stopped[host])
             if key in transport.probe_failures:
                 exc,http,attempts=transport.probe_failures.pop(key)
                 transport.http[host]=http;row['probe_http_attempts']=canonical(attempts)
@@ -644,6 +651,7 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
                     candidate_mismatch=True
                 if raw is None:raise ValueError('SOURCE_SHA_CHANGED' if attempted else 'WAMEX_NO_ELIGIBLE_DOCUMENT')
             elif source['kind']=='minedex_resource_batch':raw,headers=minedex_resource_batch(source['url'],source['product_alias'],fetch=transport)
+            elif source.get('fixed_query'):raw,headers=transport(source['url'],max_bytes=source.get('max_bytes',50_000_000))
             elif source['kind'] in ('arcgis_census','arcgis_gis','government_arcgis'):
                 raw=(canonical(arcgis(source['url'],source.get('where','1=1'),windows=project_windows(root,{'snapshots':manifest},source['aoi_radius_km']) if source.get('aoi_radius_km') else None,fetch=transport))+'\n').encode();headers={}
             elif source['kind']=='government_wfs':raw=(canonical(wfs(source,fetch=transport))+'\n').encode();headers={}

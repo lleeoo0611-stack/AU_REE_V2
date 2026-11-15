@@ -1,0 +1,39 @@
+{
+  "stopped_hosts": {},
+  "request_attempts": [
+    {
+      "host": "www.asx.com.au",
+      "http_status": null,
+      "error": "NETWORK_ERROR"
+    },
+    {
+      "host": "www.asx.com.au",
+      "http_status": null,
+      "error": "NETWORK_ERROR"
+    },
+    {
+      "host": "www.asx.com.au",
+      "http_status": null,
+      "error": "NETWORK_ERROR"
+    },
+    {
+      "host": "announcements.asx.com.au",
+      "http_status": null,
+      "error": "NETWORK_ERROR"
+    },
+    {
+      "host": "announcements.asx.com.au",
+      "http_status": null,
+      "error": "NETWORK_ERROR"
+    },
+    {
+      "host": "announcements.asx.com.au",
+      "http_status": null,
+      "error": "NETWORK_ERROR"
+    }
+  ],
+  "scope": "DIAGNOSTIC_ONLY_NO_BUILD_NO_SOURCE_ADOPTION",
+  "user_agent": "AU_REE_V2/0.1 public research",
+  "minimum_host_interval_seconds": 3,
+  "network_errors": 6
+}

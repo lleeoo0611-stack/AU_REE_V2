@@ -5,7 +5,7 @@ on:
 permissions:
   contents: read
 jobs:
-  clean-strict-build:
+  automated-build:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
@@ -32,9 +32,36 @@ jobs:
         run: |
           mkdir -p work
           au-ree-v2 all --refresh --as-of 2026-11-13 --work work/clean > work/clean-build.log 2>&1
+      - name: Verify every summary cell is accounted for
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          latest=json.loads(Path('work/clean/latest.json').read_text())
+          out=Path(latest['output_dir'])/'project-summary'
+          columns=json.loads(Path('config/project_summary_columns.json').read_text())
+          book=json.loads(Path('config/summary_rules.json').read_text())['parameters']
+          names=book['output_files']['value']
+          def read(name):
+              with (out/name).open(encoding='utf-8-sig',newline='') as f:
+                  reader=csv.DictReader(f)
+                  return reader.fieldnames,list(reader)
+          header,rows=read(names['summary'])
+          _,trace=read(names['provenance']);_,missing=read(names['missing'])
+          coverage=json.loads((out/names['coverage']).read_text())
+          assert header==columns and len(columns)==51
+          assert len(rows)==len(book['cohort']['value'])
+          assert len(trace)==len(rows)*len(columns)
+          assert len({(r['project_id'],r['column']) for r in trace})==len(trace)
+          assert len(missing)==sum(v=='' for row in rows for v in row.values())
+          assert coverage['filled_cells']+len(missing)==len(trace)
+          assert json.loads(Path('work/clean/network_status.json').read_text())['valid_for_delivery']
+          PY
       - name: Unit regressions with XML
+        if: always()
         run: python -m xmlrunner discover -s tests -o work/test-xml
       - name: R analytical regressions
+        if: always()
         run: |
           python - <<'PY'
           import subprocess, time, xml.etree.ElementTree as ET
@@ -64,6 +91,10 @@ jobs:
             work/r-tests.log
             work/clean-build.log
             work/clean/**/acquisition_report.csv
+            work/clean/asx_probe.csv
+            work/clean/dns_preflight.csv
+            work/clean/network_status.json
+            work/clean/**/project-summary/
             results/automated-build-2026-11-13/acquisition_report.csv
           if-no-files-found: warn
           retention-days: 30

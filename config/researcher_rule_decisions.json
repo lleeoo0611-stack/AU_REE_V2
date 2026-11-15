@@ -1,0 +1,420 @@
+{
+  "version": "integrated-approved-rules-v1",
+  "decisions": [
+    {
+      "decision_id": "stage-a1-20261111",
+      "rule": "EXPLORATION_WITHOUT_SELECTED_MRE",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅依來源原文與既有 provenance；不回填既有值；不自動指派 A3。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "stage-a2-20261111",
+      "rule": "EXPLORATION_WITH_SELECTED_MRE",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅依來源原文與既有 provenance；不回填既有值；不自動指派 A3。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "stage-b1-20261111",
+      "rule": "COMPLETED_SCOPING_OR_PFS",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅依來源原文與既有 provenance；不回填既有值；不自動指派 A3。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "stage-b2-20261111",
+      "rule": "COMPLETED_DFS_BFS_OR_FEASIBILITY",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅依來源原文與既有 provenance；不回填既有值；不自動指派 A3。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "stage-c1-20261111",
+      "rule": "ANNOUNCED_FINAL_INVESTMENT_DECISION",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅依來源原文與既有 provenance；不回填既有值；不自動指派 A3。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "stage-c2-20261111",
+      "rule": "CONSTRUCTION_IN_PROGRESS",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅依來源原文與既有 provenance；不回填既有值；不自動指派 A3。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "stage-in_progress_study_use_highest_explicit_completed-20261111",
+      "rule": "IN_PROGRESS_STUDY_USE_HIGHEST_EXPLICIT_COMPLETED",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "進行中的研究不算完成；上一階不明則待審。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "official-location-wa_minedex-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "WA_MINEDEX",
+        "layer": "0"
+      },
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "official-location-ga_ozmin-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "GA_OZMIN",
+        "layer": "ama:MineralOccurrences"
+      },
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "official-location-sa_sarig-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "SA_SARIG",
+        "layer": "mines_and_mineral_deposits:all_mines_and_mineral_deposits"
+      },
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "official-location-qld_minocc-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "QLD_MINOCC",
+        "layer": "12"
+      },
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "official-location-nsw_minview-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "NSW_MINVIEW",
+        "layer": "mineral-occurrence:mineral_occurrence"
+      },
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "official-location-nt_strike-20261111",
+      "rule": "SELECT_OFFICIAL_LOCATION_DATASET",
+      "scope": {
+        "dataset": "NT_STRIKE",
+        "layer": "CSV_SCHEMA_UNVERIFIED"
+      },
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "政府位置資料集選擇；NT 僅欄位報告；SA projects 僅關聯輔助，CRS 未核實不得填值。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "task4-splinter-ce2o3-to-ceo2",
+      "project_id": "AU-574465211976ec57b1ef",
+      "rule": "CE2O3_TO_CEO2_STOICHIOMETRIC",
+      "scope": {
+        "statement_id": "splinter-inferred500-r254-20151109",
+        "source_sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7"
+      },
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "研究者核准前不生效；僅限指定專案、statement 與來源 SHA。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "task4-circle-valley-combined-ndpr",
+      "project_id": "AU-785536db5ff12c25350d",
+      "rule": "ACCEPT_SOURCE_COMBINED_NDPR_OXIDE",
+      "scope": {
+        "statement_id": "circle_valley_global_202306",
+        "source_sha256": "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad"
+      },
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "研究者核准前不生效；僅限指定專案、statement 與來源 SHA。",
+      "approval_evidence": "User explicitly replied 全部核准 to development-stage rules, scoped Splinter/Circle Valley oxide exceptions, and WA/SA/QLD/NSW with GA fallback and NT schema-only. Operating/withdrawal remain review-only; SA project helper layers were not approved."
+    },
+    {
+      "decision_id": "round2-deposit-clay-20261111",
+      "rule": "RESEARCHER_RULE_CLAY_REGOLITH_TO_IAC",
+      "scope": "ROUND2_NATIVE_DEPOSIT_DESCRIPTION_AND_ARCHIVED_HOST",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅新增空白礦床型態代碼；既有原文與代碼不變；歧義留待審查。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-deposit-potential-20261111",
+      "rule": "SPECULATIVE_DEPOSIT_STYLE_ALLOWED",
+      "scope": "ROUND2_NATIVE_DEPOSIT_DESCRIPTION_AND_ARCHIVED_HOST",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅新增空白礦床型態代碼；既有原文與代碼不變；歧義留待審查。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-deposit-hard-20261111",
+      "rule": "RESEARCHER_RULE_PEGMATITE_TO_HARD",
+      "scope": "ROUND2_NATIVE_DEPOSIT_DESCRIPTION_AND_ARCHIVED_HOST",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅新增空白礦床型態代碼；既有原文與代碼不變；歧義留待審查。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-deposit-placer-20261111",
+      "rule": "RESEARCHER_RULE_SANDS_TO_PLACER",
+      "scope": "ROUND2_NATIVE_DEPOSIT_DESCRIPTION_AND_ARCHIVED_HOST",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅新增空白礦床型態代碼；既有原文與代碼不變；歧義留待審查。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-deposit-g4-20261111",
+      "rule": "RESEARCHER_RULE_CASE_SPECIFIC_ARCHIVED_HOST",
+      "scope": "ROUND2_NATIVE_DEPOSIT_DESCRIPTION_AND_ARCHIVED_HOST",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅新增空白礦床型態代碼；既有原文與代碼不變；歧義留待審查。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-stage-named-20261111",
+      "rule": "NAMED_STUDY_TREATED_AS_COMPLETED",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "限定本輪 15 案，僅補空白；D 為來源揭露已生產而非設計產能；X 保留研究列與分母。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-stage-progress-20261111",
+      "rule": "IN_PROGRESS_STUDY_IMPLIES_B1",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "限定本輪 15 案，僅補空白；D 為來源揭露已生產而非設計產能；X 保留研究列與分母。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-stage-production-20261111",
+      "rule": "OPERATING_OR_PRODUCTION_COMMENCED",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "限定本輪 15 案，僅補空白；D 為來源揭露已生產而非設計產能；X 保留研究列與分母。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-stage-withdrawn-20261111",
+      "rule": "PROJECT_WITHDRAWN",
+      "scope": "DATED_NATIVE_DEVELOPMENT_STAGE_AND_SELECTED_MRE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "限定本輪 15 案，僅補空白；D 為來源揭露已生產而非設計產能；X 保留研究列與分母。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-normalized-name-20261111",
+      "rule": "NORMALIZED_NAME_MATCH",
+      "scope": "OFFLINE_ARCHIVED_SAME_STATE_UNIQUE_OPERATOR_MATCH",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅離線封存政府來源；同州唯一且公司一致才採用；多 site、新 VIC/TAS 來源與 datum 未驗證維持空白。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-nt-mga-20261111",
+      "rule": "NT_STRIKE_MGA_TO_GEOGRAPHIC",
+      "scope": "ARCHIVED_NT_CSV_VERIFIED_DATUM_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅離線封存政府來源；同州唯一且公司一致才採用；多 site、新 VIC/TAS 來源與 datum 未驗證維持空白。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-annual-source-stated-20261111",
+      "rule": "SOURCE_STATED_ANNUAL_PRODUCTION",
+      "scope": "CENSUS_ARCHIVED_SOURCE_STATED_OXIDE_ANNUAL_PRODUCTION",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "僅用 census 已封存原件明寫的氧化物年產；禁止進料×品位×回收率推算，混合產品須有來源明寫 REO 當量。",
+      "approval_evidence": "1：G1 選 B、潛力案給、G4 照建議；2：(a) 算完成、(b) 給 B1、(c) 新增 D、(d) 標成X"
+    },
+    {
+      "decision_id": "round2-partial-publication-20261111",
+      "rule": "PUBLISH_VERIFIED_ROUND2_WITH_NT_PENDING",
+      "scope": "ROUND2_72_VERIFIED_CELLS_NT_UNCHANGED",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "notes": "使用者知悉 NT datum 與真實控制點驗收未完成後要求更新總表；僅發布已驗證72格，NT 保持原值／空白待審，不視為 NT 驗收完成。",
+      "approval_evidence": "助理：「沒有合併主線或更新 asx-current；NT 座標基準與控制點驗收仍待完成。」\n使用者：「更新總表」"
+    },
+    {
+      "decision_id": "round3-tiered-coverage-20261111",
+      "rule": "TIERED_COVERAGE_WITHOUT_SELECTED_MRE",
+      "scope": "甲1: all selected-MRE rows plus nonresource columns of verified no-selected-MRE rows",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
+    },
+    {
+      "decision_id": "round3-retire-columns-20261111",
+      "rule": "RETIRE_TWO_EMPTY_COLUMNS",
+      "scope": [
+        "重算磁性元素-HTML磁性稀土_kt",
+        "預估年產重稀土_t_per_year"
+      ],
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
+    },
+    {
+      "decision_id": "round3-stage-absence-20261111",
+      "rule": "STAGE_INFERRED_FROM_EVIDENCE_ABSENCE",
+      "scope": "ALL_ASSOCIATED_ARCHIVED_ORIGINALS_ALL_PHYSICAL_PAGES",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
+    },
+    {
+      "decision_id": "round3-wa-empty-operator-20261111",
+      "rule": "NO_OPERATOR_VALUE",
+      "scope": "SAME_STATE_UNIQUE_EXACT_SITE_OR_PROJECT_TITLE_EMPTY_OPERATOR_VALUE",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
+    },
+    {
+      "decision_id": "round3-nt-controls-20261111",
+      "rule": "NT_DATUM_FROM_ARCHIVED_CONTROL_POINTS",
+      "scope": "NT_ARCHIVED_GA_CONTROL_DATUM_MIN3",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
+    },
+    {
+      "decision_id": "round3-shared-yttria-20261111",
+      "rule": "SHARED_DEPOSIT_POINT_RESEARCHER_APPROVED",
+      "scope": [
+        "Mt Stirling — Yttria resource scope",
+        "Yttria REE Project"
+      ],
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
+    },
+    {
+      "decision_id": "round3-vic-tas-official-20261111",
+      "rule": "ACQUIRE_OFFICIAL_VIC_TAS_OPEN_DATA",
+      "scope": [
+        "VIC",
+        "TAS"
+      ],
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
+    },
+    {
+      "decision_id": "round3-cummins-full-stage-20261111",
+      "rule": "STAGED_ANNUAL_USE_FIRST_FULL_PRODUCTION_STAGE",
+      "scope": "CUMMINS_RANGE_FIRST_FULL_PRODUCTION_STAGE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-11",
+      "approval_evidence": "甲1 甲2 刪掉 乙1 (a) 放寬條件、(c) Mt Stirling 共點、(d) VIC／TAS核准 乙2 可以，核准 乙5 第一個全產期"
+    },
+    {
+      "decision_id": "round4-issuer-merge-20261113",
+      "rule": "SAME_ISSUER_RENAME_RESEARCHER_APPROVED",
+      "scope": "AU-d0ce731e1d8198ffaf58 + AU-ee5ca893d12883df35f1 ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-13",
+      "approval_evidence": "1.三點判斷 2.Asra Minerals Limited和GoldArc Resources Limited視同家公司改名 3.使用，標註 4.標註NOT_APPLICABLE_STAGE 5,判成X"
+    },
+    {
+      "decision_id": "round4-product-na-20261113",
+      "rule": "NO_PRODUCT_BEFORE_STUDY_STAGE",
+      "scope": "BLANK_PRODUCT_A1_A2_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-13",
+      "approval_evidence": "1.三點判斷 2.Asra Minerals Limited和GoldArc Resources Limited視同家公司改名 3.使用，標註 4.標註NOT_APPLICABLE_STAGE 5,判成X"
+    },
+    {
+      "decision_id": "round4-charley-exit-20261113",
+      "rule": "STAGE_EXIT_RESEARCHER_DECISION_RELINQUISHMENT",
+      "scope": "FOUR_CHARLEY_PROJECTS_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-13",
+      "approval_evidence": "1.三點判斷 2.Asra Minerals Limited和GoldArc Resources Limited視同家公司改名 3.使用，標註 4.標註NOT_APPLICABLE_STAGE 5,判成X"
+    },
+    {
+      "decision_id": "round4-stage-three-point-20261113",
+      "rule": "STAGE_THREE_POINT_EVIDENCE_REVIEW",
+      "scope": "THREE_POINT_PROJECT_SPECIFIC_CURRENT_STAGE_ONLY",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-13",
+      "approval_evidence": "1.三點判斷 2.Asra Minerals Limited和GoldArc Resources Limited視同家公司改名 3.使用，標註 4.標註NOT_APPLICABLE_STAGE 5,判成X"
+    },
+    {
+      "decision_id": "round4-tenement-centroid-20261113",
+      "rule": "TENEMENT_CENTROID_RESEARCHER_APPROVED",
+      "scope": "BLANK_COORDINATE_PAIRS_OFFICIAL_WA_NT_SA_QLD_VIC_NSW_NO_TAS",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-13",
+      "approval_evidence": "1.三點判斷 2.Asra Minerals Limited和GoldArc Resources Limited視同家公司改名 3.使用，標註 4.標註NOT_APPLICABLE_STAGE 5,判成X"
+    },
+    {
+      "decision_id": "round5-stage-priority-aliases-20261113",
+      "rule": "STAGE_THREE_POINT_PRIORITY_ALIAS_REVIEW",
+      "scope": "812_ROUND4_HITS_FAIL_PRIORITY_AND_SOURCE_BOUND_ALIASES",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-13",
+      "approval_evidence": "1.修正優先邏輯，補上別名表 2.離線OCR套三點判斷 3.拿掉sortby"
+    },
+    {
+      "decision_id": "round5-offline-ocr-20261113",
+      "rule": "STAGE_OFFLINE_OCR_REVIEW",
+      "scope": "ONLY_REMAINING_IMAGE_OR_NO_TEXT_BLOCKER_PAGES_FIXED_OFFLINE_OCR",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-13",
+      "approval_evidence": "1.修正優先邏輯，補上別名表 2.離線OCR套三點判斷 3.拿掉sortby"
+    },
+    {
+      "decision_id": "round5-wa-sortby-20261113",
+      "rule": "WA_REMOVE_SORTBY_ONLY",
+      "scope": "EXACT_ROUND4_WA_REQUEST_REMOVE_SORTBY_ONLY_WITH_COMPLETENESS_VALIDATION",
+      "decided_by": "USER_EXPLICIT_APPROVAL",
+      "decided_date": "2026-11-13",
+      "approval_evidence": "1.修正優先邏輯，補上別名表 2.離線OCR套三點判斷 3.拿掉sortby"
+    }
+  ]
+}

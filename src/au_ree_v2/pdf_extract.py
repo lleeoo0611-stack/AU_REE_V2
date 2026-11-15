@@ -707,3 +707,239 @@ def narrative_context_issues(candidate,page,version='page-context-v2',project_al
                 reasons.append('COMPANY_CASH_NOT_PROJECT_ATTRIBUTED')
         return reasons
     return []
+
+
+# Integrated summary rules: reviewed functions, canonical evidence only.
+import csv
+import io
+from collections import defaultdict
+from urllib.parse import urlparse
+
+
+def summary_parse_tsv(data, settings):
+    """Average all recognized nonempty words, not just accepted high-confidence ones."""
+    words = []
+    for row in csv.DictReader(io.StringIO(data.decode('utf-8-sig')), delimiter='\t'):
+        if row.get('level') != '5' or not row.get('text', '').strip():
+            continue
+        try:
+            confidence = float(row['conf'])
+        except (ValueError, KeyError):
+            raise ValueError('OCR_INVALID_WORD_CONFIDENCE')
+        if not 0 <= confidence <= 100:
+            raise ValueError('OCR_INVALID_WORD_CONFIDENCE')
+        words.append(dict(text=row['text'].strip(), confidence=confidence,
+                          line=tuple(row[k] for k in ('page_num', 'block_num', 'par_num', 'line_num'))))
+    valid = [w for w in words if w['confidence'] >= settings['valid_word_confidence']
+             and len(w['text']) >= settings['valid_word_min_length']]
+    mean = sum(w['confidence'] for w in words) / len(words) if words else None
+    if not words or mean < settings['page_mean_confidence']:
+        status = 'OCR_LOW_CONFIDENCE'
+    elif len(valid) >= settings['valid_word_count']:
+        status = 'OCR_READABLE'
+    else:
+        status = 'OCR_NO_TEXT_CONTENT'
+    line_groups = defaultdict(list)
+    for word in words:
+        line_groups[word['line']].append(word)
+    lines = [dict(text=' '.join(w['text'] for w in group),
+                  confidence=sum(w['confidence'] for w in group)/len(group), line=list(key))
+             for key, group in line_groups.items()]
+    return dict(status=status, mean_word_confidence=mean, word_count=len(words),
+                valid_word_count=len(valid), lines=lines)
+
+def summary_ocr_hits(quality, keywords, physical_page):
+    """Reconstruct complete cross-line sentences, retaining exact keyword-line confidence.
+
+    TSV line layout is not a paragraph model. Only an actual preceding ALLCAPS
+    line can supply heading attribution; no preceding paragraph is invented.
+    Line-end hyphenation is joined with a character-to-line map so confidence is
+    still attached to the physical OCR line containing the matched keyword.
+    """
+    lines = quality['lines']
+    text_parts, owners, headings = [], [], []
+    heading = ''
+    for index, line in enumerate(lines):
+        headings.append(heading)
+        text=line['text']
+        letters=''.join(c for c in text if c.isalpha())
+        if len(letters)>=2 and letters.isupper(): heading=text
+        dehyphenate=(index+1<len(lines) and len(text)>1 and text[-1] in '-‐‑'
+                     and text[-2].isalnum() and lines[index+1]['text'][:1].isalnum())
+        piece=text[:-1] if dehyphenate else text+' '
+        text_parts.append(piece); owners.extend([index]*len(piece))
+    text=''.join(text_parts)
+    # Same sentence separator as the native complete-hit scanner. Ambiguous
+    # OCR punctuation is not promoted to a paragraph-heading inference.
+    bounds=[0]+[m.end() for m in re.finditer(r'(?<=[.!?])\s+',text)]+[len(text)]
+    hits=[]
+    for keyword in keywords:
+        pattern=r'\b'+re.escape(keyword)+(r'\b' if keyword.upper() in ('PFS','DFS','BFS','FID') else '')
+        for match in re.finditer(pattern,text,re.I):
+            line_index=owners[match.start()]
+            line=lines[line_index]
+            begin=max(b for b in bounds if b<=match.start())
+            end=min(b for b in bounds if b>match.start())
+            involved={owners[i] for i in range(match.start(),match.end())}
+            confidence=min(lines[i]['confidence'] for i in involved)
+            hits.append(dict(physical_page=physical_page,keyword=keyword,sentence=text[begin:end].strip(),
+                             paragraph_text=text[begin:end].strip(),paragraph_heading=headings[line_index],ocr=True,
+                             text_source='OCR',ocr_confidence=confidence,ocr_line=line['line'],
+                             ocr_keyword_lines=[lines[i]['line'] for i in sorted(involved)],match_start=match.start()))
+    return sorted(hits,key=lambda h:(h['match_start'],h['keyword']))
+
+def summary_hit_priority(*points):
+    if 'FAIL' in points: return 'FAIL'
+    if 'UNCLEAR' in points: return 'UNCLEAR'
+    if points and all(p == 'PASS' for p in points): return 'PASS'
+    raise ValueError('Invalid three-point values')
+
+def summary_alias_normalize(value):
+    return re.sub(r'\s+', ' ', str(value).replace('–','-').replace('—','-')).strip().casefold()
+
+def summary_alias_index(alias_data):
+    owners={}
+    for project in alias_data['projects']:
+        for record in project['aliases']:
+            owners.setdefault(summary_alias_normalize(record['alias']),set()).add(project['project_id'])
+    return owners
+
+def summary_source_assessment(entry, shared_projects, settings):
+    url = urlparse(entry.get('url', ''))
+    if url.hostname == 'services.ga.gov.au' and '/gis/rest/services/' in url.path and '/MapServer/' in url.path:
+        return 'FAIL', 'NATIONAL_OR_STATE_GIS: ' + settings['source_type_rules']['national_or_state_gis']
+    classification = settings.get('source_classifications', {}).get(entry['sha256'])
+    if classification and classification['type'] == 'SHARED_GENERAL_DOCUMENT':
+        if len(shared_projects) >= classification['minimum_associated_projects']:
+            return 'FAIL', classification['evidence'] + '; associated_projects=' + ','.join(sorted(shared_projects))
+        return 'UNCLEAR', 'Configured shared source lacks required independent project associations'
+    return 'PASS', 'Project-associated original; no documented general-source exclusion'
+
+def summary_stage_aliases(row, settings):
+    names = [row['專案名稱']] + settings.get('project_aliases', {}).get(row['專案ID'], [])
+    # Only explicit name components, not inferred issuer/commodity/state summary_stage_aliases.
+    for name in list(names):
+        names.extend(re.split(r'\s+[—–]\s+|\s*/\s*', name))
+        names.append(re.sub(r'\s+(?:REE\s+)?Project\b.*$', '', name, flags=re.I))
+    return sorted({n.strip() for n in names if len(n.strip()) >= 4}, key=lambda n: (-len(n), n))
+
+def summary_assess_hit(hit, row, entry, shared_projects, settings):
+    p1, r1 = summary_source_assessment(entry, shared_projects, settings)
+    sentence = hit.get('sentence', hit.get('text', ''))
+    heading = hit.get('paragraph_heading', '')
+    # A heading must be a concise standalone label, not an arbitrary first prose line.
+    if len(heading.split()) > 10 or re.search(r'\b(?:is|was|has|have|will|completed|plans)\b', heading, re.I):
+        heading = ''
+    context = sentence + ' ' + heading
+    matched = [a for a in summary_stage_aliases(row, settings) if re.search(r'(?<!\w)' + re.escape(a) + r'(?!\w)', context, re.I)]
+    p2, r2 = ('PASS', 'Explicit project name/alias/tenement: ' + '; '.join(matched)) if matched else ('FAIL', 'No explicit project name/alias/tenement in the complete sentence or documented paragraph heading')
+    if not matched and any(re.search(r'(?<!\w)' + re.escape(a) + r'(?!\w)', hit.get('paragraph_text', ''), re.I) for a in summary_stage_aliases(row, settings)):
+        p2, r2 = 'UNCLEAR', 'Project occurs elsewhere in extracted paragraph; heading/sentence attribution needs manual verification'
+    future = [p for p in settings['future_patterns'] if re.search(p, sentence, re.I)]
+    complete = [p for p in settings['completed_patterns'] if re.search(p, sentence, re.I)]
+    if future and complete:
+        p3, r3 = 'UNCLEAR', 'Mixed completed/current and planned/negated/conditional language requires manual scope review'
+    elif future:
+        p3, r3 = 'FAIL', 'Future/intention/nominal/conditional/negated phrase: ' + '; '.join(future)
+    elif complete:
+        p3, r3 = 'PASS', 'Completed/current activity wording: ' + '; '.join(complete)
+    else:
+        p3, r3 = 'UNCLEAR', 'No unambiguous completed/current or explicitly excluded wording'
+    # Excluded originals have no project-stage meaning and no blocking UNCLEAR.
+    if p1 == 'FAIL':
+        p2 = p3 = 'FAIL'
+        r2 = r3 = 'Not applicable to this project: original excluded under point 1'
+    return dict(project_id=row['專案ID'], project=row['專案名稱'], source_sha256=entry['sha256'],
+                physical_page=hit.get('physical_page'), keyword=hit['keyword'], sentence=sentence,
+                paragraph_heading=hit.get('paragraph_heading', ''), point1=p1, point2=p2, point3=p3,
+                reason1=r1, reason2=r2, reason3=r3,
+                outcome='UNCLEAR' if 'UNCLEAR' in (p1,p2,p3) else ('PASS' if (p1,p2,p3)==('PASS','PASS','PASS') else 'FAIL'))
+
+def summary_review_hit(hit,row,entry,rules):
+    shared=set(entry.get('summary_project_ids',[]))
+    settings=rules['stage_hit_settings']
+    alias_data=dict(projects=rules['aliases.projects'])
+    result=summary_assess_hit(hit,row,entry,shared,settings)
+    # Frozen review provides exact original point 1/3 assessments for full audit replay.
+    records=next((p['aliases'] for p in alias_data['projects'] if p['project_id']==row['專案ID']),[])
+    sentence=hit.get('sentence',hit.get('text','')); heading=hit.get('paragraph_heading','')
+    if len(heading.split())>10 or re.search(r'\b(?:is|was|has|have|will|completed|plans)\b',heading,re.I): heading=''
+    text=sentence+' '+heading
+    matched=[a for a in records if re.search(r'(?<!\w)'+re.escape(a['alias'])+r'(?!\w)',text,re.I)]
+    owners=summary_alias_index(alias_data)
+    # Any ambiguous alias match remains UNCLEAR, including alongside unique matches.
+    unique=[a for a in matched if len(owners[summary_alias_normalize(a['alias'])])==1]
+    if matched and len(unique)!=len(matched):
+        result['point2']='UNCLEAR';result['reason2']='AMBIGUOUS_ALIAS'
+    elif unique:
+        result['point2']='PASS';result['reason2']='UNIQUE_PROJECT_ALIAS_IN_SENTENCE_OR_HEADING'
+        matched=unique
+    elif matched:
+        result['point2']='UNCLEAR';result['reason2']='AMBIGUOUS_ALIAS'
+    elif hit.get('point2')=='UNCLEAR':
+        result['point2']='UNCLEAR';result['reason2']=hit.get('reason2','PROJECT_ATTRIBUTION_UNCLEAR')
+    else:
+        result['point2']='UNCLEAR' if hit.get('ocr') and not heading else 'FAIL'
+        result['reason2']='OCR_NO_PROJECT_ATTRIBUTION' if result['point2']=='UNCLEAR' else 'NO_PROJECT_ALIAS_IN_SENTENCE_OR_HEADING'
+    result['alias_matched']=[a['alias'] for a in matched]
+    result['alias_source']=[a for a in matched]
+    if hit.get('ocr_confidence') is not None and float(hit['ocr_confidence'])<rules['ocr_settings']['hit_line_confidence']:
+        result['point3']='UNCLEAR';result['reason3']='OCR_LOW_CONFIDENCE'
+    result['outcome']=summary_hit_priority(result['point1'],result['point2'],result['point3'])
+    result['rule_version']=rules['stage_keyword_rule']
+    return result
+
+def summary_scan_stage(source, rules):
+    """Complete native sentences plus independently repeated local OCR where needed."""
+    import os,shutil,subprocess
+    import pymupdf
+    keywords=rules['stage_scan.keywords'];hits=[];problems=[];pages=[]
+    sha=source['sha256'];path=Path(source['resolved_path'])
+    if filehash(path)!=sha:return [],[dict(source_sha256=sha,reason='SOURCE_SHA_CHANGED')]
+    try:
+        if source['kind']=='pdf':
+            with pymupdf.open(path) as doc:
+                for number,page in enumerate(doc,1):
+                    text=page.get_text(sort=True);pages.append((number,text))
+                    image_area=sum((rect & page.rect).get_area() for img in page.get_images(full=True) for rect in page.get_image_rects(img[0]))
+                    requires_ocr=not text.strip() or bool(page.get_images() and len(re.findall(r'[A-Za-z\u4e00-\u9fff]',text))<rules['stage_native_min_letters']) or image_area/max(1,page.rect.get_area())>=rules['stage_image_fraction']
+                    if not requires_ocr:continue
+                    reviewed=[r for r in source.get('stage_visual_reviews',[]) if r.get('physical_page')==number]
+                    renderer=rules['stage_visual_renderer']
+                    if len(reviewed)==1 and renderer['version']==pymupdf.VersionBind and keywords==rules['stage_visual_keywords']:
+                        import hashlib
+                        record=reviewed[0]
+                        rendered=page.get_pixmap(dpi=renderer['dpi'],colorspace=pymupdf.csRGB,alpha=renderer['alpha'],annots=renderer['annots']).tobytes('png')
+                        if hashlib.sha256(rendered).hexdigest()==record['render_sha256'] and record.get('coverage')=='FULL_PAGE' and record.get('visible_findings') and record.get('outcome')=='NO_STAGE_KEYWORDS_VISIBLE' and record.get('hits')==[]:
+                            continue
+                    executable=os.environ.get('TESSERACT') or shutil.which('tesseract')
+                    if not executable:
+                        problems.append(dict(source_sha256=sha,physical_page=number,reason='LOCAL_OCR_EXECUTABLE_NOT_AVAILABLE'));continue
+                    cfg=rules['ocr_settings'];render=cfg['renderer'];engine=cfg['ocr']
+                    pix=page.get_pixmap(dpi=render['dpi'],colorspace=pymupdf.csGRAY,alpha=render['alpha'],annots=render['annots'])
+                    command=[executable,'stdin','stdout','-l',engine['language'],'--oem',str(engine['oem']),'--psm',str(engine['psm']),engine['format']]
+                    env=dict(os.environ,OMP_THREAD_LIMIT=engine['OMP_THREAD_LIMIT'])
+                    attempts=[subprocess.run(command,input=pix.tobytes('png'),capture_output=True,env=env,timeout=120) for _ in range(2)]
+                    if any(a.returncode for a in attempts) or attempts[0].stdout!=attempts[1].stdout:
+                        problems.append(dict(source_sha256=sha,physical_page=number,reason='OCR_FAILED_OR_NONDETERMINISTIC'));continue
+                    quality=summary_parse_tsv(attempts[0].stdout,cfg)
+                    ocr_hits=summary_ocr_hits(quality,keywords,number);hits.extend(dict(h,source_sha256=sha) for h in ocr_hits)
+                    if quality['status']!='OCR_READABLE' and not (quality['status']=='OCR_NO_TEXT_CONTENT' and not ocr_hits):
+                        problems.append(dict(source_sha256=sha,physical_page=number,reason=quality['status'],mean_word_confidence=quality['mean_word_confidence']))
+        else:
+            from .evidence import html_text
+            pages=[(None,html_text(path.parent,dict(source,path=str(path))))]
+    except (OSError,ValueError,IndexError,subprocess.TimeoutExpired) as exc:
+        problems.append(dict(source_sha256=sha,reason='SOURCE_SCAN_FAILED',detail=str(exc)))
+    # Retain full sentence/paragraph boundaries from the reviewed native scanner.
+    for number,text in pages:
+        text=re.sub(r'(?<=\w)[-‐‑]\s*\n\s*(?=\w)','',text)
+        for paragraph in re.split(r'\n\s*\n',text):
+            lines=[line.strip() for line in paragraph.splitlines() if line.strip()]
+            heading=lines[0] if len(lines)>1 and len(lines[0])<100 and not re.search(r'[.!?]$',lines[0]) else ''
+            flat=' '.join(paragraph.split())
+            for sentence in re.split(r'(?<=[.!?])\s+(?=[A-Z0-9])',flat):
+                for keyword in keywords:
+                    pattern=r'\b'+re.escape(keyword)+(r'\b' if keyword.upper() in ('PFS','DFS','BFS','FID') else '')
+                    if re.search(pattern,sentence,re.I):hits.append(dict(source_sha256=sha,physical_page=number,keyword=keyword,sentence=sentence,paragraph_heading=heading,paragraph_text=flat))
+    return hits,problems

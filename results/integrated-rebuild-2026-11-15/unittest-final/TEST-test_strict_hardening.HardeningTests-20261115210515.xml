@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_strict_hardening.HardeningTests-20261115210515" tests="7" file="test_strict_hardening.py" time="4.159" timestamp="2026-11-15T21:11:56" failures="0" errors="0" skipped="0">
+	<testcase classname="test_strict_hardening.HardeningTests" name="test_alias_changed_propagates_and_no_original_selected" time="0.652" timestamp="2026-11-15T21:11:53" file="tests\test_strict_hardening.py" line="10"/>
+	<testcase classname="test_strict_hardening.HardeningTests" name="test_changed_propagates_to_official_derivative" time="0.638" timestamp="2026-11-15T21:11:53" file="tests\test_strict_hardening.py" line="38"/>
+	<testcase classname="test_strict_hardening.HardeningTests" name="test_conflicting_sha_cannot_fallback" time="0.416" timestamp="2026-11-15T21:11:54" file="tests\test_strict_hardening.py" line="45"/>
+	<testcase classname="test_strict_hardening.HardeningTests" name="test_landing_disabled_without_fetch_or_fallback" time="0.449" timestamp="2026-11-15T21:11:54" file="tests\test_strict_hardening.py" line="66"/>
+	<testcase classname="test_strict_hardening.HardeningTests" name="test_official_transcription_without_explicit_parent_rejected" time="1.068" timestamp="2026-11-15T21:11:55" file="tests\test_strict_hardening.py" line="31"/>
+	<testcase classname="test_strict_hardening.HardeningTests" name="test_unbound_commercial_cache_only" time="0.445" timestamp="2026-11-15T21:11:56" file="tests\test_strict_hardening.py" line="17"/>
+	<testcase classname="test_strict_hardening.HardeningTests" name="test_wamex_mismatch_then_failure_cannot_fallback" time="0.491" timestamp="2026-11-15T21:11:56" file="tests\test_strict_hardening.py" line="53"/>
+</testsuite>

@@ -107,7 +107,7 @@ def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
             source=by_key.get(o['source_key']);reason=identity_error
             if o['source_key'] in changed or source and source['sha256']!=o['source_sha256']:reason='SOURCE_SHA_CHANGED'
             elif not source:reason=reason or 'SOURCE_NOT_ACQUIRED'
-            if not reason and o.get('extraction_method')=='EXPERIMENT_REVIEW_MIGRATED_REVERIFIED_AT_BUILD':
+            if not reason and o.get('extraction_method','').endswith('MIGRATED_REVERIFIED_AT_BUILD'):
                 try:
                     match=re.search(r'ocr_clip=(\[[^\]]+\])',o['locator']);clip=json.loads(match.group(1)) if match else None
                     artifact=page(source,o,clip)
@@ -115,6 +115,25 @@ def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
                 except Exception as exc:reason=str(exc)
             if reason:issue(db,eid,o['source_sha256'],reason,canonical(o))
             else:accepted.append(o)
+        attributes=[]
+        for a in p.get('attributes',[]):
+            source=by_key.get(a['source_key']);reason=identity_error
+            if a['source_key'] in changed or source and source['sha256']!=a['source_sha256']:reason='SOURCE_SHA_CHANGED'
+            elif not source:reason=reason or 'SOURCE_NOT_ACQUIRED'
+            if not reason:
+                try:
+                    if source['kind']=='pdf':
+                        artifact=page(source,a)
+                        a.update(page_extraction_key=artifact['key'],page_extraction_sha256=artifact['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
+                        for context in a.get('context_evidence',[]):
+                            proof=page(source,context)
+                            context.update(page_extraction_key=proof['key'],page_extraction_sha256=proof['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
+                    from .evidence import validate_project_attribute
+                    validate_project_attribute(root,source,a,snapshots)
+                except Exception as exc:reason=str(exc)
+            if reason:issue(db,eid,a['source_sha256'],reason,canonical(a))
+            else:attributes.append(a)
+        p['attributes']=attributes
         if identity_error:
             issue(db,eid,None,identity_error,canonical(dict(project=p['id'],identity_source=p['identity_source'])))
         else:p['observations']=accepted;projects.append(p)
@@ -133,6 +152,10 @@ def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
 
 def execute(args):
     root=Path(args.root).resolve()
+    if args.module=='export-summary':
+        from .census import export_summary
+        if not args.database or not args.out:raise ValueError('export-summary requires --database and --out')
+        return export_summary(root,args.database,args.out)
     config=research_configuration(root,args.snapshot_lock)
     strict=args.module=='all' and args.refresh and not args.snapshot_lock and config.get('evidence_resolution',{}).get('fetch_policy')=='strict'
     if not strict and config.get('research_evidence_cutoff'):args.as_of=min(args.as_of,config['research_evidence_cutoff'])
@@ -303,6 +326,7 @@ def execute(args):
         report=root/'results'/('automated-build-'+args.as_of);report.mkdir(parents=True,exist_ok=True)
         fields=sorted({k for row in acquisition for k in row})
         write_csv(report/'acquisition_report.csv',sorted(acquisition,key=lambda r:(r['host'],r['key'])),fields)
+        write_csv(out/'acquisition_report.csv',acquisition,fields)
         from .acquisition import STRICT_HOSTS
         from collections import Counter
         groups={}
@@ -323,6 +347,7 @@ def execute(args):
     if strict:claims_data=strict_claims(db,root,snapshots,claims_data,acquisition,out/'verified-pages',args.tessdata)
     active_claim_ids=claim_evidence_ids(claims_data)
     configuration={'research':config,'sources':registry,'claims_sha256':claims_sha}
+    if strict:configuration['verified_claim_ids']=sorted(active_claim_ids)
     for name in ('identity_links.json','study_cases.json'):
         if (root/'data'/name).exists():configuration[name+'_sha256']=filehash(root/'data'/name)
     configuration['eligibility_policy_sha256']=filehash(root/'config/eligibility_compatibility.json')
@@ -626,6 +651,10 @@ def execute(args):
         summary['environment']={'python':platform.python_version(),'shapely':shapely.__version__,
                                 'pyproj':pyproj.__version__,'PROJ':pyproj.proj_version_str,
                                 'pypdf':pypdf.__version__}
+        if args.module=='all' and (root/'config/summary_rules.json').is_file():
+            from .census import export_summary
+            db.execute("UPDATE runs SET status='COMPLETED' WHERE run_id=?",(run_id,));db.commit()
+            summary['project_summary']=export_summary(root,Path(db.execute('PRAGMA database_list').fetchone()[2]),out/'project-summary')
         if args.compare_to:
             from .analysis import compare_runs
             summary['comparison']=compare_runs(args.compare_to,out)
@@ -662,9 +691,10 @@ def execute(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate'])
+    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate','export-summary'])
     parser.add_argument('--root',default='.')
     parser.add_argument('--work')
+    parser.add_argument('--database');parser.add_argument('--out')
     parser.add_argument('--as-of',default=datetime.now(timezone.utc).date().isoformat())
     parser.add_argument('--project',help='Stable native project registry ID')
     parser.add_argument('--refresh',action='store_true')

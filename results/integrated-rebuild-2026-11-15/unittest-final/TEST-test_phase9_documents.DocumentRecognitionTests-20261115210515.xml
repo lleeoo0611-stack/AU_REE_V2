@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_phase9_documents.DocumentRecognitionTests-20261115210515" tests="15" file="test_phase9_documents.py" time="2.903" timestamp="2026-11-15T21:11:43" failures="0" errors="0" skipped="0">
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_changed_structured_number_with_unchanged_row_is_rejected" time="0.001" timestamp="2026-11-15T21:11:40" file="tests\test_phase9_documents.py" line="111"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_company_cash_not_attributed_by_adjacent_project" time="0.001" timestamp="2026-11-15T21:11:40" file="tests\test_phase9_documents.py" line="77"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_density_column_never_promoted_to_treo_grade" time="0.000" timestamp="2026-11-15T21:11:40" file="tests\test_phase9_documents.py" line="56"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_extraction_version_must_be_in_historical_lock" time="0.000" timestamp="2026-11-15T21:11:40" file="tests\test_phase9_documents.py" line="118"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_forward_looking_study_is_not_completed" time="0.001" timestamp="2026-11-15T21:11:40" file="tests\test_phase9_documents.py" line="81"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_fresh_parse_of_new_primary_documents_reproduces_frozen_candidates" time="2.765" timestamp="2026-11-15T21:11:43" file="tests\test_phase9_documents.py" line="100"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_incremental_capture_reuses_verified_original_and_parser_contract" time="0.114" timestamp="2026-11-15T21:11:43" file="tests\test_phase9_documents.py" line="124"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_missing_and_non_resource_totals_remain_candidates" time="0.001" timestamp="2026-11-15T21:11:43" file="tests\test_phase9_documents.py" line="90"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_new_leach_tables_have_separate_acids_samples_and_endpoints" time="0.001" timestamp="2026-11-15T21:11:43" file="tests\test_phase9_documents.py" line="61"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_no_manual_claims_for_newly_acquired_documents" time="0.001" timestamp="2026-11-15T21:11:43" file="tests\test_phase9_documents.py" line="94"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_qualitative_full_recovery_never_becomes_100_percent" time="0.000" timestamp="2026-11-15T21:11:43" file="tests\test_phase9_documents.py" line="72"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_release_date_not_cited_resource_or_quarter_end_date" time="0.000" timestamp="2026-11-15T21:11:43" file="tests\test_phase9_documents.py" line="85"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_reserve_and_resource_never_added" time="0.001" timestamp="2026-11-15T21:11:43" file="tests\test_phase9_documents.py" line="45"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_source_tampering_is_rejected" time="0.016" timestamp="2026-11-15T21:11:43" file="tests\test_phase9_documents.py" line="107"/>
+	<testcase classname="test_phase9_documents.DocumentRecognitionTests" name="test_unconfigured_resource_table_columns_and_oxide_definitions" time="0.001" timestamp="2026-11-15T21:11:43" file="tests\test_phase9_documents.py" line="35"/>
+</testsuite>

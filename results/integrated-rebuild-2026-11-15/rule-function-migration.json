@@ -1,0 +1,218 @@
+[
+  {
+    "source_module": "project_summary",
+    "function": "resource_bundle",
+    "target_function": "summary_resource_bundle",
+    "source_start": 19,
+    "source_end": 62,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "project_summary",
+    "function": "complete_sum",
+    "target_function": "summary_complete_sum",
+    "source_start": 65,
+    "source_end": 66,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "project_summary",
+    "function": "reported_magnet_group",
+    "target_function": "summary_reported_magnet_group",
+    "source_start": 69,
+    "source_end": 80,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "numeric_presentation",
+    "function": "token",
+    "target_function": "summary_decimal_token",
+    "source_start": 17,
+    "source_end": 20,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "numeric_presentation",
+    "function": "text",
+    "target_function": "summary_decimal_text",
+    "source_start": 22,
+    "source_end": 23,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "stage_rules",
+    "function": "classify_stage",
+    "target_function": "summary_classify_stage",
+    "source_start": 86,
+    "source_end": 161,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "stage_rules",
+    "function": "round2_stage_proposal",
+    "target_function": "summary_stage_case",
+    "source_start": 190,
+    "source_end": 218,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "template_mapping",
+    "function": "template_mapping_fills",
+    "target_function": "summary_template_fills",
+    "source_start": 33,
+    "source_end": 53,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "scoped_oxide_exceptions",
+    "function": "_column",
+    "target_function": "summary_native_column",
+    "source_start": 51,
+    "source_end": 74,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round4_tenements",
+    "function": "identifier_key",
+    "target_function": "summary_identifier_key",
+    "source_start": 51,
+    "source_end": 56,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round4_tenements",
+    "function": "centroid",
+    "target_function": "summary_tenement_centroid",
+    "source_start": 17,
+    "source_end": 48,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round4_tenements",
+    "function": "read_shapefile_zip",
+    "target_function": "summary_read_shapefile_zip",
+    "source_start": 59,
+    "source_end": 101,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round3_locations",
+    "function": "assess_controls",
+    "target_function": "summary_assess_controls",
+    "source_start": 10,
+    "source_end": 30,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round5_ocr",
+    "function": "parse_tsv",
+    "target_function": "summary_parse_tsv",
+    "source_start": 50,
+    "source_end": 80,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round5_ocr",
+    "function": "extract_hits",
+    "target_function": "summary_ocr_hits",
+    "source_start": 83,
+    "source_end": 121,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round5_stage",
+    "function": "priority",
+    "target_function": "summary_hit_priority",
+    "source_start": 16,
+    "source_end": 20,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round5_stage",
+    "function": "normalize",
+    "target_function": "summary_alias_normalize",
+    "source_start": 23,
+    "source_end": 24,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round5_stage",
+    "function": "alias_index",
+    "target_function": "summary_alias_index",
+    "source_start": 70,
+    "source_end": 75,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round4_stage",
+    "function": "source_assessment",
+    "target_function": "summary_source_assessment",
+    "source_start": 38,
+    "source_end": 47,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round4_stage",
+    "function": "aliases",
+    "target_function": "summary_stage_aliases",
+    "source_start": 29,
+    "source_end": 35,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round4_stage",
+    "function": "assess_hit",
+    "target_function": "summary_assess_hit",
+    "source_start": 50,
+    "source_end": 80,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round5_stage",
+    "function": "reassess_hit",
+    "target_function": "summary_review_hit",
+    "source_start": 78,
+    "source_end": 109,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round3_annual",
+    "function": "select_first_full",
+    "target_function": "summary_select_first_full",
+    "source_start": 11,
+    "source_end": 16,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round2_annual_production",
+    "function": "validate_candidate",
+    "target_function": "summary_annual_candidate",
+    "source_start": 27,
+    "source_end": 56,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "round2_annual_production",
+    "function": "_verify_cell",
+    "target_function": "summary_verify_annual_cell",
+    "source_start": 73,
+    "source_end": 95,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "model_annual_derivation",
+    "function": "validate_model_annual_derivation",
+    "target_function": "summary_model_annual",
+    "source_start": 13,
+    "source_end": 87,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  },
+  {
+    "source_module": "asx_validation",
+    "function": "annual_product_derivation",
+    "target_function": "summary_product_annual",
+    "source_start": 46,
+    "source_end": 79,
+    "adaptation": "CANONICAL_DECLARATIONS_AND_CONSOLIDATED_RULE_PARAMETERS"
+  }
+]

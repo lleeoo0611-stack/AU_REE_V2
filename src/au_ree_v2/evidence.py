@@ -9,6 +9,64 @@ from .official import ingest_official_table, ingest_prospectus
 from .national import ingest_legacy_e1
 from .screen_index import ingest as ingest_screen_index
 
+# Individual oxides keep their own vocabulary; grouped totals are not aliases.
+REPORTED_OXIDE_VARIABLES = {
+    'reported_la2o3_ppm':'La2O3', 'reported_ceo2_ppm':'CeO2',
+    'reported_sm2o3_ppm':'Sm2O3', 'reported_eu2o3_ppm':'Eu2O3',
+    'reported_gd2o3_ppm':'Gd2O3', 'reported_ho2o3_ppm':'Ho2O3',
+    'reported_er2o3_ppm':'Er2O3', 'reported_tm2o3_ppm':'Tm2O3',
+    'reported_yb2o3_ppm':'Yb2O3', 'reported_lu2o3_ppm':'Lu2O3',
+    'reported_y2o3_ppm':'Y2O3',
+}
+
+
+def validate_project_attribute(root, source, attribute, snapshots, cache=None):
+    """The same immutable page checks as observations; layer features stay native."""
+    a=attribute
+    allowed={'開發商','未上市公司','ASX代碼','專案名稱','礦床型態','開發階段','產品/產出'}
+    if a.get('column') not in allowed or not isinstance(a.get('value'),str) or not a['value'].strip():
+        raise ValueError('ATTRIBUTE_COLUMN_OR_TEXT_INVALID')
+    if not a.get('locator') or not a.get('effective_date') or not a.get('extraction_method'):
+        raise ValueError('ATTRIBUTE_BINDING_REQUIRED')
+    if source['sha256']!=a['source_sha256'] or filehash(Path(root)/source['path'])!=source['sha256']:
+        raise ValueError('SOURCE_SHA_CHANGED')
+    if source['kind'].startswith('government_'):
+        if a.get('layer_sha256')!=source['sha256'] or a.get('feature_id') is None:
+            raise ValueError('ATTRIBUTE_LAYER_AND_FEATURE_REQUIRED')
+        data=json.loads((Path(root)/source['path']).read_text(encoding='utf8'))
+        field=a.get('feature_id_field','OBJECTID')
+        hits=[f for f in data.get('features',[]) if str(f.get('id',
+            (f.get('attributes') or f.get('properties') or {}).get(field)))==str(a['feature_id'])]
+        if len(hits)!=1:raise ValueError('ATTRIBUTE_UNIQUE_FEATURE_REQUIRED')
+        values=hits[0].get('attributes') or hits[0].get('properties') or {}
+        if not a.get('source_field') or values.get(a['source_field'])!=a['value']:
+            raise ValueError('ATTRIBUTE_NATIVE_FIELD_MISMATCH')
+    else:
+        if source['kind']!='pdf' or not isinstance(a.get('pdf_page'),int) or len(a.get('page_markers',[]))<2:
+            raise ValueError('ATTRIBUTE_PAGE_AND_TWO_MARKERS_REQUIRED')
+        validate_pages(root,source,a,snapshots,cache)
+
+
+def ingest_project_attributes(db, root, snapshots, cutoff, project, eid, cache):
+    """Text occupies the existing evidence store and never a numeric criterion."""
+    from .selection import date_end
+    by_key={s['key']:s for s in snapshots}
+    for a in project.get('attributes',[]):
+        source=by_key.get(a['source_key']);reasons=[]
+        try:
+            if not source:raise ValueError('SOURCE_NOT_ACQUIRED')
+            if date_end(a['effective_date'])>cutoff:raise ValueError('SOURCE_AFTER_CUTOFF')
+            validate_project_attribute(root,source,a,snapshots,cache)
+        except (ValueError,KeyError,IndexError,OSError,TypeError) as exc:
+            reasons.append(str(exc) or type(exc).__name__)
+        obsid=digest([eid,a['source_sha256'],a])
+        if source:
+            db.execute('INSERT OR IGNORE INTO observations VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                (obsid,eid,'project_attribute',None,None,'TEXT_PROPERTY',a.get('scope','DATED_PROJECT_PROPERTY'),
+                 a.get('review_id') or a.get('attribute_id') or obsid,'NOT_APPLICABLE',a['effective_date'],source['sha256'],
+                 a['locator'],'REVIEW' if reasons else 'AUTO_VALIDATED',canonical(reasons),canonical(a),'normalization-v1'))
+        for reason in reasons:issue(db,eid,a['source_sha256'],reason,canonical(a))
+
 
 def html_text(root, source):
     """Decode an advertised static article payload without executing JavaScript."""
@@ -134,6 +192,7 @@ def claim_evidence_ids(claims):
     for p in claims['projects']:
         eid='AU-'+digest([p.get('entity_namespace','project_registry_v1'),str(p['id'])])[:20]
         for o in p['observations']:active.add(digest([eid,o['source_sha256'],o]))
+        for a in p.get('attributes',[]):active.add(digest([eid,a['source_sha256'],a]))
     for event in claims.get('events',[]):
         eid='AU-'+digest([event['project_namespace'],str(event['project_native_id'])])[:20]
         raw=dict(event,variable='commercial_event',domain=event.get('domain','Commercial'),value=None)
@@ -459,6 +518,10 @@ def normalize(observation):
     if numeric and o['variable'] in ('ore_mt','grade','contained_treo_kt') and value<=0:reasons.append('NONPOSITIVE_RESOURCE_VALUE')
     if o['variable'].startswith('reported_') and o['variable'].endswith('_ppm') and (o.get('unit')!='ppm' or (numeric and value>1000000)):
         reasons.append('INVALID_OXIDE_PPM_COMPONENT')
+    expected=REPORTED_OXIDE_VARIABLES.get(o['variable'])
+    if expected and o.get('basis')!=expected:
+        if not (expected=='CeO2' and o.get('basis')=='Ce2O3' and o.get('original_species')=='Ce2O3'):
+            reasons.append('INDIVIDUAL_OXIDE_BASIS_MISMATCH')
     if o.get('basis') != 'TREO' and o['variable'] in ('ore_mt', 'grade', 'contained_treo_kt'):
         reasons.append('NONCOMPARABLE_BASIS')
     if o['variable'] == 'grade':
@@ -536,6 +599,7 @@ def ingest_claims(db, root, snapshots, cutoff, project=None, conflict_selection=
         db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
                    (eid, source['sha256'], p['name'], p['state'], p.get('longitude'), p.get('latitude'),
                     p.get('deposit_type'), None, canonical(p)))
+        ingest_project_attributes(db,root,snapshots,cutoff,p,eid,page_text)
         coordinate_source = by_key.get(p.get('coordinate_source'))
         if coordinate_source:
             dep = db.execute('''SELECT r.* FROM records r JOIN entities e USING(entity_id)

@@ -1132,3 +1132,367 @@ def export_remediation(selection,definition,rows,out,resource_ids,root,snapshots
     decisions=dict(definition['numeric_model'],burden_ordinal_adopted=False,missing_never_zero=True)
     (out/'technical_analysis_decisions.json').write_text(canonical(decisions)+'\n',encoding='utf8')
     return dict(coverage_projects=len(coverage),resource_projects=sum(r['resource_defined'] for r in coverage),old_hits_dispositioned=len(audit),intensity_records=len(inputs),product_constraint_cases=len(products),functional_checks=len(functional))
+
+
+# Integrated summary rules: reviewed functions, canonical evidence only.
+from decimal import Decimal, InvalidOperation
+
+
+def summary_select_first_full(stages):
+    for stage in stages:
+        if stage.get('annual_treo_t') is None:continue
+        if stage.get('full_design_throughput') is True and stage.get('ramp_up') is False:return stage
+        if stage.get('full_design_throughput') is None or (stage.get('full_design_throughput') is True and stage.get('ramp_up') is None):return None
+    return None
+
+def summary_annual_candidate(item, rules):
+    """Validate an explicitly transcribed annual oxide value, never calculate one."""
+    if item.get('source_stated') is not True or item.get('derivation'):
+        raise ValueError('ANNUAL_SOURCE_STATED_REQUIRED')
+    if item.get('column') not in rules['annual_columns']:
+        raise ValueError('ANNUAL_COLUMN_REQUIRED')
+    if item.get('product_basis') not in {'TOTAL_RARE_EARTH_OXIDE', 'MIXED_RARE_EARTH_OXIDE',
+            'NDPR_OXIDE', 'HREO_8_ELEMENT', 'REO_EQUIVALENT_IN_MIXED_CARBONATE', 'REO_EQUIVALENT_IN_CONCENTRATE'}:
+        raise ValueError('ANNUAL_OXIDE_EQUIVALENT_REQUIRED')
+    if item['column'] == rules['annual_columns'][2] and (item.get('product_basis') != 'HREO_8_ELEMENT'
+            or set(item.get('hre_elements', [])) != set(rules["heavy"])):
+        raise ValueError('ANNUAL_HREO_8_ELEMENT_DEFINITION_REQUIRED')
+    if item['column'] == rules['annual_columns'][1] and item.get('product_basis') != 'NDPR_OXIDE':
+        raise ValueError('ANNUAL_NDPR_OXIDE_REQUIRED')
+    if not item.get('annual_basis') or not item.get('scope_relation'):
+        raise ValueError('ANNUAL_BASIS_AND_SCOPE_REQUIRED')
+    units = {'tpa': Decimal(1), 't/a': Decimal(1), 't per annum': Decimal(1), 'ktpa': Decimal(1000)}
+    if item.get('original_unit') not in units:
+        raise ValueError('ANNUAL_EXPLICIT_UNIT_REQUIRED')
+    token = str(item.get('original_token', '')).replace(',', '')
+    if not re.fullmatch(r'\d+(?:\.\d+)?', token):
+        raise ValueError('ANNUAL_NUMERIC_TOKEN_REQUIRED')
+    try:
+        value = Decimal(token) * units[item['original_unit']]
+        expected = Decimal(str(item.get('value')))
+    except InvalidOperation:
+        raise ValueError('ANNUAL_NUMERIC_VALUE_REQUIRED') from None
+    if not expected.is_finite() or expected <= 0 or expected != value:
+        raise ValueError('ANNUAL_TOKEN_VALUE_MISMATCH')
+    return format(value, 'f').rstrip('0').rstrip('.') if '.' in format(value, 'f') else format(value, 'f')
+
+def summary_verify_annual_cell(item, source, rules):
+    import pymupdf
+    value = summary_annual_candidate(item,rules)
+    with pymupdf.open(source) as doc:
+        page = doc[item['page'] - 1]
+        box = pymupdf.Rect(item['bbox'])
+        row = pymupdf.Rect(item['row_bbox'])
+        if box.is_empty or not row.contains(box) or not page.rect.contains(row):
+            raise ValueError('ANNUAL_BBOX_OUTSIDE_ROW')
+        if summary_annual_norm(page.get_textbox(box)) != summary_annual_norm(item['original_token']):
+            raise ValueError('ANNUAL_SOURCE_TOKEN_MISMATCH')
+        actual = summary_annual_norm(page.get_textbox(row))
+        if actual != summary_annual_norm(item['row_text']):
+            raise ValueError('ANNUAL_SOURCE_ROW_MISMATCH')
+        if not re.search(r'\btpa\b|per annum', actual):
+            raise ValueError('ANNUAL_SOURCE_UNIT_MISSING')
+        if not any(s in actual for s in ('mixed rare earth oxide', 'reo contained in mixed carbonate')):
+            raise ValueError('ANNUAL_SOURCE_OXIDE_LABEL_MISSING')
+        for proof in item.get('context_proofs', []):
+            pg = doc[proof['page']-1]
+            if summary_annual_norm(pg.get_textbox(pymupdf.Rect(proof['bbox']))) != summary_annual_norm(proof['text']):
+                raise ValueError('ANNUAL_CONTEXT_PROOF_MISMATCH')
+    return value
+
+def summary_model_annual(doc,review,study,spec,result,evidence,rules):
+    from .technical_tables import number_token
+    METHOD=rules['model_annual_method']
+    PROFILE=rules['model_annual_profile']
+    import pymupdf
+    def fail(code):raise ValueError('REVIEW_MODEL_ANNUAL_'+code)
+    def number(v):return not isinstance(v,bool) and isinstance(v,(int,float)) and math.isfinite(v)
+    if (spec.get('method')!=METHOD or spec.get('profile')!=PROFILE or study.get('selected_scenario')!='Base Case'
+        or study.get('endpoint')!='MREC' or study.get('scale')!='SCOPING_MODEL' or
+        spec.get('assurance')!='MODEL_ASSUMPTION_DERIVED_NOT_DIRECT_REPORTED_OUTPUT'):
+        fail('PROFILE_PRODUCT_SCENARIO_REQUIRED')
+    contract={k:review[k] for k in ('source_sha256','statement_id','scope','effective_date')}
+    if any(spec.get(k)!=v for k,v in contract.items()):fail('SOURCE_SCOPE_DATE_MISMATCH')
+    inputs=spec.get('inputs',[])
+    if len(inputs)!=3 or {i.get('name') for i in inputs}!={'annual_treo_t','nd_percent_of_treo','pr_percent_of_treo'}:fail('THREE_INPUTS_REQUIRED')
+    items={i['name']:i for i in inputs}
+    def rect(page,raw):
+        if not isinstance(raw,list) or len(raw)!=4 or not all(number(v) for v in raw):fail('RECT_REQUIRED')
+        box=pymupdf.Rect(raw)
+        if box.is_empty or not page.rect.contains(box):fail('RECT_OUTSIDE_PAGE')
+        return box
+    def proof(name):
+        p=spec.get(name,{})
+        pn=p.get('page')
+        if isinstance(pn,bool) or not isinstance(pn,int) or not 1<=pn<=len(doc):fail('PROOF_PAGE_REQUIRED')
+        if p.get('evidence',{}).get('page')!=pn:fail('EVIDENCE_PAGE_MISMATCH')
+        evidence(p['evidence']);actual=summary_annual_norm(summary_annual_region(doc[pn-1],rect(doc[pn-1],p.get('bbox'))))
+        if actual!=summary_annual_norm(p.get('text','')):fail('PROOF_TEXT_MISMATCH')
+        return pn,actual
+    annual_page,annual_text=proof('annual_model_proof')
+    if not all(t in annual_text for t in ('the base case reflects the metallurgical recovery and production assumptions adopted in the scoping study financial model','base case annual production represents the life-of-mine annual average and includes ramp-up and scheduling effects')):fail('LOM_MODEL_PROOF_REQUIRED')
+    comp_page,comp_text=proof('composition_model_proof')
+    if not all(t in comp_text for t in ('the distribution of the four principal magnet rare earth oxides and yttrium in the base case mrec is','presented in table 5.3.')):fail('COMPOSITION_MODEL_PROOF_REQUIRED')
+    origin_page,origin_text=proof('composition_origin_proof')
+    if origin_page!=comp_page or not origin_text.startswith('the base case mrec composition is based on the high-grade mrec produced by'):fail('COMPOSITION_ORIGIN_REQUIRED')
+    if annual_page!=study.get('annual_basis_evidence',{}).get('page') or comp_page!=annual_page+1:fail('MODEL_TABLE_SEQUENCE_MISMATCH')
+    tables=[];values={};widths={}
+    for name,item in items.items():
+        if any(item.get(k)!=v for k,v in contract.items()):fail('INPUT_SOURCE_SCOPE_DATE_MISMATCH')
+        v=item.get('value');token=item.get('original_token');parsed=number_token(token)
+        if not number(v) or v<=0 or not parsed or parsed.get('value')!=v:fail('TOKEN_VALUE_MISMATCH')
+        e=item.get('evidence',{});evidence(e)
+        b=item.get('cell_binding',{})
+        if b.get('mode')!='native_cell' or b.get('scope')!=review['scope'] or b.get('page')!=e.get('page'):fail('INPUT_NATIVE_BINDING_REQUIRED')
+        width=item.get('rounding_half_width');t=str(token).replace(',','');minwidth=.5*10**(-len(t.split('.')[1]) if '.' in t else 0)
+        if not number(width) or width<minwidth or width>=v:fail('ROUNDING_INTERVAL_REQUIRED')
+        if name=='annual_treo_t':
+            if item.get('unit')!='tpa' or b.get('page')!=annual_page or b.get('column_label')!='Base Case' or b.get('row_label')!='Average annual contained TREO in MREC':fail('ANNUAL_PRODUCT_SCENARIO_MISMATCH')
+            if study.get('parameters',{}).get('average_annual_treo_product_t')!=v or study.get('parameter_bindings',{}).get('average_annual_treo_product_t')!=b:fail('SELECTED_ANNUAL_TREO_MISMATCH')
+            summary_annual_cell(doc,b,'average_annual_treo_product_t',token,'tpa',review['scope'],'Base Case')
+        else:
+            oxide='Nd2O3' if name=='nd_percent_of_treo' else 'Pr6O11'
+            if item.get('basis')!=oxide or item.get('unit')!='%TREO' or v>100 or b.get('page')!=comp_page:fail('OXIDE_SHARE_BASIS_MISMATCH')
+            page=doc[comp_page-1];table=rect(page,b.get('table_bbox'));row=rect(page,b.get('row_bbox'));column=rect(page,b.get('column_bbox'))
+            cell=row&column
+            if not table.contains(row) or not table.contains(column) or cell.is_empty or row.height>=table.height or column.width>=table.width:fail('SHARE_REGION_MISMATCH')
+            def anchor(key,label,container):
+                box=rect(page,b.get(key));actual=summary_annual_norm(summary_annual_region(page,box))
+                if not container.contains(box) or actual.translate(str.maketrans('₀₁₂₃₄₅₆₇₈₉','0123456789'))!=summary_annual_norm(label).translate(str.maketrans('₀₁₂₃₄₅₆₇₈₉','0123456789')):fail('SHARE_ANCHOR_MISMATCH')
+                return box
+            anchor('table_label_bbox','Table 5.3 | Key Rare Earth Distribution in MREC',table)
+            head=anchor('column_label_bbox','% of contained TREO',column)
+            label='Neodymium (Nd₂O₃)' if oxide=='Nd2O3' else 'Praseodymium (Pr₆O₁₁)'
+            anchor('row_label_bbox',label,row)
+            if head.y1>row.y0:fail('SHARE_ROW_OUTSIDE_HEADER')
+            actual=summary_annual_norm(summary_annual_region(page,cell));p=number_token(actual)
+            if not re.fullmatch(r'\d+(?:\.\d+)?',actual) or not p or p['value']!=v:fail('SHARE_CELL_TOKEN_MISMATCH')
+            tables.append((tuple(b['table_bbox']),tuple(b['column_bbox'])))
+        values[name]=v;widths[name]=width
+    if len(set(tables))!=1:fail('SHARE_TABLE_MISMATCH')
+    share=values['nd_percent_of_treo']+values['pr_percent_of_treo']
+    if share>100:fail('SHARE_SUM_EXCEEDS_100')
+    expected=values['annual_treo_t']*share/100
+    if not number(result) or not math.isclose(expected,result,rel_tol=1e-12,abs_tol=1e-9):fail('RESULT_MISMATCH')
+    half=widths['nd_percent_of_treo']+widths['pr_percent_of_treo']
+    interval=[(values['annual_treo_t']-widths['annual_treo_t'])*(share-half)/100,(values['annual_treo_t']+widths['annual_treo_t'])*(share+half)/100]
+    if len(spec.get('rounding_interval_tpa',[]))!=2 or any(not number(a) or not math.isclose(a,b,rel_tol=1e-12) for a,b in zip(spec['rounding_interval_tpa'],interval)):fail('RESULT_ROUNDING_INTERVAL_MISMATCH')
+    return expected
+
+def summary_product_annual(derivation,value,annual_page,evidence):
+    """Only same-table, explicitly annual, oxide-based product conversions."""
+    from .technical_tables import number_token
+    methods={'ANNUAL_PRODUCT_MASS_X_TREO_FRACTION':{'annual_product_t','treo_percent'},
+             'ANNUAL_PRODUCT_MASS_X_TREO_FRACTION_X_NDPR_SHARE':{'annual_product_t','treo_percent','nd_percent_of_treo','pr_percent_of_treo'}}
+    method=derivation.get('method');inputs=derivation.get('inputs',[])
+    if method not in methods or {i['name'] for i in inputs}!=methods[method] or len(inputs)!=len(methods[method]):
+        raise ValueError('REVIEW_ANNUAL_DERIVATION_INPUT_CONTRACT')
+    values={};table_rows=set()
+    for item in inputs:
+        if item['evidence']['page']!=annual_page:raise ValueError('REVIEW_ANNUAL_DERIVATION_REQUIRES_SAME_TABLE')
+        row=item['evidence'].get('table_row');render=item['evidence'].get('render_sha256','')
+        if not row or not re.fullmatch('[0-9a-f]{64}',render):raise ValueError('REVIEW_ANNUAL_DERIVATION_RENDERED_ROW_REQUIRED')
+        table_rows.add((summary_annual_norm(row),render))
+        content=evidence(item['evidence']);parsed=number_token(item['original_token'])
+        if summary_annual_norm(row) not in content:raise ValueError('REVIEW_ANNUAL_DERIVATION_ROW_NOT_IN_SOURCE')
+        v=item['value'];name=item['name']
+        if (isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or v<=0 or not parsed or
+            parsed['value']!=v or not re.search(r'(?<![\d.])'+re.escape(summary_annual_norm(item['original_token']))+r'(?![\d.])',content)):
+            raise ValueError('REVIEW_ANNUAL_DERIVATION_TOKEN_MISMATCH')
+        expected='t/year' if name=='annual_product_t' else '%' if name=='treo_percent' else '%TREO'
+        if item['unit']!=expected or name!='annual_product_t' and v>100:raise ValueError('REVIEW_ANNUAL_DERIVATION_UNIT_OR_RANGE')
+        if not re.search(r'\bannual\b',content) or not re.search(r'\btreo\b',content):raise ValueError('REVIEW_ANNUAL_DERIVATION_BASIS_MISSING')
+        if name.startswith(('nd_','pr_')) and not all(summary_annual_norm(m) in content for m in ['As a % of TREO','Nd2O3','Pr6O11']):
+            raise ValueError('REVIEW_ANNUAL_DERIVATION_NDPR_OXIDE_BASIS_MISSING')
+        values[name]=v
+    if len(table_rows)!=1:raise ValueError('REVIEW_ANNUAL_DERIVATION_ROW_CONFLICT')
+    result=values['annual_product_t']*values['treo_percent']/100
+    if method.endswith('_X_NDPR_SHARE'):
+        share=values['nd_percent_of_treo']+values['pr_percent_of_treo']
+        if share>100:raise ValueError('REVIEW_ANNUAL_DERIVATION_NDPR_SHARE_OUT_OF_RANGE')
+        result*=share/100
+    if not math.isclose(result,value,rel_tol=1e-12,abs_tol=1e-9):raise ValueError('REVIEW_ANNUAL_DERIVATION_RESULT_MISMATCH')
+    return result
+
+def summary_annual_norm(value):
+    return ' '.join(str(value).replace('\xa0',' ').split()).casefold()
+
+
+def summary_annual_region(page, rect):
+    return ' '.join(w[4] for w in page.get_text('words',sort=True)
+        if rect.x0<=(w[0]+w[2])/2<=rect.x1 and rect.y0<=(w[1]+w[3])/2<=rect.y1)
+
+
+def summary_annual_cell(doc,binding,field,token,unit,scope,selected_scenario=None,selected_sections=None):
+    """Annual-only native branches of the reviewed cell validator, with no image fallback."""
+    import pymupdf
+    from .technical_tables import number_token
+    def fail(code):raise ValueError('ANNUAL_CELL_'+code)
+    if not binding or binding.get('field')!=field or binding.get('scope')!=scope:fail('SCOPE_OR_FIELD')
+    pn=binding.get('page')
+    if type(pn) is not int or not 1<=pn<=len(doc):fail('PAGE')
+    page=doc[pn-1];mode=binding.get('mode')
+    def rect(key):
+        raw=binding.get(key)
+        if not isinstance(raw,list) or len(raw)!=4 or any(type(v) not in (int,float) or not math.isfinite(v) for v in raw):fail('RECT')
+        box=pymupdf.Rect(raw)
+        if box.is_empty or not (page.rect*page.derotation_matrix).contains(box):fail('RECT_OUTSIDE_PAGE')
+        return box
+    if mode == 'native_statement':
+        statement = summary_annual_norm(page.get_textbox(rect('statement_bbox')))
+        if statement != summary_annual_norm(binding.get('statement', '')):
+            fail('STATEMENT_MISMATCH')
+        prefix, suffix = summary_annual_norm(binding.get('before', '')), summary_annual_norm(binding.get('after', ''))
+        match = re.fullmatch(re.escape(prefix) + r'\s*([\d,]+(?:\.\d+)?)\s*' + re.escape(suffix), statement)
+        wanted = number_token(str(token))
+        if not match or not wanted or number_token(match[1])['value'] != wanted['value']:
+            fail('STATEMENT_TOKEN_MISMATCH')
+        if field=='average_annual_ndpr_product_t' and binding.get('semantic_profile')=='yangibana_annual_ndpr_in_treo':
+            # A separately constrained disclosure profile: the NdPr amount is
+            # explicitly included in average annual contained rare-earth oxides.
+            pattern=(r'approximately [\d,]+(?:\.\d+)? tonnes per annum; and average annual contained '
+                     r'production of approximately [\d,]+(?:\.\d+)? tonnes of total rare earth oxides, '
+                     r'including approximately')
+            if (not re.fullmatch(pattern,prefix) or suffix!='tonnes of neodymium and praseodymium.'
+                    or unit!='tonnes' or binding.get('original_unit')!=unit):
+                fail('STATEMENT_SEMANTICS_MISMATCH')
+            context=summary_annual_norm(summary_annual_region(page,rect('time_basis_bbox')))
+            if '19-year mine life' not in context or '100% project basis' not in context:
+                fail('STATEMENT_ANNUAL_BASIS_MISMATCH')
+        elif field=='average_annual_ndpr_product_t':
+            if binding.get('semantic_profile') not in (None,'goschen_ndpr_rec'):
+                fail('STATEMENT_SEMANTICS_MISMATCH')
+            if prefix!='nd-pr contained in rec' or suffix!='tpa' or unit!='tpa':fail('STATEMENT_SEMANTICS_MISMATCH')
+            time_basis=summary_annual_norm(summary_annual_region(page,rect('time_basis_bbox')))
+            if time_basis!='operations metrics (life-of-mine annual average)':fail('STATEMENT_ANNUAL_BASIS_MISMATCH')
+            proof=binding.get('oxide_basis_proof',{})
+            pn=proof.get('page');box=proof.get('bbox')
+            if not isinstance(pn,int) or not 1<=pn<=len(doc) or not isinstance(box,list) or len(box)!=4:
+                fail('STATEMENT_OXIDE_BASIS_REQUIRED')
+            region=pymupdf.Rect(box)
+            if not doc[pn-1].rect.contains(region):fail('STATEMENT_OXIDE_BASIS_REQUIRED')
+            exact='Nd-Pr, Dy and Tb production figures are life-of-mine annual average calculated by multiplying REC production by TREO grade and its respective rare earth oxide composition as a % of TREO'
+            if summary_annual_norm(summary_annual_region(doc[pn-1],region))!=summary_annual_norm(exact):fail('STATEMENT_OXIDE_BASIS_REQUIRED')
+        elif (field != 'average_annual_treo_product_t' or 'annual' not in prefix or
+              not suffix.startswith('tpa of contained treo in concentrate') or unit != 'tpa'):
+            fail('STATEMENT_SEMANTICS_MISMATCH')
+        return 'NATIVE_SCOPED_STATEMENT_BINDING'
+    if mode!='native_cell':fail('NATIVE_MODE_REQUIRED')
+    table,row,column=rect('table_bbox'),rect('row_bbox'),rect('column_bbox');cell=row&column
+    if not table.contains(row) or not table.contains(column) or cell.is_empty or row.height>=table.height or column.width>=table.width:fail('REGION')
+    def anchor(box_key,text_key,container):
+        box=rect(box_key);text=summary_annual_norm(summary_annual_region(page,box))
+        if not container.contains(box) or not binding.get(text_key) or text!=summary_annual_norm(binding[text_key]):fail('ANCHOR')
+        return text
+    anchor('table_label_bbox','table_label',table)
+    label=anchor('column_label_bbox','column_label',column);anchor('row_label_bbox','row_label',row)
+    forecast=field.startswith('average_annual_')
+    container=table if forecast else column
+    if binding.get('unit_scope_bbox'):
+        container=rect('unit_scope_bbox')
+        if not table.contains(container) or not container.contains(column):fail('SHARED_UNIT_SCOPE')
+    actual_unit=anchor('unit_bbox','unit_label' if 'unit_label' in binding else 'original_unit',container).strip('()')
+    if binding.get('original_unit')!=unit or actual_unit!=summary_annual_norm(unit):fail('UNIT')
+    context=anchor('metric_context_bbox','metric_context',table) if binding.get('metric_context_bbox') else ''
+    metric=summary_annual_norm(binding['row_label'])
+    if forecast:
+        if not selected_scenario or label!=summary_annual_norm(selected_scenario):fail('SCENARIO')
+        if binding.get('forecast_orientation')=='product_rows':
+            target='total' if field=='average_annual_treo_product_t' else 'ndpr oxide'
+            if metric!=target or label!='average reo*' or actual_unit!='t' or not context.startswith('* average production is calculated as the arithmetic annual average') or 'ramp up' not in context or 'low grade stockpiles' not in context:fail('PRODUCT_SEMANTICS')
+            if not column.contains(rect('unit_bbox')):fail('PRODUCT_UNIT_SCOPE')
+            metric='average annual production '+('treo' if target=='total' else 'ndpr')
+        else:
+            if not row.contains(rect('unit_bbox')):fail('ANNUAL_UNIT_SCOPE')
+            if context and context!='average annual production target':fail('ANNUAL_CONTEXT')
+            if context:metric+=' '+context
+        target={'average_annual_treo_product_t':'treo','average_annual_ndpr_product_t':'ndpr','average_annual_hreo_product_t':'hreo'}.get(field)
+        if not target or not re.search(r'\b'+target+r'\b',metric) or not re.search(r'annual|average',metric) or not re.search(r'production|output|contained',metric) or re.search(r'grade|recovery|feed|price|cost',metric) or actual_unit not in ('t','tpa'):fail('METRIC')
+    else:
+        section=(selected_sections or {}).get(binding.get('section_id'))
+        if not section or section.get('page')!=pn or not pymupdf.Rect(section['bbox']).contains(row):fail('SELECTED_SECTION')
+        anchor('scope_anchor_bbox','scope_anchor',table)
+        if rect('scope_anchor_bbox').y1>row.y0 or not re.fullmatch(r'\d{4} reec product',metric):fail('SELECTED_ROW')
+        expected={'annual_input_annual_product_t':('annual forecast reec production','t'),'annual_input_treo_percent':('treo','%'),
+                  'annual_input_nd_percent_of_treo':('nd2o3','%'),'annual_input_pr_percent_of_treo':('pr6o11','%')}.get(field)
+        if expected!=(label,actual_unit) or field.endswith(('nd_percent_of_treo','pr_percent_of_treo')) and context!='as a % of treo':fail('PRODUCT_INPUT_METRIC')
+    actual=summary_annual_norm(summary_annual_region(page,cell))
+    if actual_unit=='%' and re.fullmatch(r'\d[\d,]*(?:\.\d+)?%',actual):actual=actual[:-1]
+    parsed=number_token(actual);wanted=number_token(str(token))
+    if not parsed or not wanted or not re.fullmatch(r'[+\-]?\d[\d,]*(?:\.\d+)?',actual) or parsed['value']!=wanted['value']:fail('TOKEN')
+    return 'NATIVE_TABLE_ROW_COLUMN_CELL_BINDING'
+
+
+def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutoff, row=None, audit=None):
+    """Study output is scoped separately from MREs and never operating production."""
+    from .selection import choose
+    from .census import summary_decision
+    import pymupdf
+    models=[];fills=[];audit=audit if audit is not None else []
+    for a in attributes:
+        study=a.get('engineering_forecast')
+        if not study or study['scale'] not in rules['forecast_scales']:continue
+        s=sources[a['source_sha256']];accepted={}
+        try:
+            with pymupdf.open(s['resolved_path']) as doc:
+                def evidence(e):
+                    text=' '.join(doc[e['page']-1].get_text().split())
+                    if not e.get('markers') or any(summary_annual_norm(m) not in summary_annual_norm(text) for m in e['markers']):raise ValueError('FORECAST_PAGE_MARKER')
+                    return summary_annual_norm(text)
+                for parameter,value in study['parameters'].items():
+                    if type(value) not in (int,float) or not math.isfinite(value) or value<0:raise ValueError('FORECAST_VALUE')
+                    spec=study.get('parameter_derivations',{}).get(parameter)
+                    if spec and spec.get('method')==rules['model_annual_method']:
+                        summary_model_annual(doc,a,study,spec,value,evidence,rules)
+                    elif spec:
+                        summary_product_annual(spec,value,study['annual_basis_evidence']['page'],evidence)
+                        for item in spec['inputs']:
+                            b=item['cell_binding'];summary_annual_cell(doc,b,'annual_input_'+item['name'],item['original_token'],b['original_unit'],a['scope'],selected_sections=study.get('selected_input_sections'))
+                    else:
+                        b=study.get('parameter_bindings',{}).get(parameter)
+                        if not b:raise ValueError('FORECAST_NATIVE_BINDING_MISSING')
+                        evidence(study['annual_basis_evidence'])
+                        summary_annual_cell(doc,b,parameter,str(value),b['original_unit'],a['scope'],study.get('selected_scenario'))
+                    accepted[parameter]=value
+        except (ValueError,KeyError,IndexError,OSError) as exc:
+            audit.append(dict(project_id=pid,source_sha256=a['source_sha256'],reason='FORECAST_INPUT_INVALID',detail=str(exc)))
+            accepted={}
+        models.append(dict(source_sha=a['source_sha256'],effective_date=a['effective_date'],scope=a['scope'],case_id=a['review_id'],
+            endpoint=study['endpoint'],element=study['element'],scale=study['scale'],raw=canonical(dict(parameters=accepted,locator=a['locator'],parameter_derivations=study.get('parameter_derivations',{}))),obs_id=a['obs_id']))
+    if not models:models=[s for s in studies if s['scale'] in rules['forecast_scales']]
+    for column,parameter in rules['annual_parameters'].items():
+        options=[]
+        for s in models:
+            d=json.loads(s['raw']);value=d.get('parameters',{}).get(parameter)
+            if type(value) in (int,float) and math.isfinite(value) and value>=0:
+                spec=d.get('parameter_derivations',{}).get(parameter) or {}
+                options.append(dict(evidence_id=s['case_id'],source_sha256=s['source_sha'],effective_date=s['effective_date'],
+                    scope=s['scope'],endpoint=s['endpoint'],element=s['element'],scale=s['scale'],value=value,locator=d['locator'],spec=spec,
+                    ids=[s.get('obs_id',s['case_id'])]))
+        chosen,_=choose(options,('scope','endpoint','element','scale'))
+        if chosen:
+            method='MODEL_ASSUMPTION_DERIVED_ANNUAL_NDPR_NOT_DIRECT_REPORTED_OUTPUT' if chosen['spec'].get('method')==rules['model_annual_method'] else 'DATED_ENGINEERING_FORECAST_T_PER_YEAR_NOT_OPERATING_OUTPUT'
+            fills.append(dict(column=column,value=chosen['value'],sha=chosen['source_sha256'],locator=chosen['locator'],method=method,scope=canonical(dict(study_scope=chosen['scope'],derivation=chosen['spec'])),obs_ids=chosen['ids']))
+    products=[dict(evidence_id=s['case_id'],source_sha256=s['source_sha'],effective_date=s['effective_date'],scope=s['scope'],
+        endpoint=s['endpoint'],scale=s['scale'],value=s['endpoint'],locator=json.loads(s['raw'])['locator'],ids=[s.get('obs_id',s['case_id'])]) for s in models]
+    product,_=choose(products,('scope','endpoint','scale'))
+    if product:fills.append(dict(column='產品/產出',value=rules['product_labels'].get(product['value'],product['value'])+'（'+product['scale']+'）',
+        sha=product['source_sha256'],locator=product['locator'],method='DATED_ENGINEERING_PRODUCT_ENDPOINT_NOT_OPERATING_OUTPUT',scope=product['scope'],obs_ids=product['ids']))
+    filled={f['column'] for f in fills}
+    for a in attributes:
+        item=a.get('source_stated_annual')
+        if not item or item['column'] in filled or not row or row['開發階段代碼'] not in ('B1','B2'):continue
+        if not summary_decision(decisions,'SOURCE_STATED_ANNUAL_PRODUCTION'):continue
+        if not any(x['column']=='開發階段' and x['source_sha256']==a['source_sha256'] for x in attributes):continue
+        try:value=summary_verify_annual_cell(item,sources[a['source_sha256']]['resolved_path'],rules)
+        except (ValueError,KeyError,OSError):continue
+        fills.append(dict(column=item['column'],value=value,sha=a['source_sha256'],locator=a['locator'],method='SOURCE_STATED_ANNUAL_PRODUCTION',scope=canonical(item),obs_ids=[a['obs_id']]))
+    cfg=rules['cummins_staged_rule'];sha=cfg['source_sha256']
+    if pid==cfg['project_id'] and sha in sources and '預估年產TREO_t_per_year' not in filled and summary_decision(decisions,'STAGED_ANNUAL_USE_FIRST_FULL_PRODUCTION_STAGE'):
+        with pymupdf.open(sources[sha]['resolved_path']) as doc:
+            text={p:' '.join(doc[p-1].get_text(sort=True).split()) for p in (60,76,77)}
+        if all(quote in text[page] for page,quote in rules['cummins_checks']) and re.search(rules['cummins_production_pattern'],text[77]) and not re.search(r'stage 2a.{0,80}ramp|ramp.{0,80}stage 2a',text[76],re.I):
+            selected=summary_select_first_full(rules['cummins_stages'])
+            if selected:fills.append(dict(column='預估年產TREO_t_per_year',value=selected['annual_treo_t'],sha=sha,
+                locator='physical PDF p60 design basis; p76 phase definitions; p77 annual schedule',method='STAGED_ANNUAL_USE_FIRST_FULL_PRODUCTION_STAGE',scope=canonical(dict(selected_stage=selected,meaning='SOURCE_STUDY_FORECAST_NOT_OPERATING_OUTPUT'))))
+    return fills

@@ -1,0 +1,23 @@
+{
+  "phase22": {
+    "total_cells": 4743,
+    "reference_non_id_filled_cells": 2101,
+    "target_statuses": {
+      "FORMAL_MISSING": 1596,
+      "SAME": 454,
+      "DIFFERENT": 51
+    },
+    "target_missing_reasons": {
+      "SOURCE_NOT_ACQUIRED": 1353,
+      "RULE_INPUT_MISSING": 204,
+      "NO_SOURCE_VALUE": 39
+    },
+    "all_statuses": {
+      "SAME": 3045,
+      "FORMAL_MISSING": 1596,
+      "DIFFERENT": 51,
+      "KNOWN_STRUCTURAL_DIFFERENCE": 51
+    }
+  },
+  "target_status_increment": "NOT_COMPUTED_INVALID_NETWORK"
+}

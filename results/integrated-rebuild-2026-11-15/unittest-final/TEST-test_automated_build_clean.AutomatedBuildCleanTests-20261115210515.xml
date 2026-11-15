@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_automated_build_clean.AutomatedBuildCleanTests-20261115210515" tests="4" file="test_automated_build_clean.py" time="45.203" timestamp="2026-11-15T21:06:00" failures="0" errors="0" skipped="0">
+	<testcase classname="test_automated_build_clean.AutomatedBuildCleanTests" name="test_ci_build_has_no_experiment_dependency" time="0.001" timestamp="2026-11-15T21:05:15" file="tests\test_automated_build_clean.py" line="28"/>
+	<testcase classname="test_automated_build_clean.AutomatedBuildCleanTests" name="test_runtime_and_registry_have_no_experiment_dependency" time="0.028" timestamp="2026-11-15T21:05:15" file="tests\test_automated_build_clean.py" line="17"/>
+	<testcase classname="test_automated_build_clean.AutomatedBuildCleanTests" name="test_strict_empty_build_reads_stay_inside_checkout" time="41.771" timestamp="2026-11-15T21:05:57" file="tests\test_automated_build_clean.py" line="32"/>
+	<testcase classname="test_automated_build_clean.AutomatedBuildCleanTests" name="test_tracked_checkout_configuration_reads_stay_inside_checkout" time="3.403" timestamp="2026-11-15T21:06:00" file="tests\test_automated_build_clean.py" line="25"/>
+</testsuite>

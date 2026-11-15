@@ -9,7 +9,9 @@
       "id_field": "eno",
       "name_field": "entity_id",
       "entity_kind": "DEPOSIT",
-      "where": "1=1"
+      "where": "1=1",
+      "source_sha256": "41347cefdf736db20dde9184f0f0a84e0d75b5a5f2a8ab93dd526f163d9ce4c9",
+      "committed_snapshot_sha256": "41347cefdf736db20dde9184f0f0a84e0d75b5a5f2a8ab93dd526f163d9ce4c9"
     },
     {
       "key": "ga_ports",
@@ -24,14 +26,20 @@
       "kind": "pdf",
       "url": "https://wcsecure.weblink.com.au/pdf/LYC/02835257.pdf",
       "publication_date": "2024-08-05",
-      "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503"
+      "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+      "summary_project_ids": [
+        "AU-efff91a06cf344122d88"
+      ]
     },
     {
       "key": "browns_range_2025",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20250915/pdf/06p6zt0hxtpg01.pdf",
       "publication_date": "2025-09-15",
-      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075"
+      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "summary_project_ids": [
+        "AU-9bd8e5ed8408cd84d876"
+      ]
     },
     {
       "key": "ga_roads_250k",
@@ -76,7 +84,9 @@
       "publication_date": "2026-02-01",
       "publication_date_precision": "month",
       "source_page": 1,
-      "definition": "Government of Western Australia DMPE February 2026 rare-earth resources table (20 listed projects); versioned transcription of PDF page 1, NOT original PDF bytes or an issuer-level JORC claim."
+      "definition": "Government of Western Australia DMPE February 2026 rare-earth resources table (20 listed projects); versioned transcription of PDF page 1, NOT original PDF bytes or an issuer-level JORC claim.",
+      "source_sha256": "ae76952cae874b34aa01430e042b5e85b0a983699f584383583bf9f2f4e1a56b",
+      "committed_snapshot_sha256": "ae76952cae874b34aa01430e042b5e85b0a983699f584383583bf9f2f4e1a56b"
     },
     {
       "key": "wa_dmpe_ree_2026_pdf",
@@ -85,7 +95,31 @@
       "publication_date": "2026-02-01",
       "publication_date_precision": "month",
       "definition": "Official DMPE source PDF; when acquired independently, retain raw bytes for full-source audit.",
-      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb"
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "publication_date_interval": [
+        "2026-02-01",
+        "2026-02-28"
+      ],
+      "publication_date_role": "PUBLISHER_EXPLICIT_MONTH_UPPER_BOUND",
+      "source_kind": "GOVERNMENT_PROJECT_CATALOGUE",
+      "summary_project_ids": [
+        "AU-47d12ebe6b66df8e5936",
+        "AU-2262a37ca19531f08da3",
+        "AU-3651cf8448b9227adcf5",
+        "AU-785536db5ff12c25350d",
+        "AU-2a3a86a4d971e9f9838d",
+        "AU-4286ab9c245effb445ff",
+        "AU-d2cd77f89298d6dae330",
+        "AU-574465211976ec57b1ef",
+        "AU-12cc237ae66c7a6508ca",
+        "AU-a8258e4989c7bd95b7af",
+        "AU-8f3fe174a998d20ee4cf",
+        "AU-bb565f5348679a46d4a0",
+        "AU-7c198d219aa1db3e291f",
+        "AU-d0ce731e1d8198ffaf58",
+        "AU-efff91a06cf344122d88",
+        "AU-4ec1fb08563b42352d29"
+      ]
     },
     {
       "key": "austrade_2026_ree_catalogue",
@@ -94,7 +128,9 @@
       "publication_date": "2026-03-01",
       "publication_date_precision": "month",
       "source_pages": "printed pp 5 and 31-37",
-      "definition": "Austrade March 2026 investment prospectus: seven REE upstream projects, source-referenced technical/development/commercial statements; official catalogue summary, not original issuer JORC."
+      "definition": "Austrade March 2026 investment prospectus: seven REE upstream projects, source-referenced technical/development/commercial statements; official catalogue summary, not original issuer JORC.",
+      "source_sha256": "30f5f71f68661165f69bffc9cf0832de0f517dd1d2a64c9ff02f597b36f916bd",
+      "committed_snapshot_sha256": "30f5f71f68661165f69bffc9cf0832de0f517dd1d2a64c9ff02f597b36f916bd"
     },
     {
       "key": "austrade_2026_prospectus_pdf",
@@ -103,7 +139,18 @@
       "publication_date": "2026-03-01",
       "publication_date_precision": "month",
       "definition": "Raw government prospectus PDF for source preservation; catalogue remains distinct from original issuer reports.",
-      "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5"
+      "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+      "publication_date_interval": [
+        "2026-03-01",
+        "2026-03-31"
+      ],
+      "publication_date_role": "PUBLISHER_STATED_EDITION_MONTH_UPPER_BOUND;URL_MONTH_NOT_USED",
+      "source_kind": "GOVERNMENT_PROJECT_CATALOGUE",
+      "summary_project_ids": [
+        "AU-7537d9555628040fab40",
+        "AU-329908ab8d4c1d1d3e03",
+        "AU-fe65cb1bd28eacb7a67f"
+      ]
     },
     {
       "key": "legacy_national_e1_20261029",
@@ -122,13 +169,17 @@
       "url": "https://www.arultd.com/wp-content/uploads/2025/09/Arafura-Annual-Report-2025.pdf",
       "kind": "pdf",
       "publication_date": "2025-09",
-      "publication_date_precision": "month"
+      "publication_date_precision": "month",
+      "source_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+      "committed_snapshot_sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f"
     },
     {
       "key": "mia_ar2024",
       "url": "https://announcements.asx.com.au/asxpdf/20240920/pdf/068421026p0kt4.pdf",
       "kind": "pdf",
-      "publication_date": "2024-09-20"
+      "publication_date": "2024-09-20",
+      "source_sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95",
+      "committed_snapshot_sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95"
     },
     {
       "key": "yttria_2025",
@@ -148,7 +199,9 @@
       "commodity_field": "commodities",
       "commodity_pattern": "rare earth|REE|lanthan",
       "activity_field": "status",
-      "where": "1=1"
+      "where": "1=1",
+      "source_sha256": "4dccc56d364a22c8fd2920d8db7e8179171b26a838199044b59a16e5bb6747f3",
+      "committed_snapshot_sha256": "4dccc56d364a22c8fd2920d8db7e8179171b26a838199044b59a16e5bb6747f3"
     },
     {
       "key": "ga_power",
@@ -165,7 +218,11 @@
       "url": "https://announcements.asx.com.au/asxpdf/20250711/pdf/06lq7vsvvk6yms.pdf",
       "publication_date": "2025-07-11",
       "definition": "Primary issuer study/report; scoped evidence, not independent approval",
-      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab"
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "summary_project_ids": [
+        "AU-2cfeb25aefee0c4f95fb"
+      ],
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER"
     },
     {
       "key": "jupiter_scoping2026",
@@ -180,7 +237,9 @@
       "kind": "pdf",
       "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7814729.pdf?v=63960562204",
       "publication_date": "2026-10-30",
-      "definition": "Primary issuer study/report; scoped evidence, not independent approval"
+      "definition": "Primary issuer study/report; scoped evidence, not independent approval",
+      "source_sha256": "188f2437560f2ec98af07e444782bd40a7612450b51c988bbe97c3e412dccd70",
+      "committed_snapshot_sha256": "188f2437560f2ec98af07e444782bd40a7612450b51c988bbe97c3e412dccd70"
     },
     {
       "key": "donald_ar2024",
@@ -215,53 +274,73 @@
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230501/pdf/05p7grkh7l8j7v.pdf",
       "publication_date": "2023-05-01",
-      "company": "RareX Limited"
+      "company": "RareX Limited",
+      "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+      "committed_snapshot_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053"
     },
     {
       "key": "splinter_presentation2026",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20260420/pdf/06yn1rhry98mw3.pdf",
-      "publication_date": "2026-04-20"
+      "publication_date": "2026-04-20",
+      "source_sha256": "7e80a7f29787898f9c422bde35d14337651c5975c3e7e6cda06968721bff2a79",
+      "committed_snapshot_sha256": "7e80a7f29787898f9c422bde35d14337651c5975c3e7e6cda06968721bff2a79"
     },
     {
       "key": "north_stanmore_mre2025",
       "kind": "pdf",
       "url": "https://victorymetalsaustralia.com/wp-content/uploads/2025/11/02976976.pdf",
       "publication_date": "2025-08-11",
-      "company": "Victory Metals Limited"
+      "company": "Victory Metals Limited",
+      "source_sha256": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84",
+      "committed_snapshot_sha256": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84"
     },
     {
       "key": "redlings_quarter2025",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20250731/pdf/06mcv639h20jz3.pdf",
-      "publication_date": "2025-07-31"
+      "publication_date": "2025-07-31",
+      "source_sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+      "committed_snapshot_sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f"
     },
     {
       "key": "salazar_mre2024",
       "kind": "pdf",
       "url": "https://api.investi.com.au/api/announcements/wc1/ea9172ff-a94.pdf",
       "publication_date": "2024-10-08",
-      "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e"
+      "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+      "summary_project_ids": [
+        "AU-bb565f5348679a46d4a0"
+      ]
     },
     {
       "key": "mangaroon_mre2023",
       "kind": "pdf",
       "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/5449464.pdf?v=63941956896",
       "publication_date": "2023-11-30",
-      "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5"
+      "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+      "summary_project_ids": [
+        "AU-8f3fe174a998d20ee4cf"
+      ]
     },
     {
       "key": "cowalinya_ar2024",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20240930/pdf/068jx9r9284599.pdf",
-      "publication_date": "2024-09-30"
+      "publication_date": "2024-09-30",
+      "source_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "committed_snapshot_sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513"
     },
     {
       "key": "tower_quarter2023",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230808/pdf/05sf46x92l83s0.pdf",
       "publication_date": "2023-08-08",
-      "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63"
+      "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER",
+      "summary_project_ids": [
+        "AU-a8258e4989c7bd95b7af"
+      ]
     },
     {
       "key": "wa_dmpe_ree2026_original",
@@ -275,7 +354,9 @@
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20250930/pdf/06pxy5r49ssw7y.pdf",
       "publication_date": "2025-09-30",
-      "definition": "Primary Brockman JORC table at physical p17; Y oxide inclusion requires basis review before common resource panel"
+      "definition": "Primary Brockman JORC table at physical p17; Y oxide inclusion requires basis review before common resource panel",
+      "source_sha256": "4b622bb6796fc414c55a0c81f89e4186468a95bca99076969d3989335f2713b2",
+      "committed_snapshot_sha256": "4b622bb6796fc414c55a0c81f89e4186468a95bca99076969d3989335f2713b2"
     },
     {
       "key": "discovered_a74257c9c2a2cd0a8adf6a42ae48e471b22849bc206573d10fbccc8204a04b07",
@@ -303,20 +384,32 @@
       "kind": "pdf",
       "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739",
       "publication_date": "2024-04-16",
-      "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51"
+      "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+      "summary_project_ids": [
+        "AU-ee5ca893d12883df35f1",
+        "AU-d0ce731e1d8198ffaf58"
+      ]
     },
     {
       "key": "burracoppin_maiden2023",
       "kind": "pdf",
       "url": "https://assets.birdsoftware.io/wp-content/uploads/2023/05/01-06-2023-Burracoppin-Project-96Mt-Mineral-Resource-Estimate.pdf",
       "publication_date": "2023-06-01",
-      "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c"
+      "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+      "summary_project_ids": [
+        "AU-4286ab9c245effb445ff"
+      ]
     },
     {
       "key": "mons_mre2025",
       "kind": "pdf",
       "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3ANIM%3A6A1296587/pdf/inline/extremely-highgrade-gallium-and-rare-earths-resource",
-      "publication_date": "2025-11-12"
+      "publication_date": "2025-11-12",
+      "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+      "committed_snapshot_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+      "summary_project_ids": [
+        "AU-d2cd77f89298d6dae330"
+      ]
     },
     {
       "key": "wa_minedex_live",
@@ -466,7 +559,9 @@
       ],
       "type_name": "south_australia_mining_projects:developing_projects___minerals",
       "wfs_version": "1.1.0",
-      "page_size": 1000
+      "page_size": 1000,
+      "source_sha256": "adcf276ce1ab953163f2ab14c2abf13261e8699e03bc9e4c66c5340f744904c9",
+      "committed_snapshot_sha256": "adcf276ce1ab953163f2ab14c2abf13261e8699e03bc9e4c66c5340f744904c9"
     },
     {
       "key": "sa_major_live",
@@ -484,34 +579,49 @@
       ],
       "type_name": "south_australia_mining_projects:major_mines___minerals",
       "wfs_version": "1.1.0",
-      "page_size": 1000
+      "page_size": 1000,
+      "source_sha256": "61e62011fe4a16d1de872553ec9c7edf58d28373cc6ffdf7831dbb5adf972a40",
+      "committed_snapshot_sha256": "61e62011fe4a16d1de872553ec9c7edf58d28373cc6ffdf7831dbb5adf972a40"
     },
     {
       "key": "goschen_mre2025",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20251015/pdf/06qkvvhp20rxx2.pdf",
       "publication_date": "2025-10-15",
-      "source_sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0"
+      "source_sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
+      "summary_project_ids": [
+        "AU-6d807eb7caec9db0f35e"
+      ]
     },
     {
       "key": "lyons_mre2023",
       "kind": "pdf",
       "url": "https://wcsecure.weblink.com.au/pdf/LNR/02729838.pdf",
       "publication_date": "2023-10-25",
-      "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4"
+      "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+      "summary_project_ids": [
+        "AU-7c198d219aa1db3e291f"
+      ]
     },
     {
       "key": "circle_met2022",
       "kind": "pdf",
       "url": "https://assets.ctfassets.net/tpcqj4q45rlx/1ykWDllcGKP5Hm40Js55vV/064c5054260f786d59c023c5a8b60ab8/MEK_Positive_Rare_Earth_Metallurgical_Testwork_and_Forward_Plan.pdf",
-      "publication_date": "2022-07-25"
+      "publication_date": "2022-07-25",
+      "source_sha256": "b65a525000fb8d74d87024056f7c001df5ee466eb4cf4a8ccf9d6fd5ae08ce19",
+      "committed_snapshot_sha256": "b65a525000fb8d74d87024056f7c001df5ee466eb4cf4a8ccf9d6fd5ae08ce19"
     },
     {
       "key": "phase6_jupiter_brothers_page2",
       "kind": "pdf_page_extraction",
       "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7794821.pdf?v=63959663947",
       "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
-      "physical_page": 2
+      "physical_page": 2,
+      "publication_date": "2026-10-20",
+      "summary_project_ids": [
+        "AU-47d12ebe6b66df8e5936",
+        "AU-dac3c8e40326b8244cdb"
+      ]
     },
     {
       "key": "fingerboards_project2026",
@@ -524,7 +634,9 @@
       "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/g/ASX_GRL_2023.pdf",
       "publication_date_precision": "month",
       "hosting_role": "Original issuer annual report served by AnnualReports mirror",
-      "publication_date": "2023-09"
+      "publication_date": "2023-09",
+      "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+      "committed_snapshot_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707"
     },
     {
       "key": "iluka_vhm2026",
@@ -542,7 +654,9 @@
       "key": "koppamurra_pfs2026",
       "kind": "pdf",
       "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7600073.pdf?v=63949564086",
-      "publication_date": "2026-06-25"
+      "publication_date": "2026-06-25",
+      "source_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "committed_snapshot_sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979"
     },
     {
       "key": "qld_minocc_status_live",
@@ -565,14 +679,19 @@
       "key": "yangibana_ar2026",
       "kind": "pdf",
       "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7763164.pdf?v=63957978608",
-      "publication_date": "2026-09-30"
+      "publication_date": "2026-09-30",
+      "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+      "committed_snapshot_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb"
     },
     {
       "key": "kalkaroo_ree2020",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20200219/pdf/44f780ww5n6tbj.pdf",
       "publication_date": "2020-02-19",
-      "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5"
+      "source_sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5",
+      "summary_project_ids": [
+        "AU-f46f6d53e7196650495d"
+      ]
     },
     {
       "key": "wudinna_mre2026",
@@ -581,7 +700,9 @@
       "publication_date": "2026-10-26",
       "failed_primary_url": "https://investors.cobraplc.com/announcements/VQ0lGG-cobra-resources-plc-maiden-rare-earth-mineral-resource-estimate",
       "fallback_reason": "Issuer HTTP 429 after three transient retries; same primary RNS 4065A from London Stock Exchange",
-      "text_contract": "LSE_ARTICLE_BODY_JS_STRING_V1"
+      "text_contract": "LSE_ARTICLE_BODY_JS_STRING_V1",
+      "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+      "committed_snapshot_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950"
     },
     {
       "key": "qld_epm_live",
@@ -642,20 +763,27 @@
       "kind": "pdf",
       "url": "https://cdn.financialreports.eu/financialreports/media/filings/64425/2026/RNS/64425_rns_2026-10-30_04faeca9-e33e-4783-b0c9-9583aebf843a.pdf",
       "publication_date": "2026-10-30",
-      "definition": "Issuer-authored ASX original PDF retained from public filing mirror; host is not ASX; cross-check issuer title, date, authorisation and project scope"
+      "definition": "Issuer-authored ASX original PDF retained from public filing mirror; host is not ASX; cross-check issuer title, date, authorisation and project scope",
+      "source_sha256": "1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2",
+      "committed_snapshot_sha256": "1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2"
     },
     {
       "key": "cummins_scoping2023",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230822/pdf/05swq0gwm2w86n.pdf",
       "publication_date": "2023-08-22",
-      "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07"
+      "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "summary_project_ids": [
+        "AU-9b667066e6eb66753005"
+      ]
     },
     {
       "key": "north_stanmore_quarter202610",
       "kind": "pdf",
       "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7814024.pdf?v=63960532622",
-      "publication_date": "2026-10-30"
+      "publication_date": "2026-10-30",
+      "source_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+      "committed_snapshot_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c"
     },
     {
       "key": "north_stanmore_pfs2026",
@@ -695,7 +823,10 @@
       "url": "https://wcsecure.weblink.com.au/pdf/ADC/02955863.pdf",
       "publication_date": "2025-06-12",
       "project_binding_status": "UNRESOLVED_DISTINCT_PROJECT",
-      "source_sha256": "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5"
+      "source_sha256": "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5",
+      "summary_project_ids": [
+        "AU-447261eed0e81eae88bf"
+      ]
     },
     {
       "key": "nolans_dfs2019_asx",
@@ -703,7 +834,10 @@
       "url": "https://announcements.asx.com.au/asxpdf/20190207/pdf/442fgrbxqwrxdd.pdf",
       "publication_date": "2019-02-07",
       "recognition_project_native_id": "nolans-rare-earths-project",
-      "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb"
+      "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "summary_project_ids": [
+        "AU-1345edd8165c10930e94"
+      ]
     },
     {
       "key": "wa_minedex_resource_batch",
@@ -731,7 +865,9 @@
       "key": "goschen_hydromet_pilot20230606",
       "kind": "pdf",
       "publication_date": "2023-06-06",
-      "url": "https://wcsecure.weblink.com.au/pdf/VHM/02673409.pdf"
+      "url": "https://wcsecure.weblink.com.au/pdf/VHM/02673409.pdf",
+      "source_sha256": "1a069bb6aaa19d44b36b00b391de98ffe21a2910f53c1eab335456648b20a181",
+      "committed_snapshot_sha256": "1a069bb6aaa19d44b36b00b391de98ffe21a2910f53c1eab335456648b20a181"
     },
     {
       "key": "barkly_ipo20260130",
@@ -741,7 +877,9 @@
       "capture_metadata": "Recovered original-capture filesystem timestamp after concurrent manifest overwrite; original bytes/hash verified",
       "company": "Barkly Rare Earths Ltd",
       "asx_code": "BAK",
-      "distribution": "PUBLIC_MIRROR_OF_ISSUER_ASX_ANNOUNCEMENT"
+      "distribution": "PUBLIC_MIRROR_OF_ISSUER_ASX_ANNOUNCEMENT",
+      "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+      "committed_snapshot_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca"
     },
     {
       "key": "barkly_prospectus20251201",
@@ -756,13 +894,17 @@
       "key": "kennedy_mre20240704",
       "url": "https://www.devexresources.com.au/wp-content/uploads/2024/07/61214441.pdf",
       "kind": "pdf",
-      "publication_date": "2024-07-04"
+      "publication_date": "2024-07-04",
+      "source_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+      "committed_snapshot_sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566"
     },
     {
       "key": "dubbo_phaseb20250617",
       "url": "https://investornews.com/wp-content/uploads/2025/06/ASM-6-17-25.pdf",
       "kind": "pdf",
-      "publication_date": "2025-06-17"
+      "publication_date": "2025-06-17",
+      "source_sha256": "4aeb63ac0341402bfc14f7b8021533a293790088865324cdc4e513f8f1554ee9",
+      "committed_snapshot_sha256": "4aeb63ac0341402bfc14f7b8021533a293790088865324cdc4e513f8f1554ee9"
     },
     {
       "key": "browns_wolverine_mre20250116",
@@ -775,665 +917,1583 @@
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03105109",
       "publication_date": "2026-06-17",
-      "source_sha256": "03ee0d0da9323708e1ed5008c4a35981cdc85ec16ddb06b299da1a10ce59914b"
+      "source_sha256": "03ee0d0da9323708e1ed5008c4a35981cdc85ec16ddb06b299da1a10ce59914b",
+      "summary_project_ids": [
+        "AU-1345edd8165c10930e94"
+      ]
     },
     {
       "key": "north_dam20230822",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02700097",
       "publication_date": "2023-08-22",
-      "source_sha256": "075a54f0b388184f869ea1a9f0aec59119405b46661cbe7173d78be7f05f3ce0"
+      "source_sha256": "075a54f0b388184f869ea1a9f0aec59119405b46661cbe7173d78be7f05f3ce0",
+      "summary_project_ids": [
+        "AU-cefbde90dc34312547d3"
+      ]
     },
     {
       "key": "nutgrove20251030",
       "kind": "pdf",
       "url": "https://investorpa.com/announcement-pdf/20251030/212822.pdf",
       "publication_date": "2025-10-30",
-      "source_sha256": "0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126"
+      "source_sha256": "0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126",
+      "summary_project_ids": [
+        "AU-6f0ecda27d291720036d"
+      ]
     },
     {
       "key": "asx_redlings_maiden202501",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02906350",
       "publication_date": "2025-01-22",
-      "source_sha256": "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43"
+      "source_sha256": "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43",
+      "summary_project_ids": [
+        "AU-12cc237ae66c7a6508ca"
+      ]
     },
     {
       "key": "r6_identity_rocky_gully",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20260924/pdf/074h3x3v7sc2z8.pdf",
       "publication_date": "2026-09-24",
-      "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0"
+      "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2026-09-24",
+      "summary_project_ids": [
+        "AU-d0827cf51def7e0014fc"
+      ]
     },
     {
       "key": "r5_identity_comet",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02861291",
       "publication_date": "2024-09-30",
-      "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8"
+      "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8",
+      "document_issue_date": "2024-09-30",
+      "summary_project_ids": [
+        "AU-02d486d425ca0792bdc5"
+      ]
     },
     {
       "key": "r6_identity_mukinbudin",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20240927/pdf/068fpszm6j002r.pdf",
       "publication_date": "2024-09-27",
-      "source_sha256": "1f5e83ea28b7b59ef46355ecb6d3f7d47d4eb88adcc7c0e4502f60362cab5b74"
+      "source_sha256": "1f5e83ea28b7b59ef46355ecb6d3f7d47d4eb88adcc7c0e4502f60362cab5b74",
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER",
+      "summary_project_ids": [
+        "AU-3eaa906d8230334ef698"
+      ]
     },
     {
       "key": "goschen_central_mre2024",
       "kind": "pdf",
       "url": "https://wcsecure.weblink.com.au/clients/acdcmetals/headline.aspx?headlineid=3657278",
       "publication_date": "2024-12-03",
-      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59",
+      "summary_project_ids": [
+        "AU-447261eed0e81eae88bf"
+      ]
     },
     {
       "key": "r6_identity_itech_eyre_peninsula",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230830/pdf/05t8tqxpqh6zr8.pdf",
       "publication_date": "2023-08-30",
-      "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a"
+      "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2023-08-30",
+      "summary_project_ids": [
+        "AU-6a5615e0ed95d955c2dd"
+      ]
     },
     {
       "key": "asx_ridley_blocks12_202603",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03075245",
       "publication_date": "2026-03-24",
-      "source_sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170"
+      "source_sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+      "summary_project_ids": [
+        "AU-3651cf8448b9227adcf5"
+      ]
     },
     {
       "key": "asx_review_circle_valley_global_202306",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02675850",
       "publication_date": "2023-06-14",
-      "source_sha256": "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad"
+      "source_sha256": "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad",
+      "summary_project_ids": [
+        "AU-785536db5ff12c25350d"
+      ]
     },
     {
       "key": "charley_creek_env20240430",
       "kind": "pdf",
       "url": "https://company-announcements.afr.com/asx/env/26c9f602-06ac-11ef-85a8-b29345b45cfb.pdf",
       "publication_date": "2024-04-30",
-      "source_sha256": "2b5aa789537b0e291490b265995312b8a9111c097f9b65a6ce5ac96d4def3c12"
+      "source_sha256": "2b5aa789537b0e291490b265995312b8a9111c097f9b65a6ce5ac96d4def3c12",
+      "summary_project_ids": [
+        "AU-d9fb1b1e3e2ec9fa0851"
+      ]
     },
     {
       "key": "r6_identity_duke",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20250930/pdf/06py49c2g3fm9t.pdf",
       "publication_date": "2025-09-30",
-      "source_sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d"
+      "source_sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d",
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER",
+      "summary_project_ids": [
+        "AU-2ab3e8eb7b5784e64f9b"
+      ]
     },
     {
       "key": "r4_sandy_mitchell",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03159067",
       "publication_date": "2026-10-29",
-      "source_sha256": "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089"
+      "source_sha256": "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089",
+      "summary_project_ids": [
+        "AU-3eb7131e4daea18a60a0"
+      ]
     },
     {
       "key": "r6_identity_condingup",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230314/pdf/45mmp2sy28f0ds.pdf",
       "publication_date": "2023-03-14",
-      "source_sha256": "37f08bb13d2089d6601f424c4fa8a76b85843b901bfeff7ac84e0f6012f56720"
+      "source_sha256": "37f08bb13d2089d6601f424c4fa8a76b85843b901bfeff7ac84e0f6012f56720",
+      "summary_project_ids": [
+        "AU-d1394abdef4c8d971c78"
+      ]
     },
     {
       "key": "circle_valley20220602",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asxpdf/20220602/pdf/459kjghznk3ckq.pdf",
       "publication_date": "2022-06-02",
-      "source_sha256": "38df62723a26b2d94bacfe0f0673b3e6ece3dc09465e36620a57c11bab461000"
+      "source_sha256": "38df62723a26b2d94bacfe0f0673b3e6ece3dc09465e36620a57c11bab461000",
+      "summary_project_ids": [
+        "AU-785536db5ff12c25350d"
+      ]
     },
     {
       "key": "asx_review_cowalinya_global_202309",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02720445",
       "publication_date": "2023-10-03",
-      "source_sha256": "39699576fe9ebe47225c083dc285d7a561b732ab357a9050a67472e89a5512aa"
+      "source_sha256": "39699576fe9ebe47225c083dc285d7a561b732ab357a9050a67472e89a5512aa",
+      "summary_project_ids": [
+        "AU-4ec1fb08563b42352d29"
+      ]
     },
     {
       "key": "graceland_discovery20230525",
       "kind": "pdf",
       "url": "https://company-announcements.afr.com/asx/emu/09fdd0c2-fa8f-11ed-98c0-9270fe0ac238.pdf",
       "publication_date": "2023-05-25",
-      "source_sha256": "3f9db544c68335bbaf29ee2018280e28633df2b58395cf5d6d0eb906b3749226"
+      "source_sha256": "3f9db544c68335bbaf29ee2018280e28633df2b58395cf5d6d0eb906b3749226",
+      "summary_project_ids": [
+        "AU-7157ac0201b7d1e93ff7"
+      ]
     },
     {
       "key": "charley_jorc2013",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asxpdf/20130415/pdf/42f7v06gx1svy4.pdf",
       "publication_date": "2013-04-15",
-      "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70"
+      "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
+      "summary_project_ids": [
+        "AU-d9fb1b1e3e2ec9fa0851"
+      ]
     },
     {
       "key": "wamex_splinter_r254_20151109",
       "kind": "pdf",
       "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=109432",
       "publication_date": "2015-11-09",
-      "source_sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7"
+      "source_sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7",
+      "publication_date_role": "TECHNICAL_REPORT_ISSUE_DATE_NOT_RELEASE",
+      "source_kind": "PUBLIC_ARCHIVED_TECHNICAL_REPORT",
+      "document_issue_date": "2015-11-09",
+      "summary_project_ids": [
+        "AU-574465211976ec57b1ef"
+      ]
     },
     {
       "key": "goldarc_annual2025_native",
       "kind": "pdf",
       "url": "https://wcsecure.weblink.com.au/clients/goldarcresources/headline.aspx?headlineid=61318517",
       "publication_date": "2026-03-30",
-      "source_sha256": "436db5f42cee6172bdb0efc023e997138c0c3eb8b979af60e2b60411b9cde095"
+      "source_sha256": "436db5f42cee6172bdb0efc023e997138c0c3eb8b979af60e2b60411b9cde095",
+      "document_issue_date": "2026-03-30",
+      "summary_project_ids": [
+        "AU-d0ce731e1d8198ffaf58"
+      ]
     },
     {
       "key": "r6_identity_bencubbin",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20240328/pdf/061zwpgyygh38r.pdf",
       "publication_date": "2024-03-28",
-      "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8"
+      "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2024-03-28",
+      "summary_project_ids": [
+        "AU-630885ed0d74d8641d6c"
+      ]
     },
     {
       "key": "asx_document_03126345",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03126345",
       "publication_date": "2026-08-18",
-      "source_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491"
+      "source_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+      "summary_project_ids": [
+        "AU-216d0983f6892f9b58f9"
+      ]
     },
     {
       "key": "voyager20240328",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20240328/pdf/061z9ycpc5ygs2.pdf",
       "publication_date": "2024-03-28",
-      "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097"
+      "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097",
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER",
+      "summary_project_ids": [
+        "AU-68da41afe874c3bd66d4"
+      ]
     },
     {
       "key": "auto_identity_coburn",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230906/pdf/05tkl2byt4wfmn.pdf",
       "publication_date": "2023-09-06",
-      "source_sha256": "4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc"
+      "source_sha256": "4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2023-09-05",
+      "summary_project_ids": [
+        "AU-73549b8a9b1c6faf55eb"
+      ]
     },
     {
       "key": "ark_annual2026",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03145754",
       "publication_date": "2026-09-30",
-      "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79"
+      "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+      "publication_date_role": "ASX_ARCHIVE_RELEASE_DATE",
+      "document_issue_date": "2026-09-29",
+      "summary_project_ids": [
+        "AU-3eb7131e4daea18a60a0"
+      ]
     },
     {
       "key": "vhm_ar2026",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03137624",
       "publication_date": "2026-09-09",
-      "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9"
+      "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9",
+      "document_issue_date": "2026-09-09",
+      "summary_project_ids": [
+        "AU-176852ef1348ac10d154",
+        "AU-410159af7b79ea498ec2"
+      ]
     },
     {
       "key": "wim100_mre20260129",
       "kind": "pdf",
       "url": "https://www.marketindex.com.au/data-api/api/v1/announcements/XASX%3AILU%3A6A1308937/pdf/inline/wim100-mineral-resource-estimate-increase",
       "publication_date": "2026-01-29",
-      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732"
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "summary_project_ids": [
+        "AU-ff758cad5beb276d327d"
+      ]
     },
     {
       "key": "asx_review_splinter_global_202405",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02812349",
       "publication_date": "2024-05-29",
-      "source_sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9"
+      "source_sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+      "summary_project_ids": [
+        "AU-2262a37ca19531f08da3"
+      ]
     },
     {
       "key": "r4_deep_leads_rubble_mound_wind_break",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02803111",
       "publication_date": "2024-05-02",
-      "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b"
+      "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
+      "summary_project_ids": [
+        "AU-d1aeb21e18e60fe8e32e"
+      ]
     },
     {
       "key": "asx_document_03141511",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03141511",
       "publication_date": "2026-09-21",
-      "source_sha256": "5a783d0c7a9ed69fd62c532c77927af0f83e0813feeaab093ed617ae1556e0b3"
+      "source_sha256": "5a783d0c7a9ed69fd62c532c77927af0f83e0813feeaab093ed617ae1556e0b3",
+      "summary_project_ids": [
+        "AU-6d807eb7caec9db0f35e"
+      ]
     },
     {
       "key": "asx_review_cummins_global_202401",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02766275",
       "publication_date": "2024-01-25",
-      "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9"
+      "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+      "summary_project_ids": [
+        "AU-9b667066e6eb66753005"
+      ]
     },
     {
       "key": "asx_document_03154309",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03154309",
       "publication_date": "2026-10-20",
-      "source_sha256": "5e88f8aaf0d5da1a9de7f64ec7628ffea48e1a22a7daf296b563e5ee5aa65328"
+      "source_sha256": "5e88f8aaf0d5da1a9de7f64ec7628ffea48e1a22a7daf296b563e5ee5aa65328",
+      "summary_project_ids": [
+        "AU-dac3c8e40326b8244cdb"
+      ]
     },
     {
       "key": "bpm_quarter20260716",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03115395",
       "publication_date": "2026-07-16",
-      "source_sha256": "5ebb04f84564bebc1f8e96073fe45b1e3792b6b6115414c28be94d4886bcea28"
+      "source_sha256": "5ebb04f84564bebc1f8e96073fe45b1e3792b6b6115414c28be94d4886bcea28",
+      "summary_project_ids": [
+        "AU-75fe0f1a81005bd19586"
+      ]
     },
     {
       "key": "r17_primary_18",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230131/pdf/45l4p4vtpj7qtj.pdf",
       "publication_date": "2023-01-31",
-      "source_sha256": "60013b7e72a45b1d0ae746e3424784e5aa3c01f677fb65fe4d73edf550969f7c"
+      "source_sha256": "60013b7e72a45b1d0ae746e3424784e5aa3c01f677fb65fe4d73edf550969f7c",
+      "summary_project_ids": [
+        "AU-3eaa906d8230334ef698"
+      ]
     },
     {
       "key": "aiv_ar2024_native",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20241025/pdf/069l2vscydzht4.pdf",
       "publication_date": "2024-10-25",
-      "source_sha256": "61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd"
+      "source_sha256": "61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2024-09-24",
+      "summary_project_ids": [
+        "AU-7135b2eb1d3f193da9a6",
+        "AU-88dfe58aac214c33e576"
+      ]
     },
     {
       "key": "euston_annual2022_metadata",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230221/pdf/45lt2cdc8f40hv.pdf",
       "publication_date": "2023-02-21",
-      "source_sha256": "66c73ea45aa00561067651fdadfa11b90b4c479222b3c546b56c055cd51b5b53"
+      "source_sha256": "66c73ea45aa00561067651fdadfa11b90b4c479222b3c546b56c055cd51b5b53",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2023-02-21",
+      "summary_project_ids": [
+        "AU-3a0020b6daf659f62138"
+      ]
     },
     {
       "key": "eg1_kenny20230731",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02692316",
       "publication_date": "2023-07-31",
-      "source_sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64"
+      "source_sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64",
+      "summary_project_ids": [
+        "AU-e6d859a831ed5954b440"
+      ]
     },
     {
       "key": "r6_identity_merredin",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02675888",
       "publication_date": "2023-06-14",
-      "source_sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7"
+      "source_sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+      "summary_project_ids": [
+        "AU-81b21bdd06796fa2217d",
+        "AU-5ea2535a2de9a1a3327e",
+        "AU-7157ac0201b7d1e93ff7"
+      ]
     },
     {
       "key": "asx_document_03107711",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03107711",
       "publication_date": "2026-06-25",
-      "source_sha256": "7595d024b25438cd5795635cb43f5f87717b9b5ac9a935eff7d1d3c07562fd01"
+      "source_sha256": "7595d024b25438cd5795635cb43f5f87717b9b5ac9a935eff7d1d3c07562fd01",
+      "summary_project_ids": [
+        "AU-49b538453133bd968e8d"
+      ]
     },
     {
       "key": "nowie_mre20240124",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02765469",
       "publication_date": "2024-01-24",
-      "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4"
+      "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4",
+      "summary_project_ids": [
+        "AU-176852ef1348ac10d154"
+      ]
     },
     {
       "key": "cannie_mre20230516",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230516/pdf/05pqwkp4jszx7d.pdf",
       "publication_date": "2023-05-16",
-      "source_sha256": "7de6021ce23b5622e920f8a3169fe6252ea4ba24d7b616f19a1e90454ee4294c"
+      "source_sha256": "7de6021ce23b5622e920f8a3169fe6252ea4ba24d7b616f19a1e90454ee4294c",
+      "summary_project_ids": [
+        "AU-410159af7b79ea498ec2"
+      ]
     },
     {
       "key": "r6_identity_peak_charles",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230928/pdf/05vfsc0gqnp1zf.pdf",
       "publication_date": "2023-09-28",
-      "source_sha256": "7f46c1631aa6a6b9eab24314635bbc589905dd202e04de2203135e79f93b330a"
+      "source_sha256": "7f46c1631aa6a6b9eab24314635bbc589905dd202e04de2203135e79f93b330a",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2023-09-28",
+      "summary_project_ids": [
+        "AU-b31d00e2272ffa6ccbd3"
+      ]
     },
     {
       "key": "asx_review_donald_min5532_202512",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03067134",
       "publication_date": "2026-02-27",
-      "source_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097"
+      "source_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+      "summary_project_ids": [
+        "AU-2fc429d0556dfa0b95c4"
+      ]
     },
     {
       "key": "hastings_brockman20260127",
       "kind": "pdf",
       "url": "https://company-announcements.afr.com/asx/has/6140bba0-faff-11f0-823d-aaf2f6c17b1e.pdf",
       "publication_date": "2026-01-27",
-      "source_sha256": "83d558a6e132c3b280fa45449f07b5ac8ee1d27b5da603b7c0bf9876925adce5"
+      "source_sha256": "83d558a6e132c3b280fa45449f07b5ac8ee1d27b5da603b7c0bf9876925adce5",
+      "summary_project_ids": [
+        "AU-2a3a86a4d971e9f9838d"
+      ]
     },
     {
       "key": "enr_ar2026",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03157945",
       "publication_date": "2026-10-27",
-      "source_sha256": "88dfed30776b41d3739253fefaa1e5972a0b9969ec4db39dc1130efa2164775a"
+      "source_sha256": "88dfed30776b41d3739253fefaa1e5972a0b9969ec4db39dc1130efa2164775a",
+      "document_issue_date": "2026-09-25",
+      "summary_project_ids": [
+        "AU-af44c2bd1173b453953f"
+      ]
     },
     {
       "key": "metadata_wudinna_cobra_20261026",
       "kind": "pdf",
       "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/lse/7804646.pdf?v=63960217384",
       "publication_date": "2026-10-26",
-      "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864"
+      "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864",
+      "summary_project_ids": [
+        "AU-0098e17a63e7c05c213f"
+      ]
     },
     {
       "key": "aileron_drilling20260616",
       "kind": "pdf",
       "url": "https://newswire.iguana2.com/2fee0049d633f441/announcements/enr.asx/6A1329558/ENR_70_000m_Drill_Program_in_Full_Swing_at_Aileron.pdf",
       "publication_date": "2026-06-16",
-      "source_sha256": "8d4f0bb34133cea1d8ac9704e9abdaa3c62ce829895bc8cdbf1115689594b399"
+      "source_sha256": "8d4f0bb34133cea1d8ac9704e9abdaa3c62ce829895bc8cdbf1115689594b399",
+      "summary_project_ids": [
+        "AU-af44c2bd1173b453953f"
+      ]
     },
     {
       "key": "wim150_20151030",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20151030/pdf/432lnhn1tgsl2l.pdf",
       "publication_date": "2015-10-30",
-      "source_sha256": "915ba8ed727c24113d27d9510c50bee05a03b080955df6d867a6ee5f22aa0f5e"
+      "source_sha256": "915ba8ed727c24113d27d9510c50bee05a03b080955df6d867a6ee5f22aa0f5e",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2015-10-30",
+      "summary_project_ids": [
+        "AU-fb4e914f86102baa414a"
+      ]
     },
     {
       "key": "itech_franklyn_identity20211027",
       "kind": "pdf",
       "url": "https://www.itechminerals.com.au/wp-content/uploads/2022/07/20211027-iTECH-MINERALS-2021-ANNUAL-REPORT.pdf",
       "publication_date": "2021-10-27",
-      "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631"
+      "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631",
+      "summary_project_ids": [
+        "AU-0832169526bb5ec07626"
+      ]
     },
     {
       "key": "iluka_balranald_fid20230221",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230221/pdf/45lt9k5xy3ktnj.pdf",
       "publication_date": "2023-02-21",
-      "source_sha256": "94a57655d74ead667ce7adbbb0923b68b011641b9249992ff12a017c2e96252f"
+      "source_sha256": "94a57655d74ead667ce7adbbb0923b68b011641b9249992ff12a017c2e96252f",
+      "summary_project_ids": [
+        "AU-524c37fc04cf47bf8dca"
+      ]
     },
     {
       "key": "asx_review_nolans_ndpr_forecast_202211",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20221111/pdf/45hhscx5jhx0fh.pdf",
       "publication_date": "2022-11-11",
-      "source_sha256": "9515f0ef55e0d108720907ce8a119357371aa781eb6d33c28466c8be822373b2"
+      "source_sha256": "9515f0ef55e0d108720907ce8a119357371aa781eb6d33c28466c8be822373b2",
+      "summary_project_ids": [
+        "AU-1345edd8165c10930e94"
+      ]
     },
     {
       "key": "asx_document_03114333",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03114333",
       "publication_date": "2026-07-13",
-      "source_sha256": "99233befa81a1e193848122f00dfaa25079d0b2adbc2f19ef96326ca63c38f2a"
+      "source_sha256": "99233befa81a1e193848122f00dfaa25079d0b2adbc2f19ef96326ca63c38f2a",
+      "summary_project_ids": [
+        "AU-908fd6f4461622e89548"
+      ]
     },
     {
       "key": "nfm_annual2026",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20260929/pdf/074nqg9s1b67ll.pdf",
       "publication_date": "2026-09-29",
-      "source_sha256": "9c4f1f01212bbc65471d4bcb1806688390ed5aba16ce958a5fcbb0f51e8a9471"
+      "source_sha256": "9c4f1f01212bbc65471d4bcb1806688390ed5aba16ce958a5fcbb0f51e8a9471",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2026-09-29",
+      "summary_project_ids": [
+        "AU-203b4d90e5c23a323610"
+      ]
     },
     {
       "key": "durack_20240703",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20240703/pdf/0656mxcyyksmfs.pdf",
       "publication_date": "2024-07-03",
-      "source_sha256": "9d23cfd05efad75d66ec9c2e86b701876f7bdbde332cc6b22a4fb8005fca6481"
+      "source_sha256": "9d23cfd05efad75d66ec9c2e86b701876f7bdbde332cc6b22a4fb8005fca6481",
+      "summary_project_ids": [
+        "AU-75fe0f1a81005bd19586"
+      ],
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER"
     },
     {
       "key": "asx_review_donald_bfs_product_202603",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03077607",
       "publication_date": "2026-03-31",
-      "source_sha256": "9d863e075258b45c84d5c29961c77331c6c1cff3ac0d6ee6f13d6b54fc6e999f"
+      "source_sha256": "9d863e075258b45c84d5c29961c77331c6c1cff3ac0d6ee6f13d6b54fc6e999f",
+      "summary_project_ids": [
+        "AU-2fc429d0556dfa0b95c4"
+      ]
     },
     {
       "key": "r5_identity_balranald",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20260218/pdf/06wf3q27w0q4x7.pdf",
       "publication_date": "2026-02-18",
-      "source_sha256": "9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3"
+      "source_sha256": "9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2026-02-18",
+      "summary_project_ids": [
+        "AU-524c37fc04cf47bf8dca"
+      ]
     },
     {
       "key": "narraburra2023",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230419/pdf/45nsv13j5vtntn.pdf",
       "publication_date": "2023-04-19",
-      "source_sha256": "9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f"
+      "source_sha256": "9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f",
+      "summary_project_ids": [
+        "AU-d28382dfa82f1664065e"
+      ]
     },
     {
       "key": "wcn_annual2023",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230929/pdf/05vhvny9k7ghx0.pdf",
       "publication_date": "2023-09-29",
-      "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425"
+      "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2023-09-29",
+      "summary_project_ids": [
+        "AU-1103c5aa8bb63077ac61",
+        "AU-a9b72e86940271be45a3",
+        "AU-70cc41e3a7106f983f73",
+        "AU-b3ae34ac85d16018bd4b",
+        "AU-f81823bd8ba271840345"
+      ]
     },
     {
       "key": "zmi_cascade20230725",
       "kind": "pdf",
       "url": "https://company-announcements.afr.com/asx/zmi/afd79334-2ac1-11ee-9e97-fef68616d084.pdf",
       "publication_date": "2023-07-25",
-      "source_sha256": "9e3227e2cfbc2c75259b78b5c8096d7fe02cc18629cf47d9ef1f2af49e0843eb"
+      "source_sha256": "9e3227e2cfbc2c75259b78b5c8096d7fe02cc18629cf47d9ef1f2af49e0843eb",
+      "summary_project_ids": [
+        "AU-645024d708baf5b52bc2"
+      ]
     },
     {
       "key": "cascade20220530",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02526230",
       "publication_date": "2022-05-30",
-      "source_sha256": "9f049399b0e97a04d85c1842d4401187d04dcbb59bd86c37fd80e4921d45c43d"
+      "source_sha256": "9f049399b0e97a04d85c1842d4401187d04dcbb59bd86c37fd80e4921d45c43d",
+      "summary_project_ids": [
+        "AU-b2dadf9c8046c3c68a02"
+      ]
     },
     {
       "key": "devex_kennedy_halfyear20260313",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20260313/pdf/06xdgw8tr21hqs.pdf",
       "publication_date": "2026-03-13",
-      "source_sha256": "a40893cb537f1d9cdeb2eeb9cc7b2289d3cfee4e11974dc33e8ab765dafd6376"
+      "source_sha256": "a40893cb537f1d9cdeb2eeb9cc7b2289d3cfee4e11974dc33e8ab765dafd6376",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2026-03-13",
+      "summary_project_ids": [
+        "AU-cc4e217a90b7123dce0a"
+      ]
     },
     {
       "key": "igo_annual2022",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20220830/pdf/45dgch8z402y23.pdf",
       "publication_date": "2022-08-30",
-      "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a"
+      "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a",
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER",
+      "summary_project_ids": [
+        "AU-2af694147ae21c393820"
+      ]
     },
     {
       "key": "r6_identity_achilles_tambourah",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230303/pdf/45m8ynbtjdrx2w.pdf",
       "publication_date": "2023-03-03",
-      "source_sha256": "a8d5bb873fb84f0884b3960b0eb48692843e3dbba55eb1eaaf8314924f635c4c"
+      "source_sha256": "a8d5bb873fb84f0884b3960b0eb48692843e3dbba55eb1eaaf8314924f635c4c",
+      "summary_project_ids": [
+        "AU-e50ba6a268ea89226495"
+      ],
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER"
     },
     {
       "key": "barkly_amended_quarter20260518",
       "kind": "pdf",
       "url": "https://investorpa.com/announcement-pdf/20260518/293797.pdf",
       "publication_date": "2026-05-18",
-      "source_sha256": "aaa865cfb08d10c134cd7fa562fc88064821c4f64cfec5af34085ba7bdddfc14"
+      "source_sha256": "aaa865cfb08d10c134cd7fa562fc88064821c4f64cfec5af34085ba7bdddfc14",
+      "summary_project_ids": [
+        "AU-ad64122c217f0dbfabc8"
+      ]
     },
     {
       "key": "central_gawler_ida20220614",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asxpdf/20220614/pdf/459whszj3hf2sp.pdf",
       "publication_date": "2022-06-14",
-      "source_sha256": "abd44d8d94bc3bf89e8186d260982e8652d723e3eca2b571bc6c96d4ab8569a1"
+      "source_sha256": "abd44d8d94bc3bf89e8186d260982e8652d723e3eca2b571bc6c96d4ab8569a1",
+      "summary_project_ids": [
+        "AU-14f7cb8ca1fcd58f536c"
+      ]
     },
     {
       "key": "r6_identity_west_arunta_luni",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20260918/pdf/0747zs94kk1v6x.pdf",
       "publication_date": "2026-09-18",
-      "source_sha256": "ae8825f63b7ce1ac8bb26e0406fb9c75adf12fe31b8a86658a33fff4715f1766"
+      "source_sha256": "ae8825f63b7ce1ac8bb26e0406fb9c75adf12fe31b8a86658a33fff4715f1766",
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER",
+      "summary_project_ids": [
+        "AU-cae6c11543b0da5f840d"
+      ]
     },
     {
       "key": "auto2_identity_southern_cross",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230922/pdf/05v5qdfqlg7vwx.pdf",
       "publication_date": "2023-09-22",
-      "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5"
+      "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5",
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER",
+      "summary_project_ids": [
+        "AU-d99cf357d160df73387c"
+      ]
     },
     {
       "key": "taruga_ar2024",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20240930/pdf/068jy1z4w261mt.pdf",
       "publication_date": "2024-09-30",
-      "source_sha256": "b0faf81a98d605436700670fbaff7e6b3d10f733c5af9a5311fbe9ddf08bb246"
+      "source_sha256": "b0faf81a98d605436700670fbaff7e6b3d10f733c5af9a5311fbe9ddf08bb246",
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER",
+      "summary_project_ids": [
+        "AU-c5e94422a89a23f82408"
+      ]
     },
     {
       "key": "wandagee20230131",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230131/pdf/45l4qkhgm9jy0z.pdf",
       "publication_date": "2023-01-31",
-      "source_sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7"
+      "source_sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7",
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER",
+      "summary_project_ids": [
+        "AU-b50a5b57669586191c33"
+      ]
     },
     {
       "key": "asra_yttria_maiden20240416",
       "kind": "pdf",
       "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739",
       "publication_date": "2024-04-16",
-      "source_sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726"
+      "source_sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726",
+      "summary_project_ids": [
+        "AU-d0ce731e1d8198ffaf58"
+      ]
     },
     {
       "key": "asx_jupiter_latest_mre202610",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03150890",
       "publication_date": "2026-10-12",
-      "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e"
+      "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+      "summary_project_ids": [
+        "AU-dac3c8e40326b8244cdb"
+      ]
     },
     {
       "key": "ida_half20250314",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20250314/pdf/06gn8yfc0vl2jk.pdf",
       "publication_date": "2025-03-14",
-      "source_sha256": "c0684f1fa2358241c68110d1c1ac471239caa5995c79da9872108423e32f0986"
+      "source_sha256": "c0684f1fa2358241c68110d1c1ac471239caa5995c79da9872108423e32f0986",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2025-03-14",
+      "summary_project_ids": [
+        "AU-14f7cb8ca1fcd58f536c"
+      ]
     },
     {
       "key": "discovery_lanthanein_reports_page_3ebae993bf18",
       "kind": "pdf",
       "url": "https://wcsecure.weblink.com.au/clients/fortunametals/headline.aspx?headlineid=61344787",
       "publication_date": "2026-09-21",
-      "source_sha256": "c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4"
+      "source_sha256": "c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4",
+      "document_issue_date": "2026-09-21",
+      "summary_project_ids": [
+        "AU-7c198d219aa1db3e291f"
+      ]
     },
     {
       "key": "r5_identity_wimmera",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03053666",
       "publication_date": "2026-01-29",
-      "source_sha256": "c2a8b91970be9298bae77c8547268abd7f0969e8ceebeb7cf73530fa6d965e77"
+      "source_sha256": "c2a8b91970be9298bae77c8547268abd7f0969e8ceebeb7cf73530fa6d965e77",
+      "summary_project_ids": [
+        "AU-ff758cad5beb276d327d"
+      ]
     },
     {
       "key": "ravensthorpe20230428",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230428/pdf/45p5s75djkxgp7.pdf",
       "publication_date": "2023-04-28",
-      "source_sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0"
+      "source_sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+      "summary_project_ids": [
+        "AU-557f0c9ad81bf84bbb6d",
+        "AU-ee34781b030807146e64"
+      ],
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER"
     },
     {
       "key": "r17_primary_20",
       "kind": "pdf",
       "url": "https://company-announcements.afr.com/asx/enr/3d2fa808-7c80-11f0-a14a-aaf2b0bbb5d6.pdf",
       "publication_date": "2025-08-19",
-      "source_sha256": "cad9eef849d62a11d3eee3bc036d553f7860522502b7fa655f3755cbe5f8039b"
+      "source_sha256": "cad9eef849d62a11d3eee3bc036d553f7860522502b7fa655f3755cbe5f8039b",
+      "summary_project_ids": [
+        "AU-af44c2bd1173b453953f"
+      ]
     },
     {
       "key": "od6_quarter20230427",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230427/pdf/45p123qfz1mgyn.pdf",
       "publication_date": "2023-04-27",
-      "source_sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb"
+      "source_sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb",
+      "summary_project_ids": [
+        "AU-1c907e00c797bf8b3ce1"
+      ]
     },
     {
       "key": "r17_primary_19",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20230504/pdf/05pcd3mhsr7f4f.pdf",
       "publication_date": "2023-05-04",
-      "source_sha256": "cd348c2df55c4677fb57be2d242201366d226574169903669208bd46133278c1"
+      "source_sha256": "cd348c2df55c4677fb57be2d242201366d226574169903669208bd46133278c1",
+      "summary_project_ids": [
+        "AU-d1394abdef4c8d971c78"
+      ]
     },
     {
       "key": "mrd_ree20230112",
       "kind": "pdf",
       "url": "https://company-announcements.afr.com/asx/mrd/eb7f361c-91f5-11ed-b701-befebebb5124.pdf",
       "publication_date": "2023-01-12",
-      "source_sha256": "ce906009372d81146577ceaea0c670ff082e277ebdd7b122b6b48de7ac299e66"
+      "source_sha256": "ce906009372d81146577ceaea0c670ff082e277ebdd7b122b6b48de7ac299e66",
+      "summary_project_ids": [
+        "AU-3651cf8448b9227adcf5"
+      ]
     },
     {
       "key": "coondina_ree20230214",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02631363",
       "publication_date": "2023-02-14",
-      "source_sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f"
+      "source_sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
+      "summary_project_ids": [
+        "AU-8c5887498873bf838e09"
+      ]
     },
     {
       "key": "hre_perenjori20250613",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20250613/pdf/06kpv73yk1418b.pdf",
       "publication_date": "2025-06-13",
-      "source_sha256": "d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d"
+      "source_sha256": "d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d",
+      "summary_project_ids": [
+        "AU-794821a2df9b7a244f96"
+      ]
     },
     {
       "key": "asx_devex_ar2025",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02996030",
       "publication_date": "2025-09-16",
-      "source_sha256": "d631b0e9edbc2162ee3cb12bf526834518b43cc5ce89c4d995e3497afbbf36fb"
+      "source_sha256": "d631b0e9edbc2162ee3cb12bf526834518b43cc5ce89c4d995e3497afbbf36fb",
+      "publication_date_role": "ASX_ARCHIVE_MATCHED_TO_AUTHORISATION_DATE",
+      "document_issue_date": "2025-09-16",
+      "summary_project_ids": [
+        "AU-cc4e217a90b7123dce0a"
+      ]
     },
     {
       "key": "asx_barkly_prospectus20260128",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03053500",
       "publication_date": "2026-01-28",
-      "source_sha256": "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e"
+      "source_sha256": "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e",
+      "publication_date_role": "ASX_ARCHIVE_PUBLICATION_WITH_SEPARATE_DOCUMENT_ISSUE_DATE",
+      "document_issue_date": "2025-12-01",
+      "summary_project_ids": [
+        "AU-ad64122c217f0dbfabc8"
+      ]
     },
     {
       "key": "nim_mons20260312",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20260312/pdf/06xcdmcg44zmqd.pdf",
       "publication_date": "2026-03-12",
-      "source_sha256": "d9211f418e3de534d69f8f7d599b434a8353d2293a53a0c63cf7f85d150d2828"
+      "source_sha256": "d9211f418e3de534d69f8f7d599b434a8353d2293a53a0c63cf7f85d150d2828",
+      "publication_date_role": "ASX_DATED_URL",
+      "document_issue_date": "2026-03-12",
+      "summary_project_ids": [
+        "AU-d2cd77f89298d6dae330"
+      ]
     },
     {
       "key": "asx_mtweld_mre202408",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02836069",
       "publication_date": "2024-08-05",
-      "source_sha256": "dd6bbb85714387a29b2c5498df5cd0cfbdacd63246782bd2a2beeca0793b193f"
+      "source_sha256": "dd6bbb85714387a29b2c5498df5cd0cfbdacd63246782bd2a2beeca0793b193f",
+      "summary_project_ids": [
+        "AU-efff91a06cf344122d88"
+      ]
     },
     {
       "key": "nfm_hartsrange20250724",
       "kind": "pdf",
       "url": "https://announcements.asx.com.au/asxpdf/20250724/pdf/06m2pqx9qtdgvb.pdf",
       "publication_date": "2025-07-24",
-      "source_sha256": "e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226"
+      "source_sha256": "e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226",
+      "publication_date_role": "ASX_DATED_URL_NATIVE_ISSUER",
+      "summary_project_ids": [
+        "AU-203b4d90e5c23a323610"
+      ]
     },
     {
       "key": "asx_document_02904920",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02904920",
       "publication_date": "2025-01-16",
-      "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0"
+      "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+      "summary_project_ids": [
+        "AU-9bd8e5ed8408cd84d876"
+      ]
     },
     {
       "key": "metadata_narraburra_orbit_20261030",
       "kind": "pdf",
       "url": "https://orbitresources.au/downloads/announcements/obt_2026103001.pdf",
       "publication_date": "2026-10-30",
-      "source_sha256": "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28"
+      "source_sha256": "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28",
+      "summary_project_ids": [
+        "AU-d28382dfa82f1664065e"
+      ]
     },
     {
       "key": "asx_review_mia_central_202405",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02809770",
       "publication_date": "2024-05-22",
-      "source_sha256": "eac3b88bddeeda7a38488b44300d70ad4ceaa9b86db3383d950556952bac77e0"
+      "source_sha256": "eac3b88bddeeda7a38488b44300d70ad4ceaa9b86db3383d950556952bac77e0",
+      "summary_project_ids": [
+        "AU-3651cf8448b9227adcf5"
+      ]
     },
     {
       "key": "new_goldfield20240321",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02787845",
       "publication_date": "2024-03-21",
-      "source_sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c"
+      "source_sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+      "summary_project_ids": [
+        "AU-41ee0148c804293cfc39"
+      ]
     },
     {
       "key": "norwest_arunta_20230222",
       "kind": "pdf",
       "url": "https://wcsecure.weblink.com.au/pdf/NWM/02634405.pdf",
       "publication_date": "2023-02-22",
-      "source_sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2"
+      "source_sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+      "summary_project_ids": [
+        "AU-c4391f8d2a6690076436"
+      ]
     },
     {
       "key": "nwm_arunta_west_20230801",
       "kind": "pdf",
       "url": "https://www.aspecthuntley.com.au/asxdata/20230801/pdf/02692965.pdf",
       "publication_date": "2023-08-01",
-      "source_sha256": "efaafa511113d00eda8fbccd8e407a364ddad320df36452091277a0f63052fb4"
+      "source_sha256": "efaafa511113d00eda8fbccd8e407a364ddad320df36452091277a0f63052fb4",
+      "summary_project_ids": [
+        "AU-c4391f8d2a6690076436"
+      ]
     },
     {
       "key": "hastings_ar2026",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03146806",
       "publication_date": "2026-09-30",
-      "source_sha256": "f03cdb2769d58dcc65159e1f3bc892b3525e871c4bf685e480aa428bcf47a260"
+      "source_sha256": "f03cdb2769d58dcc65159e1f3bc892b3525e871c4bf685e480aa428bcf47a260",
+      "document_issue_date": "2026-09-30",
+      "summary_project_ids": [
+        "AU-2a3a86a4d971e9f9838d",
+        "AU-908fd6f4461622e89548"
+      ],
+      "publication_date_role": "ASX_ARCHIVE_PUBLICATION_WITH_SEPARATE_DOCUMENT_ISSUE_DATE"
     },
     {
       "key": "r6_identity_rankin_dome",
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02749716",
       "publication_date": "2023-12-04",
-      "source_sha256": "f6f127c62e9c4ddcab67c5f01552f21cc9ee1c17095451b963e7b66e757981b3"
+      "source_sha256": "f6f127c62e9c4ddcab67c5f01552f21cc9ee1c17095451b963e7b66e757981b3",
+      "summary_project_ids": [
+        "AU-9d967ecaac6e02fc76a5"
+      ]
+    },
+    {
+      "key": "reviewed_source_013de14181fdf89d",
+      "kind": "government_csv",
+      "url": "https://strike.nt.gov.au/link/https://geoscience.nt.gov.au/contents/prod/Downloads/Mineral_Deposits/MINERALOCCURRENCES_csv.zip",
+      "source_sha256": "013de14181fdf89dd82486d2f9ab80467bc8942179b36f5a3af5139116496432",
+      "fixed_query": true,
+      "summary_spatial_source": true
+    },
+    {
+      "key": "reviewed_source_06916f0c5d2b6e1c",
+      "kind": "pdf",
+      "url": "https://geoscience.nt.gov.au/gemis/server/api/core/bitstreams/96bd706a-287d-48dc-86f8-37301544145e/content",
+      "source_sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+      "publication_date": "2024-11-30",
+      "publication_date_precision": "MONTH",
+      "publication_date_interval": [
+        "2024-11-01",
+        "2024-11-30"
+      ],
+      "publication_date_role": "REPORT_MONTH_UPPER_BOUND_NOT_RELEASE_DATE",
+      "source_kind": "GOVERNMENT_ARCHIVED_TECHNICAL_REPORT",
+      "summary_project_ids": [
+        "AU-70fc8a7de18ad8209c32"
+      ]
+    },
+    {
+      "key": "reviewed_source_095f218d0cd94fc8",
+      "kind": "pdf",
+      "url": "https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=PDA-49591461%2120230119T024434.317+GMT",
+      "source_sha256": "095f218d0cd94fc8fdef24d38b16d8c67d10e778010c301a589277490e75ae70",
+      "publication_date": "2023-01-11",
+      "summary_project_ids": [
+        "AU-3a0020b6daf659f62138"
+      ]
+    },
+    {
+      "key": "reviewed_snapshot_0a592d02d0a07148",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7813831.pdf?v=63960528980",
+      "kind": "pdf",
+      "source_sha256": "0a592d02d0a071484617f6a39c041a28523466db007282956c905447b8cc56d9",
+      "committed_snapshot_sha256": "0a592d02d0a071484617f6a39c041a28523466db007282956c905447b8cc56d9"
+    },
+    {
+      "key": "reviewed_snapshot_0ee87a6876f4ab20",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=118927",
+      "kind": "pdf",
+      "report_native_id": "WAMEX:A118927",
+      "resource_native_id": "534767",
+      "original_filename": "a118927_v1_report_KG_OCR.pdf",
+      "metadata_sha256": [
+        "0b8e55c3951edcdc826f05fc46640cf5e6df4c4265c88d147ba4e228765cc7aa"
+      ],
+      "publication_date": "2025-05-05",
+      "date_role": "OPEN_FILE_RELEASE_NOT_RESOURCE_EFFECTIVE_DATE",
+      "authority": "OFFICIAL_WAMEX_REPORT",
+      "source_sha256": "0ee87a6876f4ab20b39d67303f84f0cdf04372a4588c6cb9a74a741b33481736",
+      "committed_snapshot_sha256": "0ee87a6876f4ab20b39d67303f84f0cdf04372a4588c6cb9a74a741b33481736"
+    },
+    {
+      "key": "reviewed_snapshot_197602220b4e8fc3",
+      "url": "https://www.gippslandcriticalminerals.com/project-overview/",
+      "kind": "discovery_html",
+      "source_sha256": "197602220b4e8fc3ea4f4fe18fd2dcbaffdcf2f63dc774c4c2abe5d8f0f43a7d",
+      "committed_snapshot_sha256": "197602220b4e8fc3ea4f4fe18fd2dcbaffdcf2f63dc774c4c2abe5d8f0f43a7d"
+    },
+    {
+      "key": "reviewed_source_1c89734fa687ee61",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20240910/pdf/067qnl3479xjb0.pdf",
+      "source_sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c",
+      "publication_date": "2024-09-10",
+      "summary_project_ids": [
+        "AU-1c907e00c797bf8b3ce1"
+      ]
+    },
+    {
+      "key": "reviewed_source_246dea894d0044a3",
+      "kind": "pdf",
+      "url": "https://api.investi.com.au/api/announcements/mek/6817bae2-b84.pdf",
+      "source_sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e",
+      "publication_date": "2022-02-28",
+      "summary_project_ids": [
+        "AU-b2dadf9c8046c3c68a02"
+      ]
+    },
+    {
+      "key": "reviewed_source_31a205168b6ae647",
+      "kind": "government_wfs",
+      "url": "https://opendata.maps.vic.gov.au/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=open-data-platform%3Aminten&outputFormat=application%2Fjson&count=1000&startIndex=0&sortBy=tno&CQL_FILTER=tno+LIKE+%27%255532%27+OR+tno+LIKE+%27%252002%27+OR+tno+LIKE+%27%256904%27+OR+tno+LIKE+%27%256966%27+OR+tno+LIKE+%27%256906%27+OR+tno+LIKE+%27%256419%27+OR+tno+LIKE+%27%256664%27+OR+tno+LIKE+%27%256666%27&srsName=EPSG%3A7844",
+      "source_sha256": "31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953",
+      "fixed_query": true,
+      "summary_spatial_source": true,
+      "summary_tenements": [
+        {
+          "project_id": "AU-2fc429d0556dfa0b95c4",
+          "state": "VIC",
+          "tenement_ids": [
+            "MIN5532",
+            "RL2002"
+          ],
+          "complete_project_scope": true,
+          "historical": false,
+          "source_crs": "EPSG:7844",
+          "id_field": "tno",
+          "original_references": [
+            {
+              "source_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+              "page": 1,
+              "quote": " \n \n \n \n \n \nContact us \nAstron Limited \nwww.astronlimited.com.au \ncontact@astronlimited.com \nACN: 685 756 209 \n03 5385 7088  \nLevel 10, 224 Queen Street, Melbourne VIC 3000 \n \n \n \n \nASX Announcement \nASX Code: ATR\n27 February 2026 \nDonald Project - MIN5532 Mineral Resource and Ore Reserves Update \nHighlights \n \nThe Mineral Resource and the Ore Reserve Estimates for Mining Licence MIN5532, the site of Phase 1 of the \nDonald Project, have been updated to include detailed rare earth element grade data.  \n \nThe Donald Project is shovel ready and the revised Mineral Resource and Ore Reserve Estimates confirm its \nposition as one of the world’s most significant near-term sources of heavy rare earths.  \n \nThe heavy mineral (HM) grade of the updated MIN5532 Mineral Resource is 4.0% and includes 1.4% total \nrare earth oxides (TREO), comprising 18.2% neodymium/praseodymium (NdPr) oxide, 2.9% dysprosium \n(Dy) oxide, and 0.4% terbium (Tb) oxide.  \n \nAverage annual forecast production of the high value heavy rare earth oxides Dy oxide and Tb oxide (which \nare contained in the Project’s rare earth element concentrate (REEC) product) increased by 57%, to 144tpa, \nand by 22%, to 22tpa, respectively when compared to the 2025 July updated economics study. \n \nThe revised Mineral Resource and Ore Reserves have been prepared in accordance with the guidelines of \nthe JORC 2012 Code (2012 edition), as well as NI 43-101 and SK-1300 North American standards. Astron’s \nJoint Venture partner, Energy Fuels Inc., has released a technical report on EDGAR+ in accordance with its \nstatutory obligations as an entity listed on the American Stock Exchange (NYSE American). \n \nSeparately, grade control (GC) drilling and advanced sample analysis techniques, carried out over an area of \nMIN5532 representing approximately the first 2 ½ years of mining operations at the Donald Phase 1 Project, \nindicated a 5% increase in the HM grade accompanied by an 11% increase in the zircon grade and a 6% \nincrease in the monazite grade in the HM fraction, within the area of GC drilling. \nAstron Limited (ASX: ATR) (Astron or the Company) is pleased to announce revised Mineral Resource and Ore \nReserve estimates for Mining Licence MIN5532 (MIN5532), the site of Phase 1 of the Donald Rare Earths and \nMineral Sands Project (Donald Project or Project). \nThe Donald Project, located in the Wimmera Region of Victoria, is being developed by Astron in joint venture with \nEnergy Fuels Inc., a U.S. based critical minerals producer. The Project contains the critical minerals zircon and \ntitanium dioxide, as well as the light rare earth elements neodymium (Nd) and praseodymium (Pr), and the more \nvaluable heavy rare earth elements dysprosium (Dy) and terbium (Tb). \nThe Donald Project tenements comprise MIN5532 and Retention Licence RL2002. MIN5532, the subject of this \nMineral Resource and Ore Reserves update, with an area of approximately 28 square kilometres, comprises \napproximately 10% of the total Donald Project area.  \nThe 2022 Mineral Resource Estimate (MRE) for MIN5532 has been updated to incorporate detailed rare earth \nelement data . The 2025 MRE is based on inductively coupled plasma-mass spectrometry (ICP-MS) analysis of the \n2022 drilling program samples which were used in the 2022 MRE. ICP-MS analysis is more accurate than the \npreviously used X-ray ﬂuorescence (XRF) analysis, speciﬁcally for low mineral concentrations. This is particularly \nFor personal use only\n",
+              "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03067134",
+              "publication_date": "2026-02-27"
+            }
+          ],
+          "zip_member": null,
+          "decision_id": "round4-tenement-centroid-20261113"
+        },
+        {
+          "project_id": "AU-ff758cad5beb276d327d",
+          "state": "VIC",
+          "tenement_ids": [
+            "RL006904",
+            "EL006966",
+            "RL006906"
+          ],
+          "complete_project_scope": true,
+          "historical": false,
+          "source_crs": "EPSG:7844",
+          "id_field": "tno",
+          "original_references": [
+            {
+              "source_sha256": "c2a8b91970be9298bae77c8547268abd7f0969e8ceebeb7cf73530fa6d965e77",
+              "page": 24,
+              "quote": " \n24 \nSection 2 Reporting of Exploration Results  \n(Criteria listed in the preceding section also apply to this section) \n \nCriteria \nJORC Code explanation \nCommentary \nMineral \ntenement and \nland tenure \nstatus \nType, reference name/number, location and ownership including agreements or material \nissues with third parties such as joint ventures, partnerships, overriding royalties, native \ntitle interests, historical sites, wilderness or national park and environmental settings. \nIluka’s WIM100 deposit is located approximately 30km southwest of Horsham \nin western Victoria. \nThe WIM100 deposit is predominantly located within RL006904, granted on 20 \nDecember 2021, with minor extension to the south into EL006966 and to the \nsouth west into RL006906. The tenements are held by Basin Minerals Holdings \nPty Ltd, a wholly-owned subsidiary of Iluka Resources Limited. \nTenement \nStatus \nRL006904 \nLive – registration date of 20/12/21 (WIM100). \nRL006905 \nLive – registration date of 27/6/23 (WIM50). \nRL006906 \nLive – registration date of 27/6/23 (WIM50N). \nEL006966 \nLive – registration date of 23/9/19 (WIM100 extension) \nThe security of the tenure held at the time of reporting along with any known \nimpediments to obtaining a licence to operate in the area. \nThe tenements predominantly cover privately-owned freehold land with some \ncrown land under reserve, road reserves and the Toolondo State Forest which \nimpinges on the very western margin of retention license RL006905 (WIM50). \nEnvironmental, social and cultural heritage investigation studies are being \nprogressed to support project approvals. The mineralisation located beneath \nJallumba Marsh and Red Gum Swamp has been excluded from the WIM100 \nMineral Resource estimate. \nExploration \ndone by other \nparties \nAcknowledgment and appraisal of exploration by other parties. \nThe fine-grained HM deposits of the Wimmera region were initially \ninvestigated by CRAE in the 1980s. While the CRAE data has assisted in \ntargeting the mineralisation, no historical information by CRAE or any other \ncompany was used in the estimation of the WIM100 Mineral Resource. \nGeology \nDeposit type, geological setting and style of mineralisation. \nThe fine-grained HM style of deposits such as WIM100 manifest as extensive \nlobate mineralised zones interpreted to have accumulated in a low energy \nnear/offshore marine setting peripheral to the margin of the Murray Basin \ngeomorphological province. The mineralisation occurs in fine- to very fine-\ngrained, well sorted, silty sand and is dominantly hosted in lower shore facies \nof the LPS. WIM-style HM deposits are typically extensive with strike lengths of \n5km to 20km and widths of 2km to 5km. The mineralisation at WIM100 is \nbetween 1m and 20m in thickness and shows good lateral continuity. \nFor personal use only\n",
+              "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03053666",
+              "publication_date": "2026-01-29"
+            }
+          ],
+          "zip_member": null,
+          "decision_id": "round4-tenement-centroid-20261113"
+        },
+        {
+          "project_id": "AU-410159af7b79ea498ec2",
+          "state": "VIC",
+          "tenement_ids": [
+            "EL 6419",
+            "EL 6664"
+          ],
+          "complete_project_scope": true,
+          "historical": false,
+          "source_crs": "EPSG:7844",
+          "id_field": "tno",
+          "original_references": [
+            {
+              "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9",
+              "page": 16,
+              "quote": " \nVHM Limited | Annual Report 2026 | Page 15 \n \nCannie Project  \n \nResource: 190.0Mt MRE \nMineralogy: THM 3.1%, zircon 24.5%, \nrutile 15.5%, leucoxene 24.3%, ilmenite \n2.1%, monazite 4.1%, xenotime 0.81% \nVHM holds exploration tenement licences \nEL 6419 and EL 6664 where the Cannie \ndeposit is situated, until May 2028 and \nJune 2028 respectively.  \nThe Cannie Resource remains a highlight \nfrom the Company’s extensive exploration \ndrilling program with its 192Mt maiden \nMRE (Inferred) containing exceptional \ngrade TREO + Yttrium (Y2O3) and material \nuplift to the Company’s zircon and titanium \nmineral inventory. There are 176,000 \ntonnes of TREO in the Cannie Resource. \nDown hole geophysics and geological \nlogging from all 137 drill holes in EL 6664 \nand 5 drill holes from EL 6419 was \nsufficient to provide spatial continuity. The \nInferred \nclassification \nreflects \nthe \nappropriate level of confidence in grade \ntenor and spatial continuity of this estimate. \nThe Company plans to review the Cannie \nResource \nand \nupgrade \nits \nresource \ncategory as part of the Company’s ongoing \nexploration activities.  \n \n \nNowie Project \n \nResource: 16.4Mt MRE  \nMineralogy: THM 3.8%, zircon 16.1%, \nrutile 15.6%, leucoxene 24.4%, ilmenite \n5.0%, monazite 2.1%, xenotime 0.5% \nVHM holds exploration tenement licence \nEL 6666 where the Nowie deposit is \nsituated until June 2028. \nThe Company in prior years released the \nNowie Mineral Resource estimate (MRE) \n(Inferred) of 16.4Mt @ 3.8% THM grade. \nThe outcomes from the Nowie MRE \nconfirmed that the Company discovered a \nsignificant \ncritical \nminerals \nprovince \nstretching a strike length greater than \n55km. This province ranges from the \nCannie deposit in the south, to the \nadvanced Goschen Project, and north to \nNowie. \nGeological interpretation from 43 drill holes \nconcluded that the Nowie deposit is formed \nfrom \nmultiple \nhigh-grade \nstrandline \nsystems occurring above a 20 metre thick \nsequence of moderate THM grade sheet \nstyle mineralisation. Interpretation of the \ndrilling and airborne geophysics data \nindicates the Nowie deposit is at least 3km \nin width (east to west) and up to 11km in \nstrike length (north to south). \nThe maiden Mineral Resource includes \n6.4Mt @ 6.1% THM contained in high-\ngrade strandline deposits which remain \nopen along and across strike. Significantly, \nthese strandline deposits occur close to \nsurface and provide selective high grade \nmining opportunities.  \nDown hole geophysics and geological \nlogging the drill holes in Exploration \nLicence (EL) 6666 was sufficient to \nprovide geological continuity. The Inferred \nclassification \nreflects \nthe \nappropriate \nlevel of confidence in grade, tenor, and \ngeological continuity of this estimate. \n \n \n \n \n \n \n \n \nFor personal use only\n",
+              "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03137624",
+              "publication_date": "2026-09-09"
+            }
+          ],
+          "zip_member": null,
+          "decision_id": "round4-tenement-centroid-20261113"
+        },
+        {
+          "project_id": "AU-176852ef1348ac10d154",
+          "state": "VIC",
+          "tenement_ids": [
+            "EL 6666"
+          ],
+          "complete_project_scope": true,
+          "historical": false,
+          "source_crs": "EPSG:7844",
+          "id_field": "tno",
+          "original_references": [
+            {
+              "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9",
+              "page": 16,
+              "quote": " \nVHM Limited | Annual Report 2026 | Page 15 \n \nCannie Project  \n \nResource: 190.0Mt MRE \nMineralogy: THM 3.1%, zircon 24.5%, \nrutile 15.5%, leucoxene 24.3%, ilmenite \n2.1%, monazite 4.1%, xenotime 0.81% \nVHM holds exploration tenement licences \nEL 6419 and EL 6664 where the Cannie \ndeposit is situated, until May 2028 and \nJune 2028 respectively.  \nThe Cannie Resource remains a highlight \nfrom the Company’s extensive exploration \ndrilling program with its 192Mt maiden \nMRE (Inferred) containing exceptional \ngrade TREO + Yttrium (Y2O3) and material \nuplift to the Company’s zircon and titanium \nmineral inventory. There are 176,000 \ntonnes of TREO in the Cannie Resource. \nDown hole geophysics and geological \nlogging from all 137 drill holes in EL 6664 \nand 5 drill holes from EL 6419 was \nsufficient to provide spatial continuity. The \nInferred \nclassification \nreflects \nthe \nappropriate level of confidence in grade \ntenor and spatial continuity of this estimate. \nThe Company plans to review the Cannie \nResource \nand \nupgrade \nits \nresource \ncategory as part of the Company’s ongoing \nexploration activities.  \n \n \nNowie Project \n \nResource: 16.4Mt MRE  \nMineralogy: THM 3.8%, zircon 16.1%, \nrutile 15.6%, leucoxene 24.4%, ilmenite \n5.0%, monazite 2.1%, xenotime 0.5% \nVHM holds exploration tenement licence \nEL 6666 where the Nowie deposit is \nsituated until June 2028. \nThe Company in prior years released the \nNowie Mineral Resource estimate (MRE) \n(Inferred) of 16.4Mt @ 3.8% THM grade. \nThe outcomes from the Nowie MRE \nconfirmed that the Company discovered a \nsignificant \ncritical \nminerals \nprovince \nstretching a strike length greater than \n55km. This province ranges from the \nCannie deposit in the south, to the \nadvanced Goschen Project, and north to \nNowie. \nGeological interpretation from 43 drill holes \nconcluded that the Nowie deposit is formed \nfrom \nmultiple \nhigh-grade \nstrandline \nsystems occurring above a 20 metre thick \nsequence of moderate THM grade sheet \nstyle mineralisation. Interpretation of the \ndrilling and airborne geophysics data \nindicates the Nowie deposit is at least 3km \nin width (east to west) and up to 11km in \nstrike length (north to south). \nThe maiden Mineral Resource includes \n6.4Mt @ 6.1% THM contained in high-\ngrade strandline deposits which remain \nopen along and across strike. Significantly, \nthese strandline deposits occur close to \nsurface and provide selective high grade \nmining opportunities.  \nDown hole geophysics and geological \nlogging the drill holes in Exploration \nLicence (EL) 6666 was sufficient to \nprovide geological continuity. The Inferred \nclassification \nreflects \nthe \nappropriate \nlevel of confidence in grade, tenor, and \ngeological continuity of this estimate. \n \n \n \n \n \n \n \n \nFor personal use only\n",
+              "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03137624",
+              "publication_date": "2026-09-09"
+            }
+          ],
+          "zip_member": null,
+          "decision_id": "round4-tenement-centroid-20261113"
+        }
+      ]
+    },
+    {
+      "key": "reviewed_source_521f635719be1686",
+      "kind": "government_arcgis",
+      "url": "https://services.ga.gov.au/gis/rest/services/AustralianCriticalMineralsOperatingMinesAndDeposits/MapServer/7/query?where=1%3D1&outFields=*&outSR=4283&returnGeometry=true&f=pjson",
+      "source_sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b",
+      "fixed_query": true,
+      "summary_spatial_source": true,
+      "summary_bindings": [
+        {
+          "project_id": "AU-2a3a86a4d971e9f9838d",
+          "feature_id": 2429,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "fullscope18_ga_location_AU-2a3a86a4d971e9f9838d",
+            "project_id": "AU-2a3a86a4d971e9f9838d",
+            "reviewed_project_name": "Brockman Project",
+            "source_key": "ga2025_l7",
+            "objectid": 2429,
+            "source_project_name": "Brockman",
+            "state": "WA",
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
+        },
+        {
+          "project_id": "AU-4286ab9c245effb445ff",
+          "feature_id": 2591,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "fullscope18_ga_location_AU-4286ab9c245effb445ff",
+            "project_id": "AU-4286ab9c245effb445ff",
+            "reviewed_project_name": "Burracoppin Project",
+            "source_key": "ga2025_l7",
+            "objectid": 2591,
+            "source_project_name": "Burracoppin",
+            "state": "WA",
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
+        },
+        {
+          "project_id": "AU-7537d9555628040fab40",
+          "feature_id": 2193,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "fullscope18_ga_location_AU-7537d9555628040fab40",
+            "project_id": "AU-7537d9555628040fab40",
+            "reviewed_project_name": "Fingerboards",
+            "source_key": "ga2025_l7",
+            "objectid": 2193,
+            "source_project_name": "Fingerboards",
+            "state": "VIC",
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
+        },
+        {
+          "project_id": "AU-cc4e217a90b7123dce0a",
+          "feature_id": 2238,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "fullscope18_ga_location_AU-cc4e217a90b7123dce0a",
+            "project_id": "AU-cc4e217a90b7123dce0a",
+            "reviewed_project_name": "Kennedy Rare Earths Project",
+            "source_key": "ga2025_l7",
+            "objectid": 2238,
+            "source_project_name": "Kennedy",
+            "state": "QLD",
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
+        },
+        {
+          "project_id": "AU-af44c2bd1173b453953f",
+          "feature_id": 2419,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "fullscope18_ga_location_AU-af44c2bd1173b453953f",
+            "project_id": "AU-af44c2bd1173b453953f",
+            "reviewed_project_name": "Aileron Niobium–REE Project",
+            "source_key": "ga2025_l7",
+            "objectid": 2419,
+            "source_project_name": "Aileron",
+            "state": "WA",
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
+        },
+        {
+          "project_id": "AU-447261eed0e81eae88bf",
+          "feature_id": 2264,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "fullscope18_ga_location_AU-447261eed0e81eae88bf",
+            "project_id": "AU-447261eed0e81eae88bf",
+            "reviewed_project_name": "Goschen Central Rare Earths and Mineral Sands Project — ACDC",
+            "source_key": "ga2025_l7",
+            "objectid": 2264,
+            "source_project_name": "Goschen Central",
+            "state": "VIC",
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
+        },
+        {
+          "project_id": "AU-fb4e914f86102baa414a",
+          "feature_id": 2282,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "fullscope18_ga_location_AU-fb4e914f86102baa414a",
+            "project_id": "AU-fb4e914f86102baa414a",
+            "reviewed_project_name": "WIM150 Rare-Earth-Bearing Mineral Sands Project — Australian Zircon 2015",
+            "source_key": "ga2025_l7",
+            "objectid": 2282,
+            "source_project_name": "Wim 150",
+            "state": "VIC",
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
+        },
+        {
+          "project_id": "AU-fe65cb1bd28eacb7a67f",
+          "feature_id": 2303,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "fullscope19_ga_hms_location_AU-fe65cb1bd28eacb7a67f",
+            "project_id": "AU-fe65cb1bd28eacb7a67f",
+            "reviewed_project_name": "Copi Mineral Sands Project",
+            "source_key": "ga2025_l7",
+            "objectid": 2303,
+            "source_project_name": "Copi",
+            "state": "NSW",
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT",
+            "ree_hms_material_proof": {
+              "review_id": "continuation1_catalogue_copi",
+              "sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+              "asset_set": "canonical",
+              "path": "data/snapshots/af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5.pdf",
+              "page": 47,
+              "bbox": [
+                10.0,
+                10.0,
+                585.2760009765625,
+                470.0
+              ],
+              "project_marker": "Copi",
+              "statement_sha256": "a9f78f8bf1b43455ff3ed049b95014d61935191c40a5d0a0bddb2a56ffe37972"
+            }
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
+        }
+      ]
+    },
+    {
+      "key": "reviewed_source_5d4d954c63513e05",
+      "kind": "pdf",
+      "url": "https://geoscience.nt.gov.au/gemis/server/api/core/bitstreams/dd35f2fd-4045-4f54-8894-eda7ce33681d/content",
+      "source_sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59"
+    },
+    {
+      "key": "reviewed_snapshot_6faf69a2970df794",
+      "url": "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=107882",
+      "kind": "pdf",
+      "report_native_id": "WAMEX:A107882",
+      "resource_native_id": "440687",
+      "original_filename": "c56-1999_2015 mt weld rare earths project annual report_KG_OCR.pdf",
+      "metadata_sha256": [
+        "2e81286b46907bdbe37fd6e6f0ab67e8d8027d882227d3b8aa9a7c5c9683710a"
+      ],
+      "publication_date": "2022-05-02",
+      "date_role": "OPEN_FILE_RELEASE_NOT_RESOURCE_EFFECTIVE_DATE",
+      "authority": "OFFICIAL_WAMEX_REPORT",
+      "source_sha256": "6faf69a2970df7948b3d04ddb5835eec18302d4d6e2896e8013fb45de24b0dfa",
+      "committed_snapshot_sha256": "6faf69a2970df7948b3d04ddb5835eec18302d4d6e2896e8013fb45de24b0dfa"
+    },
+    {
+      "key": "pending_source_7c39273cc15b4e56",
+      "kind": "pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03077988",
+      "source_sha256": "7c39273cc15b4e56b59d0514a3134eadb203230add73e24d36eb8cd0094fda1e",
+      "enabled": false,
+      "disabled_reason": "ASX_STATISTICS_NOT_ENABLED_RESEARCHER_DECISION_REQUIRED",
+      "publication_date": "2026-03-31",
+      "summary_project_ids": [
+        "AU-d9fb1b1e3e2ec9fa0851"
+      ]
+    },
+    {
+      "key": "reviewed_source_8a0240c46bbfaa5b",
+      "kind": "government_wfs",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining_WFS/MapServer/0/query?f=json&where=%28UPPER%28site_commo%29+LIKE+%27%25REE%25%27+OR+UPPER%28site_commo%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28site_commo%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28site_commo%29+LIKE+%27%25XENOTIME%25%27+OR+UPPER%28commodity%29+LIKE+%27%25REE%25%27+OR+UPPER%28commodity%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28commodity%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28commodity%29+LIKE+%27%25XENOTIME%25%27%29&outFields=%2A&returnGeometry=true&resultOffset=0&resultRecordCount=500&orderByFields=site_code",
+      "source_sha256": "8a0240c46bbfaa5b60880acdcf237b18debed77b10d9af8842dfda3a519167cf",
+      "fixed_query": true,
+      "summary_spatial_source": true
+    },
+    {
+      "key": "reviewed_source_9e1ac5bb894d9077",
+      "kind": "government_arcgis",
+      "url": "https://services.ga.gov.au/gis/rest/services/AustralianCriticalMineralsOperatingMinesAndDeposits/MapServer/6/query?where=1%3D1&outFields=*&outSR=4283&returnGeometry=true&f=pjson",
+      "source_sha256": "9e1ac5bb894d90776dc6622d671213fe64a5f01ebf595fb31b2111198e9ef0ab",
+      "fixed_query": true,
+      "summary_spatial_source": true,
+      "summary_bindings": [
+        {
+          "project_id": "AU-73549b8a9b1c6faf55eb",
+          "feature_id": 2676,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "fullscope18_ga_location_AU-73549b8a9b1c6faf55eb",
+            "project_id": "AU-73549b8a9b1c6faf55eb",
+            "reviewed_project_name": "Coburn Mineral Sands Project",
+            "source_key": "ga2025_l6",
+            "objectid": 2676,
+            "source_project_name": "Coburn",
+            "state": "WA",
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
+        }
+      ]
+    },
+    {
+      "key": "reviewed_source_a197d77204b48c23",
+      "kind": "government_arcgis",
+      "url": "https://services.ga.gov.au/gis/rest/services/AustralianCriticalMineralsOperatingMinesAndDeposits/MapServer/5/query?where=1%3D1&outFields=*&outSR=4283&returnGeometry=true&f=pjson",
+      "source_sha256": "a197d77204b48c235a566e0e54d039abaccca2b6b68807baa86f526d1af47841",
+      "fixed_query": true,
+      "summary_spatial_source": true,
+      "summary_bindings": [
+        {
+          "project_id": "AU-329908ab8d4c1d1d3e03",
+          "feature_id": 2286,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "fullscope18_ga_location_AU-329908ab8d4c1d1d3e03",
+            "project_id": "AU-329908ab8d4c1d1d3e03",
+            "reviewed_project_name": "Avonbank Mineral Sands Project",
+            "source_key": "ga2025_l5",
+            "objectid": 2286,
+            "source_project_name": "Avonbank",
+            "state": "VIC",
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
+        },
+        {
+          "project_id": "AU-524c37fc04cf47bf8dca",
+          "feature_id": 2262,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "fullscope19_ga_hms_location_AU-524c37fc04cf47bf8dca",
+            "project_id": "AU-524c37fc04cf47bf8dca",
+            "reviewed_project_name": "Balranald Mineral Sands Project",
+            "source_key": "ga2025_l5",
+            "objectid": 2262,
+            "source_project_name": "Balranald",
+            "state": "NSW",
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT",
+            "ree_hms_material_proof": {
+              "review_id": "continuation9_metadata_AU-524c37fc04cf47bf8dca",
+              "sha256": "9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3",
+              "asset_set": "continuation9",
+              "path": "data/snapshots/9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3.pdf",
+              "page": 23,
+              "bbox": [
+                53.692901611328125,
+                204.2823486328125,
+                210.0,
+                290.70050048828125
+              ],
+              "project_marker": "Balranald",
+              "statement_sha256": "881d6d828cbba34c67b3dca46306ae8036cccac3e2e4bdd99848cd20281c363c"
+            }
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
+        }
+      ]
+    },
+    {
+      "key": "reviewed_source_b9a3a4b2356530e0",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20220727/pdf/45c6frzj7hn5fd.pdf",
+      "source_sha256": "b9a3a4b2356530e0f30e0a17a8c481cc0c024f6a717ae67f0a9c70063a37e8f1"
+    },
+    {
+      "key": "reviewed_source_c016a2d9fae34fa7",
+      "kind": "pdf",
+      "url": "https://investorpa.com/announcement-pdf/20260330/275183.pdf",
+      "source_sha256": "c016a2d9fae34fa766a461d7011c18bc56db0a43f843949807e039cb91df6e77",
+      "summary_project_ids": [
+        "AU-d0ce731e1d8198ffaf58"
+      ],
+      "publication_date": "2026-03-30"
+    },
+    {
+      "key": "pending_source_d413df91d19ec8bd",
+      "kind": "pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=02717607",
+      "source_sha256": "d413df91d19ec8bdb153fc1244d4274b4fe499c26ebecf46873e4356e5039431",
+      "enabled": false,
+      "disabled_reason": "ASX_STATISTICS_NOT_ENABLED_RESEARCHER_DECISION_REQUIRED",
+      "summary_project_ids": [
+        "AU-785536db5ff12c25350d"
+      ],
+      "publication_date": "2023-09-27"
+    },
+    {
+      "key": "reviewed_source_e37750161e156498",
+      "kind": "pdf",
+      "url": "https://geoscience.nt.gov.au/gemis/server/api/core/bitstreams/081c4a79-20e1-475e-9c5a-53105d57aed9/content",
+      "source_sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+      "publication_date": "2024-11-30",
+      "publication_date_precision": "MONTH",
+      "publication_date_interval": [
+        "2024-11-01",
+        "2024-11-30"
+      ],
+      "publication_date_role": "REPORT_MONTH_UPPER_BOUND_NOT_RELEASE_DATE",
+      "source_kind": "GOVERNMENT_ARCHIVED_TECHNICAL_REPORT",
+      "summary_project_ids": [
+        "AU-430f216ca620b69af5f9"
+      ]
+    },
+    {
+      "key": "reviewed_source_e6bed25382926c6d",
+      "kind": "pdf",
+      "url": "https://geoscience.nt.gov.au/gemis/server/api/core/bitstreams/9850665d-8b10-4b1d-8568-212867bd6782/content",
+      "source_sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+      "publication_date": "2024-11-30",
+      "publication_date_precision": "MONTH",
+      "publication_date_interval": [
+        "2024-11-01",
+        "2024-11-30"
+      ],
+      "publication_date_role": "REPORT_MONTH_UPPER_BOUND_NOT_RELEASE_DATE",
+      "source_kind": "GOVERNMENT_ARCHIVED_TECHNICAL_REPORT",
+      "summary_project_ids": [
+        "AU-97137ef07af49e3607b2"
+      ]
+    },
+    {
+      "key": "reviewed_source_edb1583a4bcc4edd",
+      "kind": "pdf",
+      "url": "https://geoscience.nt.gov.au/gemis/server/api/core/bitstreams/8d21ecb5-d25c-47ed-ad23-f612ec6564c9/content",
+      "source_sha256": "edb1583a4bcc4eddb7142b233ced822c1ef711df9c7c72051399dd22c7ad9b75",
+      "publication_date": "2023-10-31",
+      "publication_date_precision": "MONTH",
+      "publication_date_interval": [
+        "2023-10-01",
+        "2023-10-31"
+      ],
+      "publication_date_role": "REPORT_MONTH_UPPER_BOUND_NOT_RELEASE_DATE",
+      "source_kind": "GOVERNMENT_ARCHIVED_TECHNICAL_REPORT",
+      "summary_project_ids": [
+        "AU-d1e3e2803f3c4287f6db"
+      ]
+    },
+    {
+      "key": "pending_source_fc466daa68b5f988",
+      "kind": "pdf",
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03084938",
+      "source_sha256": "fc466daa68b5f988ef61f0dc494b08cb14e2dcbed0e297b00a2c0a8379a975b3",
+      "enabled": false,
+      "disabled_reason": "ASX_STATISTICS_NOT_ENABLED_RESEARCHER_DECISION_REQUIRED",
+      "publication_date": "2026-04-22",
+      "summary_project_ids": [
+        "AU-af44c2bd1173b453953f"
+      ]
     }
   ]
 }

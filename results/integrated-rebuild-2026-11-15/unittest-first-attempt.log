@@ -1,0 +1,43 @@
+
+Running tests...
+----------------------------------------------------------------------
+..F.........................................EOF marker not found
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+.............................................................................................................................................................................................................EOF marker not found
+EOF marker not found
+.......................................................................................F..........................................
+======================================================================
+FAIL [58.536s]: test_strict_empty_build_reads_stay_inside_checkout (test_automated_build_clean.AutomatedBuildCleanTests.test_strict_empty_build_reads_stay_inside_checkout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_automated_build_clean.py", line 33, in test_strict_empty_build_reads_stay_inside_checkout
+    self._probe_checkout(True)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_automated_build_clean.py", line 119, in _probe_checkout
+    self.assertEqual(result.returncode, 0, result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : DATABASE_OUTSIDE_CHECKOUT: C:Users\whatt\AppData\Local\Temp\tmplqw54vox\checkout\work\clean\databases\20261115T125617-58ccd203\canonical.sqlite?mode=ro
+
+
+======================================================================
+FAIL [0.179s]: test_oxide_reconciliation_and_seven_resource_scopes (test_resolution_studies.ResolutionStudyTests.test_oxide_reconciliation_and_seven_resource_scopes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_resolution_studies.py", line 64, in test_oxide_reconciliation_and_seven_resource_scopes
+    self.assertEqual([],transformation_issues(grade,p['observations']))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['TRANSFORMATION_CONTRACT_FAILED']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'TRANSFORMATION_CONTRACT_FAILED'
+
+- []
++ ['TRANSFORMATION_CONTRACT_FAILED']
+
+----------------------------------------------------------------------
+Ran 379 tests in 459.274s
+
+FAILED (failures=2)
+
+Generating XML reports...

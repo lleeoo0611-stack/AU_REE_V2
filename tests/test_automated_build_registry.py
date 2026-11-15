@@ -52,7 +52,7 @@ class MigratedRegistryTests(unittest.TestCase):
     def test_unique_native_ids(self):
         identities = [(p.get('entity_namespace', 'project_registry_v1'), str(p['id']))
                       for p in self.claims['projects']]
-        self.assertEqual(len(identities), 95)
+        self.assertEqual(len(identities), 99)
         self.assertEqual(len(identities), len(set(identities)))
 
 
