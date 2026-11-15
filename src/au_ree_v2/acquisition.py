@@ -150,13 +150,13 @@ def ckan(url, query, rows=10, max_pages=2, fetch=None, archive=None,start_offset
         **(dict(start_offset=start_offset,next_start=start_offset+len(items) if start_offset+len(items)<count else None) if start_offset else {})))
 
 
-def wfs(source, archive=None):
+def wfs(source, archive=None, fetch=None):
     """Count-bound, native-ID checked WFS paging; never accept a partial inventory."""
     import xml.etree.ElementTree as ET
     base={'service':'WFS','version':source.get('wfs_version','2.0.0'),
           'request':'GetFeature','typeName':source['type_name'],
           'typeNames':source['type_name'],'srsName':'EPSG:4326'}
-    hit,_=request(source['url'],{**base,'resultType':'hits'})
+    hit,_=(fetch or request)(source['url'],{**base,'resultType':'hits'})
     if archive is not None:archive(hit)
     node=ET.fromstring(hit)
     total=node.get('numberMatched',node.get('numberOfFeatures'))
@@ -168,7 +168,7 @@ def wfs(source, archive=None):
         # SARIG WFS1.1 rejects even startIndex=0 on views without a declared PK.
         if len(features) or total>size:params['startIndex']=len(features)
         if source.get('sort_by'):params['sortBy']=source['sort_by']
-        raw,_=request(source['url'],params)
+        raw,_=(fetch or request)(source['url'],params)
         if archive is not None:archive(raw)
         if raw.lstrip().startswith(b'<'):
             raise ValueError('WFS service exception: '+' '.join(ET.fromstring(raw).itertext())[:800])
@@ -388,3 +388,224 @@ def select_snapshots(root, cutoff, keys=None, acquired_through=None):
         for page in s.get('original_responses',[]):
             if filehash(Path(root)/page['path'])!=page['sha256']:raise ValueError('Original service response checksum mismatch: '+page['path'])
     return [selected[k] for k in sorted(selected)]
+
+gov={'services.ga.gov.au','public-services.slip.wa.gov.au','spatial-gis.information.qld.gov.au','data.stategrowth.tas.gov.au','public-gs.geoscience.nsw.gov.au','opendata.maps.vic.gov.au','geology.data.nt.gov.au','services.sarig.sa.gov.au','wamex.dmp.wa.gov.au','dasc.dmirs.wa.gov.au','geoscience.data.qld.gov.au'}
+delivery={'warsydprdstagsdspub.blob.core.windows.net','gsq-prod-ckan-horizon-public.s3.ap-southeast-2.amazonaws.com'}
+groups={
+    'government-api':gov,
+    'government-resource':delivery|{'www.wa.gov.au','international.austrade.gov.au','www.industry.gov.au','dem-sdp.s3-ap-southeast-2.amazonaws.com'},
+    'asx':{'announcements.asx.com.au','www.asx.com.au'},
+    'issuer-ir':{'investorpa.com','orbitresources.au','www.itechminerals.com.au','asm-au.com','www.arultd.com','www.astronlimited.com.au','victorymetalsaustralia.com','www.devexresources.com.au','www.gippslandcriticalminerals.com','www.iluka.com','wcsecure.weblink.com.au','hermes-cdn.investorhub.com','staff-web.automicgroup.com.au','assets.birdsoftware.io','assets.ctfassets.net'},
+    'aggregator':{'api.investi.com.au','company-announcements.afr.com','newswire.iguana2.com','www.marketindex.com.au','cdn-api.markitdigital.com','cdn.financialreports.eu','data-api.marketindex.com.au','investornews.com','www.annualreports.com','www.londonstockexchange.com'},
+    'legacy-committed':{'raw.githubusercontent.com'}}
+STRICT_HOSTS={host:group for group,items in groups.items() for host in items}
+
+class StrictTransport:
+    """One build-scoped transport; no legacy request semantics are changed."""
+    def __init__(self, hosts):
+        self.hosts=hosts;self.last={};self.stopped={};self.http={};self.attempts=[]
+        owner=self
+        class Redirect(urllib.request.HTTPRedirectHandler):
+            def redirect_request(self, req, fp, code, msg, headers, newurl):
+                old=urllib.parse.urlsplit(req.full_url).hostname;new=urllib.parse.urlsplit(newurl).hostname
+                owner.http[old]=code;owner.attempts.append(dict(host=old,http_status=code))
+                if urllib.parse.urlsplit(newurl).scheme!='https' or new not in owner.hosts or (old!=new and owner.hosts.get(old)!=owner.hosts.get(new)):
+                    raise ValueError('REDIRECT_DESTINATION_NOT_APPROVED')
+                owner.guard(new)
+                return super().redirect_request(req,fp,code,msg,headers,newurl)
+        self.opener=urllib.request.build_opener(Redirect())
+
+    def guard(self,host):
+        if host in self.stopped:raise ValueError('HOST_STOPPED:'+self.stopped[host])
+        delay=3-(time.monotonic()-self.last.get(host,-1e10))
+        if delay>0:time.sleep(delay)
+        self.last[host]=time.monotonic()
+
+    def __call__(self,url,params=None,headers=None,timeout=25,method='GET',max_bytes=None):
+        host=urllib.parse.urlsplit(url).hostname
+        if urllib.parse.urlsplit(url).scheme!='https' or host not in self.hosts:raise ValueError('UNAPPROVED_HOST')
+        data=None
+        if params and method=='POST':data=urllib.parse.urlencode(params).encode()
+        elif params:url+=('&' if '?' in url else '?')+urllib.parse.urlencode(params)
+        req=urllib.request.Request(url,data=data,method=method,headers={'User-Agent':'AU_REE_V2/0.1 public research'})
+        for attempt in range(2):
+            self.http.pop(host,None)
+            self.guard(host)
+            try:
+                with self.opener.open(req,timeout=timeout) as response:
+                    final=urllib.parse.urlsplit(response.geturl()).hostname
+                    self.http[host]=response.status;self.attempts.append(dict(host=host,http_status=response.status))
+                    raw=response.read(max_bytes+1) if max_bytes is not None else response.read()
+                    if max_bytes is not None and len(raw)>max_bytes:raise ValueError('DOCUMENT_BYTE_BUDGET_EXCEEDED')
+                    sample=raw[:200000].lower()
+                    if not raw.startswith((b'%PDF',b'PK')) and any(token in sample for token in (b'captcha',b'type="password"',b"type='password'",b'please log in',b'please sign in')):
+                        self.stopped[host]=self.stopped[final]='CAPTCHA_OR_LOGIN'
+                        raise ValueError('CAPTCHA_OR_LOGIN')
+                    return raw,dict(response.headers)
+            except urllib.error.HTTPError as exc:
+                self.http[host]=exc.code;self.attempts.append(dict(host=host,http_status=exc.code));exc.request_attempts=attempt+1
+                if 400<=exc.code<500:
+                    self.stopped[host]=str(exc.code)
+                    self.stopped[urllib.parse.urlsplit(exc.url).hostname]=str(exc.code)
+                    raise
+                if not 500<=exc.code<600 or attempt:raise
+            except (urllib.error.URLError,TimeoutError) as exc:
+                self.attempts.append(dict(host=host,http_status=None,error='TIMEOUT' if isinstance(getattr(exc,'reason',exc),(TimeoutError,socket.timeout)) else 'NETWORK_ERROR'))
+                if not isinstance(getattr(exc,'reason',exc),(TimeoutError,socket.timeout)) or attempt:raise
+
+
+def strict_refresh(root, registry, work, claims, cutoff):
+    """Fresh work-only originals, exact declared-SHA fallback, no index discovery."""
+    import hashlib,subprocess,tempfile
+    root=Path(root).resolve();work=Path(work).resolve();work.mkdir(parents=True,exist_ok=True)
+    cache=Path(tempfile.mkdtemp(prefix='strict-',dir=work))
+    manifest=json.loads((root/'data/manifest.json').read_text(encoding='utf8'))['snapshots']
+    declared={}
+    def visit(value):
+        if isinstance(value,dict):
+            if value.get('source_key') and value.get('source_sha256'):declared.setdefault(value['source_key'],set()).add(value['source_sha256'])
+            for v in value.values():visit(v)
+        elif isinstance(value,list):
+            for v in value:visit(v)
+    visit(claims)
+    # Exact URL aliases share reviewed bindings; never infer a derivative parent.
+    by_url={}
+    for source in registry['sources']:
+        if source['kind'] in ('pdf','html'):
+            bindings=set(declared.get(source['key'],set()))
+            if source.get('source_sha256'):bindings.add(source['source_sha256'])
+            by_url.setdefault(source['url'],set()).update(bindings)
+    transport=StrictTransport(STRICT_HOSTS);outcomes=[];selected=[]
+    managed={'official_table_transcription','official_project_catalogue_transcription','historical_e1_candidates','legacy_screen_index','pdf_page_extraction'}
+    def committed(s,expected):
+        p=Path(s['path']);target=(root/p).resolve()
+        if p.is_absolute() or not target.is_relative_to(root/'data/snapshots') or s['sha256'] not in expected:return False
+        check=subprocess.run(['git','cat-file','blob','HEAD:'+p.as_posix()],cwd=root,capture_output=True)
+        return check.returncode==0 and hashlib.sha256(check.stdout).hexdigest()==s['sha256'] and target.is_file() and filehash(target)==s['sha256']
+    discovery_path=root/'config/discovery.json'
+    if discovery_path.exists():
+        import copy
+        from .discovery import official_reports
+        policy=copy.deepcopy(json.loads(discovery_path.read_text(encoding='utf8')))
+        fixed=[]
+        for report in policy.get('official_reports',[]):
+            if report['protocol']=='arcgis' and not report.get('where'):
+                outcomes.append(dict(key=report['key'],host=urllib.parse.urlsplit(report['url']).hostname,http_status=None,sha_match=None,status='NO_FIXED_QUERY_NOT_EXPANDED',stop_reason='No configured fixed WAMEX query'))
+                continue
+            report.update(dynamic_candidates=False,resume=False);fixed.append(report)
+        policy.update(official_reports=fixed,official_cursors={})
+        def save_receipt(raw,meta,suffix):
+            from .security import sensitive_reference
+            if sensitive_reference(raw.decode('utf8',errors='ignore')):raw=b'REDACTED_SENSITIVE_RECEIPT'
+            sha=hashlib.sha256(raw).hexdigest();(cache/(sha+suffix)).write_bytes(raw);return sha
+        _,reports,seeds,_=official_reports(policy,[],transport,save_receipt)
+        for report in reports:
+            outcomes.append(dict(key=report['seed_key'],host=urllib.parse.urlsplit(report['url']).hostname,http_status=report.get('http_status',transport.http.get(urllib.parse.urlsplit(report['url']).hostname)),sha_match=None,status=report['status'],stop_reason=report.get('reason','')))
+        # Returned exact delivery URLs are receipts only, never unreviewed claims.
+        for seed in seeds:
+            host=urllib.parse.urlsplit(seed['url']).hostname
+            try:
+                raw,_=transport(seed['url'],max_bytes=seed.get('max_document_bytes'))
+                if not raw.startswith(b'%PDF'):raise ValueError('NOT_PDF')
+                save_receipt(raw,{},'.pdf');status='API_DOCUMENT_CACHED_NOT_ADOPTED';reason=''
+            except Exception as exc:status='UNAVAILABLE';reason=str(exc)
+            outcomes.append(dict(key=seed['key'],host=host,http_status=transport.http.get(host),sha_match=None,status=status,stop_reason=reason))
+    for source in registry['sources']:
+        key=source['key'];host=urllib.parse.urlsplit(source['url']).hostname
+        transport.http.pop(host,None);request_start=len(transport.attempts)
+        old=[s for s in manifest if s['key']==key and (s.get('publication_date') or '')<=cutoff]
+        expected=set(declared.get(key,set()))
+        if source.get('source_sha256') and source['kind'] not in managed:expected.add(source['source_sha256'])
+        if source['kind'] in ('pdf','html'):expected.update(by_url.get(source['url'],set()))
+        if source['kind'] in managed and not expected and old:expected={max(old,key=lambda x:x['acquired_at'])['sha256']}
+        row=dict(key=key,host=host,http_status=None,sha_match=None,status='UNAVAILABLE',stop_reason='',expected_sha256=';'.join(sorted(expected)))
+        if source['url']=='https://www.gippslandcriticalminerals.com/project-overview/':
+            row.update(status='SOURCE_NOT_ACQUIRED',stop_reason='INDEX_LANDING_DISABLED');outcomes.append(row);continue
+        candidate_mismatch=False
+        try:
+            if len(expected)>1:raise ValueError('CONFLICTING_DECLARED_SOURCE_SHA')
+            if source['kind'] in managed:
+                candidates=[s for s in old if committed(s,expected)]
+                if not candidates:raise ValueError('DECLARED_COMMITTED_DERIVATIVE_UNAVAILABLE')
+                selected.append(max(candidates,key=lambda s:s['acquired_at']));row.update(status='COMMITTED_MANAGED_SAME_SHA',sha_match=True)
+                outcomes.append(row);continue
+            # Only registry entries are requested. There is no discovery/index path.
+            if host=='wamex.dmp.wa.gov.au' and 'ReportDetails' in source['url']:
+                import re
+                query=urllib.parse.parse_qs(urllib.parse.urlsplit(source['url']).query)
+                native=int(next(v[0] for k,v in query.items() if k.lower()=='anumber'))
+                body,headers=transport('https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails/ReportDocuments_Read',{'aNumber[0]':native,'page':1,'pageSize':20},method='POST')
+                listing=json.loads(body)
+                if listing.get('Errors') or not isinstance(listing.get('Total'),int) or not isinstance(listing.get('Data'),list) or any(r.get('ANumber')!=native for r in listing['Data']):raise ValueError('WAMEX_REPORT_IDENTITY_MISMATCH')
+                raw=None;attempted=0
+                for item in listing['Data']:
+                    if attempted>=2:break
+                    link=item.get('Link','');size=re.fullmatch(r'([\d.]+)\s*(KB|MB|GB)',item.get('FileSize',''),re.I)
+                    if str(item.get('FileType','')).lower()!='.pdf' or not size:continue
+                    if float(size[1])*{'KB':1024,'MB':1024**2,'GB':1024**3}[size[2].upper()]>30000000:continue
+                    if urllib.parse.urlsplit(link).scheme!='https' or urllib.parse.urlsplit(link).hostname!='warsydprdstagsdspub.blob.core.windows.net':continue
+                    attempted+=1;candidate,headers=transport(link,max_bytes=30000000)
+                    if not candidate.startswith(b'%PDF'):continue
+                    sha=hashlib.sha256(candidate).hexdigest();(cache/(sha+'.pdf')).write_bytes(candidate)
+                    if sha in expected:raw=candidate;break
+                    candidate_mismatch=True
+                if raw is None:raise ValueError('SOURCE_SHA_CHANGED' if attempted else 'WAMEX_NO_ELIGIBLE_DOCUMENT')
+            elif source['kind']=='minedex_resource_batch':raw,headers=minedex_resource_batch(source['url'],source['product_alias'],fetch=transport)
+            elif source['kind'] in ('arcgis_census','arcgis_gis','government_arcgis'):
+                raw=(canonical(arcgis(source['url'],source.get('where','1=1'),windows=project_windows(root,{'snapshots':manifest},source['aoi_radius_km']) if source.get('aoi_radius_km') else None,fetch=transport))+'\n').encode();headers={}
+            elif source['kind']=='government_wfs':raw=(canonical(wfs(source,fetch=transport))+'\n').encode();headers={}
+            else:raw,headers=transport(source['url'],timeout=source.get('timeout_seconds',25))
+            row['http_status']=transport.http.get(host)
+            if source['kind']=='pdf' and not raw.startswith(b'%PDF'):raise ValueError('NOT_PDF')
+            if source['kind']=='xlsx_census' and not raw.startswith(b'PK'):raise ValueError('NOT_XLSX')
+            sha=hashlib.sha256(raw).hexdigest();row['actual_sha256']=sha
+            row['sha_match']=sha in expected if expected else None
+            if expected and sha not in expected:raise ValueError('SOURCE_SHA_CHANGED')
+            suffix='.pdf' if source['kind']=='pdf' else '.xlsx' if source['kind']=='xlsx_census' else '.zip' if source['kind']=='minedex_resource_batch' else '.csv' if source['kind']=='government_csv' else '.html' if source['kind']=='html' else '.json'
+            path=cache/(sha+suffix);path.write_bytes(raw)
+            now=datetime.now(timezone.utc).isoformat()
+            entry=dict(source,sha256=sha,path=str(path),acquired_at=now,available_date=now[:10])
+            if source['kind']=='minedex_resource_batch':
+                entry.update(source_update=headers['X-DASC-Updated'],resolved_download_url=headers['X-DASC-Download'],last_modified=headers.get('Last-Modified'))
+                entry['publication_date']=datetime.strptime(headers['X-DASC-Updated'],'%d/%m/%Y').date().isoformat()
+            if source['kind'] in ('pdf','html') and not expected:
+                row['status']='CACHED_UNBOUND_SOURCE_NOT_ADOPTED'
+            else:
+                selected.append(entry);row['status']='FETCHED_SHA_VERIFIED' if expected else 'FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE'
+        except Exception as exc:
+            failure='SOURCE_SHA_CHANGED' if candidate_mismatch or str(exc)=='SOURCE_SHA_CHANGED' else str(exc)
+            row.update(http_status=transport.http.get(host),stop_reason=failure,status=failure if failure in ('SOURCE_SHA_CHANGED','CONFLICTING_DECLARED_SOURCE_SHA') else 'UNAVAILABLE')
+            if failure not in ('SOURCE_SHA_CHANGED','CONFLICTING_DECLARED_SOURCE_SHA'):
+                candidates=[s for s in old if committed(s,expected)]
+                if candidates:selected.append(max(candidates,key=lambda s:s['acquired_at']));row.update(status='SNAPSHOT_FALLBACK_SAME_SHA',sha_match=True)
+        row['http_attempts']=canonical(transport.attempts[request_start:])
+        outcomes.append(row)
+    changed_keys={r['key'] for r in outcomes if r['status']=='SOURCE_SHA_CHANGED'}
+    changed_urls={s['url'] for s in registry['sources'] if s['key'] in changed_keys}
+    invalid={s['key']:'SOURCE_SHA_CHANGED' for s in registry['sources'] if s['url'] in changed_urls}
+    original_shas={s['sha256'] for s in selected if s['kind']=='pdf' and s['key'] not in invalid}
+    for source in selected:
+        if source['kind'] in ('pdf_page_extraction','official_table_transcription','official_project_catalogue_transcription'):
+            parent=source.get('source_sha256')
+            if not parent or parent not in original_shas:
+                invalid.setdefault(source['key'],'SOURCE_NOT_ACQUIRED')
+    selected=[s for s in selected if s['key'] not in invalid]
+    for row in outcomes:
+        if row['key'] in invalid:
+            row.update(status=invalid[row['key']],stop_reason='PARENT_OR_ALIAS_SOURCE_NOT_VALIDATED',sha_match=False if invalid[row['key']]=='SOURCE_SHA_CHANGED' else row.get('sha_match'))
+    return selected,outcomes
+
+
+def record_source_not_acquired(root, key, source):
+    """A discovery guard receipt, not a fetch or a fabricated source value."""
+    import csv
+    path=Path(root)/'work/discovery/acquisition_report.csv';path.parent.mkdir(parents=True,exist_ok=True)
+    fields=['key','host','http_status','sha_match','status','stop_reason']
+    row=dict(key=key,host=urllib.parse.urlsplit(source.get('url','')).hostname or '',http_status='',sha_match='',status='SOURCE_NOT_ACQUIRED',stop_reason='SOURCE_NOT_ACQUIRED')
+    rows=[]
+    if path.exists():
+        with path.open(encoding='utf8',newline='') as stream:rows=list(csv.DictReader(stream))
+    if row not in rows:
+        with path.open('w',encoding='utf8',newline='') as stream:
+            writer=csv.DictWriter(stream,fieldnames=fields);writer.writeheader();writer.writerows([*rows,row])
+    return False

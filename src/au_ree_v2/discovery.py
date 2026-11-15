@@ -110,7 +110,7 @@ def search_tasks(root, registry, diagnostics=None, db=None, snapshots=None):
     for p in projects:
         source={**registered.get(p['identity_source'],{}),**sources.get(p['identity_source'],{})}
         code=source.get('asx_code');code_evidence=None
-        if registry.get('task_execution_version') and not code and source.get('kind')=='pdf':
+        if registry.get('task_execution_version') and not code and source.get('kind')=='pdf' and ((source.get('path') and (Path(root)/source['path']).exists()) or __import__('au_ree_v2.acquisition',fromlist=['record_source_not_acquired']).record_source_not_acquired(root,p['identity_source'],source)):
             # Search context only, read from existing verified issuer header.
             try:
                 if filehash(Path(root)/source['path'])!=source['sha256']:raise ValueError('SOURCE_HASH_MISMATCH')
