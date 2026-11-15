@@ -5,6 +5,10 @@ from urllib.error import HTTPError, URLError
 from au_ree_v2.acquisition import StrictTransport, strict_refresh
 
 class StrictAcquisitionTests(unittest.TestCase):
+    def setUp(self):
+        # These transport/registry unit fixtures do not depend on public DNS.
+        self.dns=patch('au_ree_v2.acquisition.strict_dns_preflight',return_value=[dict(host='example.com',status='DNS_OK',error='')])
+        self.dns.start();self.addCleanup(self.dns.stop)
     def error(self,code):return HTTPError('https://example.com/a',code,'test',{},None)
     def response(self,raw=b'%PDF test'):
         r=Mock();r.__enter__=Mock(return_value=r);r.__exit__=Mock(return_value=False)

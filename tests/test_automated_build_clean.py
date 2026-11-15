@@ -9,7 +9,8 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-FORBIDDEN = ('work/asx-', 'results/round', 'results/asx-', 'asx_local_asset_roots', '\u5c08\u6848\u7e3d\u8868')
+FORBIDDEN = ('980bedb', 'asx-current', 'work/asx-', 'results/round', 'results/asx-',
+             'asx_local_asset_roots', 'field_provenance')
 
 
 class AutomatedBuildCleanTests(unittest.TestCase):
@@ -23,6 +24,10 @@ class AutomatedBuildCleanTests(unittest.TestCase):
 
     def test_tracked_checkout_configuration_reads_stay_inside_checkout(self):
         self._probe_checkout(False)
+
+    def test_ci_build_has_no_experiment_dependency(self):
+        content=(ROOT/'.github/workflows/automated-build.yml').read_text(encoding='utf8')
+        for token in FORBIDDEN:self.assertNotIn(token,content)
 
     def test_strict_empty_build_reads_stay_inside_checkout(self):
         self._probe_checkout(True)
@@ -96,7 +101,7 @@ if sys.argv[2] == 'full':
     from au_ree_v2 import cli
     from contextlib import redirect_stdout
     import io
-    with patch('au_ree_v2.acquisition.strict_refresh', return_value=([], [])) as fetch, patch('socket.socket.connect', side_effect=AssertionError('NETWORK_FORBIDDEN')):
+    with patch('au_ree_v2.acquisition.strict_refresh', return_value=([], [])) as fetch, patch('au_ree_v2.acquisition.strict_dns_preflight', return_value=[]), patch('au_ree_v2.acquisition.strict_asx_probe', return_value=[]), patch('socket.socket.connect', side_effect=AssertionError('NETWORK_FORBIDDEN')):
         sys.argv = ['au-ree-v2', 'all', '--refresh', '--as-of', '2026-11-13', '--work', str(root/'work/clean'), '--root', str(root), '--skip-r']
         with redirect_stdout(io.StringIO()):
             cli.main()

@@ -1,0 +1,38 @@
+{
+  "base": "070df10",
+  "reference": "980bedb",
+  "status": "STOP_BEFORE_T1_T5_BUDGET_DECISION",
+  "original_function_span_lines": 1548,
+  "function_count": 58,
+  "current_src_added_plus_deleted": 133,
+  "expected_savings_from_existing_helpers_and_removed_experimental_io": [
+    300,
+    500
+  ],
+  "export_and_provenance_adapter_lines": [
+    180,
+    240
+  ],
+  "attribute_schema_vocabulary_cli_lines": [
+    140,
+    220
+  ],
+  "projected_total_src_change_lines": [
+    1501,
+    1841
+  ],
+  "limit": 1500,
+  "interpretation": "Implementation estimate, not a proof that a different design cannot fit. Keeping reviewed functions and all requested rules is expected to exceed the limit; no code compression or silent rule omission is authorized.",
+  "excluded": [
+    "asx_validation/reviewed_discovery/reviewed_metadata ledger-validation branches",
+    "experiment CLI/release/archive/audit wrappers",
+    "new experimental source acquisition/index routines"
+  ],
+  "totals_by_target": {
+    "census.py": 598,
+    "spatial.py/gis.py": 170,
+    "technical.py": 182,
+    "census.py/pdf_extract.py stage evidence": 598
+  },
+  "projected_midpoint_src_change_lines": 1671.0
+}

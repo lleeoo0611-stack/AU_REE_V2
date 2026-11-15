@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_phase7_selection.Phase7IntegrationTests-20261115165537" tests="14" file="test_phase7_selection.py" time="12.460" timestamp="2026-11-15T16:59:57" failures="0" errors="0" skipped="0">
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_all_nine_real_engineering_cases_have_scoped_queryable_parameters" time="0.001" timestamp="2026-11-15T16:59:45" file="tests\test_phase7_selection.py" line="128"/>
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_all_twelve_events_are_valid_null_numeric_originals" time="0.006" timestamp="2026-11-15T16:59:45" file="tests\test_phase7_selection.py" line="115"/>
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_bad_source_page_and_cross_entity_scope_are_local" time="1.488" timestamp="2026-11-15T16:59:46" file="tests\test_phase7_selection.py" line="201"/>
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_company_funds_do_not_become_project_finance" time="2.406" timestamp="2026-11-15T16:59:49" file="tests\test_phase7_selection.py" line="170"/>
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_documented_event_date_and_cutoff_are_independent" time="0.691" timestamp="2026-11-15T16:59:49" file="tests\test_phase7_selection.py" line="210"/>
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_events_idempotent_and_original_ids_unchanged" time="1.098" timestamp="2026-11-15T16:59:51" file="tests\test_phase7_selection.py" line="121"/>
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_expiry_and_unsupported_close_block_only_related_project" time="3.349" timestamp="2026-11-15T16:59:54" file="tests\test_phase7_selection.py" line="175"/>
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_finance_milestones_do_not_imply_cash_or_total_funding" time="0.002" timestamp="2026-11-15T16:59:54" file="tests\test_phase7_selection.py" line="145"/>
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_later_distinct_study_cannot_replace_earlier_scope" time="0.001" timestamp="2026-11-15T16:59:54" file="tests\test_phase7_selection.py" line="217"/>
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_legacy_configuration_keeps_old_semantics_and_no_events" time="0.009" timestamp="2026-11-15T16:59:54" file="tests\test_phase7_selection.py" line="247"/>
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_no_new_data_keeps_all_legacy_panel_values_and_shared_coverage" time="0.119" timestamp="2026-11-15T16:59:54" file="tests\test_phase7_selection.py" line="224"/>
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_only_browns_and_yangibana_share_concentrate_criteria" time="0.002" timestamp="2026-11-15T16:59:54" file="tests\test_phase7_selection.py" line="136"/>
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_strict_resource_selection_and_duplicate_evidence_are_stable" time="1.722" timestamp="2026-11-15T16:59:56" file="tests\test_phase7_selection.py" line="195"/>
+	<testcase classname="test_phase7_selection.Phase7IntegrationTests" name="test_terminated_latest_instrument_does_not_resurrect_old_commitment" time="1.567" timestamp="2026-11-15T16:59:57" file="tests\test_phase7_selection.py" line="181"/>
+</testsuite>

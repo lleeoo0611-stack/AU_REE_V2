@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_phase21.Phase21-20261115165537" tests="14" file="test_phase21.py" time="7.864" timestamp="2026-11-15T16:58:52" failures="0" errors="0" skipped="0">
+	<testcase classname="test_phase21.Phase21" name="test_candidate_endpoint_sources_follow_ids_independent_of_input_order" time="0.003" timestamp="2026-11-15T16:58:44" file="tests\test_phase21.py" line="16"/>
+	<testcase classname="test_phase21.Phase21" name="test_candidate_roles_and_symbol_context" time="0.001" timestamp="2026-11-15T16:58:44" file="tests\test_phase21.py" line="109"/>
+	<testcase classname="test_phase21.Phase21" name="test_changed_source_invalidates_only_affected_project_review" time="2.187" timestamp="2026-11-15T16:58:46" file="tests\test_phase21.py" line="170"/>
+	<testcase classname="test_phase21.Phase21" name="test_commercial_r_input_and_rank_features_do_not_recompute" time="0.004" timestamp="2026-11-15T16:58:46" file="tests\test_phase21.py" line="99"/>
+	<testcase classname="test_phase21.Phase21" name="test_current_disclosure_defers_analysis_and_adds_unknown_scopes" time="2.118" timestamp="2026-11-15T16:58:48" file="tests\test_phase21.py" line="146"/>
+	<testcase classname="test_phase21.Phase21" name="test_incremental_review_keeps_old_assessments_and_barkly_scope" time="0.039" timestamp="2026-11-15T16:58:48" file="tests\test_phase21.py" line="157"/>
+	<testcase classname="test_phase21.Phase21" name="test_manifest_stale_writer_cannot_remove_other_source" time="0.020" timestamp="2026-11-15T16:58:48" file="tests\test_phase21.py" line="117"/>
+	<testcase classname="test_phase21.Phase21" name="test_mcda_cache_reuses_exact_results_and_invalidates_weights_and_corruption" time="3.360" timestamp="2026-11-15T16:58:52" file="tests\test_phase21.py" line="55"/>
+	<testcase classname="test_phase21.Phase21" name="test_memory_baseline_matches_csv_and_preserves_source_bounds" time="0.002" timestamp="2026-11-15T16:58:52" file="tests\test_phase21.py" line="136"/>
+	<testcase classname="test_phase21.Phase21" name="test_native_page_cache_preserves_parser_text_and_checks_changed_original" time="0.039" timestamp="2026-11-15T16:58:52" file="tests\test_phase21.py" line="181"/>
+	<testcase classname="test_phase21.Phase21" name="test_oxide_distribution_transforms_and_resource_rebinding" time="0.017" timestamp="2026-11-15T16:58:52" file="tests\test_phase21.py" line="195"/>
+	<testcase classname="test_phase21.Phase21" name="test_registry_read_sees_committed_version_during_ingestion" time="0.042" timestamp="2026-11-15T16:58:52" file="tests\test_phase21.py" line="87"/>
+	<testcase classname="test_phase21.Phase21" name="test_representative_relation_preserves_revisions_without_duplicates" time="0.002" timestamp="2026-11-15T16:58:52" file="tests\test_phase21.py" line="33"/>
+	<testcase classname="test_phase21.Phase21" name="test_sqlite_registry_discovers_project_without_claim_and_keeps_id" time="0.031" timestamp="2026-11-15T16:58:52" file="tests\test_phase21.py" line="124"/>
+</testsuite>

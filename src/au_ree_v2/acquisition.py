@@ -24,6 +24,7 @@ def failure_details(exc):
                 'NON_PDF_RESPONSE' if str(exc) in ('NOT_PDF','Not a PDF response') else
                 'TERMS_INTERSTITIAL_NOT_ACCEPTED' if str(exc)=='TERMS_INTERSTITIAL_NOT_ACCEPTED' else type(exc).__name__))
     return dict(failure_status=state,http_status=code,attempts=getattr(exc,'request_attempts',1),
+                **({'network_error':True} if getattr(exc,'strict_network_error',False) else {}),
                 **({'validation_error':str(exc)} if isinstance(exc,ValueError) and __import__('re').fullmatch(r'[A-Z_]{3,100}',str(exc)) else {}),
                 retry_after_seconds=getattr(exc,'retry_after_seconds',None),
                 reason=type(exc).__name__+('_'+str(code) if code else ''),
@@ -400,10 +401,82 @@ groups={
     'legacy-committed':{'raw.githubusercontent.com'}}
 STRICT_HOSTS={host:group for group,items in groups.items() for host in items}
 
+
+class InvalidNetworkRun(ValueError):
+    """Acquisition diagnostics exist, but this run cannot supply research results."""
+
+
+def strict_dns_preflight(registry, reports=()):
+    """Resolve every configured source/report host before any HTTP request."""
+    hosts={urllib.parse.urlsplit(s['url']).hostname for s in [*registry['sources'],*reports]}
+    rows=[]
+    for host in sorted(h for h in hosts if h):
+        try:
+            addresses=socket.getaddrinfo(host,443,type=socket.SOCK_STREAM)
+            if not addresses:raise OSError('DNS_EMPTY_ADDRESS_LIST')
+            rows.append(dict(host=host,status='DNS_OK',error=''))
+        except OSError as exc:
+            rows.append(dict(host=host,status='NETWORK_ERROR',error=str(exc)))
+    return rows
+
+
+def strict_failure_status(exc):
+    """HTTP denial is source availability; transport failure invalidates a run."""
+    if isinstance(exc,urllib.error.HTTPError):return 'UNAVAILABLE'
+    if isinstance(exc,(urllib.error.URLError,ConnectionError,TimeoutError,socket.gaierror)):
+        return 'NETWORK_ERROR'
+    if str(exc).startswith('HOST_STOPPED:'):return 'HOST_STOPPED'
+    if str(exc)=='CAPTCHA_OR_LOGIN':return 'HOST_STOPPED'
+    return 'UNAVAILABLE'
+
+
+def strict_network_report(work, outcomes, dns_rows):
+    """Persist receipts even when no database or valid research run is created."""
+    from .analysis import write_csv
+    work=Path(work);work.mkdir(parents=True,exist_ok=True)
+    failed={r['key'] for r in outcomes if r.get('network_error') or r['status']=='NETWORK_ERROR'}
+    keys={r['key'] for r in outcomes}
+    dns_failed=any(r['status']!='DNS_OK' for r in dns_rows)
+    invalid=dns_failed or bool(keys and len(failed)/len(keys)>.05)
+    report=dict(status='RUN_INVALID_NETWORK' if invalid else 'NETWORK_VALID' if keys else 'DNS_PREFLIGHT_PASSED',
+                dns_preflight=dns_rows,network_error_sources=len(failed),sources=len(keys),
+                network_error_fraction=len(failed)/len(keys) if keys else None,
+                maximum_network_error_fraction=.05,valid_for_delivery=bool(keys) and not invalid)
+    (work/'network_status.json').write_text(canonical(report)+'\n',encoding='utf8')
+    write_csv(work/'dns_preflight.csv',dns_rows,['host','status','error'])
+    if outcomes:
+        write_csv(work/'acquisition_report.csv',outcomes,sorted({k for r in outcomes for k in r}))
+    return report
+
+
+def strict_asx_probe(registry, transport):
+    """Three registered documents per ASX host, sharing the build's stop state."""
+    import hashlib
+    rows=[]
+    for host in ('www.asx.com.au','announcements.asx.com.au'):
+        sources=[s for s in registry['sources'] if s['kind']=='pdf' and urllib.parse.urlsplit(s['url']).hostname==host][:3]
+        if len(sources)!=3:raise ValueError('ASX_PROBE_REQUIRES_THREE_REGISTERED_DOCUMENTS:'+host)
+        for source in sources:
+            start=len(transport.attempts);transport.http.pop(host,None)
+            row=dict(key=source['key'],url=source['url'],host=host,status='',http_status=None,reason='',sha256='')
+            try:
+                raw,headers=transport(source['url'],max_bytes=source.get('max_bytes',30_000_000))
+                if not raw.startswith(b'%PDF'):raise ValueError('NOT_PDF')
+                transport.probed[source['key']]=(raw,headers,transport.http.get(host),transport.attempts[start:])
+                row.update(status='FETCHED',sha256=hashlib.sha256(raw).hexdigest())
+            except Exception as exc:
+                row.update(status=strict_failure_status(exc),reason=str(exc))
+                transport.probe_failures[source['key']]=(exc,transport.http.get(host),transport.attempts[start:])
+            row.update(http_status=transport.http.get(host),http_attempts=canonical(transport.attempts[start:]))
+            rows.append(row)
+    return rows
+
+
 class StrictTransport:
     """One build-scoped transport; no legacy request semantics are changed."""
     def __init__(self, hosts):
         self.hosts=hosts;self.last={};self.stopped={};self.http={};self.attempts=[]
+        self.probed={};self.probe_failures={}
         owner=self
         class Redirect(urllib.request.HTTPRedirectHandler):
             def redirect_request(self, req, fp, code, msg, headers, newurl):
@@ -449,15 +522,24 @@ class StrictTransport:
                     self.stopped[urllib.parse.urlsplit(exc.url).hostname]=str(exc.code)
                     raise
                 if not 500<=exc.code<600 or attempt:raise
-            except (urllib.error.URLError,TimeoutError) as exc:
+            except (urllib.error.URLError,ConnectionError,TimeoutError,socket.gaierror) as exc:
                 self.attempts.append(dict(host=host,http_status=None,error='TIMEOUT' if isinstance(getattr(exc,'reason',exc),(TimeoutError,socket.timeout)) else 'NETWORK_ERROR'))
+                exc.strict_network_error=True
                 if not isinstance(getattr(exc,'reason',exc),(TimeoutError,socket.timeout)) or attempt:raise
 
 
-def strict_refresh(root, registry, work, claims, cutoff):
+def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_rows=None):
     """Fresh work-only originals, exact declared-SHA fallback, no index discovery."""
     import hashlib,subprocess,tempfile
-    root=Path(root).resolve();work=Path(work).resolve();work.mkdir(parents=True,exist_ok=True)
+    root=Path(root).resolve();work=Path(work).resolve()
+    discovery_path=root/'config/discovery.json'
+    policy=json.loads(discovery_path.read_text(encoding='utf8')) if discovery_path.exists() else {}
+    reports=[r for r in policy.get('official_reports',[]) if r['protocol']!='arcgis' or r.get('where')]
+    dns_rows=strict_dns_preflight(registry,reports) if dns_rows is None else dns_rows
+    if any(r['status']!='DNS_OK' for r in dns_rows):
+        strict_network_report(work,[],dns_rows)
+        raise InvalidNetworkRun('RUN_INVALID_NETWORK: DNS preflight failed; no HTTP requests or build started')
+    work.mkdir(parents=True,exist_ok=True)
     cache=Path(tempfile.mkdtemp(prefix='strict-',dir=work))
     manifest=json.loads((root/'data/manifest.json').read_text(encoding='utf8'))['snapshots']
     declared={}
@@ -475,7 +557,7 @@ def strict_refresh(root, registry, work, claims, cutoff):
             bindings=set(declared.get(source['key'],set()))
             if source.get('source_sha256'):bindings.add(source['source_sha256'])
             by_url.setdefault(source['url'],set()).update(bindings)
-    transport=StrictTransport(STRICT_HOSTS);outcomes=[];selected=[]
+    transport=transport or StrictTransport(STRICT_HOSTS);outcomes=[];selected=[]
     managed={'official_table_transcription','official_project_catalogue_transcription','historical_e1_candidates','legacy_screen_index','pdf_page_extraction'}
     def committed(s,expected):
         p=Path(s['path']);target=(root/p).resolve()
@@ -500,7 +582,10 @@ def strict_refresh(root, registry, work, claims, cutoff):
             sha=hashlib.sha256(raw).hexdigest();(cache/(sha+suffix)).write_bytes(raw);return sha
         _,reports,seeds,_=official_reports(policy,[],transport,save_receipt)
         for report in reports:
-            outcomes.append(dict(key=report['seed_key'],host=urllib.parse.urlsplit(report['url']).hostname,http_status=report.get('http_status',transport.http.get(urllib.parse.urlsplit(report['url']).hostname)),sha_match=None,status=report['status'],stop_reason=report.get('reason','')))
+            host=urllib.parse.urlsplit(report['url']).hostname
+            attempts=[a for a in transport.attempts if a['host']==host]
+            network=bool(report.get('network_error'))
+            outcomes.append(dict(key=report['seed_key'],host=host,http_status=report.get('http_status',transport.http.get(host)),sha_match=None,status='NETWORK_ERROR' if network else report['status'],stop_reason=report.get('reason',''),network_error=network,http_attempts=canonical(attempts)))
         # Returned exact delivery URLs are receipts only, never unreviewed claims.
         for seed in seeds:
             host=urllib.parse.urlsplit(seed['url']).hostname
@@ -508,7 +593,7 @@ def strict_refresh(root, registry, work, claims, cutoff):
                 raw,_=transport(seed['url'],max_bytes=seed.get('max_document_bytes'))
                 if not raw.startswith(b'%PDF'):raise ValueError('NOT_PDF')
                 save_receipt(raw,{},'.pdf');status='API_DOCUMENT_CACHED_NOT_ADOPTED';reason=''
-            except Exception as exc:status='UNAVAILABLE';reason=str(exc)
+            except Exception as exc:status=strict_failure_status(exc);reason=str(exc)
             outcomes.append(dict(key=seed['key'],host=host,http_status=transport.http.get(host),sha_match=None,status=status,stop_reason=reason))
     for source in registry['sources']:
         key=source['key'];host=urllib.parse.urlsplit(source['url']).hostname
@@ -529,8 +614,16 @@ def strict_refresh(root, registry, work, claims, cutoff):
                 if not candidates:raise ValueError('DECLARED_COMMITTED_DERIVATIVE_UNAVAILABLE')
                 selected.append(max(candidates,key=lambda s:s['acquired_at']));row.update(status='COMMITTED_MANAGED_SAME_SHA',sha_match=True)
                 outcomes.append(row);continue
+            if host in transport.stopped:raise ValueError('HOST_STOPPED:'+transport.stopped[host])
+            if key in transport.probe_failures:
+                exc,http,attempts=transport.probe_failures.pop(key)
+                transport.http[host]=http;row['probe_http_attempts']=canonical(attempts)
+                raise exc
             # Only registry entries are requested. There is no discovery/index path.
-            if host=='wamex.dmp.wa.gov.au' and 'ReportDetails' in source['url']:
+            if key in transport.probed:
+                raw,headers,http,attempts=transport.probed.pop(key);transport.http[host]=http
+                row.update(reused_successful_probe=True,probe_http_attempts=canonical(attempts))
+            elif host=='wamex.dmp.wa.gov.au' and 'ReportDetails' in source['url']:
                 import re
                 query=urllib.parse.parse_qs(urllib.parse.urlsplit(source['url']).query)
                 native=int(next(v[0] for k,v in query.items() if k.lower()=='anumber'))
@@ -574,8 +667,9 @@ def strict_refresh(root, registry, work, claims, cutoff):
                 selected.append(entry);row['status']='FETCHED_SHA_VERIFIED' if expected else 'FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE'
         except Exception as exc:
             failure='SOURCE_SHA_CHANGED' if candidate_mismatch or str(exc)=='SOURCE_SHA_CHANGED' else str(exc)
-            row.update(http_status=transport.http.get(host),stop_reason=failure,status=failure if failure in ('SOURCE_SHA_CHANGED','CONFLICTING_DECLARED_SOURCE_SHA') else 'UNAVAILABLE')
-            if failure not in ('SOURCE_SHA_CHANGED','CONFLICTING_DECLARED_SOURCE_SHA'):
+            status=failure if failure in ('SOURCE_SHA_CHANGED','CONFLICTING_DECLARED_SOURCE_SHA') else strict_failure_status(exc)
+            row.update(http_status=transport.http.get(host),stop_reason=failure,status=status,network_error=status=='NETWORK_ERROR')
+            if failure not in ('SOURCE_SHA_CHANGED','CONFLICTING_DECLARED_SOURCE_SHA') and status not in ('NETWORK_ERROR','HOST_STOPPED') and host!='www.asx.com.au':
                 candidates=[s for s in old if committed(s,expected)]
                 if candidates:selected.append(max(candidates,key=lambda s:s['acquired_at']));row.update(status='SNAPSHOT_FALLBACK_SAME_SHA',sha_match=True)
         row['http_attempts']=canonical(transport.attempts[request_start:])
@@ -593,6 +687,9 @@ def strict_refresh(root, registry, work, claims, cutoff):
     for row in outcomes:
         if row['key'] in invalid:
             row.update(status=invalid[row['key']],stop_reason='PARENT_OR_ALIAS_SOURCE_NOT_VALIDATED',sha_match=False if invalid[row['key']]=='SOURCE_SHA_CHANGED' else row.get('sha_match'))
+    report=strict_network_report(work,outcomes,dns_rows)
+    if report['status']=='RUN_INVALID_NETWORK':
+        raise InvalidNetworkRun('RUN_INVALID_NETWORK: network errors exceed 5%; see '+str(work/'network_status.json'))
     return selected,outcomes
 
 

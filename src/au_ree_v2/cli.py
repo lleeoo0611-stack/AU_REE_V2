@@ -222,10 +222,24 @@ def execute(args):
             discovery_config.update(seeds=[],official_archive_template=None,public_mirror_index_template=None)
         return discover(root,discovery_config,diagnostics=getattr(args,'gap_report',None),task_limit=getattr(args,'task_limit',3))
     if strict:
-        from .acquisition import strict_refresh
+        from .acquisition import (strict_refresh, strict_dns_preflight, strict_network_report,
+                                  strict_asx_probe, StrictTransport, STRICT_HOSTS, InvalidNetworkRun)
         from .evidence import load_claims
         live_claims,_=load_claims(root)
-        snapshots,acquisition=strict_refresh(root,registry,Path(args.work or root/'work').resolve(),live_claims,args.as_of)
+        strict_work=Path(args.work or root/'work').resolve()
+        policy=json.loads((root/'config/discovery.json').read_text(encoding='utf8'))
+        reports=[r for r in policy.get('official_reports',[]) if r['protocol']!='arcgis' or r.get('where')]
+        dns_rows=strict_dns_preflight(registry,reports)
+        network=strict_network_report(strict_work,[],dns_rows)
+        if network['status']=='RUN_INVALID_NETWORK':
+            raise InvalidNetworkRun('RUN_INVALID_NETWORK: DNS preflight failed; no HTTP requests or build started')
+        transport=StrictTransport(STRICT_HOSTS)
+        probe=strict_asx_probe(registry,transport)
+        probe_fields=sorted({k for row in probe for k in row})
+        write_csv(strict_work/'asx_probe.csv',probe,probe_fields)
+        if probe and strict_network_report(strict_work,probe,dns_rows)['status']=='RUN_INVALID_NETWORK':
+            raise InvalidNetworkRun('RUN_INVALID_NETWORK: ASX probe network errors exceed 5%; build not started')
+        snapshots,acquisition=strict_refresh(root,registry,strict_work,live_claims,args.as_of,transport,dns_rows)
     elif args.module=='acquire' or args.refresh:
         from .discovery import discover
         if args.source_key:

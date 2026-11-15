@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_strict_claims.StrictClaimTests-20261115165537" tests="5" file="test_strict_claims.py" time="0.211" timestamp="2026-11-15T17:01:06" failures="0" errors="0" skipped="0">
+	<testcase classname="test_strict_claims.StrictClaimTests" name="test_changed_source_queues_without_read_or_fallback" time="0.048" timestamp="2026-11-15T17:01:06" file="tests\test_strict_claims.py" line="23"/>
+	<testcase classname="test_strict_claims.StrictClaimTests" name="test_failed_markers_do_not_enter_observations" time="0.032" timestamp="2026-11-15T17:01:06" file="tests\test_strict_claims.py" line="40"/>
+	<testcase classname="test_strict_claims.StrictClaimTests" name="test_missing_identity_queues_every_claim" time="0.032" timestamp="2026-11-15T17:01:06" file="tests\test_strict_claims.py" line="19"/>
+	<testcase classname="test_strict_claims.StrictClaimTests" name="test_success_keeps_numeric_value_and_adds_runtime_page_binding" time="0.045" timestamp="2026-11-15T17:01:06" file="tests\test_strict_claims.py" line="27"/>
+	<testcase classname="test_strict_claims.StrictClaimTests" name="test_unverified_deposit_identity_is_not_published" time="0.055" timestamp="2026-11-15T17:01:06" file="tests\test_strict_claims.py" line="44"/>
+</testsuite>

@@ -3,6 +3,9 @@ from unittest.mock import patch
 import test_strict_acquisition as fixtures
 from au_ree_v2 import acquisition as a
 class HardeningTests(unittest.TestCase):
+    def setUp(self):
+        self.dns=patch('au_ree_v2.acquisition.strict_dns_preflight',return_value=[dict(host='example.com',status='DNS_OK',error='')])
+        self.dns.start();self.addCleanup(self.dns.stop)
     fixture=fixtures.StrictAcquisitionTests.fixture
     def test_alias_changed_propagates_and_no_original_selected(self):
         with tempfile.TemporaryDirectory() as folder:
