@@ -1,6 +1,6 @@
 # Automated build: validated strict pipeline, partial source availability
 
-Base: `b5e2a73438e2f3aa9f4adc3ab0f6ff0f898f0fca` (Phase 22). Review authority: `980bedbcc250e720e1eab9c734032b5df72c3c39:config/asx_source_reviews.json`, read with `git show`. Branch: `feat/automated-build-claims-20261113`. No experimental merge or push. Corrected live build completed successfully on 2026-11-15, with explicitly partial source availability.
+Base: `b5e2a73438e2f3aa9f4adc3ab0f6ff0f898f0fca` (Phase 22). Review authority: `980bedbcc250e720e1eab9c734032b5df72c3c39:config/asx_source_reviews.json`, read with `git show`. Branch: `feat/automated-build-claims-20261113`. No experimental merge or push to the formal development branch. Corrected live build completed successfully on 2026-11-15, with explicitly partial source availability.
 
 ## T0: stable identities
 
@@ -44,7 +44,7 @@ The requested `au-ree-v2 all --refresh --as-of 2026-11-13 --work work/clean` com
 
 185 acquisition/query receipts: 24 FETCHED_SHA_VERIFIED, 23 SNAPSHOT_FALLBACK_SAME_SHA, 117 UNAVAILABLE, 8 FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE, 5 COMMITTED_MANAGED_SAME_SHA, 3 SOURCE_NOT_ACQUIRED, 2 PARSED, 2 CONFLICTING_DECLARED_SOURCE_SHA, and 1 NO_FIXED_QUERY_NOT_EXPANDED. These are transport/selection statuses, not scientific acceptance. There are 133 DNS failure reasons, consistent with the connection interruption during this run; unavailable evidence is not filled from prior work caches. See acquisition_report.csv and acquisition_hosts.md for per-host HTTP evidence and separate issuer/IR versus aggregator counts.
 
-The final guard audit quarantines official transcriptions without reliable parent-PDF SHA binding, propagates SHA constraints across exact-URL aliases, and prohibits fallback after candidate mismatch or conflicting declared SHA. Final src diff: 329 added/deleted lines, including exactly one discovery.py guard replacement. Experiment reference only: 73.29% (2159/2946); this is not a build/config input or a coverage result for this run. No push or publication is performed.
+The final guard audit quarantines official transcriptions without reliable parent-PDF SHA binding, propagates SHA constraints across exact-URL aliases, and prohibits fallback after candidate mismatch or conflicting declared SHA. Final src diff: 329 added/deleted lines, including exactly one discovery.py guard replacement. Experiment reference only: 73.29% (2159/2946); this is not a build/config input or a coverage result for this run. Delivery is limited to the feature branch; no merge or current publication is performed.
 
 
 The initial live trial was stopped before completion after a final audit identified the registered Fingerboards project landing URL. Strict now rejects that exact landing URL without a request or fallback (SOURCE_NOT_ACQUIRED / INDEX_LANDING_DISABLED); specific LSE articles and fixed-ID Weblink document delivery remain eligible. The subsequent failed live run started 2026-11-13 16:11 UTC+08 in a new per-build cache, without reading earlier work caches.
