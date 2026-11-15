@@ -1,0 +1,29 @@
+{
+  "pr_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/pull/9",
+  "tested_code_commit": "5946984ac7e4a6cda86364b2ed9c2a1e5bdacdbd",
+  "local_status": "RUN_INVALID_NETWORK",
+  "network_error_sources": 150,
+  "source_receipts": 208,
+  "runs": [
+    {
+      "id": 43721163043,
+      "url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/43721163043",
+      "name": "automated-build",
+      "status": "in_progress",
+      "observed_step": "Install package and XML test reporter",
+      "conclusion": null
+    },
+    {
+      "id": 43721162845,
+      "url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/43721162845",
+      "name": "research",
+      "status": "completed",
+      "conclusion": "failure",
+      "tests": 379,
+      "failures": 1,
+      "reason": "Clean-checkout audit rejected Python temporary bytecode cache; fix locally verified, not yet pushed"
+    }
+  ],
+  "newer_local_fix": "sys.dont_write_bytecode=True inside read-audit subprocess; 4 focused tests passed",
+  "delivery_status": "INCOMPLETE_T6B_T7B"
+}

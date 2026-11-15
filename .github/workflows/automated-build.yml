@@ -94,6 +94,9 @@ jobs:
             work/clean/asx_probe.csv
             work/clean/dns_preflight.csv
             work/clean/network_status.json
+            work/clean/latest.json
+            work/clean/**/configuration.json
+            work/clean/**/snapshot_lock.json
             work/clean/**/project-summary/
             results/automated-build-2026-11-13/acquisition_report.csv
           if-no-files-found: warn

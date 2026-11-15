@@ -55,6 +55,7 @@ import json, os, pathlib, sys
 from urllib.parse import urlsplit
 from urllib.request import url2pathname
 root = pathlib.Path(sys.argv[1]).resolve()
+sys.dont_write_bytecode = True
 sys.path.insert(0, str(root / 'src'))
 from au_ree_v2.cli import research_configuration
 from unittest.mock import patch

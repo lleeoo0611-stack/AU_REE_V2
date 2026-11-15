@@ -83,7 +83,7 @@ src 新增與刪除合計 **1780 行 / 2,000 行**；未新增 src 模組。只�
 
 (a) [phase22-baseline](phase22-baseline/) 來自 Phase 22 snapshot lock 實際重建的資料庫。(b) 實際執行 `all --refresh --as-of 2026-11-13 --work work/clean`，開始時沒有該快取目錄；中途連線重設，之後大量 DNS 解析失敗，150/208 筆 NETWORK_ERROR（72.12%）。以非零退出，尚未建立正式資料庫，未匯出新版總表。不得把此診斷當作研究結果，待乾淨 CI 環境驗證。原件只留在 work，未 commit 新 PDF，未修改 data/manifest 或 Phase 19–22 凍結結果。
 
-|host|來源筆數|SHA一致含既有原件|SHA變動|HOST_STOPPED|NETWORK_ERROR|原始HTTP/傳輸|
+|host|來源筆數|SHA一致含既有原件|SHA變動|HOST_STOPPED|NETWORK_ERROR|逐來源receipt的HTTP/傳輸|
 |---|---|---|---|---|---|---|
 |announcements.asx.com.au|52|8|0|0|44|{"200": 2, "NETWORK_ERROR": 44}|
 |api.investi.com.au|3|0|0|0|3|{"NETWORK_ERROR": 3}|
@@ -98,9 +98,9 @@ src 新增與刪除合計 **1780 行 / 2,000 行**；未新增 src 模組。只�
 |data.stategrowth.tas.gov.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
 |dem-sdp.s3-ap-southeast-2.amazonaws.com|1|0|0|0|1|{"NETWORK_ERROR": 1}|
 |geology.data.nt.gov.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
-|geoscience.data.qld.gov.au|2|0|0|0|0|{"200": 16}|
+|geoscience.data.qld.gov.au|2|0|0|0|0|{"200": 2}|
 |geoscience.nt.gov.au|5|0|0|0|5|{"NETWORK_ERROR": 5}|
-|gsq-prod-ckan-horizon-public.s3.ap-southeast-2.amazonaws.com|5|0|0|4|0|{}|
+|gsq-prod-ckan-horizon-public.s3.ap-southeast-2.amazonaws.com|5|0|0|4|0|{"403": 1}|
 |hermes-cdn.investorhub.com|10|4|0|0|4|{"NETWORK_ERROR": 4}|
 |international.austrade.gov.au|2|1|0|0|1|{"NETWORK_ERROR": 1}|
 |investornews.com|1|1|0|0|0|{}|
@@ -112,7 +112,7 @@ src 新增與刪除合計 **1780 行 / 2,000 行**；未新增 src 模組。只�
 |public-gs.geoscience.nsw.gov.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
 |public-services.slip.wa.gov.au|3|0|0|0|2|{"NETWORK_ERROR": 2}|
 |raw.githubusercontent.com|2|2|0|0|0|{}|
-|services.ga.gov.au|10|2|0|0|7|{"200": 91, "TIMEOUT": 1, "NETWORK_ERROR": 7}|
+|services.ga.gov.au|10|2|0|0|7|{"200": 2, "NETWORK_ERROR": 6}|
 |services.sarig.sa.gov.au|2|2|0|0|0|{}|
 |spatial-gis.information.qld.gov.au|5|0|0|0|5|{"NETWORK_ERROR": 5}|
 |staff-web.automicgroup.com.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
@@ -134,7 +134,7 @@ src 新增與刪除合計 **1780 行 / 2,000 行**；未新增 src 模組。只�
 |www.marketindex.com.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
 |www.wa.gov.au|3|1|0|0|2|{"NETWORK_ERROR": 2}|
 
-SHA 一致欄包含明確引用的既有原件與允許的同 SHA fallback，實際新抓成功及 fallback 的差別保留在 statuses；不能將其視為全部遠端新抓成功。HTTP 計數按原始 request attempts，包含一次允許的重試與成功 probe 沿用的原請求，詳見 [acquisition-by-host.json](acquisition-by-host.json)。
+SHA 一致欄包含明確引用的既有原件與允許的同 SHA fallback，實際新抓成功及 fallback 的差別保留在 statuses；不能將其視為全部遠端新抓成功。HTTP 欄依每個來源 receipt 的原始 http_status 分列，不當作獨立網路請求總次數；probe 另見上表。完整 http_attempts 保留在逐筆 CSV；官方 seed 收據可能重複引用同 host 的共用請求序列，沒有將它們重複加總。詳見 [acquisition-by-host.json](acquisition-by-host.json)。
 
 ## T7：逐格驗收
 
