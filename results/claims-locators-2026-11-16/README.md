@@ -1,71 +1,80 @@
-# 第 3 版：ASX PDF 提案完成，等待核准；VIC 診斷受既有程式錯誤阻擋
+# 第 4 版：核准標記、座標修正與 VIC 內容雜湊
 
-**尚未寫入標記、替代網址或 SHA；尚未觸發新的 CI。** 沿用分支 `feat/claims-locators-20261116`、Draft PR #11，target `feat/same-sha-fallback-20261116`，不 merge。此次不找舊原件、不重建過去版本、不重跑實驗線、不重產參考清單。
+基準 `09ace21`；分支 `feat/claims-locators-20261116`；[Draft PR #11](https://github.com/lleeoo0611-stack/AU_REE_V2/pull/11)，target `feat/same-sha-fallback-20261116`。維持 Draft，不 merge。研究者：賴力維，2026-11-17。
 
-基準仍為 9c067a5。原有 609 格已由 [CI run 43900956815](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/43900956815) 驗收為 609／609；[既有守門證據](ci_t0/ci_t0_summary.json)保留不變。本輪沒有已核准資料變更，因此新增 SAME 格數尚未驗收，不能把提案數當成恢復格數。
+最終 CI 尚未啟動；資料與程式已完成並在本機測試，待推送後以該次 CI 驗收。
 
-## 第一件：標記 CSV 尚無 approved
+## 研究者核准與套用範圍
 
-[identity_marker_proposals.csv](identity_marker_proposals.csv)目前仍沒有 approved 欄，依指示停止本項套用。原 26 筆提案原樣保留。審查建議中的 18 筆 Y、4 筆修訂後 Y、4 筆 N，均未被當成核准；本輪未自行填 Y，也沒有改頁碼、標記、SHA、observations 或 attributes。研究者審核後才套用 approved=Y，提交訊息附核准 CSV 原始位元組 SHA256。
+- 標記：18 筆原提案 Y、4 筆指定修訂後 Y、4 筆 N。全部 **22 筆 Y** 重新由正式建置快取中 SHA 一致的原件、同頁、既有 extract_page 文字層及 WHITESPACE_ONLY_V1 正規化核對成功；既有標記仍在頁上、新標記實際出現且非其子字串。失敗 0，寫入 22，N 未動 4。
+- 行數：原上限 2,005 先停止後，研究者明確核准提高至 **2,074**；目前 src 累計增加刪除 **2,074／2,074**（基準 070df10）。沒有新增 src 模組，沒有用長行、分號或刪除安全檢查擠入上限。
+- 官網替代：研究者接受 43 份全部 NOT_FOUND、0 筆可採用提案；不加任何 alternate_urls，並明確授權其餘實作與測試完成後進行一次最終 CI。
+- 舊 43 筆 ASX 靜態網址提案 **作廢，0 筆寫入**；[作廢紀錄](asxpdf_proposals_revoked.json)為準。舊 asxpdf_alternate_proposal.csv 僅供歷史稽核，不可採用。
 
-## 第二件：新版宣告核對與 VIC 8 格診斷
+[核准標記 CSV](identity_marker_proposals_approved.csv) SHA256：`e9cd0936b891f3d9e5a3e90599e41486e0068420b21b095be05d12e54571d2c1`；提交訊息附此 SHA 與「研究者 2026-11-17 核准」。[逐筆套用收據](identity_marker_application.json)記錄來源 SHA、頁碼、宣告路徑及文字層方法。A 組加入 identity_declaration.page_markers；B 組 context_evidence 保留原 page、markers、SHA，另以 page_markers 保留舊標記並加入核准文字。所有既有頁碼、SHA、observations、attributes 不變；四筆 N 未另找新標記。
 
-claims.json 沒有直接引用這兩個來源的 key、SHA 或網址，故 [declared_value_check.csv](declared_value_check.csv)目前只有欄名。這不是全部一致。另將 sources.json 既有四組、8 個 VIC 礦權號獨立列入 [configured_tenement_check.csv](configured_tenement_check.csv)，使用既有型別與數字正規化規則核對新版：**8／8 找到，0 筆不符**；此項不等於座標、屬性或現行法律權利驗證。WA 沒有同類明確宣告範圍，未提出其 SHA 更新。
+## 發行公司官網同 SHA 搜尋
 
-依研究者補充，直接呼叫既有 `summary_tenement_centroid`，以 9c067a5 已擷取的新版 VIC 要素計算四個專案的八格座標，僅供診斷。結果：**四案均出現 AttributeError，八格均未算出**。src/au_ree_v2/spatial.py 的 118、120 行讀取不存在的幾何屬性 `.summary_tenement_centroid`；目前 Shapely 2.1.2 提供的是 `.centroid`。函式名稱本身不需改。
+[全部 43 份結果](same_sha_source_outcomes.csv)、[提案表](same_sha_alternate_proposal.csv)、[拒絕候選](same_sha_candidates_rejected.csv)、[請求與頁面審計](same_sha_official_search.json)。**同 SHA 提案 0、核准／寫入 0、NOT_FOUND 43、拒絕候選配對 10**；其中 SHA 不符的筆數依拒絕表原因逐列保留，不將一般存取失敗稱為 SHA 不符。
 
-已遵守 src 不改：沒有修改檔案，也沒有執行期 monkeypatch、另寫替代算法或略過驗證。[vic_coordinate_diagnostic.csv](vic_coordinate_diagnostic.csv)逐格列出錯誤；[診斷](vic_coordinate_diagnostic.json)與[程式問題](vic_centroid_code_issue.json)列出輸入 SHA、既有參數與兩個屬性位置，等待研究者決定。既有對照表中這八格只有四格有參考值，另四格為空；未補造參考值。
+搜尋依既有 issuer 資訊、已登記 IR 索引與待確認公司網域，先以公司首頁上的發行公司名稱／ASX 代碼確認身分，再考慮官網公開 PDF。每家公司每輪最多 4 頁、每來源每輪最多 8 個候選，全部請求最多 400；補查沿用已停止主機、已用請求額度並優先公告／年報入口。共 **117 次 HTTP 嘗試**（含 robots 與轉向）；**任何 ASX 主機 0、第三方主機 0**。NOT_FOUND 表示本輪有限搜尋未找到，不代表全網不存在。
 
-[sources_sha_update_proposal.json](sources_sha_update_proposal.json)目前 proposals 為空：不能以八個礦權號相符或零筆直接引用取代座標比對完成，也不能在計算失敗後提出「全部 match」的更新。
+遵守既有 robots 保守規則、每 host 至少 3 秒、4xx／登入／CAPTCHA／同意頁停止，不送表單或 cookie；排除 ASX、第三方以及跨公司轉向。下載原件僅留忽略的 work，不進 repo。來源 url 與 alternate_urls 完全未變；evidence_policy.json 也未變。上述 ASX 請求為 **官網提案搜尋範圍**；正式 CI 沿用既有取得流程與停止規則，實際請求以其收據為準。
 
-### VIC 連續兩次下載
-
-使用既有 StrictTransport／SameSHAAlternates 的 robots、限速與停止規則，只對已登記的 VIC 查詢連續下載兩次，請求開始間隔 3.000473 秒。兩次皆 HTTP 200、13 個要素。
-
-|次數|SHA256|
-|---|---|
-|1|`b8b0c1d0d950e0461b6a6254e633152a2868e25956f062d78c14fd5958ce8e01`|
-|2|`9b8be1ffd46c75f41d3a4142ee28925ea6389e38c287da23ce7ef30e8f59788f`|
-
-**唯一 JSON 差異為 `$.timeStamp`**；要素屬性、幾何與排序相同。完整差異位置與時間值見 [vic_download_variability.csv](vic_download_variability.csv)，取得收據見 [vic_download_variability.json](vic_download_variability.json)。未改成內容雜湊，未更新來源 SHA。內容雜湊是否可採用仍由研究者決定。
-
-## 第三件：43 筆同 SHA 靜態 ASX PDF 提案
-
-[asxpdf_alternate_proposal.csv](asxpdf_alternate_proposal.csv)共 **43 筆、43 個 www.asx 來源**，每筆 receipt_sha256 都與 sources.json 的 declared_sha256 完全一致。只讀 asx_local_asset_roots.json 指定 work 根目錄中的既有下載收據；去重後共讀取 42 份 downloads.json，沒有讀 PDF、實驗線數值輸出、資料庫或搜尋結果頁。
-
-|項目|本輪結果|
+|NOT_FOUND 最後原因|來源數|
 |---|---:|
-|同 SHA 提案|43|
-|SHA 不符收據配對|0|
-|核准數|尚待核准|
-|本輪網路請求|0|
-|www.asx 頁面讀取|0|
-|本輪 CI ALTERNATE_SAME_SHA|尚未執行|
+|ValueError:ISSUER_OWNERSHIP_NOT_CONFIRMED_FROM_HOME_PAGE|1|
+|HTTPError:HTTP Error 403: Forbidden|2|
+|ValueError:CAPTCHA_OR_LOGIN|7|
+|HTTPError:HTTP Error 429: Too Many Requests|8|
+|ISSUER_HOST_STOPPED|2|
+|URLError:<urlopen error [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)>|1|
+|NO_IDENTIFIED_ISSUER_OWNED_SITE_FROM_AVAILABLE_METADATA|7|
+|ValueError:REDIRECT_DESTINATION_NOT_APPROVED|3|
+|NO_PUBLIC_ISSUER_PDF_LINK|10|
+|ALTERNATE_SHA_MISMATCH|2|
 
-提案只含 announcements.asx.com.au/asxpdf/ 的 HTTPS 靜態 PDF 網址。receipt_path 使用核准根目錄 ID＋相對路徑，不包含個人資料夾名稱或絕對路徑。[收據審計](asxpdf_receipt_audit.json)含原收據 SHA 與 JSON pointer；[不符表](asx_receipt_mismatches.csv)目前只有欄名、0 筆；[逐來源結果](asxpdf_source_outcomes.csv)列出所有 43 個來源。
+## 座標修正與 VIC 8 格
 
-**停止等待研究者核准這 43 筆提案。** 核准後才加 alternate_urls，保留原 url 與 SAME_SHA_ONLY；正式建置仍以既有流程實際下載、遵守 robots／4xx／限速並驗 SHA。收據相符不是本輪已取得原件或已恢復總表的聲明。
+spatial.py 兩處幾何屬性改回 `.centroid`，函式 summary_tenement_centroid 名稱不變；這兩處修正本身無行數增長。新增 3 個幾何測試：相鄰多邊形聯集內中心、聯集中心在空隙時採最大礦權中心、C 形最大礦權中心仍在外時拒絕。
 
-## 比較分類：相對容差另列
+依既有函式、礦權集合與 25 公里規則，在內容雜湊宣告完成後再次運算原已取得的 VIC 新版快照。[逐格診斷](vic_coordinate_diagnostic.csv)、[運算與輸入紀錄](vic_coordinate_diagnostic.json)：8 格均算出；Wimmera（AU-ff758cad5beb276d327d）、Nowie（AU-176852ef1348ac10d154）共 4 格 accepted，與參考公布精度一致；Donald 約 26.8 公里、Cannie 約 31.6 公里，共 4 格超過 25 公里不採用，參考側原為空白，不補造。原始浮點值保留，沒有聲稱原始浮點完全相等。
 
-只在已發布的 9c067a5 對照表上增加數值欄位相對容差 1e-12 分類；沒有重建任何版本或改動值。1 格改列 NUMERIC_TOLERANCE_SAME，不算進 SAME。見 [numeric_tolerance_review.csv](numeric_tolerance_review.csv)、[分類審計](numeric_tolerance_audit.json)與[分類後完整表](cell_comparison_v3_classified.csv)。
+此診斷不跳過身分／礦權原件證明閘門，也不等同正式總表已恢復；正式結果以本次 CI 為準。
 
-|分類（固定 2,101 格）|9c067a5|本輪僅分類後|增減|
+## VIC 來源層級內容雜湊
+
+**研究者 2026-11-17 核准改用內容雜湊**。僅來源 reviewed_source_31a205168b6ae647 宣告 JSON_DROP_TOP_LEVEL_KEYS_V1，hash_drop_keys 僅 timeStamp。解析成頂層 JSON 物件、只刪宣告鍵、UTF-8、鍵排序、固定分隔符號、拒絕非有限 JSON 數值後計算 SHA256；其他來源行為不變。
+
+- 舊整檔 SHA：`31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953`，保留於 sources.json.previous_source_sha256 及[核准收據](vic_content_hash_application.json)。
+- 新宣告內容 SHA：`6547bf2c221ed8b58f37b40123bfa43465973f0478a1cca99b67e5ced6413885`。兩份不同原始 SHA 的既有回應，以及座標診斷所用快照，內容 SHA 全部一致。
+- 原始位元組照存，檔名與 snapshot.sha256 仍使用原始 SHA。取得收據同時記錄 raw_sha256、content_sha256、hash_policy、hash_drop_keys；座標來源追溯仍指向原始 SHA。
+- 非 JSON、頂層鍵不存在、無效政策／鍵清單皆拒絕；不回退原始 SHA、已提交快照或替代下載。要素屬性、幾何、陣列排序、巢狀 timeStamp 改動都影響內容 SHA。
+- WA、其他來源與原件快照均未改。未提交任何下載原件。
+
+原先行數停止時的 [預估紀錄](vic_content_hash_budget.json)與[未套用階段提案](vic_content_hash_unapplied.patch)保留為歷史；目前以核准收據與實際 src 為準，實作另補上禁止 committed-snapshot／alternate 跳過政策檢查及拒絕非有限 JSON 數值。
+
+## 比較、守門與驗證
+
+固定參考清單 609 格未重產，SHA256 仍為 `02acc91760c8774f7377d12f2a428d1a1d6b6fba6f1620237e267101cdb0ff4e`。原基準 [CI run 43900956815](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/43900956815)為 609／609。本輪不重跑實驗線、不找舊原件、不重建過去版本。
+
+|分類（參考有值、非 ID 的 2,101 格）|09ace21|本次 CI|增減|
 |---|---:|---:|---:|
-|SAME|609|609|0|
-|KNOWN_STRUCTURAL_DIFFERENCE|42|42|0|
-|DIFFERENT|28|27|-1|
-|NUMERIC_TOLERANCE_SAME|0|1|+1|
-|FORMAL_MISSING|1,422|1,422|0|
+|SAME|609|待 CI|待 CI|
+|KNOWN_STRUCTURAL_DIFFERENCE|42|待 CI|待 CI|
+|NUMERIC_TOLERANCE_SAME|1|待 CI|待 CI|
+|DIFFERENT|27|待 CI|待 CI|
+|FORMAL_MISSING|1422|待 CI|待 CI|
 
-上述數字沿用既有 CI 輸出，只改分類；尚未套用三項資料變更，沒有新的 CI 驗收或可歸因的 SAME 增量。既有 609 格參考清單完全不動。
+KNOWN_STRUCTURAL_DIFFERENCE、NUMERIC_TOLERANCE_SAME 各自列計，不計入 SAME。各件 SAME 增量、仍缺原因與距離 2,101 格的差距，待 CI 輸出逐格核對；不把核准標記數或診斷格數當作恢復格數。
 
-## 本輪核對與下一個停止點
+本機 **422 項 Python 測試通過**，較基準新增 **14 項**（幾何 3、內容雜湊 11）；R 測試通過。內容雜湊測試涵蓋時間戳穩定、內容變動、原始檔與雙雜湊收據、未宣告來源行為、無效 JSON、缺鍵、不得用 committed snapshot 或 alternate 繞過政策，以及座標保留原始 SHA 追溯。[範圍驗證](v4_validation.json)。
 
-- src 增加／刪除均 0；claims.json、sources.json、其他 config、manifest 與原件快照未變更。輔助腳本與下載原件只在忽略的 work，沒有進 repo。
-- 43 筆配對已獨立讀取收據 pointer 核對 SHA／URL；另以 4 個合成反例驗證外部主機偽裝、包裝網址內嵌連結、非 PDF 狀態、互相衝突的收據 SHA 均會被拒絕。發布檔案使用相對收據路徑。見 [v3_validation.json](v3_validation.json)。
-- 舊的 CI 基準為 408 項 Python 測試及 R 通過，Phase 20–22 MATCHED；本輪未觸發新 CI，也不把舊結果當成套用後驗收。
-- 等待：研究者核准標記 CSV（approved=Y/N）、核准 43 筆 ASX PDF 配對，並決定 VIC 既有程式錯誤如何處理。維持 src 不改時，該座標診斷無法繼續。
-- 三項核准且可寫入後，才推一次不帶跳過標記的資料提交，以該次 CI 驗收 609 格與實際增量；少一格即停止。不 merge。
+src 相對 09ace21 的增加刪除如下；累計上限另依 070df10 計算：
 
-前一版的診斷與審查資料保留供稽核，但舊原件追查已由第 3 版取代，不再要求提供舊原件。
+```text
+63	6	src/au_ree_v2/acquisition.py
+13	2	src/au_ree_v2/spatial.py
+```
+
+Phase 20–22 的既有 MATCHED 證據保留；本輪的 CI 步驟結果會分別記錄，未執行或 skipped 不算通過。只推送一次不帶 skip 的程式／資料提交取得最終 CI；驗收報告後續提交使用 skip 標記。609 守門少一格立即停止；完成後等待審查，不 merge。

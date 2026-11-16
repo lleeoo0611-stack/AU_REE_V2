@@ -694,6 +694,42 @@ class SameSHAAlternates:
         (Path(work)/'proposed_sources_patch.json').write_text(canonical(proposed)+'\n',encoding='utf8')
 
 
+def declared_json_hash(raw, source):
+    """Explicit JSON policy; raw snapshot identity remains the byte SHA256."""
+    import hashlib
+    policy = source['hash_policy']
+    if policy != 'JSON_DROP_TOP_LEVEL_KEYS_V1':
+        raise ValueError('UNKNOWN_SOURCE_HASH_POLICY')
+    keys = source.get('hash_drop_keys')
+    if not isinstance(keys, list) or not keys:
+        raise ValueError('INVALID_HASH_DROP_KEYS')
+    if any(not isinstance(key, str) or not key for key in keys):
+        raise ValueError('INVALID_HASH_DROP_KEYS')
+    if len(set(keys)) != len(keys):
+        raise ValueError('DUPLICATE_HASH_DROP_KEYS')
+    try:
+        document = json.loads(raw.decode('utf-8'))
+    except (UnicodeDecodeError, ValueError) as exc:
+        raise ValueError('HASH_POLICY_INVALID_JSON') from exc
+    if not isinstance(document, dict):
+        raise ValueError('HASH_POLICY_TOP_LEVEL_OBJECT_REQUIRED')
+    if any(key not in document for key in keys):
+        raise ValueError('HASH_POLICY_TOP_LEVEL_KEY_MISSING')
+    for key in keys:
+        del document[key]
+    encoded = json.dumps(
+        document, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False
+    ).encode('utf-8')
+    content_sha = hashlib.sha256(encoded).hexdigest()
+    metadata = {
+        'hash_policy': policy,
+        'hash_drop_keys': keys,
+        'content_sha256': content_sha,
+        'raw_sha256': hashlib.sha256(raw).hexdigest(),
+    }
+    return content_sha, metadata
+
+
 def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_rows=None):
     """Fresh work-only originals and bounded, policy-approved same-SHA copies."""
     import hashlib,subprocess,tempfile
@@ -779,7 +815,7 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
         try:
             if len(expected)>1:raise ValueError('CONFLICTING_DECLARED_SOURCE_SHA')
             if host in transport.stopped:raise ValueError('HOST_STOPPED:'+transport.stopped[host])
-            if source.get('committed_snapshot_sha256'):
+            if source.get('committed_snapshot_sha256') and 'hash_policy' not in source:
                 candidates=[s for s in old if committed(s,{source['committed_snapshot_sha256']})]
                 if not candidates:raise ValueError('DECLARED_COMMITTED_SNAPSHOT_UNAVAILABLE')
                 selected.append(dict(max(candidates,key=lambda s:s['acquired_at']),**source))
@@ -826,13 +862,29 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
             row['http_status']=transport.http.get(host)
             if source['kind']=='pdf' and not raw.startswith(b'%PDF'):raise ValueError('NOT_PDF')
             if source['kind']=='xlsx_census' and not raw.startswith(b'PK'):raise ValueError('NOT_XLSX')
-            sha=hashlib.sha256(raw).hexdigest();row['actual_sha256']=sha
-            row['sha_match']=sha in expected if expected else None
-            if expected and sha not in expected:raise ValueError('SOURCE_SHA_CHANGED')
+            sha = hashlib.sha256(raw).hexdigest()
+            row['actual_sha256'] = sha
+            compared_sha = sha
+            hash_metadata = {}
+            if 'hash_policy' in source:
+                (cache / (sha + '.json')).write_bytes(raw)
+                row.update(
+                    raw_sha256=sha,
+                    hash_policy=source['hash_policy'],
+                    hash_drop_keys=canonical(source.get('hash_drop_keys')),
+                    sha_match=False,
+                )
+                compared_sha, hash_metadata = declared_json_hash(raw, source)
+                row.update(hash_metadata)
+                row['hash_drop_keys'] = canonical(hash_metadata['hash_drop_keys'])
+            row['sha_match'] = compared_sha in expected if expected else None
+            if expected and compared_sha not in expected:
+                raise ValueError('SOURCE_SHA_CHANGED')
             suffix='.pdf' if source['kind']=='pdf' else '.xlsx' if source['kind']=='xlsx_census' else '.zip' if source['kind']=='minedex_resource_batch' else '.csv' if source['kind']=='government_csv' else '.html' if source['kind']=='html' else '.json'
             path=cache/(sha+suffix);path.write_bytes(raw)
             now=datetime.now(timezone.utc).isoformat()
             entry=dict(source,sha256=sha,path=str(path),acquired_at=now,available_date=now[:10])
+            entry.update(hash_metadata)
             if source['kind']=='minedex_resource_batch':
                 entry.update(source_update=headers['X-DASC-Updated'],resolved_download_url=headers['X-DASC-Download'],last_modified=headers.get('Last-Modified'))
                 entry['publication_date']=datetime.strptime(headers['X-DASC-Updated'],'%d/%m/%Y').date().isoformat()
@@ -845,9 +897,14 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
             failure='SOURCE_SHA_CHANGED' if candidate_mismatch or str(exc)=='SOURCE_SHA_CHANGED' else str(exc)
             status=failure if failure in ('SOURCE_SHA_CHANGED','CONFLICTING_DECLARED_SOURCE_SHA') else strict_failure_status(exc)
             row.update(http_status=transport.http.get(host),stop_reason=failure,status=status,network_error=status=='NETWORK_ERROR')
-            replacement=alternate.find(source,row,expected,cache)
+            replacement=None if 'hash_policy' in source else alternate.find(source,row,expected,cache)
             if replacement:selected.append(replacement)
-            elif failure not in ('SOURCE_SHA_CHANGED','CONFLICTING_DECLARED_SOURCE_SHA') and status not in ('NETWORK_ERROR','HOST_STOPPED') and host!='www.asx.com.au':
+            elif (
+                'hash_policy' not in source
+                and failure not in ('SOURCE_SHA_CHANGED', 'CONFLICTING_DECLARED_SOURCE_SHA')
+                and status not in ('NETWORK_ERROR', 'HOST_STOPPED')
+                and host != 'www.asx.com.au'
+            ):
                 candidates=[s for s in old if committed(s,expected)]
                 if candidates:selected.append(max(candidates,key=lambda s:s['acquired_at']));row.update(status='SNAPSHOT_FALLBACK_SAME_SHA',sha_match=True)
         row['http_attempts']=canonical(transport.attempts[request_start:])

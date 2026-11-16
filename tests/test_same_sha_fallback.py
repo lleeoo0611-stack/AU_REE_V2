@@ -381,9 +381,13 @@ class RepositoryContract(unittest.TestCase):
     def test_source_budget_and_declared_metadata(self):
         import subprocess,csv
         def git(*args):return subprocess.check_output(['git',*args],cwd=ROOT).decode('utf8')
-        def lines(ref):return sum(int(v) for row in git('diff','--numstat',ref,'--','src').splitlines() for v in row.split('\t')[:2])
-        self.assertLessEqual(lines('12f45f4'),250)
-        self.assertLessEqual(lines('070df10'),2000)
+        def lines(ref,end=None):
+            revisions=[ref,end] if end else [ref]
+            return sum(int(v) for row in git('diff','--numstat',*revisions,'--','src').splitlines() for v in row.split('\t')[:2])
+        # Preserve the original round's limit separately from the approved v4 work.
+        self.assertLessEqual(lines('12f45f4','e84c0e0'),250)
+        self.assertLessEqual(lines('09ace21'),250)
+        self.assertLessEqual(lines('070df10'),2074)  # Researcher approved 2026-11-17.
         self.assertEqual('',git('diff','--name-only','--diff-filter=A','12f45f4','--','src','config'))
         with (ROOT/'results/integrated-rebuild-2026-11-15/acquisition_report.csv').open(encoding='utf-8-sig',newline='') as f:
             blocked={r['key'] for r in csv.DictReader(f) if r['host']=='www.asx.com.au' and r['stop_reason']=='NOT_PDF'}

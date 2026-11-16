@@ -115,9 +115,9 @@ def summary_tenement_centroid(features, source_crs, limit_m=25000, id_field=None
         key=summary_identifier_key(feature['properties'][id_field]) if id_field else index
         titles.setdefault(key,[]).append(geometry)
     title_geometries=[unary_union(parts) for parts in titles.values()]
-    combined=unary_union(title_geometries);point=combined.summary_tenement_centroid;method='TENEMENT_CENTROID'
+    combined=unary_union(title_geometries);point=combined.centroid;method='TENEMENT_CENTROID'
     if not combined.covers(point):
-        point=max(title_geometries,key=lambda g:g.area).summary_tenement_centroid;method='LARGEST_TENEMENT_CENTROID'
+        point=max(title_geometries,key=lambda g:g.area).centroid;method='LARGEST_TENEMENT_CENTROID'
         if not combined.covers(point):return dict(accepted=False,reason='LARGEST_TENEMENT_CENTROID_OUTSIDE_UNION')
     lon,lat=backward.transform(point.x,point.y)
     geod=Geod(ellps='GRS80')
@@ -219,6 +219,17 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions):
             fills.append(dict(column=column,value=value,sha=sha,locator=locator,method=method,scope=canonical(scope)))
     for registered in registry:
         sha=registered.get('source_sha256');source=sources.get(sha)
+        if source is None and registered.get('hash_policy') == 'JSON_DROP_TOP_LEVEL_KEYS_V1':
+            matches = [
+                candidate for candidate in sources.values()
+                if candidate['key'] == registered['key']
+                and candidate.get('content_sha256') == sha
+                and candidate.get('hash_policy') == registered['hash_policy']
+                and candidate.get('hash_drop_keys') == registered.get('hash_drop_keys')
+            ]
+            if len(matches) == 1:
+                source = matches[0]
+                sha = source['sha256']
         if not source:continue
         bindings=[b for b in registered.get('summary_bindings',[]) if b['project_id']==pid]
         if bindings:

@@ -1,0 +1,49 @@
+{
+  "status": "APPROVED_CONTENT_HASH_POLICY_APPLIED",
+  "researcher": "賴力維",
+  "approval": "研究者 2026-11-17 核准改用內容雜湊",
+  "source_key": "reviewed_source_31a205168b6ae647",
+  "previous_whole_file_sha256": "31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953",
+  "source_sha256": "6547bf2c221ed8b58f37b40123bfa43465973f0478a1cca99b67e5ced6413885",
+  "hash_policy": "JSON_DROP_TOP_LEVEL_KEYS_V1",
+  "hash_drop_keys": [
+    "timeStamp"
+  ],
+  "serialization": {
+    "sort_keys": true,
+    "separators": [
+      ",",
+      ":"
+    ],
+    "ensure_ascii": false,
+    "encoding": "UTF-8",
+    "allow_nan": false
+  },
+  "captures": [
+    {
+      "raw_sha256": "b8b0c1d0d950e0461b6a6254e633152a2868e25956f062d78c14fd5958ce8e01",
+      "content_sha256": "6547bf2c221ed8b58f37b40123bfa43465973f0478a1cca99b67e5ced6413885",
+      "bytes": 31792,
+      "dropped_top_level_keys": [
+        "timeStamp"
+      ],
+      "relative_path": "work/v3-vic-variability/1_b8b0c1d0d950e0461b6a6254e633152a2868e25956f062d78c14fd5958ce8e01.json"
+    },
+    {
+      "raw_sha256": "9b8be1ffd46c75f41d3a4142ee28925ea6389e38c287da23ce7ef30e8f59788f",
+      "content_sha256": "6547bf2c221ed8b58f37b40123bfa43465973f0478a1cca99b67e5ced6413885",
+      "bytes": 31792,
+      "dropped_top_level_keys": [
+        "timeStamp"
+      ],
+      "relative_path": "work/v3-vic-variability/2_9b8be1ffd46c75f41d3a4142ee28925ea6389e38c287da23ce7ef30e8f59788f.json"
+    }
+  ],
+  "two_capture_content_sha_equal": true,
+  "diagnostic_capture_content_sha256": "6547bf2c221ed8b58f37b40123bfa43465973f0478a1cca99b67e5ced6413885",
+  "raw_bytes_retained": true,
+  "snapshots_named_by_raw_sha": true,
+  "source_budget_cap_approved": 2074,
+  "unchanged_sources": "ALL_EXCEPT_VIC_INCLUDING_WA",
+  "final_ci": "PENDING_SINGLE_FINAL_CI"
+}
