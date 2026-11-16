@@ -1,0 +1,3255 @@
+{
+  "version": "technical-benchmark-v1",
+  "annotation": "Expected values transcribed from rendered original pages, checked against native text; AI-assisted visual review, not independent human review. Disclosed cases are development/regression, not blind.",
+  "documents": [
+    {
+      "source_key": "dubbo_scoping2025",
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "physical_page": 30,
+      "partition": "DEVELOPMENT_REGRESSION",
+      "family": "ELEMENT_EXTRACTION",
+      "expected": [
+        {
+          "basis": "La",
+          "source_column": 1,
+          "value": 86.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "La",
+          "source_column": 2,
+          "value": 79.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "La",
+          "source_column": 3,
+          "value": 90.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "La",
+          "source_column": 4,
+          "value": 87,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "La",
+          "source_column": 5,
+          "value": 91.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "La",
+          "source_column": 6,
+          "value": 88,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Ce",
+          "source_column": 1,
+          "value": 79.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ce",
+          "source_column": 2,
+          "value": 69.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Ce",
+          "source_column": 3,
+          "value": 83.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ce",
+          "source_column": 4,
+          "value": 79.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Ce",
+          "source_column": 5,
+          "value": 84.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ce",
+          "source_column": 6,
+          "value": 80.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Pr",
+          "source_column": 1,
+          "value": 80,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Pr",
+          "source_column": 2,
+          "value": 73.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Pr",
+          "source_column": 3,
+          "value": 84.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Pr",
+          "source_column": 4,
+          "value": 81.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Pr",
+          "source_column": 5,
+          "value": 85.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Pr",
+          "source_column": 6,
+          "value": 82.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Nd",
+          "source_column": 1,
+          "value": 75.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Nd",
+          "source_column": 2,
+          "value": 68.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Nd",
+          "source_column": 3,
+          "value": 79.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Nd",
+          "source_column": 4,
+          "value": 77,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Nd",
+          "source_column": 5,
+          "value": 80.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Nd",
+          "source_column": 6,
+          "value": 77.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Sm",
+          "source_column": 1,
+          "value": 58.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Sm",
+          "source_column": 2,
+          "value": 53.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Sm",
+          "source_column": 3,
+          "value": 63.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Sm",
+          "source_column": 4,
+          "value": 63.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Sm",
+          "source_column": 5,
+          "value": 64.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Sm",
+          "source_column": 6,
+          "value": 62.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Eu",
+          "source_column": 1,
+          "value": 54.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Eu",
+          "source_column": 2,
+          "value": 41.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Eu",
+          "source_column": 3,
+          "value": 59.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Eu",
+          "source_column": 4,
+          "value": 51.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Eu",
+          "source_column": 5,
+          "value": 57.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Eu",
+          "source_column": 6,
+          "value": 53.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Gd",
+          "source_column": 1,
+          "value": 50.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Gd",
+          "source_column": 2,
+          "value": 39.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Gd",
+          "source_column": 3,
+          "value": 56.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Gd",
+          "source_column": 4,
+          "value": 51,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Gd",
+          "source_column": 5,
+          "value": 55,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Gd",
+          "source_column": 6,
+          "value": 50.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Tb",
+          "source_column": 1,
+          "value": 38.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tb",
+          "source_column": 2,
+          "value": 31.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Tb",
+          "source_column": 3,
+          "value": 44.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tb",
+          "source_column": 4,
+          "value": 40.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Tb",
+          "source_column": 5,
+          "value": 44.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tb",
+          "source_column": 6,
+          "value": 40.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Dy",
+          "source_column": 1,
+          "value": 30.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Dy",
+          "source_column": 2,
+          "value": 21.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Dy",
+          "source_column": 3,
+          "value": 37.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Dy",
+          "source_column": 4,
+          "value": 29.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Dy",
+          "source_column": 5,
+          "value": 35.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Dy",
+          "source_column": 6,
+          "value": 29.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Ho",
+          "source_column": 1,
+          "value": 25.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ho",
+          "source_column": 2,
+          "value": 24,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Ho",
+          "source_column": 3,
+          "value": 30.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ho",
+          "source_column": 4,
+          "value": 32.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Ho",
+          "source_column": 5,
+          "value": 31.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ho",
+          "source_column": 6,
+          "value": 32,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Er",
+          "source_column": 1,
+          "value": 20.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Er",
+          "source_column": 2,
+          "value": 13,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Er",
+          "source_column": 3,
+          "value": 24.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Er",
+          "source_column": 4,
+          "value": 23,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Er",
+          "source_column": 5,
+          "value": 25.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Er",
+          "source_column": 6,
+          "value": 21.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Tm",
+          "source_column": 1,
+          "value": 19.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tm",
+          "source_column": 2,
+          "value": 14.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Tm",
+          "source_column": 3,
+          "value": 22.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tm",
+          "source_column": 4,
+          "value": 21,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Tm",
+          "source_column": 5,
+          "value": 24,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tm",
+          "source_column": 6,
+          "value": 21.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Yb",
+          "source_column": 1,
+          "value": 18.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Yb",
+          "source_column": 2,
+          "value": 23.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Yb",
+          "source_column": 3,
+          "value": 25.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Yb",
+          "source_column": 4,
+          "value": 30.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Yb",
+          "source_column": 5,
+          "value": 24.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Yb",
+          "source_column": 6,
+          "value": 29.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Lu",
+          "source_column": 1,
+          "value": 22.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Lu",
+          "source_column": 2,
+          "value": 16.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Lu",
+          "source_column": 3,
+          "value": 27.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Lu",
+          "source_column": 4,
+          "value": 20.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Lu",
+          "source_column": 5,
+          "value": 27.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Lu",
+          "source_column": 6,
+          "value": 20.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Y",
+          "source_column": 1,
+          "value": 24.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Y",
+          "source_column": 2,
+          "value": 21.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Y",
+          "source_column": 3,
+          "value": 28.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Y",
+          "source_column": 4,
+          "value": 30.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Y",
+          "source_column": 5,
+          "value": 29.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Y",
+          "source_column": 6,
+          "value": 27.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-West",
+          "grain_mm": 6,
+          "acid_concentration": 20
+        }
+      ]
+    },
+    {
+      "source_key": "dubbo_scoping2025",
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "physical_page": 31,
+      "partition": "DEVELOPMENT_REGRESSION",
+      "family": "ELEMENT_EXTRACTION",
+      "expected": [
+        {
+          "basis": "La",
+          "source_column": 1,
+          "value": 81.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "La",
+          "source_column": 2,
+          "value": 77.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "La",
+          "source_column": 3,
+          "value": 81.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "La",
+          "source_column": 4,
+          "value": 79.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "La",
+          "source_column": 5,
+          "value": 84.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "La",
+          "source_column": 6,
+          "value": 81.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Ce",
+          "source_column": 1,
+          "value": 75.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ce",
+          "source_column": 2,
+          "value": 70.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Ce",
+          "source_column": 3,
+          "value": 72.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ce",
+          "source_column": 4,
+          "value": 73.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Ce",
+          "source_column": 5,
+          "value": 74.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ce",
+          "source_column": 6,
+          "value": 74.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Pr",
+          "source_column": 1,
+          "value": 74.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Pr",
+          "source_column": 2,
+          "value": 71.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Pr",
+          "source_column": 3,
+          "value": 73.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Pr",
+          "source_column": 4,
+          "value": 73.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Pr",
+          "source_column": 5,
+          "value": 75.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Pr",
+          "source_column": 6,
+          "value": 73.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Nd",
+          "source_column": 1,
+          "value": 68.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Nd",
+          "source_column": 2,
+          "value": 65.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Nd",
+          "source_column": 3,
+          "value": 66.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Nd",
+          "source_column": 4,
+          "value": 65.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Nd",
+          "source_column": 5,
+          "value": 68.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Nd",
+          "source_column": 6,
+          "value": 65.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Sm",
+          "source_column": 1,
+          "value": 52.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Sm",
+          "source_column": 2,
+          "value": 50.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Sm",
+          "source_column": 3,
+          "value": 46.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Sm",
+          "source_column": 4,
+          "value": 45.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Sm",
+          "source_column": 5,
+          "value": 47,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Sm",
+          "source_column": 6,
+          "value": 45.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Eu",
+          "source_column": 1,
+          "value": 43.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Eu",
+          "source_column": 2,
+          "value": 41.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Eu",
+          "source_column": 3,
+          "value": 31.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Eu",
+          "source_column": 4,
+          "value": 31.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Eu",
+          "source_column": 5,
+          "value": 31.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Eu",
+          "source_column": 6,
+          "value": 32,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Gd",
+          "source_column": 1,
+          "value": 43.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Gd",
+          "source_column": 2,
+          "value": 41.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Gd",
+          "source_column": 3,
+          "value": 33.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Gd",
+          "source_column": 4,
+          "value": 33.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Gd",
+          "source_column": 5,
+          "value": 33.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Gd",
+          "source_column": 6,
+          "value": 34.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Tb",
+          "source_column": 1,
+          "value": 36.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tb",
+          "source_column": 2,
+          "value": 34.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Tb",
+          "source_column": 3,
+          "value": 26.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tb",
+          "source_column": 4,
+          "value": 26.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Tb",
+          "source_column": 5,
+          "value": 25.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tb",
+          "source_column": 6,
+          "value": 27.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Dy",
+          "source_column": 1,
+          "value": 22.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Dy",
+          "source_column": 2,
+          "value": 19,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Dy",
+          "source_column": 3,
+          "value": 7.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Dy",
+          "source_column": 4,
+          "value": 11.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Dy",
+          "source_column": 5,
+          "value": 6.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Dy",
+          "source_column": 6,
+          "value": 9.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Ho",
+          "source_column": 1,
+          "value": 29.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ho",
+          "source_column": 2,
+          "value": 25.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Ho",
+          "source_column": 3,
+          "value": 17.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ho",
+          "source_column": 4,
+          "value": 20.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Ho",
+          "source_column": 5,
+          "value": 16.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ho",
+          "source_column": 6,
+          "value": 17,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Er",
+          "source_column": 1,
+          "value": 17.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Er",
+          "source_column": 2,
+          "value": 16.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Er",
+          "source_column": 3,
+          "value": 8.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Er",
+          "source_column": 4,
+          "value": 10.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Er",
+          "source_column": 5,
+          "value": 7.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Er",
+          "source_column": 6,
+          "value": 6.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Tm",
+          "source_column": 1,
+          "value": 16,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tm",
+          "source_column": 2,
+          "value": 12,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Tm",
+          "source_column": 3,
+          "value": 4.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tm",
+          "source_column": 4,
+          "value": 10.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Tm",
+          "source_column": 5,
+          "value": 6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tm",
+          "source_column": 6,
+          "value": 5.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Yb",
+          "source_column": 1,
+          "value": 25.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Yb",
+          "source_column": 2,
+          "value": 21.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Yb",
+          "source_column": 3,
+          "value": 17.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Yb",
+          "source_column": 4,
+          "value": 19.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Yb",
+          "source_column": 5,
+          "value": 14.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Yb",
+          "source_column": 6,
+          "value": 15.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Lu",
+          "source_column": 1,
+          "value": 17.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Lu",
+          "source_column": 2,
+          "value": 10.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Lu",
+          "source_column": 3,
+          "value": 5.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Lu",
+          "source_column": 4,
+          "value": 13.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Lu",
+          "source_column": 5,
+          "value": 3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Lu",
+          "source_column": 6,
+          "value": 5.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Y",
+          "source_column": 1,
+          "value": 25.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Y",
+          "source_column": 2,
+          "value": 20.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Y",
+          "source_column": 3,
+          "value": 13.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Y",
+          "source_column": 4,
+          "value": 19.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 12.5,
+          "acid_concentration": 20
+        },
+        {
+          "basis": "Y",
+          "source_column": 5,
+          "value": 12.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Y",
+          "source_column": 6,
+          "value": 13,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-Central",
+          "grain_mm": 25,
+          "acid_concentration": 20
+        }
+      ]
+    },
+    {
+      "source_key": "dubbo_scoping2025",
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "physical_page": 32,
+      "partition": "DEVELOPMENT_REGRESSION",
+      "family": "ELEMENT_EXTRACTION",
+      "expected": [
+        {
+          "basis": "La",
+          "source_column": 1,
+          "value": 83.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "La",
+          "source_column": 2,
+          "value": 73.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "La",
+          "source_column": 3,
+          "value": 88.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "La",
+          "source_column": 4,
+          "value": 77.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "La",
+          "source_column": 5,
+          "value": 88.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "La",
+          "source_column": 6,
+          "value": 78.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ce",
+          "source_column": 1,
+          "value": 75.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ce",
+          "source_column": 2,
+          "value": 65.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ce",
+          "source_column": 3,
+          "value": 79.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ce",
+          "source_column": 4,
+          "value": 68.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ce",
+          "source_column": 5,
+          "value": 79.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ce",
+          "source_column": 6,
+          "value": 70.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Pr",
+          "source_column": 1,
+          "value": 79.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Pr",
+          "source_column": 2,
+          "value": 68.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Pr",
+          "source_column": 3,
+          "value": 82.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Pr",
+          "source_column": 4,
+          "value": 72.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Pr",
+          "source_column": 5,
+          "value": 82.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Pr",
+          "source_column": 6,
+          "value": 74,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Nd",
+          "source_column": 1,
+          "value": 72.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Nd",
+          "source_column": 2,
+          "value": 61.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Nd",
+          "source_column": 3,
+          "value": 75.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Nd",
+          "source_column": 4,
+          "value": 65.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Nd",
+          "source_column": 5,
+          "value": 75.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Nd",
+          "source_column": 6,
+          "value": 68.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Sm",
+          "source_column": 1,
+          "value": 51.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Sm",
+          "source_column": 2,
+          "value": 43.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Sm",
+          "source_column": 3,
+          "value": 53.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Sm",
+          "source_column": 4,
+          "value": 44.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Sm",
+          "source_column": 5,
+          "value": 52.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Sm",
+          "source_column": 6,
+          "value": 48.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Eu",
+          "source_column": 1,
+          "value": 46.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Eu",
+          "source_column": 2,
+          "value": 33.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Eu",
+          "source_column": 3,
+          "value": 43.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Eu",
+          "source_column": 4,
+          "value": 34.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Eu",
+          "source_column": 5,
+          "value": 45,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Eu",
+          "source_column": 6,
+          "value": 36.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Gd",
+          "source_column": 1,
+          "value": 38.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Gd",
+          "source_column": 2,
+          "value": 29.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Gd",
+          "source_column": 3,
+          "value": 36.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Gd",
+          "source_column": 4,
+          "value": 26.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Gd",
+          "source_column": 5,
+          "value": 34.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Gd",
+          "source_column": 6,
+          "value": 34.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tb",
+          "source_column": 1,
+          "value": 20.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tb",
+          "source_column": 2,
+          "value": 23.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tb",
+          "source_column": 3,
+          "value": 27.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tb",
+          "source_column": 4,
+          "value": 19.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tb",
+          "source_column": 5,
+          "value": 26,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tb",
+          "source_column": 6,
+          "value": 27.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Dy",
+          "source_column": 1,
+          "value": 14.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Dy",
+          "source_column": 2,
+          "value": 11.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Dy",
+          "source_column": 3,
+          "value": 17.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Dy",
+          "source_column": 4,
+          "value": 6.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Dy",
+          "source_column": 5,
+          "value": 16.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Dy",
+          "source_column": 6,
+          "value": 16.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ho",
+          "source_column": 1,
+          "value": 14.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ho",
+          "source_column": 2,
+          "value": 12.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ho",
+          "source_column": 3,
+          "value": 16.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ho",
+          "source_column": 4,
+          "value": 8.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ho",
+          "source_column": 5,
+          "value": 15.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Ho",
+          "source_column": 6,
+          "value": 16.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Er",
+          "source_column": 1,
+          "value": 4.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Er",
+          "source_column": 2,
+          "value": 0.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Er",
+          "source_column": 3,
+          "value": 7.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Er",
+          "source_column": 4,
+          "value": -0.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Er",
+          "source_column": 5,
+          "value": 4.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Er",
+          "source_column": 6,
+          "value": 7.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tm",
+          "source_column": 1,
+          "value": 16.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tm",
+          "source_column": 2,
+          "value": 13,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tm",
+          "source_column": 3,
+          "value": 20.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tm",
+          "source_column": 4,
+          "value": 11.5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tm",
+          "source_column": 5,
+          "value": 16.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Tm",
+          "source_column": 6,
+          "value": 21.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Yb",
+          "source_column": 1,
+          "value": 8.1,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Yb",
+          "source_column": 2,
+          "value": 3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Yb",
+          "source_column": 3,
+          "value": 13.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Yb",
+          "source_column": 4,
+          "value": 1.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Yb",
+          "source_column": 5,
+          "value": 7.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Yb",
+          "source_column": 6,
+          "value": 10.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Lu",
+          "source_column": 1,
+          "value": 15.9,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Lu",
+          "source_column": 2,
+          "value": 8.2,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Lu",
+          "source_column": 3,
+          "value": 15.8,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Lu",
+          "source_column": 4,
+          "value": 8.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Lu",
+          "source_column": 5,
+          "value": 13.7,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Lu",
+          "source_column": 6,
+          "value": 17,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Y",
+          "source_column": 1,
+          "value": 14.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Y",
+          "source_column": 2,
+          "value": 6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 25,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Y",
+          "source_column": 3,
+          "value": 14.4,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Y",
+          "source_column": 4,
+          "value": 5,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 12.5,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Y",
+          "source_column": 5,
+          "value": 11.3,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        },
+        {
+          "basis": "Y",
+          "source_column": 6,
+          "value": 12.6,
+          "quantity": "extraction_pct",
+          "unit": "%",
+          "sample_id": "HLC-East",
+          "grain_mm": 6,
+          "acid_concentration": 50
+        }
+      ]
+    },
+    {
+      "source_key": "cummins_scoping2023",
+      "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "physical_page": 60,
+      "partition": "DEVELOPMENT_REGRESSION",
+      "family": "DRY_FEED_REAGENTS",
+      "expected": [
+        {
+          "stage": "Stage 2a",
+          "quantity": "dry_feed_mtpa",
+          "reagent": null,
+          "value": 2.0,
+          "unit": "Mtpa"
+        },
+        {
+          "stage": "Stage 2a",
+          "quantity": "reagent_tpa",
+          "reagent": "Flotation collector",
+          "value": 600.0,
+          "unit": "tpa"
+        },
+        {
+          "stage": "Stage 2a",
+          "quantity": "reagent_tpa",
+          "reagent": "Sodium hydroxide",
+          "value": 4000.0,
+          "unit": "tpa"
+        },
+        {
+          "stage": "Stage 2a",
+          "quantity": "reagent_tpa",
+          "reagent": "Sodium silicate",
+          "value": 3600.0,
+          "unit": "tpa"
+        },
+        {
+          "stage": "Stage 2a",
+          "quantity": "reagent_tpa",
+          "reagent": "Flocculant",
+          "value": 40.0,
+          "unit": "tpa"
+        },
+        {
+          "stage": "Stage 2b",
+          "quantity": "dry_feed_mtpa",
+          "reagent": null,
+          "value": 2.0,
+          "unit": "Mtpa"
+        },
+        {
+          "stage": "Stage 2b",
+          "quantity": "reagent_tpa",
+          "reagent": "Flotation collector",
+          "value": 600.0,
+          "unit": "tpa"
+        },
+        {
+          "stage": "Stage 2b",
+          "quantity": "reagent_tpa",
+          "reagent": "Sodium hydroxide",
+          "value": 4000.0,
+          "unit": "tpa"
+        },
+        {
+          "stage": "Stage 2b",
+          "quantity": "reagent_tpa",
+          "reagent": "Sodium silicate",
+          "value": 3600.0,
+          "unit": "tpa"
+        },
+        {
+          "stage": "Stage 2b",
+          "quantity": "reagent_tpa",
+          "reagent": "Flocculant",
+          "value": 40.0,
+          "unit": "tpa"
+        }
+      ]
+    },
+    {
+      "source_key": "discovery_rarex_met_search_result_alternative_f9ffac4be94a",
+      "source_sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "physical_page": 3,
+      "partition": "DEVELOPMENT_REGRESSION",
+      "family": "FLOTATION",
+      "expected": [
+        {
+          "product": "2nd Cleaner Concentrate",
+          "test_id": "F7",
+          "basis": "TREO",
+          "quantity": "grade_pct",
+          "value": 25.15,
+          "unit": "%"
+        },
+        {
+          "product": "2nd Cleaner Concentrate",
+          "test_id": "F7",
+          "basis": "TREO",
+          "quantity": "recovery_pct",
+          "value": 29.2,
+          "unit": "%"
+        },
+        {
+          "product": "2nd Cleaner Concentrate",
+          "test_id": "F7",
+          "basis": "Ce",
+          "quantity": "grade_pct",
+          "value": 9.72,
+          "unit": "%"
+        },
+        {
+          "product": "2nd Cleaner Concentrate",
+          "test_id": "F7",
+          "basis": "Ce",
+          "quantity": "recovery_pct",
+          "value": 29.2,
+          "unit": "%"
+        },
+        {
+          "product": "1st Cleaner Concentrate",
+          "test_id": "F7",
+          "basis": "TREO",
+          "quantity": "grade_pct",
+          "value": 13.51,
+          "unit": "%"
+        },
+        {
+          "product": "1st Cleaner Concentrate",
+          "test_id": "F7",
+          "basis": "TREO",
+          "quantity": "recovery_pct",
+          "value": 41.9,
+          "unit": "%"
+        },
+        {
+          "product": "1st Cleaner Concentrate",
+          "test_id": "F7",
+          "basis": "Ce",
+          "quantity": "grade_pct",
+          "value": 5.22,
+          "unit": "%"
+        },
+        {
+          "product": "1st Cleaner Concentrate",
+          "test_id": "F7",
+          "basis": "Ce",
+          "quantity": "recovery_pct",
+          "value": 41.9,
+          "unit": "%"
+        },
+        {
+          "product": "Rougher Concentrate (R1+R2)",
+          "test_id": "F7",
+          "basis": "TREO",
+          "quantity": "grade_pct",
+          "value": 6.6,
+          "unit": "%"
+        },
+        {
+          "product": "Rougher Concentrate (R1+R2)",
+          "test_id": "F7",
+          "basis": "TREO",
+          "quantity": "recovery_pct",
+          "value": 68.0,
+          "unit": "%"
+        },
+        {
+          "product": "Rougher Concentrate (R1+R2)",
+          "test_id": "F7",
+          "basis": "Ce",
+          "quantity": "grade_pct",
+          "value": 2.55,
+          "unit": "%"
+        },
+        {
+          "product": "Rougher Concentrate (R1+R2)",
+          "test_id": "F7",
+          "basis": "Ce",
+          "quantity": "recovery_pct",
+          "value": 68.0,
+          "unit": "%"
+        },
+        {
+          "product": "2nd Cleaner Concentrate",
+          "test_id": "F8",
+          "basis": "TREO",
+          "quantity": "grade_pct",
+          "value": 19.93,
+          "unit": "%"
+        },
+        {
+          "product": "2nd Cleaner Concentrate",
+          "test_id": "F8",
+          "basis": "TREO",
+          "quantity": "recovery_pct",
+          "value": 37.6,
+          "unit": "%"
+        },
+        {
+          "product": "2nd Cleaner Concentrate",
+          "test_id": "F8",
+          "basis": "Ce",
+          "quantity": "grade_pct",
+          "value": 7.7,
+          "unit": "%"
+        },
+        {
+          "product": "2nd Cleaner Concentrate",
+          "test_id": "F8",
+          "basis": "Ce",
+          "quantity": "recovery_pct",
+          "value": 37.6,
+          "unit": "%"
+        },
+        {
+          "product": "Rougher Concentrate",
+          "test_id": "F8",
+          "basis": "TREO",
+          "quantity": "grade_pct",
+          "value": 6.41,
+          "unit": "%"
+        },
+        {
+          "product": "Rougher Concentrate",
+          "test_id": "F8",
+          "basis": "TREO",
+          "quantity": "recovery_pct",
+          "value": 74.6,
+          "unit": "%"
+        },
+        {
+          "product": "Rougher Concentrate",
+          "test_id": "F8",
+          "basis": "Ce",
+          "quantity": "grade_pct",
+          "value": 2.48,
+          "unit": "%"
+        },
+        {
+          "product": "Rougher Concentrate",
+          "test_id": "F8",
+          "basis": "Ce",
+          "quantity": "recovery_pct",
+          "value": 74.6,
+          "unit": "%"
+        },
+        {
+          "product": "2nd Cleaner Concentrate",
+          "test_id": "F11",
+          "basis": "TREO",
+          "quantity": "grade_pct",
+          "value": 17.57,
+          "unit": "%"
+        },
+        {
+          "product": "2nd Cleaner Concentrate",
+          "test_id": "F11",
+          "basis": "TREO",
+          "quantity": "recovery_pct",
+          "value": 21.7,
+          "unit": "%"
+        },
+        {
+          "product": "2nd Cleaner Concentrate",
+          "test_id": "F11",
+          "basis": "Ce",
+          "quantity": "grade_pct",
+          "value": 6.79,
+          "unit": "%"
+        },
+        {
+          "product": "2nd Cleaner Concentrate",
+          "test_id": "F11",
+          "basis": "Ce",
+          "quantity": "recovery_pct",
+          "value": 21.7,
+          "unit": "%"
+        },
+        {
+          "product": "Feed",
+          "test_id": null,
+          "basis": "TREO",
+          "quantity": "grade_pct",
+          "value": 2.85,
+          "unit": "%"
+        },
+        {
+          "product": "Feed",
+          "test_id": null,
+          "basis": "TREO",
+          "quantity": "recovery_pct",
+          "value": 100.0,
+          "unit": "%"
+        },
+        {
+          "product": "Feed",
+          "test_id": null,
+          "basis": "Ce",
+          "quantity": "grade_pct",
+          "value": 1.1,
+          "unit": "%"
+        },
+        {
+          "product": "Feed",
+          "test_id": null,
+          "basis": "Ce",
+          "quantity": "recovery_pct",
+          "value": 100.0,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "source_key": "browns_range_2025",
+      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "physical_page": 116,
+      "partition": "NOT_USED_FOR_PHASE15_RULE_ADJUSTMENT_KNOWN_ARCHIVE_NOT_BLIND",
+      "family": "MODEL_RECOVERY_GRADE",
+      "expected": [
+        {
+          "quantity": "grade_pct",
+          "basis": "TREO",
+          "value": 25.0,
+          "unit": "%"
+        },
+        {
+          "quantity": "recovery_pct",
+          "basis": "TREO",
+          "value": 84.0,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "source_key": "donald_bfs2026",
+      "source_sha256": "c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "physical_page": 45,
+      "partition": "DEVELOPMENT_REGRESSION_NEW_ORIGINAL",
+      "family": "BRANCH_RECOVERY",
+      "expected": [
+        {
+          "basis": "CeO2",
+          "source_column": 1,
+          "quantity": "stage_recovery_pct",
+          "value": 99.5,
+          "unit": "%"
+        },
+        {
+          "basis": "CeO2",
+          "source_column": 2,
+          "quantity": "stage_recovery_pct",
+          "value": 94.5,
+          "unit": "%"
+        },
+        {
+          "basis": "CeO2",
+          "source_column": 3,
+          "quantity": "stage_recovery_pct",
+          "value": 1.9,
+          "unit": "%"
+        },
+        {
+          "basis": "CeO2",
+          "source_column": 4,
+          "quantity": "stage_recovery_pct",
+          "value": 97.5,
+          "unit": "%"
+        },
+        {
+          "basis": "CeO2",
+          "source_column": 5,
+          "quantity": "stage_recovery_pct",
+          "value": 91.7,
+          "unit": "%"
+        },
+        {
+          "basis": "Y2O3",
+          "source_column": 1,
+          "quantity": "stage_recovery_pct",
+          "value": 99.5,
+          "unit": "%"
+        },
+        {
+          "basis": "Y2O3",
+          "source_column": 2,
+          "quantity": "stage_recovery_pct",
+          "value": 94.5,
+          "unit": "%"
+        },
+        {
+          "basis": "Y2O3",
+          "source_column": 3,
+          "quantity": "stage_recovery_pct",
+          "value": 2.2,
+          "unit": "%"
+        },
+        {
+          "basis": "Y2O3",
+          "source_column": 4,
+          "quantity": "stage_recovery_pct",
+          "value": 97.2,
+          "unit": "%"
+        },
+        {
+          "basis": "Y2O3",
+          "source_column": 5,
+          "quantity": "stage_recovery_pct",
+          "value": 91.4,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "source_key": "nolans_dfs2019_asx",
+      "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "physical_page": 45,
+      "partition": "DEVELOPMENT_REGRESSION_NEW_ORIGINAL",
+      "family": "MODEL_COEFFICIENTS",
+      "expected": [
+        {
+          "basis": "La2O3",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.924,
+          "unit": "fraction"
+        },
+        {
+          "basis": "CeO2",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.946,
+          "unit": "fraction"
+        },
+        {
+          "basis": "Nd2O3",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.9052,
+          "unit": "fraction"
+        },
+        {
+          "basis": "Pr6O11",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.9115,
+          "unit": "fraction"
+        },
+        {
+          "basis": "Sm2O3",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.8064,
+          "unit": "fraction"
+        },
+        {
+          "basis": "Eu2O3",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.8064,
+          "unit": "fraction"
+        },
+        {
+          "basis": "Gd2O3",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.8064,
+          "unit": "fraction"
+        },
+        {
+          "basis": "Dy2O3",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.1922,
+          "unit": "fraction"
+        },
+        {
+          "basis": "Tb4O7",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.1922,
+          "unit": "fraction"
+        },
+        {
+          "basis": "Er2O3",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.1922,
+          "unit": "fraction"
+        },
+        {
+          "basis": "Ho2O3",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.1922,
+          "unit": "fraction"
+        },
+        {
+          "basis": "Lu2O3",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.1922,
+          "unit": "fraction"
+        },
+        {
+          "basis": "Tm2O3",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.1922,
+          "unit": "fraction"
+        },
+        {
+          "basis": "Yb2O3",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.1922,
+          "unit": "fraction"
+        },
+        {
+          "basis": "Y2O3",
+          "quantity": "downstream_recovery_factor",
+          "value": 0.1922,
+          "unit": "fraction"
+        }
+      ]
+    }
+  ],
+  "annotation_corrections": [
+    {
+      "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "physical_page": 31,
+      "element": "Ce",
+      "source_column": 6,
+      "initial_transcription": 73.4,
+      "source_verified": 74.3,
+      "method": "Original PDF rendered at 3x; no production parser change"
+    }
+  ]
+}

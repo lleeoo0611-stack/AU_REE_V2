@@ -1,0 +1,17 @@
+{
+  "reference_sha256": "9811f98eeb3f733762542932cfb743a1ba490bc40f38b2f59c5d80e97c4d42ce",
+  "contract_sha256": "56fda83756e7ff1508cb9b86636eb47a55296a3a1d4ed6a48e3bb7ed872f43f2",
+  "baseline_commit": "bb7da099941eb222c3baa2537e34d137fe3fb208",
+  "rows": 52,
+  "native_groups": 46,
+  "status": "SEALED_BEFORE_PHASE22_RULE_CHANGES_NOT_INDEPENDENTLY_REVIEWED",
+  "v2_use_status": "USED_FOR_PHASE22_REFINEMENT_AFTER_INITIAL_EVALUATION",
+  "fresh_holdout": {
+    "reference": "data/census_validation_v3.json",
+    "sha256": "734cde346b36f17dc659c269d6fb0982a998328126f8af2f9f3b7c26f9c35920",
+    "rows": 25,
+    "native_groups": 24,
+    "before_classifier_v3_changes": true,
+    "independent_review": false
+  }
+}

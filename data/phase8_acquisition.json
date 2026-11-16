@@ -1,0 +1,99 @@
+{
+  "version": "phase8-acquisition-observed-v1",
+  "sources": [
+    {
+      "key": "yangibana_ar2026",
+      "kind": "pdf",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7763164.pdf?v=63957978608",
+      "sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+      "path": "data/snapshots/a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb.pdf",
+      "publication_date": "2026-09-30",
+      "available_date": "2026-11-03",
+      "text_contract": null,
+      "fallback_reason": null
+    },
+    {
+      "key": "wudinna_mre2026",
+      "kind": "html",
+      "url": "https://www.londonstockexchange.com/en/news/article/COBR/maiden-rare-earth-mineral-resource-estimate/637e-cb-eb-9d-8e-465a87",
+      "sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+      "path": "data/snapshots/e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950.html",
+      "publication_date": "2026-10-26",
+      "available_date": "2026-11-03",
+      "text_contract": "LSE_ARTICLE_BODY_JS_STRING_V1",
+      "fallback_reason": "Issuer HTTP 429 after three transient retries; same primary RNS 4065A from London Stock Exchange"
+    },
+    {
+      "key": "kalkaroo_ree2020",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20200219/pdf/44f780ww5n6tbj.pdf",
+      "sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5",
+      "path": "data/snapshots/bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5.pdf",
+      "publication_date": "2020-02-19",
+      "available_date": "2026-11-03",
+      "text_contract": null,
+      "fallback_reason": null
+    },
+    {
+      "key": "nolans_quarter202610",
+      "kind": "pdf",
+      "url": "https://cdn.financialreports.eu/financialreports/media/filings/64425/2026/RNS/64425_rns_2026-10-30_04faeca9-e33e-4783-b0c9-9583aebf843a.pdf",
+      "sha256": "1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2",
+      "path": "data/snapshots/1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2.pdf",
+      "publication_date": "2026-10-30",
+      "available_date": "2026-11-03",
+      "text_contract": null,
+      "fallback_reason": null
+    },
+    {
+      "key": "qld_epm_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Economy/CurrentQldResourceAuthorities/MapServer/40",
+      "sha256": "e106c9de3486ddf9dc2d4953972a864a2b8b06fd88d349cf4f4cbbbe239d4427",
+      "path": "data/snapshots/e106c9de3486ddf9dc2d4953972a864a2b8b06fd88d349cf4f4cbbbe239d4427.json",
+      "publication_date": null,
+      "available_date": "2026-11-03",
+      "text_contract": null,
+      "fallback_reason": null,
+      "raw_records": 2816,
+      "complete_inventory": true,
+      "original_api_responses": 7,
+      "entity_kind": "TENEMENT",
+      "ree_project_inference": false
+    },
+    {
+      "key": "qld_mdl_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Economy/CurrentQldResourceAuthorities/MapServer/80",
+      "sha256": "9b944d7442cfeec25813a5f28891bb8f500674b64a702e38101aa51a56cdc1eb",
+      "path": "data/snapshots/9b944d7442cfeec25813a5f28891bb8f500674b64a702e38101aa51a56cdc1eb.json",
+      "publication_date": null,
+      "available_date": "2026-11-03",
+      "text_contract": null,
+      "fallback_reason": null,
+      "raw_records": 201,
+      "complete_inventory": true,
+      "original_api_responses": 2,
+      "entity_kind": "TENEMENT",
+      "ree_project_inference": false
+    },
+    {
+      "key": "qld_ml_live",
+      "kind": "government_arcgis",
+      "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Economy/CurrentQldResourceAuthorities/MapServer/120",
+      "sha256": "21df4471980b38a5eec4a5bb0f2d89aed2af7a0c8144328459dc36d42fa4661e",
+      "path": "data/snapshots/21df4471980b38a5eec4a5bb0f2d89aed2af7a0c8144328459dc36d42fa4661e.json",
+      "publication_date": null,
+      "available_date": "2026-11-03",
+      "text_contract": null,
+      "fallback_reason": null,
+      "raw_records": 2505,
+      "complete_inventory": true,
+      "original_api_responses": 7,
+      "entity_kind": "TENEMENT",
+      "ree_project_inference": false
+    }
+  ],
+  "discovery_report": "data/phase8_discovery.json",
+  "splinter_gap": "WA official resource-summary and native project J06998/S0236174 retained; original dated2015 JORC report not recovered. Splinter Rock documents cannot substitute."
+}

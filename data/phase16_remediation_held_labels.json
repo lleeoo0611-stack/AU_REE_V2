@@ -1,0 +1,150 @@
+{
+  "version": "remediation-held-source-labels-v1",
+  "annotation": "AI-assisted native and rendered original pages; purposive fixed documents, not independent experts or blind annotation. Labels are evaluation only, never production answer branches.",
+  "numeric_targets": [
+    {
+      "key": "sybella_impurity2024",
+      "page": 5,
+      "value": 75,
+      "unit": "%",
+      "basis": "Nd2O3",
+      "endpoint": "MREC",
+      "meaning": "Whole ore to MREC Nd, not 93% downstream"
+    },
+    {
+      "key": "sybella_impurity2024",
+      "page": 5,
+      "value": 76,
+      "unit": "%",
+      "basis": "Pr6O11",
+      "endpoint": "MREC",
+      "meaning": "Whole ore to MREC Pr"
+    },
+    {
+      "key": "sybella_impurity2024",
+      "page": 5,
+      "value": 52,
+      "unit": "%",
+      "basis": "Tb4O7",
+      "endpoint": "MREC",
+      "meaning": "Whole ore to MREC Tb"
+    },
+    {
+      "key": "sybella_impurity2024",
+      "page": 5,
+      "value": 45,
+      "unit": "%",
+      "basis": "Dy2O3",
+      "endpoint": "MREC",
+      "meaning": "Whole ore to MREC Dy"
+    },
+    {
+      "key": "sybella_impurity2024",
+      "page": 5,
+      "value": 93,
+      "unit": "%",
+      "basis": "Nd2O3",
+      "endpoint": "DOWNSTREAM_MREC",
+      "meaning": "Downstream Nd, not whole ore"
+    },
+    {
+      "key": "kennedy_met2023",
+      "page": 4,
+      "value": 3.3,
+      "unit": "kg/t",
+      "basis": "ACID_SOURCE_UNSPECIFIED_FORMULATION",
+      "endpoint": "LEACH_SOLUTION",
+      "meaning": "ANSTO mean acid consumption; not 3.3% recovery"
+    },
+    {
+      "key": "sandy_met2024",
+      "page": 1,
+      "value": 51.9,
+      "unit": "%",
+      "basis": "TREO",
+      "endpoint": "MINERAL_CONCENTRATE",
+      "meaning": "Concentrate grade not recovery"
+    },
+    {
+      "key": "sandy_met2024",
+      "page": 2,
+      "value": 71.7,
+      "unit": "%",
+      "basis": "CeO2",
+      "endpoint": "REM_CONCENTRATE",
+      "meaning": "Gravity feed to REM, not whole ore TREO"
+    },
+    {
+      "key": "sandy_met2024",
+      "page": 2,
+      "value": 49,
+      "unit": "%",
+      "basis": "FEED_MASS",
+      "endpoint": "SCREEN_REJECT",
+      "meaning": "Screened rejected mass, not REO recovery"
+    }
+  ],
+  "claim_targets": [
+    {
+      "key": "sybella_impurity2024",
+      "page": 4,
+      "start": "Impurities, including",
+      "end": "Firstly,",
+      "expected_claim": true,
+      "criterion": "T-B",
+      "expected_nature": "TEST_RESULT_OR_DISCLOSURE",
+      "expected_project_extrapolation": false,
+      "reason": "Actual impurity precipitation on chosen impure blended PLS, not all resource"
+    },
+    {
+      "key": "sybella_impurity2024",
+      "page": 5,
+      "start": "Optimisation of the impurity removal and MREC precipitation steps will",
+      "end": "The MREO content",
+      "expected_claim": false,
+      "criterion": "T-B",
+      "expected_nature": "PLAN_OR_TEST_OBJECTIVE",
+      "expected_project_extrapolation": false,
+      "reason": "Future work only"
+    },
+    {
+      "key": "kennedy_met2023",
+      "page": 4,
+      "start": "Pleasingly, very low dissolution",
+      "end": "Page | 4",
+      "expected_claim": true,
+      "criterion": "T-A",
+      "expected_nature": "TEST_RESULT_OR_DISCLOSURE",
+      "expected_project_extrapolation": false,
+      "reason": "Mean disclosed consumption on eight 1m samples; representativeness not established"
+    },
+    {
+      "key": "sandy_met2024",
+      "page": 2,
+      "start": "Direct cerium oxide",
+      "end": "49% of the feed",
+      "expected_claim": false,
+      "criterion": "T-A",
+      "expected_nature": "CONDITIONAL",
+      "expected_project_extrapolation": false,
+      "reason": "71.7% gravity feed recovery estimated; >83% is prospective, not evidence of input magnitude"
+    }
+  ],
+  "acceptance_targets": [
+    {
+      "key": "sybella_impurity2024",
+      "expected_common_whole_ore_design_panel": false,
+      "reason": "Bench blend and element-specific MREC endpoints; no registered Project link in current matrix"
+    },
+    {
+      "key": "kennedy_met2023",
+      "expected_common_whole_ore_design_panel": false,
+      "reason": "Selected sample desorption to solution; no whole-ore mineral-concentrate design"
+    },
+    {
+      "key": "sandy_met2024",
+      "expected_common_whole_ore_design_panel": false,
+      "reason": "CeO2 gravity-feed recovery not whole-ore TREO-including-Y design"
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "version": "phase16-remediation-research-v1",
+  "baseline_commit": "29b9b68fd1f3e3ba71450f9f3b6fbbfe024e6e65",
+  "branch": "feat/phase16-technical-model",
+  "pr": 6,
+  "freeze": {
+    "version": "phase16-remediation-freeze-v1",
+    "run": "20261104T190958-74382245",
+    "code": {
+      "package": "0.1.0",
+      "commit": "29b9b68fd1f3e3ba71450f9f3b6fbbfe024e6e65",
+      "content_sha256": "dac7ab7a2071b51eeca0d0f1e7a4d5d83f8db6d72eb4476846238ce0f353aa21"
+    },
+    "folder": "results/phase16-remediation-2026-11-05",
+    "cutoff": "2026-11-05",
+    "snapshots": 272,
+    "exports": 281,
+    "canonical_seconds": 471.4286424
+  },
+  "before": {
+    "registry_groups": 31,
+    "resource_defined": 21,
+    "snapshots": 254,
+    "recognized_documents": 38,
+    "source_valid_numeric": 711,
+    "project_selected_numeric": 709,
+    "project_technical_numeric": 558,
+    "unified_technical_records": 1822,
+    "machine_interpretable": 1333,
+    "scoped_numeric": 494,
+    "main_minedex_rows": 68
+  },
+  "after": {
+    "registry_groups": 31,
+    "resource_defined": 21,
+    "snapshots": 272,
+    "recognized_documents": 41,
+    "source_valid_numeric": 711,
+    "project_selected_numeric": 709,
+    "project_selected_numeric_by_domain": {
+      "Technical": 558,
+      "Resource": 89,
+      "Strategic": 37,
+      "Commercial": 12,
+      "Development": 9,
+      "": 4
+    },
+    "project_technical_numeric": 558,
+    "unified_technical_records": 1825,
+    "machine_interpretable": 1087,
+    "scoped_numeric": 494,
+    "main_minedex_rows": 83,
+    "new_independent_projects": 0,
+    "new_source_bound_reviewed_claims": 3,
+    "new_primary_pdf_originals": 3,
+    "independent_physical_measurements": null,
+    "scoped_numeric_projects": 11,
+    "resource_scoped_numeric_projects": 9,
+    "ta_tb_projects": {
+      "T-A": 6,
+      "T-B": 4
+    },
+    "development": 0,
+    "full_evidence": 0,
+    "formal_c1": 0,
+    "official_batch_raw_fields": {
+      "total": 498,
+      "numeric": 318,
+      "null": 180
+    }
+  },
+  "mcda": {
+    "resource_infrastructure_pilot": {
+      "status": "COMPLETED",
+      "n": 19,
+      "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES",
+      "evidence_status": "ISSUER_SCOPE_VALIDATED",
+      "full_evidence_eligibility": false,
+      "formal_c1_eligibility": false,
+      "criteria_policy": "evidence-resolution-v10-technical-profiles"
+    },
+    "issuer_resource_infrastructure": {
+      "status": "COMPLETED",
+      "n": 7,
+      "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES",
+      "evidence_status": "ISSUER_SCOPE_VALIDATED",
+      "full_evidence_eligibility": false,
+      "formal_c1_eligibility": false,
+      "criteria_policy": "evidence-resolution-v10-technical-profiles"
+    },
+    "issuer_resource_study": {
+      "status": "COMPLETED",
+      "n": 8,
+      "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES",
+      "evidence_status": "ISSUER_SCOPE_VALIDATED",
+      "full_evidence_eligibility": false,
+      "formal_c1_eligibility": false,
+      "criteria_policy": "evidence-resolution-v10-technical-profiles"
+    },
+    "issuer_resource_concentrate": {
+      "status": "COMPLETED",
+      "n": 2,
+      "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES",
+      "evidence_status": "EXPLORATORY_CANDIDATE_CRITERIA_NOT_FORMAL_C1",
+      "full_evidence_eligibility": false,
+      "formal_c1_eligibility": false,
+      "criteria_policy": "evidence-resolution-v10-technical-profiles"
+    },
+    "issuer_resource_concentrate_recovery": {
+      "status": "COMPLETED",
+      "n": 2,
+      "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES",
+      "evidence_status": "EXPLORATORY_CANDIDATE_CRITERIA_NOT_FORMAL_C1",
+      "full_evidence_eligibility": false,
+      "formal_c1_eligibility": false,
+      "criteria_policy": "evidence-resolution-v10-technical-profiles"
+    },
+    "issuer_resource_composition": {
+      "status": "COMPLETED",
+      "n": 10,
+      "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES",
+      "evidence_status": "ISSUER_SCOPE_VALIDATED",
+      "full_evidence_eligibility": false,
+      "formal_c1_eligibility": false,
+      "criteria_policy": "evidence-resolution-v10-technical-profiles"
+    },
+    "issuer_resource_financing_milestone": {
+      "status": "COMPLETED",
+      "n": 6,
+      "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES",
+      "evidence_status": "EXPLORATORY_CANDIDATE_CRITERIA_NOT_FORMAL_C1",
+      "full_evidence_eligibility": false,
+      "formal_c1_eligibility": false,
+      "criteria_policy": "evidence-resolution-v10-technical-profiles"
+    },
+    "official_wa_resource_screen": {
+      "status": "COMPLETED",
+      "n": 17,
+      "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES",
+      "evidence_status": "OFFICIAL_SUMMARY_SCOPE_UNVERIFIED",
+      "full_evidence_eligibility": false,
+      "formal_c1_eligibility": false,
+      "criteria_policy": "evidence-resolution-v10-technical-profiles"
+    },
+    "beneficiation_concentrate_screen": {
+      "status": "COMPLETED",
+      "n": 2,
+      "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES",
+      "evidence_status": "PRIMARY_ENDPOINT_MATCHED_DFS_CASES_NOT_OPERATING_RESULTS",
+      "full_evidence_eligibility": false,
+      "formal_c1_eligibility": false,
+      "criteria_policy": "evidence-resolution-v10-technical-profiles"
+    },
+    "technical_process_concentrate_fixed": {
+      "status": "COMPLETED",
+      "n": 2,
+      "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES",
+      "evidence_status": "NAMED_DESIGN_FORECAST_COMPARISON_NOT_OPERATING_OR_NATIONAL_RANK",
+      "full_evidence_eligibility": false,
+      "formal_c1_eligibility": false,
+      "criteria_policy": "evidence-resolution-v10-technical-profiles"
+    },
+    "technical_process_concentrate_sample_minmax": {
+      "status": "COMPLETED",
+      "n": 2,
+      "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES",
+      "evidence_status": "NAMED_DESIGN_FORECAST_COMPARISON_NOT_OPERATING_OR_NATIONAL_RANK",
+      "full_evidence_eligibility": false,
+      "formal_c1_eligibility": false,
+      "criteria_policy": "evidence-resolution-v10-technical-profiles"
+    }
+  },
+  "technical_model": {
+    "aim_a": "Executed process-specific design panel via existing R engine; nominal burdens kept separate",
+    "aim_b": "Same two design cases: Technical total/subweight, scoring, method and operating-only scope scenarios",
+    "aim_c": "Mechanism-oriented source-case comparison; no deposit-label-derived score or causal inference",
+    "analytical_records": 1825,
+    "common_score_adopted": false,
+    "comparable_case_groups": 260,
+    "decision": "PROCESS_SPECIFIC_NUMERIC_MCDA_PLUS_NOMINAL_REQUIREMENTS",
+    "distinct_transcribed_source_cells": 381,
+    "formal_eligibility_change": false,
+    "independent_physical_measurements": null,
+    "limitation": "Analytical identity deduplicates records only, not independent experiments; different versions may corroborate. AI consistency is not independent expert validation.",
+    "linked_cell_corroborations": 6,
+    "measurement_count_reason": "Reports do not establish independent replicate identities; source-cell groups and analytical records reported separately",
+    "observation_forms": {
+      "LEACH_TABLE_ROW": 112,
+      "OBSERVATION": 389,
+      "RESOURCE_TABLE_TOTAL": 2,
+      "SCOPED_TEXT_DISCLOSURE": 904,
+      "SOURCE_BOUND_SCIENTIFIC_CLAIM": 3,
+      "STUDY_PARAMETER": 34,
+      "TECHNICAL_TABLE_CELL": 381
+    },
+    "ordinal_mapping": null,
+    "project_extrapolatable": 0,
+    "projects_with_source_scoped_numeric": 11,
+    "remediation": {
+      "coverage_projects": 31,
+      "functional_checks": 1,
+      "intensity_records": 13,
+      "old_hits_dispositioned": 26,
+      "product_constraint_cases": 1,
+      "resource_projects": 21
+    },
+    "resource_projects_with_source_scoped_numeric": 9,
+    "scoped_numeric_model_adopted": true,
+    "source_rows": 1825,
+    "source_scoped_criterion_projects": {
+      "T-A": 6,
+      "T-B": 4
+    },
+    "source_scoped_numeric": 494,
+    "technical_weight_change": 0,
+    "technically_interpretable": 1087,
+    "version": "technical-profile-remediation-v2"
+  },
+  "old_legacy_panel_csv_changed": [],
+  "measurement_warning": "Values, text rules, corroborations and simulation draws are not independent experiments; no missing value imputation or general success probability",
+  "cutoffs": {
+    "research": "2026-11-05",
+    "acquisition_through": "2026-11-05",
+    "analysis_date_taipei": "2026-11-05"
+  },
+  "validation": "LOCAL_FREEZE; CI and independent-clean status must be read from later receipts and PR checks, not inferred from this record"
+}

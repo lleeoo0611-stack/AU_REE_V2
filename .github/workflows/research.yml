@@ -1,0 +1,267 @@
+name: Research system
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      validation:
+        description: PR validation or complete research archive validation
+        type: choice
+        options: [pr, archive]
+        default: archive
+      refresh:
+        description: Fetch public updates and retain as run artifact
+        type: boolean
+        default: false
+  schedule:
+    - cron: '20 2 * * 1'
+permissions:
+  contents: write
+concurrency:
+  group: research-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  research:
+    if: github.event_name == 'pull_request' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.refresh)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Determine validation scope
+        id: scope
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          ARCHIVE: ${{ github.event_name == 'workflow_dispatch' && inputs.validation == 'archive' }}
+        run: |
+          python - <<'PY'
+          import os, subprocess
+          base=os.environ.get('BASE_SHA') or 'HEAD^'
+          changed=subprocess.check_output(['git','diff','--name-only',base,'HEAD'],text=True).splitlines()
+          core=any(p.startswith(('src/','R/','config/')) for p in changed)
+          archive=core or os.environ.get('ARCHIVE')=='true'
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('history='+str(core or archive).lower()+'\n')
+              f.write('archive='+str(archive).lower()+'\n')
+          print({'core_contract_change':core,'full_history':core or archive,'archive_two_clean':archive})
+          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.5.2'
+          use-public-rspm: true
+      - name: Install package
+        run: python -m pip install .
+      - name: Core, clean bootstrap and replay tests
+        run: python -m unittest discover -s tests -v
+      - name: R analytical regression tests
+        run: Rscript tests/test_methods.R
+      - name: Frozen research reconstruction
+        run: au-ree-v2 all --as-of 2026-11-02 --work work/frozen
+      - name: Frozen Phase 5 evidence reconstruction
+        if: steps.scope.outputs.history == 'true'
+        run: au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase5-2026-11-03/snapshot_lock.json --compare-to results/phase4-2026-11-03 --work work/primary
+      - name: Phase 6 national database and partial MCDA reconstruction
+        if: steps.scope.outputs.history == 'true'
+        run: au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase6-2026-11-03/snapshot_lock.json --compare-to results/phase5-2026-11-03 --work work/national
+      - name: Verify frozen Phase 5 and Phase 6 scientific results
+        if: steps.scope.outputs.history == 'true'
+        run: |
+          python tools/check_replay.py results/phase5-2026-11-03 work/primary/latest.json
+          python tools/check_replay.py results/phase6-2026-11-03 work/national/latest.json
+      - name: Phase 7 consolidated evidence and commercial integration
+        if: steps.scope.outputs.history == 'true'
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase7-2026-11-03/snapshot_lock.json --compare-to results/phase6-2026-11-03 --work work/consolidated
+          python tools/check_replay.py results/phase7-2026-11-03 work/consolidated/latest.json
+      - name: Phase 8 coverage and comparable endpoint reconstruction
+        if: steps.scope.outputs.history == 'true'
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase8-2026-11-03/snapshot_lock.json --compare-to results/phase7-2026-11-03 --work work/coverage
+          python tools/check_replay.py results/phase8-2026-11-03 work/coverage/latest.json
+      - name: Phase 9 automatic document evidence reconstruction
+        if: steps.scope.outputs.history == 'true'
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase9-2026-11-03/snapshot_lock.json --compare-to results/phase8-2026-11-03 --work work/documents
+          python tools/check_replay.py results/phase9-2026-11-03 work/documents/latest.json
+          python tools/evaluate_documents.py work/document_benchmark.json --phase9
+          python -c "import json; assert json.load(open('work/document_benchmark.json')) == json.load(open('data/phase9_document_benchmark.json'))"
+      - name: Phase 10 shared technical comparability reconstruction
+        if: steps.scope.outputs.history == 'true'
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase10-2026-11-03/snapshot_lock.json --compare-to results/phase9-2026-11-03 --work work/technical
+          python tools/check_replay.py results/phase10-2026-11-03 work/technical/latest.json
+          python tools/evaluate_documents.py work/technical_benchmark.json
+          python -c "import json; assert json.load(open('work/technical_benchmark.json')) == json.load(open('data/phase10_document_benchmark.json'))"
+          python -c "import json,pathlib; p=pathlib.Path(json.load(open('work/technical/latest.json'))['output_dir']); assert (p/'technical_comparability.csv').read_bytes()==pathlib.Path('results/phase10-2026-11-03/technical_comparability.csv').read_bytes()"
+      - name: Phase 11 deterministic frozen reconstruction
+        if: steps.scope.outputs.history == 'true'
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase11-2026-11-04/snapshot_lock.json --work work/deterministic-a
+          python tools/check_replay.py results/phase10-2026-11-03 work/deterministic-a/latest.json
+          python tools/check_phase11.py results/phase11-2026-11-04 work/deterministic-a/latest.json --reference
+      - name: Phase 12 evidence yield and deterministic research reconstruction
+        if: steps.scope.outputs.history == 'true'
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase12-2026-11-04/snapshot_lock.json --compare-to results/phase11-2026-11-04 --work work/evidence-yield-a
+          python tools/check_phase11.py results/phase12-2026-11-04 work/evidence-yield-a/latest.json --reference
+          python tools/evaluate_documents.py work/phase12_document_benchmark.json --phase12
+          python -c "import json; assert json.load(open('work/phase12_document_benchmark.json')) == json.load(open('data/phase12_document_benchmark.json'))"
+      - name: Phase 13 source recovery frozen reconstruction
+        if: steps.scope.outputs.history == 'true'
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase13-2026-11-04/snapshot_lock.json --compare-to results/phase12-2026-11-04 --work work/source-recovery-a
+          python tools/check_phase11.py results/phase13-2026-11-04 work/source-recovery-a/latest.json --reference
+          python tools/evaluate_documents.py work/phase13_document_benchmark.json --phase13
+          python -c "import json; assert json.load(open('work/phase13_document_benchmark.json')) == json.load(open('data/phase13_document_benchmark.json'))"
+      - name: Phase 14 official report frozen reconstruction
+        if: steps.scope.outputs.history == 'true'
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase14-2026-11-04/snapshot_lock.json --work work/official-reports-a
+          python tools/check_phase11.py results/phase14-2026-11-04 work/official-reports-a/latest.json --reference
+          python tools/evaluate_documents.py work/phase14_document_benchmark.json --phase14
+          python -c "import json; assert json.load(open('work/phase14_document_benchmark.json')) == json.load(open('data/phase14_document_benchmark.json'))"
+      - name: Phase 15 source-bound technical reconstruction
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase15-2026-11-04/snapshot_lock.json --work work/technical-evidence-a
+          python tools/check_phase15.py results/phase15-2026-11-04 work/technical-evidence-a/latest.json --reference
+          python tools/evaluate_technical.py work/technical_benchmark.json
+          python -c "import json; assert json.load(open('work/technical_benchmark.json')) == json.load(open('data/phase15_document_benchmark.json'))"
+      - name: Phase 16 unified technical model and source batch reconstruction
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-03 --snapshot-lock results/phase16-2026-11-04/snapshot_lock.json --work work/phase16-a
+          python tools/check_phase16.py results/phase16-2026-11-04 work/phase16-a/latest.json --reference
+          python tools/evaluate_phase16.py work/phase16_evaluation.json
+          python -c "import json; assert json.load(open('work/phase16_evaluation.json')) == json.load(open('data/phase16_evaluation.json'))"
+      - name: Phase 16 remediation source, semantic and process-panel reconstruction
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase16-remediation-2026-11-05/snapshot_lock.json --work work/phase16-remediation-a
+          python tools/check_phase16_remediation.py results/phase16-remediation-2026-11-05 work/phase16-remediation-a/latest.json --reference
+          python tools/evaluate_phase16_remediation.py work/phase16_remediation_evaluation.json
+          python -c "import json; assert json.load(open('work/phase16_remediation_evaluation.json')) == json.load(open('data/phase16_remediation_evaluation.json'))"
+      - name: Independent current release reconstruction
+        if: steps.scope.outputs.archive == 'true'
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase16-remediation-2026-11-05/snapshot_lock.json --work work/phase16-remediation-b
+          python tools/check_phase16_remediation.py work/phase16-remediation-a/latest.json work/phase16-remediation-b/latest.json
+      - name: Phase 20 current six-domain disclosure reconstruction
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase20-2026-11-05/snapshot_lock.json --work work/phase20
+          python tools/check_replay.py results/phase20-2026-11-05 work/phase20/latest.json
+      # Current release checks are distinct from frozen-history compatibility.
+      - name: Phase 21 current source, registry and disclosure reconstruction
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase21-2026-11-05/snapshot_lock.json --work work/phase21-a
+          python tools/check_replay.py results/phase21-2026-11-05 work/phase21-a/latest.json
+      - name: Phase 21 independent clean reconstruction
+        if: steps.scope.outputs.archive == 'true'
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase21-2026-11-05/snapshot_lock.json --work work/phase21-b
+          python tools/check_replay.py results/phase21-2026-11-05 work/phase21-b/latest.json
+      - name: Phase 22 current evidence and shared-method reconstruction
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/phase22-a
+          python tools/check_replay.py results/phase22-2026-11-06 work/phase22-a/latest.json
+      - name: Phase 22 second clean reconstruction
+        if: steps.scope.outputs.archive == 'true'
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/phase22-b
+          python tools/check_replay.py results/phase22-2026-11-06 work/phase22-b/latest.json
+      - name: Final publication payload verification
+        run: python tools/check_publication.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: research-${{ github.sha }}-${{ github.run_id }}
+          path: |
+            work/phase22-a/runs/
+            work/phase22-b/runs/
+            work/phase21-a/runs/
+            work/phase21-b/runs/
+            work/frozen/runs/
+            work/primary/runs/
+            work/national/runs/
+            work/consolidated/runs/
+            work/coverage/runs/
+            work/documents/runs/
+            work/document_benchmark.json
+            work/technical/runs/
+            work/technical_benchmark.json
+            work/deterministic-a/runs/
+            work/evidence-yield-a/runs/
+            work/phase12_document_benchmark.json
+            work/source-recovery-a/runs/
+            work/phase13_document_benchmark.json
+            work/official-reports-a/runs/
+            work/phase14_document_benchmark.json
+            work/technical-evidence-a/runs/
+            work/phase16-a/runs/
+            work/phase16-remediation-a/runs/
+            work/phase16-remediation-b/runs/
+            work/phase20/runs/
+            work/phase16_remediation_evaluation.json
+            work/phase16_evaluation.json
+            work/updated/runs/
+            work/acquisition_status.json
+            data/manifest.json
+            data/snapshots/
+          retention-days: 90
+
+  live_update:
+    name: Live official discovery and acquisition (separate from scientific replay)
+    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install .
+      - name: Acquire bounded official reports and parse new originals
+        run: |
+          mkdir -p work
+          au-ree-v2 acquire --official-only > work/live_official_status.json
+      - name: Publish explicit transport and parsing outcome
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          p=Path('work/live_official_status.json')
+          try:
+              data=json.loads(p.read_text()); status=data['live_update']
+          except Exception:
+              status={'status':'EXECUTION_FAILED_NO_COMPLETE_RECEIPT'}
+          text='Live source update: '+json.dumps(status,indent=2)
+          Path('work/live_update_summary.json').write_text(json.dumps(status,indent=2)+'\n')
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write('```json\n'+text+'\n```\n')
+          if status['status']!='COMPLETED_BOUNDED_ATTEMPTS':raise SystemExit(1)
+          PY
+      - name: Archive successful public acquisition only
+        if: success()
+        run: |
+          python tools/check_publication.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp work/live_official_status.json data/acquisition_status_latest.json
+          git add data/manifest.json data/snapshots/ data/acquisition_status_latest.json data/discovery_latest.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: freeze public official report acquisition [skip ci]"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-official-${{ github.run_id }}
+          path: |
+            work/live_official_status.json
+            work/live_update_summary.json
+            data/manifest.json
+            data/discovery_latest.json
+            data/snapshots/
+          retention-days: 30

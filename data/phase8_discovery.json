@@ -1,0 +1,84 @@
+{
+  "version": "discovery-v2",
+  "sources": [
+    {
+      "seed_key": "hastings_current",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError"
+    },
+    {
+      "seed_key": "cobra_current",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError"
+    },
+    {
+      "seed_key": "arafura_current",
+      "status": "PARSED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "sha256": "5d61364493d926ad574afb4f4a3f0d6082ce2d339577f5fb8116f484c92a0404",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+    },
+    {
+      "seed_key": "critica_current",
+      "status": "UNAVAILABLE_LOCAL_SNAPSHOT_INTEGRITY_NOT_ACCEPTED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT",
+      "reason": "Saved HTML failed subsequent SHA/read verification; no observation extracted; original local bytes retained unpublished",
+      "expected_sha256": "3743fe97306d2919425d6d2aa81ddee8ae0a35702c7bd3631ee3797810248b05"
+    },
+    {
+      "seed_key": "astron_current",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError"
+    },
+    {
+      "seed_key": "vhm_current",
+      "status": "PARSED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "sha256": "5f11f0716f9edbb729ba14702882b215f084380c101c908ec444c99eefe1bc7b",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+    },
+    {
+      "seed_key": "arafura_current_page_4a61d8729200",
+      "status": "PARSED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "sha256": "867ec95e6c0c149940b3d6d17f336e0fb3db49a0cbab71ca116c9673d2f6ecb9",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+    },
+    {
+      "seed_key": "arafura_current_page_39e155d3e7dc",
+      "status": "PARSED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "sha256": "0172f336df1e0c70963bd77b189c26aad9c70b2da60d38de3424fe2038824032",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+    },
+    {
+      "seed_key": "vhm_current_page_ca402ed236d8",
+      "status": "PARSED",
+      "links_found": 0,
+      "links_attempted": 0,
+      "sha256": "ae9b48e644d05893a3ece81119ec1813ef59bd38725c13662930b9dd6f44ff08",
+      "limitation": "BOUNDED_STATIC_HTML_SEARCH_AND_LINKED_PAGINATION_NO_JAVASCRIPT"
+    },
+    {
+      "seed_key": "vhm_current_page_9bcab19acfc8",
+      "status": "DIRECT_PDF_CAPTURED",
+      "sha256": "9259d4a149afef29e471c92e3cc11d512659a07bc4026780488e57ae69d36ef5"
+    }
+  ],
+  "documents": [
+    {
+      "candidate_id": "9bcab19acfc8e1e5ca11a50d7ea15a8ff0b887d1005fc7a8a7d3a431f7acbf0c",
+      "url": "https://www.vhmltd.com.au/wp-content/uploads/2022/06/VHM-Notice-of-Meeting-of-2021-Noteholders-Chapter-2E-final.pdf",
+      "seed_key": "vhm_current_page_9bcab19acfc8",
+      "publication_date": null,
+      "document_sha256": "9259d4a149afef29e471c92e3cc11d512659a07bc4026780488e57ae69d36ef5",
+      "status": "DIRECT_PDF_REQUIRES_DATED_SCOPE_EXTRACTION"
+    }
+  ]
+}

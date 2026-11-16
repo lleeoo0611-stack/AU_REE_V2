@@ -1,0 +1,64 @@
+Public path-redacted derivative; raw local receipt SHA256 d67b30e73af3df730d4d261dcbc99879a399172a976693d93d7bb724c2aa4b3c
+test_direct_recovery_bound_not_other_percentages (tests.test_phase15.Phase15Repairs.test_direct_recovery_bound_not_other_percentages) ... FAIL
+test_native_element_table_enters_production_path (tests.test_phase15.Phase15Repairs.test_native_element_table_enters_production_path) ... ERROR
+test_representativeness_requires_bound_evidence (tests.test_phase15.Phase15Repairs.test_representativeness_requires_bound_evidence) ... FAIL
+test_within_composite_physical_contract_does_not_require_acid (tests.test_phase15.Phase15Repairs.test_within_composite_physical_contract_does_not_require_acid) ... FAIL
+
+======================================================================
+ERROR: test_native_element_table_enters_production_path (tests.test_phase15.Phase15Repairs.test_native_element_table_enters_production_path)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<REPO>\tests\test_phase15.py", line 41, in test_native_element_table_enters_production_path
+    data=recognize_document(ROOT,source,project_registry(ROOT),parser_version=V5)
+  File "<REPO>\src\au_ree_v2\pdf_extract.py", line 393, in recognize_document
+    raise ValueError('UNSUPPORTED_DOCUMENT_PARSER_VERSION')
+ValueError: UNSUPPORTED_DOCUMENT_PARSER_VERSION
+
+======================================================================
+FAIL: test_direct_recovery_bound_not_other_percentages (tests.test_phase15.Phase15Repairs.test_direct_recovery_bound_not_other_percentages)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<REPO>\tests\test_phase15.py", line 15, in test_direct_recovery_bound_not_other_percentages
+    self.assertEqual([85.7,85.0],good)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [85.7, 85.0] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+85.7
+
+- [85.7, 85.0]
++ []
+
+======================================================================
+FAIL: test_representativeness_requires_bound_evidence (tests.test_phase15.Phase15Repairs.test_representativeness_requires_bound_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<REPO>\tests\test_phase15.py", line 23, in test_representativeness_requires_bound_evidence
+    self.assertEqual('SOURCE_ASSERTED',r['representativeness'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'SOURCE_ASSERTED' != 'RESOURCE_REPRESENTATIVENESS_NOT_ESTABLISHED'
+- SOURCE_ASSERTED
++ RESOURCE_REPRESENTATIVENESS_NOT_ESTABLISHED
+
+
+======================================================================
+FAIL: test_within_composite_physical_contract_does_not_require_acid (tests.test_phase15.Phase15Repairs.test_within_composite_physical_contract_does_not_require_acid)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<REPO>\tests\test_phase15.py", line 33, in test_within_composite_physical_contract_does_not_require_acid
+    self.assertEqual([],technical_compare(r,contract))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['MISSING_CONDITIONS', 'SAMPLE_REPRESENTATIVENESS_LIMITATION']
+
+Second list contains 2 additional elements.
+First extra element 0:
+'MISSING_CONDITIONS'
+
+- []
++ ['MISSING_CONDITIONS', 'SAMPLE_REPRESENTATIVENESS_LIMITATION']
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.668s
+
+FAILED (failures=3, errors=1)

@@ -1,0 +1,597 @@
+{
+  "version": "phase12-evidence-yield-v1",
+  "baseline_commit": "f8aff1442d39a1919786c0ea46be049022b59ada",
+  "branch": "feat/phase12-evidence-yield",
+  "base_branch": "feat/reproducible-research-core",
+  "parent_pr": 1,
+  "canonical_run": "20261103T194357-ab98266f",
+  "code": {
+    "package": "0.1.0",
+    "commit": "f8aff1442d39a1919786c0ea46be049022b59ada",
+    "content_sha256": "815c1c268ae96480e4b4116cd1e7c3dac9ef8f21bfd2f1f169b7823bc6051c8c"
+  },
+  "configuration_sha256": "29beea3dc36c16025286a3e167812bafee1ba40e8170cf87985df5da6109754b",
+  "snapshot_sha256": "2649820e9e9088206baea004678410b5fcbdeadcef9af48fb04f60df49221013",
+  "claims_sha256": "9f0d526dc2f97532f313f5ff67f4b41ddf8e9ec109bf481a137281705c3b633a",
+  "cutoffs": {
+    "research": "2026-11-03",
+    "acquisition_through": "2026-11-04",
+    "upstream": "2026-10-29"
+  },
+  "monte_carlo": {
+    "dirichlet_concentration": 30,
+    "method_version": "entity-keyed-rng-v2",
+    "reps": 1000,
+    "seed": 20261102
+  },
+  "baseline": {
+    "unresolved_pairs": 36,
+    "primary_scope_gaps": 1,
+    "resource_defined": 22,
+    "source_snapshots": 104,
+    "pdf_snapshots": 44,
+    "validated_statement_values": 265,
+    "validated_structured_events": 19,
+    "government_unconfirmed_relation_candidates": 112,
+    "government_confirmed_representative_site_relations": 4,
+    "development": 0,
+    "full_evidence": 0,
+    "canonical_registry_groups": 31,
+    "scorable_Resource": 22,
+    "scorable_Strategic": 9,
+    "scorable_Technical": 0,
+    "scorable_Development": 5,
+    "scorable_Infrastructure": 20,
+    "scorable_Commercial": 6
+  },
+  "updated": {
+    "unresolved_pairs": 36,
+    "primary_scope_gaps": 1,
+    "resource_defined": 22,
+    "source_snapshots": 121,
+    "pdf_snapshots": 49,
+    "validated_statement_values": 292,
+    "validated_structured_events": 21,
+    "government_unconfirmed_relation_candidates": 112,
+    "government_confirmed_representative_site_relations": 4,
+    "development": 0,
+    "full_evidence": 0,
+    "canonical_registry_groups": 31,
+    "scorable_Resource": 22,
+    "scorable_Strategic": 10,
+    "scorable_Technical": 0,
+    "scorable_Development": 9,
+    "scorable_Infrastructure": 20,
+    "scorable_Commercial": 8
+  },
+  "data_increment": {
+    "primary_technical_pdfs": 2,
+    "miscellaneous_pdfs_without_new_scored_evidence": 3,
+    "verified_curated_numeric": 27,
+    "held_curated_resource_summaries": 2,
+    "verified_new_automatic_numeric": 0,
+    "validated_document_text": 71,
+    "typed_events": 2
+  },
+  "new_pdf_snapshots": [
+    {
+      "acquired_at": "2026-11-03T19:15:51.870381+00:00",
+      "available_date": "2026-11-03",
+      "etag": "\"-CNuD9ar17oADEAE=\"",
+      "key": "cummins_scoping2023",
+      "kind": "pdf",
+      "last_modified": "Mon, 21 Aug 2023 23:35:28 GMT",
+      "path": "data/snapshots/1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07.pdf",
+      "publication_date": "2023-08-22",
+      "sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "url": "https://announcements.asx.com.au/asxpdf/20230822/pdf/05swq0gwm2w86n.pdf"
+    },
+    {
+      "acquired_at": "2026-11-03T19:19:59.924315+00:00",
+      "available_date": "2026-11-03",
+      "discovery_sha256": "199b96fb1d60cec88cd036bd766dd8c473bd2a70513bcd408e603ff49305e2af",
+      "key": "discovered_4d9c6500091a6ca08327e5e3face29233cf80c94bf8460b01576cace12dcae0f",
+      "kind": "pdf",
+      "path": "data/snapshots/dd16a89ffe3b04a43faa55956190c6c40323cd7af9004e8ed8ecaef27bd1f942.pdf",
+      "sha256": "dd16a89ffe3b04a43faa55956190c6c40323cd7af9004e8ed8ecaef27bd1f942",
+      "url": "https://www.vhmltd.com.au/wp-content/uploads/2025/07/Fact-Sheet-Soil-and-Land-Resource.pdf"
+    },
+    {
+      "acquired_at": "2026-11-03T19:19:55.405463+00:00",
+      "available_date": "2026-11-03",
+      "discovery_sha256": "199b96fb1d60cec88cd036bd766dd8c473bd2a70513bcd408e603ff49305e2af",
+      "key": "discovered_81a61a6073e3b82d5af01dba25142bf68b91732b4357267abc9a7f092821f299",
+      "kind": "pdf",
+      "path": "data/snapshots/727dc79a22e32e6c3897aee71e7523b18265e64c476d03dfa122f9e2b0dd5f08.pdf",
+      "sha256": "727dc79a22e32e6c3897aee71e7523b18265e64c476d03dfa122f9e2b0dd5f08",
+      "url": "https://www.vhmltd.com.au/wp-content/uploads/2026/04/2026-04-01-VHM-Goschen-Issue-9-Final.pdf"
+    },
+    {
+      "acquired_at": "2026-11-03T19:19:57.587002+00:00",
+      "available_date": "2026-11-03",
+      "discovery_sha256": "199b96fb1d60cec88cd036bd766dd8c473bd2a70513bcd408e603ff49305e2af",
+      "key": "discovered_949bb9b5dece5137a7c7b104216fa8db564848c509edc3e96801644c003a74ab",
+      "kind": "pdf",
+      "path": "data/snapshots/34a612c7e04d21d0fd8b09f675c6c2444b63a7baab5a0e1d8ed6a9afc0a93163.pdf",
+      "sha256": "34a612c7e04d21d0fd8b09f675c6c2444b63a7baab5a0e1d8ed6a9afc0a93163",
+      "url": "https://www.vhmltd.com.au/wp-content/uploads/2025/12/Q2-Goschen-Project-Newsletter-2025.pdf"
+    },
+    {
+      "acquired_at": "2026-11-03T19:15:55.435968+00:00",
+      "available_date": "2026-11-03",
+      "etag": "\"c84c5344cefc9ab1e1fa49e72f5ae69a\"",
+      "key": "north_stanmore_quarter202610",
+      "kind": "pdf",
+      "last_modified": "Thu, 29 Oct 2026 22:37:02 GMT",
+      "path": "data/snapshots/e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c.pdf",
+      "publication_date": "2026-10-30",
+      "sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7814024.pdf?v=63960532622"
+    }
+  ],
+  "document_pipeline": {
+    "candidate_statuses": {
+      "AUTO_VALIDATED": 328,
+      "OBSERVATION_EXTRACTED_NOT_VALIDATED": 825,
+      "REVIEW": 177
+    },
+    "candidates": 1330,
+    "documents": 25,
+    "limitations": [
+      "RAW_VALIDATION_IS_NOT_FORMAL_CRITERION_APPROVAL",
+      "NO_CORPUS_WIDE_RECALL_CLAIM"
+    ],
+    "pages": 1184,
+    "relevant_pages": 614,
+    "tables": 60,
+    "validated_observations": 442
+  },
+  "technical_comparability": {
+    "DESCRIPTIVE_ONLY": 202,
+    "NOT_COMPARABLE": 543,
+    "NUMERIC_COMPARABLE": 4
+  },
+  "formal": {
+    "unresolved_pairs": 36,
+    "primary_scope_gaps": 1,
+    "formal_c1_evaluated": 0,
+    "formal_c1_admitted": 0,
+    "formal_c1_reason": "IMPORTED_POLICY_EMPTY_SIGNOFF_LEDGERS_NO_APPROVED_CROSSWALK_OR_PANEL",
+    "registry_groups": 31,
+    "source_snapshots": 121,
+    "resource_defined": 22,
+    "development": 0,
+    "full_evidence": 0,
+    "objective_evidence": {
+      "rows": 186,
+      "with_source_facts": 72,
+      "upstream_signed_rows": 0,
+      "upstream_identity_rows": 0,
+      "approved_crosswalks": 0,
+      "formal_admitted": 0,
+      "upstream_cutoff": "2026-10-29",
+      "v2_cutoff": "2026-11-03"
+    }
+  },
+  "stable_entity_ids": 7554,
+  "old_snapshot_entries_retained_and_sha_verified": 104,
+  "unchanged_selected_entries": 101,
+  "updated_discovery_html_versions": [
+    {
+      "key": "discovery_vhm_current",
+      "kind": "discovery_html",
+      "previous_sha256": "5f11f0716f9edbb729ba14702882b215f084380c101c908ec444c99eefe1bc7b",
+      "selected_sha256": "4e506ad89cdf7d6611d3e4254d870468641069749c3ec4a2cdc6a1cb98411530"
+    },
+    {
+      "key": "discovery_vhm_goschen",
+      "kind": "discovery_html",
+      "previous_sha256": "5c74be9d218ffb6e29a8b3f80211bcea2131f0e3b939b58808f0f7d448dfa84d",
+      "selected_sha256": "199b96fb1d60cec88cd036bd766dd8c473bd2a70513bcd408e603ff49305e2af"
+    },
+    {
+      "key": "discovery_vhm_goschen_page_ca402ed236d8",
+      "kind": "discovery_html",
+      "previous_sha256": "c18a129392623340f7bbe12a99c2c1bc7c1dbeee42943a6e69d68c75b8caf1e3",
+      "selected_sha256": "3c86b0c61bcc9595d1133913fb00b3aec5e4309da21276a11837c43231734e2f"
+    }
+  ],
+  "selected_distinct_content_shas": 118,
+  "schema_migration": false,
+  "new_production_modules": 0,
+  "acquisition": {
+    "targeted_sources": [
+      {
+        "key": "cummins_scoping2023",
+        "status": "ADDED",
+        "sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07"
+      },
+      {
+        "key": "north_stanmore_quarter202610",
+        "status": "ADDED",
+        "sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c"
+      },
+      {
+        "key": "north_stanmore_pfs2026",
+        "status": "UNAVAILABLE",
+        "reason": "The read operation timed out"
+      }
+    ],
+    "gap_metrics": {
+      "elapsed_seconds": 30.97,
+      "search_pages": 16,
+      "downloaded_documents": 4,
+      "reused_originals": 6,
+      "failures": 6,
+      "scope": "BOUNDED_SOURCE_ATTEMPTS_NOT_EXHAUSTIVE_SEARCH"
+    },
+    "failed_sources": [
+      {
+        "seed_key": "dreadnought_search",
+        "status": "UNAVAILABLE",
+        "reason": "HTTPError_429"
+      },
+      {
+        "seed_key": "dreadnought_search_search_d89403207b61",
+        "status": "UNAVAILABLE",
+        "reason": "HTTPError_429"
+      },
+      {
+        "seed_key": "dreadnought_search_search_37c76b0d4b49",
+        "status": "UNAVAILABLE",
+        "reason": "HTTPError_429"
+      },
+      {
+        "seed_key": "dreadnought_search_search_a0c4f3f697ca",
+        "status": "UNAVAILABLE",
+        "reason": "HTTPError_429"
+      },
+      {
+        "seed_key": "rarex_cummins_scoping",
+        "status": "UNAVAILABLE",
+        "reason": "HTTPError_429"
+      },
+      {
+        "seed_key": "victory_north_stanmore",
+        "status": "UNAVAILABLE",
+        "reason": "HTTPError_429"
+      }
+    ],
+    "extraction": [
+      {
+        "source_key": "cummins_mre2023",
+        "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+        "status": "CAPTURED",
+        "sha256": "18d871a4a0238b3aa547661cb0b4c14e5112b19a3430b28e9331b1df7ac60b0f",
+        "pages": 32,
+        "tables": 4,
+        "candidates": 44,
+        "labels": [
+          "JORC_RESOURCE",
+          "SCOPING"
+        ]
+      },
+      {
+        "source_key": "cummins_scoping2023",
+        "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+        "status": "CAPTURED",
+        "sha256": "e04444a3e4744d05f2ea6d30aa77cb86632a168203094374a3c8ad634ec0dadb",
+        "pages": 98,
+        "tables": 3,
+        "candidates": 147,
+        "labels": [
+          "JORC_RESOURCE",
+          "SCOPING",
+          "METALLURGICAL",
+          "OFFTAKE"
+        ]
+      },
+      {
+        "source_key": "discovered_4d9c6500091a6ca08327e5e3face29233cf80c94bf8460b01576cace12dcae0f",
+        "source_sha256": "dd16a89ffe3b04a43faa55956190c6c40323cd7af9004e8ed8ecaef27bd1f942",
+        "status": "CAPTURED",
+        "sha256": "cf03154fe0725b3597ae111acb2efbfa7776056c9daaae4e4dcddb4be2df8a50",
+        "pages": 1,
+        "tables": 0,
+        "candidates": 0,
+        "labels": []
+      },
+      {
+        "source_key": "discovered_81a61a6073e3b82d5af01dba25142bf68b91732b4357267abc9a7f092821f299",
+        "source_sha256": "727dc79a22e32e6c3897aee71e7523b18265e64c476d03dfa122f9e2b0dd5f08",
+        "status": "CAPTURED",
+        "sha256": "7995701a2eab81c218c33d26d4d5fe15e679556d5bc4e71f6c7da46207ff0ea6",
+        "pages": 3,
+        "tables": 0,
+        "candidates": 0,
+        "labels": [
+          "FINANCING",
+          "OFFTAKE"
+        ]
+      },
+      {
+        "source_key": "discovered_949bb9b5dece5137a7c7b104216fa8db564848c509edc3e96801644c003a74ab",
+        "source_sha256": "34a612c7e04d21d0fd8b09f675c6c2444b63a7baab5a0e1d8ed6a9afc0a93163",
+        "status": "CAPTURED",
+        "sha256": "aaa3309ea7cfec463b004aa71a9a6da54bf8504349f5445341d153e234f62bff",
+        "pages": 2,
+        "tables": 0,
+        "candidates": 0,
+        "labels": []
+      },
+      {
+        "source_key": "discovery_vhm_current_page_9bcab19acfc8",
+        "source_sha256": "9259d4a149afef29e471c92e3cc11d512659a07bc4026780488e57ae69d36ef5",
+        "status": "CAPTURED",
+        "sha256": "3188a7bcd6c8694c18a2a2793d2c840408de842fc923a96849f3c47c84565019",
+        "pages": 17,
+        "tables": 0,
+        "candidates": 1,
+        "labels": []
+      },
+      {
+        "source_key": "goschen_mre2025",
+        "source_sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
+        "status": "CAPTURED",
+        "sha256": "654e61ad0da7877858988a9e60503e590c8a0e1c875f2580b702107d0c6223bf",
+        "pages": 101,
+        "tables": 0,
+        "candidates": 12,
+        "labels": [
+          "JORC_RESOURCE",
+          "ORE_RESERVE"
+        ]
+      },
+      {
+        "source_key": "mangaroon_mre2023",
+        "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+        "status": "CAPTURED",
+        "sha256": "7de18f2d9eababedcaab7ad0b13fa9fe9dc5f6a244e28993db4cf1c5256d98ae",
+        "pages": 51,
+        "tables": 3,
+        "candidates": 17,
+        "labels": [
+          "JORC_RESOURCE"
+        ]
+      },
+      {
+        "source_key": "north_stanmore_mre2025",
+        "source_sha256": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84",
+        "status": "CAPTURED",
+        "sha256": "e21921cbb9746eb7ad7fc37748f343c3246f06b19ac35df170bb76d44a42cf74",
+        "pages": 61,
+        "tables": 3,
+        "candidates": 47,
+        "labels": [
+          "JORC_RESOURCE",
+          "PFS"
+        ]
+      },
+      {
+        "source_key": "north_stanmore_quarter202610",
+        "source_sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+        "status": "CAPTURED",
+        "sha256": "08e89c745d7a97fe7c8f4ee40c0e925fa7c3064f8cf8d2f905d563719d819a4b",
+        "pages": 16,
+        "tables": 2,
+        "candidates": 24,
+        "labels": [
+          "JORC_RESOURCE",
+          "ORE_RESERVE",
+          "PFS",
+          "METALLURGICAL",
+          "QUARTERLY",
+          "OFFTAKE"
+        ]
+      },
+      {
+        "source_key": "yangibana_ar2026",
+        "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+        "status": "CAPTURED",
+        "sha256": "a2781c74c25151548cd872e6c1fa5e1eb002e06e1423ac3e75ef58179228ee64",
+        "pages": 104,
+        "tables": 12,
+        "candidates": 53,
+        "labels": [
+          "ANNUAL_REPORT"
+        ]
+      },
+      {
+        "source_key": "yangibana_quarter2026",
+        "source_sha256": "188f2437560f2ec98af07e444782bd40a7612450b51c988bbe97c3e412dccd70",
+        "status": "CAPTURED",
+        "sha256": "3d95c0adc21fb71e83e4699c05c2a9aafd4abc054467b31a4b1f7621c772ec5c",
+        "pages": 19,
+        "tables": 3,
+        "candidates": 28,
+        "labels": [
+          "ORE_RESERVE",
+          "DFS",
+          "QUARTERLY"
+        ]
+      }
+    ]
+  },
+  "quality_corrections": [
+    {
+      "source_key": "cummins_mre2023",
+      "physical_page": 2,
+      "error": "P2O5_PERCENT_MISBOUND_AS_TREO_PPM",
+      "candidates_held": 3,
+      "numeric_values_held": 6,
+      "scored_matrix_affected": false
+    },
+    {
+      "error": "LIVE_CLAIMS_AND_SUPERSEDED_METADATA_LEAK",
+      "correction": "SHA_BOUND_CONTRACT_AND_ACTIVE_ORIGINAL_ID_SET_HISTORY_RETAINED"
+    },
+    {
+      "error": "UNQUANTIFIED_APPROXIMATE23_BOUNDED_WITHOUT_SOURCE",
+      "correction": "REMOVE_UNSUPPORTED_HALF_WIDTH_RETAIN_UNKNOWN_ERROR"
+    },
+    {
+      "error": "COVERAGE_ROW_ORDER_DEPENDED_ON_DB_INSERTION",
+      "correction": "CANONICAL_PROJECT_ID_ORDER_PHASE12_ONLY_NO_VALUE_CHANGE"
+    }
+  ],
+  "historical_claim_contracts": [
+    {
+      "sha256": "fe0fc11d68a5fdbdc41ab577c2d835bebcc5e438641df3b8ed87b58868d86a50",
+      "git_commit": "5c0b9fcc8c108181d9e771f03d7dc6b186198893",
+      "transport": "GIT_BLOB"
+    },
+    {
+      "sha256": "be4b1541b9d9ff46d894076101e360d55ed1cf2137fb59297b1ba3390100b91b",
+      "git_commit": "1b9baed20a12d40ceb209ba4b498cfa823d84b81",
+      "transport": "GIT_BLOB"
+    },
+    {
+      "sha256": "f92c53fbbb0ac050eff226624d6b09fd04ea06d9a9c49d7e236fc4d5c8aebe08",
+      "git_commit": "3a9e9dc0b621689a2b813432e10fe911ba74498a",
+      "transport": "GIT_BLOB"
+    },
+    {
+      "sha256": "e90e313a5c0dd83047f53fcad9920fe112c85b9569412a71fda07ef84272b3c7",
+      "git_commit": "353c6c53157748d27f2259f3dbdd3b809a8be2da",
+      "transport": "GIT_BLOB"
+    },
+    {
+      "sha256": "19be12a9d6abb20edd5eaf94a56ac57fa74ac876c3f843d847a00d9b4476d662",
+      "git_commit": "7249488ec33a0fd26dcceab1d39a2c24f7d1b401",
+      "transport": "GIT_BLOB"
+    },
+    {
+      "sha256": "3fe7537c4d04e31001695361e87200f3b178333119f1e3e923ad4d9f1051e8ba",
+      "git_commit": "51659f18f586810eb6ddad6ce40b4144151f8b83",
+      "transport": "GIT_BLOB"
+    }
+  ],
+  "benchmark": {
+    "current": "data/phase12_document_benchmark.json",
+    "v3_same_expanded_gold_metrics": {
+      "documents": 8,
+      "physical_pages": 13,
+      "numeric_cells": 22,
+      "numeric_metrics": {
+        "true_positive": 8,
+        "false_positive": 3,
+        "false_negative": 14,
+        "precision": 0.7272727272727273,
+        "recall": 0.36363636363636365,
+        "scope_accuracy_of_emitted": 1.0,
+        "unit_accuracy_of_emitted": 1.0,
+        "source_locator_completeness_of_emitted": 1.0,
+        "emitted_cells": 11
+      },
+      "acceptance_cases": 23,
+      "acceptance_metrics": {
+        "true_positive": 3,
+        "false_positive": 3,
+        "false_negative": 6,
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "true_negative": 11
+      }
+    },
+    "generalizability": "PURPOSIVE_SAMPLE_NOT_NATIONAL_ACCURACY"
+  },
+  "aim_b_cohort_decomposition": [
+    {
+      "panel": "issuer_resource_composition",
+      "common_projects": 10,
+      "cells": 90,
+      "cohort_reference_rank_changes": 0,
+      "criteria_and_weight_rank_changes": 15
+    },
+    {
+      "panel": "issuer_resource_concentrate",
+      "common_projects": 2,
+      "cells": 18,
+      "cohort_reference_rank_changes": 0,
+      "criteria_and_weight_rank_changes": 0
+    },
+    {
+      "panel": "issuer_resource_concentrate_recovery",
+      "common_projects": 2,
+      "cells": 18,
+      "cohort_reference_rank_changes": 0,
+      "criteria_and_weight_rank_changes": 0
+    },
+    {
+      "panel": "issuer_resource_financing_milestone",
+      "common_projects": 6,
+      "cells": 54,
+      "cohort_reference_rank_changes": 0,
+      "criteria_and_weight_rank_changes": 28
+    },
+    {
+      "panel": "issuer_resource_infrastructure",
+      "common_projects": 7,
+      "cells": 63,
+      "cohort_reference_rank_changes": 2,
+      "criteria_and_weight_rank_changes": 25
+    },
+    {
+      "panel": "issuer_resource_study",
+      "common_projects": 8,
+      "cells": 72,
+      "cohort_reference_rank_changes": 0,
+      "criteria_and_weight_rank_changes": 47
+    }
+  ],
+  "reproducibility": {
+    "canonical_vs_clean": {
+      "status": "EXACT",
+      "panel_csv_files": 142,
+      "evidence_exports": 6,
+      "numeric_tolerance": 0,
+      "platform_differences": [],
+      "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+      "before": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase5\\runs\\20261103T194357-ab98266f",
+      "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase12-clean-v4-a\\runs\\20261103T194400-78ebe5cc"
+    },
+    "independent_clean_pair": {
+      "status": "EXACT",
+      "panel_csv_files": 142,
+      "evidence_exports": 6,
+      "numeric_tolerance": 0,
+      "platform_differences": [],
+      "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+      "before": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase12-clean-v4-a\\runs\\20261103T194400-78ebe5cc",
+      "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase12-clean-v4-b\\runs\\20261103T194736-37f2245b"
+    },
+    "phase11_exact": {
+      "status": "EXACT",
+      "panel_csv_files": 127,
+      "evidence_exports": 4,
+      "numeric_tolerance": 0,
+      "platform_differences": [],
+      "runtime_exception": "R_version platform string and CSV CRLF/LF only; all values/RNG settings exact",
+      "before": "results\\phase11-2026-11-04",
+      "after": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase12-replay11\\runs\\20261103T193721-494a8b59"
+    },
+    "phase5": {
+      "status": "MATCHED",
+      "files": 24,
+      "tolerance": "numeric 1e-12; identities/text exact",
+      "baseline": "results\\phase5-2026-11-03",
+      "run": "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2\\work\\phase12-replay5\\runs\\20261103T194755-f0f03d54"
+    },
+    "unchanged_panel_scientific_csv_files": 77,
+    "frozen_generated_hashes_verified": 217,
+    "sqlite_integrity": "ok",
+    "foreign_key_violations": 0,
+    "python_tests": 170,
+    "python_log": "work/phase12-python-release.log",
+    "r_tests": "analytical, identity RNG, cohort and contribution invariants passed",
+    "ci": "RUN_AFTER_PUBLICATION_SEE_PR_CHECKS_NOT_CLAIMED_AT_LOCAL_FREEZE"
+  },
+  "limitations": [
+    "27numeric additions are source-located curation, not automatic discoveries",
+    "Three phosphate rows held; selected-page numerical recall5/22",
+    "NorthStanmore updated2026MRE not harmonized; earlier verified resource retained and flagged",
+    "No new native entity relation or national Project count",
+    "Formal C1, full six-domain and overall recoveryT1 remain0",
+    "Conditional research ranks, not cash availability or development-success probabilities"
+  ]
+}

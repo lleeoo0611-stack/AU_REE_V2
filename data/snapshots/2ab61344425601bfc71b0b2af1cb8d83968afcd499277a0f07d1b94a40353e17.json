@@ -1,0 +1,102 @@
+{
+  "version": "v2-compatibility-v2-objective-evidence",
+  "upstream_policy": {
+    "$schema_version": "1.0",
+    "policy_id": "C0_F1F2_COHORT_C1C2_V1_20261031",
+    "source_asof": "2026-10-29",
+    "decision_date": "2026-10-31",
+    "decision_status": "ACCEPTED_COHORT_BOUNDARIES",
+    "statistical_unit": "INDEPENDENT_VERIFIED_PROJECT",
+    "cohorts": {
+      "C0": "RAW_SOURCE_CENSUS_NOT_MCDA",
+      "C1": "SIX_INDEPENDENT_GATES_PASSED_PRE_FID_PROJECT",
+      "C2": "PROJECT_ID_AND_REE_PRODUCT_ROLE_INDEPENDENTLY_SIGNED_BUT_OTHER_C1_GATES_INCOMPLETE",
+      "C3": "PUBLISHED_AS_OF_HISTORICAL_EVALUATION_NOT_PRE_FID_MAINLINE"
+    },
+    "C1_required_gates": [
+      "ID",
+      "ROLE",
+      "WINDOW",
+      "JORC",
+      "PANEL",
+      "GIS_RELEASE"
+    ],
+    "JORC_allowed_REO_basis": [
+      "TREO",
+      "REO_SCOPED_BREAKDOWN"
+    ],
+    "C1_stage": "AUSTRALIA_ACTIVE_PUBLISHED_SCOPING_PFS_DFS_BFS_FEASIBILITY_AS_OF_CUTOFF_PRE_FID",
+    "C1_criteria_panel_status": "NOT_SELECTED_12_AND_9_STILL_CANDIDATE",
+    "C1_gate_signed_source_required": true,
+    "C2_required_gates": [
+      "ID",
+      "ROLE"
+    ],
+    "C2_identity_approval_requires": [
+      "verified_project_id",
+      "project_identity_scope",
+      "project_footprint_ref",
+      "ree_product_role_ref"
+    ],
+    "duplicate_P1_case_policy": "P1_13_RECORDS_SEPARATE_FROM_39_PROJECT_GROUPS_UNTIL_APPROVED_CROSSWALK",
+    "approvals": {
+      "gates": "inputs/review_decisions/c1_c2_project_gate_signoffs_v1.csv",
+      "project_metadata": "inputs/review_decisions/c1_c2_project_identity_metadata_v1.csv"
+    },
+    "release_policy": "NO_FORMAL_MCDA_C1_RESULTS_UNTIL_GATE_SIGNOFF_AND_FIXED_PANEL",
+    "forbidden": [
+      "RESOURCE_ONLY_TO_C1",
+      "HM_THM_TO_TREO_AUTOCONVERSION",
+      "EES_SCOPING_TO_ECONOMIC_SCOPING",
+      "C2_PROJECT_ID_FROM_NAME_MATCH",
+      "C2_COMBINED_WITH_C1_RANKING_WITHOUT_SEPARATE_SCENARIO"
+    ]
+  },
+  "compatibility": "V2_PARTIAL_PANELS_ARE_EXPLORATORY_NOT_FORMAL_C1",
+  "gate_evidence_import": "OBJECTIVE_EVIDENCE_SEPARATE_FROM_SIGNOFF",
+  "formal_panel": "UNRESOLVED_UPSTREAM_NOT_SELECTED_12_OR_9",
+  "imports": {
+    "policy": {
+      "path": "data/snapshots/a63f7cf5d1c2e81463e3fedeede2ad27dc17ec62415c57b8b04c641c82cc8188.upstream",
+      "sha256": "a63f7cf5d1c2e81463e3fedeede2ad27dc17ec62415c57b8b04c641c82cc8188",
+      "url": "https://github.com/lleeoo0611-stack/AU_REE/blob/093d724cc25fc319725bf347fc4d8ab196aadaf3/config/cohort_c1_c2_policy_v1.json",
+      "upstream_path": "config/cohort_c1_c2_policy_v1.json",
+      "upstream_commit": "093d724cc25fc319725bf347fc4d8ab196aadaf3",
+      "acquired_at": "2026-11-03T16:48:27.171394+00:00"
+    },
+    "criteria": {
+      "path": "data/snapshots/ddb8c35865401baad9dce1240a4b2748591029e264ec85ff235f88f0041d121e.upstream",
+      "sha256": "ddb8c35865401baad9dce1240a4b2748591029e264ec85ff235f88f0041d121e",
+      "url": "https://github.com/lleeoo0611-stack/AU_REE/blob/093d724cc25fc319725bf347fc4d8ab196aadaf3/config/criteria.json",
+      "upstream_path": "config/criteria.json",
+      "upstream_commit": "093d724cc25fc319725bf347fc4d8ab196aadaf3",
+      "acquired_at": "2026-11-03T16:48:27.172258+00:00"
+    },
+    "gates": {
+      "path": "data/snapshots/c27cb86ed51c0f4bf19dbb14f8254a2d366e940dbdc68a43c60ea8b83729cb9a.upstream",
+      "sha256": "c27cb86ed51c0f4bf19dbb14f8254a2d366e940dbdc68a43c60ea8b83729cb9a",
+      "url": "https://github.com/lleeoo0611-stack/AU_REE/blob/093d724cc25fc319725bf347fc4d8ab196aadaf3/inputs/review_decisions/c1_c2_project_gate_signoffs_v1.csv",
+      "upstream_path": "inputs/review_decisions/c1_c2_project_gate_signoffs_v1.csv",
+      "upstream_commit": "093d724cc25fc319725bf347fc4d8ab196aadaf3",
+      "acquired_at": "2026-11-03T16:48:27.173097+00:00"
+    },
+    "identity": {
+      "path": "data/snapshots/6a31d65b604f2f6a0c643e8506c8bb4fd5dcdb98b6ed099f7ab444c703bb4e9d.upstream",
+      "sha256": "6a31d65b604f2f6a0c643e8506c8bb4fd5dcdb98b6ed099f7ab444c703bb4e9d",
+      "url": "https://github.com/lleeoo0611-stack/AU_REE/blob/093d724cc25fc319725bf347fc4d8ab196aadaf3/inputs/review_decisions/c1_c2_project_identity_metadata_v1.csv",
+      "upstream_path": "inputs/review_decisions/c1_c2_project_identity_metadata_v1.csv",
+      "upstream_commit": "093d724cc25fc319725bf347fc4d8ab196aadaf3",
+      "acquired_at": "2026-11-03T16:48:27.173957+00:00"
+    },
+    "decisions": {
+      "path": "data/snapshots/47f87e409af418b3f4e69b8ec2cf08c99e32c3354449f8f1ab5640c2cb43f87c.upstream",
+      "sha256": "47f87e409af418b3f4e69b8ec2cf08c99e32c3354449f8f1ab5640c2cb43f87c",
+      "url": "https://github.com/lleeoo0611-stack/AU_REE/blob/093d724cc25fc319725bf347fc4d8ab196aadaf3/docs/RESEARCH_DECISIONS.md",
+      "upstream_path": "docs/RESEARCH_DECISIONS.md",
+      "upstream_commit": "093d724cc25fc319725bf347fc4d8ab196aadaf3",
+      "acquired_at": "2026-11-03T16:48:27.175277+00:00"
+    }
+  },
+  "approved_crosswalk": [],
+  "v2_cutoff": "2026-11-03"
+}

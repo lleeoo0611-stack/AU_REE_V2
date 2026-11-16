@@ -1,0 +1,136 @@
+{
+  "run_id": "20261103T135031-9f08c1cb",
+  "automatic_observations_by_domain_status_kind": {
+    "Technical|REVIEW|NULL_DISCLOSURE": 31,
+    "Technical|AUTO_VALIDATED|NUMERIC": 118,
+    "Technical|AUTO_VALIDATED|NULL_DISCLOSURE": 104,
+    "Development|AUTO_VALIDATED|NULL_DISCLOSURE": 43,
+    "Commercial|REVIEW|NULL_DISCLOSURE": 8,
+    "Development|REVIEW|NULL_DISCLOSURE": 14,
+    "Commercial|AUTO_VALIDATED|NULL_DISCLOSURE": 5,
+    "Resource|REVIEW|NUMERIC": 35,
+    "Resource|AUTO_VALIDATED|NUMERIC": 5,
+    "Strategic|AUTO_VALIDATED|NUMERIC": 8,
+    "Technical|REVIEW|NUMERIC": 1
+  },
+  "by_document": {
+    "discovery_asra_primary_met_alternative_530e7a5f3d94": {
+      "Technical|REVIEW|NULL_DISCLOSURE": 5,
+      "Technical|AUTO_VALIDATED|NUMERIC": 112,
+      "Technical|AUTO_VALIDATED|NULL_DISCLOSURE": 5
+    },
+    "browns_range_2025": {
+      "Development|AUTO_VALIDATED|NULL_DISCLOSURE": 28,
+      "Commercial|REVIEW|NULL_DISCLOSURE": 3,
+      "Development|REVIEW|NULL_DISCLOSURE": 8,
+      "Commercial|AUTO_VALIDATED|NULL_DISCLOSURE": 1,
+      "Technical|AUTO_VALIDATED|NULL_DISCLOSURE": 27,
+      "Technical|REVIEW|NULL_DISCLOSURE": 8,
+      "Resource|REVIEW|NUMERIC": 2
+    },
+    "yttria_maiden2024": {
+      "Resource|AUTO_VALIDATED|NUMERIC": 2,
+      "Strategic|AUTO_VALIDATED|NUMERIC": 8,
+      "Technical|AUTO_VALIDATED|NUMERIC": 2,
+      "Technical|AUTO_VALIDATED|NULL_DISCLOSURE": 4,
+      "Technical|REVIEW|NULL_DISCLOSURE": 5,
+      "Technical|REVIEW|NUMERIC": 1,
+      "Resource|REVIEW|NUMERIC": 2
+    },
+    "discovered_4eed5b897ec8473d8c237e2841f4637820972f1679203e83911e3b7da3333a0c": {
+      "Commercial|REVIEW|NULL_DISCLOSURE": 1,
+      "Technical|REVIEW|NULL_DISCLOSURE": 1
+    },
+    "circle_met2022": {
+      "Technical|REVIEW|NULL_DISCLOSURE": 1,
+      "Technical|AUTO_VALIDATED|NULL_DISCLOSURE": 1,
+      "Technical|AUTO_VALIDATED|NUMERIC": 2,
+      "Development|AUTO_VALIDATED|NULL_DISCLOSURE": 1
+    },
+    "koppamurra_pfs2026": {
+      "Development|REVIEW|NULL_DISCLOSURE": 4,
+      "Technical|REVIEW|NULL_DISCLOSURE": 3,
+      "Development|AUTO_VALIDATED|NULL_DISCLOSURE": 10,
+      "Technical|AUTO_VALIDATED|NULL_DISCLOSURE": 22,
+      "Commercial|REVIEW|NULL_DISCLOSURE": 3,
+      "Resource|REVIEW|NUMERIC": 12,
+      "Commercial|AUTO_VALIDATED|NULL_DISCLOSURE": 2
+    },
+    "wudinna_mre2026": {
+      "Development|REVIEW|NULL_DISCLOSURE": 1,
+      "Technical|AUTO_VALIDATED|NULL_DISCLOSURE": 8,
+      "Technical|REVIEW|NULL_DISCLOSURE": 4,
+      "Development|AUTO_VALIDATED|NULL_DISCLOSURE": 1,
+      "Technical|AUTO_VALIDATED|NUMERIC": 1
+    },
+    "mt_weld_2024": {
+      "Technical|AUTO_VALIDATED|NULL_DISCLOSURE": 25,
+      "Resource|AUTO_VALIDATED|NUMERIC": 3,
+      "Resource|REVIEW|NUMERIC": 19,
+      "Technical|AUTO_VALIDATED|NUMERIC": 1,
+      "Technical|REVIEW|NULL_DISCLOSURE": 1
+    },
+    "discovery_ar3_quarter_detail_alternative_615bb4ec1725": {
+      "Technical|AUTO_VALIDATED|NULL_DISCLOSURE": 12,
+      "Development|REVIEW|NULL_DISCLOSURE": 1,
+      "Commercial|AUTO_VALIDATED|NULL_DISCLOSURE": 2,
+      "Development|AUTO_VALIDATED|NULL_DISCLOSURE": 3,
+      "Technical|REVIEW|NULL_DISCLOSURE": 3,
+      "Commercial|REVIEW|NULL_DISCLOSURE": 1
+    }
+  },
+  "rank_comparisons": 621,
+  "changed_ranks": 0,
+  "cohorts": [
+    {
+      "panel": "beneficiation_concentrate_screen",
+      "before_n": "2",
+      "after_n": "2"
+    },
+    {
+      "panel": "issuer_resource_composition",
+      "before_n": "9",
+      "after_n": "9"
+    },
+    {
+      "panel": "issuer_resource_concentrate",
+      "before_n": "2",
+      "after_n": "2"
+    },
+    {
+      "panel": "issuer_resource_concentrate_recovery",
+      "before_n": "2",
+      "after_n": "2"
+    },
+    {
+      "panel": "issuer_resource_financing_milestone",
+      "before_n": "5",
+      "after_n": "5"
+    },
+    {
+      "panel": "issuer_resource_infrastructure",
+      "before_n": "7",
+      "after_n": "7"
+    },
+    {
+      "panel": "issuer_resource_study",
+      "before_n": "5",
+      "after_n": "5"
+    },
+    {
+      "panel": "official_wa_resource_screen",
+      "before_n": "17",
+      "after_n": "17"
+    },
+    {
+      "panel": "resource_infrastructure_pilot",
+      "before_n": "20",
+      "after_n": "20"
+    }
+  ],
+  "phase8_entities_unchanged": true,
+  "phase8_entities": 7554,
+  "current_entities": 7554,
+  "mcda_csv_files_compared": 125,
+  "mcda_csv_changed": []
+}

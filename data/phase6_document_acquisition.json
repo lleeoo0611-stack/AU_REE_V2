@@ -1,0 +1,82 @@
+{
+  "attempted_on": "2026-11-03",
+  "unavailable": [
+    {
+      "key": "disr_remp_2025",
+      "status": "UNAVAILABLE",
+      "url": "https://www.industry.gov.au/sites/default/files/2025-12/resources-and-energy-major-projects-2025-data.xlsx",
+      "reason": "Read operation timed out after retries; no workbook bytes accepted"
+    },
+    {
+      "key": "splinter_hre2022",
+      "status": "UNAVAILABLE",
+      "url": "https://wcsecure.weblink.com.au/pdf/HRE/02556236.pdf",
+      "reason": "HTTP404; issuer-hosted original not recovered; independent expert report context not admitted"
+    },
+    {
+      "key": "fingerboards_referral2026",
+      "status": "UNAVAILABLE",
+      "url": "https://www.planning.vic.gov.au/__data/assets/pdf_file/0031/763447/GCM-Fingerboards-Critical-Minerals-Project-EES-referral-form.pdf",
+      "reason": "HTTP403; public index readable but original bytes not retrieved; proponent process page acquired separately"
+    },
+    {
+      "key": "brothers_ar2024",
+      "status": "UNAVAILABLE",
+      "url": "https://data-api.marketindex.com.au/api/v1/announcements/XASX%3ACRI%3A6A1227421/pdf/inline/2024-annual-report-to-shareholders",
+      "reason": "HTTP403; existing primary2026Jupiter study used for explicit parent context"
+    }
+  ],
+  "acquired_and_scoped": [
+    {
+      "key": "goschen_mre2025",
+      "url": "https://announcements.asx.com.au/asxpdf/20251015/pdf/06qkvvhp20rxx2.pdf",
+      "sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
+      "path": "data/snapshots/5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0.pdf",
+      "publication_date": "2025-10-15"
+    },
+    {
+      "key": "lyons_mre2023",
+      "url": "https://wcsecure.weblink.com.au/pdf/LNR/02729838.pdf",
+      "sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+      "path": "data/snapshots/3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4.pdf",
+      "publication_date": "2023-10-25"
+    },
+    {
+      "key": "circle_met2022",
+      "url": "https://assets.ctfassets.net/tpcqj4q45rlx/1ykWDllcGKP5Hm40Js55vV/064c5054260f786d59c023c5a8b60ab8/MEK_Positive_Rare_Earth_Metallurgical_Testwork_and_Forward_Plan.pdf",
+      "sha256": "b65a525000fb8d74d87024056f7c001df5ee466eb4cf4a8ccf9d6fd5ae08ce19",
+      "path": "data/snapshots/b65a525000fb8d74d87024056f7c001df5ee466eb4cf4a8ccf9d6fd5ae08ce19.pdf",
+      "publication_date": "2022-07-25"
+    },
+    {
+      "key": "narraburra_ar2023",
+      "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/g/ASX_GRL_2023.pdf",
+      "sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+      "path": "data/snapshots/716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707.pdf",
+      "publication_date": "2023-09"
+    },
+    {
+      "key": "iluka_vhm2026",
+      "url": "https://www.iluka.com/media/c33deodq/2jul26-rare-earth-concentrate-supply-agreement-with-vhm-ltd.pdf",
+      "sha256": "b40e90345756f9a687a9a4953ce3bb2a77665c31e9609ed0a8f63359ed5ff8e1",
+      "path": "data/snapshots/b40e90345756f9a687a9a4953ce3bb2a77665c31e9609ed0a8f63359ed5ff8e1.pdf",
+      "publication_date": "2026-07-02"
+    },
+    {
+      "key": "goschen_iluka2026",
+      "url": "https://wcsecure.weblink.com.au/pdf/VHM/03106645.pdf",
+      "sha256": "3cd2e2eb8f681926b8e8169c1ee350e6c1a612ddb329bebd7bdfb84d33a96b13",
+      "path": "data/snapshots/3cd2e2eb8f681926b8e8169c1ee350e6c1a612ddb329bebd7bdfb84d33a96b13.pdf",
+      "publication_date": "2026-07-02"
+    },
+    {
+      "key": "koppamurra_pfs2026",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7600073.pdf?v=63949564086",
+      "sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "path": "data/snapshots/c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979.pdf",
+      "publication_date": "2026-06-25"
+    }
+  ],
+  "discovery_run": "data/discovery_latest.json",
+  "brothers_relation_source": "jupiter_scoping2026 physical p2; controlled extraction artifact phase6_jupiter_brothers_page2"
+}

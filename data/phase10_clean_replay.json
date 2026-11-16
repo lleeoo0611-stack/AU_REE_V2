@@ -1,0 +1,61 @@
+{
+  "status": "POINT_SCIENCE_AND_COMPARABILITY_MATCHED_WITH_DECLARED_MC_ORDER_LIMIT",
+  "exact_export_checks": {
+    "technical_comparability.csv": true,
+    "document_process_variables.csv": true,
+    "document_pipeline_summary.json": true,
+    "study_cases.csv": true,
+    "study_parameter_evidence.csv": true
+  },
+  "criterion_rows_equal": true,
+  "resource_rows_equal": true,
+  "scientific_coverage_equal_excluding_raw_versions": true,
+  "entity_ids_equal": true,
+  "scientific_files": 36,
+  "panel_csv_rowsets_equal": 122,
+  "panel_csv_total": 125,
+  "rounding_frequency_order_limitations": [
+    {
+      "file": "issuer_resource_composition/rounding_uncertainty.csv",
+      "maximum_absolute_difference": {
+        "median": 0.0,
+        "q05": 0.0,
+        "q95": 0.0,
+        "frequency_first": 0.0,
+        "frequency_top3": 0.0,
+        "frequency_top5": 0.006000000000000005
+      },
+      "reason": "Existing R source-rounding RNG assigned by matrix row position; clean SQLite insertion order differs. Point ranks, quantiles and evidence unchanged; no measurement error introduced."
+    },
+    {
+      "file": "issuer_resource_study/rounding_uncertainty.csv",
+      "maximum_absolute_difference": {
+        "median": 0.0,
+        "q05": 0.0,
+        "q95": 0.0,
+        "frequency_first": 0.020000000000000018,
+        "frequency_top3": 0.0,
+        "frequency_top5": 0.0
+      },
+      "reason": "Existing R source-rounding RNG assigned by matrix row position; clean SQLite insertion order differs. Point ranks, quantiles and evidence unchanged; no measurement error introduced."
+    },
+    {
+      "file": "resource_infrastructure_pilot/rounding_uncertainty.csv",
+      "maximum_absolute_difference": {
+        "median": 0.0,
+        "q05": 0.0,
+        "q95": 0.0,
+        "frequency_first": 0.0,
+        "frequency_top3": 0.009000000000000008,
+        "frequency_top5": 0.0
+      },
+      "reason": "Existing R source-rounding RNG assigned by matrix row position; clean SQLite insertion order differs. Point ranks, quantiles and evidence unchanged; no measurement error introduced."
+    }
+  ],
+  "canonical_observation_versions": 37015,
+  "clean_observation_versions": 35996,
+  "commercial_raw_versions": {
+    "canonical": 32634,
+    "clean": 32632
+  }
+}

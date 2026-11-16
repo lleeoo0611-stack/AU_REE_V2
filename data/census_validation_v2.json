@@ -1,0 +1,1590 @@
+{
+  "version": "prospective-native-reference-v2",
+  "sampling": [
+    {
+      "source_key": "nsw_metindex_live",
+      "stratum": "explicit",
+      "frame_n": 1565,
+      "sample_n": 2,
+      "inclusion_fraction": 0.0012779552715654952
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "stratum": "mineral",
+      "frame_n": 95,
+      "sample_n": 2,
+      "inclusion_fraction": 0.021052631578947368
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "stratum": "other",
+      "frame_n": 29205,
+      "sample_n": 2,
+      "inclusion_fraction": 6.84814244136278e-05
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "stratum": "scandium",
+      "frame_n": 24,
+      "sample_n": 2,
+      "inclusion_fraction": 0.08333333333333333
+    },
+    {
+      "source_key": "nt_modat_live",
+      "stratum": "explicit",
+      "frame_n": 15,
+      "sample_n": 2,
+      "inclusion_fraction": 0.13333333333333333
+    },
+    {
+      "source_key": "nt_modat_live",
+      "stratum": "other",
+      "frame_n": 2084,
+      "sample_n": 2,
+      "inclusion_fraction": 0.0009596928982725527
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "stratum": "explicit",
+      "frame_n": 9,
+      "sample_n": 2,
+      "inclusion_fraction": 0.2222222222222222
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "stratum": "other",
+      "frame_n": 5189,
+      "sample_n": 2,
+      "inclusion_fraction": 0.0003854307188282906
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "stratum": "scandium",
+      "frame_n": 2,
+      "sample_n": 2,
+      "inclusion_fraction": 1.0
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "stratum": "explicit",
+      "frame_n": 17,
+      "sample_n": 2,
+      "inclusion_fraction": 0.11764705882352941
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "stratum": "other",
+      "frame_n": 21348,
+      "sample_n": 2,
+      "inclusion_fraction": 9.368559115608019e-05
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "stratum": "scandium",
+      "frame_n": 5,
+      "sample_n": 2,
+      "inclusion_fraction": 0.4
+    },
+    {
+      "source_key": "sa_developing_live",
+      "stratum": "other",
+      "frame_n": 30,
+      "sample_n": 2,
+      "inclusion_fraction": 0.06666666666666667
+    },
+    {
+      "source_key": "sa_major_live",
+      "stratum": "other",
+      "frame_n": 27,
+      "sample_n": 2,
+      "inclusion_fraction": 0.07407407407407407
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "stratum": "explicit",
+      "frame_n": 883,
+      "sample_n": 2,
+      "inclusion_fraction": 0.0022650056625141564
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "stratum": "mineral",
+      "frame_n": 6,
+      "sample_n": 2,
+      "inclusion_fraction": 0.3333333333333333
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "stratum": "other",
+      "frame_n": 7918,
+      "sample_n": 2,
+      "inclusion_fraction": 0.00025258903763576663
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "stratum": "scandium",
+      "frame_n": 2,
+      "sample_n": 2,
+      "inclusion_fraction": 1.0
+    },
+    {
+      "source_key": "tas_mrt_live",
+      "stratum": "explicit",
+      "frame_n": 403,
+      "sample_n": 2,
+      "inclusion_fraction": 0.004962779156327543
+    },
+    {
+      "source_key": "tas_mrt_live",
+      "stratum": "other",
+      "frame_n": 7892,
+      "sample_n": 2,
+      "inclusion_fraction": 0.00025342118601115053
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "stratum": "explicit",
+      "frame_n": 5,
+      "sample_n": 2,
+      "inclusion_fraction": 0.4
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "stratum": "mineral",
+      "frame_n": 31,
+      "sample_n": 2,
+      "inclusion_fraction": 0.06451612903225806
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "stratum": "other",
+      "frame_n": 18752,
+      "sample_n": 2,
+      "inclusion_fraction": 0.00010665529010238908
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "stratum": "explicit",
+      "frame_n": 429,
+      "sample_n": 2,
+      "inclusion_fraction": 0.004662004662004662
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "stratum": "other",
+      "frame_n": 48076,
+      "sample_n": 2,
+      "inclusion_fraction": 4.160079873533572e-05
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "stratum": "scandium",
+      "frame_n": 12,
+      "sample_n": 2,
+      "inclusion_fraction": 0.16666666666666666
+    }
+  ],
+  "records": [
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "101612",
+      "name": "North Bloomfield Claim",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Au",
+        "minor_comm": null,
+        "ore_min": "gold",
+        "gangue_min": null,
+        "summary_desc": "Four Mile Creek yielded large quantities of coarse gold, whereas workings on the deep leads at North and South Bloomfield were not very productive-probably because the lower parts of the wash were not penetrated (Andrews, 1901)."
+      },
+      "structured": [
+        "major_comm",
+        "minor_comm"
+      ],
+      "locator": "features[607]",
+      "group_id": "NSW_METINDEX_SITE/101612",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "150173",
+      "name": null,
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Au",
+        "minor_comm": null,
+        "ore_min": null,
+        "gangue_min": null,
+        "summary_desc": "No workings observed. Exact locality of gold discovered by hall is unknown. Within cobbadah creek"
+      },
+      "structured": [
+        "major_comm",
+        "minor_comm"
+      ],
+      "locator": "features[8106]",
+      "group_id": "NSW_METINDEX_SITE/150173",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "160581",
+      "name": "James Mine",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "W, Bi, Topaz - industrial",
+        "minor_comm": "As, Sn, Zn, Beryl - industrial",
+        "ore_min": "bismuthinite, monazite, safflorite, skutterudite, wolframite",
+        "gangue_min": "kaolinite, quartz",
+        "summary_desc": null
+      },
+      "structured": [
+        "major_comm",
+        "minor_comm"
+      ],
+      "locator": "features[12712]",
+      "group_id": "NSW_METINDEX_SITE/160581",
+      "entity_kind": "SITE",
+      "stratum": "mineral",
+      "expected_candidate": true,
+      "expected_role": "MINERAL_ONLY",
+      "annotation_reason": "Original mineral/commodity text reports monazite/xenotime; not a verified REE Project.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "162147",
+      "name": "Dream shaft",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Sn",
+        "minor_comm": "monazite, Zn, Cu",
+        "ore_min": "cassiterite",
+        "gangue_min": "chlorite, host",
+        "summary_desc": null
+      },
+      "structured": [
+        "major_comm",
+        "minor_comm"
+      ],
+      "locator": "features[13250]",
+      "group_id": "NSW_METINDEX_SITE/162147",
+      "entity_kind": "SITE",
+      "stratum": "mineral",
+      "expected_candidate": true,
+      "expected_role": "MINERAL_ONLY",
+      "annotation_reason": "Original mineral/commodity text reports monazite/xenotime; not a verified REE Project.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "157444",
+      "name": "Wongabah west mine",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Pb, Ag, Zn, As",
+        "minor_comm": "Cu, Sn, Au, Sb",
+        "ore_min": "arsenopyrite, galena, pyrite, sphalerite",
+        "gangue_min": "quartz (calaverite)",
+        "summary_desc": null
+      },
+      "structured": [
+        "major_comm",
+        "minor_comm"
+      ],
+      "locator": "features[12023]",
+      "group_id": "NSW_METINDEX_SITE/157444",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "101524",
+      "name": "Perseverance Mine",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Au",
+        "minor_comm": null,
+        "ore_min": null,
+        "gangue_min": "quartz",
+        "summary_desc": null
+      },
+      "structured": [
+        "major_comm",
+        "minor_comm"
+      ],
+      "locator": "features[519]",
+      "group_id": "NSW_METINDEX_SITE/101524",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "102547",
+      "name": "Cincinatti (Pt) prospect",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Pt",
+        "minor_comm": "Sc",
+        "ore_min": "platinum",
+        "gangue_min": null,
+        "summary_desc": "PGE prospect lying 1 km SW of Cincinatti magnesite prospect. Defined by RAB drilling. Saprolite over olivine pyroxenite"
+      },
+      "structured": [
+        "major_comm",
+        "minor_comm"
+      ],
+      "locator": "features[1528]",
+      "group_id": "NSW_METINDEX_SITE/102547",
+      "entity_kind": "SITE",
+      "stratum": "scandium",
+      "expected_candidate": true,
+      "expected_role": "SC_ONLY",
+      "annotation_reason": "Original structured commodity field reports Sc with no declared REE; scandium-related candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "nsw_metindex_live",
+      "source_sha256": "2315ce1d796cca1673f1c5dc22a4671c46c474bfa8661bc7ee0790ab0de852f2",
+      "native_id": "102551",
+      "name": "Forest View prospect",
+      "state": "NSW",
+      "original_fields": {
+        "major_comm": "Sc",
+        "minor_comm": null,
+        "ore_min": null,
+        "gangue_min": null,
+        "summary_desc": "Probable Alaskan-type mafic/ultramafic intrusive complex. "
+      },
+      "structured": [
+        "major_comm",
+        "minor_comm"
+      ],
+      "locator": "features[1531]",
+      "group_id": "NSW_METINDEX_SITE/102551",
+      "entity_kind": "SITE",
+      "stratum": "scandium",
+      "expected_candidate": true,
+      "expected_role": "SC_ONLY",
+      "annotation_reason": "Original structured commodity field reports Sc with no declared REE; scandium-related candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "nt_modat_live",
+      "source_sha256": "a1a15d7d639aac6c79e2b4b6c37088824ccab4bcfa7750cc2519e3f993697974",
+      "native_id": "http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/5625",
+      "name": "Haddock",
+      "state": "NT",
+      "original_fields": {
+        "commodity": "REE,Uranium",
+        "representativeCommodity_uri": "http://resource.geosciml.org/classifier/cgi/commodity-code/Uranium"
+      },
+      "structured": [
+        "commodity",
+        "representativeCommodity_uri"
+      ],
+      "locator": "features[1805]",
+      "group_id": "NT_MODAT_SITE/http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/5625",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "annotation_reason": "Original commodity field explicitly declares REE/rare earth elements; candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "nt_modat_live",
+      "source_sha256": "a1a15d7d639aac6c79e2b4b6c37088824ccab4bcfa7750cc2519e3f993697974",
+      "native_id": "http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/5886",
+      "name": "Mulga",
+      "state": "NT",
+      "original_fields": {
+        "commodity": "Phosphate,REE,Uranium",
+        "representativeCommodity_uri": "http://resource.geosciml.org/classifier/cgi/commodity-code/REE"
+      },
+      "structured": [
+        "commodity",
+        "representativeCommodity_uri"
+      ],
+      "locator": "features[1960]",
+      "group_id": "NT_MODAT_SITE/http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/5886",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "annotation_reason": "Original commodity field explicitly declares REE/rare earth elements; candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "nt_modat_live",
+      "source_sha256": "a1a15d7d639aac6c79e2b4b6c37088824ccab4bcfa7750cc2519e3f993697974",
+      "native_id": "http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/1780",
+      "name": "Gilmours",
+      "state": "NT",
+      "original_fields": {
+        "commodity": "Niobium,Tantalum,Tin",
+        "representativeCommodity_uri": "http://resource.geosciml.org/classifier/cgi/commodity-code/Tin"
+      },
+      "structured": [
+        "commodity",
+        "representativeCommodity_uri"
+      ],
+      "locator": "features[1053]",
+      "group_id": "NT_MODAT_SITE/http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/1780",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "nt_modat_live",
+      "source_sha256": "a1a15d7d639aac6c79e2b4b6c37088824ccab4bcfa7750cc2519e3f993697974",
+      "native_id": "http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/484",
+      "name": "Unnamed 00484",
+      "state": "NT",
+      "original_fields": {
+        "commodity": "Copper",
+        "representativeCommodity_uri": "http://resource.geosciml.org/classifier/cgi/commodity-code/Copper"
+      },
+      "structured": [
+        "commodity",
+        "representativeCommodity_uri"
+      ],
+      "locator": "features[341]",
+      "group_id": "NT_MODAT_SITE/http://geology.data.nt.gov.au/resource/feature/ntgs/mineraloccurrence/484",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "532244",
+      "name": "ELAINE DOROTHY",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Cu(l);Au(m);Ree(s);U(vs);Co(vs);Mo(vs)",
+        "main_commodity": "RARE EARTH ELEMENTS"
+      },
+      "structured": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "locator": "features[3178]",
+      "group_id": "QLD_MINOCC_SITE/532244",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "annotation_reason": "Original commodity field explicitly declares REE/rare earth elements; candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "494081",
+      "name": "MILO",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Cu(m);Ree(m);Co(m);Mo(m);U(s);Au(s);Ag(s)",
+        "main_commodity": "URANIUM"
+      },
+      "structured": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "locator": "features[4292]",
+      "group_id": "QLD_MINOCC_SITE/494081",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "annotation_reason": "Original commodity field explicitly declares REE/rare earth elements; candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "517390",
+      "name": "UNNAMED 745955",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Cu(vs)",
+        "main_commodity": "COPPER"
+      },
+      "structured": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "locator": "features[4999]",
+      "group_id": "QLD_MINOCC_SITE/517390",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "516874",
+      "name": "UNNAMED 990630",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Cu(vs)",
+        "main_commodity": "COPPER"
+      },
+      "structured": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "locator": "features[4619]",
+      "group_id": "QLD_MINOCC_SITE/516874",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "534685",
+      "name": "WATERANGA",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Fs(l);Im(l);Mi(l);Cn(l);Mt(l);Zir(s);Rut(s);Sc(vs);Pt(vs);Ap(unk)",
+        "main_commodity": "FELDSPAR"
+      },
+      "structured": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "locator": "features[4498]",
+      "group_id": "QLD_MINOCC_SITE/534685",
+      "entity_kind": "SITE",
+      "stratum": "scandium",
+      "expected_candidate": true,
+      "expected_role": "SC_ONLY",
+      "annotation_reason": "Original structured commodity field reports Sc with no declared REE; scandium-related candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "qld_minocc_live",
+      "source_sha256": "ac2b4f3a1f44ee450ffa6e5a016b3a42c0dcd972be4a038938becbbd9d4643b4",
+      "native_id": "42480",
+      "name": "BELL CREEK SOUTH LEASE",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Ni(m);Co(m);Chry(vs);Sc(unk)",
+        "main_commodity": "NICKEL"
+      },
+      "structured": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "locator": "features[969]",
+      "group_id": "QLD_MINOCC_SITE/42480",
+      "entity_kind": "SITE",
+      "stratum": "scandium",
+      "expected_candidate": true,
+      "expected_role": "SC_ONLY",
+      "annotation_reason": "Original structured commodity field reports Sc with no declared REE; scandium-related candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "532244",
+      "name": "ELAINE DOROTHY",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Cu(l);Au(m);Ree(s);U(vs);Co(vs);Mo(vs)",
+        "main_commodity": "RARE EARTH ELEMENTS"
+      },
+      "structured": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "locator": "features[14188]",
+      "group_id": "QLD_MINOCC_SITE/532244",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "annotation_reason": "Original commodity field explicitly declares REE/rare earth elements; candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "494081",
+      "name": "MILO",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Cu(m);Ree(m);Co(m);Mo(m);U(s);Au(s);Ag(s)",
+        "main_commodity": "URANIUM"
+      },
+      "structured": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "locator": "features[18412]",
+      "group_id": "QLD_MINOCC_SITE/494081",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "annotation_reason": "Original commodity field explicitly declares REE/rare earth elements; candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "517390",
+      "name": "UNNAMED 745955",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Cu(vs)",
+        "main_commodity": "COPPER"
+      },
+      "structured": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "locator": "features[20801]",
+      "group_id": "QLD_MINOCC_SITE/517390",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "516874",
+      "name": "UNNAMED 990630",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Cu(vs)",
+        "main_commodity": "COPPER"
+      },
+      "structured": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "locator": "features[19473]",
+      "group_id": "QLD_MINOCC_SITE/516874",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "534685",
+      "name": "WATERANGA",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Fs(l);Im(l);Mi(l);Cn(l);Mt(l);Zir(s);Rut(s);Sc(vs);Pt(vs);Ap(unk)",
+        "main_commodity": "FELDSPAR"
+      },
+      "structured": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "locator": "features[18999]",
+      "group_id": "QLD_MINOCC_SITE/534685",
+      "entity_kind": "SITE",
+      "stratum": "scandium",
+      "expected_candidate": true,
+      "expected_role": "SC_ONLY",
+      "annotation_reason": "Original structured commodity field reports Sc with no declared REE; scandium-related candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "qld_minocc_status_live",
+      "source_sha256": "07c56470fa882f333f2b9285ed58ce43ae985f0a346c491175b638c16c08ab21",
+      "native_id": "42480",
+      "name": "BELL CREEK SOUTH LEASE",
+      "state": "QLD",
+      "original_fields": {
+        "all_commodities": "Ni(m);Co(m);Chry(vs);Sc(unk)",
+        "main_commodity": "NICKEL"
+      },
+      "structured": [
+        "all_commodities",
+        "main_commodity"
+      ],
+      "locator": "features[4969]",
+      "group_id": "QLD_MINOCC_SITE/42480",
+      "entity_kind": "SITE",
+      "stratum": "scandium",
+      "expected_candidate": true,
+      "expected_role": "SC_ONLY",
+      "annotation_reason": "Original structured commodity field reports Sc with no declared REE; scandium-related candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "sa_developing_live",
+      "source_sha256": "adcf276ce1ab953163f2ab14c2abf13261e8699e03bc9e4c66c5340f744904c9",
+      "native_id": "210408",
+      "name": "Menninnie Dam",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Lead (Pb), Zinc (Zn), Silver (Ag)",
+        "PROJECT_DESCRIPTION": ""
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[18]",
+      "group_id": "SA_MINING_PROJECT_SITE_NO/210408",
+      "entity_kind": "PROJECT",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "sa_developing_live",
+      "source_sha256": "adcf276ce1ab953163f2ab14c2abf13261e8699e03bc9e4c66c5340f744904c9",
+      "native_id": "1599454",
+      "name": "Junction Dam",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Uranium (U3O8)",
+        "PROJECT_DESCRIPTION": ""
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[7]",
+      "group_id": "SA_MINING_PROJECT_SITE_NO/1599454",
+      "entity_kind": "PROJECT",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "sa_major_live",
+      "source_sha256": "61e62011fe4a16d1de872553ec9c7edf58d28373cc6ffdf7831dbb5adf972a40",
+      "native_id": "305367",
+      "name": "Olympic Dam",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Copper (Cu), Uranium (U3O8), Gold (Au), Silver (Ag)",
+        "PROJECT_DESCRIPTION": "Underground mine, large poly-metallic deposit of iron oxide copper-gold-uranium-silver mineralisation"
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[29]",
+      "group_id": "SA_MINING_PROJECT_SITE_NO/305367",
+      "entity_kind": "PROJECT",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "sa_major_live",
+      "source_sha256": "61e62011fe4a16d1de872553ec9c7edf58d28373cc6ffdf7831dbb5adf972a40",
+      "native_id": "1081619",
+      "name": "Jacinth-Ambrosia",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Heavy minerals (HM)",
+        "PROJECT_DESCRIPTION": ""
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[4]",
+      "group_id": "SA_MINING_PROJECT_SITE_NO/1081619",
+      "entity_kind": "PROJECT",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "7195",
+      "name": "IRON BARON SOUTH",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Iron",
+        "DEPOSIT_SUMMARY": "goethite-hematite body as lateritised scree/weathered bedrock. Grade predominantly 55-60% Fe. Some mining had taken place. production figure not published, in order of <1Mt, resource remaining unknown, probably only minor."
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[4368]",
+      "group_id": "SA_MINDEP_SITE/7195",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "8022",
+      "name": "CARNELIAN",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Clay",
+        "DEPOSIT_SUMMARY": "reported subsidence in Tea Tree Gully area was presumed to be from collapse of an historic, previously unrecorded working, probably workings on Tertiary clay deposit."
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[5093]",
+      "group_id": "SA_MINDEP_SITE/8022",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "3096",
+      "name": "MOUNT MITCHELL",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Tin,  Gold,  Molybdenum",
+        "DEPOSIT_SUMMARY": "mine developed on quartz blows in host Glenloth Granite. Recorded production in 1914 of 35 tonnes ore treated for 452gm gold at 13g/tAu. Tin reported as scattered grains of cassiterite and monazite in host greisen. Average tin content <250ppm."
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[1435]",
+      "group_id": "SA_MINDEP_SITE/3096",
+      "entity_kind": "SITE",
+      "stratum": "mineral",
+      "expected_candidate": true,
+      "expected_role": "MINERAL_ONLY",
+      "annotation_reason": "Original mineral/commodity text reports monazite/xenotime; not a verified REE Project.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "7396",
+      "name": "WENHAMS NO.2",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Monazite",
+        "DEPOSIT_SUMMARY": "pits developed on monazite occurrence in aplitic dyke in host metasediment of the Barossa Complex."
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[4526]",
+      "group_id": "SA_MINDEP_SITE/7396",
+      "entity_kind": "SITE",
+      "stratum": "mineral",
+      "expected_candidate": true,
+      "expected_role": "MINERAL_ONLY",
+      "annotation_reason": "Original mineral/commodity text reports monazite/xenotime; not a verified REE Project.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "5892",
+      "name": "PONTTS",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Gold",
+        "DEPOSIT_SUMMARY": "quartz-iron oxide lode, trend 070, dip N, in host weathered slate of the Stonyfell Quartzite. It was reworked in 1931 via an adit and two shafts. No production figure was determined."
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[3459]",
+      "group_id": "SA_MINDEP_SITE/5892",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "11212",
+      "name": "PONDYONG",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Limestone",
+        "DEPOSIT_SUMMARY": "shallow council scrape on a low ridge of limestone of the Bridgewater Formation, and worked for road making material."
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[8139]",
+      "group_id": "SA_MINDEP_SITE/11212",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "6098",
+      "name": "KANYAKA",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Copper,  Zinc,  Cobalt",
+        "DEPOSIT_SUMMARY": "secondary Cu-Pb-Zn mineralisation with significant Ni, Co, Sc, La, Y possibly in host Tertiary sediment/palaeochannel. Production from 1882-1915, 325t @ 7-17%Cu. Later trenching identified low-grade Cu-Pb-Zn mineralisation."
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[3613]",
+      "group_id": "SA_MINDEP_SITE/6098",
+      "entity_kind": "SITE",
+      "stratum": "scandium",
+      "expected_candidate": true,
+      "expected_role": null,
+      "annotation_reason": "Narrative explicitly lists significant Sc, La and Y with Cu-Pb-Zn mineralisation; candidate is justified; role uncertain without a structured commodity declaration. Do not score role correctness.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "sa_mindep_live",
+      "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+      "native_id": "9627",
+      "name": "ORALDANA",
+      "state": "SA",
+      "original_fields": {
+        "COMMODITIES": "Copper",
+        "DEPOSIT_SUMMARY": "prospecting on copper show, host Blue Mine Conglomerate. See Collier, J.B, B Sc Hons, University of Melbourne, 2000."
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[6586]",
+      "group_id": "SA_MINDEP_SITE/9627",
+      "entity_kind": "SITE",
+      "stratum": "scandium",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "tas_mrt_live",
+      "source_sha256": "82b91fe93aaadc9940a2112d6fd6c87a0593123755b0355f691a0e8b20cb98df",
+      "native_id": "669",
+      "name": "Brandy Creek Mine",
+      "state": "TAS",
+      "original_fields": {
+        "COMMODITIES": "Gold",
+        "DESCRIPTION": "Vein type gold mineralisation related to the Tasmania Reef",
+        "ORE_DESCRIPTION": null
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[335]",
+      "group_id": "TAS_MRT_SITE/669",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "tas_mrt_live",
+      "source_sha256": "82b91fe93aaadc9940a2112d6fd6c87a0593123755b0355f691a0e8b20cb98df",
+      "native_id": "1927",
+      "name": "Homestead",
+      "state": "TAS",
+      "original_fields": {
+        "COMMODITIES": "Gold",
+        "DESCRIPTION": "quartz reef",
+        "ORE_DESCRIPTION": null
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[924]",
+      "group_id": "TAS_MRT_SITE/1927",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "tas_mrt_live",
+      "source_sha256": "82b91fe93aaadc9940a2112d6fd6c87a0593123755b0355f691a0e8b20cb98df",
+      "native_id": "2744",
+      "name": "Amy Creek Alluvial",
+      "state": "TAS",
+      "original_fields": {
+        "COMMODITIES": "Tin",
+        "DESCRIPTION": "alluvial tin workings",
+        "ORE_DESCRIPTION": null
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[8143]",
+      "group_id": "TAS_MRT_SITE/2744",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "tas_mrt_live",
+      "source_sha256": "82b91fe93aaadc9940a2112d6fd6c87a0593123755b0355f691a0e8b20cb98df",
+      "native_id": "7266",
+      "name": "Unnamed",
+      "state": "TAS",
+      "original_fields": {
+        "COMMODITIES": "Sand",
+        "DESCRIPTION": null,
+        "ORE_DESCRIPTION": null
+      },
+      "structured": [
+        "COMMODITIES"
+      ],
+      "locator": "features[8056]",
+      "group_id": "TAS_MRT_SITE/7266",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "source_sha256": "71a08e4ba1b92724dbbdf8c0b592ca191a90031457868ee9448be15f2fb7deb6",
+      "native_id": "1019576",
+      "name": "The Fingerboards",
+      "state": "VIC",
+      "original_fields": {
+        "pri_comm": "Rare earth elements; ",
+        "sec_comm": " ",
+        "min_ass": " ",
+        "prod_comm": " "
+      },
+      "structured": [
+        "pri_comm",
+        "sec_comm",
+        "prod_comm"
+      ],
+      "locator": "features[18756]",
+      "group_id": "VIC_MINSITE_SITE/1019576",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "annotation_reason": "Original commodity field explicitly declares REE/rare earth elements; candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "source_sha256": "71a08e4ba1b92724dbbdf8c0b592ca191a90031457868ee9448be15f2fb7deb6",
+      "native_id": "1015256",
+      "name": "Bondi",
+      "state": "VIC",
+      "original_fields": {
+        "pri_comm": "Rare earth elements; ",
+        "sec_comm": "Heavy minerals; Ilmenite; Rutile; Zircon; ",
+        "min_ass": " ",
+        "prod_comm": " "
+      },
+      "structured": [
+        "pri_comm",
+        "sec_comm",
+        "prod_comm"
+      ],
+      "locator": "features[18679]",
+      "group_id": "VIC_MINSITE_SITE/1015256",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "annotation_reason": "Original commodity field explicitly declares REE/rare earth elements; candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "source_sha256": "71a08e4ba1b92724dbbdf8c0b592ca191a90031457868ee9448be15f2fb7deb6",
+      "native_id": "873750",
+      "name": "Douglas - Chetwynd Dune",
+      "state": "VIC",
+      "original_fields": {
+        "pri_comm": "Ilmenite; Leucoxene; Rutile; Zircon; ",
+        "sec_comm": " ",
+        "min_ass": "Rutile; Monazite; Chromite; Zircon; Tourmaline; Leucoxene; Topaz; Staurolite; Ilmenite",
+        "prod_comm": " "
+      },
+      "structured": [
+        "pri_comm",
+        "sec_comm",
+        "prod_comm"
+      ],
+      "locator": "features[16654]",
+      "group_id": "VIC_MINSITE_SITE/873750",
+      "entity_kind": "SITE",
+      "stratum": "mineral",
+      "expected_candidate": true,
+      "expected_role": "MINERAL_ONLY",
+      "annotation_reason": "Original mineral/commodity text reports monazite/xenotime; not a verified REE Project.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "source_sha256": "71a08e4ba1b92724dbbdf8c0b592ca191a90031457868ee9448be15f2fb7deb6",
+      "native_id": "873746",
+      "name": "Montrose",
+      "state": "VIC",
+      "original_fields": {
+        "pri_comm": "Ilmenite; Leucoxene; Monazite; Rutile; Xenotime; Zircon; ",
+        "sec_comm": " ",
+        "min_ass": "Rutile; Monazite; Xenotime - (Y); Zircon; Leucoxene; Ilmenite",
+        "prod_comm": " "
+      },
+      "structured": [
+        "pri_comm",
+        "sec_comm",
+        "prod_comm"
+      ],
+      "locator": "features[16651]",
+      "group_id": "VIC_MINSITE_SITE/873746",
+      "entity_kind": "SITE",
+      "stratum": "mineral",
+      "expected_candidate": true,
+      "expected_role": "MINERAL_ONLY",
+      "annotation_reason": "Original mineral/commodity text reports monazite/xenotime; not a verified REE Project.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "source_sha256": "71a08e4ba1b92724dbbdf8c0b592ca191a90031457868ee9448be15f2fb7deb6",
+      "native_id": "381093",
+      "name": "Unnamed",
+      "state": "VIC",
+      "original_fields": {
+        "pri_comm": "Gold; ",
+        "sec_comm": " ",
+        "min_ass": " ",
+        "prod_comm": " "
+      },
+      "structured": [
+        "pri_comm",
+        "sec_comm",
+        "prod_comm"
+      ],
+      "locator": "features[14747]",
+      "group_id": "VIC_MINSITE_SITE/381093",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "vic_minsite_live",
+      "source_sha256": "71a08e4ba1b92724dbbdf8c0b592ca191a90031457868ee9448be15f2fb7deb6",
+      "native_id": "362881",
+      "name": "Sailors Reef",
+      "state": "VIC",
+      "original_fields": {
+        "pri_comm": "Gold; ",
+        "sec_comm": " ",
+        "min_ass": "Gold; Quartz",
+        "prod_comm": " "
+      },
+      "structured": [
+        "pri_comm",
+        "sec_comm",
+        "prod_comm"
+      ],
+      "locator": "features[1665]",
+      "group_id": "VIC_MINSITE_SITE/362881",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0028179",
+      "name": "Hitamanny",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "Glt",
+        "target_com": "GREENSAND - GLAUCONITE",
+        "commodity": "INDUSTRIAL MINERAL"
+      },
+      "structured": [
+        "site_commo",
+        "target_com",
+        "commodity"
+      ],
+      "locator": "features[24891]",
+      "group_id": "WA_MINDEX_SITE/S0028179",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0240894",
+      "name": "North Stanmore",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "REE, Ga, Sc, Au",
+        "target_com": "RARE EARTHS",
+        "commodity": "SPECIALITY METAL"
+      },
+      "structured": [
+        "site_commo",
+        "target_com",
+        "commodity"
+      ],
+      "locator": "features[42746]",
+      "group_id": "WA_MINDEX_SITE/S0240894",
+      "entity_kind": "SITE",
+      "stratum": "explicit",
+      "expected_candidate": true,
+      "expected_role": "EXPLICIT_REE",
+      "annotation_reason": "Original commodity field explicitly declares REE/rare earth elements; candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0240331",
+      "name": "Area 2 - Yule East",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "Au, Ag",
+        "target_com": "GOLD",
+        "commodity": "PRECIOUS METAL"
+      },
+      "structured": [
+        "site_commo",
+        "target_com",
+        "commodity"
+      ],
+      "locator": "features[42263]",
+      "group_id": "WA_MINDEX_SITE/S0240331",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0018801",
+      "name": "Nemesis Alluvials",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "Au, Ag",
+        "target_com": "GOLD",
+        "commodity": "PRECIOUS METAL"
+      },
+      "structured": [
+        "site_commo",
+        "target_com",
+        "commodity"
+      ],
+      "locator": "features[17104]",
+      "group_id": "WA_MINDEX_SITE/S0018801",
+      "entity_kind": "SITE",
+      "stratum": "other",
+      "expected_candidate": false,
+      "expected_role": "NO_REE_MATCH",
+      "annotation_reason": "Read original fields: gold/base/industrial minerals only; creek/reef/greensand and B Sc Hons are not REE evidence.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0236392",
+      "name": "Estonia East",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "Co, Ni, Sc",
+        "target_com": "NICKEL",
+        "commodity": "STEEL ALLOY METAL"
+      },
+      "structured": [
+        "site_commo",
+        "target_com",
+        "commodity"
+      ],
+      "locator": "features[38840]",
+      "group_id": "WA_MINDEX_SITE/S0236392",
+      "entity_kind": "SITE",
+      "stratum": "scandium",
+      "expected_candidate": true,
+      "expected_role": "SC_ONLY",
+      "annotation_reason": "Original structured commodity field reports Sc with no declared REE; scandium-related candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    },
+    {
+      "source_key": "wa_minedex_live",
+      "source_sha256": "82f789b3d9f52870e636a7fbd19ecae0458767e8e7484a93f2a9e4eab8f1d8cf",
+      "native_id": "S0019065",
+      "name": "Goongarrie South",
+      "state": "WA",
+      "original_fields": {
+        "site_commo": "Ni, Co, Sc, Mn",
+        "target_com": "NICKEL",
+        "commodity": "STEEL ALLOY METAL"
+      },
+      "structured": [
+        "site_commo",
+        "target_com",
+        "commodity"
+      ],
+      "locator": "features[17319]",
+      "group_id": "WA_MINDEX_SITE/S0019065",
+      "entity_kind": "SITE",
+      "stratum": "scandium",
+      "expected_candidate": true,
+      "expected_role": "SC_ONLY",
+      "annotation_reason": "Original structured commodity field reports Sc with no declared REE; scandium-related candidate only.",
+      "annotation_agent": "executing-agent-source-only-before-predictions",
+      "independently_reviewed": false,
+      "split": "sealed_test",
+      "annotation_date": "2026-11-05"
+    }
+  ],
+  "predeclared_contract_sha256": "56fda83756e7ff1508cb9b86636eb47a55296a3a1d4ed6a48e3bb7ed872f43f2",
+  "annotation_status": "PROSPECTIVE_SINGLE_AGENT_NOT_INDEPENDENT_GOLD",
+  "baseline_commit": "bb7da099941eb222c3baa2537e34d137fe3fb208",
+  "seed": 20261106,
+  "source_cutoff": "2026-11-05",
+  "prediction_inspected_before_seal": false,
+  "model_tuning_permitted": false
+}

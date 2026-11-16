@@ -1,0 +1,126 @@
+{
+  "version": "REE_CRITERIA_R983_RECONSTRUCTED_V1",
+  "freeze_date": "2026-10-29",
+  "criteria": [
+    {
+      "code": "R1",
+      "name": "Comparable TREO contained (kt)",
+      "domain": "Resource Potential",
+      "direction": "MAX",
+      "unit": "kt TREO",
+      "basis": "DIRECT_TREO",
+      "variable": "contained_treo_kt",
+      "mandatory": false
+    },
+    {
+      "code": "S1",
+      "name": "Magnet REO proportion",
+      "domain": "Strategic Composition",
+      "direction": "MAX",
+      "unit": "%",
+      "basis": "DIRECT_MAGNET_REO_SHARE",
+      "variable": "magnet_reo_share_pct",
+      "mandatory": false
+    },
+    {
+      "code": "T1",
+      "name": "Processing complexity",
+      "domain": "Technical Feasibility",
+      "direction": "MIN",
+      "unit": "ordinal 1-4",
+      "basis": "PROCESS_ASSESSED",
+      "variable": "processing_complexity_ord",
+      "mandatory": true
+    },
+    {
+      "code": "T2",
+      "name": "NORM burden",
+      "domain": "Technical Feasibility",
+      "direction": "MIN",
+      "unit": "ordinal 1-4",
+      "basis": "NORM_ASSESSED",
+      "variable": "norm_burden_ord",
+      "mandatory": false
+    },
+    {
+      "code": "D1",
+      "name": "Study maturity",
+      "domain": "Development Readiness",
+      "direction": "MAX",
+      "unit": "ordinal 1-6",
+      "basis": "STUDY_EVENT",
+      "variable": "study_maturity_ord",
+      "mandatory": true
+    },
+    {
+      "code": "I1",
+      "name": "National key freight road distance",
+      "domain": "Infrastructure",
+      "direction": "MIN",
+      "unit": "km",
+      "basis": "OFFICIAL_GIS",
+      "variable": "road_distance_km",
+      "mandatory": true
+    },
+    {
+      "code": "I2",
+      "name": "Operational railway distance",
+      "domain": "Infrastructure",
+      "direction": "MIN",
+      "unit": "km",
+      "basis": "OFFICIAL_GIS",
+      "variable": "rail_distance_km",
+      "mandatory": true
+    },
+    {
+      "code": "I3",
+      "name": "Powerline distance",
+      "domain": "Infrastructure",
+      "direction": "MIN",
+      "unit": "km",
+      "basis": "OFFICIAL_GIS",
+      "variable": "power_distance_km",
+      "mandatory": true
+    },
+    {
+      "code": "I4",
+      "name": "Major port distance",
+      "domain": "Infrastructure",
+      "direction": "MIN",
+      "unit": "km",
+      "basis": "OFFICIAL_GIS",
+      "variable": "port_distance_km",
+      "mandatory": true
+    },
+    {
+      "code": "C1",
+      "name": "Financing maturity",
+      "domain": "Commercial/ESG",
+      "direction": "MAX",
+      "unit": "ordinal 0-4",
+      "basis": "VERIFIED_FINANCING_EVENT",
+      "variable": "financing_ord",
+      "mandatory": false
+    },
+    {
+      "code": "C2",
+      "name": "Offtake maturity",
+      "domain": "Commercial/ESG",
+      "direction": "MAX",
+      "unit": "ordinal 0-4",
+      "basis": "VERIFIED_OFFTAKE_EVENT",
+      "variable": "offtake_ord",
+      "mandatory": false
+    },
+    {
+      "code": "C3",
+      "name": "Approvals maturity",
+      "domain": "Commercial/ESG",
+      "direction": "MAX",
+      "unit": "ordinal 0-5",
+      "basis": "VERIFIED_APPROVAL_EVENT",
+      "variable": "approvals_ord",
+      "mandatory": false
+    }
+  ]
+}

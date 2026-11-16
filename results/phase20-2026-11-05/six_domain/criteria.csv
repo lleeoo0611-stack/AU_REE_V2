@@ -1,0 +1,7 @@
+code,domain,direction,low,high,function
+C1,Commercial,MAX,0,4,linear
+D1,Development,MAX,1,6,linear
+I4,Infrastructure,MIN,0,2000,linear
+R1,Resource,MAX,0,5000,log1p
+S1,Strategic,MAX,0,100,linear
+T1,Technical,MAX,0,100,linear

@@ -1,0 +1,66 @@
+{
+  "reused": [],
+  "attempted": [
+    {
+      "key": "donald_bfs2026",
+      "status": "ADDED",
+      "sha256": "c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f"
+    },
+    {
+      "key": "nolans_dfs2019",
+      "status": "UNAVAILABLE",
+      "reason": "HTTPError_404",
+      "failure_status": "HTTP_404_NOT_FOUND_AT_URL",
+      "http_status": 404,
+      "attempts": 1,
+      "retry_after_seconds": null,
+      "interpretation": "URL_FAILURE_NOT_DOCUMENT_ABSENCE"
+    },
+    {
+      "key": "yangibana_updated_dfs",
+      "status": "ADDED",
+      "sha256": "9b0905b4aa1f6c759df913ed324fcd033408a99e96a809a2ca6043370aaf28e3"
+    },
+    {
+      "key": "goschen_central_scoping",
+      "status": "ADDED",
+      "sha256": "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5"
+    }
+  ],
+  "alternative_success": [
+    {
+      "key": "donald_bfs2026",
+      "url": "https://wcsecure.weblink.com.au/pdf/ATR/03073797.pdf",
+      "sha256": "c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "publication_date": "2026-03-31",
+      "acquired_at": "2026-11-04T08:55:33.106004+00:00",
+      "path": "data/snapshots/c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f.pdf"
+    },
+    {
+      "key": "goschen_central_scoping",
+      "url": "https://wcsecure.weblink.com.au/pdf/ADC/02955863.pdf",
+      "sha256": "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5",
+      "publication_date": "2025-06-12",
+      "acquired_at": "2026-11-04T08:55:59.068515+00:00",
+      "path": "data/snapshots/f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5.pdf"
+    },
+    {
+      "key": "nolans_dfs2019_asx",
+      "url": "https://announcements.asx.com.au/asxpdf/20190207/pdf/442fgrbxqwrxdd.pdf",
+      "sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "publication_date": "2019-02-07",
+      "acquired_at": "2026-11-04T08:59:57.259261+00:00",
+      "path": "data/snapshots/63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb.pdf"
+    },
+    {
+      "key": "yangibana_updated_dfs",
+      "url": "https://api.investi.com.au/api/announcements/has/a19415dd-7bf.pdf",
+      "sha256": "9b0905b4aa1f6c759df913ed324fcd033408a99e96a809a2ca6043370aaf28e3",
+      "publication_date": "2026-07-13",
+      "acquired_at": "2026-11-04T08:55:53.571134+00:00",
+      "path": "data/snapshots/9b0905b4aa1f6c759df913ed324fcd033408a99e96a809a2ca6043370aaf28e3.pdf"
+    }
+  ],
+  "new_distinct_originals": 4,
+  "interpretation": "Original source documents, not new projects or independent experiments"
+}

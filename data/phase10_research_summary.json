@@ -1,0 +1,534 @@
+{
+  "version": "phase10-measured-summary-v1",
+  "run_id": "20261103T152228-e197a1d6",
+  "code": {
+    "package": "0.1.0",
+    "commit": "f0c308d9336565ae1b4a63c789044d03aa0de94c",
+    "content_sha256": "f36531c5c437a03c987cf9de5985f139abf00c78b2862eaa74c6c2da6d104afd"
+  },
+  "comparison": {
+    "before": {
+      "unresolved_pairs": 36,
+      "primary_scope_gaps": 1,
+      "resource_defined": 22,
+      "source_snapshots": 100,
+      "pdf_snapshots": 44,
+      "validated_statement_values": 263,
+      "validated_structured_events": 19,
+      "government_unconfirmed_relation_candidates": 112,
+      "government_confirmed_representative_site_relations": 4,
+      "development": 0,
+      "full_evidence": 0,
+      "canonical_registry_groups": 31,
+      "scorable_Resource": 22,
+      "scorable_Strategic": 9,
+      "scorable_Technical": 0,
+      "scorable_Development": 5,
+      "scorable_Infrastructure": 20,
+      "scorable_Commercial": 6
+    },
+    "after": {
+      "unresolved_pairs": 36,
+      "primary_scope_gaps": 1,
+      "resource_defined": 22,
+      "source_snapshots": 100,
+      "pdf_snapshots": 44,
+      "validated_statement_values": 265,
+      "validated_structured_events": 19,
+      "government_unconfirmed_relation_candidates": 112,
+      "government_confirmed_representative_site_relations": 4,
+      "development": 0,
+      "full_evidence": 0,
+      "canonical_registry_groups": 31,
+      "scorable_Resource": 22,
+      "scorable_Strategic": 9,
+      "scorable_Technical": 0,
+      "scorable_Development": 5,
+      "scorable_Infrastructure": 20,
+      "scorable_Commercial": 6
+    },
+    "cohorts": [
+      {
+        "panel": "beneficiation_concentrate_screen",
+        "before_n": 2,
+        "after_n": 2
+      },
+      {
+        "panel": "issuer_resource_composition",
+        "before_n": 9,
+        "after_n": 9
+      },
+      {
+        "panel": "issuer_resource_concentrate",
+        "before_n": 2,
+        "after_n": 2
+      },
+      {
+        "panel": "issuer_resource_concentrate_recovery",
+        "before_n": 2,
+        "after_n": 2
+      },
+      {
+        "panel": "issuer_resource_financing_milestone",
+        "before_n": 5,
+        "after_n": 5
+      },
+      {
+        "panel": "issuer_resource_infrastructure",
+        "before_n": 7,
+        "after_n": 7
+      },
+      {
+        "panel": "issuer_resource_study",
+        "before_n": 5,
+        "after_n": 5
+      },
+      {
+        "panel": "official_wa_resource_screen",
+        "before_n": 17,
+        "after_n": 17
+      },
+      {
+        "panel": "resource_infrastructure_pilot",
+        "before_n": 20,
+        "after_n": 20
+      }
+    ]
+  },
+  "technical_rows": 641,
+  "statuses": {
+    "DESCRIPTIVE_ONLY": 134,
+    "NOT_COMPARABLE": 503,
+    "NUMERIC_COMPARABLE": 4
+  },
+  "semantic_classes": {
+    "A_MINERALOGY_PROCESSING": 497,
+    "B_PROCESS_PERFORMANCE": 138,
+    "C_EVIDENCE_QUALITY": 6
+  },
+  "qualified_case_ids": [
+    "browns-dfs2025",
+    "yangibana-stage1-dfs2026"
+  ],
+  "qualified_independent_projects": 2,
+  "reasons": {
+    "NO_NUMERIC_COMPARISON": 104,
+    "ENDPOINT_MISMATCH": 503,
+    "EVIDENCE_NOT_VALIDATED": 370,
+    "FEED_MISMATCH": 501,
+    "MISSING_CONDITIONS": 500,
+    "NO_FINITE_NUMERIC_VALUE": 369,
+    "QUANTITY_MISMATCH": 503,
+    "REO_BASIS_MISMATCH": 496,
+    "SAMPLE_REPRESENTATIVENESS_LIMITATION": 500,
+    "TEST_SCALE_MISMATCH": 503,
+    "UNIT_MISMATCH": 371,
+    "NO_ADOPTED_NUMERIC_CONTRACT": 30
+  },
+  "unchanged_panel_csv_files": 125,
+  "stable_entity_count": 7554,
+  "original_source_bytes_unchanged": true,
+  "schema_changed": false,
+  "output_hashes_verified": 196,
+  "benchmark": {
+    "version": "rendered-cell-benchmark-v2-corrected-wolverine-unit",
+    "scope": "SELECTED_CELLS_SIX_TABLE_SCOPES_FIVE_DOCUMENTS_NOT_CORPUS_WIDE",
+    "cells": 33,
+    "true_positive": 31,
+    "false_positive": 0,
+    "false_negative": 2,
+    "precision": 1.0,
+    "recall": 0.9393939393939394,
+    "unit_contract": "Mt_or_percent_or_ppm_as_printed; element columns kept separate",
+    "source_locator_completeness_of_validated": 1.0,
+    "unit_accuracy_of_validated": 1.0,
+    "results": [
+      {
+        "source_key": "mt_weld_2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "ore_mt",
+        "expected": 106.6,
+        "actual": 106.6,
+        "expected_unit": "Mt",
+        "actual_unit": "Mt",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "mt_weld_2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "grade",
+        "expected": 4.1,
+        "actual": 4.1,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "mt_weld_2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "contained_treo_kt",
+        "expected": 4389.0,
+        "actual": 4389.0,
+        "expected_unit": "kt TREO",
+        "actual_unit": "kt TREO",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "yttria_maiden2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "ore_mt",
+        "expected": 15.0,
+        "actual": 15.0,
+        "expected_unit": "Mt",
+        "actual_unit": "Mt",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "yttria_maiden2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "grade",
+        "expected": 490.0,
+        "actual": 490.0,
+        "expected_unit": "ppm",
+        "actual_unit": "ppm",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "yttria_maiden2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "MREO",
+        "expected": 110.0,
+        "actual": 110.0,
+        "expected_unit": "ppm",
+        "actual_unit": "ppm",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "yttria_maiden2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "LREO",
+        "expected": 220.0,
+        "actual": 220.0,
+        "expected_unit": "ppm",
+        "actual_unit": "ppm",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "yttria_maiden2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "HREO",
+        "expected": 270.0,
+        "actual": 270.0,
+        "expected_unit": "ppm",
+        "actual_unit": "ppm",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "yttria_maiden2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "Pr6O11",
+        "expected": 15.0,
+        "actual": 15.0,
+        "expected_unit": "ppm",
+        "actual_unit": "ppm",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "yttria_maiden2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "Nd2O3",
+        "expected": 64.0,
+        "actual": 64.0,
+        "expected_unit": "ppm",
+        "actual_unit": "ppm",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "yttria_maiden2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "Dy2O3",
+        "expected": 24.0,
+        "actual": 24.0,
+        "expected_unit": "ppm",
+        "actual_unit": "ppm",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "yttria_maiden2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "Tb4O7",
+        "expected": 3.7,
+        "actual": 3.7,
+        "expected_unit": "ppm",
+        "actual_unit": "ppm",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "yttria_maiden2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "Sc2O3",
+        "expected": 68.0,
+        "actual": 68.0,
+        "expected_unit": "ppm",
+        "actual_unit": "ppm",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "yttria_maiden2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "U",
+        "expected": 0.6,
+        "actual": 0.6,
+        "expected_unit": "ppm",
+        "actual_unit": "ppm",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "yttria_maiden2024",
+        "physical_page": 2,
+        "row_label": "Total",
+        "variable": "Th",
+        "expected": 1.0,
+        "actual": 1.0,
+        "expected_unit": "ppm",
+        "actual_unit": "ppm",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:HCl",
+        "variable": "TREO",
+        "expected": 66.0,
+        "actual": 66.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:HCl",
+        "variable": "MREO",
+        "expected": 78.0,
+        "actual": 78.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:HCl",
+        "variable": "Pr6O11",
+        "expected": 85.0,
+        "actual": 85.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:HCl",
+        "variable": "Nd2O3",
+        "expected": 85.0,
+        "actual": 85.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:HCl",
+        "variable": "Tb4O7",
+        "expected": 69.0,
+        "actual": 69.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:HCl",
+        "variable": "Dy2O3",
+        "expected": 62.0,
+        "actual": 62.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:HCl",
+        "variable": "Sc2O3",
+        "expected": 23.0,
+        "actual": 23.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:Sulfuric and Magnesium Chloride",
+        "variable": "TREO",
+        "expected": 49.0,
+        "actual": 49.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:Sulfuric and Magnesium Chloride",
+        "variable": "MREO",
+        "expected": 61.0,
+        "actual": 61.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:Sulfuric and Magnesium Chloride",
+        "variable": "Pr6O11",
+        "expected": 67.0,
+        "actual": 67.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:Sulfuric and Magnesium Chloride",
+        "variable": "Nd2O3",
+        "expected": 67.0,
+        "actual": 67.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:Sulfuric and Magnesium Chloride",
+        "variable": "Tb4O7",
+        "expected": 52.0,
+        "actual": 52.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:Sulfuric and Magnesium Chloride",
+        "variable": "Dy2O3",
+        "expected": 46.0,
+        "actual": 46.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "discovery_asra_primary_met_alternative_530e7a5f3d94",
+        "physical_page": 2,
+        "row_label": "Avg:Sulfuric and Magnesium Chloride",
+        "variable": "Sc2O3",
+        "expected": 29.0,
+        "actual": 29.0,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "koppamurra_pfs2026",
+        "physical_page": 8,
+        "row_label": "Total",
+        "variable": "ore_mt",
+        "expected": 243.0,
+        "actual": null,
+        "expected_unit": "Mt",
+        "actual_unit": null,
+        "status": "NOT_VALIDATED_LAYOUT_OR_SCOPE"
+      },
+      {
+        "source_key": "koppamurra_pfs2026",
+        "physical_page": 8,
+        "row_label": "Total",
+        "variable": "grade",
+        "expected": 751.0,
+        "actual": null,
+        "expected_unit": "ppm",
+        "actual_unit": null,
+        "status": "NOT_VALIDATED_LAYOUT_OR_SCOPE"
+      },
+      {
+        "source_key": "browns_range_2025",
+        "physical_page": 54,
+        "row_label": "Total",
+        "variable": "ore_mt",
+        "expected": 7.3,
+        "actual": 7.3,
+        "expected_unit": "Mt",
+        "actual_unit": "Mt",
+        "status": "EXACT"
+      },
+      {
+        "source_key": "browns_range_2025",
+        "physical_page": 54,
+        "row_label": "Total",
+        "variable": "grade",
+        "expected": 0.96,
+        "actual": 0.96,
+        "expected_unit": "%",
+        "actual_unit": "%",
+        "status": "EXACT"
+      }
+    ]
+  },
+  "no_new_formal_criteria": true,
+  "no_new_technical_mcda_sample": true,
+  "limitations": [
+    "NO_NEW_CROSS_PROJECT_MEASURED_RECOVERY_CONTRACT",
+    "MODEL_ASSUMPTIONS_NOT_MEASURED_PLANT_PERFORMANCE",
+    "KOPPAMURRA_REO_DEFINITION_UNRESOLVED",
+    "NO_NATIONAL_CENSUS_INCREMENT_THIS_PHASE"
+  ],
+  "validation": {
+    "python_full_tests": 147,
+    "phase10_tests": 21,
+    "r_invariants": "PASSED",
+    "historical_point_science_files": {
+      "phase5": 24,
+      "phase6": 24,
+      "phase7": 31,
+      "phase8": 36,
+      "phase9": 36
+    },
+    "clean_replay_receipt": "data/phase10_clean_replay.json",
+    "publication_text_artifacts_checked": 1752,
+    "github_ci": "SEE_PR_FOR_PUBLISHED_HEAD_STATUS"
+  }
+}

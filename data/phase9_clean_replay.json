@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "document_pipeline_summary.json": true,
+    "document_inventory.csv": true,
+    "document_candidates.csv": true,
+    "document_entity_relations.csv": true,
+    "document_process_variables.csv": true,
+    "document_recovery_groups.csv": true,
+    "document_versions.csv": true,
+    "canonical_membership.csv": true,
+    "resources.csv_unordered_rows": true,
+    "criteria_resolution.csv_unordered_rows": true,
+    "valid_raw_scientific_identities": true,
+    "diagnostic_states": true
+  },
+  "scientific_files": 36,
+  "status": "MATCHED_ACTIVE_AUTOMATIC_AND_SELECTED_SCIENCE",
+  "limits": "Operational canonical store retains13additional legacy REVIEW rows and some metadata versions; raw history counts/row ordering are not clean-replay equality contracts."
+}

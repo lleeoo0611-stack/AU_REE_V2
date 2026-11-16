@@ -1,0 +1,771 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head><script src="/O-furt-euer-Of-New-Sea-stucke-waitor-with-the-re" async></script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title>Report Details</title>
+
+    <link rel="shortcut icon" sizes="16x16" href="/Wamex/Images/favIcon.JPG">
+
+    <link href="//fonts.googleapis.com/css?family=Arimo:400,400italic,700italic,700" rel="stylesheet" type="text/css"> <!-- Google fonts -->
+    
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/Wamex/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="/Wamex/Content/bootstrap-custom.css"> <!-- our custom bootstrap styling leveraging http://getbootstrap.com/customize/ -->
+    <link rel="stylesheet" href="/Wamex/Content/kendo/2020.3.1118/kendo.common-bootstrap.min.css">
+    <link rel="stylesheet" href="/Wamex/Content/kendo/2020.3.1118/kendo.dataviz.bootstrap.min.css">
+    <link rel="stylesheet" href="/Wamex/Content/WAMEX_kendo.custom.css"> <!-- kendo custom theme using http://demos.telerik.com/kendo-ui/themebuilder/-->
+    <link rel="stylesheet" href="/Wamex/Content/WAMEX_kendo-overrides.css"> <!-- our custom kendo overrides -->
+    <link rel="stylesheet" href="/Wamex/Content/bootstrap-non-responsive.css"> <!-- bootstrap.css overrides for non-mobile responsive websites -->
+    <link rel="stylesheet" href="/Wamex/Content/WAMEX_division-theme.css"> <!-- dmp division colours -->
+    <link rel="stylesheet" href="/Wamex/Content/structure.css"> <!-- header, footer, structural components-->
+    <link rel="stylesheet" href="/Wamex/Content/structure-non-responsive.css"> <!-- structure.css overrides for non-mobile responsive websites -->
+    <link rel="stylesheet" href="/Wamex/Content/WAMEX.css"> <!-- application specific styles -->
+    
+
+    <script src="/Wamex/Scripts/jquery-2.1.1.js" type="text/javascript"></script>
+    <script src="/Wamex/Scripts/modernizr-2.8.3.js" type="text/javascript"></script>
+    <script src="/Wamex/Scripts/lodash.min.js"></script>
+
+    <!-- Kendo UI Scripts -->
+    <script src="/Wamex/Scripts/kendo/2020.3.1118/jquery.min.js"></script>
+    <script src="/Wamex/Scripts/kendo/2020.3.1118/jszip.min.js"></script>
+    <script src="/Wamex/Scripts/kendo/2020.3.1118/kendo.all.min.js"></script>
+    <script src="/Wamex/Scripts/kendo/2020.3.1118/kendo.aspnetmvc.min.js"></script>
+    <script src="/Wamex/Scripts/kendo.modernizr.custom.js"></script>
+    <script src="/Wamex/Scripts/bootstrap.min.js" type="text/javascript"></script>
+
+    <!-- set culture for parsing Dates for validation  -->
+    <script src="/Wamex/Scripts/kendo/2020.3.1118/kendo.culture.en-AU.min.js"></script>
+    <script>kendo.culture("en-AU");</script>
+
+    <!-- START: script files needed for setting Cookie -->
+    <script src="/Wamex/Scripts/jquery.cookie.js"></script>
+    <!-- END: script files needed for setting Cookie -->
+    <!-- Custom Scripts -->
+    <script src="/Wamex/js/App.js"></script>
+
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        // Wait cursor on ajax callbacks
+        $(document).ajaxStart(function () {
+            $('body').css('cursor', 'wait');
+        });
+
+        $(document).ajaxStop(function () {
+            $('body').css('cursor', 'auto');
+        });
+
+    });
+</script>
+
+    
+    <style>
+    body {
+        overflow: hidden;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#footer-container').removeClass("container");
+        $('#footer-container').addClass("container-fluid");
+
+        // Resize the content div
+        $(function () {
+
+            var $header = $('#header');
+            var $footer = $('#footer');
+            var $content = $('#content');
+
+            var $window = $(window).on('resize', function () {
+                var height = $(this).height() - $header.height() - $footer.height();
+                $content.height(height);
+            }).trigger('resize'); //on page load
+
+        });
+    });
+</script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            var content = $('#content');
+            var tabStripElement = $('#tabstrip');
+            var bottomMargin = 0;
+            var tabs = $('#tabstrip .k-tabstrip-items');
+
+            var $window = $(window).on('resize', function () {
+                tabStripElement.height(content.height() - tabs.height() + bottomMargin); // Resize tabstrip // 5 to account for odd padding of tab header items
+                //tabStripElement.children(".k-content").height(tabStripElement.innerHeight() - tabStripElement.children(".k-tabstrip-items").outerHeight() - 16); // Resize tab contents
+                //tabStripElement.children(".k-content").height(tabStripElement.innerHeight()); // Resize tab contents
+            }).trigger('resize'); //on page load
+
+        });
+    });
+
+</script>
+
+    <script src="/Wamex/Scripts/kendo_extensions/KendoGrid.js"></script>
+
+
+    
+    
+<script language="javascript" type="text/javascript" src="/Wamex/Content/Session/Scripts/PageStateManager.js"></script>
+<script type='text/javascript'>
+    var pageState = new PageStateManager({ sessionKeepAliveUrl: '/Wamex/Session', sessionHasBeenRenewedCheckUrl: '/Wamex/Session/KeepAlive/HasBeenRenewedCheck', sessionExpiryUrl: '/Wamex/Security/Logout', sessionTimeoutInSeconds: 1170 });
+</script>
+<div id="dialog-session-warning" title="&nbsp;&nbsp;&nbsp;Warning" style="display:none;"><p>&nbsp;</p></div>
+
+    <script type="text/javascript">
+        function GetClientDate() {
+            var clientCurrentDate = new Date();
+            var dd = clientCurrentDate.getDate();
+            var mm = clientCurrentDate.getMonth() + 1; //January is 0!
+
+            var yyyy = clientCurrentDate.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            return dd + '/' + mm + '/' + yyyy;
+        }
+
+        function requestEnd(e) {
+            var serverCurrentDate = "04/11/2026";
+            var clientCurrentDate = GetClientDate();
+
+            //check if client has different timezone than the web server's. If he has then handle timezone issue
+            if (serverCurrentDate == clientCurrentDate) {
+                //do nothing
+            } else {
+                if (e.response.Data && e.response.Data.length) {
+                    var data = e.response.Data;
+                    if (this.group() != null && this.group() != undefined && this.group().length && e.type == "read") { //handle grouping
+                        handleGroups(data);
+                    } else {
+                        loopRecords(data);
+                    }
+                }
+            }
+        }
+
+        function handleGroups(groups) {
+            for (var i = 0; i < groups.length; i++) {
+                var gr = groups[i];
+
+                if (gr.HasSubgroups) {
+                    if (gr.Key != null && !$.isNumeric(gr.Key) && gr.Key.indexOf("/Date(") != -1) {
+                        gr.Key = gr.Key.replace(/-?\d+/,
+                            function(n) {
+                                var offsetMiliseconds = new Date(parseInt(n)).getTimezoneOffset() * 60000;
+                                return parseInt(n) + offsetMiliseconds;
+                            });
+                    }
+
+                    $.each(gr.Items, function(index, value) {
+                        if (value.Key != null && !$.isNumeric(gr.Key) && value.Key.indexOf("/Date(") != -1) {
+                            value.Key = value.Key.replace(/-?\d+/,
+                                function(n) {
+                                    var offsetMiliseconds = new Date(parseInt(n)).getTimezoneOffset() * 60000;
+                                    return parseInt(n) + offsetMiliseconds;
+                                });
+                        }
+                    });
+
+                    handleGroups(gr.Items);
+                } else {
+                    if (gr.Key != null && !$.isNumeric(gr.Key) && gr.Key.indexOf("/Date(") != -1) {
+                        gr.Key = gr.Items[0][gr.Member]; //ignore timezone and change grouping key value to display the date that comes from database
+                    }
+
+                    offsetDateFields(gr);
+
+                    loopRecords(gr.Items); //change date column values for all the grouped records
+                }
+            }
+        }
+
+        function loopRecords(records) {
+            for (var i = 0; i < records.length; i++) {
+                var record = records[i];
+                offsetDateFields(record);
+            }
+        }
+
+        function offsetDateFields(obj) {
+            for(name in obj) {
+                var prop = obj[name];
+                if (typeof (prop) === "string" && prop.indexOf("/Date(") == 0) {
+                    obj[name] = prop.replace(/-?\d+/, function (n) {
+                        var offsetMiliseconds = new Date(parseInt(n)).getTimezoneOffset() * 60000;
+                        return parseInt(n) + offsetMiliseconds;
+                    });
+                }
+            }
+        }
+
+        function booleanColumnCustomFilterTemplate(input) {
+            input.kendoDropDownList({
+                dataSource: {
+                    data: [
+                        { text: "Yes", value: "true" },
+                        { text: "No", value: "false" },
+                        { text: "Is null", value: "isnull" },
+                        { text: "Is not null", value: "isnotnull" }
+                    ]
+                },
+                dataTextField: "text",
+                dataValueField: "value",
+                valuePrimitive: true
+            });
+        }
+
+        function getFilter(e) {
+
+        if (e.filter != undefined && e.filter.filters[0] != null)
+        {
+            var filter = e.filter.filters[0].value;
+
+            return { filter: filter };
+        }
+
+        return { filter: "" };
+    }
+
+    function operatorValueMapper(options) {
+        if (options.value != '')
+        {
+            $.ajax({
+                url: '/Wamex/Search/Reports/Operators_ValueMapper',
+                data: convertValues(options.value),
+                success: function (data) {
+                    options.success(data);
+                }
+            });
+        }
+    }
+
+    function authorValueMapper(options) {
+        if (options.value != '') {
+            $.ajax({
+                url: '/Wamex/Internal/ReportAdmin/Authors_ValueMapper',
+                data: convertValues(options.value),
+                success: function (data) {
+                    options.success(data);
+                }
+            });
+        }
+    }
+
+    function convertValues(value) {
+        var data = {};
+
+        value = $.isArray(value) ? value : [value];
+
+        for (var idx = 0; idx < value.length; idx++) {
+            data["values[" + idx + "]"] = value[idx];
+        }
+
+        return data;
+    }
+    </script>
+</head>
+
+
+
+<body class="pe-theme">
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="wrapper logged-in">
+        <div class="container-fluid skip-content">
+            <a href="#main" class="btn btn-primary skip-content sr-only sr-only-focusable">Skip to main content</a>
+        </div>
+
+        <div id="header">
+            <header class="header header-small">
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <!-- /.navbar-header -->
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a class="gaHomePageMenuClickTracker" href="/Wamex/Home/HomePage" data-clickedHomePageMenuOption="Home">Home <span class="sr-only">(current)</span></a></li>
+                                <li><a class="gaHomePageMenuClickTracker" target="_blank" href=https://geoview.dmp.wa.gov.au/geoview/?Viewer=GeoView&amp;run=WAMEX_Search data-clickedHomePageMenuOption="Map Search">Map Search</a></li>
+                                <li><a class="gaHomePageMenuClickTracker" href="/Wamex/OnlineFormLodgement/HowToGuide" data-clickedHomePageMenuOption="Help">Help</a></li>
+
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div class="header-main">
+                    <div class="container-fluid">
+                        <div class="dmp-logo">
+                            <a href="/Wamex/Home/HomePage"><img src="/Wamex/Content/images/DMPE_Logo_White_279_69_72dpi.png" alt="WA" Department of Mines, Petroleum and Exploration></a>
+                        </div>
+
+                        <div class="app-name">
+                            <h1>
+                                <a href="/Wamex/Home/HomePage">WAMEX</a>
+                            </h1>
+                            <script type="text/javascript">
+
+    $(document).ready(function () {
+        setEnvironmentTag();
+    });
+
+    // Note: The following will select the applicable tab if the Search control is used on specific pages
+    function setEnvironmentTag() {
+        var currentHref = $(location).attr('href').toLowerCase();
+        var environmentTag = $('#environmentTag');
+
+        if (currentHref.indexOf("localhost") >= 0) {
+            environmentTag.text('Local');
+            environmentTag.show();
+        }
+        else if (currentHref.indexOf("wamexintdev") >= 0) {
+            environmentTag.text('Dev');
+            environmentTag.show();
+        }
+        else if (currentHref.indexOf("wamexinttst") >= 0) {
+            environmentTag.text('Test');
+            environmentTag.show();
+        }
+    };
+
+</script>
+
+<span id="environmentTag" class="badge" style="display: none;"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.header-main-->
+
+            </header>
+
+            <div class="header-base">
+                <div class="header-base-decoration">&nbsp;</div>
+            </div>
+
+            <!-- / header -->
+            <!-- Section for Search Filter bar or Notifications -->
+            
+    <div id="search-box" class="container-fluid page-top-container">
+        <div class="page-header">
+                <h1>
+                    Viewing <strong>1 A-Numbers: 59666</strong>
+                </h1>
+
+        </div>
+    </div>
+
+        </div>
+        <!-- / .header -->
+
+        <div id="content">
+            <div class="main" id="main" role="main">
+                
+
+
+
+<div id="tabstrip" class="details-content">
+    <div class="k-tabstrip-wrapper"><div class="k-widget k-tabstrip k-header" id="details-tabstrip"><ul class="k-reset k-tabstrip-items"><li class="k-item k-state-default k-state-active"><span class="k-link" unselectable="on">Document List (2)</span></li><li class="k-item k-state-default"><span class="k-link" unselectable="on">Abstract (1)</span></li><li class="k-item k-state-default"><span class="k-link" unselectable="on">Storage (5)</span></li><li class="k-item k-state-default"><span class="k-link" unselectable="on">Historic Title (0)</span></li><li class="k-item k-state-default"><span class="k-link" unselectable="on">Digital Files (2)</span></li><li class="k-item k-state-default"><span class="k-link" unselectable="on">Drilling Summary (2)</span></li><li class="k-item k-state-default"><span class="k-link" unselectable="on">Surface GeoChemistry (0)</span></li><li class="k-item k-state-default"><span class="k-link" unselectable="on">Survey Completed (0)</span></li></ul><div class="k-content k-state-active" id="details-tabstrip-1" style="display:block"><div style="height: auto;">
+<div id="reportAttachmentMetaDataModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog-center">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4 class="metadata-modal-header">Select which folders and files you would like to download.</h4>
+                <div class="virtual-zip-content">
+                </div>
+            </div>
+            <div class="modal-footer virtual-zip-modal-footer">
+                <div class="virtual-zip-modal-control">
+                    <div class="virtual-zip-notification">
+                        <span>Please enter your email address:</span>
+                        <span><input placeholder="Email for notification" id="emailNotificationInput" value="" /></span>
+                        <span>(A Zip file will be generated and sent to you)</span>
+                    </div>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button class="btn btn-primary" id="createZipButton">Create Zip package</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var currentVirtualZipFile = '';
+        var currentPackageId = 0;
+        $(document).on('click', '.zipViewerButton', function () {
+            currentPackageId = $(this).data('blt-packageid');            
+            currentVirtualZipFile = $(this).data('filename');
+
+            kendo.ui.progress($('body'), true);
+
+           // console.log('zipViewerButton click: start packageId=', packageId);
+
+            var zipUrl;
+            var absoluteUrl = "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=59666";
+
+            if (absoluteUrl.indexOf("https://wamexint") !== -1 || absoluteUrl.indexOf("localhost") !== -1) {
+                zipUrl = '/Wamex/Internal/ReportAdmin/GetBLTMetaDataZipFile';
+            } else {
+                zipUrl = '/Wamex/Search/ReportDetails/GetBLTMetaDataZipFile';
+            }
+
+            $.ajax({
+                url: zipUrl,
+                type: 'GET',
+                dataType: 'html',
+
+                data: { packageId: currentPackageId, fileName: currentVirtualZipFile },
+                success: function (json) {
+                    //console.log('zipViewerButton click: ' + JSON.stringify(json));
+
+                    $(".virtual-zip-content").html(json);
+
+                    $('#reportAttachmentMetaDataModal').modal('show');
+
+                    kendo.ui.progress($('body'), false);
+
+                    if ($('.modal-body h2.empty-metadata-modal-table').length > 0) {
+                        $('#createZipButton').addClass('hidden');
+                        $('.virtual-zip-option-table').addClass('hidden');
+                    }
+
+                    $('#reportAttachmentMetaDataModal').removeClass('hide')
+                },
+                error: function (xhr, status, error) {
+                    kendo.ui.progress($('body'), false);
+                    alert(App.generalErrorMessage);
+                    console.log('Error calling GetBLTMetaDataZipFile. xhr.status: ' + xhr.status + ', errorTextStatus:' + status + ', error: ' + error);
+                }
+            });
+        });
+
+        $(document).on('click', 'span.virtual-zip-folder-icon', function (e) {
+            var folderId = $(this).data('folderid');
+            expandAccordionFolder(folderId,e);
+        });
+
+        $(document).on('click', 'span.blt-select-folder-accordion', function (e) {
+            var folderId = $(this).data('folderid');
+            expandAccordionFolder(folderId,e);
+        });
+
+        var expandAccordionFolder = function (folderId,e) {
+            e.stopPropagation();
+            $('div.select-folder-' + folderId + '-details').toggleClass('hidden');
+            $('i.icon-folder-id-' + folderId).toggleClass('hidden');
+        }
+
+        $(document).on('click', '.blt-select-folder-input', function (e) {
+            e.stopPropagation();
+
+            var folderId = $(this).data('folderid');
+            var isChecked = $(this).prop('checked');
+
+            if (isChecked)
+                $('div.select-folder-' + folderId + '-details input').prop('checked', true);
+            else
+                $('div.select-folder-' + folderId + '-details input').prop('checked', false);
+        });
+
+
+        $(document).on('click', '#createZipButton', function (e) {
+            e.stopPropagation();
+            var inputSelectedFileId = $('.bltFileID-select');
+
+            var selectedUrls = [];
+
+            for (var i = 0; i < inputSelectedFileId.length; i++) {
+                var fileRowSelect = inputSelectedFileId[i];
+                var isSelected = $(fileRowSelect).is(':checked');
+                if (isSelected) {
+                    selectedUrls.push($(fileRowSelect).data('fileid'));
+                }
+            }
+
+            var notifiedEmail = $('#emailNotificationInput')[0].value;
+
+            if (!notifiedEmail || notifiedEmail.indexOf("@") == -1 || notifiedEmail.indexOf('.') == -1) {
+                alert('Please add valid email for notification after Zip package is created!');
+
+            } else if (selectedUrls.length > 0) {
+
+                kendo.ui.progress($('body'), true);
+                $('.modal-content').addClass('modal-disableClick');
+
+                var zipUrl;
+                var absoluteUrl = "https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=59666";
+
+                if (absoluteUrl.indexOf("https://wamexint") !== -1 || absoluteUrl.indexOf("localhost") !== -1) {
+                    zipUrl = '/Wamex/Internal/ReportAdmin/ProcessMetaDataPackage';
+                } else {
+                    zipUrl = '/Wamex/Search/ReportDetails/ProcessMetaDataPackage';
+                }
+
+                $.ajax({
+                    url: zipUrl,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { ids: JSON.stringify(selectedUrls), packageId: currentPackageId, fileName: currentVirtualZipFile, email: notifiedEmail},
+                    success: function () {
+                        alert('Package is being created. An email containing a link will be sent when it is ready.');
+                        $('.modal-content').removeClass('modal-disableClick');
+                        dismissModal();
+                    },
+                    error: function () {
+                        alert('Error creating zip. Please contact WAMEX support if the problem persists.');
+                        $('.modal-content').removeClass('modal-disableClick');
+                        dismissModal();
+                    }
+                   });
+            } else {
+                alert('Please select file for Zip package');
+            }
+        })
+
+        $(document).on('click', '.expandAndCloseAllChildNodes', expandAndCloseChildFolders);
+
+        function expandAndCloseChildFolders() {
+            kendo.ui.progress($('.modal-dialog-center'), true);
+            setTimeout(function () {
+                $('.expandAndCloseAllChildNodes').toggleClass('hidden');
+                $('.sub-folder-details').toggleClass('hidden');
+                $('.sub-folder-details-icon').toggleClass('hidden');
+                kendo.ui.progress($('.modal-dialog-center'), false);
+            }, 500);
+        }
+
+        function dismissModal() {
+            kendo.ui.progress($('body'), false);
+            $('#reportAttachmentMetaDataModal').modal('hide');
+
+            $('.modal-backdrop').addClass('hide');
+        }
+    });
+</script>
+
+
+<div class="k-widget k-grid" id="externalReportDocumentsGrid"><div class="k-header k-grid-toolbar k-grid-top"><a class="refresh-grid-button k-button k-button-icontext " href="#"></a><a class="back-to-dashboard k-button k-button-icontext " href="/Wamex/"></a><a class="export-grid-button k-button k-button-icontext " href="#"></a><a class="clear-filter-button k-button k-button-icontext " href="#"></a></div><div class="k-grouping-header">Drag a column header and drop it here to group by that column</div><div class="k-grid-header"><div class="k-grid-header-wrap"><table><colgroup><col style="width:105px" /><col style="width:40px" /><col style="width:150px" /><col style="width:150px" /><col style="width:300px" /><col style="width:150px" /></colgroup><thead class="k-grid-header"><tr><th class="k-header" data-index="0" id="81094418-5d89-4148-9298-f1e099f9e176" scope="col"><span class="k-link">Download</span></th><th class="k-header" data-index="1" id="9d453248-76f6-4b6f-96df-cd8d49996b75" scope="col"><span class="k-link">&nbsp;</span></th><th class="k-header" data-field="ANumber" data-index="2" data-title="A. No" id="72f07ad8-88b2-4664-92e2-1404e09c39bd" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportDocuments_Read?ANumber=59666&amp;externalReportDocumentsGrid-sort=ANumber-asc">A. No</a></th><th class="k-header" data-field="EditDate" data-index="3" data-title="Edit date" id="e05dc098-0b6a-4a45-b6f7-2c08bb6eec6f" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportDocuments_Read?ANumber=59666&amp;externalReportDocumentsGrid-sort=EditDate-asc">Edit date</a></th><th class="k-header" data-field="FileName" data-index="4" data-title="Document name" id="833e922e-38ff-4261-a062-b426b1c73007" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportDocuments_Read?ANumber=59666&amp;externalReportDocumentsGrid-sort=FileName-asc">Document name</a></th><th class="k-header" data-field="FileSize" data-index="5" data-title="File size" id="24b7c1bb-6c54-4489-8875-2a1546b8bc8f" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportDocuments_Read?ANumber=59666&amp;externalReportDocumentsGrid-sort=FileSize-asc">File size</a></th><th class="k-header" data-field="Link" data-index="6" data-title="Link" id="e9645cda-178e-4a49-8675-8b2dffd5689d" scope="col" style="display:none"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportDocuments_Read?ANumber=59666&amp;externalReportDocumentsGrid-sort=Link-asc">Link</a></th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable" style="height:auto"><table><colgroup><col style="width:105px" /><col style="width:40px" /><col style="width:150px" /><col style="width:150px" /><col style="width:300px" /><col style="width:150px" /></colgroup><tbody><tr class="k-no-data"><td colspan="6"></td></tr></tbody></table></div><div class="k-pager-wrap k-grid-pager"><a aria-label="Go to the first page" class="k-link k-pager-nav k-state-disabled k-pager-first" data-page="1" href="#" title="Go to the first page"><span class="k-icon k-i-arrow-end-left"></span></a><a aria-label="Go to the previous page" class="k-link k-pager-nav k-state-disabled" data-page="0" href="#" title="Go to the previous page"><span class="k-icon k-i-arrow-60-left"></span></a><div class="k-pager-numbers-wrap k-floatwrap"><select class="k-dropdown"><option selected="selected">1</option></select><ul class="k-pager-numbers"><li><span class="k-link k-state-selected" data-page="1">1</span></li></ul></div><span class="k-pager-input k-label">Page<input class="k-textbox" type="text" value="1" />of 1</span><a aria-label="Go to the next page" class="k-link k-pager-nav k-state-disabled" data-page="2" href="#" title="Go to the next page"><span class="k-icon k-i-arrow-60-right"></span></a><a aria-label="Go to the last page" class="k-link k-pager-nav k-state-disabled k-pager-last" data-page="1" href="#" title="Go to the last page"><span class="k-icon k-i-arrow-end-right"></span></a><span class="k-pager-sizes k-label"><select><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select>items per page</span><span class="k-pager-info k-label">No items to display</span></div></div><script>
+	kendo.syncReady(function(){jQuery("#externalReportDocumentsGrid").kendoGrid({"columns":[{"title":"Download","width":"105px","template":"\u003ca class=\u0027#=ShowNormalFileTypeClass#\u0027 href=\u0027#=Link#\u0027 title=\u0027Download document\u0027 target=\u0027_blank\u0027 \"\u003e\u003ci class=\u0027fa fa-download\u0027\u003e\u003c/i\u003e Download\u003c/a\u003e\u003ca class=\u0027#=ShowZipViewerClass# zipViewerButton\u0027 title=\u0027#=FileName #\u0027 target=\u0027_blank\u0027 data-filename=\u0027#=FileName #\u0027 data-blt-packageid=\u0027#=BLTPackageId #\u0027\u003e\u003ci class=\u0027fa fa-download\u0027\u003e\u003c/i\u003e Download\u003c/a\u003e"},{"width":"40px","template":"\u003cimg src=\u0027#=FileTypeImageSourceUrl #\u0027 style=\u0027border-style: none;\u0027 alt=\u0027#=FileName #\u0027 Title=\u0027#=FileName #\u0027 /\u003e"},{"title":"A. No","headerAttributes":{"data-field":"ANumber","data-title":"A. No"},"width":"150px","field":"ANumber","encoded":true},{"title":"Edit date","headerAttributes":{"data-field":"EditDate","data-title":"Edit date"},"width":"150px","field":"EditDate","format":"{0:dd/MM/yyyy}","encoded":true},{"title":"Document name","headerAttributes":{"data-field":"FileName","data-title":"Document name"},"width":"300px","field":"FileName","encoded":true},{"title":"File size","headerAttributes":{"data-field":"FileSize","data-title":"File size"},"width":"150px","field":"FileSize","encoded":true},{"title":"Link","headerAttributes":{"data-field":"Link","data-title":"Link"},"hidden":true,"width":"150px","field":"Link","encoded":true}],"groupable":{"enabled":true},"pageable":{"input":true,"pageSizes":[100,200,500,1000],"buttonCount":10},"sortable":true,"filterable":true,"columnMenu":true,"resizable":true,"reorderable":true,"scrollable":{"height":"auto"},"toolbar":{"command":[{"name":null,"attr":" class=\"refresh-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"back-to-dashboard\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"export-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"clear-filter-button\"","buttonType":"ImageAndText"}]},"dataSource":{"type":(function(){if(kendo.data.transports['aspnetmvc-ajax']){return 'aspnetmvc-ajax';} else{throw new Error('The kendo.aspnetmvc.min.js script is not included.');}})(),"transport":{"read":{"url":"/Wamex/Search/ReportDetails/ReportDocuments_Read","data":getReportId},"prefix":""},"pageSize":100,"page":1,"groupPaging":false,"total":0,"serverPaging":true,"serverSorting":true,"serverFiltering":true,"serverGrouping":true,"serverAggregates":true,"filter":[],"requestEnd":dgRequestEnd,"schema":{"data":"Data","total":"Total","errors":"Errors","model":{"fields":{"ANumber":{"editable":false,"type":"number","defaultValue":null},"FileKey":{"type":"string"},"FileName":{"type":"string"},"FileSize":{"type":"string"},"FileType":{"type":"string"},"FileTypeImageSourceUrl":{"type":"string"},"EditDate":{"type":"date","defaultValue":null},"Link":{"type":"string"},"BLTId":{"type":"number","defaultValue":null},"BLTPackageId":{"type":"number","defaultValue":null},"ShouldShowZipViewer":{"editable":false,"type":"boolean"},"ShowZipViewerClass":{"editable":false,"type":"string"},"ShowNormalFileTypeClass":{"editable":false,"type":"string"},"Id":{"editable":false,"type":"number"}}}}}});});
+</script>
+
+<script type="text/javascript">
+    var reportDocumentsGridHandler;
+
+    $(document).ready(function () {
+        reportDocumentsGridHandler = new KendoGrid("externalReportDocumentsGrid", {
+            handleResize: true,
+            enableTooltips: false
+        });
+    });
+
+    function dgRequestEnd(e) {
+        if (e.response.Data && e.response.Data.length) {
+            var data = e.response.Data;
+
+            if (this.group() != null && this.group() != undefined && this.group().length && e.type == "read") {
+                handleGroups(data);
+            } else {
+                loopRecords(data);
+            }
+        }
+    }
+</script>
+</div></div><div class="k-content" id="details-tabstrip-2"><div style="height: auto;">
+<div class="k-widget k-grid" id="externalReportAbstractGrid"><div class="k-header k-grid-toolbar k-grid-top"><a class="refresh-grid-button k-button k-button-icontext " href="#"></a><a class="back-to-dashboard k-button k-button-icontext " href="/Wamex/"></a><a class="export-grid-button k-button k-button-icontext " href="#"></a><a class="clear-filter-button k-button k-button-icontext " href="#"></a></div><div class="k-grid-header"><div class="k-grid-header-wrap"><table><colgroup><col style="width:120px" /><col /></colgroup><thead class="k-grid-header"><tr><th class="k-header" data-dir="desc" data-field="ANumber" data-index="0" data-title="A. No" id="e99ed2fd-db1f-4f0b-b0f2-f35d5db46a64" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportAbstract_Read?ANumber=59666&amp;externalReportAbstractGrid-sort=~">A. No<span class="k-icon k-i-sort-desc-sm"></span></a></th><th class="k-header" data-field="Abstract" data-index="1" data-title="Abstract" id="80d03afe-1247-4e46-8fc0-4b165ada1087" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportAbstract_Read?ANumber=59666&amp;externalReportAbstractGrid-sort=Abstract-asc">Abstract</a></th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable" style="height:auto"><table><colgroup><col style="width:120px" /><col /></colgroup><tbody><tr class="k-no-data"><td colspan="2"></td></tr></tbody></table></div><div class="k-pager-wrap k-grid-pager"><a aria-label="Go to the first page" class="k-link k-pager-nav k-state-disabled k-pager-first" data-page="1" href="#" title="Go to the first page"><span class="k-icon k-i-arrow-end-left"></span></a><a aria-label="Go to the previous page" class="k-link k-pager-nav k-state-disabled" data-page="0" href="#" title="Go to the previous page"><span class="k-icon k-i-arrow-60-left"></span></a><div class="k-pager-numbers-wrap k-floatwrap"><select class="k-dropdown"><option selected="selected">1</option></select><ul class="k-pager-numbers"><li><span class="k-link k-state-selected" data-page="1">1</span></li></ul></div><span class="k-pager-input k-label">Page<input class="k-textbox" type="text" value="1" />of 1</span><a aria-label="Go to the next page" class="k-link k-pager-nav k-state-disabled" data-page="2" href="#" title="Go to the next page"><span class="k-icon k-i-arrow-60-right"></span></a><a aria-label="Go to the last page" class="k-link k-pager-nav k-state-disabled k-pager-last" data-page="1" href="#" title="Go to the last page"><span class="k-icon k-i-arrow-end-right"></span></a><span class="k-pager-sizes k-label"><select><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select>items per page</span><span class="k-pager-info k-label">No items to display</span></div></div><script>
+	kendo.syncReady(function(){jQuery("#externalReportAbstractGrid").kendoGrid({"columns":[{"title":"A. No","attributes":{"class":"anumber-column-view"},"headerAttributes":{"data-field":"ANumber","data-title":"A. No"},"width":"120px","field":"ANumber","encoded":true},{"title":"Abstract","attributes":{"class":"abstract-column-view"},"headerAttributes":{"data-field":"Abstract","data-title":"Abstract"},"template":"#= formatHTMLText(data)#","field":"Abstract","encoded":true}],"pageable":{"input":true,"pageSizes":[100,200,500,1000],"buttonCount":10},"sortable":true,"filterable":true,"columnMenu":true,"resizable":true,"reorderable":true,"scrollable":{"height":"auto"},"toolbar":{"command":[{"name":null,"attr":" class=\"refresh-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"back-to-dashboard\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"export-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"clear-filter-button\"","buttonType":"ImageAndText"}]},"dataSource":{"type":(function(){if(kendo.data.transports['aspnetmvc-ajax']){return 'aspnetmvc-ajax';} else{throw new Error('The kendo.aspnetmvc.min.js script is not included.');}})(),"transport":{"read":{"url":"/Wamex/Search/ReportDetails/ReportAbstract_Read","data":getReportId},"prefix":""},"pageSize":100,"page":1,"groupPaging":false,"total":0,"serverPaging":true,"serverSorting":true,"serverFiltering":true,"serverGrouping":true,"serverAggregates":true,"sort":[{"field":"ANumber","dir":"desc"}],"filter":[],"requestEnd":requestEnd,"schema":{"data":"Data","total":"Total","errors":"Errors","model":{"fields":{"ANumber":{"type":"number"},"Abstract":{"type":"string"},"Id":{"editable":false,"type":"number"}}}}}});});
+</script>
+
+<script type="text/javascript">
+    var reportAbstractGridHandler;
+
+    //NOTE: copy this function from _ReportAbstractView for Internal\ReportAdmin,
+    //        when these views(Search\ReportDeails\_ReportAbstractGrid and Internal\ReportAdmin\_ReportAbstractView), are consolidated / merged, then this function will be moved to the shared script
+    function formatHTMLText(data) {
+        return data.Abstract.replace(/<[^>]*>?/gm, '');
+    }
+
+    $(document).ready(function () {
+        reportAbstractGridHandler = new KendoGrid("externalReportAbstractGrid", {
+            handleResize: true,
+            enableTooltips: false
+        });
+
+
+    });
+</script>
+</div></div><div class="k-content" id="details-tabstrip-3"><div style="height: auto;">
+<div class="k-widget k-grid" id="externalReportStorageGrid"><div class="k-header k-grid-toolbar k-grid-top"><a class="refresh-grid-button k-button k-button-icontext " href="#"></a><a class="back-to-dashboard k-button k-button-icontext " href="/Wamex/"></a><a class="export-grid-button k-button k-button-icontext " href="#"></a><a class="clear-filter-button k-button k-button-icontext " href="#"></a></div><div class="k-grouping-header">Drag a column header and drop it here to group by that column</div><div class="k-grid-header"><div class="k-grid-header-wrap"><table><colgroup><col style="width:150px" /><col style="width:150px" /><col style="width:150px" /><col style="width:150px" /><col style="width:300px" /></colgroup><thead class="k-grid-header"><tr><th class="k-header" data-dir="desc" data-field="Anumber" data-index="0" data-title="A. No" id="19a00279-a4a6-4668-8f36-f60562828898" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportStorages_Read?ANumber=59666&amp;externalReportStorageGrid-sort=~">A. No<span class="k-icon k-i-sort-desc-sm"></span></a></th><th class="k-header" data-field="Volume" data-index="1" data-title="Volume" id="0cfb3feb-0eb4-4ac1-9dd1-40790cf44a7d" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportStorages_Read?ANumber=59666&amp;externalReportStorageGrid-sort=Volume-asc">Volume</a></th><th class="k-header" data-field="Storage" data-index="2" data-title="Storage" id="01cc0197-0da6-4e70-8a46-74d7713f63d6" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportStorages_Read?ANumber=59666&amp;externalReportStorageGrid-sort=Storage-asc">Storage</a></th><th class="k-header" data-field="Number" data-index="3" data-title="Number" id="9e1989b4-1094-4be6-bac0-b2bf7e10e887" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportStorages_Read?ANumber=59666&amp;externalReportStorageGrid-sort=Number-asc">Number</a></th><th class="k-header" data-field="Description" data-index="4" data-title="Description" id="4d534b30-c31c-4366-9295-da5c954d2248" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportStorages_Read?ANumber=59666&amp;externalReportStorageGrid-sort=Description-asc">Description</a></th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable" style="height:auto"><table><colgroup><col style="width:150px" /><col style="width:150px" /><col style="width:150px" /><col style="width:150px" /><col style="width:300px" /></colgroup><tbody><tr class="k-no-data"><td colspan="5"></td></tr></tbody></table></div><div class="k-pager-wrap k-grid-pager"><a aria-label="Go to the first page" class="k-link k-pager-nav k-state-disabled k-pager-first" data-page="1" href="#" title="Go to the first page"><span class="k-icon k-i-arrow-end-left"></span></a><a aria-label="Go to the previous page" class="k-link k-pager-nav k-state-disabled" data-page="0" href="#" title="Go to the previous page"><span class="k-icon k-i-arrow-60-left"></span></a><div class="k-pager-numbers-wrap k-floatwrap"><select class="k-dropdown"><option selected="selected">1</option></select><ul class="k-pager-numbers"><li><span class="k-link k-state-selected" data-page="1">1</span></li></ul></div><span class="k-pager-input k-label">Page<input class="k-textbox" type="text" value="1" />of 1</span><a aria-label="Go to the next page" class="k-link k-pager-nav k-state-disabled" data-page="2" href="#" title="Go to the next page"><span class="k-icon k-i-arrow-60-right"></span></a><a aria-label="Go to the last page" class="k-link k-pager-nav k-state-disabled k-pager-last" data-page="1" href="#" title="Go to the last page"><span class="k-icon k-i-arrow-end-right"></span></a><span class="k-pager-sizes k-label"><select><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select>items per page</span><span class="k-pager-info k-label">No items to display</span></div></div><script>
+	kendo.syncReady(function(){jQuery("#externalReportStorageGrid").kendoGrid({"columns":[{"title":"A. No","headerAttributes":{"data-field":"Anumber","data-title":"A. No"},"width":"150px","field":"Anumber","encoded":true},{"title":"Volume","headerAttributes":{"data-field":"Volume","data-title":"Volume"},"width":"150px","field":"Volume","encoded":true},{"title":"Storage","headerAttributes":{"data-field":"Storage","data-title":"Storage"},"width":"150px","field":"Storage","encoded":true},{"title":"Number","headerAttributes":{"data-field":"Number","data-title":"Number"},"width":"150px","field":"Number","encoded":true},{"title":"Description","headerAttributes":{"data-field":"Description","data-title":"Description"},"width":"300px","field":"Description","encoded":true}],"groupable":{"enabled":true},"pageable":{"input":true,"pageSizes":[100,200,500,1000],"buttonCount":10},"sortable":true,"filterable":true,"columnMenu":true,"resizable":true,"reorderable":true,"scrollable":{"height":"auto"},"toolbar":{"command":[{"name":null,"attr":" class=\"refresh-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"back-to-dashboard\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"export-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"clear-filter-button\"","buttonType":"ImageAndText"}]},"dataSource":{"type":(function(){if(kendo.data.transports['aspnetmvc-ajax']){return 'aspnetmvc-ajax';} else{throw new Error('The kendo.aspnetmvc.min.js script is not included.');}})(),"transport":{"read":{"url":"/Wamex/Search/ReportDetails/ReportStorages_Read","data":getReportId},"prefix":""},"pageSize":100,"page":1,"groupPaging":false,"total":0,"serverPaging":true,"serverSorting":true,"serverFiltering":true,"serverGrouping":true,"serverAggregates":true,"sort":[{"field":"Anumber","dir":"desc"}],"filter":[],"schema":{"data":"Data","total":"Total","errors":"Errors","model":{"fields":{"Anumber":{"type":"number"},"Volume":{"type":"string"},"Storage":{"type":"string"},"Number":{"type":"string"},"Description":{"type":"string"},"Id":{"editable":false,"type":"number"}}}}}});});
+</script>
+
+<script type="text/javascript">
+    var reportStorageGridHandler;
+   
+    $(document).ready(function () {
+        reportStorageGridHandler = new KendoGrid("externalReportStorageGrid", {
+            handleResize: true,
+            enableTooltips: false            
+        });
+    });
+</script>
+</div></div><div class="k-content" id="details-tabstrip-4"><div style="height: auto;">
+<div class="k-widget k-grid" id="externalReportHistoricTitleGrid"><div class="k-header k-grid-toolbar k-grid-top"><a class="refresh-grid-button k-button k-button-icontext " href="#"></a><a class="back-to-dashboard k-button k-button-icontext " href="/Wamex/"></a><a class="export-grid-button k-button k-button-icontext " href="#"></a><a class="clear-filter-button k-button k-button-icontext " href="#"></a></div><div class="k-grouping-header">Drag a column header and drop it here to group by that column</div><div class="k-grid-header"><div class="k-grid-header-wrap"><table><colgroup><col style="width:150px" /><col style="width:300px" /></colgroup><thead class="k-grid-header"><tr><th class="k-header" data-dir="desc" data-field="Anumber" data-index="0" data-title="A. No" id="126d6bd8-7f9d-455f-8c5d-0f24a0f588e2" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportHistoricTitles_Read?ANumber=59666&amp;externalReportHistoricTitleGrid-sort=~">A. No<span class="k-icon k-i-sort-desc-sm"></span></a></th><th class="k-header" data-field="HistoricTitle" data-index="1" data-title="Historic title" id="c9e1918a-5cf7-47a9-a4ae-e94194a25459" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportHistoricTitles_Read?ANumber=59666&amp;externalReportHistoricTitleGrid-sort=HistoricTitle-asc">Historic title</a></th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable" style="height:auto"><table><colgroup><col style="width:150px" /><col style="width:300px" /></colgroup><tbody><tr class="k-no-data"><td colspan="2"></td></tr></tbody></table></div><div class="k-pager-wrap k-grid-pager"><a aria-label="Go to the first page" class="k-link k-pager-nav k-state-disabled k-pager-first" data-page="1" href="#" title="Go to the first page"><span class="k-icon k-i-arrow-end-left"></span></a><a aria-label="Go to the previous page" class="k-link k-pager-nav k-state-disabled" data-page="0" href="#" title="Go to the previous page"><span class="k-icon k-i-arrow-60-left"></span></a><div class="k-pager-numbers-wrap k-floatwrap"><select class="k-dropdown"><option selected="selected">1</option></select><ul class="k-pager-numbers"><li><span class="k-link k-state-selected" data-page="1">1</span></li></ul></div><span class="k-pager-input k-label">Page<input class="k-textbox" type="text" value="1" />of 1</span><a aria-label="Go to the next page" class="k-link k-pager-nav k-state-disabled" data-page="2" href="#" title="Go to the next page"><span class="k-icon k-i-arrow-60-right"></span></a><a aria-label="Go to the last page" class="k-link k-pager-nav k-state-disabled k-pager-last" data-page="1" href="#" title="Go to the last page"><span class="k-icon k-i-arrow-end-right"></span></a><span class="k-pager-sizes k-label"><select><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select>items per page</span><span class="k-pager-info k-label">No items to display</span></div></div><script>
+	kendo.syncReady(function(){jQuery("#externalReportHistoricTitleGrid").kendoGrid({"columns":[{"title":"A. No","headerAttributes":{"data-field":"Anumber","data-title":"A. No"},"width":"150px","field":"Anumber","encoded":true},{"title":"Historic title","headerAttributes":{"data-field":"HistoricTitle","data-title":"Historic title"},"width":"300px","field":"HistoricTitle","encoded":true}],"groupable":{"enabled":true},"pageable":{"input":true,"pageSizes":[100,200,500,1000],"buttonCount":10},"sortable":true,"filterable":true,"columnMenu":true,"resizable":true,"reorderable":true,"scrollable":{"height":"auto"},"toolbar":{"command":[{"name":null,"attr":" class=\"refresh-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"back-to-dashboard\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"export-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"clear-filter-button\"","buttonType":"ImageAndText"}]},"dataSource":{"type":(function(){if(kendo.data.transports['aspnetmvc-ajax']){return 'aspnetmvc-ajax';} else{throw new Error('The kendo.aspnetmvc.min.js script is not included.');}})(),"transport":{"read":{"url":"/Wamex/Search/ReportDetails/ReportHistoricTitles_Read","data":getReportId},"prefix":""},"pageSize":100,"page":1,"groupPaging":false,"total":0,"serverPaging":true,"serverSorting":true,"serverFiltering":true,"serverGrouping":true,"serverAggregates":true,"sort":[{"field":"Anumber","dir":"desc"}],"filter":[],"schema":{"data":"Data","total":"Total","errors":"Errors","model":{"fields":{"Anumber":{"type":"number"},"HistoricTitle":{"type":"string"},"Id":{"editable":false,"type":"number"}}}}}});});
+</script>
+
+<script type="text/javascript">
+    var reportHistoricTitleGridHandler;
+   
+    $(document).ready(function () {
+        reportHistoricTitleGridHandler = new KendoGrid("externalReportHistoricTitleGrid", {
+            handleResize: true,
+            enableTooltips: false            
+        });
+    });    
+</script>
+</div></div><div class="k-content" id="details-tabstrip-5"><div style="height: auto;">
+<div class="k-widget k-grid" id="externalReportDigitalFileGrid"><div class="k-header k-grid-toolbar k-grid-top"><a class="refresh-grid-button k-button k-button-icontext " href="#"></a><a class="back-to-dashboard k-button k-button-icontext " href="/Wamex/"></a><a class="export-grid-button k-button k-button-icontext " href="#"></a><a class="clear-filter-button k-button k-button-icontext " href="#"></a></div><div class="k-grouping-header">Drag a column header and drop it here to group by that column</div><div class="k-grid-header"><div class="k-grid-header-wrap"><table><colgroup><col style="width:150px" /><col style="width:150px" /><col style="width:300px" /></colgroup><thead class="k-grid-header"><tr><th class="k-header" data-dir="desc" data-field="ANumber" data-index="0" data-title="A. No" id="0c1bbc17-2ad4-4041-becc-97ad129a32db" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportDigitalFiles_Read?ANumber=59666&amp;externalReportDigitalFileGrid-sort=~">A. No<span class="k-icon k-i-sort-desc-sm"></span></a></th><th class="k-header" data-field="Filename" data-index="1" data-title="File name" id="3bee9d6b-9298-48bc-84f8-7f1154e0fc37" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportDigitalFiles_Read?ANumber=59666&amp;externalReportDigitalFileGrid-sort=Filename-asc">File name</a></th><th class="k-header" data-field="Description" data-index="2" data-title="Description/Remarks" id="64b5790c-a960-4288-bc4e-19ad883f8794" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportDigitalFiles_Read?ANumber=59666&amp;externalReportDigitalFileGrid-sort=Description-asc">Description/Remarks</a></th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable" style="height:auto"><table><colgroup><col style="width:150px" /><col style="width:150px" /><col style="width:300px" /></colgroup><tbody><tr class="k-no-data"><td colspan="3"></td></tr></tbody></table></div><div class="k-pager-wrap k-grid-pager"><a aria-label="Go to the first page" class="k-link k-pager-nav k-state-disabled k-pager-first" data-page="1" href="#" title="Go to the first page"><span class="k-icon k-i-arrow-end-left"></span></a><a aria-label="Go to the previous page" class="k-link k-pager-nav k-state-disabled" data-page="0" href="#" title="Go to the previous page"><span class="k-icon k-i-arrow-60-left"></span></a><div class="k-pager-numbers-wrap k-floatwrap"><select class="k-dropdown"><option selected="selected">1</option></select><ul class="k-pager-numbers"><li><span class="k-link k-state-selected" data-page="1">1</span></li></ul></div><span class="k-pager-input k-label">Page<input class="k-textbox" type="text" value="1" />of 1</span><a aria-label="Go to the next page" class="k-link k-pager-nav k-state-disabled" data-page="2" href="#" title="Go to the next page"><span class="k-icon k-i-arrow-60-right"></span></a><a aria-label="Go to the last page" class="k-link k-pager-nav k-state-disabled k-pager-last" data-page="1" href="#" title="Go to the last page"><span class="k-icon k-i-arrow-end-right"></span></a><span class="k-pager-sizes k-label"><select><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select>items per page</span><span class="k-pager-info k-label">No items to display</span></div></div><script>
+	kendo.syncReady(function(){jQuery("#externalReportDigitalFileGrid").kendoGrid({"columns":[{"title":"A. No","headerAttributes":{"data-field":"ANumber","data-title":"A. No"},"width":"150px","field":"ANumber","encoded":true},{"title":"File name","headerAttributes":{"data-field":"Filename","data-title":"File name"},"width":"150px","field":"Filename","encoded":true},{"title":"Description/Remarks","headerAttributes":{"data-field":"Description","data-title":"Description/Remarks"},"width":"300px","field":"Description","encoded":true}],"groupable":{"enabled":true},"pageable":{"input":true,"pageSizes":[100,200,500,1000],"buttonCount":10},"sortable":true,"filterable":true,"columnMenu":true,"resizable":true,"reorderable":true,"scrollable":{"height":"auto"},"toolbar":{"command":[{"name":null,"attr":" class=\"refresh-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"back-to-dashboard\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"export-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"clear-filter-button\"","buttonType":"ImageAndText"}]},"dataSource":{"type":(function(){if(kendo.data.transports['aspnetmvc-ajax']){return 'aspnetmvc-ajax';} else{throw new Error('The kendo.aspnetmvc.min.js script is not included.');}})(),"transport":{"read":{"url":"/Wamex/Search/ReportDetails/ReportDigitalFiles_Read","data":getReportId},"prefix":""},"pageSize":100,"page":1,"groupPaging":false,"total":0,"serverPaging":true,"serverSorting":true,"serverFiltering":true,"serverGrouping":true,"serverAggregates":true,"sort":[{"field":"ANumber","dir":"desc"}],"filter":[],"schema":{"data":"Data","total":"Total","errors":"Errors","model":{"fields":{"ANumber":{"type":"number"},"Filename":{"type":"string"},"Description":{"type":"string"},"Id":{"editable":false,"type":"number"}}}}}});});
+</script>
+
+<script type="text/javascript">
+    var reportStorageGridHandler;
+   
+    $(document).ready(function () {
+        reportStorageGridHandler = new KendoGrid("externalReportDigitalFileGrid", {
+            handleResize: true,
+            enableTooltips: false            
+        });
+    });
+</script>
+</div></div><div class="k-content" id="details-tabstrip-6"><div style="height: auto;">
+<div class="k-widget k-grid" id="externalReportDrillingSummaryGrid"><div class="k-header k-grid-toolbar k-grid-top"><a class="refresh-grid-button k-button k-button-icontext " href="#"></a><a class="back-to-dashboard k-button k-button-icontext " href="/Wamex/"></a><a class="export-grid-button k-button k-button-icontext " href="#"></a><a class="clear-filter-button k-button k-button-icontext " href="#"></a></div><div class="k-grouping-header">Drag a column header and drop it here to group by that column</div><div class="k-grid-header"><div class="k-grid-header-wrap"><table><colgroup><col style="width:150px" /><col style="width:150px" /><col style="width:150px" /><col style="width:150px" /></colgroup><thead class="k-grid-header"><tr><th class="k-header" data-dir="desc" data-field="ANumber" data-index="0" data-title="A. No" id="20a24f29-8c51-4f4c-af73-b8bf44bb6514" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportDrillingSummary_Read?ANumber=59666&amp;externalReportDrillingSummaryGrid-sort=~">A. No<span class="k-icon k-i-sort-desc-sm"></span></a></th><th class="k-header" data-field="HoleType" data-index="1" data-title="Hole type" id="7e769bcf-1ab9-4d47-83c8-713edd78dcc9" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportDrillingSummary_Read?ANumber=59666&amp;externalReportDrillingSummaryGrid-sort=HoleType-asc">Hole type</a></th><th class="k-header" data-field="NumberOfHoles" data-index="2" data-title="No. of holes" id="dc36e4e9-2315-44cd-8aeb-7f4868bd7345" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportDrillingSummary_Read?ANumber=59666&amp;externalReportDrillingSummaryGrid-sort=NumberOfHoles-asc">No. of holes</a></th><th class="k-header" data-field="TotalDrilled" data-index="3" data-title="Total drilled (m)" id="0e92b2c6-d9b4-4709-bd8c-868e51de456a" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportDrillingSummary_Read?ANumber=59666&amp;externalReportDrillingSummaryGrid-sort=TotalDrilled-asc">Total drilled (m)</a></th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable" style="height:auto"><table><colgroup><col style="width:150px" /><col style="width:150px" /><col style="width:150px" /><col style="width:150px" /></colgroup><tbody><tr class="k-no-data"><td colspan="4"></td></tr></tbody></table></div><div class="k-pager-wrap k-grid-pager"><a aria-label="Go to the first page" class="k-link k-pager-nav k-state-disabled k-pager-first" data-page="1" href="#" title="Go to the first page"><span class="k-icon k-i-arrow-end-left"></span></a><a aria-label="Go to the previous page" class="k-link k-pager-nav k-state-disabled" data-page="0" href="#" title="Go to the previous page"><span class="k-icon k-i-arrow-60-left"></span></a><div class="k-pager-numbers-wrap k-floatwrap"><select class="k-dropdown"><option selected="selected">1</option></select><ul class="k-pager-numbers"><li><span class="k-link k-state-selected" data-page="1">1</span></li></ul></div><span class="k-pager-input k-label">Page<input class="k-textbox" type="text" value="1" />of 1</span><a aria-label="Go to the next page" class="k-link k-pager-nav k-state-disabled" data-page="2" href="#" title="Go to the next page"><span class="k-icon k-i-arrow-60-right"></span></a><a aria-label="Go to the last page" class="k-link k-pager-nav k-state-disabled k-pager-last" data-page="1" href="#" title="Go to the last page"><span class="k-icon k-i-arrow-end-right"></span></a><span class="k-pager-sizes k-label"><select><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select>items per page</span><span class="k-pager-info k-label">No items to display</span></div></div><script>
+	kendo.syncReady(function(){jQuery("#externalReportDrillingSummaryGrid").kendoGrid({"columns":[{"title":"A. No","headerAttributes":{"data-field":"ANumber","data-title":"A. No"},"width":"150px","field":"ANumber","encoded":true},{"title":"Hole type","headerAttributes":{"data-field":"HoleType","data-title":"Hole type"},"width":"150px","field":"HoleType","encoded":true},{"title":"No. of holes","headerAttributes":{"data-field":"NumberOfHoles","data-title":"No. of holes"},"width":"150px","field":"NumberOfHoles","encoded":true},{"title":"Total drilled (m)","headerAttributes":{"data-field":"TotalDrilled","data-title":"Total drilled (m)"},"width":"150px","field":"TotalDrilled","encoded":true}],"groupable":{"enabled":true},"pageable":{"input":true,"pageSizes":[100,200,500,1000],"buttonCount":10},"sortable":true,"filterable":true,"columnMenu":true,"resizable":true,"reorderable":true,"scrollable":{"height":"auto"},"toolbar":{"command":[{"name":null,"attr":" class=\"refresh-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"back-to-dashboard\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"export-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"clear-filter-button\"","buttonType":"ImageAndText"}]},"dataSource":{"type":(function(){if(kendo.data.transports['aspnetmvc-ajax']){return 'aspnetmvc-ajax';} else{throw new Error('The kendo.aspnetmvc.min.js script is not included.');}})(),"transport":{"read":{"url":"/Wamex/Search/ReportDetails/ReportDrillingSummary_Read","data":getReportId},"prefix":""},"pageSize":100,"page":1,"groupPaging":false,"total":0,"serverPaging":true,"serverSorting":true,"serverFiltering":true,"serverGrouping":true,"serverAggregates":true,"sort":[{"field":"ANumber","dir":"desc"}],"filter":[],"schema":{"data":"Data","total":"Total","errors":"Errors","model":{"fields":{"ANumber":{"type":"number"},"HoleType":{"type":"string"},"NumberOfHoles":{"type":"number","defaultValue":null},"TotalDrilled":{"type":"number","defaultValue":null},"Id":{"editable":false,"type":"number"}}}}}});});
+</script>
+
+<script type="text/javascript">
+    var reportDrillingSummaryGridHandler;
+   
+    $(document).ready(function () {
+        reportDrillingSummaryGridHandler = new KendoGrid("externalReportDrillingSummaryGrid", {
+            handleResize: true,
+            enableTooltips: false            
+        });
+    });
+</script>
+</div></div><div class="k-content" id="details-tabstrip-7"><div style="height: auto;">
+<div class="k-widget k-grid" id="externalReportSurfaceGeochemistrySummaryGrid"><div class="k-header k-grid-toolbar k-grid-top"><a class="refresh-grid-button k-button k-button-icontext " href="#"></a><a class="back-to-dashboard k-button k-button-icontext " href="/Wamex/"></a><a class="export-grid-button k-button k-button-icontext " href="#"></a><a class="clear-filter-button k-button k-button-icontext " href="#"></a></div><div class="k-grouping-header">Drag a column header and drop it here to group by that column</div><div class="k-grid-header"><div class="k-grid-header-wrap"><table><colgroup><col style="width:150px" /><col style="width:150px" /><col style="width:150px" /></colgroup><thead class="k-grid-header"><tr><th class="k-header" data-dir="desc" data-field="ANumber" data-index="0" data-title="A. No" id="5d95ee1e-7c9b-4cae-9d16-b0c4e6946176" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportSurfaceGeoChemistrySummary_Read?ANumber=59666&amp;externalReportSurfaceGeochemistrySummaryGrid-sort=~">A. No<span class="k-icon k-i-sort-desc-sm"></span></a></th><th class="k-header" data-field="SampleType" data-index="1" data-title="Sample type" id="8fb87f25-61f9-4087-8cc4-5bd0cbc97e7d" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportSurfaceGeoChemistrySummary_Read?ANumber=59666&amp;externalReportSurfaceGeochemistrySummaryGrid-sort=SampleType-asc">Sample type</a></th><th class="k-header" data-field="NumberOfSamples" data-index="2" data-title="No. of samples" id="4a9f6297-6105-46d7-8291-a6ddcddb2a79" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportSurfaceGeoChemistrySummary_Read?ANumber=59666&amp;externalReportSurfaceGeochemistrySummaryGrid-sort=NumberOfSamples-asc">No. of samples</a></th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable" style="height:auto"><table><colgroup><col style="width:150px" /><col style="width:150px" /><col style="width:150px" /></colgroup><tbody><tr class="k-no-data"><td colspan="3"></td></tr></tbody></table></div><div class="k-pager-wrap k-grid-pager"><a aria-label="Go to the first page" class="k-link k-pager-nav k-state-disabled k-pager-first" data-page="1" href="#" title="Go to the first page"><span class="k-icon k-i-arrow-end-left"></span></a><a aria-label="Go to the previous page" class="k-link k-pager-nav k-state-disabled" data-page="0" href="#" title="Go to the previous page"><span class="k-icon k-i-arrow-60-left"></span></a><div class="k-pager-numbers-wrap k-floatwrap"><select class="k-dropdown"><option selected="selected">1</option></select><ul class="k-pager-numbers"><li><span class="k-link k-state-selected" data-page="1">1</span></li></ul></div><span class="k-pager-input k-label">Page<input class="k-textbox" type="text" value="1" />of 1</span><a aria-label="Go to the next page" class="k-link k-pager-nav k-state-disabled" data-page="2" href="#" title="Go to the next page"><span class="k-icon k-i-arrow-60-right"></span></a><a aria-label="Go to the last page" class="k-link k-pager-nav k-state-disabled k-pager-last" data-page="1" href="#" title="Go to the last page"><span class="k-icon k-i-arrow-end-right"></span></a><span class="k-pager-sizes k-label"><select><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select>items per page</span><span class="k-pager-info k-label">No items to display</span></div></div><script>
+	kendo.syncReady(function(){jQuery("#externalReportSurfaceGeochemistrySummaryGrid").kendoGrid({"columns":[{"title":"A. No","headerAttributes":{"data-field":"ANumber","data-title":"A. No"},"width":"150px","field":"ANumber","encoded":true},{"title":"Sample type","headerAttributes":{"data-field":"SampleType","data-title":"Sample type"},"width":"150px","field":"SampleType","encoded":true},{"title":"No. of samples","headerAttributes":{"data-field":"NumberOfSamples","data-title":"No. of samples"},"width":"150px","field":"NumberOfSamples","encoded":true}],"groupable":{"enabled":true},"pageable":{"input":true,"pageSizes":[100,200,500,1000],"buttonCount":10},"sortable":true,"filterable":true,"columnMenu":true,"resizable":true,"reorderable":true,"scrollable":{"height":"auto"},"toolbar":{"command":[{"name":null,"attr":" class=\"refresh-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"back-to-dashboard\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"export-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"clear-filter-button\"","buttonType":"ImageAndText"}]},"dataSource":{"type":(function(){if(kendo.data.transports['aspnetmvc-ajax']){return 'aspnetmvc-ajax';} else{throw new Error('The kendo.aspnetmvc.min.js script is not included.');}})(),"transport":{"read":{"url":"/Wamex/Search/ReportDetails/ReportSurfaceGeoChemistrySummary_Read","data":getReportId},"prefix":""},"pageSize":100,"page":1,"groupPaging":false,"total":0,"serverPaging":true,"serverSorting":true,"serverFiltering":true,"serverGrouping":true,"serverAggregates":true,"sort":[{"field":"ANumber","dir":"desc"}],"filter":[],"schema":{"data":"Data","total":"Total","errors":"Errors","model":{"fields":{"ANumber":{"type":"number"},"SampleType":{"type":"string"},"NumberOfSamples":{"type":"number","defaultValue":null},"Id":{"editable":false,"type":"number"}}}}}});});
+</script>
+
+<script type="text/javascript">
+    var reportSurfaceGeochemistrySummaryGridHandler;
+   
+    $(document).ready(function () {
+        reportSurfaceGeochemistrySummaryGridHandler = new KendoGrid("externalReportSurfaceGeochemistrySummaryGrid", {
+            handleResize: true,
+            enableTooltips: false            
+        });
+    });
+</script>
+</div></div><div class="k-content" id="details-tabstrip-8"><div style="height: auto;">
+<div class="k-widget k-grid" id="externalReportSurveyCompletedSummaryGrid"><div class="k-header k-grid-toolbar k-grid-top"><a class="refresh-grid-button k-button k-button-icontext " href="#"></a><a class="back-to-dashboard k-button k-button-icontext " href="/Wamex/"></a><a class="export-grid-button k-button k-button-icontext " href="#"></a><a class="clear-filter-button k-button k-button-icontext " href="#"></a></div><div class="k-grouping-header">Drag a column header and drop it here to group by that column</div><div class="k-grid-header"><div class="k-grid-header-wrap"><table><colgroup><col style="width:150px" /><col style="width:150px" /></colgroup><thead class="k-grid-header"><tr><th class="k-header" data-dir="desc" data-field="ANumber" data-index="0" data-title="A. No" id="516c21a1-7898-4b97-adb1-2983c667fc37" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportSurveyCompletedSummary_Read?ANumber=59666&amp;externalReportSurveyCompletedSummaryGrid-sort=~">A. No<span class="k-icon k-i-sort-desc-sm"></span></a></th><th class="k-header" data-field="SurveyType" data-index="1" data-title="Survey type" id="19959e64-5f48-4acd-a619-b8fe3483b3ac" scope="col"><a class="k-link" href="/Wamex/Search/ReportDetails/ReportSurveyCompletedSummary_Read?ANumber=59666&amp;externalReportSurveyCompletedSummaryGrid-sort=SurveyType-asc">Survey type</a></th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable" style="height:auto"><table><colgroup><col style="width:150px" /><col style="width:150px" /></colgroup><tbody><tr class="k-no-data"><td colspan="2"></td></tr></tbody></table></div><div class="k-pager-wrap k-grid-pager"><a aria-label="Go to the first page" class="k-link k-pager-nav k-state-disabled k-pager-first" data-page="1" href="#" title="Go to the first page"><span class="k-icon k-i-arrow-end-left"></span></a><a aria-label="Go to the previous page" class="k-link k-pager-nav k-state-disabled" data-page="0" href="#" title="Go to the previous page"><span class="k-icon k-i-arrow-60-left"></span></a><div class="k-pager-numbers-wrap k-floatwrap"><select class="k-dropdown"><option selected="selected">1</option></select><ul class="k-pager-numbers"><li><span class="k-link k-state-selected" data-page="1">1</span></li></ul></div><span class="k-pager-input k-label">Page<input class="k-textbox" type="text" value="1" />of 1</span><a aria-label="Go to the next page" class="k-link k-pager-nav k-state-disabled" data-page="2" href="#" title="Go to the next page"><span class="k-icon k-i-arrow-60-right"></span></a><a aria-label="Go to the last page" class="k-link k-pager-nav k-state-disabled k-pager-last" data-page="1" href="#" title="Go to the last page"><span class="k-icon k-i-arrow-end-right"></span></a><span class="k-pager-sizes k-label"><select><option value="100">100</option><option value="200">200</option><option value="500">500</option><option value="1000">1000</option></select>items per page</span><span class="k-pager-info k-label">No items to display</span></div></div><script>
+	kendo.syncReady(function(){jQuery("#externalReportSurveyCompletedSummaryGrid").kendoGrid({"columns":[{"title":"A. No","headerAttributes":{"data-field":"ANumber","data-title":"A. No"},"width":"150px","field":"ANumber","encoded":true},{"title":"Survey type","headerAttributes":{"data-field":"SurveyType","data-title":"Survey type"},"width":"150px","field":"SurveyType","encoded":true}],"groupable":{"enabled":true},"pageable":{"input":true,"pageSizes":[100,200,500,1000],"buttonCount":10},"sortable":true,"filterable":true,"columnMenu":true,"resizable":true,"reorderable":true,"scrollable":{"height":"auto"},"toolbar":{"command":[{"name":null,"attr":" class=\"refresh-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"back-to-dashboard\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"export-grid-button\"","buttonType":"ImageAndText"},{"name":null,"attr":" class=\"clear-filter-button\"","buttonType":"ImageAndText"}]},"dataSource":{"type":(function(){if(kendo.data.transports['aspnetmvc-ajax']){return 'aspnetmvc-ajax';} else{throw new Error('The kendo.aspnetmvc.min.js script is not included.');}})(),"transport":{"read":{"url":"/Wamex/Search/ReportDetails/ReportSurveyCompletedSummary_Read","data":getReportId},"prefix":""},"pageSize":100,"page":1,"groupPaging":false,"total":0,"serverPaging":true,"serverSorting":true,"serverFiltering":true,"serverGrouping":true,"serverAggregates":true,"sort":[{"field":"ANumber","dir":"desc"}],"filter":[],"schema":{"data":"Data","total":"Total","errors":"Errors","model":{"fields":{"ANumber":{"type":"number"},"SurveyType":{"type":"string"},"Id":{"editable":false,"type":"number"}}}}}});});
+</script>
+
+<script type="text/javascript">
+    var reportSurveyCompletedSummaryGridHandler;
+   
+    $(document).ready(function () {
+        reportSurveyCompletedSummaryGridHandler = new KendoGrid("externalReportSurveyCompletedSummaryGrid", {
+            handleResize: true,
+            enableTooltips: false            
+        });
+    });
+</script>
+</div></div></div></div><script>
+	kendo.syncReady(function(){jQuery("#details-tabstrip").kendoTabStrip({"animation":false,"scrollable":false});});
+</script>
+</div>
+
+<script type="text/javascript">
+
+    function getReportId() {
+        return { aNumber: JSON.parse('[59666]'.replace(/&quot;/g, '"')) };
+    }
+</script>
+                <!-- / .container -->
+            </div>
+            <!-- / .main -->
+            
+        </div>
+        <!-- / .content -->
+
+    </div>
+    <!-- / .main -->
+
+    <div id="footer" class="sticky-footer">
+        <footer class="footer sticky-footer">
+            <div id="footer-container" class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-inline">
+                            <li><a href="http://www.dmp.wa.gov.au/Utilities/Accessibility-8828.aspx" target="_blank">Accessibility</a></li>
+
+                            <li><a href="#" target="_blank">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-6">
+                        <p>
+                            Department of Mines, Petroleum and Exploration 2026 • Mineral - WAMEX
+                        </p>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+        </footer>
+        <!-- /.footer -->
+    </div>
+    <!-- / .footer -->
+
+    <div id="tablet-indicator"></div>
+</body>
+
+
+
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        setTimeout(function () {
+            var profileHtml = $('.profiler-results').html();
+            profileHtml += '<div><button onClick="hideProfiler()">Hide Profiler</button></div>';
+            $('.profiler-results').html(profileHtml)
+        }, 1000);
+
+    });
+
+    function hideProfiler() {
+        $('.profiler-results').hide();
+        return;
+    }
+
+</script>
