@@ -484,7 +484,7 @@ class StrictTransport:
             def redirect_request(self, req, fp, code, msg, headers, newurl):
                 old=urllib.parse.urlsplit(req.full_url).hostname;new=urllib.parse.urlsplit(newurl).hostname
                 owner.http[old]=code;owner.attempts.append(dict(host=old,http_status=code))
-                if hasattr(owner,'before_request'):owner.attempts[-1]['url']=req.full_url
+                if hasattr(owner,'before_request') and (old=='www.asx.com.au' or owner.hosts.get(old)=='alternate'):owner.attempts[-1]['url']=req.full_url
                 if urllib.parse.urlsplit(newurl).scheme!='https' or new not in owner.hosts or (old!=new and owner.hosts.get(old)!=owner.hosts.get(new)):
                     raise ValueError('REDIRECT_DESTINATION_NOT_APPROVED')
                 if hasattr(owner,'before_request'):owner.before_request(newurl)
@@ -514,7 +514,8 @@ class StrictTransport:
                     final=urllib.parse.urlsplit(response.geturl()).hostname
                     self.resolved_url=response.geturl()
                     self.http[host]=response.status;self.attempts.append(dict(host=host,http_status=response.status))
-                    if hasattr(self,'before_request'):self.attempts[-1]['url']=req.full_url
+                    # Scope URL audit to www/alternates; bulk government pages retain their bounded receipt format.
+                    if hasattr(self,'before_request') and (host=='www.asx.com.au' or self.hosts.get(host)=='alternate'):self.attempts[-1]['url']=req.full_url
                     raw=response.read(max_bytes+1) if max_bytes is not None else response.read()
                     if max_bytes is not None and len(raw)>max_bytes:raise ValueError('DOCUMENT_BYTE_BUDGET_EXCEEDED')
                     sample=raw[:200000].lower()
@@ -524,7 +525,7 @@ class StrictTransport:
                     return raw,dict(response.headers)
             except urllib.error.HTTPError as exc:
                 self.http[host]=exc.code;self.attempts.append(dict(host=host,http_status=exc.code));exc.request_attempts=attempt+1
-                if hasattr(self,'before_request'):self.attempts[-1]['url']=req.full_url
+                if hasattr(self,'before_request') and (host=='www.asx.com.au' or self.hosts.get(host)=='alternate'):self.attempts[-1]['url']=req.full_url
                 if 400<=exc.code<500:
                     self.stopped[host]=str(exc.code)
                     self.stopped[urllib.parse.urlsplit(exc.url).hostname]=str(exc.code)

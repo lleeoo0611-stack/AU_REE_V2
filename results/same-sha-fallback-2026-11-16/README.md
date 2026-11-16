@@ -69,4 +69,4 @@ Astron、Lynas 首頁確認時逾時，Critica 首頁無法存取，未新增其
 
 既有完整測試第一輪 398 項通過，新增最後案例另行驗證；最終以本 PR 乾淨 CI 的 XML 為準。Phase20–22 的新重建證據會保存在本目錄，凍結原檔不變。
 
-目前 src 新增加刪除合計：對 `12f45f4` 為 182 行，對 `070df10` 累計 1,997 行；未新增 src 模組、config 檔或原件 PDF。T4 的實際 fallback_report、proposed patch、新總表與逐格增量尚待乾淨 CI，尚未計入找到同 SHA 或恢復格數。
+目前 src 新增加刪除合計：對 `12f45f4` 為 183 行，對 `070df10` 累計 1,998 行；未新增 src 模組、config 檔或原件 PDF。T4 的實際 fallback_report、proposed patch、新總表與逐格增量尚待乾淨 CI，尚未計入找到同 SHA 或恢復格數。

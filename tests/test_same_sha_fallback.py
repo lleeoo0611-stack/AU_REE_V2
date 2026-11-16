@@ -215,6 +215,20 @@ class LocalFallback(unittest.TestCase):
         self.assertEqual(['/robots.txt','/login.pdf'],[c[1] for c in self.calls])
         self.assertEqual('CAPTCHA_OR_LOGIN',helper.primary.stopped['mirror.test'])
 
+    def test_long_primary_queries_keep_receipts_readable_without_dropping_attempts(self):
+        primary, helper = self.make()
+        for index in range(40):
+            path = '/query?where=' + 'x'*5000 + '&page=' + str(index)
+            self.routes['primary.test',path] = (200,PDF,{})
+            primary('https://primary.test'+path)
+        self.assertEqual(41,len(primary.attempts))
+        payload = json.dumps(primary.attempts)
+        self.assertLess(len(payload),131072)
+        self.assertFalse(any('url' in a for a in primary.attempts))
+        self.routes['mirror.test','/copy.pdf'] = (200,PDF,{})
+        self.find(helper,self.source('https://mirror.test/copy.pdf'))
+        self.assertTrue(all('url' in a for a in primary.attempts if a['host']=='mirror.test'))
+
     def test_first_non_pdf_stops_www_in_probe_and_main_build(self):
         primary, _ = self.make()
         registry=dict(sources=[dict(key=host+str(i),kind='pdf',url='https://'+host+'/'+str(i)+'.pdf')
