@@ -636,6 +636,7 @@ class SameSHAAlternates:
                             urls.append(candidate['url'])
                 except Exception as exc:
                     report['attempts'].append(dict(url=index,stage='INDEX',reason=str(exc)))
+                    receipt['network_error'] = receipt.get('network_error',False) or strict_failure_status(exc) == 'NETWORK_ERROR'
             for url in dict.fromkeys(urls):
                 if report['candidate_count'] >= self.policy['max_candidates_per_source']:
                     report['stop_reason'] = 'CANDIDATE_BUDGET_EXHAUSTED'

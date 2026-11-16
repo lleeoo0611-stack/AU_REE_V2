@@ -124,6 +124,15 @@ class LocalFallback(unittest.TestCase):
         self.assertEqual(1,db.execute("SELECT count(*) FROM review_queue WHERE reason='ALTERNATE_SHA_MISMATCH'").fetchone()[0])
         db.close()
 
+    def test_index_network_failure_remains_a_network_failure(self):
+        self.policy['issuer_ir_indexes'] = {'TEST':'https://mirror.test/announcements'}
+        _, helper = self.make()
+        with patch.object(helper.transport.opener, 'open', side_effect=urllib.error.URLError('fixture refused connection')):
+            result, receipt = self.find(helper, self.source())
+        self.assertIsNone(result)
+        self.assertTrue(receipt['network_error'])
+        self.assertIn('fixture refused connection', helper.reports[0]['stop_reason'])
+
     def test_robots_disallow_prevents_pdf_request(self):
         _, helper = self.make()
         self.routes['mirror.test','/robots.txt'] = (200, b'\xef\xbb\xbfUser-agent: *\nDisallow: /blocked.pdf\n', {})

@@ -25,7 +25,7 @@
 - 公司名可由既有宣告唯一取得：33／37。
 - ASX 代碼可由既有宣告唯一取得：35／37。
 - 可沿用既有身分標記的 title_tokens：32／37。
-- 已確認首頁直接連至公告列表的來源：4／37，對應 VTM、ARU、DEV、ILU。
+- 已確認首頁直接連至公告列表的來源：14／37，對應 10 家公司。
 - 既有收據已確認、又在核准網域內的同 SHA 替代網址：0／37。
 
 無法唯一確認的欄位保持空白。逐筆候選、缺項與確認依據見 [source_metadata.csv](source_metadata.csv)。未把公司名稱、代碼或公告標題憑空補入。
@@ -38,8 +38,14 @@
 |ARU|https://www.arultd.com/|https://www.arultd.com/investor/asx-announcements/asx-announcements-2026/|
 |DEV|https://www.devexresources.com.au/|https://www.devexresources.com.au/investors/asx-announcements/|
 |ILU|https://www.iluka.com/|https://www.iluka.com/investors-media/asx-releases/|
+|AR3|https://ar3.com.au/|https://ar3.com.au/announcements|
+|HAS|https://hastingstechmetals.com/|https://hastingstechmetals.com/announcements|
+|MEK|https://meekametals.com.au/|https://meekametals.com.au/asx-announcements/|
+|REE|https://rarex.com.au/|https://rarex.com.au/announcements|
+|VHM|https://www.vhmltd.com.au/|https://www.vhmltd.com.au/investors/asx-announcements/|
+|MQR|https://www.marqueeresources.com.au/|https://www.marqueeresources.com.au/asx-announcements|
 
-Astron、Lynas 首頁確認時逾時，未新增其公告列表。其餘公司沒有在現有登記中確認到符合本輪條件的首頁直接連結，維持未登記，不以搜尋引擎 HTML 探索。
+Astron、Lynas 首頁確認時逾時，Critica 首頁無法存取，未新增其公告列表。其餘公司沒有在現有登記中確認到符合本輪條件的首頁直接連結，維持未登記，不以搜尋引擎 HTML 探索。
 
 ## T2：安全與範圍
 
@@ -63,4 +69,4 @@ Astron、Lynas 首頁確認時逾時，未新增其公告列表。其餘公司�
 
 既有完整測試第一輪 398 項通過，新增最後案例另行驗證；最終以本 PR 乾淨 CI 的 XML 為準。Phase20–22 的新重建證據會保存在本目錄，凍結原檔不變。
 
-目前 src 新增加刪除合計：對 `12f45f4` 為 177 行，對 `070df10` 累計 1,992 行；未新增 src 模組、config 檔或原件 PDF。T4 的實際 fallback_report、proposed patch、新總表與逐格增量尚待乾淨 CI，尚未計入找到同 SHA 或恢復格數。
+目前 src 新增加刪除合計：對 `12f45f4` 為 178 行，對 `070df10` 累計 1,993 行；未新增 src 模組、config 檔或原件 PDF。T4 的實際 fallback_report、proposed patch、新總表與逐格增量尚待乾淨 CI，尚未計入找到同 SHA 或恢復格數。
