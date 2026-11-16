@@ -1,14 +1,12 @@
-> **尚未完成 T6(b)/T7(b)**：本機網路失效；不發布無效結果。T1–T5、Phase20–22 重建、379 項 Python 與 R 測試已完成。PR 維持 Draft，等待乾淨 CI 實際建置。
-
 # Phase 22 主線整合與可重建專案總表
 
 從 `070df10` 建立 `feat/integrated-rebuild-20261115`，以 Phase 22 架構整合來源宣告與既有模組內規則。PR 目標為 `feat/phase16-technical-model`，禁止 merge；未合併實驗分支。
 
-匯出契約與 Phase22 基準總表為 93 列、51 欄；本機新建置因網路失效中止，尚未交付有效新版，包含 Yttria / Mt Stirling 的明確未合併例外。只輸出逐專案資料，沒有全國資源量加總。自動驗證不是正式 C1 核准，也不建立六領域全國排名。
+本次正式總表為 93 列、51 欄，包含 Yttria / Mt Stirling 的明確未合併例外。只輸出逐專案資料，沒有全國資源量加總。自動驗證不是正式 C1 核准，也不建立六領域全國排名。
 
 ## T0：網路與 ASX 試抓
 
-DNS 預檢 47 個 host，全數通過。完整來源建置網路狀態為 `RUN_INVALID_NETWORK`，NETWORK_ERROR 150/208，門檻為超過 5% 即非零退出。先前受限環境的 WinError 10061 診斷保存在 [prior-network-diagnostics](prior-network-diagnostics/)，不是本次遠端 HTTP 結果。
+DNS 預檢 47 個 host，全數通過。完整來源建置網路狀態為 `NETWORK_VALID`，NETWORK_ERROR 1/208，門檻為超過 5% 即非零退出。先前受限環境的 WinError 10061 診斷保存在 [prior-network-diagnostics](prior-network-diagnostics/)，不是本次遠端 HTTP 結果。
 
 |host|key|HTTP|結果|原因|
 |---|---|---|---|---|
@@ -41,7 +39,7 @@ DNS 預檢 47 個 host，全數通過。完整來源建置網路狀態為 `RUN_I
 
 ## T4：既有模組規則
 
-src 新增與刪除合計 **1780 行 / 2,000 行**；未新增 src 模組。只新增三個 config，每個規則參數都有 source_file 與 source_key。研究者決策的 decided_by 空白不生效。
+src 新增與刪除合計 **1819 行 / 2,000 行**；未新增 src 模組。只新增三個 config，每個規則參數都有 source_file 與 source_key。研究者決策的 decided_by 空白不生效。
 
 |實驗函式|既有模組|正式函式|
 |---|---|---|
@@ -81,147 +79,155 @@ src 新增與刪除合計 **1780 行 / 2,000 行**；未新增 src 模組。只�
 
 `au-ree-v2 export-summary --database <db> --out <dir>` 以唯讀方式讀取已完成的 canonical run；`all` 也呼叫同一函式。每一格都有追溯列，每個空格都有允許的原因碼。兩層分母僅扣除 `NOT_APPLICABLE_NO_MRE`；來源缺失不冒稱沒有 MRE。
 
-(a) [phase22-baseline](phase22-baseline/) 來自 Phase 22 snapshot lock 實際重建的資料庫。(b) 實際執行 `all --refresh --as-of 2026-11-13 --work work/clean`，開始時沒有該快取目錄；中途連線重設，之後大量 DNS 解析失敗，150/208 筆 NETWORK_ERROR（72.12%）。以非零退出，尚未建立正式資料庫，未匯出新版總表。不得把此診斷當作研究結果，待乾淨 CI 環境驗證。原件只留在 work，未 commit 新 PDF，未修改 data/manifest 或 Phase 19–22 凍結結果。
+(a) [phase22-baseline](phase22-baseline/) 來自 Phase 22 snapshot lock 實際重建的資料庫。(b) [rebuild](rebuild/) 來自 `all --refresh --as-of 2026-11-13 --work work/clean`，開始時沒有該快取目錄。原件只留在 work，未 commit 新 PDF，未修改 data/manifest 或 Phase 19–22 凍結結果。
 
 |host|來源筆數|SHA一致含既有原件|SHA變動|HOST_STOPPED|NETWORK_ERROR|逐來源receipt的HTTP/傳輸|
 |---|---|---|---|---|---|---|
-|announcements.asx.com.au|52|8|0|0|44|{"200": 2, "NETWORK_ERROR": 44}|
-|api.investi.com.au|3|0|0|0|3|{"NETWORK_ERROR": 3}|
-|asm-au.com|3|2|0|0|1|{"NETWORK_ERROR": 1}|
-|assets.birdsoftware.io|1|0|0|0|1|{"NETWORK_ERROR": 1}|
+|announcements.asx.com.au|52|52|0|0|0|{"200": 46}|
+|api.investi.com.au|3|2|0|0|0|{"200": 3}|
+|asm-au.com|3|3|0|0|0|{"200": 1}|
+|assets.birdsoftware.io|1|1|0|0|0|{"200": 1}|
 |assets.ctfassets.net|1|1|0|0|0|{}|
-|cdn-api.markitdigital.com|3|0|0|0|1|{"NETWORK_ERROR": 1}|
-|cdn.financialreports.eu|2|1|0|0|1|{"NETWORK_ERROR": 1}|
-|company-announcements.afr.com|6|0|0|0|6|{"NETWORK_ERROR": 6}|
-|dasc.dmirs.wa.gov.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
+|cdn-api.markitdigital.com|3|0|1|0|0|{"200": 1}|
+|cdn.financialreports.eu|2|2|0|0|0|{"200": 1}|
+|company-announcements.afr.com|6|6|0|0|0|{"200": 6}|
+|dasc.dmirs.wa.gov.au|1|0|0|0|0|{"302": 1}|
 |data-api.marketindex.com.au|2|2|0|0|0|{}|
-|data.stategrowth.tas.gov.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
-|dem-sdp.s3-ap-southeast-2.amazonaws.com|1|0|0|0|1|{"NETWORK_ERROR": 1}|
-|geology.data.nt.gov.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
+|data.stategrowth.tas.gov.au|1|0|0|0|0|{"200": 1}|
+|dem-sdp.s3-ap-southeast-2.amazonaws.com|1|0|0|0|0|{"200": 1}|
+|geology.data.nt.gov.au|1|0|0|0|0|{"200": 1}|
 |geoscience.data.qld.gov.au|2|0|0|0|0|{"200": 2}|
-|geoscience.nt.gov.au|5|0|0|0|5|{"NETWORK_ERROR": 5}|
+|geoscience.nt.gov.au|5|5|0|0|0|{"200": 5}|
 |gsq-prod-ckan-horizon-public.s3.ap-southeast-2.amazonaws.com|5|0|0|4|0|{"403": 1}|
-|hermes-cdn.investorhub.com|10|4|0|0|4|{"NETWORK_ERROR": 4}|
-|international.austrade.gov.au|2|1|0|0|1|{"NETWORK_ERROR": 1}|
+|hermes-cdn.investorhub.com|10|8|0|0|0|{"200": 4}|
+|international.austrade.gov.au|2|2|0|0|0|{"200": 1}|
 |investornews.com|1|1|0|0|0|{}|
-|investorpa.com|3|0|0|0|3|{"NETWORK_ERROR": 3}|
-|majorprojects.planningportal.nsw.gov.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
-|newswire.iguana2.com|1|0|0|0|1|{"NETWORK_ERROR": 1}|
-|opendata.maps.vic.gov.au|2|0|0|0|2|{"NETWORK_ERROR": 2}|
-|orbitresources.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
-|public-gs.geoscience.nsw.gov.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
-|public-services.slip.wa.gov.au|3|0|0|0|2|{"NETWORK_ERROR": 2}|
+|investorpa.com|3|3|0|0|0|{"200": 3}|
+|majorprojects.planningportal.nsw.gov.au|1|1|0|0|0|{"200": 1}|
+|newswire.iguana2.com|1|1|0|0|0|{"200": 1}|
+|opendata.maps.vic.gov.au|2|0|1|0|0|{"200": 2}|
+|orbitresources.au|1|1|0|0|0|{"200": 1}|
+|public-gs.geoscience.nsw.gov.au|1|0|0|0|0|{"200": 1}|
+|public-services.slip.wa.gov.au|3|0|1|0|0|{"200": 2}|
 |raw.githubusercontent.com|2|2|0|0|0|{}|
-|services.ga.gov.au|10|2|0|0|7|{"200": 2, "NETWORK_ERROR": 6}|
+|services.ga.gov.au|10|5|0|0|0|{"200": 6, "504": 2}|
 |services.sarig.sa.gov.au|2|2|0|0|0|{}|
-|spatial-gis.information.qld.gov.au|5|0|0|0|5|{"NETWORK_ERROR": 5}|
-|staff-web.automicgroup.com.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
-|strike.nt.gov.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
+|spatial-gis.information.qld.gov.au|5|0|0|0|0|{"200": 5}|
+|staff-web.automicgroup.com.au|1|0|0|0|0|{"200": 1}|
+|strike.nt.gov.au|1|0|1|0|0|{"200": 1}|
 |victorymetalsaustralia.com|1|1|0|0|0|{}|
-|wamex.dmp.wa.gov.au|3|0|0|0|1|{"NETWORK_ERROR": 1}|
-|wcsecure.weblink.com.au|10|2|0|0|8|{"200": 1, "NETWORK_ERROR": 8}|
+|wamex.dmp.wa.gov.au|3|0|0|0|0|{"200": 1}|
+|wcsecure.weblink.com.au|10|8|0|0|0|{"200": 8, "404": 1}|
 |www.annualreports.com|1|1|0|0|0|{}|
 |www.arultd.com|1|1|0|0|0|{}|
 |www.aspecthuntley.com.au|1|0|0|0|0|{}|
-|www.astronlimited.com.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
-|www.asx.com.au|43|0|0|0|37|{"200": 3, "NETWORK_ERROR": 37}|
+|www.astronlimited.com.au|1|1|0|0|0|{"200": 1}|
+|www.asx.com.au|43|3|0|0|0|{"200": 40}|
 |www.devexresources.com.au|1|1|0|0|0|{}|
 |www.gippslandcriticalminerals.com|2|0|0|0|0|{}|
-|www.iluka.com|1|0|0|0|1|{"NETWORK_ERROR": 1}|
+|www.iluka.com|1|1|0|0|0|{"200": 1}|
 |www.industry.gov.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
-|www.itechminerals.com.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
-|www.londonstockexchange.com|2|1|0|0|1|{"NETWORK_ERROR": 1}|
-|www.marketindex.com.au|1|0|0|0|1|{"NETWORK_ERROR": 1}|
-|www.wa.gov.au|3|1|0|0|2|{"NETWORK_ERROR": 2}|
+|www.itechminerals.com.au|1|1|0|0|0|{"200": 1}|
+|www.londonstockexchange.com|2|1|1|0|0|{"200": 1}|
+|www.marketindex.com.au|1|1|0|0|0|{"200": 1}|
+|www.wa.gov.au|3|3|0|0|0|{"200": 2}|
 
 SHA 一致欄包含明確引用的既有原件與允許的同 SHA fallback，實際新抓成功及 fallback 的差別保留在 statuses；不能將其視為全部遠端新抓成功。HTTP 欄依每個來源 receipt 的原始 http_status 分列，不當作獨立網路請求總次數；probe 另見上表。完整 http_attempts 保留在逐筆 CSV；官方 seed 收據可能重複引用同 host 的共用請求序列，沒有將它們重複加總。詳見 [acquisition-by-host.json](acquisition-by-host.json)。
 
 ## T7：逐格驗收
 
-驗收腳本只放 work，透過 git show 讀取實驗參考，完全不進 src 或 CI build。下表只計 2,101 個實驗非 ID 非空格；數值依實驗呈現位數比較，不自動修正 DIFFERENT。Phase22 與實驗的 SHA / locator 已逐格寫入 [cell_comparison_phase22.csv](cell_comparison_phase22.csv)；新版 cell_comparison.csv 因沒有有效資料庫尚未產出，遷移增量也尚未計算。完整表也列出雙方空白、FORMAL_ONLY 及 51 個 Yttria 結構差異格。
+驗收腳本只放 work，透過 git show 讀取實驗參考，完全不進 src 或 CI build。下表只計 2,101 個實驗非 ID 非空格；數值依實驗呈現位數比較，不自動修正 DIFFERENT。兩邊 SHA 與既有 locator 已逐格寫入 [cell_comparison.csv](cell_comparison.csv) 與 [cell_comparison_phase22.csv](cell_comparison_phase22.csv)。實驗參考本身未填 locator 的 DIFFERENT 格，(a) 有 40 格、(b) 有 31 格；保留原空值並標為 NOT_RECORDED_IN_REFERENCE，另附參考 CSV 的資料列序號與來源 URL，不補造原件頁碼。完整表也列出雙方空白、FORMAL_ONLY 及 51 個 Yttria 結構差異格。
 
 |資料|SAME|DIFFERENT|FORMAL_MISSING|
 |---|---|---|---|
 |phase22|454|51|1596|
-|rebuild|未產出有效資料庫|不計數|不計數|
+|rebuild|661|53|1387|
 
-增量（新建置減 Phase22）：`"NOT_COMPUTED_INVALID_NETWORK"`。
+增量（新建置減 Phase22）：`{"SAME": 207, "DIFFERENT": 2, "FORMAL_MISSING": -209}`。
 
 |原因|Phase22|新建置|
 |---|---|---|
-|NO_SOURCE_VALUE|39|未計算|
-|RULE_INPUT_MISSING|204|未計算|
-|SOURCE_NOT_ACQUIRED|1353|未計算|
+|NOT_APPLICABLE_NO_MRE|0|5|
+|NO_SOURCE_VALUE|25|79|
+|RULE_INPUT_MISSING|213|562|
+|SOURCE_AFTER_CUTOFF|0|22|
+|SOURCE_NOT_ACQUIRED|1358|715|
+|SOURCE_SHA_CHANGED|0|4|
 
 ## 覆蓋率
 
 |資料|列數|51欄已填/全格|51欄原始覆蓋率|T1已填/調整分母|T1|T2已填/調整分母|T2|
 |---|---|---|---|---|---|---|---|
 |phase22|93|611/4743|12.88%|186/510|36.47%|425/4083|10.41%|
+|rebuild|93|822/4743|17.33%|298/714|41.74%|524/2679|19.56%|
 
 實驗線 73.29%（2159/2946）僅在此當作研究背景對照，沒有作為正式建置輸入或完成門檻。各欄完整數據見兩份 coverage.json：
 
 |欄位|Phase22已填/93|新建置已填/93|
 |---|---|---|
-|專案ID|93|未產出|
-|開發商|25|未產出|
-|未上市公司|0|未產出|
-|專案名稱|33|未產出|
-|所在地_中文|33|未產出|
-|所在地_英文|33|未產出|
-|國家|93|未產出|
-|州省地區|33|未產出|
-|緯度|23|未產出|
-|經度|23|未產出|
-|礦床型態代碼|18|未產出|
-|礦床型態|18|未產出|
-|開發階段代碼|9|未產出|
-|開發階段類別|9|未產出|
-|開發階段|9|未產出|
-|礦石蘊藏量_Mt|10|未產出|
-|TREO品位_pct|10|未產出|
-|總TREO蘊藏量_kt|10|未產出|
-|磁鐵稀土氧化物蘊藏量_kt|4|未產出|
-|磁鐵稀土佔TREO_pct|4|未產出|
-|NdPr蘊藏量_kt_需兩者皆公布|0|未產出|
-|完整重稀土組合蘊藏量_kt_需8元素皆公布|0|未產出|
-|預估年產TREO_t_per_year|2|未產出|
-|預估年產NdPr_t_per_year|0|未產出|
-|產品/產出|5|未產出|
-|有TREO資源估計|10|未產出|
-|有來源文件|28|未產出|
-|資料來源名稱|33|未產出|
-|資料來源URL|33|未產出|
-|已公布元素數_共15項|0|未產出|
-|已公布元素總和_kt|0|未產出|
-|元素總和/TREO|0|未產出|
-|總說明|10|未產出|
-|四項磁性元素皆公布|0|未產出|
-|磁性元素重算值_NdPrTbDy_kt|0|未產出|
-|La2O3_氧化鑭_kt|0|未產出|
-|CeO2_氧化鈰_kt|0|未產出|
-|Pr6O11_氧化鐠_kt|0|未產出|
-|Nd2O3_氧化釹_kt|0|未產出|
-|Sm2O3_氧化釤_kt|0|未產出|
-|Eu2O3_氧化銪_kt|0|未產出|
-|Gd2O3_氧化釓_kt|0|未產出|
-|Tb4O7_氧化鋱_kt|0|未產出|
-|Dy2O3_氧化鏑_kt|0|未產出|
-|Ho2O3_氧化鈥_kt|0|未產出|
-|Er2O3_氧化鉺_kt|0|未產出|
-|Tm2O3_氧化銩_kt|0|未產出|
-|Yb2O3_氧化鐿_kt|0|未產出|
-|Lu2O3_氧化鎦_kt|0|未產出|
-|Y2O3_氧化釔_kt|0|未產出|
-|ASX代碼|0|未產出|
+|專案ID|93|93|
+|開發商|25|15|
+|未上市公司|0|12|
+|專案名稱|33|44|
+|所在地_中文|33|44|
+|所在地_英文|33|44|
+|國家|93|93|
+|州省地區|33|44|
+|緯度|23|23|
+|經度|23|23|
+|礦床型態代碼|18|33|
+|礦床型態|18|35|
+|開發階段代碼|9|33|
+|開發階段類別|9|33|
+|開發階段|9|22|
+|礦石蘊藏量_Mt|10|14|
+|TREO品位_pct|10|14|
+|總TREO蘊藏量_kt|10|14|
+|磁鐵稀土氧化物蘊藏量_kt|4|4|
+|磁鐵稀土佔TREO_pct|4|4|
+|NdPr蘊藏量_kt_需兩者皆公布|0|0|
+|完整重稀土組合蘊藏量_kt_需8元素皆公布|0|0|
+|預估年產TREO_t_per_year|2|3|
+|預估年產NdPr_t_per_year|0|0|
+|產品/產出|5|6|
+|有TREO資源估計|10|14|
+|有來源文件|28|43|
+|資料來源名稱|33|44|
+|資料來源URL|33|44|
+|已公布元素數_共15項|0|1|
+|已公布元素總和_kt|0|1|
+|元素總和/TREO|0|1|
+|總說明|10|23|
+|四項磁性元素皆公布|0|0|
+|磁性元素重算值_NdPrTbDy_kt|0|0|
+|La2O3_氧化鑭_kt|0|0|
+|CeO2_氧化鈰_kt|0|0|
+|Pr6O11_氧化鐠_kt|0|0|
+|Nd2O3_氧化釹_kt|0|0|
+|Sm2O3_氧化釤_kt|0|0|
+|Eu2O3_氧化銪_kt|0|0|
+|Gd2O3_氧化釓_kt|0|0|
+|Tb4O7_氧化鋱_kt|0|0|
+|Dy2O3_氧化鏑_kt|0|0|
+|Ho2O3_氧化鈥_kt|0|0|
+|Er2O3_氧化鉺_kt|0|0|
+|Tm2O3_氧化銩_kt|0|0|
+|Yb2O3_氧化鐿_kt|0|0|
+|Lu2O3_氧化鎦_kt|0|0|
+|Y2O3_氧化釔_kt|0|1|
+|ASX代碼|0|0|
 
 ## 測試、凍結重建與 CI
 
-Python 379 項，errors=0、failures=0、skipped=0；XML 見 [unittest-final](unittest-final/)。報告核對另發現 columns 計數遮蔽逐欄覆蓋率，已改為 column_count，重新匯出並通過 15 項針對性驗證，見 [export-contract-followup-xml](export-contract-followup-xml/)。R 分析回歸通過，見 [R-tests.xml](R-tests.xml)；Windows 的 C.UTF-8 locale 設定警告保留在紀錄。最初全測試 379 項曾有兩項失敗：唯讀 SQLite URI 被測試檢查器誤讀，以及重複 Dubbo Y2O3 宣告；已修正，最初紀錄見 [unittest-first-attempt.log](unittest-first-attempt.log)。
+Python 386 項，errors=0、failures=0、skipped=0；最終 XML 見 [unittest-release-final](unittest-release-final/)，較早的 379 項通過紀錄仍保留在 unittest-final。最終測試包含與資源無關的試驗 SHA、工程產出欄位、同 SHA 原件別名、凍結身分與文字屬性的邊界測試。CSV 完整性檢查已支援 16 MiB 的長追溯欄位；不更動表格內容、驗證門檻或來源限制。R 分析回歸通過，見 [R-tests.xml](R-tests.xml)；較早的 Windows 執行紀錄與 C.UTF-8 locale 警告另保留於 R-local-tests.xml。最初全測試 379 項的兩項失敗保存在 [unittest-first-attempt.log](unittest-first-attempt.log)。
 
 Phase 20（8 檔）、Phase 21（64 檔）、Phase 22（64 檔）凍結重建均 MATCHED：數值容差 1e-12、身分與文字完全相符。見 [phase20-replay.json](phase20-replay.json)、[phase21-replay.json](phase21-replay.json)、[phase22-replay.json](phase22-replay.json)。驗證輸入 SHA 與 src 統計見 [validation-summary.json](validation-summary.json)。
 
-CI 執行連結在 ci-validation.json（開 PR 後補入）；automated-build job 在乾淨 runner 從空 work 重新建置，檢查每格、來源原件與凍結歷史，並上傳 receipts 與總表。
+CI 執行連結與逐次結果見 [ci-validation.json](ci-validation.json)。automated-build job 在乾淨 runner 從空 work 重新建置，檢查每格、來源原件與凍結歷史，並上傳 receipts 與總表。新版總表由 CI 自動擷取後的同一個 export-summary 匯出，下載的 ZIP 雜湊、來源 commit 與 canonical run ID 見 [ci-build-origin.json](ci-build-origin.json)；未用離線測試代替正式建置。本機先前無效網路診斷保存在 local-network-invalid。最終覆蓋率附三份匯出設定的 SHA，兩份總表使用相同設定。
+
+歷史重建的來源文件歸屬、技術覆蓋與研究篩選名稱均改讀該次凍結宣告，避免現行名稱與 Yttria／Mt Stirling 的設定滲入歷史報表。Phase 13 另通過 142 份面板 CSV 與 7 份證據報表比對，見 [phase13-replay.json](phase13-replay.json)；Phase 16 修復版的 13 份修復輸出與技術比對亦完全相符，見 [phase16-remediation-replay.json](phase16-remediation-replay.json)。比對門檻與原始凍結檔案均未變更。
+
+來源建置與完整研究重建驗證綁定上述程式 commit。後續若只更新本交付目錄的報表與收據，CI 會檢查相鄰提交的實際差異並略過重複擷取；只要包含程式、設定、宣告、測試或其他檔案變更，仍執行完整流程。無法確認差異時也執行完整流程。
 
 ## 研究者待決
 

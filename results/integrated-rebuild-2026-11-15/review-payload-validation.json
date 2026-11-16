@@ -1,0 +1,42 @@
+{
+  "phase22-baseline": {
+    "rows": 93,
+    "columns": 51,
+    "cells": 4743,
+    "blank_cells": 4132,
+    "filled_cells": 611,
+    "comparison_target_cells": 2101,
+    "missing_reasons": {
+      "SOURCE_NOT_ACQUIRED": 3334,
+      "RULE_INPUT_MISSING": 586,
+      "NO_SOURCE_VALUE": 62,
+      "NOT_APPLICABLE_NO_MRE": 150
+    }
+  },
+  "rebuild": {
+    "rows": 93,
+    "columns": 51,
+    "cells": 4743,
+    "blank_cells": 3921,
+    "filled_cells": 822,
+    "comparison_target_cells": 2101,
+    "missing_reasons": {
+      "RULE_INPUT_MISSING": 1023,
+      "NO_SOURCE_VALUE": 211,
+      "SOURCE_NOT_ACQUIRED": 1289,
+      "NOT_APPLICABLE_NO_MRE": 1350,
+      "NOT_APPLICABLE_STAGE": 18,
+      "SOURCE_SHA_CHANGED": 8,
+      "SOURCE_AFTER_CUTOFF": 22
+    }
+  },
+  "status": "PASS",
+  "export_contract_sha256": {
+    "summary_rules.json": "f2a15e048e438bbaeaf67a79324d058384b3a36c6041cf08ec57e8d7b62f6e03",
+    "researcher_rule_decisions.json": "fd0811034a5bfaeb5ea0a4a4a442a0e0dd14b166e343b2134f7227030ace6802",
+    "project_summary_columns.json": "5ac4229ad987c32400f0b55998f3a28af803199424a3cb5b8299671c84e524ba"
+  },
+  "publication_text_files_scanned": 232,
+  "no_new_pdf_or_changed_originals": true,
+  "source_input_independent_acceptance": true
+}

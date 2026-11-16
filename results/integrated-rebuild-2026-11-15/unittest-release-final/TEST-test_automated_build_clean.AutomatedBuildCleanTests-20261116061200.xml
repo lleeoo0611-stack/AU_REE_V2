@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_automated_build_clean.AutomatedBuildCleanTests-20261116061200" tests="5" file="test_automated_build_clean.py" time="6.542" timestamp="2026-11-16T06:12:06" failures="0" errors="0" skipped="0">
+	<testcase classname="test_automated_build_clean.AutomatedBuildCleanTests" name="test_ci_build_has_no_experiment_dependency" time="0.003" timestamp="2026-11-16T06:12:00" file="tests/test_automated_build_clean.py" line="45"/>
+	<testcase classname="test_automated_build_clean.AutomatedBuildCleanTests" name="test_receipt_gate_runs_for_code_or_unknown_changes_and_handles_unicode_paths" time="0.014" timestamp="2026-11-16T06:12:00" file="tests/test_automated_build_clean.py" line="19">
+		<system-out><![CDATA[{'verified_receipts_only': True, 'run_full_pipeline': False}
+{'verified_receipts_only': False, 'run_full_pipeline': True}
+{'verified_receipts_only': False, 'run_full_pipeline': True}
+{'verified_receipts_only': False, 'run_full_pipeline': True}
+{'verified_receipts_only': False, 'run_full_pipeline': True}
+{'verified_receipts_only': True, 'run_full_pipeline': False}
+{'verified_receipts_only': False, 'run_full_pipeline': True}
+{'verified_receipts_only': False, 'run_full_pipeline': True}
+{'verified_receipts_only': False, 'run_full_pipeline': True}
+{'verified_receipts_only': False, 'run_full_pipeline': True}
+]]></system-out>
+	</testcase>
+	<testcase classname="test_automated_build_clean.AutomatedBuildCleanTests" name="test_runtime_and_registry_have_no_experiment_dependency" time="0.006" timestamp="2026-11-16T06:12:00" file="tests/test_automated_build_clean.py" line="34"/>
+	<testcase classname="test_automated_build_clean.AutomatedBuildCleanTests" name="test_strict_empty_build_reads_stay_inside_checkout" time="5.885" timestamp="2026-11-16T06:12:06" file="tests/test_automated_build_clean.py" line="49"/>
+	<testcase classname="test_automated_build_clean.AutomatedBuildCleanTests" name="test_tracked_checkout_configuration_reads_stay_inside_checkout" time="0.634" timestamp="2026-11-16T06:12:06" file="tests/test_automated_build_clean.py" line="42"/>
+</testsuite>
