@@ -45,7 +45,7 @@ jobs:
               try:
                   raw=subprocess.check_output(['git','diff','--name-only','-z',before,'HEAD'])
                   changed=[p for p in raw.decode('utf8').split('\0') if p]
-                  receipts_only=bool(changed) and all(p.startswith('results/integrated-rebuild-2026-11-15/') for p in changed)
+                  receipts_only=bool(changed) and all(p.startswith(('results/integrated-rebuild-2026-11-15/','results/same-sha-fallback-2026-11-16/')) for p in changed)
               except subprocess.CalledProcessError:
                   pass
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:

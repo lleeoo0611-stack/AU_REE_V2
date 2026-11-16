@@ -86,7 +86,8 @@
       "source_page": 1,
       "definition": "Government of Western Australia DMPE February 2026 rare-earth resources table (20 listed projects); versioned transcription of PDF page 1, NOT original PDF bytes or an issuer-level JORC claim.",
       "source_sha256": "ae76952cae874b34aa01430e042b5e85b0a983699f584383583bf9f2f4e1a56b",
-      "committed_snapshot_sha256": "ae76952cae874b34aa01430e042b5e85b0a983699f584383583bf9f2f4e1a56b"
+      "committed_snapshot_sha256": "ae76952cae874b34aa01430e042b5e85b0a983699f584383583bf9f2f4e1a56b",
+      "parent_source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb"
     },
     {
       "key": "wa_dmpe_ree_2026_pdf",
@@ -130,7 +131,8 @@
       "source_pages": "printed pp 5 and 31-37",
       "definition": "Austrade March 2026 investment prospectus: seven REE upstream projects, source-referenced technical/development/commercial statements; official catalogue summary, not original issuer JORC.",
       "source_sha256": "30f5f71f68661165f69bffc9cf0832de0f517dd1d2a64c9ff02f597b36f916bd",
-      "committed_snapshot_sha256": "30f5f71f68661165f69bffc9cf0832de0f517dd1d2a64c9ff02f597b36f916bd"
+      "committed_snapshot_sha256": "30f5f71f68661165f69bffc9cf0832de0f517dd1d2a64c9ff02f597b36f916bd",
+      "parent_source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5"
     },
     {
       "key": "austrade_2026_prospectus_pdf",
@@ -920,7 +922,16 @@
       "source_sha256": "03ee0d0da9323708e1ed5008c4a35981cdc85ec16ddb06b299da1a10ce59914b",
       "summary_project_ids": [
         "AU-1345edd8165c10930e94"
-      ]
+      ],
+      "issuer": {
+        "name": "Arafura Resources Limited",
+        "asx_code": "ARU"
+      },
+      "title_tokens": [
+        "Nolans DFS"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "north_dam20230822",
@@ -930,7 +941,17 @@
       "source_sha256": "075a54f0b388184f869ea1a9f0aec59119405b46661cbe7173d78be7f05f3ce0",
       "summary_project_ids": [
         "AU-cefbde90dc34312547d3"
-      ]
+      ],
+      "issuer": {
+        "name": "CuFe Ltd",
+        "asx_code": "CUF"
+      },
+      "title_tokens": [
+        "North Dam",
+        "REE"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "nutgrove20251030",
@@ -950,7 +971,17 @@
       "source_sha256": "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43",
       "summary_project_ids": [
         "AU-12cc237ae66c7a6508ca"
-      ]
+      ],
+      "issuer": {
+        "name": "Marquee Resources Limited",
+        "asx_code": "MQR"
+      },
+      "title_tokens": [
+        "Inferred Mineral Resource",
+        "Redlings"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "r6_identity_rocky_gully",
@@ -973,7 +1004,16 @@
       "document_issue_date": "2024-09-30",
       "summary_project_ids": [
         "AU-02d486d425ca0792bdc5"
-      ]
+      ],
+      "issuer": {
+        "name": "Petratherm Limited",
+        "asx_code": ""
+      },
+      "title_tokens": [
+        "Comet"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "r6_identity_mukinbudin",
@@ -1016,7 +1056,17 @@
       "source_sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
       "summary_project_ids": [
         "AU-3651cf8448b9227adcf5"
-      ]
+      ],
+      "issuer": {
+        "name": "Mount Ridley Mines Limited",
+        "asx_code": "MRD"
+      },
+      "title_tokens": [
+        "Inferred Mineral Resource",
+        "Mount Ridley"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "asx_review_circle_valley_global_202306",
@@ -1026,7 +1076,16 @@
       "source_sha256": "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad",
       "summary_project_ids": [
         "AU-785536db5ff12c25350d"
-      ]
+      ],
+      "issuer": {
+        "name": "Meeka Metals Limited",
+        "asx_code": "MEK"
+      },
+      "title_tokens": [
+        "Circle Valley"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "charley_creek_env20240430",
@@ -1057,7 +1116,18 @@
       "source_sha256": "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089",
       "summary_project_ids": [
         "AU-3eb7131e4daea18a60a0"
-      ]
+      ],
+      "issuer": {
+        "name": "Ark Mines Limited",
+        "asx_code": "AHK"
+      },
+      "title_tokens": [
+        "Queensland",
+        "SANDY MITCHELL",
+        "Sandy Mitchell"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "r6_identity_condingup",
@@ -1087,7 +1157,16 @@
       "source_sha256": "39699576fe9ebe47225c083dc285d7a561b732ab357a9050a67472e89a5512aa",
       "summary_project_ids": [
         "AU-4ec1fb08563b42352d29"
-      ]
+      ],
+      "issuer": {
+        "name": "Heavy Rare Earths Limited",
+        "asx_code": "HRE"
+      },
+      "title_tokens": [
+        "Cowalinya"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "graceland_discovery20230525",
@@ -1153,7 +1232,18 @@
       "source_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
       "summary_project_ids": [
         "AU-216d0983f6892f9b58f9"
-      ]
+      ],
+      "issuer": {
+        "name": "Victory Metals Limited",
+        "asx_code": "VTM"
+      },
+      "title_tokens": [
+        "North",
+        "Stanmore",
+        "Victory Metals"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "voyager20240328",
@@ -1188,7 +1278,18 @@
       "document_issue_date": "2026-09-29",
       "summary_project_ids": [
         "AU-3eb7131e4daea18a60a0"
-      ]
+      ],
+      "issuer": {
+        "name": "Ark Mines Limited",
+        "asx_code": "AHK"
+      },
+      "title_tokens": [
+        "Queensland",
+        "SANDY MITCHELL",
+        "Sandy Mitchell"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "vhm_ar2026",
@@ -1200,7 +1301,17 @@
       "summary_project_ids": [
         "AU-176852ef1348ac10d154",
         "AU-410159af7b79ea498ec2"
-      ]
+      ],
+      "issuer": {
+        "name": "VHM Limited",
+        "asx_code": "VHM"
+      },
+      "title_tokens": [
+        "Cannie Critical Mineral Project",
+        "Nowie"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "wim100_mre20260129",
@@ -1220,7 +1331,16 @@
       "source_sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
       "summary_project_ids": [
         "AU-2262a37ca19531f08da3"
-      ]
+      ],
+      "issuer": {
+        "name": "OD6 Metals Limited",
+        "asx_code": "OD6"
+      },
+      "title_tokens": [
+        "Splinter Rock"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "r4_deep_leads_rubble_mound_wind_break",
@@ -1230,7 +1350,17 @@
       "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
       "summary_project_ids": [
         "AU-d1aeb21e18e60fe8e32e"
-      ]
+      ],
+      "issuer": {
+        "name": "",
+        "asx_code": "ABX"
+      },
+      "title_tokens": [
+        "Deep Leads",
+        "Tasmania"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "asx_document_03141511",
@@ -1240,7 +1370,16 @@
       "source_sha256": "5a783d0c7a9ed69fd62c532c77927af0f83e0813feeaab093ed617ae1556e0b3",
       "summary_project_ids": [
         "AU-6d807eb7caec9db0f35e"
-      ]
+      ],
+      "issuer": {
+        "name": "VHM Limited",
+        "asx_code": "VHM"
+      },
+      "title_tokens": [
+        "Goschen Project"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "asx_review_cummins_global_202401",
@@ -1250,7 +1389,16 @@
       "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
       "summary_project_ids": [
         "AU-9b667066e6eb66753005"
-      ]
+      ],
+      "issuer": {
+        "name": "RareX Limited",
+        "asx_code": "REE"
+      },
+      "title_tokens": [
+        "Cummins Range"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "asx_document_03154309",
@@ -1260,7 +1408,14 @@
       "source_sha256": "5e88f8aaf0d5da1a9de7f64ec7628ffea48e1a22a7daf296b563e5ee5aa65328",
       "summary_project_ids": [
         "AU-dac3c8e40326b8244cdb"
-      ]
+      ],
+      "issuer": {
+        "name": "Critica Limited",
+        "asx_code": "CRI"
+      },
+      "title_tokens": [],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "bpm_quarter20260716",
@@ -1270,7 +1425,16 @@
       "source_sha256": "5ebb04f84564bebc1f8e96073fe45b1e3792b6b6115414c28be94d4886bcea28",
       "summary_project_ids": [
         "AU-75fe0f1a81005bd19586"
-      ]
+      ],
+      "issuer": {
+        "name": "BPM Minerals Ltd",
+        "asx_code": "BPM"
+      },
+      "title_tokens": [
+        "Durack"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "r17_primary_18",
@@ -1315,7 +1479,17 @@
       "source_sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64",
       "summary_project_ids": [
         "AU-e6d859a831ed5954b440"
-      ]
+      ],
+      "issuer": {
+        "name": "EverGreen Lithium Limited",
+        "asx_code": "EG1"
+      },
+      "title_tokens": [
+        "Kenny",
+        "Western Australia"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "r6_identity_merredin",
@@ -1327,7 +1501,20 @@
         "AU-81b21bdd06796fa2217d",
         "AU-5ea2535a2de9a1a3327e",
         "AU-7157ac0201b7d1e93ff7"
-      ]
+      ],
+      "issuer": {
+        "name": "EMU NL",
+        "asx_code": "EMU"
+      },
+      "title_tokens": [
+        "Graceland",
+        "Jerramungup",
+        "Lake Grace",
+        "Merredin",
+        "Viper"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "asx_document_03107711",
@@ -1337,7 +1524,17 @@
       "source_sha256": "7595d024b25438cd5795635cb43f5f87717b9b5ac9a935eff7d1d3c07562fd01",
       "summary_project_ids": [
         "AU-49b538453133bd968e8d"
-      ]
+      ],
+      "issuer": {
+        "name": "Australian Rare Earths Limited",
+        "asx_code": "AR3"
+      },
+      "title_tokens": [
+        "25 June 2026",
+        "Koppamurra"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "nowie_mre20240124",
@@ -1347,7 +1544,16 @@
       "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4",
       "summary_project_ids": [
         "AU-176852ef1348ac10d154"
-      ]
+      ],
+      "issuer": {
+        "name": "VHM Limited",
+        "asx_code": "VHM"
+      },
+      "title_tokens": [
+        "Nowie"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "cannie_mre20230516",
@@ -1379,7 +1585,16 @@
       "source_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
       "summary_project_ids": [
         "AU-2fc429d0556dfa0b95c4"
-      ]
+      ],
+      "issuer": {
+        "name": "",
+        "asx_code": "ATR"
+      },
+      "title_tokens": [
+        "Donald"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "hastings_brockman20260127",
@@ -1400,7 +1615,18 @@
       "document_issue_date": "2026-09-25",
       "summary_project_ids": [
         "AU-af44c2bd1173b453953f"
-      ]
+      ],
+      "issuer": {
+        "name": "Encounter Resources",
+        "asx_code": "ENR"
+      },
+      "title_tokens": [
+        "Aileron",
+        "WA",
+        "West Arunta"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "metadata_wudinna_cobra_20261026",
@@ -1472,7 +1698,14 @@
       "source_sha256": "99233befa81a1e193848122f00dfaa25079d0b2adbc2f19ef96326ca63c38f2a",
       "summary_project_ids": [
         "AU-908fd6f4461622e89548"
-      ]
+      ],
+      "issuer": {
+        "name": "Hastings Technology Metals Ltd",
+        "asx_code": "HAS"
+      },
+      "title_tokens": [],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "nfm_annual2026",
@@ -1505,7 +1738,16 @@
       "source_sha256": "9d863e075258b45c84d5c29961c77331c6c1cff3ac0d6ee6f13d6b54fc6e999f",
       "summary_project_ids": [
         "AU-2fc429d0556dfa0b95c4"
-      ]
+      ],
+      "issuer": {
+        "name": "",
+        "asx_code": "ATR"
+      },
+      "title_tokens": [
+        "Donald"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "r5_identity_balranald",
@@ -1563,7 +1805,17 @@
       "source_sha256": "9f049399b0e97a04d85c1842d4401187d04dcbb59bd86c37fd80e4921d45c43d",
       "summary_project_ids": [
         "AU-b2dadf9c8046c3c68a02"
-      ]
+      ],
+      "issuer": {
+        "name": "Meeka Gold Limited",
+        "asx_code": "MEK"
+      },
+      "title_tokens": [
+        "Cascade",
+        "Meeka Gold Limited"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "devex_kennedy_halfyear20260313",
@@ -1681,7 +1933,14 @@
       "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
       "summary_project_ids": [
         "AU-dac3c8e40326b8244cdb"
-      ]
+      ],
+      "issuer": {
+        "name": "Critica Limited",
+        "asx_code": "CRI"
+      },
+      "title_tokens": [],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "ida_half20250314",
@@ -1714,7 +1973,17 @@
       "source_sha256": "c2a8b91970be9298bae77c8547268abd7f0969e8ceebeb7cf73530fa6d965e77",
       "summary_project_ids": [
         "AU-ff758cad5beb276d327d"
-      ]
+      ],
+      "issuer": {
+        "name": "Iluka Resources Limited",
+        "asx_code": "ILU"
+      },
+      "title_tokens": [
+        "WIM100",
+        "Wimmera"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "ravensthorpe20230428",
@@ -1776,7 +2045,17 @@
       "source_sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
       "summary_project_ids": [
         "AU-8c5887498873bf838e09"
-      ]
+      ],
+      "issuer": {
+        "name": "MinRex Resources Limited",
+        "asx_code": "MRR"
+      },
+      "title_tokens": [
+        "Coondina",
+        "MinRex Resources Limited"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "hre_perenjori20250613",
@@ -1798,7 +2077,21 @@
       "document_issue_date": "2025-09-16",
       "summary_project_ids": [
         "AU-cc4e217a90b7123dce0a"
-      ]
+      ],
+      "issuer": {
+        "name": "DevEx Resources Limited",
+        "asx_code": "DEV"
+      },
+      "title_tokens": [
+        "150Mt",
+        "DevEx",
+        "Inferred",
+        "Kennedy",
+        "Kennedy Project",
+        "North Queensland"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "asx_barkly_prospectus20260128",
@@ -1810,7 +2103,17 @@
       "document_issue_date": "2025-12-01",
       "summary_project_ids": [
         "AU-ad64122c217f0dbfabc8"
-      ]
+      ],
+      "issuer": {
+        "name": "Barkly Rare Earths Limited",
+        "asx_code": "BAK"
+      },
+      "title_tokens": [
+        "Barkly Project",
+        "Rare Earth Element Mineral Resource"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "nim_mons20260312",
@@ -1832,7 +2135,14 @@
       "source_sha256": "dd6bbb85714387a29b2c5498df5cd0cfbdacd63246782bd2a2beeca0793b193f",
       "summary_project_ids": [
         "AU-efff91a06cf344122d88"
-      ]
+      ],
+      "issuer": {
+        "name": "Lynas Rare Earths Limited",
+        "asx_code": "LYC"
+      },
+      "title_tokens": [],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "nfm_hartsrange20250724",
@@ -1853,7 +2163,17 @@
       "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
       "summary_project_ids": [
         "AU-9bd8e5ed8408cd84d876"
-      ]
+      ],
+      "issuer": {
+        "name": "",
+        "asx_code": ""
+      },
+      "title_tokens": [
+        "Browns Range",
+        "Wolverine"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "metadata_narraburra_orbit_20261030",
@@ -1873,7 +2193,17 @@
       "source_sha256": "eac3b88bddeeda7a38488b44300d70ad4ceaa9b86db3383d950556952bac77e0",
       "summary_project_ids": [
         "AU-3651cf8448b9227adcf5"
-      ]
+      ],
+      "issuer": {
+        "name": "Mount Ridley Mines Limited",
+        "asx_code": "MRD"
+      },
+      "title_tokens": [
+        "Inferred Mineral Resource",
+        "Mount Ridley"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "new_goldfield20240321",
@@ -1883,7 +2213,17 @@
       "source_sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
       "summary_project_ids": [
         "AU-41ee0148c804293cfc39"
-      ]
+      ],
+      "issuer": {
+        "name": "Great Divide Mining Ltd",
+        "asx_code": "GDM"
+      },
+      "title_tokens": [
+        "New Goldfield",
+        "REE"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "norwest_arunta_20230222",
@@ -1916,7 +2256,14 @@
         "AU-2a3a86a4d971e9f9838d",
         "AU-908fd6f4461622e89548"
       ],
-      "publication_date_role": "ASX_ARCHIVE_PUBLICATION_WITH_SEPARATE_DOCUMENT_ISSUE_DATE"
+      "publication_date_role": "ASX_ARCHIVE_PUBLICATION_WITH_SEPARATE_DOCUMENT_ISSUE_DATE",
+      "issuer": {
+        "name": "Hastings Technology Metals Ltd",
+        "asx_code": "HAS"
+      },
+      "title_tokens": [],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "r6_identity_rankin_dome",
@@ -1926,7 +2273,16 @@
       "source_sha256": "f6f127c62e9c4ddcab67c5f01552f21cc9ee1c17095451b963e7b66e757981b3",
       "summary_project_ids": [
         "AU-9d967ecaac6e02fc76a5"
-      ]
+      ],
+      "issuer": {
+        "name": "Australian Critical Minerals Limited",
+        "asx_code": "ACM"
+      },
+      "title_tokens": [
+        "Rankin Dome"
+      ],
+      "alternate_urls": [],
+      "alternate_policy": "SAME_SHA_ONLY"
     },
     {
       "key": "reviewed_source_013de14181fdf89d",

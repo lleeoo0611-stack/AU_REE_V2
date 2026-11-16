@@ -28,7 +28,7 @@ jobs:
               try:
                   raw=subprocess.check_output(['git','diff','--name-only','-z',before,'HEAD'])
                   changed=[p for p in raw.decode('utf8').split('\0') if p]
-                  receipts_only=bool(changed) and all(p.startswith('results/integrated-rebuild-2026-11-15/') for p in changed)
+                  receipts_only=bool(changed) and all(p.startswith(('results/integrated-rebuild-2026-11-15/','results/same-sha-fallback-2026-11-16/')) for p in changed)
               except subprocess.CalledProcessError:
                   pass
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:
@@ -113,7 +113,7 @@ jobs:
       - name: Assert originals and frozen history unchanged
         if: always()
         run: |
-          git diff --exit-code -- data/snapshots data/manifest.json results/phase*
+          git diff --exit-code -- config/sources.json config/evidence_policy.json data/snapshots data/manifest.json results/phase*
           test -z "$(git ls-files --others --exclude-standard data/snapshots)"
       - uses: actions/upload-artifact@v4
         if: always()
@@ -127,6 +127,8 @@ jobs:
             work/clean/asx_probe.csv
             work/clean/dns_preflight.csv
             work/clean/network_status.json
+            work/clean/fallback_report.csv
+            work/clean/proposed_sources_patch.json
             work/clean/latest.json
             work/clean/**/configuration.json
             work/clean/**/snapshot_lock.json

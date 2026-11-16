@@ -465,6 +465,7 @@ def strict_asx_probe(registry, transport):
                 transport.probed[source['key']]=(raw,headers,transport.http.get(host),transport.attempts[start:])
                 row.update(status='FETCHED',sha256=hashlib.sha256(raw).hexdigest())
             except Exception as exc:
+                if host=='www.asx.com.au' and str(exc)=='NOT_PDF':transport.stopped[host]='NOT_PDF'
                 row.update(status=strict_failure_status(exc),reason=str(exc))
                 transport.probe_failures[source['key']]=(exc,transport.http.get(host),transport.attempts[start:])
             row.update(http_status=transport.http.get(host),http_attempts=canonical(transport.attempts[start:]))
@@ -482,8 +483,10 @@ class StrictTransport:
             def redirect_request(self, req, fp, code, msg, headers, newurl):
                 old=urllib.parse.urlsplit(req.full_url).hostname;new=urllib.parse.urlsplit(newurl).hostname
                 owner.http[old]=code;owner.attempts.append(dict(host=old,http_status=code))
+                if hasattr(owner,'before_request'):owner.attempts[-1]['url']=req.full_url
                 if urllib.parse.urlsplit(newurl).scheme!='https' or new not in owner.hosts or (old!=new and owner.hosts.get(old)!=owner.hosts.get(new)):
                     raise ValueError('REDIRECT_DESTINATION_NOT_APPROVED')
+                if hasattr(owner,'before_request'):owner.before_request(newurl)
                 owner.guard(new)
                 return super().redirect_request(req,fp,code,msg,headers,newurl)
         self.opener=urllib.request.build_opener(Redirect())
@@ -503,11 +506,14 @@ class StrictTransport:
         req=urllib.request.Request(url,data=data,method=method,headers={'User-Agent':'AU_REE_V2/0.1 public research'})
         for attempt in range(2):
             self.http.pop(host,None)
+            if hasattr(self,'before_request'):self.before_request(url)
             self.guard(host)
             try:
                 with self.opener.open(req,timeout=timeout) as response:
                     final=urllib.parse.urlsplit(response.geturl()).hostname
+                    self.resolved_url=response.geturl()
                     self.http[host]=response.status;self.attempts.append(dict(host=host,http_status=response.status))
+                    if hasattr(self,'before_request'):self.attempts[-1]['url']=req.full_url
                     raw=response.read(max_bytes+1) if max_bytes is not None else response.read()
                     if max_bytes is not None and len(raw)>max_bytes:raise ValueError('DOCUMENT_BYTE_BUDGET_EXCEEDED')
                     sample=raw[:200000].lower()
@@ -517,6 +523,7 @@ class StrictTransport:
                     return raw,dict(response.headers)
             except urllib.error.HTTPError as exc:
                 self.http[host]=exc.code;self.attempts.append(dict(host=host,http_status=exc.code));exc.request_attempts=attempt+1
+                if hasattr(self,'before_request'):self.attempts[-1]['url']=req.full_url
                 if 400<=exc.code<500:
                     self.stopped[host]=str(exc.code)
                     self.stopped[urllib.parse.urlsplit(exc.url).hostname]=str(exc.code)
@@ -528,8 +535,161 @@ class StrictTransport:
                 if not isinstance(getattr(exc,'reason',exc),(TimeoutError,socket.timeout)) or attempt:raise
 
 
+class SameSHAAlternates:
+    """Bounded discovery of immutable copies; no change to declared evidence."""
+    def __init__(self, root, primary):
+        path = Path(root) / 'config/evidence_policy.json'
+        self.policy = json.loads(path.read_text(encoding='utf8')).get('same_sha_fallback', {}) if path.exists() else {}
+        self.primary = primary
+        self.reports, self.patch, self.robots, self.indexes = [], [], {}, {}
+        self.used = 0
+        self.transport = StrictTransport({})
+        for name in ('last', 'stopped', 'http', 'attempts'):
+            setattr(self.transport, name, getattr(primary, name))
+        self.transport.before_request = lambda url: self.check(url, self.transport, True)
+        if self.policy.get('enabled'):
+            if self.policy.get('search_api',{}).get('enabled'):
+                raise ValueError('SEARCH_API_PROVIDER_NOT_IMPLEMENTED')
+            for key, limit in [('max_candidates_per_source', 8), ('max_fallback_requests_per_build', 400)]:
+                if not 0 < self.policy[key] <= limit:
+                    raise ValueError('INVALID_FALLBACK_BUDGET')
+            primary.before_request = lambda url: self.check(url, primary, False)
+        primary.same_sha = self
+
+    def check(self, url, transport, counted):
+        from urllib.robotparser import RobotFileParser
+        from .security import sensitive_reference
+        if sensitive_reference(url):raise ValueError('SENSITIVE_ALTERNATE_URL')
+        parsed = urllib.parse.urlsplit(url)
+        if parsed.hostname in transport.stopped:
+            raise ValueError('HOST_STOPPED:' + transport.stopped[parsed.hostname])
+        if counted:
+            if self.used >= self.policy['max_fallback_requests_per_build']:
+                raise ValueError('FALLBACK_REQUEST_BUDGET_EXHAUSTED')
+            self.used += 1
+        if parsed.path == '/robots.txt':
+            return
+        origin = urllib.parse.urlunsplit((parsed.scheme, parsed.netloc, '', '', ''))
+        if origin not in self.robots:
+            self.robots[origin] = None
+            try:
+                raw, _ = transport(origin + '/robots.txt', max_bytes=100000)
+            finally:
+                transport.http.pop(parsed.hostname,None)
+            if raw.lstrip().startswith(b'<') or (raw.strip() and b'user-agent:' not in raw.lower()):
+                raise ValueError('ROBOTS_NOT_TEXT')
+            parser = RobotFileParser()
+            parser.parse(raw.decode('utf-8-sig').splitlines())
+            self.robots[origin] = parser
+        if not self.robots[origin] or not self.robots[origin].can_fetch('AU_REE_V2/0.1 public research', url):
+            raise ValueError('ROBOTS_DISALLOWED')
+
+    def find(self, source, receipt, expected, cache):
+        import hashlib, re
+        from .discovery import candidates
+        trigger = receipt['stop_reason'].split(':')[0]
+        if receipt['http_status'] == 404:
+            trigger = 'HTTP_404'
+        elif trigger == 'CAPTCHA_OR_LOGIN':
+            trigger = 'LOGIN_OR_CAPTCHA'
+        elif receipt['status'] == 'HOST_STOPPED':
+            trigger = 'HOST_STOPPED'
+        elif urllib.parse.urlsplit(source['url']).hostname in self.primary.stopped:
+            trigger = 'HOST_STOPPED'
+        if not self.policy.get('enabled') or source['kind'] != 'pdf' or len(expected) != 1 or trigger not in self.policy['trigger_statuses']:
+            return None
+        if source.get('alternate_policy', 'SAME_SHA_ONLY') != 'SAME_SHA_ONLY':
+            return None
+        report = dict(key=source['key'],primary_status=receipt['status'],primary_reason=receipt['stop_reason'],candidate_count=0,
+                      found_url='',host_type='',sha_match=False,stop_reason='',attempts=[])
+        self.reports.append(report)
+        index = self.policy['issuer_ir_indexes'].get(source.get('issuer', {}).get('asx_code'))
+        issuer = urllib.parse.urlsplit(index).hostname if index else None
+        issuer_hosts = set(self.policy.get('issuer_ir_hosts',{}).get(source.get('issuer',{}).get('asx_code'),[])) | ({issuer} if issuer else set())
+        hosts = set(self.policy['approved_hosts']) | issuer_hosts
+        self.transport.hosts = {h: 'alternate' for h in hosts if h != 'www.asx.com.au'}
+        urls = list(dict.fromkeys(source.get('alternate_urls', [])))
+        found = None
+        for phase in ('declared', 'index'):
+            if report['candidate_count'] >= self.policy['max_candidates_per_source']:
+                report['stop_reason'] = 'CANDIDATE_BUDGET_EXHAUSTED'
+                break
+            if phase == 'index' and index:
+                try:
+                    if index not in self.indexes:
+                        self.indexes[index] = None
+                        raw, _ = self.transport(index, max_bytes=2000000)
+                        if re.search(br'<form[^>]*(?:login|consent|terms)|terms\s+(?:and\s+conditions|of\s+use)|<(?:title|h1)[^>]*>[^<]*(?:consent|log.?in|sign.?in)', raw, re.I):
+                            raise ValueError('PROTECTED_INDEX_NOT_PARSED')
+                        seed = dict(url=index,key=source['key'],allowed_hosts=hosts,pattern=r'\.pdf(?:\b|\?)|/pdf/|/file/')
+                        self.indexes[index] = candidates(raw, seed)
+                    if self.indexes[index] is None:
+                        raise ValueError('INDEX_PREVIOUSLY_UNAVAILABLE')
+                    for candidate in self.indexes[index]:
+                        date = candidate['publication_date']
+                        dates = re.findall(r'\b\d{2}/\d{2}/20\d{2}\b',candidate['title'])
+                        if not date and len(dates)==1:
+                            date = datetime.strptime(dates[0],'%d/%m/%Y').date().isoformat()
+                        tokens = source.get('title_tokens', [])
+                        dated = bool(date and source.get('publication_date') and abs((datetime.fromisoformat(date)-datetime.fromisoformat(source['publication_date'])).days) <= 7)
+                        if dated or any(t.casefold() in (candidate['title']+' '+candidate['url']).casefold() for t in tokens):
+                            urls.append(candidate['url'])
+                except Exception as exc:
+                    report['attempts'].append(dict(url=index,stage='INDEX',reason=str(exc)))
+            for url in dict.fromkeys(urls):
+                if report['candidate_count'] >= self.policy['max_candidates_per_source']:
+                    report['stop_reason'] = 'CANDIDATE_BUDGET_EXHAUSTED'
+                    break
+                if any(a.get('url') == url and a.get('stage') == 'PDF' for a in report['attempts']):
+                    continue
+                report['candidate_count'] += 1
+                attempt = dict(url=url,stage='PDF',actual_sha256='',reason='')
+                report['attempts'].append(attempt)
+                try:
+                    raw, _ = self.transport(url, max_bytes=30000000)
+                    actual = hashlib.sha256(raw).hexdigest()
+                    attempt['actual_sha256'] = actual
+                    if actual not in expected:
+                        attempt['reason'] = 'ALTERNATE_SHA_MISMATCH'
+                    elif not raw.startswith(b'%PDF'):
+                        attempt['reason'] = 'NOT_PDF'
+                    else:
+                        found = raw
+                        report.update(found_url=self.transport.resolved_url,sha_match=True,stop_reason='')
+                        break
+                except Exception as exc:
+                    attempt['reason'] = str(exc)
+                    receipt['network_error'] = receipt.get('network_error',False) or strict_failure_status(exc) == 'NETWORK_ERROR'
+            urls = []
+            if found is not None:
+                break
+        if found is None and not report['stop_reason']:
+            reason = report['attempts'][-1]['reason'] if report['attempts'] else ''
+            report['stop_reason'] = reason or ('NO_ELIGIBLE_INDEX_PDF_LINK' if index else 'NO_REGISTERED_IR_INDEX_OR_CANDIDATE')
+        receipt['alternate_mismatches'] = canonical([dict(a,key=source['key']) for a in report['attempts'] if a['reason']=='ALTERNATE_SHA_MISMATCH'])
+        if found is None:
+            return None
+        host = urllib.parse.urlsplit(report['found_url']).hostname
+        report['host_type'] = 'ASX_DIRECT_PDF' if host == 'announcements.asx.com.au' else 'ISSUER_IR' if host in issuer_hosts else 'APPROVED_THIRD_PARTY'
+        sha = next(iter(expected))
+        path = cache / (sha + '.pdf')
+        path.write_bytes(found)
+        receipt.update(status='ALTERNATE_SAME_SHA',sha_match=True,actual_sha256=sha,alternate_url=report['found_url'])
+        self.patch.append(dict(key=source['key'],source_sha256=sha,alternate_urls=list(dict.fromkeys([*source.get('alternate_urls',[]),report['found_url']]))))
+        now = datetime.now(timezone.utc).isoformat()
+        return dict(source,url=report['found_url'],primary_url=source['url'],sha256=sha,path=str(path),available_date=now[:10],acquired_at=now)
+
+    def save(self, work):
+        from .analysis import write_csv
+        rows = [dict(r,attempts=canonical(r['attempts'])) for r in self.reports]
+        columns = ['key','primary_status','primary_reason','candidate_count','found_url','host_type','sha_match','stop_reason','attempts']
+        write_csv(Path(work)/'fallback_report.csv', rows, columns)
+        proposed = dict(requires_researcher_approval=True,request_slots_used=self.used,changes=self.patch)
+        (Path(work)/'proposed_sources_patch.json').write_text(canonical(proposed)+'\n',encoding='utf8')
+
+
 def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_rows=None):
-    """Fresh work-only originals, exact declared-SHA fallback, no index discovery."""
+    """Fresh work-only originals and bounded, policy-approved same-SHA copies."""
     import hashlib,subprocess,tempfile
     root=Path(root).resolve();work=Path(work).resolve()
     discovery_path=root/'config/discovery.json'
@@ -558,6 +718,7 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
             if source.get('source_sha256'):bindings.add(source['source_sha256'])
             by_url.setdefault(source['url'],set()).update(bindings)
     transport=transport or StrictTransport(STRICT_HOSTS);outcomes=[];selected=[]
+    alternate=getattr(transport,'same_sha',None) or SameSHAAlternates(root,transport)
     managed={'official_table_transcription','official_project_catalogue_transcription','historical_e1_candidates','legacy_screen_index','pdf_page_extraction'}
     def committed(s,expected):
         p=Path(s['path']);target=(root/p).resolve()
@@ -674,10 +835,13 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
             else:
                 selected.append(entry);row['status']='FETCHED_SHA_VERIFIED' if expected else 'FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE'
         except Exception as exc:
+            if host=='www.asx.com.au' and str(exc)=='NOT_PDF':transport.stopped[host]='NOT_PDF'
             failure='SOURCE_SHA_CHANGED' if candidate_mismatch or str(exc)=='SOURCE_SHA_CHANGED' else str(exc)
             status=failure if failure in ('SOURCE_SHA_CHANGED','CONFLICTING_DECLARED_SOURCE_SHA') else strict_failure_status(exc)
             row.update(http_status=transport.http.get(host),stop_reason=failure,status=status,network_error=status=='NETWORK_ERROR')
-            if failure not in ('SOURCE_SHA_CHANGED','CONFLICTING_DECLARED_SOURCE_SHA') and status not in ('NETWORK_ERROR','HOST_STOPPED') and host!='www.asx.com.au':
+            replacement=alternate.find(source,row,expected,cache)
+            if replacement:selected.append(replacement)
+            elif failure not in ('SOURCE_SHA_CHANGED','CONFLICTING_DECLARED_SOURCE_SHA') and status not in ('NETWORK_ERROR','HOST_STOPPED') and host!='www.asx.com.au':
                 candidates=[s for s in old if committed(s,expected)]
                 if candidates:selected.append(max(candidates,key=lambda s:s['acquired_at']));row.update(status='SNAPSHOT_FALLBACK_SAME_SHA',sha_match=True)
         row['http_attempts']=canonical(transport.attempts[request_start:])
@@ -688,13 +852,14 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
     original_shas={s['sha256'] for s in selected if s['kind']=='pdf' and s['key'] not in invalid}
     for source in selected:
         if source['kind'] in ('pdf_page_extraction','official_table_transcription','official_project_catalogue_transcription'):
-            parent=source.get('source_sha256')
+            parent=source.get('parent_source_sha256',source.get('source_sha256'))
             if not parent or parent not in original_shas:
                 invalid.setdefault(source['key'],'SOURCE_NOT_ACQUIRED')
     selected=[s for s in selected if s['key'] not in invalid]
     for row in outcomes:
         if row['key'] in invalid:
             row.update(status=invalid[row['key']],stop_reason='PARENT_OR_ALIAS_SOURCE_NOT_VALIDATED',sha_match=False if invalid[row['key']]=='SOURCE_SHA_CHANGED' else row.get('sha_match'))
+    alternate.save(work)
     report=strict_network_report(work,outcomes,dns_rows)
     if report['status']=='RUN_INVALID_NETWORK':
         raise InvalidNetworkRun('RUN_INVALID_NETWORK: network errors exceed 5%; see '+str(work/'network_status.json'))

@@ -1124,5 +1124,76 @@
     },
     "incremental_registry": true
   },
-  "fetch_policy": "strict"
+  "fetch_policy": "strict",
+  "same_sha_fallback": {
+    "enabled": true,
+    "trigger_statuses": [
+      "NOT_PDF",
+      "HOST_STOPPED",
+      "HTTP_404",
+      "LOGIN_OR_CAPTCHA",
+      "ROBOTS_DISALLOWED",
+      "ROBOTS_NOT_TEXT"
+    ],
+    "issuer_ir_indexes": {
+      "VTM": "https://investors.victorymetalsaustralia.com/announcements",
+      "ARU": "https://www.arultd.com/investor/asx-announcements/asx-announcements-2026/",
+      "DEV": "https://www.devexresources.com.au/investors/asx-announcements/",
+      "ILU": "https://www.iluka.com/investors-media/asx-releases/"
+    },
+    "issuer_ir_hosts": {
+      "VTM": [
+        "investors.victorymetalsaustralia.com",
+        "victorymetalsaustralia.com"
+      ],
+      "ARU": [
+        "www.arultd.com"
+      ],
+      "DEV": [
+        "www.devexresources.com.au"
+      ],
+      "ILU": [
+        "www.iluka.com"
+      ]
+    },
+    "issuer_ir_index_evidence": {
+      "VTM": {
+        "homepage": "https://victorymetalsaustralia.com/",
+        "link_label": "ASX Announcements",
+        "verified_on": "2026-11-16"
+      },
+      "ARU": {
+        "homepage": "https://www.arultd.com/",
+        "link_label": "ASX Announcements",
+        "verified_on": "2026-11-16"
+      },
+      "DEV": {
+        "homepage": "https://www.devexresources.com.au/",
+        "link_label": "ASX Announcements",
+        "verified_on": "2026-11-16"
+      },
+      "ILU": {
+        "homepage": "https://www.iluka.com/",
+        "link_label": "ASX Releases",
+        "verified_on": "2026-11-16"
+      }
+    },
+    "approved_hosts": [
+      "announcements.asx.com.au",
+      "wcsecure.weblink.com.au",
+      "hermes-cdn.investorhub.com",
+      "api.investi.com.au",
+      "cdn-api.markitdigital.com",
+      "company-announcements.afr.com",
+      "data-api.marketindex.com.au",
+      "newswire.iguana2.com",
+      "staff-web.automicgroup.com.au"
+    ],
+    "max_candidates_per_source": 8,
+    "max_fallback_requests_per_build": 400,
+    "search_api": {
+      "enabled": false,
+      "provider": null
+    }
+  }
 }

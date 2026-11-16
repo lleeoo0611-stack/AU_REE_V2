@@ -77,6 +77,9 @@ def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
     claims=copy.deepcopy(claims);by_key={s['key']:s for s in snapshots}
     changed={r['key'] for r in outcomes if r['status']=='SOURCE_SHA_CHANGED'}
     cache=Path(cache);cache.mkdir(parents=True,exist_ok=True);verified={};projects=[]
+    for receipt in outcomes:
+        for candidate in json.loads(receipt.get('alternate_mismatches','[]')):
+            issue(db,None,candidate['actual_sha256'],'ALTERNATE_SHA_MISMATCH',canonical(candidate))
     def page(source, binding, clip=None):
         markers=binding.get('page_markers',binding.get('markers',[]));number=binding.get('pdf_page',binding.get('page'))
         if not isinstance(number,int) or len(markers)<2:raise ValueError('MISSING_PAGE_OR_TWO_MARKERS')
@@ -246,7 +249,7 @@ def execute(args):
         return discover(root,discovery_config,diagnostics=getattr(args,'gap_report',None),task_limit=getattr(args,'task_limit',3))
     if strict:
         from .acquisition import (strict_refresh, strict_dns_preflight, strict_network_report,
-                                  strict_asx_probe, StrictTransport, STRICT_HOSTS, InvalidNetworkRun)
+                                  strict_asx_probe, StrictTransport, STRICT_HOSTS, InvalidNetworkRun, SameSHAAlternates)
         from .evidence import load_claims
         live_claims,_=load_claims(root)
         strict_work=Path(args.work or root/'work').resolve()
@@ -257,6 +260,7 @@ def execute(args):
         if network['status']=='RUN_INVALID_NETWORK':
             raise InvalidNetworkRun('RUN_INVALID_NETWORK: DNS preflight failed; no HTTP requests or build started')
         transport=StrictTransport(STRICT_HOSTS)
+        SameSHAAlternates(root,transport)
         probe=strict_asx_probe(registry,transport)
         probe_fields=sorted({k for row in probe for k in row})
         write_csv(strict_work/'asx_probe.csv',probe,probe_fields)
