@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_phase16_remediation.IntegratedModels-20261116121218" tests="11" file="test_phase16_remediation.py" time="0.429" timestamp="2026-11-16T12:14:42" failures="0" errors="0" skipped="0">
+	<testcase classname="test_phase16_remediation.IntegratedModels" name="test_batch_source_versions_preserve_record_and_observation_history" time="0.024" timestamp="2026-11-16T12:14:41" file="tests/test_phase16_remediation.py" line="180"/>
+	<testcase classname="test_phase16_remediation.IntegratedModels" name="test_duplicate_batch_keys_rejected_and_new_versions_do_not_change_ids" time="0.022" timestamp="2026-11-16T12:14:41" file="tests/test_phase16_remediation.py" line="158"/>
+	<testcase classname="test_phase16_remediation.IntegratedModels" name="test_frozen_coverage_does_not_read_new_identity_labels" time="0.080" timestamp="2026-11-16T12:14:41" file="tests/test_phase16_remediation.py" line="103"/>
+	<testcase classname="test_phase16_remediation.IntegratedModels" name="test_held_component_hashes_still_fixed" time="0.162" timestamp="2026-11-16T12:14:42" file="tests/test_phase16_remediation.py" line="219"/>
+	<testcase classname="test_phase16_remediation.IntegratedModels" name="test_original_26_dispositions_and_shared_coverage_are_exported" time="0.082" timestamp="2026-11-16T12:14:42" file="tests/test_phase16_remediation.py" line="124"/>
+	<testcase classname="test_phase16_remediation.IntegratedModels" name="test_panel_cannot_bypass_same_measurement_value_conflict" time="0.002" timestamp="2026-11-16T12:14:42" file="tests/test_phase16_remediation.py" line="208"/>
+	<testcase classname="test_phase16_remediation.IntegratedModels" name="test_panel_exact_corroboration_does_not_add_a_project" time="0.002" timestamp="2026-11-16T12:14:42" file="tests/test_phase16_remediation.py" line="215"/>
+	<testcase classname="test_phase16_remediation.IntegratedModels" name="test_panel_same_case_different_scope_or_scenario_is_not_last_write_wins" time="0.005" timestamp="2026-11-16T12:14:42" file="tests/test_phase16_remediation.py" line="211"/>
+	<testcase classname="test_phase16_remediation.IntegratedModels" name="test_product_diagnostic_reads_same_case_metric_and_source_benchmark" time="0.047" timestamp="2026-11-16T12:14:42" file="tests/test_phase16_remediation.py" line="167"/>
+	<testcase classname="test_phase16_remediation.IntegratedModels" name="test_reviewed_text_is_null_and_source_quote_is_required" time="0.000" timestamp="2026-11-16T12:14:42" file="tests/test_phase16_remediation.py" line="119"/>
+	<testcase classname="test_phase16_remediation.IntegratedModels" name="test_source_contracts_and_common_weight_budget" time="0.003" timestamp="2026-11-16T12:14:42" file="tests/test_phase16_remediation.py" line="135"/>
+</testsuite>

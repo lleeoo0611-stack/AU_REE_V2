@@ -1,0 +1,42 @@
+{
+  "total_cells": 4743,
+  "reference_non_id_filled_cells": 2101,
+  "reference_origin": "PREVIOUSLY_PUBLISHED_ACCEPTANCE_CSV_ONLY_NO_EXPERIMENTAL_LINE_READ",
+  "prior_target_statuses": {
+    "SAME": 661,
+    "FORMAL_MISSING": 1387,
+    "DIFFERENT": 53
+  },
+  "target_statuses": {
+    "FORMAL_MISSING": 1646,
+    "SAME": 377,
+    "DIFFERENT": 78
+  },
+  "target_status_increment": {
+    "SAME": -284,
+    "DIFFERENT": 25,
+    "FORMAL_MISSING": 259
+  },
+  "prior_53_difference_outcomes": {
+    "UNRESOLVED_DIFFERENCE": 38,
+    "VALUE_UNAVAILABLE_NOT_A_CORRECTION": 15
+  },
+  "added_same_by_attribution": {
+    "T0_CHILD_TRANSCRIPTION": 42
+  },
+  "lost_same": 326,
+  "t0_baseline_cells": 47,
+  "t0_baseline_nonempty": 45,
+  "t0_baseline_restored_nonempty_same": 42,
+  "t0_baseline_new_statuses": {
+    "SAME": 44,
+    "FORMAL_MISSING": 1,
+    "DIFFERENT": 2
+  },
+  "target_missing_reasons": {
+    "HOST_STOPPED_4XX": 770,
+    "RULE_INPUT_MISSING": 136,
+    "NO_SOURCE_VALUE": 14,
+    "SOURCE_NOT_ACQUIRED": 726
+  }
+}

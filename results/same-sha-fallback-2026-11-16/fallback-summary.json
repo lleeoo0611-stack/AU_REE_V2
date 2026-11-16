@@ -1,0 +1,62 @@
+{
+  "triggered_sources": 129,
+  "prior_not_pdf_sources": 37,
+  "prior_not_pdf_final_statuses": {
+    "HOST_STOPPED": 37
+  },
+  "prior_not_pdf_stop_reasons": {
+    "NO_ELIGIBLE_INDEX_PDF_LINK": 6,
+    "NO_REGISTERED_IR_INDEX_OR_CANDIDATE": 23,
+    "CAPTCHA_OR_LOGIN": 2,
+    "HTTP Error 429: Too Many Requests": 4,
+    "HOST_STOPPED:404": 1,
+    "INDEX_PREVIOUSLY_UNAVAILABLE": 1
+  },
+  "all_same_sha_copies": 0,
+  "prior_not_pdf_same_sha_copies": 0,
+  "proposed_patch_count": 0,
+  "request_slots_used": 18,
+  "www_http_attempts": [
+    {
+      "host": "www.asx.com.au",
+      "http_status": 200,
+      "url": "https://www.asx.com.au/robots.txt"
+    },
+    {
+      "host": "www.asx.com.au",
+      "http_status": 200,
+      "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03105109"
+    }
+  ],
+  "www_first_probe_not_pdf": true,
+  "transcription_receipts": [
+    {
+      "actual_sha256": "",
+      "alternate_mismatches": "",
+      "expected_sha256": "ae76952cae874b34aa01430e042b5e85b0a983699f584383583bf9f2f4e1a56b",
+      "host": "www.wa.gov.au",
+      "http_attempts": "",
+      "http_status": "",
+      "key": "wa_dmpe_ree_2026_table",
+      "network_error": "",
+      "sha_match": "True",
+      "status": "COMMITTED_SNAPSHOT_SAME_SHA",
+      "stop_reason": ""
+    },
+    {
+      "actual_sha256": "",
+      "alternate_mismatches": "",
+      "expected_sha256": "30f5f71f68661165f69bffc9cf0832de0f517dd1d2a64c9ff02f597b36f916bd",
+      "host": "international.austrade.gov.au",
+      "http_attempts": "",
+      "http_status": "",
+      "key": "austrade_2026_ree_catalogue",
+      "network_error": "",
+      "sha_match": "True",
+      "status": "COMMITTED_SNAPSHOT_SAME_SHA",
+      "stop_reason": ""
+    }
+  ],
+  "candidate_attempts": 0,
+  "mismatches": 0
+}
