@@ -1,0 +1,54 @@
+{
+  "source_key": "reviewed_source_31a205168b6ae647",
+  "status": "TWO_DOWNLOADS_DIAGNOSTIC_ONLY",
+  "downloads": [
+    {
+      "sequence": 1,
+      "status": "HTTP_200_FEATURE_RESPONSE",
+      "sha256": "b8b0c1d0d950e0461b6a6254e633152a2868e25956f062d78c14fd5958ce8e01",
+      "bytes": 31792,
+      "features": 13,
+      "received_at_utc": "2026-11-16T17:25:16.634473+00:00",
+      "http_attempts": [
+        {
+          "host": "opendata.maps.vic.gov.au",
+          "http_status": 404
+        },
+        {
+          "host": "opendata.maps.vic.gov.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "sequence": 2,
+      "status": "HTTP_200_FEATURE_RESPONSE",
+      "sha256": "9b8be1ffd46c75f41d3a4142ee28925ea6389e38c287da23ce7ef30e8f59788f",
+      "bytes": 31792,
+      "features": 13,
+      "received_at_utc": "2026-11-16T17:25:17.801062+00:00",
+      "http_attempts": [
+        {
+          "host": "opendata.maps.vic.gov.au",
+          "http_status": 200
+        }
+      ]
+    }
+  ],
+  "source_config_changed": false,
+  "content_hash_policy_changed": false,
+  "sha_updates_applied": 0,
+  "requires_researcher_decision": true,
+  "byte_sha_equal": false,
+  "json_equal": false,
+  "equal_excluding_response_timestamp": true,
+  "feature_properties_geometry_equal_as_multiset": true,
+  "feature_properties_geometry_order_equal": true,
+  "json_differences": 1,
+  "difference_categories": {
+    "RESPONSE_TIMESTAMP": 1
+  },
+  "first_differing_byte_offset": 31659,
+  "request_start_interval_seconds": 3.000472500047181,
+  "diagnostic_interpretation": "Exact byte SHAs remain authoritative. Timestamp/content/order diagnostics do not authorize a content-hash policy or source update."
+}

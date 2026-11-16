@@ -1,0 +1,71 @@
+{
+  "status": "DIAGNOSTIC_BLOCKED_EXISTING_PROGRAM_ERROR",
+  "source_key": "reviewed_source_31a205168b6ae647",
+  "capture_sha256": "c64e13a6f568587049ab530e30066692733afaac3f92326c236881e391d212d8",
+  "function": "au_ree_v2.spatial.summary_tenement_centroid",
+  "input_crs": "EPSG:7844",
+  "limit_m": 25000,
+  "projects": [
+    {
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "tenement_ids": [
+        "MIN5532",
+        "RL2002"
+      ],
+      "matched_feature_parts": 2,
+      "result": {
+        "accepted": false,
+        "reason": "EXISTING_PROGRAM_ERROR"
+      },
+      "error": "AttributeError:'Polygon' object has no attribute 'summary_tenement_centroid'"
+    },
+    {
+      "project_id": "AU-ff758cad5beb276d327d",
+      "tenement_ids": [
+        "RL006904",
+        "EL006966",
+        "RL006906"
+      ],
+      "matched_feature_parts": 3,
+      "result": {
+        "accepted": false,
+        "reason": "EXISTING_PROGRAM_ERROR"
+      },
+      "error": "AttributeError:'Polygon' object has no attribute 'summary_tenement_centroid'"
+    },
+    {
+      "project_id": "AU-410159af7b79ea498ec2",
+      "tenement_ids": [
+        "EL 6419",
+        "EL 6664"
+      ],
+      "matched_feature_parts": 2,
+      "result": {
+        "accepted": false,
+        "reason": "EXISTING_PROGRAM_ERROR"
+      },
+      "error": "AttributeError:'Polygon' object has no attribute 'summary_tenement_centroid'"
+    },
+    {
+      "project_id": "AU-176852ef1348ac10d154",
+      "tenement_ids": [
+        "EL 6666"
+      ],
+      "matched_feature_parts": 2,
+      "result": {
+        "accepted": false,
+        "reason": "EXISTING_PROGRAM_ERROR"
+      },
+      "error": "AttributeError:'MultiPolygon' object has no attribute 'summary_tenement_centroid'"
+    }
+  ],
+  "cells": 8,
+  "reference_cells_with_values": 4,
+  "computed_cells": 0,
+  "exact_matches": 0,
+  "src_changed": false,
+  "runtime_monkeypatch": false,
+  "reference_regenerated": false,
+  "formal_proof_gates_bypassed": false,
+  "diagnostic_scope": "Geometry calculation on predeclared tenement sets only; no identity/ownership PDF proof or formal admission asserted."
+}

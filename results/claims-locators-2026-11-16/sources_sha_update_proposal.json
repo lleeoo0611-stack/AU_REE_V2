@@ -1,0 +1,51 @@
+{
+  "status": "NO_UPDATE_PROPOSED_VIC_DIAGNOSTIC_SRC_ERROR_WA_NO_DECLARED_SCOPE",
+  "requires_researcher_approval": true,
+  "proposals": [],
+  "source_checks": [
+    {
+      "source_key": "reviewed_source_31a205168b6ae647",
+      "capture_sha256": "c64e13a6f568587049ab530e30066692733afaac3f92326c236881e391d212d8",
+      "capture_basis": "9c067a5_AUTOMATIC_CAPTURE_NOT_OLD_ORIGINAL",
+      "new_features": 13,
+      "direct_claim_binding_count": 0,
+      "direct_claim_declared_value_cells": 0,
+      "claim_reference_pointers": [],
+      "config_scope_check_rows": 8,
+      "config_scope_matches": 8,
+      "config_scope_mismatches": 0,
+      "coordinate_declarations_checked": 0,
+      "attribute_value_declarations_checked": 0,
+      "status": "NO_EXPLICIT_CLAIM_VALUE_SCOPE_NO_VACUOUS_PASS",
+      "sha_update_proposed": false,
+      "reason": "CLAIMS_HAS_NO_DIRECT_SOURCE_KEY_SHA_OR_HOST_REFERENCE; CONFIG_TENEMENT_SCOPE_IS_SEPARATE_NOT_COORDINATE_OR_ATTRIBUTE_VALIDATION"
+    },
+    {
+      "source_key": "reviewed_source_8a0240c46bbfaa5b",
+      "capture_sha256": "d96ee2e5f587ee16dfee588c4661b9c30cee0f25310abc5bdfc8aeb273b9408e",
+      "capture_basis": "9c067a5_AUTOMATIC_CAPTURE_NOT_OLD_ORIGINAL",
+      "new_features": 415,
+      "direct_claim_binding_count": 0,
+      "direct_claim_declared_value_cells": 0,
+      "claim_reference_pointers": [],
+      "config_scope_check_rows": 0,
+      "config_scope_matches": 0,
+      "config_scope_mismatches": 0,
+      "coordinate_declarations_checked": 0,
+      "attribute_value_declarations_checked": 0,
+      "status": "NO_EXPLICIT_CLAIM_VALUE_SCOPE_NO_VACUOUS_PASS",
+      "sha_update_proposed": false,
+      "reason": "CLAIMS_HAS_NO_DIRECT_SOURCE_KEY_SHA_OR_HOST_REFERENCE; CONFIG_TENEMENT_SCOPE_IS_SEPARATE_NOT_COORDINATE_OR_ATTRIBUTE_VALIDATION"
+    }
+  ],
+  "needed_researcher_input": "Decision on the existing centroid function error; the current src prohibition was respected. No old originals requested.",
+  "vic_unstable_sha_handling": "DIAGNOSTIC_ONLY; no content-hash rule or source update introduced",
+  "sources_json_updated": false,
+  "diagnostic_extension": {
+    "cells": 8,
+    "computed": 0,
+    "reference_values_present": 4,
+    "error_report": "vic_centroid_code_issue.json"
+  },
+  "vic_byte_hash_variability": "Two consecutive responses differ only at $.timeStamp; no content-hash or source policy change applied."
+}
