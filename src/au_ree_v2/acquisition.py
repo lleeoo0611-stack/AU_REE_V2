@@ -526,6 +526,8 @@ class StrictTransport:
             except urllib.error.HTTPError as exc:
                 self.http[host]=exc.code;self.attempts.append(dict(host=host,http_status=exc.code));exc.request_attempts=attempt+1
                 if hasattr(self,'before_request') and (host=='www.asx.com.au' or self.hosts.get(host)=='alternate'):self.attempts[-1]['url']=req.full_url
+                if exc.code in (404,410) and urllib.parse.urlsplit(req.full_url).path=='/robots.txt':
+                    return b'',{}
                 if 400<=exc.code<500:
                     self.stopped[host]=str(exc.code)
                     self.stopped[urllib.parse.urlsplit(exc.url).hostname]=str(exc.code)

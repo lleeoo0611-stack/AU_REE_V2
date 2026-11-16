@@ -141,6 +141,77 @@ class LocalFallback(unittest.TestCase):
         self.assertEqual(['/robots.txt'], [c[1] for c in self.calls])
         self.assertIn('ROBOTS_DISALLOWED', str(helper.reports))
 
+    def test_robots_404_and_410_allow_primary_and_alternate_requests_once(self):
+        for code in (404,410):
+            with self.subTest(code=code):
+                self.calls.clear()
+                primary, helper = self.make()
+                for host in ('primary.test','mirror.test'):
+                    self.routes[host,'/robots.txt'] = (code,b'missing rules',{})
+                    for name in ('first.pdf','second.pdf'):
+                        self.routes[host,'/'+name] = (200,PDF,{})
+                self.assertEqual(PDF,primary('https://primary.test/first.pdf')[0])
+                self.assertEqual(PDF,primary('https://primary.test/second.pdf')[0])
+                result, receipt = self.find(helper,self.source('https://mirror.test/first.pdf'))
+                self.assertEqual('ALTERNATE_SAME_SHA',receipt['status'])
+                self.assertEqual(SHA,result['sha256'])
+                self.assertEqual(PDF,helper.transport('https://mirror.test/second.pdf')[0])
+                counts = Counter((c[0],c[1]) for c in self.calls)
+                self.assertEqual(1,counts['primary.test','/robots.txt'])
+                self.assertEqual(1,counts['mirror.test','/robots.txt'])
+                self.assertFalse(primary.stopped)
+                self.assertEqual(2,sum(a['http_status']==code for a in primary.attempts))
+
+    def test_robots_authentication_and_rate_limits_stop_the_host(self):
+        for code in (401,403,429):
+            with self.subTest(code=code):
+                self.calls.clear()
+                primary, helper = self.make()
+                for host in ('primary.test','mirror.test'):
+                    self.routes[host,'/robots.txt'] = (code,b'restricted',{})
+                with self.assertRaises(urllib.error.HTTPError):
+                    primary('https://primary.test/first.pdf')
+                with self.assertRaisesRegex(ValueError,'HOST_STOPPED'):
+                    primary('https://primary.test/second.pdf')
+                result, _ = self.find(helper,self.source('https://mirror.test/first.pdf','https://mirror.test/second.pdf'))
+                self.assertIsNone(result)
+                self.assertEqual([('primary.test','/robots.txt'),('mirror.test','/robots.txt')],[(c[0],c[1]) for c in self.calls])
+                self.assertEqual({'primary.test':str(code),'mirror.test':str(code)},primary.stopped)
+
+    def test_robots_server_errors_and_network_failures_remain_cached_disallow(self):
+        primary, helper = self.make()
+        self.routes['primary.test','/robots.txt'] = (503,b'server unavailable',{})
+        with self.assertRaises(urllib.error.HTTPError):
+            primary('https://primary.test/first.pdf')
+        with self.assertRaisesRegex(ValueError,'ROBOTS_DISALLOWED'):
+            primary('https://primary.test/second.pdf')
+        self.assertEqual(['/robots.txt','/robots.txt'],[c[1] for c in self.calls])
+        for failure in (urllib.error.URLError('fixture refused connection'),urllib.error.URLError(TimeoutError())):
+            with self.subTest(failure=str(failure)):
+                primary, helper = self.make()
+                with patch.object(primary.opener,'open',side_effect=failure) as request:
+                    with self.assertRaises(urllib.error.URLError):
+                        primary('https://primary.test/first.pdf')
+                    before = request.call_count
+                    with self.assertRaisesRegex(ValueError,'ROBOTS_DISALLOWED'):
+                        primary('https://primary.test/second.pdf')
+                    self.assertEqual(before,request.call_count)
+                    self.assertIn(before,(1,2))
+
+    def test_document_404_and_410_still_stop_host_after_missing_robots(self):
+        for code in (404,410):
+            with self.subTest(code=code):
+                self.calls.clear()
+                primary, _ = self.make()
+                self.routes['primary.test','/robots.txt'] = (404,b'no robots',{})
+                self.routes['primary.test','/missing.pdf'] = (code,b'no document',{})
+                with self.assertRaises(urllib.error.HTTPError):
+                    primary('https://primary.test/missing.pdf')
+                with self.assertRaisesRegex(ValueError,'HOST_STOPPED'):
+                    primary('https://primary.test/later.pdf')
+                self.assertEqual(['/robots.txt','/missing.pdf'],[c[1] for c in self.calls])
+                self.assertEqual(str(code),primary.stopped['primary.test'])
+
     def test_4xx_stops_all_later_requests_to_host(self):
         _, helper = self.make()
         result, _ = self.find(helper, self.source('https://mirror.test/404.pdf','https://mirror.test/later.pdf'))
