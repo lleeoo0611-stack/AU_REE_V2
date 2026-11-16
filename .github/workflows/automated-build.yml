@@ -64,6 +64,70 @@ jobs:
         run: |
           mkdir -p work
           au-ree-v2 all --refresh --as-of 2026-11-13 --work work/clean > work/clean-build.log 2>&1
+      - name: Capture VIC response and annotate robots receipts
+        if: always()
+        run: |
+          python - <<'PY'
+          import csv, hashlib, json, re, shutil
+          from pathlib import Path
+          csv.field_size_limit(16 * 1024 * 1024)
+          GA = 'services.ga.gov.au'
+          VIC = 'reviewed_source_31a205168b6ae647'
+          MARKER = 'ROBOTS_HTTP_403_TREATED_AS_UNAVAILABLE'
+
+          def annotate_robots(rows):
+              # The shared before_request hook requests robots before any GA data.
+              first = next((event for row in rows for event in json.loads(row.get('http_attempts') or '[]') if event['host'] == GA), None)
+              if not first or first.get('http_status') != 403:
+                  return False
+              for row in rows:
+                  if row['host'] != GA:
+                      continue
+                  reason = row.get('stop_reason', '')
+                  if MARKER not in reason:
+                      row['stop_reason'] = reason + ('; ' if reason else '') + MARKER
+              return True
+
+          def capture(root):
+              clean = root / 'work/clean'
+              destination = root / 'work/vic-raw'
+              destination.mkdir(parents=True, exist_ok=True)
+              target = None
+              ga_marked = False
+              for report in sorted(clean.rglob('acquisition_report.csv')):
+                  with report.open(encoding='utf-8-sig', newline='') as stream:
+                      reader = csv.DictReader(stream)
+                      fields, rows = reader.fieldnames, list(reader)
+                  if not rows:
+                      continue
+                  ga_marked = annotate_robots(rows) or ga_marked
+                  with report.open('w', encoding='utf-8-sig', newline='') as stream:
+                      writer = csv.DictWriter(stream, fields)
+                      writer.writeheader()
+                      writer.writerows(rows)
+                  target = next((row for row in rows if row['key'] == VIC), target)
+              receipt = dict(source_key=VIC, ga_robots_marker_present=ga_marked, status='NO_RAW_RESPONSE_AVAILABLE')
+              sha = (target or {}).get('raw_sha256') or (target or {}).get('actual_sha256')
+              if sha and re.fullmatch('[0-9a-f]{64}', sha):
+                  candidates = list(clean.glob('strict-*/' + sha + '.json'))
+                  if not candidates:
+                      raise RuntimeError('VIC_RECEIPT_RAW_FILE_MISSING')
+                  raw = candidates[0].read_bytes()
+                  if hashlib.sha256(raw).hexdigest() != sha:
+                      raise RuntimeError('VIC_RAW_FILE_SHA_MISMATCH')
+                  shutil.copyfile(candidates[0], destination / (sha + '.json'))
+                  receipt.update(status='RAW_RESPONSE_RETAINED', raw_sha256=sha, bytes=len(raw),
+                                 content_sha256=target.get('content_sha256'),
+                                 declared_content_sha256=target.get('expected_sha256'),
+                                 hash_policy=target.get('hash_policy'),
+                                 hash_drop_keys=target.get('hash_drop_keys'),
+                                 acquisition_status=target['status'], file=sha + '.json')
+              (destination / 'capture.json').write_text(json.dumps(receipt, indent=2) + '\n', encoding='utf8')
+              print(json.dumps(receipt))
+
+          if __name__ == '__main__':
+              capture(Path('.'))
+          PY
       - name: Verify every summary cell is accounted for
         run: |
           python - <<'PY'
@@ -134,5 +198,12 @@ jobs:
             work/clean/**/snapshot_lock.json
             work/clean/**/project-summary/
             results/automated-build-2026-11-13/acquisition_report.csv
+          if-no-files-found: warn
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vic-raw-${{ github.run_id }}
+          path: work/vic-raw/
           if-no-files-found: warn
           retention-days: 30

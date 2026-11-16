@@ -1,3 +1,9 @@
+# 目前進度：第 5 版
+
+最新報告：[GA、ACDC 與 VIC 診斷](v5/README.md)。第 4 版完整結果保留於下。
+
+---
+
 # 第 4 版：核准標記、座標修正與 VIC 內容雜湊
 
 基準 `09ace21`；分支 `feat/claims-locators-20261116`；[Draft PR #11](https://github.com/lleeoo0611-stack/AU_REE_V2/pull/11)，target `feat/same-sha-fallback-20261116`。維持 Draft，不 merge。研究者：賴力維，2026-11-17。

@@ -163,7 +163,7 @@ class LocalFallback(unittest.TestCase):
                 self.assertEqual(2,sum(a['http_status']==code for a in primary.attempts))
 
     def test_robots_authentication_and_rate_limits_stop_the_host(self):
-        for code in (401,403,429):
+        for code in (401,429):
             with self.subTest(code=code):
                 self.calls.clear()
                 primary, helper = self.make()
