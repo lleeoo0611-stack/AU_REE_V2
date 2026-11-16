@@ -1,0 +1,45 @@
+{
+  "commit": "e84c0e01e1062882d2b3357e27f66189dc52e453",
+  "initial_work_absent": true,
+  "initial_tracked_tree_clean": true,
+  "command": [
+    "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2-integrated-rebuild\\work\\env\\Scripts\\python.exe",
+    "-c",
+    "from au_ree_v2.cli import main; main()",
+    "all",
+    "--root",
+    "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\CLB",
+    "--refresh",
+    "--as-of",
+    "2026-11-13",
+    "--work",
+    "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\CLB\\work\\clean",
+    "--tessdata",
+    "C:\\Users\\whatt\\.codex\\.chatgpt-projects\\g-p-6a74fa8105f88191b580dee7d5f22fdd\\worktrees\\AU_REE_V2-integrated-rebuild\\work\\claims-tooling\\tessdata",
+    "--rscript",
+    "C:/Program Files/R/R-4.5.2/bin/Rscript.exe"
+  ],
+  "reference_sha256": "a131cf6086242b53f0d6c8e1d5f9e420b540f7b21fe9c4671f2f31370d7eae26",
+  "protected_cells": 609,
+  "tooling": {
+    "package": "tesseract-ocr-eng",
+    "version": "1:4.1.0-2",
+    "package_sha256": "b1996b3113c78663f4dd16cf18aa1f288b07e9624f8d4a0ddbd7d9b52a234ba7",
+    "model_sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+    "model_bytes": 4113088,
+    "source": "SAME_UBUNTU_PACKAGE_AS_EXISTING_CI_BUILD_DEPENDENCY_NOT_RESEARCH_SOURCE"
+  },
+  "exit_code": 0,
+  "status": "T0_FAILED_STOP_REQUIRED",
+  "stop_required": true,
+  "preserved": 599,
+  "lost": 10,
+  "canonical_run_id": "20261116T153547-12e4d380",
+  "code_content_sha256": "ce472bc19749952691030f70aefd78ae8531204de620e8c4e233cbe790debb8e",
+  "configuration_sha256": "ab53d00bd87b7e8f5234ef0e34527a4c0a25f0eff83888f4395b6de17c208d86",
+  "target_statuses": {
+    "FORMAL_MISSING": 1436,
+    "SAME": 599,
+    "DIFFERENT": 66
+  }
+}
