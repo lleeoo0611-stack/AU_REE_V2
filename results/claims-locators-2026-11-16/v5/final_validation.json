@@ -1,0 +1,52 @@
+{
+  "status": "FINAL_CI_ACCEPTED_AWAITING_REVIEW",
+  "tested_commit": "a00b51557b5f055a2a257762b72a1363d317d24b",
+  "clean_ci_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/43948787479",
+  "research_ci_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/43948787210",
+  "reference_609_sha256": "02acc91760c8774f7377d12f2a428d1a1d6b6fba6f1620237e267101cdb0ff4e",
+  "protected_preserved": 609,
+  "target_statuses": {
+    "SAME": 876,
+    "FORMAL_MISSING": 1153,
+    "KNOWN_STRUCTURAL_DIFFERENCE": 44,
+    "DIFFERENT": 27,
+    "NUMERIC_TOLERANCE_SAME": 1
+  },
+  "source_net_line_delta": 0,
+  "source_replaced_lines": 1,
+  "source_cumulative": 2074,
+  "source_cap": 2074,
+  "source_other_code_workflow_tests_unchanged_since_tested_commit": true,
+  "claims_unchanged": true,
+  "config_unchanged": true,
+  "reference_unchanged": true,
+  "new_tests": 8,
+  "python_tests": {
+    "tests": 430,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "r_tests": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "frozen_phase_checks": [
+    "phase20:MATCHED",
+    "phase21-a:MATCHED",
+    "phase21-b:MATCHED",
+    "phase22-a:MATCHED",
+    "phase22-b:MATCHED"
+  ],
+  "clean_artifact_sha256": "1801753776f5f352ca45158a4f56e40e289fb95a0ef2459773264c5fbdf9d6e2",
+  "vic_artifact_sha256": "365249010eaec4abd21b546b1a5bf7ad3538c858c2ca1103f1b1c5139c84f09a",
+  "vic_raw_sha256": "2816f156f01c428a5af95bc5ee58ec8d1a24d87afecdaef9e2352e1940930b54",
+  "vic_diagnostic_category": "D",
+  "vic_declarations_unchanged": true,
+  "acdc_contract_applied": false,
+  "originals_committed": false,
+  "pr_must_remain_draft": true,
+  "merge_authorized": false
+}
