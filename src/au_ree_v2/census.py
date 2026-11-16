@@ -732,6 +732,8 @@ def export_summary(root, database, out, cutoff=None):
     write_csv(out/names['missing'],missing,['project_id','column','reason','details'])
     write_csv(out/'stage_rule_audit.csv',stage_audit,sorted({k for r in stage_audit for k in r}))
     coverage=summary_coverage(rows,columns,missing,rules)
+    coverage['export_contract_sha256']={name:filehash(root/'config'/name) for name in
+        ('summary_rules.json','researcher_rule_decisions.json','project_summary_columns.json')}
     coverage.update(database_sha256=filehash(database),cutoff=cutoff,formal_C1=False,source_scope='LATEST_CANONICAL_RUN_ONLY',
         rows=len(rows),column_count=len(columns),same_mre_aggregation='NO_RESOURCE_SUMS_EXPORTED;Yttria/Mt_Stirling_NON_ADDITIVE')
     (out/names['coverage']).write_text(canonical(coverage)+'\n',encoding='utf8')
@@ -741,7 +743,17 @@ def export_summary(root, database, out, cutoff=None):
 def summary_missing(column, project, row, bundle, registry, sources, source_errors, acquisition, cutoff, rules, decisions):
     attributes=[a for a in project.get('attributes',[]) if a['column']==column]
     resource=column in rules['resource_columns']
-    candidates=attributes or ([o for o in project.get('observations',[]) if o['variable'] in ('ore_mt','grade','contained_treo_kt') or o['variable'].startswith('reported_')] if resource else [])
+    resource_inputs=[o for o in project.get('observations',[]) if o['variable'] in rules['missing_resource_variables']
+        or o.get('material_basis')=='RESOURCE_ORE_GRADE_OXIDE_PPM']
+    preferred=[o['raw']['review_contract'] for o in resource_inputs if o['variable']=='ore_mt' and
+        o.get('raw',{}).get('review_contract',{}).get('selection_role','PREFERRED')=='PREFERRED' and o.get('raw',{}).get('review_contract')]
+    if len(preferred)==1:
+        r=preferred[0]
+        resource_inputs=[o for o in resource_inputs if all(o.get(k)==r.get(k) for k in ('source_sha256','statement_id','scope','effective_date'))]
+    candidates=attributes or (resource_inputs if resource else [])
+    if column in rules['annual_columns']:
+        candidates=[a for a in project.get('attributes',[]) if rules['annual_parameters'].get(column) in (a.get('engineering_forecast') or {}).get('parameters',{})
+            or a.get('source_stated_annual',{}).get('column')==column]
     if column in ('經度','緯度'):
         if project.get('coordinate_source'):candidates=[dict(source_key=project['coordinate_source'])]
         pid='AU-'+digest([project.get('entity_namespace','project_registry_v1'),str(project.get('id',''))])[:20]
@@ -756,7 +768,7 @@ def summary_missing(column, project, row, bundle, registry, sources, source_erro
         elif receipt.get('status')=='SOURCE_SHA_CHANGED':reason='SOURCE_SHA_CHANGED'
         elif receipt.get('status')=='HOST_STOPPED' and re.search(r'\b4\d\d\b',receipt.get('stop_reason','')):reason='HOST_STOPPED_4XX'
         elif any(date_end(d)>cutoff for d in (c.get('effective_date'),source.get('publication_date')) if d):reason='SOURCE_AFTER_CUTOFF'
-        elif not any(s['key']==key or s['sha256']==c.get('source_sha256') for s in sources.values()):reason=reason or 'SOURCE_NOT_ACQUIRED'
+        elif not any(s['key']==key or s['sha256']==(c.get('source_sha256') or source.get('committed_snapshot_sha256')) for s in sources.values()):reason=reason or 'SOURCE_NOT_ACQUIRED'
         if reason:reasons.append(reason);details.append(canonical(dict(source_key=key,status=receipt.get('status'),reason=reason,source_sha256=c.get('source_sha256'))))
     priority=['SOURCE_SHA_CHANGED','HOST_STOPPED_4XX','SOURCE_AFTER_CUTOFF','SOURCE_NOT_REGISTERED','SOURCE_NOT_ACQUIRED']
     if reasons:return next(r for r in priority if r in reasons),'; '.join(details)
@@ -764,7 +776,8 @@ def summary_missing(column, project, row, bundle, registry, sources, source_erro
         return 'NOT_APPLICABLE_NO_MRE','NO_SELECTED_MRE_IN_VERIFIED_PROJECT_DECLARATIONS;NOT_A_NATIONAL_ABSENCE_CLAIM'
     if column=='產品/產出' and row['開發階段代碼'] in ('A1','A2') and summary_decision(decisions,'NO_PRODUCT_BEFORE_STUDY_STAGE'):
         return 'NOT_APPLICABLE_STAGE','APPROVED_PRE_STUDY_PRODUCT_RULE'
-    if resource or attributes or column in ('開發階段代碼','開發階段類別','礦床型態代碼','經度','緯度'):
+    if resource or attributes or column in ('開發階段代碼','開發階段類別','礦床型態代碼','經度','緯度') or (
+        column in rules['identity_columns'] and project.get('identity_declaration') and not row['專案名稱']):
         return 'RULE_INPUT_MISSING','SOURCE_ACQUIRED_BUT_VALIDATED_COMPATIBLE_RULE_INPUTS_OR_DECISION_MISSING'
     return 'NO_SOURCE_VALUE','NO_REVIEWED_SOURCE_VALUE_FOR_THIS_FIELD'
 

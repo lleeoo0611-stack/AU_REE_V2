@@ -694,7 +694,7 @@ def live_status(discovery, acquisition=(), recognized=()):
         reconstruction_status='SEPARATE_OFFLINE_SCIENTIFIC_JOB',no_document_absence_inference=True)
 
 
-def source_coverage(root, snapshots, selection, prepared, out):
+def source_coverage(root, snapshots, selection, prepared, out, claims_data=None):
     """Rebuild Project x document-type stages from locked bytes, not live state."""
     from collections import defaultdict
     from .analysis import write_csv
@@ -703,7 +703,7 @@ def source_coverage(root, snapshots, selection, prepared, out):
     root=Path(root);mapping=selection['mapping'];by_project=defaultdict(list);receipts=[];receipt_shas=set()
     originals={s['sha256']:s for s in snapshots if s['kind'] in ('pdf','html')}
     restricted_pages={s['sha256'] for s in snapshots if s['kind']=='discovery_html' and b'announcementTerms.do' in (root/s['path']).read_bytes()}
-    identity={mapping.get(p['entity_id'],p['entity_id']):p['identity_source'] for p in project_registry(root)}
+    identity={mapping.get(p['entity_id'],p['entity_id']):p['identity_source'] for p in project_registry(root,claims_data=claims_data)}
     owners=defaultdict(set)
     for c in selection['inventory']:
         if not c['raw'].get('parser_version'):owners[c['source_sha256']].add(c['project_id'])

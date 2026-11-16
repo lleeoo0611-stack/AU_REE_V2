@@ -500,7 +500,7 @@ def execute(args):
                 diagnostics(selection,prepared,snapshots,config['criteria'],root,out)
                 if config.get('source_coverage_version')=='bounded-document-stages-v1':
                     from .discovery import source_coverage
-                    source_coverage(root,snapshots,selection,prepared,out)
+                    source_coverage(root,snapshots,selection,prepared,out,claims_data=claims_data)
             commercial=None
             if config.get('research_utilization') and selection:
                 from .analysis import prepare_commercial_coverage

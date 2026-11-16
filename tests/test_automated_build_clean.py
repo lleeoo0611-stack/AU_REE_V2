@@ -7,6 +7,8 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import textwrap
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 FORBIDDEN = ('980bedb', 'asx-current', 'work/asx-', 'results/round', 'results/asx-',
@@ -14,6 +16,21 @@ FORBIDDEN = ('980bedb', 'asx-current', 'work/asx-', 'results/round', 'results/as
 
 
 class AutomatedBuildCleanTests(unittest.TestCase):
+    def test_receipt_gate_runs_for_code_or_unknown_changes_and_handles_unicode_paths(self):
+        for workflow in ('automated-build.yml','research.yml'):
+            content=(ROOT/'.github/workflows'/workflow).read_text(encoding='utf8')
+            code=textwrap.dedent(content.split("python - <<'PY'\n",1)[1].split('\n          PY',1)[0])
+            cases=[('synchronize','a'*40,['results/integrated-rebuild-2026-11-15/專案總表.csv'],False),
+                   ('synchronize','a'*40,['results/integrated-rebuild-2026-11-15/README.md','src/au_ree_v2/census.py'],True),
+                   ('synchronize','a'*40,[],True),('synchronize','unknown',[],True),('opened','a'*40,[],True)]
+            for action,before,paths,required in cases:
+                with self.subTest(workflow=workflow,action=action,paths=paths),tempfile.TemporaryDirectory() as temp:
+                    output=Path(temp)/'outputs'
+                    env=dict(PREVIOUS_HEAD=before,EVENT_KIND='pull_request',EVENT_ACTION=action,GITHUB_OUTPUT=str(output))
+                    raw=('\0'.join(paths)+'\0').encode('utf8')
+                    with patch.dict(os.environ,env),patch('subprocess.check_output',return_value=raw):exec(compile(code,workflow,'exec'),{})
+                    self.assertEqual(output.read_text().strip(),'run_pipeline='+str(required).lower())
+
     def test_runtime_and_registry_have_no_experiment_dependency(self):
         paths = sorted((ROOT / 'src').rglob('*.py')) + [ROOT / 'config/sources.json']
         for path in paths:

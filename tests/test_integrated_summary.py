@@ -4,7 +4,7 @@ from pathlib import Path
 import pymupdf
 from au_ree_v2.store import connect,canonical,digest,filehash
 from au_ree_v2.evidence import ingest_sources,ingest_claims,normalize,validate_project_attribute
-from au_ree_v2.census import export_summary,summary_settings,summary_resource_fields,summary_decision
+from au_ree_v2.census import export_summary,summary_settings,summary_resource_fields,summary_decision,summary_missing
 from au_ree_v2.pdf_extract import summary_hit_priority,summary_parse_tsv
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -63,6 +63,7 @@ class SummaryContractTests(unittest.TestCase):
         self.assertEqual(coverage['column_count'],51)
         self.assertEqual(set(coverage['columns']),set(rows[0]))
         self.assertEqual(sum(c['filled'] for c in coverage['columns'].values()),coverage['filled_cells'])
+        for name,sha in coverage['export_contract_sha256'].items():self.assertEqual(sha,filehash(self.root/'config'/name))
         for t in trace:
             if t['value'] and t['column'] not in ('專案ID','國家'):
                 self.assertEqual(t['source_sha256'],self.source['sha256'])
@@ -114,6 +115,41 @@ class SummaryContractTests(unittest.TestCase):
         validate_project_attribute(self.root,source,a,[source])
         for change in [dict(feature_id=18),dict(layer_sha256='0'*64),dict(value='other developer')]:
             with self.subTest(change=change),self.assertRaises(ValueError):validate_project_attribute(self.root,source,dict(a,**change),[source])
+
+    def test_unrelated_metallurgy_sha_change_cannot_explain_missing_resource_oxide(self):
+        rules,decisions=summary_settings(ROOT)
+        project=copy.deepcopy(self.project)
+        project['observations'].append(dict(variable='reported_technical_desorption_ndpr_pct',source_key='bench',source_sha256='0'*64))
+        row={'專案名稱':'Wudinna Project','開發階段代碼':''}
+        reason,detail=summary_missing('La2O3_氧化鑭_kt',project,row,{}, {'doc':self.source,'bench':dict(self.source,key='bench')},
+            {self.source['sha256']:self.source},{'bench':'SOURCE_SHA_CHANGED'},{'bench':dict(status='SOURCE_SHA_CHANGED')},'2026-11-13',rules,decisions)
+        self.assertEqual(reason,'RULE_INPUT_MISSING');self.assertNotIn('bench',detail)
+
+    def test_rejected_identity_binding_is_rule_input_gap_even_when_source_is_acquired(self):
+        rules,decisions=summary_settings(ROOT);project=dict(self.project,identity_declaration={'pdf_page':1})
+        reason,_=summary_missing('專案名稱',project,{'專案名稱':'','開發階段代碼':''},None,{'doc':self.source},
+            {self.source['sha256']:self.source},{},{},'2026-11-13',rules,decisions)
+        self.assertEqual(reason,'RULE_INPUT_MISSING')
+
+    def test_annual_gap_uses_declared_study_source_and_not_resource_or_other_product(self):
+        rules,decisions=summary_settings(ROOT);project=copy.deepcopy(self.project)
+        project['attributes'].append(dict(column='產品/產出',source_key='study',source_sha256='1'*64,
+            engineering_forecast={'parameters':{'average_annual_treo_product_t':1000}}))
+        registry={'doc':self.source,'study':dict(self.source,key='study',sha256='1'*64)}
+        args=(project,{'專案名稱':'Wudinna Project','開發階段代碼':''},{},registry,{self.source['sha256']:self.source},{},
+            {'study':dict(status='SOURCE_NOT_ACQUIRED')},'2026-11-13',rules,decisions)
+        reason,detail=summary_missing('預估年產TREO_t_per_year',*args)
+        self.assertEqual(reason,'SOURCE_NOT_ACQUIRED');self.assertIn('study',detail)
+        reason,detail=summary_missing('預估年產NdPr_t_per_year',*args)
+        self.assertEqual(reason,'RULE_INPUT_MISSING');self.assertNotIn('study',detail)
+
+    def test_committed_same_sha_source_alias_is_acquired_even_under_another_key(self):
+        rules,decisions=summary_settings(ROOT)
+        project=dict(self.project,identity_source='alias',identity_declaration={'pdf_page':1})
+        alias=dict(self.source,key='alias',committed_snapshot_sha256=self.source['sha256'])
+        reason,_=summary_missing('專案名稱',project,{'專案名稱':'','開發階段代碼':''},None,{'alias':alias},
+            {self.source['sha256']:self.source},{},{},'2026-11-13',rules,decisions)
+        self.assertEqual(reason,'RULE_INPUT_MISSING')
 
 
 class IntegratedRuleTests(unittest.TestCase):

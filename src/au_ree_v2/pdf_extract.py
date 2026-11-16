@@ -33,10 +33,10 @@ def classify(text):
     return [label for label, pattern in rules.items() if re.search(pattern, text)]
 
 
-def project_registry(root, db=None, snapshots=None, mapping=None):
+def project_registry(root, db=None, snapshots=None, mapping=None, claims_data=None):
     """Reuse registered identities only; no observation values are read here."""
     from .store import digest
-    data=json.loads((Path(root)/'data/claims.json').read_text(encoding='utf-8'))
+    data=claims_data if claims_data is not None else json.loads((Path(root)/'data/claims.json').read_text(encoding='utf-8'))
     rows=[]
     for p in data['projects']:
         if p.get('entity_kind','PROJECT')!='PROJECT':continue

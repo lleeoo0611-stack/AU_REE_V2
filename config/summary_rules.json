@@ -4311,6 +4311,32 @@
       "value": "\\b(?:planned|planning|proposed|expected|anticipated|targeted|intended|will|would|could|may|might)\\b|預計|計畫|擬議",
       "source_file": "src/au_ree_v2/stage_rules.py",
       "source_key": "classify_stage stage_future"
+    },
+    "missing_resource_variables": {
+      "value": [
+        "ore_mt",
+        "grade",
+        "contained_treo_kt",
+        "magnet_reo_share_pct",
+        "reported_magnet_oxide_ppm",
+        "reported_magnetic_oxide_ppm",
+        "reported_ndpr_oxide_ppm"
+      ],
+      "source_file": "src/au_ree_v2/project_summary.py",
+      "source_key": "resource_bundle; reported_magnet_group; resource input dependencies"
+    },
+    "identity_columns": {
+      "value": [
+        "專案名稱",
+        "州省地區",
+        "所在地_中文",
+        "所在地_英文",
+        "資料來源名稱",
+        "資料來源URL",
+        "有來源文件"
+      ],
+      "source_file": "src/au_ree_v2/project_summary.py",
+      "source_key": "export_summary canonical identity-dependent columns"
     }
   }
 }
