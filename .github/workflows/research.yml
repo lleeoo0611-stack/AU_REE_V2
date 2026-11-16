@@ -3,6 +3,8 @@ on:
   push:
     branches: [main]
   pull_request:
+    paths-ignore:
+      - 'results/integrated-rebuild-2026-11-15/**'
   workflow_dispatch:
     inputs:
       validation:

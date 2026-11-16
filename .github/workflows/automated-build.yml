@@ -1,6 +1,8 @@
 name: Clean automated public build
 on:
   pull_request:
+    paths-ignore:
+      - 'results/integrated-rebuild-2026-11-15/**'
   workflow_dispatch:
 permissions:
   contents: read
@@ -37,6 +39,7 @@ jobs:
           python - <<'PY'
           import csv, json
           from pathlib import Path
+          csv.field_size_limit(16 * 1024 * 1024)
           latest=json.loads(Path('work/clean/latest.json').read_text())
           out=Path(latest['output_dir'])/'project-summary'
           columns=json.loads(Path('config/project_summary_columns.json').read_text())
