@@ -1,5 +1,5 @@
 {
-  "status": "IMPLEMENTATION_TESTED_READY_FOR_SINGLE_FINAL_CI",
+  "status": "CI_609_PRESERVED_VIC_NOT_ADOPTED_REVIEW_REQUIRED",
   "baseline_commit": "09ace214dacd9ebaac0b92e53e2804a6d000c056",
   "approved_markers": 22,
   "rejected_markers": 4,
@@ -16,10 +16,10 @@
   "new_content_hash_tests": 11,
   "local_python_result": "PASSED",
   "local_r_result": "PASSED",
-  "frozen_rebuilds": "NOT_RERUN_THIS_VERSION; PREVIOUS_CI_EVIDENCE_ONLY",
+  "frozen_rebuilds": "PHASE_20_21_22_MATCHED_IN_CI",
   "protected_609_reference_unchanged": true,
-  "post_change_609_ci": "NOT_RUN",
-  "final_ci": "NOT_RUN",
+  "post_change_609_ci": "PASS_609_OF_609",
+  "final_ci": 43932350906,
   "official_sources": 43,
   "official_proposals": 0,
   "official_not_found": 43,
@@ -43,5 +43,28 @@
   "researcher_authorized_single_final_ci": true,
   "downloaded_originals_committed": false,
   "static_asx_proposals_revoked": true,
-  "merge": false
+  "merge": false,
+  "final_ci_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/43932350906",
+  "tested_commit": "3864bc7dfd79415107b8fc4bb344d0cf114fb934",
+  "research_ci": 43932350917,
+  "research_ci_conclusion": "success",
+  "ci_python_tests": {
+    "tests": 422,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "ci_r_tests": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "target_statuses": {
+    "FORMAL_MISSING": 1217,
+    "SAME": 807,
+    "KNOWN_STRUCTURAL_DIFFERENCE": 48,
+    "DIFFERENT": 28,
+    "NUMERIC_TOLERANCE_SAME": 1
+  }
 }
