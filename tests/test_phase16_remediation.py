@@ -100,6 +100,22 @@ class CommodityCompleteness(unittest.TestCase):
         self.assertFalse(db.execute("select 1 from entities where kind='PROJECT'").fetchall());self.assertFalse(db.execute('pragma foreign_key_check').fetchall());db.close()
 
 class IntegratedModels(unittest.TestCase):
+    def test_frozen_coverage_does_not_read_new_identity_labels(self):
+        from au_ree_v2.technical import export_remediation
+        from au_ree_v2.store import digest
+        import tempfile
+        project=json.loads((ROOT/'data/claims.json').read_text())['projects'][0]
+        frozen=copy.deepcopy(project);frozen['name']='Frozen historical identity'
+        pid='AU-'+digest([project.get('entity_namespace','project_registry_v1'),str(project['id'])])[:20]
+        selection={'projects':{pid},'mapping':{},'inventory':[]}
+        with tempfile.TemporaryDirectory(dir=ROOT/'work') as tmp:
+            out=Path(tmp)
+            export_remediation(selection,PROFILE,[],out,set(),ROOT,[],claims_data={'projects':[frozen]})
+            rows=list(csv.DictReader((out/'technical_coverage_gaps.csv').open(encoding='utf8')))
+        self.assertEqual([pid],[r['project_id'] for r in rows])
+        self.assertEqual(['Frozen historical identity'],json.loads(rows[0]['project_names']))
+        self.assertEqual('[]',rows[0]['originals'])
+
     def test_reviewed_text_is_null_and_source_quote_is_required(self):
         from au_ree_v2.evidence import normalize
         r=dict(kind='SOURCE_BOUND_SCIENTIFIC_CLAIM',variable='reported_technical_scientific_claim',value=None,scope='sample',statement_id='s',locator='p1',raw_text='Tested sample required impurity removal.',reviewed_interpretations=[{'criterion':'T-B'}])

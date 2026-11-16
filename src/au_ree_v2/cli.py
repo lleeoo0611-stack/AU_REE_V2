@@ -520,7 +520,7 @@ def execute(args):
         if selection and config.get('evidence_resolution',{}).get('technical_profile'):
             from .technical import analyze_profiles
             from .official import minedex_resource_report
-            analyze_profiles(selection,config['evidence_resolution']['technical_profile'],out,{identity['mapping'].get(pid,pid) for pid in resources},root,snapshots,observations=technical_observations)
+            analyze_profiles(selection,config['evidence_resolution']['technical_profile'],out,{identity['mapping'].get(pid,pid) for pid in resources},root,snapshots,observations=technical_observations,claims_data=claims_data)
             minedex_resource_report(db,root,snapshots,out,config.get("commodity_version","minedex-resource-batch-v1"))
         source_shas={s['sha256'] for s in snapshots}
         from .national import raw_domain_coverage

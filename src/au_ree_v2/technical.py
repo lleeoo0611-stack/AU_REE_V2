@@ -574,7 +574,7 @@ def unified_observations(selection, definition):
     return sorted(out,key=lambda r:r['analytical_identity'])
 
 
-def analyze_profiles(selection, definition, out, resource_ids, root=None, snapshots=(), observations=None):
+def analyze_profiles(selection, definition, out, resource_ids, root=None, snapshots=(), observations=None, claims_data=None):
     """Executed model decision: existing partial MCDA + technical case profiles.
 
     No universal ordinal utility is established. Therefore no numeric mapping,
@@ -637,7 +637,7 @@ def analyze_profiles(selection, definition, out, resource_ids, root=None, snapsh
         limitation='Analytical identity deduplicates records only, not independent experiments; different versions may corroborate. AI consistency is not independent expert validation.')
     if definition.get('version')=='technical-profile-remediation-v2':
         summary.update(scoped_numeric_model_adopted=True,aim_a='Executed process-specific design panel via existing R engine; nominal burdens kept separate',aim_b='Same two design cases: Technical total/subweight, scoring, method and operating-only scope scenarios',project_extrapolatable=sum(r['project_extrapolation'] for r in rows))
-        if root is not None:summary['remediation']=export_remediation(selection,definition,rows,out,resource_ids,Path(root),snapshots)
+        if root is not None:summary['remediation']=export_remediation(selection,definition,rows,out,resource_ids,Path(root),snapshots,claims_data=claims_data)
     if definition.get('framework'):
         # One row per Project/axis reports evidence availability, never averages
         # incompatible cases or treats source records as independent experiments.
@@ -659,7 +659,7 @@ def analyze_profiles(selection, definition, out, resource_ids, root=None, snapsh
             projects=len(pids),profiles=len(coverage),project_scores_adopted=False,
             source_scoped_numeric_projects={axis:sum(r['axis']==axis and r['numeric_records']>0 for r in coverage) for axis in framework['axes']})
     if definition.get('jorc_screening') and not definition.get('disclosure_supersedes_screening'):
-        summary['jorc_screening']=analyze_jorc_screening(selection,definition,rows,out,root)
+        summary['jorc_screening']=analyze_jorc_screening(selection,definition,rows,out,root,claims_data=claims_data)
     if definition.get('disclosure_supersedes_screening'):
         summary['current_T1_definition']='technical-disclosure-transparency-v1'
         summary['performance_profile_interpretation']='SUPPLEMENTARY_SOURCE_CONTENT_NOT_DISCLOSURE_SCORES'
@@ -911,7 +911,7 @@ def screening_utility(row, panel, axis):
     return score,'SOURCE_BOUNDARY_PROXY_NOT_PROJECT_ESTIMATE'
 
 
-def analyze_jorc_screening(selection, definition, rows, out, root=None):
+def analyze_jorc_screening(selection, definition, rows, out, root=None, claims_data=None):
     """JORC Table 1 evidence crosswalk + all-group interval screening.
 
     This is a research operationalisation, not a JORC compliance assessment.
@@ -925,7 +925,7 @@ def analyze_jorc_screening(selection, definition, rows, out, root=None):
     pids=sorted(selection['projects']);names={pid:pid for pid in pids}
     if root is not None:
         from .pdf_extract import project_registry
-        for item in project_registry(root):
+        for item in project_registry(root,claims_data=claims_data):
             pid=selection['mapping'].get(item['entity_id'],item['entity_id'])
             if pid in names:names[pid]=item['name']
     byproject={pid:[r for r in rows if r['project_id']==pid] for pid in pids}
@@ -1039,7 +1039,7 @@ def analyze_jorc_screening(selection, definition, rows, out, root=None):
     return {k:v for k,v in summary.items() if k!='policy'}
 
 
-def export_remediation(selection,definition,rows,out,resource_ids,root,snapshots):
+def export_remediation(selection,definition,rows,out,resource_ids,root,snapshots,claims_data=None):
     """Use existing inventory for coverage, provenance bridge and model decisions."""
     import csv
     from .analysis import write_csv
@@ -1047,7 +1047,7 @@ def export_remediation(selection,definition,rows,out,resource_ids,root,snapshots
     from .store import filehash
     sources={s['sha256']:s for s in snapshots};byproject=defaultdict(list)
     for r in rows:byproject[r['project_id']].append(r)
-    registry=project_registry(root);mapping=selection['mapping'];bykey={s['key']:s for s in snapshots}
+    registry=project_registry(root,claims_data=claims_data);mapping=selection['mapping'];bykey={s['key']:s for s in snapshots}
     coverage=[]
     for pid in sorted(selection['projects']):
         rr=byproject[pid];members=[p for p in registry if mapping.get(p['entity_id'],p['entity_id'])==pid]
