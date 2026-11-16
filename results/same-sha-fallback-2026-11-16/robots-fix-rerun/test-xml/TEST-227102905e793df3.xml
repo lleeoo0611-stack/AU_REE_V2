@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_core.CoreTests-20261116131456" tests="20" file="test_core.py" time="83.867" timestamp="2026-11-16T13:16:25" failures="0" errors="0" skipped="0">
+	<testcase classname="test_core.CoreTests" name="test_arcgis_partial_or_duplicate_response_refused" time="0.001" timestamp="2026-11-16T13:15:01" file="tests/test_core.py" line="150"/>
+	<testcase classname="test_core.CoreTests" name="test_arcgis_scoped_inventories_and_deduplicated_union" time="0.001" timestamp="2026-11-16T13:15:01" file="tests/test_core.py" line="184"/>
+	<testcase classname="test_core.CoreTests" name="test_basis_and_category_guards" time="0.540" timestamp="2026-11-16T13:15:01" file="tests/test_core.py" line="67"/>
+	<testcase classname="test_core.CoreTests" name="test_clean_two_bootstraps_and_analysis_outputs_reproduce" time="80.922" timestamp="2026-11-16T13:16:22" file="tests/test_core.py" line="266"/>
+	<testcase classname="test_core.CoreTests" name="test_conflict_does_not_block_other_project" time="0.121" timestamp="2026-11-16T13:16:22" file="tests/test_core.py" line="106"/>
+	<testcase classname="test_core.CoreTests" name="test_dry_run_has_no_filesystem_side_effects" time="0.382" timestamp="2026-11-16T13:16:23" file="tests/test_core.py" line="259"/>
+	<testcase classname="test_core.CoreTests" name="test_fixed_anchors_no_cohort_rescaling" time="0.001" timestamp="2026-11-16T13:16:23" file="tests/test_core.py" line="254"/>
+	<testcase classname="test_core.CoreTests" name="test_gis_refuses_uncovered_project_and_reused_future_coordinate" time="0.092" timestamp="2026-11-16T13:16:23" file="tests/test_core.py" line="204"/>
+	<testcase classname="test_core.CoreTests" name="test_grade_range_and_units" time="0.085" timestamp="2026-11-16T13:16:23" file="tests/test_core.py" line="75"/>
+	<testcase classname="test_core.CoreTests" name="test_identity_stable_numeric_ids_and_entity_type" time="0.005" timestamp="2026-11-16T13:16:23" file="tests/test_core.py" line="55"/>
+	<testcase classname="test_core.CoreTests" name="test_incremental_replay_and_resource_rounding" time="0.169" timestamp="2026-11-16T13:16:23" file="tests/test_core.py" line="93"/>
+	<testcase classname="test_core.CoreTests" name="test_new_document_version_retains_history_and_requires_new_extraction" time="0.592" timestamp="2026-11-16T13:16:24" file="tests/test_core.py" line="117"/>
+	<testcase classname="test_core.CoreTests" name="test_no_missing_or_nonnumeric_imputation" time="0.311" timestamp="2026-11-16T13:16:24" file="tests/test_core.py" line="62"/>
+	<testcase classname="test_core.CoreTests" name="test_official_workbook_discovery_does_not_fabricate_projects" time="0.043" timestamp="2026-11-16T13:16:24" file="tests/test_core.py" line="235"/>
+	<testcase classname="test_core.CoreTests" name="test_offline_update_failure_keeps_snapshots" time="0.056" timestamp="2026-11-16T13:16:24" file="tests/test_core.py" line="156"/>
+	<testcase classname="test_core.CoreTests" name="test_project_aois_use_official_anchors_and_are_conservative" time="0.050" timestamp="2026-11-16T13:16:24" file="tests/test_core.py" line="170"/>
+	<testcase classname="test_core.CoreTests" name="test_projected_distance_and_invalid_geometry" time="0.001" timestamp="2026-11-16T13:16:24" file="tests/test_core.py" line="164"/>
+	<testcase classname="test_core.CoreTests" name="test_snapshot_cutoff_prevents_lookahead" time="0.040" timestamp="2026-11-16T13:16:24" file="tests/test_core.py" line="81"/>
+	<testcase classname="test_core.CoreTests" name="test_source_checksum_tampering_fails" time="0.049" timestamp="2026-11-16T13:16:24" file="tests/test_core.py" line="87"/>
+	<testcase classname="test_core.CoreTests" name="test_unreadable_one_pdf_does_not_block_other_project" time="0.407" timestamp="2026-11-16T13:16:25" file="tests/test_core.py" line="137"/>
+</testsuite>

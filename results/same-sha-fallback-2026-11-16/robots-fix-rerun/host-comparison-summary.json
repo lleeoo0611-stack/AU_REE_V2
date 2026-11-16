@@ -1,0 +1,55 @@
+[
+  {
+    "host": "announcements.asx.com.au",
+    "pdf_registry_entries": 52,
+    "before_statuses": {
+      "HOST_STOPPED": 52
+    },
+    "after_statuses": {
+      "FETCHED_SHA_VERIFIED": 46,
+      "COMMITTED_SNAPSHOT_SAME_SHA": 6
+    },
+    "after_fetched_sha_verified": 46
+  },
+  {
+    "host": "wcsecure.weblink.com.au",
+    "pdf_registry_entries": 10,
+    "before_statuses": {
+      "SNAPSHOT_FALLBACK_SAME_SHA": 1,
+      "HOST_STOPPED": 9
+    },
+    "after_statuses": {
+      "FETCHED_SHA_VERIFIED": 7,
+      "CACHED_UNBOUND_SOURCE_NOT_ADOPTED": 1,
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1,
+      "UNAVAILABLE": 1
+    },
+    "after_fetched_sha_verified": 7
+  },
+  {
+    "host": "api.investi.com.au",
+    "pdf_registry_entries": 3,
+    "before_statuses": {
+      "SNAPSHOT_FALLBACK_SAME_SHA": 1,
+      "HOST_STOPPED": 2
+    },
+    "after_statuses": {
+      "FETCHED_SHA_VERIFIED": 2,
+      "CACHED_UNBOUND_SOURCE_NOT_ADOPTED": 1
+    },
+    "after_fetched_sha_verified": 2
+  },
+  {
+    "host": "hermes-cdn.investorhub.com",
+    "pdf_registry_entries": 9,
+    "before_statuses": {
+      "SNAPSHOT_FALLBACK_SAME_SHA": 1,
+      "HOST_STOPPED": 8
+    },
+    "after_statuses": {
+      "SNAPSHOT_FALLBACK_SAME_SHA": 1,
+      "HOST_STOPPED": 8
+    },
+    "after_fetched_sha_verified": 0
+  }
+]

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_phase12.Phase12Tests-20261116131456" tests="7" file="test_phase12.py" time="1.401" timestamp="2026-11-16T13:16:36" failures="0" errors="0" skipped="0">
+	<testcase classname="test_phase12.Phase12Tests" name="test_absent_or_changed_frozen_claims_fail_locally" time="0.001" timestamp="2026-11-16T13:16:35" file="tests/test_phase12.py" line="27"/>
+	<testcase classname="test_phase12.Phase12Tests" name="test_gap_priority_has_cost_reuse_and_joint_sample_components" time="0.786" timestamp="2026-11-16T13:16:35" file="tests/test_phase12.py" line="41"/>
+	<testcase classname="test_phase12.Phase12Tests" name="test_historical_claims_resolve_sha_instead_of_live_file" time="0.047" timestamp="2026-11-16T13:16:36" file="tests/test_phase12.py" line="17"/>
+	<testcase classname="test_phase12.Phase12Tests" name="test_primary_additions_verify_source_and_local_review" time="0.471" timestamp="2026-11-16T13:16:36" file="tests/test_phase12.py" line="98"/>
+	<testcase classname="test_phase12.Phase12Tests" name="test_scoping_model_and_host_deportment_cannot_enter_dfs_recovery" time="0.046" timestamp="2026-11-16T13:16:36" file="tests/test_phase12.py" line="62"/>
+	<testcase classname="test_phase12.Phase12Tests" name="test_selected_claim_contract_excludes_prior_metadata_without_deleting_history" time="0.002" timestamp="2026-11-16T13:16:36" file="tests/test_phase12.py" line="78"/>
+	<testcase classname="test_phase12.Phase12Tests" name="test_versioned_context_retains_raw_not_hypothetical_project_event" time="0.047" timestamp="2026-11-16T13:16:36" file="tests/test_phase12.py" line="52"/>
+</testsuite>

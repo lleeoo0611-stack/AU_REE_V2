@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_discovery_eligibility.DiscoveryTests-20261116131456" tests="3" file="test_discovery_eligibility.py" time="0.255" timestamp="2026-11-16T13:16:28" failures="0" errors="0" skipped="0">
+	<testcase classname="test_discovery_eligibility.DiscoveryTests" name="test_dedup_relative_pdf_and_security" time="0.001" timestamp="2026-11-16T13:16:28" file="tests/test_discovery_eligibility.py" line="9"/>
+	<testcase classname="test_discovery_eligibility.DiscoveryTests" name="test_failure_isolation_immutable_and_idempotent" time="0.003" timestamp="2026-11-16T13:16:28" file="tests/test_discovery_eligibility.py" line="16">
+		<system-err><![CDATA[EOF marker not found
+]]></system-err>
+	</testcase>
+	<testcase classname="test_discovery_eligibility.DiscoveryTests" name="test_transient_retry_only" time="0.251" timestamp="2026-11-16T13:16:28" file="tests/test_discovery_eligibility.py" line="30"/>
+</testsuite>
