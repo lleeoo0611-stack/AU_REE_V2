@@ -189,7 +189,9 @@ class LocalFallback(unittest.TestCase):
     def test_terms_and_login_pages_are_not_parsed_or_submitted(self):
         from au_ree_v2.discovery import candidates
         for body in (b'<html>Terms and conditions<a href="https://mirror.test/hidden.pdf">North Stanmore</a>',
-                     b'<html><form action="/login"><input type="password"></form>'):
+                     b'<html><form action="/login"><input type="password"></form>',
+                     b'<html><title>Login</title><a href="https://mirror.test/hidden.pdf">North Stanmore</a>',
+                     b'<html><form action="/login"></form>'):
             with self.subTest(body=body):
                 self.policy['issuer_ir_indexes'] = {'TEST':'https://issuer.test/index'}
                 _, helper = self.make()
@@ -198,7 +200,20 @@ class LocalFallback(unittest.TestCase):
                     result, _ = self.find(helper,self.source())
                 self.assertIsNone(result)
                 parse.assert_not_called()
+                before = len(self.calls)
+                with self.assertRaisesRegex(ValueError,'HOST_STOPPED'):
+                    helper.transport('https://issuer.test/another.pdf')
+                self.assertEqual(before,len(self.calls))
         self.assertFalse(any(c[1]=='/hidden.pdf' or c[2]=='POST' for c in self.calls))
+
+    def test_login_candidate_stops_remaining_requests_to_same_host(self):
+        _, helper = self.make()
+        self.routes['mirror.test','/login.pdf'] = (200,b'<html><h1>Sign in</h1>',{})
+        self.routes['mirror.test','/next.pdf'] = (200,PDF,{})
+        result, _ = self.find(helper,self.source('https://mirror.test/login.pdf','https://mirror.test/next.pdf'))
+        self.assertIsNone(result)
+        self.assertEqual(['/robots.txt','/login.pdf'],[c[1] for c in self.calls])
+        self.assertEqual('CAPTCHA_OR_LOGIN',helper.primary.stopped['mirror.test'])
 
     def test_first_non_pdf_stops_www_in_probe_and_main_build(self):
         primary, _ = self.make()

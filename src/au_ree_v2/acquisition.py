@@ -5,6 +5,7 @@ import urllib.request
 import urllib.error
 import time
 import socket
+import re
 from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone
 from pathlib import Path
@@ -517,7 +518,7 @@ class StrictTransport:
                     raw=response.read(max_bytes+1) if max_bytes is not None else response.read()
                     if max_bytes is not None and len(raw)>max_bytes:raise ValueError('DOCUMENT_BYTE_BUDGET_EXCEEDED')
                     sample=raw[:200000].lower()
-                    if not raw.startswith((b'%PDF',b'PK')) and any(token in sample for token in (b'captcha',b'type="password"',b"type='password'",b'please log in',b'please sign in')):
+                    if not raw.startswith((b'%PDF',b'PK')) and (any(token in sample for token in (b'captcha',b'type="password"',b"type='password'",b'please log in',b'please sign in')) or re.search(br'<form[^>]*(?:log.?in|sign.?in)|<(?:title|h1)[^>]*>[^<]*(?:log.?in|sign.?in)',sample)):
                         self.stopped[host]=self.stopped[final]='CAPTCHA_OR_LOGIN'
                         raise ValueError('CAPTCHA_OR_LOGIN')
                     return raw,dict(response.headers)
@@ -620,6 +621,7 @@ class SameSHAAlternates:
                         self.indexes[index] = None
                         raw, _ = self.transport(index, max_bytes=2000000)
                         if re.search(br'<form[^>]*(?:login|consent|terms)|terms\s+(?:and\s+conditions|of\s+use)|<(?:title|h1)[^>]*>[^<]*(?:consent|log.?in|sign.?in)', raw, re.I):
+                            self.transport.stopped[issuer] = 'PROTECTED_INDEX_NOT_PARSED'
                             raise ValueError('PROTECTED_INDEX_NOT_PARSED')
                         seed = dict(url=index,key=source['key'],allowed_hosts=hosts,pattern=r'\.pdf(?:\b|\?)|/pdf/|/file/')
                         self.indexes[index] = candidates(raw, seed)
@@ -675,7 +677,7 @@ class SameSHAAlternates:
         sha = next(iter(expected))
         path = cache / (sha + '.pdf')
         path.write_bytes(found)
-        receipt.update(status='ALTERNATE_SAME_SHA',sha_match=True,actual_sha256=sha,alternate_url=report['found_url'])
+        receipt.update(status='ALTERNATE_SAME_SHA',sha_match=True,actual_sha256=sha,alternate_url=report['found_url'],alternate_host_type=report['host_type'])
         self.patch.append(dict(key=source['key'],source_sha256=sha,alternate_urls=list(dict.fromkeys([*source.get('alternate_urls',[]),report['found_url']]))))
         now = datetime.now(timezone.utc).isoformat()
         return dict(source,url=report['found_url'],primary_url=source['url'],sha256=sha,path=str(path),available_date=now[:10],acquired_at=now)
