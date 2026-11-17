@@ -34,7 +34,7 @@ class V5WorkflowDiagnostics(unittest.TestCase):
         self.functions = workflow_functions()
 
     def receipt(self):
-        return dict(key='ga', host=GA, stop_reason='', http_attempts=json.dumps(self.primary.attempts))
+        return dict(key='ga', host=GA, status='UNAVAILABLE', stop_reason='', http_attempts=json.dumps(self.primary.attempts))
 
     def test_robots_403_allows_data_and_marks_existing_receipt_field(self):
         self.fixture.routes[GA, '/robots.txt'] = (403, b'CDN missing object', {})
@@ -43,6 +43,7 @@ class V5WorkflowDiagnostics(unittest.TestCase):
         self.assertEqual(raw, b'{"features":[]}')
         self.assertNotIn(GA, self.primary.stopped)
         rows = [self.receipt()]
+        rows[0]['status'] = 'FETCHED_SHA_VERIFIED'
         old_fields = set(rows[0])
         self.assertTrue(self.functions['annotate_robots'](rows))
         self.assertEqual(rows[0]['stop_reason'], MARKER)
@@ -63,7 +64,7 @@ class V5WorkflowDiagnostics(unittest.TestCase):
         row = self.receipt()
         row['stop_reason'] = 'HOST_STOPPED:403'
         self.functions['annotate_robots']([row])
-        self.assertEqual(row['stop_reason'], 'HOST_STOPPED:403; '+MARKER)
+        self.assertEqual(row['stop_reason'], 'HOST_STOPPED:403')
 
     def test_robots_401_and_429_still_stop_without_data_requests(self):
         for code in (401, 429):
@@ -125,6 +126,61 @@ class V5WorkflowDiagnostics(unittest.TestCase):
         root, _ = self.write_capture_fixture(b'{"timeStamp":"x"}', corrupt=True)
         with self.assertRaisesRegex(RuntimeError, 'VIC_RAW_FILE_SHA_MISMATCH'):
             self.functions['capture'](root)
+
+    def test_two_robots_403_hosts_are_both_marked_after_data_success(self):
+        rows = []
+        for host in ('hermes-cdn.investorhub.com', 'company-announcements.afr.com'):
+            self.primary.hosts[host] = 'government-api'
+            self.fixture.routes[host, '/robots.txt'] = (403, b'missing object', {})
+            self.fixture.routes[host, '/document'] = (200, b'original bytes', {})
+            start = len(self.primary.attempts)
+            self.primary('https://'+host+'/document')
+            rows.append(dict(key=host, host=host, status='FETCHED_SHA_VERIFIED', stop_reason='',
+                             http_attempts=json.dumps(self.primary.attempts[start:])))
+        self.assertTrue(self.functions['annotate_robots'](rows))
+        self.assertTrue(all(row['stop_reason'] == MARKER for row in rows))
+        self.assertEqual([1, 1], [row['successful_sources_after_first_attempt'] for row in self.functions['robots_hosts'](rows)])
+
+    def test_host_summary_does_not_mark_failed_403_or_successful_200_hosts(self):
+        rows = [dict(key='blocked', host='blocked.example', status='UNAVAILABLE', stop_reason='403',
+                     http_attempts=json.dumps([dict(host='blocked.example', http_status=403), dict(host='blocked.example', http_status=403)])),
+                dict(key='open', host='open.example', status='FETCHED_SHA_VERIFIED', stop_reason='',
+                     http_attempts=json.dumps([dict(host='open.example', http_status=200), dict(host='open.example', http_status=200)]))]
+        self.assertFalse(self.functions['annotate_robots'](rows))
+        self.assertEqual(['403', ''], [row['stop_reason'] for row in rows])
+        self.assertTrue(all(not row['marked'] for row in self.functions['robots_hosts'](rows)))
+
+    def test_capture_outputs_all_host_decisions_and_marks_every_source_on_host(self):
+        root, _ = self.write_capture_fixture(b'{"features":[]}')
+        report = root/'work/clean/runs/test/acquisition_report.csv'
+        with report.open(encoding='utf8', newline='') as stream:
+            reader = csv.DictReader(stream)
+            fields, rows = reader.fieldnames, list(reader)
+        host = 'hermes-cdn.investorhub.com'
+        for key, status, attempts in [('good', 'FETCHED_SHA_VERIFIED', [403, 200]), ('later', 'SOURCE_SHA_CHANGED', [200])]:
+            rows.append(dict.fromkeys(fields, '') | dict(key=key, host=host, status=status, stop_reason='',
+                        http_attempts=json.dumps([dict(host=host, http_status=code) for code in attempts])))
+        with report.open('w', encoding='utf8', newline='') as stream:
+            writer = csv.DictWriter(stream, fields)
+            writer.writeheader()
+            writer.writerows(rows)
+        self.functions['capture'](root)
+        with (root/'work/clean/robots_403_hosts.csv').open(encoding='utf-8-sig', newline='') as stream:
+            summary = {row['host']: row for row in csv.DictReader(stream)}
+        self.assertEqual(summary[host]['first_http_status'], '403')
+        self.assertEqual(summary[host]['successful_sources_after_first_attempt'], '1')
+        self.assertEqual(summary[host]['marked'], 'True')
+        with report.open(encoding='utf-8-sig', newline='') as stream:
+            marked = [row for row in csv.DictReader(stream) if row['host'] == host]
+        self.assertEqual([MARKER, MARKER], [row['stop_reason'] for row in marked])
+
+    def test_other_host_alternate_does_not_prove_primary_host_success(self):
+        host = 'blocked.example'
+        row = dict(key='alternate', host=host, status='ALTERNATE_SAME_SHA', stop_reason='',
+                   alternate_url='https://different.example/original.pdf',
+                   http_attempts=json.dumps([dict(host=host, http_status=403), dict(host=host, http_status=403)]))
+        self.assertFalse(self.functions['annotate_robots']([row]))
+        self.assertEqual(row['stop_reason'], '')
 
     def test_no_raw_response_records_unavailability_without_inventing_bytes(self):
         root = self.fixture.root

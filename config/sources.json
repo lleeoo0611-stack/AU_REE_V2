@@ -2373,7 +2373,7 @@
       "key": "reviewed_source_31a205168b6ae647",
       "kind": "government_wfs",
       "url": "https://opendata.maps.vic.gov.au/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=open-data-platform%3Aminten&outputFormat=application%2Fjson&count=1000&startIndex=0&sortBy=tno&CQL_FILTER=tno+LIKE+%27%255532%27+OR+tno+LIKE+%27%252002%27+OR+tno+LIKE+%27%256904%27+OR+tno+LIKE+%27%256966%27+OR+tno+LIKE+%27%256906%27+OR+tno+LIKE+%27%256419%27+OR+tno+LIKE+%27%256664%27+OR+tno+LIKE+%27%256666%27&srsName=EPSG%3A7844",
-      "source_sha256": "6547bf2c221ed8b58f37b40123bfa43465973f0478a1cca99b67e5ced6413885",
+      "source_sha256": "2816f156f01c428a5af95bc5ee58ec8d1a24d87afecdaef9e2352e1940930b54",
       "fixed_query": true,
       "summary_spatial_source": true,
       "summary_tenements": [
@@ -2470,12 +2470,17 @@
           "decision_id": "round4-tenement-centroid-20261113"
         }
       ],
-      "hash_policy": "JSON_DROP_TOP_LEVEL_KEYS_V1",
-      "hash_drop_keys": [
-        "timeStamp"
-      ],
-      "previous_source_sha256": "31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953",
-      "hash_policy_approval": "研究者 2026-11-17 核准改用內容雜湊"
+      "previous_source_sha256": "6547bf2c221ed8b58f37b40123bfa43465973f0478a1cca99b67e5ced6413885",
+      "committed_snapshot_sha256": "2816f156f01c428a5af95bc5ee58ec8d1a24d87afecdaef9e2352e1940930b54",
+      "snapshot_approval": "研究者 2026-11-17 核准採第 5 版 CI 已保存快照；政府資料更新須人工重新提交",
+      "snapshot_provenance": {
+        "ci_run_id": 43948787479,
+        "artifact_id": 14273467527,
+        "original_response_sha256": "2816f156f01c428a5af95bc5ee58ec8d1a24d87afecdaef9e2352e1940930b54",
+        "previous_original_source_sha256": "31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953",
+        "frozen_at": "2026-11-16T21:32:32Z",
+        "freeze_basis": "CI_ARTIFACT_CREATED_AT_UPPER_BOUND_NOT_PUBLICATION_DATE"
+      }
     },
     {
       "key": "reviewed_source_521f635719be1686",

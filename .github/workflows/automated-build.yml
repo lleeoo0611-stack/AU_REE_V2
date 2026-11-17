@@ -70,43 +70,69 @@ jobs:
           python - <<'PY'
           import csv, hashlib, json, re, shutil
           from pathlib import Path
+          from urllib.parse import urlsplit
           csv.field_size_limit(16 * 1024 * 1024)
-          GA = 'services.ga.gov.au'
           VIC = 'reviewed_source_31a205168b6ae647'
           MARKER = 'ROBOTS_HTTP_403_TREATED_AS_UNAVAILABLE'
 
+          def robots_hosts(rows):
+              # The shared hook requests robots before the first data request per host.
+              first = {}
+              successes = {}
+              acquired = {'FETCHED_SHA_VERIFIED', 'FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE',
+                          'COMMITTED_SNAPSHOT_SAME_SHA', 'COMMITTED_MANAGED_SAME_SHA',
+                          'SNAPSHOT_FALLBACK_SAME_SHA', 'ALTERNATE_SAME_SHA'}
+              for index, row in enumerate(rows):
+                  for event in json.loads(row.get('http_attempts') or '[]'):
+                      first.setdefault(event['host'], (index, event.get('http_status')))
+                  host = row['host']
+                  same_host = row.get('status') != 'ALTERNATE_SAME_SHA' or urlsplit(row.get('alternate_url', '')).hostname == host
+                  if host in first and index >= first[host][0] and row.get('status') in acquired and same_host:
+                      successes.setdefault(host, set()).add(row['key'])
+              return [dict(host=host, first_http_status=first.get(host, ('', ''))[1],
+                           successful_sources_after_first_attempt=len(successes.get(host, set())),
+                           marked=first.get(host, ('', ''))[1] == 403 and bool(successes.get(host)),
+                           marker=MARKER if first.get(host, ('', ''))[1] == 403 and successes.get(host) else '')
+                      for host in sorted({row['host'] for row in rows} | set(first))]
+
           def annotate_robots(rows):
-              # The shared before_request hook requests robots before any GA data.
-              first = next((event for row in rows for event in json.loads(row.get('http_attempts') or '[]') if event['host'] == GA), None)
-              if not first or first.get('http_status') != 403:
-                  return False
+              marked = {record['host'] for record in robots_hosts(rows) if record['marked']}
               for row in rows:
-                  if row['host'] != GA:
+                  if row['host'] not in marked:
                       continue
                   reason = row.get('stop_reason', '')
                   if MARKER not in reason:
                       row['stop_reason'] = reason + ('; ' if reason else '') + MARKER
-              return True
+              return bool(marked)
 
           def capture(root):
               clean = root / 'work/clean'
               destination = root / 'work/vic-raw'
               destination.mkdir(parents=True, exist_ok=True)
               target = None
-              ga_marked = False
+              hosts = {}
               for report in sorted(clean.rglob('acquisition_report.csv')):
                   with report.open(encoding='utf-8-sig', newline='') as stream:
                       reader = csv.DictReader(stream)
                       fields, rows = reader.fieldnames, list(reader)
                   if not rows:
                       continue
-                  ga_marked = annotate_robots(rows) or ga_marked
+                  for record in robots_hosts(rows):
+                      previous = hosts.get(record['host'])
+                      if previous is None or record['successful_sources_after_first_attempt'] > previous['successful_sources_after_first_attempt']:
+                          hosts[record['host']] = record
+                  annotate_robots(rows)
                   with report.open('w', encoding='utf-8-sig', newline='') as stream:
                       writer = csv.DictWriter(stream, fields)
                       writer.writeheader()
                       writer.writerows(rows)
                   target = next((row for row in rows if row['key'] == VIC), target)
-              receipt = dict(source_key=VIC, ga_robots_marker_present=ga_marked, status='NO_RAW_RESPONSE_AVAILABLE')
+              clean.mkdir(parents=True, exist_ok=True)
+              with (clean / 'robots_403_hosts.csv').open('w', encoding='utf-8-sig', newline='') as stream:
+                  writer = csv.DictWriter(stream, ['host', 'first_http_status', 'successful_sources_after_first_attempt', 'marked', 'marker'])
+                  writer.writeheader()
+                  writer.writerows(hosts[host] for host in sorted(hosts))
+              receipt = dict(source_key=VIC, robots_403_hosts_marked=sorted(host for host in hosts if hosts[host]['marked']), status='NO_RAW_RESPONSE_AVAILABLE')
               sha = (target or {}).get('raw_sha256') or (target or {}).get('actual_sha256')
               if sha and re.fullmatch('[0-9a-f]{64}', sha):
                   candidates = list(clean.glob('strict-*/' + sha + '.json'))
@@ -191,6 +217,7 @@ jobs:
             work/clean/asx_probe.csv
             work/clean/dns_preflight.csv
             work/clean/network_status.json
+            work/clean/robots_403_hosts.csv
             work/clean/fallback_report.csv
             work/clean/proposed_sources_patch.json
             work/clean/latest.json
