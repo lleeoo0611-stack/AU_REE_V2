@@ -15,8 +15,8 @@ class StrictAcquisitionTests(unittest.TestCase):
         r.status=200;r.headers={};r.geturl.return_value='https://example.com/a';r.read.return_value=raw
         return r
     @patch('au_ree_v2.acquisition.time.sleep')
-    def test_all_4xx_stop_host(self,sleep):
-        for code in (400,401,403,404,408,429):
+    def test_4xx_except_404_stop_host(self,sleep):
+        for code in (400,401,403,408,410,429):
             t=StrictTransport({'example.com':'document'});t.opener.open=Mock(side_effect=self.error(code))
             with self.assertRaises(HTTPError):t('https://example.com/a')
             with self.assertRaisesRegex(ValueError,'HOST_STOPPED'):t('https://example.com/b')

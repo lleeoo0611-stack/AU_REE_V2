@@ -528,7 +528,7 @@ class StrictTransport:
                 if hasattr(self,'before_request') and (host=='www.asx.com.au' or self.hosts.get(host)=='alternate'):self.attempts[-1]['url']=req.full_url
                 if exc.code in (403,404,410) and urllib.parse.urlsplit(req.full_url).path=='/robots.txt':
                     return b'',{}
-                if 400<=exc.code<500:
+                if 400<=exc.code<500 and exc.code!=404:
                     self.stopped[host]=str(exc.code)
                     self.stopped[urllib.parse.urlsplit(exc.url).hostname]=str(exc.code)
                     raise

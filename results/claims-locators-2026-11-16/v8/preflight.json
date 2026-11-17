@@ -1,0 +1,20 @@
+{
+  "status": "READY_FOR_ONE_CI",
+  "baseline": "56bf4dc",
+  "comparison_baseline": "ac65aaf/v6 CI",
+  "src_added": 1,
+  "src_deleted": 1,
+  "src_net_growth": 0,
+  "src_cumulative_gross": 2130,
+  "src_cap": 2134,
+  "cumulative_note": "A replacement contributes +1/-1 to the existing gross diff against 070df10; net source lines unchanged.",
+  "source_change": "Only HTTP 4xx stop condition excludes 404. Other 4xx including 410 still stop.",
+  "b1_not_applied": true,
+  "robots_403_404_410_unchanged": true,
+  "claims_sources_vic_cutoff_unchanged": true,
+  "reference_609_sha256": "02acc91760c8774f7377d12f2a428d1a1d6b6fba6f1620237e267101cdb0ff4e",
+  "new_tests": 4,
+  "focused_tests": 26,
+  "python_tests": 452,
+  "r_tests": "PASSED"
+}
