@@ -1,32 +1,24 @@
-# 第 9 版：P1／P6 準備與只讀診斷，因 SAME 流失停止
+# 第 9 版：核准 P1 後備規則，準備唯一一次 CI
 
-基準 `1e0b833`（程式 `3e7c24e`）；比較基準第 8 版 CI。沿用 [Draft PR #11](https://github.com/lleeoo0611-stack/AU_REE_V2/pull/11)，不 merge。
+基準 `1e0b833`（程式 `3e7c24e`）；比較基準第 8 版 CI。沿用 [Draft PR #11](https://github.com/lleeoo0611-stack/AU_REE_V2/pull/11)，target feat/same-sha-fallback-20261116，不 merge。
 
-**已停止，未啟動本輪正式 CI。** 嚴格採研究者指定的 15 位有效數字後，指定的 13 格可新增 SAME，但第 8 版的一格 SAME 會流失：ACDC Pr6O11。這與「第 8 版 SAME 任一格流失就停」衝突；沒有改數值、沒有自行保留舊規則去通過守門。[停止核對](preflight_stop.json)。
+研究者已於本對話核准：「保留舊顯示精度後備規則，不改數值」。P1 衝突解除；目前是推送前本機驗證，尚未宣告正式 CI 通過。P2 沒有一筆標記被核准或寫入 claims。
 
-## P1：兩項要求的衝突
+## P1 核准規則與本機驗證
 
-現行未追蹤比較程式已先原樣保存為 tools/compare_ci_cells.py，提交 `30479c9`，再修改；Git 僅正規化 CRLF 為 LF，程式內容未改。可由該提交稽核原先的 equal 函式，其中有未公開記在比較 CSV 的 REFERENCE_PRESENTATION_PRECISION 規則：按參考值的小數位數四捨五入正式值。
+先原樣提交原比較程式至 tools/（30479c9；僅 Git 正規化行尾），再加 15 位有效數字比較。兩側均可轉為 Decimal 時，以 Decimal(format(Decimal(x), '.15g')) 比數值；15 位不相同時，保留研究者核准的既有 REFERENCE_PRESENTATION_PRECISION 後備規則。其後仍保留原 1e-12 類別，後者不算 SAME。非數值仍按字串比較。
 
-新比較規則使用 Decimal(format(Decimal(x), '.15g')) 比較數值（格式化後尾端零不改變數值），非數值照字串，原 1e-12 類別保留給 15 位仍不同但落在容差內者。**不保留舊參考顯示位數四捨五入規則。**
+指定 13 格恰好由 NUMERIC_TOLERANCE_SAME 變 SAME，reason=EQUAL_AT_15_SIGNIFICANT_DIGITS；沒有吸收任何原 DIFFERENT。第 8 版 877 格 SAME 本機驗證全部保留，Pr6O11 仍依舊顯示精度分類；Tb4O7 仍為 DIFFERENT。參考值、正式值、claims 全部未改。[核准紀錄](p1_researcher_approval.json)、[13 格重分類](ci/p1_reclassified.csv)、[驗證紀錄](ci/p1_validation.json)。
 
-指定 13 格的重分類集合完全吻合，沒有任何原 DIFFERENT 被吸收；Tb4O7 維持 DIFFERENT。參見 [p1_reclassified.csv](ci/p1_reclassified.csv)。
-
-|流失格|參考值|正式值|15 位後參考|15 位後正式|新分類|
-|---|---:|---:|---:|---:|---|
-|ACDC Pr6O11_氧化鐠_kt|15.5|15.48922242604142347330153754|15.5|15.4892224260414|DIFFERENT|
-
-舊規則將正式值四捨五入到一位小數，因此原本判 SAME；新規則不會。13 格新增、1 格流失，**本機重分類預覽**淨增 12，SAME 為 889；不是 CI 驗收結果。固定 609 清單預覽仍 609／609，但第 8 版 877 格 SAME 只剩 876／877，依較嚴格的新守門停止。
-
-|分類|第 8 版 CI|僅 P1 本機重分類預覽|
+|分類|第 8 版 CI|僅 P1 本機預覽|
 |---|---:|---:|
-|SAME|877|889|
+|SAME|877|890|
 |KNOWN_STRUCTURAL_DIFFERENCE|44|44|
 |NUMERIC_TOLERANCE_SAME|13|0|
-|DIFFERENT|32|33|
+|DIFFERENT|32|32|
 |FORMAL_MISSING|1135|1135|
 
-[完整預覽](ci/p1_comparison.csv)、[原 SAME 流失](ci/p1_v8_same_losses.csv)、[驗證紀錄](ci/p1_validation.json)。需要研究者決定：保留舊顯示精度規則作後備，或嚴格採 15 位並明確核准這一格的分類改變；兩者都不修改參考值或正式值。在決定前不推執行 CI 的提交。
+此前嚴格 15 位且不保留後備會失去 Pr6O11 的反例留於 [歷史反例](p1_strict_only_counterexample.csv)；舊停止狀態留於 d434ccc 的 Git 歷史及 preflight_stop.json，已由本次明確核准解除，並不是現在的驗收狀態。
 
 ## P2：停在核准前
 
@@ -34,7 +26,7 @@
 
 [p2_marker_proposals.csv](p2_marker_proposals.csv) 的 approved **全部空白**。同一定位可能對應多格，proposal_id 相同者是重複定位，不應把列數當可恢復格數。[117 格盤點](p2_cells.csv)；另有其他原因的 110 格列於 [p2_additional_blockers.csv](p2_additional_blockers.csv)，未處理它們。
 
-tools/locators_from_ci_cache.py 已準備在唯一一次正式 CI 取得同 SHA 原件後，只讀既有快取補缺的提案；不另發 HTTP、不改 claims。因 P1 停止，這一步尚未在 CI 執行。目前可備齊的上限是 110 格；若取得缺少原件並完成全部定位，才可提高到 117 格，仍須研究者逐列核准與日後建置驗證，不保證全變 SAME。
+tools/locators_from_ci_cache.py 已準備在唯一一次正式 CI 取得同 SHA 原件後，只讀既有快取補缺的提案；不另發 HTTP、不改 claims。這一步將在本輪唯一一次正式 CI 執行，仍不會寫入 claims。目前可備齊的上限是 110 格；若取得缺少原件並完成全部定位，才可提高到 117 格，仍須研究者逐列核准與日後建置驗證，不保證全變 SAME。
 
 ## P3、P4、P8：只讀結論
 
@@ -59,10 +51,9 @@ VIC 8d57b53 的 repo RAW_FILE SHA 驗證通過，但查不到可綁定該提交�
 
 補齊方法：提供／找到截日前 head 等於 8d57b53 或其後繼提交的 GitHub PushEvent／CI 紀錄，再依相同驗證器重驗；或由研究者另行決定是否接受其他能綁定歷史 head 的 repo 存證。不能用提交日期、檔案 mtime、現在補存或相同座標反推取得日。在此以前維持 SOURCE_AFTER_CUTOFF，不移動研究截日。
 
-## 行數、測試與停止狀態
 
-src 僅 acquisition.py 日期證據 helper、三個呼叫點與註解：+26/-3，增刪合計 29、淨增 23；歷來 git diff 070df10 算法累計 **2,157／2,164**。主機停止與 robots 的 StrictTransport AST 完全相同，第 817 行檢查順序不動；claims、係數、推導、data、R 不變。config 只有四筆選填 pre_cutoff_evidence，其他欄位逐項不變。
+## 行數、測試與待驗收範圍
 
-本機完整 470 項回歸 PASSED；嚴格 P1 規則定稿後，受影響的 5 項比較測試另行重跑通過。新增 18 項測試（比較 5、存證 11、快取 2），R 通過。先前 468 項的兩個失敗只因舊測試禁止所有實驗線路徑，現僅對四筆已核准存證 metadata 精確豁免，乾淨建置 5 項亦重跑通過。
+src 累計 **2,157／2,164**；P6 已備妥的變更為 +26/-3（增刪29、淨增23），本次核准只改比較程式、比較測試及報告，不再改 src。主機停止／robots 的 StrictTransport AST、B1 順序、claims、係數、推導、data 與 R 不變。
 
-本輪正式 CI、正式狀態增減與 Phase 20–22 MATCHED **未執行／未驗收**，因 P1 已在送 CI 前證明會違反原 SAME 守門。第 8 版成功 CI 不能當作本版結果。準備變更以 skip ci 保存、PR 維持 Draft，不 merge，等待研究者對 P1 的決定與 P2 的逐列核准。
+先前本機完整 470 項與 R 通過；本次核准後受影響的 5 項比較測試已重跑通過。接下來只推一次不帶 skip ci 的提交，正式 CI 將執行全部測試與 Phase 20–22，確認固定609與原877格都無流失，再分別列出P1／P6實際增量。任一守門流失即停止，不改值、不重跑。

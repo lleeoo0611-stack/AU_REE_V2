@@ -1,15 +1,15 @@
 {
-  "status": "STOP_V8_SAME_LOST",
+  "status": "P1_EXACTLY_13_PASS",
   "reclassified": 13,
   "different_absorbed": 0,
-  "baseline_same_lost": 1,
+  "baseline_same_lost": 0,
   "target_statuses": {
-    "SAME": 889,
+    "SAME": 890,
     "FORMAL_MISSING": 1135,
     "KNOWN_STRUCTURAL_DIFFERENCE": 44,
-    "DIFFERENT": 33
+    "DIFFERENT": 32
   },
   "original_comparator_commit": "30479c9",
   "numeric_rule": "Decimal(format(Decimal(x),'.15g')) equality; trailing zeros have no numeric significance",
-  "removed_legacy_rule": "REFERENCE_PRESENTATION_PRECISION; strict requested numeric comparison supersedes it."
+  "approved_fallback_rule": "REFERENCE_PRESENTATION_PRECISION; researcher approved 2026-11-18, no values changed."
 }

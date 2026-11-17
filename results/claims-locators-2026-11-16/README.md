@@ -1,6 +1,6 @@
 # 目前進度：第 9 版
 
-最新報告：[P1 規則與原 SAME 守門衝突，已停止；P2／P3／P4／P6／P8 準備](v9/README.md)。尚未跑本輪 CI；維持 Draft、不 merge。
+最新報告：[P1 後備規則已核准，準備唯一一次 CI；P2 尚待逐列核准](v9/README.md)。維持 Draft、不 merge。
 
 ---
 

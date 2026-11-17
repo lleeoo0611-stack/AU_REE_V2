@@ -28,11 +28,13 @@ def equal15(expected,actual):
     except InvalidOperation:return False
 
 def equal(expected,actual):
+    if expected==actual or equal15(expected,actual):return True
     try:
         a,b=Decimal(expected),Decimal(actual)
-        if a.is_finite() and b.is_finite():return equal15(expected,actual)
-    except InvalidOperation:pass
-    return expected==actual
+        with localcontext() as context:
+            context.prec=80
+            return a.is_finite() and b.is_finite() and a==b.quantize(Decimal(1).scaleb(a.as_tuple().exponent))
+    except InvalidOperation:return False
 
 
 def p1_baseline():
@@ -61,7 +63,7 @@ def p1_baseline():
         reclassified=len(changes),different_absorbed=0,baseline_same_lost=len(lost),
         target_statuses=dict(Counter(r['status'] for r in target)),original_comparator_commit='30479c9',
         numeric_rule="Decimal(format(Decimal(x),'.15g')) equality; trailing zeros have no numeric significance",
-        removed_legacy_rule='REFERENCE_PRESENTATION_PRECISION; strict requested numeric comparison supersedes it.'))
+        approved_fallback_rule='REFERENCE_PRESENTATION_PRECISION; researcher approved 2026-11-18, no values changed.'))
     print(json.dumps(dict(status='STOP_V8_SAME_LOST' if lost else 'P1_EXACTLY_13_PASS',
         new_same=len(changes),baseline_same_lost=len(lost),states=dict(Counter(r['status'] for r in target))),ensure_ascii=False))
     if lost:raise SystemExit('STOP: strict P1 loses a v8 SAME cell; researcher decision required before CI')
@@ -165,7 +167,7 @@ for old in old_rows:
     if old['status']=='KNOWN_STRUCTURAL_DIFFERENCE' and not expected:status,reason=old['status'],old['reason']
     elif expected and not value:status,reason='FORMAL_MISSING',missing.get(key,{}).get('reason','NO_FORMAL_CELL')
     elif not expected and value:status,reason='FORMAL_ONLY','FORMAL_VALUE_NOT_PRESENT_IN_PUBLISHED_REFERENCE'
-    elif equal(expected,value):status,reason='SAME','EXACT_VALUE' if expected==value else 'EQUAL_AT_15_SIGNIFICANT_DIGITS' if equal15(expected,value) else 'STRING_EQUAL'
+    elif equal(expected,value):status,reason='SAME','EXACT_VALUE' if expected==value else 'EQUAL_AT_15_SIGNIFICANT_DIGITS' if equal15(expected,value) else 'REFERENCE_PRESENTATION_PRECISION'
     else:
         status,reason='DIFFERENT','SOURCE_OR_RULE_OUTPUT_DIFFERS_REVIEW_REQUIRED'
         source=verified.get(ft.get('source_sha256',''));name_column=key[1]=='資料來源名稱'
