@@ -2,7 +2,7 @@
 
 基準 `4dca63faecbd98b9bd170ec01f6af4a4f9067031`；分支 `feat/claims-locators-20261116`；[Draft PR #11](https://github.com/lleeoo0611-stack/AU_REE_V2/pull/11)，target `feat/same-sha-fallback-20261116`。研究者：賴力維，2026-11-17。
 
-工作流程、快照與可行性報告已準備；等待一次 CI 驗收。
+固定守門 **609／609**，程式提交 `4ebcb8008cb9ac0c242b20c659381396d452a478`，見 [乾淨 CI](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44036943032)。
 
 ## 範圍與 src
 
@@ -49,12 +49,82 @@ workflow 不再寫死 GA。依來源列順序找各主機第一次 HTTP 嘗試�
 
 |狀態|4dca63f 的 CI|本輪 CI|增減|
 |---|---:|---:|---:|
-|SAME|876|待 CI|待 CI|
-|KNOWN_STRUCTURAL_DIFFERENCE|44|待 CI|待 CI|
-|NUMERIC_TOLERANCE_SAME|1|待 CI|待 CI|
-|DIFFERENT|27|待 CI|待 CI|
-|FORMAL_MISSING|1153|待 CI|待 CI|
+|SAME|876|876|0|
+|KNOWN_STRUCTURAL_DIFFERENCE|44|44|0|
+|NUMERIC_TOLERANCE_SAME|1|1|0|
+|DIFFERENT|27|27|0|
+|FORMAL_MISSING|1153|1153|0|
 
+
+## 一次 CI 驗收結果
+
+新增 SAME 分組：ACDC 物種換算 **0**（未套用）、VIC 快照 **0**、其他 **0**。新增合計 0，基準非守門 SAME 流失 0，淨增加 0。未跑反事實建置；逐格見 [增量表](ci/same_increments.csv)。距離 2,101 格全部 SAME 尚差 **1225**，其他分類不算 SAME。
+
+### robots 403 主機
+
+完整 [robots_403_hosts.csv](ci/robots_403_hosts.csv) 保留所有主機的首次狀態，這裡僅列首次為 403 的主機。成功來源數只計首次嘗試開始之後成功的來源；標記套用至該主機所有來源列，含較早採用的已提交快照與失敗列。這是主機 robots 背景，並非宣稱所有來源都成功下載。
+
+|主機|首次狀態|其後成功來源數|標記|有標記／該主機來源列數|
+|---|---:|---:|---|---:|
+|company-announcements.afr.com|403|6|True|6/6|
+|geoscience.data.qld.gov.au|403|0|False|0/2|
+|hermes-cdn.investorhub.com|403|8|True|10/10|
+|services.ga.gov.au|403|9|True|10/10|
+|wamex.dmp.wa.gov.au|403|0|False|0/3|
+
+### VIC 八格座標
+
+CI 取得狀態 **COMMITTED_SNAPSHOT_SAME_SHA**，收據與已選快照見 [vic_snapshot_receipt.json](ci/vic_snapshot_receipt.json)。快照可用日如實保留 2026-11-16，不提前成研究截日 2026-11-13；被日期或其他規則擋下時不放寬。
+
+本輪八格正式值均未取得，原因全為 SOURCE_AFTER_CUTOFF，沒有新增 VIC SAME。參考側有值的四格由 SOURCE_SHA_CHANGED 改為日期受阻；另四格參考側本來空白，不把空白對空白算作恢復 SAME。提交快照的採用已成功，不代表跨過研究日期規則；本輪不重新請求 VIC 原件。
+
+|專案 ID|欄位|正式值|參考值|正式狀態|參考比較|原因|
+|---|---|---:|---:|---|---|---|
+|AU-176852ef1348ac10d154|緯度|未取得|-35.4287263|FORMAL_MISSING|FORMAL_MISSING|SOURCE_AFTER_CUTOFF|
+|AU-176852ef1348ac10d154|經度|未取得|143.4183513|FORMAL_MISSING|FORMAL_MISSING|SOURCE_AFTER_CUTOFF|
+|AU-2fc429d0556dfa0b95c4|緯度|未取得|參考側空白|FORMAL_MISSING|空白參考不計 SAME|SOURCE_AFTER_CUTOFF|
+|AU-2fc429d0556dfa0b95c4|經度|未取得|參考側空白|FORMAL_MISSING|空白參考不計 SAME|SOURCE_AFTER_CUTOFF|
+|AU-410159af7b79ea498ec2|緯度|未取得|參考側空白|FORMAL_MISSING|空白參考不計 SAME|SOURCE_AFTER_CUTOFF|
+|AU-410159af7b79ea498ec2|經度|未取得|參考側空白|FORMAL_MISSING|空白參考不計 SAME|SOURCE_AFTER_CUTOFF|
+|AU-ff758cad5beb276d327d|緯度|未取得|-36.9493024|FORMAL_MISSING|FORMAL_MISSING|SOURCE_AFTER_CUTOFF|
+|AU-ff758cad5beb276d327d|經度|未取得|141.9153047|FORMAL_MISSING|FORMAL_MISSING|SOURCE_AFTER_CUTOFF|
+
+### ACDC 十五個氧化物與總說明
+
+ACDC 可行性未通過，合約未套用；以下為 CI 實際輸出，參考側數字不寫回 claims。Tb4O7 也沒有採用換算診斷值，故不能把本輪結果稱作物種換算後的 DIFFERENT。
+
+|氧化物|正式值 kt|參考值 kt|比較|
+|---|---:|---:|---|
+|La2O3|未取得|60.016000000000005|FORMAL_MISSING|
+|CeO2|未取得|122.76000000000002|FORMAL_MISSING|
+|Pr6O11|未取得|15.5|FORMAL_MISSING|
+|Nd2O3|未取得|51.83200000000001|FORMAL_MISSING|
+|Sm2O3|未取得|9.684400000000002|FORMAL_MISSING|
+|Eu2O3|未取得|0.49104000000000003|FORMAL_MISSING|
+|Gd2O3|未取得|9.548000000000002|FORMAL_MISSING|
+|Tb4O7|未取得|1.24|FORMAL_MISSING|
+|Dy2O3|未取得|9.002400000000002|FORMAL_MISSING|
+|Ho2O3|未取得|1.9096000000000004|FORMAL_MISSING|
+|Er2O3|未取得|6.138|FORMAL_MISSING|
+|Tm2O3|未取得|0.9548000000000002|FORMAL_MISSING|
+|Yb2O3|未取得|6.547200000000001|FORMAL_MISSING|
+|Lu2O3|未取得|1.0912000000000002|FORMAL_MISSING|
+|Y2O3|未取得|61.38000000000001|FORMAL_MISSING|
+
+總說明：「開發階段依來源原文及其揭露日期：Scoping Study（來源揭露：2025-06-12）；分類僅對應該來源時點，不代表目前營運、法律或許可狀態。」。與基準是否相同：**True**。全部欄位見 [ACDC 比較](ci/acdc_fields.csv)。
+
+### 缺漏原因
+
+|原因|格數|
+|---|---:|
+|RULE_INPUT_MISSING|329|
+|NO_SOURCE_VALUE|63|
+|SOURCE_NOT_ACQUIRED|735|
+|SOURCE_AFTER_CUTOFF|26|
+
+[完整逐格比較](ci/cell_comparison.csv)、[609 格守門](ci/ci_609_guard.csv)、[其餘 DIFFERENT](ci/remaining_differences.csv)、[測試與來源驗收](ci/acceptance.json)。
 
 
 本機完整 Python 與 R 檢查紀錄留在 work/；最終測試數、CI 連結以本輪驗收紀錄為準。只推一次不帶 skip 標記的程式／資料提交，其後報告提交使用 skip ci。609 若少一格立即停止；驗收完成後停止等審查。
+
+CI 已驗證 **434 項 Python 與 R 通過**；新增 4 項測試，src 淨增 0。Phase 20、21-a、21-b、22-a、22-b 均 **MATCHED**，見 [研究 CI](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44036943021) 與 [逐項紀錄](research_ci_checks.json)。條件式 Live official discovery 工作為 SKIPPED，未列為通過。兩條 workflow 由同一提交自動啟動，未另跑第二次驗收建置。

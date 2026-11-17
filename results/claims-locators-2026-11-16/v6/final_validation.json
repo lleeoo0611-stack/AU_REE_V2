@@ -1,0 +1,51 @@
+{
+  "status": "FINAL_CI_ACCEPTED_AWAITING_REVIEW",
+  "tested_commit": "4ebcb8008cb9ac0c242b20c659381396d452a478",
+  "baseline_commit": "4dca63f",
+  "clean_ci_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44036943032",
+  "research_ci_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44036943021",
+  "protected_preserved": 609,
+  "reference_609_sha256": "02acc91760c8774f7377d12f2a428d1a1d6b6fba6f1620237e267101cdb0ff4e",
+  "reference_unchanged": true,
+  "target_statuses": {
+    "SAME": 876,
+    "FORMAL_MISSING": 1153,
+    "KNOWN_STRUCTURAL_DIFFERENCE": 44,
+    "DIFFERENT": 27,
+    "NUMERIC_TOLERANCE_SAME": 1
+  },
+  "src_net_line_delta": 0,
+  "src_bytes_unchanged": true,
+  "src_cumulative": 2074,
+  "src_cap": 2074,
+  "claims_unchanged": true,
+  "new_tests": 4,
+  "python_tests": {
+    "tests": 434,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "r_tests": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "phases": [
+    "phase20:MATCHED",
+    "phase21-a:MATCHED",
+    "phase21-b:MATCHED",
+    "phase22-a:MATCHED",
+    "phase22-b:MATCHED"
+  ],
+  "tested_inputs_unchanged": true,
+  "vic_raw_snapshot_committed": true,
+  "vic_snapshot_sha256": "2816f156f01c428a5af95bc5ee58ec8d1a24d87afecdaef9e2352e1940930b54",
+  "vic_raw_sha256": "2816f156f01c428a5af95bc5ee58ec8d1a24d87afecdaef9e2352e1940930b54",
+  "only_new_original_approved_vic_json": true,
+  "acdc_contract_applied": false,
+  "acdc_stop": "SRC_CHANGE_REQUIRED",
+  "pr_must_remain_draft": true,
+  "merge_authorized": false
+}
