@@ -1,0 +1,97 @@
+{
+  "version": "REPO_PRE_CUTOFF_EVIDENCE_V1",
+  "retrieved_at": "2026-11-17T20:34:54.392059+00:00",
+  "sources_sha256": "31a08240218de489ca08d7d4ca0ad9e7987ae9d03027bf356b773d5aa41e889d",
+  "cutoff": "2026-11-13",
+  "branch_fetched": true,
+  "api_errors": [],
+  "event_count": 172,
+  "sources": {
+    "reviewed_source_31a205168b6ae647": {
+      "source_key": "reviewed_source_31a205168b6ae647",
+      "declaration": {
+        "ref": "origin/experiment/round5-researcher-approved-20261113",
+        "commit": "8d57b53656d4377e35830495ec4cfa4a7db4155c",
+        "path": "results/round4-4-2026-11-13/acquisition/31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953.raw",
+        "recorded_sha256": "31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953",
+        "kind": "RAW_FILE",
+        "evidence_date": "2026-11-13"
+      },
+      "valid": false,
+      "reasons": [
+        "PUSH_TIME_NOT_PROVEN_FOR_COMMIT"
+      ],
+      "commit_time": "2026-11-12T22:32:46+00:00",
+      "push_time": "",
+      "computed_evidence_date": "",
+      "push_event_id": "",
+      "push_head": "",
+      "commit_on_ref": true,
+      "record_file_verified": true,
+      "current_declared_sha_matches": false
+    },
+    "reviewed_source_521f635719be1686": {
+      "source_key": "reviewed_source_521f635719be1686",
+      "declaration": {
+        "ref": "origin/experiment/round5-researcher-approved-20261113",
+        "commit": "aeaed57e505920a5b4432854c60d21a8bb141a9c",
+        "path": "results/asx-full-scope-2026-11-10/round-17-report/source_acquisition.csv",
+        "recorded_sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b",
+        "kind": "SHA_RECORD",
+        "evidence_date": "2026-11-10"
+      },
+      "valid": true,
+      "reasons": [],
+      "commit_time": "2026-11-10T11:14:45+00:00",
+      "push_time": "2026-11-10T11:14:55+00:00",
+      "computed_evidence_date": "2026-11-10",
+      "push_event_id": "26796705284",
+      "push_head": "aeaed57e505920a5b4432854c60d21a8bb141a9c",
+      "commit_on_ref": true,
+      "record_file_verified": true,
+      "current_declared_sha_matches": true
+    },
+    "reviewed_source_9e1ac5bb894d9077": {
+      "source_key": "reviewed_source_9e1ac5bb894d9077",
+      "declaration": {
+        "ref": "origin/experiment/round5-researcher-approved-20261113",
+        "commit": "3a0f124c926e3553832f2b16c9d1ecad53524748",
+        "path": "results/asx-full-scope-2026-11-10/round-18-report/source_acquisition.csv",
+        "recorded_sha256": "9e1ac5bb894d90776dc6622d671213fe64a5f01ebf595fb31b2111198e9ef0ab",
+        "kind": "SHA_RECORD",
+        "evidence_date": "2026-11-10"
+      },
+      "valid": true,
+      "reasons": [],
+      "commit_time": "2026-11-10T11:30:14+00:00",
+      "push_time": "2026-11-10T11:42:29+00:00",
+      "computed_evidence_date": "2026-11-10",
+      "push_event_id": "26823267883",
+      "push_head": "ae00b5cd8d486ef4965180d810068f92214bf5df",
+      "commit_on_ref": true,
+      "record_file_verified": true,
+      "current_declared_sha_matches": true
+    },
+    "reviewed_source_a197d77204b48c23": {
+      "source_key": "reviewed_source_a197d77204b48c23",
+      "declaration": {
+        "ref": "origin/experiment/round5-researcher-approved-20261113",
+        "commit": "3a0f124c926e3553832f2b16c9d1ecad53524748",
+        "path": "results/asx-full-scope-2026-11-10/round-18-report/source_acquisition.csv",
+        "recorded_sha256": "a197d77204b48c235a566e0e54d039abaccca2b6b68807baa86f526d1af47841",
+        "kind": "SHA_RECORD",
+        "evidence_date": "2026-11-10"
+      },
+      "valid": true,
+      "reasons": [],
+      "commit_time": "2026-11-10T11:30:14+00:00",
+      "push_time": "2026-11-10T11:42:29+00:00",
+      "computed_evidence_date": "2026-11-10",
+      "push_event_id": "26823267883",
+      "push_head": "ae00b5cd8d486ef4965180d810068f92214bf5df",
+      "commit_on_ref": true,
+      "record_file_verified": true,
+      "current_declared_sha_matches": true
+    }
+  }
+}
