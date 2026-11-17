@@ -1,0 +1,65 @@
+{
+  "run_id": 44119314969,
+  "run_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44119314969",
+  "head_sha": "3e7c24eb983fa0b1570b7aa4fcf62b637d00db03",
+  "conclusion": "success",
+  "python_tests": 452,
+  "r_tests": "PASSED",
+  "phase_checks": [
+    {
+      "folder": "phase20",
+      "command_log_line": 20092,
+      "matched": [
+        {
+          "line": 21043,
+          "text": "2026-11-17T16:07:23.0662102Z   \"status\": \"MATCHED\","
+        }
+      ]
+    },
+    {
+      "folder": "phase21-a",
+      "command_log_line": 21051,
+      "matched": [
+        {
+          "line": 22049,
+          "text": "2026-11-17T16:08:28.0898432Z   \"status\": \"MATCHED\","
+        }
+      ]
+    },
+    {
+      "folder": "phase21-b",
+      "command_log_line": 22057,
+      "matched": [
+        {
+          "line": 23055,
+          "text": "2026-11-17T16:09:32.4201453Z   \"status\": \"MATCHED\","
+        }
+      ]
+    },
+    {
+      "folder": "phase22-a",
+      "command_log_line": 23063,
+      "matched": [
+        {
+          "line": 24177,
+          "text": "2026-11-17T16:11:12.1835524Z   \"status\": \"MATCHED\","
+        }
+      ]
+    },
+    {
+      "folder": "phase22-b",
+      "command_log_line": 24185,
+      "matched": [
+        {
+          "line": 25299,
+          "text": "2026-11-17T16:12:09.4776439Z   \"status\": \"MATCHED\","
+        }
+      ]
+    }
+  ],
+  "selected_log_lines": [
+    "2026-11-17T15:57:01.9053727Z Ran 452 tests in 180.782s",
+    "2026-11-17T15:57:02.3553058Z R analytical invariants passed"
+  ],
+  "log_origin": "Authenticated GitHub Actions job log 134166217878; original log line numbers retained."
+}

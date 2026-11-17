@@ -1,6 +1,6 @@
 # 目前進度：第 8 版
 
-最新報告：[B2 與第 7 版 CI 驗收](v8/README.md)。等待唯一一次 CI；維持 Draft、不 merge。
+最新報告：[B2 與第 7 版 CI 驗收](v8/README.md)。609／609 守門通過；維持 Draft、不 merge，等待審查。
 
 ---
 
