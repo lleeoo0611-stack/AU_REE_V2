@@ -58,6 +58,10 @@ jobs:
           sudo apt-get install -y tesseract-ocr-eng
       - name: Verify checkout begins without work data
         run: test ! -e work
+      - name: Verify declared pre-cutoff repository evidence
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python tools/verify_pre_cutoff_evidence.py
       - name: Build only from approved public registry
         env:
           TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
@@ -183,6 +187,11 @@ jobs:
       - name: Unit regressions with XML
         if: always()
         run: python -m xmlrunner discover -s tests -o work/test-xml
+      - name: Supplement unapproved locators from verified CI cache
+        # No HTTP requests or edits to claims; all new proposals stay unapproved.
+        env:
+          TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
+        run: python tools/locators_from_ci_cache.py
       - name: R analytical regressions
         if: always()
         run: |
@@ -211,6 +220,10 @@ jobs:
           name: automated-build-${{ github.run_id }}
           path: |
             work/test-xml/
+            work/pre_cutoff_evidence_verified.json
+            work/pre_cutoff_evidence_events.json
+            work/clean/p2_marker_proposals.csv
+            work/clean/p2_cache_completion.json
             work/r-tests.log
             work/clean-build.log
             work/clean/**/acquisition_report.csv

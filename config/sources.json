@@ -2480,6 +2480,14 @@
         "previous_original_source_sha256": "31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953",
         "frozen_at": "2026-11-16T21:32:32Z",
         "freeze_basis": "CI_ARTIFACT_CREATED_AT_UPPER_BOUND_NOT_PUBLICATION_DATE"
+      },
+      "pre_cutoff_evidence": {
+        "ref": "origin/experiment/round5-researcher-approved-20261113",
+        "commit": "8d57b53656d4377e35830495ec4cfa4a7db4155c",
+        "path": "results/round4-4-2026-11-13/acquisition/31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953.raw",
+        "recorded_sha256": "31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953",
+        "kind": "RAW_FILE",
+        "evidence_date": "2026-11-13"
       }
     },
     {
@@ -2641,7 +2649,15 @@
           "dataset": "GA2025",
           "id_field": "OBJECTID"
         }
-      ]
+      ],
+      "pre_cutoff_evidence": {
+        "ref": "origin/experiment/round5-researcher-approved-20261113",
+        "commit": "aeaed57e505920a5b4432854c60d21a8bb141a9c",
+        "path": "results/asx-full-scope-2026-11-10/round-17-report/source_acquisition.csv",
+        "recorded_sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b",
+        "kind": "SHA_RECORD",
+        "evidence_date": "2026-11-10"
+      }
     },
     {
       "key": "reviewed_source_5d4d954c63513e05",
@@ -2710,7 +2726,15 @@
           "dataset": "GA2025",
           "id_field": "OBJECTID"
         }
-      ]
+      ],
+      "pre_cutoff_evidence": {
+        "ref": "origin/experiment/round5-researcher-approved-20261113",
+        "commit": "3a0f124c926e3553832f2b16c9d1ecad53524748",
+        "path": "results/asx-full-scope-2026-11-10/round-18-report/source_acquisition.csv",
+        "recorded_sha256": "9e1ac5bb894d90776dc6622d671213fe64a5f01ebf595fb31b2111198e9ef0ab",
+        "kind": "SHA_RECORD",
+        "evidence_date": "2026-11-10"
+      }
     },
     {
       "key": "reviewed_source_a197d77204b48c23",
@@ -2769,7 +2793,15 @@
           "dataset": "GA2025",
           "id_field": "OBJECTID"
         }
-      ]
+      ],
+      "pre_cutoff_evidence": {
+        "ref": "origin/experiment/round5-researcher-approved-20261113",
+        "commit": "3a0f124c926e3553832f2b16c9d1ecad53524748",
+        "path": "results/asx-full-scope-2026-11-10/round-18-report/source_acquisition.csv",
+        "recorded_sha256": "a197d77204b48c235a566e0e54d039abaccca2b6b68807baa86f526d1af47841",
+        "kind": "SHA_RECORD",
+        "evidence_date": "2026-11-10"
+      }
     },
     {
       "key": "reviewed_source_b9a3a4b2356530e0",

@@ -345,14 +345,35 @@ def minedex_resource_batch(url, product_alias, archive=None, fetch=None):
     return body,dict(headers,**{'X-DASC-Updated':product['UpdatedDate'],'X-DASC-Download':download,'X-DASC-Requests':str(request_count),'X-DASC-Seconds':str(time.monotonic()-started)})
 
 
+def evidenced_snapshot(root, source, cutoff):
+    path = Path(root) / 'work/pre_cutoff_evidence_verified.json'
+    if not path.is_file():
+        return source
+    try:
+        proof = json.loads(path.read_text(encoding='utf8'))
+        record = proof['sources'].get(source['key'], {})
+        evidence = record.get('declaration', {})
+        if (record.get('valid') is not True or
+                proof['sources_sha256'] != filehash(Path(root) / 'config/sources.json') or
+                evidence.get('recorded_sha256') != source['sha256'] or
+                evidence.get('evidence_date', '9999') > cutoff):
+            return source
+        return dict(source, available_date=min(source['available_date'], evidence['evidence_date']),
+                    pre_cutoff_evidence=evidence)
+    except (OSError, ValueError, KeyError, TypeError):
+        return source
+
+
 def select_snapshots(root, cutoff, keys=None, acquired_through=None):
     manifest = json.loads((Path(root) / 'data/manifest.json').read_text(encoding='utf-8'))
     selected = {}
     def visible(s):
+        s.update(evidenced_snapshot(root, s, cutoff))
         if (s.get('publication_date') or '')>cutoff:return False
         if s['available_date']<=cutoff:return True
         # Retrospective acquisition is explicit and limited to dated documents
-        # and their extraction artifacts; never backdate live GIS/government rows.
+        # and their extraction artifacts; never backdate live GIS/government rows,
+        # except declared, verified pre_cutoff_evidence for the same source bytes.
         if not acquired_through or s['available_date']>acquired_through:return False
         if s['kind']=='discovery_receipt':return True  # Acquisition diagnostics, never observations.
         if s['kind']=='source_documentation':return True  # Access diagnostics, not dated scientific evidence.
@@ -370,7 +391,7 @@ def select_snapshots(root, cutoff, keys=None, acquired_through=None):
     for s in manifest['snapshots']:
         if keys and s['key'] not in keys:
             continue
-        # Never backdate a current live response to an earlier analysis cutoff.
+        # Only declared, verified pre_cutoff_evidence may establish an earlier date.
         if not visible(s):
             continue
         if s['key'] not in selected or s['acquired_at'] > selected[s['key']]['acquired_at']:
@@ -818,7 +839,8 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
             if source.get('committed_snapshot_sha256') and 'hash_policy' not in source:
                 candidates=[s for s in old if committed(s,{source['committed_snapshot_sha256']})]
                 if not candidates:raise ValueError('DECLARED_COMMITTED_SNAPSHOT_UNAVAILABLE')
-                selected.append(dict(max(candidates,key=lambda s:s['acquired_at']),**source))
+                selected.append(evidenced_snapshot(
+                    root, dict(max(candidates,key=lambda s:s['acquired_at']),**source), cutoff))
                 row.update(status='COMMITTED_SNAPSHOT_SAME_SHA',sha_match=True);outcomes.append(row);continue
             if source['kind'] in managed:
                 candidates=[s for s in old if committed(s,expected)]
@@ -885,6 +907,7 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
             now=datetime.now(timezone.utc).isoformat()
             entry=dict(source,sha256=sha,path=str(path),acquired_at=now,available_date=now[:10])
             entry.update(hash_metadata)
+            entry = evidenced_snapshot(root, entry, cutoff)
             if source['kind']=='minedex_resource_batch':
                 entry.update(source_update=headers['X-DASC-Updated'],resolved_download_url=headers['X-DASC-Download'],last_modified=headers.get('Last-Modified'))
                 entry['publication_date']=datetime.strptime(headers['X-DASC-Updated'],'%d/%m/%Y').date().isoformat()

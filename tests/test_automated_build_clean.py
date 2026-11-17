@@ -35,6 +35,24 @@ class AutomatedBuildCleanTests(unittest.TestCase):
         paths = sorted((ROOT / 'src').rglob('*.py')) + [ROOT / 'config/sources.json']
         for path in paths:
             content = path.read_text(encoding='utf-8').replace('\\\\', '/')
+            if path == ROOT/'config/sources.json':
+                registry=json.loads(content)
+                allowed={'reviewed_source_521f635719be1686','reviewed_source_a197d77204b48c23',
+                         'reviewed_source_9e1ac5bb894d9077','reviewed_source_31a205168b6ae647'}
+                declared=set()
+                for source in registry['sources']:
+                    if 'pre_cutoff_evidence' not in source:continue
+                    self.assertIn(source['key'],allowed)
+                    proof=source.pop('pre_cutoff_evidence')
+                    self.assertEqual(proof['ref'],'origin/experiment/round5-researcher-approved-20261113')
+                    self.assertIn(proof['kind'],('SHA_RECORD','RAW_FILE'))
+                    self.assertEqual(set(proof),{'ref','commit','path','recorded_sha256','kind','evidence_date'})
+                    self.assertNotIn('..',Path(proof['path']).parts)
+                    declared.add(source['key'])
+                self.assertEqual(allowed,declared)
+                # P6 permits these Git evidence references, never experiment values
+                # or paths used as runtime originals. Scan all other fields unchanged.
+                content=json.dumps(registry,ensure_ascii=False)
             for token in FORBIDDEN:
                 with self.subTest(path=str(path.relative_to(ROOT)), token=token):
                     self.assertNotIn(token, content)

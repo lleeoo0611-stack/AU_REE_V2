@@ -9,9 +9,9 @@ from au_ree_v2.store import digest
 from au_ree_v2.security import public_export,sensitive_reference
 
 ROOT=Path(__file__).resolve().parents[1]
-WORK=ROOT/'work/claims-ci-v8'
+WORK=ROOT/'work/claims-ci-v9'
 BASE=ROOT/'results/claims-locators-2026-11-16'
-OUT=BASE/'v8'
+OUT=BASE/'v9'
 FINAL=OUT/'ci'
 csv.field_size_limit(16*1024*1024)
 def load(path):return json.loads(path.read_text(encoding='utf-8-sig'))
@@ -21,14 +21,54 @@ def save(name,value):(FINAL/name).write_text(json.dumps(public_export(value),ens
 def write(name,rows,headers):
     with (FINAL/name).open('w',encoding='utf-8-sig',newline='') as f:
         w=csv.DictWriter(f,headers);w.writeheader();w.writerows(public_export(rows))
-def equal(expected,actual):
-    if expected==actual:return True
+def equal15(expected,actual):
     try:
         a,b=Decimal(expected),Decimal(actual)
-        with localcontext() as context:
-            context.prec=80
-            return a.is_finite() and b.is_finite() and a==b.quantize(Decimal(1).scaleb(a.as_tuple().exponent))
+        return a.is_finite() and b.is_finite() and Decimal(format(a,'.15g'))==Decimal(format(b,'.15g'))
     except InvalidOperation:return False
+
+def equal(expected,actual):
+    try:
+        a,b=Decimal(expected),Decimal(actual)
+        if a.is_finite() and b.is_finite():return equal15(expected,actual)
+    except InvalidOperation:pass
+    return expected==actual
+
+
+def p1_baseline():
+    original=read(BASE/'v8/ci/cell_comparison.csv')
+    revised=[];changes=[];lost=[]
+    for old in original:
+        row=dict(old)
+        if old['experiment_value'] and old['formal_value'] and old['status'] not in ('KNOWN_STRUCTURAL_DIFFERENCE',):
+            if equal15(old['experiment_value'],old['formal_value']):
+                row.update(status='SAME',reason='EQUAL_AT_15_SIGNIFICANT_DIGITS')
+                if old['status']!='SAME':changes.append(dict(row,previous_status=old['status'],previous_reason=old['reason']))
+            elif old['status']=='SAME' and not equal(old['experiment_value'],old['formal_value']):
+                row.update(status='DIFFERENT',reason='DIFFERENT_AT_15_SIGNIFICANT_DIGITS')
+                lost.append(dict(row,previous_status=old['status'],previous_reason=old['reason']))
+        revised.append(row)
+    FINAL.mkdir(parents=True,exist_ok=True)
+    write('p1_reclassified.csv',changes,list(original[0])+['previous_status','previous_reason'])
+    expected={(r['project_id'],r['column']) for r in original if r['status']=='NUMERIC_TOLERANCE_SAME'}
+    actual={(r['project_id'],r['column']) for r in changes}
+    assert len(expected)==13 and expected==actual,'STOP_P1_RECLASSIFIED_SET_NOT_EXACTLY_13'
+    assert not any(r['previous_status']=='DIFFERENT' for r in changes)
+    write('p1_comparison.csv',revised,list(original[0]))
+    write('p1_v8_same_losses.csv',lost,list(original[0])+['previous_status','previous_reason'])
+    target=[r for r in revised if r['column']!='專案ID' and r['experiment_value']]
+    save('p1_validation.json',dict(status='STOP_V8_SAME_LOST' if lost else 'P1_EXACTLY_13_PASS',
+        reclassified=len(changes),different_absorbed=0,baseline_same_lost=len(lost),
+        target_statuses=dict(Counter(r['status'] for r in target)),original_comparator_commit='30479c9',
+        numeric_rule="Decimal(format(Decimal(x),'.15g')) equality; trailing zeros have no numeric significance",
+        removed_legacy_rule='REFERENCE_PRESENTATION_PRECISION; strict requested numeric comparison supersedes it.'))
+    print(json.dumps(dict(status='STOP_V8_SAME_LOST' if lost else 'P1_EXACTLY_13_PASS',
+        new_same=len(changes),baseline_same_lost=len(lost),states=dict(Counter(r['status'] for r in target))),ensure_ascii=False))
+    if lost:raise SystemExit('STOP: strict P1 loses a v8 SAME cell; researcher decision required before CI')
+
+if '--p1-baseline' in __import__('sys').argv:
+    p1_baseline()
+    raise SystemExit(0)
 
 run=load(WORK/'api-run.json');jobs=load(WORK/'api-jobs.json')['jobs'];meta=load(WORK/'api-artifact.json')
 commit=(WORK/'expected-commit.txt').read_text().strip()
@@ -116,15 +156,16 @@ write('ci_609_guard.csv',guard,list(guard[0]));write('ci_609_losses.csv',lost,li
 if lost:
     save('acceptance.json',dict(status='STOP_609_GUARD_FAILED',run_id=run['id'],run_url=run['html_url'],protected_preserved=609-len(lost),lost=lost,target_statuses={}))
     raise SystemExit('STOP: fixed 609 cells lost; no further acceptance work')
-old_rows=read(BASE/'v6/ci/cell_comparison.csv')
+old_rows=read(BASE/'v8/ci/cell_comparison.csv')
+p1_baseline()
 vic=next(s for s in configuration['sources']['sources'] if s['key']=='reviewed_source_31a205168b6ae647')
-comparison=[];increments=[]
+comparison=[];increments=[];old_by_status={(r['project_id'],r['column']):r['status'] for r in old_rows}
 for old in old_rows:
     key=old['project_id'],old['column'];expected=old['experiment_value'];value=values.get(key[0],{}).get(key[1],'');ft=trace.get(key,{})
     if old['status']=='KNOWN_STRUCTURAL_DIFFERENCE' and not expected:status,reason=old['status'],old['reason']
     elif expected and not value:status,reason='FORMAL_MISSING',missing.get(key,{}).get('reason','NO_FORMAL_CELL')
     elif not expected and value:status,reason='FORMAL_ONLY','FORMAL_VALUE_NOT_PRESENT_IN_PUBLISHED_REFERENCE'
-    elif equal(expected,value):status,reason='SAME','EXACT_VALUE' if expected==value else 'REFERENCE_PRESENTATION_PRECISION'
+    elif equal(expected,value):status,reason='SAME','EXACT_VALUE' if expected==value else 'EQUAL_AT_15_SIGNIFICANT_DIGITS' if equal15(expected,value) else 'STRING_EQUAL'
     else:
         status,reason='DIFFERENT','SOURCE_OR_RULE_OUTPUT_DIFFERS_REVIEW_REQUIRED'
         source=verified.get(ft.get('source_sha256',''));name_column=key[1]=='資料來源名稱'
@@ -143,9 +184,15 @@ for old in old_rows:
     row=dict(old,formal_value=value,status=status,reason=reason,formal_source_sha256=ft.get('source_sha256',''),formal_source_url=ft.get('source_url',''),formal_locator=ft.get('locator',''),formal_method=ft.get('method',''))
     comparison.append(row)
     if key[1]!='專案ID' and expected and status=='SAME' and old['status']!='SAME':
-        category='ACDC_HM_SPECIES_AND_MASS' if key[0]=='AU-447261eed0e81eae88bf' else 'OTHER'
+        category='P1_15_SIGNIFICANT_DIGITS' if old['status']=='NUMERIC_TOLERANCE_SAME' else 'P6_PRE_CUTOFF_EVIDENCE' if old['reason']=='SOURCE_AFTER_CUTOFF' and key[1] in ('經度','緯度') else 'OTHER'
         increments.append(dict(project_id=key[0],column=key[1],previous_status=old['status'],new_status=status,attribution=category,source_sha256=ft.get('source_sha256','')))
 write('cell_comparison.csv',comparison,list(comparison[0]))
+v8_losses=[r for r in comparison if old_by_status.get((r['project_id'],r['column']))=='SAME' and r['column']!='專案ID' and r['experiment_value'] and r['status']!='SAME']
+write('v8_same_losses.csv',v8_losses,list(comparison[0]))
+if v8_losses:
+    save('acceptance.json',dict(status='STOP_V8_SAME_LOST',run_id=run['id'],run_url=run['html_url'],protected_preserved=609,lost=0,v8_same_losses=len(v8_losses)))
+    raise SystemExit('STOP: v8 SAME cell lost; no repair or rerun')
+
 write('same_increments.csv',increments,['project_id','column','previous_status','new_status','attribution','source_sha256'])
 remaining=[]
 for row in comparison:
@@ -172,7 +219,7 @@ has_contract=all(r['formal_value'] for r in oxides)
 save('acdc_summary.json',dict(project_id=acdc_id,contract_applied=has_contract,contract_status='HM_CONTRACT_VALIDATED_IN_CI' if has_contract else 'HM_CONTRACT_NOT_ESTABLISHED',
     summary_before=next(r['formal_value'] for r in old_rows if r['project_id']==acdc_id and r['column']=='總說明'),
     summary_ci=values.get(acdc_id,{}).get('總說明',''),oxide_cells_with_values=sum(bool(r['formal_value']) for r in oxides),
-    source_sha_updated=False,claims_updated=True,new_same_cells=[r for r in increments if r['project_id']==acdc_id]))
+    source_sha_updated=False,claims_updated_this_round=False,claims_changed_since_comparison_baseline=False,new_same_cells=[r for r in increments if r['project_id']==acdc_id]))
 python_totals=Counter(tests=0,failures=0,errors=0,skipped=0);r_totals=None
 for path in (artifact/'work/test-xml').glob('*.xml'):
     element=ET.parse(path).getroot()
@@ -180,12 +227,12 @@ for path in (artifact/'work/test-xml').glob('*.xml'):
         totals={key:int(suite.get(key,0)) for key in python_totals}
         if suite.get('name')=='R analytical regression script':r_totals=totals
         else:python_totals.update(totals)
-assert python_totals==dict(tests=452,failures=0,errors=0,skipped=0),python_totals
+assert python_totals==dict(tests=470,failures=0,errors=0,skipped=0),python_totals
 assert r_totals==dict(tests=1,failures=0,errors=0,skipped=0)
 target=[r for r in comparison if r['column']!='專案ID' and r['experiment_value']];assert len(target)==2101
 statuses=dict(Counter(r['status'] for r in target));old_statuses=Counter(r['status'] for r in old_rows if r['column']!='專案ID' and r['experiment_value'])
 lost_other=[r for r in comparison if r['column']!='專案ID' and r['experiment_value'] and r['status']!='SAME' and next(o['status'] for o in old_rows if o['project_id']==r['project_id'] and o['column']==r['column'])=='SAME']
-write('v6_nonprotected_same_losses.csv',lost_other,list(comparison[0]))
+write('v8_nonprotected_same_losses.csv',lost_other,list(comparison[0]))
 missing_counts=Counter(r['reason'] for r in target if r['status']=='FORMAL_MISSING')
 write('missing_reason_counts.csv',[dict(reason=k,count=v) for k,v in missing_counts.items()],['reason','count'])
 
@@ -226,7 +273,7 @@ save('acceptance.json',dict(status='CI_609_PRESERVED_AWAITING_RESEARCHER_REVIEW'
     job_id=job['id'],artifact_id=meta['id'],artifact_sha256=archive_sha,protected_preserved=609,lost=0,
     target_statuses=statuses,status_delta={k:statuses.get(k,0)-v for k,v in old_statuses.items()},
     same_increment_categories=dict(Counter(r['attribution'] for r in increments)),new_same_cells=len(increments),
-    nonprotected_v6_same_losses=len(lost_other),net_same_increment=statuses.get('SAME',0)-876,
+    nonprotected_v8_same_losses=len(lost_other),net_same_increment=statuses.get('SAME',0)-877,
     gap_to_2101=2101-statuses.get('SAME',0),missing_reasons=dict(missing_counts),other_project_changes=len(other_changes),
     acdc_contract_applied=True,python_tests=dict(python_totals),r_tests=r_totals,code_content_sha256=code,configuration_sha256=latest['configuration_sha256']))
 print(json.dumps(dict(status='CI_609_PRESERVED',target_statuses=statuses,increments=dict(Counter(r['attribution'] for r in increments)),same_losses=len(lost_other),other_project_changes=len(other_changes)),ensure_ascii=False,indent=2))

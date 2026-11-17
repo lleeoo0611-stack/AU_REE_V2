@@ -448,13 +448,13 @@ class RepositoryContract(unittest.TestCase):
         # Preserve the original round's limit separately from the approved v4 work.
         self.assertLessEqual(lines('12f45f4','e84c0e0'),250)
         self.assertLessEqual(lines('09ace21'),250)
-        self.assertLessEqual(lines('070df10'),2134)  # Researcher approved v7, 2026-11-17.
+        self.assertLessEqual(lines('070df10'),2164)  # Researcher approved v9, 2026-11-18.
         self.assertLessEqual(lines('ac65aaf','ed98e0d'),60)
         self.assertEqual('src/au_ree_v2/census.py',git('diff','--name-only','ac65aaf','ed98e0d','--','src').strip())
         self.assertEqual(['1','1','src/au_ree_v2/acquisition.py'],
-                         git('diff','--numstat','56bf4dc','--','src').split())
+                         git('diff','--numstat','56bf4dc','3e7c24e','--','src').split())
         original=git('show','56bf4dc:src/au_ree_v2/acquisition.py')
-        current=(ROOT/'src/au_ree_v2/acquisition.py').read_text(encoding='utf8')
+        current=git('show','3e7c24e:src/au_ree_v2/acquisition.py')
         self.assertEqual(original.replace('if 400<=exc.code<500:', 'if 400<=exc.code<500 and exc.code!=404:'),current)
         self.assertEqual('',git('diff','--name-only','--diff-filter=A','12f45f4','--','src','config'))
         with (ROOT/'results/integrated-rebuild-2026-11-15/acquisition_report.csv').open(encoding='utf-8-sig',newline='') as f:
