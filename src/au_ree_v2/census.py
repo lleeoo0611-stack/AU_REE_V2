@@ -351,6 +351,26 @@ def summary_region_text(page, rect):
     return ' '.join(w[4] for w in words)
 
 
+def summary_hm_percent(raw, target):
+    value = summary_decimal_token(raw['original_token'])
+    conversion = raw.get('species_conversion')
+    if not conversion:
+        return value
+    Pr, Tb, O = map(Decimal, ('140.908', '158.925', '15.999'))
+    factors = {
+        ('Pr2O3', 'Pr6O11'): (6*Pr + 11*O) / (3*(2*Pr + 3*O)),
+        ('Tb2O3', 'Tb4O7'): (4*Tb + 7*O) / (2*(2*Tb + 3*O))
+    }
+    pair = (conversion.get('source_species'), conversion.get('target_species', target))
+    if (conversion.get('method') != 'STOICHIOMETRIC_STANDARD_ATOMIC_WEIGHTS' or
+            pair not in factors or pair[1] != target):
+        raise ValueError('HM_SPECIES_CONVERSION_UNSUPPORTED')
+    factor = factors[pair]
+    if abs(Decimal(str(conversion.get('factor', factor))) - factor) > factor * Decimal('1e-12'):
+        raise ValueError('HM_SPECIES_FACTOR_MISMATCH')
+    return value * factor
+
+
 def summary_partial_contract(observations, source):
     """Recheck native denominator/species proofs, never trust a migrated success flag."""
     import pymupdf
@@ -363,9 +383,34 @@ def summary_partial_contract(observations, source):
         text=summary_norm(doc[e['page']-1].get_text())
         if not e.get('markers') or any(summary_norm(m) not in text for m in e['markers']):
             raise ValueError('PARTIAL_RESOURCE_PROOF_MISSING')
+    def derived_mass(mass):
+        if (mass is not spec['mass_inputs']['hm_mass_mt'] or
+                mass['derivation'] != 'ORE_MT_X_HM_GRADE_PERCENT' or mass['unit'] != 'Mt'):
+            raise ValueError('HM_MASS_DERIVATION_UNSUPPORTED')
+        inputs = mass['inputs']
+        for name, unit in (('ore_mt', 'Mt'), ('hm_grade_percent', '%')):
+            item = inputs[name]
+            proof(doc, item['evidence'])
+            binding = item['cell_binding']
+            page = doc[binding['page']-1]
+            rect = pymupdf.Rect(binding['row_bbox']) & pymupdf.Rect(binding['column_bbox'])
+            token = summary_region_text(page, rect).replace(',', '')
+            native_unit = summary_region_text(page, pymupdf.Rect(binding['unit_bbox'])).strip('() ')
+            if (item['evidence']['page'] != binding['page'] or len(item['evidence']['markers']) < 2 or
+                    item['unit'] != unit or native_unit != unit):
+                raise ValueError('HM_DERIVED_INPUT_UNIT_OR_MARKERS')
+            if token != str(item['original_token']) or Decimal(str(item['value'])) != Decimal(token):
+                raise ValueError('HM_DERIVED_INPUT_CELL_MISMATCH')
+        ore_value = Decimal(str(inputs['ore_mt']['value']))
+        value = ore_value * Decimal(str(inputs['hm_grade_percent']['value'])) / 100
+        if ore_value != Decimal(str(spec['mass_inputs']['ore_mt']['value'])) or value != Decimal(str(mass['value'])):
+            raise ValueError('HM_DERIVED_MASS_MISMATCH')
     with pymupdf.open(source['resolved_path']) as doc:
         if spec['mode']=='BULK_ORE_AND_HM_HOSTED_OXIDES_ONLY':
             for mass in spec['mass_inputs'].values():
+                if mass.get('derivation'):
+                    derived_mass(mass)
+                    continue
                 proof(doc,mass['evidence']);binding=mass['cell_binding'];page=doc[binding['page']-1]
                 rect=pymupdf.Rect(binding['row_bbox']) & pymupdf.Rect(binding['column_bbox'])
                 token=summary_region_text(page,rect).replace(',','')
@@ -378,8 +423,14 @@ def summary_partial_contract(observations, source):
                 if o['variable']=='ore_mt':
                     if o['value']!=ore or o['unit']!='Mt':raise ValueError('HM_ORE_MASS_MISMATCH')
                 elif o['basis'] in ('La2O3','CeO2','Pr6O11','Nd2O3','Sm2O3','Eu2O3','Gd2O3','Tb4O7','Dy2O3','Ho2O3','Er2O3','Tm2O3','Yb2O3','Lu2O3','Y2O3'):
-                    pct=float(str(raw['original_token']).replace(',',''));oxides.append(o['basis'])
-                    if raw.get('original_unit')!='%HM' or raw.get('normalization')!='REPORTED_HM_MASS_X_OXIDE_PERCENT_DIVIDED_BY_BULK_ORE' or not math.isclose(ore*o['value']*.001,hm*pct*10,rel_tol=1e-12):raise ValueError('HM_SOURCE_MASS_TRANSFORM_MISMATCH')
+                    pct = summary_hm_percent(raw, o['basis'])
+                    oxides.append(o['basis'])
+                    left = Decimal(str(ore)) * Decimal(str(o['value'])) * Decimal('.001')
+                    right = Decimal(str(hm)) * pct * 10
+                    valid = (raw.get('original_unit') == '%HM' and raw.get('normalization') ==
+                             'REPORTED_HM_MASS_X_OXIDE_PERCENT_DIVIDED_BY_BULK_ORE')
+                    if not valid or abs(left-right) > max(abs(left), abs(right)) * Decimal('1e-12'):
+                        raise ValueError('HM_SOURCE_MASS_TRANSFORM_MISMATCH')
             if len(oxides)!=15 or len(set(oxides))!=15:raise ValueError('HM_FIFTEEN_MATCHED_OXIDES_REQUIRED')
         else:
             basis=spec['basis_proof'];proof(doc,basis['evidence'])
@@ -451,7 +502,10 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
         if not found or len({o['value'] for o in found})!=1:continue
         o=found[0];raw=json.loads(o['raw']);value=bundle['value']['ore_mt']*o['value']*.001
         if partial and partial['mode']=='BULK_ORE_AND_HM_HOSTED_OXIDES_ONLY':
-            value=summary_decimal_token(partial['mass_inputs']['hm_mass_mt']['original_token'])*summary_decimal_token(raw['original_token'])*10
+            mass = partial['mass_inputs']['hm_mass_mt']
+            hm = (Decimal(str(mass['value'])) if mass.get('derivation')
+                  else summary_decimal_token(mass['original_token']))
+            value = hm * summary_hm_percent(raw, oxide) * 10
         elements[oxide]=value
         method='DERIVED_SAME_ROW_TREO_MINUS_TREO_EX_CEO2_X_MATCHED_ORE_MT_X_0_001' if raw.get('review_method','').startswith('DERIVED_SAME_ROW_TREO_MINUS_TREO_EX_CEO2') else 'ORE_MT_X_OXIDE_PPM_X_0_001'
         put(next(c for c in row if c.startswith(oxide+'_')),value,sha,o['locator'],method,scope,ids+[o['obs_id']])
