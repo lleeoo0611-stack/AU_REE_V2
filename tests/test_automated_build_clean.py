@@ -19,6 +19,12 @@ class AutomatedBuildCleanTests(unittest.TestCase):
     def test_receipt_gate_runs_for_code_or_unknown_changes_and_handles_unicode_paths(self):
         for workflow in ('automated-build.yml','research.yml'):
             content=(ROOT/'.github/workflows'/workflow).read_text(encoding='utf8')
+            if workflow=='research.yml':
+                scope=content.split('      - name: Determine validation scope\n',1)[1].split('      - name: ',1)[0]
+                script=textwrap.dedent(scope.split('        run: |\n',1)[1]).strip().splitlines()
+                self.assertEqual(script[0],"python - <<'PY'")
+                self.assertEqual(script[-1],'PY')
+                compile('\n'.join(script[1:-1]),'research scope heredoc','exec')
             code=textwrap.dedent(content.split("python - <<'PY'\n",1)[1].split('\n          PY',1)[0])
             cases=[('synchronize','a'*40,['results/integrated-rebuild-2026-11-15/專案總表.csv'],False),
                    ('synchronize','a'*40,['results/integrated-rebuild-2026-11-15/README.md','src/au_ree_v2/census.py'],True),

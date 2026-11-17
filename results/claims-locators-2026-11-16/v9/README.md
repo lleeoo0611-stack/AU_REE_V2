@@ -57,3 +57,10 @@ VIC 8d57b53 的 repo RAW_FILE SHA 驗證通過，但查不到可綁定該提交�
 src 累計 **2,157／2,164**；P6 已備妥的變更為 +26/-3（增刪29、淨增23），本次核准只改比較程式、比較測試及報告，不再改 src。主機停止／robots 的 StrictTransport AST、B1 順序、claims、係數、推導、data 與 R 不變。
 
 先前本機完整 470 項與 R 通過；本次核准後受影響的 5 項比較測試已重跑通過。接下來只推一次不帶 skip ci 的提交，正式 CI 將執行全部測試與 Phase 20–22，確認固定609與原877格都無流失，再分別列出P1／P6實際增量。任一守門流失即停止，不改值、不重跑。
+
+
+## 研究 CI 初次失敗與待核准補跑
+
+研究 run [44170481839](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44170481839) 在測試開始前失敗：新增存證步驟被插入原多行 shell 指令結束前，導致舊 print／PY 兩行被折入新 run 指令並發生 shell 語法錯誤。這是本輪 workflow 插入位置錯誤，不是資料或數值驗算失敗。[日誌證據](ci/research_initial_failure.json)。
+
+最小修補只移回兩行，並在既有測試加入完整 heredoc 檢查；不改 src、data、config、R、tools 計算邏輯。[可審查修補](research_workflow_fix.patch)。修補會用 skip ci 保存，不重跑正在執行的乾淨建置。因原任務限定一次 CI，僅補跑離線研究回歸與 Phase20–22 需研究者另外確認；不重新取得來源、不重新執行乾淨總表建置。

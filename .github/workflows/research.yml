@@ -76,12 +76,12 @@ jobs:
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:
               f.write('history='+str(core or archive).lower()+'\n')
               f.write('archive='+str(archive).lower()+'\n')
+          print({'core_contract_change':core,'full_history':core or archive,'archive_two_clean':archive})
+          PY
       - name: Verify declared pre-cutoff repository evidence
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python tools/verify_pre_cutoff_evidence.py
-          print({'core_contract_change':core,'full_history':core or archive,'archive_two_clean':archive})
-          PY
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
