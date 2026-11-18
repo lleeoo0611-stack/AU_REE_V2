@@ -96,6 +96,24 @@ class SummaryContractTests(unittest.TestCase):
                 export_summary(self.root,self.database,self.root/'tampered')
             self.assertFalse((self.root/'tampered').exists())
 
+    def test_reported_oxide_groups_fill_only_matching_group_totals(self):
+        claim=self.project['observations'][0]
+        ndpr=dict(claim,variable='reported_resource_ndpr_ppm',value=120,unit='ppm',
+            basis='NdPr_OXIDES',material_basis='RESOURCE_ORE_GRADE_NDPR_OXIDE_GROUP_PPM')
+        magnet=dict(claim,variable='reported_resource_magnet_ppm',value=200,unit='ppm',
+            basis='PrNdDyTb_OXIDES',material_basis='RESOURCE_ORE_GRADE_MAGNET_OXIDE_GROUP_PPM')
+        other=dict(ndpr,value=350,scope='A different cut-off',statement_id='mre-other')
+        self.project['observations'].extend((ndpr,magnet,other))
+        self.build()
+        _,rows,_,_=self.export()
+        row=rows[0]
+        self.assertAlmostEqual(1.2,float(row['NdPr蘊藏量_kt_需兩者皆公布']))
+        self.assertAlmostEqual(2,float(row['磁鐵稀土氧化物蘊藏量_kt']))
+        self.assertAlmostEqual(20,float(row['磁鐵稀土佔TREO_pct']))
+        self.assertFalse(row['磁性元素重算值_NdPrTbDy_kt'])
+        self.assertFalse(row['四項磁性元素皆公布'])
+        self.assertFalse(any(value for key,value in row.items() if key.startswith(('Nd2O3_','Pr6O11_'))))
+
     def test_changed_original_withholds_all_source_bound_values(self):
         self.build();self.pdf.write_bytes(b'changed original')
         _,rows,_,missing=self.export()

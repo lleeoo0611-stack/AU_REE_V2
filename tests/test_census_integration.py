@@ -178,22 +178,33 @@ class CensusIntegrationTests(unittest.TestCase):
                 path=root/file
                 path.write_text(file,encoding='utf8')
                 return dict(key=key,kind='html',path=file,sha256=filehash(path),
-                            publication_date=date,available_date=date)
+                            url='https://example.invalid/'+file,publication_date=date,available_date=date)
 
             old=source('same-key','phase22.html','2026-11-05')
             changed=source('same-key','newer.html','2026-11-13')
             added=source('asx-added','asx.html','2026-11-10')
+            added['available_date']='2026-11-17'
+            late=source('undated-late','late.html','2026-11-17')
+            del late['publication_date']
+            unpinned=source('wrong-version','different.html','2026-11-10')
+            misdated=source('wrong-publication','misdated.html','2026-11-10')
             phase22=root/'results/phase22-2026-11-06'
             phase22.mkdir(parents=True)
             (phase22/'snapshot_lock.json').write_text(json.dumps([old]),encoding='utf8')
-            registry={'sources':[changed,added]}
+            registry={'sources':[changed,dict(added,source_sha256=added['sha256']),late,
+                dict(unpinned,source_sha256='0'*64),dict(misdated,publication_date='2026-11-11')]}
             replay=root/'replay.json'
             replay.write_text(json.dumps(dict(cutoff='2026-11-13',registry_sha256=digest(registry),
-                snapshots=[changed,added],outcomes=[])),encoding='utf8')
-            selected,_,decisions=census_acquisition(root,registry,root/'work',{},'2026-11-13',replay)
+                snapshots=[changed,added,late,unpinned,misdated],
+                outcomes=[dict(key=late['key'],status='ACQUIRED')])),encoding='utf8')
+            selected,receipts,decisions=census_acquisition(root,registry,root/'work',{},'2026-11-13',replay)
             self.assertEqual([old,added],selected)
-            self.assertEqual(['FROZEN_PHASE22_VERSION_RETAINED','ASX_SOURCE_ADDED'],
+            self.assertEqual(['FROZEN_PHASE22_VERSION_RETAINED','ASX_SOURCE_ADDED','SOURCE_AFTER_CUTOFF',
+                              'SOURCE_VERSION_NOT_DECLARED','SOURCE_PUBLICATION_DATE_MISMATCH'],
                              [row['action'] for row in decisions])
+            self.assertEqual('PINNED_SHA_VERIFIED',decisions[1]['version_status'])
+            self.assertEqual('DOCUMENT_PUBLICATION',decisions[1]['date_basis'])
+            self.assertEqual('SOURCE_AFTER_CUTOFF',receipts[0]['admission_status'])
             (root/'asx.html').write_text('changed bytes',encoding='utf8')
             with self.assertRaisesRegex(ValueError,'checksum mismatch'):
                 census_acquisition(root,registry,root/'work',{},'2026-11-13',replay)
