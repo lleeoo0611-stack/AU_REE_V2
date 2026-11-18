@@ -787,6 +787,7 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
         from .technical import summary_forecasts
         for fill in summary_forecasts(pid,studies[pid],attributes[pid],sources,rules,decisions,cutoff,row,stage_audit):put(**fill)
         docs={r['source_sha'] for r in rs if sources[r['source_sha']]['kind']=='pdf'}|{o['source_sha'] for o in observations[pid] if sources[o['source_sha']]['kind']=='pdf'}
+        docs.update(a['source_sha256'] for a in attributes[pid] if sources[a['source_sha256']]['kind']=='pdf')
         if docs:put('有來源文件','是',sorted(docs)[0],'verified original PDF','VERIFIED_PDF_SOURCE_PRESENT_NOT_COMPLETENESS')
         if not row['資料來源URL'] and identity:
             sha=identity['source_sha'];put('資料來源名稱',sources[sha]['key'],sha,'identity source');put('資料來源URL',sources[sha]['url'],sha,'identity source')
@@ -917,7 +918,8 @@ def summary_missing(column, project, row, bundle, registry, sources, source_erro
         if project.get('coordinate_source'):candidates=[dict(source_key=project['coordinate_source'])]
         pid='AU-'+digest([project.get('entity_namespace','project_registry_v1'),str(project.get('id',''))])[:20]
         candidates.extend(dict(source_key=s['key'],source_sha256=s.get('source_sha256')) for s in registry.values()
-            if any(b['project_id']==pid for b in [*s.get('summary_bindings',[]),*s.get('summary_tenements',[])]))
+            if any(b['project_id']==pid for b in [*s.get('summary_bindings',[]),*s.get('summary_tenements',[]),
+                                                *s.get('summary_official_point_bindings',[])]))
     if not candidates and project.get('identity_source'):candidates=[dict(source_key=project['identity_source'])]
     reasons=[];details=[]
     for c in candidates:

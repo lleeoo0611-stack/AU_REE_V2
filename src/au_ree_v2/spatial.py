@@ -5,6 +5,7 @@ spatial query proves nearest proximity only when the returned distance is
 strictly inside that radius. No legal road, rail or power access is inferred.
 """
 import json
+import statistics
 from pathlib import Path
 from pyproj import Transformer
 from .store import filehash
@@ -290,18 +291,22 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions):
             if state!='NT' or 'uro' in summary_norm(row['開發商']) or not summary_decision(decisions,'NT_DATUM_FROM_ARCHIVED_CONTROL_POINTS'):continue
             with zipfile.ZipFile(source['resolved_path']) as z:
                 native=list(csv.DictReader(io.StringIO(z.read('MINERALOCCURRENCES.csv').decode('utf-8-sig'))))
+            matches=[n for n in native if summary_location_name(n['NAME']) in names and re.search(r'REE|rare earth|monazite|xenotime',n['COM_MAJOR']+' '+n['COM_MINOR'],re.I)]
+            if len(matches)!=1:continue
+            native_by_name={}
+            for n in native:
+                native_by_name.setdefault(summary_location_name(n['NAME']),[]).append(n)
             controls=[]
             for other in sources.values():
                 if not other['url'].startswith(rules['government_datasets']['GA_OZMIN']['url']):continue
                 data=json.loads(Path(other['resolved_path']).read_text(encoding='utf8'))
                 for f in data.get('features',[]):
                     a=f.get('properties') or f.get('attributes') or {}
-                    matches=[n for n in native if summary_location_name(n['NAME'])==summary_location_name(a.get('OCCURRENCE_NAME',''))]
-                    if a.get('STATE')=='NT' and len(matches)==1:
-                        n=matches[0];controls.append(dict(name=n['NAME'],nt_id=n['MODAT_ID'],ga_id=a['ENO'],easting=n['EASTING'],northing=n['NORTHING'],zone=n['ZONE_MGA'],longitude=a['LONG_GDA94'],latitude=a['LAT_GDA94']))
+                    paired=native_by_name.get(summary_location_name(a.get('OCCURRENCE_NAME','')),[])
+                    if a.get('STATE')=='NT' and len(paired)==1:
+                        n=paired[0];controls.append(dict(name=n['NAME'],nt_id=n['MODAT_ID'],ga_id=a['ENO'],easting=n['EASTING'],northing=n['NORTHING'],zone=n['ZONE_MGA'],longitude=a['LONG_GDA94'],latitude=a['LAT_GDA94']))
             result=summary_assess_controls(controls)
-            matches=[n for n in native if summary_location_name(n['NAME']) in names and re.search(r'REE|rare earth|monazite|xenotime',n['COM_MAJOR']+' '+n['COM_MINOR'],re.I)]
-            if result['accepted'] and len(matches)==1:
+            if result['accepted']:
                 n=matches[0];code=28300 if result['datum']=='GDA94' else 7800
                 x,y=Transformer.from_crs(code+int(n['ZONE_MGA']),7844,always_xy=True,allow_ballpark=False).transform(float(n['EASTING']),float(n['NORTHING']),errcheck=True)
                 add(x,y,sha,'ROUND3_OFFICIAL_POINT_RESEARCHER_APPROVED','MINERALOCCURRENCES.csv; feature '+n['MODAT_ID'],dict(dataset=dataset,datum_control=result,feature_id=n['MODAT_ID']))
@@ -310,7 +315,15 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions):
         if cfg['kind'] not in ('arcgis','wfs'):continue
         data=json.loads(Path(source['resolved_path']).read_text(encoding='utf8'))
         if data.get('exceededTransferLimit') or data.get('error'):continue
-        for f in data.get('features',[]):
+        points=[b for b in registered.get('summary_official_point_bindings',[])
+                if b['project_id']==pid and b['census_project_name']==row['專案名稱']]
+        if len(points)>1:continue
+        point=points[0] if points else None
+        features=data.get('features',[])
+        if point:
+            features=[f for f in features if str((f.get('attributes') or f.get('properties') or {}).get(cfg['id']))==point['feature_id']]
+            if len(features)!=1:continue
+        for f in features:
             a=f.get('attributes') or f.get('properties') or {}
             commodity='; '.join(str(a.get(k) or '') for k in cfg['commodity'])
             if not re.search(r'\bREE\b|rare\s*earth|monazite|xenotime',commodity,re.I):continue
@@ -318,7 +331,8 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions):
             title=str(a.get('proj_title') or '');title_name,sep,operator=title.partition(' / ')
             if sep:labels=[title_name if v==title else v for v in labels]
             native_names={summary_location_name(v) for v in labels}
-            if not names.intersection(native_names):continue
+            if point and point['official_name'] not in labels:continue
+            if not point and not names.intersection(native_names):continue
             native_state=a.get(cfg.get('state_field')) if cfg.get('state_field') else cfg.get('state')
             if native_state!=state:continue
             owner=lambda v:re.sub(r'\s+(?:limited|ltd\.?|nl)\s*$','',summary_norm(v))
@@ -326,10 +340,17 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions):
             if dataset=='WA_MINEDEX' and not operator and not summary_decision(decisions,'NO_OPERATOR_VALUE'):continue
             if 'uro' in owner(row['開發商']) and 'charley creek' in summary_location_name(row['專案名稱']):continue
             competing={p['project_id'] for p in alias_rows if p['project_id']!=pid and any(summary_location_name(x['alias']) in native_names for x in p['aliases'])}
-            if competing and not (summary_decision(decisions,'SHARED_DEPOSIT_POINT_RESEARCHER_APPROVED') and 'yttria' in native_names):continue
+            if competing and not (point and operator) and not (summary_decision(decisions,'SHARED_DEPOSIT_POINT_RESEARCHER_APPROVED') and 'yttria' in native_names):continue
             lon,lat=a.get(cfg['lon']),a.get(cfg['lat'])
             if isinstance(lon,bool) or isinstance(lat,bool) or lon in (None,'') or lat in (None,''):continue
             x,y=Transformer.from_crs(cfg['crs'],7844,always_xy=True,allow_ballpark=False).transform(float(lon),float(lat),errcheck=True)
+            if point:
+                digits=rules['point_display_digits']
+                add(format(x,'.'+str(digits)+'g'),format(y,'.'+str(digits)+'g'),sha,
+                    'REVIEWED_OFFICIAL_PROJECT_FEATURE',dataset+'; feature '+point['feature_id'],
+                    dict(dataset=dataset,feature_id=point['feature_id'],datum=cfg['crs'],
+                         official_name=point['official_name'],meaning='REPRESENTATIVE_POINT_NOT_BOUNDARY'))
+                return fills
             options.append(dict(longitude=x,latitude=y,sha=sha,dataset=dataset,feature_id=str(a.get(cfg['id'])),
                 group=str(a.get('proj_code') or title or a.get(cfg['id'])),names=labels,datum=cfg['crs']))
     distinct={(o['dataset'],o['group'],o['feature_id']) for o in options}

@@ -116,6 +116,30 @@ class CensusIntegrationTests(unittest.TestCase):
             binding['feature_id']=8
             self.assertEqual([],summary_locations(row,[],[layer],sources,rules,[]))
 
+    def test_reviewed_wa_point_rejects_wrong_feature_and_conflicting_operator(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'layer.json'
+            native=dict(site_code='A7',site_title='Short name',proj_title='Short name / Operator',
+                        site_commo='REE',longitude=121.2,latitude=-31.5)
+            def save(feature):
+                path.write_text(json.dumps(dict(features=[dict(attributes=feature)])),encoding='utf8')
+            save(native)
+            point=dict(project_id='project',feature_id='A7',official_name='Short name',
+                       census_project_name='Scoped name')
+            layer=dict(source_sha256='sha',summary_official_point_bindings=[point])
+            sources={'sha':dict(resolved_path=str(path),url='https://example.invalid/wa')}
+            rules={'aliases.projects':[],'states':{'WA':'WA'},'point_display_digits':8,
+                   'government_datasets':{'WA_MINEDEX':dict(url='https://example.invalid/wa',kind='wfs',
+                    state='WA',id='site_code',names=['site_title','proj_title'],commodity=['site_commo'],
+                    lon='longitude',lat='latitude',crs=7844)}}
+            decisions=[dict(rule='SELECT_OFFICIAL_LOCATION_DATASET',scope={'dataset':'WA_MINEDEX'})]
+            row={'專案ID':'project','專案名稱':'Scoped name','州省地區':'WA','開發商':'Operator Ltd'}
+            self.assertEqual({'緯度':'-31.5','經度':'121.2'},
+                {r['column']:r['value'] for r in summary_locations(row,[],[layer],sources,rules,decisions)})
+            self.assertEqual([],summary_locations(dict(row,開發商='Other'),[],[layer],sources,rules,decisions))
+            save(dict(native,site_code='B8'))
+            self.assertEqual([],summary_locations(row,[],[layer],sources,rules,decisions))
+
     def test_filter_uses_project_ids_and_gates_each_r_matrix(self):
         with tempfile.TemporaryDirectory() as directory:
             out=Path(directory)

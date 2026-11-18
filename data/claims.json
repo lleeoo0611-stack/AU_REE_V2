@@ -6232,6 +6232,40 @@
             },
             "selected_scenario": "Value1,2"
           }
+        },
+        {
+          "column": "ASX代碼",
+          "value": "NTU",
+          "source_key": "asx_document_02904920",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "pdf_page": 2,
+          "page_markers": [
+            "ASX: NTU",
+            ") (Northern Minerals or the Company) is"
+          ],
+          "locator": "physical PDF p2; residual re-verification of r6_code_AU-9bd8e5ed8408cd84d876",
+          "effective_date": "2025-01-16",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "review_id": "residual_r6_code_AU-9bd8e5ed8408cd84d876_code",
+          "statement_id": "residual_r6_code_AU-9bd8e5ed8408cd84d876_code",
+          "scope": "Browns Range Project — Wolverine scope; reporting issuer Northern Minerals Limited at 2025-01-16; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "16 January 2025",
+                "Browns Range"
+              ]
+            },
+            {
+              "page": 18,
+              "markers": [
+                "Northern Minerals Limited",
+                "For further information: Northern Minerals Shane Hartwig"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -17294,7 +17328,8 @@
             {
               "page": 1,
               "markers": [
-                "Australian Strategic Materials Limited"
+                "Australian Strategic Materials Limited",
+                "ASX:ASM"
               ]
             }
           ],
@@ -17945,7 +17980,7 @@
         {
           "column": "ASX代碼",
           "value": "CRI",
-          "source_key": "phase6_jupiter_brothers_page2",
+          "source_key": "jupiter_scoping2026",
           "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
           "pdf_page": 1,
           "page_markers": [
@@ -17965,19 +18000,22 @@
             {
               "page": 1,
               "markers": [
-                "20 October 2026"
+                "20 October 2026",
+                "ASX: CRI"
               ]
             },
             {
               "page": 1,
               "markers": [
-                "Jupiter"
+                "Jupiter",
+                "ASX: CRI"
               ]
             },
             {
               "page": 1,
               "markers": [
-                "Critica Limited"
+                "Critica Limited",
+                "ASX: CRI"
               ]
             }
           ],
@@ -54601,6 +54639,41 @@
             }
           ],
           "attribute_id": "a9ee21db617c7627934689a2b1b8442dc2396bd1ff919f453b8adf33c6d9aabc"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Source-reviewed weathered regolith or clay host",
+          "source_key": "burracoppin_maiden2023",
+          "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+          "effective_date": "2023-06-01",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "review_id": "residual_reviewed_host_burracoppin",
+          "statement_id": "residual_reviewed_host_burracoppin",
+          "locator": "physical PDF p10; deposit host",
+          "scope": "原封存來源明確將稀土富集定位於高嶺土帶；不採納未選入的細粒資源量。",
+          "support_only": true,
+          "deposit_host_review": {
+            "asset_set": "canonical",
+            "code": "iac",
+            "locator": "physical PDF p10; deposit host",
+            "note": "原封存來源明確將稀土富集定位於高嶺土帶；不採納未選入的細粒資源量。",
+            "page": 10,
+            "path": "data/snapshots/fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c.pdf",
+            "project_id": "AU-4286ab9c245effb445ff",
+            "publication_date": "2023-06-01",
+            "qualifiers": [
+              "IONIC_NOT_CONFIRMED"
+            ],
+            "quote": "concentrated within the kaolinite zone above through either adsorption onto the clay particles or",
+            "selected_mre_required": false,
+            "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+            "source_url": "https://assets.birdsoftware.io/wp-content/uploads/2023/05/01-06-2023-Burracoppin-Project-96Mt-Mineral-Resource-Estimate.pdf"
+          },
+          "page_markers": [
+            "concentrated within the kaolinite zone above through either adsorption onto the clay particles or",
+            "Burracoppin"
+          ],
+          "pdf_page": 10
         }
       ]
     },
@@ -69734,6 +69807,40 @@
             }
           ],
           "attribute_id": "181befeabc02e9e570ab14fd71f7649dccad7b650726cab7f542991e101aa94a"
+        },
+        {
+          "column": "ASX代碼",
+          "value": "MEK",
+          "source_key": "pending_source_d413df91d19ec8bd",
+          "source_sha256": "d413df91d19ec8bdb153fc1244d4274b4fe499c26ebecf46873e4356e5039431",
+          "pdf_page": 1,
+          "page_markers": [
+            "ASX : MEK",
+            "For the Year Ended 30th June 2023"
+          ],
+          "locator": "physical PDF p1; residual re-verification of continuation11_code_AU-785536db5ff12c25350d",
+          "effective_date": "2023-09-27",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "review_id": "residual_continuation11_code_AU-785536db5ff12c25350d_code",
+          "statement_id": "residual_continuation11_code_AU-785536db5ff12c25350d_code",
+          "scope": "Same Circle Valley REE project is explicit on page10; Cascade remains separate and its assays are not a Circle Valley resource. Reporting issuer at document date only; not current legal title, resource scope expansion or numeric transfer.",
+          "context_evidence": [
+            {
+              "page": 30,
+              "markers": [
+                "27 September 2023",
+                "Meeka Metals Limited"
+              ]
+            },
+            {
+              "page": 10,
+              "markers": [
+                "Circle Valley",
+                "Rare Earth Project (MEK 100%) Project Background"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -69847,7 +69954,7 @@
         {
           "column": "未上市公司",
           "value": "否",
-          "source_key": "phase6_jupiter_brothers_page2",
+          "source_key": "jupiter_scoping2026",
           "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
           "pdf_page": 1,
           "page_markers": [
@@ -69865,7 +69972,8 @@
             {
               "page": 2,
               "markers": [
-                "Brothers Project"
+                "Brothers Project",
+                "one of six rare earth discoveries"
               ]
             }
           ],
@@ -69896,7 +70004,7 @@
         {
           "column": "ASX代碼",
           "value": "CRI",
-          "source_key": "phase6_jupiter_brothers_page2",
+          "source_key": "jupiter_scoping2026",
           "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
           "pdf_page": 1,
           "page_markers": [
@@ -69915,19 +70023,22 @@
             {
               "page": 1,
               "markers": [
-                "20 October 2026"
+                "20 October 2026",
+                "ASX: CRI"
               ]
             },
             {
               "page": 2,
               "markers": [
-                "Brothers Project"
+                "Brothers Project",
+                "one of six rare earth discoveries"
               ]
             },
             {
               "page": 1,
               "markers": [
-                "Critica Limited"
+                "Critica Limited",
+                "ASX: CRI"
               ]
             }
           ],
@@ -79539,6 +79650,41 @@
             "statement": "tertiary palaeochannel systems",
             "literal_value": "Tertiary palaeochannel systems"
           }
+        },
+        {
+          "column": "礦床型態",
+          "value": "Source-reviewed weathered regolith or clay host",
+          "source_key": "wudinna_mre2026",
+          "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+          "effective_date": "2026-10-26",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "review_id": "residual_reviewed_host_1123290",
+          "statement_id": "residual_reviewed_host_1123290",
+          "locator": "RNS 4065A; Geological setting and mineralisation; Pidinga and Garford formations",
+          "scope": "黏土／有機物吸附而非重礦物砂；依本次 G4 核准規則保留 IONIC_NOT_CONFIRMED，部分 Pidinga 的離子交換測試不外推整體所選 MRE。",
+          "support_only": true,
+          "deposit_host_review": {
+            "asset_set": "canonical",
+            "code": "iac",
+            "locator": "RNS 4065A; Geological setting and mineralisation; Pidinga and Garford formations",
+            "note": "黏土／有機物吸附而非重礦物砂；依本次 G4 核准規則保留 IONIC_NOT_CONFIRMED，部分 Pidinga 的離子交換測試不外推整體所選 MRE。",
+            "page": null,
+            "path": "data/snapshots/e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950.html",
+            "project_id": "AU-0098e17a63e7c05c213f",
+            "publication_date": "2026-10-26",
+            "qualifiers": [
+              "IONIC_NOT_CONFIRMED"
+            ],
+            "quote": "REEs are interpreted to have been mobilised from the underlying",
+            "selected_mre_required": true,
+            "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+            "source_url": "https://www.londonstockexchange.com/en/news/article/COBR/maiden-rare-earth-mineral-resource-estimate/637e-cb-eb-9d-8e-465a87"
+          },
+          "source_markers": [
+            "REEs are interpreted to have been mobilised from the underlying",
+            "Pidinga",
+            "Garford"
+          ]
         }
       ],
       "identity_declaration": {
@@ -101661,6 +101807,47 @@
               ]
             }
           }
+        },
+        {
+          "column": "ASX代碼",
+          "value": "DEV",
+          "source_key": "asx_devex_ar2025",
+          "source_sha256": "d631b0e9edbc2162ee3cb12bf526834518b43cc5ce89c4d995e3497afbbf36fb",
+          "pdf_page": 3,
+          "page_markers": [
+            "ASX Code: DEV",
+            "152-158 St Georges Terrace PERTH Western Australia"
+          ],
+          "locator": "physical PDF p3; residual re-verification of r6_code_AU-cc4e217a90b7123dce0a",
+          "effective_date": "2025-09-16",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "review_id": "residual_r6_code_AU-cc4e217a90b7123dce0a_code",
+          "statement_id": "residual_r6_code_AU-cc4e217a90b7123dce0a_code",
+          "scope": "Kennedy Rare Earths Project; reporting issuer DevEx Resources Limited at 2025-09-16; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 27,
+              "markers": [
+                "16 September 2025",
+                "released to ASX and posted on the"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Kennedy",
+                "Rare Earths Project in Queensland continues to"
+              ]
+            },
+            {
+              "page": 7,
+              "markers": [
+                "DevEx Resources Limited",
+                "(”DevEx” or ”the Company”) and its controlled"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -112727,7 +112914,8 @@
             {
               "page": 2,
               "markers": [
-                "Publication date: March 2026"
+                "Publication date: March 2026",
+                "Department of the Prime Minister and Cabinet"
               ]
             }
           ],
@@ -112906,7 +113094,8 @@
             {
               "page": 2,
               "markers": [
-                "Publication date: March 2026"
+                "Publication date: March 2026",
+                "Department of the Prime Minister and Cabinet"
               ]
             }
           ],
@@ -122148,7 +122337,8 @@
             {
               "page": 101,
               "markers": [
-                "18 February 2026"
+                "18 February 2026",
+                "financial statements were authorised for issue by the directors"
               ]
             },
             {
@@ -122169,6 +122359,40 @@
             }
           ],
           "attribute_id": "437fc5e80406647c6d2fcb48a713b4f966b97f91303887bb1be24c75d8f30ad8"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "r5_identity_balranald",
+          "source_sha256": "9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3",
+          "pdf_page": 172,
+          "page_markers": [
+            "Iluka Resources Limited",
+            "ASX code of ILU"
+          ],
+          "locator": "physical PDF p172; residual re-verification of continuation11_code_AU-524c37fc04cf47bf8dca",
+          "effective_date": "2026-02-18",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_continuation11_code_AU-524c37fc04cf47bf8dca_listing",
+          "statement_id": "residual_continuation11_code_AU-524c37fc04cf47bf8dca_listing",
+          "scope": "Balranald reporting issuer in 2025 annual report issued18February2026. Reporting issuer at document date only; not current legal title, resource scope expansion or numeric transfer.",
+          "context_evidence": [
+            {
+              "page": 101,
+              "markers": [
+                "18 February 2026",
+                ". The directors have the power to"
+              ]
+            },
+            {
+              "page": 23,
+              "markers": [
+                "BALRANALD",
+                "Balranald, New South Wales Located in south"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -122334,6 +122558,40 @@
             }
           ],
           "attribute_id": "e075bb8c48a47706f939389b01c8592d772bc85f858c2b26beb8af078ee87e88"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "euston_annual2022_metadata",
+          "source_sha256": "66c73ea45aa00561067651fdadfa11b90b4c479222b3c546b56c055cd51b5b53",
+          "pdf_page": 174,
+          "page_markers": [
+            "Iluka Resources Limited",
+            "ASX code of ILU"
+          ],
+          "locator": "physical PDF p174; residual re-verification of continuation11_code_AU-3a0020b6daf659f62138",
+          "effective_date": "2023-02-21",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_continuation11_code_AU-3a0020b6daf659f62138_listing",
+          "statement_id": "residual_continuation11_code_AU-3a0020b6daf659f62138_listing",
+          "scope": "Historical Euston reporting issuer; mineral-sands/HM quantities and synthetic rutile capacity do not establish REO resource or production. Reporting issuer at document date only; not current legal title, resource scope expansion or numeric transfer.",
+          "context_evidence": [
+            {
+              "page": 99,
+              "markers": [
+                "21 February 2023",
+                ". The directors have the power to"
+              ]
+            },
+            {
+              "page": 41,
+              "markers": [
+                "Euston",
+                "deposit is a traditional mineral sands deposit."
+              ]
+            }
+          ]
         }
       ]
     },
@@ -122494,13 +122752,15 @@
             {
               "page": 5,
               "markers": [
-                "Franklyn Project"
+                "Franklyn Project",
+                "Nackara Arc"
               ]
             },
             {
               "page": 1,
               "markers": [
-                "iTech Minerals Ltd"
+                "iTech Minerals Ltd",
+                "ASX: ITM"
               ]
             }
           ],
@@ -122544,6 +122804,34 @@
             }
           ],
           "attribute_id": "ab98eba696da8099fa2ccffc4f251a9371e64a5f14eac51b7c6c2a39c86af869"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "itech_franklyn_identity20211027",
+          "source_sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631",
+          "pdf_page": 1,
+          "page_markers": [
+            "27 October 2021",
+            "iTech Minerals Ltd",
+            "ASX: ITM"
+          ],
+          "locator": "physical PDF p1; residual re-verification of coverage2_code_franklyn2021",
+          "effective_date": "2021-10-27",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_coverage2_code_franklyn2021_listing",
+          "statement_id": "residual_coverage2_code_franklyn2021_listing",
+          "scope": "Historical iTech reporting issuer for Franklyn at 2021-10-27; not real-time legal ownership",
+          "context_evidence": [
+            {
+              "page": 5,
+              "markers": [
+                "Franklyn Project",
+                "Franklyn"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -122661,6 +122949,88 @@
             "literal_value": "Rare Earth Elements (REE) hosted in clays",
             "statement": "rare earth elements (ree) hosted in clays"
           }
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "r5_identity_comet",
+          "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8",
+          "pdf_page": 1,
+          "page_markers": [
+            "ASX: PTR",
+            "For the year ending 30 th June"
+          ],
+          "locator": "physical PDF p1; residual re-verification of r6_code_AU-02d486d425ca0792bdc5",
+          "effective_date": "2024-09-30",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_r6_code_AU-02d486d425ca0792bdc5_listing",
+          "statement_id": "residual_r6_code_AU-02d486d425ca0792bdc5_listing",
+          "scope": "Comet REE Project; reporting issuer Petratherm Limited at 2024-09-30; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 25,
+              "markers": [
+                "30 September 2024",
+                "25 Annual Report 2024 Petratherm Limited For"
+              ]
+            },
+            {
+              "page": 7,
+              "markers": [
+                "Comet",
+                "Project has uncovered significant concentrations of Rare"
+              ]
+            },
+            {
+              "page": 2,
+              "markers": [
+                "Petratherm Limited",
+                "shares are listed on the Australian Securities"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "ASX代碼",
+          "value": "PTR",
+          "source_key": "r5_identity_comet",
+          "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8",
+          "pdf_page": 1,
+          "page_markers": [
+            "ASX: PTR",
+            "For the year ending 30 th June"
+          ],
+          "locator": "physical PDF p1; residual re-verification of r6_code_AU-02d486d425ca0792bdc5",
+          "effective_date": "2024-09-30",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "review_id": "residual_r6_code_AU-02d486d425ca0792bdc5_code",
+          "statement_id": "residual_r6_code_AU-02d486d425ca0792bdc5_code",
+          "scope": "Comet REE Project; reporting issuer Petratherm Limited at 2024-09-30; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 25,
+              "markers": [
+                "30 September 2024",
+                "25 Annual Report 2024 Petratherm Limited For"
+              ]
+            },
+            {
+              "page": 7,
+              "markers": [
+                "Comet",
+                "Project has uncovered significant concentrations of Rare"
+              ]
+            },
+            {
+              "page": 2,
+              "markers": [
+                "Petratherm Limited",
+                "shares are listed on the Australian Securities"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -123858,6 +124228,47 @@
             "statement": "carbonatite intrusions",
             "literal_value": "carbonatite intrusions"
           }
+        },
+        {
+          "column": "ASX代碼",
+          "value": "ENR",
+          "source_key": "enr_ar2026",
+          "source_sha256": "88dfed30776b41d3739253fefaa1e5972a0b9969ec4db39dc1130efa2164775a",
+          "pdf_page": 7,
+          "page_markers": [
+            "ASX: ENR",
+            ") (“Encounter” or “the Company”) made substantial"
+          ],
+          "locator": "physical PDF p7; residual re-verification of r6_code_AU-af44c2bd1173b453953f",
+          "effective_date": "2026-09-25",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "review_id": "residual_r6_code_AU-af44c2bd1173b453953f_code",
+          "statement_id": "residual_r6_code_AU-af44c2bd1173b453953f_code",
+          "scope": "Aileron Niobium–REE Project; reporting issuer Encounter Resources Limited at 2026-09-25; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 43,
+              "markers": [
+                "25 September 2026",
+                "D I Buckley Partner For personal use"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Aileron",
+                "had a promising maiden resource. Today it"
+              ]
+            },
+            {
+              "page": 3,
+              "markers": [
+                "Encounter Resources Limited",
+                "2026 Annual Corporate Governance Statement can be"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -124886,8 +125297,8 @@
           "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
           "pdf_page": 5,
           "page_markers": [
-            "Annual Production – REO Contained in Mixed Carbonate \n3,645 tpa ",
-            "3,645"
+            "Annual Production – REO Contained in Mixed Carbonate",
+            "3,645 tpa"
           ],
           "locator": "physical PDF p5; reviewed config/round2_annual_evidence.json",
           "effective_date": "2013-04-15",
@@ -124900,19 +125311,22 @@
             {
               "page": 10,
               "markers": [
-                "at a concentrate grade of 40% REO there is only 15% w/w of impurities present apart from monazite and \nxenotime with the balance being phosphate associated with monazite and xenotime.  Aluminium, iron and \nsilica account for 80% of the impurities present. "
+                "a concentrate grade of 40% REO",
+                "phosphate associated with monazite and xenotime"
               ]
             },
             {
               "page": 7,
               "markers": [
-                "An Initial Mineral Resource estimate was released by Crossland on 15 May 2012, and this has not varied for the \nScoping Study, but the Revised JORC Code (2012) Table 1 template and intersection data are appended to this \nrelease (Appendix 1), along with the relevant consents (at the rear of this report), and cautionary statements in \ncompliance with the 2012 Edition of the JORC Code, and ASX Listing Rules on page 2 of this document, and in \nthe footnotes on page 19of this document.  Sufficient tonnage of Indicated Resource has been demonstrated \nfor the 20 year life of the project as presented in the Scoping Study; however because the drill data used for \nthe Initial Mineral Resource was largely confined to available and approved access tracks at the time of drilling \nin 2011, there was no effort made to optimise the grade of alluvium in the drill program, and the resulting \nestimated Resource had an overall grade of around 300ppm TREO. This is used as the average grade for years 6 \nto 20 in the Scoping Study.  The Initial Resource estimate is reproduced in Table 2 below: \nTable 2:  Charley Creek Resource Estimate. \nRESOURCE \nMass \nWeighted \nContained \nContained  \nContained  \nCon"
+                "Initial Mineral Resource estimate",
+                "TOTAL INDICATED"
               ]
             },
             {
               "page": 7,
               "markers": [
-                "tonnage has not been sufficiently defined, and in terms of the JORC Code and ASX Listing Rules should be \ndescribed as an Exploration Target². \n \nThe Exploration Target used in the Scoping Study as start‐up ROM would be 50Mt ‐ 100Mt at the average grade \nof 500 ‐ 1000ppm TREO. The Scoping Study is based upon the low end of this range for both grade and \ntonnage. There is firm evidence that this Exploration Target will be realised when additional Resource drilling is \nundertaken that targets higher grade start‐up pit sites:  \nSamples collected from trenches have provided material for metallurgical test work.  Higher grade zones for \nthese samples have been located using a combination of reconnaissance stream sample results and \nradiometrics.  Within the selected zones, radiometrics have been used to identify actual sites for trenches. The "
+                "Additional Exploration Target",
+                "The Exploration Target used in the Scoping Study"
               ]
             }
           ],
@@ -124984,6 +125398,40 @@
               }
             ]
           }
+        },
+        {
+          "column": "ASX代碼",
+          "value": "ENV",
+          "source_key": "pending_source_7c39273cc15b4e56",
+          "source_sha256": "7c39273cc15b4e56b59d0514a3134eadb203230add73e24d36eb8cd0094fda1e",
+          "pdf_page": 6,
+          "page_markers": [
+            "ASX: ENV",
+            ") is a critical minerals exploration and"
+          ],
+          "locator": "physical PDF p6; residual re-verification of r6_code_AU-d9fb1b1e3e2ec9fa0851",
+          "effective_date": "2026-03-31",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "review_id": "residual_r6_code_AU-d9fb1b1e3e2ec9fa0851_code",
+          "statement_id": "residual_r6_code_AU-d9fb1b1e3e2ec9fa0851_code",
+          "scope": "Charley Creek REE Project; reporting issuer Enova Mining Limited at 2026-03-31; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "31 March 2026",
+                "Enova Mining Limited"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Charley Creek",
+                "rare earth projects, both of which continue"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -125074,6 +125522,129 @@
             "statement": "the eyre peninsula kaolin project occurs over 1,445 square kilometres and has four key prospects prospective for halloysite-kaolinite and rare earth elements (ree). the project area is just 30km from shipping facilities at lucky",
             "literal_value": "prospective for halloysite-kaolinite and rare earth elements (REE)"
           }
+        },
+        {
+          "column": "開發商",
+          "value": "iTech Minerals Ltd",
+          "source_key": "r6_identity_itech_eyre_peninsula",
+          "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a",
+          "pdf_page": 1,
+          "page_markers": [
+            "ASX: ITM",
+            "ACN 648 219 050 2023 ANNUAL REPORT"
+          ],
+          "locator": "physical PDF p1; residual re-verification of r6_code_AU-6a5615e0ed95d955c2dd",
+          "effective_date": "2023-08-30",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_r6_code_AU-6a5615e0ed95d955c2dd_issuer",
+          "statement_id": "residual_r6_code_AU-6a5615e0ed95d955c2dd_issuer",
+          "scope": "iTech Eyre Peninsula REE–Kaolin Project; reporting issuer iTech Minerals Ltd at 2023-08-30; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 47,
+              "markers": [
+                "30 August 2023",
+                "of the Directors. Michael Schwarz Managing Director"
+              ]
+            },
+            {
+              "page": 8,
+              "markers": [
+                "Eyre Peninsula",
+                ", South Australia Investors should be aware"
+              ]
+            },
+            {
+              "page": 30,
+              "markers": [
+                "iTech Minerals Ltd",
+                ". Mr Bollenhagen has sufficient experience that"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "r6_identity_itech_eyre_peninsula",
+          "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a",
+          "pdf_page": 1,
+          "page_markers": [
+            "ASX: ITM",
+            "ACN 648 219 050 2023 ANNUAL REPORT"
+          ],
+          "locator": "physical PDF p1; residual re-verification of r6_code_AU-6a5615e0ed95d955c2dd",
+          "effective_date": "2023-08-30",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_r6_code_AU-6a5615e0ed95d955c2dd_listing",
+          "statement_id": "residual_r6_code_AU-6a5615e0ed95d955c2dd_listing",
+          "scope": "iTech Eyre Peninsula REE–Kaolin Project; reporting issuer iTech Minerals Ltd at 2023-08-30; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 47,
+              "markers": [
+                "30 August 2023",
+                "of the Directors. Michael Schwarz Managing Director"
+              ]
+            },
+            {
+              "page": 8,
+              "markers": [
+                "Eyre Peninsula",
+                ", South Australia Investors should be aware"
+              ]
+            },
+            {
+              "page": 30,
+              "markers": [
+                "iTech Minerals Ltd",
+                ". Mr Bollenhagen has sufficient experience that"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "ASX代碼",
+          "value": "ITM",
+          "source_key": "r6_identity_itech_eyre_peninsula",
+          "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a",
+          "pdf_page": 1,
+          "page_markers": [
+            "ASX: ITM",
+            "ACN 648 219 050 2023 ANNUAL REPORT"
+          ],
+          "locator": "physical PDF p1; residual re-verification of r6_code_AU-6a5615e0ed95d955c2dd",
+          "effective_date": "2023-08-30",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "review_id": "residual_r6_code_AU-6a5615e0ed95d955c2dd_code",
+          "statement_id": "residual_r6_code_AU-6a5615e0ed95d955c2dd_code",
+          "scope": "iTech Eyre Peninsula REE–Kaolin Project; reporting issuer iTech Minerals Ltd at 2023-08-30; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 47,
+              "markers": [
+                "30 August 2023",
+                "of the Directors. Michael Schwarz Managing Director"
+              ]
+            },
+            {
+              "page": 8,
+              "markers": [
+                "Eyre Peninsula",
+                ", South Australia Investors should be aware"
+              ]
+            },
+            {
+              "page": 30,
+              "markers": [
+                "iTech Minerals Ltd",
+                ". Mr Bollenhagen has sufficient experience that"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -125133,6 +125704,129 @@
             "statement": "initial field reconnaissance",
             "literal_value": "Initial field reconnaissance"
           }
+        },
+        {
+          "column": "開發商",
+          "value": "Caprice Resources Ltd",
+          "source_key": "r6_identity_mukinbudin",
+          "source_sha256": "1f5e83ea28b7b59ef46355ecb6d3f7d47d4eb88adcc7c0e4502f60362cab5b74",
+          "pdf_page": 3,
+          "page_markers": [
+            "under the code CRS",
+            "6000 Securities Exchange Listing Australian Securities Exchange"
+          ],
+          "locator": "physical PDF p3; residual re-verification of r6_code_AU-3eaa906d8230334ef698",
+          "effective_date": "2024-09-27",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_r6_code_AU-3eaa906d8230334ef698_issuer",
+          "statement_id": "residual_r6_code_AU-3eaa906d8230334ef698_issuer",
+          "scope": "Mukinbudin REE Project; reporting issuer Caprice Resources Ltd at 2024-09-27; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 17,
+              "markers": [
+                "27 September 2024",
+                "RSM AUSTRALIA P erth, WA TUTU PHONG"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Mukinbudin",
+                "REE Project to enable a program of"
+              ]
+            },
+            {
+              "page": 1,
+              "markers": [
+                "CAPRICE RESOURCES LTD",
+                "ABN 96 624 970 725 ANNUAL FINANCIAL"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "r6_identity_mukinbudin",
+          "source_sha256": "1f5e83ea28b7b59ef46355ecb6d3f7d47d4eb88adcc7c0e4502f60362cab5b74",
+          "pdf_page": 3,
+          "page_markers": [
+            "under the code CRS",
+            "6000 Securities Exchange Listing Australian Securities Exchange"
+          ],
+          "locator": "physical PDF p3; residual re-verification of r6_code_AU-3eaa906d8230334ef698",
+          "effective_date": "2024-09-27",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_r6_code_AU-3eaa906d8230334ef698_listing",
+          "statement_id": "residual_r6_code_AU-3eaa906d8230334ef698_listing",
+          "scope": "Mukinbudin REE Project; reporting issuer Caprice Resources Ltd at 2024-09-27; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 17,
+              "markers": [
+                "27 September 2024",
+                "RSM AUSTRALIA P erth, WA TUTU PHONG"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Mukinbudin",
+                "REE Project to enable a program of"
+              ]
+            },
+            {
+              "page": 1,
+              "markers": [
+                "CAPRICE RESOURCES LTD",
+                "ABN 96 624 970 725 ANNUAL FINANCIAL"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "ASX代碼",
+          "value": "CRS",
+          "source_key": "r6_identity_mukinbudin",
+          "source_sha256": "1f5e83ea28b7b59ef46355ecb6d3f7d47d4eb88adcc7c0e4502f60362cab5b74",
+          "pdf_page": 3,
+          "page_markers": [
+            "under the code CRS",
+            "6000 Securities Exchange Listing Australian Securities Exchange"
+          ],
+          "locator": "physical PDF p3; residual re-verification of r6_code_AU-3eaa906d8230334ef698",
+          "effective_date": "2024-09-27",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "review_id": "residual_r6_code_AU-3eaa906d8230334ef698_code",
+          "statement_id": "residual_r6_code_AU-3eaa906d8230334ef698_code",
+          "scope": "Mukinbudin REE Project; reporting issuer Caprice Resources Ltd at 2024-09-27; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 17,
+              "markers": [
+                "27 September 2024",
+                "RSM AUSTRALIA P erth, WA TUTU PHONG"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Mukinbudin",
+                "REE Project to enable a program of"
+              ]
+            },
+            {
+              "page": 1,
+              "markers": [
+                "CAPRICE RESOURCES LTD",
+                "ABN 96 624 970 725 ANNUAL FINANCIAL"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -125165,7 +125859,132 @@
             "visual_reviews": []
           }
         ]
-      }
+      },
+      "attributes": [
+        {
+          "column": "開發商",
+          "value": "Heavy Rare Earths Limited",
+          "source_key": "r6_identity_duke",
+          "source_sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d",
+          "pdf_page": 2,
+          "page_markers": [
+            "ASX code: HRE",
+            ") Website www.hreltd.com.au Corporate Governance Statement The"
+          ],
+          "locator": "physical PDF p2; residual re-verification of r6_code_AU-2ab3e8eb7b5784e64f9b",
+          "effective_date": "2025-09-30",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_r6_code_AU-2ab3e8eb7b5784e64f9b_issuer",
+          "statement_id": "residual_r6_code_AU-2ab3e8eb7b5784e64f9b_issuer",
+          "scope": "Duke Rare Earth Project; reporting issuer Heavy Rare Earths Limited at 2025-09-30; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 22,
+              "markers": [
+                "30 September 2025",
+                "the directors ___________________________ Mr John Byrne Non-executive"
+              ]
+            },
+            {
+              "page": 11,
+              "markers": [
+                "Duke",
+                "NT, Australia 100% EL33194 – Duke NT,"
+              ]
+            },
+            {
+              "page": 1,
+              "markers": [
+                "Heavy Rare Earths Limited",
+                "ABN 35 648 991 039 Annual Report"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "r6_identity_duke",
+          "source_sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d",
+          "pdf_page": 2,
+          "page_markers": [
+            "ASX code: HRE",
+            ") Website www.hreltd.com.au Corporate Governance Statement The"
+          ],
+          "locator": "physical PDF p2; residual re-verification of r6_code_AU-2ab3e8eb7b5784e64f9b",
+          "effective_date": "2025-09-30",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_r6_code_AU-2ab3e8eb7b5784e64f9b_listing",
+          "statement_id": "residual_r6_code_AU-2ab3e8eb7b5784e64f9b_listing",
+          "scope": "Duke Rare Earth Project; reporting issuer Heavy Rare Earths Limited at 2025-09-30; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 22,
+              "markers": [
+                "30 September 2025",
+                "the directors ___________________________ Mr John Byrne Non-executive"
+              ]
+            },
+            {
+              "page": 11,
+              "markers": [
+                "Duke",
+                "NT, Australia 100% EL33194 – Duke NT,"
+              ]
+            },
+            {
+              "page": 1,
+              "markers": [
+                "Heavy Rare Earths Limited",
+                "ABN 35 648 991 039 Annual Report"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "ASX代碼",
+          "value": "HRE",
+          "source_key": "r6_identity_duke",
+          "source_sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d",
+          "pdf_page": 2,
+          "page_markers": [
+            "ASX code: HRE",
+            ") Website www.hreltd.com.au Corporate Governance Statement The"
+          ],
+          "locator": "physical PDF p2; residual re-verification of r6_code_AU-2ab3e8eb7b5784e64f9b",
+          "effective_date": "2025-09-30",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "review_id": "residual_r6_code_AU-2ab3e8eb7b5784e64f9b_code",
+          "statement_id": "residual_r6_code_AU-2ab3e8eb7b5784e64f9b_code",
+          "scope": "Duke Rare Earth Project; reporting issuer Heavy Rare Earths Limited at 2025-09-30; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 22,
+              "markers": [
+                "30 September 2025",
+                "the directors ___________________________ Mr John Byrne Non-executive"
+              ]
+            },
+            {
+              "page": 11,
+              "markers": [
+                "Duke",
+                "NT, Australia 100% EL33194 – Duke NT,"
+              ]
+            },
+            {
+              "page": 1,
+              "markers": [
+                "Heavy Rare Earths Limited",
+                "ABN 35 648 991 039 Annual Report"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "bencubbin",
@@ -125315,6 +126134,74 @@
             }
           ],
           "attribute_id": "68b3b540458a3e60bc0cc5fe149a042b139f963041cd3866de231a221f24e4c9"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "r6_identity_bencubbin",
+          "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8",
+          "pdf_page": 2,
+          "page_markers": [
+            "ASX Code: CY5",
+            "SHARE REGISTER Computershare Investor Services Pty Ltd"
+          ],
+          "locator": "physical PDF p2; residual re-verification of r6_code_AU-630885ed0d74d8641d6c",
+          "effective_date": "2024-03-28",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_r6_code_AU-630885ed0d74d8641d6c_listing",
+          "statement_id": "residual_r6_code_AU-630885ed0d74d8641d6c_listing",
+          "scope": "Bencubbin REE Project; reporting issuer Cygnus Metals Limited at 2024-03-28; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 42,
+              "markers": [
+                "28 March 2024",
+                ", and this is available on the"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Bencubbin",
+                "Cygnus Metals Limited"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "ASX代碼",
+          "value": "CY5",
+          "source_key": "r6_identity_bencubbin",
+          "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8",
+          "pdf_page": 2,
+          "page_markers": [
+            "ASX Code: CY5",
+            "SHARE REGISTER Computershare Investor Services Pty Ltd"
+          ],
+          "locator": "physical PDF p2; residual re-verification of r6_code_AU-630885ed0d74d8641d6c",
+          "effective_date": "2024-03-28",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "review_id": "residual_r6_code_AU-630885ed0d74d8641d6c_code",
+          "statement_id": "residual_r6_code_AU-630885ed0d74d8641d6c_code",
+          "scope": "Bencubbin REE Project; reporting issuer Cygnus Metals Limited at 2024-03-28; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 42,
+              "markers": [
+                "28 March 2024",
+                ", and this is available on the"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Bencubbin",
+                "Cygnus Metals Limited"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -126315,7 +127202,8 @@
             {
               "page": 4,
               "markers": [
-                "Peak Charles"
+                "Peak Charles",
+                "maiden reconnaissance aircore drill program"
               ]
             },
             {
@@ -126328,6 +127216,40 @@
             }
           ],
           "attribute_id": "a4f38a76119763e6289ba139a5838c5f3c6904d897189153d2d1c49334c48b88"
+        },
+        {
+          "column": "開發商",
+          "value": "Moho Resources Limited",
+          "source_key": "r6_identity_peak_charles",
+          "source_sha256": "7f46c1631aa6a6b9eab24314635bbc589905dd202e04de2203135e79f93b330a",
+          "pdf_page": 2,
+          "page_markers": [
+            "MOHO RESOURCES LIMITED",
+            "ASX code: MOH"
+          ],
+          "locator": "physical PDF p2; residual re-verification of r6_code_AU-b31d00e2272ffa6ccbd3",
+          "effective_date": "2023-09-28",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_r6_code_AU-b31d00e2272ffa6ccbd3_issuer",
+          "statement_id": "residual_r6_code_AU-b31d00e2272ffa6ccbd3_issuer",
+          "scope": "Peak Charles REE Project; reporting issuer Moho Resources Limited at 2023-09-28; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 30,
+              "markers": [
+                "28 September 2023",
+                ", the Company announced a trading halt"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Peak Charles",
+                "REE Project north of Esperance which adjoins"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -126485,6 +127407,88 @@
             ],
             "ownership_statement_sha256": "d02c708ee2144e64f36b6d0db3079b6e6427325c296a6b9b92242d2442268314"
           }
+        },
+        {
+          "column": "開發商",
+          "value": "Narryer Metals Limited",
+          "source_key": "r6_identity_rocky_gully",
+          "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0",
+          "pdf_page": 3,
+          "page_markers": [
+            "ASX Code: NYM",
+            "Park 152-158 St Georges Terrace Perth WA"
+          ],
+          "locator": "physical PDF p3; residual re-verification of r6_code_AU-d0827cf51def7e0014fc",
+          "effective_date": "2026-09-24",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_r6_code_AU-d0827cf51def7e0014fc_issuer",
+          "statement_id": "residual_r6_code_AU-d0827cf51def7e0014fc_issuer",
+          "scope": "Rocky Gully Scandium–REE–Gallium Project; reporting issuer Narryer Metals Limited at 2026-09-24; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 30,
+              "markers": [
+                "24 September 2026",
+                "Bevan Executive Chairperson and Director Perth, Western"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Rocky Gully",
+                "Project in Western Australia, where we continued"
+              ]
+            },
+            {
+              "page": 1,
+              "markers": [
+                "Narryer Metals Limited",
+                "Level 5/191 St Georges ACN 651 575"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "ASX代碼",
+          "value": "NYM",
+          "source_key": "r6_identity_rocky_gully",
+          "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0",
+          "pdf_page": 3,
+          "page_markers": [
+            "ASX Code: NYM",
+            "Park 152-158 St Georges Terrace Perth WA"
+          ],
+          "locator": "physical PDF p3; residual re-verification of r6_code_AU-d0827cf51def7e0014fc",
+          "effective_date": "2026-09-24",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "review_id": "residual_r6_code_AU-d0827cf51def7e0014fc_code",
+          "statement_id": "residual_r6_code_AU-d0827cf51def7e0014fc_code",
+          "scope": "Rocky Gully Scandium–REE–Gallium Project; reporting issuer Narryer Metals Limited at 2026-09-24; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 30,
+              "markers": [
+                "24 September 2026",
+                "Bevan Executive Chairperson and Director Perth, Western"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Rocky Gully",
+                "Project in Western Australia, where we continued"
+              ]
+            },
+            {
+              "page": 1,
+              "markers": [
+                "Narryer Metals Limited",
+                "Level 5/191 St Georges ACN 651 575"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -126571,6 +127575,74 @@
             }
           ],
           "attribute_id": "10a307d277605e987677fd45d857d45ef37c7c9ebc71ec0fd28d8c6b3d359c19"
+        },
+        {
+          "column": "開發商",
+          "value": "WA1 Resources Ltd",
+          "source_key": "r6_identity_west_arunta_luni",
+          "source_sha256": "ae8825f63b7ce1ac8bb26e0406fb9c75adf12fe31b8a86658a33fff4715f1766",
+          "pdf_page": 2,
+          "page_markers": [
+            "WA1 RESOURCES LTD",
+            "ASX: WA1"
+          ],
+          "locator": "physical PDF p2; residual re-verification of r6_code_AU-cae6c11543b0da5f840d",
+          "effective_date": "2026-09-18",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_r6_code_AU-cae6c11543b0da5f840d_issuer",
+          "statement_id": "residual_r6_code_AU-cae6c11543b0da5f840d_issuer",
+          "scope": "West Arunta Project — Luni Niobium–REE scope; reporting issuer WA1 Resources Ltd at 2026-09-18; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 14,
+              "markers": [
+                "18 September 2026",
+                "the Directors, ___________________________________ Paul Savich Managing Director"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Luni",
+                "Niobium Project (Luni or the Project), one"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "r6_identity_west_arunta_luni",
+          "source_sha256": "ae8825f63b7ce1ac8bb26e0406fb9c75adf12fe31b8a86658a33fff4715f1766",
+          "pdf_page": 2,
+          "page_markers": [
+            "WA1 RESOURCES LTD",
+            "ASX: WA1"
+          ],
+          "locator": "physical PDF p2; residual re-verification of r6_code_AU-cae6c11543b0da5f840d",
+          "effective_date": "2026-09-18",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_r6_code_AU-cae6c11543b0da5f840d_listing",
+          "statement_id": "residual_r6_code_AU-cae6c11543b0da5f840d_listing",
+          "scope": "West Arunta Project — Luni Niobium–REE scope; reporting issuer WA1 Resources Ltd at 2026-09-18; historical issuer association is not current title; no resource or production inference",
+          "context_evidence": [
+            {
+              "page": 14,
+              "markers": [
+                "18 September 2026",
+                "the Directors, ___________________________________ Paul Savich Managing Director"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Luni",
+                "Niobium Project (Luni or the Project), one"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -127047,6 +128119,27 @@
             }
           ],
           "attribute_id": "b51ecda984b533895154a189eb0c670858294c34bc10a5165f581c9f39538e34"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "od6_quarter20230427",
+          "source_sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb",
+          "pdf_page": 1,
+          "page_markers": [
+            "27 April 2023",
+            "Grass Patch",
+            "OD6 Metals Limited",
+            "ASX: OD6"
+          ],
+          "locator": "physical PDF p1; residual re-verification of r6_code_AU-1c907e00c797bf8b3ce1",
+          "effective_date": "2023-04-27",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_r6_code_AU-1c907e00c797bf8b3ce1_listing",
+          "statement_id": "residual_r6_code_AU-1c907e00c797bf8b3ce1_listing",
+          "scope": "OD6 Grass Patch E63/2151 E63/2152 E63/2185 E63/2154; not Mount Ridley MRD Grass Patch Complex and not Meeka Circle Valley despite same geological province/prospect names; reporting issuer code at2023-04-27, independent of current legal title",
+          "context_evidence": []
         }
       ]
     },
@@ -127230,7 +128323,8 @@
             {
               "page": 42,
               "markers": [
-                "5 September 2023"
+                "5 September 2023",
+                "Luke Graham MANAGING DIRECTOR"
               ]
             }
           ],
@@ -127286,7 +128380,8 @@
             {
               "page": 42,
               "markers": [
-                "5 September 2023"
+                "5 September 2023",
+                "Luke Graham MANAGING DIRECTOR"
               ]
             },
             {
@@ -127430,7 +128525,8 @@
             {
               "page": 18,
               "markers": [
-                "22 September 2023"
+                "22 September 2023",
+                "HAYDN SMITH Director"
               ]
             },
             {
@@ -127451,6 +128547,42 @@
             }
           ],
           "attribute_id": "7300ab554e75af79d35e9b32fa25dcf12dff3cb76bb80adafa3051c9525353c4"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "auto2_identity_southern_cross",
+          "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5",
+          "pdf_page": 1,
+          "page_markers": [
+            "GCX Metals Limited",
+            "ASX:GCX"
+          ],
+          "locator": "physical PDF p1; residual re-verification of auto2_code_AU-d99cf357d160df73387c",
+          "effective_date": "2023-09-22",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_auto2_code_AU-d99cf357d160df73387c_listing",
+          "statement_id": "residual_auto2_code_AU-d99cf357d160df73387c_listing",
+          "scope": "Southern Cross Li-REE exploration project E77/3009-E77/3012 in Western Australia, GCX source-date reporting issuer. Not Zenith input pairing, not generic Southern Cross regional mines or Rankin Dome. Current ownership/status not inferred.",
+          "context_evidence": [
+            {
+              "page": 18,
+              "markers": [
+                "22 September 2023",
+                "a resolution of the Directors. HAYDN SMITH"
+              ]
+            },
+            {
+              "page": 52,
+              "markers": [
+                "Southern Cross Li-REE Project",
+                "Western Australia",
+                "E77/3009",
+                "Southern Cross"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -127871,6 +129003,34 @@
             }
           ],
           "attribute_id": "2cf6cb10e961d061fd8c823d27b2083766da80404c71415d4c95f5cbfbdeb081"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "nutgrove20251030",
+          "source_sha256": "0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126",
+          "pdf_page": 1,
+          "page_markers": [
+            "30th October 2025",
+            "Green & Gold Minerals Limited",
+            "ASX code:GG1"
+          ],
+          "locator": "physical PDF p1; residual re-verification of continuation1_code_nutgrove",
+          "effective_date": "2025-10-30",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_continuation1_code_nutgrove_listing",
+          "statement_id": "residual_continuation1_code_nutgrove_listing",
+          "scope": "Nutgrove reporting issuer on 30 October 2025 only; no sample-to-resource inference",
+          "context_evidence": [
+            {
+              "page": 3,
+              "markers": [
+                "Nutgrove",
+                "REE discovery, located 80km north of Toowoomba"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -128574,6 +129734,42 @@
             }
           ],
           "attribute_id": "1df7443600382ce62a11fda570a6114b4ae39bb460de7c04d12cfcb7cd3d125a"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "wcn_annual2023",
+          "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "pdf_page": 3,
+          "page_markers": [
+            "White Cliff Minerals Limited",
+            "ASX code",
+            "Shares: WCN",
+            "ASX code White Cliff Minerals Limited is listed on theFor Australian Securities Exchange (Shares: WCN,"
+          ],
+          "locator": "physical PDF p3; residual re-verification of continuation2_code_barballin-wcn",
+          "effective_date": "2023-09-29",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_continuation2_code_barballin-wcn_listing",
+          "statement_id": "residual_continuation2_code_barballin-wcn_listing",
+          "scope": "Barballin annual-report reporting issuer at 29September2023 only; FY end and release date separated",
+          "context_evidence": [
+            {
+              "page": 30,
+              "markers": [
+                "29 September",
+                "2023"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Barballin",
+                "REE Project o Munbinia REE Project o"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -128676,6 +129872,42 @@
             }
           ],
           "attribute_id": "fb096fb52f6decdbf6dbd2bc989f4f5a16a4438f1ad051a7b8613c85cef8000b"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "wcn_annual2023",
+          "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "pdf_page": 3,
+          "page_markers": [
+            "White Cliff Minerals Limited",
+            "ASX code",
+            "Shares: WCN",
+            "ASX code White Cliff Minerals Limited is listed on theFor Australian Securities Exchange (Shares: WCN,"
+          ],
+          "locator": "physical PDF p3; residual re-verification of continuation2_code_munbinia-wcn",
+          "effective_date": "2023-09-29",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_continuation2_code_munbinia-wcn_listing",
+          "statement_id": "residual_continuation2_code_munbinia-wcn_listing",
+          "scope": "Munbinia annual-report reporting issuer at 29September2023 only; FY end and release date separated",
+          "context_evidence": [
+            {
+              "page": 30,
+              "markers": [
+                "29 September",
+                "2023"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Munbinia",
+                "REE Project o Ashton Hills Project Corporate"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -128943,13 +130175,16 @@
       "name": "Ravensthorpe REE Exploration Project — Young River, Dalyup and Bremer",
       "state": "WA",
       "identity_source": "ravensthorpe20230428",
-      "identity_locator": "Migrated identity; review fullscope13_issuer_AU-ee34781b030807146e64; physical PDF page 13; markers [\"Ravensthorpe\"]",
+      "identity_locator": "Migrated identity; separately re-reviewed Ravensthorpe chapter, three tenement areas and issuer; physical PDF p13 and p1",
       "observations": [],
       "identity_declaration": {
         "source_sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
         "pdf_page": 13,
         "page_markers": [
-          "Ravensthorpe"
+          "RAVENSTHORPE PROJECT",
+          "Albany-Fraser Orogen",
+          "Young River, Dalyup and Bremer",
+          "eleven granted exploration licences"
         ],
         "stage_inventory": [
           {
@@ -128963,6 +130198,16 @@
               "AU-ee34781b030807146e64"
             ],
             "visual_reviews": []
+          }
+        ],
+        "context_evidence": [
+          {
+            "page": 1,
+            "markers": [
+              "Mt Monger Resources Limited",
+              "ASX:MTM",
+              "28 April, 2023"
+            ]
           }
         ]
       },
@@ -129009,19 +130254,22 @@
             {
               "page": 1,
               "markers": [
-                "28 April, 2023"
+                "28 April, 2023",
+                "ASX:MTM"
               ]
             },
             {
               "page": 13,
               "markers": [
-                "Ravensthorpe"
+                "Ravensthorpe",
+                "Young River, Dalyup and Bremer"
               ]
             },
             {
               "page": 1,
               "markers": [
-                "Mt Monger Resources Limited"
+                "Mt Monger Resources Limited",
+                "ASX:MTM"
               ]
             }
           ],
@@ -129048,23 +130296,54 @@
             {
               "page": 1,
               "markers": [
-                "28 April, 2023"
+                "28 April, 2023",
+                "ASX:MTM"
               ]
             },
             {
               "page": 13,
               "markers": [
-                "Ravensthorpe"
+                "Ravensthorpe",
+                "Young River, Dalyup and Bremer"
               ]
             },
             {
               "page": 1,
               "markers": [
-                "Mt Monger Resources Limited"
+                "Mt Monger Resources Limited",
+                "ASX:MTM"
               ]
             }
           ],
           "attribute_id": "2e1b9daf528018bb0a1d750d2fd9b563b66b26cbc67042f7decbfaf088a3d8bd"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "ravensthorpe20230428",
+          "source_sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+          "pdf_page": 1,
+          "page_markers": [
+            "28 April, 2023",
+            "Mt Monger Resources Limited",
+            "ASX:MTM"
+          ],
+          "locator": "physical PDF p1; residual re-verification of continuation4_code_ravensthorpe-mtm",
+          "effective_date": "2023-04-28",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_continuation4_code_ravensthorpe-mtm_listing",
+          "statement_id": "residual_continuation4_code_ravensthorpe-mtm_listing",
+          "scope": "Ravensthorpe: source-labelled Western Australian REE exploration project at 2023-04-28; historical reporting issuer only, current rights unknown. No drilling, soil or partial-suite sample grade is a whole-project MRE or annual production. Young River, Dalyup and Bremer are areas within one Ravensthorpe project, not three independent projects.",
+          "context_evidence": [
+            {
+              "page": 13,
+              "markers": [
+                "RAVENSTHORPE",
+                "PROJECT The project areas are located within"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -129205,7 +130484,8 @@
             {
               "page": 10,
               "markers": [
-                "East Laverton"
+                "East Laverton",
+                "the townsite of Laverton"
               ]
             },
             {
@@ -129257,6 +130537,34 @@
             }
           ],
           "attribute_id": "00e5491096adc6b7a98e6c0595ac8c8aea2706eac48851c156fa54b616e2796f"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "ravensthorpe20230428",
+          "source_sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+          "pdf_page": 1,
+          "page_markers": [
+            "28 April, 2023",
+            "Mt Monger Resources Limited",
+            "ASX:MTM"
+          ],
+          "locator": "physical PDF p1; residual re-verification of continuation4_code_east-laverton-mtm",
+          "effective_date": "2023-04-28",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_continuation4_code_east-laverton-mtm_listing",
+          "statement_id": "residual_continuation4_code_east-laverton-mtm_listing",
+          "scope": "East Laverton: source-labelled Western Australian REE exploration project at 2023-04-28; historical reporting issuer only, current rights unknown. No drilling, soil or partial-suite sample grade is a whole-project MRE or annual production. Pt Kidman is an REE prospect within East Laverton, not an additional project.",
+          "context_evidence": [
+            {
+              "page": 10,
+              "markers": [
+                "EAST LAVERTON",
+                "PROJECT The East Laverton project is centred"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -129352,6 +130660,40 @@
             }
           ],
           "attribute_id": "61f7af702e73cf82c6a981c08e062638b3a86171d8c64df579a8605ae3d45436"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "wandagee20230131",
+          "source_sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7",
+          "pdf_page": 8,
+          "page_markers": [
+            "Consolidated Zinc Limited",
+            "ASX: CZL"
+          ],
+          "locator": "physical PDF p8; residual re-verification of continuation6_code_wandagee-czl",
+          "effective_date": "2023-01-31",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_continuation6_code_wandagee-czl_listing",
+          "statement_id": "residual_continuation6_code_wandagee-czl_listing",
+          "scope": "Named historical REE exploration project E09/2499 in Gascoyne, Western Australia, at 31January2023. Minilya is a nearby place, not an evidenced alias. Mexico Plomosas zinc production is excluded.",
+          "context_evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "31 January 2023",
+                "PILBARA LITHIUM AND RARE-EARTH PROJECTS, WESTERN AUSTRALIA"
+              ]
+            },
+            {
+              "page": 4,
+              "markers": [
+                "Wandagee",
+                "The Wandagee Project is located approximately 150km"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -129427,6 +130769,74 @@
             }
           ],
           "attribute_id": "55c832414e16cd109e5d59cbd7dbee83f84fdd045f0114ee206521243430591a"
+        },
+        {
+          "column": "開發商",
+          "value": "Lithium Universe Limited",
+          "source_key": "voyager20240328",
+          "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097",
+          "pdf_page": 2,
+          "page_markers": [
+            "LITHIUM UNIVERSE LIMITED",
+            "ASX: LU7"
+          ],
+          "locator": "physical PDF p2; residual re-verification of continuation6_code_voyager-lu7",
+          "effective_date": "2024-03-27",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_continuation6_code_voyager-lu7_issuer",
+          "statement_id": "residual_continuation6_code_voyager-lu7_issuer",
+          "scope": "Named historical Voyager REE exploration project in Tasmania, EL32/2022 and EL40/2022; 80% interest at report issue27March2024, ASX release28March2024. ABx neighbouring 27Mt resource and Canadian lithium resources are excluded. Current title continuity and spatial non-overlap are not certified.",
+          "context_evidence": [
+            {
+              "page": 51,
+              "markers": [
+                "authorised for issue by the Board of Directors on 27 March 2024",
+                ". Lithium Universe Limited and its Controlled"
+              ]
+            },
+            {
+              "page": 91,
+              "markers": [
+                "Voyager",
+                "EL32/2022 Tasmania, Australia Granted Tasmanian REE Pty"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "voyager20240328",
+          "source_sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097",
+          "pdf_page": 2,
+          "page_markers": [
+            "LITHIUM UNIVERSE LIMITED",
+            "ASX: LU7"
+          ],
+          "locator": "physical PDF p2; residual re-verification of continuation6_code_voyager-lu7",
+          "effective_date": "2024-03-27",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_continuation6_code_voyager-lu7_listing",
+          "statement_id": "residual_continuation6_code_voyager-lu7_listing",
+          "scope": "Named historical Voyager REE exploration project in Tasmania, EL32/2022 and EL40/2022; 80% interest at report issue27March2024, ASX release28March2024. ABx neighbouring 27Mt resource and Canadian lithium resources are excluded. Current title continuity and spatial non-overlap are not certified.",
+          "context_evidence": [
+            {
+              "page": 51,
+              "markers": [
+                "authorised for issue by the Board of Directors on 27 March 2024",
+                ". Lithium Universe Limited and its Controlled"
+              ]
+            },
+            {
+              "page": 91,
+              "markers": [
+                "Voyager",
+                "EL32/2022 Tasmania, Australia Granted Tasmanian REE Pty"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -129477,7 +130887,132 @@
             "visual_reviews": []
           }
         ]
-      }
+      },
+      "attributes": [
+        {
+          "column": "開發商",
+          "value": "IGO Limited",
+          "source_key": "igo_annual2022",
+          "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a",
+          "pdf_page": 163,
+          "page_markers": [
+            "ASX Code: IGO",
+            "ADR Code: IIDDY Shares on Issue: 757,267,813"
+          ],
+          "locator": "physical PDF p163; residual re-verification of continuation7_code_lake_campion",
+          "effective_date": "2022-08-29",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_continuation7_code_lake_campion_issuer",
+          "statement_id": "residual_continuation7_code_lake_campion_issuer",
+          "scope": "Historical Lake Campion REE exploration project: dated IGO annual report issued29August2022 and ASX released30August2022; location separately sourced from the earlier captured ASX quarter27July2022, same named project and issuer. Greenbushes Lithium, IGO Ni/Cu production and other-company Wheatbelt resources are excluded. No current rights or resource inference.",
+          "context_evidence": [
+            {
+              "page": 93,
+              "markers": [
+                "authorised for issue in accordance with a resolution of the Directors on 29 August 2022",
+                ". Basis of preparation This financial report"
+              ]
+            },
+            {
+              "page": 18,
+              "markers": [
+                "Lake Campion Project",
+                "Lake Campion"
+              ]
+            },
+            {
+              "page": 2,
+              "markers": [
+                "IGO Limited",
+                "is an ASX 100 listed Company focused"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "igo_annual2022",
+          "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a",
+          "pdf_page": 163,
+          "page_markers": [
+            "ASX Code: IGO",
+            "ADR Code: IIDDY Shares on Issue: 757,267,813"
+          ],
+          "locator": "physical PDF p163; residual re-verification of continuation7_code_lake_campion",
+          "effective_date": "2022-08-29",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_continuation7_code_lake_campion_listing",
+          "statement_id": "residual_continuation7_code_lake_campion_listing",
+          "scope": "Historical Lake Campion REE exploration project: dated IGO annual report issued29August2022 and ASX released30August2022; location separately sourced from the earlier captured ASX quarter27July2022, same named project and issuer. Greenbushes Lithium, IGO Ni/Cu production and other-company Wheatbelt resources are excluded. No current rights or resource inference.",
+          "context_evidence": [
+            {
+              "page": 93,
+              "markers": [
+                "authorised for issue in accordance with a resolution of the Directors on 29 August 2022",
+                ". Basis of preparation This financial report"
+              ]
+            },
+            {
+              "page": 18,
+              "markers": [
+                "Lake Campion Project",
+                "Lake Campion"
+              ]
+            },
+            {
+              "page": 2,
+              "markers": [
+                "IGO Limited",
+                "is an ASX 100 listed Company focused"
+              ]
+            }
+          ]
+        },
+        {
+          "column": "ASX代碼",
+          "value": "IGO",
+          "source_key": "igo_annual2022",
+          "source_sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a",
+          "pdf_page": 163,
+          "page_markers": [
+            "ASX Code: IGO",
+            "ADR Code: IIDDY Shares on Issue: 757,267,813"
+          ],
+          "locator": "physical PDF p163; residual re-verification of continuation7_code_lake_campion",
+          "effective_date": "2022-08-29",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_PROJECT_REPORTING_ISSUER_ASX_CODE",
+          "review_id": "residual_continuation7_code_lake_campion_code",
+          "statement_id": "residual_continuation7_code_lake_campion_code",
+          "scope": "Historical Lake Campion REE exploration project: dated IGO annual report issued29August2022 and ASX released30August2022; location separately sourced from the earlier captured ASX quarter27July2022, same named project and issuer. Greenbushes Lithium, IGO Ni/Cu production and other-company Wheatbelt resources are excluded. No current rights or resource inference.",
+          "context_evidence": [
+            {
+              "page": 93,
+              "markers": [
+                "authorised for issue in accordance with a resolution of the Directors on 29 August 2022",
+                ". Basis of preparation This financial report"
+              ]
+            },
+            {
+              "page": 18,
+              "markers": [
+                "Lake Campion Project",
+                "Lake Campion"
+              ]
+            },
+            {
+              "page": 2,
+              "markers": [
+                "IGO Limited",
+                "is an ASX 100 listed Company focused"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "viper-emu",
@@ -144095,7 +145630,8 @@
           "source_sha256": "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5",
           "pdf_page": 21,
           "page_markers": [
-            "Mixed rare earth oxide \nAve tpa \n- \n3,041 ",
+            "Mixed rare earth oxide",
+            "Ave tpa",
             "3,041"
           ],
           "locator": "physical PDF p21; reviewed config/round2_annual_evidence.json",
@@ -144109,25 +145645,29 @@
             {
               "page": 21,
               "markers": [
-                "Phase 1 and 2 "
+                "Phase 1 and 2",
+                "Mixed rare earth oxide"
               ]
             },
             {
               "page": 2,
               "markers": [
-                "in the determination of indicated mineral resources or that the production target itself will be realised.  \nThe Mineral Resources underpinning the production target in the Scoping Study have been prepared by a competent \nperson in accordance with the requirements of the JORC Code (2012). For full details of the Mineral Resource estimate, \nplease refer the ASX announcement on 3 December 2024. The Scoping Study is based on the material assumptions \noutlined below. These include assumptions about the availability of funding. While ACDC Metals considers all of the \nmaterial assumptions to be based on reasonable grounds, there is no certainty that they will prove to be correct or that \nthe range of outcomes indicated by the Scoping Study will be achieved.  "
+                "production target itself will be realised",
+                "Mineral Resources underpinning the production target"
               ]
             },
             {
               "page": 13,
               "markers": [
-                " \nFigure 6 – Example of Overburden Mining "
+                "Example of Overburden Mining",
+                "Whittle shells"
               ]
             },
             {
               "page": 3,
               "markers": [
-                "infrastructure, to produce a zircon-titania heavy mineral sand concentrate (HMC) and a monazite-xenotime \nrare earth mineral concentrate (REMC).  \nPhase 2: Hydrometallurgical operation at a separate location to extract rare earth elements from the REMC \nand produce a mixed rare earth oxide (MREO). Plant located off mine-site to enable an efficient permitting \npathway, simplified access to transport and chemical feed, and to enable third-party supply of monazite. \nKey production and financial highlights are as follows: "
+                "monazite-xenotime",
+                "Hydrometallurgical operation at a separate location"
               ]
             }
           ],
@@ -144656,7 +146196,8 @@
             {
               "page": 2,
               "markers": [
-                "30 October 2015"
+                "30 October 2015",
+                "Australian Zircon NL"
               ]
             }
           ],
@@ -144706,7 +146247,8 @@
             {
               "page": 2,
               "markers": [
-                "30 October 2015"
+                "30 October 2015",
+                "Australian Zircon NL"
               ]
             },
             {
@@ -144886,6 +146428,34 @@
             }
           ],
           "attribute_id": "b69e8c3aa92fb5be41639c658091733616cc3ef4c976efd1fc6f3191f5e2efb9"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "eg1_kenny20230731",
+          "source_sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64",
+          "pdf_page": 1,
+          "page_markers": [
+            "31 July 2023",
+            "EverGreen Lithium Limited",
+            "ASX:EG1"
+          ],
+          "locator": "physical PDF p1; residual re-verification of fullscope2_code_kenny-evergreen",
+          "effective_date": "2023-07-31",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_fullscope2_code_kenny-evergreen_listing",
+          "statement_id": "residual_fullscope2_code_kenny-evergreen_listing",
+          "scope": "EverGreen Kenny Western Australia dated 31July2023 exploration targets. Not Bynoe or Core Finniss. Maximum CeO2 auger assays are not a global resource grade or oxide composition; no mineral resource or annual output admitted.",
+          "context_evidence": [
+            {
+              "page": 4,
+              "markers": [
+                "Kenny",
+                "Western Australia"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -157052,6 +158622,40 @@
             }
           ],
           "attribute_id": "21fb6bdae4afeeeb1006172529c2f9f68e61b92cd45a7b3915b04e55ad659b5a"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "vhm_ar2026",
+          "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9",
+          "pdf_page": 3,
+          "page_markers": [
+            "VHM Limited",
+            "ASX code: VHM"
+          ],
+          "locator": "physical PDF p3; residual re-verification of fullscope3_code_cannie-vhm",
+          "effective_date": "2026-09-09",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_fullscope3_code_cannie-vhm_listing",
+          "statement_id": "residual_fullscope3_code_cannie-vhm_listing",
+          "scope": "Cannie separate192Mt maidenMRE footprint onEL6419/EL6664,13.5km south of Goschen; distinct from existing Goschen Area1-only case and Nowie EL6666. Shared regional future processing is not project identity or independent annual output. Do not add to companygrandtotal as another independent resource. Historical dated reporting-issuer association, not real-time title or listing continuity.",
+          "context_evidence": [
+            {
+              "page": 103,
+              "markers": [
+                "9 September 2026",
+                "of the directors ___________________________ Ian Smith Non-Executive"
+              ]
+            },
+            {
+              "page": 111,
+              "markers": [
+                "Cannie",
+                "Current 443 18/05/2018 17/05/2028 EL 6664 North"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -168699,6 +170303,40 @@
             }
           ],
           "attribute_id": "11ea4b3a97cffdc74f7a774790a17295a2a1d0b2d159f8a3cf8049fb5614476a"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "vhm_ar2026",
+          "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9",
+          "pdf_page": 3,
+          "page_markers": [
+            "VHM Limited",
+            "ASX code: VHM"
+          ],
+          "locator": "physical PDF p3; residual re-verification of fullscope3_code_nowie-vhm",
+          "effective_date": "2026-09-09",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_fullscope3_code_nowie-vhm_listing",
+          "statement_id": "residual_fullscope3_code_nowie-vhm_listing",
+          "scope": "Nowie EL6666 separate16.4Mt maidenMRE footprint,22km north of Goschen; distinct from existing Goschen Area1-only and Cannie cases. Excludes nested6.4Mt strandline subset and companygrandtotal; shared future Goschen plant is not allocated annual oxide production. Historical dated reporting-issuer association, not real-time title or listing continuity.",
+          "context_evidence": [
+            {
+              "page": 103,
+              "markers": [
+                "9 September 2026",
+                "of the directors ___________________________ Ian Smith Non-Executive"
+              ]
+            },
+            {
+              "page": 111,
+              "markers": [
+                "Nowie",
+                "Current 447 18/06/2018 17/06/2028 EL 6769 North"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -168797,6 +170435,40 @@
             }
           ],
           "attribute_id": "13f590b6bc4dfdba83f3a3a00f6d02d6f1a674129ef66b626e9ea22bca13b3fe"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "taruga_ar2024",
+          "source_sha256": "b0faf81a98d605436700670fbaff7e6b3d10f733c5af9a5311fbe9ddf08bb246",
+          "pdf_page": 3,
+          "page_markers": [
+            "Taruga Minerals Limited",
+            "ASX Code: TAR"
+          ],
+          "locator": "physical PDF p3; residual re-verification of fullscope3_code_mt-craig-taruga",
+          "effective_date": "2024-09-30",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_fullscope3_code_mt-craig-taruga_listing",
+          "statement_id": "residual_fullscope3_code_mt-craig-taruga_listing",
+          "scope": "Taruga MtCraig/MCCP namedSouthAustralianproject;MorgansCreek is itsREEprospect,not a secondproject. 2024issuerexploration/metallurgycontext,notanREE MRE or current-title certification;Cu deposits or regionalFlinders names not transferred. Historical dated reporting-issuer association, not real-time title or listing continuity.",
+          "context_evidence": [
+            {
+              "page": 21,
+              "markers": [
+                "30 September 2024",
+                "Act 2001. Gary Steinepreis Non-Executive Director Dated"
+              ]
+            },
+            {
+              "page": 5,
+              "markers": [
+                "Mt Craig Copper Project",
+                "(MCCP), South Australia (100% TAR) The Mt"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -168973,7 +170645,8 @@
             {
               "page": 44,
               "markers": [
-                "24 September 2024"
+                "24 September 2024",
+                "Nexia Brisbane Audit Pty Ltd"
               ]
             },
             {
@@ -168987,11 +170660,46 @@
             {
               "page": 3,
               "markers": [
-                "ActivEX Limited"
+                "ActivEX Limited",
+                "CORPORATE INFORMATION"
               ]
             }
           ],
           "attribute_id": "5ec48ccd93a0c49a613c2206a4142ecdf19628f2fee5d65f34243a86370f88f3"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "aiv_ar2024_native",
+          "source_sha256": "61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd",
+          "pdf_page": 3,
+          "page_markers": [
+            "ActivEX Limited",
+            "ASX code: AIV"
+          ],
+          "locator": "physical PDF p3; residual re-verification of fullscope4_code_gilberton-activex",
+          "effective_date": "2024-09-24",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_fullscope4_code_gilberton-activex_listing",
+          "statement_id": "residual_fullscope4_code_gilberton-activex_listing",
+          "scope": "Oratava REE prospect within namedGilberton project EPM18615/18623/26232/26307;HorseshoeHillU andAu/LiresourcesnotREE. Distinct from Georgetown Project and Aramac; no duplicate childOratava row. Reportyear2024; subsequent18September2024JV75.5percenttransaction disclosed,p37;no100percentcurrentownershipassertion. Historical reportingissuer fromsignedannualreport;ASXrelease25October2024;notcurrenttitleorownershipcertification.",
+          "context_evidence": [
+            {
+              "page": 44,
+              "markers": [
+                "24 September 2024",
+                "Brisbane Audit Pty Ltd Ann-Maree Robertson Director"
+              ]
+            },
+            {
+              "page": 8,
+              "markers": [
+                "GILBERTON",
+                "GOLD and LITHIUM PROJECT – North Queensland"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -169161,7 +170869,8 @@
             {
               "page": 44,
               "markers": [
-                "24 September 2024"
+                "24 September 2024",
+                "Nexia Brisbane Audit Pty Ltd"
               ]
             },
             {
@@ -169175,11 +170884,46 @@
             {
               "page": 3,
               "markers": [
-                "ActivEX Limited"
+                "ActivEX Limited",
+                "CORPORATE INFORMATION"
               ]
             }
           ],
           "attribute_id": "0c91921d88d18ded4cecb967ff1be69cce8e0f732496948acb33d7e4960f9391"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "aiv_ar2024_native",
+          "source_sha256": "61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd",
+          "pdf_page": 3,
+          "page_markers": [
+            "ActivEX Limited",
+            "ASX code: AIV"
+          ],
+          "locator": "physical PDF p3; residual re-verification of fullscope4_code_aramac-activex",
+          "effective_date": "2024-09-24",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_fullscope4_code_aramac-activex_listing",
+          "statement_id": "residual_fullscope4_code_aramac-activex_listing",
+          "scope": "Aramac EPM28644 andEPMA28645 NorthQueensland REEexploration target inWallumbillaFormation;formergranted,latterapplication atreportdate. Distinct fromGilbertonandGeorgetown;rocksample777ppmnotresourcegrade;noCoZnBaMnquantitiestransfer. Historical reportingissuer fromsignedannualreport;ASXrelease25October2024;notcurrenttitleorownershipcertification.",
+          "context_evidence": [
+            {
+              "page": 44,
+              "markers": [
+                "24 September 2024",
+                "Brisbane Audit Pty Ltd Ann-Maree Robertson Director"
+              ]
+            },
+            {
+              "page": 18,
+              "markers": [
+                "ARAMAC",
+                "RARE EARTH ELEMENT PROJECT – North Queensland"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -169521,7 +171265,8 @@
             {
               "page": 1,
               "markers": [
-                "25 July 2023"
+                "25 July 2023",
+                "ACN: 124 140 889"
               ]
             }
           ],
@@ -169729,7 +171474,8 @@
             {
               "page": 1,
               "markers": [
-                "25 July 2023"
+                "25 July 2023",
+                "ACN: 124 140 889"
               ]
             },
             {
@@ -169960,6 +171706,27 @@
             }
           ],
           "attribute_id": "3e54ffe29995044b5366e2bba28266e0b857cbb9c0ad4c607b15b2823fc19fec"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "coondina_ree20230214",
+          "source_sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
+          "pdf_page": 1,
+          "page_markers": [
+            "14 February 2023",
+            "Coondina",
+            "MinRex Resources Limited",
+            "ASX: MRR"
+          ],
+          "locator": "physical PDF p1; residual re-verification of fullscope6_code_coondina_historical_mrr",
+          "effective_date": "2023-02-14",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "review_id": "residual_fullscope6_code_coondina_historical_mrr_listing",
+          "statement_id": "residual_fullscope6_code_coondina_historical_mrr_listing",
+          "scope": "Historical 14 February 2023 MinRex MRR REE drilling case, E45/4266 East Pilbara WA. Not Achilles E38/3153/E38/3741 or generic Tambourah REE. MinRex September 2023 annual p11 states disappointing results/low remaining REE prospectivity and sale to Tambourah late June 2023; Tambourah September 2025 annual p73 lists Coondina E45/4266 in WA. Developer/code below are the dated historical MinRex reporting association, not current ownership or current MRR/NRL corporate code. No global REE resource: drill samples TREE elements in mixed ppb/ppm are not bulk TREO resource grades/composition. REE host unresolved in original p12; no alluvial tin geology transfer.",
+          "context_evidence": []
         }
       ]
     },
@@ -187758,6 +189525,41 @@
             }
           ],
           "attribute_id": "690213c1e9dfd2138570c6a2e745750c0a3f291267dba4affeb283730fa09329"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Source-reviewed weathered regolith or clay host",
+          "source_key": "asra_yttria_maiden20240416",
+          "source_sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726",
+          "effective_date": "2024-04-16",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "review_id": "residual_reviewed_host_mt-stirling",
+          "statement_id": "residual_reviewed_host_mt-stirling",
+          "locator": "physical PDF p25; deposit host",
+          "scope": "資源量／礦化位於風化殼腐岩層。",
+          "support_only": true,
+          "deposit_host_review": {
+            "asset_set": "fullscope13",
+            "code": "iac",
+            "locator": "physical PDF p25; deposit host",
+            "note": "資源量／礦化位於風化殼腐岩層。",
+            "page": 25,
+            "path": "data/snapshots/bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726.pdf",
+            "project_id": "AU-d0ce731e1d8198ffaf58",
+            "publication_date": "2024-04-16",
+            "qualifiers": [
+              "IONIC_NOT_CONFIRMED"
+            ],
+            "quote": "REE mineralisation at Yttria is within the weathered regolith (saprolite)",
+            "selected_mre_required": true,
+            "source_sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726",
+            "source_url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739"
+          },
+          "page_markers": [
+            "REE mineralisation at Yttria is within the weathered regolith (saprolite)",
+            "Yttria"
+          ],
+          "pdf_page": 25
         }
       ]
     },

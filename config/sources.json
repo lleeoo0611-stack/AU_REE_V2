@@ -2706,7 +2706,51 @@
       "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining_WFS/MapServer/0/query?f=json&where=%28UPPER%28site_commo%29+LIKE+%27%25REE%25%27+OR+UPPER%28site_commo%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28site_commo%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28site_commo%29+LIKE+%27%25XENOTIME%25%27+OR+UPPER%28commodity%29+LIKE+%27%25REE%25%27+OR+UPPER%28commodity%29+LIKE+%27%25RARE+EARTH%25%27+OR+UPPER%28commodity%29+LIKE+%27%25MONAZITE%25%27+OR+UPPER%28commodity%29+LIKE+%27%25XENOTIME%25%27%29&outFields=%2A&returnGeometry=true&resultOffset=0&resultRecordCount=500&orderByFields=site_code",
       "source_sha256": "8a0240c46bbfaa5b60880acdcf237b18debed77b10d9af8842dfda3a519167cf",
       "fixed_query": true,
-      "summary_spatial_source": true
+      "summary_spatial_source": true,
+      "summary_official_point_bindings": [
+        {
+          "project_id": "AU-557f0c9ad81bf84bbb6d",
+          "feature_id": "S0240847",
+          "official_name": "Pt Kidman",
+          "census_project_name": "East Laverton REE Exploration Project — Pt Kidman area"
+        },
+        {
+          "project_id": "AU-5ea2535a2de9a1a3327e",
+          "feature_id": "S0242510",
+          "official_name": "Viper REE",
+          "census_project_name": "Viper REE Project — EMU"
+        },
+        {
+          "project_id": "AU-645024d708baf5b52bc2",
+          "feature_id": "S0243532",
+          "official_name": "Cascade",
+          "census_project_name": "Cascade REE Project — Zinc of Ireland"
+        },
+        {
+          "project_id": "AU-7157ac0201b7d1e93ff7",
+          "feature_id": "S0241932",
+          "official_name": "Graceland REE",
+          "census_project_name": "Graceland REE Project — EMU"
+        },
+        {
+          "project_id": "AU-8c5887498873bf838e09",
+          "feature_id": "S0241370",
+          "official_name": "Coondina REE",
+          "census_project_name": "Coondina REE Project — historical MinRex drilling"
+        },
+        {
+          "project_id": "AU-9d967ecaac6e02fc76a5",
+          "feature_id": "S0241230",
+          "official_name": "Rankin Dome REE",
+          "census_project_name": "Rankin Dome Rare Earth Project"
+        },
+        {
+          "project_id": "AU-d0ce731e1d8198ffaf58",
+          "feature_id": "S0240148",
+          "official_name": "Yttria REE",
+          "census_project_name": "Mt Stirling — Yttria resource scope"
+        }
+      ]
     },
     {
       "key": "reviewed_source_9e1ac5bb894d9077",
@@ -2839,7 +2883,8 @@
       "summary_project_ids": [
         "AU-785536db5ff12c25350d"
       ],
-      "publication_date": "2023-09-27"
+      "publication_date": "2023-09-27",
+      "reviewed_static_pdf_sha256": "d413df91d19ec8bdb153fc1244d4274b4fe499c26ebecf46873e4356e5039431"
     },
     {
       "key": "reviewed_source_e37750161e156498",
@@ -2904,6 +2949,16 @@
       "summary_project_ids": [
         "AU-af44c2bd1173b453953f"
       ]
+    },
+    {
+      "key": "reviewed_source_50bd299dce64d1b5",
+      "kind": "government_wfs",
+      "url": "https://services.ga.gov.au/gis/earthresource/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ama%3AMineralOccurrences&outputFormat=application%2Fjson&count=500&startIndex=0&sortBy=ENO&CQL_FILTER=%28COMMODITY_CODES+ILIKE+%27%25REE%25%27+OR+COMMODITY_CODES+ILIKE+%27%25RARE+EARTH%25%27+OR+COMMODITY_CODES+ILIKE+%27%25MONAZITE%25%27+OR+COMMODITY_CODES+ILIKE+%27%25XENOTIME%25%27+OR+COMMODITY_NAMES+ILIKE+%27%25REE%25%27+OR+COMMODITY_NAMES+ILIKE+%27%25RARE+EARTH%25%27+OR+COMMODITY_NAMES+ILIKE+%27%25MONAZITE%25%27+OR+COMMODITY_NAMES+ILIKE+%27%25XENOTIME%25%27%29",
+      "source_sha256": "50bd299dce64d1b5409196c98d250b51e65ca8c9c24bef5ccdcb194ae9a41b82",
+      "fixed_query": true,
+      "summary_spatial_source": true,
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY"
     }
   ]
 }

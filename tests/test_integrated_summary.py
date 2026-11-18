@@ -120,6 +120,21 @@ class SummaryContractTests(unittest.TestCase):
         _,rows,_,_=self.export()
         self.assertEqual(float(rows[0]['礦石蘊藏量_Mt']),10)
 
+    def test_archived_html_support_is_limited_to_exact_deposit_evidence(self):
+        p=self.root/'data/host.html'
+        p.write_text('<p>Pidinga and Garford</p><p>Clay adsorption</p>',encoding='utf8')
+        sha=filehash(p)
+        source=dict(self.source,key='host',kind='html',path='data/host.html',sha256=sha)
+        a=dict(column='礦床型態',value='Reviewed host support',source_sha256=sha,
+            locator='geological setting',effective_date='2026-01-01',support_only=True,
+            extraction_method='REVIEWED_FIXTURE',deposit_host_review={'code':'iac'},
+            source_markers=['Pidinga and Garford','Clay adsorption'])
+        validate_project_attribute(self.root,source,a,[source])
+        for change in [dict(column='ASX代碼'),dict(support_only=False),dict(source_markers=['Clay adsorption']),
+                       dict(source_markers=['Pidinga and Garford','Missing original text'])]:
+            with self.subTest(change=change),self.assertRaises(ValueError):
+                validate_project_attribute(self.root,source,dict(a,**change),[source])
+
     def test_government_attribute_requires_exact_layer_feature_and_native_field(self):
         p=self.root/'data/layer.json';p.write_text(canonical(dict(features=[dict(attributes=dict(OBJECTID=17,owner='Reviewed developer'))])),encoding='utf8')
         sha=filehash(p);source=dict(kind='government_arcgis',sha256=sha,path='data/layer.json')

@@ -41,6 +41,11 @@ def validate_project_attribute(root, source, attribute, snapshots, cache=None):
         values=hits[0].get('attributes') or hits[0].get('properties') or {}
         if not a.get('source_field') or values.get(a['source_field'])!=a['value']:
             raise ValueError('ATTRIBUTE_NATIVE_FIELD_MISMATCH')
+    elif source['kind']=='html' and a['column']=='礦床型態' and a.get('support_only') and a.get('deposit_host_review'):
+        markers=a.get('source_markers',[])
+        if any(not isinstance(m,str) or not m.strip() for m in markers) or len(set(markers))<2:
+            raise ValueError('ATTRIBUTE_ARCHIVED_HOST_REQUIRES_TWO_MARKERS')
+        validate_pages(root,source,a,snapshots,cache)
     else:
         if source['kind']!='pdf' or not isinstance(a.get('pdf_page'),int) or len(a.get('page_markers',[]))<2:
             raise ValueError('ATTRIBUTE_PAGE_AND_TWO_MARKERS_REQUIRED')

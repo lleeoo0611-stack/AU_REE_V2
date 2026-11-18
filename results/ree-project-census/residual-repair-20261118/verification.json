@@ -1,0 +1,102 @@
+{
+  "run_id": "20261118T155428-65d03eae",
+  "run_status": "COMPLETED",
+  "baseline_commit": "8259d91",
+  "cutoff": "2026-11-13",
+  "rows": 93,
+  "columns": 51,
+  "total_cells": 4743,
+  "before_filled": 2120,
+  "after_filled": 2223,
+  "changes": {
+    "ADDED": 103,
+    "UPDATED": 4
+  },
+  "added_by_column": {
+    "礦床型態代碼": 3,
+    "有來源文件": 2,
+    "未上市公司": 32,
+    "ASX代碼": 26,
+    "開發商": 9,
+    "緯度": 9,
+    "經度": 9,
+    "總說明": 5,
+    "預估年產TREO_t_per_year": 2,
+    "專案名稱": 1,
+    "所在地_中文": 1,
+    "所在地_英文": 1,
+    "州省地區": 1,
+    "資料來源名稱": 1,
+    "資料來源URL": 1
+  },
+  "v9_reference_cells": 2101,
+  "v9_statuses_before": {
+    "SAME": 1931,
+    "FORMAL_MISSING": 114,
+    "POPULATED_DIFFERENT_OR_STRUCTURAL": 56
+  },
+  "v9_statuses_after": {
+    "SAME": 2026,
+    "POPULATED_DIFFERENT_OR_STRUCTURAL": 59,
+    "FORMAL_MISSING": 16
+  },
+  "v9_missing_by_reason": {
+    "NO_SOURCE_VALUE": 3,
+    "SOURCE_AFTER_CUTOFF": 4,
+    "RULE_INPUT_MISSING": 9
+  },
+  "v9_protected_preserved": 609,
+  "v9_original_same_preserved": 900,
+  "previous_same_lost": [
+    [
+      "AU-8c5887498873bf838e09",
+      "總說明"
+    ],
+    [
+      "AU-d0ce731e1d8198ffaf58",
+      "總說明"
+    ],
+    [
+      "AU-d9fb1b1e3e2ec9fa0851",
+      "總說明"
+    ]
+  ],
+  "selected_projects": 93,
+  "ranked_panels": {
+    "beneficiation_concentrate_screen": 2,
+    "disclosure_only": 20,
+    "issuer_resource_composition": 10,
+    "issuer_resource_concentrate": 2,
+    "issuer_resource_concentrate_recovery": 2,
+    "issuer_resource_financing_milestone": 8,
+    "issuer_resource_infrastructure": 6,
+    "issuer_resource_study": 7,
+    "official_wa_resource_screen": 17,
+    "resource_disclosure": 14,
+    "resource_infrastructure_pilot": 17,
+    "resource_port_disclosure": 12,
+    "six_domain": 5,
+    "six_domain_disclosure": 5,
+    "technical_process_concentrate_fixed": 2,
+    "technical_process_concentrate_sample_minmax": 2
+  },
+  "identical_ranking_files": 16,
+  "phase22_schema_matches": true,
+  "sqlite_quick_check": "ok",
+  "sqlite_foreign_key_violations": 0,
+  "phase22_frozen_files_matched": 64,
+  "full_python_tests_passed": 496,
+  "identical_prior_source_snapshots": 180,
+  "added_official_capture": {
+    "key": "reviewed_source_50bd299dce64d1b5",
+    "sha256": "50bd299dce64d1b5409196c98d250b51e65ca8c9c24bef5ccdcb194ae9a41b82",
+    "acquired_at": "2026-11-11T10:04:14.892048+00:00"
+  },
+  "added_static_pdf": {
+    "key": "pending_source_d413df91d19ec8bd",
+    "sha256": "d413df91d19ec8bdb153fc1244d4274b4fe499c26ebecf46873e4356e5039431",
+    "publication_date": "2023-09-27"
+  },
+  "census_sha256": "188a034d7a95b17a38a54b29f956845a6761cf0c594154a58ae8f7a4f2e86bd8",
+  "claims_sha256": "26f705cb6f24d2f277bdc9619a9fcc2a15cfb94761f09272161d0902d2912071"
+}
