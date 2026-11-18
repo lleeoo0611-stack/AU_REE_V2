@@ -1,0 +1,113 @@
+{
+  "run_id": "20261118T085522-8b7bb98f",
+  "run_status": "COMPLETED",
+  "format_from_html": true,
+  "schema_matches_phase22": true,
+  "validation_scope": "LOCAL_REPLAY_WITH_HASH_VERIFIED_ORIGINALS",
+  "phase22_frozen_scientific_files_matched": 64,
+  "python_regressions_passed": 489,
+  "ocr_engine": "Tesseract 5.4.0.20240606",
+  "ocr_model_sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+  "comparison_source": "v9 CI 44170481863",
+  "reference_nonempty_non_id_cells": 2101,
+  "comparison_note": "Uses v9 numerical equality. Other populated differences include expected source-provenance structure.",
+  "statuses": {
+    "SAME": 946,
+    "FORMAL_MISSING": 1080,
+    "POPULATED_DIFFERENT_OR_STRUCTURAL": 75
+  },
+  "transitions": [
+    {
+      "v9": "DIFFERENT",
+      "integrated": "POPULATED_DIFFERENT_OR_STRUCTURAL",
+      "cells": 34
+    },
+    {
+      "v9": "FORMAL_MISSING",
+      "integrated": "FORMAL_MISSING",
+      "cells": 1078
+    },
+    {
+      "v9": "FORMAL_MISSING",
+      "integrated": "POPULATED_DIFFERENT_OR_STRUCTURAL",
+      "cells": 1
+    },
+    {
+      "v9": "FORMAL_MISSING",
+      "integrated": "SAME",
+      "cells": 44
+    },
+    {
+      "v9": "KNOWN_STRUCTURAL_DIFFERENCE",
+      "integrated": "POPULATED_DIFFERENT_OR_STRUCTURAL",
+      "cells": 40
+    },
+    {
+      "v9": "KNOWN_STRUCTURAL_DIFFERENCE",
+      "integrated": "SAME",
+      "cells": 4
+    },
+    {
+      "v9": "SAME",
+      "integrated": "FORMAL_MISSING",
+      "cells": 2
+    },
+    {
+      "v9": "SAME",
+      "integrated": "SAME",
+      "cells": 898
+    }
+  ],
+  "protected_preserved": 607,
+  "protected_total": 609,
+  "v9_same_preserved": 898,
+  "v9_same_total": 900,
+  "rows": 93,
+  "columns": 51,
+  "total_cells": 4743,
+  "filled_cells": 1135,
+  "selected_census_projects": 70,
+  "ranked_panels": {
+    "beneficiation_concentrate_screen": 2,
+    "disclosure_only": 20,
+    "issuer_resource_composition": 14,
+    "issuer_resource_concentrate": 2,
+    "issuer_resource_concentrate_recovery": 2,
+    "issuer_resource_financing_milestone": 8,
+    "issuer_resource_infrastructure": 6,
+    "issuer_resource_study": 8,
+    "official_wa_resource_screen": 17,
+    "resource_disclosure": 14,
+    "resource_infrastructure_pilot": 20,
+    "resource_port_disclosure": 13,
+    "six_domain": 6,
+    "six_domain_disclosure": 6,
+    "technical_process_concentrate_fixed": 2,
+    "technical_process_concentrate_sample_minmax": 2
+  },
+  "source_decisions": {
+    "EXACT_PHASE22_SOURCE": 62,
+    "FROZEN_PHASE22_VERSION_RETAINED": 1,
+    "ASX_SOURCE_ADDED": 60
+  },
+  "replay_origin": {
+    "additional_verified_sources": 61,
+    "exact_v9_replay": false,
+    "lock_sha256": "00a1ccc960abd7bddcb9e3acd396f487135884e16dccf5eab86986c9c75cc1d1",
+    "registered_unavailable": [
+      "ga_power",
+      "ga_power_lines",
+      "ga_rail_operational",
+      "ga_roads_250k",
+      "qld_epm_live",
+      "qld_mdl_live",
+      "qld_ml_live",
+      "tas_mrt_live",
+      "vic_minsite_live",
+      "wa_minedex_live"
+    ],
+    "run_id": 44170481863,
+    "source_policy": "ONLY_V9_SELECTED_ORIGINALS_AVAILABLE_AT_THE_COMMITTED_SHA"
+  },
+  "census_sha256": "30f547a4f2370bdd922be91f9162524df35add5d160186046defe813ab9f8f15"
+}
