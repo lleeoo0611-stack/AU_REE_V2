@@ -616,7 +616,8 @@ def readable(text):
     return bool(chars) and sum(32<=ord(c)<127 for c in chars)/len(chars)>.88
 
 
-def extract_page(path, number, tessdata=None, markers=(), ocr_dpi=200, ocr_clip=None):
+def extract_page(path, number, tessdata=None, markers=(), ocr_dpi=200, ocr_clip=None,
+                 reviewed_native_text=None):
     import pymupdf
     path=Path(path)
     with pymupdf.open(path) as doc:
@@ -628,9 +629,22 @@ def extract_page(path, number, tessdata=None, markers=(), ocr_dpi=200, ocr_clip=
         alternate=page.get_text(sort=True)
         good=lambda t:readable(t) and all(m in re.sub(r'\s+',' ',t) for m in markers)
         method='PYPDF_NATIVE';text=native
-        if not good(text):method='MUPDF_POSITIONED';text=alternate
+        transformations=['NATIVE_AND_POSITIONED_TEXT_ATTEMPTED','NO_GUESSED_CHARACTER_OR_NUMERIC_SUBSTITUTION']
+        if reviewed_native_text:
+            from hashlib import sha256
+            if (reviewed_native_text['profile']!='SHIFTED_ASCII_29' or
+                    sha256(page.read_contents()).hexdigest()!=reviewed_native_text['content_sha256']):
+                raise ValueError('REVIEWED_NATIVE_TEXT_STREAM_CHANGED')
+            shift=str.maketrans({chr(n):chr(n+29) for n in range(3,95) if n not in (10,13,32)})
+            method='PYPDF_NATIVE_REVIEWED_GLYPH_REPAIR'
+            text=native.translate(shift)
+            transformations=['SHA_BOUND_REVIEWED_FONT_MAP']
+            # Unrelated fonts on the same page can still contain damaged glyphs.
+            # The reviewed profile is validated by a stream pin and exact scope markers.
+            good=lambda t:len(markers)>=2 and all(m in ' '.join(t.split()) for m in markers)
+        elif not good(text):method='MUPDF_POSITIONED';text=alternate
         model_sha=None
-        if not good(text) and tessdata:
+        if not reviewed_native_text and not good(text) and tessdata:
             if ocr_dpi not in (200,400,600):raise ValueError('UNSUPPORTED_SELECTIVE_OCR_DPI')
             model=Path(tessdata)/'eng.traineddata'
             model_sha=filehash(model)
@@ -649,7 +663,7 @@ def extract_page(path, number, tessdata=None, markers=(), ocr_dpi=200, ocr_clip=
                 'method':method,'backend_version':pymupdf.VersionBind,'model_sha256':model_sha,
                 'native_error':native_error,'native_text':native,'positioned_text':alternate,'text':text,
                 'status':'EXTRACTED_REQUIRES_SCOPE_VALIDATION' if good(text) else 'UNREADABLE',
-                'transformations':['NATIVE_AND_POSITIONED_TEXT_ATTEMPTED','NO_GUESSED_CHARACTER_OR_NUMERIC_SUBSTITUTION']}
+                'transformations':transformations}
         if ocr_clip:result['ocr_clip']=list(ocr_clip)
         return result
 

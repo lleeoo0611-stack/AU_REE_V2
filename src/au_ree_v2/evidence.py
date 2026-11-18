@@ -35,9 +35,13 @@ def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
     def page(source, binding, clip=None):
         markers=binding.get('page_markers',binding.get('markers',[]));number=binding.get('pdf_page',binding.get('page'))
         if not isinstance(number,int) or len(markers)<2:raise ValueError('MISSING_PAGE_OR_TWO_MARKERS')
-        key=digest([source['sha256'],number,markers,clip])
+        repair=binding.get('reviewed_native_text')
+        parameters=[source['sha256'],number,markers,clip]
+        if repair:parameters.append(repair)
+        key=digest(parameters)
         if key not in verified:
-            data=extract_page(root/source['path'],number,tessdata,markers=markers,ocr_clip=clip)
+            options={'reviewed_native_text':repair} if repair else {}
+            data=extract_page(root/source['path'],number,tessdata,markers=markers,ocr_clip=clip,**options)
             if data['status']!='EXTRACTED_REQUIRES_SCOPE_VALIDATION':raise ValueError('EXTRACTION_PAGE_CHECK_FAILED')
             payload=canonical(data)+'\n';sha=__import__('hashlib').sha256(payload.encode()).hexdigest()
             target=cache/(sha+'.json');target.write_bytes(payload.encode('utf8'))
@@ -68,7 +72,11 @@ def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
                     artifact=page(source,o,clip)
                     o.update(page_extraction_key=artifact['key'],page_extraction_sha256=artifact['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
                     for context in o.get('context_evidence',[]):
-                        proof=page(source,context)
+                        witness=by_key.get(context['source_key']) if 'source_key' in context else source
+                        if not witness or witness['kind']!='pdf' or (
+                                'source_sha256' in context and context['source_sha256']!=witness['sha256']):
+                            raise ValueError('CONTEXT_ORIGINAL_NOT_SELECTED_OR_CHANGED')
+                        proof=page(witness,context)
                         context.update(page_extraction_key=proof['key'],page_extraction_sha256=proof['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
                 except Exception as exc:reason=str(exc)
             if reason:issue(db,eid,o['source_sha256'],reason,canonical(o))
@@ -178,6 +186,36 @@ def html_text(root, source):
     return re.sub(r'\s+', ' ', ' '.join(parser.parts))
 
 
+def validate_element_table_cell(root, source, evidence, cache):
+    """Verify an elemental ppm total in a reviewed PDF with a damaged font mapping."""
+    from hashlib import sha256
+    import pymupdf
+    binding=evidence['reviewed_element_table_cell']
+    number=binding['page']
+    key=('elemental_table',source['sha256'],number,binding['content_sha256'])
+    if key not in cache:
+        with pymupdf.open(root/source['path']) as doc:
+            if not 1<=number<=len(doc):
+                raise ValueError('ELEMENTAL_TABLE_PAGE_OUT_OF_RANGE')
+            page=doc[number-1]
+            if sha256(page.read_contents()).hexdigest()!=binding['content_sha256']:
+                raise ValueError('ELEMENTAL_TABLE_STREAM_CHANGED')
+            cache[key]=page.get_text('words',sort=True)
+
+    def cell(rect):
+        left,top,right,bottom=rect
+        return ' '.join(w[4] for w in cache[key] if left<=(w[0]+w[2])/2<right and
+                        top<=(w[1]+w[3])/2<bottom)
+
+    digits=str.maketrans({**{chr(0x3ec+n):str(n) for n in range(10)},'\u0355':',','\u0358':'.'})
+    transform=evidence['transform']
+    if (cell(binding['header_bbox'])!=binding['header_raw'] or
+            cell(binding['total_label_bbox'])!='d\u017d\u019a\u0102\u016f' or
+            cell(binding['total_bbox']).translate(digits)!=transform['source_ppm'] or
+            cell(binding['tonnes_bbox']).translate(digits)!=transform['source_ore_t']):
+        raise ValueError('ELEMENTAL_TABLE_TOTAL_OR_HEADER_MISMATCH')
+
+
 def validate_pages(root, source, evidence, snapshots, cache=None):
     """One hash/page/marker contract for event and engineering evidence.
 
@@ -200,12 +238,40 @@ def validate_pages(root, source, evidence, snapshots, cache=None):
         if not markers or not all(m in html_text(root,source) for m in markers):
             raise ValueError('EXTRACTION_HTML_MARKER_CHECK_FAILED')
         return
+    if raster:=evidence.get('reviewed_pdf_table_image'):
+        import hashlib
+        import pymupdf
+        page_number=raster['page']
+        image_key=('image',source['sha256'],page_number,raster['sha256'],tuple(raster['size']),tuple(raster['bbox']))
+        if image_key not in cache:
+            with pymupdf.open(root/source['path']) as doc:
+                if not isinstance(page_number,int) or not 1<=page_number<=len(doc):
+                    raise ValueError('IMAGE_PHYSICAL_PAGE_UNVERIFIED')
+                pictures=[b for b in doc[page_number-1].get_text('dict')['blocks'] if b['type']==1]
+                matches=[b for b in pictures if hashlib.sha256(b['image']).hexdigest()==raster['sha256']
+                    and [b['width'],b['height']]==raster['size'] and len(raster['bbox'])==4
+                    and all(math.isclose(a,b,rel_tol=0,abs_tol=.001) for a,b in zip(b['bbox'],raster['bbox']))]
+                if len(matches)!=1:
+                    raise ValueError('REVIEWED_IMAGE_OR_POSITION_CHANGED')
+            cache[image_key]=True
+    if evidence.get('reviewed_element_table_cell'):
+        validate_element_table_cell(root,source,evidence,cache)
     bindings = [dict(page=evidence['pdf_page'], markers=evidence['page_markers'],
         **{k:evidence[k] for k in ('page_extraction_key','page_extraction_sha256','marker_normalization') if k in evidence})]
     bindings += evidence.get('context_evidence', [])
     if evidence.get('finance_evidence'):
         bindings.append(evidence['finance_evidence'])
+    primary_source=source
     for binding in bindings:
+        source=primary_source
+        if 'source_key' in binding:
+            witness=next((s for s in snapshots if s['key']==binding['source_key']),None)
+            if not witness or witness['kind']!='pdf' or witness['sha256']!=binding.get('source_sha256'):
+                raise ValueError('CONTEXT_ORIGINAL_NOT_SELECTED_OR_CHANGED')
+            key=('hash',witness['sha256'])
+            if key not in cache:cache[key]=source_check(witness,'9999-12-31',root)
+            if cache[key]:raise ValueError(cache[key])
+            source=witness
         page = binding['page']
         if not isinstance(page, int) or page < 1 or not binding['markers']:
             raise ValueError('MISSING_PHYSICAL_PAGE_OR_MARKERS')
@@ -669,6 +735,67 @@ def transformation_issues(o, siblings, depth=0):
                 assert abs(ore_mt*ppm-b['contained_t'])<=ore_mt*half+0.5
             assert sum(b['contained_t'] for b in blocks)==t['reported_total_t']
             assert math.isclose(o['value'],t['reported_total_t']/1000,rel_tol=1e-10)
+        elif t['rule']=='REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM':
+            from decimal import Decimal
+            element=t['element']
+            formula=re.fullmatch(re.escape(element)+r'(\d*)O(\d+)',o['basis'])
+            assert formula and o['unit']=='ppm' and t['source_unit']=='ppm ELEMENT'
+            assert o['reviewed_element_table_cell']['page'] in (88,89)
+            reference=o['census_equivalent_resource_pdf']
+            assert Decimal(t['source_ore_t'].replace(',','')).quantize(Decimal('1E3'))/1000000==Decimal(str(reference['ore_mt']))
+            atoms,oxygen=int(formula[1] or 1),int(formula[2])
+            factor=1+Decimal('15.999')*oxygen/(Decimal(t['standard_atomic_weight'])*atoms)
+            ppm=Decimal(t['source_ppm'])*factor
+            assert ppm>0 and math.isclose(o['value'],float(ppm),rel_tol=1e-12)
+        elif t['rule']=='REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM':
+            from decimal import Decimal
+            ore,=[s for s in siblings if s['variable']=='ore_mt' and all(s.get(k)==o.get(k) for k in
+                ('scope','statement_id','effective_date','source_key','source_sha256','category'))]
+            image=o['reviewed_pdf_table_image']
+            assert image['page']==o['pdf_page'] and ore['unit']=='Mt' and o['unit']=='ppm'
+            assert t['attribute']==o['basis'] and Decimal(t['total_ore_mt'])==Decimal(str(ore['value']))
+            if 'total_pct' in t:
+                percent=Decimal(t['total_pct'])
+            else:
+                parts=t['categories']
+                assert o['category']=='MEASURED_INFERRED_TOTAL' and len(parts)==2
+                assert {p['category'] for p in parts}=={'MEASURED','INFERRED'}
+                assert all(Decimal(p['ore_mt'])>0 for p in parts)
+                assert sum(Decimal(p['ore_mt']) for p in parts)==Decimal(t['total_ore_mt'])
+                first,second=[Decimal(p['oxide_pct']) for p in parts]
+                assert first==second
+                percent=first
+            assert 0<=percent<=100 and Decimal(str(o['value']))==percent*10000
+        elif t['rule']=='RECONCILED_AGGREGATE_OXIDE_RESIDUAL_KT':
+            definitions={'LREO':{'La2O3','CeO2','Pr6O11','Nd2O3','Sm2O3'},
+                'HREO':{'Gd2O3','Tb4O7','Dy2O3','Ho2O3','Er2O3','Eu2O3','Tm2O3','Yb2O3','Lu2O3','Y2O3'}}
+            expected=definitions[t['aggregate_basis']]
+            assert o['basis'] in expected and o['unit']=='kt'
+            rows=t['mass_rows']
+            assert rows and rows[-1]['row']=='Total' and len({r['row'] for r in rows})==len(rows)
+            for row in rows:
+                components=row['other_oxides_t']
+                assert set(components)==expected-{o['basis']}
+                assert all(type(v) is int and v>=0 for v in
+                    [*components.values(),row['aggregate_t'],row['component_t']])
+                assert abs(row['aggregate_t']-sum(components.values())-row['component_t'])<=(len(expected)+1)/2
+            if len(rows)>1:assert sum(r['component_t'] for r in rows[:-1])==rows[-1]['component_t']
+            assert math.isclose(o['value'],rows[-1]['component_t']/1000,rel_tol=1e-10)
+        elif t['rule']=='REVIEWED_IMAGE_ROW_CEO2_DIFFERENCE_KT':
+            r=o['reviewed_pdf_table_image']
+            reference=o['census_equivalent_resource_pdf']
+            row=r['total_row'];parts=r['category_rows']
+            assert o['basis']=='CeO2' and o['unit']=='kt' and o['category']=='INDICATED_INFERRED_TOTAL'
+            assert len(parts)==2 and {p['category'] for p in parts}=={'INDICATED','INFERRED'}
+            assert all(p['mining_basis']==row['mining_basis']=='ISR_AND_OP' for p in parts)
+            assert all(p['ore_mt']>0 and 0<p['treo_ex_ce_ppm']<p['treo_ppm'] for p in [row,*parts])
+            assert abs(sum(p['ore_mt'] for p in parts)-row['ore_mt'])<=.01001
+            assert abs(row['ore_mt']-reference['ore_mt'])<=.5 and row['treo_ppm']/10000==reference['grade_pct']
+            assert row['contained_treo_t']/1000==reference['contained_treo_kt']
+            for field in ('treo_ppm','treo_ex_ce_ppm'):
+                weighted=sum(p['ore_mt']*p[field] for p in parts)/sum(p['ore_mt'] for p in parts)
+                assert abs(weighted-row[field])<=1
+            assert math.isclose(o['value'],row['ore_mt']*(row['treo_ppm']-row['treo_ex_ce_ppm'])*.001,rel_tol=1e-10)
         elif t['rule']=='SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES':
             reference=o['census_equivalent_resource_pdf']
             parts=t['categories']
@@ -706,7 +833,7 @@ def transformation_issues(o, siblings, depth=0):
                 expected=inputs[0]['value']-inputs[1]['value']
             else:return ['UNSUPPORTED_TRANSFORMATION']
             assert math.isclose(o['value'],expected,rel_tol=1e-10)
-    except (AssertionError,KeyError,TypeError,ValueError,ZeroDivisionError):return ['TRANSFORMATION_CONTRACT_FAILED']
+    except (AssertionError,ArithmeticError,KeyError,TypeError,ValueError):return ['TRANSFORMATION_CONTRACT_FAILED']
     return []
 
 def ingest_claims(db, root, snapshots, cutoff, project=None, conflict_selection=False, claims_data=None):

@@ -544,6 +544,7 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
     composition_sha=';'.join(sorted({o['source_sha'] for o in composition}))
     composition_locator='; '.join(sorted({locator,*(o['locator'] for o in supplemental)}))
     elements={};review=next((json.loads(o['raw']).get('review_contract') for o in same if json.loads(o['raw']).get('review_contract')),None)
+    matched_composition_denominator=not any(json.loads(o['raw']).get('composition_denominator_basis')=='TREO_EXCLUDES_Y2O3' for o in supplemental)
     for oxide in rules['oxides']:
         found=[o for o in composition if o['basis']==oxide and o['unit']=='ppm' and
             json.loads(o['raw']).get('material_basis')=='RESOURCE_ORE_GRADE_OXIDE_PPM']
@@ -551,7 +552,9 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
             contained=[o for o in composition if o['basis']==oxide and o['unit']=='kt' and
                 (raw:=json.loads(o['raw'])).get('material_basis')=='RESOURCE_CONTAINED_OXIDE_MASS_KT' and
                 raw.get('transform',{}).get('rule') in ('SUM_RECONCILED_RESOURCE_BLOCK_MASSES',
-                                                       'SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES')]
+                                                       'SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES',
+                                                       'RECONCILED_AGGREGATE_OXIDE_RESIDUAL_KT',
+                                                       'REVIEWED_IMAGE_ROW_CEO2_DIFFERENCE_KT')]
             if contained and len({o['value'] for o in contained})==1:
                 o=contained[0]
                 elements[oxide]=o['value']
@@ -568,6 +571,8 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
             value = hm * summary_hm_percent(raw, oxide) * 10
         elements[oxide]=value
         method='DERIVED_SAME_ROW_TREO_MINUS_TREO_EX_CEO2_X_MATCHED_ORE_MT_X_0_001' if raw.get('review_method','').startswith('DERIVED_SAME_ROW_TREO_MINUS_TREO_EX_CEO2') else 'ORE_MT_X_OXIDE_PPM_X_0_001'
+        if raw.get('transform',{}).get('rule')=='REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM':
+            method='ORE_MT_X_STOICHIOMETRIC_OXIDE_FROM_REVIEWED_ELEMENTAL_PPM'
         put(next(c for c in row if c.startswith(oxide+'_')),value,o['source_sha'],o['locator'],method,scope,ids+[o['obs_id']])
     if review:
         summary_scoped_oxide_fields(row,bundle,review,elements,sources[sha],rules,decisions,put)
@@ -575,7 +580,8 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
     if elements:
         put('已公布元素數_共15項',len(elements),composition_sha,composition_locator,'COUNT_CANONICAL_INDIVIDUAL_OXIDES',scope,composition_ids)
         put('已公布元素總和_kt',sum(elements.values()),composition_sha,composition_locator,'SUM_AVAILABLE_MATCHED_OXIDES_NOT_TOTAL_RESOURCE',scope,composition_ids)
-        if total:put('元素總和/TREO',float(sum(elements.values()))/float(total),composition_sha,composition_locator,'AVAILABLE_OXIDE_SUM_DIVIDED_BY_MATCHED_TREO',scope,composition_ids)
+        if total and matched_composition_denominator:
+            put('元素總和/TREO',float(sum(elements.values()))/float(total),composition_sha,composition_locator,'AVAILABLE_OXIDE_SUM_DIVIDED_BY_MATCHED_TREO',scope,composition_ids)
     for needed,column in [(('Nd2O3','Pr6O11'),'NdPr蘊藏量_kt_需兩者皆公布'),(rules['heavy'],'完整重稀土組合蘊藏量_kt_需8元素皆公布'),(rules['magnet'],'磁性元素重算值_NdPrTbDy_kt')]:
         value=summary_complete_sum(elements,needed)
         if value is not None:put(column,value,composition_sha,composition_locator,'SUM_COMPLETE_MATCHED_OXIDE_SET',scope,composition_ids)

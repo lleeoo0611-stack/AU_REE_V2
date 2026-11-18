@@ -17076,6 +17076,746 @@
           "category": "NOT_APPLICABLE",
           "basis": "ROUTE_SPECIFIC_SCOPING",
           "extraction_method": "PRIMARY_PDF_SCOPED_TRANSCRIPTION"
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_la2o3_ppm",
+          "basis": "La2O3",
+          "value": 1700.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, La2O3 %; reported Total column of Table 6-15; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "La2O3",
+            "total_ore_mt": "75.18",
+            "total_pct": "0.17"
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_ceo2_ppm",
+          "basis": "CeO2",
+          "value": 3200.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, CeO2 %; reported Total column of Table 6-15; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "CeO2",
+            "total_ore_mt": "75.18",
+            "total_pct": "0.32"
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_pr6o11_ppm",
+          "basis": "Pr6O11",
+          "value": 350.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, Pr6O11 %; reported Total column of Table 6-15; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "Pr6O11",
+            "total_ore_mt": "75.18",
+            "total_pct": "0.035"
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_nd2o3_ppm",
+          "basis": "Nd2O3",
+          "value": 1100.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, Nd2O3 %; reported Total column of Table 6-15; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "Nd2O3",
+            "total_ore_mt": "75.18",
+            "total_pct": "0.11"
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_sm2o3_ppm",
+          "basis": "Sm2O3",
+          "value": 214.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, Sm2O3 %; reported Total column of Table 6-15; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "Sm2O3",
+            "total_ore_mt": "75.18",
+            "total_pct": "0.0214"
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_eu2o3_ppm",
+          "basis": "Eu2O3",
+          "value": 10.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, Eu2O3 %; reported Total column of Table 6-15; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "Eu2O3",
+            "total_ore_mt": "75.18",
+            "total_pct": "0.001"
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_gd2o3_ppm",
+          "basis": "Gd2O3",
+          "value": 180.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, Gd2O3 %; reported Total column of Table 6-15; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "Gd2O3",
+            "total_ore_mt": "75.18",
+            "total_pct": "0.018"
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_tb4o7_ppm",
+          "basis": "Tb4O7",
+          "value": 30.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, Tb4O7 %; reported Total column of Table 6-15; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "Tb4O7",
+            "total_ore_mt": "75.18",
+            "total_pct": "0.003"
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_dy2o3_ppm",
+          "basis": "Dy2O3",
+          "value": 190.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, Dy2O3 %; reported Total column of Table 6-15; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "Dy2O3",
+            "total_ore_mt": "75.18",
+            "total_pct": "0.019"
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_ho2o3_ppm",
+          "basis": "Ho2O3",
+          "value": 40.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, Ho2O3 %; reported Total column of Table 6-15; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "Ho2O3",
+            "total_ore_mt": "75.18",
+            "total_pct": "0.004"
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_er2o3_ppm",
+          "basis": "Er2O3",
+          "value": 110.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, Er2O3 %; both exhaustive category rows report 0.011%; total cell is malformed; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "Er2O3",
+            "total_ore_mt": "75.18",
+            "reported_total_cell": "0.0.11",
+            "categories": [
+              {
+                "category": "MEASURED",
+                "ore_mt": "42.81",
+                "oxide_pct": "0.011"
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": "32.37",
+                "oxide_pct": "0.011"
+              }
+            ]
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_tm2o3_ppm",
+          "basis": "Tm2O3",
+          "value": 18.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, Tm2O3 %; reported Total column of Table 6-15; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "Tm2O3",
+            "total_ore_mt": "75.18",
+            "total_pct": "0.0018"
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_yb2o3_ppm",
+          "basis": "Yb2O3",
+          "value": 94.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, Yb2O3 %; reported Total column of Table 6-15; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "Yb2O3",
+            "total_ore_mt": "75.18",
+            "total_pct": "0.0094"
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Toongi 2017 total Mineral Resource; not 42 Mt heap-leach production target",
+          "statement_id": "dubbo-project-2017-09-19",
+          "effective_date": "2017-09-19",
+          "category": "MEASURED_INFERRED_TOTAL",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "source_key": "dubbo_scoping2025",
+          "variable": "reported_lu2o3_ppm",
+          "basis": "Lu2O3",
+          "value": 10.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 69,
+          "page_markers": [
+            "Appendix 1 – Toongi JORC Resources All Attributes",
+            "11 July 2025 Dubbo Project Heap Leach Scoping Study 58"
+          ],
+          "locator": "Physical PDF p69 Table 6-15, Lu2O3 %; reported Total column of Table 6-15; same Measured 42.81+Inferred 32.37=75.18 Mt shown in p26 Table 2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "reviewed_pdf_table_image": {
+            "page": 69,
+            "size": [
+              488,
+              763
+            ],
+            "bbox": [
+              42.550071716308594,
+              117.7783203125,
+              408.4500732421875,
+              689.8283081054688
+            ],
+            "sha256": "4c141d4be277a715000874298bad09edbaf3ec0afec9dded802facd17946531d"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM",
+            "attribute": "Lu2O3",
+            "total_ore_mt": "75.18",
+            "total_pct": "0.001"
+          },
+          "context_evidence": [
+            {
+              "page": 26,
+              "markers": [
+                "Table 2 - Dubbo Project Toongi JORC Resource (2017)",
+                "Measured 42.81 1.89 0.04 0.45 0.03 1,400 7,400",
+                "Inferred 32.37 1.9 0.04 0.44 0.03 1,400 7,400",
+                "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660",
+                "consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study"
+              ]
+            }
+          ]
         }
       ],
       "coordinate_source": "ga_aimr",
@@ -80628,6 +81368,93 @@
               ]
             }
           ]
+        },
+        {
+          "scope": "Wudinna Boland and Head combined Garford and Pidinga MRE; in situ, undiluted",
+          "statement_id": "wudinna-20261022",
+          "effective_date": "2026-10-22",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864",
+          "source_key": "metadata_wudinna_cobra_20261026",
+          "variable": "reported_resource_contained_ceo2_kt",
+          "basis": "CeO2",
+          "value": 27.7352,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 3,
+          "page_markers": [
+            "Total 150 470 101 10 112",
+            "Effective Date of 22 October, 2026",
+            "in situ and undiluted"
+          ],
+          "locator": "PDF physical pp3, 15–16; combined estimate, total indicated and inferred ISR and OP; 149.92 Mt × (470 − 285) ppm; reviewed embedded table",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+            "ore_mt": 150,
+            "grade_pct": 0.047,
+            "contained_treo_kt": 70.4
+          },
+          "reviewed_pdf_table_image": {
+            "page": 15,
+            "sha256": "2433aa5dbb9bba39524e7c9132790bb95c4f477c82c1b32e43cbd6540e4f50c2",
+            "size": [
+              602,
+              354
+            ],
+            "bbox": [
+              86.36360931396484,
+              492.707763671875,
+              482.8287048339844,
+              725.8450317382812
+            ],
+            "total_row": {
+              "ore_mt": 149.92,
+              "treo_ppm": 470,
+              "treo_ex_ce_ppm": 285,
+              "contained_treo_t": 70400,
+              "mining_basis": "ISR_AND_OP"
+            },
+            "category_rows": [
+              {
+                "category": "INDICATED",
+                "mining_basis": "ISR_AND_OP",
+                "ore_mt": 59.69,
+                "treo_ppm": 572,
+                "treo_ex_ce_ppm": 339
+              },
+              {
+                "category": "INFERRED",
+                "mining_basis": "ISR_AND_OP",
+                "ore_mt": 90.23,
+                "treo_ppm": 402,
+                "treo_ex_ce_ppm": 250
+              }
+            ],
+            "concordant_issuer_image": "https://storage.googleapis.com/leaf-prod/moodys-announcements/LSE/COBR/2026-10-26/4065A/1001d595-ee5a3290-a05e-42c6-8782-c4feb2906a48.png",
+            "concordant_issuer_image_sha256": "de7a44f34920ef0c631de8580f5119a78994973c8fdff1552be0331f1c47b615"
+          },
+          "transform": {
+            "rule": "REVIEWED_IMAGE_ROW_CEO2_DIFFERENCE_KT"
+          },
+          "context_evidence": [
+            {
+              "page": 15,
+              "markers": [
+                "Garford Formation",
+                "Combined Estimate",
+                "Notes:"
+              ]
+            },
+            {
+              "page": 16,
+              "markers": [
+                "TREO-Ce - Total Rare Earth oxides without Cerium Oxide",
+                "(TREO - CeO2)",
+                "Mineral Resources amenable for In-Situ Recovery"
+              ]
+            }
+          ]
         }
       ],
       "attributes": [
@@ -113715,6 +114542,1416 @@
           "locator": "physical PDF p55; Total; 90 ppm Magreo at 1957 ppm MzEq cutoff; oxide-group definition physical PDF p6; ocr_clip=[39, 38, 812, 221]",
           "material_basis": "RESOURCE_ORE_GRADE_MAGNET_OXIDE_GROUP_PPM",
           "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD"
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_tb4o7_ppm",
+          "value": 1.0585550975082303,
+          "basis": "Tb4O7",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 88, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Tb 0.9 elemental ppm converted to Tb4O7; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 88,
+            "content_sha256": "7bd61cb00db180ec6e3d6e8309c3dbbd184c1357ce2cdb57a2ac887560454b82",
+            "header_bbox": [
+              227,
+              629,
+              290,
+              635
+            ],
+            "header_raw": "dď ;ƉƉŵͿ",
+            "total_bbox": [
+              227,
+              687,
+              290,
+              693
+            ],
+            "total_label_bbox": [
+              67,
+              687,
+              120,
+              693
+            ],
+            "tonnes_bbox": [
+              120,
+              687,
+              178,
+              693
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Tb",
+            "source_ppm": "0.9",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "158.925354",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_dy2o3_ppm",
+          "value": 5.508878769230769,
+          "basis": "Dy2O3",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 88, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Dy 4.8 elemental ppm converted to Dy2O3; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 88,
+            "content_sha256": "7bd61cb00db180ec6e3d6e8309c3dbbd184c1357ce2cdb57a2ac887560454b82",
+            "header_bbox": [
+              290,
+              629,
+              355,
+              635
+            ],
+            "header_raw": "Ǉ ;ƉƉŵͿ",
+            "total_bbox": [
+              290,
+              687,
+              355,
+              693
+            ],
+            "total_label_bbox": [
+              67,
+              687,
+              120,
+              693
+            ],
+            "tonnes_bbox": [
+              120,
+              687,
+              178,
+              693
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Dy",
+            "source_ppm": "4.8",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "162.500",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_ho2o3_ppm",
+          "value": 1.1455068946112392,
+          "basis": "Ho2O3",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 88, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Ho 1.0 elemental ppm converted to Ho2O3; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 88,
+            "content_sha256": "7bd61cb00db180ec6e3d6e8309c3dbbd184c1357ce2cdb57a2ac887560454b82",
+            "header_bbox": [
+              355,
+              629,
+              420,
+              635
+            ],
+            "header_raw": ",Ž ;ƉƉŵͿ",
+            "total_bbox": [
+              355,
+              687,
+              420,
+              693
+            ],
+            "total_label_bbox": [
+              67,
+              687,
+              120,
+              693
+            ],
+            "tonnes_bbox": [
+              120,
+              687,
+              178,
+              693
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Ho",
+            "source_ppm": "1.0",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "164.930329",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_er2o3_ppm",
+          "value": 3.087398884364967,
+          "basis": "Er2O3",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 88, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Er 2.7 elemental ppm converted to Er2O3; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 88,
+            "content_sha256": "7bd61cb00db180ec6e3d6e8309c3dbbd184c1357ce2cdb57a2ac887560454b82",
+            "header_bbox": [
+              420,
+              629,
+              483,
+              635
+            ],
+            "header_raw": "ƌ ;ƉƉŵͿ",
+            "total_bbox": [
+              420,
+              687,
+              483,
+              693
+            ],
+            "total_label_bbox": [
+              67,
+              687,
+              120,
+              693
+            ],
+            "tonnes_bbox": [
+              120,
+              687,
+              178,
+              693
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Er",
+            "source_ppm": "2.7",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "167.259",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_tm2o3_ppm",
+          "value": 0.45682330114540026,
+          "basis": "Tm2O3",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 88, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Tm 0.4 elemental ppm converted to Tm2O3; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 88,
+            "content_sha256": "7bd61cb00db180ec6e3d6e8309c3dbbd184c1357ce2cdb57a2ac887560454b82",
+            "header_bbox": [
+              483,
+              629,
+              547,
+              635
+            ],
+            "header_raw": "dŵ ;ƉƉŵͿ",
+            "total_bbox": [
+              483,
+              687,
+              547,
+              693
+            ],
+            "total_label_bbox": [
+              67,
+              687,
+              120,
+              693
+            ],
+            "tonnes_bbox": [
+              120,
+              687,
+              178,
+              693
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Tm",
+            "source_ppm": "0.4",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "168.934219",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_yb2o3_ppm",
+          "value": 3.074445664422549,
+          "basis": "Yb2O3",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 89, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Yb 2.7 elemental ppm converted to Yb2O3; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 89,
+            "content_sha256": "8ce9f54b7ecf95de1c376287cd42e66efffbdd1cbc535cd9c19c71448db6c64e",
+            "header_bbox": [
+              178,
+              85,
+              227,
+              91
+            ],
+            "header_raw": "zď ;ƉƉŵͿ",
+            "total_bbox": [
+              178,
+              143,
+              227,
+              149
+            ],
+            "total_label_bbox": [
+              67,
+              143,
+              120,
+              149
+            ],
+            "tonnes_bbox": [
+              120,
+              143,
+              178,
+              149
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Yb",
+            "source_ppm": "2.7",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "173.045",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_lu2o3_ppm",
+          "value": 0.45486415728616686,
+          "basis": "Lu2O3",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 89, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Lu 0.4 elemental ppm converted to Lu2O3; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 89,
+            "content_sha256": "8ce9f54b7ecf95de1c376287cd42e66efffbdd1cbc535cd9c19c71448db6c64e",
+            "header_bbox": [
+              227,
+              85,
+              290,
+              91
+            ],
+            "header_raw": ">Ƶ ;ƉƉŵͿ",
+            "total_bbox": [
+              227,
+              143,
+              290,
+              149
+            ],
+            "total_label_bbox": [
+              67,
+              143,
+              120,
+              149
+            ],
+            "tonnes_bbox": [
+              120,
+              143,
+              178,
+              149
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Lu",
+            "source_ppm": "0.4",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "174.96669",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_y2o3_ppm",
+          "value": 31.2403187156281,
+          "basis": "Y2O3",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 89, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Y 24.6 elemental ppm converted to Y2O3; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 89,
+            "content_sha256": "8ce9f54b7ecf95de1c376287cd42e66efffbdd1cbc535cd9c19c71448db6c64e",
+            "header_bbox": [
+              483,
+              85,
+              547,
+              91
+            ],
+            "header_raw": "z ;ƉƉŵͿ",
+            "total_bbox": [
+              483,
+              143,
+              547,
+              149
+            ],
+            "total_label_bbox": [
+              67,
+              143,
+              120,
+              149
+            ],
+            "tonnes_bbox": [
+              120,
+              143,
+              178,
+              149
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Y",
+            "source_ppm": "24.6",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "88.905838",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_la2o3_ppm",
+          "value": 74.23625074664086,
+          "basis": "La2O3",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 89, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; La 63.3 elemental ppm converted to La2O3; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 89,
+            "content_sha256": "8ce9f54b7ecf95de1c376287cd42e66efffbdd1cbc535cd9c19c71448db6c64e",
+            "header_bbox": [
+              290,
+              281,
+              355,
+              287
+            ],
+            "header_raw": ">Ă ;ƉƉŵͿ",
+            "total_bbox": [
+              290,
+              339,
+              355,
+              345
+            ],
+            "total_label_bbox": [
+              67,
+              339,
+              120,
+              345
+            ],
+            "tonnes_bbox": [
+              120,
+              339,
+              178,
+              345
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "La",
+            "source_ppm": "63.3",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "138.90547",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_ceo2_ppm",
+          "value": 157.10825744383226,
+          "basis": "CeO2",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 89, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Ce 127.9 elemental ppm converted to CeO2; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 89,
+            "content_sha256": "8ce9f54b7ecf95de1c376287cd42e66efffbdd1cbc535cd9c19c71448db6c64e",
+            "header_bbox": [
+              355,
+              281,
+              420,
+              287
+            ],
+            "header_raw": "Ğ ;ƉƉŵͿ",
+            "total_bbox": [
+              355,
+              339,
+              420,
+              345
+            ],
+            "total_label_bbox": [
+              67,
+              339,
+              120,
+              345
+            ],
+            "tonnes_bbox": [
+              120,
+              339,
+              178,
+              345
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Ce",
+            "source_ppm": "127.9",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "140.116",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_pr6o11_ppm",
+          "value": 18.122417191513932,
+          "basis": "Pr6O11",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 89, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Pr 15.0 elemental ppm converted to Pr6O11; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 89,
+            "content_sha256": "8ce9f54b7ecf95de1c376287cd42e66efffbdd1cbc535cd9c19c71448db6c64e",
+            "header_bbox": [
+              420,
+              281,
+              483,
+              287
+            ],
+            "header_raw": "Wƌ ;ƉƉŵͿ",
+            "total_bbox": [
+              420,
+              339,
+              483,
+              345
+            ],
+            "total_label_bbox": [
+              67,
+              339,
+              120,
+              345
+            ],
+            "tonnes_bbox": [
+              120,
+              339,
+              178,
+              345
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Pr",
+            "source_ppm": "15.0",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "140.90766",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_nd2o3_ppm",
+          "value": 63.68416480636708,
+          "basis": "Nd2O3",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 89, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Nd 54.6 elemental ppm converted to Nd2O3; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 89,
+            "content_sha256": "8ce9f54b7ecf95de1c376287cd42e66efffbdd1cbc535cd9c19c71448db6c64e",
+            "header_bbox": [
+              483,
+              281,
+              547,
+              287
+            ],
+            "header_raw": "EĚ ;ƉƉŵͿ",
+            "total_bbox": [
+              483,
+              339,
+              547,
+              345
+            ],
+            "total_label_bbox": [
+              67,
+              339,
+              120,
+              345
+            ],
+            "tonnes_bbox": [
+              120,
+              339,
+              178,
+              345
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Nd",
+            "source_ppm": "54.6",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "144.242",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_sm2o3_ppm",
+          "value": 10.90030526735834,
+          "basis": "Sm2O3",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 89, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Sm 9.4 elemental ppm converted to Sm2O3; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 89,
+            "content_sha256": "8ce9f54b7ecf95de1c376287cd42e66efffbdd1cbc535cd9c19c71448db6c64e",
+            "header_bbox": [
+              178,
+              379,
+              227,
+              385
+            ],
+            "header_raw": "^ŵ ;ƉƉŵͿ",
+            "total_bbox": [
+              178,
+              437,
+              227,
+              443
+            ],
+            "total_label_bbox": [
+              67,
+              437,
+              120,
+              443
+            ],
+            "tonnes_bbox": [
+              120,
+              437,
+              178,
+              443
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Sm",
+            "source_ppm": "9.4",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "150.36",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_eu2o3_ppm",
+          "value": 1.3895067252770392,
+          "basis": "Eu2O3",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 89, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Eu 1.2 elemental ppm converted to Eu2O3; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 89,
+            "content_sha256": "8ce9f54b7ecf95de1c376287cd42e66efffbdd1cbc535cd9c19c71448db6c64e",
+            "header_bbox": [
+              227,
+              379,
+              290,
+              385
+            ],
+            "header_raw": "Ƶ ;ƉƉŵͿ",
+            "total_bbox": [
+              227,
+              437,
+              290,
+              443
+            ],
+            "total_label_bbox": [
+              67,
+              437,
+              120,
+              443
+            ],
+            "tonnes_bbox": [
+              120,
+              437,
+              178,
+              443
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Eu",
+            "source_ppm": "1.2",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "151.964",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
+        },
+        {
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "statement_id": "sandy-global-mre-20260922",
+          "effective_date": "2026-09-22",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "variable": "reported_gd2o3_ppm",
+          "value": 7.837779572525103,
+          "basis": "Gd2O3",
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "source_key": "ark_sandy_mre20260922",
+          "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+          "pdf_page": 2,
+          "page_markers": [
+            "Total 379.4 5,430 3.0 370 1,340",
+            "TREO+Y total rare earth oxides plus yttrium oxide",
+            "at a 1,957ppm MzEq lower cut-off grade"
+          ],
+          "reviewed_native_text": {
+            "profile": "SHIFTED_ASCII_29",
+            "content_sha256": "6c0e62deb5ce020023c68fa59065a9f48d6aa4c4f7c065985ea08b02a375cee5"
+          },
+          "context_evidence": [
+            {
+              "page": 74,
+              "markers": [
+                "The Sandy Mitchell Mineral Resource is reported at a 1957ppm MzEq lower cut-off grade",
+                "Table 7: Reported resource for Sandy Mitchell at a 1957ppm MzEq lower cut-off",
+                "A full breakdown of the resource details is in Appendix 1"
+              ],
+              "reviewed_native_text": {
+                "profile": "SHIFTED_ASCII_29",
+                "content_sha256": "7a7ee8a6d9628d732edc405229673db71a9e08b37a3d62fcd39de5e0e0e480c1"
+              }
+            },
+            {
+              "page": 55,
+              "source_key": "ark_annual2026",
+              "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+              "markers": [
+                "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370 50 670 2.7 1.1 12.0 16.2 3.0",
+                "TREO (ppm) TREO + Y (ppm)",
+                "As at 22 September 2026"
+              ]
+            }
+          ],
+          "locator": "Physical pp2, 74, 89, Appendix 1 Resource Details, Total 379,421,288 t at 1,957 ppm MzEq cutoff; Gd 6.8 elemental ppm converted to Gd2O3; same Resource as ARK FY2026 report p55",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+            "ore_mt": 379.421,
+            "grade_pct": 0.034,
+            "contained_treo_kt": 129.00314
+          },
+          "composition_denominator_basis": "TREO_EXCLUDES_Y2O3",
+          "reviewed_element_table_cell": {
+            "page": 89,
+            "content_sha256": "8ce9f54b7ecf95de1c376287cd42e66efffbdd1cbc535cd9c19c71448db6c64e",
+            "header_bbox": [
+              290,
+              379,
+              355,
+              385
+            ],
+            "header_raw": "'Ě ;ƉƉŵͿ",
+            "total_bbox": [
+              290,
+              437,
+              355,
+              443
+            ],
+            "total_label_bbox": [
+              67,
+              437,
+              120,
+              443
+            ],
+            "tonnes_bbox": [
+              120,
+              437,
+              178,
+              443
+            ]
+          },
+          "transform": {
+            "rule": "REVIEWED_ELEMENTAL_PPM_TO_OXIDE_PPM",
+            "source_unit": "ppm ELEMENT",
+            "element": "Gd",
+            "source_ppm": "6.8",
+            "source_ore_t": "379,421,288",
+            "standard_atomic_weight": "157.249",
+            "atomic_weight_reference": "https://www.ciaaw.org/atomic-weights.htm"
+          }
         }
       ],
       "deposit_type": "mineral sands",
@@ -181069,6 +183306,180 @@
               }
             ]
           }
+        },
+        {
+          "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+          "statement_id": "ridley_blocks12_202603",
+          "effective_date": "2026-03-24",
+          "category": "INFERRED",
+          "source_sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+          "source_key": "asx_ridley_blocks12_202603",
+          "variable": "reported_resource_contained_ceo2_kt",
+          "basis": "CeO2",
+          "value": 20.677,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 6,
+          "page_markers": [
+            "using a >300 ppm TREO cut-off",
+            "Total Inferred 1.82 122,546,251 889 364 525 233",
+            "Table 2 - Mount Ridley Global Rare Earth Oxide Deposits Inferred Mineral Resource Estimate by TREO, HREO, LREO & MREO",
+            "Block 1 Inferred 26,366 10,783 15,583 6,835",
+            "Block 2 Inferred 82,588 33,827 48,761 21,698",
+            "Total Inferred 108,954 44,610 64,344 28,533",
+            "Ce2O3 Dy2O3 Er2O3 Eu2O3 Gd2O3 Ho2O3 La2O3 Lu2O3 Nd2O3 Pr6O11 Sm2O3 Tb4O7 Tm2O3 Y2O3 Yb2O3",
+            "Block 1 5,171 1,084 600 423 1,200 212 3,680 78 4,394 1,176 1,161 180 86 6,422 497",
+            "Block 2 15,506 3,188 1,857 1,203 3,511 666 12,006 242 14,560 3,410 3,279 540 264 20,843 1,513",
+            "Total 20,677 4,272 2,457 1,627 4,712 878 15,686 321 18,954 4,587 4,440 719 350 27,265 2,010"
+          ],
+          "locator": "Physical PDF p6 Tables 2 and 4 and p22 chemical definitions; Blocks 1 and 2 inferred resource; LREO definition confirms CeO2; disputed Table 4 label Ce2O3 retained as source discrepancy.",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "transform": {
+            "rule": "RECONCILED_AGGREGATE_OXIDE_RESIDUAL_KT",
+            "aggregate_basis": "LREO",
+            "mass_rows": [
+              {
+                "row": "Block 1",
+                "aggregate_t": 15583,
+                "component_t": 5171,
+                "other_oxides_t": {
+                  "La2O3": 3680,
+                  "Pr6O11": 1176,
+                  "Nd2O3": 4394,
+                  "Sm2O3": 1161
+                }
+              },
+              {
+                "row": "Block 2",
+                "aggregate_t": 48761,
+                "component_t": 15506,
+                "other_oxides_t": {
+                  "La2O3": 12006,
+                  "Pr6O11": 3410,
+                  "Nd2O3": 14560,
+                  "Sm2O3": 3279
+                }
+              },
+              {
+                "row": "Total",
+                "aggregate_t": 64344,
+                "component_t": 20677,
+                "other_oxides_t": {
+                  "La2O3": 15686,
+                  "Pr6O11": 4587,
+                  "Nd2O3": 18954,
+                  "Sm2O3": 4440
+                }
+              }
+            ]
+          },
+          "context_evidence": [
+            {
+              "page": 22,
+              "markers": [
+                "LREO: the sum of La2O3, CeO2, Pr6O11, Nd2O3, Sm2O3.",
+                "HREO: the sum"
+              ]
+            },
+            {
+              "page": 53,
+              "markers": [
+                "Ce 1.2284 CeO2",
+                "Element Conversion Oxide Form"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+          "statement_id": "ridley_blocks12_202603",
+          "effective_date": "2026-03-24",
+          "category": "INFERRED",
+          "source_sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+          "source_key": "asx_ridley_blocks12_202603",
+          "variable": "reported_resource_contained_yb2o3_kt",
+          "basis": "Yb2O3",
+          "value": 2.01,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 6,
+          "page_markers": [
+            "using a >300 ppm TREO cut-off",
+            "Total Inferred 1.82 122,546,251 889 364 525 233",
+            "Table 2 - Mount Ridley Global Rare Earth Oxide Deposits Inferred Mineral Resource Estimate by TREO, HREO, LREO & MREO",
+            "Block 1 Inferred 26,366 10,783 15,583 6,835",
+            "Block 2 Inferred 82,588 33,827 48,761 21,698",
+            "Total Inferred 108,954 44,610 64,344 28,533",
+            "Ce2O3 Dy2O3 Er2O3 Eu2O3 Gd2O3 Ho2O3 La2O3 Lu2O3 Nd2O3 Pr6O11 Sm2O3 Tb4O7 Tm2O3 Y2O3 Yb2O3",
+            "Block 1 5,171 1,084 600 423 1,200 212 3,680 78 4,394 1,176 1,161 180 86 6,422 497",
+            "Block 2 15,506 3,188 1,857 1,203 3,511 666 12,006 242 14,560 3,410 3,279 540 264 20,843 1,513",
+            "Total 20,677 4,272 2,457 1,627 4,712 878 15,686 321 18,954 4,587 4,440 719 350 27,265 2,010"
+          ],
+          "locator": "Physical PDF p6 Tables 2 and 4 and p22 chemical definitions; Blocks 1 and 2 inferred resource; The independent HREO mass reconciliation supports 2,010 t; the competing Table 3 grade is retained as a discrepancy.",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "transform": {
+            "rule": "RECONCILED_AGGREGATE_OXIDE_RESIDUAL_KT",
+            "aggregate_basis": "HREO",
+            "mass_rows": [
+              {
+                "row": "Block 1",
+                "aggregate_t": 10783,
+                "component_t": 497,
+                "other_oxides_t": {
+                  "Gd2O3": 1200,
+                  "Tb4O7": 180,
+                  "Dy2O3": 1084,
+                  "Ho2O3": 212,
+                  "Er2O3": 600,
+                  "Eu2O3": 423,
+                  "Tm2O3": 86,
+                  "Lu2O3": 78,
+                  "Y2O3": 6422
+                }
+              },
+              {
+                "row": "Block 2",
+                "aggregate_t": 33827,
+                "component_t": 1513,
+                "other_oxides_t": {
+                  "Gd2O3": 3511,
+                  "Tb4O7": 540,
+                  "Dy2O3": 3188,
+                  "Ho2O3": 666,
+                  "Er2O3": 1857,
+                  "Eu2O3": 1203,
+                  "Tm2O3": 264,
+                  "Lu2O3": 242,
+                  "Y2O3": 20843
+                }
+              },
+              {
+                "row": "Total",
+                "aggregate_t": 44610,
+                "component_t": 2010,
+                "other_oxides_t": {
+                  "Gd2O3": 4712,
+                  "Tb4O7": 719,
+                  "Dy2O3": 4272,
+                  "Ho2O3": 878,
+                  "Er2O3": 2457,
+                  "Eu2O3": 1627,
+                  "Tm2O3": 350,
+                  "Lu2O3": 321,
+                  "Y2O3": 27265
+                }
+              }
+            ]
+          },
+          "context_evidence": [
+            {
+              "page": 22,
+              "markers": [
+                "HREO: the sum of Gd2O3, Tb4O7, Dy2O3, Ho2O3, Er2O3, Eu2O3, Tm2O3, Yb2O3, Lu2O3, Y2O3.",
+                "LREO: the sum"
+              ]
+            }
+          ]
         }
       ],
       "identity_declaration": {
