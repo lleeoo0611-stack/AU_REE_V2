@@ -10,11 +10,11 @@
 
 ## 驗收結果
 
-- [REE Project Census](local-ocr-20261118/REE%20project%20census.csv) 包含 93 列、51 欄、1,135 個非空格。70 個 canonical Project 通過總表和身分篩選。
-- [六構面排名](local-ocr-20261118/MCDA/six_domain/ranking.csv) 的 6 個 Project ID 與凍結 Phase 22 相符。共產出 16 個 MCDA 面板。全部矩陣與排名列均已和總表篩選及穩定 ID 核對。
+- [封存總表](../archive/ree-project-census/local-ocr-20261118/REE%20project%20census.csv) 包含 93 列、51 欄、1,135 個非空格。70 個 canonical Project 通過總表和身分篩選。
+- [封存六構面排名](../archive/ree-project-census/local-ocr-20261118/MCDA/six_domain/ranking.csv) 的 6 個 Project ID 與凍結 Phase 22 相符。共產出 16 個 MCDA 面板。全部矩陣與排名列均已和總表篩選及穩定 ID 核對。
 - 依第 9 版的比較規則，2,101 格中有 946 格相同、1,080 格空白、75 格有值但存在內容或來源結構差異。原 900 格相同保留 898 格。609 格保護集保留 607 格。
 - Southern Cross Li-REE Project — GCX 的「開發階段代碼」和「開發階段類別」留空。原件 SHA 以 `aeb46f66` 開頭，實體第 55 頁的本機 OCR 平均詞信心為 67.81888075，觸發既有低信心判定。
-- SQLite 完整性與外鍵通過，結構與 Phase 22 相同。Phase 22 回放 64 個科學檔案匹配，489 項 Python 測試與 R 分析不變量通過。[驗收紀錄](local-ocr-20261118/verification.json)
+- SQLite 完整性與外鍵通過，結構與 Phase 22 相同。Phase 22 回放 64 個科學檔案匹配，489 項 Python 測試與 R 分析不變量通過。[封存驗收紀錄](../archive/ree-project-census/local-ocr-20261118/verification.json)
 
 第 10 版 [乾淨建置](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44261812557) 與 [離線研究 CI](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44261812454) 均成功。上述逐格數字來自新分支的本機重播。新分支的線上試跑已保存探測及部分擷取收據，這一輪的交付驗收採本機重播。
 
