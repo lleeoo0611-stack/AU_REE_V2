@@ -163,7 +163,7 @@ class LocalFallback(unittest.TestCase):
                 self.assertEqual(2,sum(a['http_status']==code for a in primary.attempts))
 
     def test_robots_authentication_and_rate_limits_stop_the_host(self):
-        for code in (401,403,429):
+        for code in (401,429):
             with self.subTest(code=code):
                 self.calls.clear()
                 primary, helper = self.make()
@@ -198,8 +198,8 @@ class LocalFallback(unittest.TestCase):
                     self.assertEqual(before,request.call_count)
                     self.assertIn(before,(1,2))
 
-    def test_document_404_and_410_still_stop_host_after_missing_robots(self):
-        for code in (404,410):
+    def test_document_403_429_and_410_stop_host_after_missing_robots(self):
+        for code in (403,429,410):
             with self.subTest(code=code):
                 self.calls.clear()
                 primary, _ = self.make()
@@ -214,10 +214,71 @@ class LocalFallback(unittest.TestCase):
 
     def test_4xx_stops_all_later_requests_to_host(self):
         _, helper = self.make()
-        result, _ = self.find(helper, self.source('https://mirror.test/404.pdf','https://mirror.test/later.pdf'))
+        self.routes['mirror.test','/restricted.pdf'] = (403,b'restricted',{})
+        result, _ = self.find(helper, self.source('https://mirror.test/restricted.pdf','https://mirror.test/later.pdf'))
         self.assertIsNone(result)
-        self.assertEqual(['/robots.txt','/404.pdf'], [c[1] for c in self.calls])
-        self.assertEqual('404', helper.transport.stopped['mirror.test'])
+        self.assertEqual(['/robots.txt','/restricted.pdf'], [c[1] for c in self.calls])
+        self.assertEqual('403', helper.transport.stopped['mirror.test'])
+
+    def test_document_404_raises_without_stopping_later_primary_request(self):
+        primary, _ = self.make()
+        self.routes['primary.test','/robots.txt'] = (404,b'no robots',{})
+        self.routes['primary.test','/later.pdf'] = (200,PDF,{})
+        with self.assertRaises(urllib.error.HTTPError) as failure:
+            primary('https://primary.test/missing.pdf')
+        self.assertEqual(404,failure.exception.code)
+        self.assertNotIn('primary.test',primary.stopped)
+        self.assertEqual(PDF,primary('https://primary.test/later.pdf')[0])
+        self.assertEqual([404,404,200],[r['http_status'] for r in primary.attempts])
+        self.assertEqual(['/robots.txt','/missing.pdf','/later.pdf'],[r[1] for r in self.calls])
+
+    def test_alternate_404_does_not_prevent_next_same_sha_candidate(self):
+        _, helper = self.make()
+        self.routes['mirror.test','/later.pdf'] = (200,PDF,{})
+        result, receipt = self.find(helper,self.source('https://mirror.test/missing.pdf','https://mirror.test/later.pdf'))
+        self.assertEqual(SHA,result['sha256'])
+        self.assertEqual('ALTERNATE_SAME_SHA',receipt['status'])
+        self.assertNotIn('mirror.test',helper.transport.stopped)
+        self.assertEqual(['/robots.txt','/missing.pdf','/later.pdf'],[r[1] for r in self.calls])
+
+    def test_404_without_snapshot_remains_unavailable_and_later_source_fetches(self):
+        primary, _ = self.make()
+        (self.root/'data').mkdir()
+        (self.root/'data/manifest.json').write_text('{"snapshots":[]}')
+        registry={'sources':[dict(self.source(),key='missing',url='https://primary.test/missing.pdf'),
+                             dict(self.source(),key='later',url='https://primary.test/later.pdf')]}
+        self.routes['primary.test','/later.pdf'] = (200,PDF,{})
+        with patch.object(a,'strict_dns_preflight',return_value=[]):
+            selected, receipts = a.strict_refresh(self.root,registry,self.root/'work',{},'2026-11-13',primary)
+        self.assertEqual(['UNAVAILABLE','FETCHED_SHA_VERIFIED'],[r['status'] for r in receipts])
+        self.assertEqual(['later'],[r['key'] for r in selected])
+        self.assertNotIn('primary.test',primary.stopped)
+
+    def test_v7_404_404_snapshot_fallback_keeps_lyons_and_acdc_fetchable(self):
+        import subprocess
+        registry, raw = strict_fixtures.StrictAcquisitionTests.fixture(self,self.root)
+        source = registry['sources'][0]
+        source.update(key='mt_weld_2024',url='https://primary.test/missing.pdf')
+        manifest = json.loads((self.root/'data/manifest.json').read_text())
+        manifest['snapshots'][0].update(key=source['key'],url=source['url'])
+        (self.root/'data/manifest.json').write_text(json.dumps(manifest))
+        subprocess.run(['git','add','data'],cwd=self.root,check=True)
+        subprocess.run(['git','-c','user.name=Test','-c','user.email=test@example.invalid',
+                        'commit','-qm','reviewed snapshot fixture'],cwd=self.root,check=True)
+        registry['sources'].extend(dict(source,key=key,url='https://primary.test/'+key+'.pdf')
+                                   for key in ('lyons_mre2023','goschen_central_mre2024'))
+        primary, _ = self.make()
+        self.routes['primary.test','/robots.txt'] = (404,b'no robots',{})
+        for key in ('lyons_mre2023','goschen_central_mre2024'):
+            self.routes['primary.test','/'+key+'.pdf'] = (200,raw,{})
+        with patch.object(a,'strict_dns_preflight',return_value=[]):
+            selected, receipts = a.strict_refresh(self.root,registry,self.root/'work',{},'2026-11-13',primary)
+        self.assertEqual(['SNAPSHOT_FALLBACK_SAME_SHA','FETCHED_SHA_VERIFIED','FETCHED_SHA_VERIFIED'],
+                         [r['status'] for r in receipts])
+        self.assertEqual([404,404], [r['http_status'] for r in json.loads(receipts[0]['http_attempts'])])
+        self.assertEqual(3,len(selected))
+        self.assertTrue(receipts[0]['sha_match'])
+        self.assertNotIn('primary.test',primary.stopped)
 
     def test_candidate_budget_skips_remaining_documents_and_index(self):
         self.policy.update(max_candidates_per_source=2,issuer_ir_indexes={'TEST':'https://issuer.test/index'})
@@ -381,9 +442,20 @@ class RepositoryContract(unittest.TestCase):
     def test_source_budget_and_declared_metadata(self):
         import subprocess,csv
         def git(*args):return subprocess.check_output(['git',*args],cwd=ROOT).decode('utf8')
-        def lines(ref):return sum(int(v) for row in git('diff','--numstat',ref,'--','src').splitlines() for v in row.split('\t')[:2])
-        self.assertLessEqual(lines('12f45f4'),250)
-        self.assertLessEqual(lines('070df10'),2000)
+        def lines(ref,end=None):
+            revisions=[ref,end] if end else [ref]
+            return sum(int(v) for row in git('diff','--numstat',*revisions,'--','src').splitlines() for v in row.split('\t')[:2])
+        # Preserve the original round's limit separately from the approved v4 work.
+        self.assertLessEqual(lines('12f45f4','e84c0e0'),250)
+        self.assertLessEqual(lines('09ace21'),250)
+        self.assertLessEqual(lines('070df10'),2164)  # Researcher approved v9, 2026-11-18.
+        self.assertLessEqual(lines('ac65aaf','ed98e0d'),60)
+        self.assertEqual('src/au_ree_v2/census.py',git('diff','--name-only','ac65aaf','ed98e0d','--','src').strip())
+        self.assertEqual(['1','1','src/au_ree_v2/acquisition.py'],
+                         git('diff','--numstat','56bf4dc','3e7c24e','--','src').split())
+        original=git('show','56bf4dc:src/au_ree_v2/acquisition.py')
+        current=git('show','3e7c24e:src/au_ree_v2/acquisition.py')
+        self.assertEqual(original.replace('if 400<=exc.code<500:', 'if 400<=exc.code<500 and exc.code!=404:'),current)
         self.assertEqual('',git('diff','--name-only','--diff-filter=A','12f45f4','--','src','config'))
         with (ROOT/'results/integrated-rebuild-2026-11-15/acquisition_report.csv').open(encoding='utf-8-sig',newline='') as f:
             blocked={r['key'] for r in csv.DictReader(f) if r['host']=='www.asx.com.au' and r['stop_reason']=='NOT_PDF'}

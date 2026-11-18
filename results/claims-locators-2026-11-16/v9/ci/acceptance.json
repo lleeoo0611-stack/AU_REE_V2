@@ -1,0 +1,54 @@
+{
+  "status": "CI_609_PRESERVED_AWAITING_RESEARCHER_REVIEW",
+  "run_id": 44170481863,
+  "run_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44170481863",
+  "commit": "955da5d25f4c1c24512e42b9861cfb86a23d2c49",
+  "job_id": 134348225941,
+  "artifact_id": 14373265760,
+  "artifact_sha256": "157f540de25620add54ab401c3c857f6da06450ae4570c20e46876f01e45fcb0",
+  "protected_preserved": 609,
+  "lost": 0,
+  "target_statuses": {
+    "SAME": 900,
+    "FORMAL_MISSING": 1123,
+    "KNOWN_STRUCTURAL_DIFFERENCE": 44,
+    "DIFFERENT": 34
+  },
+  "status_delta": {
+    "SAME": 23,
+    "FORMAL_MISSING": -12,
+    "KNOWN_STRUCTURAL_DIFFERENCE": 0,
+    "DIFFERENT": 2,
+    "NUMERIC_TOLERANCE_SAME": -13
+  },
+  "same_increment_categories": {
+    "P6_PRE_CUTOFF_EVIDENCE": 10,
+    "P1_15_SIGNIFICANT_DIGITS": 13
+  },
+  "new_same_cells": 23,
+  "nonprotected_v8_same_losses": 0,
+  "net_same_increment": 23,
+  "gap_to_2101": 1201,
+  "missing_reasons": {
+    "RULE_INPUT_MISSING": 323,
+    "NO_SOURCE_VALUE": 62,
+    "SOURCE_NOT_ACQUIRED": 734,
+    "SOURCE_AFTER_CUTOFF": 4
+  },
+  "other_project_changes": 26,
+  "acdc_contract_applied": true,
+  "python_tests": {
+    "tests": 470,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "r_tests": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "code_content_sha256": "48358baecf0815c6eb4613a71bf4201cedb79657db8c8337a5c1cfdbff7069ff",
+  "configuration_sha256": "0fc6821ce06701891233b52a4cf252cffbeee5df7c1b04116f9b80f93e1b6665"
+}

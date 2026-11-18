@@ -1,0 +1,170 @@
+{
+  "status": "PARTIAL_CAPTURE_ONLY_OLD_SNAPSHOTS_MISSING",
+  "blocked_sources": [
+    "reviewed_source_31a205168b6ae647",
+    "reviewed_source_8a0240c46bbfaa5b"
+  ],
+  "ci_t0_run_id": 43900956815,
+  "sources": [
+    {
+      "source_key": "reviewed_source_31a205168b6ae647",
+      "status": "BLOCKED_OLD_SHA_BYTES_NOT_IN_REPOSITORY",
+      "old_sha": "31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953",
+      "new_sha": "c64e13a6f568587049ab530e30066692733afaac3f92326c236881e391d212d8",
+      "old_features": null,
+      "new_features": 13,
+      "id_field": null,
+      "field_changes": null,
+      "changed_feature_ids": null,
+      "geometry_changed_feature_ids": null,
+      "coordinate_attributes_changed_feature_ids": null,
+      "metadata_changed_keys": null,
+      "actual_baseline_coordinate_cells_using_old_sha": 0,
+      "actual_baseline_project_ids": [],
+      "registered_tenement_scope": [
+        {
+          "project_id": "AU-2fc429d0556dfa0b95c4",
+          "declared_tenement_ids": [
+            "MIN5532",
+            "RL2002"
+          ],
+          "matched_new_features": 2,
+          "old_feature_ids": null,
+          "changed_feature_ids": null,
+          "comparison_status": "OLD_SNAPSHOT_MISSING_CHANGES_NOT_ASSESSED"
+        },
+        {
+          "project_id": "AU-ff758cad5beb276d327d",
+          "declared_tenement_ids": [
+            "RL006904",
+            "EL006966",
+            "RL006906"
+          ],
+          "matched_new_features": 3,
+          "old_feature_ids": null,
+          "changed_feature_ids": null,
+          "comparison_status": "OLD_SNAPSHOT_MISSING_CHANGES_NOT_ASSESSED"
+        },
+        {
+          "project_id": "AU-410159af7b79ea498ec2",
+          "declared_tenement_ids": [
+            "EL 6419",
+            "EL 6664"
+          ],
+          "matched_new_features": 2,
+          "old_feature_ids": null,
+          "changed_feature_ids": null,
+          "comparison_status": "OLD_SNAPSHOT_MISSING_CHANGES_NOT_ASSESSED"
+        },
+        {
+          "project_id": "AU-176852ef1348ac10d154",
+          "declared_tenement_ids": [
+            "EL 6666"
+          ],
+          "matched_new_features": 2,
+          "old_feature_ids": null,
+          "changed_feature_ids": null,
+          "comparison_status": "OLD_SNAPSHOT_MISSING_CHANGES_NOT_ASSESSED"
+        }
+      ],
+      "existing_rule_archived_layer_candidates": null,
+      "requires_researcher_confirmation": true,
+      "source_declaration_updated": false,
+      "comparison_scope": "NO_OLD_BYTES_NO_FEATURE_COMPARISON_NO_ADDED_REMOVED_OR_UNCHANGED_INFERENCE",
+      "ci_observed_sha256": "756bf430322b213110a6c32a34733430483ec5e4404ffdae57e08602c4d1acca",
+      "fetched_sha_matches_ci_observed": false,
+      "old_snapshot_search": "old_layer_snapshot_search.json",
+      "needed_input": "EXACT_OLD_SHA_ORIGINAL_FROM_REPOSITORY_OR_RESEARCHER_SUPPLIED_REFERENCE",
+      "http_status": 200,
+      "new_exceeded_transfer_limit": null,
+      "new_number_matched": 13,
+      "new_native_id_schema_reason": "NO_UNIQUE_DECLARED_NATIVE_FEATURE_ID_NO_NAME_MATCH_INVENTED",
+      "http_attempts": [
+        {
+          "host": "opendata.maps.vic.gov.au",
+          "http_status": 404
+        },
+        {
+          "host": "opendata.maps.vic.gov.au",
+          "http_status": 200
+        }
+      ],
+      "fetched_at": "2026-11-16T16:50:48.706887+00:00"
+    },
+    {
+      "source_key": "reviewed_source_8a0240c46bbfaa5b",
+      "status": "BLOCKED_OLD_SHA_BYTES_NOT_IN_REPOSITORY",
+      "old_sha": "8a0240c46bbfaa5b60880acdcf237b18debed77b10d9af8842dfda3a519167cf",
+      "new_sha": "d96ee2e5f587ee16dfee588c4661b9c30cee0f25310abc5bdfc8aeb273b9408e",
+      "old_features": null,
+      "new_features": 415,
+      "id_field": "site_code",
+      "field_changes": null,
+      "changed_feature_ids": null,
+      "geometry_changed_feature_ids": null,
+      "coordinate_attributes_changed_feature_ids": null,
+      "metadata_changed_keys": null,
+      "actual_baseline_coordinate_cells_using_old_sha": 0,
+      "actual_baseline_project_ids": [],
+      "registered_tenement_scope": [],
+      "existing_rule_archived_layer_candidates": null,
+      "requires_researcher_confirmation": true,
+      "source_declaration_updated": false,
+      "comparison_scope": "NO_OLD_BYTES_NO_FEATURE_COMPARISON_NO_ADDED_REMOVED_OR_UNCHANGED_INFERENCE",
+      "ci_observed_sha256": "d96ee2e5f587ee16dfee588c4661b9c30cee0f25310abc5bdfc8aeb273b9408e",
+      "fetched_sha_matches_ci_observed": true,
+      "old_snapshot_search": "old_layer_snapshot_search.json",
+      "needed_input": "EXACT_OLD_SHA_ORIGINAL_FROM_REPOSITORY_OR_RESEARCHER_SUPPLIED_REFERENCE",
+      "http_status": 200,
+      "new_exceeded_transfer_limit": null,
+      "new_number_matched": null,
+      "http_attempts": [
+        {
+          "host": "public-services.slip.wa.gov.au",
+          "http_status": 404
+        },
+        {
+          "host": "public-services.slip.wa.gov.au",
+          "http_status": 200
+        }
+      ],
+      "fetched_at": "2026-11-16T16:50:54.403952+00:00"
+    }
+  ],
+  "excluded_report_only": [
+    {
+      "key": "wudinna_desorption20260916",
+      "host": "www.londonstockexchange.com",
+      "http_status": "200",
+      "status": "SOURCE_SHA_CHANGED",
+      "stop_reason": "PARENT_OR_ALIAS_SOURCE_NOT_VALIDATED",
+      "expected_sha256": "f93f07ed1bf765f94de4edce0dd2b87853bb8690bee74fa5b2220efdb58331ba",
+      "actual_sha256": "d2b956c0173c4a04aa4e02c3182e5d9e872c199fbf262b1911ff98e2ad794a9a"
+    },
+    {
+      "key": "browns_wolverine_mre20250116",
+      "host": "cdn-api.markitdigital.com",
+      "http_status": "200",
+      "status": "SOURCE_SHA_CHANGED",
+      "stop_reason": "PARENT_OR_ALIAS_SOURCE_NOT_VALIDATED",
+      "expected_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+      "actual_sha256": "3a23e37e448da635e5f58296c11fe05a99fe559dfd3b9cea30f694eb3d2a91f5"
+    },
+    {
+      "key": "reviewed_source_013de14181fdf89d",
+      "host": "strike.nt.gov.au",
+      "http_status": "200",
+      "status": "SOURCE_SHA_CHANGED",
+      "stop_reason": "PARENT_OR_ALIAS_SOURCE_NOT_VALIDATED",
+      "expected_sha256": "013de14181fdf89dd82486d2f9ab80467bc8942179b36f5a3af5139116496432",
+      "actual_sha256": "b6026cb748f79fde2941e9152c5222cc20b7b788f8121e7da76eda62dc063a8a"
+    }
+  ],
+  "excluded_hosts_not_requested_by_this_script": [
+    "cdn-api.markitdigital.com",
+    "strike.nt.gov.au",
+    "www.londonstockexchange.com"
+  ],
+  "rows": 0,
+  "note": "Actual baseline use is separated from registered scopes and old-layer rule candidates. No new SHA adopted; no identity inferred from row counts."
+}

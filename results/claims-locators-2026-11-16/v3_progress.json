@@ -1,0 +1,33 @@
+{
+  "status": "WAITING_APPROVED_T1_CSV_ASXPDF_APPROVAL_AND_VIC_SRC_DECISION",
+  "baseline_commit": "9c067a5",
+  "protected_609_acceptance_run": 43900956815,
+  "protected_609_last_ci_preserved": 609,
+  "new_ci_runs": 0,
+  "t1_approved_column_present": false,
+  "t1_applied_rows": 0,
+  "asxpdf_proposal_rows": 43,
+  "asxpdf_approved_rows": null,
+  "asxpdf_receipt_mismatches": 0,
+  "asxpdf_ci_alternate_same_sha": null,
+  "same_sha_updates_applied": 0,
+  "vic_tenement_matches": 8,
+  "vic_coordinate_cells_requested": 8,
+  "vic_coordinate_cells_computed": 0,
+  "vic_timestamp_only_variability": true,
+  "numeric_classification_only": {
+    "FORMAL_MISSING": 1422,
+    "SAME": 609,
+    "KNOWN_STRUCTURAL_DIFFERENCE": 42,
+    "DIFFERENT": 27,
+    "NUMERIC_TOLERANCE_SAME": 1
+  },
+  "new_same_cells_validated": null,
+  "src_added": 0,
+  "src_deleted": 0,
+  "claims_changed": false,
+  "sources_changed": false,
+  "reference_regenerated": false,
+  "experiment_rebuilt": false,
+  "old_original_search": false
+}

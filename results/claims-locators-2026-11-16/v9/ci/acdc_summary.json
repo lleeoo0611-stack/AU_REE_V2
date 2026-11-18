@@ -1,0 +1,125 @@
+{
+  "project_id": "AU-447261eed0e81eae88bf",
+  "contract_applied": true,
+  "contract_status": "HM_CONTRACT_VALIDATED_IN_CI",
+  "summary_before": "以來源HM噸位與氧化物百分比推算；排除Sc；非來源公布TREO總量或品位；保留來源捨入區間；開發階段依來源原文及其揭露日期：Scoping Study（來源揭露：2025-06-12）；分類僅對應該來源時點，不代表目前營運、法律或許可狀態。",
+  "summary_ci": "以來源HM噸位與氧化物百分比推算；排除Sc；非來源公布TREO總量或品位；保留來源捨入區間；開發階段依來源原文及其揭露日期：Scoping Study（來源揭露：2025-06-12）；分類僅對應該來源時點，不代表目前營運、法律或許可狀態。；政府座標為來源資料集代表點（{\"dataset\":\"GA2025\",\"datum\":\"GDA94\",\"feature_id\":2264,\"meaning\":\"REPRESENTATIVE_POINT_NOT_BOUNDARY\"}），不是礦權或資源邊界；資料集日期不是資源估計有效日。",
+  "oxide_cells_with_values": 15,
+  "source_sha_updated": false,
+  "claims_updated_this_round": false,
+  "claims_changed_since_comparison_baseline": false,
+  "new_same_cells": [
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "緯度",
+      "previous_status": "FORMAL_MISSING",
+      "new_status": "SAME",
+      "attribution": "P6_PRE_CUTOFF_EVIDENCE",
+      "source_sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "經度",
+      "previous_status": "FORMAL_MISSING",
+      "new_status": "SAME",
+      "attribution": "P6_PRE_CUTOFF_EVIDENCE",
+      "source_sha256": "521f635719be168642c115c14451aabf1f2e803cfef71cb72704c5d62d7e8d2b"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "La2O3_氧化鑭_kt",
+      "previous_status": "NUMERIC_TOLERANCE_SAME",
+      "new_status": "SAME",
+      "attribution": "P1_15_SIGNIFICANT_DIGITS",
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "CeO2_氧化鈰_kt",
+      "previous_status": "NUMERIC_TOLERANCE_SAME",
+      "new_status": "SAME",
+      "attribution": "P1_15_SIGNIFICANT_DIGITS",
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "Nd2O3_氧化釹_kt",
+      "previous_status": "NUMERIC_TOLERANCE_SAME",
+      "new_status": "SAME",
+      "attribution": "P1_15_SIGNIFICANT_DIGITS",
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "Sm2O3_氧化釤_kt",
+      "previous_status": "NUMERIC_TOLERANCE_SAME",
+      "new_status": "SAME",
+      "attribution": "P1_15_SIGNIFICANT_DIGITS",
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "Eu2O3_氧化銪_kt",
+      "previous_status": "NUMERIC_TOLERANCE_SAME",
+      "new_status": "SAME",
+      "attribution": "P1_15_SIGNIFICANT_DIGITS",
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "Gd2O3_氧化釓_kt",
+      "previous_status": "NUMERIC_TOLERANCE_SAME",
+      "new_status": "SAME",
+      "attribution": "P1_15_SIGNIFICANT_DIGITS",
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "Dy2O3_氧化鏑_kt",
+      "previous_status": "NUMERIC_TOLERANCE_SAME",
+      "new_status": "SAME",
+      "attribution": "P1_15_SIGNIFICANT_DIGITS",
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "Ho2O3_氧化鈥_kt",
+      "previous_status": "NUMERIC_TOLERANCE_SAME",
+      "new_status": "SAME",
+      "attribution": "P1_15_SIGNIFICANT_DIGITS",
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "Tm2O3_氧化銩_kt",
+      "previous_status": "NUMERIC_TOLERANCE_SAME",
+      "new_status": "SAME",
+      "attribution": "P1_15_SIGNIFICANT_DIGITS",
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "Yb2O3_氧化鐿_kt",
+      "previous_status": "NUMERIC_TOLERANCE_SAME",
+      "new_status": "SAME",
+      "attribution": "P1_15_SIGNIFICANT_DIGITS",
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "Lu2O3_氧化鎦_kt",
+      "previous_status": "NUMERIC_TOLERANCE_SAME",
+      "new_status": "SAME",
+      "attribution": "P1_15_SIGNIFICANT_DIGITS",
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "column": "Y2O3_氧化釔_kt",
+      "previous_status": "NUMERIC_TOLERANCE_SAME",
+      "new_status": "SAME",
+      "attribution": "P1_15_SIGNIFICANT_DIGITS",
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    }
+  ]
+}

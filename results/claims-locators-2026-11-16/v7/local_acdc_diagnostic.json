@@ -1,0 +1,105 @@
+{
+  "status": "LOCAL_PIPELINE_RESOURCE_DIAGNOSTIC",
+  "accepted_observations": 19,
+  "contract_passed": true,
+  "oxide_values": {
+    "La2O3": "60.016",
+    "CeO2": "122.76",
+    "Pr6O11": "15.48922242604142347330153754",
+    "Nd2O3": "51.832",
+    "Sm2O3": "9.6844",
+    "Eu2O3": "0.49104",
+    "Gd2O3": "9.548",
+    "Tb4O7": "1.533207293212736471803786828",
+    "Dy2O3": "9.0024",
+    "Ho2O3": "1.9096",
+    "Er2O3": "6.138",
+    "Tm2O3": "0.9548",
+    "Yb2O3": "6.5472",
+    "Lu2O3": "1.0912",
+    "Y2O3": "61.38"
+  },
+  "oxide_count": 15,
+  "resource_fields": {
+    "專案ID": "AU-447261eed0e81eae88bf",
+    "開發商": "",
+    "未上市公司": "",
+    "專案名稱": "",
+    "所在地_中文": "",
+    "所在地_英文": "",
+    "國家": "",
+    "州省地區": "",
+    "緯度": "",
+    "經度": "",
+    "礦床型態代碼": "",
+    "礦床型態": "",
+    "開發階段代碼": "",
+    "開發階段類別": "",
+    "開發階段": "",
+    "礦石蘊藏量_Mt": "620.0",
+    "TREO品位_pct": "",
+    "總TREO蘊藏量_kt": "",
+    "磁鐵稀土氧化物蘊藏量_kt": "",
+    "磁鐵稀土佔TREO_pct": "",
+    "NdPr蘊藏量_kt_需兩者皆公布": "67.32122242604142347330153754",
+    "完整重稀土組合蘊藏量_kt_需8元素皆公布": "88.55640729321273647180378683",
+    "預估年產TREO_t_per_year": "",
+    "預估年產NdPr_t_per_year": "",
+    "產品/產出": "",
+    "有TREO資源估計": "",
+    "有來源文件": "",
+    "資料來源名稱": "goschen_central_mre2024",
+    "資料來源URL": "https://wcsecure.weblink.com.au/clients/acdcmetals/headline.aspx?headlineid=3657278",
+    "已公布元素數_共15項": "15",
+    "已公布元素總和_kt": "358.3770697192541599451053243",
+    "元素總和/TREO": "",
+    "總說明": "",
+    "四項磁性元素皆公布": "是",
+    "磁性元素重算值_NdPrTbDy_kt": "77.85682971925415994510532437",
+    "La2O3_氧化鑭_kt": "60.016",
+    "CeO2_氧化鈰_kt": "122.76",
+    "Pr6O11_氧化鐠_kt": "15.48922242604142347330153754",
+    "Nd2O3_氧化釹_kt": "51.832",
+    "Sm2O3_氧化釤_kt": "9.6844",
+    "Eu2O3_氧化銪_kt": "0.49104",
+    "Gd2O3_氧化釓_kt": "9.548",
+    "Tb4O7_氧化鋱_kt": "1.533207293212736471803786828",
+    "Dy2O3_氧化鏑_kt": "9.0024",
+    "Ho2O3_氧化鈥_kt": "1.9096",
+    "Er2O3_氧化鉺_kt": "6.138",
+    "Tm2O3_氧化銩_kt": "0.9548",
+    "Yb2O3_氧化鐿_kt": "6.5472",
+    "Lu2O3_氧化鎦_kt": "1.0912",
+    "Y2O3_氧化釔_kt": "61.38",
+    "ASX代碼": ""
+  },
+  "resource_note": "以來源HM噸位與氧化物百分比推算；排除Sc；非來源公布TREO總量或品位；保留來源捨入區間",
+  "reason": "",
+  "review_issues": [
+    {
+      "reason": "SOURCE_NOT_ACQUIRED",
+      "source_sha": "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5"
+    },
+    {
+      "reason": "SOURCE_NOT_ACQUIRED",
+      "source_sha": "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5"
+    },
+    {
+      "reason": "SOURCE_NOT_ACQUIRED",
+      "source_sha": "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5"
+    },
+    {
+      "reason": "MISSING_PAGE_OR_TWO_MARKERS",
+      "source_sha": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    },
+    {
+      "reason": "MISSING_PAGE_OR_TWO_MARKERS",
+      "source_sha": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
+    },
+    {
+      "reason": "SOURCE_NOT_ACQUIRED",
+      "source_sha": "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5"
+    }
+  ],
+  "formal_ci_not_replaced": true
+}

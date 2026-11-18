@@ -1,0 +1,106 @@
+{
+  "status": "DIAGNOSTIC_COMPLETE_PENDING_REVIEW",
+  "source_key": "reviewed_source_31a205168b6ae647",
+  "capture_sha256": "c64e13a6f568587049ab530e30066692733afaac3f92326c236881e391d212d8",
+  "function": "au_ree_v2.spatial.summary_tenement_centroid",
+  "input_crs": "EPSG:7844",
+  "limit_m": 25000,
+  "projects": [
+    {
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "tenement_ids": [
+        "MIN5532",
+        "RL2002"
+      ],
+      "matched_feature_parts": 2,
+      "result": {
+        "accepted": false,
+        "reason": "TENEMENT_UNION_EXCEEDS_25KM",
+        "longitude": 142.77894108871897,
+        "latitude": -36.44433981125168,
+        "precision_m": 26754.17689244687,
+        "location_method": "TENEMENT_CENTROID",
+        "input_crs": "EPSG:7844",
+        "input_datum": "Geocentric Datum of Australia 2020",
+        "output_crs": "EPSG:7844",
+        "metric_crs": "+proj=laea +lat_0=-36.424845000000005 +lon_0=142.77158450000002 +ellps=GRS80 +units=m +no_defs +type=crs"
+      },
+      "error": ""
+    },
+    {
+      "project_id": "AU-ff758cad5beb276d327d",
+      "tenement_ids": [
+        "RL006904",
+        "EL006966",
+        "RL006906"
+      ],
+      "matched_feature_parts": 3,
+      "result": {
+        "accepted": true,
+        "reason": "ACCEPTED",
+        "longitude": 141.9153047463452,
+        "latitude": -36.94930238480867,
+        "precision_m": 10209.247215604457,
+        "location_method": "TENEMENT_CENTROID",
+        "input_crs": "EPSG:7844",
+        "input_datum": "Geocentric Datum of Australia 2020",
+        "output_crs": "EPSG:7844",
+        "metric_crs": "+proj=laea +lat_0=-36.9582975 +lon_0=141.92088 +ellps=GRS80 +units=m +no_defs +type=crs"
+      },
+      "error": ""
+    },
+    {
+      "project_id": "AU-410159af7b79ea498ec2",
+      "tenement_ids": [
+        "EL 6419",
+        "EL 6664"
+      ],
+      "matched_feature_parts": 2,
+      "result": {
+        "accepted": false,
+        "reason": "TENEMENT_UNION_EXCEEDS_25KM",
+        "longitude": 143.55073591015187,
+        "latitude": -35.72103682525587,
+        "precision_m": 31626.97376611972,
+        "location_method": "TENEMENT_CENTROID",
+        "input_crs": "EPSG:7844",
+        "input_datum": "Geocentric Datum of Australia 2020",
+        "output_crs": "EPSG:7844",
+        "metric_crs": "+proj=laea +lat_0=-35.700835999999995 +lon_0=143.5916405 +ellps=GRS80 +units=m +no_defs +type=crs"
+      },
+      "error": ""
+    },
+    {
+      "project_id": "AU-176852ef1348ac10d154",
+      "tenement_ids": [
+        "EL 6666"
+      ],
+      "matched_feature_parts": 2,
+      "result": {
+        "accepted": true,
+        "reason": "ACCEPTED",
+        "longitude": 143.41835130658072,
+        "latitude": -35.428726337459224,
+        "precision_m": 19639.13490994161,
+        "location_method": "TENEMENT_CENTROID",
+        "input_crs": "EPSG:7844",
+        "input_datum": "Geocentric Datum of Australia 2020",
+        "output_crs": "EPSG:7844",
+        "metric_crs": "+proj=laea +lat_0=-35.422481 +lon_0=143.46195 +ellps=GRS80 +units=m +no_defs +type=crs"
+      },
+      "error": ""
+    }
+  ],
+  "cells": 8,
+  "reference_cells_with_values": 4,
+  "computed_cells": 8,
+  "exact_matches": 0,
+  "presentation_precision_matches": 4,
+  "accepted_cells": 4,
+  "rejected_cells": 4,
+  "src_changed": "AUTHORIZED_CENTROID_FIX_AND_SOURCE_CONTENT_HASH",
+  "runtime_monkeypatch": false,
+  "reference_regenerated": false,
+  "formal_proof_gates_bypassed": false,
+  "diagnostic_scope": "Geometry calculation on predeclared tenement sets only; no identity/ownership PDF proof or formal admission asserted."
+}

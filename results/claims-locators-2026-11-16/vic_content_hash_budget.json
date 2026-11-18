@@ -1,0 +1,46 @@
+{
+  "status": "STOPPED_SOURCE_BUDGET_EXCEEDED_UNAPPLIED_DESIGN",
+  "cumulative_baseline": "070df10",
+  "current_cumulative": 2000,
+  "source_limit": 2005,
+  "proposed_cumulative": 2074,
+  "additional_budget_required": 69,
+  "additional_cumulative_change": 74,
+  "per_file": {
+    "acquisition.py": {
+      "current_vs_070df10": [
+        289,
+        13
+      ],
+      "proposed_vs_070df10": [
+        349,
+        16
+      ]
+    },
+    "spatial.py": {
+      "current_vs_070df10": [
+        246,
+        0
+      ],
+      "proposed_vs_070df10": [
+        257,
+        0
+      ]
+    }
+  },
+  "proposed_patch_sha256": "d489f000b1e24130f511b371caaec2a0c5fc5848b5a0c7dc2e6666d39f6e1470",
+  "applied": false,
+  "implementation_tested": false,
+  "needs": [
+    "Declared-key validation and canonical UTF-8 hash",
+    "Preserve raw files even on policy failure",
+    "Dual raw/content receipt metadata",
+    "Disable byte/snapshot fallback for declared-policy failures",
+    "Resolve declared content identity to raw snapshot provenance for coordinates"
+  ],
+  "note": "Measured complete candidate, not a claim of mathematical minimality. No production source or registry changes from this patch were applied; no line packing or safety deletion.",
+  "patch_file_sha256": "3d92a2e39316467978bf7d059f8674e379947de9c9781239e8e6f1f4e1573750",
+  "proposal_hash_basis": "Historical proposed_patch_sha256 uses LF-normalized patch text; patch_file_sha256 hashes retained original bytes.",
+  "superseded_by": "vic_content_hash_application.json",
+  "subsequent_source_cap_approved": 2074
+}

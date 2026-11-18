@@ -1,0 +1,69 @@
+{
+  "run_id": 44173975251,
+  "run_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44173975251",
+  "head_sha": "87b51f6dd8ad7fcf46bec2de0a4de7f052d45535",
+  "clean_scientific_commit": "955da5d25f4c1c24512e42b9861cfb86a23d2c49",
+  "scientific_inputs_identical": true,
+  "conclusion": "success",
+  "python_tests": 470,
+  "r_tests": "PASSED",
+  "phase_checks": [
+    {
+      "folder": "phase20",
+      "command_log_line": 20106,
+      "matched": [
+        {
+          "line": 21057,
+          "text": "2026-11-17T21:07:14.1966561Z   \"status\": \"MATCHED\","
+        }
+      ]
+    },
+    {
+      "folder": "phase21-a",
+      "command_log_line": 21065,
+      "matched": [
+        {
+          "line": 22063,
+          "text": "2026-11-17T21:08:12.7059319Z   \"status\": \"MATCHED\","
+        }
+      ]
+    },
+    {
+      "folder": "phase21-b",
+      "command_log_line": 22071,
+      "matched": [
+        {
+          "line": 23069,
+          "text": "2026-11-17T21:09:10.3050044Z   \"status\": \"MATCHED\","
+        }
+      ]
+    },
+    {
+      "folder": "phase22-a",
+      "command_log_line": 23077,
+      "matched": [
+        {
+          "line": 24191,
+          "text": "2026-11-17T21:10:42.4517004Z   \"status\": \"MATCHED\","
+        }
+      ]
+    },
+    {
+      "folder": "phase22-b",
+      "command_log_line": 24199,
+      "matched": [
+        {
+          "line": 25313,
+          "text": "2026-11-17T21:11:20.7766681Z   \"status\": \"MATCHED\","
+        }
+      ]
+    }
+  ],
+  "live_job_skipped": true,
+  "clean_build_repeated": false,
+  "selected_log_lines": [
+    "2026-11-17T20:57:48.6561162Z Ran 470 tests in 167.384s",
+    "2026-11-17T20:57:49.0304470Z R analytical invariants passed"
+  ],
+  "log_origin": "Authenticated GitHub Actions job log 134360558109; original log line numbers retained."
+}

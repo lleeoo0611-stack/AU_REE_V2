@@ -1,0 +1,62 @@
+{
+  "cumulative_baseline": "070df10",
+  "version_baseline": "1e0b833",
+  "cumulative_before": 2130,
+  "cumulative_after": 2157,
+  "cumulative_delta": 27,
+  "cap": 2164,
+  "direct_version_added": 26,
+  "direct_version_deleted": 3,
+  "direct_version_gross": 29,
+  "direct_version_net": 23,
+  "direct_files": [
+    {
+      "added": 26,
+      "deleted": 3,
+      "path": "src/au_ree_v2/acquisition.py"
+    }
+  ],
+  "cumulative_files": [
+    {
+      "added": 375,
+      "deleted": 19,
+      "path": "src/au_ree_v2/acquisition.py"
+    },
+    {
+      "added": 760,
+      "deleted": 0,
+      "path": "src/au_ree_v2/census.py"
+    },
+    {
+      "added": 54,
+      "deleted": 6,
+      "path": "src/au_ree_v2/cli.py"
+    },
+    {
+      "added": 2,
+      "deleted": 2,
+      "path": "src/au_ree_v2/discovery.py"
+    },
+    {
+      "added": 64,
+      "deleted": 0,
+      "path": "src/au_ree_v2/evidence.py"
+    },
+    {
+      "added": 238,
+      "deleted": 2,
+      "path": "src/au_ree_v2/pdf_extract.py"
+    },
+    {
+      "added": 257,
+      "deleted": 0,
+      "path": "src/au_ree_v2/spatial.py"
+    },
+    {
+      "added": 371,
+      "deleted": 7,
+      "path": "src/au_ree_v2/technical.py"
+    }
+  ],
+  "note": "Cumulative budget is the diff against 070df10. Overlapping edits mean direct version gross is not arithmetically added to the prior cumulative diff."
+}
