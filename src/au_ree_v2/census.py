@@ -507,16 +507,17 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
         r.get('selection_role',r.get('resource_selection_role','PREFERRED'))=='PREFERRED'}
     if declared:contracts=declared
     if len(contracts)>1:return None,{},'MULTIPLE_PREFERRED_RESOURCE_STATEMENTS'
+    primary=decoded
     if contracts:
         contract=json.loads(next(iter(contracts)))
-        decoded=[o for o in decoded if all(o[k]==contract[v] for k,v in [('source_sha','source_sha256'),('statement_id','statement_id'),('scope','scope'),('effective_date','effective_date')])]
+        primary=[o for o in decoded if all(o[k]==contract[v] for k,v in [('source_sha','source_sha256'),('statement_id','statement_id'),('scope','scope'),('effective_date','effective_date')])]
     partial=None
     try:
-        first=next((o for o in decoded if json.loads(o['raw']).get('review_contract',{}).get('partial_resource_projection')),None)
-        if first:partial=summary_partial_contract(decoded,sources[first['source_sha']])
+        first=next((o for o in primary if json.loads(o['raw']).get('review_contract',{}).get('partial_resource_projection')),None)
+        if first:partial=summary_partial_contract(primary,sources[first['source_sha']])
     except (KeyError,ValueError,IndexError,InvalidOperation):return None,{},'PARTIAL_RESOURCE_PROOF_INVALID'
-    bundle,reason=summary_resource_bundle(decoded,partial)
-    if not bundle:return None,{},reason if decoded else 'NO_VALIDATED_RESOURCE_OBSERVATIONS'
+    bundle,reason=summary_resource_bundle(primary,partial)
+    if not bundle:return None,{},reason if primary else 'NO_VALIDATED_RESOURCE_OBSERVATIONS'
     sha=bundle['source_sha256'];scope=bundle['scope'];ids=[o['obs_id'] for o in bundle['observations']]
     locator='; '.join(sorted({o['locator'] for o in bundle['observations']}))
     for variable,column in [('ore_mt','礦石蘊藏量_Mt'),('grade_pct','TREO品位_pct'),('contained_treo_kt','總TREO蘊藏量_kt')]:
@@ -524,7 +525,7 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
             bundle['contained_method'] if variable=='contained_treo_kt' else 'SAME_SOURCE_STATEMENT_SCOPE_DATE',scope,ids)
     if 'grade_pct' in bundle['value']:put('有TREO資源估計','是',sha,locator,'COMPLETE_SOURCE_BOUND_RESOURCE_PAIR',scope,ids)
     put('資料來源名稱',sources[sha]['key'],sha,locator);put('資料來源URL',sources[sha]['url'],sha,locator)
-    same=[o for o in decoded if (o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])==
+    same=[o for o in primary if (o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])==
           (sha,bundle['statement_id'],scope,bundle['effective_date'])]
     ids=sorted({o['obs_id'] for o in same})
     shares=[o for o in same if o['variable']=='magnet_reo_share_pct' and o['unit']=='%' and
