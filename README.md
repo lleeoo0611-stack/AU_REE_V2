@@ -4,6 +4,8 @@
 
 同一入口執行來源擷取、SQLite 入庫、Census 匯出、篩選及 Phase 22 的 MCDA。
 
+[現行總表、驗收與封存索引](results/ree-project-census/README.md)
+
 ```sh
 au-ree-v2 all --refresh --as-of 2026-11-13 --work work/census-live
 au-ree-v2 all --source-replay work/census-live/source_acquisition.json --as-of 2026-11-13 --work work/census-replay
