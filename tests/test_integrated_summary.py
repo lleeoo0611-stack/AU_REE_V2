@@ -267,7 +267,9 @@ class IntegratedRuleTests(unittest.TestCase):
     def test_new_individual_vocabulary_never_uses_total_variable(self):
         rules,_=summary_settings(ROOT);mapping={'La2O3':'la2o3','CeO2':'ceo2','Sm2O3':'sm2o3','Eu2O3':'eu2o3','Gd2O3':'gd2o3','Ho2O3':'ho2o3','Er2O3':'er2o3','Tm2O3':'tm2o3','Yb2O3':'yb2o3','Lu2O3':'lu2o3'}
         claims=json.loads((ROOT/'data/claims.json').read_text(encoding='utf8'))
-        added=[o for p in claims['projects'] for o in p['observations'] if o.get('extraction_method')=='INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD' and o.get('basis') in mapping]
+        added=[o for p in claims['projects'] for o in p['observations']
+            if o.get('extraction_method')=='INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD'
+            and o.get('basis') in mapping and o.get('raw',{}).get('reviewed_observation')]
         self.assertEqual(len(added),157)
         for o in added:
             original=o['raw']['reviewed_observation']

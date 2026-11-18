@@ -4,6 +4,10 @@
 
 ## 現行成果
 
+2026-11-19 已逐格複核 448 個資源欄位，補入 34 格，414 格待補證。 [發布說明](resource-review-448-20261119/README.md) · [Census CSV](resource-review-448-20261119/REE%20project%20census.csv) · [逐格處置](resource-review-448-20261119/resource_gap_disposition.csv) · [驗收](resource-review-448-20261119/verification.json)
+
+## 2026-11-19 同估算資源修復
+
 2026-11-19 完成 452 個資源缺值的同估算複核。補 4 格，剩 448 格。原分支單一流程已接入來源版本及截日驗證，16 份 MCDA 排名一致。 [發布說明](resource-repair-20261119/README.md) · [Census CSV](resource-repair-20261119/REE%20project%20census.csv) · [逐格複核](resource-repair-20261119/resource_gap_review.csv) · [驗收紀錄](resource-repair-20261119/verification.json)
 
 ## 2026-11-19 架構審核成果
