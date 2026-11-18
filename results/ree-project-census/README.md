@@ -18,12 +18,30 @@
 
 第 10 版 [乾淨建置](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44261812557) 與 [離線研究 CI](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44261812454) 均成功。上述逐格數字來自新分支的本機重播。新分支的線上試跑已保存探測及部分擷取收據，這一輪的交付驗收採本機重播。
 
-## 本機重播
+## 原交付版的本機重播
 
-保留此工作樹的 `work/verified-asx-replay.json`、`work/replay-assets/` 和原有 Git 快照即可重播。Windows OCR 補驗使用 UB Mannheim 的 Tesseract 5.4.0 可攜檔與專案封存的英文語言資料。
+提交 `043d078` 對應此處的原交付結果。保留此工作樹的 `work/verified-asx-replay.json`、`work/replay-assets/` 和原有 Git 快照即可在該版本重播。Windows OCR 補驗使用 UB Mannheim 的 Tesseract 5.4.0 可攜檔與專案封存的英文語言資料。
 
 ```sh
 au-ree-v2 all --as-of 2026-11-13 --source-replay work/verified-asx-replay.json --work work/census-replay
 ```
 
 指定本機 `TESSERACT` 與 `TESSDATA_PREFIX` 可重播掃描頁檢查。線上重抓使用 `all --refresh` 和同一個後續流程。原件無法取得、檔案改版、截日較晚與未核對定位均列在追溯資料。
+
+## 靜態 ASX PDF 建置
+
+由同一入口讀取本機 PDF。來源選入依既有登錄、SHA-256 和出版日期核對，後續頁碼、標記與資源範圍驗證照常執行。補入的原件保留在 `work/static-asx-library/`。
+
+```sh
+au-ree-v2 all --as-of 2026-11-13 --source-replay work/static-replay-basis.json --static-pdfs work/static-asx-library --work work/static-census-replay
+```
+
+`work/static-replay-basis.json` 沿用上次重播的原件清單，並反映澳洲稀土公司季度報告首頁驗證的 2026-10-30 出版日。新一輪取得收據是 `work/static-run-final/source_acquisition.json`，保持收據指向的原件即可重播這次的來源選入。
+
+Southern Cross 的 GCX Metals 年報實體第 55 頁按既有整頁目視複核規則核對，記錄已綁定原件與渲染頁面的 SHA。若日後原件或渲染內容不符，該筆整頁複核會失效。
+
+靜態建置選入 51 筆新增 PDF 來源，其中 40 筆的原登錄網址在 ASX 主站。本輪未執行網路擷取。總表為 93 列、51 欄、1,406 個非空格，較原交付版增加 271 格。Southern Cross 恢復為 `A1`／`探勘`。[靜態 PDF 總表](local-static-pdfs-20261118/REE%20project%20census.csv)
+
+第 9 版 2,101 格中，1,231 格相同、809 格空白、61 格有值但存在內容或來源結構差異。原 900 格相同與 609 格保護集全數保留。68 項相關測試通過，Phase 22 凍結回放的 64 個科學成果檔全數匹配。[驗收紀錄](local-static-pdfs-20261118/verification.json)
+
+83 個 canonical Project 通過總表和身分篩選，產出 16 個 MCDA 面板。六構面排名為 5 案。Cummins Range 的 2023 年聲明為 519.3 Mt、3,170 ppm，新增的 2024 年聲明為 524.3 Mt、3,120 ppm。證據選擇將各自的資源範圍留待核對，Cummins Range 目前暫缺六構面排名。[六構面排名](local-static-pdfs-20261118/MCDA/six_domain/ranking.csv)
