@@ -160,16 +160,18 @@ def execute(args):
         if not args.database or not args.out:raise ValueError('export-summary requires --database and --out')
         return export_summary(root,args.database,args.out)
     source_replay=getattr(args,'source_replay',None)
+    static_pdfs=getattr(args,'static_pdfs',())
     census_filters=getattr(args,'census_filter',[])
-    integration=args.module=='all' and bool(args.refresh or source_replay or census_filters or getattr(args,'out',None))
-    if (census_filters or source_replay) and args.module!='all':
-        raise ValueError('Census filters and source replay require all')
-    if source_replay and (args.refresh or args.snapshot_lock):
-        raise ValueError('--source-replay cannot be combined with --refresh or --snapshot-lock')
+    offline_sources=source_replay or static_pdfs
+    integration=args.module=='all' and bool(args.refresh or offline_sources or census_filters or getattr(args,'out',None))
+    if (census_filters or offline_sources) and args.module!='all':
+        raise ValueError('Census filters and offline sources require all')
+    if offline_sources and (args.refresh or args.snapshot_lock):
+        raise ValueError('--source-replay and --static-pdfs cannot be combined with --refresh or --snapshot-lock')
     if args.refresh and args.module not in ('all','acquire'):
         raise ValueError('Use all --refresh for the shared acquisition stage')
     config=research_configuration(root,args.snapshot_lock)
-    strict=integration and (args.refresh or source_replay) and not args.snapshot_lock
+    strict=integration and (args.refresh or offline_sources) and not args.snapshot_lock
     if not (strict or args.module=='acquire') and config.get('research_evidence_cutoff'):
         args.as_of=min(args.as_of,config['research_evidence_cutoff'])
     acquired_through=config.get('acquisition_through') if args.as_of==config.get('research_evidence_cutoff') else None
@@ -267,7 +269,7 @@ def execute(args):
         if any(getattr(args,k,None) for k in ('source_key','centralized','official_only','gap_report')):
             raise ValueError('Use discover for targeted search planning and all --refresh for acquisition')
         snapshots,acquisition,acquisition_selection=census_acquisition(
-            root,registry,strict_work,live_claims,args.as_of,source_replay)
+            root,registry,strict_work,live_claims,args.as_of,source_replay,static_pdfs=static_pdfs)
         if args.module=='acquire':
             return dict(status='COMPLETED_WITH_SOURCE_STATUS',sources=acquisition,
                         source_selection=acquisition_selection,receipt=str(strict_work/'source_acquisition.json'))
@@ -702,6 +704,8 @@ def main():
     parser.add_argument('--rscript')
     parser.add_argument('--snapshot-lock',help='Exact immutable snapshot_lock.json from a prior run')
     parser.add_argument('--source-replay',help='Replay a saved source_acquisition.json and its SHA-verified originals')
+    parser.add_argument('--static-pdfs',action='append',default=[],metavar='DIRECTORY',
+                        help='Read registered PDF originals from a local library by SHA, with no network')
     parser.add_argument('--census-filter',action='append',default=[],metavar='COLUMN=VALUE',
                         help='Filter MCDA through the census, with OR within a column and AND across columns')
     parser.add_argument('--centralized',action='store_true',help='Bounded centralized-source feasibility and official resource batch acquisition')

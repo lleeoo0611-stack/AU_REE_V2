@@ -27,7 +27,8 @@ class CompanyMarkerApprovals(unittest.TestCase):
         self.assertEqual(22,sum(r['approved']=='HOLD' for r in self.rows))
         self.assertEqual(135,sum(not r['approved'] for r in self.rows))
         expected,log=approvals.apply_rows(self.before,self.approved)
-        self.assertEqual(json.loads((ROOT/'data/claims.json').read_bytes()),expected)
+        published=subprocess.check_output(['git','show','6eeaeae:data/claims.json'],cwd=ROOT)
+        self.assertEqual(json.loads(published),expected)
         self.assertEqual(70,len(log))
         self.assertEqual(approvals.APPROVED_IDS,{r['proposal_id'] for r in log})
 

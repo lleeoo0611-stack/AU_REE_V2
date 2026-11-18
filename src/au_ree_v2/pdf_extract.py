@@ -892,13 +892,34 @@ def summary_review_hit(hit,row,entry,rules):
 def summary_scan_stage(source, rules):
     """Complete native sentences plus independently repeated local OCR where needed."""
     import os,shutil,subprocess
+    from collections import deque
+    from concurrent.futures import ThreadPoolExecutor
     import pymupdf
     keywords=rules['stage_scan.keywords'];hits=[];problems=[];pages=[]
     sha=source['sha256'];path=Path(source['resolved_path'])
     if filehash(path)!=sha:return [],[dict(source_sha256=sha,reason='SOURCE_SHA_CHANGED')]
     try:
         if source['kind']=='pdf':
-            with pymupdf.open(path) as doc:
+            def read_twice(command,payload,env):
+                return [subprocess.run(command,input=payload,capture_output=True,env=env,timeout=120)
+                        for _ in range(2)]
+
+            def resolve_ocr(number,future):
+                attempts=future.result()
+                if any(a.returncode for a in attempts) or attempts[0].stdout!=attempts[1].stdout:
+                    problems.append(dict(source_sha256=sha,physical_page=number,reason='OCR_FAILED_OR_NONDETERMINISTIC'))
+                    return
+                quality=summary_parse_tsv(attempts[0].stdout,cfg)
+                ocr_hits=summary_ocr_hits(quality,keywords,number)
+                hits.extend(dict(h,source_sha256=sha) for h in ocr_hits)
+                if quality['status']!='OCR_READABLE' and not (quality['status']=='OCR_NO_TEXT_CONTENT' and not ocr_hits):
+                    problems.append(dict(source_sha256=sha,physical_page=number,reason=quality['status'],
+                                         mean_word_confidence=quality['mean_word_confidence']))
+
+            # Render on one thread and bound the queued PNGs. Consume OCR in page order.
+            pending=deque()
+            workers=min(4,os.cpu_count() or 1)
+            with pymupdf.open(path) as doc, ThreadPoolExecutor(max_workers=workers) as pool:
                 for number,page in enumerate(doc,1):
                     text=page.get_text(sort=True);pages.append((number,text))
                     image_area=sum((rect & page.rect).get_area() for img in page.get_images(full=True) for rect in page.get_image_rects(img[0]))
@@ -919,13 +940,11 @@ def summary_scan_stage(source, rules):
                     pix=page.get_pixmap(dpi=render['dpi'],colorspace=pymupdf.csGRAY,alpha=render['alpha'],annots=render['annots'])
                     command=[executable,'stdin','stdout','-l',engine['language'],'--oem',str(engine['oem']),'--psm',str(engine['psm']),engine['format']]
                     env=dict(os.environ,OMP_THREAD_LIMIT=engine['OMP_THREAD_LIMIT'])
-                    attempts=[subprocess.run(command,input=pix.tobytes('png'),capture_output=True,env=env,timeout=120) for _ in range(2)]
-                    if any(a.returncode for a in attempts) or attempts[0].stdout!=attempts[1].stdout:
-                        problems.append(dict(source_sha256=sha,physical_page=number,reason='OCR_FAILED_OR_NONDETERMINISTIC'));continue
-                    quality=summary_parse_tsv(attempts[0].stdout,cfg)
-                    ocr_hits=summary_ocr_hits(quality,keywords,number);hits.extend(dict(h,source_sha256=sha) for h in ocr_hits)
-                    if quality['status']!='OCR_READABLE' and not (quality['status']=='OCR_NO_TEXT_CONTENT' and not ocr_hits):
-                        problems.append(dict(source_sha256=sha,physical_page=number,reason=quality['status'],mean_word_confidence=quality['mean_word_confidence']))
+                    pending.append((number,pool.submit(read_twice,command,pix.tobytes('png'),env)))
+                    if len(pending)==workers:
+                        resolve_ocr(*pending.popleft())
+                while pending:
+                    resolve_ocr(*pending.popleft())
         else:
             from .evidence import html_text
             pages=[(None,html_text(path.parent,dict(source,path=str(path))))]

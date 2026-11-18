@@ -3,6 +3,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from au_ree_v2.acquisition import census_acquisition
 from au_ree_v2.analysis import apply_census_cohort, write_csv
@@ -12,6 +13,38 @@ from au_ree_v2.store import digest, filehash
 
 
 class CensusIntegrationTests(unittest.TestCase):
+    def test_static_library_resolves_renamed_pdf_without_network(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            library=root/'library'
+            library.mkdir()
+            local=library/'renamed-document.PDF'
+            local.write_bytes(b'%PDF-1.7\nlocal original')
+            digest_pdf=filehash(local)
+            (library/'unrelated.pdf').write_bytes(b'%PDF-1.7\nother original')
+            phase22=root/'results/phase22-2026-11-06'
+            phase22.mkdir(parents=True)
+            (phase22/'snapshot_lock.json').write_text('[]',encoding='utf8')
+            source=dict(key='asx-original',kind='pdf',publication_date='2026-11-08',
+                        url='https://www.asx.com.au/document')
+            after=dict(source,key='after-cutoff',publication_date='2026-11-14')
+            denied=dict(source,key='disabled',enabled=False)
+            registry={'sources':[source,after,denied]}
+            claims={'evidence':[dict(source_key='asx-original',source_sha256=digest_pdf)]}
+            with patch('au_ree_v2.acquisition.strict_dns_preflight') as dns:
+                selected,receipts,_=census_acquisition(root,registry,root/'work',claims,
+                    '2026-11-13',static_pdfs=[library])
+            dns.assert_not_called()
+            self.assertEqual(['asx-original'],[source['key'] for source in selected])
+            self.assertEqual(digest_pdf,selected[0]['sha256'])
+            self.assertEqual('STATIC_PDF_SHA_VERIFIED',receipts[0]['status'])
+
+            # Two declarations for the same URL invalidate the shared binding.
+            claims['evidence'].append(dict(source_key='after-cutoff',source_sha256='a'*64))
+            selected,_,_=census_acquisition(root,registry,root/'work',claims,
+                '2026-11-13',static_pdfs=[library])
+            self.assertEqual([],selected)
+
     def test_original_binding_survives_two_presentations_but_never_a_value_conflict(self):
         baseline=dict(source_sha='sha',date='2026-11-05',basis='TREO',ore_mt=2,grade_pct=1,
                       contained_treo_kt=20,scope='Whole resource',obs_ids=['ore','grade'])

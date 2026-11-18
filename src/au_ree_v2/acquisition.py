@@ -751,20 +751,7 @@ def declared_json_hash(raw, source):
     return content_sha, metadata
 
 
-def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_rows=None):
-    """Fresh work-only originals and bounded, policy-approved same-SHA copies."""
-    import hashlib,subprocess,uuid
-    root=Path(root).resolve();work=Path(work).resolve()
-    from .discovery import official_reports, strict_search_plan
-    policy,deferred=strict_search_plan(root)
-    reports=policy.get('official_reports',[])
-    dns_rows=strict_dns_preflight(registry,reports) if dns_rows is None else dns_rows
-    if any(r['status']!='DNS_OK' for r in dns_rows):
-        strict_network_report(work,[],dns_rows)
-        raise InvalidNetworkRun('RUN_INVALID_NETWORK: DNS preflight failed; no HTTP requests or build started')
-    work.mkdir(parents=True,exist_ok=True)
-    cache=work/('strict-'+uuid.uuid4().hex[:16]);cache.mkdir()
-    manifest=json.loads((root/'data/manifest.json').read_text(encoding='utf8'))['snapshots']
+def declared_source_hashes(registry, claims):
     declared={}
     def visit(value):
         if isinstance(value,dict):
@@ -780,6 +767,24 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
             bindings=set(declared.get(source['key'],set()))
             if source.get('source_sha256'):bindings.add(source['source_sha256'])
             by_url.setdefault(source['url'],set()).update(bindings)
+    return declared,by_url
+
+
+def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_rows=None):
+    """Fresh work-only originals and bounded, policy-approved same-SHA copies."""
+    import hashlib,subprocess,uuid
+    root=Path(root).resolve();work=Path(work).resolve()
+    from .discovery import official_reports, strict_search_plan
+    policy,deferred=strict_search_plan(root)
+    reports=policy.get('official_reports',[])
+    dns_rows=strict_dns_preflight(registry,reports) if dns_rows is None else dns_rows
+    if any(r['status']!='DNS_OK' for r in dns_rows):
+        strict_network_report(work,[],dns_rows)
+        raise InvalidNetworkRun('RUN_INVALID_NETWORK: DNS preflight failed; no HTTP requests or build started')
+    work.mkdir(parents=True,exist_ok=True)
+    cache=work/('strict-'+uuid.uuid4().hex[:16]);cache.mkdir()
+    manifest=json.loads((root/'data/manifest.json').read_text(encoding='utf8'))['snapshots']
+    declared,by_url=declared_source_hashes(registry,claims)
     transport=transport or StrictTransport(STRICT_HOSTS);outcomes=[];selected=[]
     alternate=getattr(transport,'same_sha',None) or SameSHAAlternates(root,transport)
     managed={'official_table_transcription','official_project_catalogue_transcription','historical_e1_candidates','legacy_screen_index','pdf_page_extraction'}
@@ -957,7 +962,50 @@ def checked_snapshots(root, snapshots, cutoff, acquired_through=None):
     return snapshots
 
 
-def census_acquisition(root, registry, work, claims, cutoff, replay=None):
+def static_pdf_sources(registry, claims, directories, cutoff, already_selected):
+    """Resolve approved ASX and other PDF originals by bytes, never by title or filename."""
+    from .selection import date_end
+
+    _, bindings=declared_source_hashes(registry,claims)
+    pending=[]
+    for source in registry['sources']:
+        if (source['kind']!='pdf' or source.get('enabled') is False or
+                source['key'] in already_selected):
+            continue
+        expected=bindings.get(source['url'],set())
+        if len(expected)!=1:
+            continue
+        publication=source.get('publication_date')
+        if not publication or date_end(publication)>cutoff:
+            continue
+        pending.append((source,next(iter(expected))))
+    wanted={sha for _,sha in pending}
+    paths={}
+    files=set()
+    for directory in directories:
+        folder=Path(directory).resolve(strict=True)
+        if not folder.is_dir():
+            raise ValueError(f'Static PDF library must be a directory: {folder}')
+        files.update(p for p in folder.rglob('*') if p.suffix.lower()=='.pdf' and p.is_file())
+    for path in sorted(files,key=lambda p:(p.stem not in wanted,str(p))):
+        if wanted<=paths.keys():
+            break
+        with path.open('rb') as stream:
+            if stream.read(5)!=b'%PDF-':
+                continue
+        sha=filehash(path)
+        if sha in wanted:
+            paths.setdefault(sha,path.resolve())
+    now=datetime.now(timezone.utc).isoformat()
+    selected=[]
+    for source,sha in pending:
+        if sha in paths:
+            selected.append(dict(source,sha256=sha,path=str(paths[sha]),
+                acquired_at=now,available_date=now[:10],acquisition_method='STATIC_PDF_SHA_VERIFIED'))
+    return selected
+
+
+def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, static_pdfs=()):
     """One ASX source stage. Replays use the same selected inputs and receipts."""
     from .analysis import write_csv
     from .discovery import strict_search_plan
@@ -973,6 +1021,8 @@ def census_acquisition(root, registry, work, claims, cutoff, replay=None):
         if any(registered.get(s['key']) != s['kind'] for s in fresh):
             raise ValueError('Acquisition replay contains an unregistered source')
         outcomes = receipt['outcomes']
+    elif static_pdfs:
+        fresh,outcomes=[],[]
     else:
         policy, _ = strict_search_plan(root)
         dns_rows = strict_dns_preflight(registry, policy['official_reports'])
@@ -988,6 +1038,14 @@ def census_acquisition(root, registry, work, claims, cutoff, replay=None):
         fresh, outcomes = strict_refresh(root, registry, work, claims, cutoff, transport, dns_rows)
         # A downloaded future publication remains an acquisition receipt.
         fresh = [s for s in fresh if (s.get('publication_date') or '') <= cutoff]
+    if static_pdfs:
+        added=static_pdf_sources(registry,claims,static_pdfs,cutoff,{s['key'] for s in fresh})
+        checked_snapshots(root,added,cutoff)
+        fresh=[*fresh,*added]
+        updates={s['key']:dict(key=s['key'],host=urllib.parse.urlsplit(s['url']).hostname,
+            status=s['acquisition_method'],actual_sha256=s['sha256'],expected_sha256=s['sha256'],
+            sha_match=True,stop_reason='') for s in added}
+        outcomes=[row for row in outcomes if row['key'] not in updates]+list(updates.values())
     if cutoff < '2026-11-05':
         raise ValueError('Integrated census requires a cutoff on or after the Phase 22 evidence cutoff')
     phase22 = root/'results/phase22-2026-11-06/snapshot_lock.json'
@@ -1014,7 +1072,7 @@ def census_acquisition(root, registry, work, claims, cutoff, replay=None):
         path=(root/entry['path']).resolve()
         return dict(entry,path=path.relative_to(root).as_posix()) if path.is_relative_to(root) else entry
 
-    captured = receipt if replay else dict(cutoff=cutoff, registry_sha256=digest(registry),
+    captured = dict(receipt if replay else {}, cutoff=cutoff, registry_sha256=digest(registry),
         snapshots=[dict(portable(s), original_responses=[portable(a) for a in s.get('original_responses', [])])
                    if 'original_responses' in s else portable(s) for s in fresh], outcomes=outcomes)
     (work/'source_acquisition.json').write_text(canonical(captured)+'\n', encoding='utf8')
