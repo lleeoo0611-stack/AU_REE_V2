@@ -81,7 +81,10 @@ jobs:
       - name: Verify declared pre-cutoff repository evidence
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python tools/verify_pre_cutoff_evidence.py
+        run: python tools/verify_pre_cutoff_evidence.py --events-file config/pre_cutoff_evidence_events.json
+      - name: Warn about invalid or missing pre-cutoff proof
+        if: always()
+        run: python tools/verify_pre_cutoff_evidence.py --warn-only
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
