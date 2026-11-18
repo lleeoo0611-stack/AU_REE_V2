@@ -460,12 +460,14 @@ def summary_partial_bundle(observations, contract):
 def summary_resource_fields(row, observations, sources, rules, decisions, put, project=None):
     decoded=[dict(o,raw=canonical(summary_observation(o))) for o in observations]
     contracts={canonical({k:r[k] for k in ('source_sha256','statement_id','scope','effective_date')})
-        for o in decoded if (r:=json.loads(o['raw']).get('review_contract',{})) and r.get('selection_role','PREFERRED')=='PREFERRED' and o['variable']=='ore_mt'}
+        for o in decoded if (r:=json.loads(o['raw']).get('review_contract',{})) and
+        r.get('selection_role',r.get('resource_selection_role','PREFERRED'))=='PREFERRED' and o['variable']=='ore_mt'}
     declared={canonical({k:r[k] for k in ('source_sha256','statement_id','scope','effective_date')})
         for o in (project or {}).get('observations',[]) if o['variable']=='ore_mt' and
-        (r:=o.get('raw',{}).get('review_contract',{})) and r.get('selection_role','PREFERRED')=='PREFERRED'}
+        (r:=o.get('raw',{}).get('review_contract',{})) and
+        r.get('selection_role',r.get('resource_selection_role','PREFERRED'))=='PREFERRED'}
     if declared:contracts=declared
-    if len(contracts)>1:return None,{},'RULE_INPUT_MISSING'
+    if len(contracts)>1:return None,{},'MULTIPLE_PREFERRED_RESOURCE_STATEMENTS'
     if contracts:
         contract=json.loads(next(iter(contracts)))
         decoded=[o for o in decoded if all(o[k]==contract[v] for k,v in [('source_sha','source_sha256'),('statement_id','statement_id'),('scope','scope'),('effective_date','effective_date')])]
@@ -473,9 +475,9 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
     try:
         first=next((o for o in decoded if json.loads(o['raw']).get('review_contract',{}).get('partial_resource_projection')),None)
         if first:partial=summary_partial_contract(decoded,sources[first['source_sha']])
-    except (KeyError,ValueError,IndexError,InvalidOperation):return None,{},'RULE_INPUT_MISSING'
+    except (KeyError,ValueError,IndexError,InvalidOperation):return None,{},'PARTIAL_RESOURCE_PROOF_INVALID'
     bundle,reason=summary_resource_bundle(decoded,partial)
-    if not bundle:return None,{},'RULE_INPUT_MISSING' if decoded else 'NO_SOURCE_VALUE'
+    if not bundle:return None,{},reason if decoded else 'NO_VALIDATED_RESOURCE_OBSERVATIONS'
     sha=bundle['source_sha256'];scope=bundle['scope'];ids=[o['obs_id'] for o in bundle['observations']]
     locator='; '.join(sorted({o['locator'] for o in bundle['observations']}))
     for variable,column in [('ore_mt','礦石蘊藏量_Mt'),('grade_pct','TREO品位_pct'),('contained_treo_kt','總TREO蘊藏量_kt')]:
@@ -697,9 +699,16 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
         else:observations[o['entity_id']].append(dict(o))
     for s in db.execute('SELECT * FROM study_cases WHERE effective_date<=?',(cutoff,)):
         if s['source_sha'] in sources:studies[s['project_id']].append(dict(s))
-    issues=defaultdict(list)
-    for q in db.execute('SELECT issue_id,entity_id,source_sha,reason FROM review_queue'):
-        issues[q['entity_id']].append(dict(q))
+    field_issues=defaultdict(list);identity_issues=defaultdict(list)
+    for q in db.execute('SELECT issue_id,entity_id,source_sha,reason,details FROM review_queue ORDER BY issue_id'):
+        issue=dict(q)
+        try:detail=json.loads(issue.pop('details'))
+        except (TypeError,ValueError):continue
+        if not isinstance(detail,dict):continue
+        if isinstance(detail.get('column'),str) and detail['column']:
+            field_issues[issue['entity_id'],detail['column']].append(issue)
+        elif detail.get('project') and detail.get('identity_source'):
+            identity_issues[issue['entity_id']].append(issue)
     cohort={p['project_id']:p for p in rules['cohort']}
     for member in membership:
         pid=member['canonical_id']
@@ -768,8 +777,11 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
                     put('專案名稱',row['專案名稱']+' — '+label+' resource scope',bundle['source_sha256'],resource_note['locator'],'EXISTING_PROJECT_WITH_EXPLICIT_RESOURCE_SUBSCOPE_LABEL',bundle['scope'],resource_note['ids'])
         for fill in summary_template_fills(row,list(trace.values()),dict(config=mapping,sha256=filehash(root/'config/summary_rules.json')),rules['template_fields']):put(**fill)
         summary_deposit_fields(row,trace,attributes[pid],rules,decisions,put)
+        stage_start=len(stage_audit)
         summary_stage_fields(row,trace,sources,associations,rules,decisions,put,stage_audit,cache,
             any(o['variable']=='ore_mt' for o in p.get('observations',[])),p.get('identity_declaration',{}).get('stage_inventory'))
+        stage_blockers=[{k:a[k] for k in ('reason','source_sha256','physical_page') if k in a}
+            for a in stage_audit[stage_start:] if a.get('reason')]
         from .spatial import summary_locations
         for fill in summary_locations(row,rows,registry,sources,rules,decisions):put(**fill)
         from .technical import summary_forecasts
@@ -792,7 +804,21 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
         for column in columns:
             if row[column]=='':
                 reason,detail=summary_missing(column,p,row,bundle,by_key,sources,source_errors,acquisition,cutoff,rules,decisions)
-                if reason=='RULE_INPUT_MISSING' and issues[pid]:detail+='; review_queue='+canonical(issues[pid])
+                if reason=='RULE_INPUT_MISSING':
+                    blockers=field_issues[pid,column]
+                    if not row['專案名稱'] and identity_issues[pid]:
+                        detail+='; project_identity='+canonical(identity_issues[pid])
+                    if blockers:
+                        detail+='; field_review='+canonical(blockers)
+                    if column in rules['resource_columns']:
+                        if bundle:
+                            detail+='; resource='+canonical(dict(reason='NO_COMPATIBLE_FIELD_INPUT_IN_SELECTED_RESOURCE',
+                                source_sha256=bundle['source_sha256'],statement_id=bundle['statement_id'],
+                                scope=bundle['scope'],effective_date=bundle['effective_date']))
+                        else:
+                            detail+='; resource='+canonical(dict(reason=resource_reason))
+                    if stage_blockers and column in ('開發階段代碼','開發階段類別'):
+                        detail+='; stage_scan='+canonical(stage_blockers)
                 missing.append(dict(project_id=pid,column=column,reason=reason,details=detail))
                 trace[pid,column]=dict(project_id=pid,column=column,value='',source_sha256='',source_url='',pdf_page='',locator=detail,
                     method=reason,scope='',observation_ids='[]',attribute_ids='[]',effective_date='')
@@ -878,7 +904,8 @@ def summary_missing(column, project, row, bundle, registry, sources, source_erro
     resource_inputs=[o for o in project.get('observations',[]) if o['variable'] in rules['missing_resource_variables']
         or o.get('material_basis')=='RESOURCE_ORE_GRADE_OXIDE_PPM']
     preferred=[o['raw']['review_contract'] for o in resource_inputs if o['variable']=='ore_mt' and
-        o.get('raw',{}).get('review_contract',{}).get('selection_role','PREFERRED')=='PREFERRED' and o.get('raw',{}).get('review_contract')]
+        (r:=o.get('raw',{}).get('review_contract',{})) and
+        r.get('selection_role',r.get('resource_selection_role','PREFERRED'))=='PREFERRED']
     if len(preferred)==1:
         r=preferred[0]
         resource_inputs=[o for o in resource_inputs if all(o.get(k)==r.get(k) for k in ('source_sha256','statement_id','scope','effective_date'))]

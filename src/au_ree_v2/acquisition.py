@@ -966,13 +966,24 @@ def static_pdf_sources(registry, claims, directories, cutoff, already_selected):
     """Resolve approved ASX and other PDF originals by bytes, never by title or filename."""
     from .selection import date_end
 
-    _, bindings=declared_source_hashes(registry,claims)
+    declared, bindings=declared_source_hashes(registry,claims)
     pending=[]
     for source in registry['sources']:
-        if (source['kind']!='pdf' or source.get('enabled') is False or
-                source['key'] in already_selected):
+        key=source['key']
+        if source['kind']!='pdf' or key in already_selected:
             continue
-        expected=bindings.get(source['url'],set())
+        pin=source.get('reviewed_static_pdf_sha256')
+        if pin:
+            # A reviewed local version can have the same landing URL as another
+            # version. The pin does not grant access to that remote URL.
+            expected=set(declared.get(key,set()))
+            if pin!=source.get('source_sha256') or expected-{pin}:
+                raise ValueError(f'Static PDF pin conflicts with declarations: {key}')
+            expected={pin}
+        else:
+            if source.get('enabled') is False:
+                continue
+            expected=bindings.get(source['url'],set())
         if len(expected)!=1:
             continue
         publication=source.get('publication_date')

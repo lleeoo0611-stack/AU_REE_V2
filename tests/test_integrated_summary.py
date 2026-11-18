@@ -85,6 +85,7 @@ class SummaryContractTests(unittest.TestCase):
         issue=self.db.execute("SELECT * FROM review_queue WHERE reason='EXTRACTION_PAGE_CHECK_FAILED'").fetchone()
         self.assertIsNotNone(issue)
         self.assertIn(issue['issue_id'],next(r['details'] for r in missing if r['column']=='ASX代碼'))
+        self.assertNotIn(issue['issue_id'],next(r['details'] for r in missing if r['column']=='Y2O3_氧化釔_kt'))
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM observations WHERE variable='project_attribute' AND value IS NOT NULL").fetchone()[0],0)
 
     def test_blank_researcher_approval_does_not_activate_native_stage_rule(self):
@@ -106,6 +107,18 @@ class SummaryContractTests(unittest.TestCase):
         bundle,_,_=summary_resource_fields(row,observations,{self.source['sha256']:self.source},rules,decisions,
             lambda *args,**kwargs:writes.append(args),project)
         self.assertIsNone(bundle);self.assertEqual(writes,[])
+
+    def test_older_review_role_keeps_context_only_resource_out_of_preferred_scope(self):
+        ore=self.project['observations'][0]
+        fields=('source_sha256','statement_id','scope','effective_date')
+        ore['raw']={'review_contract':{key:ore[key] for key in fields}}
+        context=dict(ore,statement_id='context-only',scope='Separate context resource',value=20)
+        context['raw']={'review_contract':{key:context[key] for key in fields}
+            | {'resource_selection_role':'CONTEXT_ONLY'}}
+        self.project['observations'].append(context)
+        self.build()
+        _,rows,_,_=self.export()
+        self.assertEqual(float(rows[0]['礦石蘊藏量_Mt']),10)
 
     def test_government_attribute_requires_exact_layer_feature_and_native_field(self):
         p=self.root/'data/layer.json';p.write_text(canonical(dict(features=[dict(attributes=dict(OBJECTID=17,owner='Reviewed developer'))])),encoding='utf8')

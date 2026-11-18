@@ -240,7 +240,11 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions):
                     continue
                 a=hits[0]['attributes'];g=hits[0].get('geometry',{})
                 if a.get('projectname')!=case['source_project_name'] or a.get('state')!=case['state'] or '150802' not in str(a.get('source','')):continue
-                if summary_location_name(a['projectname']) not in names:continue
+                named_binding=case.get('census_project_name')
+                if (summary_location_name(a['projectname']) not in names and
+                        (not named_binding or summary_location_name(named_binding)!=
+                         summary_location_name(row['專案名稱']))):
+                    continue
                 if not re.search(r'\bREE\b|rare earth|monazite|xenotime',str(a.get('commodities','')),re.I):
                     proof=case.get('ree_hms_material_proof');original=sources.get((proof or {}).get('sha256'))
                     if not proof or not original:continue

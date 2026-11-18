@@ -387,6 +387,7 @@
       "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739",
       "publication_date": "2024-04-16",
       "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+      "reviewed_static_pdf_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
       "summary_project_ids": [
         "AU-ee5ca893d12883df35f1",
         "AU-d0ce731e1d8198ffaf58"
@@ -1921,6 +1922,7 @@
       "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02795766-6A1202739",
       "publication_date": "2024-04-16",
       "source_sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726",
+      "reviewed_static_pdf_sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726",
       "summary_project_ids": [
         "AU-d0ce731e1d8198ffaf58"
       ]
@@ -2579,7 +2581,8 @@
             "objectid": 2419,
             "source_project_name": "Aileron",
             "state": "WA",
-            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT",
+            "census_project_name": "Aileron Niobium–REE Project"
           },
           "dataset": "GA2025",
           "id_field": "OBJECTID"
@@ -2613,7 +2616,8 @@
             "objectid": 2282,
             "source_project_name": "Wim 150",
             "state": "VIC",
-            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT",
+            "census_project_name": "WIM150 Rare-Earth-Bearing Mineral Sands Project — Australian Zircon 2015"
           },
           "dataset": "GA2025",
           "id_field": "OBJECTID"
@@ -2645,7 +2649,8 @@
               ],
               "project_marker": "Copi",
               "statement_sha256": "a9f78f8bf1b43455ff3ed049b95014d61935191c40a5d0a0bddb2a56ffe37972"
-            }
+            },
+            "census_project_name": "Copi Mineral Sands Project"
           },
           "dataset": "GA2025",
           "id_field": "OBJECTID"
@@ -2687,6 +2692,7 @@
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03077988",
       "source_sha256": "7c39273cc15b4e56b59d0514a3134eadb203230add73e24d36eb8cd0094fda1e",
+      "reviewed_static_pdf_sha256": "7c39273cc15b4e56b59d0514a3134eadb203230add73e24d36eb8cd0094fda1e",
       "enabled": false,
       "disabled_reason": "ASX_STATISTICS_NOT_ENABLED_RESEARCHER_DECISION_REQUIRED",
       "publication_date": "2026-03-31",
@@ -2722,7 +2728,8 @@
             "objectid": 2676,
             "source_project_name": "Coburn",
             "state": "WA",
-            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT",
+            "census_project_name": "Coburn Mineral Sands Project"
           },
           "dataset": "GA2025",
           "id_field": "OBJECTID"
@@ -2757,7 +2764,8 @@
             "objectid": 2286,
             "source_project_name": "Avonbank",
             "state": "VIC",
-            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT"
+            "scope_match": "NAMED_SINGLE_PROJECT_OR_DEPOSIT",
+            "census_project_name": "Avonbank Mineral Sands Project"
           },
           "dataset": "GA2025",
           "id_field": "OBJECTID"
@@ -2789,7 +2797,8 @@
               ],
               "project_marker": "Balranald",
               "statement_sha256": "881d6d828cbba34c67b3dca46306ae8036cccac3e2e4bdd99848cd20281c363c"
-            }
+            },
+            "census_project_name": "Balranald Mineral Sands Project"
           },
           "dataset": "GA2025",
           "id_field": "OBJECTID"
@@ -2888,6 +2897,7 @@
       "kind": "pdf",
       "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03084938",
       "source_sha256": "fc466daa68b5f988ef61f0dc494b08cb14e2dcbed0e297b00a2c0a8379a975b3",
+      "reviewed_static_pdf_sha256": "fc466daa68b5f988ef61f0dc494b08cb14e2dcbed0e297b00a2c0a8379a975b3",
       "enabled": false,
       "disabled_reason": "ASX_STATISTICS_NOT_ENABLED_RESEARCHER_DECISION_REQUIRED",
       "publication_date": "2026-04-22",

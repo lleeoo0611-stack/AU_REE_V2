@@ -672,12 +672,28 @@ def phase22_resource_bindings(root):
 
 
 def retain_phase22_resource(candidates, observation_ids):
-    # When the same original and same quantities were declared twice under
-    # different scope labels, retain the previously reviewed statement.
-    signature=('source_sha','date','basis','ore_mt','grade_pct','contained_treo_kt')
-    if not observation_ids or len({tuple(row[k] for k in signature) for row in candidates}) != 1:
+    """Retain the frozen binding for duplicate presentations of one statement."""
+    if not observation_ids:
         return None
-    return next((row for row in candidates if tuple(row['obs_ids'])==observation_ids),None)
+    retained=next((row for row in candidates if tuple(row['obs_ids'])==observation_ids),None)
+    if not retained:
+        return None
+    signature=('source_sha','date','basis','ore_mt','grade_pct','contained_treo_kt')
+    if len({tuple(row[k] for k in signature) for row in candidates})==1:
+        return retained
+    # A computed amount from rounded ore and grade is compatible with a
+    # published amount within those same rounding bounds for the same statement.
+    fields=('statement_id','scope','date','basis','ore_mt','grade_pct','rounding_bounds_kt')
+    if len(observation_ids)!=2 or not retained.get('statement_id') or any(
+            any(row.get(k)!=retained.get(k) for k in fields) for row in candidates):
+        return None
+    if retained['contained_treo_kt']!=retained.get('calculated_from_rounded_inputs_kt'):
+        return None
+    reported={row['contained_treo_kt'] for row in candidates if len(row['obs_ids'])==3}
+    lower,upper=retained['rounding_bounds_kt']
+    if len(reported)!=1 or not any(lower<=value<=upper and value!=retained['contained_treo_kt'] for value in reported):
+        return None
+    return retained
 
 
 def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=None,
