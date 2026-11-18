@@ -542,18 +542,22 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
     composition=[*same,*supplemental]
     composition_ids=sorted({o['obs_id'] for o in composition})
     composition_sha=';'.join(sorted({o['source_sha'] for o in composition}))
+    composition_locator='; '.join(sorted({locator,*(o['locator'] for o in supplemental)}))
     elements={};review=next((json.loads(o['raw']).get('review_contract') for o in same if json.loads(o['raw']).get('review_contract')),None)
     for oxide in rules['oxides']:
         found=[o for o in composition if o['basis']==oxide and o['unit']=='ppm' and
             json.loads(o['raw']).get('material_basis')=='RESOURCE_ORE_GRADE_OXIDE_PPM']
         if not found and not partial:
             contained=[o for o in composition if o['basis']==oxide and o['unit']=='kt' and
-                json.loads(o['raw']).get('material_basis')=='RESOURCE_CONTAINED_OXIDE_MASS_KT']
+                (raw:=json.loads(o['raw'])).get('material_basis')=='RESOURCE_CONTAINED_OXIDE_MASS_KT' and
+                raw.get('transform',{}).get('rule') in ('SUM_RECONCILED_RESOURCE_BLOCK_MASSES',
+                                                       'SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES')]
             if contained and len({o['value'] for o in contained})==1:
                 o=contained[0]
                 elements[oxide]=o['value']
+                rule=json.loads(o['raw'])['transform']['rule']
                 put(next(c for c in row if c.startswith(oxide+'_')),o['value'],o['source_sha'],o['locator'],
-                    'SUM_RECONCILED_NON_OVERLAPPING_RESOURCE_BLOCK_MASSES',scope,ids+[o['obs_id']])
+                    rule,scope,ids+[o['obs_id']])
             continue
         if not found or len({o['value'] for o in found})!=1:continue
         o=found[0];raw=json.loads(o['raw']);value=bundle['value']['ore_mt']*o['value']*.001
@@ -569,12 +573,12 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
         summary_scoped_oxide_fields(row,bundle,review,elements,sources[sha],rules,decisions,put)
     total=bundle['value'].get('contained_treo_kt')
     if elements:
-        put('已公布元素數_共15項',len(elements),composition_sha,locator,'COUNT_CANONICAL_INDIVIDUAL_OXIDES',scope,composition_ids)
-        put('已公布元素總和_kt',sum(elements.values()),composition_sha,locator,'SUM_AVAILABLE_MATCHED_OXIDES_NOT_TOTAL_RESOURCE',scope,composition_ids)
-        if total:put('元素總和/TREO',float(sum(elements.values()))/float(total),composition_sha,locator,'AVAILABLE_OXIDE_SUM_DIVIDED_BY_MATCHED_TREO',scope,composition_ids)
+        put('已公布元素數_共15項',len(elements),composition_sha,composition_locator,'COUNT_CANONICAL_INDIVIDUAL_OXIDES',scope,composition_ids)
+        put('已公布元素總和_kt',sum(elements.values()),composition_sha,composition_locator,'SUM_AVAILABLE_MATCHED_OXIDES_NOT_TOTAL_RESOURCE',scope,composition_ids)
+        if total:put('元素總和/TREO',float(sum(elements.values()))/float(total),composition_sha,composition_locator,'AVAILABLE_OXIDE_SUM_DIVIDED_BY_MATCHED_TREO',scope,composition_ids)
     for needed,column in [(('Nd2O3','Pr6O11'),'NdPr蘊藏量_kt_需兩者皆公布'),(rules['heavy'],'完整重稀土組合蘊藏量_kt_需8元素皆公布'),(rules['magnet'],'磁性元素重算值_NdPrTbDy_kt')]:
         value=summary_complete_sum(elements,needed)
-        if value is not None:put(column,value,composition_sha,locator,'SUM_COMPLETE_MATCHED_OXIDE_SET',scope,composition_ids)
+        if value is not None:put(column,value,composition_sha,composition_locator,'SUM_COMPLETE_MATCHED_OXIDE_SET',scope,composition_ids)
     if row['NdPr蘊藏量_kt_需兩者皆公布'] in (None,''):
         ndpr=summary_reported_oxide_group(composition,bundle,'reported_resource_ndpr_ppm','NdPr_OXIDES',
             'RESOURCE_ORE_GRADE_NDPR_OXIDE_GROUP_PPM')
@@ -592,7 +596,7 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
                     'SOURCE_REPORTED_MATCHED_NDPR_OXIDE_GROUP_KT',scope,ids+[o['obs_id']])
     magnet=summary_complete_sum(elements,rules['magnet'])
     if magnet is not None:
-        put('四項磁性元素皆公布','是',sha,locator,'SUM_COMPLETE_MATCHED_OXIDE_SET',scope,ids)
+        put('四項磁性元素皆公布','是',composition_sha,composition_locator,'SUM_COMPLETE_MATCHED_OXIDE_SET',scope,composition_ids)
         if row['磁鐵稀土氧化物蘊藏量_kt'] in (None,''):
             method='SUM_MATCHED_HM_HOSTED_MAGNET_OXIDES' if partial and partial['mode']=='BULK_ORE_AND_HM_HOSTED_OXIDES_ONLY' else 'SUM_COMPLETE_MATCHED_MAGNET_OXIDES_AFTER_CE_CANONICALIZATION'
             put('磁鐵稀土氧化物蘊藏量_kt',magnet,sha,locator,method,scope,ids)

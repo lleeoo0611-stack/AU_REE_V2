@@ -139,6 +139,20 @@ class SummaryContractTests(unittest.TestCase):
         parts[1].update(contained_t=720,ore_t=5000000)
         self.assertEqual(['TRANSFORMATION_CONTRACT_FAILED'],transformation_issues(claim,[ore]))
 
+    def test_category_oxide_mass_requires_both_categories_at_the_same_cutoff(self):
+        parts=[dict(category='INDICATED',ore_mt=160,treo_ppm=1700,cutoff_treo_ppm=1000,oxide_ppm=84),
+               dict(category='INFERRED',ore_mt=1500,treo_ppm=1700,cutoff_treo_ppm=1000,oxide_ppm=82)]
+        claim=dict(category='INDICATED_INFERRED_TOTAL',value=136.44,unit='kt',
+            material_basis='RESOURCE_CONTAINED_OXIDE_MASS_KT',
+            census_equivalent_resource_pdf=dict(ore_mt=1700,grade_pct=0.17),
+            transform=dict(rule='SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES',categories=parts,
+                cutoff_treo_ppm=1000,total_ore_rounding_half_width_mt=50))
+        self.assertEqual([],transformation_issues(claim,[]))
+        parts[1]['cutoff_treo_ppm']=1500
+        self.assertEqual(['TRANSFORMATION_CONTRACT_FAILED'],transformation_issues(claim,[]))
+        parts[1].update(cutoff_treo_ppm=1000,category='INDICATED')
+        self.assertEqual(['TRANSFORMATION_CONTRACT_FAILED'],transformation_issues(claim,[]))
+
     def test_changed_original_withholds_all_source_bound_values(self):
         self.build();self.pdf.write_bytes(b'changed original')
         _,rows,_,missing=self.export()

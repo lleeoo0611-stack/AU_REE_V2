@@ -17506,6 +17506,891 @@
             }
           ],
           "uncertainty_note": "Approximate23 is a reported point disclosure, not a guaranteed22.5-23.5interval. No credible bound is disclosed, so it is held fixed in reporting-rounding simulations; this does not assert zero measurement or estimation error."
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_la2o3_kt",
+          "basis": "La2O3",
+          "value": 576.2,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 320
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 350
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_ceo2_kt",
+          "basis": "CeO2",
+          "value": 1275.0,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 750
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 770
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_pr6o11_kt",
+          "basis": "Pr6O11",
+          "value": 136.44,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 84
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 82
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_nd2o3_kt",
+          "basis": "Nd2O3",
+          "value": 469.6,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 310
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 280
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_sm2o3_kt",
+          "basis": "Sm2O3",
+          "value": 69.34,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 49
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 41
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_eu2o3_kt",
+          "basis": "Eu2O3",
+          "value": 13.6,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 10
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 8
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_gd2o3_kt",
+          "basis": "Gd2O3",
+          "value": 42.46,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 31
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 25
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_tb4o7_kt",
+          "basis": "Tb4O7",
+          "value": 5.14,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 4
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 3
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_dy2o3_kt",
+          "basis": "Dy2O3",
+          "value": 23.88,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 18
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 14
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_ho2o3_kt",
+          "basis": "Ho2O3",
+          "value": 3.48,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 3
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 2
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_er2o3_kt",
+          "basis": "Er2O3",
+          "value": 10.28,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 8
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 6
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_tm2o3_kt",
+          "basis": "Tm2O3",
+          "value": 1.66,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 1
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 1
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_yb2o3_kt",
+          "basis": "Yb2O3",
+          "value": 8.46,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 6
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 5
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_lu2o3_kt",
+          "basis": "Lu2O3",
+          "value": 1.66,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 1
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 1
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
+        },
+        {
+          "scope": "Jupiter full Mineral Resource at 1000 ppm cutoff; not mine plan",
+          "statement_id": "jupiter-2026-10-12",
+          "effective_date": "2026-10-12",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "source_key": "asx_jupiter_latest_mre202610",
+          "variable": "reported_resource_contained_y2o3_kt",
+          "basis": "Y2O3",
+          "value": 122.24,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 19,
+          "page_markers": [
+            "1000 160 1,700 420 320 750 84 310 49 10 31 4 18 3 8 1 6 1 89 45 40 11",
+            "1000 1500 1,700 380 350 770 82 280 41 8 25 3 14 2 6 1 5 1 72 36 40 7.5",
+            "Indicated Resources",
+            "Inferred Resources",
+            "Y2O3 Sc2O3 Ga2O3"
+          ],
+          "locator": "Physical PDF p19 Table 8; 1,000 ppm TREO rows; 160 Mt Indicated plus 1,500 Mt Inferred; containment derived from the two rounded category grades",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+            "ore_mt": 1700,
+            "grade_pct": 0.17,
+            "contained_treo_kt": 2890.0
+          },
+          "transform": {
+            "rule": "SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES",
+            "categories": [
+              {
+                "category": "INDICATED",
+                "ore_mt": 160,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 89
+              },
+              {
+                "category": "INFERRED",
+                "ore_mt": 1500,
+                "treo_ppm": 1700,
+                "cutoff_treo_ppm": 1000,
+                "oxide_ppm": 72
+              }
+            ],
+            "cutoff_treo_ppm": 1000,
+            "total_ore_rounding_half_width_mt": 50
+          },
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Resource of 1.7 Bt at 1,700 ppm TREO",
+                "At a 1,000 ppm TREO lower cut-off"
+              ]
+            }
+          ]
         }
       ],
       "coordinate_source": "ga_critical",
@@ -54302,6 +55187,64 @@
           "measurement_bounds": null,
           "representativeness": "NOT_ESTABLISHED",
           "extraction_method": "ARCHIVED_ISSUER_HTML_TRANSCRIPTION_NOT_INDEPENDENT_EXPERT_VALIDATION"
+        },
+        {
+          "scope": "Tower resource within Mt Clere; 300ppm TREO-CeO2 cutoff; excludes exploration target",
+          "statement_id": "mt-clere-2022-11-21",
+          "effective_date": "2022-11-21",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "source_key": "tower_quarter2023",
+          "variable": "reported_resource_treo_ex_ceo2_ppm",
+          "basis": "TREO_EXCLUDING_CEO2",
+          "value": 517.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_TREO_EXCLUDING_CEO2_PPM",
+          "pdf_page": 7,
+          "page_markers": [
+            "Tower Mineral Resource Summary",
+            "101 840 517 267 233 607 2 32",
+            "TREO – CeO2",
+            "21 November 2022"
+          ],
+          "locator": "Physical PDF p7; selected total row; TREO excluding CeO2 517 ppm",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "original_token": "517",
+          "original_unit": "ppm"
+        },
+        {
+          "scope": "Tower resource within Mt Clere; 300ppm TREO-CeO2 cutoff; excludes exploration target",
+          "statement_id": "mt-clere-2022-11-21",
+          "effective_date": "2022-11-21",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "source_key": "tower_quarter2023",
+          "variable": "reported_ceo2_ppm",
+          "basis": "CeO2",
+          "value": 323.0,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 7,
+          "page_markers": [
+            "Tower Mineral Resource Summary",
+            "101 840 517 267 233 607 2 32",
+            "TREO – CeO2",
+            "21 November 2022"
+          ],
+          "locator": "Physical PDF p7; selected total row; 840 ppm TREO minus 517 ppm TREO excluding CeO2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "review_method": "DERIVED_SAME_ROW_TREO_MINUS_TREO_EX_CEO2",
+          "source_original_operands": [
+            "840",
+            "517"
+          ],
+          "transform": {
+            "rule": "SAME_ROW_TREO_MINUS_TREO_EX_CEO2",
+            "inputs": [
+              "grade",
+              "reported_resource_treo_ex_ceo2_ppm"
+            ]
+          }
         }
       ],
       "attributes": [
@@ -71908,6 +72851,62 @@
           "representativeness": "SOURCE_SAMPLE_OR_CASE_ONLY_NOT_PROJECT_AVERAGE",
           "extraction_method": "AI_ASSISTED_SOURCE_PAGE_TRANSCRIPTION_NOT_INDEPENDENT_EXPERT_VALIDATION",
           "sample_population": "one sample among six; no per-sample table in this disclosure"
+        },
+        {
+          "scope": "Narraburra April2023 weathered regolith resource ONLY; all TM/RMU/RML domains, Indicated+Inferred; 300ppmTREO-CeO2 cutoff; includesY; excludes fresh granite and higher-grade subset",
+          "statement_id": "narraburra-mre202304",
+          "effective_date": "2023-04",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "source_key": "narraburra_ar2023",
+          "variable": "reported_resource_treo_ex_ceo2_ppm",
+          "basis": "TREO_EXCLUDING_CEO2",
+          "value": 500.31,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_TREO_EXCLUDING_CEO2_PPM",
+          "pdf_page": 94,
+          "page_markers": [
+            "94.9 500.31 738.95 444.66 294.28 130.79",
+            "Ce-O2",
+            "Weathered regolith"
+          ],
+          "locator": "Physical PDF p94; selected total row; TREO excluding CeO2 500.31 ppm",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "original_token": "500.31",
+          "original_unit": "ppm"
+        },
+        {
+          "scope": "Narraburra April2023 weathered regolith resource ONLY; all TM/RMU/RML domains, Indicated+Inferred; 300ppmTREO-CeO2 cutoff; includesY; excludes fresh granite and higher-grade subset",
+          "statement_id": "narraburra-mre202304",
+          "effective_date": "2023-04",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "source_key": "narraburra_ar2023",
+          "variable": "reported_ceo2_ppm",
+          "basis": "CeO2",
+          "value": 238.64,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
+          "pdf_page": 94,
+          "page_markers": [
+            "94.9 500.31 738.95 444.66 294.28 130.79",
+            "Ce-O2",
+            "Weathered regolith"
+          ],
+          "locator": "Physical PDF p94; selected total row; 738.95 ppm TREO minus 500.31 ppm TREO excluding CeO2",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "review_method": "DERIVED_SAME_ROW_TREO_MINUS_TREO_EX_CEO2",
+          "source_original_operands": [
+            "738.95",
+            "500.31"
+          ],
+          "transform": {
+            "rule": "SAME_ROW_TREO_MINUS_TREO_EX_CEO2",
+            "inputs": [
+              "grade",
+              "reported_resource_treo_ex_ceo2_ppm"
+            ]
+          }
         }
       ],
       "coordinate_source": "ga_aimr",

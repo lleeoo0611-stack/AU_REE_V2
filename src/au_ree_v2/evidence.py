@@ -669,6 +669,19 @@ def transformation_issues(o, siblings, depth=0):
                 assert abs(ore_mt*ppm-b['contained_t'])<=ore_mt*half+0.5
             assert sum(b['contained_t'] for b in blocks)==t['reported_total_t']
             assert math.isclose(o['value'],t['reported_total_t']/1000,rel_tol=1e-10)
+        elif t['rule']=='SUM_SAME_CUTOFF_CATEGORY_OXIDE_MASSES':
+            reference=o['census_equivalent_resource_pdf']
+            parts=t['categories']
+            assert o['category']=='INDICATED_INFERRED_TOTAL' and len(parts)==2
+            assert {p['category'] for p in parts}=={'INDICATED','INFERRED'}
+            assert o['unit']=='kt' and o['material_basis']=='RESOURCE_CONTAINED_OXIDE_MASS_KT'
+            assert t['cutoff_treo_ppm']>0 and {p['cutoff_treo_ppm'] for p in parts}=={t['cutoff_treo_ppm']}
+            assert all(p['ore_mt']>0 and 0<=p['oxide_ppm']<=p['treo_ppm'] and
+                       math.isclose(p['treo_ppm']/10000,reference['grade_pct']) for p in parts)
+            rounding=t['total_ore_rounding_half_width_mt']
+            assert 0<rounding<reference['ore_mt']
+            assert abs(sum(p['ore_mt'] for p in parts)-reference['ore_mt'])<=rounding
+            assert math.isclose(o['value'],sum(p['ore_mt']*p['oxide_ppm']*.001 for p in parts),rel_tol=1e-10)
         else:
             inputs=[]
             for var in t['inputs']:
@@ -686,6 +699,11 @@ def transformation_issues(o, siblings, depth=0):
             elif t['rule']=='RATIO_PPM_PERCENT':
                 assert len(inputs)==2 and inputs[0]['basis']=='PrNdDyTb_OXIDES' and inputs[1]['basis']=='TREO' and inputs[1]['value']>0 and o['unit']=='%'
                 expected=100*inputs[0]['value']/inputs[1]['value']
+            elif t['rule']=='SAME_ROW_TREO_MINUS_TREO_EX_CEO2':
+                assert len(inputs)==2 and [x['basis'] for x in inputs]==['TREO','TREO_EXCLUDING_CEO2']
+                assert o['basis']=='CeO2' and o['unit']=='ppm' and all(x['pdf_page']==o['pdf_page'] for x in inputs)
+                assert inputs[1]['page_markers']==o['page_markers']
+                expected=inputs[0]['value']-inputs[1]['value']
             else:return ['UNSUPPORTED_TRANSFORMATION']
             assert math.isclose(o['value'],expected,rel_tol=1e-10)
     except (AssertionError,KeyError,TypeError,ValueError,ZeroDivisionError):return ['TRANSFORMATION_CONTRACT_FAILED']
