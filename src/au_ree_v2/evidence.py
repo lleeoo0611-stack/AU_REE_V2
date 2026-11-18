@@ -654,6 +654,21 @@ def transformation_issues(o, siblings, depth=0):
             assert o['basis']=='TREO' and o['unit']=='ppm' and o['value']==1000000
             assert o.get('material_basis')=='OXIDE_DISTRIBUTION_NOT_ORE_GRADE'
             assert o.get('derivation_status')=='DEFINITION_IDENTITY_NOT_REPORTED_MEASUREMENT'
+        elif t['rule']=='SUM_RECONCILED_RESOURCE_BLOCK_MASSES':
+            ore,=[x for x in siblings if x['variable']=='ore_mt' and
+                 all(x.get(k)==o.get(k) for k in ('scope','statement_id','effective_date','source_key','source_sha256','category'))]
+            blocks=t['blocks']
+            assert len(blocks)>1 and len({b['block'] for b in blocks})==len(blocks)
+            assert ore['unit']=='Mt' and o['unit']=='kt' and o['material_basis']=='RESOURCE_CONTAINED_OXIDE_MASS_KT'
+            assert math.isclose(sum(b['ore_t'] for b in blocks), ore['value']*1e6, rel_tol=0, abs_tol=0.5)
+            for b in blocks:
+                ppm=float(b['grade_ppm'])
+                half=0.5*10**-len(b['grade_ppm'].partition('.')[2])
+                assert ppm>0 and b['ore_t']>0 and b['contained_t']>=0
+                ore_mt=b['ore_t']/1e6
+                assert abs(ore_mt*ppm-b['contained_t'])<=ore_mt*half+0.5
+            assert sum(b['contained_t'] for b in blocks)==t['reported_total_t']
+            assert math.isclose(o['value'],t['reported_total_t']/1000,rel_tol=1e-10)
         else:
             inputs=[]
             for var in t['inputs']:

@@ -18198,6 +18198,29 @@
             "85.7%",
             "27% TREO"
           ]
+        },
+        {
+          "scope": "Yangibana total JORC 2012 Mineral Resource, 100% JV basis; annual reaffirmation of October2023 estimate",
+          "statement_id": "yangibana-mre-reaffirmed20260630",
+          "effective_date": "2026-06-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "source_key": "yangibana_ar2026",
+          "variable": "reported_resource_ndpr_ppm",
+          "basis": "NdPr_OXIDES",
+          "value": 3200,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_NDPR_OXIDE_GROUP_PPM",
+          "pdf_page": 14,
+          "page_markers": [
+            "TOTAL 29.93 0.93 0.32 276,955",
+            "% Nd2O3+Pr6O11",
+            "Total Yangibana Project JORC Code (2012) Mineral Resource, October 2023"
+          ],
+          "locator": "Physical PDF p14; Table 2 Total; 100% JV October 2023 MRE as reaffirmed 30 June 2026; 0.32% Nd2O3+Pr6O11",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "original_token": "0.32",
+          "original_unit": "%"
         }
       ],
       "coordinate_source": "ga_aimr",
@@ -43829,6 +43852,40 @@
           "representativeness": "SOURCE_SAMPLE_OR_CASE_ONLY_NOT_PROJECT_AVERAGE",
           "extraction_method": "AI_ASSISTED_SOURCE_PAGE_TRANSCRIPTION_NOT_INDEPENDENT_EXPERT_VALIDATION",
           "sample_id": "YIN_2023_DIAMOND_COMPOSITE"
+        },
+        {
+          "scope": "Yin ironstone complex ONLY at 0.20% TREO cutoff; excludes Gifford Creek resource and all Exploration Targets",
+          "statement_id": "mangaroon-2023-11-30",
+          "effective_date": "2023-11-30",
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "source_key": "mangaroon_mre2023",
+          "variable": "reported_resource_ndpr_kt",
+          "basis": "NdPr_OXIDES",
+          "value": 89.3,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_NDPR_OXIDE_GROUP_KT",
+          "pdf_page": 11,
+          "page_markers": [
+            "Summary of Yin Resources at 0.20% TREO Cut-off",
+            "29.98 1.04 29 312,300 89,300",
+            "Contained Nd2O3+Pr6O11"
+          ],
+          "locator": "Physical PDF p11, Table 4 Yin at 0.20% TREO, and p16 resource discussion; reported 89,300 t Nd2O3+Pr6O11; issuer 23 Oct 2025 restates the detailed table",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "original_token": "89,300",
+          "original_unit": "t",
+          "corroboration_url": "https://company-announcements.afr.com/asx/dre/cac17766-af8c-11f0-af0f-3eb0efcdc8e9.pdf",
+          "review_note": "The issuer later reaffirms the selected cutoff and scope with 89,300 t. The 89,900 t highlight remains recorded as a competing original value.",
+          "context_evidence": [
+            {
+              "page": 16,
+              "markers": [
+                "89,300",
+                "29.98"
+              ]
+            }
+          ]
         }
       ],
       "attributes": [
@@ -79533,6 +79590,45 @@
           "measurement_bounds": null,
           "representativeness": "NOT_FIELD_ISR_OR_WHOLE_RESOURCE",
           "extraction_method": "PRIMARY_RNS_TABLE_TRANSCRIPTION_NOT_INDEPENDENT_EXPERT_VALIDATION"
+        },
+        {
+          "scope": "Wudinna Boland and Head combined Garford and Pidinga MRE; in situ, undiluted",
+          "statement_id": "wudinna-20261022",
+          "effective_date": "2026-10-22",
+          "category": "INDICATED_INFERRED_TOTAL",
+          "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864",
+          "source_key": "metadata_wudinna_cobra_20261026",
+          "variable": "reported_resource_ndpr_ppm",
+          "basis": "NdPr_OXIDES",
+          "value": 101,
+          "unit": "ppm",
+          "material_basis": "RESOURCE_ORE_GRADE_NDPR_OXIDE_GROUP_PPM",
+          "pdf_page": 3,
+          "page_markers": [
+            "Total 150 470 101 10 112",
+            "NdPr=Pr6O11+Nd2O3",
+            "Effective Date of 22 October, 2026",
+            "in situ and undiluted"
+          ],
+          "locator": "Physical PDF p3; Table 1 Total, 200 ppm TREO-Ce; 101 ppm NdPr oxide, matching the primary 150 Mt and 470 ppm",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "census_equivalent_resource_pdf": {
+            "source_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+            "ore_mt": 150,
+            "grade_pct": 0.047,
+            "contained_treo_kt": 70.4
+          },
+          "original_token": "101",
+          "original_unit": "ppm",
+          "context_evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "150 Mt grading 470 ppm",
+                "70,400 tonnes of contained TREO"
+              ]
+            }
+          ]
         }
       ],
       "attributes": [
@@ -174396,19 +174492,6 @@
                   ]
                 },
                 {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
-                },
-                {
                   "column": "Yb2O3_氧化鐿_kt",
                   "reason": "TABLE3_GRADE_16.2PPM_PREDICTS_1985.2492662T_VS_TABLE4_2010T;DELTA24.751T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
                   "evidence": {
@@ -174793,19 +174876,6 @@
                       ]
                     }
                   ]
-                },
-                {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
                 },
                 {
                   "column": "Yb2O3_氧化鐿_kt",
@@ -175194,19 +175264,6 @@
                   ]
                 },
                 {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
-                },
-                {
                   "column": "Yb2O3_氧化鐿_kt",
                   "reason": "TABLE3_GRADE_16.2PPM_PREDICTS_1985.2492662T_VS_TABLE4_2010T;DELTA24.751T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
                   "evidence": {
@@ -175591,19 +175648,6 @@
                       ]
                     }
                   ]
-                },
-                {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
                 },
                 {
                   "column": "Yb2O3_氧化鐿_kt",
@@ -175994,19 +176038,6 @@
                   ]
                 },
                 {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
-                },
-                {
                   "column": "Yb2O3_氧化鐿_kt",
                   "reason": "TABLE3_GRADE_16.2PPM_PREDICTS_1985.2492662T_VS_TABLE4_2010T;DELTA24.751T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
                   "evidence": {
@@ -176395,19 +176426,6 @@
                   ]
                 },
                 {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
-                },
-                {
                   "column": "Yb2O3_氧化鐿_kt",
                   "reason": "TABLE3_GRADE_16.2PPM_PREDICTS_1985.2492662T_VS_TABLE4_2010T;DELTA24.751T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
                   "evidence": {
@@ -176794,19 +176812,6 @@
                       ]
                     }
                   ]
-                },
-                {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
                 },
                 {
                   "column": "Yb2O3_氧化鐿_kt",
@@ -177256,19 +177261,6 @@
                   ]
                 },
                 {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
-                },
-                {
                   "column": "Yb2O3_氧化鐿_kt",
                   "reason": "TABLE3_GRADE_16.2PPM_PREDICTS_1985.2492662T_VS_TABLE4_2010T;DELTA24.751T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
                   "evidence": {
@@ -177650,19 +177642,6 @@
                       ]
                     }
                   ]
-                },
-                {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
                 },
                 {
                   "column": "Yb2O3_氧化鐿_kt",
@@ -178048,19 +178027,6 @@
                   ]
                 },
                 {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
-                },
-                {
                   "column": "Yb2O3_氧化鐿_kt",
                   "reason": "TABLE3_GRADE_16.2PPM_PREDICTS_1985.2492662T_VS_TABLE4_2010T;DELTA24.751T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
                   "evidence": {
@@ -178442,19 +178408,6 @@
                       ]
                     }
                   ]
-                },
-                {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
                 },
                 {
                   "column": "Yb2O3_氧化鐿_kt",
@@ -178840,19 +178793,6 @@
                   ]
                 },
                 {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
-                },
-                {
                   "column": "Yb2O3_氧化鐿_kt",
                   "reason": "TABLE3_GRADE_16.2PPM_PREDICTS_1985.2492662T_VS_TABLE4_2010T;DELTA24.751T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
                   "evidence": {
@@ -179234,19 +179174,6 @@
                       ]
                     }
                   ]
-                },
-                {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
                 },
                 {
                   "column": "Yb2O3_氧化鐿_kt",
@@ -179632,19 +179559,6 @@
                   ]
                 },
                 {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
-                },
-                {
                   "column": "Yb2O3_氧化鐿_kt",
                   "reason": "TABLE3_GRADE_16.2PPM_PREDICTS_1985.2492662T_VS_TABLE4_2010T;DELTA24.751T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
                   "evidence": {
@@ -180028,19 +179942,6 @@
                   ]
                 },
                 {
-                  "column": "Y2O3_氧化釔_kt",
-                  "reason": "TABLE3_GRADE_222.6PPM_PREDICTS_27278.7954726T_VS_TABLE4_27265T;DELTA13.795T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
-                  "evidence": {
-                    "page": 6,
-                    "markers": [
-                      "Y2O3",
-                      "222.6",
-                      "27,265",
-                      "122,546,251"
-                    ]
-                  }
-                },
-                {
                   "column": "Yb2O3_氧化鐿_kt",
                   "reason": "TABLE3_GRADE_16.2PPM_PREDICTS_1985.2492662T_VS_TABLE4_2010T;DELTA24.751T_EXCEEDS_ROUNDING_ENVELOPE6.627T",
                   "evidence": {
@@ -180122,6 +180023,53 @@
           },
           "material_basis": "RESOURCE_ORE_GRADE_OXIDE_PPM",
           "review_method": "NATIVE_TABLE_ROW_COLUMN_CELL_BINDING"
+        },
+        {
+          "scope": "Mount Ridley Blocks1and2 total Inferred REE Mineral Resource at >300ppm TREO cutoff; excludes Mia Central and other project resources; alternative sub-scope, not whole-project total.",
+          "statement_id": "ridley_blocks12_202603",
+          "effective_date": "2026-03-24",
+          "category": "INFERRED",
+          "source_sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+          "source_key": "asx_ridley_blocks12_202603",
+          "variable": "reported_resource_contained_y2o3_kt",
+          "basis": "Y2O3",
+          "value": 27.265,
+          "unit": "kt",
+          "material_basis": "RESOURCE_CONTAINED_OXIDE_MASS_KT",
+          "pdf_page": 6,
+          "page_markers": [
+            "35,366,009",
+            "87,180,242",
+            "122,546,251",
+            "181.6 14.1",
+            "239.1 17.1",
+            "6,422 497",
+            "20,843 1,513",
+            "27,265 2,010",
+            "Y2O3 Yb2O3"
+          ],
+          "locator": "Physical PDF p6; Tables 1, 3 and 4, Blocks 1 and 2 only; Y2O3 mass 6,422 + 20,843 = 27,265 t; both block grades agree within their displayed precision",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "original_token": "27,265",
+          "original_unit": "t",
+          "transform": {
+            "rule": "SUM_RECONCILED_RESOURCE_BLOCK_MASSES",
+            "reported_total_t": 27265,
+            "blocks": [
+              {
+                "block": "Block 1",
+                "ore_t": 35366009,
+                "grade_ppm": "181.6",
+                "contained_t": 6422
+              },
+              {
+                "block": "Block 2",
+                "ore_t": 87180242,
+                "grade_ppm": "239.1",
+                "contained_t": 20843
+              }
+            ]
+          }
         }
       ],
       "identity_declaration": {

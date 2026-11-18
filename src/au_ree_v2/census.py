@@ -163,6 +163,21 @@ def summary_reported_oxide_group(same,bundle,variable,basis,material_basis):
     g=groups[0]
     return dict(observation=g,contained_kt=bundle['value']['ore_mt']*g['value']*.001,share_percent=g['value']/grade*100)
 
+
+def summary_matching_resource_pdf(observation, raw, bundle):
+    """Allow page-verified composition from an explicitly matched PDF edition."""
+    reference = raw.get('census_equivalent_resource_pdf')
+    if not reference or bundle.get('partial_resource_projection'):
+        return False
+    ore = next(o for o in bundle['observations'] if o['variable']=='ore_mt')
+    return (
+        observation['source_sha'] != bundle['source_sha256']
+        and bool(raw.get('page_extraction_sha256'))
+        and reference == dict(source_sha256=bundle['source_sha256'], **bundle['value'])
+        and all(observation[k] == bundle[k] for k in ('statement_id','scope','effective_date'))
+        and observation['category'] == ore['category']
+    )
+
 def summary_decimal_token(value):
     if not isinstance(value,str) or not re.fullmatch(r'(?:0|[1-9][0-9]*)(?:\.[0-9]+)?',value):
         raise ValueError('NUMERIC_PRESENTATION_SOURCE_TOKEN')
@@ -523,10 +538,23 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
     if not partial and shares and len({o['value'] for o in shares})==1:
         put('磁鐵稀土佔TREO_pct',shares[0]['value'],sha,shares[0]['locator'],'SOURCE_REPORTED',scope,[shares[0]['obs_id']])
         put('磁鐵稀土氧化物蘊藏量_kt',bundle['value']['contained_treo_kt']*shares[0]['value']/100,sha,locator,'TREO_KT_X_MAGNET_SHARE_PERCENT',scope,ids)
+    supplemental=[o for o in decoded if summary_matching_resource_pdf(o,json.loads(o['raw']),bundle)]
+    composition=[*same,*supplemental]
+    composition_ids=sorted({o['obs_id'] for o in composition})
+    composition_sha=';'.join(sorted({o['source_sha'] for o in composition}))
     elements={};review=next((json.loads(o['raw']).get('review_contract') for o in same if json.loads(o['raw']).get('review_contract')),None)
     for oxide in rules['oxides']:
-        found=[o for o in same if o['basis']==oxide and o['unit']=='ppm' and
+        found=[o for o in composition if o['basis']==oxide and o['unit']=='ppm' and
             json.loads(o['raw']).get('material_basis')=='RESOURCE_ORE_GRADE_OXIDE_PPM']
+        if not found and not partial:
+            contained=[o for o in composition if o['basis']==oxide and o['unit']=='kt' and
+                json.loads(o['raw']).get('material_basis')=='RESOURCE_CONTAINED_OXIDE_MASS_KT']
+            if contained and len({o['value'] for o in contained})==1:
+                o=contained[0]
+                elements[oxide]=o['value']
+                put(next(c for c in row if c.startswith(oxide+'_')),o['value'],o['source_sha'],o['locator'],
+                    'SUM_RECONCILED_NON_OVERLAPPING_RESOURCE_BLOCK_MASSES',scope,ids+[o['obs_id']])
+            continue
         if not found or len({o['value'] for o in found})!=1:continue
         o=found[0];raw=json.loads(o['raw']);value=bundle['value']['ore_mt']*o['value']*.001
         if partial and partial['mode']=='BULK_ORE_AND_HM_HOSTED_OXIDES_ONLY':
@@ -536,24 +564,32 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
             value = hm * summary_hm_percent(raw, oxide) * 10
         elements[oxide]=value
         method='DERIVED_SAME_ROW_TREO_MINUS_TREO_EX_CEO2_X_MATCHED_ORE_MT_X_0_001' if raw.get('review_method','').startswith('DERIVED_SAME_ROW_TREO_MINUS_TREO_EX_CEO2') else 'ORE_MT_X_OXIDE_PPM_X_0_001'
-        put(next(c for c in row if c.startswith(oxide+'_')),value,sha,o['locator'],method,scope,ids+[o['obs_id']])
+        put(next(c for c in row if c.startswith(oxide+'_')),value,o['source_sha'],o['locator'],method,scope,ids+[o['obs_id']])
     if review:
         summary_scoped_oxide_fields(row,bundle,review,elements,sources[sha],rules,decisions,put)
     total=bundle['value'].get('contained_treo_kt')
     if elements:
-        put('已公布元素數_共15項',len(elements),sha,locator,'COUNT_CANONICAL_INDIVIDUAL_OXIDES',scope,ids)
-        put('已公布元素總和_kt',sum(elements.values()),sha,locator,'SUM_AVAILABLE_MATCHED_OXIDES_NOT_TOTAL_RESOURCE',scope,ids)
-        if total:put('元素總和/TREO',float(sum(elements.values()))/float(total),sha,locator,'AVAILABLE_OXIDE_SUM_DIVIDED_BY_MATCHED_TREO',scope,ids)
+        put('已公布元素數_共15項',len(elements),composition_sha,locator,'COUNT_CANONICAL_INDIVIDUAL_OXIDES',scope,composition_ids)
+        put('已公布元素總和_kt',sum(elements.values()),composition_sha,locator,'SUM_AVAILABLE_MATCHED_OXIDES_NOT_TOTAL_RESOURCE',scope,composition_ids)
+        if total:put('元素總和/TREO',float(sum(elements.values()))/float(total),composition_sha,locator,'AVAILABLE_OXIDE_SUM_DIVIDED_BY_MATCHED_TREO',scope,composition_ids)
     for needed,column in [(('Nd2O3','Pr6O11'),'NdPr蘊藏量_kt_需兩者皆公布'),(rules['heavy'],'完整重稀土組合蘊藏量_kt_需8元素皆公布'),(rules['magnet'],'磁性元素重算值_NdPrTbDy_kt')]:
         value=summary_complete_sum(elements,needed)
-        if value is not None:put(column,value,sha,locator,'SUM_COMPLETE_MATCHED_OXIDE_SET',scope,ids)
+        if value is not None:put(column,value,composition_sha,locator,'SUM_COMPLETE_MATCHED_OXIDE_SET',scope,composition_ids)
     if row['NdPr蘊藏量_kt_需兩者皆公布'] in (None,''):
-        ndpr=summary_reported_oxide_group(same,bundle,'reported_resource_ndpr_ppm','NdPr_OXIDES',
+        ndpr=summary_reported_oxide_group(composition,bundle,'reported_resource_ndpr_ppm','NdPr_OXIDES',
             'RESOURCE_ORE_GRADE_NDPR_OXIDE_GROUP_PPM')
         if ndpr:
             group_locator='; '.join(sorted({locator,ndpr['observation']['locator']}))
-            put('NdPr蘊藏量_kt_需兩者皆公布',ndpr['contained_kt'],sha,group_locator,
-                'ORE_MT_X_REPORTED_NDPR_OXIDE_GROUP_PPM_X_0_001',scope,ids)
+            put('NdPr蘊藏量_kt_需兩者皆公布',ndpr['contained_kt'],ndpr['observation']['source_sha'],group_locator,
+                'ORE_MT_X_REPORTED_NDPR_OXIDE_GROUP_PPM_X_0_001',scope,ids+[ndpr['observation']['obs_id']])
+        elif not partial:
+            reported=[o for o in composition if o['variable']=='reported_resource_ndpr_kt' and o['unit']=='kt'
+                and o['basis']=='NdPr_OXIDES' and
+                json.loads(o['raw']).get('material_basis')=='RESOURCE_CONTAINED_NDPR_OXIDE_GROUP_KT']
+            if reported and len({o['value'] for o in reported})==1:
+                o=reported[0]
+                put('NdPr蘊藏量_kt_需兩者皆公布',o['value'],o['source_sha'],o['locator'],
+                    'SOURCE_REPORTED_MATCHED_NDPR_OXIDE_GROUP_KT',scope,ids+[o['obs_id']])
     magnet=summary_complete_sum(elements,rules['magnet'])
     if magnet is not None:
         put('四項磁性元素皆公布','是',sha,locator,'SUM_COMPLETE_MATCHED_OXIDE_SET',scope,ids)

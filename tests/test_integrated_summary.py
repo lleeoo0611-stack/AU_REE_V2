@@ -3,8 +3,8 @@ import copy,csv,json,tempfile,unittest
 from pathlib import Path
 import pymupdf
 from au_ree_v2.store import connect,canonical,digest,filehash
-from au_ree_v2.evidence import ingest_sources,ingest_claims,normalize,validate_project_attribute
-from au_ree_v2.census import export_summary,summary_settings,summary_resource_fields,summary_decision,summary_missing
+from au_ree_v2.evidence import ingest_sources,ingest_claims,normalize,transformation_issues,validate_project_attribute
+from au_ree_v2.census import export_summary,summary_settings,summary_resource_fields,summary_decision,summary_missing,summary_matching_resource_pdf
 from au_ree_v2.pdf_extract import summary_hit_priority,summary_parse_tsv
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -113,6 +113,31 @@ class SummaryContractTests(unittest.TestCase):
         self.assertFalse(row['磁性元素重算值_NdPrTbDy_kt'])
         self.assertFalse(row['四項磁性元素皆公布'])
         self.assertFalse(any(value for key,value in row.items() if key.startswith(('Nd2O3_','Pr6O11_'))))
+
+    def test_pdf_supplement_pins_primary_scope_category_and_totals(self):
+        key=dict(scope='Selected whole MRE',statement_id='mre-1',effective_date='2026-01-01')
+        values=dict(ore_mt=10,grade_pct=0.1,contained_treo_kt=10)
+        bundle=dict(key,source_sha256='primary',value=values,observations=[dict(variable='ore_mt',category='INFERRED')])
+        obs=dict(key,source_sha='pdf',category='INFERRED')
+        raw=dict(page_extraction_sha256='page',census_equivalent_resource_pdf=dict(values,source_sha256='primary'))
+        self.assertTrue(summary_matching_resource_pdf(obs,raw,bundle))
+        self.assertFalse(summary_matching_resource_pdf(dict(obs,category='INDICATED'),raw,bundle))
+        self.assertFalse(summary_matching_resource_pdf(dict(obs,effective_date='2026-02-01'),raw,bundle))
+        self.assertFalse(summary_matching_resource_pdf(obs,dict(raw,page_extraction_sha256=''),bundle))
+        self.assertFalse(summary_matching_resource_pdf(obs,raw,dict(bundle,value=dict(values,contained_treo_kt=9.99))))
+
+    def test_oxide_mass_requires_complete_reconciling_resource_blocks(self):
+        ore=self.project['observations'][0]
+        parts=[dict(block='A',ore_t=4000000,grade_ppm='100.0',contained_t=400),
+               dict(block='B',ore_t=6000000,grade_ppm='120.0',contained_t=720)]
+        claim=dict(ore,variable='reported_resource_contained_y2o3_kt',basis='Y2O3',unit='kt',value=1.12,
+            material_basis='RESOURCE_CONTAINED_OXIDE_MASS_KT',
+            transform=dict(rule='SUM_RECONCILED_RESOURCE_BLOCK_MASSES',reported_total_t=1120,blocks=parts))
+        self.assertEqual([],transformation_issues(claim,[ore]))
+        parts[1]['contained_t']=726
+        self.assertEqual(['TRANSFORMATION_CONTRACT_FAILED'],transformation_issues(claim,[ore]))
+        parts[1].update(contained_t=720,ore_t=5000000)
+        self.assertEqual(['TRANSFORMATION_CONTRACT_FAILED'],transformation_issues(claim,[ore]))
 
     def test_changed_original_withholds_all_source_bound_values(self):
         self.build();self.pdf.write_bytes(b'changed original')

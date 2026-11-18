@@ -3,7 +3,7 @@ import json
 from collections import Counter
 
 from .analysis import write_csv
-from .census import summary_observation
+from .census import summary_matching_resource_pdf, summary_observation
 from .store import canonical, digest
 
 
@@ -68,10 +68,11 @@ def resource_statement_observations(db, observations, bundles):
         pid = o['entity_id']
         key = (o['source_sha'], o['statement_id'], o['scope'], o['effective_date'])
         bundle = bundles.get(pid)
-        selected = bool(bundle and key == tuple(bundle[k] for k in
-                        ('source_sha256', 'statement_id', 'scope', 'effective_date')))
+        bundle_key = tuple(bundle[k] for k in ('source_sha256', 'statement_id', 'scope', 'effective_date')) if bundle else None
+        equivalent = bool(bundle and summary_matching_resource_pdf(o, raw, bundle))
+        selected = key == bundle_key or equivalent
         contract = raw.get('review_contract') or {}
-        yield dict(project_id=pid, statement_group_id=digest([pid, *key]), statement_id=o['statement_id'],
+        yield dict(project_id=pid, statement_group_id=digest([pid, *(bundle_key if equivalent else key)]), statement_id=o['statement_id'],
                    source_sha256=o['source_sha'], scope=o['scope'], category=o['category'],
                    reporting_standard=raw.get('reporting_standard') or contract.get('reporting_standard'),
                    cutoff=raw.get('cutoff') or contract.get('cutoff'),
