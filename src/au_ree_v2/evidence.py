@@ -20,6 +20,90 @@ REPORTED_OXIDE_VARIABLES = {
 }
 
 
+def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
+    """Reverify migrated declarations; unavailable originals never become values."""
+    import copy, re
+    from .store import entity, issue
+    from .pdf_extract import extract_page
+    tessdata=tessdata or __import__('os').environ.get('TESSDATA_PREFIX')
+    claims=copy.deepcopy(claims);by_key={s['key']:s for s in snapshots}
+    changed={r['key'] for r in outcomes if r['status']=='SOURCE_SHA_CHANGED' and r['key'] not in by_key}
+    cache=Path(cache);cache.mkdir(parents=True,exist_ok=True);verified={};projects=[]
+    for receipt in outcomes:
+        for candidate in json.loads(receipt.get('alternate_mismatches') or '[]'):
+            issue(db,None,candidate['actual_sha256'],'ALTERNATE_SHA_MISMATCH',canonical(candidate))
+    def page(source, binding, clip=None):
+        markers=binding.get('page_markers',binding.get('markers',[]));number=binding.get('pdf_page',binding.get('page'))
+        if not isinstance(number,int) or len(markers)<2:raise ValueError('MISSING_PAGE_OR_TWO_MARKERS')
+        key=digest([source['sha256'],number,markers,clip])
+        if key not in verified:
+            data=extract_page(root/source['path'],number,tessdata,markers=markers,ocr_clip=clip)
+            if data['status']!='EXTRACTED_REQUIRES_SCOPE_VALIDATION':raise ValueError('EXTRACTION_PAGE_CHECK_FAILED')
+            payload=canonical(data)+'\n';sha=__import__('hashlib').sha256(payload.encode()).hexdigest()
+            target=cache/(sha+'.json');target.write_bytes(payload.encode('utf8'))
+            artifact=dict(key=source['key']+'_page_'+key[:16],kind='pdf_page_extraction',url=source['url'],
+                          source_sha256=source['sha256'],physical_page=number,sha256=sha,path=str(target),
+                          acquired_at=source['acquired_at'],available_date=source['available_date'])
+            snapshots.append(artifact);verified[key]=artifact
+        return verified[key]
+    for p in claims['projects']:
+        eid=entity(db,p.get('entity_namespace','project_registry_v1'),p['id'],p.get('entity_kind','PROJECT'))
+        identity=by_key.get(p['identity_source']);identity_error=None
+        if not identity:identity_error='SOURCE_SHA_CHANGED' if p['identity_source'] in changed else 'SOURCE_NOT_ACQUIRED'
+        if identity and p.get('identity_locator','').startswith('Migrated identity;'):
+            try:
+                binding=p['identity_declaration']
+                if binding['source_sha256']!=identity['sha256']:raise ValueError('SOURCE_SHA_CHANGED')
+                page(identity,binding)
+                for context in binding.get('context_evidence',[]):page(identity,context)
+            except Exception as exc:identity_error=str(exc)
+        accepted=[]
+        for o in p['observations']:
+            source=by_key.get(o['source_key']);reason=identity_error
+            if o['source_key'] in changed or source and source['sha256']!=o['source_sha256']:reason='SOURCE_SHA_CHANGED'
+            elif not source:reason=reason or 'SOURCE_NOT_ACQUIRED'
+            if not reason and o.get('extraction_method','').endswith('MIGRATED_REVERIFIED_AT_BUILD'):
+                try:
+                    match=re.search(r'ocr_clip=(\[[^\]]+\])',o['locator']);clip=json.loads(match.group(1)) if match else None
+                    artifact=page(source,o,clip)
+                    o.update(page_extraction_key=artifact['key'],page_extraction_sha256=artifact['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
+                except Exception as exc:reason=str(exc)
+            if reason:issue(db,eid,o['source_sha256'],reason,canonical(o))
+            else:accepted.append(o)
+        attributes=[]
+        for a in p.get('attributes',[]):
+            source=by_key.get(a['source_key']);reason=identity_error
+            if a['source_key'] in changed or source and source['sha256']!=a['source_sha256']:reason='SOURCE_SHA_CHANGED'
+            elif not source:reason=reason or 'SOURCE_NOT_ACQUIRED'
+            if not reason:
+                try:
+                    if source['kind']=='pdf':
+                        artifact=page(source,a)
+                        a.update(page_extraction_key=artifact['key'],page_extraction_sha256=artifact['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
+                        for context in a.get('context_evidence',[]):
+                            proof=page(source,context)
+                            context.update(page_extraction_key=proof['key'],page_extraction_sha256=proof['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
+                    validate_project_attribute(root,source,a,snapshots)
+                except Exception as exc:reason=str(exc)
+            if reason:issue(db,eid,a['source_sha256'],reason,canonical(a))
+            else:attributes.append(a)
+        p['attributes']=attributes
+        if identity_error:
+            issue(db,eid,None,identity_error,canonical(dict(project=p['id'],identity_source=p['identity_source'])))
+        else:p['observations']=accepted;projects.append(p)
+    claims['projects']=projects;events=[]
+    for event in claims.get('events',[]):
+        source=by_key.get(event['source_key']);reason=None
+        if event['source_key'] in changed or source and source['sha256']!=event['source_sha256']:reason='SOURCE_SHA_CHANGED'
+        elif not source:reason='SOURCE_NOT_ACQUIRED'
+        if reason:
+            eid=entity(db,event['project_namespace'],event['project_native_id'],'PROJECT')
+            issue(db,eid,event['source_sha256'],reason,canonical(event))
+        else:events.append(event)
+    claims['events']=events
+    return claims
+
+
 def validate_project_attribute(root, source, attribute, snapshots, cache=None):
     """The same immutable page checks as observations; layer features stay native."""
     a=attribute

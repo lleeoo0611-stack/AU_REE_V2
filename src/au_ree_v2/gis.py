@@ -46,28 +46,34 @@ def representative_coordinate(db, eid, source_shas):
             return dict(r)
     return None
 
-def run(db, root, snapshots, run_id, project_ids):
+def run(db, root, snapshots, run_id, project_ids, *, alternative_points=None):
     output = {}
     source_shas = {s['sha256'] for s in snapshots}
+
+    def report(entity, sha, code, detail):
+        if alternative_points is None:
+            issue(db,entity,sha,code,detail)
+
     for s in snapshots:
         if s['kind'] != 'arcgis_gis':
             continue
         data = json.loads((Path(root) / s['path']).read_text(encoding='utf-8'))
         inventory = data.get('inventory',{})
         if data.get('spatialReference',{}).get('wkid') != 4326 or not inventory.get('complete'):
-            issue(db, None, s['sha256'], 'GIS_INCOMPLETE_OR_CRS', s['key'])
+            report(None, s['sha256'], 'GIS_INCOMPLETE_OR_CRS', s['key'])
             continue
         if inventory.get('scope','global') not in ('global','registered_project_aoi'):
-            issue(db,None,s['sha256'],'GIS_UNKNOWN_COVERAGE_SCOPE',s['key'])
+            report(None,s['sha256'],'GIS_UNKNOWN_COVERAGE_SCOPE',s['key'])
             continue
         try:
             geoms=[geometry(f) for f in data['features']]
             if not geoms or any(g.is_empty or not g.is_valid for g in geoms):raise ValueError('Empty or invalid layer geometry')
             projected=[transform(PROJECT,g) for g in geoms];tree=STRtree(projected)
         except Exception as exc:
-            issue(db,None,s['sha256'],'GIS_FAILED',str(exc));continue
+            report(None,s['sha256'],'GIS_FAILED',str(exc));continue
         for eid in project_ids:
-            record = representative_coordinate(db,eid,source_shas)
+            record = (representative_coordinate(db,eid,source_shas) if alternative_points is None
+                      else alternative_points.get(eid))
             if record is None:
                 continue
             radius = None
@@ -78,7 +84,7 @@ def run(db, root, snapshots, run_id, project_ids):
                 coverage = covered_project(inventory,native['native_id'],
                                            record['longitude'], record['latitude'])
                 if coverage is None:
-                    issue(db,eid,s['sha256'],'GIS_AOI_NOT_COVERED',
+                    report(eid,s['sha256'],'GIS_AOI_NOT_COVERED',
                           canonical({'layer':s['key'],'coordinate_sha256':record['source_sha']}))
                     continue
                 radius=coverage['radius_km']
@@ -87,7 +93,7 @@ def run(db, root, snapshots, run_id, project_ids):
                 distance=point.distance(projected[int(tree.nearest(point))])/1000
                 # AOI inventory proves only distances strictly inside the source radius.
                 if radius is not None and distance >= radius - 0.0001:
-                    issue(db,eid,s['sha256'],'GIS_NEAREST_OUTSIDE_AOI_RADIUS',
+                    report(eid,s['sha256'],'GIS_NEAREST_OUTSIDE_AOI_RADIUS',
                           canonical({'distance_km':distance,'radius_km':radius}))
                     continue
                 variable=s['layer']+'_distance_km'
@@ -98,11 +104,12 @@ def run(db, root, snapshots, run_id, project_ids):
                             'coverage_scope':inventory.get('scope','global'),
                             'radius_km':radius,
                             'limitation':'Representative point only; not footprint, route access, freight or grid availability'}
-                db.execute('INSERT OR REPLACE INTO derived VALUES(?,?,?,?,?)',
-                           (run_id,eid,variable,distance,canonical(provenance)))
+                if alternative_points is None:
+                    db.execute('INSERT OR REPLACE INTO derived VALUES(?,?,?,?,?)',
+                               (run_id,eid,variable,distance,canonical(provenance)))
                 output.setdefault(eid,{})[variable]={'value':distance,**provenance}
             except Exception as exc:
-                issue(db,eid,s['sha256'],'GIS_FAILED',str(exc))
+                report(eid,s['sha256'],'GIS_FAILED',str(exc))
     return output
 
 

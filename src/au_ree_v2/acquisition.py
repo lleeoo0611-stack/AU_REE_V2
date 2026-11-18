@@ -948,15 +948,28 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
     return selected,outcomes
 
 
-def checked_snapshots(root, snapshots, cutoff, acquired_through=None):
+def checked_snapshots(root, snapshots, cutoff, acquired_through=None, *, replay_assets=None):
     """Resolve immutable originals and their raw response attachments."""
+    from .selection import date_end
+
     for source in snapshots:
-        if (source.get('publication_date') or '') > cutoff:
+        if source.get('publication_date') and date_end(source['publication_date']) > cutoff:
             raise ValueError(f"Snapshot after publication cutoff: {source['key']}")
         if acquired_through and source['available_date'] > acquired_through:
             raise ValueError(f"Snapshot after acquisition cutoff: {source['key']}")
         for entry in [source, *source.get('original_responses', [])]:
             path = root / entry['path']
+            if not path.is_file() and replay_assets is not None:
+                sha = entry['sha256']
+                if not re.fullmatch('[0-9a-f]{64}', sha):
+                    raise ValueError('Invalid asset SHA-256 in snapshot lock')
+                folder = Path(replay_assets).resolve(strict=True)
+                asset = (folder / sha).resolve()
+                if not asset.is_relative_to(folder):
+                    raise ValueError('Replay asset escapes its library')
+                if asset.is_file():
+                    path = asset
+                    entry['path'] = str(path)
             if not path.is_file() or filehash(path) != entry['sha256']:
                 raise ValueError(f"Locked snapshot checksum mismatch: {source['key']} ({path.name})")
     return snapshots
@@ -1016,7 +1029,8 @@ def static_pdf_sources(registry, claims, directories, cutoff, already_selected):
     return selected
 
 
-def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, static_pdfs=()):
+def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, static_pdfs=(),
+                       replay_assets=None, receipt_path=None):
     """One ASX source stage. Replays use the same selected inputs and receipts."""
     from .analysis import write_csv
     from .discovery import strict_search_plan
@@ -1027,7 +1041,7 @@ def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, sta
             raise ValueError('Acquisition replay cutoff must match --as-of')
         if receipt['registry_sha256'] != digest(registry):
             raise ValueError('Acquisition replay source registry changed')
-        fresh = checked_snapshots(root, receipt['snapshots'], cutoff)
+        fresh = checked_snapshots(root, receipt['snapshots'], cutoff, replay_assets=replay_assets)
         registered = {s['key']:s['kind'] for s in registry['sources']}
         if any(registered.get(s['key']) != s['kind'] for s in fresh):
             raise ValueError('Acquisition replay contains an unregistered source')
@@ -1065,7 +1079,8 @@ def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, sta
         hashes = json.loads(release_summary.read_text(encoding='utf8'))['output_hashes']
         if hashes.get('snapshot_lock.json') != filehash(phase22):
             raise ValueError('Phase 22 frozen source lock checksum mismatch')
-    base = checked_snapshots(root, json.loads(phase22.read_text(encoding='utf8')), '2026-11-05', '2026-11-06')
+    base = checked_snapshots(root, json.loads(phase22.read_text(encoding='utf8')), '2026-11-05', '2026-11-06',
+                             replay_assets=replay_assets)
     # Keep reviewed Phase 22 originals at their frozen keys. ASX extends the
     # collection with additional keys and verified aliases, including page inputs.
     by_key = {s['key']: s for s in base}
@@ -1086,7 +1101,9 @@ def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, sta
     captured = dict(receipt if replay else {}, cutoff=cutoff, registry_sha256=digest(registry),
         snapshots=[dict(portable(s), original_responses=[portable(a) for a in s.get('original_responses', [])])
                    if 'original_responses' in s else portable(s) for s in fresh], outcomes=outcomes)
-    (work/'source_acquisition.json').write_text(canonical(captured)+'\n', encoding='utf8')
+    destination=Path(receipt_path) if receipt_path is not None else work/'source_acquisition.json'
+    destination.parent.mkdir(parents=True,exist_ok=True)
+    destination.write_text(canonical(captured)+'\n', encoding='utf8')
     return list(by_key.values()), outcomes, decisions
 
 

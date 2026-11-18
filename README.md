@@ -7,14 +7,23 @@
 [現行總表、驗收與封存索引](results/ree-project-census/README.md)
 
 ```sh
-au-ree-v2 all --refresh --as-of 2026-11-13 --work work/census-live
-au-ree-v2 all --source-replay work/census-live/source_acquisition.json --as-of 2026-11-13 --work work/census-replay
-au-ree-v2 all --static-pdfs PATH_TO_PDF_LIBRARY --as-of 2026-11-13 --work work/census-static
+au-ree-v2 all --source-mode live --as-of 2026-11-13 --work work/census-live
+au-ree-v2 all --source-mode offline --source-replay work/census-live/source_acquisition.json --as-of 2026-11-13 --work work/census-replay
+au-ree-v2 all --source-mode offline --static-pdfs PATH_TO_PDF_LIBRARY --as-of 2026-11-13 --work work/census-static
 ```
 
 線上建置沿用 ASX 測試的主機停止、請求額度與同 SHA 後備規則。Phase 22 封存來源優先保留原鍵與原版本，ASX 擴充其餘來源。新發現的候選文件須經來源與宣告查核才會進入證據。離線重播需要收據與其指向的原件，會逐一驗證 SHA。請保留建置工作目錄中的原件。
 
 `--static-pdfs` 直接讀取本機原件，依登錄的 SHA 與出版日期選入資料，可重複指定資料夾。搭配 `--source-replay` 可保留既有封存來源並補入同 SHA 的 PDF。兩種離線選項共用後續的頁碼查核、SQLite、總表與排名。
+
+`--source-mode frozen --snapshot-lock PATH` 從指定凍結來源輸出 Census。既有 `rebuild --snapshot-lock PATH` 仍是驗證 Phase 22 科學成果的入口。`--out` 與 `--census-filter` 需要明確的 Census 來源模式，不會自行切換來源或截日。
+
+完整離線重播可將已取得的原件存成 SHA 命名的本機套件。套件含原始來源與取件收據，放在本機工作目錄。發布的 `census_release.json` 提供來源 SHA、日期角色、設定雜湊、Census 母體與各排名面板的輸入輸出雜湊。
+
+```sh
+python tools/bundle_census_replay.py --receipt work/census-live/source_acquisition.json --out work/census-replay-bundle
+au-ree-v2 all --source-mode offline --source-replay work/census-replay-bundle/source_acquisition.json --replay-assets work/census-replay-bundle/assets --as-of 2026-11-13 --work work/census-replay
+```
 
 總表輸出到 `results/ree-project-census/<run-id>/REE project census.csv`。欄名和順序沿用 ASX 測試的 51 欄合約，與 2026-11-16 HTML 共用欄位一致。歷史 HTML 裡已退役的兩個欄位依 ASX 合約留在歷史成果。
 

@@ -14,7 +14,7 @@ from pathlib import Path
 from . import __version__
 from .acquisition import select_snapshots
 from .analysis import prepare, run_r, write_csv
-from .evidence import ingest_sources, ingest_claims, resource_values
+from .evidence import ingest_sources, ingest_claims, resource_values, strict_claims
 from .gis import run as run_gis, national_deposit_port_distances, deposit_type_port_summary
 from .official import official_inventory, exact_deposit_candidates, domain_evidence_coverage, national_prospectus_inventory
 from .national import national_candidate_rows, national_source_coverage, candidate_port_distances
@@ -68,89 +68,27 @@ def recognition_registry(root, work, snapshots, config):
     finally:db.close()
 
 
-def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
-    """Reverify migrated declarations; unavailable originals never become values."""
-    import copy, re
-    from .store import entity, issue
-    from .pdf_extract import extract_page
-    tessdata=tessdata or __import__('os').environ.get('TESSDATA_PREFIX')
-    claims=copy.deepcopy(claims);by_key={s['key']:s for s in snapshots}
-    changed={r['key'] for r in outcomes if r['status']=='SOURCE_SHA_CHANGED' and r['key'] not in by_key}
-    cache=Path(cache);cache.mkdir(parents=True,exist_ok=True);verified={};projects=[]
-    for receipt in outcomes:
-        for candidate in json.loads(receipt.get('alternate_mismatches') or '[]'):
-            issue(db,None,candidate['actual_sha256'],'ALTERNATE_SHA_MISMATCH',canonical(candidate))
-    def page(source, binding, clip=None):
-        markers=binding.get('page_markers',binding.get('markers',[]));number=binding.get('pdf_page',binding.get('page'))
-        if not isinstance(number,int) or len(markers)<2:raise ValueError('MISSING_PAGE_OR_TWO_MARKERS')
-        key=digest([source['sha256'],number,markers,clip])
-        if key not in verified:
-            data=extract_page(root/source['path'],number,tessdata,markers=markers,ocr_clip=clip)
-            if data['status']!='EXTRACTED_REQUIRES_SCOPE_VALIDATION':raise ValueError('EXTRACTION_PAGE_CHECK_FAILED')
-            payload=canonical(data)+'\n';sha=__import__('hashlib').sha256(payload.encode()).hexdigest()
-            target=cache/(sha+'.json');target.write_bytes(payload.encode('utf8'))
-            artifact=dict(key=source['key']+'_page_'+key[:16],kind='pdf_page_extraction',url=source['url'],
-                          source_sha256=source['sha256'],physical_page=number,sha256=sha,path=str(target),
-                          acquired_at=source['acquired_at'],available_date=source['available_date'])
-            snapshots.append(artifact);verified[key]=artifact
-        return verified[key]
-    for p in claims['projects']:
-        eid=entity(db,p.get('entity_namespace','project_registry_v1'),p['id'],p.get('entity_kind','PROJECT'))
-        identity=by_key.get(p['identity_source']);identity_error=None
-        if not identity:identity_error='SOURCE_SHA_CHANGED' if p['identity_source'] in changed else 'SOURCE_NOT_ACQUIRED'
-        if identity and p.get('identity_locator','').startswith('Migrated identity;'):
-            try:
-                binding=p['identity_declaration']
-                if binding['source_sha256']!=identity['sha256']:raise ValueError('SOURCE_SHA_CHANGED')
-                page(identity,binding)
-                for context in binding.get('context_evidence',[]):page(identity,context)
-            except Exception as exc:identity_error=str(exc)
-        accepted=[]
-        for o in p['observations']:
-            source=by_key.get(o['source_key']);reason=identity_error
-            if o['source_key'] in changed or source and source['sha256']!=o['source_sha256']:reason='SOURCE_SHA_CHANGED'
-            elif not source:reason=reason or 'SOURCE_NOT_ACQUIRED'
-            if not reason and o.get('extraction_method','').endswith('MIGRATED_REVERIFIED_AT_BUILD'):
-                try:
-                    match=re.search(r'ocr_clip=(\[[^\]]+\])',o['locator']);clip=json.loads(match.group(1)) if match else None
-                    artifact=page(source,o,clip)
-                    o.update(page_extraction_key=artifact['key'],page_extraction_sha256=artifact['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
-                except Exception as exc:reason=str(exc)
-            if reason:issue(db,eid,o['source_sha256'],reason,canonical(o))
-            else:accepted.append(o)
-        attributes=[]
-        for a in p.get('attributes',[]):
-            source=by_key.get(a['source_key']);reason=identity_error
-            if a['source_key'] in changed or source and source['sha256']!=a['source_sha256']:reason='SOURCE_SHA_CHANGED'
-            elif not source:reason=reason or 'SOURCE_NOT_ACQUIRED'
-            if not reason:
-                try:
-                    if source['kind']=='pdf':
-                        artifact=page(source,a)
-                        a.update(page_extraction_key=artifact['key'],page_extraction_sha256=artifact['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
-                        for context in a.get('context_evidence',[]):
-                            proof=page(source,context)
-                            context.update(page_extraction_key=proof['key'],page_extraction_sha256=proof['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
-                    from .evidence import validate_project_attribute
-                    validate_project_attribute(root,source,a,snapshots)
-                except Exception as exc:reason=str(exc)
-            if reason:issue(db,eid,a['source_sha256'],reason,canonical(a))
-            else:attributes.append(a)
-        p['attributes']=attributes
-        if identity_error:
-            issue(db,eid,None,identity_error,canonical(dict(project=p['id'],identity_source=p['identity_source'])))
-        else:p['observations']=accepted;projects.append(p)
-    claims['projects']=projects;events=[]
-    for event in claims.get('events',[]):
-        source=by_key.get(event['source_key']);reason=None
-        if event['source_key'] in changed or source and source['sha256']!=event['source_sha256']:reason='SOURCE_SHA_CHANGED'
-        elif not source:reason='SOURCE_NOT_ACQUIRED'
-        if reason:
-            eid=entity(db,event['project_namespace'],event['project_native_id'],'PROJECT')
-            issue(db,eid,event['source_sha256'],reason,canonical(event))
-        else:events.append(event)
-    claims['events']=events
-    return claims
+def source_mode(args):
+    """Resolve mutually exclusive input modes independently of output options."""
+    offline=bool(getattr(args,'source_replay',None) or getattr(args,'static_pdfs',()))
+    requested=getattr(args,'source_mode',None)
+    if (offline or getattr(args,'census_filter',[]) or requested) and args.module!='all':
+        raise ValueError('Census source modes and filters require all')
+    if args.refresh and args.module not in ('all','acquire'):
+        raise ValueError('Use all --refresh for the shared acquisition stage')
+    supplied=[mode for present,mode in ((offline,'offline'),(args.refresh,'live'),
+                                        (bool(args.snapshot_lock),'frozen')) if present]
+    if len(supplied)>1 or (requested and supplied and requested!=supplied[0]):
+        raise ValueError('Live, offline and frozen sources cannot be combined')
+    mode=requested or (supplied[0] if supplied else 'legacy')
+    if mode in ('offline','frozen') and not supplied:
+        raise ValueError(f'{mode} mode requires its source replay, static library or snapshot lock')
+    if args.module=='acquire' and args.snapshot_lock:
+        raise ValueError('Acquisition cannot use a frozen snapshot lock')
+    if args.module=='all' and not requested and not supplied and (
+            getattr(args,'out',None) or getattr(args,'census_filter',[])):
+        raise ValueError('Census output and filters require an offline, live or frozen source mode')
+    return mode
 
 
 def execute(args):
@@ -162,16 +100,16 @@ def execute(args):
     source_replay=getattr(args,'source_replay',None)
     static_pdfs=getattr(args,'static_pdfs',())
     census_filters=getattr(args,'census_filter',[])
-    offline_sources=source_replay or static_pdfs
-    integration=args.module=='all' and bool(args.refresh or offline_sources or census_filters or getattr(args,'out',None))
-    if (census_filters or offline_sources) and args.module!='all':
-        raise ValueError('Census filters and offline sources require all')
-    if offline_sources and (args.refresh or args.snapshot_lock):
-        raise ValueError('--source-replay and --static-pdfs cannot be combined with --refresh or --snapshot-lock')
-    if args.refresh and args.module not in ('all','acquire'):
-        raise ValueError('Use all --refresh for the shared acquisition stage')
+    mode=source_mode(args)
+    replay_assets=getattr(args,'replay_assets',None)
+    if replay_assets and not source_replay:
+        raise ValueError('--replay-assets requires --source-replay')
+    integration=args.module=='all' and (
+        mode in ('offline','live') or (mode=='frozen' and getattr(args,'source_mode',None)=='frozen'))
+    if args.module=='all' and mode=='frozen' and not integration and (getattr(args,'out',None) or census_filters):
+        raise ValueError('Use --source-mode frozen to publish or filter Census from a frozen lock')
     config=research_configuration(root,args.snapshot_lock)
-    strict=integration and (args.refresh or offline_sources) and not args.snapshot_lock
+    strict=integration and mode in ('offline','live')
     if not (strict or args.module=='acquire') and config.get('research_evidence_cutoff'):
         args.as_of=min(args.as_of,config['research_evidence_cutoff'])
     acquired_through=config.get('acquisition_through') if args.as_of==config.get('research_evidence_cutoff') else None
@@ -179,11 +117,9 @@ def execute(args):
     date.fromisoformat(args.as_of)
     if args.as_of > datetime.now(timezone(timedelta(hours=8))).date().isoformat():
         raise ValueError('Future cutoff is not supported')
-    if args.snapshot_lock and (args.refresh or args.module=='acquire'):
-        raise ValueError('--snapshot-lock cannot be combined with --refresh')
     if args.dry_run:
         return {'status':'DRY_RUN','module':args.module,'cutoff':args.as_of,'root':str(root),
-                'snapshot_count':len(select_snapshots(root,args.as_of)), 'writes':False}
+                'source_mode':mode,'strict_census_validation':strict,'writes':False}
     if args.module=='register-candidate':
         from .evidence import load_claims,register_candidate
         if not args.registration:raise ValueError('register-candidate requires --registration')
@@ -253,6 +189,10 @@ def execute(args):
         return {'documents':capture_documents(root,selected,keys,args.tessdata,
             registry=recognition_registry(root,args.work,selected,config))}
     acquisition=[];acquisition_selection=[]
+    work=Path(args.work).resolve() if args.work else root/'work'
+    run_id=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'-'+uuid.uuid4().hex[:8]
+    receipt=work/'acquisition'/run_id/'source_acquisition.json' if strict else None
+    acquisition_work=receipt.parent if strict and mode=='offline' else work
     if args.module=='discover':
         from .discovery import search_tasks, strict_search_plan
         discovery_config=json.loads((root/'config/discovery.json').read_text(encoding='utf-8'))
@@ -265,22 +205,20 @@ def execute(args):
         from .acquisition import census_acquisition
         from .evidence import load_claims
         live_claims,_=load_claims(root)
-        strict_work=Path(args.work or root/'work').resolve()
         if any(getattr(args,k,None) for k in ('source_key','centralized','official_only','gap_report')):
             raise ValueError('Use discover for targeted search planning and all --refresh for acquisition')
         snapshots,acquisition,acquisition_selection=census_acquisition(
-            root,registry,strict_work,live_claims,args.as_of,source_replay,static_pdfs=static_pdfs)
+            root,registry,acquisition_work,live_claims,args.as_of,source_replay,static_pdfs=static_pdfs,
+            replay_assets=replay_assets,receipt_path=receipt)
         if args.module=='acquire':
             return dict(status='COMPLETED_WITH_SOURCE_STATUS',sources=acquisition,
-                        source_selection=acquisition_selection,receipt=str(strict_work/'source_acquisition.json'))
+                        source_selection=acquisition_selection,receipt=str(acquisition_work/'source_acquisition.json'))
     if not strict:snapshots=select_snapshots(root,args.as_of,acquired_through=acquired_through)
     if args.snapshot_lock:
         from .acquisition import checked_snapshots
         snapshots=json.loads(Path(args.snapshot_lock).read_text(encoding='utf-8'))
         checked_snapshots(root,snapshots,args.as_of,acquired_through or args.as_of)
-    work=Path(args.work).resolve() if args.work else root/'work'
     work.mkdir(parents=True,exist_ok=True)
-    run_id=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'-'+uuid.uuid4().hex[:8]
     out=work/'runs'/run_id
     out.mkdir(parents=True)
     db=connect(work/'databases'/run_id/'canonical.sqlite' if integration else work/'canonical.sqlite')
@@ -307,11 +245,12 @@ def execute(args):
         frozen_configuration=Path(args.snapshot_lock).parent/'configuration.json'
         if frozen_configuration.exists():
             frozen_claims_sha=json.loads(frozen_configuration.read_text(encoding='utf-8')).get('claims_sha256')
-    claims_data,claims_sha=load_claims(root,frozen_claims_sha,freeze=not args.snapshot_lock and not strict)
-    if strict:claims_data=strict_claims(db,root,snapshots,claims_data,acquisition,out/'verified-pages',args.tessdata)
+    claim_declarations,claims_sha=load_claims(root,frozen_claims_sha,freeze=not args.snapshot_lock and not strict)
+    claims_data=claim_declarations
+    if strict:claims_data=strict_claims(db,root,snapshots,claim_declarations,acquisition,out/'verified-pages',args.tessdata)
     active_claim_ids=claim_evidence_ids(claims_data)
     configuration={'research':config,'sources':registry,'claims_sha256':claims_sha}
-    if integration:configuration['census_filter']=list(census_filters)
+    if integration:configuration.update(census_filter=list(census_filters),source_mode=mode)
     if strict:configuration['verified_claim_ids']=sorted(active_claim_ids)
     for name in ('identity_links.json','study_cases.json'):
         if (root/'data'/name).exists():configuration[name+'_sha256']=filehash(root/'data'/name)
@@ -438,7 +377,8 @@ def execute(args):
         if integration and (root/'config/summary_rules.json').is_file():
             from .census import census_selection, export_summary
             census_coverage=export_summary(root,db.execute('PRAGMA database_list').fetchone()[2],out/'project-summary',
-                connection=db,run_id=run_id,configuration=configuration,snapshots=snapshots,membership=identity['membership'])
+                connection=db,run_id=run_id,configuration=configuration,snapshots=snapshots,membership=identity['membership'],
+                acquisition_rows=acquisition, audit=True, claim_declarations=claim_declarations)
             selected_census=census_selection(out/'project-summary'/'專案總表.csv',identity['membership'],census_filters,out)
         results={};prepared={'panels':{},'coverage':[]};selection=None;technical_observations=None;disclosure_prepared=None;disclosure_result=None
         if args.module in ('all','analyze','rebuild'):
@@ -643,11 +583,17 @@ def execute(args):
                                 'pyproj':pyproj.__version__,'PROJ':pyproj.proj_version_str,
                                 'pypdf':pypdf.__version__}
         if census_coverage is not None:
+            from .census_release import write_release_contract
+            from .census_sensitivity import compare_gis_points
             census_coverage.update(database_run_id=run_id,logical_database_sha256=summary['logical_database_sha256'])
             (out/'project-summary'/'coverage.json').write_text(canonical(census_coverage)+'\n',encoding='utf8')
             summary['project_summary']=census_coverage
             summary['census_filter']=list(census_filters)
             summary['census_mcda_candidates']=len(selected_census)
+            compare_gis_points(db,root,out,run_id,snapshots,gis_values,identity,config,prepared['panels'])
+            write_release_contract(root,out,run_id,mode,args.as_of,version,configuration,
+                snapshots,receipt,prepared,results,selected_census,identity)
+            if receipt:summary['source_acquisition_receipt']=str(receipt)
         elif args.module=='all' and (root/'config/summary_rules.json').is_file():
             from .census import export_summary
             summary['project_summary']=export_summary(root,db.execute('PRAGMA database_list').fetchone()[2],
@@ -676,6 +622,10 @@ def execute(args):
         (out/'summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
         db.execute("UPDATE runs SET status='COMPLETED' WHERE run_id=?",(run_id,))
         db.commit()
+        if census_coverage is not None and strict:
+            alias=work/f'.source_acquisition-{run_id}.json'
+            alias.write_bytes(receipt.read_bytes())
+            alias.replace(work/'source_acquisition.json')
         (work/'latest.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
         return summary
     except Exception as exc:
@@ -699,11 +649,14 @@ def main():
     parser.add_argument('--as-of',default=datetime.now(timezone.utc).date().isoformat())
     parser.add_argument('--project',help='Stable native project registry ID')
     parser.add_argument('--refresh',action='store_true')
+    parser.add_argument('--source-mode',choices=['offline','live','frozen'],
+                        help='Census source mode; legacy --refresh/replay/lock options also select it')
     parser.add_argument('--dry-run',action='store_true')
     parser.add_argument('--skip-r',action='store_true')
     parser.add_argument('--rscript')
     parser.add_argument('--snapshot-lock',help='Exact immutable snapshot_lock.json from a prior run')
     parser.add_argument('--source-replay',help='Replay a saved source_acquisition.json and its SHA-verified originals')
+    parser.add_argument('--replay-assets',help='Local SHA-named asset directory for missing replay inputs')
     parser.add_argument('--static-pdfs',action='append',default=[],metavar='DIRECTORY',
                         help='Read registered PDF originals from a local library by SHA, with no network')
     parser.add_argument('--census-filter',action='append',default=[],metavar='COLUMN=VALUE',

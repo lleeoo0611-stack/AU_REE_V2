@@ -14059,6 +14059,25 @@
             }
           ],
           "attribute_id": "ff77764b90863b768e42efb7c7d5ecee7a32c3425ac17637833ea7b441f513a5"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "nolans_quarter202610",
+          "source_sha256": "1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2",
+          "pdf_page": 1,
+          "page_markers": [
+            "Arafura Rare Earths Limited (ASX: ARU)",
+            "our Nolans Project"
+          ],
+          "locator": "physical PDF p1 source-bound company role",
+          "effective_date": "2026-10-30",
+          "extraction_method": "INTEGRATED_STATIC_PDF_REVIEW",
+          "review_id": "audit19_nolans-rare-earths-project_listing",
+          "statement_id": "audit19_nolans-rare-earths-project_listing",
+          "method": "SOURCE_BOUND_DATED_LISTED_DEVELOPER_NOT_OWNERSHIP",
+          "scope": "Dated Arafura Rare Earths Limited ASX listing on the issuer quarterly report naming its Nolans Project. ABN 22 080 933 455 agrees with Arafura Resources Limited ACN 080 933 455 in the 2019 DFS.",
+          "context_evidence": []
         }
       ]
     },
@@ -122592,6 +122611,33 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發商",
+          "value": "Iluka Resources Limited",
+          "source_key": "euston_annual2022_metadata",
+          "source_sha256": "66c73ea45aa00561067651fdadfa11b90b4c479222b3c546b56c055cd51b5b53",
+          "pdf_page": 13,
+          "page_markers": [
+            "Atacama, Euston and Tutunup developments",
+            "ILUKA RESOURCES LIMITED - ANNUAL REPORT 2022"
+          ],
+          "locator": "physical PDF p13 source-bound company role",
+          "effective_date": "2023-02-21",
+          "extraction_method": "INTEGRATED_STATIC_PDF_REVIEW",
+          "review_id": "audit19_euston_developer",
+          "statement_id": "audit19_euston_developer",
+          "method": "SOURCE_BOUND_DATED_DEVELOPER_NOT_OWNERSHIP",
+          "scope": "Iluka annual report describes advancing Euston as one of its developments and the Euston NSW preliminary feasibility study. Dated developer evidence, not ownership or current tenure certification.",
+          "context_evidence": [
+            {
+              "pdf_page": 41,
+              "page_markers": [
+                "The Euston deposit is a traditional mineral sands deposit",
+                "Preliminary feasibility study work was progressed in 2022."
+              ]
+            }
+          ]
         }
       ]
     },
@@ -133136,6 +133182,15 @@
                       "Rare Earth Oxides are from XRF data"
                     ]
                   }
+                },
+                "in_situ_treo_confirmation": {
+                  "page": 3,
+                  "markers": [
+                    "In-Situ Grades – Magnetic Rare Earth Oxides",
+                    "The Goschen Central project contains over 360,000 tonnes of TREO at an estimated grade of 584 ppm",
+                    "Table 2: Goschen Central Project Magnet Rare Earth assemblage at 1% Cut-off"
+                  ],
+                  "reported_lower_bound_tonnes": 360000
                 }
               }
             }
@@ -180199,6 +180254,25 @@
             }
           ],
           "attribute_id": "3426f2c19c0bfb90b19a32a3c9a84883670534beb1c9295379eb4efb1fb7a4e5"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Clay/regolith",
+          "source_key": "asx_ridley_blocks12_202603",
+          "source_sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+          "pdf_page": 7,
+          "page_markers": [
+            "same weathered clay-hosted profile",
+            "across both blocks",
+            "Block 2 Defined Inferred"
+          ],
+          "locator": "physical PDF p7, clay-hosted profile across Blocks 1 and 2",
+          "effective_date": "2026-03-24",
+          "extraction_method": "INTEGRATED_STATIC_PDF_REVIEW",
+          "review_id": "audit19_mount_ridley_blocks12_host",
+          "statement_id": "audit19_mount_ridley_blocks12_host",
+          "method": "SOURCE_BOUND_SELECTED_RESOURCE_SCOPE_HOST_DESCRIPTION",
+          "scope": "Selected Mount Ridley Blocks 1 and 2 resource; issuer describes a weathered clay-hosted regolith profile. Ionic adsorption not confirmed."
         }
       ]
     },

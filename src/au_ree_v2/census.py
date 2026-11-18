@@ -5,6 +5,7 @@ independent mining project, JORC resource, or an eligible MCDA alternative.
 """
 import json
 import re
+from io import BytesIO
 from pathlib import Path
 from openpyxl import load_workbook
 from .store import canonical, entity, issue
@@ -51,7 +52,8 @@ def classify_ree(fields, structured=(),version=None):
 def ingest_workbook(db, root, source, candidate_version=None):
     path=Path(root)/source['path']
     try:
-        wb=load_workbook(path,read_only=True,data_only=True)
+        workbook=path if path.suffix.lower() in ('.xlsx','.xlsm','.xltx','.xltm') else BytesIO(path.read_bytes())
+        wb=load_workbook(workbook,read_only=True,data_only=True)
     except Exception as exc:
         issue(db,None,source['sha256'],'CENSUS_WORKBOOK_UNREADABLE',str(exc))
         return 0
@@ -440,6 +442,27 @@ def summary_partial_contract(observations, source):
             header=spec['resource_header']
             if summary_norm(summary_region_text(doc[header['page']-1],pymupdf.Rect(header['bbox'])))!='ce2o3':
                 raise ValueError('CERIUM_SELECTED_HEADER_MISMATCH')
+        if confirmation := spec.get('in_situ_treo_confirmation'):
+            try:
+                proof(doc,confirmation)
+                selected=[o for o in observations if o['variable']=='grade' and o['basis']=='TREO'
+                          and o['unit']=='%' and o['source_sha']==review['source_sha256']
+                          and all(o[k]==review[k] for k in ('statement_id','scope','effective_date'))]
+                if len(selected)!=1:raise ValueError('IN_SITU_TREO_GRADE_BINDING_NOT_UNIQUE')
+                grade=selected[0];native=json.loads(grade['raw']);binding=native['cell_binding']
+                page=doc[binding['page']-1]
+                rect=pymupdf.Rect(binding['row_bbox']) & pymupdf.Rect(binding['column_bbox'])
+                ppm=Decimal(summary_region_text(page,rect).replace(',',''))
+                unit=summary_region_text(page,pymupdf.Rect(binding['unit_bbox'])).strip()
+                if (binding['page']!=confirmation['page'] or unit!='ppm'
+                        or ppm/10000!=Decimal(str(grade['value'])) or ppm<=0):
+                    raise ValueError('IN_SITU_TREO_NATIVE_PPM_MISMATCH')
+                contained_kt=Decimal(str(spec['mass_inputs']['ore_mt']['value']))*ppm/1000
+                if contained_kt*1000<=Decimal(str(confirmation['reported_lower_bound_tonnes'])):
+                    raise ValueError('IN_SITU_TREO_REPORTED_LOWER_BOUND_FAILED')
+                contract['verified_in_situ_treo']=dict(grade_pct=ppm/10000,contained_treo_kt=contained_kt)
+            except (IndexError,KeyError,ValueError,InvalidOperation) as exc:
+                contract['in_situ_treo_review_status']=str(exc)
     contract.update({k:review[k] for k in ('source_sha256','statement_id','scope','effective_date')})
     contract['basis_proof_verified']=True
     return contract
@@ -452,9 +475,10 @@ def summary_partial_bundle(observations, contract):
     rows=[o for o in observations if (o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])==key]
     ores=[o for o in rows if o['variable']=='ore_mt' and o['unit']=='Mt' and o['value']>0]
     if not ores or len({o['value'] for o in ores})!=1:return None,'PARTIAL_ORE_REQUIRED'
+    treo=contract.get('verified_in_situ_treo',{})
     return dict(source_sha256=key[0],statement_id=key[1],scope=key[2],effective_date=key[3],
-        basis='SOURCE_SCOPED_PARTIAL_OXIDES',value=dict(ore_mt=ores[0]['value']),observations=rows,
-        partial_resource_projection=contract,contained_method=None),''
+        basis='SOURCE_SCOPED_PARTIAL_OXIDES',value=dict(ore_mt=ores[0]['value'],**treo),observations=rows,
+        partial_resource_projection=contract,contained_method='ORE_MT_X_VERIFIED_IN_SITU_TREO_PPM_X_0_001' if treo else None),''
 
 
 def summary_resource_fields(row, observations, sources, rules, decisions, put, project=None):
@@ -483,7 +507,7 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
     for variable,column in [('ore_mt','礦石蘊藏量_Mt'),('grade_pct','TREO品位_pct'),('contained_treo_kt','總TREO蘊藏量_kt')]:
         if variable in bundle['value']:put(column,bundle['value'][variable],sha,locator,
             bundle['contained_method'] if variable=='contained_treo_kt' else 'SAME_SOURCE_STATEMENT_SCOPE_DATE',scope,ids)
-    if not partial:put('有TREO資源估計','是',sha,locator,'COMPLETE_SOURCE_BOUND_RESOURCE_PAIR',scope,ids)
+    if 'grade_pct' in bundle['value']:put('有TREO資源估計','是',sha,locator,'COMPLETE_SOURCE_BOUND_RESOURCE_PAIR',scope,ids)
     put('資料來源名稱',sources[sha]['key'],sha,locator);put('資料來源URL',sources[sha]['url'],sha,locator)
     same=[o for o in decoded if (o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])==
           (sha,bundle['statement_id'],scope,bundle['effective_date'])]
@@ -517,7 +541,7 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
     if elements:
         put('已公布元素數_共15項',len(elements),sha,locator,'COUNT_CANONICAL_INDIVIDUAL_OXIDES',scope,ids)
         put('已公布元素總和_kt',sum(elements.values()),sha,locator,'SUM_AVAILABLE_MATCHED_OXIDES_NOT_TOTAL_RESOURCE',scope,ids)
-        if total:put('元素總和/TREO',float(sum(elements.values()))/total,sha,locator,'AVAILABLE_OXIDE_SUM_DIVIDED_BY_MATCHED_TREO',scope,ids)
+        if total:put('元素總和/TREO',float(sum(elements.values()))/float(total),sha,locator,'AVAILABLE_OXIDE_SUM_DIVIDED_BY_MATCHED_TREO',scope,ids)
     for needed,column in [(('Nd2O3','Pr6O11'),'NdPr蘊藏量_kt_需兩者皆公布'),(rules['heavy'],'完整重稀土組合蘊藏量_kt_需8元素皆公布'),(rules['magnet'],'磁性元素重算值_NdPrTbDy_kt')]:
         value=summary_complete_sum(elements,needed)
         if value is not None:put(column,value,sha,locator,'SUM_COMPLETE_MATCHED_OXIDE_SET',scope,ids)
@@ -526,7 +550,8 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
         put('四項磁性元素皆公布','是',sha,locator,'SUM_COMPLETE_MATCHED_OXIDE_SET',scope,ids)
         if total and not row['磁鐵稀土氧化物蘊藏量_kt']:
             put('磁鐵稀土氧化物蘊藏量_kt',magnet,sha,locator,'SUM_COMPLETE_MATCHED_MAGNET_OXIDES_AFTER_CE_CANONICALIZATION',scope,ids)
-            put('磁鐵稀土佔TREO_pct',float(magnet)/total*100,sha,locator,'SOURCE_TREO_PLUS_Y_MINUS_CE2O3_PLUS_CEO2',scope,ids)
+            method='MATCHED_HM_HOSTED_OXIDES_DIVIDED_BY_VERIFIED_IN_SITU_TREO' if partial else 'SOURCE_TREO_PLUS_Y_MINUS_CE2O3_PLUS_CEO2'
+            put('磁鐵稀土佔TREO_pct',float(magnet)/float(total)*100,sha,locator,method,scope,ids)
     note=rules['notes']['hm' if partial and partial['mode']=='BULK_ORE_AND_HM_HOSTED_OXIDES_ONLY' else 'cerium_partial' if partial else 'closure_pending' if len(elements)==15 else 'partial'] if elements else ''
     if len(elements)==15 and not partial:
         components=[o for o in same if o['basis'] in elements and json.loads(o['raw']).get('material_basis')=='RESOURCE_ORE_GRADE_OXIDE_PPM']
@@ -644,7 +669,8 @@ def summary_deposit_fields(row,trace,attributes,rules,decisions,put):
 
 
 def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=None,
-                   configuration=None, snapshots=None, membership=()):
+                   configuration=None, snapshots=None, membership=(), acquisition_rows=None, audit=False,
+                   claim_declarations=None):
     """Project-scoped, read-only export from one canonical run, with every cell accounted for."""
     from .analysis import write_csv
     from .evidence import load_claims,claim_evidence_ids
@@ -670,14 +696,17 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
         if parent==root:break
     if configuration is None:
         configuration=json.loads((run_dir/'configuration.json').read_text(encoding='utf8')) if run_dir else {}
-    frozen,_=load_claims(root,configuration.get('claims_sha256'))
+    frozen=claim_declarations
+    if frozen is None:frozen,_=load_claims(root,configuration.get('claims_sha256'))
     active=set(configuration.get('verified_claim_ids',claim_evidence_ids(frozen)))
     live=frozen
     declarations={'AU-'+digest([p.get('entity_namespace','project_registry_v1'),str(p['id'])])[:20]:p for p in live['projects']}
     registry=configuration.get('sources') or json.loads((root/'config/sources.json').read_text(encoding='utf8'))
     registry=registry['sources']
     by_key={s['key']:s for s in registry};sources={};source_errors={};acquisition={}
-    if run_dir and (run_dir/'acquisition_report.csv').is_file():
+    if acquisition_rows is not None:
+        acquisition={r['key']:r for r in acquisition_rows}
+    elif run_dir and (run_dir/'acquisition_report.csv').is_file():
         with (run_dir/'acquisition_report.csv').open(encoding='utf8',newline='') as f:acquisition={r['key']:r for r in csv.DictReader(f)}
     selected=None if snapshots is None else {s['sha256']: (root/s['path']).resolve() for s in snapshots}
     for source in db.execute('SELECT * FROM sources'):
@@ -715,8 +744,12 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
         if member['kind']!='PROJECT' or pid in cohort or not records[pid]:continue
         entity=db.execute('SELECT native_id FROM entities WHERE entity_id=? AND kind=?',(pid,'PROJECT')).fetchone()
         if entity:cohort[pid]=dict(project_id=pid,native_id=entity['native_id'])
+    if audit and connection is None:raise ValueError('CENSUS_AUDIT_REQUIRES_CANONICAL_RUN_CONNECTION')
     if connection is None:db.close()
     rows=[];trace={};missing=[];stage_audit=[];cache={};associations=defaultdict(set)
+    diagnoses={};bundles={}
+    if audit:
+        from .census_audit import field_diagnosis, write_census_audit
     for p in live['projects']:
         pid='AU-'+digest([p.get('entity_namespace','project_registry_v1'),str(p['id'])])[:20]
         associations[pid].update(o['source_sha256'] for o in [*p['observations'],*p.get('attributes',[])])
@@ -769,6 +802,7 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
             if len({o['value'] for o in same})==1 and str(int(same[0]['value'])) in rules['source_stage_labels']:
                 o=same[0];put('開發階段',rules['source_stage_labels'][str(int(o['value']))]+'（'+latest+'）',o['source_sha'],o['locator'],'DATED_STUDY_DISCLOSURE_NOT_CURRENT_OPERATING_STATUS',o['scope'],[o['obs_id']])
         bundle,resource_note,resource_reason=summary_resource_fields(row,observations[pid],sources,rules,decisions,put,p)
+        if audit and bundle:bundles[pid]=bundle
         label=resource_note.get('scope_label')
         if bundle and label and row['專案名稱']:
             import pymupdf
@@ -804,7 +838,9 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
                 sorted({i for r in support for i in json.loads(r['observation_ids'])}))
         for column in columns:
             if row[column]=='':
-                reason,detail=summary_missing(column,p,row,bundle,by_key,sources,source_errors,acquisition,cutoff,rules,decisions)
+                source_findings=[] if audit else None
+                reason,detail=summary_missing(column,p,row,bundle,by_key,sources,source_errors,acquisition,cutoff,rules,decisions,
+                    findings=source_findings)
                 if reason=='RULE_INPUT_MISSING':
                     blockers=field_issues[pid,column]
                     if not row['專案名稱'] and identity_issues[pid]:
@@ -820,6 +856,11 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
                             detail+='; resource='+canonical(dict(reason=resource_reason))
                     if stage_blockers and column in ('開發階段代碼','開發階段類別'):
                         detail+='; stage_scan='+canonical(stage_blockers)
+                if audit:
+                    review=field_issues[pid,column] + (identity_issues[pid] if not row['專案名稱'] else [])
+                    scans=stage_blockers if column in ('開發階段代碼','開發階段類別') else []
+                    status,findings=field_diagnosis(column,reason,review,scans,bundle,resource_reason,rules)
+                    diagnoses[pid,column]=(status,reason,[*source_findings,*findings])
                 missing.append(dict(project_id=pid,column=column,reason=reason,details=detail))
                 trace[pid,column]=dict(project_id=pid,column=column,value='',source_sha256='',source_url='',pdf_page='',locator=detail,
                     method=reason,scope='',observation_ids='[]',attribute_ids='[]',effective_date='')
@@ -831,6 +872,7 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
     write_csv(out/names['missing'],missing,['project_id','column','reason','details'])
     write_csv(out/'stage_rule_audit.csv',stage_audit,sorted({k for r in stage_audit for k in r}))
     coverage=summary_coverage(rows,columns,missing,rules)
+    if audit:coverage.update(write_census_audit(db,out,rows,trace,diagnoses,observations,bundles))
     coverage['export_contract_sha256']={name:filehash(root/'config'/name) for name in
         ('summary_rules.json','researcher_rule_decisions.json','project_summary_columns.json')}
     coverage.update(database_sha256=filehash(database) if connection is None else None,cutoff=cutoff,formal_C1=False,source_scope='LATEST_CANONICAL_RUN_ONLY',
@@ -885,8 +927,12 @@ def publish_census(root, run_dir, run_id, destination=None):
         copyfile(summary/names['summary'],staging/'REE project census.csv')
         for name in (names['provenance'],names['missing'],names['coverage']):
             copyfile(summary/name,staging/name)
+        for name in ('field_status.csv','resource_statement_observations.csv','spatial_point_quality.csv'):
+            if (summary/name).is_file():copyfile(summary/name,staging/name)
         for name in ('census_selection.csv','mcda_census_gate.csv','source_selection.csv',
-                     'acquisition_report.csv','resource_scope_selection.csv'):
+                     'acquisition_report.csv','resource_scope_selection.csv','census_release.json',
+                     'census_identity_roles.csv','mcda_criterion_lineage.csv','mcda_panel_decisions.csv',
+                     'census_evidence_requests.csv','census_gis_sensitivity.csv','census_gis_rank_sensitivity.csv'):
             if (run_dir/name).is_file():copyfile(run_dir/name,staging/name)
         for ranking in sorted(run_dir.glob('*/ranking.csv')):
             panel=staging/'MCDA'/ranking.parent.name
@@ -899,7 +945,7 @@ def publish_census(root, run_dir, run_id, destination=None):
     return target/'REE project census.csv'
 
 
-def summary_missing(column, project, row, bundle, registry, sources, source_errors, acquisition, cutoff, rules, decisions):
+def summary_missing(column, project, row, bundle, registry, sources, source_errors, acquisition, cutoff, rules, decisions, *, findings=None):
     attributes=[a for a in project.get('attributes',[]) if a['column']==column]
     resource=column in rules['resource_columns']
     resource_inputs=[o for o in project.get('observations',[]) if o['variable'] in rules['missing_resource_variables']
@@ -930,7 +976,11 @@ def summary_missing(column, project, row, bundle, registry, sources, source_erro
         elif receipt.get('status')=='HOST_STOPPED' and re.search(r'\b4\d\d\b',receipt.get('stop_reason','')):reason='HOST_STOPPED_4XX'
         elif any(date_end(d)>cutoff for d in (c.get('effective_date'),source.get('publication_date')) if d):reason='SOURCE_AFTER_CUTOFF'
         elif not any(s['key']==key or s['sha256']==(c.get('source_sha256') or source.get('committed_snapshot_sha256')) for s in sources.values()):reason=reason or 'SOURCE_NOT_ACQUIRED'
-        if reason:reasons.append(reason);details.append(canonical(dict(source_key=key,status=receipt.get('status'),reason=reason,source_sha256=c.get('source_sha256'))))
+        if reason:
+            reasons.append(reason)
+            evidence=dict(source_key=key,status=receipt.get('status'),reason=reason,source_sha256=c.get('source_sha256'))
+            details.append(canonical(evidence))
+            if findings is not None:findings.append(dict(kind='SOURCE_REVIEW',**evidence))
     priority=['SOURCE_SHA_CHANGED','HOST_STOPPED_4XX','SOURCE_AFTER_CUTOFF','SOURCE_NOT_REGISTERED','SOURCE_NOT_ACQUIRED']
     if reasons:return next(r for r in priority if r in reasons),'; '.join(details)
     if resource and not bundle and not any(o['variable']=='ore_mt' for o in project.get('observations',[])):
