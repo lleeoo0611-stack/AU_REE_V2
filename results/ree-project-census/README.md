@@ -4,6 +4,10 @@
 
 ## 現行成果
 
+2026-11-19 完成 Phase 22 × ASX 架構審核落地與離線重播。定稿補入 10 格，v9 剩 6 格空白。 [發布說明](current-20261119/README.md) · [Census CSV](current-20261119/REE%20project%20census.csv) · [驗收紀錄](current-20261119/verification.json)
+
+## 2026-11-18 歷史成果
+
 來源截止日為 2026-11-13。技術揭露編碼沿用 Phase 22 的 2026-11-05 審查日。
 
 - [REE Project Census CSV](residual-repair-20261118/REE%20project%20census.csv) · [逐格差異](residual-repair-20261118/coverage_delta.csv)
