@@ -1,0 +1,320 @@
+{
+  "run_id": 43932350917,
+  "run_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/43932350917",
+  "head_sha": "3864bc7dfd79415107b8fc4bb344d0cf114fb934",
+  "conclusion": "success",
+  "python_tests": 422,
+  "r_tests": "PASSED",
+  "phase_checks": [
+    {
+      "folder": "phase20",
+      "command_log_line": 20045,
+      "matched": [
+        {
+          "line": 20998,
+          "text": "2026-11-16T18:58:14.3416003Z   \"status\": \"MATCHED\","
+        }
+      ]
+    },
+    {
+      "folder": "phase21-a",
+      "command_log_line": 21004,
+      "matched": [
+        {
+          "line": 22004,
+          "text": "2026-11-16T18:59:00.5473299Z   \"status\": \"MATCHED\","
+        }
+      ]
+    },
+    {
+      "folder": "phase21-b",
+      "command_log_line": 22010,
+      "matched": [
+        {
+          "line": 23010,
+          "text": "2026-11-16T18:59:30.6021745Z   \"status\": \"MATCHED\","
+        }
+      ]
+    },
+    {
+      "folder": "phase22-a",
+      "command_log_line": 23016,
+      "matched": [
+        {
+          "line": 24132,
+          "text": "2026-11-16T19:00:40.6337955Z   \"status\": \"MATCHED\","
+        }
+      ]
+    },
+    {
+      "folder": "phase22-b",
+      "command_log_line": 24138,
+      "matched": [
+        {
+          "line": 25254,
+          "text": "2026-11-16T19:01:13.6115912Z   \"status\": \"MATCHED\","
+        }
+      ]
+    }
+  ],
+  "jobs": [
+    {
+      "id": 133527808905,
+      "name": "change_scope",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Verify the update contains only publication receipts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        }
+      ]
+    },
+    {
+      "id": 133527811364,
+      "name": "Live official discovery and acquisition (separate from scientific replay)",
+      "status": "completed",
+      "conclusion": "skipped",
+      "steps": null
+    },
+    {
+      "id": 133528172771,
+      "name": "research",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Determine validation scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run r-lib/actions/setup-r@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install package",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Core, clean bootstrap and replay tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "R analytical regression tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Frozen research reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Frozen Phase 5 evidence reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Phase 6 national database and partial MCDA reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Verify frozen Phase 5 and Phase 6 scientific results",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Phase 7 consolidated evidence and commercial integration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Phase 8 coverage and comparable endpoint reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Phase 9 automatic document evidence reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Phase 10 shared technical comparability reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Phase 11 deterministic frozen reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Phase 12 evidence yield and deterministic research reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Phase 13 source recovery frozen reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Phase 14 official report frozen reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Phase 15 source-bound technical reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Phase 16 unified technical model and source batch reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Phase 16 remediation source, semantic and process-panel reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        },
+        {
+          "name": "Independent current release reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Phase 20 current six-domain disclosure reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Phase 21 current source, registry and disclosure reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Phase 21 independent clean reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        },
+        {
+          "name": "Phase 22 current evidence and shared-method reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Phase 22 second clean reconstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        },
+        {
+          "name": "Final publication payload verification",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 61
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 62
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 63
+        }
+      ]
+    }
+  ],
+  "log_origin": "Authenticated GitHub Actions job log 133528172771; MATCHED excerpts retain original line numbers."
+}

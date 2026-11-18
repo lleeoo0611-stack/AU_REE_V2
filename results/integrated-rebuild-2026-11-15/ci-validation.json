@@ -1,0 +1,1159 @@
+{
+  "pr_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/pull/9",
+  "tested_code_commit": "3a05ec1f826e1cf59c8197354f87d00a1e11867c",
+  "delivery_status": "COMPLETE_T1_T7_VALID_CLEAN_BUILD_AND_CELL_ACCEPTANCE",
+  "local_transport_diagnostic": {
+    "status": "RUN_INVALID_NETWORK",
+    "network_error_sources": 150,
+    "source_receipts": 208,
+    "interpretation": "Retained diagnosis only; never substituted for valid CI build"
+  },
+  "final_full_runs": [
+    {
+      "id": 43808139420,
+      "name": "Clean automated public build",
+      "head_sha": "3a05ec1f826e1cf59c8197354f87d00a1e11867c",
+      "head_branch": "feat/integrated-rebuild-20261115",
+      "html_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/43808139420",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-16T05:07:02Z",
+      "run_started_at": "2026-11-16T05:07:02Z",
+      "updated_at": "2026-11-16T06:16:01Z"
+    },
+    {
+      "id": 43808139637,
+      "name": "Research system",
+      "head_sha": "3a05ec1f826e1cf59c8197354f87d00a1e11867c",
+      "head_branch": "feat/integrated-rebuild-20261115",
+      "html_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/43808139637",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-16T05:07:02Z",
+      "run_started_at": "2026-11-16T05:07:02Z",
+      "updated_at": "2026-11-16T05:26:21Z"
+    }
+  ],
+  "final_full_jobs": [
+    {
+      "run_id": 43808139420,
+      "jobs": [
+        {
+          "id": 133103517559,
+          "name": "change_scope",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 43808139420,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Verify the update contains only publication receipts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            }
+          ]
+        },
+        {
+          "id": 133103682670,
+          "name": "automated-build",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 43808139420,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run r-lib/actions/setup-r@v2",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Install package and XML test reporter",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Verify checkout begins without work data",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Build only from approved public registry",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Verify every summary cell is accounted for",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Unit regressions with XML",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "R analytical regressions",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Assert originals and frozen history unchanged",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": 43808139637,
+      "jobs": [
+        {
+          "id": 133103518211,
+          "name": "change_scope",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 43808139637,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Verify the update contains only publication receipts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            }
+          ]
+        },
+        {
+          "id": 133103519554,
+          "name": "Live official discovery and acquisition (separate from scientific replay)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "run_id": 43808139637,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 133103738893,
+          "name": "research",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 43808139637,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Determine validation scope",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run r-lib/actions/setup-r@v2",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Install package",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Core, clean bootstrap and replay tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "R analytical regression tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Frozen research reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Frozen Phase 5 evidence reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Phase 6 national database and partial MCDA reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Verify frozen Phase 5 and Phase 6 scientific results",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Phase 7 consolidated evidence and commercial integration",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Phase 8 coverage and comparable endpoint reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Phase 9 automatic document evidence reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            },
+            {
+              "name": "Phase 10 shared technical comparability reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16
+            },
+            {
+              "name": "Phase 11 deterministic frozen reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            },
+            {
+              "name": "Phase 12 evidence yield and deterministic research reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18
+            },
+            {
+              "name": "Phase 13 source recovery frozen reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19
+            },
+            {
+              "name": "Phase 14 official report frozen reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20
+            },
+            {
+              "name": "Phase 15 source-bound technical reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21
+            },
+            {
+              "name": "Phase 16 unified technical model and source batch reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22
+            },
+            {
+              "name": "Phase 16 remediation source, semantic and process-panel reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23
+            },
+            {
+              "name": "Independent current release reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24
+            },
+            {
+              "name": "Phase 20 current six-domain disclosure reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25
+            },
+            {
+              "name": "Phase 21 current source, registry and disclosure reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26
+            },
+            {
+              "name": "Phase 21 independent clean reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27
+            },
+            {
+              "name": "Phase 22 current evidence and shared-method reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 28
+            },
+            {
+              "name": "Phase 22 second clean reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 29
+            },
+            {
+              "name": "Final publication payload verification",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 30
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 31
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 61
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 62
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 63
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "verified_full_pipeline_scope": [
+    {
+      "job_id": 133103518211,
+      "scope_lines": [
+        "2026-11-16T05:07:39.0886675Z \u001b[36;1mprint({'verified_receipts_only':receipts_only,'run_full_pipeline':not receipts_only})\u001b[0m",
+        "2026-11-16T05:07:39.4671974Z {'verified_receipts_only': False, 'run_full_pipeline': True}"
+      ]
+    },
+    {
+      "job_id": 133103517559,
+      "scope_lines": [
+        "2026-11-16T05:07:29.6063643Z \u001b[36;1mprint({'verified_receipts_only':receipts_only,'run_full_pipeline':not receipts_only})\u001b[0m",
+        "2026-11-16T05:07:30.0038746Z {'verified_receipts_only': False, 'run_full_pipeline': True}"
+      ]
+    }
+  ],
+  "earlier_runs": [
+    {
+      "run_id": 43721163043,
+      "jobs": [
+        {
+          "id": 132833241359,
+          "name": "automated-build",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_id": 43721163043,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run r-lib/actions/setup-r@v2",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Install package and XML test reporter",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Verify checkout begins without work data",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Build only from approved public registry",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Verify every summary cell is accounted for",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 8
+            },
+            {
+              "name": "Unit regressions with XML",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "R analytical regressions",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Assert originals and frozen history unchanged",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 23
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25
+            }
+          ]
+        }
+      ],
+      "source_commit": "5946984ac7e4a6cda86364b2ed9c2a1e5bdacdbd",
+      "artifact": {
+        "id": 14166888028,
+        "archive_sha256": "19cb7000f41e8e1a3dafdfaed77423a9b42c17ddbaface5e9c50c23130643762"
+      },
+      "explanation": "Long provenance field exceeded the default CSV reader limit; build, Python and R succeeded; raised reader limit without truncating data"
+    },
+    {
+      "run_id": 43721162845,
+      "jobs": [
+        {
+          "id": 132833241095,
+          "name": "research",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_id": 43721162845,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Determine validation scope",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run r-lib/actions/setup-r@v2",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Install package",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Core, clean bootstrap and replay tests",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 7
+            },
+            {
+              "name": "R analytical regression tests",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 8
+            },
+            {
+              "name": "Frozen research reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 9
+            },
+            {
+              "name": "Frozen Phase 5 evidence reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 10
+            },
+            {
+              "name": "Phase 6 national database and partial MCDA reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 11
+            },
+            {
+              "name": "Verify frozen Phase 5 and Phase 6 scientific results",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 12
+            },
+            {
+              "name": "Phase 7 consolidated evidence and commercial integration",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 13
+            },
+            {
+              "name": "Phase 8 coverage and comparable endpoint reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 14
+            },
+            {
+              "name": "Phase 9 automatic document evidence reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 15
+            },
+            {
+              "name": "Phase 10 shared technical comparability reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 16
+            },
+            {
+              "name": "Phase 11 deterministic frozen reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 17
+            },
+            {
+              "name": "Phase 12 evidence yield and deterministic research reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 18
+            },
+            {
+              "name": "Phase 13 source recovery frozen reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 19
+            },
+            {
+              "name": "Phase 14 official report frozen reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 20
+            },
+            {
+              "name": "Phase 15 source-bound technical reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 21
+            },
+            {
+              "name": "Phase 16 unified technical model and source batch reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 22
+            },
+            {
+              "name": "Phase 16 remediation source, semantic and process-panel reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 23
+            },
+            {
+              "name": "Independent current release reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 24
+            },
+            {
+              "name": "Phase 20 current six-domain disclosure reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 25
+            },
+            {
+              "name": "Phase 21 current source, registry and disclosure reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 26
+            },
+            {
+              "name": "Phase 21 independent clean reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 27
+            },
+            {
+              "name": "Phase 22 current evidence and shared-method reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 28
+            },
+            {
+              "name": "Phase 22 second clean reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 29
+            },
+            {
+              "name": "Final publication payload verification",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 30
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 31
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 61
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 62
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 63
+            }
+          ]
+        },
+        {
+          "id": 132833242272,
+          "name": "Live official discovery and acquisition (separate from scientific replay)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "run_id": 43721162845,
+          "logs_url": null,
+          "steps": null
+        }
+      ],
+      "source_commit": "5946984ac7e4a6cda86364b2ed9c2a1e5bdacdbd",
+      "explanation": "Read audit rejected temporary interpreter bytecode; disabled bytecode writes only in the audit subprocess"
+    },
+    {
+      "run_id": 43801118912,
+      "jobs": [
+        {
+          "id": 133081358709,
+          "name": "research",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_id": 43801118912,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Determine validation scope",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run r-lib/actions/setup-r@v2",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Install package",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Core, clean bootstrap and replay tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "R analytical regression tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Frozen research reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Frozen Phase 5 evidence reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Phase 6 national database and partial MCDA reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Verify frozen Phase 5 and Phase 6 scientific results",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Phase 7 consolidated evidence and commercial integration",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Phase 8 coverage and comparable endpoint reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Phase 9 automatic document evidence reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            },
+            {
+              "name": "Phase 10 shared technical comparability reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16
+            },
+            {
+              "name": "Phase 11 deterministic frozen reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            },
+            {
+              "name": "Phase 12 evidence yield and deterministic research reconstruction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18
+            },
+            {
+              "name": "Phase 13 source recovery frozen reconstruction",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 19
+            },
+            {
+              "name": "Phase 14 official report frozen reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 20
+            },
+            {
+              "name": "Phase 15 source-bound technical reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 21
+            },
+            {
+              "name": "Phase 16 unified technical model and source batch reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 22
+            },
+            {
+              "name": "Phase 16 remediation source, semantic and process-panel reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 23
+            },
+            {
+              "name": "Independent current release reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 24
+            },
+            {
+              "name": "Phase 20 current six-domain disclosure reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 25
+            },
+            {
+              "name": "Phase 21 current source, registry and disclosure reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 26
+            },
+            {
+              "name": "Phase 21 independent clean reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 27
+            },
+            {
+              "name": "Phase 22 current evidence and shared-method reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 28
+            },
+            {
+              "name": "Phase 22 second clean reconstruction",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 29
+            },
+            {
+              "name": "Final publication payload verification",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 30
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 31
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 61
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 62
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 63
+            }
+          ]
+        },
+        {
+          "id": 133081360153,
+          "name": "Live official discovery and acquisition (separate from scientific replay)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "run_id": 43801118912,
+          "logs_url": null,
+          "steps": null
+        }
+      ],
+      "source_commit": "9304204f09c08559bbf4e5fc402fb0037531da77",
+      "artifact": {
+        "id": 14196359613,
+        "archive_sha256": "3addc498fc6a5e5f908977ec6c53b31a4bb196312b7cd281506959960a6659e8"
+      },
+      "explanation": "Frozen source-document ownership read live identity declarations; threaded frozen declarations into historical reports"
+    },
+    {
+      "run_id": 43801118927,
+      "jobs": [
+        {
+          "id": 133081358589,
+          "name": "automated-build",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 43801118927,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run r-lib/actions/setup-r@v2",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Install package and XML test reporter",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Verify checkout begins without work data",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Build only from approved public registry",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Verify every summary cell is accounted for",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Unit regressions with XML",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "R analytical regressions",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Assert originals and frozen history unchanged",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25
+            }
+          ]
+        }
+      ],
+      "source_commit": "9304204f09c08559bbf4e5fc402fb0037531da77",
+      "artifact": {
+        "id": 14198868710,
+        "archive_sha256": "e5046d020bd0ad40b25d486f1ccfe451a7c3306e5174fada892e87cec70db95b"
+      },
+      "explanation": "Earlier clean build; final current-code run supersedes these outputs"
+    }
+  ],
+  "build_origin_receipt": "ci-build-origin.json",
+  "no_merge_performed": true,
+  "publication_only_updates": "Adjacent diff must contain only this results directory; otherwise full checks run"
+}

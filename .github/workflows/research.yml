@@ -22,8 +22,39 @@ concurrency:
   group: research-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  change_scope:
+    runs-on: ubuntu-latest
+    outputs:
+      run_pipeline: ${{ steps.changed.outputs.run_pipeline }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify the update contains only publication receipts
+        id: changed
+        env:
+          PREVIOUS_HEAD: ${{ github.event.before }}
+          EVENT_KIND: ${{ github.event_name }}
+          EVENT_ACTION: ${{ github.event.action }}
+        run: |
+          python - <<'PY'
+          import os, re, subprocess
+          before=os.environ.get('PREVIOUS_HEAD','')
+          receipts_only=False
+          if os.environ['EVENT_KIND']=='pull_request' and os.environ['EVENT_ACTION']=='synchronize' and re.fullmatch(r'[0-9a-fA-F]{40}',before):
+              try:
+                  raw=subprocess.check_output(['git','diff','--name-only','-z',before,'HEAD'])
+                  changed=[p for p in raw.decode('utf8').split('\0') if p]
+                  receipts_only=bool(changed) and all(p.startswith(('results/integrated-rebuild-2026-11-15/','results/same-sha-fallback-2026-11-16/')) for p in changed)
+              except subprocess.CalledProcessError:
+                  pass
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('run_pipeline='+str(not receipts_only).lower()+'\n')
+          print({'verified_receipts_only':receipts_only,'run_full_pipeline':not receipts_only})
+          PY
   research:
-    if: github.event_name == 'pull_request' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.refresh)
+    needs: change_scope
+    if: needs.change_scope.outputs.run_pipeline == 'true' && (github.event_name == 'pull_request' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.refresh))
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -47,6 +78,10 @@ jobs:
               f.write('archive='+str(archive).lower()+'\n')
           print({'core_contract_change':core,'full_history':core or archive,'archive_two_clean':archive})
           PY
+      - name: Verify declared pre-cutoff repository evidence
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python tools/verify_pre_cutoff_evidence.py
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -178,6 +213,8 @@ jobs:
         with:
           name: research-${{ github.sha }}-${{ github.run_id }}
           path: |
+            work/pre_cutoff_evidence_verified.json
+            work/pre_cutoff_evidence_events.json
             work/phase22-a/runs/
             work/phase22-b/runs/
             work/phase21-a/runs/

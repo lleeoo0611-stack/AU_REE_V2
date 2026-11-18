@@ -2,6 +2,7 @@
 import json
 import unittest
 import uuid
+import tempfile
 from pathlib import Path
 from au_ree_v2.acquisition import select_snapshots
 from au_ree_v2.pdf_extract import (project_registry, resource_rows, leach_tables,
@@ -15,10 +16,15 @@ ROOT=Path(__file__).resolve().parents[1]
 class DocumentRecognitionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.registry=project_registry(ROOT)
         cls.snapshots=json.loads((ROOT/'results/phase9-2026-11-03/snapshot_lock.json').read_text())
         config=json.loads((ROOT/'results/phase9-2026-11-03/configuration.json').read_text())
         cls.claims=load_claims(ROOT,config['claims_sha256'])[0]
+        # Reproduce the frozen extraction using its frozen identity contract,
+        # not newly admitted projects/aliases in the live claims registry.
+        with tempfile.TemporaryDirectory() as temp:
+            frozen=Path(temp);(frozen/'data').mkdir()
+            (frozen/'data/claims.json').write_text(json.dumps(cls.claims),encoding='utf8')
+            cls.registry=project_registry(frozen)
         cls.artifacts={s['source_sha256']:json.loads((ROOT/s['path']).read_text(encoding='utf-8'))
                        for s in cls.snapshots if s['kind']=='document_extraction'}
 
@@ -153,6 +159,12 @@ class AutomaticIngestionTests(unittest.TestCase):
         cls.snaps=json.loads((ROOT/'results/phase9-2026-11-03/snapshot_lock.json').read_text())
         config=json.loads((ROOT/'results/phase9-2026-11-03/configuration.json').read_text())
         cls.claims=load_claims(ROOT,config['claims_sha256'])[0]
+        # Reproduce the frozen extraction using its frozen identity contract,
+        # not newly admitted projects/aliases in the live claims registry.
+        with tempfile.TemporaryDirectory() as temp:
+            frozen=Path(temp);(frozen/'data').mkdir()
+            (frozen/'data/claims.json').write_text(json.dumps(cls.claims),encoding='utf8')
+            cls.registry=project_registry(frozen)
         ingest_sources(cls.db,ROOT,cls.snaps);ingest_claims(cls.db,ROOT,cls.snaps,'2026-11-03',conflict_selection=True,claims_data=cls.claims)
         cls.before=resource_values(cls.db,'2026-11-03',{s['sha256'] for s in cls.snaps},strict=True)
         cls.result=ingest_recognized(cls.db,ROOT,cls.snaps,'2026-11-03',{'parser_version':'document-recognition-v1'})

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_strict_acquisition.StrictAcquisitionTests-20261116121218" tests="11" file="test_strict_acquisition.py" time="0.038" timestamp="2026-11-16T12:15:45" failures="0" errors="0" skipped="0">
+	<testcase classname="test_strict_acquisition.StrictAcquisitionTests" name="test_all_4xx_stop_host" time="0.003" timestamp="2026-11-16T12:15:45" file="tests/test_strict_acquisition.py" line="17"/>
+	<testcase classname="test_strict_acquisition.StrictAcquisitionTests" name="test_approved_host_classifications" time="0.000" timestamp="2026-11-16T12:15:45" file="tests/test_strict_acquisition.py" line="92"/>
+	<testcase classname="test_strict_acquisition.StrictAcquisitionTests" name="test_challenge_stops" time="0.001" timestamp="2026-11-16T12:15:45" file="tests/test_strict_acquisition.py" line="33"/>
+	<testcase classname="test_strict_acquisition.StrictAcquisitionTests" name="test_fallback_must_be_committed_exact" time="0.011" timestamp="2026-11-16T12:15:45" file="tests/test_strict_acquisition.py" line="60"/>
+	<testcase classname="test_strict_acquisition.StrictAcquisitionTests" name="test_new_work_cache_and_no_manifest_mutation" time="0.009" timestamp="2026-11-16T12:15:45" file="tests/test_strict_acquisition.py" line="69"/>
+	<testcase classname="test_strict_acquisition.StrictAcquisitionTests" name="test_redirect_rejects_unknown_and_cross_class" time="0.001" timestamp="2026-11-16T12:15:45" file="tests/test_strict_acquisition.py" line="76"/>
+	<testcase classname="test_strict_acquisition.StrictAcquisitionTests" name="test_rejected_redirect_records_original_http" time="0.001" timestamp="2026-11-16T12:15:45" file="tests/test_strict_acquisition.py" line="96"/>
+	<testcase classname="test_strict_acquisition.StrictAcquisitionTests" name="test_retry_only_once" time="0.002" timestamp="2026-11-16T12:15:45" file="tests/test_strict_acquisition.py" line="24"/>
+	<testcase classname="test_strict_acquisition.StrictAcquisitionTests" name="test_sha_changed_no_fallback" time="0.008" timestamp="2026-11-16T12:15:45" file="tests/test_strict_acquisition.py" line="54"/>
+	<testcase classname="test_strict_acquisition.StrictAcquisitionTests" name="test_spacing_ua" time="0.002" timestamp="2026-11-16T12:15:45" file="tests/test_strict_acquisition.py" line="38"/>
+	<testcase classname="test_strict_acquisition.StrictAcquisitionTests" name="test_stopped_redirect_destination" time="0.001" timestamp="2026-11-16T12:15:45" file="tests/test_strict_acquisition.py" line="85"/>
+</testsuite>

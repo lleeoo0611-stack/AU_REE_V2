@@ -20,6 +20,30 @@ EVAL=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(EVAL)
 class Phase13Tests(unittest.TestCase):
     def setUp(self):acquisition._last_request.clear()
 
+    def test_locked_source_ownership_is_independent_of_live_identity_updates(self):
+        import csv
+        from au_ree_v2.discovery import source_coverage
+        from au_ree_v2.store import digest
+        with tempfile.TemporaryDirectory(dir=ROOT/'work') as tmp:
+            root=Path(tmp);(root/'data').mkdir()
+            old=dict(id='old',name='Old Project',identity_source='report')
+            new=dict(id='new',name='New Project',identity_source='report')
+            frozen=dict(projects=[old]);(root/'data/claims.json').write_text(json.dumps(dict(projects=[new])))
+            pid=lambda p:'AU-'+digest(['project_registry_v1',p['id']])[:20]
+            extraction=dict(source_sha256='original',candidates=[dict(project_id=pid(new))],
+                pages=[dict(text='Mineral Resource')],labels=['JORC_RESOURCE'])
+            (root/'data/extraction.json').write_text(json.dumps(extraction))
+            snapshots=[dict(kind='pdf',sha256='original',key='report'),
+                dict(kind='document_extraction',sha256='extraction',path='data/extraction.json')]
+            selection=dict(mapping={},inventory=[],projects=[pid(old),pid(new)],decisions=[])
+            prepared=dict(coverage=[]);out=root/'out';out.mkdir()
+            for claims,owner in [(frozen,old),(None,new)]:
+                source_coverage(root,snapshots,selection,prepared,out,claims_data=claims)
+                with (out/'source_document_coverage.csv').open(newline='') as f:rows=list(csv.DictReader(f))
+                resources={r['project_id']:r for r in rows if r['document_type']=='JORC_RESOURCE'}
+                self.assertEqual(resources[pid(owner)]['parsed_originals'],'1')
+                self.assertEqual(sum(int(r['parsed_originals']) for r in resources.values()),1)
+
     def test_retry_after_seconds_is_not_retried_early(self):
         error=HTTPError('https://retry.test',429,'rate',{'Retry-After':'17'},None)
         with patch('urllib.request.urlopen',side_effect=error) as fetch,patch('time.sleep') as sleep:

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_same_sha_fallback.LocalFallback-20261116131456" tests="20" file="test_same_sha_fallback.py" time="10.246" timestamp="2026-11-16T13:18:32" failures="0" errors="0" skipped="0">
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_4xx_stops_all_later_requests_to_host" time="0.507" timestamp="2026-11-16T13:18:22" file="tests/test_same_sha_fallback.py" line="215"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_allowed_redirect_still_checks_destination_robots" time="0.507" timestamp="2026-11-16T13:18:22" file="tests/test_same_sha_fallback.py" line="251"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_build_request_budget_covers_robots_and_retries" time="0.505" timestamp="2026-11-16T13:18:23" file="tests/test_same_sha_fallback.py" line="232"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_candidate_budget_skips_remaining_documents_and_index" time="0.506" timestamp="2026-11-16T13:18:23" file="tests/test_same_sha_fallback.py" line="222"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_different_sha_discarded_and_written_to_review_queue" time="0.505" timestamp="2026-11-16T13:18:24" file="tests/test_same_sha_fallback.py" line="112"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_document_404_and_410_still_stop_host_after_missing_robots" time="0.508" timestamp="2026-11-16T13:18:24" file="tests/test_same_sha_fallback.py" line="201"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_first_non_pdf_stops_www_in_probe_and_main_build" time="0.507" timestamp="2026-11-16T13:18:25" file="tests/test_same_sha_fallback.py" line="303"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_identical_bytes_adopted_without_editing_configuration" time="0.506" timestamp="2026-11-16T13:18:25" file="tests/test_same_sha_fallback.py" line="95"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_index_filters_by_title_or_seven_day_date_and_is_fetched_once" time="0.509" timestamp="2026-11-16T13:18:26" file="tests/test_same_sha_fallback.py" line="318"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_index_network_failure_remains_a_network_failure" time="0.502" timestamp="2026-11-16T13:18:26" file="tests/test_same_sha_fallback.py" line="127"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_invalid_budgets_and_unimplemented_search_fail_before_requests" time="0.502" timestamp="2026-11-16T13:18:27" file="tests/test_same_sha_fallback.py" line="343"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_login_candidate_stops_remaining_requests_to_same_host" time="0.505" timestamp="2026-11-16T13:18:27" file="tests/test_same_sha_fallback.py" line="280"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_long_primary_queries_keep_receipts_readable_without_dropping_attempts" time="0.536" timestamp="2026-11-16T13:18:28" file="tests/test_same_sha_fallback.py" line="289"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_main_acquisition_stops_www_after_first_non_pdf" time="0.506" timestamp="2026-11-16T13:18:28" file="tests/test_same_sha_fallback.py" line="331"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_redirect_outside_allowed_hosts_never_followed" time="0.588" timestamp="2026-11-16T13:18:29" file="tests/test_same_sha_fallback.py" line="243"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_robots_404_and_410_allow_primary_and_alternate_requests_once" time="0.512" timestamp="2026-11-16T13:18:29" file="tests/test_same_sha_fallback.py" line="144"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_robots_authentication_and_rate_limits_stop_the_host" time="0.509" timestamp="2026-11-16T13:18:30" file="tests/test_same_sha_fallback.py" line="165"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_robots_disallow_prevents_pdf_request" time="0.504" timestamp="2026-11-16T13:18:30" file="tests/test_same_sha_fallback.py" line="136"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_robots_server_errors_and_network_failures_remain_cached_disallow" time="0.507" timestamp="2026-11-16T13:18:31" file="tests/test_same_sha_fallback.py" line="181"/>
+	<testcase classname="test_same_sha_fallback.LocalFallback" name="test_terms_and_login_pages_are_not_parsed_or_submitted" time="0.513" timestamp="2026-11-16T13:18:32" file="tests/test_same_sha_fallback.py" line="260"/>
+</testsuite>

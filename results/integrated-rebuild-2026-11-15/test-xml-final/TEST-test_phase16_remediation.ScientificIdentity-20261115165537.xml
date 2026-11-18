@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_phase16_remediation.ScientificIdentity-20261115165537" tests="7" file="test_phase16_remediation.py" time="0.020" timestamp="2026-11-15T16:58:44" failures="0" errors="0" skipped="0">
+	<testcase classname="test_phase16_remediation.ScientificIdentity" name="test_equal_value_different_test_is_not_duplicate" time="0.001" timestamp="2026-11-15T16:58:44" file="tests\test_phase16_remediation.py" line="33"/>
+	<testcase classname="test_phase16_remediation.ScientificIdentity" name="test_exact_duplicates_retain_all_evidence" time="0.001" timestamp="2026-11-15T16:58:44" file="tests\test_phase16_remediation.py" line="35"/>
+	<testcase classname="test_phase16_remediation.ScientificIdentity" name="test_explicit_cross_document_link_has_same_scientific_identity" time="0.001" timestamp="2026-11-15T16:58:44" file="tests\test_phase16_remediation.py" line="40"/>
+	<testcase classname="test_phase16_remediation.ScientificIdentity" name="test_same_measurement_different_value_conflicts" time="0.001" timestamp="2026-11-15T16:58:44" file="tests\test_phase16_remediation.py" line="29"/>
+	<testcase classname="test_phase16_remediation.ScientificIdentity" name="test_single_field_semantic_changes_survive" time="0.014" timestamp="2026-11-15T16:58:44" file="tests\test_phase16_remediation.py" line="19"/>
+	<testcase classname="test_phase16_remediation.ScientificIdentity" name="test_source_versions_not_equal_without_measurement_link" time="0.001" timestamp="2026-11-15T16:58:44" file="tests\test_phase16_remediation.py" line="38"/>
+	<testcase classname="test_phase16_remediation.ScientificIdentity" name="test_unit_whitespace_and_percent_alias_are_auditable" time="0.002" timestamp="2026-11-15T16:58:44" file="tests\test_phase16_remediation.py" line="44"/>
+</testsuite>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_phase11.Phase11Tests-20261115165537" tests="11" file="test_phase11.py" time="10.415" timestamp="2026-11-15T16:56:41" failures="0" errors="0" skipped="0">
+	<testcase classname="test_phase11.Phase11Tests" name="test_commercial_financing_is_not_close_or_payment" time="0.464" timestamp="2026-11-15T16:56:31" file="tests\test_phase11.py" line="76"/>
+	<testcase classname="test_phase11.Phase11Tests" name="test_company_and_historical_payment_are_not_project_draw" time="0.470" timestamp="2026-11-15T16:56:32" file="tests\test_phase11.py" line="91"/>
+	<testcase classname="test_phase11.Phase11Tests" name="test_frozen_versions_stay_legacy" time="0.012" timestamp="2026-11-15T16:56:32" file="tests\test_phase11.py" line="20"/>
+	<testcase classname="test_phase11.Phase11Tests" name="test_gap_tasks_carry_identity_and_prior_evidence" time="2.006" timestamp="2026-11-15T16:56:34" file="tests\test_phase11.py" line="27"/>
+	<testcase classname="test_phase11.Phase11Tests" name="test_glossary_is_not_development_event" time="0.001" timestamp="2026-11-15T16:56:34" file="tests\test_phase11.py" line="103"/>
+	<testcase classname="test_phase11.Phase11Tests" name="test_identity_audit_ignores_unselected_claim_metadata" time="0.002" timestamp="2026-11-15T16:56:34" file="tests\test_phase11.py" line="96"/>
+	<testcase classname="test_phase11.Phase11Tests" name="test_latest_expired_instrument_does_not_resurrect" time="0.441" timestamp="2026-11-15T16:56:34" file="tests\test_phase11.py" line="85"/>
+	<testcase classname="test_phase11.Phase11Tests" name="test_r_panel_order_and_seed_exact_replay" time="2.224" timestamp="2026-11-15T16:56:36" file="tests\test_phase11.py" line="109"/>
+	<testcase classname="test_phase11.Phase11Tests" name="test_retrieval_cutoff_is_not_publication_cutoff" time="0.000" timestamp="2026-11-15T16:56:36" file="tests\test_phase11.py" line="37"/>
+	<testcase classname="test_phase11.Phase11Tests" name="test_retrospective_documents_do_not_backdate_live_gis" time="4.791" timestamp="2026-11-15T16:56:41" file="tests\test_phase11.py" line="43"/>
+	<testcase classname="test_phase11.Phase11Tests" name="test_upstream_ledger_bytes_and_unapproved_crosswalk" time="0.003" timestamp="2026-11-15T16:56:41" file="tests\test_phase11.py" line="58"/>
+</testsuite>

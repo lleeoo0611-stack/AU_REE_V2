@@ -1,0 +1,30 @@
+{
+  "status": "READY_ONE_CI",
+  "baseline": "ac65aafbbaaa6d793af988d61340988172665d00",
+  "src_added": 57,
+  "src_deleted": 3,
+  "src_change_total": 60,
+  "src_net_growth": 54,
+  "src_cumulative": 2128,
+  "src_cap": 2134,
+  "source_count_method": "git diff --numstat 070df10 -- src; sum additions and deletions",
+  "changed_src_functions": [
+    "summary_partial_contract",
+    "summary_resource_fields",
+    "summary_hm_percent"
+  ],
+  "new_tests": 14,
+  "python_tests": 448,
+  "python_result": "PASS",
+  "r_result": "PASS",
+  "vic_snapshot_and_sources_unchanged": true,
+  "research_cutoff_unchanged": "2026-11-13",
+  "reference_609_sha256": "02acc91760c8774f7377d12f2a428d1a1d6b6fba6f1620237e267101cdb0ff4e",
+  "reference_609_unchanged": true,
+  "old_acdc_numbers_pages_markers_units_sha_bindings_unchanged": true,
+  "added_derived_observations": 2,
+  "new_page3_participation": "Original 25/2 ppm observations retained as separate context statements, excluded by existing contract scope selection.",
+  "local_actual_original_contract_passed": true,
+  "local_legacy_resource_regression": "UNCHANGED",
+  "ci_status": "NOT_RUN"
+}

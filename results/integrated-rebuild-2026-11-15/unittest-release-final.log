@@ -1,0 +1,41 @@
+2026-11-16T06:11:59.5860465Z ##[group]Run python -m xmlrunner discover -s tests -o work/test-xml
+2026-11-16T06:11:59.5861003Z [36;1mpython -m xmlrunner discover -s tests -o work/test-xml[0m
+2026-11-16T06:11:59.5883491Z shell: /usr/bin/bash -e {0}
+2026-11-16T06:11:59.5883690Z env:
+2026-11-16T06:11:59.5884855Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-16T06:11:59.5885205Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-16T06:11:59.5885605Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-16T06:11:59.5887609Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-16T06:11:59.5888380Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-16T06:11:59.5888672Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-16T06:11:59.5889711Z   R_LIBS_USER: /home/runner/work/_temp/Library
+2026-11-16T06:11:59.5890027Z   TZ: UTC
+2026-11-16T06:11:59.5890203Z   _R_CHECK_SYSTEM_CLOCK_: FALSE
+2026-11-16T06:11:59.5890466Z   NOT_CRAN: true
+2026-11-16T06:11:59.5890751Z   RSPM: https://packagemanager.posit.co/cran/__linux__/noble/latest
+2026-11-16T06:11:59.5891192Z   RENV_CONFIG_REPOS_OVERRIDE: https://packagemanager.posit.co/cran/__linux__/noble/latest
+2026-11-16T06:11:59.5892301Z ##[endgroup]
+2026-11-16T06:12:00.1657360Z 
+2026-11-16T06:12:00.1658246Z Running tests...
+2026-11-16T06:12:00.1658754Z ----------------------------------------------------------------------
+2026-11-16T06:12:00.1823251Z {'verified_receipts_only': True, 'run_full_pipeline': False}
+2026-11-16T06:12:00.1823932Z {'verified_receipts_only': False, 'run_full_pipeline': True}
+2026-11-16T06:12:00.1824543Z {'verified_receipts_only': False, 'run_full_pipeline': True}
+2026-11-16T06:12:00.1825142Z {'verified_receipts_only': False, 'run_full_pipeline': True}
+2026-11-16T06:12:00.1825706Z {'verified_receipts_only': False, 'run_full_pipeline': True}
+2026-11-16T06:12:00.1826499Z {'verified_receipts_only': True, 'run_full_pipeline': False}
+2026-11-16T06:12:00.1827080Z {'verified_receipts_only': False, 'run_full_pipeline': True}
+2026-11-16T06:12:00.1827660Z {'verified_receipts_only': False, 'run_full_pipeline': True}
+2026-11-16T06:12:00.1828230Z {'verified_receipts_only': False, 'run_full_pipeline': True}
+2026-11-16T06:12:00.1828809Z {'verified_receipts_only': False, 'run_full_pipeline': True}
+2026-11-16T06:13:45.7985219Z .............................................EOF marker not found
+2026-11-16T06:13:48.4024405Z Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+2026-11-16T06:15:00.1832314Z ...................................................................................................................................................................................................................EOF marker not found
+2026-11-16T06:15:00.1836835Z EOF marker not found
+2026-11-16T06:15:54.0381923Z ..................................................................................................................................
+2026-11-16T06:15:54.0382524Z ----------------------------------------------------------------------
+2026-11-16T06:15:54.0383006Z Ran 386 tests in 233.872s
+2026-11-16T06:15:54.0383193Z 
+2026-11-16T06:15:54.0383312Z OK
+2026-11-16T06:15:54.0383441Z 
+2026-11-16T06:15:54.0383595Z Generating XML reports...

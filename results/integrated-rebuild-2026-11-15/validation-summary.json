@@ -1,0 +1,37 @@
+{
+  "unittest": {
+    "tests": 386,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "unittest_xml": "unittest-release-final",
+  "src_added_deleted": 1819,
+  "src_numstat": "115\t10\tsrc/au_ree_v2/acquisition.py\n706\t0\tsrc/au_ree_v2/census.py\n50\t6\tsrc/au_ree_v2/cli.py\n2\t2\tsrc/au_ree_v2/discovery.py\n64\t0\tsrc/au_ree_v2/evidence.py\n238\t2\tsrc/au_ree_v2/pdf_extract.py\n246\t0\tsrc/au_ree_v2/spatial.py\n371\t7\tsrc/au_ree_v2/technical.py\n",
+  "added_src_modules": [],
+  "changed_frozen_or_original_inputs": [],
+  "input_hash_basis": "Git HEAD blob bytes; data/claims.json preserves committed CRLF; config uses Git LF",
+  "input_sha256": {
+    "data/claims.json": "4f2757a42e87a6754d8760e0addfc8c419618911583ecc0823503bbb4076d0b6",
+    "config/sources.json": "caa7f12659e30b95be708108ead1daac1f3377708c2cfc5ce7e209c0ff5bbdf0",
+    "config/project_summary_columns.json": "5ac4229ad987c32400f0b55998f3a28af803199424a3cb5b8299671c84e524ba",
+    "config/summary_rules.json": "f2a15e048e438bbaeaf67a79324d058384b3a36c6041cf08ec57e8d7b62f6e03",
+    "config/researcher_rule_decisions.json": "fd0811034a5bfaeb5ea0a4a4a442a0e0dd14b166e343b2134f7227030ace6802"
+  },
+  "local_input_sha256": {
+    "data/claims.json": "4f2757a42e87a6754d8760e0addfc8c419618911583ecc0823503bbb4076d0b6",
+    "config/sources.json": "9b3d54456b8f0916c2320cb41a94ac2e217395594816730baab9f9c0798dd305",
+    "config/project_summary_columns.json": "5ac4229ad987c32400f0b55998f3a28af803199424a3cb5b8299671c84e524ba",
+    "config/summary_rules.json": "f2a15e048e438bbaeaf67a79324d058384b3a36c6041cf08ec57e8d7b62f6e03",
+    "config/researcher_rule_decisions.json": "fd0811034a5bfaeb5ea0a4a4a442a0e0dd14b166e343b2134f7227030ace6802"
+  },
+  "ci_code": {
+    "package": "0.1.0",
+    "commit": "b8bab2dc1e2c5745fbff25ae5091a1d02ed52d0b",
+    "content_sha256": "f2a0e6c39d583e0ed0dd7c3298b230bbfbd88da9d4ec6cbc85f230beb1ff9dff"
+  },
+  "ci_configuration_sha256": "082bdb49e73338dcc012145a68c084ce8d66bdd662cfe8cd74549f33ff841336",
+  "network": "NETWORK_VALID",
+  "run_id": "20261116T054805-33a29e47",
+  "delivery_status": "CI_BUILD_AND_CELL_ACCEPTANCE_VALID"
+}

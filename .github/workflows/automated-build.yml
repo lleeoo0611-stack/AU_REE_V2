@@ -1,0 +1,249 @@
+name: Clean automated public build
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  change_scope:
+    runs-on: ubuntu-latest
+    outputs:
+      run_pipeline: ${{ steps.changed.outputs.run_pipeline }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify the update contains only publication receipts
+        id: changed
+        env:
+          PREVIOUS_HEAD: ${{ github.event.before }}
+          EVENT_KIND: ${{ github.event_name }}
+          EVENT_ACTION: ${{ github.event.action }}
+        run: |
+          python - <<'PY'
+          import os, re, subprocess
+          before=os.environ.get('PREVIOUS_HEAD','')
+          receipts_only=False
+          if os.environ['EVENT_KIND']=='pull_request' and os.environ['EVENT_ACTION']=='synchronize' and re.fullmatch(r'[0-9a-fA-F]{40}',before):
+              try:
+                  raw=subprocess.check_output(['git','diff','--name-only','-z',before,'HEAD'])
+                  changed=[p for p in raw.decode('utf8').split('\0') if p]
+                  receipts_only=bool(changed) and all(p.startswith(('results/integrated-rebuild-2026-11-15/','results/same-sha-fallback-2026-11-16/')) for p in changed)
+              except subprocess.CalledProcessError:
+                  pass
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('run_pipeline='+str(not receipts_only).lower()+'\n')
+          print({'verified_receipts_only':receipts_only,'run_full_pipeline':not receipts_only})
+          PY
+  automated-build:
+    needs: change_scope
+    if: needs.change_scope.outputs.run_pipeline == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.5.2'
+          use-public-rspm: true
+      - name: Install package and XML test reporter
+        run: |
+          python -m pip install . unittest-xml-reporting
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr-eng
+      - name: Verify checkout begins without work data
+        run: test ! -e work
+      - name: Verify declared pre-cutoff repository evidence
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python tools/verify_pre_cutoff_evidence.py
+      - name: Build only from approved public registry
+        env:
+          TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
+        run: |
+          mkdir -p work
+          au-ree-v2 all --refresh --as-of 2026-11-13 --work work/clean > work/clean-build.log 2>&1
+      - name: Capture VIC response and annotate robots receipts
+        if: always()
+        run: |
+          python - <<'PY'
+          import csv, hashlib, json, re, shutil
+          from pathlib import Path
+          from urllib.parse import urlsplit
+          csv.field_size_limit(16 * 1024 * 1024)
+          VIC = 'reviewed_source_31a205168b6ae647'
+          MARKER = 'ROBOTS_HTTP_403_TREATED_AS_UNAVAILABLE'
+
+          def robots_hosts(rows):
+              # The shared hook requests robots before the first data request per host.
+              first = {}
+              successes = {}
+              acquired = {'FETCHED_SHA_VERIFIED', 'FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE',
+                          'COMMITTED_SNAPSHOT_SAME_SHA', 'COMMITTED_MANAGED_SAME_SHA',
+                          'SNAPSHOT_FALLBACK_SAME_SHA', 'ALTERNATE_SAME_SHA'}
+              for index, row in enumerate(rows):
+                  for event in json.loads(row.get('http_attempts') or '[]'):
+                      first.setdefault(event['host'], (index, event.get('http_status')))
+                  host = row['host']
+                  same_host = row.get('status') != 'ALTERNATE_SAME_SHA' or urlsplit(row.get('alternate_url', '')).hostname == host
+                  if host in first and index >= first[host][0] and row.get('status') in acquired and same_host:
+                      successes.setdefault(host, set()).add(row['key'])
+              return [dict(host=host, first_http_status=first.get(host, ('', ''))[1],
+                           successful_sources_after_first_attempt=len(successes.get(host, set())),
+                           marked=first.get(host, ('', ''))[1] == 403 and bool(successes.get(host)),
+                           marker=MARKER if first.get(host, ('', ''))[1] == 403 and successes.get(host) else '')
+                      for host in sorted({row['host'] for row in rows} | set(first))]
+
+          def annotate_robots(rows):
+              marked = {record['host'] for record in robots_hosts(rows) if record['marked']}
+              for row in rows:
+                  if row['host'] not in marked:
+                      continue
+                  reason = row.get('stop_reason', '')
+                  if MARKER not in reason:
+                      row['stop_reason'] = reason + ('; ' if reason else '') + MARKER
+              return bool(marked)
+
+          def capture(root):
+              clean = root / 'work/clean'
+              destination = root / 'work/vic-raw'
+              destination.mkdir(parents=True, exist_ok=True)
+              target = None
+              hosts = {}
+              for report in sorted(clean.rglob('acquisition_report.csv')):
+                  with report.open(encoding='utf-8-sig', newline='') as stream:
+                      reader = csv.DictReader(stream)
+                      fields, rows = reader.fieldnames, list(reader)
+                  if not rows:
+                      continue
+                  for record in robots_hosts(rows):
+                      previous = hosts.get(record['host'])
+                      if previous is None or record['successful_sources_after_first_attempt'] > previous['successful_sources_after_first_attempt']:
+                          hosts[record['host']] = record
+                  annotate_robots(rows)
+                  with report.open('w', encoding='utf-8-sig', newline='') as stream:
+                      writer = csv.DictWriter(stream, fields)
+                      writer.writeheader()
+                      writer.writerows(rows)
+                  target = next((row for row in rows if row['key'] == VIC), target)
+              clean.mkdir(parents=True, exist_ok=True)
+              with (clean / 'robots_403_hosts.csv').open('w', encoding='utf-8-sig', newline='') as stream:
+                  writer = csv.DictWriter(stream, ['host', 'first_http_status', 'successful_sources_after_first_attempt', 'marked', 'marker'])
+                  writer.writeheader()
+                  writer.writerows(hosts[host] for host in sorted(hosts))
+              receipt = dict(source_key=VIC, robots_403_hosts_marked=sorted(host for host in hosts if hosts[host]['marked']), status='NO_RAW_RESPONSE_AVAILABLE')
+              sha = (target or {}).get('raw_sha256') or (target or {}).get('actual_sha256')
+              if sha and re.fullmatch('[0-9a-f]{64}', sha):
+                  candidates = list(clean.glob('strict-*/' + sha + '.json'))
+                  if not candidates:
+                      raise RuntimeError('VIC_RECEIPT_RAW_FILE_MISSING')
+                  raw = candidates[0].read_bytes()
+                  if hashlib.sha256(raw).hexdigest() != sha:
+                      raise RuntimeError('VIC_RAW_FILE_SHA_MISMATCH')
+                  shutil.copyfile(candidates[0], destination / (sha + '.json'))
+                  receipt.update(status='RAW_RESPONSE_RETAINED', raw_sha256=sha, bytes=len(raw),
+                                 content_sha256=target.get('content_sha256'),
+                                 declared_content_sha256=target.get('expected_sha256'),
+                                 hash_policy=target.get('hash_policy'),
+                                 hash_drop_keys=target.get('hash_drop_keys'),
+                                 acquisition_status=target['status'], file=sha + '.json')
+              (destination / 'capture.json').write_text(json.dumps(receipt, indent=2) + '\n', encoding='utf8')
+              print(json.dumps(receipt))
+
+          if __name__ == '__main__':
+              capture(Path('.'))
+          PY
+      - name: Verify every summary cell is accounted for
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          csv.field_size_limit(16 * 1024 * 1024)
+          latest=json.loads(Path('work/clean/latest.json').read_text())
+          out=Path(latest['output_dir'])/'project-summary'
+          columns=json.loads(Path('config/project_summary_columns.json').read_text())
+          book=json.loads(Path('config/summary_rules.json').read_text())['parameters']
+          names=book['output_files']['value']
+          def read(name):
+              with (out/name).open(encoding='utf-8-sig',newline='') as f:
+                  reader=csv.DictReader(f)
+                  return reader.fieldnames,list(reader)
+          header,rows=read(names['summary'])
+          _,trace=read(names['provenance']);_,missing=read(names['missing'])
+          coverage=json.loads((out/names['coverage']).read_text())
+          assert header==columns and len(columns)==51
+          assert len(rows)==len(book['cohort']['value'])
+          assert len(trace)==len(rows)*len(columns)
+          assert len({(r['project_id'],r['column']) for r in trace})==len(trace)
+          assert len(missing)==sum(v=='' for row in rows for v in row.values())
+          assert coverage['filled_cells']+len(missing)==len(trace)
+          assert json.loads(Path('work/clean/network_status.json').read_text())['valid_for_delivery']
+          PY
+      - name: Unit regressions with XML
+        if: always()
+        run: python -m xmlrunner discover -s tests -o work/test-xml
+      - name: Supplement unapproved locators from verified CI cache
+        # No HTTP requests or edits to claims; all new proposals stay unapproved.
+        env:
+          TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
+        run: python tools/locators_from_ci_cache.py
+      - name: R analytical regressions
+        if: always()
+        run: |
+          python - <<'PY'
+          import subprocess, time, xml.etree.ElementTree as ET
+          from pathlib import Path
+          start=time.monotonic()
+          result=subprocess.run(['Rscript','tests/test_methods.R'],capture_output=True,text=True)
+          text=result.stdout+result.stderr
+          Path('work/r-tests.log').write_text(text)
+          suite=ET.Element('testsuite',name='R analytical regression script',tests='1',failures=str(int(result.returncode!=0)))
+          case=ET.SubElement(suite,'testcase',name='test_methods.R',time=str(time.monotonic()-start))
+          if result.returncode: ET.SubElement(case,'failure',message='R script exited '+str(result.returncode)).text=text
+          ET.SubElement(case,'system-out').text=text
+          ET.ElementTree(suite).write('work/test-xml/R-script.xml',encoding='utf-8',xml_declaration=True)
+          raise SystemExit(result.returncode)
+          PY
+      - name: Assert originals and frozen history unchanged
+        if: always()
+        run: |
+          git diff --exit-code -- config/sources.json config/evidence_policy.json data/snapshots data/manifest.json results/phase*
+          test -z "$(git ls-files --others --exclude-standard data/snapshots)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: automated-build-${{ github.run_id }}
+          path: |
+            work/test-xml/
+            work/pre_cutoff_evidence_verified.json
+            work/pre_cutoff_evidence_events.json
+            work/clean/p2_marker_proposals.csv
+            work/clean/p2_cache_completion.json
+            work/r-tests.log
+            work/clean-build.log
+            work/clean/**/acquisition_report.csv
+            work/clean/asx_probe.csv
+            work/clean/dns_preflight.csv
+            work/clean/network_status.json
+            work/clean/robots_403_hosts.csv
+            work/clean/fallback_report.csv
+            work/clean/proposed_sources_patch.json
+            work/clean/latest.json
+            work/clean/**/configuration.json
+            work/clean/**/snapshot_lock.json
+            work/clean/**/project-summary/
+            results/automated-build-2026-11-13/acquisition_report.csv
+          if-no-files-found: warn
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vic-raw-${{ github.run_id }}
+          path: work/vic-raw/
+          if-no-files-found: warn
+          retention-days: 30

@@ -5,6 +5,7 @@ import urllib.request
 import urllib.error
 import time
 import socket
+import re
 from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone
 from pathlib import Path
@@ -24,6 +25,7 @@ def failure_details(exc):
                 'NON_PDF_RESPONSE' if str(exc) in ('NOT_PDF','Not a PDF response') else
                 'TERMS_INTERSTITIAL_NOT_ACCEPTED' if str(exc)=='TERMS_INTERSTITIAL_NOT_ACCEPTED' else type(exc).__name__))
     return dict(failure_status=state,http_status=code,attempts=getattr(exc,'request_attempts',1),
+                **({'network_error':True} if getattr(exc,'strict_network_error',False) else {}),
                 **({'validation_error':str(exc)} if isinstance(exc,ValueError) and __import__('re').fullmatch(r'[A-Z_]{3,100}',str(exc)) else {}),
                 retry_after_seconds=getattr(exc,'retry_after_seconds',None),
                 reason=type(exc).__name__+('_'+str(code) if code else ''),
@@ -150,13 +152,13 @@ def ckan(url, query, rows=10, max_pages=2, fetch=None, archive=None,start_offset
         **(dict(start_offset=start_offset,next_start=start_offset+len(items) if start_offset+len(items)<count else None) if start_offset else {})))
 
 
-def wfs(source, archive=None):
+def wfs(source, archive=None, fetch=None):
     """Count-bound, native-ID checked WFS paging; never accept a partial inventory."""
     import xml.etree.ElementTree as ET
     base={'service':'WFS','version':source.get('wfs_version','2.0.0'),
           'request':'GetFeature','typeName':source['type_name'],
           'typeNames':source['type_name'],'srsName':'EPSG:4326'}
-    hit,_=request(source['url'],{**base,'resultType':'hits'})
+    hit,_=(fetch or request)(source['url'],{**base,'resultType':'hits'})
     if archive is not None:archive(hit)
     node=ET.fromstring(hit)
     total=node.get('numberMatched',node.get('numberOfFeatures'))
@@ -168,7 +170,7 @@ def wfs(source, archive=None):
         # SARIG WFS1.1 rejects even startIndex=0 on views without a declared PK.
         if len(features) or total>size:params['startIndex']=len(features)
         if source.get('sort_by'):params['sortBy']=source['sort_by']
-        raw,_=request(source['url'],params)
+        raw,_=(fetch or request)(source['url'],params)
         if archive is not None:archive(raw)
         if raw.lstrip().startswith(b'<'):
             raise ValueError('WFS service exception: '+' '.join(ET.fromstring(raw).itertext())[:800])
@@ -343,14 +345,35 @@ def minedex_resource_batch(url, product_alias, archive=None, fetch=None):
     return body,dict(headers,**{'X-DASC-Updated':product['UpdatedDate'],'X-DASC-Download':download,'X-DASC-Requests':str(request_count),'X-DASC-Seconds':str(time.monotonic()-started)})
 
 
+def evidenced_snapshot(root, source, cutoff):
+    path = Path(root) / 'work/pre_cutoff_evidence_verified.json'
+    if not path.is_file():
+        return source
+    try:
+        proof = json.loads(path.read_text(encoding='utf8'))
+        record = proof['sources'].get(source['key'], {})
+        evidence = record.get('declaration', {})
+        if (record.get('valid') is not True or
+                proof['sources_sha256'] != filehash(Path(root) / 'config/sources.json') or
+                evidence.get('recorded_sha256') != source['sha256'] or
+                evidence.get('evidence_date', '9999') > cutoff):
+            return source
+        return dict(source, available_date=min(source['available_date'], evidence['evidence_date']),
+                    pre_cutoff_evidence=evidence)
+    except (OSError, ValueError, KeyError, TypeError):
+        return source
+
+
 def select_snapshots(root, cutoff, keys=None, acquired_through=None):
     manifest = json.loads((Path(root) / 'data/manifest.json').read_text(encoding='utf-8'))
     selected = {}
     def visible(s):
+        s.update(evidenced_snapshot(root, s, cutoff))
         if (s.get('publication_date') or '')>cutoff:return False
         if s['available_date']<=cutoff:return True
         # Retrospective acquisition is explicit and limited to dated documents
-        # and their extraction artifacts; never backdate live GIS/government rows.
+        # and their extraction artifacts; never backdate live GIS/government rows,
+        # except declared, verified pre_cutoff_evidence for the same source bytes.
         if not acquired_through or s['available_date']>acquired_through:return False
         if s['kind']=='discovery_receipt':return True  # Acquisition diagnostics, never observations.
         if s['kind']=='source_documentation':return True  # Access diagnostics, not dated scientific evidence.
@@ -368,7 +391,7 @@ def select_snapshots(root, cutoff, keys=None, acquired_through=None):
     for s in manifest['snapshots']:
         if keys and s['key'] not in keys:
             continue
-        # Never backdate a current live response to an earlier analysis cutoff.
+        # Only declared, verified pre_cutoff_evidence may establish an earlier date.
         if not visible(s):
             continue
         if s['key'] not in selected or s['acquired_at'] > selected[s['key']]['acquired_at']:
@@ -388,3 +411,557 @@ def select_snapshots(root, cutoff, keys=None, acquired_through=None):
         for page in s.get('original_responses',[]):
             if filehash(Path(root)/page['path'])!=page['sha256']:raise ValueError('Original service response checksum mismatch: '+page['path'])
     return [selected[k] for k in sorted(selected)]
+
+gov={'services.ga.gov.au','public-services.slip.wa.gov.au','spatial-gis.information.qld.gov.au','data.stategrowth.tas.gov.au','public-gs.geoscience.nsw.gov.au','opendata.maps.vic.gov.au','geology.data.nt.gov.au','services.sarig.sa.gov.au','wamex.dmp.wa.gov.au','dasc.dmirs.wa.gov.au','geoscience.data.qld.gov.au','geoscience.nt.gov.au','strike.nt.gov.au','majorprojects.planningportal.nsw.gov.au'}
+delivery={'warsydprdstagsdspub.blob.core.windows.net','gsq-prod-ckan-horizon-public.s3.ap-southeast-2.amazonaws.com'}
+groups={
+    'government-api':gov,
+    'government-resource':delivery|{'www.wa.gov.au','international.austrade.gov.au','www.industry.gov.au','dem-sdp.s3-ap-southeast-2.amazonaws.com'},
+    'asx':{'announcements.asx.com.au','www.asx.com.au'},
+    'issuer-ir':{'investorpa.com','orbitresources.au','www.itechminerals.com.au','asm-au.com','www.arultd.com','www.astronlimited.com.au','victorymetalsaustralia.com','www.devexresources.com.au','www.gippslandcriticalminerals.com','www.iluka.com','wcsecure.weblink.com.au','hermes-cdn.investorhub.com','staff-web.automicgroup.com.au','assets.birdsoftware.io','assets.ctfassets.net'},
+    'aggregator':{'api.investi.com.au','company-announcements.afr.com','newswire.iguana2.com','www.marketindex.com.au','cdn-api.markitdigital.com','cdn.financialreports.eu','data-api.marketindex.com.au','investornews.com','www.annualreports.com','www.londonstockexchange.com'},
+    'legacy-committed':{'raw.githubusercontent.com'}}
+STRICT_HOSTS={host:group for group,items in groups.items() for host in items}
+
+
+class InvalidNetworkRun(ValueError):
+    """Acquisition diagnostics exist, but this run cannot supply research results."""
+
+
+def strict_dns_preflight(registry, reports=()):
+    """Resolve every configured source/report host before any HTTP request."""
+    hosts={urllib.parse.urlsplit(s['url']).hostname for s in [*registry['sources'],*reports]}
+    rows=[]
+    for host in sorted(h for h in hosts if h):
+        try:
+            addresses=socket.getaddrinfo(host,443,type=socket.SOCK_STREAM)
+            if not addresses:raise OSError('DNS_EMPTY_ADDRESS_LIST')
+            rows.append(dict(host=host,status='DNS_OK',error=''))
+        except OSError as exc:
+            rows.append(dict(host=host,status='NETWORK_ERROR',error=str(exc)))
+    return rows
+
+
+def strict_failure_status(exc):
+    """HTTP denial is source availability; transport failure invalidates a run."""
+    if isinstance(exc,urllib.error.HTTPError):return 'UNAVAILABLE'
+    if isinstance(exc,(urllib.error.URLError,ConnectionError,TimeoutError,socket.gaierror)):
+        return 'NETWORK_ERROR'
+    if str(exc).startswith('HOST_STOPPED:'):return 'HOST_STOPPED'
+    if str(exc)=='CAPTCHA_OR_LOGIN':return 'HOST_STOPPED'
+    return 'UNAVAILABLE'
+
+
+def strict_network_report(work, outcomes, dns_rows):
+    """Persist receipts even when no database or valid research run is created."""
+    from .analysis import write_csv
+    work=Path(work);work.mkdir(parents=True,exist_ok=True)
+    failed={r['key'] for r in outcomes if r.get('network_error') or r['status']=='NETWORK_ERROR'}
+    keys={r['key'] for r in outcomes}
+    dns_failed=any(r['status']!='DNS_OK' for r in dns_rows)
+    invalid=dns_failed or bool(keys and len(failed)/len(keys)>.05)
+    report=dict(status='RUN_INVALID_NETWORK' if invalid else 'NETWORK_VALID' if keys else 'DNS_PREFLIGHT_PASSED',
+                dns_preflight=dns_rows,network_error_sources=len(failed),sources=len(keys),
+                network_error_fraction=len(failed)/len(keys) if keys else None,
+                maximum_network_error_fraction=.05,valid_for_delivery=bool(keys) and not invalid)
+    (work/'network_status.json').write_text(canonical(report)+'\n',encoding='utf8')
+    write_csv(work/'dns_preflight.csv',dns_rows,['host','status','error'])
+    if outcomes:
+        write_csv(work/'acquisition_report.csv',outcomes,sorted({k for r in outcomes for k in r}))
+    return report
+
+
+def strict_asx_probe(registry, transport):
+    """Three registered documents per ASX host, sharing the build's stop state."""
+    import hashlib
+    rows=[]
+    for host in ('www.asx.com.au','announcements.asx.com.au'):
+        sources=[s for s in registry['sources'] if s['kind']=='pdf' and urllib.parse.urlsplit(s['url']).hostname==host][:3]
+        if len(sources)!=3:raise ValueError('ASX_PROBE_REQUIRES_THREE_REGISTERED_DOCUMENTS:'+host)
+        for source in sources:
+            start=len(transport.attempts);transport.http.pop(host,None)
+            row=dict(key=source['key'],url=source['url'],host=host,status='',http_status=None,reason='',sha256='')
+            try:
+                raw,headers=transport(source['url'],max_bytes=source.get('max_bytes',30_000_000))
+                if not raw.startswith(b'%PDF'):raise ValueError('NOT_PDF')
+                transport.probed[source['key']]=(raw,headers,transport.http.get(host),transport.attempts[start:])
+                row.update(status='FETCHED',sha256=hashlib.sha256(raw).hexdigest())
+            except Exception as exc:
+                if host=='www.asx.com.au' and str(exc)=='NOT_PDF':transport.stopped[host]='NOT_PDF'
+                row.update(status=strict_failure_status(exc),reason=str(exc))
+                transport.probe_failures[source['key']]=(exc,transport.http.get(host),transport.attempts[start:])
+            row.update(http_status=transport.http.get(host),http_attempts=canonical(transport.attempts[start:]))
+            rows.append(row)
+    return rows
+
+
+class StrictTransport:
+    """One build-scoped transport; no legacy request semantics are changed."""
+    def __init__(self, hosts):
+        self.hosts=hosts;self.last={};self.stopped={};self.http={};self.attempts=[]
+        self.probed={};self.probe_failures={}
+        owner=self
+        class Redirect(urllib.request.HTTPRedirectHandler):
+            def redirect_request(self, req, fp, code, msg, headers, newurl):
+                old=urllib.parse.urlsplit(req.full_url).hostname;new=urllib.parse.urlsplit(newurl).hostname
+                owner.http[old]=code;owner.attempts.append(dict(host=old,http_status=code))
+                if hasattr(owner,'before_request') and (old=='www.asx.com.au' or owner.hosts.get(old)=='alternate'):owner.attempts[-1]['url']=req.full_url
+                if urllib.parse.urlsplit(newurl).scheme!='https' or new not in owner.hosts or (old!=new and owner.hosts.get(old)!=owner.hosts.get(new)):
+                    raise ValueError('REDIRECT_DESTINATION_NOT_APPROVED')
+                if hasattr(owner,'before_request'):owner.before_request(newurl)
+                owner.guard(new)
+                return super().redirect_request(req,fp,code,msg,headers,newurl)
+        self.opener=urllib.request.build_opener(Redirect())
+
+    def guard(self,host):
+        if host in self.stopped:raise ValueError('HOST_STOPPED:'+self.stopped[host])
+        delay=3-(time.monotonic()-self.last.get(host,-1e10))
+        if delay>0:time.sleep(delay)
+        self.last[host]=time.monotonic()
+
+    def __call__(self,url,params=None,headers=None,timeout=25,method='GET',max_bytes=None):
+        host=urllib.parse.urlsplit(url).hostname
+        if urllib.parse.urlsplit(url).scheme!='https' or host not in self.hosts:raise ValueError('UNAPPROVED_HOST')
+        data=None
+        if params and method=='POST':data=urllib.parse.urlencode(params).encode()
+        elif params:url+=('&' if '?' in url else '?')+urllib.parse.urlencode(params)
+        req=urllib.request.Request(url,data=data,method=method,headers={'User-Agent':'AU_REE_V2/0.1 public research'})
+        for attempt in range(2):
+            self.http.pop(host,None)
+            if hasattr(self,'before_request'):self.before_request(url)
+            self.guard(host)
+            try:
+                with self.opener.open(req,timeout=timeout) as response:
+                    final=urllib.parse.urlsplit(response.geturl()).hostname
+                    self.resolved_url=response.geturl()
+                    self.http[host]=response.status;self.attempts.append(dict(host=host,http_status=response.status))
+                    # Scope URL audit to www/alternates; bulk government pages retain their bounded receipt format.
+                    if hasattr(self,'before_request') and (host=='www.asx.com.au' or self.hosts.get(host)=='alternate'):self.attempts[-1]['url']=req.full_url
+                    raw=response.read(max_bytes+1) if max_bytes is not None else response.read()
+                    if max_bytes is not None and len(raw)>max_bytes:raise ValueError('DOCUMENT_BYTE_BUDGET_EXCEEDED')
+                    sample=raw[:200000].lower()
+                    if not raw.startswith((b'%PDF',b'PK')) and (any(token in sample for token in (b'captcha',b'type="password"',b"type='password'",b'please log in',b'please sign in')) or re.search(br'<form[^>]*(?:log.?in|sign.?in)|<(?:title|h1)[^>]*>[^<]*(?:log.?in|sign.?in)',sample)):
+                        self.stopped[host]=self.stopped[final]='CAPTCHA_OR_LOGIN'
+                        raise ValueError('CAPTCHA_OR_LOGIN')
+                    return raw,dict(response.headers)
+            except urllib.error.HTTPError as exc:
+                self.http[host]=exc.code;self.attempts.append(dict(host=host,http_status=exc.code));exc.request_attempts=attempt+1
+                if hasattr(self,'before_request') and (host=='www.asx.com.au' or self.hosts.get(host)=='alternate'):self.attempts[-1]['url']=req.full_url
+                if exc.code in (403,404,410) and urllib.parse.urlsplit(req.full_url).path=='/robots.txt':
+                    return b'',{}
+                if 400<=exc.code<500 and exc.code!=404:
+                    self.stopped[host]=str(exc.code)
+                    self.stopped[urllib.parse.urlsplit(exc.url).hostname]=str(exc.code)
+                    raise
+                if not 500<=exc.code<600 or attempt:raise
+            except (urllib.error.URLError,ConnectionError,TimeoutError,socket.gaierror) as exc:
+                self.attempts.append(dict(host=host,http_status=None,error='TIMEOUT' if isinstance(getattr(exc,'reason',exc),(TimeoutError,socket.timeout)) else 'NETWORK_ERROR'))
+                exc.strict_network_error=True
+                if not isinstance(getattr(exc,'reason',exc),(TimeoutError,socket.timeout)) or attempt:raise
+
+
+class SameSHAAlternates:
+    """Bounded discovery of immutable copies; no change to declared evidence."""
+    def __init__(self, root, primary):
+        path = Path(root) / 'config/evidence_policy.json'
+        self.policy = json.loads(path.read_text(encoding='utf8')).get('same_sha_fallback', {}) if path.exists() else {}
+        self.primary = primary
+        self.reports, self.patch, self.robots, self.indexes = [], [], {}, {}
+        self.used = 0
+        self.transport = StrictTransport({})
+        for name in ('last', 'stopped', 'http', 'attempts'):
+            setattr(self.transport, name, getattr(primary, name))
+        self.transport.before_request = lambda url: self.check(url, self.transport, True)
+        if self.policy.get('enabled'):
+            if self.policy.get('search_api',{}).get('enabled'):
+                raise ValueError('SEARCH_API_PROVIDER_NOT_IMPLEMENTED')
+            for key, limit in [('max_candidates_per_source', 8), ('max_fallback_requests_per_build', 400)]:
+                if not 0 < self.policy[key] <= limit:
+                    raise ValueError('INVALID_FALLBACK_BUDGET')
+            primary.before_request = lambda url: self.check(url, primary, False)
+        primary.same_sha = self
+
+    def check(self, url, transport, counted):
+        from urllib.robotparser import RobotFileParser
+        from .security import sensitive_reference
+        if sensitive_reference(url):raise ValueError('SENSITIVE_ALTERNATE_URL')
+        parsed = urllib.parse.urlsplit(url)
+        if parsed.hostname in transport.stopped:
+            raise ValueError('HOST_STOPPED:' + transport.stopped[parsed.hostname])
+        if counted:
+            if self.used >= self.policy['max_fallback_requests_per_build']:
+                raise ValueError('FALLBACK_REQUEST_BUDGET_EXHAUSTED')
+            self.used += 1
+        if parsed.path == '/robots.txt':
+            return
+        origin = urllib.parse.urlunsplit((parsed.scheme, parsed.netloc, '', '', ''))
+        if origin not in self.robots:
+            self.robots[origin] = None
+            try:
+                raw, _ = transport(origin + '/robots.txt', max_bytes=100000)
+            finally:
+                transport.http.pop(parsed.hostname,None)
+            if raw.lstrip().startswith(b'<') or (raw.strip() and b'user-agent:' not in raw.lower()):
+                raise ValueError('ROBOTS_NOT_TEXT')
+            parser = RobotFileParser()
+            parser.parse(raw.decode('utf-8-sig').splitlines())
+            self.robots[origin] = parser
+        if not self.robots[origin] or not self.robots[origin].can_fetch('AU_REE_V2/0.1 public research', url):
+            raise ValueError('ROBOTS_DISALLOWED')
+
+    def find(self, source, receipt, expected, cache):
+        import hashlib, re
+        from .discovery import candidates
+        trigger = receipt['stop_reason'].split(':')[0]
+        if receipt['http_status'] == 404:
+            trigger = 'HTTP_404'
+        elif trigger == 'CAPTCHA_OR_LOGIN':
+            trigger = 'LOGIN_OR_CAPTCHA'
+        elif receipt['status'] == 'HOST_STOPPED':
+            trigger = 'HOST_STOPPED'
+        elif urllib.parse.urlsplit(source['url']).hostname in self.primary.stopped:
+            trigger = 'HOST_STOPPED'
+        if not self.policy.get('enabled') or source['kind'] != 'pdf' or len(expected) != 1 or trigger not in self.policy['trigger_statuses']:
+            return None
+        if source.get('alternate_policy', 'SAME_SHA_ONLY') != 'SAME_SHA_ONLY':
+            return None
+        report = dict(key=source['key'],primary_status=receipt['status'],primary_reason=receipt['stop_reason'],candidate_count=0,
+                      found_url='',host_type='',sha_match=False,stop_reason='',attempts=[])
+        self.reports.append(report)
+        index = self.policy['issuer_ir_indexes'].get(source.get('issuer', {}).get('asx_code'))
+        issuer = urllib.parse.urlsplit(index).hostname if index else None
+        issuer_hosts = set(self.policy.get('issuer_ir_hosts',{}).get(source.get('issuer',{}).get('asx_code'),[])) | ({issuer} if issuer else set())
+        hosts = set(self.policy['approved_hosts']) | issuer_hosts
+        self.transport.hosts = {h: 'alternate' for h in hosts if h != 'www.asx.com.au'}
+        urls = list(dict.fromkeys(source.get('alternate_urls', [])))
+        found = None
+        for phase in ('declared', 'index'):
+            if report['candidate_count'] >= self.policy['max_candidates_per_source']:
+                report['stop_reason'] = 'CANDIDATE_BUDGET_EXHAUSTED'
+                break
+            if phase == 'index' and index:
+                try:
+                    if index not in self.indexes:
+                        self.indexes[index] = None
+                        raw, _ = self.transport(index, max_bytes=2000000)
+                        if re.search(br'<form[^>]*(?:login|consent|terms)|terms\s+(?:and\s+conditions|of\s+use)|<(?:title|h1)[^>]*>[^<]*(?:consent|log.?in|sign.?in)', raw, re.I):
+                            self.transport.stopped[issuer] = 'PROTECTED_INDEX_NOT_PARSED'
+                            raise ValueError('PROTECTED_INDEX_NOT_PARSED')
+                        seed = dict(url=index,key=source['key'],allowed_hosts=hosts,pattern=r'\.pdf(?:\b|\?)|/pdf/|/file/')
+                        self.indexes[index] = candidates(raw, seed)
+                    if self.indexes[index] is None:
+                        raise ValueError('INDEX_PREVIOUSLY_UNAVAILABLE')
+                    for candidate in self.indexes[index]:
+                        date = candidate['publication_date']
+                        dates = re.findall(r'\b\d{2}/\d{2}/20\d{2}\b',candidate['title'])
+                        if not date and len(dates)==1:
+                            date = datetime.strptime(dates[0],'%d/%m/%Y').date().isoformat()
+                        tokens = source.get('title_tokens', [])
+                        dated = bool(date and source.get('publication_date') and abs((datetime.fromisoformat(date)-datetime.fromisoformat(source['publication_date'])).days) <= 7)
+                        if dated or any(t.casefold() in (candidate['title']+' '+candidate['url']).casefold() for t in tokens):
+                            urls.append(candidate['url'])
+                except Exception as exc:
+                    report['attempts'].append(dict(url=index,stage='INDEX',reason=str(exc)))
+                    receipt['network_error'] = receipt.get('network_error',False) or strict_failure_status(exc) == 'NETWORK_ERROR'
+            for url in dict.fromkeys(urls):
+                if report['candidate_count'] >= self.policy['max_candidates_per_source']:
+                    report['stop_reason'] = 'CANDIDATE_BUDGET_EXHAUSTED'
+                    break
+                if any(a.get('url') == url and a.get('stage') == 'PDF' for a in report['attempts']):
+                    continue
+                report['candidate_count'] += 1
+                attempt = dict(url=url,stage='PDF',actual_sha256='',reason='')
+                report['attempts'].append(attempt)
+                try:
+                    raw, _ = self.transport(url, max_bytes=30000000)
+                    actual = hashlib.sha256(raw).hexdigest()
+                    attempt['actual_sha256'] = actual
+                    if actual not in expected:
+                        attempt['reason'] = 'ALTERNATE_SHA_MISMATCH'
+                    elif not raw.startswith(b'%PDF'):
+                        attempt['reason'] = 'NOT_PDF'
+                    else:
+                        found = raw
+                        report.update(found_url=self.transport.resolved_url,sha_match=True,stop_reason='')
+                        break
+                except Exception as exc:
+                    attempt['reason'] = str(exc)
+                    receipt['network_error'] = receipt.get('network_error',False) or strict_failure_status(exc) == 'NETWORK_ERROR'
+            urls = []
+            if found is not None:
+                break
+        if found is None and not report['stop_reason']:
+            reason = report['attempts'][-1]['reason'] if report['attempts'] else ''
+            report['stop_reason'] = reason or ('NO_ELIGIBLE_INDEX_PDF_LINK' if index else 'NO_REGISTERED_IR_INDEX_OR_CANDIDATE')
+        receipt['alternate_mismatches'] = canonical([dict(a,key=source['key']) for a in report['attempts'] if a['reason']=='ALTERNATE_SHA_MISMATCH'])
+        if found is None:
+            return None
+        host = urllib.parse.urlsplit(report['found_url']).hostname
+        report['host_type'] = 'ASX_DIRECT_PDF' if host == 'announcements.asx.com.au' else 'ISSUER_IR' if host in issuer_hosts else 'APPROVED_THIRD_PARTY'
+        sha = next(iter(expected))
+        path = cache / (sha + '.pdf')
+        path.write_bytes(found)
+        receipt.update(status='ALTERNATE_SAME_SHA',sha_match=True,actual_sha256=sha,alternate_url=report['found_url'],alternate_host_type=report['host_type'])
+        self.patch.append(dict(key=source['key'],source_sha256=sha,alternate_urls=list(dict.fromkeys([*source.get('alternate_urls',[]),report['found_url']]))))
+        now = datetime.now(timezone.utc).isoformat()
+        return dict(source,url=report['found_url'],primary_url=source['url'],sha256=sha,path=str(path),available_date=now[:10],acquired_at=now)
+
+    def save(self, work):
+        from .analysis import write_csv
+        rows = [dict(r,attempts=canonical(r['attempts'])) for r in self.reports]
+        columns = ['key','primary_status','primary_reason','candidate_count','found_url','host_type','sha_match','stop_reason','attempts']
+        write_csv(Path(work)/'fallback_report.csv', rows, columns)
+        proposed = dict(requires_researcher_approval=True,request_slots_used=self.used,changes=self.patch)
+        (Path(work)/'proposed_sources_patch.json').write_text(canonical(proposed)+'\n',encoding='utf8')
+
+
+def declared_json_hash(raw, source):
+    """Explicit JSON policy; raw snapshot identity remains the byte SHA256."""
+    import hashlib
+    policy = source['hash_policy']
+    if policy != 'JSON_DROP_TOP_LEVEL_KEYS_V1':
+        raise ValueError('UNKNOWN_SOURCE_HASH_POLICY')
+    keys = source.get('hash_drop_keys')
+    if not isinstance(keys, list) or not keys:
+        raise ValueError('INVALID_HASH_DROP_KEYS')
+    if any(not isinstance(key, str) or not key for key in keys):
+        raise ValueError('INVALID_HASH_DROP_KEYS')
+    if len(set(keys)) != len(keys):
+        raise ValueError('DUPLICATE_HASH_DROP_KEYS')
+    try:
+        document = json.loads(raw.decode('utf-8'))
+    except (UnicodeDecodeError, ValueError) as exc:
+        raise ValueError('HASH_POLICY_INVALID_JSON') from exc
+    if not isinstance(document, dict):
+        raise ValueError('HASH_POLICY_TOP_LEVEL_OBJECT_REQUIRED')
+    if any(key not in document for key in keys):
+        raise ValueError('HASH_POLICY_TOP_LEVEL_KEY_MISSING')
+    for key in keys:
+        del document[key]
+    encoded = json.dumps(
+        document, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False
+    ).encode('utf-8')
+    content_sha = hashlib.sha256(encoded).hexdigest()
+    metadata = {
+        'hash_policy': policy,
+        'hash_drop_keys': keys,
+        'content_sha256': content_sha,
+        'raw_sha256': hashlib.sha256(raw).hexdigest(),
+    }
+    return content_sha, metadata
+
+
+def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_rows=None):
+    """Fresh work-only originals and bounded, policy-approved same-SHA copies."""
+    import hashlib,subprocess,tempfile
+    root=Path(root).resolve();work=Path(work).resolve()
+    discovery_path=root/'config/discovery.json'
+    policy=json.loads(discovery_path.read_text(encoding='utf8')) if discovery_path.exists() else {}
+    reports=[r for r in policy.get('official_reports',[]) if r['protocol']!='arcgis' or r.get('where')]
+    dns_rows=strict_dns_preflight(registry,reports) if dns_rows is None else dns_rows
+    if any(r['status']!='DNS_OK' for r in dns_rows):
+        strict_network_report(work,[],dns_rows)
+        raise InvalidNetworkRun('RUN_INVALID_NETWORK: DNS preflight failed; no HTTP requests or build started')
+    work.mkdir(parents=True,exist_ok=True)
+    cache=Path(tempfile.mkdtemp(prefix='strict-',dir=work))
+    manifest=json.loads((root/'data/manifest.json').read_text(encoding='utf8'))['snapshots']
+    declared={}
+    def visit(value):
+        if isinstance(value,dict):
+            if value.get('source_key') and value.get('source_sha256'):declared.setdefault(value['source_key'],set()).add(value['source_sha256'])
+            for v in value.values():visit(v)
+        elif isinstance(value,list):
+            for v in value:visit(v)
+    visit(claims)
+    # Exact URL aliases share reviewed bindings; never infer a derivative parent.
+    by_url={}
+    for source in registry['sources']:
+        if source['kind'] in ('pdf','html'):
+            bindings=set(declared.get(source['key'],set()))
+            if source.get('source_sha256'):bindings.add(source['source_sha256'])
+            by_url.setdefault(source['url'],set()).update(bindings)
+    transport=transport or StrictTransport(STRICT_HOSTS);outcomes=[];selected=[]
+    alternate=getattr(transport,'same_sha',None) or SameSHAAlternates(root,transport)
+    managed={'official_table_transcription','official_project_catalogue_transcription','historical_e1_candidates','legacy_screen_index','pdf_page_extraction'}
+    def committed(s,expected):
+        p=Path(s['path']);target=(root/p).resolve()
+        if p.is_absolute() or not target.is_relative_to(root/'data/snapshots') or s['sha256'] not in expected:return False
+        check=subprocess.run(['git','cat-file','blob','HEAD:'+p.as_posix()],cwd=root,capture_output=True)
+        return check.returncode==0 and hashlib.sha256(check.stdout).hexdigest()==s['sha256'] and target.is_file() and filehash(target)==s['sha256']
+    discovery_path=root/'config/discovery.json'
+    if discovery_path.exists():
+        import copy
+        from .discovery import official_reports
+        policy=copy.deepcopy(json.loads(discovery_path.read_text(encoding='utf8')))
+        fixed=[]
+        for report in policy.get('official_reports',[]):
+            if report['protocol']=='arcgis' and not report.get('where'):
+                outcomes.append(dict(key=report['key'],host=urllib.parse.urlsplit(report['url']).hostname,http_status=None,sha_match=None,status='NO_FIXED_QUERY_NOT_EXPANDED',stop_reason='No configured fixed WAMEX query'))
+                continue
+            report.update(dynamic_candidates=False,resume=False);fixed.append(report)
+        policy.update(official_reports=fixed,official_cursors={})
+        def save_receipt(raw,meta,suffix):
+            from .security import sensitive_reference
+            if sensitive_reference(raw.decode('utf8',errors='ignore')):raw=b'REDACTED_SENSITIVE_RECEIPT'
+            sha=hashlib.sha256(raw).hexdigest();(cache/(sha+suffix)).write_bytes(raw);return sha
+        _,reports,seeds,_=official_reports(policy,[],transport,save_receipt)
+        for report in reports:
+            host=urllib.parse.urlsplit(report['url']).hostname
+            attempts=[a for a in transport.attempts if a['host']==host]
+            network=bool(report.get('network_error'))
+            outcomes.append(dict(key=report['seed_key'],host=host,http_status=report.get('http_status',transport.http.get(host)),sha_match=None,status='NETWORK_ERROR' if network else report['status'],stop_reason=report.get('reason',''),network_error=network,http_attempts=canonical(attempts)))
+        # Returned exact delivery URLs are receipts only, never unreviewed claims.
+        for seed in seeds:
+            host=urllib.parse.urlsplit(seed['url']).hostname
+            try:
+                raw,_=transport(seed['url'],max_bytes=seed.get('max_document_bytes'))
+                if not raw.startswith(b'%PDF'):raise ValueError('NOT_PDF')
+                save_receipt(raw,{},'.pdf');status='API_DOCUMENT_CACHED_NOT_ADOPTED';reason=''
+            except Exception as exc:status=strict_failure_status(exc);reason=str(exc)
+            outcomes.append(dict(key=seed['key'],host=host,http_status=transport.http.get(host),sha_match=None,status=status,stop_reason=reason))
+    for source in registry['sources']:
+        key=source['key'];host=urllib.parse.urlsplit(source['url']).hostname
+        transport.http.pop(host,None);request_start=len(transport.attempts)
+        old=[s for s in manifest if s['key']==key and (s.get('publication_date') or '')<=cutoff]
+        expected=set(declared.get(key,set()))
+        if source.get('source_sha256') and source['kind'] not in managed:expected.add(source['source_sha256'])
+        if source['kind'] in ('pdf','html'):expected.update(by_url.get(source['url'],set()))
+        if source['kind'] in managed and not expected and old:expected={max(old,key=lambda x:x['acquired_at'])['sha256']}
+        row=dict(key=key,host=host,http_status=None,sha_match=None,status='UNAVAILABLE',stop_reason='',expected_sha256=';'.join(sorted(expected)))
+        if source.get('enabled') is False:
+            row.update(status='SOURCE_NOT_ACQUIRED',stop_reason=source.get('disabled_reason','SOURCE_DISABLED'));outcomes.append(row);continue
+        if source['url']=='https://www.gippslandcriticalminerals.com/project-overview/':
+            row.update(status='SOURCE_NOT_ACQUIRED',stop_reason='INDEX_LANDING_DISABLED');outcomes.append(row);continue
+        candidate_mismatch=False
+        try:
+            if len(expected)>1:raise ValueError('CONFLICTING_DECLARED_SOURCE_SHA')
+            if host in transport.stopped:raise ValueError('HOST_STOPPED:'+transport.stopped[host])
+            if source.get('committed_snapshot_sha256') and 'hash_policy' not in source:
+                candidates=[s for s in old if committed(s,{source['committed_snapshot_sha256']})]
+                if not candidates:raise ValueError('DECLARED_COMMITTED_SNAPSHOT_UNAVAILABLE')
+                selected.append(evidenced_snapshot(
+                    root, dict(max(candidates,key=lambda s:s['acquired_at']),**source), cutoff))
+                row.update(status='COMMITTED_SNAPSHOT_SAME_SHA',sha_match=True);outcomes.append(row);continue
+            if source['kind'] in managed:
+                candidates=[s for s in old if committed(s,expected)]
+                if not candidates:raise ValueError('DECLARED_COMMITTED_DERIVATIVE_UNAVAILABLE')
+                selected.append(max(candidates,key=lambda s:s['acquired_at']));row.update(status='COMMITTED_MANAGED_SAME_SHA',sha_match=True)
+                outcomes.append(row);continue
+            if key in transport.probe_failures:
+                exc,http,attempts=transport.probe_failures.pop(key)
+                transport.http[host]=http;row['probe_http_attempts']=canonical(attempts)
+                raise exc
+            # Only registry entries are requested. There is no discovery/index path.
+            if key in transport.probed:
+                raw,headers,http,attempts=transport.probed.pop(key);transport.http[host]=http
+                row.update(reused_successful_probe=True,probe_http_attempts=canonical(attempts))
+            elif host=='wamex.dmp.wa.gov.au' and 'ReportDetails' in source['url']:
+                import re
+                query=urllib.parse.parse_qs(urllib.parse.urlsplit(source['url']).query)
+                native=int(next(v[0] for k,v in query.items() if k.lower()=='anumber'))
+                body,headers=transport('https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails/ReportDocuments_Read',{'aNumber[0]':native,'page':1,'pageSize':20},method='POST')
+                listing=json.loads(body)
+                if listing.get('Errors') or not isinstance(listing.get('Total'),int) or not isinstance(listing.get('Data'),list) or any(r.get('ANumber')!=native for r in listing['Data']):raise ValueError('WAMEX_REPORT_IDENTITY_MISMATCH')
+                raw=None;attempted=0
+                for item in listing['Data']:
+                    if attempted>=2:break
+                    link=item.get('Link','');size=re.fullmatch(r'([\d.]+)\s*(KB|MB|GB)',item.get('FileSize',''),re.I)
+                    if str(item.get('FileType','')).lower()!='.pdf' or not size:continue
+                    if float(size[1])*{'KB':1024,'MB':1024**2,'GB':1024**3}[size[2].upper()]>30000000:continue
+                    if urllib.parse.urlsplit(link).scheme!='https' or urllib.parse.urlsplit(link).hostname!='warsydprdstagsdspub.blob.core.windows.net':continue
+                    attempted+=1;candidate,headers=transport(link,max_bytes=30000000)
+                    if not candidate.startswith(b'%PDF'):continue
+                    sha=hashlib.sha256(candidate).hexdigest();(cache/(sha+'.pdf')).write_bytes(candidate)
+                    if sha in expected:raw=candidate;break
+                    candidate_mismatch=True
+                if raw is None:raise ValueError('SOURCE_SHA_CHANGED' if attempted else 'WAMEX_NO_ELIGIBLE_DOCUMENT')
+            elif source['kind']=='minedex_resource_batch':raw,headers=minedex_resource_batch(source['url'],source['product_alias'],fetch=transport)
+            elif source.get('fixed_query'):raw,headers=transport(source['url'],max_bytes=source.get('max_bytes',50_000_000))
+            elif source['kind'] in ('arcgis_census','arcgis_gis','government_arcgis'):
+                raw=(canonical(arcgis(source['url'],source.get('where','1=1'),windows=project_windows(root,{'snapshots':manifest},source['aoi_radius_km']) if source.get('aoi_radius_km') else None,fetch=transport))+'\n').encode();headers={}
+            elif source['kind']=='government_wfs':raw=(canonical(wfs(source,fetch=transport))+'\n').encode();headers={}
+            else:raw,headers=transport(source['url'],timeout=source.get('timeout_seconds',25))
+            row['http_status']=transport.http.get(host)
+            if source['kind']=='pdf' and not raw.startswith(b'%PDF'):raise ValueError('NOT_PDF')
+            if source['kind']=='xlsx_census' and not raw.startswith(b'PK'):raise ValueError('NOT_XLSX')
+            sha = hashlib.sha256(raw).hexdigest()
+            row['actual_sha256'] = sha
+            compared_sha = sha
+            hash_metadata = {}
+            if 'hash_policy' in source:
+                (cache / (sha + '.json')).write_bytes(raw)
+                row.update(
+                    raw_sha256=sha,
+                    hash_policy=source['hash_policy'],
+                    hash_drop_keys=canonical(source.get('hash_drop_keys')),
+                    sha_match=False,
+                )
+                compared_sha, hash_metadata = declared_json_hash(raw, source)
+                row.update(hash_metadata)
+                row['hash_drop_keys'] = canonical(hash_metadata['hash_drop_keys'])
+            row['sha_match'] = compared_sha in expected if expected else None
+            if expected and compared_sha not in expected:
+                raise ValueError('SOURCE_SHA_CHANGED')
+            suffix='.pdf' if source['kind']=='pdf' else '.xlsx' if source['kind']=='xlsx_census' else '.zip' if source['kind']=='minedex_resource_batch' else '.csv' if source['kind']=='government_csv' else '.html' if source['kind']=='html' else '.json'
+            path=cache/(sha+suffix);path.write_bytes(raw)
+            now=datetime.now(timezone.utc).isoformat()
+            entry=dict(source,sha256=sha,path=str(path),acquired_at=now,available_date=now[:10])
+            entry.update(hash_metadata)
+            entry = evidenced_snapshot(root, entry, cutoff)
+            if source['kind']=='minedex_resource_batch':
+                entry.update(source_update=headers['X-DASC-Updated'],resolved_download_url=headers['X-DASC-Download'],last_modified=headers.get('Last-Modified'))
+                entry['publication_date']=datetime.strptime(headers['X-DASC-Updated'],'%d/%m/%Y').date().isoformat()
+            if source['kind'] in ('pdf','html') and not expected:
+                row['status']='CACHED_UNBOUND_SOURCE_NOT_ADOPTED'
+            else:
+                selected.append(entry);row['status']='FETCHED_SHA_VERIFIED' if expected else 'FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE'
+        except Exception as exc:
+            if host=='www.asx.com.au' and str(exc)=='NOT_PDF':transport.stopped[host]='NOT_PDF'
+            failure='SOURCE_SHA_CHANGED' if candidate_mismatch or str(exc)=='SOURCE_SHA_CHANGED' else str(exc)
+            status=failure if failure in ('SOURCE_SHA_CHANGED','CONFLICTING_DECLARED_SOURCE_SHA') else strict_failure_status(exc)
+            row.update(http_status=transport.http.get(host),stop_reason=failure,status=status,network_error=status=='NETWORK_ERROR')
+            replacement=None if 'hash_policy' in source else alternate.find(source,row,expected,cache)
+            if replacement:selected.append(replacement)
+            elif (
+                'hash_policy' not in source
+                and failure not in ('SOURCE_SHA_CHANGED', 'CONFLICTING_DECLARED_SOURCE_SHA')
+                and status not in ('NETWORK_ERROR', 'HOST_STOPPED')
+                and host != 'www.asx.com.au'
+            ):
+                candidates=[s for s in old if committed(s,expected)]
+                if candidates:selected.append(max(candidates,key=lambda s:s['acquired_at']));row.update(status='SNAPSHOT_FALLBACK_SAME_SHA',sha_match=True)
+        row['http_attempts']=canonical(transport.attempts[request_start:])
+        outcomes.append(row)
+    changed_keys={r['key'] for r in outcomes if r['status']=='SOURCE_SHA_CHANGED'}
+    changed_urls={s['url'] for s in registry['sources'] if s['key'] in changed_keys}
+    invalid={s['key']:'SOURCE_SHA_CHANGED' for s in registry['sources'] if s['url'] in changed_urls}
+    original_shas={s['sha256'] for s in selected if s['kind']=='pdf' and s['key'] not in invalid}
+    for source in selected:
+        if source['kind'] in ('pdf_page_extraction','official_table_transcription','official_project_catalogue_transcription'):
+            parent=source.get('parent_source_sha256',source.get('source_sha256'))
+            if not parent or parent not in original_shas:
+                invalid.setdefault(source['key'],'SOURCE_NOT_ACQUIRED')
+    selected=[s for s in selected if s['key'] not in invalid]
+    for row in outcomes:
+        if row['key'] in invalid:
+            row.update(status=invalid[row['key']],stop_reason='PARENT_OR_ALIAS_SOURCE_NOT_VALIDATED',sha_match=False if invalid[row['key']]=='SOURCE_SHA_CHANGED' else row.get('sha_match'))
+    alternate.save(work)
+    report=strict_network_report(work,outcomes,dns_rows)
+    if report['status']=='RUN_INVALID_NETWORK':
+        raise InvalidNetworkRun('RUN_INVALID_NETWORK: network errors exceed 5%; see '+str(work/'network_status.json'))
+    return selected,outcomes
+
+
+def record_source_not_acquired(root, key, source):
+    """A discovery guard receipt, not a fetch or a fabricated source value."""
+    import csv
+    path=Path(root)/'work/discovery/acquisition_report.csv';path.parent.mkdir(parents=True,exist_ok=True)
+    fields=['key','host','http_status','sha_match','status','stop_reason']
+    row=dict(key=key,host=urllib.parse.urlsplit(source.get('url','')).hostname or '',http_status='',sha_match='',status='SOURCE_NOT_ACQUIRED',stop_reason='SOURCE_NOT_ACQUIRED')
+    rows=[]
+    if path.exists():
+        with path.open(encoding='utf8',newline='') as stream:rows=list(csv.DictReader(stream))
+    if row not in rows:
+        with path.open('w',encoding='utf8',newline='') as stream:
+            writer=csv.DictWriter(stream,fieldnames=fields);writer.writeheader();writer.writerows([*rows,row])
+    return False

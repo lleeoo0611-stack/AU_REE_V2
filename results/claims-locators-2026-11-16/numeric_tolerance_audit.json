@@ -1,0 +1,21 @@
+{
+  "status": "CLASSIFICATION_ONLY_NO_REBUILD_OR_VALUE_CHANGE",
+  "input_comparison_sha256": "1b7a73b28a6ebd1e57bf40af4b36207343c84d2f188e0a7cb3f4832a1e59cac7",
+  "input_baseline_commit": "9c067a5",
+  "relative_tolerance": "1e-12",
+  "absolute_tolerance": null,
+  "numeric_tolerance_same": 1,
+  "numeric_tolerance_not_counted_as_same": true,
+  "target_cells": 2101,
+  "target_statuses": {
+    "FORMAL_MISSING": 1422,
+    "SAME": 609,
+    "KNOWN_STRUCTURAL_DIFFERENCE": 42,
+    "DIFFERENT": 27,
+    "NUMERIC_TOLERANCE_SAME": 1
+  },
+  "protected_609_still_same": true,
+  "reference_regenerated": false,
+  "experiment_rebuilt": false,
+  "values_changed": false
+}

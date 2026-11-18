@@ -1,0 +1,31 @@
+{
+  "run_id": 44170481839,
+  "run_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44170481839",
+  "head_sha": "955da5d25f4c1c24512e42b9861cfb86a23d2c49",
+  "job_id": 134348195212,
+  "conclusion": "failure",
+  "failed_step": "Verify declared pre-cutoff repository evidence",
+  "research_tests_started": false,
+  "phase_checks_executed": false,
+  "cause": "New verification step was inserted before the preceding shell heredoc terminator; YAML folded the old print and PY lines into the new run command.",
+  "selected_log_lines": [
+    {
+      "line": 256,
+      "text": "2026-11-17T20:33:57.8518320Z /home/runner/work/_temp/ae74c4ff-5cc9-4705-a266-1e5acb4ca187.sh: line 9: warning: here-document at line 1 delimited by end-of-file (wanted `PY')"
+    },
+    {
+      "line": 257,
+      "text": "2026-11-17T20:33:57.9690972Z ##[group]Run python tools/verify_pre_cutoff_evidence.py print({'core_contract_change':core,'full_history':core or archive,'archive_two_clean':archive}) PY"
+    },
+    {
+      "line": 263,
+      "text": "2026-11-17T20:33:58.0798506Z /home/runner/work/_temp/bcf61da1-3658-4726-95a3-3e63def488fc.sh: line 1: syntax error near unexpected token `('"
+    },
+    {
+      "line": 264,
+      "text": "2026-11-17T20:33:58.0807436Z ##[error]Process completed with exit code 2."
+    }
+  ],
+  "repair": "Move existing print and PY lines before new step; preserve all source/data/config/transport behavior.",
+  "research_only_repair_dispatch_authorized": false
+}

@@ -68,10 +68,100 @@ def recognition_registry(root, work, snapshots, config):
     finally:db.close()
 
 
+def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
+    """Reverify migrated declarations; unavailable originals never become values."""
+    import copy, re
+    from .store import entity, issue
+    from .pdf_extract import extract_page
+    tessdata=tessdata or __import__('os').environ.get('TESSDATA_PREFIX')
+    claims=copy.deepcopy(claims);by_key={s['key']:s for s in snapshots}
+    changed={r['key'] for r in outcomes if r['status']=='SOURCE_SHA_CHANGED'}
+    cache=Path(cache);cache.mkdir(parents=True,exist_ok=True);verified={};projects=[]
+    for receipt in outcomes:
+        for candidate in json.loads(receipt.get('alternate_mismatches','[]')):
+            issue(db,None,candidate['actual_sha256'],'ALTERNATE_SHA_MISMATCH',canonical(candidate))
+    def page(source, binding, clip=None):
+        markers=binding.get('page_markers',binding.get('markers',[]));number=binding.get('pdf_page',binding.get('page'))
+        if not isinstance(number,int) or len(markers)<2:raise ValueError('MISSING_PAGE_OR_TWO_MARKERS')
+        key=digest([source['sha256'],number,markers,clip])
+        if key not in verified:
+            data=extract_page(root/source['path'],number,tessdata,markers=markers,ocr_clip=clip)
+            if data['status']!='EXTRACTED_REQUIRES_SCOPE_VALIDATION':raise ValueError('EXTRACTION_PAGE_CHECK_FAILED')
+            payload=canonical(data)+'\n';sha=__import__('hashlib').sha256(payload.encode()).hexdigest()
+            target=cache/(sha+'.json');target.write_bytes(payload.encode('utf8'))
+            artifact=dict(key=source['key']+'_page_'+key[:16],kind='pdf_page_extraction',url=source['url'],
+                          source_sha256=source['sha256'],physical_page=number,sha256=sha,path=str(target),
+                          acquired_at=source['acquired_at'],available_date=source['available_date'])
+            snapshots.append(artifact);verified[key]=artifact
+        return verified[key]
+    for p in claims['projects']:
+        eid=entity(db,p.get('entity_namespace','project_registry_v1'),p['id'],p.get('entity_kind','PROJECT'))
+        identity=by_key.get(p['identity_source']);identity_error=None
+        if not identity:identity_error='SOURCE_SHA_CHANGED' if p['identity_source'] in changed else 'SOURCE_NOT_ACQUIRED'
+        if identity and p.get('identity_locator','').startswith('Migrated identity;'):
+            try:
+                binding=p['identity_declaration']
+                if binding['source_sha256']!=identity['sha256']:raise ValueError('SOURCE_SHA_CHANGED')
+                page(identity,binding)
+                for context in binding.get('context_evidence',[]):page(identity,context)
+            except Exception as exc:identity_error=str(exc)
+        accepted=[]
+        for o in p['observations']:
+            source=by_key.get(o['source_key']);reason=identity_error
+            if o['source_key'] in changed or source and source['sha256']!=o['source_sha256']:reason='SOURCE_SHA_CHANGED'
+            elif not source:reason=reason or 'SOURCE_NOT_ACQUIRED'
+            if not reason and o.get('extraction_method','').endswith('MIGRATED_REVERIFIED_AT_BUILD'):
+                try:
+                    match=re.search(r'ocr_clip=(\[[^\]]+\])',o['locator']);clip=json.loads(match.group(1)) if match else None
+                    artifact=page(source,o,clip)
+                    o.update(page_extraction_key=artifact['key'],page_extraction_sha256=artifact['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
+                except Exception as exc:reason=str(exc)
+            if reason:issue(db,eid,o['source_sha256'],reason,canonical(o))
+            else:accepted.append(o)
+        attributes=[]
+        for a in p.get('attributes',[]):
+            source=by_key.get(a['source_key']);reason=identity_error
+            if a['source_key'] in changed or source and source['sha256']!=a['source_sha256']:reason='SOURCE_SHA_CHANGED'
+            elif not source:reason=reason or 'SOURCE_NOT_ACQUIRED'
+            if not reason:
+                try:
+                    if source['kind']=='pdf':
+                        artifact=page(source,a)
+                        a.update(page_extraction_key=artifact['key'],page_extraction_sha256=artifact['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
+                        for context in a.get('context_evidence',[]):
+                            proof=page(source,context)
+                            context.update(page_extraction_key=proof['key'],page_extraction_sha256=proof['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
+                    from .evidence import validate_project_attribute
+                    validate_project_attribute(root,source,a,snapshots)
+                except Exception as exc:reason=str(exc)
+            if reason:issue(db,eid,a['source_sha256'],reason,canonical(a))
+            else:attributes.append(a)
+        p['attributes']=attributes
+        if identity_error:
+            issue(db,eid,None,identity_error,canonical(dict(project=p['id'],identity_source=p['identity_source'])))
+        else:p['observations']=accepted;projects.append(p)
+    claims['projects']=projects;events=[]
+    for event in claims.get('events',[]):
+        source=by_key.get(event['source_key']);reason=None
+        if event['source_key'] in changed or source and source['sha256']!=event['source_sha256']:reason='SOURCE_SHA_CHANGED'
+        elif not source:reason='SOURCE_NOT_ACQUIRED'
+        if reason:
+            eid=entity(db,event['project_namespace'],event['project_native_id'],'PROJECT')
+            issue(db,eid,event['source_sha256'],reason,canonical(event))
+        else:events.append(event)
+    claims['events']=events
+    return claims
+
+
 def execute(args):
     root=Path(args.root).resolve()
+    if args.module=='export-summary':
+        from .census import export_summary
+        if not args.database or not args.out:raise ValueError('export-summary requires --database and --out')
+        return export_summary(root,args.database,args.out)
     config=research_configuration(root,args.snapshot_lock)
-    if config.get('research_evidence_cutoff'):args.as_of=min(args.as_of,config['research_evidence_cutoff'])
+    strict=args.module=='all' and args.refresh and not args.snapshot_lock and config.get('evidence_resolution',{}).get('fetch_policy')=='strict'
+    if not strict and config.get('research_evidence_cutoff'):args.as_of=min(args.as_of,config['research_evidence_cutoff'])
     acquired_through=config.get('acquisition_through') if args.as_of==config.get('research_evidence_cutoff') else None
     registry=json.loads((root/'config/sources.json').read_text(encoding='utf-8'))
     date.fromisoformat(args.as_of)
@@ -102,7 +192,7 @@ def execute(args):
                 previous_claims_sha256=old_sha,claims_sha256=filehash(root/'data/claims.json'),formal_C1=False)
         finally:db.close()
     disclosure_settings=config.get('evidence_resolution',{}).get('technical_disclosure',{})
-    if not args.snapshot_lock and disclosure_settings.get('incremental_registry') and args.module in ('all','analyze','disclosure'):
+    if not strict and not args.snapshot_lock and disclosure_settings.get('incremental_registry') and args.module in ('all','analyze','disclosure'):
         # Like the existing claims contract: active coding may grow, whereas
         # a published run must always resolve its exact adopted coding bytes.
         live=root/disclosure_settings['review_path'];sha=filehash(live)
@@ -157,7 +247,27 @@ def execute(args):
         if getattr(args,'official_only',False):
             discovery_config.update(seeds=[],official_archive_template=None,public_mirror_index_template=None)
         return discover(root,discovery_config,diagnostics=getattr(args,'gap_report',None),task_limit=getattr(args,'task_limit',3))
-    if args.module=='acquire' or args.refresh:
+    if strict:
+        from .acquisition import (strict_refresh, strict_dns_preflight, strict_network_report,
+                                  strict_asx_probe, StrictTransport, STRICT_HOSTS, InvalidNetworkRun, SameSHAAlternates)
+        from .evidence import load_claims
+        live_claims,_=load_claims(root)
+        strict_work=Path(args.work or root/'work').resolve()
+        policy=json.loads((root/'config/discovery.json').read_text(encoding='utf8'))
+        reports=[r for r in policy.get('official_reports',[]) if r['protocol']!='arcgis' or r.get('where')]
+        dns_rows=strict_dns_preflight(registry,reports)
+        network=strict_network_report(strict_work,[],dns_rows)
+        if network['status']=='RUN_INVALID_NETWORK':
+            raise InvalidNetworkRun('RUN_INVALID_NETWORK: DNS preflight failed; no HTTP requests or build started')
+        transport=StrictTransport(STRICT_HOSTS)
+        SameSHAAlternates(root,transport)
+        probe=strict_asx_probe(registry,transport)
+        probe_fields=sorted({k for row in probe for k in row})
+        write_csv(strict_work/'asx_probe.csv',probe,probe_fields)
+        if probe and strict_network_report(strict_work,probe,dns_rows)['status']=='RUN_INVALID_NETWORK':
+            raise InvalidNetworkRun('RUN_INVALID_NETWORK: ASX probe network errors exceed 5%; build not started')
+        snapshots,acquisition=strict_refresh(root,registry,strict_work,live_claims,args.as_of,transport,dns_rows)
+    elif args.module=='acquire' or args.refresh:
         from .discovery import discover
         if args.source_key:
             keys=set(args.source_key.split(','))
@@ -198,7 +308,7 @@ def execute(args):
             return {'status':'COMPLETED_WITH_SOURCE_STATUS','sources':acquisition,'discovery':discovery,'document_recognition':recognized,
                     'research_cutoff':args.as_of,'recognition_cutoff':recognition_cutoff if config.get('evidence_resolution',{}).get('document_pipeline') else None,
                     'live_update':live_status(discovery,acquisition,recognized)}
-    snapshots=select_snapshots(root,args.as_of,acquired_through=acquired_through)
+    if not strict:snapshots=select_snapshots(root,args.as_of,acquired_through=acquired_through)
     if args.snapshot_lock:
         snapshots=json.loads(Path(args.snapshot_lock).read_text(encoding='utf-8'))
         for s in snapshots:
@@ -213,7 +323,23 @@ def execute(args):
     run_id=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'-'+uuid.uuid4().hex[:8]
     out=work/'runs'/run_id
     out.mkdir(parents=True)
-    db=connect(work/'canonical.sqlite')
+    db=connect(work/'databases'/run_id/'canonical.sqlite' if strict else work/'canonical.sqlite')
+    if strict:
+        import os
+        previous_cache=os.environ.get('AU_REE_NATIVE_CACHE');os.environ['AU_REE_NATIVE_CACHE']=str(out/'native-pages')
+        report=root/'results'/('automated-build-'+args.as_of);report.mkdir(parents=True,exist_ok=True)
+        fields=sorted({k for row in acquisition for k in row})
+        write_csv(report/'acquisition_report.csv',sorted(acquisition,key=lambda r:(r['host'],r['key'])),fields)
+        write_csv(out/'acquisition_report.csv',acquisition,fields)
+        from .acquisition import STRICT_HOSTS
+        from collections import Counter
+        groups={}
+        for row in acquisition:
+            group=STRICT_HOSTS.get(row['host'],'unapproved');groups.setdefault(group,{}).setdefault(row['host'],Counter())[row['status']]+=1
+        lines=['# Acquisition by host class (source attempts, not independent documents)']
+        for group,hosts in sorted(groups.items()):
+            lines += ['\n## '+group]+['- '+host+': '+canonical(counts) for host,counts in sorted(hosts.items())]
+        (report/'acquisition_hosts.md').write_text('\n'.join(lines)+'\n',encoding='utf8')
     version=code_version(root)
     from .evidence import load_claims,claim_evidence_ids
     frozen_claims_sha=None
@@ -221,9 +347,11 @@ def execute(args):
         frozen_configuration=Path(args.snapshot_lock).parent/'configuration.json'
         if frozen_configuration.exists():
             frozen_claims_sha=json.loads(frozen_configuration.read_text(encoding='utf-8')).get('claims_sha256')
-    claims_data,claims_sha=load_claims(root,frozen_claims_sha,freeze=not args.snapshot_lock)
+    claims_data,claims_sha=load_claims(root,frozen_claims_sha,freeze=not args.snapshot_lock and not strict)
+    if strict:claims_data=strict_claims(db,root,snapshots,claims_data,acquisition,out/'verified-pages',args.tessdata)
     active_claim_ids=claim_evidence_ids(claims_data)
     configuration={'research':config,'sources':registry,'claims_sha256':claims_sha}
+    if strict:configuration['verified_claim_ids']=sorted(active_claim_ids)
     for name in ('identity_links.json','study_cases.json'):
         if (root/'data'/name).exists():configuration[name+'_sha256']=filehash(root/'data'/name)
     configuration['eligibility_policy_sha256']=filehash(root/'config/eligibility_compatibility.json')
@@ -376,7 +504,7 @@ def execute(args):
                 diagnostics(selection,prepared,snapshots,config['criteria'],root,out)
                 if config.get('source_coverage_version')=='bounded-document-stages-v1':
                     from .discovery import source_coverage
-                    source_coverage(root,snapshots,selection,prepared,out)
+                    source_coverage(root,snapshots,selection,prepared,out,claims_data=claims_data)
             commercial=None
             if config.get('research_utilization') and selection:
                 from .analysis import prepare_commercial_coverage
@@ -396,7 +524,7 @@ def execute(args):
         if selection and config.get('evidence_resolution',{}).get('technical_profile'):
             from .technical import analyze_profiles
             from .official import minedex_resource_report
-            analyze_profiles(selection,config['evidence_resolution']['technical_profile'],out,{identity['mapping'].get(pid,pid) for pid in resources},root,snapshots,observations=technical_observations)
+            analyze_profiles(selection,config['evidence_resolution']['technical_profile'],out,{identity['mapping'].get(pid,pid) for pid in resources},root,snapshots,observations=technical_observations,claims_data=claims_data)
             minedex_resource_report(db,root,snapshots,out,config.get("commodity_version","minedex-resource-batch-v1"))
         source_shas={s['sha256'] for s in snapshots}
         from .national import raw_domain_coverage
@@ -527,6 +655,10 @@ def execute(args):
         summary['environment']={'python':platform.python_version(),'shapely':shapely.__version__,
                                 'pyproj':pyproj.__version__,'PROJ':pyproj.proj_version_str,
                                 'pypdf':pypdf.__version__}
+        if args.module=='all' and (root/'config/summary_rules.json').is_file():
+            from .census import export_summary
+            db.execute("UPDATE runs SET status='COMPLETED' WHERE run_id=?",(run_id,));db.commit()
+            summary['project_summary']=export_summary(root,Path(db.execute('PRAGMA database_list').fetchone()[2]),out/'project-summary')
         if args.compare_to:
             from .analysis import compare_runs
             summary['comparison']=compare_runs(args.compare_to,out)
@@ -557,12 +689,16 @@ def execute(args):
         raise
     finally:
         db.close()
+        if strict:
+            if previous_cache is None:os.environ.pop('AU_REE_NATIVE_CACHE',None)
+            else:os.environ['AU_REE_NATIVE_CACHE']=previous_cache
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate'])
+    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate','export-summary'])
     parser.add_argument('--root',default='.')
     parser.add_argument('--work')
+    parser.add_argument('--database');parser.add_argument('--out')
     parser.add_argument('--as-of',default=datetime.now(timezone.utc).date().isoformat())
     parser.add_argument('--project',help='Stable native project registry ID')
     parser.add_argument('--refresh',action='store_true')

@@ -1,0 +1,53 @@
+{
+  "phase22": {
+    "total_cells": 4743,
+    "reference_non_id_filled_cells": 2101,
+    "target_statuses": {
+      "FORMAL_MISSING": 1596,
+      "SAME": 454,
+      "DIFFERENT": 51
+    },
+    "target_missing_reasons": {
+      "SOURCE_NOT_ACQUIRED": 1358,
+      "RULE_INPUT_MISSING": 213,
+      "NO_SOURCE_VALUE": 25
+    },
+    "all_statuses": {
+      "SAME": 3045,
+      "FORMAL_MISSING": 1596,
+      "DIFFERENT": 51,
+      "KNOWN_STRUCTURAL_DIFFERENCE": 51
+    },
+    "different_reference_locator_missing": 40
+  },
+  "rebuild": {
+    "total_cells": 4743,
+    "reference_non_id_filled_cells": 2101,
+    "target_statuses": {
+      "SAME": 661,
+      "FORMAL_MISSING": 1387,
+      "DIFFERENT": 53
+    },
+    "target_missing_reasons": {
+      "RULE_INPUT_MISSING": 562,
+      "NO_SOURCE_VALUE": 79,
+      "SOURCE_NOT_ACQUIRED": 715,
+      "SOURCE_SHA_CHANGED": 4,
+      "SOURCE_AFTER_CUTOFF": 22,
+      "NOT_APPLICABLE_NO_MRE": 5
+    },
+    "all_statuses": {
+      "SAME": 3250,
+      "FORMAL_MISSING": 1387,
+      "DIFFERENT": 53,
+      "FORMAL_ONLY": 2,
+      "KNOWN_STRUCTURAL_DIFFERENCE": 51
+    },
+    "different_reference_locator_missing": 31
+  },
+  "target_status_increment": {
+    "SAME": 207,
+    "DIFFERENT": 2,
+    "FORMAL_MISSING": -209
+  }
+}

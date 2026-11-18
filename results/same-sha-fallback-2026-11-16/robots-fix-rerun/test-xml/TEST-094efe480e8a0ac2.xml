@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_phase7_selection.SelectionRulesTests-20261116131456" tests="6" file="test_phase7_selection.py" time="1.184" timestamp="2026-11-16T13:18:00" failures="0" errors="0" skipped="0">
+	<testcase classname="test_phase7_selection.SelectionRulesTests" name="test_concurrent_conflicting_values_are_missing_independent_of_order" time="0.000" timestamp="2026-11-16T13:17:59" file="tests/test_phase7_selection.py" line="41"/>
+	<testcase classname="test_phase7_selection.SelectionRulesTests" name="test_endpoint_scale_and_units_remain_separate" time="0.000" timestamp="2026-11-16T13:17:59" file="tests/test_phase7_selection.py" line="47"/>
+	<testcase classname="test_phase7_selection.SelectionRulesTests" name="test_month_precision_uses_conservative_end_and_invalid_date_fails" time="0.000" timestamp="2026-11-16T13:17:59" file="tests/test_phase7_selection.py" line="52"/>
+	<testcase classname="test_phase7_selection.SelectionRulesTests" name="test_newer_other_scope_never_replaces_existing_scope" time="0.000" timestamp="2026-11-16T13:17:59" file="tests/test_phase7_selection.py" line="26"/>
+	<testcase classname="test_phase7_selection.SelectionRulesTests" name="test_qld_full_inventory_reuses_native_ids_without_promoting_projects" time="1.183" timestamp="2026-11-16T13:18:00" file="tests/test_phase7_selection.py" line="58"/>
+	<testcase classname="test_phase7_selection.SelectionRulesTests" name="test_same_scope_revision_and_same_date_corroboration" time="0.001" timestamp="2026-11-16T13:18:00" file="tests/test_phase7_selection.py" line="31"/>
+</testsuite>

@@ -1,0 +1,1411 @@
+{
+  "status": "OFFICIAL_ISSUER_PROPOSALS_PENDING_RESEARCHER_APPROVAL",
+  "total_sources": 43,
+  "proposals": 0,
+  "not_found": 43,
+  "rejected_candidates": 10,
+  "http_attempts": 117,
+  "asx_requests": 0,
+  "third_party_requests": 0,
+  "max_pages_per_issuer": 4,
+  "max_candidates_per_source": 8,
+  "skipped_links": {
+    "NON_ISSUER_HOST_OR_PROTOCOL_EXCLUDED": 349,
+    "ASX_HOST_EXCLUDED": 10
+  },
+  "pages": [
+    {
+      "issuer_code": "ARU",
+      "url": "https://www.arultd.com/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:ISSUER_OWNERSHIP_NOT_CONFIRMED_FROM_HOME_PAGE",
+      "requests": [
+        {
+          "host": "www.arultd.com",
+          "http_status": 200
+        },
+        {
+          "host": "www.arultd.com",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "CUF",
+      "url": "https://www.cufe.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "HTTPError:HTTP Error 403: Forbidden",
+      "requests": [
+        {
+          "host": "www.cufe.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.cufe.com.au",
+          "http_status": 403
+        }
+      ]
+    },
+    {
+      "issuer_code": "MQR",
+      "url": "https://www.marqueeresources.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:CAPTCHA_OR_LOGIN",
+      "requests": [
+        {
+          "host": "www.marqueeresources.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.marqueeresources.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "PTR",
+      "url": "https://www.petratherm.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:REDIRECT_DESTINATION_NOT_APPROVED",
+      "requests": [
+        {
+          "host": "www.petratherm.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.petratherm.com.au",
+          "http_status": 301
+        }
+      ]
+    },
+    {
+      "issuer_code": "MRD",
+      "url": "https://www.mtridleymines.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "a3018fe8a306366321e58f5d79540cfdfad1ca34f2ba92c9271f193105b2a259",
+      "requests": [
+        {
+          "host": "www.mtridleymines.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.mtridleymines.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "mtridleymines.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.mtridleymines.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "MEK",
+      "url": "https://meekametals.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "de1d162b4ffbb92c779105d909cc1d0513459f74a96be29bfc62b7ff7dfe465a",
+      "requests": [
+        {
+          "host": "meekametals.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "meekametals.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "MEK",
+      "url": "https://meekametals.com.au/asx-announcements/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "a393720e37c00304db77fd97ce59a664fe2a79a7e26b306be1d75070bbb74e76",
+      "requests": [
+        {
+          "host": "meekametals.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "MEK",
+      "url": "https://meekametals.com.au/investor-dashboard/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "4072fdf5fbb7cc5dd5587ecafb2a7ae93be0f12ac6225a01d71cc12b501cae9b",
+      "requests": [
+        {
+          "host": "meekametals.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "AHK",
+      "url": "https://www.arkmines.com/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:CAPTCHA_OR_LOGIN",
+      "requests": [
+        {
+          "host": "www.arkmines.com",
+          "http_status": 301
+        },
+        {
+          "host": "www.arkmines.com",
+          "http_status": 200
+        },
+        {
+          "host": "www.arkmines.com",
+          "http_status": 301
+        },
+        {
+          "host": "arkmines.com",
+          "http_status": 200
+        },
+        {
+          "host": "www.arkmines.com",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "HRE",
+      "url": "https://www.hreltd.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "5620c19e47543c5f1e2da3122026c35129e62912ee3b2ed827dfe889b4b97ba0",
+      "requests": [
+        {
+          "host": "www.hreltd.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "www.hreltd.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.hreltd.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "hreltd.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.hreltd.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "VTM",
+      "url": "https://victorymetalsaustralia.com/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:CAPTCHA_OR_LOGIN",
+      "requests": [
+        {
+          "host": "victorymetalsaustralia.com",
+          "http_status": 200
+        },
+        {
+          "host": "victorymetalsaustralia.com",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "VHM",
+      "url": "https://www.vhmltd.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "5659c6dcfffdb9fec6df76b6f1da716b9d0a8f2a011923275ccc08e0e2092073",
+      "requests": [
+        {
+          "host": "www.vhmltd.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.vhmltd.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "VHM",
+      "url": "https://www.vhmltd.com.au/investors/asx-announcements/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "d07f62f84c775001fb11eb1cda69bf23ccf44379ab2b0bd104e642f6ca4f6d1a",
+      "requests": [
+        {
+          "host": "www.vhmltd.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "VHM",
+      "url": "https://www.vhmltd.com.au/investors/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "e9be06c82976834087eba8097a6faf419c3dd68fb916688e9b0742e2e26cb50d",
+      "requests": [
+        {
+          "host": "www.vhmltd.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "VHM",
+      "url": "https://www.vhmltd.com.au/investors/reports/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "f87df440560482521a957395ced0fb5e3b4f301106f90a424c9a80ebc239e90a",
+      "requests": [
+        {
+          "host": "www.vhmltd.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "OD6",
+      "url": "https://www.od6metals.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "HTTPError:HTTP Error 429: Too Many Requests",
+      "requests": [
+        {
+          "host": "www.od6metals.com.au",
+          "http_status": 429
+        }
+      ]
+    },
+    {
+      "issuer_code": "ABX",
+      "url": "https://www.abxgroup.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "HTTPError:HTTP Error 429: Too Many Requests",
+      "requests": [
+        {
+          "host": "www.abxgroup.com.au",
+          "http_status": 429
+        }
+      ]
+    },
+    {
+      "issuer_code": "REE",
+      "url": "https://rarex.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "HTTPError:HTTP Error 429: Too Many Requests",
+      "requests": [
+        {
+          "host": "rarex.com.au",
+          "http_status": 429
+        }
+      ]
+    },
+    {
+      "issuer_code": "CRI",
+      "url": "https://www.critica.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "43c4cf3b16da840059a01d692c5bae8097ca4cb1c8f333bbe5b9ae195120179d",
+      "requests": [
+        {
+          "host": "www.critica.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.critica.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "BPM",
+      "url": "https://www.bpmminerals.com/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:CAPTCHA_OR_LOGIN",
+      "requests": [
+        {
+          "host": "www.bpmminerals.com",
+          "http_status": 301
+        },
+        {
+          "host": "www.bpmminerals.com",
+          "http_status": 200
+        },
+        {
+          "host": "www.bpmminerals.com",
+          "http_status": 301
+        },
+        {
+          "host": "bpmminerals.com",
+          "http_status": 200
+        },
+        {
+          "host": "www.bpmminerals.com",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "EG1",
+      "url": "https://www.evergreenlithium.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:CAPTCHA_OR_LOGIN",
+      "requests": [
+        {
+          "host": "www.evergreenlithium.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "www.evergreenlithium.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.evergreenlithium.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "evergreenlithium.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.evergreenlithium.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "EMU",
+      "url": "https://www.emunl.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "HTTPError:HTTP Error 429: Too Many Requests",
+      "requests": [
+        {
+          "host": "www.emunl.com.au",
+          "http_status": 429
+        }
+      ]
+    },
+    {
+      "issuer_code": "AR3",
+      "url": "https://ar3.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "HTTPError:HTTP Error 429: Too Many Requests",
+      "requests": [
+        {
+          "host": "ar3.com.au",
+          "http_status": 429
+        }
+      ]
+    },
+    {
+      "issuer_code": "ATR",
+      "url": "https://www.astronlimited.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "64b684b3bc2c575c07e8c2090ec4cafc5984ff1d22138bbbf529a4828ee36fc7",
+      "requests": [
+        {
+          "host": "www.astronlimited.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "www.astronlimited.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.astronlimited.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "astronlimited.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.astronlimited.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "ATR",
+      "url": "https://astronlimited.com.au/investor-centre/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "4c28cbe73ad824469d046f5b1e4381be54de29e8e262b58d0b0985440cfef002",
+      "requests": [
+        {
+          "host": "astronlimited.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "ATR",
+      "url": "https://astronlimited.com.au/investor-centre/investor-resources/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "243067eb4d58fdcf5f412110422a1e6c5c9a8fef3c1bd96bda17c9a96102aa18",
+      "requests": [
+        {
+          "host": "astronlimited.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "ATR",
+      "url": "https://astronlimited.com.au/investor-centre/share-registry-services/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "f7875949fbca077206c02acbf3d1052f3ad185226af2faebcd674aa52abf157b",
+      "requests": [
+        {
+          "host": "astronlimited.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "ENR",
+      "url": "https://www.enrl.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:REDIRECT_DESTINATION_NOT_APPROVED",
+      "requests": [
+        {
+          "host": "www.enrl.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.enrl.com.au",
+          "http_status": 301
+        }
+      ]
+    },
+    {
+      "issuer_code": "HAS",
+      "url": "https://hastingstechmetals.com/",
+      "status": "NOT_PARSED",
+      "reason": "HTTPError:HTTP Error 429: Too Many Requests",
+      "requests": [
+        {
+          "host": "hastingstechmetals.com",
+          "http_status": 429
+        }
+      ]
+    },
+    {
+      "issuer_code": "ILU",
+      "url": "https://www.iluka.com/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:CAPTCHA_OR_LOGIN",
+      "requests": [
+        {
+          "host": "www.iluka.com",
+          "http_status": 404
+        },
+        {
+          "host": "www.iluka.com",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "MRR",
+      "url": "https://www.minrex.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:REDIRECT_DESTINATION_NOT_APPROVED",
+      "requests": [
+        {
+          "host": "www.minrex.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.minrex.com.au",
+          "http_status": 301
+        }
+      ]
+    },
+    {
+      "issuer_code": "DEV",
+      "url": "https://www.devexresources.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "5e0bda8635b8d084c4ca78af6f95bf7ce791cf762abf57eaab736418bba9f2b5",
+      "requests": [
+        {
+          "host": "www.devexresources.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.devexresources.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "DEV",
+      "url": "https://www.devexresources.com.au/investors/asx-announcements/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:CAPTCHA_OR_LOGIN",
+      "requests": [
+        {
+          "host": "www.devexresources.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "BAK",
+      "url": "https://www.barklyrareearths.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "URLError:<urlopen error [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)>",
+      "requests": [
+        {
+          "host": "www.barklyrareearths.com.au",
+          "http_status": null,
+          "error": "NETWORK_ERROR"
+        }
+      ]
+    },
+    {
+      "issuer_code": "LYC",
+      "url": "https://www.lynasrareearths.com/",
+      "status": "NOT_PARSED",
+      "reason": "HTTPError:HTTP Error 403: Forbidden",
+      "requests": [
+        {
+          "host": "www.lynasrareearths.com",
+          "http_status": 403
+        }
+      ]
+    },
+    {
+      "issuer_code": "GDM",
+      "url": "https://www.greatdividemining.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "fed25eb23690ec266035afd95f8eb5fc2c886066b3f179cfb6f2513011d850c3",
+      "requests": [
+        {
+          "host": "www.greatdividemining.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "www.greatdividemining.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.greatdividemining.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "greatdividemining.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.greatdividemining.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "GDM",
+      "url": "https://greatdividemining.com.au/investor-centre/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "43e24e7d8853a1012b3085bc97f051d42821701dd542d0bf257ba122431ba97d",
+      "requests": [
+        {
+          "host": "greatdividemining.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "GDM",
+      "url": "https://greatdividemining.com.au/investor-centre/tenement-portfolio/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:CAPTCHA_OR_LOGIN",
+      "requests": [
+        {
+          "host": "greatdividemining.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "ACM",
+      "url": "https://www.auscriticalminerals.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "HTTPError:HTTP Error 429: Too Many Requests",
+      "requests": [
+        {
+          "host": "www.auscriticalminerals.com.au",
+          "http_status": 429
+        }
+      ]
+    },
+    {
+      "issuer_code": "PTR",
+      "url": "https://www.petratherm.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:REDIRECT_DESTINATION_NOT_APPROVED",
+      "requests": [
+        {
+          "host": "www.petratherm.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.petratherm.com.au",
+          "http_status": 301
+        }
+      ]
+    },
+    {
+      "issuer_code": "MRD",
+      "url": "https://www.mtridleymines.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "34e867efac9332c6273792acaf97716d190706f6735d1cd0ca5d770da7e10735",
+      "requests": [
+        {
+          "host": "www.mtridleymines.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.mtridleymines.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "mtridleymines.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.mtridleymines.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "MEK",
+      "url": "https://meekametals.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "de1d162b4ffbb92c779105d909cc1d0513459f74a96be29bfc62b7ff7dfe465a",
+      "requests": [
+        {
+          "host": "meekametals.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "meekametals.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "MEK",
+      "url": "https://meekametals.com.au/asx-announcements/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "a393720e37c00304db77fd97ce59a664fe2a79a7e26b306be1d75070bbb74e76",
+      "requests": [
+        {
+          "host": "meekametals.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "MEK",
+      "url": "https://meekametals.com.au/investor-dashboard/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "4072fdf5fbb7cc5dd5587ecafb2a7ae93be0f12ac6225a01d71cc12b501cae9b",
+      "requests": [
+        {
+          "host": "meekametals.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "HRE",
+      "url": "https://www.hreltd.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "653d850ad1513b852cb75e3168323e2a4de06218dc932ba0c4fc1f970cba248f",
+      "requests": [
+        {
+          "host": "www.hreltd.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "www.hreltd.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.hreltd.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "hreltd.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.hreltd.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "VHM",
+      "url": "https://www.vhmltd.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "bbac45e621271284043a98ea28d2e7feb63c72e58eac534043da9b8c3659923b",
+      "requests": [
+        {
+          "host": "www.vhmltd.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.vhmltd.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "VHM",
+      "url": "https://www.vhmltd.com.au/investors/asx-announcements/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "35cbf6a92e3bf00aedc7bc4496293125a4ec6362a3d52f7c7fb02e4b81be10b8",
+      "requests": [
+        {
+          "host": "www.vhmltd.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "VHM",
+      "url": "https://www.vhmltd.com.au/investors/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "df9ce5704a29235c21b6b66d431f57cbe1fad0bb5d12842e34d1e39d03bd14e4",
+      "requests": [
+        {
+          "host": "www.vhmltd.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "VHM",
+      "url": "https://www.vhmltd.com.au/investors/reports/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "d169db800624df4ca748fbe6f320187a70eece5dd7fd328f89810f7c344c62ce",
+      "requests": [
+        {
+          "host": "www.vhmltd.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "CRI",
+      "url": "https://www.critica.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "ebaa2c3fd06d8273bb2112a9d044b92990356560456ec233f1c4170d430bf9ca",
+      "requests": [
+        {
+          "host": "www.critica.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.critica.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "ATR",
+      "url": "https://www.astronlimited.com.au/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "0e693d5b41a70022d2d2ae22f513a06525eb0ae3600296b73fb5dc270671f67c",
+      "requests": [
+        {
+          "host": "www.astronlimited.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "www.astronlimited.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.astronlimited.com.au",
+          "http_status": 301
+        },
+        {
+          "host": "astronlimited.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.astronlimited.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "ATR",
+      "url": "https://astronlimited.com.au/investor-centre/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "25aae9f48142046a1facbea16e5550baf5d2884edadabef42d0387dfca51f0e0",
+      "requests": [
+        {
+          "host": "astronlimited.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "ATR",
+      "url": "https://astronlimited.com.au/investor-centre/investor-resources/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "0fd5d5f0de63a92ff9d49f4695f1b9bb82f8a27cba2f59828668f1cf5e4ea804",
+      "requests": [
+        {
+          "host": "astronlimited.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "ATR",
+      "url": "https://astronlimited.com.au/investor-centre/research-reports/",
+      "status": "PUBLIC_ISSUER_PAGE_PARSED",
+      "page_sha256": "820bf0f6b7e19630816369689d8f3b4886ffd05a1af230793d059dfcca32a252",
+      "requests": [
+        {
+          "host": "astronlimited.com.au",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "issuer_code": "ENR",
+      "url": "https://www.enrl.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:REDIRECT_DESTINATION_NOT_APPROVED",
+      "requests": [
+        {
+          "host": "www.enrl.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.enrl.com.au",
+          "http_status": 301
+        }
+      ]
+    },
+    {
+      "issuer_code": "MRR",
+      "url": "https://www.minrex.com.au/",
+      "status": "NOT_PARSED",
+      "reason": "ValueError:REDIRECT_DESTINATION_NOT_APPROVED",
+      "requests": [
+        {
+          "host": "www.minrex.com.au",
+          "http_status": 200
+        },
+        {
+          "host": "www.minrex.com.au",
+          "http_status": 301
+        }
+      ]
+    }
+  ],
+  "host_stops": {
+    "www.cufe.com.au": "403",
+    "www.marqueeresources.com.au": "CAPTCHA_OR_LOGIN",
+    "www.arkmines.com": "CAPTCHA_OR_LOGIN",
+    "arkmines.com": "CAPTCHA_OR_LOGIN",
+    "victorymetalsaustralia.com": "CAPTCHA_OR_LOGIN",
+    "www.od6metals.com.au": "429",
+    "www.abxgroup.com.au": "429",
+    "rarex.com.au": "429",
+    "www.bpmminerals.com": "CAPTCHA_OR_LOGIN",
+    "bpmminerals.com": "CAPTCHA_OR_LOGIN",
+    "www.evergreenlithium.com.au": "CAPTCHA_OR_LOGIN",
+    "evergreenlithium.com.au": "CAPTCHA_OR_LOGIN",
+    "www.emunl.com.au": "429",
+    "ar3.com.au": "429",
+    "hastingstechmetals.com": "429",
+    "www.iluka.com": "CAPTCHA_OR_LOGIN",
+    "www.devexresources.com.au": "CAPTCHA_OR_LOGIN",
+    "www.lynasrareearths.com": "403",
+    "greatdividemining.com.au": "CAPTCHA_OR_LOGIN",
+    "www.auscriticalminerals.com.au": "429"
+  },
+  "request_audit": [
+    {
+      "host": "www.arultd.com",
+      "http_status": 200
+    },
+    {
+      "host": "www.arultd.com",
+      "http_status": 200
+    },
+    {
+      "host": "www.cufe.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.cufe.com.au",
+      "http_status": 403
+    },
+    {
+      "host": "www.marqueeresources.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.marqueeresources.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.petratherm.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.petratherm.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "www.mtridleymines.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.mtridleymines.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "mtridleymines.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.mtridleymines.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "meekametals.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "meekametals.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "meekametals.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "meekametals.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.arkmines.com",
+      "http_status": 301
+    },
+    {
+      "host": "www.arkmines.com",
+      "http_status": 200
+    },
+    {
+      "host": "www.arkmines.com",
+      "http_status": 301
+    },
+    {
+      "host": "arkmines.com",
+      "http_status": 200
+    },
+    {
+      "host": "www.arkmines.com",
+      "http_status": 200
+    },
+    {
+      "host": "www.hreltd.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "www.hreltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.hreltd.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "hreltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.hreltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "victorymetalsaustralia.com",
+      "http_status": 200
+    },
+    {
+      "host": "victorymetalsaustralia.com",
+      "http_status": 200
+    },
+    {
+      "host": "www.vhmltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.vhmltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.vhmltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.vhmltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.vhmltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.od6metals.com.au",
+      "http_status": 429
+    },
+    {
+      "host": "www.abxgroup.com.au",
+      "http_status": 429
+    },
+    {
+      "host": "rarex.com.au",
+      "http_status": 429
+    },
+    {
+      "host": "www.critica.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.critica.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.bpmminerals.com",
+      "http_status": 301
+    },
+    {
+      "host": "www.bpmminerals.com",
+      "http_status": 200
+    },
+    {
+      "host": "www.bpmminerals.com",
+      "http_status": 301
+    },
+    {
+      "host": "bpmminerals.com",
+      "http_status": 200
+    },
+    {
+      "host": "www.bpmminerals.com",
+      "http_status": 200
+    },
+    {
+      "host": "www.evergreenlithium.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "www.evergreenlithium.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.evergreenlithium.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "evergreenlithium.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.evergreenlithium.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.emunl.com.au",
+      "http_status": 429
+    },
+    {
+      "host": "ar3.com.au",
+      "http_status": 429
+    },
+    {
+      "host": "www.astronlimited.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "www.astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.astronlimited.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.enrl.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.enrl.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "hastingstechmetals.com",
+      "http_status": 429
+    },
+    {
+      "host": "www.iluka.com",
+      "http_status": 404
+    },
+    {
+      "host": "www.iluka.com",
+      "http_status": 200
+    },
+    {
+      "host": "www.minrex.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.minrex.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "www.devexresources.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.devexresources.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.devexresources.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.barklyrareearths.com.au",
+      "http_status": null,
+      "error": "NETWORK_ERROR"
+    },
+    {
+      "host": "www.lynasrareearths.com",
+      "http_status": 403
+    },
+    {
+      "host": "www.greatdividemining.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "www.greatdividemining.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.greatdividemining.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "greatdividemining.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.greatdividemining.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "greatdividemining.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "greatdividemining.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.auscriticalminerals.com.au",
+      "http_status": 429
+    },
+    {
+      "host": "www.petratherm.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.petratherm.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "www.mtridleymines.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.mtridleymines.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "mtridleymines.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.mtridleymines.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "meekametals.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "meekametals.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "meekametals.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "meekametals.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.hreltd.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "www.hreltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.hreltd.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "hreltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.hreltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.vhmltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.vhmltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.vhmltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.vhmltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.vhmltd.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.critica.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.critica.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.astronlimited.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "www.astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.astronlimited.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "astronlimited.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.enrl.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.enrl.com.au",
+      "http_status": 301
+    },
+    {
+      "host": "www.minrex.com.au",
+      "http_status": 200
+    },
+    {
+      "host": "www.minrex.com.au",
+      "http_status": 301
+    }
+  ],
+  "proposals_applied": 0,
+  "seed_basis": "Existing approved IR indexes or candidate issuer domains; every newly identified domain must match issuer text on its own live homepage before linked PDFs are considered.",
+  "asxpdf_43_proposals_status": "REVOKED_BY_RESEARCHER_2026_11_17_NOT_APPLIED"
+}

@@ -1,0 +1,676 @@
+[
+  {
+    "host": "announcements.asx.com.au",
+    "sources": 52,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 46,
+      "COMMITTED_SNAPSHOT_SAME_SHA": 6
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 46
+    },
+    "sha_consistent": 52,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "api.investi.com.au",
+    "sources": 3,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 2,
+      "CACHED_UNBOUND_SOURCE_NOT_ADOPTED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 3
+    },
+    "sha_consistent": 2,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "asm-au.com",
+    "sources": 3,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 1,
+      "COMMITTED_MANAGED_SAME_SHA": 2
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 3,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "assets.birdsoftware.io",
+    "sources": 1,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "assets.ctfassets.net",
+    "sources": 1,
+    "statuses": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1
+    },
+    "source_receipt_http_or_transport_statuses": {},
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "cdn-api.markitdigital.com",
+    "sources": 3,
+    "statuses": {
+      "CONFLICTING_DECLARED_SOURCE_SHA": 2,
+      "SOURCE_SHA_CHANGED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 0,
+    "sha_changed": 1,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "cdn.financialreports.eu",
+    "sources": 2,
+    "statuses": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1,
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 2,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "company-announcements.afr.com",
+    "sources": 6,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 6
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 6
+    },
+    "sha_consistent": 6,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "dasc.dmirs.wa.gov.au",
+    "sources": 1,
+    "statuses": {
+      "UNAVAILABLE": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "302": 1
+    },
+    "sha_consistent": 0,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "data-api.marketindex.com.au",
+    "sources": 2,
+    "statuses": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 2
+    },
+    "source_receipt_http_or_transport_statuses": {},
+    "sha_consistent": 2,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "data.stategrowth.tas.gov.au",
+    "sources": 1,
+    "statuses": {
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 0,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "dem-sdp.s3-ap-southeast-2.amazonaws.com",
+    "sources": 1,
+    "statuses": {
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 0,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "geology.data.nt.gov.au",
+    "sources": 1,
+    "statuses": {
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 0,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "geoscience.data.qld.gov.au",
+    "sources": 2,
+    "statuses": {
+      "PARSED": 2
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 2
+    },
+    "sha_consistent": 0,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "geoscience.nt.gov.au",
+    "sources": 5,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 5
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 5
+    },
+    "sha_consistent": 5,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "gsq-prod-ckan-horizon-public.s3.ap-southeast-2.amazonaws.com",
+    "sources": 5,
+    "statuses": {
+      "UNAVAILABLE": 1,
+      "HOST_STOPPED": 4
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "403": 1
+    },
+    "sha_consistent": 0,
+    "sha_changed": 0,
+    "host_stopped": 4,
+    "network_errors": 0
+  },
+  {
+    "host": "hermes-cdn.investorhub.com",
+    "sources": 10,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 4,
+      "COMMITTED_SNAPSHOT_SAME_SHA": 4,
+      "UNAVAILABLE": 2
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 4
+    },
+    "sha_consistent": 8,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "international.austrade.gov.au",
+    "sources": 2,
+    "statuses": {
+      "SOURCE_NOT_ACQUIRED": 1,
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 2,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "investornews.com",
+    "sources": 1,
+    "statuses": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1
+    },
+    "source_receipt_http_or_transport_statuses": {},
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "investorpa.com",
+    "sources": 3,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 3
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 3
+    },
+    "sha_consistent": 3,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "majorprojects.planningportal.nsw.gov.au",
+    "sources": 1,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "newswire.iguana2.com",
+    "sources": 1,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "opendata.maps.vic.gov.au",
+    "sources": 2,
+    "statuses": {
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 1,
+      "SOURCE_SHA_CHANGED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 2
+    },
+    "sha_consistent": 0,
+    "sha_changed": 1,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "orbitresources.au",
+    "sources": 1,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "public-gs.geoscience.nsw.gov.au",
+    "sources": 1,
+    "statuses": {
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 0,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "public-services.slip.wa.gov.au",
+    "sources": 3,
+    "statuses": {
+      "NO_FIXED_QUERY_NOT_EXPANDED": 1,
+      "UNAVAILABLE": 1,
+      "SOURCE_SHA_CHANGED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 2
+    },
+    "sha_consistent": 0,
+    "sha_changed": 1,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "raw.githubusercontent.com",
+    "sources": 2,
+    "statuses": {
+      "COMMITTED_MANAGED_SAME_SHA": 2
+    },
+    "source_receipt_http_or_transport_statuses": {},
+    "sha_consistent": 2,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "services.ga.gov.au",
+    "sources": 10,
+    "statuses": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 2,
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 3,
+      "UNAVAILABLE": 2,
+      "FETCHED_SHA_VERIFIED": 3
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 6,
+      "504": 2
+    },
+    "sha_consistent": 5,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "services.sarig.sa.gov.au",
+    "sources": 2,
+    "statuses": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 2
+    },
+    "source_receipt_http_or_transport_statuses": {},
+    "sha_consistent": 2,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "spatial-gis.information.qld.gov.au",
+    "sources": 5,
+    "statuses": {
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 5
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 5
+    },
+    "sha_consistent": 0,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "staff-web.automicgroup.com.au",
+    "sources": 1,
+    "statuses": {
+      "CACHED_UNBOUND_SOURCE_NOT_ADOPTED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 0,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "strike.nt.gov.au",
+    "sources": 1,
+    "statuses": {
+      "SOURCE_SHA_CHANGED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 0,
+    "sha_changed": 1,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "victorymetalsaustralia.com",
+    "sources": 1,
+    "statuses": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1
+    },
+    "source_receipt_http_or_transport_statuses": {},
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "wamex.dmp.wa.gov.au",
+    "sources": 3,
+    "statuses": {
+      "UNAVAILABLE": 3
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 0,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "wcsecure.weblink.com.au",
+    "sources": 10,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 7,
+      "CACHED_UNBOUND_SOURCE_NOT_ADOPTED": 1,
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1,
+      "UNAVAILABLE": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 8,
+      "404": 1
+    },
+    "sha_consistent": 8,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "www.annualreports.com",
+    "sources": 1,
+    "statuses": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1
+    },
+    "source_receipt_http_or_transport_statuses": {},
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "www.arultd.com",
+    "sources": 1,
+    "statuses": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1
+    },
+    "source_receipt_http_or_transport_statuses": {},
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "www.aspecthuntley.com.au",
+    "sources": 1,
+    "statuses": {
+      "UNAVAILABLE": 1
+    },
+    "source_receipt_http_or_transport_statuses": {},
+    "sha_consistent": 0,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "www.astronlimited.com.au",
+    "sources": 1,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "www.asx.com.au",
+    "sources": 43,
+    "statuses": {
+      "UNAVAILABLE": 37,
+      "FETCHED_SHA_VERIFIED": 3,
+      "SOURCE_NOT_ACQUIRED": 3
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 40
+    },
+    "sha_consistent": 3,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "www.devexresources.com.au",
+    "sources": 1,
+    "statuses": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1
+    },
+    "source_receipt_http_or_transport_statuses": {},
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "www.gippslandcriticalminerals.com",
+    "sources": 2,
+    "statuses": {
+      "SOURCE_NOT_ACQUIRED": 2
+    },
+    "source_receipt_http_or_transport_statuses": {},
+    "sha_consistent": 0,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "www.iluka.com",
+    "sources": 1,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "www.industry.gov.au",
+    "sources": 1,
+    "statuses": {
+      "NETWORK_ERROR": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "NETWORK_ERROR": 1
+    },
+    "sha_consistent": 0,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 1
+  },
+  {
+    "host": "www.itechminerals.com.au",
+    "sources": 1,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "www.londonstockexchange.com",
+    "sources": 2,
+    "statuses": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1,
+      "SOURCE_SHA_CHANGED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 1,
+    "sha_changed": 1,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "www.marketindex.com.au",
+    "sources": 1,
+    "statuses": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 1
+    },
+    "sha_consistent": 1,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  },
+  {
+    "host": "www.wa.gov.au",
+    "sources": 3,
+    "statuses": {
+      "SOURCE_NOT_ACQUIRED": 1,
+      "FETCHED_SHA_VERIFIED": 2
+    },
+    "source_receipt_http_or_transport_statuses": {
+      "200": 2
+    },
+    "sha_consistent": 3,
+    "sha_changed": 0,
+    "host_stopped": 0,
+    "network_errors": 0
+  }
+]

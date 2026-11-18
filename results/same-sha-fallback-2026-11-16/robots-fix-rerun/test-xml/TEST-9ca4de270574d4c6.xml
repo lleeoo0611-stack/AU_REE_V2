@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_discovery_missing_source.DiscoveryMissingSourceTests-20261116131456" tests="3" file="test_discovery_missing_source.py" time="0.021" timestamp="2026-11-16T13:16:28" failures="0" errors="0" skipped="0">
+	<testcase classname="test_discovery_missing_source.DiscoveryMissingSourceTests" name="test_corrupt_or_wrong_sha_uses_existing_path_not_missing_guard" time="0.002" timestamp="2026-11-16T13:16:28" file="tests/test_discovery_missing_source.py" line="27"/>
+	<testcase classname="test_discovery_missing_source.DiscoveryMissingSourceTests" name="test_existing_source_task_bytes_match_unmodified_base" time="0.017" timestamp="2026-11-16T13:16:28" file="tests/test_discovery_missing_source.py" line="33"/>
+	<testcase classname="test_discovery_missing_source.DiscoveryMissingSourceTests" name="test_unacquired_registered_source_is_retained_and_reported" time="0.002" timestamp="2026-11-16T13:16:28" file="tests/test_discovery_missing_source.py" line="19"/>
+</testsuite>

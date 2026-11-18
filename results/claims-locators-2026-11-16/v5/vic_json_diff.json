@@ -1,0 +1,616 @@
+{
+  "source_key": "reviewed_source_31a205168b6ae647",
+  "category": "D",
+  "comparisons": [
+    {
+      "local_response": "work/v3-vic-variability/1_b8b0c1d0d950e0461b6a6254e633152a2868e25956f062d78c14fd5958ce8e01.json",
+      "local_raw_sha256": "b8b0c1d0d950e0461b6a6254e633152a2868e25956f062d78c14fd5958ce8e01",
+      "local_content_sha256": "6547bf2c221ed8b58f37b40123bfa43465973f0478a1cca99b67e5ced6413885",
+      "category": "D",
+      "explanation": "ONLY_TIMESTAMP_OR_OTHER_METADATA_OR_MIXED_REPRESENTATION_CHANGES",
+      "top_level_differences": [
+        {
+          "key": "timeStamp",
+          "old": "2026-11-16T17:25:14.878Z",
+          "new": "2026-11-16T21:04:50.978Z"
+        }
+      ],
+      "features_count": {
+        "old": 13,
+        "new": 13
+      },
+      "tno_multiset_equal": true,
+      "tno_order": {
+        "old": [
+          "EL006419",
+          "EL006664",
+          "EL006666",
+          "EL006666",
+          "EL006966",
+          "EL2002",
+          "EL5532",
+          "MIL6966",
+          "MIN5532",
+          "RL006904",
+          "RL006906",
+          "RL2002",
+          "TRL5532"
+        ],
+        "new": [
+          "EL006419",
+          "EL006664",
+          "EL006666",
+          "EL006666",
+          "EL006966",
+          "EL2002",
+          "EL5532",
+          "MIL6966",
+          "MIN5532",
+          "RL006904",
+          "RL006906",
+          "RL2002",
+          "TRL5532"
+        ],
+        "different": false
+      },
+      "feature_payload_multiset_equal": true,
+      "feature_order_different": true,
+      "aligned_feature_differences": [
+        {
+          "tno": "EL006419",
+          "old_feature_id": "minten.622",
+          "new_feature_id": "minten.622",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": []
+        },
+        {
+          "tno": "EL006664",
+          "old_feature_id": "minten.690",
+          "new_feature_id": "minten.691",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.690",
+              "new": "minten.691",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "EL006666",
+          "old_feature_id": "minten.692",
+          "new_feature_id": "minten.693",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.692",
+              "new": "minten.693",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "EL006666",
+          "old_feature_id": "minten.691",
+          "new_feature_id": "minten.692",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.691",
+              "new": "minten.692",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "EL006966",
+          "old_feature_id": "minten.791",
+          "new_feature_id": "minten.792",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.791",
+              "new": "minten.792",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "EL2002",
+          "old_feature_id": "minten.2009",
+          "new_feature_id": "minten.2012",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.2009",
+              "new": "minten.2012",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "EL5532",
+          "old_feature_id": "minten.4904",
+          "new_feature_id": "minten.4907",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.4904",
+              "new": "minten.4907",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "MIL6966",
+          "old_feature_id": "minten.18514",
+          "new_feature_id": "minten.18517",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.18514",
+              "new": "minten.18517",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "MIN5532",
+          "old_feature_id": "minten.20489",
+          "new_feature_id": "minten.20492",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.20489",
+              "new": "minten.20492",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "RL006904",
+          "old_feature_id": "minten.21199",
+          "new_feature_id": "minten.21200",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.21199",
+              "new": "minten.21200",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "RL006906",
+          "old_feature_id": "minten.21201",
+          "new_feature_id": "minten.21202",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.21201",
+              "new": "minten.21202",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "RL2002",
+          "old_feature_id": "minten.21222",
+          "new_feature_id": "minten.21223",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.21222",
+              "new": "minten.21223",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "TRL5532",
+          "old_feature_id": "minten.21621",
+          "new_feature_id": "minten.21622",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.21621",
+              "new": "minten.21622",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        }
+      ],
+      "duplicate_tno_alignment": "Exact payloads first, sorted unmatched parts second; no arbitrary zip pairing by response position.",
+      "summary": {
+        "top_level_changed_keys": [
+          "timeStamp"
+        ],
+        "feature_count_old": 13,
+        "feature_count_ci": 13,
+        "aligned_features": 13,
+        "features_with_property_differences": 0,
+        "features_with_geometry_differences": 0,
+        "features_with_id_differences": 12,
+        "tno_order_changed": false,
+        "properties_geometry_order_changed": true,
+        "property_geometry_multiset_equal": true
+      }
+    },
+    {
+      "local_response": "work/v3-vic-variability/2_9b8be1ffd46c75f41d3a4142ee28925ea6389e38c287da23ce7ef30e8f59788f.json",
+      "local_raw_sha256": "9b8be1ffd46c75f41d3a4142ee28925ea6389e38c287da23ce7ef30e8f59788f",
+      "local_content_sha256": "6547bf2c221ed8b58f37b40123bfa43465973f0478a1cca99b67e5ced6413885",
+      "category": "D",
+      "explanation": "ONLY_TIMESTAMP_OR_OTHER_METADATA_OR_MIXED_REPRESENTATION_CHANGES",
+      "top_level_differences": [
+        {
+          "key": "timeStamp",
+          "old": "2026-11-16T17:25:17.352Z",
+          "new": "2026-11-16T21:04:50.978Z"
+        }
+      ],
+      "features_count": {
+        "old": 13,
+        "new": 13
+      },
+      "tno_multiset_equal": true,
+      "tno_order": {
+        "old": [
+          "EL006419",
+          "EL006664",
+          "EL006666",
+          "EL006666",
+          "EL006966",
+          "EL2002",
+          "EL5532",
+          "MIL6966",
+          "MIN5532",
+          "RL006904",
+          "RL006906",
+          "RL2002",
+          "TRL5532"
+        ],
+        "new": [
+          "EL006419",
+          "EL006664",
+          "EL006666",
+          "EL006666",
+          "EL006966",
+          "EL2002",
+          "EL5532",
+          "MIL6966",
+          "MIN5532",
+          "RL006904",
+          "RL006906",
+          "RL2002",
+          "TRL5532"
+        ],
+        "different": false
+      },
+      "feature_payload_multiset_equal": true,
+      "feature_order_different": true,
+      "aligned_feature_differences": [
+        {
+          "tno": "EL006419",
+          "old_feature_id": "minten.622",
+          "new_feature_id": "minten.622",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": []
+        },
+        {
+          "tno": "EL006664",
+          "old_feature_id": "minten.690",
+          "new_feature_id": "minten.691",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.690",
+              "new": "minten.691",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "EL006666",
+          "old_feature_id": "minten.692",
+          "new_feature_id": "minten.693",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.692",
+              "new": "minten.693",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "EL006666",
+          "old_feature_id": "minten.691",
+          "new_feature_id": "minten.692",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.691",
+              "new": "minten.692",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "EL006966",
+          "old_feature_id": "minten.791",
+          "new_feature_id": "minten.792",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.791",
+              "new": "minten.792",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "EL2002",
+          "old_feature_id": "minten.2009",
+          "new_feature_id": "minten.2012",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.2009",
+              "new": "minten.2012",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "EL5532",
+          "old_feature_id": "minten.4904",
+          "new_feature_id": "minten.4907",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.4904",
+              "new": "minten.4907",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "MIL6966",
+          "old_feature_id": "minten.18514",
+          "new_feature_id": "minten.18517",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.18514",
+              "new": "minten.18517",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "MIN5532",
+          "old_feature_id": "minten.20489",
+          "new_feature_id": "minten.20492",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.20489",
+              "new": "minten.20492",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "RL006904",
+          "old_feature_id": "minten.21199",
+          "new_feature_id": "minten.21200",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.21199",
+              "new": "minten.21200",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "RL006906",
+          "old_feature_id": "minten.21201",
+          "new_feature_id": "minten.21202",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.21201",
+              "new": "minten.21202",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "RL2002",
+          "old_feature_id": "minten.21222",
+          "new_feature_id": "minten.21223",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.21222",
+              "new": "minten.21223",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        },
+        {
+          "tno": "TRL5532",
+          "old_feature_id": "minten.21621",
+          "new_feature_id": "minten.21622",
+          "alignment": "EXACT_PROPERTIES_GEOMETRY",
+          "property_differences": [],
+          "geometry_differences": [],
+          "geometry_topologically_equal": true,
+          "other_feature_differences": [
+            {
+              "path": "$.id",
+              "old": "minten.21621",
+              "new": "minten.21622",
+              "old_type": "str",
+              "new_type": "str"
+            }
+          ]
+        }
+      ],
+      "duplicate_tno_alignment": "Exact payloads first, sorted unmatched parts second; no arbitrary zip pairing by response position.",
+      "summary": {
+        "top_level_changed_keys": [
+          "timeStamp"
+        ],
+        "feature_count_old": 13,
+        "feature_count_ci": 13,
+        "aligned_features": 13,
+        "features_with_property_differences": 0,
+        "features_with_geometry_differences": 0,
+        "features_with_id_differences": 12,
+        "tno_order_changed": false,
+        "properties_geometry_order_changed": true,
+        "property_geometry_multiset_equal": true
+      }
+    }
+  ],
+  "ci_raw_sha256": "2816f156f01c428a5af95bc5ee58ec8d1a24d87afecdaef9e2352e1940930b54",
+  "ci_content_sha256": "5daeadabe8517a775f14eef1df5ef45ba7ee172a6ac233b2f5491da6e172ce8b",
+  "recomputed_content_sha256": "5daeadabe8517a775f14eef1df5ef45ba7ee172a6ac233b2f5491da6e172ce8b",
+  "ci_hash_recomputed_locally_matches": true,
+  "declared_content_sha256": "6547bf2c221ed8b58f37b40123bfa43465973f0478a1cca99b67e5ced6413885",
+  "same_content_identity_as_v4_mismatch": true,
+  "limits": "This retained v5 response diagnoses v4 only if its content identity matches the recorded v4 content hash; v4 raw bytes were not retained in its artifact.",
+  "source_sha256_updated": false,
+  "hash_policy_updated": false,
+  "hash_drop_keys_updated": false,
+  "originals_committed": false,
+  "artifact_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/43948787479/artifacts/14273467527",
+  "artifact_id": 14273467527,
+  "artifact_zip_sha256": "365249010eaec4abd21b546b1a5bf7ad3538c858c2ca1103f1b1c5139c84f09a",
+  "artifact_bytes_sha_verified": true,
+  "diagnostic_summary": "D: Same 13 feature property/geometry payloads; feature ids changed and duplicate EL006666 parts changed order; only top-level timeStamp differs. No property or geometry update and no top-level count difference."
+}

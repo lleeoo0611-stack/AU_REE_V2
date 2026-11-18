@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_technical_framework.TechnicalFramework-20261116061200" tests="9" file="test_technical_framework.py" time="0.027" timestamp="2026-11-16T06:15:54" failures="0" errors="0" skipped="0">
+	<testcase classname="test_technical_framework.TechnicalFramework" name="test_acid_text_never_counts_a_recovery_number_as_input_intensity" time="0.001" timestamp="2026-11-16T06:15:54" file="tests/test_technical_framework.py" line="48"/>
+	<testcase classname="test_technical_framework.TechnicalFramework" name="test_bad_axis_configuration_cannot_admit_a_metric" time="0.003" timestamp="2026-11-16T06:15:54" file="tests/test_technical_framework.py" line="115"/>
+	<testcase classname="test_technical_framework.TechnicalFramework" name="test_conflicts_and_unknowns_are_not_points_or_missing_axis_reweights" time="0.002" timestamp="2026-11-16T06:15:54" file="tests/test_technical_framework.py" line="67"/>
+	<testcase classname="test_technical_framework.TechnicalFramework" name="test_framework_does_not_change_existing_matrix_weights" time="0.005" timestamp="2026-11-16T06:15:54" file="tests/test_technical_framework.py" line="107"/>
+	<testcase classname="test_technical_framework.TechnicalFramework" name="test_percentage_or_feed_assay_does_not_become_performance" time="0.001" timestamp="2026-11-16T06:15:54" file="tests/test_technical_framework.py" line="24"/>
+	<testcase classname="test_technical_framework.TechnicalFramework" name="test_same_case_id_cannot_join_different_criterion_schemes" time="0.008" timestamp="2026-11-16T06:15:54" file="tests/test_technical_framework.py" line="98"/>
+	<testcase classname="test_technical_framework.TechnicalFramework" name="test_serializing_configuration_cannot_swap_recovery_and_grade_weights" time="0.005" timestamp="2026-11-16T06:15:54" file="tests/test_technical_framework.py" line="121"/>
+	<testcase classname="test_technical_framework.TechnicalFramework" name="test_three_lines_share_axes_without_changing_values_or_eligibility" time="0.002" timestamp="2026-11-16T06:15:54" file="tests/test_technical_framework.py" line="32"/>
+	<testcase classname="test_technical_framework.TechnicalFramework" name="test_typed_input_uses_source_context_not_legacy_performance_taxonomy" time="0.001" timestamp="2026-11-16T06:15:54" file="tests/test_technical_framework.py" line="58"/>
+</testsuite>

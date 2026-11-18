@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="unittest.loader._FailedTest-20261115165208" tests="26" file="unittest/loader.py" time="0.018" timestamp="2026-11-15T16:55:01" failures="0" errors="26" skipped="0">
+	<testcase classname="unittest.loader._FailedTest" name="test_core" time="0.001" timestamp="2026-11-15T16:53:58" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_core&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_core.py&quot;, line 15, in &lt;module&gt;&#10;    from au_ree_v2.acquisition import arcgis, select_snapshots, refresh&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_core
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_core.py", line 15, in <module>
+    from au_ree_v2.acquisition import arcgis, select_snapshots, refresh
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_disclosure" time="0.001" timestamp="2026-11-15T16:53:58" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_disclosure&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_disclosure.py&quot;, line 12, in &lt;module&gt;&#10;    from au_ree_v2.cli import research_configuration&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\cli.py&quot;, line 10, in &lt;module&gt;&#10;    from .resolution import resolve,technical_coverage&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\resolution.py&quot;, line 4, in &lt;module&gt;&#10;    from pyproj import Geod&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_disclosure
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_disclosure.py", line 12, in <module>
+    from au_ree_v2.cli import research_configuration
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\cli.py", line 10, in <module>
+    from .resolution import resolve,technical_coverage
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\resolution.py", line 4, in <module>
+    from pyproj import Geod
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_discovery_eligibility" time="0.001" timestamp="2026-11-15T16:53:58" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_discovery_eligibility&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_discovery_eligibility.py&quot;, line 4, in &lt;module&gt;&#10;    from au_ree_v2.discovery import candidates,discover&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\discovery.py&quot;, line 11, in &lt;module&gt;&#10;    from .acquisition import request, failure_details&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_discovery_eligibility
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_discovery_eligibility.py", line 4, in <module>
+    from au_ree_v2.discovery import candidates,discover
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\discovery.py", line 11, in <module>
+    from .acquisition import request, failure_details
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_discovery_missing_source" time="0.001" timestamp="2026-11-15T16:53:58" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_discovery_missing_source&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_discovery_missing_source.py&quot;, line 4, in &lt;module&gt;&#10;    from au_ree_v2.discovery import search_tasks&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\discovery.py&quot;, line 11, in &lt;module&gt;&#10;    from .acquisition import request, failure_details&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_discovery_missing_source
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_discovery_missing_source.py", line 4, in <module>
+    from au_ree_v2.discovery import search_tasks
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\discovery.py", line 11, in <module>
+    from .acquisition import request, failure_details
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_integrated_network" time="0.001" timestamp="2026-11-15T16:53:58" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_integrated_network&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_integrated_network.py&quot;, line 11, in &lt;module&gt;&#10;    from au_ree_v2 import acquisition as a&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_integrated_network
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_integrated_network.py", line 11, in <module>
+    from au_ree_v2 import acquisition as a
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_national" time="0.001" timestamp="2026-11-15T16:53:58" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_national&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_national.py&quot;, line 5, in &lt;module&gt;&#10;    from au_ree_v2.acquisition import select_snapshots&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_national
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_national.py", line 5, in <module>
+    from au_ree_v2.acquisition import select_snapshots
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_official" time="0.001" timestamp="2026-11-15T16:53:58" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_official&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_official.py&quot;, line 8, in &lt;module&gt;&#10;    from au_ree_v2.acquisition import select_snapshots&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_official
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_official.py", line 8, in <module>
+    from au_ree_v2.acquisition import select_snapshots
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase11" time="0.001" timestamp="2026-11-15T16:54:04" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase11&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase11.py&quot;, line 10, in &lt;module&gt;&#10;    from au_ree_v2.acquisition import select_snapshots&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase11
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase11.py", line 10, in <module>
+    from au_ree_v2.acquisition import select_snapshots
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase12" time="0.001" timestamp="2026-11-15T16:54:04" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase12&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase12.py&quot;, line 9, in &lt;module&gt;&#10;    from au_ree_v2.evidence import load_claims,normalize,validate_pages&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\evidence.py&quot;, line 7, in &lt;module&gt;&#10;    from .census import ingest_workbook&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py&quot;, line 9, in &lt;module&gt;&#10;    from openpyxl import load_workbook&#10;ModuleNotFoundError: No module named 'openpyxl'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase12
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase12.py", line 9, in <module>
+    from au_ree_v2.evidence import load_claims,normalize,validate_pages
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\evidence.py", line 7, in <module>
+    from .census import ingest_workbook
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py", line 9, in <module>
+    from openpyxl import load_workbook
+ModuleNotFoundError: No module named 'openpyxl'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase13" time="0.001" timestamp="2026-11-15T16:54:11" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase13&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase13.py&quot;, line 11, in &lt;module&gt;&#10;    from au_ree_v2 import acquisition&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase13
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase13.py", line 11, in <module>
+    from au_ree_v2 import acquisition
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase14" time="0.001" timestamp="2026-11-15T16:54:11" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase14&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase14.py&quot;, line 8, in &lt;module&gt;&#10;    from au_ree_v2.acquisition import ckan,arcgis,request&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase14
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase14.py", line 8, in <module>
+    from au_ree_v2.acquisition import ckan,arcgis,request
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase16_remediation" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase16_remediation&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase16_remediation.py&quot;, line 6, in &lt;module&gt;&#10;    from au_ree_v2.official import minedex_resource_rows,commodity_classification,ingest_minedex_resources&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\official.py&quot;, line 22, in &lt;module&gt;&#10;    from .census import ELEMENTS&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py&quot;, line 9, in &lt;module&gt;&#10;    from openpyxl import load_workbook&#10;ModuleNotFoundError: No module named 'openpyxl'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase16_remediation
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase16_remediation.py", line 6, in <module>
+    from au_ree_v2.official import minedex_resource_rows,commodity_classification,ingest_minedex_resources
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\official.py", line 22, in <module>
+    from .census import ELEMENTS
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py", line 9, in <module>
+    from openpyxl import load_workbook
+ModuleNotFoundError: No module named 'openpyxl'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase20" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase20&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase20.py&quot;, line 8, in &lt;module&gt;&#10;    from au_ree_v2.evidence import normalize,transformation_issues&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\evidence.py&quot;, line 7, in &lt;module&gt;&#10;    from .census import ingest_workbook&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py&quot;, line 9, in &lt;module&gt;&#10;    from openpyxl import load_workbook&#10;ModuleNotFoundError: No module named 'openpyxl'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase20
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase20.py", line 8, in <module>
+    from au_ree_v2.evidence import normalize,transformation_issues
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\evidence.py", line 7, in <module>
+    from .census import ingest_workbook
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py", line 9, in <module>
+    from openpyxl import load_workbook
+ModuleNotFoundError: No module named 'openpyxl'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase21" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase21&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase21.py&quot;, line 6, in &lt;module&gt;&#10;    from au_ree_v2.census import classify_ree&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py&quot;, line 9, in &lt;module&gt;&#10;    from openpyxl import load_workbook&#10;ModuleNotFoundError: No module named 'openpyxl'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase21
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase21.py", line 6, in <module>
+    from au_ree_v2.census import classify_ree
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py", line 9, in <module>
+    from openpyxl import load_workbook
+ModuleNotFoundError: No module named 'openpyxl'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase22" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase22&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase22.py&quot;, line 6, in &lt;module&gt;&#10;    from au_ree_v2.discovery import official_query,search_tasks&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\discovery.py&quot;, line 11, in &lt;module&gt;&#10;    from .acquisition import request, failure_details&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase22
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase22.py", line 6, in <module>
+    from au_ree_v2.discovery import official_query,search_tasks
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\discovery.py", line 11, in <module>
+    from .acquisition import request, failure_details
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase2_primary" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase2_primary&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase2_primary.py&quot;, line 4, in &lt;module&gt;&#10;    from au_ree_v2.evidence import ingest_sources,ingest_claims,resource_values,load_claims&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\evidence.py&quot;, line 7, in &lt;module&gt;&#10;    from .census import ingest_workbook&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py&quot;, line 9, in &lt;module&gt;&#10;    from openpyxl import load_workbook&#10;ModuleNotFoundError: No module named 'openpyxl'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase2_primary
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase2_primary.py", line 4, in <module>
+    from au_ree_v2.evidence import ingest_sources,ingest_claims,resource_values,load_claims
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\evidence.py", line 7, in <module>
+    from .census import ingest_workbook
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py", line 9, in <module>
+    from openpyxl import load_workbook
+ModuleNotFoundError: No module named 'openpyxl'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase5_evidence" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase5_evidence&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase5_evidence.py&quot;, line 4, in &lt;module&gt;&#10;    from au_ree_v2.acquisition import select_snapshots&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase5_evidence
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase5_evidence.py", line 4, in <module>
+    from au_ree_v2.acquisition import select_snapshots
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase6_national" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase6_national&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase6_national.py&quot;, line 5, in &lt;module&gt;&#10;    from au_ree_v2.acquisition import wfs,select_snapshots,government_changes&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase6_national
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase6_national.py", line 5, in <module>
+    from au_ree_v2.acquisition import wfs,select_snapshots,government_changes
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase7_selection" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase7_selection&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase7_selection.py&quot;, line 9, in &lt;module&gt;&#10;    from au_ree_v2.evidence import ingest_sources, ingest_claims, ingest_events, resource_values, load_claims&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\evidence.py&quot;, line 7, in &lt;module&gt;&#10;    from .census import ingest_workbook&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py&quot;, line 9, in &lt;module&gt;&#10;    from openpyxl import load_workbook&#10;ModuleNotFoundError: No module named 'openpyxl'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase7_selection
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase7_selection.py", line 9, in <module>
+    from au_ree_v2.evidence import ingest_sources, ingest_claims, ingest_events, resource_values, load_claims
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\evidence.py", line 7, in <module>
+    from .census import ingest_workbook
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py", line 9, in <module>
+    from openpyxl import load_workbook
+ModuleNotFoundError: No module named 'openpyxl'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase8_coverage" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase8_coverage&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase8_coverage.py&quot;, line 8, in &lt;module&gt;&#10;    from au_ree_v2.acquisition import select_snapshots&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase8_coverage
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase8_coverage.py", line 8, in <module>
+    from au_ree_v2.acquisition import select_snapshots
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_phase9_documents" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_phase9_documents&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase9_documents.py&quot;, line 7, in &lt;module&gt;&#10;    from au_ree_v2.acquisition import select_snapshots&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_phase9_documents
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase9_documents.py", line 7, in <module>
+    from au_ree_v2.acquisition import select_snapshots
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_resolution_studies" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_resolution_studies&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_resolution_studies.py&quot;, line 5, in &lt;module&gt;&#10;    from au_ree_v2.acquisition import select_snapshots&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_resolution_studies
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_resolution_studies.py", line 5, in <module>
+    from au_ree_v2.acquisition import select_snapshots
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_strict_acquisition" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_strict_acquisition&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_strict_acquisition.py&quot;, line 5, in &lt;module&gt;&#10;    from au_ree_v2.acquisition import StrictTransport, strict_refresh&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_strict_acquisition
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_strict_acquisition.py", line 5, in <module>
+    from au_ree_v2.acquisition import StrictTransport, strict_refresh
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_strict_claims" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_strict_claims&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_strict_claims.py&quot;, line 6, in &lt;module&gt;&#10;    from au_ree_v2.cli import strict_claims&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\cli.py&quot;, line 10, in &lt;module&gt;&#10;    from .resolution import resolve,technical_coverage&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\resolution.py&quot;, line 4, in &lt;module&gt;&#10;    from pyproj import Geod&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_strict_claims
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_strict_claims.py", line 6, in <module>
+    from au_ree_v2.cli import strict_claims
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\cli.py", line 10, in <module>
+    from .resolution import resolve,technical_coverage
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\resolution.py", line 4, in <module>
+    from pyproj import Geod
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_strict_hardening" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_strict_hardening&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_strict_hardening.py&quot;, line 3, in &lt;module&gt;&#10;    import test_strict_acquisition as fixtures&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_strict_acquisition.py&quot;, line 5, in &lt;module&gt;&#10;    from au_ree_v2.acquisition import StrictTransport, strict_refresh&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py&quot;, line 12, in &lt;module&gt;&#10;    from .spatial import project_windows&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py&quot;, line 9, in &lt;module&gt;&#10;    from pyproj import Transformer&#10;ModuleNotFoundError: No module named 'pyproj'&#10;"><![CDATA[ImportError: Failed to import test module: test_strict_hardening
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_strict_hardening.py", line 3, in <module>
+    import test_strict_acquisition as fixtures
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_strict_acquisition.py", line 5, in <module>
+    from au_ree_v2.acquisition import StrictTransport, strict_refresh
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\acquisition.py", line 12, in <module>
+    from .spatial import project_windows
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\spatial.py", line 9, in <module>
+    from pyproj import Transformer
+ModuleNotFoundError: No module named 'pyproj'
+
+]]></error>
+	</testcase>
+	<testcase classname="unittest.loader._FailedTest" name="test_technical_framework" time="0.001" timestamp="2026-11-15T16:55:01" file="..\..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py" line="32">
+		<error type="ImportError" message="Failed to import test module: test_technical_framework&#10;Traceback (most recent call last):&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 396, in _find_test_path&#10;    module = self._get_module_from_name(name)&#10;  File &quot;C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py&quot;, line 339, in _get_module_from_name&#10;    __import__(name)&#10;    ~~~~~~~~~~^^^^^^&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_technical_framework.py&quot;, line 12, in &lt;module&gt;&#10;    from test_phase16_remediation import observation, POLICY, PROFILE, ROOT&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase16_remediation.py&quot;, line 6, in &lt;module&gt;&#10;    from au_ree_v2.official import minedex_resource_rows,commodity_classification,ingest_minedex_resources&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\official.py&quot;, line 22, in &lt;module&gt;&#10;    from .census import ELEMENTS&#10;  File &quot;C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py&quot;, line 9, in &lt;module&gt;&#10;    from openpyxl import load_workbook&#10;ModuleNotFoundError: No module named 'openpyxl'&#10;"><![CDATA[ImportError: Failed to import test module: test_technical_framework
+Traceback (most recent call last):
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\whatt\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_technical_framework.py", line 12, in <module>
+    from test_phase16_remediation import observation, POLICY, PROFILE, ROOT
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\tests\test_phase16_remediation.py", line 6, in <module>
+    from au_ree_v2.official import minedex_resource_rows,commodity_classification,ingest_minedex_resources
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\official.py", line 22, in <module>
+    from .census import ELEMENTS
+  File "C:\Users\whatt\.codex\.chatgpt-projects\g-p-6a74fa8105f88191b580dee7d5f22fdd\worktrees\AU_REE_V2-integrated-rebuild\src\au_ree_v2\census.py", line 9, in <module>
+    from openpyxl import load_workbook
+ModuleNotFoundError: No module named 'openpyxl'
+
+]]></error>
+	</testcase>
+</testsuite>

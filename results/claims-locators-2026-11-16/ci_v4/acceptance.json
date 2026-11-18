@@ -1,0 +1,371 @@
+{
+  "status": "CI_609_PRESERVED_VIC_NOT_ADOPTED_REVIEW_REQUIRED",
+  "run_id": 43932350906,
+  "run_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/43932350906",
+  "commit": "3864bc7dfd79415107b8fc4bb344d0cf114fb934",
+  "job_id": 133528212763,
+  "artifact_id": 14260838913,
+  "artifact_sha256": "0bc476a3fe56898f5cbe99ffcc916da6123e4b10f8e4855b75196514e11c7d38",
+  "protected_preserved": 609,
+  "lost": 0,
+  "target_statuses": {
+    "FORMAL_MISSING": 1217,
+    "SAME": 807,
+    "KNOWN_STRUCTURAL_DIFFERENCE": 48,
+    "DIFFERENT": 28,
+    "NUMERIC_TOLERANCE_SAME": 1
+  },
+  "status_delta": {
+    "FORMAL_MISSING": -205,
+    "SAME": 198,
+    "KNOWN_STRUCTURAL_DIFFERENCE": 6,
+    "DIFFERENT": 1,
+    "NUMERIC_TOLERANCE_SAME": 0
+  },
+  "same_increment_categories": {
+    "APPROVED_IDENTITY_MARKER_PROJECT": 198
+  },
+  "marker_project_effects": [
+    {
+      "project_id": "AU-203b4d90e5c23a323610",
+      "new_same_cells": 9,
+      "remaining_stage_reasons": "{\"OCR_LOW_CONFIDENCE\": 2}"
+    },
+    {
+      "project_id": "AU-2af694147ae21c393820",
+      "new_same_cells": 7,
+      "remaining_stage_reasons": "{\"SOURCE_NOT_ACQUIRED\": 1, \"OCR_LOW_CONFIDENCE\": 8, \"ARCHIVED_ORIGINAL_DATE_UNKNOWN\": 1}"
+    },
+    {
+      "project_id": "AU-3a0020b6daf659f62138",
+      "new_same_cells": 7,
+      "remaining_stage_reasons": "{\"OCR_LOW_CONFIDENCE\": 8, \"OCR_NO_TEXT_CONTENT\": 2}"
+    },
+    {
+      "project_id": "AU-410159af7b79ea498ec2",
+      "new_same_cells": 14,
+      "remaining_stage_reasons": "{\"SOURCE_NOT_ACQUIRED\": 1, \"OCR_NO_TEXT_CONTENT\": 1}"
+    },
+    {
+      "project_id": "AU-430f216ca620b69af5f9",
+      "new_same_cells": 7,
+      "remaining_stage_reasons": "{}"
+    },
+    {
+      "project_id": "AU-447261eed0e81eae88bf",
+      "new_same_cells": 17,
+      "remaining_stage_reasons": "{}"
+    },
+    {
+      "project_id": "AU-68da41afe874c3bd66d4",
+      "new_same_cells": 7,
+      "remaining_stage_reasons": "{\"OCR_LOW_CONFIDENCE\": 2}"
+    },
+    {
+      "project_id": "AU-70cc41e3a7106f983f73",
+      "new_same_cells": 8,
+      "remaining_stage_reasons": "{}"
+    },
+    {
+      "project_id": "AU-70fc8a7de18ad8209c32",
+      "new_same_cells": 7,
+      "remaining_stage_reasons": "{}"
+    },
+    {
+      "project_id": "AU-7135b2eb1d3f193da9a6",
+      "new_same_cells": 10,
+      "remaining_stage_reasons": "{\"OCR_LOW_CONFIDENCE\": 6}"
+    },
+    {
+      "project_id": "AU-73549b8a9b1c6faf55eb",
+      "new_same_cells": 10,
+      "remaining_stage_reasons": "{\"OCR_LOW_CONFIDENCE\": 2}"
+    },
+    {
+      "project_id": "AU-75fe0f1a81005bd19586",
+      "new_same_cells": 11,
+      "remaining_stage_reasons": "{\"SOURCE_NOT_ACQUIRED\": 1}"
+    },
+    {
+      "project_id": "AU-88dfe58aac214c33e576",
+      "new_same_cells": 10,
+      "remaining_stage_reasons": "{\"OCR_LOW_CONFIDENCE\": 6}"
+    },
+    {
+      "project_id": "AU-97137ef07af49e3607b2",
+      "new_same_cells": 7,
+      "remaining_stage_reasons": "{}"
+    },
+    {
+      "project_id": "AU-a9b72e86940271be45a3",
+      "new_same_cells": 10,
+      "remaining_stage_reasons": "{}"
+    },
+    {
+      "project_id": "AU-b3ae34ac85d16018bd4b",
+      "new_same_cells": 8,
+      "remaining_stage_reasons": "{}"
+    },
+    {
+      "project_id": "AU-c5e94422a89a23f82408",
+      "new_same_cells": 8,
+      "remaining_stage_reasons": "{}"
+    },
+    {
+      "project_id": "AU-cae6c11543b0da5f840d",
+      "new_same_cells": 7,
+      "remaining_stage_reasons": "{\"SOURCE_NOT_ACQUIRED\": 1, \"OCR_LOW_CONFIDENCE\": 2}"
+    },
+    {
+      "project_id": "AU-d1394abdef4c8d971c78",
+      "new_same_cells": 11,
+      "remaining_stage_reasons": "{\"OCR_LOW_CONFIDENCE\": 1}"
+    },
+    {
+      "project_id": "AU-d1e3e2803f3c4287f6db",
+      "new_same_cells": 7,
+      "remaining_stage_reasons": "{}"
+    },
+    {
+      "project_id": "AU-d99cf357d160df73387c",
+      "new_same_cells": 8,
+      "remaining_stage_reasons": "{}"
+    },
+    {
+      "project_id": "AU-f81823bd8ba271840345",
+      "new_same_cells": 8,
+      "remaining_stage_reasons": "{}"
+    }
+  ],
+  "new_same_cells": 198,
+  "gap_to_2101": 1294,
+  "missing_reasons": {
+    "HOST_STOPPED_4XX": 96,
+    "RULE_INPUT_MISSING": 315,
+    "NO_SOURCE_VALUE": 64,
+    "SOURCE_NOT_ACQUIRED": 738,
+    "SOURCE_SHA_CHANGED": 4
+  },
+  "missing_reference_source_hosts": {
+    "hermes-cdn.investorhub.com": 33,
+    "www.londonstockexchange.com": 1,
+    "www.asx.com.au": 633,
+    "www.itechminerals.com.au": 2,
+    "announcements.asx.com.au": 229,
+    "public-services.slip.wa.gov.au": 23,
+    "services.ga.gov.au": 33,
+    "www.wa.gov.au": 31,
+    "opendata.maps.vic.gov.au": 4,
+    "company-announcements.afr.com": 25,
+    "strike.nt.gov.au": 4,
+    "international.austrade.gov.au": 20,
+    "majorprojects.planningportal.nsw.gov.au": 1,
+    "assets.birdsoftware.io": 2,
+    "wcsecure.weblink.com.au": 45,
+    "wamex.dmp.wa.gov.au": 30,
+    "investorpa.com": 19,
+    "newswire.iguana2.com": 4,
+    "api.investi.com.au": 23,
+    "www.aspecthuntley.com.au": 4,
+    "cdn-api.markitdigital.com": 18,
+    "orbitresources.au": 1,
+    "data-api.marketindex.com.au": 1,
+    "www.marketindex.com.au": 31
+  },
+  "official_proposals": 0,
+  "official_approved": 0,
+  "actual_alternate_same_sha": 0,
+  "actual_alternate_sha_mismatch": 0,
+  "vic_ci_coordinate_cells": 0,
+  "acquisition_status_by_host": {
+    "announcements.asx.com.au": {
+      "FETCHED_SHA_VERIFIED": 46,
+      "COMMITTED_SNAPSHOT_SAME_SHA": 6
+    },
+    "api.investi.com.au": {
+      "FETCHED_SHA_VERIFIED": 2,
+      "CACHED_UNBOUND_SOURCE_NOT_ADOPTED": 1
+    },
+    "asm-au.com": {
+      "FETCHED_SHA_VERIFIED": 1,
+      "COMMITTED_MANAGED_SAME_SHA": 2
+    },
+    "assets.birdsoftware.io": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "assets.ctfassets.net": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1
+    },
+    "cdn-api.markitdigital.com": {
+      "CONFLICTING_DECLARED_SOURCE_SHA": 2,
+      "SOURCE_SHA_CHANGED": 1
+    },
+    "cdn.financialreports.eu": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1,
+      "SNAPSHOT_FALLBACK_SAME_SHA": 1
+    },
+    "company-announcements.afr.com": {
+      "UNAVAILABLE": 1,
+      "HOST_STOPPED": 5
+    },
+    "dasc.dmirs.wa.gov.au": {
+      "UNAVAILABLE": 1
+    },
+    "data-api.marketindex.com.au": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 2
+    },
+    "data.stategrowth.tas.gov.au": {
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 1
+    },
+    "dem-sdp.s3-ap-southeast-2.amazonaws.com": {
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 1
+    },
+    "geology.data.nt.gov.au": {
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 1
+    },
+    "geoscience.data.qld.gov.au": {
+      "UNAVAILABLE": 2
+    },
+    "geoscience.nt.gov.au": {
+      "FETCHED_SHA_VERIFIED": 5
+    },
+    "hermes-cdn.investorhub.com": {
+      "SNAPSHOT_FALLBACK_SAME_SHA": 1,
+      "HOST_STOPPED": 9
+    },
+    "international.austrade.gov.au": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1,
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "investornews.com": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1
+    },
+    "investorpa.com": {
+      "UNAVAILABLE": 3
+    },
+    "majorprojects.planningportal.nsw.gov.au": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "newswire.iguana2.com": {
+      "UNAVAILABLE": 1
+    },
+    "opendata.maps.vic.gov.au": {
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 1,
+      "SOURCE_SHA_CHANGED": 1
+    },
+    "orbitresources.au": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "public-gs.geoscience.nsw.gov.au": {
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 1
+    },
+    "public-services.slip.wa.gov.au": {
+      "NO_FIXED_QUERY_NOT_EXPANDED": 1,
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 1,
+      "SOURCE_SHA_CHANGED": 1
+    },
+    "raw.githubusercontent.com": {
+      "COMMITTED_MANAGED_SAME_SHA": 2
+    },
+    "services.ga.gov.au": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1,
+      "UNAVAILABLE": 1,
+      "HOST_STOPPED": 8
+    },
+    "services.sarig.sa.gov.au": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 2
+    },
+    "spatial-gis.information.qld.gov.au": {
+      "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 5
+    },
+    "staff-web.automicgroup.com.au": {
+      "UNAVAILABLE": 1
+    },
+    "strike.nt.gov.au": {
+      "SOURCE_SHA_CHANGED": 1
+    },
+    "victorymetalsaustralia.com": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1
+    },
+    "wamex.dmp.wa.gov.au": {
+      "UNAVAILABLE": 1,
+      "HOST_STOPPED": 2
+    },
+    "wcsecure.weblink.com.au": {
+      "FETCHED_SHA_VERIFIED": 7,
+      "CACHED_UNBOUND_SOURCE_NOT_ADOPTED": 1,
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1,
+      "UNAVAILABLE": 1
+    },
+    "www.annualreports.com": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1
+    },
+    "www.arultd.com": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1
+    },
+    "www.aspecthuntley.com.au": {
+      "UNAVAILABLE": 1
+    },
+    "www.astronlimited.com.au": {
+      "SNAPSHOT_FALLBACK_SAME_SHA": 1
+    },
+    "www.asx.com.au": {
+      "HOST_STOPPED": 40,
+      "SOURCE_NOT_ACQUIRED": 3
+    },
+    "www.devexresources.com.au": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1
+    },
+    "www.gippslandcriticalminerals.com": {
+      "SOURCE_NOT_ACQUIRED": 2
+    },
+    "www.iluka.com": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "www.industry.gov.au": {
+      "UNAVAILABLE": 1
+    },
+    "www.itechminerals.com.au": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "www.londonstockexchange.com": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1,
+      "SOURCE_SHA_CHANGED": 1
+    },
+    "www.marketindex.com.au": {
+      "FETCHED_SHA_VERIFIED": 1
+    },
+    "www.wa.gov.au": {
+      "COMMITTED_SNAPSHOT_SAME_SHA": 1,
+      "FETCHED_SHA_VERIFIED": 2
+    }
+  },
+  "vic_content_hash_matched": false,
+  "vic_raw_sha256": "3cc5d11dd696ed625050e5d8f992a6501b3b0d8014c7643cd6f91ac822e13863",
+  "vic_content_sha256": "5daeadabe8517a775f14eef1df5ef45ba7ee172a6ac233b2f5491da6e172ce8b",
+  "vic_acquisition_status": "SOURCE_SHA_CHANGED",
+  "vic_stop_reason": "PARENT_OR_ALIAS_SOURCE_NOT_VALIDATED",
+  "python_tests": {
+    "tests": 422,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "r_tests": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "code_content_sha256": "1e45908d0b293e7d130ef1d83ae89cdf217950680f8ed10e6f94b86fe34cc991",
+  "configuration_sha256": "761e966e2bbe998bcee5317dc3627359bc45964e6ece81e0cb1a863a69d42542",
+  "approved_marker_residual_stage_reason_counts": {
+    "OCR_LOW_CONFIDENCE": 37,
+    "SOURCE_NOT_ACQUIRED": 4,
+    "ARCHIVED_ORIGINAL_DATE_UNKNOWN": 1,
+    "OCR_NO_TEXT_CONTENT": 3
+  },
+  "approved_marker_ocr_page_count": 34,
+  "vic_mismatch_interpretation": "CI content hash differs after declared top-level timeStamp deletion; no adoption. The artifact excludes original response bytes, so the changed JSON paths cannot be established from these receipts. No new fetch, declaration update, key exclusion, or CI rerun was performed.",
+  "artifact_contains_vic_raw_response": false
+}

@@ -1,0 +1,57 @@
+{
+  "status": "DIRECT_CLAIM_ROWS_EMPTY_DIAGNOSTIC_EXTENSION_BLOCKED_SRC_ERROR",
+  "claims_sha256": "4f2757a42e87a6754d8760e0addfc8c419618911583ecc0823503bbb4076d0b6",
+  "sources_sha256": "8685f3f909561406b4761aa97e920a01d31c61e5e9392fb86156eb42e0e61b30",
+  "claim_value_rows": 0,
+  "all_claim_values_match": null,
+  "config_scope_rows": 8,
+  "config_scope_matches": {
+    "Y": 8
+  },
+  "sources": [
+    {
+      "source_key": "reviewed_source_31a205168b6ae647",
+      "capture_sha256": "c64e13a6f568587049ab530e30066692733afaac3f92326c236881e391d212d8",
+      "capture_basis": "9c067a5_AUTOMATIC_CAPTURE_NOT_OLD_ORIGINAL",
+      "new_features": 13,
+      "direct_claim_binding_count": 0,
+      "direct_claim_declared_value_cells": 0,
+      "claim_reference_pointers": [],
+      "config_scope_check_rows": 8,
+      "config_scope_matches": 8,
+      "config_scope_mismatches": 0,
+      "coordinate_declarations_checked": 0,
+      "attribute_value_declarations_checked": 0,
+      "status": "NO_EXPLICIT_CLAIM_VALUE_SCOPE_NO_VACUOUS_PASS",
+      "sha_update_proposed": false,
+      "reason": "CLAIMS_HAS_NO_DIRECT_SOURCE_KEY_SHA_OR_HOST_REFERENCE; CONFIG_TENEMENT_SCOPE_IS_SEPARATE_NOT_COORDINATE_OR_ATTRIBUTE_VALIDATION"
+    },
+    {
+      "source_key": "reviewed_source_8a0240c46bbfaa5b",
+      "capture_sha256": "d96ee2e5f587ee16dfee588c4661b9c30cee0f25310abc5bdfc8aeb273b9408e",
+      "capture_basis": "9c067a5_AUTOMATIC_CAPTURE_NOT_OLD_ORIGINAL",
+      "new_features": 415,
+      "direct_claim_binding_count": 0,
+      "direct_claim_declared_value_cells": 0,
+      "claim_reference_pointers": [],
+      "config_scope_check_rows": 0,
+      "config_scope_matches": 0,
+      "config_scope_mismatches": 0,
+      "coordinate_declarations_checked": 0,
+      "attribute_value_declarations_checked": 0,
+      "status": "NO_EXPLICIT_CLAIM_VALUE_SCOPE_NO_VACUOUS_PASS",
+      "sha_update_proposed": false,
+      "reason": "CLAIMS_HAS_NO_DIRECT_SOURCE_KEY_SHA_OR_HOST_REFERENCE; CONFIG_TENEMENT_SCOPE_IS_SEPARATE_NOT_COORDINATE_OR_ATTRIBUTE_VALIDATION"
+    }
+  ],
+  "network_requests": 0,
+  "old_originals_or_historical_versions_read": 0,
+  "values_inferred_from_experiment": 0,
+  "note": "Empty declared_value_check is not an all-match result. Configured tenement checks are supplemental and cannot certify absent coordinate or attribute declarations.",
+  "researcher_clarification": "Use existing program on current VIC capture to calculate four projects/eight coordinate cells and compare published reference values, diagnostic only.",
+  "coordinate_diagnostic": "vic_coordinate_diagnostic.json",
+  "coordinate_diagnostic_cells": 8,
+  "coordinate_diagnostic_computed": 0,
+  "coordinate_reference_values_present": 4,
+  "no_sha_update_due_existing_program_error": true
+}

@@ -1,0 +1,27 @@
+{
+  "source_commit": "62ddd1391ee77d140baa0d6089b90eecf02d4085",
+  "baselines": {
+    "12f45f4": {
+      "add_delete_total": 183,
+      "numstat": [
+        "173\t4\tsrc/au_ree_v2/acquisition.py",
+        "5\t1\tsrc/au_ree_v2/cli.py"
+      ]
+    },
+    "070df10": {
+      "add_delete_total": 1998,
+      "numstat": [
+        "287\t13\tsrc/au_ree_v2/acquisition.py",
+        "706\t0\tsrc/au_ree_v2/census.py",
+        "54\t6\tsrc/au_ree_v2/cli.py",
+        "2\t2\tsrc/au_ree_v2/discovery.py",
+        "64\t0\tsrc/au_ree_v2/evidence.py",
+        "238\t2\tsrc/au_ree_v2/pdf_extract.py",
+        "246\t0\tsrc/au_ree_v2/spatial.py",
+        "371\t7\tsrc/au_ree_v2/technical.py"
+      ]
+    }
+  },
+  "new_src_or_config_files": [],
+  "changed_immutable_evidence": []
+}

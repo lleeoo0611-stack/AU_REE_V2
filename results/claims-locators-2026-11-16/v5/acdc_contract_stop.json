@@ -1,0 +1,87 @@
+{
+  "status": "STOP_ACDC_REQUIRED_HM_OXIDE_SPECIES_ABSENT",
+  "project_id": "AU-447261eed0e81eae88bf",
+  "native_id": "goschen-central-acdc",
+  "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59",
+  "pdf_page": 12,
+  "original_sha_verified": true,
+  "native_text_and_render_verified": true,
+  "required_cells": [
+    {
+      "requested_species": "Pr6O11",
+      "reported_species": "Pr2O3",
+      "reported_token": "0.11",
+      "unit": "%HM",
+      "pdf_page": 12,
+      "header_bbox": [
+        201.24000549316406,
+        288.3296813964844,
+        224.65711975097656,
+        297.8376770019531
+      ],
+      "row_bbox": [
+        30,
+        336.60968017578125,
+        725,
+        350.11767578125
+      ],
+      "column_bbox": [
+        197.24000549316406,
+        286.3296813964844,
+        228.65711975097656,
+        350.11767578125
+      ],
+      "native_value_bbox": [
+        204.60504150390625,
+        338.60968017578125,
+        221.23680114746094,
+        348.11767578125
+      ],
+      "result": "REQUIRED_SPECIES_NOT_PRESENT_DO_NOT_SUBSTITUTE"
+    },
+    {
+      "requested_species": "Tb4O7",
+      "reported_species": "Tb2O3",
+      "reported_token": "0.011",
+      "unit": "%HM",
+      "pdf_page": 12,
+      "header_bbox": [
+        379.20001220703125,
+        288.3296813964844,
+        402.4289855957031,
+        297.8376770019531
+      ],
+      "row_bbox": [
+        30,
+        336.60968017578125,
+        725,
+        350.11767578125
+      ],
+      "column_bbox": [
+        375.20001220703125,
+        286.3296813964844,
+        406.4289855957031,
+        350.11767578125
+      ],
+      "native_value_bbox": [
+        380.1240539550781,
+        338.60968017578125,
+        401.44158935546875,
+        348.11767578125
+      ],
+      "result": "REQUIRED_SPECIES_NOT_PRESENT_DO_NOT_SUBSTITUTE"
+    }
+  ],
+  "page_markers": [
+    "Appendix 1: Goschen Central Project Maiden Mineral Resource Estimate",
+    "Rare Earth Oxides are from XRF data and are presented as percentages of the total HM component."
+  ],
+  "contract_applied": false,
+  "claims_changed": false,
+  "oxide_species_conversion_performed": false,
+  "hm_mass_inferred_or_written": false,
+  "diagnostic_contract_result": "NOT_RUN_REQUIRED_INPUTS_ABSENT",
+  "continuation": "GA and VIC proceed under the explicit independent-work exception.",
+  "coordinate_unit": "PDF_POINTS_TOP_LEFT_ORIGIN",
+  "hm_mass_on_page_12": "Only Total HM percent 2.2 is reported; no HM mass in Mt cell was substituted from a calculation."
+}

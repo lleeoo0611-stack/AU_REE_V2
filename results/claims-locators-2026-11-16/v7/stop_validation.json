@@ -1,0 +1,60 @@
+{
+  "status": "STOP_609_GUARD_FAILED_AWAITING_RESEARCHER_REVIEW",
+  "tested_commit": "ed98e0ddd28c49971530f85d24cffd8545576719",
+  "baseline": "ac65aaf",
+  "clean_ci_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44098964236",
+  "research_ci_url": "https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44098964179",
+  "workflow_conclusions": "success; business acceptance guard failed",
+  "protected_preserved": 596,
+  "protected_expected": 609,
+  "lost_cells": 13,
+  "lost_projects": [
+    "AU-7c198d219aa1db3e291f"
+  ],
+  "loss_statuses": {
+    "DIFFERENT": 2,
+    "FORMAL_MISSING": 11
+  },
+  "loss_reasons": {
+    "FORMAL_VALUE_CHANGED": 2,
+    "HOST_STOPPED_4XX": 10,
+    "RULE_INPUT_MISSING": 1
+  },
+  "reference_609_sha256": "02acc91760c8774f7377d12f2a428d1a1d6b6fba6f1620237e267101cdb0ff4e",
+  "reference_unchanged": true,
+  "first_data_failure_source": "mt_weld_2024",
+  "first_data_failure_status": 404,
+  "stopped_host": "wcsecure.weblink.com.au",
+  "lyons_request_not_sent": true,
+  "acdc_source_status": "HOST_STOPPED",
+  "full_target_classification": "NOT_PERFORMED_AFTER_STOP",
+  "other_project_regression": "FAILED: protected Lyons cells changed; remaining comparison not continued",
+  "acdc_ci_contract": "NOT_ACCEPTED: source HOST_STOPPED",
+  "new_tests": 14,
+  "python_tests": 448,
+  "r_tests": "PASSED",
+  "combined_test_xml": {
+    "tests": 449,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "phases": [
+    "phase20:MATCHED",
+    "phase21-a:MATCHED",
+    "phase21-b:MATCHED",
+    "phase22-a:MATCHED",
+    "phase22-b:MATCHED"
+  ],
+  "src_added": 57,
+  "src_deleted": 3,
+  "src_round_changes": 60,
+  "src_net_growth": 54,
+  "src_cumulative": 2128,
+  "src_cap": 2134,
+  "source_and_data_unchanged_after_ci": true,
+  "vic_sources_snapshot_and_cutoff_unchanged": true,
+  "rerun_performed": false,
+  "pr_must_remain_draft": true,
+  "merge_authorized": false
+}

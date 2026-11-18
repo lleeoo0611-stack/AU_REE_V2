@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_phase9_documents.AutomaticIngestionTests-20261115165537" tests="7" file="test_phase9_documents.py" time="6.576" timestamp="2026-11-15T17:00:51" failures="0" errors="0" skipped="0">
+	<testcase classname="test_phase9_documents.AutomaticIngestionTests" name="test_changed_parser_or_broken_artifact_fails_locally" time="0.209" timestamp="2026-11-15T17:00:44" file="tests\test_phase9_documents.py" line="206"/>
+	<testcase classname="test_phase9_documents.AutomaticIngestionTests" name="test_explicit_parent_relation_does_not_merge_project_ids" time="0.358" timestamp="2026-11-15T17:00:45" file="tests\test_phase9_documents.py" line="189"/>
+	<testcase classname="test_phase9_documents.AutomaticIngestionTests" name="test_individual_oxide_is_not_mislabelled_as_total_treo" time="0.043" timestamp="2026-11-15T17:00:45" file="tests\test_phase9_documents.py" line="202"/>
+	<testcase classname="test_phase9_documents.AutomaticIngestionTests" name="test_new_technical_numbers_reach_existing_observation_store" time="0.068" timestamp="2026-11-15T17:00:45" file="tests\test_phase9_documents.py" line="175"/>
+	<testcase classname="test_phase9_documents.AutomaticIngestionTests" name="test_no_resource_doubling_or_changed_confirmed_values" time="0.030" timestamp="2026-11-15T17:00:45" file="tests\test_phase9_documents.py" line="180"/>
+	<testcase classname="test_phase9_documents.AutomaticIngestionTests" name="test_repeated_ingestion_stable" time="5.763" timestamp="2026-11-15T17:00:51" file="tests\test_phase9_documents.py" line="184"/>
+	<testcase classname="test_phase9_documents.AutomaticIngestionTests" name="test_text_values_are_null_and_never_financing_score" time="0.104" timestamp="2026-11-15T17:00:51" file="tests\test_phase9_documents.py" line="197"/>
+</testsuite>

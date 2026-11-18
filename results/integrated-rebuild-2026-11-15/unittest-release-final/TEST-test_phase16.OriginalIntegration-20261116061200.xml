@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_phase16.OriginalIntegration-20261116061200" tests="6" file="test_phase16.py" time="3.961" timestamp="2026-11-16T06:14:45" failures="0" errors="0" skipped="0">
+	<testcase classname="test_phase16.OriginalIntegration" name="test_actual_batch_source_ids_dates_missing_and_idempotence" time="0.108" timestamp="2026-11-16T06:14:42" file="tests/test_phase16.py" line="130"/>
+	<testcase classname="test_phase16.OriginalIntegration" name="test_batch_directory_completeness_and_not_map_index" time="0.001" timestamp="2026-11-16T06:14:42" file="tests/test_phase16.py" line="149"/>
+	<testcase classname="test_phase16.OriginalIntegration" name="test_browns_repaired_is_now_development_regression" time="2.834" timestamp="2026-11-16T06:14:44" file="tests/test_phase16.py" line="121"/>
+	<testcase classname="test_phase16.OriginalIntegration" name="test_cache_binds_code_dependencies_not_only_source_version" time="0.001" timestamp="2026-11-16T06:14:44" file="tests/test_phase16.py" line="97"/>
+	<testcase classname="test_phase16.OriginalIntegration" name="test_dated_batch_visible_only_in_explicit_acquisition_window" time="1.016" timestamp="2026-11-16T06:14:45" file="tests/test_phase16.py" line="104"/>
+	<testcase classname="test_phase16.OriginalIntegration" name="test_newer_batch_and_live_gis_never_backdated" time="0.002" timestamp="2026-11-16T06:14:45" file="tests/test_phase16.py" line="111"/>
+</testsuite>

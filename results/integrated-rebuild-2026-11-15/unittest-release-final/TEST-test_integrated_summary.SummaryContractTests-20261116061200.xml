@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_integrated_summary.SummaryContractTests-20261116061200" tests="10" file="test_integrated_summary.py" time="0.440" timestamp="2026-11-16T06:13:46" failures="0" errors="0" skipped="0">
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_annual_gap_uses_declared_study_source_and_not_resource_or_other_product" time="0.159" timestamp="2026-11-16T06:13:46" file="tests/test_integrated_summary.py" line="134"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_blank_researcher_approval_does_not_activate_native_stage_rule" time="0.056" timestamp="2026-11-16T06:13:46" file="tests/test_integrated_summary.py" line="90"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_changed_original_withholds_all_source_bound_values" time="0.035" timestamp="2026-11-16T06:13:46" file="tests/test_integrated_summary.py" line="73"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_committed_same_sha_source_alias_is_acquired_even_under_another_key" time="0.016" timestamp="2026-11-16T06:13:46" file="tests/test_integrated_summary.py" line="146"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_every_cell_is_accounted_for_and_export_does_not_write_database" time="0.035" timestamp="2026-11-16T06:13:46" file="tests/test_integrated_summary.py" line="54"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_government_attribute_requires_exact_layer_feature_and_native_field" time="0.041" timestamp="2026-11-16T06:13:46" file="tests/test_integrated_summary.py" line="110"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_preferred_mre_missing_cannot_fall_back_to_another_scope" time="0.040" timestamp="2026-11-16T06:13:46" file="tests/test_integrated_summary.py" line="99"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_rejected_identity_binding_is_rule_input_gap_even_when_source_is_acquired" time="0.017" timestamp="2026-11-16T06:13:46" file="tests/test_integrated_summary.py" line="128"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_text_marker_failure_queues_attribute_and_cannot_fill_cell" time="0.023" timestamp="2026-11-16T06:13:46" file="tests/test_integrated_summary.py" line="81"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_unrelated_metallurgy_sha_change_cannot_explain_missing_resource_oxide" time="0.018" timestamp="2026-11-16T06:13:46" file="tests/test_integrated_summary.py" line="119"/>
+</testsuite>

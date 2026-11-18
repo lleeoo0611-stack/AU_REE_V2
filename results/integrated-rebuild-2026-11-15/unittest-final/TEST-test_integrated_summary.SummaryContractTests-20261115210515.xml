@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_integrated_summary.SummaryContractTests-20261115210515" tests="6" file="test_integrated_summary.py" time="0.818" timestamp="2026-11-15T21:06:51" failures="0" errors="0" skipped="0">
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_blank_researcher_approval_does_not_activate_native_stage_rule" time="0.221" timestamp="2026-11-15T21:06:50" file="tests\test_integrated_summary.py" line="86"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_changed_original_withholds_all_source_bound_values" time="0.165" timestamp="2026-11-15T21:06:50" file="tests\test_integrated_summary.py" line="69"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_every_cell_is_accounted_for_and_export_does_not_write_database" time="0.139" timestamp="2026-11-15T21:06:50" file="tests\test_integrated_summary.py" line="54"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_government_attribute_requires_exact_layer_feature_and_native_field" time="0.057" timestamp="2026-11-15T21:06:50" file="tests\test_integrated_summary.py" line="106"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_preferred_mre_missing_cannot_fall_back_to_another_scope" time="0.084" timestamp="2026-11-15T21:06:50" file="tests\test_integrated_summary.py" line="95"/>
+	<testcase classname="test_integrated_summary.SummaryContractTests" name="test_text_marker_failure_queues_attribute_and_cannot_fill_cell" time="0.151" timestamp="2026-11-15T21:06:51" file="tests\test_integrated_summary.py" line="77"/>
+</testsuite>
