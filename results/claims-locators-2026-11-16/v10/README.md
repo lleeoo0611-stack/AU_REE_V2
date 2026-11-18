@@ -1,3 +1,25 @@
+# 目前狀態：事件位元組修補驗證通過，待唯一一次CI
+
+研究者核准的單行`.gitattributes`例外已套用。工作檔、Git暫存版本與乾淨匯出全部符合指定SHA；18項事件測試重跑通過。[驗證](event_bytes_verification.json)。本輪src仍0變動，70個核准公司位置已保留舊標記並追加，待CI正式驗收609／900守門。
+
+---
+
+# 最新狀態：單行例外已核准，還原事件原件
+
+研究者2026-11-18明確核准`.gitattributes`只新增一行，僅此事件檔禁止換行轉換。[核准紀錄](event_bytes_exception_approval.json)。原先Git換行造成的停止點現依此核准修補；原停止證據保留。未開PR、未跑CI，待提交版本與乾淨匯出SHA核對後才啟動唯一一次CI。
+
+---
+
+# 最新停止點：事件檔提交時被換行轉換
+
+本機原文與config工作檔SHA均為指定a35421e6…0826，但準備提交7996196中Git將CRLF轉LF，造成提交原件SHA不同。檢查失敗後提交流程未及時終止，因此該準備提交已推送；沒有開新PR、沒有啟動CI。
+
+附件要求事件檔逐位元組複製，不能把SHA常數改成轉換後版本。正確修補是僅對這一個檔案新增`.gitattributes`規則：`config/pre_cutoff_evidence_events.json -text whitespace=cr-at-eol`，再從第9版原件逐位元組重存並重新提交。此額外檔案不在附件允許清單，需要研究者核准後才套用。[未套用修補](event_bytes_fix_unapplied.patch)、[原文／工作檔／提交版雜湊](event_bytes_stop.json)。
+
+src沒有變動，事件紀錄JSON內容仍相同，70個公司核准位置已按核准追加。先停在此處，等額外一行的核准。
+
+---
+
 # 第10版：固定存證事件與公司層標記
 
 基準fc8b1b0；比較基準第9版CI 44170481863（SAME900）。PR #11已依研究者先前指示合併，不能恢復Draft；本輪沿用原分支，另開Draft PR，target feat/same-sha-fallback-20261116，不再merge。
