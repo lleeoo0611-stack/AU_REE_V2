@@ -228,8 +228,8 @@ def execute(args):
         previous_cache=os.environ.get('AU_REE_NATIVE_CACHE');os.environ['AU_REE_NATIVE_CACHE']=str(out/'native-pages')
         fields=sorted({k for row in acquisition for k in row})
         write_csv(out/'acquisition_report.csv',sorted(acquisition,key=lambda r:(r['host'],r['key'])),fields)
-        write_csv(out/'source_selection.csv',acquisition_selection,
-                  ['key','source_sha256','phase22_sha256','action'])
+        from .acquisition import SOURCE_SELECTION_FIELDS
+        write_csv(out/'source_selection.csv',acquisition_selection,SOURCE_SELECTION_FIELDS)
         from .acquisition import STRICT_HOSTS
         from collections import Counter
         groups={}

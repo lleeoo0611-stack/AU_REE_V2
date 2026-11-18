@@ -1029,6 +1029,42 @@ def static_pdf_sources(registry, claims, directories, cutoff, already_selected):
     return selected
 
 
+SOURCE_SELECTION_FIELDS = (
+    'key', 'source_sha256', 'phase22_sha256', 'action', 'kind', 'cutoff',
+    'publication_date', 'available_date', 'date_basis', 'date_used',
+    'version_status', 'cutoff_status',
+)
+
+
+def census_admission(root, source, registered, claim_hashes, cutoff):
+    """Verify the version and the time basis before a source reaches SQLite."""
+    from .selection import date_end
+
+    key, sha, kind = source['key'], source['sha256'], source['kind']
+    publication = source.get('publication_date')
+    registered_publication = registered.get('publication_date')
+    availability = source.get('available_date') or (source.get('acquired_at') or '')[:10]
+    documentary = kind in ('pdf','html','pdf_page_extraction','document_extraction')
+    date_basis = 'DOCUMENT_PUBLICATION' if documentary and publication else 'SOURCE_AVAILABILITY'
+    date_value = publication if date_basis == 'DOCUMENT_PUBLICATION' else availability
+    used = date_end(date_value) if date_value else ''
+    after_cutoff = used>cutoff or (publication and date_end(publication)>cutoff)
+    cutoff_status = ('SOURCE_AFTER_CUTOFF' if after_cutoff else 'WITHIN_CUTOFF' if used else 'SOURCE_DATE_UNVERIFIED')
+    approved = {h for h in (registered.get('source_sha256'), registered.get('committed_snapshot_sha256'),
+                             registered.get('reviewed_static_pdf_sha256')) if h} | claim_hashes.get(key,set())
+    version_status = 'PINNED_SHA_VERIFIED' if sha in approved else 'RECEIPT_SHA_VERIFIED'
+    if approved and sha not in approved:
+        if registered.get('hash_policy') and declared_json_hash((root/source['path']).read_bytes(),registered)[0] in approved:
+            version_status = 'DECLARED_CONTENT_AND_RECEIPT_SHA_VERIFIED'
+        else:
+            version_status = 'SOURCE_VERSION_NOT_DECLARED'
+    if (documentary and publication and registered_publication and
+            not (publication.startswith(registered_publication) or registered_publication.startswith(publication))):
+        cutoff_status = 'SOURCE_PUBLICATION_DATE_MISMATCH'
+    return dict(kind=kind,cutoff=cutoff,publication_date=publication,available_date=availability,
+                date_basis=date_basis,date_used=used,version_status=version_status,cutoff_status=cutoff_status)
+
+
 def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, static_pdfs=(),
                        replay_assets=None, receipt_path=None):
     """One ASX source stage. Replays use the same selected inputs and receipts."""
@@ -1084,15 +1120,27 @@ def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, sta
     # Keep reviewed Phase 22 originals at their frozen keys. ASX extends the
     # collection with additional keys and verified aliases, including page inputs.
     by_key = {s['key']: s for s in base}
+    registered = {s['key']:s for s in registry['sources']}
+    declared,_ = declared_source_hashes(registry,claims)
     decisions = []
+    withheld = {}
     for source in fresh:
         key = source['key']
         prior = by_key.get(key)
+        audit = census_admission(root,source,registered.get(key,{}),declared,cutoff)
+        if prior:
+            action = 'EXACT_PHASE22_SOURCE' if prior['sha256']==source['sha256'] else 'FROZEN_PHASE22_VERSION_RETAINED'
+        else:
+            action = next((status for status in (audit['version_status'],audit['cutoff_status']) if status in
+                           ('SOURCE_VERSION_NOT_DECLARED','SOURCE_AFTER_CUTOFF','SOURCE_DATE_UNVERIFIED',
+                            'SOURCE_PUBLICATION_DATE_MISMATCH')),
+                          'ASX_SOURCE_ADDED')
+            if action=='ASX_SOURCE_ADDED':by_key[key]=source
+            else:withheld[key]=action
         decisions.append(dict(key=key, source_sha256=source['sha256'],
-            phase22_sha256=prior['sha256'] if prior else '',
-            action=('FROZEN_PHASE22_VERSION_RETAINED' if prior and prior['sha256'] != source['sha256']
-                    else 'EXACT_PHASE22_SOURCE' if prior else 'ASX_SOURCE_ADDED')))
-        by_key.setdefault(key, source)
+            phase22_sha256=prior['sha256'] if prior else '',action=action,**audit))
+    outcomes=[dict(row,admission_status=withheld[row['key']]) if row['key'] in withheld
+              else {k:v for k,v in row.items() if k!='admission_status'} for row in outcomes]
     work.mkdir(parents=True, exist_ok=True)
     def portable(entry):
         path=(root/entry['path']).resolve()

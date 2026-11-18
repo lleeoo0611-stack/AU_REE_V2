@@ -23645,6 +23645,38 @@
           ],
           "extraction_method": "PRIMARY_TABLE_TRANSCRIPTION_CHECKED_AGAINST_RENDERED_PAGE",
           "rounding_half_width": 0.5
+        },
+        {
+          "category": "INFERRED",
+          "scope": "Block3East within Mons; oxide+transition in70g/tGa2O3 model only; TREO byproduct includesY; model October2025 reported12Nov2025; excludes Exploration Targets",
+          "effective_date": "2025-10",
+          "statement_id": "mons-2025-10",
+          "source_key": "mons_mre2025",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "variable": "reported_resource_ndpr_ppm",
+          "value": 104,
+          "unit": "ppm",
+          "basis": "NdPr_OXIDES",
+          "pdf_page": 7,
+          "page_markers": [
+            "Block 3 East Inferred Mineral Resource estimates",
+            "TREO (ppm) NdPr (ppm)",
+            "7.23 102 538 104"
+          ],
+          "original_token": "104",
+          "original_unit": "ppm",
+          "context_evidence": [
+            {
+              "page": 14,
+              "markers": [
+                "The combined NdPr oxide grades are also reported.",
+                "70g/t Ga2O3 grade threshold"
+              ]
+            }
+          ],
+          "locator": "physical PDF p7; Table 1; Block 3 East Inferred; 104 ppm NdPr at 70 g/t Ga2O3 cutoff; oxide-group definition physical PDF p14",
+          "material_basis": "RESOURCE_ORE_GRADE_NDPR_OXIDE_GROUP_PPM",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD"
         }
       ],
       "attributes": [
@@ -112070,8 +112102,8 @@
               "selection_reason": "HISTORICAL_22_SEPTEMBER_2026_RESOURCE_CASE_ONLY. The29October2026scoping original refines tonnes to373.3Mt without a matching refined TREO grade. The complete earlier source Total remains a dated historical case, not the latest refined resource. Do not pair340ppm with373.3Mt or treat MzEq/TREO+Y as340ppm TREO. Source-reported TREO excludes separately reported Y; no15-oxide normalization or cross-source composition transfer admitted.",
               "deferred_fields": [
                 {
-                  "column": "磁鐵稀土氧化物蘊藏量_kt",
-                  "reason": "90_PPM_MAGREO_GROUP_REPORTED_BUT_CANONICAL_INDIVIDUAL_OXIDE_STOICHIOMETRY_NOT_BOUND;NO_BACKFILL_FROM_2025_RESOURCE",
+                  "column": "磁性元素重算值_NdPrTbDy_kt",
+                  "reason": "AGGREGATE_MAGREO_REPORTED_IN_SAME_MRE;INDIVIDUAL_COMPONENTS_NOT_REPORTED",
                   "evidence": {
                     "page": 55,
                     "markers": [
@@ -112416,8 +112448,8 @@
               "selection_reason": "HISTORICAL_22_SEPTEMBER_2026_RESOURCE_CASE_ONLY. The29October2026scoping original refines tonnes to373.3Mt without a matching refined TREO grade. The complete earlier source Total remains a dated historical case, not the latest refined resource. Do not pair340ppm with373.3Mt or treat MzEq/TREO+Y as340ppm TREO. Source-reported TREO excludes separately reported Y; no15-oxide normalization or cross-source composition transfer admitted.",
               "deferred_fields": [
                 {
-                  "column": "磁鐵稀土氧化物蘊藏量_kt",
-                  "reason": "90_PPM_MAGREO_GROUP_REPORTED_BUT_CANONICAL_INDIVIDUAL_OXIDE_STOICHIOMETRY_NOT_BOUND;NO_BACKFILL_FROM_2025_RESOURCE",
+                  "column": "磁性元素重算值_NdPrTbDy_kt",
+                  "reason": "AGGREGATE_MAGREO_REPORTED_IN_SAME_MRE;INDIVIDUAL_COMPONENTS_NOT_REPORTED",
                   "evidence": {
                     "page": 55,
                     "markers": [
@@ -112557,6 +112589,37 @@
             "scope_anchor": "As at 22 September 2026",
             "section_id": "p55-20260922-total"
           }
+        },
+        {
+          "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+          "scope": "Sandy Mitchell 22 September 2026 global Measured+Indicated+Inferred Mineral Resource; 1957 ppm MzEq cutoff; dry in-situ bulk ore; TREO excludes the separately reported Y; no recovery or Exploration Target aggregation",
+          "effective_date": "2026-09-22",
+          "statement_id": "sandy-global-mre-20260922",
+          "source_key": "ark_annual2026",
+          "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+          "variable": "reported_resource_magnet_ppm",
+          "value": 90,
+          "unit": "ppm",
+          "basis": "PrNdDyTb_OXIDES",
+          "pdf_page": 55,
+          "page_markers": [
+            "As at 22 September 2026",
+            "Total 379,421 5,430 250 100 240 270 150 90 1,340 80 340 370"
+          ],
+          "original_token": "90",
+          "original_unit": "ppm",
+          "context_evidence": [
+            {
+              "page": 6,
+              "markers": [
+                "Magnet rare earth oxides (Nd, Pr, Dy, Tb) average 90 ppm",
+                "reported in situ with no metallurgical recovery applied"
+              ]
+            }
+          ],
+          "locator": "physical PDF p55; Total; 90 ppm Magreo at 1957 ppm MzEq cutoff; oxide-group definition physical PDF p6; ocr_clip=[39, 38, 812, 221]",
+          "material_basis": "RESOURCE_ORE_GRADE_MAGNET_OXIDE_GROUP_PPM",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD"
         }
       ],
       "deposit_type": "mineral sands",

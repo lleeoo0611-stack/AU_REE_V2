@@ -67,6 +67,9 @@ def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
                     match=re.search(r'ocr_clip=(\[[^\]]+\])',o['locator']);clip=json.loads(match.group(1)) if match else None
                     artifact=page(source,o,clip)
                     o.update(page_extraction_key=artifact['key'],page_extraction_sha256=artifact['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
+                    for context in o.get('context_evidence',[]):
+                        proof=page(source,context)
+                        context.update(page_extraction_key=proof['key'],page_extraction_sha256=proof['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
                 except Exception as exc:reason=str(exc)
             if reason:issue(db,eid,o['source_sha256'],reason,canonical(o))
             else:accepted.append(o)

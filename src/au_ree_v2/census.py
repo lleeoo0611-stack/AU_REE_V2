@@ -152,13 +152,11 @@ def summary_resource_bundle(observations, partial_resource=None):
 def summary_complete_sum(elements,required):
     return sum(elements[k] for k in required) if all(k in elements and elements[k] is not None for k in required) else None
 
-def summary_reported_magnet_group(observations,bundle):
-    """A matched reported group can fill group totals, never individual oxides."""
+def summary_reported_oxide_group(same,bundle,variable,basis,material_basis):
+    """Project the explicitly reported group on its matched resource basis."""
     if bundle.get('partial_resource_projection'):return None
-    key=(bundle['source_sha256'],bundle['statement_id'],bundle['scope'],bundle['effective_date'])
-    groups=[o for o in observations if (o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])==key and
-        o['variable']=='reported_resource_magnet_ppm' and o['unit']=='ppm' and o['basis']=='PrNdDyTb_OXIDES' and
-        json.loads(o['raw']).get('material_basis')=='RESOURCE_ORE_GRADE_MAGNET_OXIDE_GROUP_PPM']
+    groups=[o for o in same if o['variable']==variable and o['unit']=='ppm' and o['basis']==basis and
+        json.loads(o['raw']).get('material_basis')==material_basis]
     grade=bundle['value']['grade_pct']*10000
     if not math.isfinite(grade) or grade<=0:return None
     if not groups or len({o['value'] for o in groups})!=1 or not 0<=groups[0]['value']<=grade:return None
@@ -516,10 +514,12 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
     ids=sorted({o['obs_id'] for o in same})
     shares=[o for o in same if o['variable']=='magnet_reo_share_pct' and o['unit']=='%' and
         o['basis'] in ('PrNdDyTb_OXIDES_OVER_TREO','PrNdDyTb_REO_DIV_TREO') and 0<=o['value']<=100]
-    group=summary_reported_magnet_group(same,bundle)
+    group=summary_reported_oxide_group(same,bundle,'reported_resource_magnet_ppm','PrNdDyTb_OXIDES',
+        'RESOURCE_ORE_GRADE_MAGNET_OXIDE_GROUP_PPM')
     if not shares and group:
-        put('磁鐵稀土氧化物蘊藏量_kt',group['contained_kt'],sha,locator,'ORE_MT_X_REPORTED_MAGNET_OXIDE_GROUP_PPM_X_0_001',scope,ids)
-        put('磁鐵稀土佔TREO_pct',group['share_percent'],sha,locator,'REPORTED_MAGNET_GROUP_PPM_DIV_MATCHED_TREO_PPM_X_100',scope,ids)
+        group_locator='; '.join(sorted({locator,group['observation']['locator']}))
+        put('磁鐵稀土氧化物蘊藏量_kt',group['contained_kt'],sha,group_locator,'ORE_MT_X_REPORTED_MAGNET_OXIDE_GROUP_PPM_X_0_001',scope,ids)
+        put('磁鐵稀土佔TREO_pct',group['share_percent'],sha,group_locator,'REPORTED_MAGNET_GROUP_PPM_DIV_MATCHED_TREO_PPM_X_100',scope,ids)
     if not partial and shares and len({o['value'] for o in shares})==1:
         put('磁鐵稀土佔TREO_pct',shares[0]['value'],sha,shares[0]['locator'],'SOURCE_REPORTED',scope,[shares[0]['obs_id']])
         put('磁鐵稀土氧化物蘊藏量_kt',bundle['value']['contained_treo_kt']*shares[0]['value']/100,sha,locator,'TREO_KT_X_MAGNET_SHARE_PERCENT',scope,ids)
@@ -547,13 +547,22 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
     for needed,column in [(('Nd2O3','Pr6O11'),'NdPr蘊藏量_kt_需兩者皆公布'),(rules['heavy'],'完整重稀土組合蘊藏量_kt_需8元素皆公布'),(rules['magnet'],'磁性元素重算值_NdPrTbDy_kt')]:
         value=summary_complete_sum(elements,needed)
         if value is not None:put(column,value,sha,locator,'SUM_COMPLETE_MATCHED_OXIDE_SET',scope,ids)
+    if row['NdPr蘊藏量_kt_需兩者皆公布'] in (None,''):
+        ndpr=summary_reported_oxide_group(same,bundle,'reported_resource_ndpr_ppm','NdPr_OXIDES',
+            'RESOURCE_ORE_GRADE_NDPR_OXIDE_GROUP_PPM')
+        if ndpr:
+            group_locator='; '.join(sorted({locator,ndpr['observation']['locator']}))
+            put('NdPr蘊藏量_kt_需兩者皆公布',ndpr['contained_kt'],sha,group_locator,
+                'ORE_MT_X_REPORTED_NDPR_OXIDE_GROUP_PPM_X_0_001',scope,ids)
     magnet=summary_complete_sum(elements,rules['magnet'])
     if magnet is not None:
         put('四項磁性元素皆公布','是',sha,locator,'SUM_COMPLETE_MATCHED_OXIDE_SET',scope,ids)
-        if total and not row['磁鐵稀土氧化物蘊藏量_kt']:
-            put('磁鐵稀土氧化物蘊藏量_kt',magnet,sha,locator,'SUM_COMPLETE_MATCHED_MAGNET_OXIDES_AFTER_CE_CANONICALIZATION',scope,ids)
-            method='MATCHED_HM_HOSTED_OXIDES_DIVIDED_BY_VERIFIED_IN_SITU_TREO' if partial else 'SOURCE_TREO_PLUS_Y_MINUS_CE2O3_PLUS_CEO2'
-            put('磁鐵稀土佔TREO_pct',float(magnet)/float(total)*100,sha,locator,method,scope,ids)
+        if row['磁鐵稀土氧化物蘊藏量_kt'] in (None,''):
+            method='SUM_MATCHED_HM_HOSTED_MAGNET_OXIDES' if partial and partial['mode']=='BULK_ORE_AND_HM_HOSTED_OXIDES_ONLY' else 'SUM_COMPLETE_MATCHED_MAGNET_OXIDES_AFTER_CE_CANONICALIZATION'
+            put('磁鐵稀土氧化物蘊藏量_kt',magnet,sha,locator,method,scope,ids)
+            if total:
+                method='MATCHED_HM_HOSTED_OXIDES_DIVIDED_BY_VERIFIED_IN_SITU_TREO' if partial else 'SOURCE_TREO_PLUS_Y_MINUS_CE2O3_PLUS_CEO2'
+                put('磁鐵稀土佔TREO_pct',float(magnet)/float(total)*100,sha,locator,method,scope,ids)
     note=rules['notes']['hm' if partial and partial['mode']=='BULK_ORE_AND_HM_HOSTED_OXIDES_ONLY' else 'cerium_partial' if partial else 'closure_pending' if len(elements)==15 else 'partial'] if elements else ''
     if len(elements)==15 and not partial:
         components=[o for o in same if o['basis'] in elements and json.loads(o['raw']).get('material_basis')=='RESOURCE_ORE_GRADE_OXIDE_PPM']
@@ -1009,6 +1018,10 @@ def summary_missing(column, project, row, bundle, registry, sources, source_erro
         reason=source_errors.get(key)
         if not source:reason='SOURCE_NOT_REGISTERED'
         elif receipt.get('status')=='SOURCE_SHA_CHANGED':reason='SOURCE_SHA_CHANGED'
+        elif receipt.get('admission_status')=='SOURCE_VERSION_NOT_DECLARED':reason='SOURCE_SHA_CHANGED'
+        elif receipt.get('admission_status')=='SOURCE_AFTER_CUTOFF':reason='SOURCE_AFTER_CUTOFF'
+        elif receipt.get('admission_status') in ('SOURCE_DATE_UNVERIFIED','SOURCE_PUBLICATION_DATE_MISMATCH'):
+            reason=receipt['admission_status']
         elif receipt.get('status')=='HOST_STOPPED' and re.search(r'\b4\d\d\b',receipt.get('stop_reason','')):reason='HOST_STOPPED_4XX'
         elif any(date_end(d)>cutoff for d in (c.get('effective_date'),source.get('publication_date')) if d):reason='SOURCE_AFTER_CUTOFF'
         elif not any(s['key']==key or s['sha256']==(c.get('source_sha256') or source.get('committed_snapshot_sha256')) for s in sources.values()):reason=reason or 'SOURCE_NOT_ACQUIRED'
