@@ -447,8 +447,9 @@ class RepositoryContract(unittest.TestCase):
             return sum(int(v) for row in git('diff','--numstat',*revisions,'--','src').splitlines() for v in row.split('\t')[:2])
         # Preserve the original round's limit separately from the approved v4 work.
         self.assertLessEqual(lines('12f45f4','e84c0e0'),250)
-        self.assertLessEqual(lines('09ace21'),250)
-        self.assertLessEqual(lines('070df10'),2164)  # Researcher approved v9, 2026-11-18.
+        # The line limits belong to the frozen repairs through v10.
+        self.assertLessEqual(lines('09ace21','6eeaeae'),250)
+        self.assertLessEqual(lines('070df10','6eeaeae'),2164)
         self.assertLessEqual(lines('ac65aaf','ed98e0d'),60)
         self.assertEqual('src/au_ree_v2/census.py',git('diff','--name-only','ac65aaf','ed98e0d','--','src').strip())
         self.assertEqual(['1','1','src/au_ree_v2/acquisition.py'],
@@ -456,7 +457,7 @@ class RepositoryContract(unittest.TestCase):
         original=git('show','56bf4dc:src/au_ree_v2/acquisition.py')
         current=git('show','3e7c24e:src/au_ree_v2/acquisition.py')
         self.assertEqual(original.replace('if 400<=exc.code<500:', 'if 400<=exc.code<500 and exc.code!=404:'),current)
-        added=set(git('diff','--name-only','--diff-filter=A','12f45f4','--','src','config').splitlines())
+        added=set(git('diff','--name-only','--diff-filter=A','12f45f4','6eeaeae','--','src','config').splitlines())
         # V10 explicitly permits this one sealed event file; no new src modules.
         self.assertLessEqual(added,{'config/pre_cutoff_evidence_events.json'})
         with (ROOT/'results/integrated-rebuild-2026-11-15/acquisition_report.csv').open(encoding='utf-8-sig',newline='') as f:

@@ -658,7 +658,30 @@ def ingest_claims(db, root, snapshots, cutoff, project=None, conflict_selection=
                       AND scope=? AND effective_date=? AND status='AUTO_VALIDATED' ''', params)
         issue(db, g['entity_id'], None, 'SOURCE_CONFLICT', canonical(dict(g)))
 
-def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=None):
+def phase22_resource_bindings(root):
+    """Historical observation IDs for matching presentations of one statement."""
+    import ast
+    import csv
+    folder=Path(root)/'results/phase22-2026-11-06'
+    records=folder/'resources.csv'
+    hashes=json.loads((folder/'summary.json').read_text(encoding='utf8'))['output_hashes']
+    if filehash(records)!=hashes['resources.csv']:
+        raise ValueError('Phase 22 frozen resource binding checksum mismatch')
+    with records.open(encoding='utf8',newline='') as stream:
+        return {row['entity_id']:tuple(ast.literal_eval(row['obs_ids'])) for row in csv.DictReader(stream)}
+
+
+def retain_phase22_resource(candidates, observation_ids):
+    # When the same original and same quantities were declared twice under
+    # different scope labels, retain the previously reviewed statement.
+    signature=('source_sha','date','basis','ore_mt','grade_pct','contained_treo_kt')
+    if not observation_ids or len({tuple(row[k] for k in signature) for row in candidates}) != 1:
+        return None
+    return next((row for row in candidates if tuple(row['obs_ids'])==observation_ids),None)
+
+
+def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=None,
+                    phase22_bindings=None, scope_audit=None):
     """Pick latest complete statement per scope; competing scopes require review."""
     result = {}
     projects = [r[0] for r in db.execute("SELECT entity_id FROM entities WHERE kind='PROJECT'")]
@@ -706,6 +729,14 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
                              value={k:v[k] for k in ('ore_mt','grade_pct','contained_treo_kt')}) for v in valid]
             chosen,reason=choose(candidates,('scope','basis'))
             if chosen is None:
+                retained=retain_phase22_resource(valid,(phase22_bindings or {}).get(eid))
+                if retained:
+                    result[eid]=retained
+                    if scope_audit is not None:
+                        scope_audit.append(dict(project_id=eid,source_sha256=retained['source_sha'],
+                            reason='FROZEN_PHASE22_BINDING_RETAINED',scope=retained['scope'],
+                            alternative_scopes=canonical(sorted({row['scope'] for row in valid}))))
+                    continue
                 issue(db,eid,None,'RESOURCE_SCOPE_AMBIGUITY',reason)
                 continue
             selected=next(v for v in valid if digest(v)==chosen['evidence_id'])

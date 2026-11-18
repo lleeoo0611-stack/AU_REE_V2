@@ -252,56 +252,6 @@ jobs:
           retention-days: 90
 
   live_update:
-    name: Live official discovery and acquisition (separate from scientific replay)
+    name: Live census acquisition and ranking
     if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - run: python -m pip install .
-      - name: Acquire bounded official reports and parse new originals
-        run: |
-          mkdir -p work
-          au-ree-v2 acquire --official-only > work/live_official_status.json
-      - name: Publish explicit transport and parsing outcome
-        if: always()
-        run: |
-          python - <<'PY'
-          import json, os
-          from pathlib import Path
-          p=Path('work/live_official_status.json')
-          try:
-              data=json.loads(p.read_text()); status=data['live_update']
-          except Exception:
-              status={'status':'EXECUTION_FAILED_NO_COMPLETE_RECEIPT'}
-          text='Live source update: '+json.dumps(status,indent=2)
-          Path('work/live_update_summary.json').write_text(json.dumps(status,indent=2)+'\n')
-          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write('```json\n'+text+'\n```\n')
-          if status['status']!='COMPLETED_BOUNDED_ATTEMPTS':raise SystemExit(1)
-          PY
-      - name: Archive successful public acquisition only
-        if: success()
-        run: |
-          python tools/check_publication.py
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          cp work/live_official_status.json data/acquisition_status_latest.json
-          git add data/manifest.json data/snapshots/ data/acquisition_status_latest.json data/discovery_latest.json
-          if ! git diff --cached --quiet; then
-            git commit -m "data: freeze public official report acquisition [skip ci]"
-            git push origin HEAD:"${GITHUB_REF_NAME}"
-          fi
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: live-official-${{ github.run_id }}
-          path: |
-            work/live_official_status.json
-            work/live_update_summary.json
-            data/manifest.json
-            data/discovery_latest.json
-            data/snapshots/
-          retention-days: 30
+    uses: ./.github/workflows/automated-build.yml

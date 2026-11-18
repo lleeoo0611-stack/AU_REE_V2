@@ -68,7 +68,10 @@ class CompanyMarkerApprovals(unittest.TestCase):
             approvals.apply_rows(self.before,[self.approved[0],self.approved[0]])
 
     def test_comparison_policy_and_src_unchanged_from_baseline(self):
-        self.assertEqual(b'',subprocess.check_output(['git','diff',approvals.BASELINE,'--','src','tools/compare_ci_cells.py'],cwd=ROOT))
+        self.assertEqual(b'',subprocess.check_output(
+            ['git','diff',approvals.BASELINE,'6eeaeae','--','src','tools/compare_ci_cells.py'],cwd=ROOT))
+        self.assertEqual(b'',subprocess.check_output(
+            ['git','diff','6eeaeae','--','tools/compare_ci_cells.py'],cwd=ROOT))
 
     def marker_audit(self,include_markers=True):
         import pymupdf

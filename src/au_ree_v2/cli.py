@@ -12,7 +12,7 @@ from .studies import ingest as ingest_cases
 from .screen_index import rows as screen_index_rows
 from pathlib import Path
 from . import __version__
-from .acquisition import refresh, select_snapshots
+from .acquisition import select_snapshots
 from .analysis import prepare, run_r, write_csv
 from .evidence import ingest_sources, ingest_claims, resource_values
 from .gis import run as run_gis, national_deposit_port_distances, deposit_type_port_summary
@@ -75,10 +75,10 @@ def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
     from .pdf_extract import extract_page
     tessdata=tessdata or __import__('os').environ.get('TESSDATA_PREFIX')
     claims=copy.deepcopy(claims);by_key={s['key']:s for s in snapshots}
-    changed={r['key'] for r in outcomes if r['status']=='SOURCE_SHA_CHANGED'}
+    changed={r['key'] for r in outcomes if r['status']=='SOURCE_SHA_CHANGED' and r['key'] not in by_key}
     cache=Path(cache);cache.mkdir(parents=True,exist_ok=True);verified={};projects=[]
     for receipt in outcomes:
-        for candidate in json.loads(receipt.get('alternate_mismatches','[]')):
+        for candidate in json.loads(receipt.get('alternate_mismatches') or '[]'):
             issue(db,None,candidate['actual_sha256'],'ALTERNATE_SHA_MISMATCH',canonical(candidate))
     def page(source, binding, clip=None):
         markers=binding.get('page_markers',binding.get('markers',[]));number=binding.get('pdf_page',binding.get('page'))
@@ -159,15 +159,25 @@ def execute(args):
         from .census import export_summary
         if not args.database or not args.out:raise ValueError('export-summary requires --database and --out')
         return export_summary(root,args.database,args.out)
+    source_replay=getattr(args,'source_replay',None)
+    census_filters=getattr(args,'census_filter',[])
+    integration=args.module=='all' and bool(args.refresh or source_replay or census_filters or getattr(args,'out',None))
+    if (census_filters or source_replay) and args.module!='all':
+        raise ValueError('Census filters and source replay require all')
+    if source_replay and (args.refresh or args.snapshot_lock):
+        raise ValueError('--source-replay cannot be combined with --refresh or --snapshot-lock')
+    if args.refresh and args.module not in ('all','acquire'):
+        raise ValueError('Use all --refresh for the shared acquisition stage')
     config=research_configuration(root,args.snapshot_lock)
-    strict=args.module=='all' and args.refresh and not args.snapshot_lock and config.get('evidence_resolution',{}).get('fetch_policy')=='strict'
-    if not strict and config.get('research_evidence_cutoff'):args.as_of=min(args.as_of,config['research_evidence_cutoff'])
+    strict=integration and (args.refresh or source_replay) and not args.snapshot_lock
+    if not (strict or args.module=='acquire') and config.get('research_evidence_cutoff'):
+        args.as_of=min(args.as_of,config['research_evidence_cutoff'])
     acquired_through=config.get('acquisition_through') if args.as_of==config.get('research_evidence_cutoff') else None
     registry=json.loads((root/'config/sources.json').read_text(encoding='utf-8'))
     date.fromisoformat(args.as_of)
     if args.as_of > datetime.now(timezone(timedelta(hours=8))).date().isoformat():
         raise ValueError('Future cutoff is not supported')
-    if args.snapshot_lock and args.refresh:
+    if args.snapshot_lock and (args.refresh or args.module=='acquire'):
         raise ValueError('--snapshot-lock cannot be combined with --refresh')
     if args.dry_run:
         return {'status':'DRY_RUN','module':args.module,'cutoff':args.as_of,'root':str(root),
@@ -240,97 +250,45 @@ def execute(args):
         selected=select_snapshots(root,args.as_of,acquired_through=acquired_through)
         return {'documents':capture_documents(root,selected,keys,args.tessdata,
             registry=recognition_registry(root,args.work,selected,config))}
-    acquisition=[]
+    acquisition=[];acquisition_selection=[]
     if args.module=='discover':
-        from .discovery import discover
+        from .discovery import search_tasks, strict_search_plan
         discovery_config=json.loads((root/'config/discovery.json').read_text(encoding='utf-8'))
-        if getattr(args,'official_only',False):
-            discovery_config.update(seeds=[],official_archive_template=None,public_mirror_index_template=None)
-        return discover(root,discovery_config,diagnostics=getattr(args,'gap_report',None),task_limit=getattr(args,'task_limit',3))
-    if strict:
-        from .acquisition import (strict_refresh, strict_dns_preflight, strict_network_report,
-                                  strict_asx_probe, StrictTransport, STRICT_HOSTS, InvalidNetworkRun, SameSHAAlternates)
+        fixed,deferred=strict_search_plan(root)
+        tasks=search_tasks(root,discovery_config,diagnostics=getattr(args,'gap_report',None))
+        return dict(status='SEARCH_PLAN',tasks=tasks[:args.task_limit],
+                    fixed_reports=[r['key'] for r in fixed['official_reports']],
+                    deferred_reports=[r['key'] for r in deferred],live_entry='all --refresh')
+    if strict or args.module=='acquire':
+        from .acquisition import census_acquisition
         from .evidence import load_claims
         live_claims,_=load_claims(root)
         strict_work=Path(args.work or root/'work').resolve()
-        policy=json.loads((root/'config/discovery.json').read_text(encoding='utf8'))
-        reports=[r for r in policy.get('official_reports',[]) if r['protocol']!='arcgis' or r.get('where')]
-        dns_rows=strict_dns_preflight(registry,reports)
-        network=strict_network_report(strict_work,[],dns_rows)
-        if network['status']=='RUN_INVALID_NETWORK':
-            raise InvalidNetworkRun('RUN_INVALID_NETWORK: DNS preflight failed; no HTTP requests or build started')
-        transport=StrictTransport(STRICT_HOSTS)
-        SameSHAAlternates(root,transport)
-        probe=strict_asx_probe(registry,transport)
-        probe_fields=sorted({k for row in probe for k in row})
-        write_csv(strict_work/'asx_probe.csv',probe,probe_fields)
-        if probe and strict_network_report(strict_work,probe,dns_rows)['status']=='RUN_INVALID_NETWORK':
-            raise InvalidNetworkRun('RUN_INVALID_NETWORK: ASX probe network errors exceed 5%; build not started')
-        snapshots,acquisition=strict_refresh(root,registry,strict_work,live_claims,args.as_of,transport,dns_rows)
-    elif args.module=='acquire' or args.refresh:
-        from .discovery import discover
-        if args.source_key:
-            keys=set(args.source_key.split(','))
-            chosen=[s for s in registry['sources'] if s['key'] in keys]
-            if keys!={s['key'] for s in chosen}:raise ValueError('Unknown acquisition source key')
-            discovery={'status':'TARGETED_SOURCE_UPDATE'}
-        elif getattr(args,'centralized',False):
-            chosen=[s for s in registry['sources'] if s['kind']=='minedex_resource_batch']
-            from .discovery import centralized_feasibility
-            discovery=centralized_feasibility(root)
-        else:
-            chosen=registry['sources']
-            discovery_config=json.loads((root/'config/discovery.json').read_text(encoding='utf-8'))
-            if getattr(args,'official_only',False):
-                discovery_config.update(seeds=[],official_archive_template=None,public_mirror_index_template=None)
-                chosen=[]
-            discovery=discover(root,discovery_config,diagnostics=getattr(args,'gap_report',None),task_limit=getattr(args,'task_limit',3))
-            if getattr(args,'gap_report',None):chosen=[]
-        acquisition=refresh(root,dict(registry,sources=chosen))
-        recognized=[]
-        if config.get('evidence_resolution',{}).get('document_pipeline'):
-            from .pdf_extract import capture_documents
-            # Live acquisition parses currently public originals independently
-            # of a frozen study window. Evidence Selection/rebuild retains the
-            # original research cutoff and never admits these newer values.
-            recognition_cutoff=(datetime.now(timezone.utc).date().isoformat() if args.module=='acquire' else args.as_of)
-            recognition_snapshots=select_snapshots(root,recognition_cutoff,
-                acquired_through=None if args.module=='acquire' else acquired_through)
-            wanted={d.get('document_sha256') for d in discovery.get('documents',[])} if getattr(args,'gap_report',None) or getattr(args,'official_only',False) else None
-            if getattr(args,'centralized',False):wanted=set()
-            if args.source_key:
-                wanted={s['sha256'] for s in recognition_snapshots if s['key'] in keys}
-            document_registry=recognition_registry(root,getattr(args,'work',None),recognition_snapshots,config)
-            if wanted is not None:recognition_snapshots=[s for s in recognition_snapshots if s['sha256'] in wanted]
-            recognized=capture_documents(root,recognition_snapshots,tessdata=args.tessdata,only_missing=True,registry=document_registry)
+        if any(getattr(args,k,None) for k in ('source_key','centralized','official_only','gap_report')):
+            raise ValueError('Use discover for targeted search planning and all --refresh for acquisition')
+        snapshots,acquisition,acquisition_selection=census_acquisition(
+            root,registry,strict_work,live_claims,args.as_of,source_replay)
         if args.module=='acquire':
-            from .discovery import live_status
-            return {'status':'COMPLETED_WITH_SOURCE_STATUS','sources':acquisition,'discovery':discovery,'document_recognition':recognized,
-                    'research_cutoff':args.as_of,'recognition_cutoff':recognition_cutoff if config.get('evidence_resolution',{}).get('document_pipeline') else None,
-                    'live_update':live_status(discovery,acquisition,recognized)}
+            return dict(status='COMPLETED_WITH_SOURCE_STATUS',sources=acquisition,
+                        source_selection=acquisition_selection,receipt=str(strict_work/'source_acquisition.json'))
     if not strict:snapshots=select_snapshots(root,args.as_of,acquired_through=acquired_through)
     if args.snapshot_lock:
+        from .acquisition import checked_snapshots
         snapshots=json.loads(Path(args.snapshot_lock).read_text(encoding='utf-8'))
-        for s in snapshots:
-            if s['available_date']>(acquired_through or args.as_of) or (s.get('publication_date') or '')>args.as_of:
-                raise ValueError('Snapshot lock contains evidence after cutoff')
-            if filehash(root/s['path'])!=s['sha256']:
-                raise ValueError('Locked snapshot checksum mismatch')
-            for page in s.get('original_responses',[]):
-                if filehash(root/page['path'])!=page['sha256']:raise ValueError('Locked original response checksum mismatch')
+        checked_snapshots(root,snapshots,args.as_of,acquired_through or args.as_of)
     work=Path(args.work).resolve() if args.work else root/'work'
     work.mkdir(parents=True,exist_ok=True)
     run_id=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'-'+uuid.uuid4().hex[:8]
     out=work/'runs'/run_id
     out.mkdir(parents=True)
-    db=connect(work/'databases'/run_id/'canonical.sqlite' if strict else work/'canonical.sqlite')
+    db=connect(work/'databases'/run_id/'canonical.sqlite' if integration else work/'canonical.sqlite')
     if strict:
         import os
         previous_cache=os.environ.get('AU_REE_NATIVE_CACHE');os.environ['AU_REE_NATIVE_CACHE']=str(out/'native-pages')
-        report=root/'results'/('automated-build-'+args.as_of);report.mkdir(parents=True,exist_ok=True)
         fields=sorted({k for row in acquisition for k in row})
-        write_csv(report/'acquisition_report.csv',sorted(acquisition,key=lambda r:(r['host'],r['key'])),fields)
-        write_csv(out/'acquisition_report.csv',acquisition,fields)
+        write_csv(out/'acquisition_report.csv',sorted(acquisition,key=lambda r:(r['host'],r['key'])),fields)
+        write_csv(out/'source_selection.csv',acquisition_selection,
+                  ['key','source_sha256','phase22_sha256','action'])
         from .acquisition import STRICT_HOSTS
         from collections import Counter
         groups={}
@@ -339,7 +297,7 @@ def execute(args):
         lines=['# Acquisition by host class (source attempts, not independent documents)']
         for group,hosts in sorted(groups.items()):
             lines += ['\n## '+group]+['- '+host+': '+canonical(counts) for host,counts in sorted(hosts.items())]
-        (report/'acquisition_hosts.md').write_text('\n'.join(lines)+'\n',encoding='utf8')
+        (out/'acquisition_hosts.md').write_text('\n'.join(lines)+'\n',encoding='utf8')
     version=code_version(root)
     from .evidence import load_claims,claim_evidence_ids
     frozen_claims_sha=None
@@ -351,6 +309,7 @@ def execute(args):
     if strict:claims_data=strict_claims(db,root,snapshots,claims_data,acquisition,out/'verified-pages',args.tessdata)
     active_claim_ids=claim_evidence_ids(claims_data)
     configuration={'research':config,'sources':registry,'claims_sha256':claims_sha}
+    if integration:configuration['census_filter']=list(census_filters)
     if strict:configuration['verified_claim_ids']=sorted(active_claim_ids)
     for name in ('identity_links.json','study_cases.json'):
         if (root/'data'/name).exists():configuration[name+'_sha256']=filehash(root/'data'/name)
@@ -390,7 +349,17 @@ def execute(args):
             from .resolution import document_relations
             write_csv(out/'document_entity_relations.csv',document_relations(db,root,snapshots,args.as_of),
                       ['parent_id','child_id','relation','source_sha256','locator','rule','status'])
-        resources=resource_values(db,args.as_of,{s['sha256'] for s in snapshots},strict=bool(config.get('evidence_resolution')),active_claim_ids=active_claim_ids)
+        scope_audit=[]
+        phase22_bindings=None
+        if strict:
+            from .evidence import phase22_resource_bindings
+            phase22_bindings=phase22_resource_bindings(root)
+        resources=resource_values(db,args.as_of,{s['sha256'] for s in snapshots},
+            strict=bool(config.get('evidence_resolution')),active_claim_ids=active_claim_ids,
+            phase22_bindings=phase22_bindings,scope_audit=scope_audit)
+        if strict:
+            write_csv(out/'resource_scope_selection.csv',scope_audit,
+                      ['project_id','source_sha256','reason','scope','alternative_scopes'])
         from .national import resource_quality_checks
         cases=ingest_cases(db,root,snapshots,args.as_of) if args.module!='bootstrap' else []
         if config.get('evidence_resolution') and args.module!='bootstrap':
@@ -463,6 +432,12 @@ def execute(args):
                   ['entity_id','variable','distance_km','layer_sha256',
                    'coordinate_source_sha256','method','coverage_scope',
                    'radius_km','source_where','limitation'])
+        census_coverage=None;selected_census=None
+        if integration and (root/'config/summary_rules.json').is_file():
+            from .census import census_selection, export_summary
+            census_coverage=export_summary(root,db.execute('PRAGMA database_list').fetchone()[2],out/'project-summary',
+                connection=db,run_id=run_id,configuration=configuration,snapshots=snapshots,membership=identity['membership'])
+            selected_census=census_selection(out/'project-summary'/'專案總表.csv',identity['membership'],census_filters,out)
         results={};prepared={'panels':{},'coverage':[]};selection=None;technical_observations=None;disclosure_prepared=None;disclosure_result=None
         if args.module in ('all','analyze','rebuild'):
             if config.get('evidence_resolution'):
@@ -473,11 +448,12 @@ def execute(args):
                     from .technical import unified_observations
                     technical_observations=unified_observations(selection,config['evidence_resolution']['technical_profile'])
                 disclosure_settings=config['evidence_resolution'].get('technical_disclosure')
-                if disclosure_settings and args.as_of==disclosure_settings['review_cutoff']:
+                if disclosure_settings and (args.as_of==disclosure_settings['review_cutoff'] or
+                        integration and args.as_of>disclosure_settings['review_cutoff']):
                     from .technical import run_disclosure
                     from .pdf_extract import project_registry
                     current_registry=project_registry(root,db,snapshots,identity['mapping']) if disclosure_settings.get('incremental_registry') else None
-                    disclosure_result,disclosure_prepared,disclosure_summary=run_disclosure(root,config,args.as_of,out,db,run_id,selection,
+                    disclosure_result,disclosure_prepared,disclosure_summary=run_disclosure(root,config,disclosure_settings['review_cutoff'],out,db,run_id,selection,
                         assemble=not config.get('disclosure_current_baseline'),registry=current_registry,selected_snapshots=snapshots)
                 elif disclosure_settings:
                     (out/'disclosure_status.json').write_text(canonical(dict(
@@ -487,15 +463,24 @@ def execute(args):
             prepared=prepare(db,args.as_of,snapshots,resources,gis_values,config,out,args.project,identity['mapping'],cases,selection)
             if disclosure_result and config.get('disclosure_current_baseline'):
                 from .analysis import current_disclosure_baseline,prepare_disclosure_analysis
+                if selected_census is not None:
+                    disclosure_result=dict(disclosure_result,scores=[s for s in disclosure_result['scores']
+                        if identity['mapping'].get(s['project_id'],s['project_id']) in selected_census])
                 baseline=current_disclosure_baseline(out,identity['mapping'],[s['project_id'] for s in disclosure_result['scores']],prepared,
                     include_bounds=bool(config.get('disclosure_source_rounding')))
-                disclosure_prepared,current_summary=prepare_disclosure_analysis(disclosure_result,baseline,config,out)
+                if disclosure_result['scores']:
+                    disclosure_prepared,current_summary=prepare_disclosure_analysis(disclosure_result,baseline,config,out)
+                else:
+                    current_summary=dict(census_status='NO_SELECTED_DISCLOSURE_PROJECTS')
                 disclosure_summary.update(current_summary)
                 (out/'disclosure_analysis.json').write_text(canonical(disclosure_summary)+'\n',encoding='utf8')
             if disclosure_prepared:prepared['panels'].update(disclosure_prepared['panels'])
             if selection and config.get('evidence_resolution',{}).get('technical_profile',{}).get('numeric_model'):
                 from .analysis import prepare_technical_panel
                 prepare_technical_panel(selection,prepared,config,out,observations=technical_observations)
+            if selected_census is not None:
+                from .analysis import apply_census_cohort
+                apply_census_cohort(out,prepared,selected_census,identity['mapping'])
             if config['monte_carlo'].get('method_version')=='entity-keyed-rng-v2':
                 from .analysis import canonicalize_interchange
                 canonicalize_interchange(out)
@@ -655,17 +640,22 @@ def execute(args):
         summary['environment']={'python':platform.python_version(),'shapely':shapely.__version__,
                                 'pyproj':pyproj.__version__,'PROJ':pyproj.proj_version_str,
                                 'pypdf':pypdf.__version__}
-        if args.module=='all' and (root/'config/summary_rules.json').is_file():
+        if census_coverage is not None:
+            census_coverage.update(database_run_id=run_id,logical_database_sha256=summary['logical_database_sha256'])
+            (out/'project-summary'/'coverage.json').write_text(canonical(census_coverage)+'\n',encoding='utf8')
+            summary['project_summary']=census_coverage
+            summary['census_filter']=list(census_filters)
+            summary['census_mcda_candidates']=len(selected_census)
+        elif args.module=='all' and (root/'config/summary_rules.json').is_file():
             from .census import export_summary
-            db.execute("UPDATE runs SET status='COMPLETED' WHERE run_id=?",(run_id,));db.commit()
-            summary['project_summary']=export_summary(root,Path(db.execute('PRAGMA database_list').fetchone()[2]),out/'project-summary')
+            summary['project_summary']=export_summary(root,db.execute('PRAGMA database_list').fetchone()[2],
+                out/'project-summary',connection=db,run_id=run_id,configuration=configuration,snapshots=snapshots)
         if args.compare_to:
             from .analysis import compare_runs
             summary['comparison']=compare_runs(args.compare_to,out)
         output_hashes={p.relative_to(out).as_posix():filehash(p) for p in sorted(out.rglob('*')) if p.is_file()}
         summary['output_hashes']=output_hashes
         summary['execution_artifacts']=[name for name in output_hashes if Path(name).name in ('R.log','r_cache.json','R_cohort.log','r_cohort_cache.json')]
-        (out/'summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
         report=['# AU_REE_V2 research run',f"Cutoff: {args.as_of}",f"Run: {run_id}",
                 '## Verified coverage',canonical(by_kind),f'Resource-defined sample: {len(resources)}',
                 f"Full-evidence sample: {summary['full_evidence_n']}",
@@ -677,6 +667,11 @@ def execute(args):
                 'Each compared resource scope is explicit. The pilot does not establish latest project totals or a national ranking.',
                 '## Limitations',*['- '+s for s in config['limitations']]]
         (out/'REPORT.md').write_text('\n\n'.join(report)+'\n',encoding='utf-8')
+        if census_coverage is not None:
+            from .census import publish_census
+            published=publish_census(root,out,run_id,getattr(args,'out',None))
+            summary['project_census_csv']=str(published)
+        (out/'summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
         db.execute("UPDATE runs SET status='COMPLETED' WHERE run_id=?",(run_id,))
         db.commit()
         (work/'latest.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
@@ -706,6 +701,9 @@ def main():
     parser.add_argument('--skip-r',action='store_true')
     parser.add_argument('--rscript')
     parser.add_argument('--snapshot-lock',help='Exact immutable snapshot_lock.json from a prior run')
+    parser.add_argument('--source-replay',help='Replay a saved source_acquisition.json and its SHA-verified originals')
+    parser.add_argument('--census-filter',action='append',default=[],metavar='COLUMN=VALUE',
+                        help='Filter MCDA through the census, with OR within a column and AND across columns')
     parser.add_argument('--centralized',action='store_true',help='Bounded centralized-source feasibility and official resource batch acquisition')
     parser.add_argument('--compare-to',help='Frozen prior run/results folder for coverage and rank comparison')
     parser.add_argument('--source-key');parser.add_argument('--pages',default='1');parser.add_argument('--tessdata')

@@ -404,6 +404,19 @@ def official_reports(registry, tasks, fetch, save, originals=()):
     return reports,outcomes,seeds,documents
 
 
+def strict_search_plan(root):
+    """Bounded official queries shared by ASX acquisition and its dry-run plan."""
+    path = Path(root) / 'config/discovery.json'
+    policy = json.loads(path.read_text(encoding='utf8')) if path.exists() else {}
+    fixed, deferred = [], []
+    for report in policy.get('official_reports', []):
+        if report['protocol'] == 'arcgis' and not report.get('where'):
+            deferred.append(report)
+        else:
+            fixed.append(dict(report, dynamic_candidates=False, resume=False))
+    return dict(policy, official_reports=fixed, official_cursors={}), deferred
+
+
 def discover(root, registry, fetch=request, diagnostics=None, task_limit=3):
     import time
     started=time.monotonic()

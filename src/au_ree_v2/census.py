@@ -641,7 +641,8 @@ def summary_deposit_fields(row,trace,attributes,rules,decisions,put):
     if decision:put('礦床型態代碼',case[0],native['source_sha256'],native.get('locator',''),rule,canonical(dict(decision=decision['decision_id'],source_value=text,qualifier='IONIC_NOT_CONFIRMED' if case[0]=='iac' else '')),native.get('observation_ids') or [native['obs_id']])
 
 
-def export_summary(root, database, out, cutoff=None):
+def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=None,
+                   configuration=None, snapshots=None, membership=()):
     """Project-scoped, read-only export from one canonical run, with every cell accounted for."""
     from .analysis import write_csv
     from .evidence import load_claims,claim_evidence_ids
@@ -652,26 +653,36 @@ def export_summary(root, database, out, cutoff=None):
     rules,decisions=summary_settings(root)
     columns=json.loads((root/'config/project_summary_columns.json').read_text(encoding='utf8'))
     if len(columns)!=51 or len(set(columns))!=51:raise ValueError('SUMMARY_51_COLUMN_CONTRACT_REQUIRED')
-    db=sqlite3.connect(database.as_uri()+'?mode=ro',uri=True);db.row_factory=sqlite3.Row
-    run=db.execute('SELECT * FROM runs ORDER BY started_at DESC,run_id DESC LIMIT 1').fetchone()
-    if not run or run['status']!='COMPLETED':db.close();raise ValueError('SUMMARY_REQUIRES_COMPLETED_RUN')
-    cutoff=cutoff or run['cutoff'];run_dir=None;configuration={}
+    db=connection or sqlite3.connect(database.as_uri()+'?mode=ro',uri=True)
+    db.row_factory=sqlite3.Row
+    run=(db.execute('SELECT * FROM runs WHERE run_id=?',(run_id,)).fetchone() if run_id is not None
+         else db.execute('SELECT * FROM runs ORDER BY started_at DESC,run_id DESC LIMIT 1').fetchone())
+    if not run or (connection is None and run['status']!='COMPLETED'):
+        if connection is None:db.close()
+        raise ValueError('SUMMARY_REQUIRES_COMPLETED_RUN')
+    cutoff=cutoff or run['cutoff'];run_dir=None
     for parent in database.parents:
         candidate=parent/'runs'/run['run_id']
-        if (candidate/'configuration.json').is_file():run_dir=candidate;break
+        if candidate.is_dir() and (connection is not None or (candidate/'configuration.json').is_file()):
+            run_dir=candidate;break
         if parent==root:break
-    if run_dir:configuration=json.loads((run_dir/'configuration.json').read_text(encoding='utf8'))
+    if configuration is None:
+        configuration=json.loads((run_dir/'configuration.json').read_text(encoding='utf8')) if run_dir else {}
     frozen,_=load_claims(root,configuration.get('claims_sha256'))
     active=set(configuration.get('verified_claim_ids',claim_evidence_ids(frozen)))
-    live,_=load_claims(root);declarations={'AU-'+digest([p.get('entity_namespace','project_registry_v1'),str(p['id'])])[:20]:p for p in live['projects']}
-    registry=json.loads((root/'config/sources.json').read_text(encoding='utf8'))['sources']
+    live=frozen
+    declarations={'AU-'+digest([p.get('entity_namespace','project_registry_v1'),str(p['id'])])[:20]:p for p in live['projects']}
+    registry=configuration.get('sources') or json.loads((root/'config/sources.json').read_text(encoding='utf8'))
+    registry=registry['sources']
     by_key={s['key']:s for s in registry};sources={};source_errors={};acquisition={}
     if run_dir and (run_dir/'acquisition_report.csv').is_file():
         with (run_dir/'acquisition_report.csv').open(encoding='utf8',newline='') as f:acquisition={r['key']:r for r in csv.DictReader(f)}
+    selected=None if snapshots is None else {s['sha256']: (root/s['path']).resolve() for s in snapshots}
     for source in db.execute('SELECT * FROM sources'):
+        if selected is not None and source['sha'] not in selected:continue
         s=dict(json.loads(source['metadata']),**dict(source));s['sha256']=source['sha'];s['key']=source['source_key']
         path=(root/s['path']).resolve();reason=''
-        if not path.is_relative_to(root) or not path.is_file():reason='SOURCE_NOT_ACQUIRED'
+        if not (path.is_relative_to(root) or (selected is not None and selected.get(s['sha256'])==path)) or not path.is_file():reason='SOURCE_NOT_ACQUIRED'
         elif filehash(path)!=s['sha256']:reason='SOURCE_SHA_CHANGED'
         elif s.get('publication_date') and date_end(s['publication_date'])>cutoff:reason='SOURCE_AFTER_CUTOFF'
         elif s['kind'] not in ('pdf','html','pdf_page_extraction','document_extraction') and s.get('available_date',s['acquired_at'][:10])>cutoff:reason='SOURCE_AFTER_CUTOFF'
@@ -689,7 +700,14 @@ def export_summary(root, database, out, cutoff=None):
     issues=defaultdict(list)
     for q in db.execute('SELECT issue_id,entity_id,source_sha,reason FROM review_queue'):
         issues[q['entity_id']].append(dict(q))
-    db.close();rows=[];trace={};missing=[];stage_audit=[];cache={};associations=defaultdict(set)
+    cohort={p['project_id']:p for p in rules['cohort']}
+    for member in membership:
+        pid=member['canonical_id']
+        if member['kind']!='PROJECT' or pid in cohort or not records[pid]:continue
+        entity=db.execute('SELECT native_id FROM entities WHERE entity_id=? AND kind=?',(pid,'PROJECT')).fetchone()
+        if entity:cohort[pid]=dict(project_id=pid,native_id=entity['native_id'])
+    if connection is None:db.close()
+    rows=[];trace={};missing=[];stage_audit=[];cache={};associations=defaultdict(set)
     for p in live['projects']:
         pid='AU-'+digest([p.get('entity_namespace','project_registry_v1'),str(p['id'])])[:20]
         associations[pid].update(o['source_sha256'] for o in [*p['observations'],*p.get('attributes',[])])
@@ -699,7 +717,7 @@ def export_summary(root, database, out, cutoff=None):
         for pid in s.get('summary_project_ids',[]):
             if s.get('source_sha256'):associations[pid].add(s['source_sha256'])
     mapping=dict(version=rules['template.version'],mappings=rules['template.mappings'],source=dict(sha256=rules['template_source_sha256']))
-    for project in rules['cohort']:
+    for project in sorted(cohort.values(),key=lambda p:p['project_id']):
         pid=project['project_id'];row=dict.fromkeys(columns,'');p=declarations.get(pid,{})
         def put(column,value,sha='',locator='',method='SOURCE_REPORTED',scope='',obs_ids=(),**extra):
             if column not in row or value is None or value=='':return
@@ -788,10 +806,70 @@ def export_summary(root, database, out, cutoff=None):
     coverage=summary_coverage(rows,columns,missing,rules)
     coverage['export_contract_sha256']={name:filehash(root/'config'/name) for name in
         ('summary_rules.json','researcher_rule_decisions.json','project_summary_columns.json')}
-    coverage.update(database_sha256=filehash(database),cutoff=cutoff,formal_C1=False,source_scope='LATEST_CANONICAL_RUN_ONLY',
+    coverage.update(database_sha256=filehash(database) if connection is None else None,cutoff=cutoff,formal_C1=False,source_scope='LATEST_CANONICAL_RUN_ONLY',
         rows=len(rows),column_count=len(columns),same_mre_aggregation='NO_RESOURCE_SUMS_EXPORTED;Yttria/Mt_Stirling_NON_ADDITIVE')
     (out/names['coverage']).write_text(canonical(coverage)+'\n',encoding='utf8')
     return coverage
+
+
+def census_selection(summary_csv, membership, filters, out):
+    """Match display fields first, then require a canonical Project in SQLite."""
+    from .analysis import write_csv
+    with Path(summary_csv).open(encoding='utf-8-sig',newline='') as stream:
+        reader=csv.DictReader(stream)
+        columns=reader.fieldnames
+        rows=list(reader)
+    values=defaultdict(set)
+    for expression in filters:
+        field,separator,value=expression.partition('=')
+        if not separator or field not in columns:
+            raise ValueError(f'Invalid census filter {expression!r}. Use a CSV column followed by = and its value.')
+        values[field].add(value)
+    canonical={r['entity_id']:r['canonical_id'] for r in membership if r['kind']=='PROJECT'}
+    audit=[]
+    for row in rows:
+        pid=row['專案ID']
+        matched=all(row[field] in allowed for field,allowed in values.items())
+        resolved=canonical.get(pid)
+        status=('FILTER_EXCLUDED' if not matched else 'UNRESOLVED_PROJECT'
+                if not resolved or not row['專案名稱'] else 'SELECTED')
+        audit.append(dict(project_id=pid,canonical_project_id=resolved,filter_match=int(matched),status=status))
+    write_csv(out/'census_selection.csv',audit,['project_id','canonical_project_id','filter_match','status'])
+    return {r['canonical_project_id'] for r in audit if r['status']=='SELECTED'}
+
+
+def publish_census(root, run_dir, run_id, destination=None):
+    """Publish a single completed run as a directory."""
+    from shutil import copyfile, rmtree
+    from uuid import uuid4
+
+    target=(Path(destination).resolve() if destination else
+            root/'results'/'ree-project-census'/run_id)
+    if not target.is_relative_to(root/'results'):
+        raise ValueError('Census publication must be inside this checkout’s results directory')
+    target.parent.mkdir(parents=True,exist_ok=True)
+    if target.exists():
+        raise FileExistsError(f'Census publication already exists: {target}')
+    staging=target.with_name('.census-'+uuid4().hex)
+    staging.mkdir()
+    try:
+        summary=run_dir/'project-summary'
+        names=summary_settings(root)[0]['output_files']
+        copyfile(summary/names['summary'],staging/'REE project census.csv')
+        for name in (names['provenance'],names['missing'],names['coverage']):
+            copyfile(summary/name,staging/name)
+        for name in ('census_selection.csv','mcda_census_gate.csv','source_selection.csv',
+                     'acquisition_report.csv','resource_scope_selection.csv'):
+            if (run_dir/name).is_file():copyfile(run_dir/name,staging/name)
+        for ranking in sorted(run_dir.glob('*/ranking.csv')):
+            panel=staging/'MCDA'/ranking.parent.name
+            panel.mkdir(parents=True)
+            copyfile(ranking,panel/'ranking.csv')
+        staging.rename(target)
+    finally:
+        if staging.exists() and staging.resolve().parent==target.parent:
+            rmtree(staging)
+    return target/'REE project census.csv'
 
 
 def summary_missing(column, project, row, bundle, registry, sources, source_errors, acquisition, cutoff, rules, decisions):

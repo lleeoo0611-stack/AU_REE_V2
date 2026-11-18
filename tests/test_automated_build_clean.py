@@ -81,7 +81,7 @@ class AutomatedBuildCleanTests(unittest.TestCase):
             checkout = Path(temp) / 'checkout'
             checkout.mkdir()
             for name in tracked:
-                if not name or not name.startswith(('config/', 'data/', 'src/', 'R/', 'results/')):
+                if not name or not name.startswith(('config/', 'data/', 'src/', 'R/', 'results/', 'docs/')):
                     continue
                 if not full_build and name.startswith(('data/snapshots/', 'results/')):
                     continue

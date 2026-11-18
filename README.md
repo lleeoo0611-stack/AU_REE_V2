@@ -1,5 +1,22 @@
 # AU_REE_V2
 
+## Phase 22 × ASX Project Census
+
+同一入口執行來源擷取、SQLite 入庫、Census 匯出、篩選及 Phase 22 的 MCDA。
+
+```sh
+au-ree-v2 all --refresh --as-of 2026-11-13 --work work/census-live
+au-ree-v2 all --source-replay work/census-live/source_acquisition.json --as-of 2026-11-13 --work work/census-replay
+```
+
+線上建置沿用 ASX 測試的主機停止、請求額度與同 SHA 後備規則。Phase 22 封存來源優先保留原鍵與原版本，ASX 擴充其餘來源。新發現的候選文件須經來源與宣告查核才會進入證據。離線重播需要收據與其指向的原件，會逐一驗證 SHA。請保留建置工作目錄中的原件。
+
+總表輸出到 `results/ree-project-census/<run-id>/REE project census.csv`。欄名和順序沿用 ASX 測試的 51 欄合約，與 2026-11-16 HTML 共用欄位一致。歷史 HTML 裡已退役的兩個欄位依 ASX 合約留在歷史成果。
+
+可加上 `--census-filter "州省地區=西澳大利亞州"` 或使用 CSV 中其他欄名及實際值。同一欄位的多個值採 OR，不同欄位採 AND。篩選記錄與來源追溯隨總表輸出。MCDA 先確認通過篩選的穩定 Project ID，再沿用各面板的證據和可比性條件。具備資料的面板將排名寫入同一個結果目錄。
+
+歷史研究仍使用下方的 `rebuild --snapshot-lock`。 `discover` 提供搜尋計畫，實際取得來源由 `all --refresh` 執行。 `acquire` 是同一擷取階段的執行入口，只回傳來源收據。
+
 Latest: **Phase 22 — native-candidate acquisition, source-bound evidence and shared-method MCDA**, cutoff **2026-11-05**, configuration `research-v8-native-candidate-shared-draws`. See [results, limits and reconstruction](results/phase22-2026-11-06/README.md), [verification](results/phase22-2026-11-06/evaluation.json), and [evidence priorities](results/phase22-2026-11-06/six_domain_gap_priority.csv).
 
 Current evidence: **33 canonical registry groups, 22 resource cases, 20 complete transparency point scores and 6 complete six-domain cases**. Wolverine/Browns Range joins the previous five after original resource composition and Project financing-plan disclosure recovery. New national candidate Kennedy enters resource/composition ranking, with seven disclosure items Unknown; it is not a new complete six-domain case. Barkly's resource arithmetic conflict and unavailable detailed prospectus remain unresolved. Counts of source rows, native sites, resource scopes, groups and independent Projects remain distinct.
@@ -76,12 +93,13 @@ Source discovery includes bounded issuer pagination, unseen-document priority an
 
 ## Source and GIS acquisition
 
-The source registry now includes Geoscience Australia's TOPO250K 2WD road classes,
+The source registry includes Geoscience Australia's TOPO250K 2WD road classes,
 operational railway/siding lines and mapped >=66 kV power lines, plus the Australian
 Government **Resources and Energy Major Projects 2025** XLSX listing. Run
-`au-ree-v2 acquire` and then `au-ree-v2 all --as-of YYYY-MM-DD` to reconstruct
-the extended source set; archived `data/manifest.json` snapshots remain the only
-inputs used in a normal offline replay. Registered targets become evidence only after original bytes/checksums are retained. Phase6/7 contain frozen state inventories and GIS layers; the latest REMP2025 workbook update remains unavailable after timeout.
+`au-ree-v2 all --refresh --as-of YYYY-MM-DD` to acquire and use the extended source set in one run.
+For an offline replay, pass the saved acquisition receipt or an historical snapshot lock.
+Registered targets become evidence after original bytes and checksums are retained.
+Phase6/7 contain frozen state inventories and GIS layers.
 
 Spatial line features are queried through complete ArcGIS object-ID inventories in
 project-scoped EPSG:3577 search windows. A distance is released only if the source

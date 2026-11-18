@@ -753,17 +753,17 @@ def declared_json_hash(raw, source):
 
 def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_rows=None):
     """Fresh work-only originals and bounded, policy-approved same-SHA copies."""
-    import hashlib,subprocess,tempfile
+    import hashlib,subprocess,uuid
     root=Path(root).resolve();work=Path(work).resolve()
-    discovery_path=root/'config/discovery.json'
-    policy=json.loads(discovery_path.read_text(encoding='utf8')) if discovery_path.exists() else {}
-    reports=[r for r in policy.get('official_reports',[]) if r['protocol']!='arcgis' or r.get('where')]
+    from .discovery import official_reports, strict_search_plan
+    policy,deferred=strict_search_plan(root)
+    reports=policy.get('official_reports',[])
     dns_rows=strict_dns_preflight(registry,reports) if dns_rows is None else dns_rows
     if any(r['status']!='DNS_OK' for r in dns_rows):
         strict_network_report(work,[],dns_rows)
         raise InvalidNetworkRun('RUN_INVALID_NETWORK: DNS preflight failed; no HTTP requests or build started')
     work.mkdir(parents=True,exist_ok=True)
-    cache=Path(tempfile.mkdtemp(prefix='strict-',dir=work))
+    cache=work/('strict-'+uuid.uuid4().hex[:16]);cache.mkdir()
     manifest=json.loads((root/'data/manifest.json').read_text(encoding='utf8'))['snapshots']
     declared={}
     def visit(value):
@@ -788,18 +788,9 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
         if p.is_absolute() or not target.is_relative_to(root/'data/snapshots') or s['sha256'] not in expected:return False
         check=subprocess.run(['git','cat-file','blob','HEAD:'+p.as_posix()],cwd=root,capture_output=True)
         return check.returncode==0 and hashlib.sha256(check.stdout).hexdigest()==s['sha256'] and target.is_file() and filehash(target)==s['sha256']
-    discovery_path=root/'config/discovery.json'
-    if discovery_path.exists():
-        import copy
-        from .discovery import official_reports
-        policy=copy.deepcopy(json.loads(discovery_path.read_text(encoding='utf8')))
-        fixed=[]
-        for report in policy.get('official_reports',[]):
-            if report['protocol']=='arcgis' and not report.get('where'):
-                outcomes.append(dict(key=report['key'],host=urllib.parse.urlsplit(report['url']).hostname,http_status=None,sha_match=None,status='NO_FIXED_QUERY_NOT_EXPANDED',stop_reason='No configured fixed WAMEX query'))
-                continue
-            report.update(dynamic_candidates=False,resume=False);fixed.append(report)
-        policy.update(official_reports=fixed,official_cursors={})
+    if (root/'config/discovery.json').exists():
+        for report in deferred:
+            outcomes.append(dict(key=report['key'],host=urllib.parse.urlsplit(report['url']).hostname,http_status=None,sha_match=None,status='NO_FIXED_QUERY_NOT_EXPANDED',stop_reason='No configured fixed WAMEX query'))
         def save_receipt(raw,meta,suffix):
             from .security import sensitive_reference
             if sensitive_reference(raw.decode('utf8',errors='ignore')):raw=b'REDACTED_SENSITIVE_RECEIPT'
@@ -950,6 +941,84 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
     if report['status']=='RUN_INVALID_NETWORK':
         raise InvalidNetworkRun('RUN_INVALID_NETWORK: network errors exceed 5%; see '+str(work/'network_status.json'))
     return selected,outcomes
+
+
+def checked_snapshots(root, snapshots, cutoff, acquired_through=None):
+    """Resolve immutable originals and their raw response attachments."""
+    for source in snapshots:
+        if (source.get('publication_date') or '') > cutoff:
+            raise ValueError(f"Snapshot after publication cutoff: {source['key']}")
+        if acquired_through and source['available_date'] > acquired_through:
+            raise ValueError(f"Snapshot after acquisition cutoff: {source['key']}")
+        for entry in [source, *source.get('original_responses', [])]:
+            path = root / entry['path']
+            if not path.is_file() or filehash(path) != entry['sha256']:
+                raise ValueError(f"Locked snapshot checksum mismatch: {source['key']} ({path.name})")
+    return snapshots
+
+
+def census_acquisition(root, registry, work, claims, cutoff, replay=None):
+    """One ASX source stage. Replays use the same selected inputs and receipts."""
+    from .analysis import write_csv
+    from .discovery import strict_search_plan
+
+    if replay:
+        receipt = json.loads(Path(replay).read_text(encoding='utf8'))
+        if receipt['cutoff'] != cutoff:
+            raise ValueError('Acquisition replay cutoff must match --as-of')
+        if receipt['registry_sha256'] != digest(registry):
+            raise ValueError('Acquisition replay source registry changed')
+        fresh = checked_snapshots(root, receipt['snapshots'], cutoff)
+        registered = {s['key']:s['kind'] for s in registry['sources']}
+        if any(registered.get(s['key']) != s['kind'] for s in fresh):
+            raise ValueError('Acquisition replay contains an unregistered source')
+        outcomes = receipt['outcomes']
+    else:
+        policy, _ = strict_search_plan(root)
+        dns_rows = strict_dns_preflight(registry, policy['official_reports'])
+        network = strict_network_report(work, [], dns_rows)
+        if network['status'] == 'RUN_INVALID_NETWORK':
+            raise InvalidNetworkRun('RUN_INVALID_NETWORK: DNS preflight failed; no HTTP requests or build started')
+        transport = StrictTransport(STRICT_HOSTS)
+        SameSHAAlternates(root, transport)
+        probe = strict_asx_probe(registry, transport)
+        write_csv(work/'asx_probe.csv', probe, sorted({k for row in probe for k in row}))
+        if probe and strict_network_report(work, probe, dns_rows)['status'] == 'RUN_INVALID_NETWORK':
+            raise InvalidNetworkRun('RUN_INVALID_NETWORK: ASX probe network errors exceed 5%; build not started')
+        fresh, outcomes = strict_refresh(root, registry, work, claims, cutoff, transport, dns_rows)
+        # A downloaded future publication remains an acquisition receipt.
+        fresh = [s for s in fresh if (s.get('publication_date') or '') <= cutoff]
+    if cutoff < '2026-11-05':
+        raise ValueError('Integrated census requires a cutoff on or after the Phase 22 evidence cutoff')
+    phase22 = root/'results/phase22-2026-11-06/snapshot_lock.json'
+    release_summary = phase22.with_name('summary.json')
+    if release_summary.is_file():
+        hashes = json.loads(release_summary.read_text(encoding='utf8'))['output_hashes']
+        if hashes.get('snapshot_lock.json') != filehash(phase22):
+            raise ValueError('Phase 22 frozen source lock checksum mismatch')
+    base = checked_snapshots(root, json.loads(phase22.read_text(encoding='utf8')), '2026-11-05', '2026-11-06')
+    # Keep reviewed Phase 22 originals at their frozen keys. ASX extends the
+    # collection with additional keys and verified aliases, including page inputs.
+    by_key = {s['key']: s for s in base}
+    decisions = []
+    for source in fresh:
+        key = source['key']
+        prior = by_key.get(key)
+        decisions.append(dict(key=key, source_sha256=source['sha256'],
+            phase22_sha256=prior['sha256'] if prior else '',
+            action=('FROZEN_PHASE22_VERSION_RETAINED' if prior and prior['sha256'] != source['sha256']
+                    else 'EXACT_PHASE22_SOURCE' if prior else 'ASX_SOURCE_ADDED')))
+        by_key.setdefault(key, source)
+    work.mkdir(parents=True, exist_ok=True)
+    def portable(entry):
+        path=(root/entry['path']).resolve()
+        return dict(entry,path=path.relative_to(root).as_posix()) if path.is_relative_to(root) else entry
+
+    captured = receipt if replay else dict(cutoff=cutoff, registry_sha256=digest(registry),
+        snapshots=[dict(portable(s), original_responses=[portable(a) for a in s.get('original_responses', [])])
+                   if 'original_responses' in s else portable(s) for s in fresh], outcomes=outcomes)
+    (work/'source_acquisition.json').write_text(canonical(captured)+'\n', encoding='utf8')
+    return list(by_key.values()), outcomes, decisions
 
 
 def record_source_not_acquired(root, key, source):

@@ -115,7 +115,7 @@ class OfficialReportTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'BYTE_BUDGET'):request('https://public.test/report',max_bytes=10)
         self.assertEqual(11,response.requested)
 
-    def test_live_parsing_is_not_blocked_by_frozen_study_cutoff(self):
+    def test_acquire_uses_shared_entry_at_requested_cutoff(self):
         import argparse
         from datetime import datetime,timezone
         from au_ree_v2.cli import execute
@@ -129,12 +129,13 @@ class OfficialReportTests(unittest.TestCase):
             original=root/'data/snapshots/live.pdf';original.write_bytes(b'%PDF-live-public-original')
             source=dict(key='new_report',kind='pdf',url='https://official.test/report',path='data/snapshots/live.pdf',sha256=filehash(original),publication_date=today,available_date=today,acquired_at=today)
             (root/'data/manifest.json').write_text(json.dumps(dict(snapshots=[source])))
-            args=argparse.Namespace(root=str(root),snapshot_lock=None,as_of=today,module='acquire',refresh=False,dry_run=False,official_only=True,source_key=None,tessdata=None)
-            discovery=dict(sources=[dict(seed_key='official',status='PARSED')],documents=[dict(document_sha256=source['sha256'],status='REUSED_VERIFIED_ORIGINAL')])
-            seen=[]
-            def capture(root,snapshots,**kw):seen.extend(snapshots);return [dict(status='CAPTURED')]
-            with patch('au_ree_v2.discovery.discover',return_value=discovery),patch('au_ree_v2.pdf_extract.capture_documents',side_effect=capture):result=execute(args)
-            self.assertEqual([source],seen);self.assertEqual('2020-01-01',result['research_cutoff']);self.assertEqual(today,result['recognition_cutoff'])
+            args=argparse.Namespace(root=str(root),snapshot_lock=None,as_of=today,module='acquire',refresh=False,dry_run=False,work=None)
+            outcomes=[dict(key='new_report',status='FETCHED_SHA_VERIFIED')]
+            with patch('au_ree_v2.evidence.load_claims',return_value=({},'')), \
+                 patch('au_ree_v2.acquisition.census_acquisition',return_value=([source],outcomes,[])) as acquire:
+                result=execute(args)
+            self.assertEqual(today,acquire.call_args.args[4])
+            self.assertEqual(outcomes,result['sources'])
             self.assertEqual([],select_snapshots(root,'2020-01-01',acquired_through='2020-01-02'))
             self.assertFalse((root/'work/canonical.sqlite').exists())
 

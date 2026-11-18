@@ -2,6 +2,7 @@ name: Clean automated public build
 on:
   pull_request:
   workflow_dispatch:
+  workflow_call:
 permissions:
   contents: read
 jobs:
@@ -180,11 +181,23 @@ jobs:
           _,trace=read(names['provenance']);_,missing=read(names['missing'])
           coverage=json.loads((out/names['coverage']).read_text())
           assert header==columns and len(columns)==51
-          assert len(rows)==len(book['cohort']['value'])
+          project_ids={r['專案ID'] for r in rows}
+          assert len(project_ids)==len(rows)
+          assert {r['project_id'] for r in book['cohort']['value']} <= project_ids
           assert len(trace)==len(rows)*len(columns)
           assert len({(r['project_id'],r['column']) for r in trace})==len(trace)
           assert len(missing)==sum(v=='' for row in rows for v in row.values())
           assert coverage['filled_cells']+len(missing)==len(trace)
+          run=out.parent
+          with (run/'census_selection.csv').open(encoding='utf-8',newline='') as f:
+              selected={r['canonical_project_id'] for r in csv.DictReader(f) if r['status']=='SELECTED'}
+          with (run/'mcda_census_gate.csv').open(encoding='utf-8',newline='') as f:
+              gate=[r for r in csv.DictReader(f) if r['included']=='1']
+          assert all(r['canonical_project_id'] in selected for r in gate)
+          for matrix in run.glob('*/matrix.csv'):
+              with matrix.open(encoding='utf-8',newline='') as f:
+                  matrix_ids=[r['project_id'] for r in csv.DictReader(f)]
+              assert sorted(matrix_ids)==sorted(r['project_id'] for r in gate if r['panel']==matrix.parent.name)
           assert json.loads(Path('work/clean/network_status.json').read_text())['valid_for_delivery']
           PY
       - name: Unit regressions with XML
@@ -246,7 +259,7 @@ jobs:
             work/clean/**/configuration.json
             work/clean/**/snapshot_lock.json
             work/clean/**/project-summary/
-            results/automated-build-2026-11-13/acquisition_report.csv
+            results/ree-project-census/
           if-no-files-found: warn
           retention-days: 30
       - uses: actions/upload-artifact@v4

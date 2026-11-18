@@ -571,6 +571,32 @@ def cached_r(root,folder,command,contract):
     return status['status']
 
 
+def apply_census_cohort(out, prepared, selected, canonical_ids):
+    """Apply the same census gate to every matrix consumed by R."""
+    panel_audit=[]
+    for panel,count in prepared['panels'].items():
+        path=Path(out)/panel/'matrix.csv'
+        if not path.is_file():
+            if count:raise ValueError(f'Missing candidate matrix for {panel}')
+            continue
+        with path.open(encoding='utf8',newline='') as stream:
+            reader=csv.DictReader(stream)
+            columns=reader.fieldnames
+            rows=list(reader)
+        kept=[]
+        for row in rows:
+            pid=row['project_id']
+            canonical_id=row.get('canonical_project_id') or canonical_ids.get(pid,pid)
+            admitted=canonical_id in selected
+            panel_audit.append(dict(panel=panel,project_id=pid,canonical_project_id=canonical_id,
+                                    included=int(admitted)))
+            if admitted:kept.append(row)
+        write_csv(path,kept,columns)
+        prepared['panels'][panel]=len(kept)
+        if panel in prepared.get('matrices',{}):prepared['matrices'][panel]=kept
+    write_csv(Path(out)/'mcda_census_gate.csv',panel_audit,['panel','project_id','canonical_project_id','included'])
+
+
 def run_r(root, out, prepared, config, rscript=None):
     executable = rscript or shutil.which('Rscript')
     if not executable:
