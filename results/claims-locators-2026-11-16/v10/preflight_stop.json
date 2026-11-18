@@ -1,0 +1,34 @@
+{
+  "status": "STOP_T2_EXISTING_MARKER_VALUE_REQUIRES_DECISION",
+  "baseline": "fc8b1b05dee2ff9db8fb75fe35ac9ba44c267a8d",
+  "event_file_sha256": "a35421e6238b459ec6979a0843b1fa683a3ad1233b63c1dc378e68a1b3c70826",
+  "event_ids": [
+    "26823267883",
+    "26796705284"
+  ],
+  "proposal_source_sha256": "478d89cd43259bd8e1f4ef57f5d539e94d26802f0dc5362d2569836744f02c09",
+  "approved_rows": 70,
+  "hold_rows": 22,
+  "other_rows_approval_blank": 135,
+  "company_cells": 40,
+  "all_required_approved_cells_upper_bound": 23,
+  "held_cells": 17,
+  "duplicate_approved_locations": 0,
+  "first_conflict": {
+    "proposal_id": "0219c1191a1f9eab0363",
+    "project_id": "AU-0832169526bb5ec07626",
+    "column": "ASX代碼",
+    "source_key": "itech_franklyn_identity20211027",
+    "declaration_pointer": "/attributes/2/context_evidence/0",
+    "pdf_page": 1,
+    "field": "markers",
+    "existing_value": "[\"27 October 2021\"]",
+    "proposed_value": "[\"iTech Minerals Ltd\", \"ASX: ITM\"]",
+    "reason": "EXISTING_VALUE_DIFFERS_APPEND_DECISION_REQUIRED",
+    "action": "NOT_APPLIED"
+  },
+  "claims_modified": false,
+  "src_changed": 0,
+  "ci_started": false,
+  "pr11_already_merged": true
+}

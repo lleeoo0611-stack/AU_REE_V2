@@ -456,7 +456,9 @@ class RepositoryContract(unittest.TestCase):
         original=git('show','56bf4dc:src/au_ree_v2/acquisition.py')
         current=git('show','3e7c24e:src/au_ree_v2/acquisition.py')
         self.assertEqual(original.replace('if 400<=exc.code<500:', 'if 400<=exc.code<500 and exc.code!=404:'),current)
-        self.assertEqual('',git('diff','--name-only','--diff-filter=A','12f45f4','--','src','config'))
+        added=set(git('diff','--name-only','--diff-filter=A','12f45f4','--','src','config').splitlines())
+        # V10 explicitly permits this one sealed event file; no new src modules.
+        self.assertLessEqual(added,{'config/pre_cutoff_evidence_events.json'})
         with (ROOT/'results/integrated-rebuild-2026-11-15/acquisition_report.csv').open(encoding='utf-8-sig',newline='') as f:
             blocked={r['key'] for r in csv.DictReader(f) if r['host']=='www.asx.com.au' and r['stop_reason']=='NOT_PDF'}
         self.assertEqual(37,len(blocked))

@@ -4,6 +4,9 @@ import importlib.util
 import json
 import tempfile
 import unittest
+import copy
+import io
+from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 from au_ree_v2.acquisition import evidenced_snapshot,select_snapshots
@@ -139,3 +142,83 @@ class RepositoryEvidenceVerifier(unittest.TestCase):
         source=(ROOT/'src/au_ree_v2/acquisition.py').read_text(encoding='utf8')
         self.assertLess(source.index("if host in transport.stopped:raise ValueError('HOST_STOPPED:'+transport.stopped[host])",source.index('def strict_refresh')),
                         source.index("if source.get('committed_snapshot_sha256')",source.index('def strict_refresh')))
+
+
+class SealedEventEvidence(unittest.TestCase):
+    def setUp(self):
+        self.path=ROOT/'config/pre_cutoff_evidence_events.json'
+        self.events=json.loads(self.path.read_bytes())
+        self.sources=[copy.deepcopy(s) for s in json.loads((ROOT/'config/sources.json').read_bytes())['sources']
+                      if s.get('pre_cutoff_evidence')]
+        self.vic=next(s for s in self.sources if s['key'].endswith('31a205168b6ae647'))
+        self.vic['pre_cutoff_evidence']['recorded_sha256']=SHA
+        self.vic['pre_cutoff_evidence']['kind']='RAW_FILE'
+
+    def run_case(self,live=None,error=None,path=None):
+        def fake_git(*args):
+            if args[0]=='show':return b'2026-11-10T11:30:14+00:00'
+            if args[2].startswith(self.vic['pre_cutoff_evidence']['commit']):return b'{}'
+            return '\n'.join(s['pre_cutoff_evidence']['recorded_sha256'] for s in self.sources).encode()
+        def ancestor(left,right):
+            return right==verifier.REF or left!=self.vic['pre_cutoff_evidence']['commit']
+        with patch.object(verifier,'git',side_effect=fake_git),patch.object(verifier,'ancestor',side_effect=ancestor),\
+             patch.object(verifier,'events_from_api',side_effect=error,return_value=(live or [],[])) as api:
+            result,_=verifier.verify_sources(self.sources,path or self.path,'2026-11-13')
+            return result,api.call_count
+
+    def assert_ga_valid(self,result,crosscheck):
+        self.assertTrue(result['events_file_sha_match'])
+        for source in self.sources:
+            if source is self.vic:continue
+            record=result['sources'][source['key']]
+            self.assertTrue(record['valid'],record)
+            self.assertEqual(crosscheck,record['api_crosscheck'])
+
+    def test_empty_live_window_keeps_three_ga_proofs_valid(self):
+        result,_=self.run_case()
+        self.assert_ga_valid(result,'EVENT_NOT_IN_API_WINDOW')
+
+    def test_unavailable_live_api_keeps_three_ga_proofs_valid(self):
+        result,_=self.run_case(error=OSError('offline'))
+        self.assert_ga_valid(result,'API_UNAVAILABLE')
+
+    def test_matching_live_event_crosschecks_without_replacing_archive(self):
+        result,_=self.run_case(copy.deepcopy(self.events))
+        self.assert_ga_valid(result,'MATCHED')
+
+    def test_conflicting_live_timestamp_or_head_is_invalid(self):
+        for field in ('time','head'):
+            with self.subTest(field=field):
+                events=copy.deepcopy(self.events)
+                if field=='time':events[0]['created_at']='2026-11-11T11:42:29Z'
+                else:events[0]['payload']['head']='f'*40
+                result,_=self.run_case(events)
+                self.assertTrue(all(not r['valid'] and 'EVENT_RECORD_CONFLICT' in r['reasons']
+                                    for r in result['sources'].values()))
+
+    def test_one_byte_change_invalidates_every_source_before_api(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/'events.json';path.write_bytes(self.path.read_bytes()+b' ')
+            result,calls=self.run_case(path=path)
+        self.assertEqual(0,calls)
+        self.assertFalse(result['events_file_sha_match'])
+        self.assertTrue(all(r['reasons']==['EVENTS_FILE_SHA_MISMATCH'] and not r['valid']
+                            for r in result['sources'].values()))
+
+    def test_vic_has_no_committed_push_proof(self):
+        result,_=self.run_case()
+        record=result['sources'][self.vic['key']]
+        self.assertFalse(record['valid'])
+        self.assertEqual(['PUSH_TIME_NOT_PROVEN_FOR_COMMIT'],record['reasons'])
+
+    def test_warning_includes_keys_when_proof_is_missing_and_when_invalid(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/'proof.json';output=io.StringIO()
+            with redirect_stdout(output):verifier.warn_invalid(path,self.sources)
+            for source in self.sources:self.assertIn(source['key'],output.getvalue())
+            result,_=self.run_case();path.write_text(json.dumps(result))
+            output=io.StringIO()
+            with redirect_stdout(output):verifier.warn_invalid(path,self.sources)
+            self.assertIn('::warning::'+self.vic['key'],output.getvalue())
+            self.assertIn('PUSH_TIME_NOT_PROVEN_FOR_COMMIT',output.getvalue())
+            self.assertNotIn('::warning::'+KEY,output.getvalue())

@@ -61,7 +61,10 @@ jobs:
       - name: Verify declared pre-cutoff repository evidence
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python tools/verify_pre_cutoff_evidence.py
+        run: python tools/verify_pre_cutoff_evidence.py --events-file config/pre_cutoff_evidence_events.json
+      - name: Warn about invalid or missing pre-cutoff proof
+        if: always()
+        run: python tools/verify_pre_cutoff_evidence.py --warn-only
       - name: Build only from approved public registry
         env:
           TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
@@ -192,6 +195,10 @@ jobs:
         env:
           TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
         run: python tools/locators_from_ci_cache.py
+      - name: Audit approved company markers without repairing claims
+        env:
+          TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
+        run: python tools/check_company_markers_ci.py
       - name: R analytical regressions
         if: always()
         run: |
@@ -224,6 +231,8 @@ jobs:
             work/pre_cutoff_evidence_events.json
             work/clean/p2_marker_proposals.csv
             work/clean/p2_cache_completion.json
+            work/clean/v10/*.csv
+            work/clean/v10/*.json
             work/r-tests.log
             work/clean-build.log
             work/clean/**/acquisition_report.csv
