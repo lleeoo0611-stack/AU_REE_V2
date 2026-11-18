@@ -217,7 +217,7 @@ def government_changes(root,source,previous,raw):
             'unit':'SOURCE_NATIVE_ID_GROUPS_NOT_PROJECTS'}
 
 def refresh(root, registry):
-    """A failed source is recorded and does not discard any existing snapshot."""
+    """Historical refresh preserved for older callers, outside the Census entry."""
     root = Path(root)
     manifest_path = root / 'data/manifest.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))

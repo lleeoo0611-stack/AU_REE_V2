@@ -24,6 +24,10 @@ class DiscoveryMissingSourceTests(unittest.TestCase):
     self.assertEqual(tasks[0]['source_key'],'registered')
     with (self.root/'work/discovery/acquisition_report.csv').open(encoding='utf8') as f:rows=list(csv.DictReader(f))
     self.assertEqual(len(rows),1);self.assertEqual(rows[0]['stop_reason'],'SOURCE_NOT_ACQUIRED');self.assertEqual(rows[0]['http_status'],'')
+ def test_read_only_plan_keeps_missing_registered_source_without_writing_receipt(self):
+  tasks=search_tasks(self.root,self.config,record_missing=False)
+  self.assertEqual(tasks[0]['source_key'],'registered')
+  self.assertFalse((self.root/'work').exists())
  def test_corrupt_or_wrong_sha_uses_existing_path_not_missing_guard(self):
   p=self.root/'bad.pdf';p.write_bytes(b'not-a-pdf');self.source.update(path='bad.pdf',sha256='0'*64);self.write([self.source])
   with patch('au_ree_v2.discovery.filehash',wraps=filehash) as checked:

@@ -5,6 +5,8 @@ independent mining project, JORC resource, or an eligible MCDA alternative.
 """
 import json
 import re
+from contextlib import closing, nullcontext
+from functools import lru_cache
 from io import BytesIO
 from pathlib import Path
 from openpyxl import load_workbook
@@ -669,33 +671,63 @@ def summary_deposit_fields(row,trace,attributes,rules,decisions,put):
 
 
 def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=None,
-                   configuration=None, snapshots=None, membership=(), acquisition_rows=None, audit=False,
+                   configuration=None, snapshots=None, membership=None, acquisition_rows=None, audit=None,
                    claim_declarations=None):
     """Project-scoped, read-only export from one canonical run, with every cell accounted for."""
-    from .analysis import write_csv
-    from .evidence import load_claims,claim_evidence_ids
     root=Path(root).resolve();database=Path(database).resolve();out=Path(out).resolve()
     if out==database.parent or any(out==root/p or (root/p) in out.parents for p in ('src','config','data')):
         raise ValueError('SUMMARY_OUTPUT_MUST_BE_ISOLATED')
     if not database.is_file():raise ValueError('SUMMARY_DATABASE_REQUIRED')
+    standalone=connection is None
+    session=closing(sqlite3.connect(database.as_uri()+'?mode=ro',uri=True)) if standalone else nullcontext(connection)
+    with session as db:
+        return _export_summary(root,database,out,db,cutoff,run_id,standalone,configuration,
+                               snapshots,membership,acquisition_rows,audit,claim_declarations)
+
+
+def _export_summary(root, database, out, db, cutoff, run_id, standalone,
+                    configuration, snapshots, membership, acquisition_rows, audit, claim_declarations):
+    from .analysis import write_csv
+    from .analysis import read_csv
+    from .evidence import load_claims,claim_evidence_ids
     rules,decisions=summary_settings(root)
+    hashes={name:filehash(root/'config'/name) for name in
+            ('summary_rules.json','researcher_rule_decisions.json','project_summary_columns.json')}
     columns=json.loads((root/'config/project_summary_columns.json').read_text(encoding='utf8'))
     if len(columns)!=51 or len(set(columns))!=51:raise ValueError('SUMMARY_51_COLUMN_CONTRACT_REQUIRED')
-    db=connection or sqlite3.connect(database.as_uri()+'?mode=ro',uri=True)
     db.row_factory=sqlite3.Row
     run=(db.execute('SELECT * FROM runs WHERE run_id=?',(run_id,)).fetchone() if run_id is not None
          else db.execute('SELECT * FROM runs ORDER BY started_at DESC,run_id DESC LIMIT 1').fetchone())
-    if not run or (connection is None and run['status']!='COMPLETED'):
-        if connection is None:db.close()
+    if not run or (standalone and run['status']!='COMPLETED'):
         raise ValueError('SUMMARY_REQUIRES_COMPLETED_RUN')
     cutoff=cutoff or run['cutoff'];run_dir=None
     for parent in database.parents:
         candidate=parent/'runs'/run['run_id']
-        if candidate.is_dir() and (connection is not None or (candidate/'configuration.json').is_file()):
+        if candidate.is_dir() and (not standalone or (candidate/'configuration.json').is_file()):
             run_dir=candidate;break
         if parent==root:break
     if configuration is None:
         configuration=json.loads((run_dir/'configuration.json').read_text(encoding='utf8')) if run_dir else {}
+    if standalone and run_dir:
+        if digest(configuration)!=run['config_sha']:raise ValueError('SUMMARY_RUN_CONFIGURATION_HASH_MISMATCH')
+        lock=run_dir/'snapshot_lock.json'
+        summary_file=run_dir/'summary.json'
+        summary=json.loads(summary_file.read_text(encoding='utf8')) if summary_file.is_file() else {}
+        saved_hashes=summary.get('project_summary',{}).get('export_contract_sha256')
+        if saved_hashes and saved_hashes!=hashes:raise ValueError('SUMMARY_EXPORT_CONTRACT_CHANGED')
+        if lock.is_file():
+            saved=json.loads(lock.read_text(encoding='utf8'))
+            if digest(saved)!=run['snapshot_sha']:raise ValueError('SUMMARY_RUN_SNAPSHOT_HASH_MISMATCH')
+            if snapshots is None:snapshots=saved
+        elif configuration.get('source_mode'):
+            raise ValueError('SUMMARY_RUN_SNAPSHOT_REQUIRED')
+        if membership is None and configuration.get('source_mode'):
+            members=run_dir/'canonical_membership.csv'
+            expected=summary.get('output_hashes',{}).get(members.name)
+            if not members.is_file() or (expected and filehash(members)!=expected):
+                raise ValueError('SUMMARY_RUN_MEMBERSHIP_INVALID')
+            membership=read_csv(members)
+    if audit is None:audit=standalone and bool(configuration.get('source_mode'))
     frozen=claim_declarations
     if frozen is None:frozen,_=load_claims(root,configuration.get('claims_sha256'))
     active=set(configuration.get('verified_claim_ids',claim_evidence_ids(frozen)))
@@ -739,13 +771,11 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
         elif detail.get('project') and detail.get('identity_source'):
             identity_issues[issue['entity_id']].append(issue)
     cohort={p['project_id']:p for p in rules['cohort']}
-    for member in membership:
+    for member in membership or ():
         pid=member['canonical_id']
         if member['kind']!='PROJECT' or pid in cohort or not records[pid]:continue
         entity=db.execute('SELECT native_id FROM entities WHERE entity_id=? AND kind=?',(pid,'PROJECT')).fetchone()
         if entity:cohort[pid]=dict(project_id=pid,native_id=entity['native_id'])
-    if audit and connection is None:raise ValueError('CENSUS_AUDIT_REQUIRES_CANONICAL_RUN_CONNECTION')
-    if connection is None:db.close()
     rows=[];trace={};missing=[];stage_audit=[];cache={};associations=defaultdict(set)
     diagnoses={};bundles={}
     if audit:
@@ -759,6 +789,14 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
         for pid in s.get('summary_project_ids',[]):
             if s.get('source_sha256'):associations[pid].add(s['source_sha256'])
     mapping=dict(version=rules['template.version'],mappings=rules['template.mappings'],source=dict(sha256=rules['template_source_sha256']))
+    template=dict(config=mapping,sha256=hashes['summary_rules.json'])
+    from .spatial import summary_locations
+    from .technical import summary_forecasts
+
+    @lru_cache(maxsize=16)
+    def read_spatial_json(path):
+        return json.loads(Path(path).read_text(encoding='utf8'))
+
     for project in sorted(cohort.values(),key=lambda p:p['project_id']):
         pid=project['project_id'];row=dict.fromkeys(columns,'');p=declarations.get(pid,{})
         def put(column,value,sha='',locator='',method='SOURCE_REPORTED',scope='',obs_ids=(),**extra):
@@ -809,16 +847,15 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
             with pymupdf.open(sources[bundle['source_sha256']]['resolved_path']) as doc:
                 if any(summary_norm(label) in summary_norm(page.get_text()) for page in doc):
                     put('專案名稱',row['專案名稱']+' — '+label+' resource scope',bundle['source_sha256'],resource_note['locator'],'EXISTING_PROJECT_WITH_EXPLICIT_RESOURCE_SUBSCOPE_LABEL',bundle['scope'],resource_note['ids'])
-        for fill in summary_template_fills(row,list(trace.values()),dict(config=mapping,sha256=filehash(root/'config/summary_rules.json')),rules['template_fields']):put(**fill)
+        project_trace=[trace[pid,c] for c in columns if (pid,c) in trace]
+        for fill in summary_template_fills(row,project_trace,template,rules['template_fields']):put(**fill)
         summary_deposit_fields(row,trace,attributes[pid],rules,decisions,put)
         stage_start=len(stage_audit)
         summary_stage_fields(row,trace,sources,associations,rules,decisions,put,stage_audit,cache,
             any(o['variable']=='ore_mt' for o in p.get('observations',[])),p.get('identity_declaration',{}).get('stage_inventory'))
         stage_blockers=[{k:a[k] for k in ('reason','source_sha256','physical_page') if k in a}
             for a in stage_audit[stage_start:] if a.get('reason')]
-        from .spatial import summary_locations
-        for fill in summary_locations(row,rows,registry,sources,rules,decisions):put(**fill)
-        from .technical import summary_forecasts
+        for fill in summary_locations(row,rows,registry,sources,rules,decisions,read_json=read_spatial_json):put(**fill)
         for fill in summary_forecasts(pid,studies[pid],attributes[pid],sources,rules,decisions,cutoff,row,stage_audit):put(**fill)
         docs={r['source_sha'] for r in rs if sources[r['source_sha']]['kind']=='pdf'}|{o['source_sha'] for o in observations[pid] if sources[o['source_sha']]['kind']=='pdf'}
         docs.update(a['source_sha256'] for a in attributes[pid] if sources[a['source_sha256']]['kind']=='pdf')
@@ -873,9 +910,8 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
     write_csv(out/'stage_rule_audit.csv',stage_audit,sorted({k for r in stage_audit for k in r}))
     coverage=summary_coverage(rows,columns,missing,rules)
     if audit:coverage.update(write_census_audit(db,out,rows,trace,diagnoses,observations,bundles))
-    coverage['export_contract_sha256']={name:filehash(root/'config'/name) for name in
-        ('summary_rules.json','researcher_rule_decisions.json','project_summary_columns.json')}
-    coverage.update(database_sha256=filehash(database) if connection is None else None,cutoff=cutoff,formal_C1=False,source_scope='LATEST_CANONICAL_RUN_ONLY',
+    coverage['export_contract_sha256']=hashes
+    coverage.update(database_sha256=filehash(database) if standalone else None,cutoff=cutoff,formal_C1=False,source_scope='LATEST_CANONICAL_RUN_ONLY',
         rows=len(rows),column_count=len(columns),same_mre_aggregation='NO_RESOURCE_SUMS_EXPORTED;Yttria/Mt_Stirling_NON_ADDITIVE')
     (out/names['coverage']).write_text(canonical(coverage)+'\n',encoding='utf8')
     return coverage

@@ -70,6 +70,32 @@ class SummaryContractTests(unittest.TestCase):
         listing=next(t for t in trace if t['column']=='ASX代碼')
         self.assertTrue(json.loads(listing['attribute_ids']));self.assertEqual(listing['pdf_page'],'1')
 
+    def test_completed_integrated_export_restores_external_snapshot_and_audit(self):
+        with tempfile.TemporaryDirectory() as outside:
+            original=Path(outside)/'original.pdf'
+            original.write_bytes(self.pdf.read_bytes())
+            self.source['path']=str(original)
+            self.build()
+            run=self.root/'work/runs/run'
+            run.mkdir(parents=True)
+            config=dict(source_mode='offline',sources=dict(sources=[self.source]))
+            lock=[self.source]
+            (run/'configuration.json').write_text(canonical(config),encoding='utf8')
+            (run/'snapshot_lock.json').write_text(canonical(lock),encoding='utf8')
+            (run/'canonical_membership.csv').write_text('kind,canonical_id\n',encoding='utf8')
+            self.db.execute('UPDATE runs SET config_sha=?,snapshot_sha=?',(digest(config),digest(lock)))
+            self.db.commit()
+            before=filehash(self.database)
+            coverage,rows,_,_=self.export()
+            self.assertEqual(rows[0]['ASX代碼'],'TST')
+            self.assertIn('field_status_counts',coverage)
+            self.assertTrue((self.root/'export/resource_statement_observations.csv').is_file())
+            self.assertEqual(filehash(self.database),before)
+            (run/'snapshot_lock.json').write_text('[]',encoding='utf8')
+            with self.assertRaisesRegex(ValueError,'SUMMARY_RUN_SNAPSHOT_HASH_MISMATCH'):
+                export_summary(self.root,self.database,self.root/'tampered')
+            self.assertFalse((self.root/'tampered').exists())
+
     def test_changed_original_withholds_all_source_bound_values(self):
         self.build();self.pdf.write_bytes(b'changed original')
         _,rows,_,missing=self.export()

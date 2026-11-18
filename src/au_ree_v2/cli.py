@@ -197,15 +197,15 @@ def execute(args):
         from .discovery import search_tasks, strict_search_plan
         discovery_config=json.loads((root/'config/discovery.json').read_text(encoding='utf-8'))
         fixed,deferred=strict_search_plan(root)
-        tasks=search_tasks(root,discovery_config,diagnostics=getattr(args,'gap_report',None))
+        tasks=search_tasks(root,discovery_config,diagnostics=getattr(args,'gap_report',None),record_missing=False)
         return dict(status='SEARCH_PLAN',tasks=tasks[:args.task_limit],
                     fixed_reports=[r['key'] for r in fixed['official_reports']],
-                    deferred_reports=[r['key'] for r in deferred],live_entry='all --refresh')
+                    deferred_reports=[r['key'] for r in deferred],live_entry='all --refresh',writes=False)
     if strict or args.module=='acquire':
         from .acquisition import census_acquisition
         from .evidence import load_claims
         live_claims,_=load_claims(root)
-        if any(getattr(args,k,None) for k in ('source_key','centralized','official_only','gap_report')):
+        if any(getattr(args,k,None) for k in ('source_key','gap_report')):
             raise ValueError('Use discover for targeted search planning and all --refresh for acquisition')
         snapshots,acquisition,acquisition_selection=census_acquisition(
             root,registry,acquisition_work,live_claims,args.as_of,source_replay,static_pdfs=static_pdfs,
@@ -213,11 +213,12 @@ def execute(args):
         if args.module=='acquire':
             return dict(status='COMPLETED_WITH_SOURCE_STATUS',sources=acquisition,
                         source_selection=acquisition_selection,receipt=str(acquisition_work/'source_acquisition.json'))
-    if not strict:snapshots=select_snapshots(root,args.as_of,acquired_through=acquired_through)
-    if args.snapshot_lock:
+    elif args.snapshot_lock:
         from .acquisition import checked_snapshots
         snapshots=json.loads(Path(args.snapshot_lock).read_text(encoding='utf-8'))
         checked_snapshots(root,snapshots,args.as_of,acquired_through or args.as_of)
+    else:
+        snapshots=select_snapshots(root,args.as_of,acquired_through=acquired_through)
     work.mkdir(parents=True,exist_ok=True)
     out=work/'runs'/run_id
     out.mkdir(parents=True)
@@ -661,13 +662,11 @@ def main():
                         help='Read registered PDF originals from a local library by SHA, with no network')
     parser.add_argument('--census-filter',action='append',default=[],metavar='COLUMN=VALUE',
                         help='Filter MCDA through the census, with OR within a column and AND across columns')
-    parser.add_argument('--centralized',action='store_true',help='Bounded centralized-source feasibility and official resource batch acquisition')
     parser.add_argument('--compare-to',help='Frozen prior run/results folder for coverage and rank comparison')
     parser.add_argument('--source-key');parser.add_argument('--pages',default='1');parser.add_argument('--tessdata')
     parser.add_argument('--registration',help='Source-bound native candidate Project declaration in existing claims format')
     parser.add_argument('--gap-report',help='Existing evidence_pipeline_diagnostics.csv for bounded acquisition')
     parser.add_argument('--task-limit',type=int,default=3)
-    parser.add_argument('--official-only',action='store_true',help='Bounded configured official report discovery; no issuer refresh')
     parser.add_argument('--before');parser.add_argument('--after')
     args=parser.parse_args()
     try:

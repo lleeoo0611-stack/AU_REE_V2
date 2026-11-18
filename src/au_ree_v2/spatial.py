@@ -199,11 +199,14 @@ def summary_location_name(value):
     return re.sub(r'\s+(?:project|deposit)$','',' '.join(value.split())).strip()
 
 
-def summary_locations(row, all_rows, registry, sources, rules, decisions):
+def summary_locations(row, all_rows, registry, sources, rules, decisions, *, read_json=None):
     """Native pairs and exact tenement unions; no coordinate values in declarations."""
     from .census import summary_decision,summary_norm,summary_region_text
     from .store import canonical
     import io,csv,zipfile
+    if read_json is None:
+        def read_json(path):
+            return json.loads(Path(path).read_text(encoding='utf8'))
     pid=row['專案ID'];fills=[]
     if row.get('緯度') or row.get('經度'):return fills
     approved={d.get('scope',{}).get('dataset'):d for d in decisions
@@ -234,7 +237,7 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions):
         if not source:continue
         bindings=[b for b in registered.get('summary_bindings',[]) if b['project_id']==pid]
         if bindings:
-            data=json.loads(Path(source['resolved_path']).read_text(encoding='utf8'))
+            data=read_json(source['resolved_path'])
             for b in bindings:
                 case=b['binding'];hits=[f for f in data.get('features',[]) if (f.get('attributes') or {}).get('objectid')==b['feature_id']]
                 if len(hits)!=1 or data.get('spatialReference',{}).get('wkid')!=4283 or data.get('exceededTransferLimit'):
@@ -299,7 +302,7 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions):
             controls=[]
             for other in sources.values():
                 if not other['url'].startswith(rules['government_datasets']['GA_OZMIN']['url']):continue
-                data=json.loads(Path(other['resolved_path']).read_text(encoding='utf8'))
+                data=read_json(other['resolved_path'])
                 for f in data.get('features',[]):
                     a=f.get('properties') or f.get('attributes') or {}
                     paired=native_by_name.get(summary_location_name(a.get('OCCURRENCE_NAME','')),[])
@@ -313,7 +316,7 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions):
             continue
         cfg=rules['government_datasets'][dataset]
         if cfg['kind'] not in ('arcgis','wfs'):continue
-        data=json.loads(Path(source['resolved_path']).read_text(encoding='utf8'))
+        data=read_json(source['resolved_path'])
         if data.get('exceededTransferLimit') or data.get('error'):continue
         points=[b for b in registered.get('summary_official_point_bindings',[])
                 if b['project_id']==pid and b['census_project_name']==row['專案名稱']]

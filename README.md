@@ -4,7 +4,7 @@
 
 同一入口執行來源擷取、SQLite 入庫、Census 匯出、篩選及 Phase 22 的 MCDA。
 
-[現行總表、驗收與封存索引](results/ree-project-census/README.md)
+[現行總表、驗收與封存索引](results/ree-project-census/README.md) · [維護審查與國際資料庫試跑](docs/phase22-asx-maintenance-audit.md)
 
 ```sh
 au-ree-v2 all --source-mode live --as-of 2026-11-13 --work work/census-live
@@ -30,6 +30,8 @@ au-ree-v2 all --source-mode offline --source-replay work/census-replay-bundle/so
 可加上 `--census-filter "州省地區=西澳大利亞州"` 或使用 CSV 中其他欄名及實際值。同一欄位的多個值採 OR，不同欄位採 AND。篩選記錄與來源追溯隨總表輸出。MCDA 先確認通過篩選的穩定 Project ID，再沿用各面板的證據和可比性條件。具備資料的面板將排名寫入同一個結果目錄。
 
 歷史研究仍使用下方的 `rebuild --snapshot-lock`。 `discover` 提供搜尋計畫，實際取得來源由 `all --refresh` 執行。 `acquire` 是同一擷取階段的執行入口，只回傳來源收據。
+
+已完成的整合 SQLite 可用 `export-summary --database DB_PATH --out OUTPUT_DIR` 重新匯出。保留同一工作目錄的執行設定、來源鎖、專案身分及原件，匯出會沿用並核對這些紀錄。
 
 Latest: **Phase 22 — native-candidate acquisition, source-bound evidence and shared-method MCDA**, cutoff **2026-11-05**, configuration `research-v8-native-candidate-shared-draws`. See [results, limits and reconstruction](results/phase22-2026-11-06/README.md), [verification](results/phase22-2026-11-06/evaluation.json), and [evidence priorities](results/phase22-2026-11-06/six_domain_gap_priority.csv).
 

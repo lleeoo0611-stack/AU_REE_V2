@@ -1,27 +1,14 @@
 """Provenance for a release produced by the integrated Census run."""
-import csv
 import json
 import math
 from collections import defaultdict
 from pathlib import Path
 
-from .analysis import write_csv
+from .analysis import read_csv as read_rows, write_csv
 from .census import summary_settings
 from .census_audit import date_precision
 from .security import public_export
 from .store import canonical, digest, filehash
-
-
-def read_rows(path):
-    if not path.is_file():
-        return []
-    limit = csv.field_size_limit()
-    try:
-        csv.field_size_limit(max(limit, 16 * 1024 * 1024))
-        with path.open(encoding='utf-8-sig', newline='') as stream:
-            return list(csv.DictReader(stream))
-    finally:
-        csv.field_size_limit(limit)
 
 
 def source_dates(source):

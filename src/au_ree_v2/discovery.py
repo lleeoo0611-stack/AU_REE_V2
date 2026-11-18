@@ -22,41 +22,7 @@ DOCUMENT_TERMS = {
 }
 
 
-def centralized_feasibility(root, fetch=None):
-    """Record documentation; a relative example is not an authorized API origin."""
-    import time
-    from .store import canonical
-    fetch=fetch or request;root=Path(root);receipts=[]
-    url='https://datadirector.weblink.com.au/knowledge-base/weblink-data-api/'
-    start=time.monotonic()
-    try:
-        raw,headers=fetch(url)
-        sha=hashlib.sha256(raw).hexdigest();path=root/'data/snapshots'/(sha+'.html')
-        if not path.exists():path.write_bytes(raw)
-        if filehash(path)!=sha:raise ValueError('IMMUTABLE_DOCUMENTATION_MISMATCH')
-        now=datetime.now(timezone.utc).isoformat()
-        entry=dict(key='weblink_api_documentation',kind='source_documentation',url=url,sha256=sha,path=path.relative_to(root).as_posix(),acquired_at=now,available_date=now[:10])
-        manifest_path=root/'data/manifest.json';manifest=json.loads(manifest_path.read_text())
-        if not any(s['key']==entry['key'] and s['sha256']==sha for s in manifest['snapshots']):manifest['snapshots'].append(entry)
-        append_snapshots(manifest_path,manifest['snapshots'])
-        text=re.sub('<[^>]+>',' ',raw.decode('utf8'));text=' '.join(text.split())
-        receipts.append(dict(url=url,status='DOCUMENTATION_RETRIEVED_NOT_API_SUCCESS',sha256=sha,acquired_at=now,requests=1,elapsed_seconds=time.monotonic()-start,
-            pagination_parameters=[p for p in ('year','headlinesPerPage','pageNumber','category','sensitive') if p in text],
-            relative_route_documented='/api/headline/' in text,verified_api_base_url=None,authentication=None,research_usage_authorization=None,
-            evidence_quote='Let us know your requirements so we can help further.' if 'Let us know your requirements' in text else None,
-            conclusion='ACCESS_CONDITIONS_NOT_ESTABLISHED_NO_BATCH_CALL',
-            required_provider_information=['service base URL','authentication','licensed research use and redistribution','history coverage','pagination termination semantics'],
-            contact_sent=False,purchase=False))
-    except Exception as exc:receipts.append(dict(url=url,status='DOCUMENTATION_UNAVAILABLE',**failure_details(exc),elapsed_seconds=time.monotonic()-start))
-    targets=[dict(symbol='NTU',year=2025,known_document='Browns Range DFS'),dict(symbol='REE',year=2023,known_document='Cummins enhanced scoping study')]
-    result=dict(version='centralized-feasibility-v1',status='BOUNDED_DOCUMENTATION_CHECK',weblink=receipts,predeclared_targets=targets,
-        company_year_api_test='NOT_EVALUATED_ACCESS_CONDITIONS_NOT_ESTABLISHED',known_document_recall=None,new_documents=0,new_usable_fields=0,
-        efficiency_comparison='NOT_ESTIMABLE_WITHOUT_AUTHORIZED_INDEX; no time-saving claim',investorhub_investi='SUPPLEMENTARY_NOT_NEW_ADAPTERS')
-    (root/'data/phase16_centralized_feasibility.json').write_text(canonical(result)+'\n',encoding='utf8')
-    return result
-
-
-def search_tasks(root, registry, diagnostics=None, db=None, snapshots=None):
+def search_tasks(root, registry, diagnostics=None, db=None, snapshots=None, *, record_missing=True):
     """Registry-derived jobs reuse issuer endpoints; missing endpoints stay unknown.
 
     Aliases and company/ASX identifiers are discovery context, never entity
@@ -110,15 +76,20 @@ def search_tasks(root, registry, diagnostics=None, db=None, snapshots=None):
     for p in projects:
         source={**registered.get(p['identity_source'],{}),**sources.get(p['identity_source'],{})}
         code=source.get('asx_code');code_evidence=None
-        if registry.get('task_execution_version') and not code and source.get('kind')=='pdf' and ((source.get('path') and (Path(root)/source['path']).exists()) or __import__('au_ree_v2.acquisition',fromlist=['record_source_not_acquired']).record_source_not_acquired(root,p['identity_source'],source)):
-            # Search context only, read from existing verified issuer header.
-            try:
-                if filehash(Path(root)/source['path'])!=source['sha256']:raise ValueError('SOURCE_HASH_MISMATCH')
-                import pymupdf
-                with pymupdf.open(Path(root)/source['path']) as pdf:
-                    codes=set(re.findall(r'\bASX\s*[:|]\s*([A-Z][A-Z0-9]{1,4})\b',pdf[0].get_text(sort=True)))
-                if len(codes)==1:code=next(iter(codes));code_evidence=source['sha256']
-            except (ValueError,OSError):pass
+        if registry.get('task_execution_version') and not code and source.get('kind')=='pdf':
+            path=Path(root)/source['path'] if source.get('path') else None
+            if path is not None and path.is_file():
+                # Search context only, read from an existing verified issuer header.
+                try:
+                    if filehash(path)!=source['sha256']:raise ValueError('SOURCE_HASH_MISMATCH')
+                    import pymupdf
+                    with pymupdf.open(path) as pdf:
+                        codes=set(re.findall(r'\bASX\s*[:|]\s*([A-Z][A-Z0-9]{1,4})\b',pdf[0].get_text(sort=True)))
+                    if len(codes)==1:code=next(iter(codes));code_evidence=source['sha256']
+                except (ValueError,OSError):pass
+            elif record_missing:
+                from .acquisition import record_source_not_acquired
+                record_source_not_acquired(root,p['identity_source'],source)
         matches=[s for s in registry['seeds'] if s.get('project_id')==p['entity_id'] or
                  any(a.casefold() in json.dumps(s).casefold() for a in p['aliases'])]
         tasks.append(dict(project_id=p['entity_id'],project_name=p['name'],aliases=p['aliases'],
@@ -418,6 +389,7 @@ def strict_search_plan(root):
 
 
 def discover(root, registry, fetch=request, diagnostics=None, task_limit=3):
+    """Historical discovery executor retained for Phase 4–14 regression fixtures."""
     import time
     started=time.monotonic()
     root=Path(root);registry=json.loads(json.dumps(registry)); path=root/'data/manifest.json'
