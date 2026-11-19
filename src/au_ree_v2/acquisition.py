@@ -1048,6 +1048,14 @@ def census_admission(root, source, registered, claim_hashes, cutoff):
     date_basis = 'DOCUMENT_PUBLICATION' if documentary and publication else 'SOURCE_AVAILABILITY'
     date_value = publication if date_basis == 'DOCUMENT_PUBLICATION' else availability
     used = date_end(date_value) if date_value else ''
+    month_interval = registered.get('publication_date_interval')
+    month_precision = str(registered.get('publication_date_precision', '')).lower() == 'month'
+    interval_mismatch = False
+    if date_basis == 'DOCUMENT_PUBLICATION' and month_precision:
+        month = publication[:7]
+        used = date_end(month)
+        if month_interval is not None:
+            interval_mismatch = month_interval != [month + '-01', used]
     after_cutoff = used>cutoff or (publication and date_end(publication)>cutoff)
     cutoff_status = ('SOURCE_AFTER_CUTOFF' if after_cutoff else 'WITHIN_CUTOFF' if used else 'SOURCE_DATE_UNVERIFIED')
     approved = {h for h in (registered.get('source_sha256'), registered.get('committed_snapshot_sha256'),
@@ -1058,7 +1066,7 @@ def census_admission(root, source, registered, claim_hashes, cutoff):
             version_status = 'DECLARED_CONTENT_AND_RECEIPT_SHA_VERIFIED'
         else:
             version_status = 'SOURCE_VERSION_NOT_DECLARED'
-    if (documentary and publication and registered_publication and
+    if interval_mismatch or (documentary and publication and registered_publication and
             not (publication.startswith(registered_publication) or registered_publication.startswith(publication))):
         cutoff_status = 'SOURCE_PUBLICATION_DATE_MISMATCH'
     return dict(kind=kind,cutoff=cutoff,publication_date=publication,available_date=availability,
