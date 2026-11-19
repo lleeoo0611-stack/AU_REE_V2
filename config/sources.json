@@ -3376,30 +3376,12 @@
           "decision_id": "round4-tenement-centroid-20261113"
         }
       ],
-      "snapshot_provenance": {
+      "availability_evidence": {
         "wfs_generated_at": "2026-11-12T19:48:01.576Z",
         "public_no_later_than": "2026-11-13T02:05:36Z",
-        "archived_git_activity": [
-          {
-            "id": 50097347219,
-            "timestamp": "2026-11-13T02:05:36Z",
-            "ref": "refs/heads/experiment/round4-researcher-approved-20261113",
-            "tree_head": "a35b151c92cc982dc0758cb4966c1655cf9fe9bb",
-            "git_blob": "d92a38a7c76d8cb93e52275b4e4d9ff36448967e",
-            "git_path": "results/round4-4-2026-11-13/acquisition/31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953.raw",
-            "response_sha256": "5ec027c7d83faf38f92922ba48e6050397bd24c148147afc76fc3d33a7ca6c4d",
-            "api_url": "https://api.github.com/repos/lleeoo0611-stack/AU_REE_V2/activity?ref=refs%2Fheads%2Fexperiment%2Fround4-researcher-approved-20261113&time_period=month&per_page=100"
-          },
-          {
-            "id": 50119919755,
-            "timestamp": "2026-11-13T06:34:19Z",
-            "ref": "refs/heads/experiment/round5-researcher-approved-20261113",
-            "tree_head": "980bedbcc250e720e1eab9c734032b5df72c3c39",
-            "git_blob": "d92a38a7c76d8cb93e52275b4e4d9ff36448967e",
-            "git_path": "results/round4-4-2026-11-13/acquisition/31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953.raw",
-            "response_sha256": "9e7bd9a53e83811a43f1a94fa3db7ffbe0aae1bed41ac2f9d59e67085bdd76f2",
-            "api_url": "https://api.github.com/repos/lleeoo0611-stack/AU_REE_V2/activity?ref=refs%2Fheads%2Fexperiment%2Fround5-researcher-approved-20261113&time_period=month&per_page=100"
-          }
+        "evidence_sha256": [
+          "5ec027c7d83faf38f92922ba48e6050397bd24c148147afc76fc3d33a7ca6c4d",
+          "9e7bd9a53e83811a43f1a94fa3db7ffbe0aae1bed41ac2f9d59e67085bdd76f2"
         ]
       }
     }
