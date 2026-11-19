@@ -1,8 +1,12 @@
 # Phase 22 × ASX Project Census
 
-同一個 `au-ree-v2 all` 入口執行來源選入、證據驗證、SQLite 入庫、總表匯出、篩選與 MCDA。SQLite 結構、證據範圍、分數規則、情境權重和三方法 R 引擎沿用 Phase 22。總表保留 ASX 測試的 51 欄，與 2026-11-16 HTML 共用欄位及順序相符。
+同一個 `au-ree-v2 all` 入口執行來源選入、證據驗證、SQLite 入庫、總表匯出、篩選與 MCDA。證據範圍、分數規則、情境權重和三方法 R 引擎沿用 Phase 22。整合開發版對既有 SQLite 增加可遷移的查詢視圖。總表保留 ASX 測試的 51 欄，與 2026-11-16 HTML 共用欄位及順序相符。
 
-## 現行成果
+## 整合證據模型審查版
+
+93 案共 4,743 格，有值 2,457 格、不適用 1,709 格、待補證 577 格。新增 Voyager 礦床型態。樣品方法、候選十二階段及正式 C1 六項資格均可從同次重播查核。[整合審查與驗收](integrated-evidence-v1-20261120/README.md) · [Census 總表](integrated-evidence-v1-20261120/REE%20project%20census.csv)
+
+## 前版 620 格缺值處理
 
 本輪執行 620 格待補證的處理方案。補入 46 格，另有 2 格改判不適用。全表現有 578 格待補證。[發布說明](plan620-20261119/README.md) · [Census 總表](plan620-20261119/REE%20project%20census.csv) · [逐格處置](plan620-20261119/gap_disposition.csv)
 

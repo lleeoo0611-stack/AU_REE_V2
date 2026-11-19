@@ -2,7 +2,7 @@
 
 ## 2026-11-20 整合證據模型開發版
 
-Census 使用 2026-11-13 的來源截日，技術揭露使用 2026-11-05 的編碼基準，正式 C1 使用政策指定的 2026-10-29。SQLite 寫入連線可原地遷移先前版本。正式六 Gate、研究用十二階段與樣品方法均有各自的可追溯輸出。[資料契約](docs/phase22-asx-maintenance-audit.md) · [正式資格](docs/phase4-discovery-eligibility.md)
+Census 使用 2026-11-13 的來源截日，技術揭露使用 2026-11-05 的編碼基準，正式 C1 使用政策指定的 2026-10-29。SQLite 寫入連線可原地遷移先前版本。正式六 Gate、研究用十二階段與樣品方法均有各自的可追溯輸出。[本版實際結果與驗收](results/ree-project-census/integrated-evidence-v1-20261120/README.md) · [資料契約](docs/phase22-asx-maintenance-audit.md) · [正式資格](docs/phase4-discovery-eligibility.md)
 
 在乾淨 checkout 安裝套件、R 4.5.2 和 Tesseract 英文模型。先把本版的原件套件放在指定位置。該套件包括 `assets/<SHA-256>`、`asset_manifest.json`、`bundle_verification.json` 及 `source_acquisition.json`。原件由提供套件的保管人交付，公開倉庫提供收據。CLI 在空的工作目錄建庫。
 

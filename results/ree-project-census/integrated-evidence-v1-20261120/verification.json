@@ -1,0 +1,336 @@
+{
+  "base_commit": "a03cfb194a0e8ab2d9a441e4a1b6ea14e86ead61",
+  "code": {
+    "package": "0.1.0",
+    "commit": "4c3a94e606d109f52cecc942acec48c64d8f648e",
+    "content_sha256": "9faf99849bfa8429c37938c26ca88597582ef69938e27764844fffde84d27fe7"
+  },
+  "config_sha256": "35f2723687eab87223e250c72c53b88308b3a90705d047497d55958a1f34b3be",
+  "cutoff": "2026-11-13",
+  "runtime": {
+    "constraints_sha256": "99d64aab431ee62f4757421c38e1ddefd4e2a2eb9eaac882fc4e6d083a3d9f57",
+    "ocr_eng_sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+    "packages": {
+      "PyMuPDF": "1.26.7",
+      "certifi": "2025.11.12",
+      "et_xmlfile": "2.0.0",
+      "numpy": "2.3.5",
+      "openpyxl": "3.1.5",
+      "pypdf": "6.10.0",
+      "pyproj": "3.7.2",
+      "shapely": "2.1.2"
+    },
+    "python": "3.13.12",
+    "r": "Rscript (R) version 4.5.2 (2025-10-31)",
+    "sqlite": "3.50.4",
+    "tesseract": "tesseract v5.4.0.20240606"
+  },
+  "declared_input_receipt_sha256": "f434c37cf8af74940aaa1c508ab25abbf04a81fd4dc3abe2501b2e2a7cb08db5",
+  "generated_execution_receipt_sha256": "275558478db162d5ba64e7f51a19134375bd52634ab26bdb845c1ad872d1051b",
+  "source_receipt_note": "Input receipt identifies immutable bindings; generated receipt records resolved original locations for this run.",
+  "frozen": 64,
+  "bundle": {
+    "asset_bytes": 1268847893,
+    "assets": 684,
+    "lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
+    "manifest_sha256": "9fcdfea0cf4fb55fb2a29d2b397c34f48d681d28fe3cb2bb897a6960383b6c16",
+    "manifest_version": 2,
+    "receipt_sha256": "f434c37cf8af74940aaa1c508ab25abbf04a81fd4dc3abe2501b2e2a7cb08db5",
+    "references": 774,
+    "storage": "Local portable kit; originals supplied by the custodian",
+    "historical_references_without_acquisition_method": 689,
+    "references_with_acquisition_method": 85,
+    "references_with_version_matched_snapshot_receipt": 300
+  },
+  "sqlite": {
+    "integrity": "ok",
+    "foreign_key_violations": 0,
+    "schema_version": 1,
+    "entities": {
+      "COMPANY": 1,
+      "DEPOSIT": 301,
+      "DEPOSIT_SCOPE": 53,
+      "OCCURRENCE": 281,
+      "PROJECT": 94,
+      "PROJECT_CANDIDATE": 129,
+      "PROJECT_PROGRAM": 1,
+      "PROSPECT": 191,
+      "SITE": 820,
+      "SOURCE_RECORD": 449,
+      "TENEMENT": 5525
+    },
+    "observations": {
+      "AUTO_VALIDATED": 2882,
+      "DOCUMENTED_GOVERNMENT_RAW": 35617,
+      "OFFICIAL_SUMMARY_SCOPE_UNVERIFIED": 558,
+      "REVIEW": 460
+    },
+    "resource_statement_editions": 328,
+    "resource_statement_facts": 1210,
+    "all_observations": 39517,
+    "study_cases": 9,
+    "source_sha_count": 861
+  },
+  "stable_project_ids": 93,
+  "coverage": {
+    "present": 2457,
+    "not_applicable": 1709,
+    "unknown": 577
+  },
+  "independent_readonly_exports": {
+    "assay_method_evidence.csv": true,
+    "field_provenance.csv": true,
+    "field_status.csv": true,
+    "formal_c1_gates.csv": true,
+    "formal_c1_panel_comparison.csv": true,
+    "formal_c1_release.json": true,
+    "milestone_comparison.csv": true,
+    "milestone_events.csv": true,
+    "missing_fields.csv": true,
+    "resource_statement_lineage.csv": true,
+    "resource_statement_observations.csv": true,
+    "spatial_point_quality.csv": true,
+    "專案總表.csv": true,
+    "stage_rule_audit.csv": true
+  },
+  "replicated_rank_files": {
+    "beneficiation_concentrate_screen": true,
+    "disclosure_only": true,
+    "issuer_resource_composition": true,
+    "issuer_resource_concentrate": true,
+    "issuer_resource_concentrate_recovery": true,
+    "issuer_resource_financing_milestone": true,
+    "issuer_resource_infrastructure": true,
+    "issuer_resource_study": true,
+    "official_wa_resource_screen": true,
+    "resource_disclosure": true,
+    "resource_infrastructure_pilot": true,
+    "resource_port_disclosure": true,
+    "six_domain": true,
+    "six_domain_disclosure": true,
+    "technical_process_concentrate_fixed": true,
+    "technical_process_concentrate_sample_minmax": true
+  },
+  "full_replay": {
+    "network": "Python socket.connect and DNS disabled",
+    "build": "new empty work directory, no preexisting database",
+    "r_skipped": false,
+    "seed": {
+      "dirichlet_concentration": 30,
+      "method_version": "entity-keyed-rng-v2",
+      "reps": 1000,
+      "seed": 20261102
+    },
+    "run_id": "20261119T184915-00daba84"
+  },
+  "panels": {
+    "beneficiation_concentrate_screen": 2,
+    "disclosure_only": 20,
+    "issuer_resource_composition": 10,
+    "issuer_resource_concentrate": 2,
+    "issuer_resource_concentrate_recovery": 2,
+    "issuer_resource_financing_milestone": 8,
+    "issuer_resource_infrastructure": 6,
+    "issuer_resource_study": 7,
+    "official_wa_resource_screen": 17,
+    "resource_disclosure": 14,
+    "resource_infrastructure_pilot": 17,
+    "resource_port_disclosure": 12,
+    "six_domain": 5,
+    "six_domain_disclosure": 5,
+    "technical_process_concentrate_fixed": 2,
+    "technical_process_concentrate_sample_minmax": 2
+  },
+  "gates": {
+    "source_asof": "2026-10-29",
+    "signed_eligible": 0,
+    "releasable": []
+  },
+  "assays": {
+    "verified": 4,
+    "explicit_standard": 0
+  },
+  "migration": {
+    "version": 1,
+    "database_integrity": "ok",
+    "foreign_key_violations": 0,
+    "unchanged_base_tables": [
+      "entities",
+      "records",
+      "relations",
+      "observations",
+      "study_cases"
+    ],
+    "counts": {
+      "entities": 7845,
+      "relations": 2009,
+      "observations": 39516,
+      "resource_statement_editions": 328,
+      "resource_statement_facts": 1210,
+      "technical_study_context": 9,
+      "product_disclosures": 27,
+      "company_role_disclosures": 5767
+    },
+    "auto_validated": 2881,
+    "legacy_resource_rows": 519,
+    "new_corresponding_rows": 519,
+    "legacy_selected_groups": 38,
+    "unmatched_facts": 0,
+    "selection_candidate_differences": [],
+    "derived_field_lineage": 716,
+    "derived_rows_with_unresolved_support": 0,
+    "estimate_kind_counts": {
+      "MINERAL_RESOURCE": 141,
+      "ORE_RESERVE": 97,
+      "RESOURCE_CONTEXT": 85,
+      "UNSPECIFIED": 5
+    },
+    "source_date_roles": {
+      "LEGACY_REFERENCE_UNVERIFIED": 1711,
+      "LISTING_REFERENCE": 27,
+      "NATIVE_ID_MATCH_POLICY": 83,
+      "SOURCE_AVAILABILITY": 22,
+      "SOURCE_PUBLICATION": 166
+    }
+  },
+  "moved_previous_run": {
+    "run_id": "20261119T091557-5b7388f4",
+    "method": "Moved completed database and run records including verified pages to another checkout; matched original configuration and export contract; SHA-verified source relocation only",
+    "snapshots": 1515,
+    "attachments": 259,
+    "unique_paths": 1120,
+    "membership": 7791,
+    "acquisition_outcomes": 234,
+    "input_files_within_declared_checkout": 1120,
+    "external_legacy_files_read": 0,
+    "readonly_db_unchanged": true
+  },
+  "sqlite_after_readonly_export": {
+    "before": "cdeff4d8ae4c2f7b7726142ca50d26cb21b687ffb5c8e948822cae721a74ebb9",
+    "after": "cdeff4d8ae4c2f7b7726142ca50d26cb21b687ffb5c8e948822cae721a74ebb9",
+    "unchanged": true
+  },
+  "comparison_to_plan620": {
+    "panels": 16,
+    "matching_input_output_digests": 160,
+    "stages": 23,
+    "criterion_lineage_count": 318,
+    "project_ids_and_columns_stable": true
+  },
+  "independent_full_run": {
+    "code": {
+      "package": "0.1.0",
+      "commit": "88022eec4fc259373efdfe9b1b7ad5f4e648405e",
+      "content_sha256": "c3a7260bc9dc64191b282d46852f29c734d5b915eb96ff4d5e429b1e07bbb443"
+    },
+    "run_id": "20261119T184127-ada19296",
+    "network": "offline source replay",
+    "ranked_panels": 16,
+    "science_files_checked": 160,
+    "science_files_matched": 160
+  },
+  "independent_readonly_coverage": "MATCHED except database_sha256, logical_database_sha256 and database_run_id (execution identifiers)",
+  "source_code_heads": {
+    "science": "4c3a94e606d109f52cecc942acec48c64d8f648e",
+    "workflow_diagnostic_fix": "d2bc53ba4d4b14fa7f9943e33dc8eddf29f100d5",
+    "portable_manifest_tool": "ec23344"
+  },
+  "r_tests": {
+    "status": "passed",
+    "suites": [
+      "analytical invariants",
+      "identity RNG",
+      "evidence cohort and mathematical contribution",
+      "zero weight exclusion",
+      "technical group budget"
+    ]
+  },
+  "tests": {
+    "full_science_checkout": {
+      "commit": "4c3a94e606d109f52cecc942acec48c64d8f648e",
+      "passed": 560,
+      "command": "python -m unittest discover -s tests -v"
+    },
+    "subsequent_tooling_checkout": {
+      "commit": "ec23344",
+      "targeted_tests_passed": 18,
+      "suites": [
+        "test_replay_portability",
+        "test_v5_workflow_diagnostics"
+      ],
+      "overlap_with_full_suite": true
+    }
+  },
+  "live_acquisition": {
+    "scope": "ASX live preflight from the real network; published cohort uses pinned offline sources",
+    "asx": [
+      {
+        "key": "asx_nolans_clarification202606",
+        "status": "UNAVAILABLE",
+        "reason": "NOT_PDF",
+        "sha256": ""
+      },
+      {
+        "key": "north_dam20230822",
+        "status": "HOST_STOPPED",
+        "reason": "HOST_STOPPED:NOT_PDF",
+        "sha256": ""
+      },
+      {
+        "key": "asx_redlings_maiden202501",
+        "status": "HOST_STOPPED",
+        "reason": "HOST_STOPPED:NOT_PDF",
+        "sha256": ""
+      },
+      {
+        "key": "browns_range_2025",
+        "status": "FETCHED",
+        "reason": "",
+        "sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075"
+      },
+      {
+        "key": "mia_ar2024",
+        "status": "FETCHED",
+        "reason": "",
+        "sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95"
+      },
+      {
+        "key": "yttria_2025",
+        "status": "FETCHED",
+        "reason": "",
+        "sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668"
+      }
+    ],
+    "dns_hosts_passed": 50,
+    "full_local_live_run": "At snapshot 2026-11-19T19:10Z the full live registry run was ongoing; no completed receipt. Separate from the 6 checked ASX requests and the completed offline scientific builds.",
+    "voyager": {
+      "replay_only": true,
+      "static_pdf_bytes": 333419,
+      "date_basis": "DOCUMENT_PUBLICATION",
+      "publication": "2023-08-14",
+      "local_receipt_available": "2026-11-19"
+    }
+  },
+  "github": {
+    "head_at_online_submission": "ec23344",
+    "checked_at": "2026-11-19T19:10:00Z",
+    "clean_public_build": {
+      "run": 44594143412,
+      "status": "in_progress"
+    },
+    "research": {
+      "run": 44594143506,
+      "status": "in_progress",
+      "completed_steps": [
+        "Core, clean bootstrap and replay tests",
+        "R analytical regression"
+      ]
+    },
+    "updated_status": "See Draft PR #13 checks and the final review record."
+  },
+  "preserved_http_diagnostic": {
+    "receipt": "acquisition_report.csv",
+    "sha256": "9da3d7aab35086d5d1c182eec9468ba653e0c0d97262616be188900e16efc900",
+    "note": "The archived HTTP 401 diagnostic retains its original trailing space."
+  }
+}
