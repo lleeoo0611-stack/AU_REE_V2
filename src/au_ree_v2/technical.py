@@ -1323,6 +1323,32 @@ def summary_annual_region(page, rect):
         if rect.x0<=(w[0]+w[2])/2<=rect.x1 and rect.y0<=(w[1]+w[3])/2<=rect.y1)
 
 
+def summary_annual_hmc_card(doc, review, study, spec, parameter, value, evidence):
+    """Read annual HMC mass and its TREO grade from the same labelled product card."""
+    import pymupdf
+    if (parameter != 'average_annual_treo_product_t' or study['endpoint'] != 'MINERAL_CONCENTRATE'
+            or any(spec.get(k) != review[k] for k in ('source_sha256', 'scope', 'statement_id', 'effective_date'))):
+        raise ValueError('HMC_PRODUCT_SCOPE_MISMATCH')
+    page_no = spec['evidence']['page']
+    if page_no != review['pdf_page'] or page_no != study['annual_basis_evidence']['page']:
+        raise ValueError('HMC_PRODUCT_PAGE_MISMATCH')
+    evidence(spec['evidence'])
+    page = doc[page_no - 1]
+    box = pymupdf.Rect(spec['bbox'])
+    if box.is_empty or not page.rect.contains(box):
+        raise ValueError('HMC_PRODUCT_REGION_INVALID')
+    statement = summary_annual_norm(summary_annual_region(page, box))
+    match = re.fullmatch(
+        r'product & annual production rate • hmc \((\d+(?:\.\d+)?)% treo in monazite and xenotime, '
+        r'\d+(?:\.\d+)?% zro2\+hf02, \d+(?:\.\d+)?% tio2 in ilmenite; \d+(?:\.\d+)?% tio2 in rutile\): '
+        r'(\d+(?:,\d{3})*(?:\.\d+)?)\s*ktpa', statement)
+    if not match or statement != summary_annual_norm(spec['statement']):
+        raise ValueError('HMC_PRODUCT_MASS_GRADE_OR_UNIT_UNVERIFIED')
+    percent, mass_ktpa = (Decimal(token.replace(',', '')) for token in match.groups())
+    if not 0 < percent <= 100 or mass_ktpa <= 0 or mass_ktpa * 10 * percent != Decimal(str(value)):
+        raise ValueError('HMC_PRODUCT_TREO_CONVERSION_MISMATCH')
+
+
 def summary_annual_cell(doc,binding,field,token,unit,scope,selected_scenario=None,selected_sections=None):
     """Annual-only native branches of the reviewed cell validator, with no image fallback."""
     import pymupdf
@@ -1340,6 +1366,8 @@ def summary_annual_cell(doc,binding,field,token,unit,scope,selected_scenario=Non
         return box
     if mode == 'native_statement':
         statement = summary_annual_norm(page.get_textbox(rect('statement_bbox')))
+        if binding.get('semantic_profile')=='annual_hmc_contained_ndpr_oxide':
+            statement=summary_annual_norm(summary_annual_region(page,rect('statement_bbox')))
         if statement != summary_annual_norm(binding.get('statement', '')):
             fail('STATEMENT_MISMATCH')
         prefix, suffix = summary_annual_norm(binding.get('before', '')), summary_annual_norm(binding.get('after', ''))
@@ -1347,7 +1375,16 @@ def summary_annual_cell(doc,binding,field,token,unit,scope,selected_scenario=Non
         wanted = number_token(str(token))
         if not match or not wanted or number_token(match[1])['value'] != wanted['value']:
             fail('STATEMENT_TOKEN_MISMATCH')
-        if field=='average_annual_ndpr_product_t' and binding.get('semantic_profile')=='yangibana_annual_ndpr_in_treo':
+        if field=='average_annual_ndpr_product_t' and binding.get('semantic_profile')=='annual_hmc_contained_ndpr_oxide':
+            context_box=rect('time_basis_bbox')
+            context=summary_annual_norm(summary_annual_region(page,context_box))
+            if (prefix or suffix!='tonnes of light rare earth oxides (neodymium and praseodymium)' or
+                    unit!='tonnes' or binding.get('original_unit')!=unit or
+                    context_box.y1>rect('statement_bbox').y0 or not re.fullmatch(
+                        r'once operational, the project will produce up to [\d,]+ tonnes per year of heavy '
+                        r'mineral concentrate \(hmc\), including approximately:',context)):
+                fail('STATEMENT_ANNUAL_HMC_OXIDE_REQUIRED')
+        elif field=='average_annual_ndpr_product_t' and binding.get('semantic_profile')=='yangibana_annual_ndpr_in_treo':
             # A separately constrained disclosure profile: the NdPr amount is
             # explicitly included in average annual contained rare-earth oxides.
             pattern=(r'approximately [\d,]+(?:\.\d+)? tonnes per annum; and average annual contained '
@@ -1397,7 +1434,24 @@ def summary_annual_cell(doc,binding,field,token,unit,scope,selected_scenario=Non
     metric=summary_annual_norm(binding['row_label'])
     if forecast:
         if not selected_scenario or label!=summary_annual_norm(selected_scenario):fail('SCENARIO')
-        if binding.get('forecast_orientation')=='product_rows':
+        if binding.get('forecast_orientation')=='separated_oxide_total':
+            # Table 9 lists the complete heap-leach product slate, with distinct
+            # years 3–15 and life-of-mine columns. Only the last is selected.
+            products=anchor('product_labels_bbox','product_labels',table)
+            header=anchor('rate_header_bbox','rate_header',table)
+            names=rect('product_labels_bbox')
+            entire_slate=pymupdf.Rect(names.x0,rect('column_label_bbox').y1,names.x1,row.y0)
+            if (field!='average_annual_treo_product_t' or metric!='total' or label!='lom' or
+                    summary_annual_norm(binding['table_label'])!='table 9 - dubbo project product summary' or
+                    products!='nd/pr oxide (solid) tb oxide (solid) dy oxide (solid)' or
+                    summary_annual_norm(summary_annual_region(page,entire_slate))!=products or
+                    header!='average metric tonnes per annum (tpa)' or actual_unit!='tpa' or
+                    not rect('rate_header_bbox').contains(rect('unit_bbox')) or
+                    not (rect('column_label_bbox').y1<=rect('product_labels_bbox').y0 and
+                         rect('product_labels_bbox').y1<=row.y0)):
+                fail('SEPARATED_OXIDE_PRODUCT_TOTAL')
+            metric='average annual production treo'
+        elif binding.get('forecast_orientation')=='product_rows':
             target='total' if field=='average_annual_treo_product_t' else 'ndpr oxide'
             if metric!=target or label!='average reo*' or actual_unit!='t' or not context.startswith('* average production is calculated as the arithmetic annual average') or 'ramp up' not in context or 'low grade stockpiles' not in context:fail('PRODUCT_SEMANTICS')
             if not column.contains(rect('unit_bbox')):fail('PRODUCT_UNIT_SCOPE')
@@ -1444,6 +1498,8 @@ def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutof
                     spec=study.get('parameter_derivations',{}).get(parameter)
                     if spec and spec.get('method')==rules['model_annual_method']:
                         summary_model_annual(doc,a,study,spec,value,evidence,rules)
+                    elif spec and spec.get('method')=='ANNUAL_HMC_KTPA_X_PRODUCT_TREO_PERCENT':
+                        summary_annual_hmc_card(doc,a,study,spec,parameter,value,evidence)
                     elif spec:
                         summary_product_annual(spec,value,study['annual_basis_evidence']['page'],evidence)
                         for item in spec['inputs']:
@@ -1472,6 +1528,8 @@ def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutof
         chosen,_=choose(options,('scope','endpoint','element','scale'))
         if chosen:
             method='MODEL_ASSUMPTION_DERIVED_ANNUAL_NDPR_NOT_DIRECT_REPORTED_OUTPUT' if chosen['spec'].get('method')==rules['model_annual_method'] else 'DATED_ENGINEERING_FORECAST_T_PER_YEAR_NOT_OPERATING_OUTPUT'
+            if chosen['spec'].get('method')=='ANNUAL_HMC_KTPA_X_PRODUCT_TREO_PERCENT':
+                method=chosen['spec']['method']
             fills.append(dict(column=column,value=chosen['value'],sha=chosen['source_sha256'],locator=chosen['locator'],method=method,scope=canonical(dict(study_scope=chosen['scope'],derivation=chosen['spec'])),obs_ids=chosen['ids']))
     products=[dict(evidence_id=s['case_id'],source_sha256=s['source_sha'],effective_date=s['effective_date'],scope=s['scope'],
         endpoint=s['endpoint'],scale=s['scale'],value=s['endpoint'],locator=json.loads(s['raw'])['locator'],ids=[s.get('obs_id',s['case_id'])]) for s in models]

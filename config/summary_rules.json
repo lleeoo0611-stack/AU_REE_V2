@@ -761,6 +761,10 @@
         "heavy mineral bearing sandstone unit": [
           "hard",
           "g4"
+        ],
+        "continuous, strandline-type mineral sands placer deposit": [
+          "placer",
+          "placer"
         ]
       },
       "source_file": "src/au_ree_v2/round2_deposit.py",
@@ -1309,7 +1313,8 @@
       "value": [
         "NOT_APPLICABLE_STAGE",
         "NO_COMPARATOR_SOURCE",
-        "NOT_APPLICABLE_NO_MRE"
+        "NOT_APPLICABLE_NO_MRE",
+        "NOT_APPLICABLE_UNLISTED_DEVELOPER"
       ],
       "source_file": "config/blank_classification.json",
       "source_key": "excluded_from_adjusted_denominator"

@@ -301,6 +301,41 @@ class SummaryContractTests(unittest.TestCase):
 
 
 class IntegratedRuleTests(unittest.TestCase):
+    def test_contains_product_grade_and_correct_annual_mass_unit(self):
+        from au_ree_v2.technical import summary_annual_hmc_card
+        review=dict(scope='HMC',statement_id='hmc',source_sha256='a'*64,effective_date='2026-04-10',pdf_page=1)
+        study=dict(endpoint='MINERAL_CONCENTRATE',annual_basis_evidence={'page':1})
+        text='Product & Annual Production Rate • HMC (2.6% TREO in monazite and xenotime, 18.0% ZrO2+Hf02, 25.2% TiO2 in ilmenite; 7.5% TiO2 in rutile): 280ktpa'
+        for statement,expected,valid in ((text,7280,True),(text,280000,False),(text.replace('280ktpa','280tpa'),7280,False),(text.replace('TREO','NdPr'),7280,False)):
+            with self.subTest(statement=statement,expected=expected),pymupdf.open() as doc:
+                page=doc.new_page(width=1000,height=100)
+                # WinAnsi byte 0x95 maps to a native bullet in the built-in font.
+                page.insert_text((10,28),statement.replace('•',chr(149)),fontsize=10)
+                spec=dict(review,evidence={'page':1},bbox=[5,5,995,48],statement=statement)
+                args=(doc,review,study,spec,'average_annual_treo_product_t',expected,lambda e:None)
+                if valid:summary_annual_hmc_card(*args)
+                else:
+                    with self.assertRaises(ValueError):summary_annual_hmc_card(*args)
+
+    def test_issuer_ndpr_output_needs_annual_hmc_context_and_oxide_label(self):
+        from au_ree_v2.technical import summary_annual_cell
+        field='average_annual_ndpr_product_t'
+        heading='Once operational, the project will produce up to 280,000 tonnes per year of heavy mineral concentrate (HMC), including approximately:'
+        unit_label='tonnes of light rare earth oxides (neodymium and praseodymium)'
+        for context,label,valid in ((heading,unit_label,True),(heading.replace('per year','in total'),unit_label,False),(heading,unit_label.replace(' oxides',' minerals'),False)):
+            with self.subTest(context=context,label=label),pymupdf.open() as doc:
+                page=doc.new_page(width=850,height=100)
+                page.insert_text((10,20),context,fontsize=9)
+                statement='1,800 '+label
+                page.insert_text((10,42),statement,fontsize=9)
+                claim=dict(mode='native_statement',field=field,scope='HMC',page=1,original_unit='tonnes',
+                    semantic_profile='annual_hmc_contained_ndpr_oxide',statement_bbox=[5,29,845,47],statement=statement,
+                    before='',after=label,time_basis_bbox=[5,5,845,24])
+                args=(doc,claim,field,'1800','tonnes','HMC')
+                if valid:self.assertEqual(summary_annual_cell(*args),'NATIVE_SCOPED_STATEMENT_BINDING')
+                else:
+                    with self.assertRaises(ValueError):summary_annual_cell(*args)
+
     def test_new_individual_vocabulary_never_uses_total_variable(self):
         rules,_=summary_settings(ROOT);mapping={'La2O3':'la2o3','CeO2':'ceo2','Sm2O3':'sm2o3','Eu2O3':'eu2o3','Gd2O3':'gd2o3','Ho2O3':'ho2o3','Er2O3':'er2o3','Tm2O3':'tm2o3','Yb2O3':'yb2o3','Lu2O3':'lu2o3'}
         claims=json.loads((ROOT/'data/claims.json').read_text(encoding='utf8'))

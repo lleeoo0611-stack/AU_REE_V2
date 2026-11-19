@@ -2654,6 +2654,30 @@
           },
           "dataset": "GA2025",
           "id_field": "OBJECTID"
+        },
+        {
+          "project_id": "AU-ff758cad5beb276d327d",
+          "feature_id": 2294,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "coordinate_scope_review_AU-ff758cad5beb276d327d",
+            "project_id": "AU-ff758cad5beb276d327d",
+            "census_project_name": "Wimmera Mineral Sands Project — Iluka WIM100",
+            "source_project_name": "Wim 100",
+            "state": "VIC",
+            "scope_match": "NAMED_DEPOSIT_WITHIN_SELECTED_RESOURCE",
+            "issuer_scope_reference": {
+              "source_key": "wim100_mre20260129",
+              "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+              "physical_page": 4,
+              "figure": "Figure 2",
+              "caption": "WIM100 Mineral Resource outline and drill collar locations",
+              "review": "MGA94 zone 54 point is within the pink WIM100 Resource Outline in Figure 2. The adjacent WIM50 North area is labelled separately.",
+              "grid_epsg": 28354
+            }
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
         }
       ],
       "pre_cutoff_evidence": {
@@ -2859,6 +2883,30 @@
           },
           "dataset": "GA2025",
           "id_field": "OBJECTID"
+        },
+        {
+          "project_id": "AU-2fc429d0556dfa0b95c4",
+          "feature_id": 2275,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "coordinate_scope_review_AU-2fc429d0556dfa0b95c4",
+            "project_id": "AU-2fc429d0556dfa0b95c4",
+            "census_project_name": "Donald Rare Earth and Mineral Sands Project — MIN5532 resource scope",
+            "source_project_name": "Donald",
+            "state": "VIC",
+            "scope_match": "NAMED_DEPOSIT_WITHIN_SELECTED_RESOURCE",
+            "issuer_scope_reference": {
+              "source_key": "asx_review_donald_min5532_202512",
+              "source_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+              "physical_page": 149,
+              "figure": "Figure 14.5",
+              "caption": "MIN5532 Mineral Resource classification",
+              "review": "MGA94 zone 54 point is inside the classified MIN5532 resource in Figure 14.5. Figure 2 on physical p10 identifies the licence outline; p26 specifies the model grid.",
+              "grid_epsg": 28354
+            }
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
         }
       ],
       "pre_cutoff_evidence": {
@@ -2983,6 +3031,50 @@
       "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
       "publication_date": "2026-09-22",
       "source_kind": "ISSUER_MINERAL_RESOURCE_ESTIMATE"
+    },
+    {
+      "key": "copi_nsw_scoping_20220420",
+      "kind": "pdf",
+      "url": "https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=PDA-39468490%2120220420T012349.556+GMT",
+      "source_sha256": "cbdda7c5d96958d226d5a10d44419da79d5971c64f26d8cb6cd31a27ebeb7702",
+      "reviewed_static_pdf_sha256": "cbdda7c5d96958d226d5a10d44419da79d5971c64f26d8cb6cd31a27ebeb7702",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2022-04-20",
+      "source_kind": "ISSUER_PROJECT_SCOPING_REPORT"
+    },
+    {
+      "key": "nsw_critical_minerals_projects_jul2025",
+      "kind": "pdf",
+      "url": "https://www.resources.nsw.gov.au/sites/default/files/2025-09/NSW_crit_mins_map_projects_July2025_A3_web.pdf",
+      "source_sha256": "09185265e2ae83778d47d499c52ae6f13e950aa8d0e2ac8001a3fe2334f5cc67",
+      "publication_date": "2025-09",
+      "document_issue_date": "2025-07",
+      "publication_date_role": "MONTH_OF_OFFICIAL_STATIC_MAP_DISTRIBUTION",
+      "distribution": "NSW_RESOURCES_OFFICIAL_STATIC_PROJECTS_MAP",
+      "title": "Critical minerals and high-tech metals in NSW, July 2025",
+      "reviewed_static_pdf_sha256": "09185265e2ae83778d47d499c52ae6f13e950aa8d0e2ac8001a3fe2334f5cc67"
+    },
+    {
+      "key": "fingerboards_issuer_jobs_guide_20260410",
+      "kind": "pdf",
+      "url": "https://www.gippslandcriticalminerals.com/wp-content/uploads/2026/04/GCM-Jobs-Guide.pdf",
+      "publication_date": "2026-04-10",
+      "source_sha256": "b8ca632328afd48b524eaff7c595e5a49c8e7be978deacac41da9c8ad38a9865",
+      "summary_project_ids": [
+        "AU-7537d9555628040fab40"
+      ],
+      "definition": "Issuer first-edition Fingerboards Project Jobs Guide, physical PDF page 5 (printed page 2), forecast approximate oxide content of planned HMC.",
+      "publication_date_role": "ISSUER_DATED_RELEASE_AND_ATTACHMENT_REGISTRY",
+      "publication_date_evidence": {
+        "issuer_media_record_url": "https://www.gippslandcriticalminerals.com/wp-json/wp/v2/media/5423",
+        "publisher_local_timestamp": "2026-04-10T11:33:25",
+        "release_url": "https://www.gippslandcriticalminerals.com/news/fingerboards-jobs-guide-reveals-700-job-opportunities-for-east-gippsland/",
+        "independent_corroboration": "https://www.nzea.gov.au/rare-opportunity-gippsland-critical-minerals-redesigned-fingerboards-project"
+      },
+      "reviewed_static_pdf_sha256": "b8ca632328afd48b524eaff7c595e5a49c8e7be978deacac41da9c8ad38a9865",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY"
     }
   ]
 }

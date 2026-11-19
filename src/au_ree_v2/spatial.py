@@ -199,7 +199,40 @@ def summary_location_name(value):
     return re.sub(r'\s+(?:project|deposit)$','',' '.join(value.split())).strip()
 
 
-def summary_locations(row, all_rows, registry, sources, rules, decisions, *, read_json=None):
+def _resource_point_scope(case, row, government, sources, cutoff, lon, lat):
+    """Replay the issuer figure used to review a native representative point."""
+    import pymupdf
+    from .census import summary_norm
+    from .selection import date_end
+
+    proof = case.get('issuer_scope_reference') or {}
+    original = sources.get(proof.get('source_sha256'))
+    if (not original or original['kind'] != 'pdf' or original['key'] != proof.get('source_key')
+            or case.get('census_project_name') != row['專案名稱'] or not cutoff):
+        return None
+    available = government.get('available_date')
+    published = original.get('publication_date')
+    if not available or not published or max(date_end(available), date_end(published)) > cutoff:
+        return None
+    page = proof.get('physical_page')
+    figure, caption, grid = proof.get('figure'), proof.get('caption'), proof.get('grid_epsg')
+    if (type(page) is not int or page < 1 or not figure or not caption or not proof.get('review')
+            or type(grid) is not int or grid not in range(28349, 28357)):
+        return None
+    with pymupdf.open(original['resolved_path']) as document:
+        if page > len(document):
+            return None
+        text = summary_norm(document[page - 1].get_text())
+    if summary_norm(figure) not in text or summary_norm(caption) not in text:
+        return None
+    x, y = Transformer.from_crs(4283, grid, always_xy=True, allow_ballpark=False).transform(
+        lon, lat, errcheck=True)
+    return dict(proof, review_method='MANUAL_FIGURE_SCOPE_REVIEW',
+                publication_date=published, government_available_date=available,
+                easting_m=round(x), northing_m=round(y))
+
+
+def summary_locations(row, all_rows, registry, sources, rules, decisions, *, read_json=None, cutoff=None):
     """Native pairs and exact tenement unions; no coordinate values in declarations."""
     from .census import summary_decision,summary_norm,summary_region_text
     from .store import canonical
@@ -259,8 +292,14 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions, *, rea
                     if not re.search(r'\bree\b|rare earth|monazite|xenotime',text):continue
                 lon,lat=a.get('longitude'),a.get('latitude')
                 if not isinstance(lon,(int,float)) or not isinstance(lat,(int,float)) or abs(lon-g.get('x',float('inf')))>1e-6 or abs(lat-g.get('y',float('inf')))>1e-6:continue
+                scope=dict(dataset='GA2025',datum='GDA94',feature_id=b['feature_id'],meaning='REPRESENTATIVE_POINT_NOT_BOUNDARY')
+                if case.get('scope_match') == 'NAMED_DEPOSIT_WITHIN_SELECTED_RESOURCE':
+                    reference = _resource_point_scope(case, row, source, sources, cutoff, lon, lat)
+                    if not reference:
+                        continue
+                    scope['issuer_scope_reference'] = reference
                 add(round(lon,rules['ga_display_digits']),round(lat,rules['ga_display_digits']),sha,b['rule'],
-                    'native feature objectid='+str(b['feature_id']),dict(dataset='GA2025',datum='GDA94',feature_id=b['feature_id'],meaning='REPRESENTATIVE_POINT_NOT_BOUNDARY'))
+                    'native feature objectid='+str(b['feature_id']),scope)
             if fills:return fills
         if registered.get('summary_tenements'):
             for b in registered['summary_tenements']:

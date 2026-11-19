@@ -140,7 +140,7 @@ def write_census_audit(db, out, rows, trace, diagnoses, observations, bundles):
     write_csv(out/'resource_statement_observations.csv', resource_rows, RESOURCE_FIELDS)
     write_csv(out/'spatial_point_quality.csv', [spatial_quality(r, trace) for r in rows], SPATIAL_FIELDS)
     return dict(field_status_counts=dict(Counter(r['status'] for r in entries)),
-                count_excluded_by_applicability=sum(r['legacy_reason'] in ('NOT_APPLICABLE_NO_MRE','NOT_APPLICABLE_STAGE')
+                count_excluded_by_applicability=sum(r['legacy_reason'].startswith('NOT_APPLICABLE_')
                                                       for r in entries),
                 selected_resource_statement_groups=len({r['statement_group_id'] for r in resource_rows
                                                         if r['selected_for_census']}),

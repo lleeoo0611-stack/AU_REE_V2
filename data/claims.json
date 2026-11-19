@@ -312,6 +312,27 @@
             }
           ],
           "attribute_id": "32742a6d3f439fbe35583b6e4b19ecd3bafcf5ae1bb5bc4482261970a33e40c1"
+        },
+        {
+          "column": "產品/產出",
+          "value": "MINERAL_CONCENTRATE",
+          "source_key": "mt_weld_2024",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "pdf_page": 12,
+          "page_markers": [
+            "Mt Weld operations",
+            "rare earth ores into concentrates",
+            "shipment"
+          ],
+          "locator": "physical PDF p12; Actual mine/concentrator product shipped for downstream cracking and leaching; excludes separate Kalgoorlie and Malaysia facilities.",
+          "effective_date": "2024-08-05",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_mt-weld",
+          "scope": "Actual mine/concentrator product shipped for downstream cracking and leaching; excludes separate Kalgoorlie and Malaysia facilities.",
+          "statement_id": "census_project_status_20261119_mt-weld",
+          "context_evidence": [],
+          "attribute_id": "3bdb465b9cb481f106e9eca200c22812c4cba85491bd07e28b306abbf445b4df"
         }
       ]
     },
@@ -16788,6 +16809,26 @@
             }
           ],
           "attribute_id": "e14d58cb537dc0ac5a931a7dc82ef0f4acdc29e86fe0d8724b2a680b57af9c84"
+        },
+        {
+          "column": "開發階段",
+          "value": "Ongoing exploration and metallurgical work at Yttria（來源狀態日：2024-04-16）",
+          "source_key": "yttria_maiden2024",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "pdf_page": 3,
+          "page_markers": [
+            "Yttria",
+            "ongoing exploration and metallurgical work"
+          ],
+          "locator": "physical PDF p3; The issuer describes ongoing exploration and metallurgical work at the Yttria deposit.",
+          "effective_date": "2024-04-16",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_yttria",
+          "scope": "The issuer describes ongoing exploration and metallurgical work at the Yttria deposit.",
+          "statement_id": "census_project_status_20261119_yttria",
+          "context_evidence": [],
+          "attribute_id": "17eddcdcfc0b3548984599598bfe060ad19a8e5672e3432b827548bc02fa63e0"
         }
       ],
       "identity_declaration": {
@@ -17834,12 +17875,12 @@
             "1,037",
             "LOM"
           ],
-          "locator": "physical PDF p17; reviewed dubbo_ndpr_lom_202507",
+          "locator": "Physical PDF p17 NdPr and p45 Table 9 LOM total, entire separated oxide product slate",
           "effective_date": "2025-07-11",
           "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
           "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
           "review_id": "dubbo_ndpr_lom_202507",
-          "scope": "Dubbo2025 heap-leach first-phase42year Scoping Study;LOM average notyears3-15;separatedNdPr oxide",
+          "scope": "Dubbo 2025 first-phase heap-leach 42-year Scoping Study; LOM average of separated oxide products",
           "statement_id": "dubbo_ndpr_lom_202507",
           "context_evidence": [
             {
@@ -17855,6 +17896,15 @@
                 "1,037 tpa over LOM",
                 "Average 1,157 tpa NdPr production during years 3-15"
               ]
+            },
+            {
+              "page": 45,
+              "markers": [
+                "Dubbo Project Product Summary",
+                "1,097",
+                "1,037",
+                "Dy Oxide (solid)"
+              ]
             }
           ],
           "attribute_id": "df17348b179670d97bd6b89aaff0452bfff952bf0f57d561e7eaca1d35f26bfa",
@@ -17862,9 +17912,10 @@
             "scale": "SCOPING_MODEL",
             "stage": 2,
             "endpoint": "SEPARATED_REO",
-            "element": "NdPr_OXIDES",
+            "element": "SEPARATED_REO_PRODUCTS",
             "parameters": {
-              "average_annual_ndpr_product_t": 1037
+              "average_annual_ndpr_product_t": 1037,
+              "average_annual_treo_product_t": 1097
             },
             "annual_basis_evidence": {
               "page": 17,
@@ -17894,7 +17945,7 @@
                 "mode": "native_cell",
                 "field": "average_annual_ndpr_product_t",
                 "page": 17,
-                "scope": "Dubbo2025 heap-leach first-phase42year Scoping Study;LOM average notyears3-15;separatedNdPr oxide",
+                "scope": "Dubbo 2025 first-phase heap-leach 42-year Scoping Study; LOM average of separated oxide products",
                 "original_unit": "tpa",
                 "unit_label": "(tpa)",
                 "table_bbox": [
@@ -17950,6 +18001,74 @@
                 ],
                 "metric_context": "Average annual production target",
                 "forecast_orientation": "metric_rows"
+              },
+              "average_annual_treo_product_t": {
+                "mode": "native_cell",
+                "field": "average_annual_treo_product_t",
+                "page": 45,
+                "scope": "Dubbo 2025 first-phase heap-leach 42-year Scoping Study; LOM average of separated oxide products",
+                "original_unit": "tpa",
+                "unit_label": "(tpa)",
+                "table_bbox": [
+                  42,
+                  348,
+                  535,
+                  483
+                ],
+                "table_label": "Table 9 - Dubbo Project Product Summary",
+                "table_label_bbox": [
+                  43,
+                  350,
+                  215,
+                  366
+                ],
+                "row_bbox": [
+                  44,
+                  462,
+                  529,
+                  481
+                ],
+                "row_label": "Total",
+                "row_label_bbox": [
+                  46,
+                  462,
+                  75,
+                  480
+                ],
+                "column_bbox": [
+                  450,
+                  395,
+                  489,
+                  482
+                ],
+                "column_label": "LOM",
+                "column_label_bbox": [
+                  452,
+                  396,
+                  483,
+                  411
+                ],
+                "unit_bbox": [
+                  443,
+                  380,
+                  471,
+                  397
+                ],
+                "rate_header": "Average Metric Tonnes per Annum (tpa)",
+                "rate_header_bbox": [
+                  281,
+                  379,
+                  472,
+                  398
+                ],
+                "forecast_orientation": "separated_oxide_total",
+                "product_labels": "Nd/Pr Oxide (solid) Tb Oxide (solid) Dy Oxide (solid)",
+                "product_labels_bbox": [
+                  46,
+                  411.5,
+                  166,
+                  461
+                ]
               }
             },
             "selected_scenario": "LOM"
@@ -25235,6 +25354,27 @@
             }
           ],
           "attribute_id": "fbbc5e15ee25e12280f4e3d69dbc9fe32c3d2edc2fba2b5b8d943efe4fbe0d2f"
+        },
+        {
+          "column": "未上市公司",
+          "value": "否",
+          "source_key": "asx_review_donald_min5532_202512",
+          "source_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "pdf_page": 1,
+          "page_markers": [
+            "ASX Code: ATR",
+            "is being developed by Astron in joint venture with",
+            "listed on the American Stock Exchange"
+          ],
+          "locator": "physical PDF p1; The named reporting developer Astron issued this ASX release as ATR; its joint venture partner Energy Fuels is separately identified as listed on NYSE American. Does not establish the listing status of a separate project vehicle.",
+          "effective_date": "2026-02-27",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_donald-rare-earth-mineral-sands-project",
+          "scope": "The named reporting developer Astron issued this ASX release as ATR; its joint venture partner Energy Fuels is separately identified as listed on NYSE American. Does not establish the listing status of a separate project vehicle.",
+          "statement_id": "census_project_status_20261119_donald-rare-earth-mineral-sands-project",
+          "context_evidence": [],
+          "attribute_id": "32a7e97927d48394857701a95852fbf2fa13dfbb21f8bc9ba3403dc863dfb876"
         }
       ]
     },
@@ -28504,6 +28644,27 @@
             }
           ],
           "attribute_id": "c7564e15624fb991ceb88fe7f180d8bd9a271fc98a572fcf7b0480ea3132a44b"
+        },
+        {
+          "column": "產品/產出",
+          "value": "PHOSPHATE_RARE_EARTH_MINERAL_CONCENTRATE",
+          "source_key": "cummins_scoping2023",
+          "source_sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+          "pdf_page": 1,
+          "page_markers": [
+            "Cummins Range",
+            "phosphate-rare earth mineral concentrate",
+            "Stage 2 and 3"
+          ],
+          "locator": "physical PDF p1; 2023 enhanced scoping study, proposed Stage 2 and Stage 3 phosphate-rare earth mineral concentrate. Stage 1 rock phosphate and downstream processing are separate.",
+          "effective_date": "2023-08-22",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_cummins-range",
+          "scope": "2023 enhanced scoping study, proposed Stage 2 and Stage 3 phosphate-rare earth mineral concentrate. Stage 1 rock phosphate and downstream processing are separate.",
+          "statement_id": "census_project_status_20261119_cummins-range",
+          "context_evidence": [],
+          "attribute_id": "7a132ece836b9a95d0bfe242b8b65fc00a3a563f85463c7fdd3da1e4e0c4788d"
         }
       ]
     },
@@ -71881,7 +72042,7 @@
       "entity_namespace": "AUSTRADE_2026_REE_PROJECT",
       "name": "Fingerboards",
       "state": "VIC",
-      "identity_source": "fingerboards_project2026",
+      "identity_source": "austrade_2026_prospectus_pdf",
       "deposit_type": null,
       "observations": [
         {
@@ -73161,7 +73322,8 @@
           "pdf_page": 36,
           "page_markers": [
             "Fingerboards",
-            "Gippsland Critical Minerals Pty Ltd"
+            "Gippsland Critical Minerals Pty Ltd",
+            "Unlisted Private Company"
           ],
           "locator": "physical PDF p36; reviewed continuation1_catalogue_fingerboards",
           "effective_date": "2026-03-31",
@@ -73293,8 +73455,190 @@
             "statement": "mineral sands",
             "literal_value": "mineral sands"
           }
+        },
+        {
+          "column": "產品/產出",
+          "value": "MINERAL_CONCENTRATE",
+          "source_key": "austrade_2026_prospectus_pdf",
+          "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+          "pdf_page": 36,
+          "page_markers": [
+            "Fingerboards",
+            "Gippsland Critical Minerals Pty Ltd",
+            "280ktpa"
+          ],
+          "locator": "Physical PDF p36 (printed p34), Fingerboards, Product & Annual Production Rate, HMC 2.6% TREO, 280 ktpa",
+          "effective_date": "2026-03-31",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "fingerboards_hmc_annual_austrade_202603",
+          "scope": "Fingerboards rescoped project, March 2026 Australian Critical Minerals Prospectus p36; planned HMC product, annual run rate",
+          "statement_id": "fingerboards_hmc_annual_austrade_202603",
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Publication date: March 2026",
+                "Department of the Prime Minister and Cabinet website"
+              ]
+            }
+          ],
+          "engineering_forecast": {
+            "scale": "DFS_REFERENCED",
+            "stage": 2,
+            "endpoint": "MINERAL_CONCENTRATE",
+            "element": "TREO",
+            "parameters": {
+              "average_annual_treo_product_t": 7280
+            },
+            "annual_basis_evidence": {
+              "page": 36,
+              "markers": [
+                "Fingerboards",
+                "HMC (2.6% TREO in monazite and",
+                "280ktpa"
+              ]
+            },
+            "parameter_derivations": {
+              "average_annual_treo_product_t": {
+                "method": "ANNUAL_HMC_KTPA_X_PRODUCT_TREO_PERCENT",
+                "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+                "statement_id": "fingerboards_hmc_annual_austrade_202603",
+                "scope": "Fingerboards rescoped project, March 2026 Australian Critical Minerals Prospectus p36; planned HMC product, annual run rate",
+                "effective_date": "2026-03-31",
+                "evidence": {
+                  "page": 36,
+                  "markers": [
+                    "Fingerboards",
+                    "HMC (2.6% TREO in monazite and",
+                    "280ktpa"
+                  ]
+                },
+                "bbox": [
+                  379,
+                  651,
+                  535,
+                  716
+                ],
+                "statement": "Product & Annual Production Rate • HMC (2.6% TREO in monazite and xenotime, 18.0% ZrO2+Hf02, 25.2% TiO2 in ilmenite; 7.5% TiO2 in rutile): 280ktpa",
+                "assurance": "Approximate contained TREO in planned annual HMC, using reported rounded product rate and grade"
+              }
+            },
+            "evidence": [
+              {
+                "page": 36,
+                "markers": [
+                  "Fingerboards",
+                  "HMC (2.6% TREO in monazite and",
+                  "280ktpa"
+                ]
+              }
+            ]
+          },
+          "attribute_id": "7ca96fc077349d8e748f39dd4f991f769a498755bcbb6324a1a8db1413c80420"
+        },
+        {
+          "column": "產品/產出",
+          "value": "MINERAL_CONCENTRATE",
+          "source_key": "fingerboards_issuer_jobs_guide_20260410",
+          "source_sha256": "b8ca632328afd48b524eaff7c595e5a49c8e7be978deacac41da9c8ad38a9865",
+          "pdf_page": 5,
+          "page_markers": [
+            "Fingerboards Critical Minerals Project",
+            "including approximately:",
+            "1,800 tonnes of light rare earth oxides (neodymium and praseodymium)"
+          ],
+          "locator": "Issuer Jobs Guide physical PDF p5 (printed p2), annual contained NdPr oxides in planned HMC, approximately 1,800 t/y.",
+          "effective_date": "2026-04-10",
+          "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "fingerboards_hmc_ndpr_issuer_20260410",
+          "scope": "Fingerboards rescoped project, March 2026 Australian Critical Minerals Prospectus p36; planned HMC product, annual run rate",
+          "statement_id": "fingerboards_hmc_ndpr_issuer_20260410",
+          "context_evidence": [
+            {
+              "page": 5,
+              "markers": [
+                "Fingerboards Critical Minerals Project",
+                "including approximately:",
+                "1,800 tonnes of light rare earth oxides (neodymium and praseodymium)"
+              ]
+            }
+          ],
+          "engineering_forecast": {
+            "scale": "DFS_REFERENCED",
+            "stage": 2,
+            "endpoint": "MINERAL_CONCENTRATE",
+            "element": "NdPr_OXIDES",
+            "parameters": {
+              "average_annual_ndpr_product_t": 1800
+            },
+            "parameter_bindings": {
+              "average_annual_ndpr_product_t": {
+                "mode": "native_statement",
+                "field": "average_annual_ndpr_product_t",
+                "scope": "Fingerboards rescoped project, March 2026 Australian Critical Minerals Prospectus p36; planned HMC product, annual run rate",
+                "page": 5,
+                "original_unit": "tonnes",
+                "semantic_profile": "annual_hmc_contained_ndpr_oxide",
+                "statement_bbox": [
+                  63,
+                  277,
+                  465,
+                  295
+                ],
+                "statement": "1,800 tonnes of light rare earth oxides (neodymium and praseodymium)",
+                "before": "",
+                "after": "tonnes of light rare earth oxides (neodymium and praseodymium)",
+                "time_basis_bbox": [
+                  55,
+                  198,
+                  551,
+                  230
+                ]
+              }
+            },
+            "annual_basis_evidence": {
+              "page": 5,
+              "markers": [
+                "Fingerboards Critical Minerals Project",
+                "including approximately:",
+                "1,800 tonnes of light rare earth oxides (neodymium and praseodymium)"
+              ]
+            },
+            "evidence": [
+              {
+                "page": 5,
+                "markers": [
+                  "Fingerboards Critical Minerals Project",
+                  "including approximately:",
+                  "1,800 tonnes of light rare earth oxides (neodymium and praseodymium)"
+                ]
+              }
+            ]
+          },
+          "attribute_id": "ffb6e7ece67128352d2b6489f38a58cea42d4942333472e4282445ce00526382"
         }
-      ]
+      ],
+      "identity_locator": "Migrated identity; Austrade project entry, Fingerboards, physical PDF page 36.",
+      "identity_declaration": {
+        "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+        "pdf_page": 36,
+        "page_markers": [
+          "Fingerboards",
+          "Gippsland Critical Minerals Pty Ltd",
+          "East Gippsland"
+        ],
+        "context_evidence": [
+          {
+            "page": 2,
+            "markers": [
+              "Publication date: March 2026",
+              "Department of the Prime Minister and Cabinet website"
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "narraburra",
@@ -73828,6 +74172,45 @@
             }
           ],
           "attribute_id": "f679af7bc4d821354b9e7e28f30151fcdbf79255e07c8d0fd6b6f9c47dee62a2"
+        },
+        {
+          "column": "開發階段",
+          "value": "Advanced exploration（來源揭露：2025-07，月精度）",
+          "source_key": "nsw_critical_minerals_projects_jul2025",
+          "source_sha256": "09185265e2ae83778d47d499c52ae6f13e950aa8d0e2ac8001a3fe2334f5cc67",
+          "pdf_page": 2,
+          "page_markers": [
+            "Narraburra REE Project",
+            "Advanced exploration",
+            "Commodities: REE"
+          ],
+          "locator": "physical PDF p2; NSW map dated July 2025 p. 2, Advanced exploration heading spans the two right columns. Narraburra is the REE entry in the rightmost column.",
+          "effective_date": "2025-07-31",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_narraburra",
+          "scope": "NSW map dated July 2025 p. 2, Advanced exploration heading spans the two right columns. Narraburra is the REE entry in the rightmost column.",
+          "statement_id": "census_project_status_20261119_narraburra",
+          "context_evidence": [],
+          "description_binding": {
+            "page": 2,
+            "project_marker": "Narraburra REE Project",
+            "project_bbox": [
+              924.80322265625,
+              295.021484375,
+              1024.0675048828125,
+              306.9284973144531
+            ],
+            "value_bbox": [
+              602.3621826171875,
+              40.59803771972656,
+              704.4721069335938,
+              53.828041076660156
+            ],
+            "statement": "Advanced exploration",
+            "literal_value": "Advanced exploration"
+          },
+          "attribute_id": "4e1a6307b5896b1e4866dd8a18c68f9e59940eecae3182747729f0a4b554f206"
         }
       ],
       "identity_declaration": {
@@ -81658,6 +82041,27 @@
             "Pidinga",
             "Garford"
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Maiden REE mineral resource disclosed to underpin a future scoping study（來源狀態日：2026-10-26）",
+          "source_key": "metadata_wudinna_cobra_20261026",
+          "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864",
+          "pdf_page": 1,
+          "page_markers": [
+            "Wudinna",
+            "to underpin Wudinna Rare Earth Scoping Study",
+            "Maiden"
+          ],
+          "locator": "physical PDF p1; Issuer describes the maiden MRE and the purpose of the planned study. No study completion claimed.",
+          "effective_date": "2026-10-26",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_1123290",
+          "scope": "Issuer describes the maiden MRE and the purpose of the planned study. No study completion claimed.",
+          "statement_id": "census_project_status_20261119_1123290",
+          "context_evidence": [],
+          "attribute_id": "0b6a78ba054a0b6f79cc6590039064bf8f8cf025ca0f31b4de46b2fca4798758"
         }
       ],
       "identity_declaration": {
@@ -113809,6 +114213,28 @@
             }
           ],
           "attribute_id": "ab7b78d25ce0a67edffc2cb198b5fe76c4a319c680cd7f5532e1fe80f4896402"
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration drilling and resource expansion; economic studies beginning（來源狀態日：2024-05-02）",
+          "source_key": "r4_deep_leads_rubble_mound_wind_break",
+          "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
+          "pdf_page": 2,
+          "page_markers": [
+            "400 new drillholes",
+            "beginning economic studies",
+            "Deep Leads",
+            "Rubble Mound"
+          ],
+          "locator": "physical PDF p2; The combined MRE named on the preceding page expands following drilling; issuer states that economic studies are beginning, with no completed formal study identified.",
+          "effective_date": "2024-05-02",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_deep-leads-rubble-mound-wind-break",
+          "scope": "The combined MRE named on the preceding page expands following drilling; issuer states that economic studies are beginning, with no completed formal study identified.",
+          "statement_id": "census_project_status_20261119_deep-leads-rubble-mound-wind-break",
+          "context_evidence": [],
+          "attribute_id": "5165e8cbf8411f60c753380d441871ff1ab60232050f98b3cac5ac0018524b73"
         }
       ]
     },
@@ -116315,7 +116741,8 @@
           "pdf_page": 46,
           "page_markers": [
             "Avonbank",
-            "WIM Resource Pty Ltd"
+            "WIM Resource Pty Ltd",
+            "Unlisted Private Company"
           ],
           "locator": "physical PDF p46; reviewed continuation1_catalogue_avonbank",
           "effective_date": "2026-03-31",
@@ -116446,6 +116873,27 @@
             "statement": "heavy mineral sands",
             "literal_value": "heavy mineral sands"
           }
+        },
+        {
+          "column": "產品/產出",
+          "value": "REE_BEARING_HEAVY_MINERAL_CONCENTRATE",
+          "source_key": "austrade_2026_prospectus_pdf",
+          "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+          "pdf_page": 46,
+          "page_markers": [
+            "Avonbank",
+            "heavy mineral concentrate containing zircon",
+            "titanium and REE"
+          ],
+          "locator": "physical PDF p46; Austrade project-specific entry for the Avonbank DFS design: planned bulk heavy-mineral concentrate containing titanium, zircon and REE by-products, without conversion to tonnes of contained REO.",
+          "effective_date": "2026-03-01",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_avonbank",
+          "scope": "Austrade project-specific entry for the Avonbank DFS design: planned bulk heavy-mineral concentrate containing titanium, zircon and REE by-products, without conversion to tonnes of contained REO.",
+          "statement_id": "census_project_status_20261119_avonbank",
+          "context_evidence": [],
+          "attribute_id": "27f87dcf3b308e71edecb68655c732a4dd4ac87c6c0e54a397d78b050727823d"
         }
       ]
     },
@@ -116495,7 +116943,8 @@
           "pdf_page": 47,
           "page_markers": [
             "Copi",
-            "RZ Resources Ltd"
+            "RZ Resources Ltd",
+            "Unlisted Public Company"
           ],
           "locator": "physical PDF p47; reviewed continuation1_catalogue_copi",
           "effective_date": "2026-03-31",
@@ -116580,6 +117029,53 @@
             "statement": "bankable feasibility study",
             "literal_value": "Bankable Feasibility Study"
           }
+        },
+        {
+          "column": "礦床型態",
+          "value": "continuous, strandline-type mineral sands placer deposit",
+          "source_key": "copi_nsw_scoping_20220420",
+          "source_sha256": "cbdda7c5d96958d226d5a10d44419da79d5971c64f26d8cb6cd31a27ebeb7702",
+          "pdf_page": 5,
+          "page_markers": [
+            "Copi Mineral Sands Project",
+            "continuous, strandline-type mineral sands placer deposit"
+          ],
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Final",
+                "20 April 2022"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p5; Copi project orebody within the four named exploration licences.",
+          "effective_date": "2022-04-20",
+          "extraction_method": "STATIC_PDF_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "ree_host_copi_20261119",
+          "scope": "Copi project orebody within the four named exploration licences.",
+          "attribute_id": "1870ef35b1c7de22b2761193e812623cf383d89279095e4f1abb74fa29655eb8"
+        },
+        {
+          "column": "產品/產出",
+          "value": "MONAZITE_AND_XENOTIME",
+          "source_key": "austrade_2026_prospectus_pdf",
+          "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+          "pdf_page": 47,
+          "page_markers": [
+            "Copi Mine and MSP Upgrade DFS",
+            "Monazite and xenotime: 6,000tpa"
+          ],
+          "locator": "physical PDF p47; Prospectus project entry identifies the Copi DFS years 1–10 product under monazite and xenotime. Describes the combined mineral product, not a separated oxide or annual TREO quantity.",
+          "effective_date": "2026-03-01",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_copi",
+          "scope": "Prospectus project entry identifies the Copi DFS years 1–10 product under monazite and xenotime. Describes the combined mineral product, not a separated oxide or annual TREO quantity.",
+          "statement_id": "census_project_status_20261119_copi",
+          "context_evidence": [],
+          "attribute_id": "f8c6748be5b28dfe0ba30627d295483fe42ce26ce04311397bfd85a5f8c84dad"
         }
       ]
     },
@@ -125509,6 +126005,26 @@
             }
           ],
           "attribute_id": "1564777a4aa5c9740d3f5ff3cc18f01b3886540d54b7eb74f6b72f7e6f5c5203"
+        },
+        {
+          "column": "產品/產出",
+          "value": "REEC",
+          "source_key": "r5_identity_wimmera",
+          "source_sha256": "c2a8b91970be9298bae77c8547268abd7f0969e8ceebeb7cf73530fa6d965e77",
+          "pdf_page": 15,
+          "page_markers": [
+            "WIM100",
+            "Rare earth mineral concentrate (monazite and xenotime)"
+          ],
+          "locator": "physical PDF p15; WIM100 mine-scope planned concentrate sent to the separate Eneabba refinery; separated oxides are excluded from the mine product.",
+          "effective_date": "2026-01-29",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_wimmera",
+          "scope": "WIM100 mine-scope planned concentrate sent to the separate Eneabba refinery; separated oxides are excluded from the mine product.",
+          "statement_id": "census_project_status_20261119_wimmera",
+          "context_evidence": [],
+          "attribute_id": "73a09711e0f428ad33ae56d97fde568df52453ce06b33aca0c9f18ab0075d631"
         }
       ]
     },
@@ -126472,6 +126988,26 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — rare earth mineralisation identified at Comet（來源狀態日：2024-06-30）",
+          "source_key": "r5_identity_comet",
+          "source_sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8",
+          "pdf_page": 7,
+          "page_markers": [
+            "Exploration at the Comet",
+            "significant concentrations of Rare Earths"
+          ],
+          "locator": "physical PDF p7; FY2024 review states actual exploration at Comet. Adjacent greenfields wording describes Muckanippie and is excluded.",
+          "effective_date": "2024-06-30",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_comet",
+          "scope": "FY2024 review states actual exploration at Comet. Adjacent greenfields wording describes Muckanippie and is excluded.",
+          "statement_id": "census_project_status_20261119_comet",
+          "context_evidence": [],
+          "attribute_id": "1be7701c010dba1b0611d4777c9a9fadfb14830e531eaa1f9fb7800c9cbe6c89"
         }
       ]
     },
@@ -129086,6 +129622,27 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — drilling and an exploration target at the Caralue Bluff REE-kaolin prospect（來源狀態日：2023-06-30）",
+          "source_key": "r6_identity_itech_eyre_peninsula",
+          "source_sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a",
+          "pdf_page": 23,
+          "page_markers": [
+            "THE EYRE PENINSULA REE-KAOLIN PROJECT",
+            "Caralue Bluff REE-Kaolin Prospect",
+            "80 drill holes"
+          ],
+          "locator": "physical PDF p23; Caralue Bluff is the named prospect of the Eyre Peninsula REE-kaolin project. Its drilling program underpins a prospect-specific exploration target.",
+          "effective_date": "2023-06-30",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_itech-eyre-peninsula",
+          "scope": "Caralue Bluff is the named prospect of the Eyre Peninsula REE-kaolin project. Its drilling program underpins a prospect-specific exploration target.",
+          "statement_id": "census_project_status_20261119_itech-eyre-peninsula",
+          "context_evidence": [],
+          "attribute_id": "dc701725dc4e072025d888d7c3092e915ab18bb829c61e8eabd44ed8c1cba8fc"
         }
       ]
     },
@@ -129424,6 +129981,27 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — continuing rare earth exploration activities at Duke（來源狀態日：2025-06-30）",
+          "source_key": "r6_identity_duke",
+          "source_sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d",
+          "pdf_page": 12,
+          "page_markers": [
+            "Continuing exploration activities",
+            "Duke in the Northern Territory",
+            "rare earth"
+          ],
+          "locator": "physical PDF p12; Principal activities for the reporting year identify rare earth exploration specifically at Duke, NT.",
+          "effective_date": "2025-06-30",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_duke",
+          "scope": "Principal activities for the reporting year identify rare earth exploration specifically at Duke, NT.",
+          "statement_id": "census_project_status_20261119_duke",
+          "context_evidence": [],
+          "attribute_id": "efc176f8cc2a02a33bf7289881e22926dc86022144ac4cd29227d6689f6bff1e"
         }
       ]
     },
@@ -129643,6 +130221,27 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — two air-core drilling campaigns at the Bencubbin REE discovery in 2023（來源狀態日：2023-12-31）",
+          "source_key": "r6_identity_bencubbin",
+          "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8",
+          "pdf_page": 31,
+          "page_markers": [
+            "Bencubbin REE discovery",
+            "two separate campaigns",
+            "air-core drilling"
+          ],
+          "locator": "physical PDF p31; Year-end annual report describes the two drilling campaigns at the REE discovery.",
+          "effective_date": "2023-12-31",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_bencubbin",
+          "scope": "Year-end annual report describes the two drilling campaigns at the REE discovery.",
+          "statement_id": "census_project_status_20261119_bencubbin",
+          "context_evidence": [],
+          "attribute_id": "f649429c63a5e32f281e14702e620f128b724a29b7ff908e65469c4a1d6b6794"
         }
       ]
     },
@@ -129880,6 +130479,55 @@
             }
           ],
           "attribute_id": "2b5b9b35f58640ef7f09fb39aef3dac5627d46cdc738e0e2a2aa2fd76c81ecd1"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Granodiorite and monzogranite, with near-surface enrichment in saprolitic clays and oxidised intrusive rock",
+          "source_key": "r6_identity_rankin_dome",
+          "source_sha256": "f6f127c62e9c4ddcab67c5f01552f21cc9ee1c17095451b963e7b66e757981b3",
+          "pdf_page": 5,
+          "page_markers": [
+            "rock of granodioritic composition",
+            "in a monzogranite",
+            "saprolitic clays and oxidised intrusive rock"
+          ],
+          "context_evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Rankin Dome",
+                "maiden drilling program"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p5; Figure 3, drill section RDRC001–004, near-surface enrichment in upper 30 m; multiple host lithologies.",
+          "effective_date": "2023-12-04",
+          "extraction_method": "STATIC_PDF_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "ree_host_rankin-dome_20261119",
+          "scope": "Figure 3, drill section RDRC001–004, near-surface enrichment in upper 30 m; multiple host lithologies.",
+          "attribute_id": "0b13593967066bea9eb1ac73209cca0aacdc43cd24a340cdf3844118a04a87da"
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — maiden RC drilling and ongoing exploration at Rankin Dome（來源狀態日：2023-12-04）",
+          "source_key": "r6_identity_rankin_dome",
+          "source_sha256": "f6f127c62e9c4ddcab67c5f01552f21cc9ee1c17095451b963e7b66e757981b3",
+          "pdf_page": 1,
+          "page_markers": [
+            "Rankin Dome",
+            "continuing our exploration activity",
+            "maiden drilling program"
+          ],
+          "locator": "physical PDF p1; Executive director describes continued exploration and the results of the first RC drilling program at the named REE project.",
+          "effective_date": "2023-12-04",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_rankin-dome",
+          "scope": "Executive director describes continued exploration and the results of the first RC drilling program at the named REE project.",
+          "statement_id": "census_project_status_20261119_rankin-dome",
+          "context_evidence": [],
+          "attribute_id": "e6e3aca415e8dd0427f6c2bedab762fe6dc5f47998b46aafaf894709eb7d2221"
         }
       ]
     },
@@ -130411,6 +131059,26 @@
             }
           ],
           "attribute_id": "6953b19e1a3a8f8feff5d5cd8a0b9e0cb3923a823f479f6af908b665af92b3fa"
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — initial rock-chip reconnaissance at Merredin（來源狀態日：2023-06-14）",
+          "source_key": "r6_identity_merredin",
+          "source_sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+          "pdf_page": 1,
+          "page_markers": [
+            "Merredin Project",
+            "Initial Rock Chip Reconnaissance Survey"
+          ],
+          "locator": "physical PDF p1; Report describes a maiden field visit and the results of the initial reconnaissance survey under the Merredin project heading.",
+          "effective_date": "2023-06-14",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_merredin",
+          "scope": "Report describes a maiden field visit and the results of the initial reconnaissance survey under the Merredin project heading.",
+          "statement_id": "census_project_status_20261119_merredin",
+          "context_evidence": [],
+          "attribute_id": "354cebf689fa016d17abfa225faa3dd35bec9537970018b54945c840c2d10068"
         }
       ]
     },
@@ -130930,6 +131598,26 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — next phase underway at Rocky Gully（來源狀態日：2025-01-23）",
+          "source_key": "r6_identity_rocky_gully",
+          "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0",
+          "pdf_page": 15,
+          "page_markers": [
+            "23 January 2025",
+            "Next phase of exploration underway at Rocky Gully"
+          ],
+          "locator": "physical PDF p15; Annual report reproduces its dated issuer announcement title for the exact project.",
+          "effective_date": "2025-01-23",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_rocky-gully",
+          "scope": "Annual report reproduces its dated issuer announcement title for the exact project.",
+          "statement_id": "census_project_status_20261119_rocky-gully",
+          "context_evidence": [],
+          "attribute_id": "abd39cc52e011a3264f55bedeec137b87fe9e4a7cfdbbd0561b33750df1558a8"
         }
       ]
     },
@@ -131345,6 +132033,27 @@
             }
           ],
           "attribute_id": "64384662b51aae9c76ca2f9039d5141410a1a32c9e83c029812a722c57c0784a"
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — first phase of REE air-core drilling completed at Windidda South（來源狀態日：2023-03-03）",
+          "source_key": "r6_identity_achilles_tambourah",
+          "source_sha256": "a8d5bb873fb84f0884b3960b0eb48692843e3dbba55eb1eaaf8314924f635c4c",
+          "pdf_page": 1,
+          "page_markers": [
+            "REE drilling completed at Achilles",
+            "Windidda South",
+            "first phase"
+          ],
+          "locator": "physical PDF p1; Issuer describes completion of the initial REE drilling phase within the Achilles project.",
+          "effective_date": "2023-03-03",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_achilles-tambourah",
+          "scope": "Issuer describes completion of the initial REE drilling phase within the Achilles project.",
+          "statement_id": "census_project_status_20261119_achilles-tambourah",
+          "context_evidence": [],
+          "attribute_id": "aebd9449712a87c08f6c9c8aa9cc54d2ddb444e0850602a04423069973e6b9b8"
         }
       ]
     },
@@ -131581,6 +132290,27 @@
           "statement_id": "residual_r6_code_AU-1c907e00c797bf8b3ce1_listing",
           "scope": "OD6 Grass Patch E63/2151 E63/2152 E63/2185 E63/2154; not Mount Ridley MRD Grass Patch Complex and not Meeka Circle Valley despite same geological province/prospect names; reporting issuer code at2023-04-27, independent of current legal title",
           "context_evidence": []
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — maiden regional reconnaissance drilling at Grass Patch（來源狀態日：2023-03-31）",
+          "source_key": "od6_quarter20230427",
+          "source_sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb",
+          "pdf_page": 1,
+          "page_markers": [
+            "regional reconnaissance",
+            "at Grass Patch",
+            "Maiden Aircore"
+          ],
+          "locator": "physical PDF p1; Quarterly activities report identifies the work as a maiden regional reconnaissance drilling program.",
+          "effective_date": "2023-03-31",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_grass-patch-od6",
+          "scope": "Quarterly activities report identifies the work as a maiden regional reconnaissance drilling program.",
+          "statement_id": "census_project_status_20261119_grass-patch-od6",
+          "context_evidence": [],
+          "attribute_id": "2986572af4688cdb34a862d3a17fe1fc4293b9e6df88f6f381a0479ac436280c"
         }
       ]
     },
@@ -132472,6 +133202,26 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — rock-chip sampling at Nutgrove（來源狀態日：2025-10-30）",
+          "source_key": "nutgrove20251030",
+          "source_sha256": "0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126",
+          "pdf_page": 3,
+          "page_markers": [
+            "Nutgrove REE discovery",
+            "Rock chip sampling has identified"
+          ],
+          "locator": "physical PDF p3; Project section records rock-chip sampling at the REE discovery.",
+          "effective_date": "2025-10-30",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_nutgrove-ree",
+          "scope": "Project section records rock-chip sampling at the REE discovery.",
+          "statement_id": "census_project_status_20261119_nutgrove-ree",
+          "context_evidence": [],
+          "attribute_id": "27cc9fac4570ca9541ddb0ddd3ecfebce466aeef9b3f09275e6ad141c8adc9cc"
         }
       ]
     },
@@ -132692,6 +133442,26 @@
             }
           ],
           "attribute_id": "28f51b76676cbcca6c705cf833ba00d325599f12918d1b856774e3c6260064ca"
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — maiden reconnaissance soil and rock-chip program completed（來源狀態日：2023-09-29）",
+          "source_key": "wcn_annual2023",
+          "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "pdf_page": 4,
+          "page_markers": [
+            "Diemals REE and Lithium Project",
+            "Maiden reconnaissance soil and rock chip programs have been completed"
+          ],
+          "locator": "physical PDF p4; Disclosed as completed on the annual report publication date. Page 8 separately reports no significant work during the previous financial year.",
+          "effective_date": "2023-09-29",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_diemals-wcn",
+          "scope": "Disclosed as completed on the annual report publication date. Page 8 separately reports no significant work during the previous financial year.",
+          "statement_id": "census_project_status_20261119_diemals-wcn",
+          "context_evidence": [],
+          "attribute_id": "79ea5c94b08ce598ce67cbebafe5b570d5f9500268968c77c297383eb32625f7"
         }
       ]
     },
@@ -132914,6 +133684,27 @@
             }
           ],
           "attribute_id": "534968d7993e985a505ed19bf65964b724d70181b1ba5134d6017fe12281ac93"
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — follow-up Phase 2 drilling at Hines Hill（來源狀態日：2023-09-29）",
+          "source_key": "wcn_annual2023",
+          "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "pdf_page": 7,
+          "page_markers": [
+            "Hines Hill",
+            "Phase 2 drilling",
+            "88 drill holes"
+          ],
+          "locator": "physical PDF p7; Hines Hill Phase 2 drilling and soil geochemistry are disclosed as exploration in the annual report, including work performed after financial year-end.",
+          "effective_date": "2023-09-29",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_hines-hill-wcn",
+          "scope": "Hines Hill Phase 2 drilling and soil geochemistry are disclosed as exploration in the annual report, including work performed after financial year-end.",
+          "statement_id": "census_project_status_20261119_hines-hill-wcn",
+          "context_evidence": [],
+          "attribute_id": "b39e4ff6a92aaede5aa6016fc94ff06308e6c9e57b8befe8e193d39655c6b5d5"
         }
       ]
     },
@@ -133211,6 +134002,26 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — maiden reconnaissance soil and rock-chip program completed（來源狀態日：2023-09-29）",
+          "source_key": "wcn_annual2023",
+          "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "pdf_page": 4,
+          "page_markers": [
+            "Barballin REE Project",
+            "Maiden reconnaissance soil and rock chip programs have been completed"
+          ],
+          "locator": "physical PDF p4; The specifically named project appears in the list of completed maiden reconnaissance programs. Status as disclosed in the annual report.",
+          "effective_date": "2023-09-29",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_barballin-wcn",
+          "scope": "The specifically named project appears in the list of completed maiden reconnaissance programs. Status as disclosed in the annual report.",
+          "statement_id": "census_project_status_20261119_barballin-wcn",
+          "context_evidence": [],
+          "attribute_id": "579b809ed73bc965ff2f32e71928d6f78f2c3be9610b127f5289949891d82ce2"
         }
       ]
     },
@@ -133349,6 +134160,26 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — maiden reconnaissance soil and rock-chip program completed（來源狀態日：2023-09-29）",
+          "source_key": "wcn_annual2023",
+          "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "pdf_page": 4,
+          "page_markers": [
+            "Munbinia REE Project",
+            "Maiden reconnaissance soil and rock chip programs have been completed"
+          ],
+          "locator": "physical PDF p4; The specifically named project appears in the list of completed maiden reconnaissance programs. Status as disclosed in the annual report.",
+          "effective_date": "2023-09-29",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_munbinia-wcn",
+          "scope": "The specifically named project appears in the list of completed maiden reconnaissance programs. Status as disclosed in the annual report.",
+          "statement_id": "census_project_status_20261119_munbinia-wcn",
+          "context_evidence": [],
+          "attribute_id": "c5f88b9729ffc55d3665721d912a93e145ddf4b9a5595fff0696faaa0e47efbc"
         }
       ]
     },
@@ -133607,6 +134438,27 @@
             }
           ],
           "attribute_id": "416ace55458a818c9b909935df99018647a41fb3954db8cde0614a93057e285b"
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — intersections reported and planning underway for further drilling（來源狀態日：2022-05-30）",
+          "source_key": "cascade20220530",
+          "source_sha256": "9f049399b0e97a04d85c1842d4401187d04dcbb59bd86c37fd80e4921d45c43d",
+          "pdf_page": 1,
+          "page_markers": [
+            "Cascade Project",
+            "Forward planning underway for drilling",
+            "intersections"
+          ],
+          "locator": "physical PDF p1; Issuer reports mineralised intersections and plans to drill further at Cascade.",
+          "effective_date": "2022-05-30",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_cascade-meeka",
+          "scope": "Issuer reports mineralised intersections and plans to drill further at Cascade.",
+          "statement_id": "census_project_status_20261119_cascade-meeka",
+          "context_evidence": [],
+          "attribute_id": "04e89179b696126165bedb1a132d10993c2779a8058895dd1040c0a26f161293"
         }
       ]
     },
@@ -134006,6 +134858,27 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — aircore drilling completed at Pt Kidman（來源狀態日：2023-03-31）",
+          "source_key": "ravensthorpe20230428",
+          "source_sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+          "pdf_page": 2,
+          "page_markers": [
+            "East Laverton",
+            "aircore drilling",
+            "Pt Kidman"
+          ],
+          "locator": "physical PDF p2; Quarterly report identifies a completed exploration drilling campaign testing clay-hosted REE mineralisation at the named prospect.",
+          "effective_date": "2023-03-31",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_east-laverton-mtm",
+          "scope": "Quarterly report identifies a completed exploration drilling campaign testing clay-hosted REE mineralisation at the named prospect.",
+          "statement_id": "census_project_status_20261119_east-laverton-mtm",
+          "context_evidence": [],
+          "attribute_id": "de35cbcb43635f06dc7cb1bdef91ad64c725ffbd5d3cbdef44b12e52b536cdd9"
         }
       ]
     },
@@ -134135,6 +135008,27 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — desktop review; no field exploration during the quarter（來源狀態日：2022-12-31）",
+          "source_key": "wandagee20230131",
+          "source_sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7",
+          "pdf_page": 5,
+          "page_markers": [
+            "Wandagee",
+            "No field exploration activities were undertaken",
+            "Document review"
+          ],
+          "locator": "physical PDF p5; Quarterly activities describe the actual level of work on Wandagee and distinguish field exploration from document review.",
+          "effective_date": "2022-12-31",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_wandagee-czl",
+          "scope": "Quarterly activities describe the actual level of work on Wandagee and distinguish field exploration from document review.",
+          "statement_id": "census_project_status_20261119_wandagee-czl",
+          "context_evidence": [],
+          "attribute_id": "74ba98649cbbaee8203ac3077e8e6b3ba05e6a0757bf25a1f7612f64b254ebc8"
         }
       ]
     },
@@ -134949,6 +135843,26 @@
             }
           ],
           "attribute_id": "ad00a483f03b26b5d938981c2ddd4131a12116275205855610457b8dff06e795"
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — maiden RC drilling confirmed REE mineralisation（來源狀態日：2023-05-25）",
+          "source_key": "graceland_discovery20230525",
+          "source_sha256": "3f9db544c68335bbaf29ee2018280e28633df2b58395cf5d6d0eb906b3749226",
+          "pdf_page": 1,
+          "page_markers": [
+            "Graceland Project",
+            "maiden RC drilling program at Graceland"
+          ],
+          "locator": "physical PDF p1; Issuer reports the Graceland REE outcome from the first RC drilling campaign.",
+          "effective_date": "2023-05-25",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_graceland-emu",
+          "scope": "Issuer reports the Graceland REE outcome from the first RC drilling campaign.",
+          "statement_id": "census_project_status_20261119_graceland-emu",
+          "context_evidence": [],
+          "attribute_id": "9edd89d6f5f7b6a5e4e4ebff44d9567ba48522bb0407d9e58c8cec6839b0e80c"
         }
       ]
     },
@@ -149906,6 +150820,27 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — auger sampling, mapping and rock-chip sampling at Kenny（來源狀態日：2023-07-31）",
+          "source_key": "eg1_kenny20230731",
+          "source_sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64",
+          "pdf_page": 4,
+          "page_markers": [
+            "Kenny Project",
+            "mapping and rock chip sampling",
+            "currently being undertaken at Kenny"
+          ],
+          "locator": "physical PDF p4; The issuer identifies four priority REE target zones in the Kenny geochemistry program.",
+          "effective_date": "2023-07-31",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_kenny-evergreen",
+          "scope": "The issuer identifies four priority REE target zones in the Kenny geochemistry program.",
+          "statement_id": "census_project_status_20261119_kenny-evergreen",
+          "context_evidence": [],
+          "attribute_id": "cc2baaf29fb869b60db59cea70d349af788f8a991da206f536b1bf10d72cbaf7"
         }
       ]
     },
@@ -173787,6 +174722,26 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — inferred mineral resource delineated at Nowie（來源狀態日：2024-01-24）",
+          "source_key": "nowie_mre20240124",
+          "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4",
+          "pdf_page": 4,
+          "page_markers": [
+            "Exploration Activities",
+            "Inferred Mineral Resource at Nowie"
+          ],
+          "locator": "physical PDF p4; The issuer reports Nowie under Exploration Activities as a new inferred heavy-mineral resource. The Goschen DFS is a separate project.",
+          "effective_date": "2024-01-24",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_nowie-vhm",
+          "scope": "The issuer reports Nowie under Exploration Activities as a new inferred heavy-mineral resource. The Goschen DFS is a separate project.",
+          "statement_id": "census_project_status_20261119_nowie-vhm",
+          "context_evidence": [],
+          "attribute_id": "732c1fc9ac3e981b0d3719d150e4bd57f7aa4ba63fd378f4775f73f16b3cf803"
         }
       ]
     },
@@ -173919,6 +174874,27 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — evaluating REE potential at Mt Craig beyond Morgan Creek（來源狀態日：2024-06-30）",
+          "source_key": "taruga_ar2024",
+          "source_sha256": "b0faf81a98d605436700670fbaff7e6b3d10f733c5af9a5311fbe9ddf08bb246",
+          "pdf_page": 6,
+          "page_markers": [
+            "continues to evaluate the broader MCCP",
+            "REE mineralisation",
+            "Morgan"
+          ],
+          "locator": "physical PDF p6; Same Mt Craig Copper Project annual review treats the Morgan Creek REE occurrence separately from the Wyacca copper program.",
+          "effective_date": "2024-06-30",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_mt-craig-taruga",
+          "scope": "Same Mt Craig Copper Project annual review treats the Morgan Creek REE occurrence separately from the Wyacca copper program.",
+          "statement_id": "census_project_status_20261119_mt-craig-taruga",
+          "context_evidence": [],
+          "attribute_id": "fac74f3e65ec6f30e74de1aa1ccb8ee258186e5634721f680663cc7174afe420"
         }
       ]
     },
@@ -193172,6 +194148,54 @@
           "statement_id": "config/asx_discovery_reviews.json:charley-creek-north-uro-el33004-historical",
           "context_evidence": [],
           "attribute_id": "d150791b0dbfd4103f1a38d0b85e3c62dd0dfc770690c89b735184da1efb20e7"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Alluvial fans prospective for rare earth elements",
+          "source_key": "reviewed_source_e6bed25382926c6d",
+          "source_sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+          "pdf_page": 8,
+          "page_markers": [
+            "2.2 Local Geology",
+            "highly prospective for alluvial rare earth elements"
+          ],
+          "context_evidence": [
+            {
+              "page": 3,
+              "markers": [
+                "Charley Creek North",
+                "EL33004"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p8; EL33004 local geology and exploration prospectivity of alluvial fans; historical relinquished area.",
+          "effective_date": "2024-11-30",
+          "extraction_method": "STATIC_PDF_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "ree_host_charley-creek-north-uro-el33004-historical_20261119",
+          "scope": "EL33004 local geology and exploration prospectivity of alluvial fans; historical relinquished area.",
+          "attribute_id": "c1e846d55780fc199fea6ac435f5d03e1af916a0b0fd7fc33b414424868e3430"
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration ceased on relinquished eastern section after desktop review and surface sampling（來源狀態日：2024-08-22）",
+          "source_key": "reviewed_source_e6bed25382926c6d",
+          "source_sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+          "pdf_page": 4,
+          "page_markers": [
+            "extensive desktop studies",
+            "relinquishing the eastern section of EL33004",
+            "sampling and preliminary soil"
+          ],
+          "locator": "physical PDF p4; Reporting period and partial surrender date on p. 1. The status applies only to the relinquished eastern section.",
+          "effective_date": "2024-08-22",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_charley-creek-north-uro-el33004-historical",
+          "scope": "Reporting period and partial surrender date on p. 1. The status applies only to the relinquished eastern section.",
+          "statement_id": "census_project_status_20261119_charley-creek-north-uro-el33004-historical",
+          "context_evidence": [],
+          "attribute_id": "2861a2e5081d5d69af195d55b4fc72cef3fa20c6068cffb26b09e06bd9ed363d"
         }
       ]
     },
@@ -193275,6 +194299,55 @@
           "statement_id": "config/asx_discovery_reviews.json:charley-creek-north-east-uro-el33000-historical",
           "context_evidence": [],
           "attribute_id": "a471a59eb577dc04b274ab79b325c927f3ee369f2eb5dab71b31326ba72d6b30"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Alluvial rare earth exploration target",
+          "source_key": "reviewed_source_06916f0c5d2b6e1c",
+          "source_sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+          "pdf_page": 3,
+          "page_markers": [
+            "EL33000",
+            "Specific targets include",
+            "alluvial REEs"
+          ],
+          "context_evidence": [
+            {
+              "page": 7,
+              "markers": [
+                "considered prospective for alluvial rare earth elements",
+                "alluvial fans"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p3; Relinquished portions of EL33000; exploration target.",
+          "effective_date": "2024-11-30",
+          "extraction_method": "STATIC_PDF_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "ree_host_charley-creek-north-east-uro-el33000-historical_20261119",
+          "scope": "Relinquished portions of EL33000; exploration target.",
+          "attribute_id": "371c2725b28315559072488cf28eec3eeda0a6e50a82758a2e12470687426972"
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration ceased on relinquished northernmost and southern parts after reconnaissance and desktop studies（來源狀態日：2024-08-22）",
+          "source_key": "reviewed_source_06916f0c5d2b6e1c",
+          "source_sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+          "pdf_page": 3,
+          "page_markers": [
+            "reconnaissance and office-based studies",
+            "relinquished the northernmost and southern",
+            "EL33000"
+          ],
+          "locator": "physical PDF p3; Reporting period and partial surrender date on p. 1. URO explicitly retains other parts of EL33000.",
+          "effective_date": "2024-08-22",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_charley-creek-north-east-uro-el33000-historical",
+          "scope": "Reporting period and partial surrender date on p. 1. URO explicitly retains other parts of EL33000.",
+          "statement_id": "census_project_status_20261119_charley-creek-north-east-uro-el33000-historical",
+          "context_evidence": [],
+          "attribute_id": "b95abbe6e975fb3f288537140ac0fd30616e234ecb6d588b34b4238593f6404d"
         }
       ]
     },
@@ -193354,6 +194427,53 @@
           "statement_id": "config/asx_discovery_reviews.json:charley-creek-south-east-uro-el33006-historical",
           "context_evidence": [],
           "attribute_id": "a404943dea4bce02f864ce4f0cb66327065ae5576c5017f04e9c03f4639374c5"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Felsic intrusion-related REE exploration model and prospective alluvial fans",
+          "source_key": "reviewed_source_e37750161e156498",
+          "source_sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+          "pdf_page": 3,
+          "page_markers": [
+            "relinquished portion of EL33006",
+            "felsic intrusion-related REEs"
+          ],
+          "context_evidence": [
+            {
+              "page": 6,
+              "markers": [
+                "highly prospective for alluvial rare earth elements",
+                "EL33006"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p3; Relinquished portion of EL33006; report distinguishes conceptual models and prospective local alluvial sediments.",
+          "effective_date": "2024-11-30",
+          "extraction_method": "STATIC_PDF_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "ree_host_charley-creek-south-east-uro-el33006-historical_20261119",
+          "scope": "Relinquished portion of EL33006; report distinguishes conceptual models and prospective local alluvial sediments.",
+          "attribute_id": "cf6a4c8fbbd38704e4876dee8fdea8c61b36150ac4ca5a053f899aa7bbd6b159"
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration ceased on relinquished western portion after desktop studies and field sampling（來源狀態日：2024-08-22）",
+          "source_key": "reviewed_source_e37750161e156498",
+          "source_sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+          "pdf_page": 3,
+          "page_markers": [
+            "desktop studies, field sampling",
+            "relinquished the western portion of EL33006"
+          ],
+          "locator": "physical PDF p3; Reporting period and partial surrender date on p. 1. Applies only to the relinquished western portion.",
+          "effective_date": "2024-08-22",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_charley-creek-south-east-uro-el33006-historical",
+          "scope": "Reporting period and partial surrender date on p. 1. Applies only to the relinquished western portion.",
+          "statement_id": "census_project_status_20261119_charley-creek-south-east-uro-el33006-historical",
+          "context_evidence": [],
+          "attribute_id": "e8a37ee182c7d074c07054abd6e838c6ba30fc0137bb440f486a4a85d813a58e"
         }
       ]
     },
@@ -193442,6 +194562,47 @@
           "statement_id": "config/asx_discovery_reviews.json:charley-creek-south-uro-gr617-historical",
           "context_evidence": [],
           "attribute_id": "35590c823d87ee0cab49c9347ab182c889b188811cb0986de2530bd5e7ab4505"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Felsic intrusion-related REE exploration model and prospective alluvial deposits",
+          "source_key": "reviewed_source_edb1583a4bcc4edd",
+          "source_sha256": "edb1583a4bcc4eddb7142b233ced822c1ef711df9c7c72051399dd22c7ad9b75",
+          "pdf_page": 3,
+          "page_markers": [
+            "EL33054 & EL33055",
+            "felsic intrusion-related uranium and rare earths",
+            "potential for rare earth elements in alluvial deposits"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p3; EL33054 and EL33055 group report; considered exploration models and reconnaissance sampling.",
+          "effective_date": "2023-10-31",
+          "extraction_method": "STATIC_PDF_MIGRATED_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "ree_host_charley-creek-south-uro-gr617-historical_20261119",
+          "scope": "EL33054 and EL33055 group report; considered exploration models and reconnaissance sampling.",
+          "attribute_id": "53906085809ef6bb60e9ac433dc7548d1401822b40e46260d14cc73f6ccd6500"
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration ceased following reconnaissance, surface sampling and aircore drilling on EL33054 and EL33055（來源狀態日：2025-08-14）",
+          "source_key": "reviewed_source_5d4d954c63513e05",
+          "source_sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59",
+          "pdf_page": 3,
+          "page_markers": [
+            "to relinquish the ground at this stage",
+            "three air core",
+            "Charley Creek South"
+          ],
+          "locator": "physical PDF p3; Final group report; p. 1 gives reporting period to 14 August 2025. NT repository public availability 26 February 2026.",
+          "effective_date": "2025-08-14",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_project_status_20261119_charley-creek-south-uro-gr617-historical",
+          "scope": "Final group report; p. 1 gives reporting period to 14 August 2025. NT repository public availability 26 February 2026.",
+          "statement_id": "census_project_status_20261119_charley-creek-south-uro-gr617-historical",
+          "context_evidence": [],
+          "attribute_id": "0e880c27d94a47ff801d6e436677e07a09e4b3282084632a681cf73256daf4b7"
         }
       ]
     }

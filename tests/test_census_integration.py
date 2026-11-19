@@ -116,6 +116,40 @@ class CensusIntegrationTests(unittest.TestCase):
             binding['feature_id']=8
             self.assertEqual([],summary_locations(row,[],[layer],sources,rules,[]))
 
+    def test_resource_point_requires_selected_issuer_figure_and_dates(self):
+        import pymupdf
+        from au_ree_v2.spatial import _resource_point_scope
+
+        with tempfile.TemporaryDirectory() as directory:
+            pdf = Path(directory) / 'issuer.pdf'
+            with pymupdf.open() as document:
+                page = document.new_page()
+                page.insert_text((30, 30), 'Figure 14.5 MIN5532 Mineral Resource classification')
+                document.save(pdf)
+            sha = filehash(pdf)
+            issuer = dict(key='issuer', kind='pdf', resolved_path=str(pdf), publication_date='2026-02-27')
+            government = dict(available_date='2026-11-10')
+            row = {'專案名稱': 'Donald MIN5532'}
+            proof = dict(source_key='issuer', source_sha256=sha, physical_page=1, figure='Figure 14.5',
+                         caption='MIN5532 Mineral Resource classification', grid_epsg=28354,
+                         review='Native feature inside the reviewed classified resource.')
+            case = dict(census_project_name='Donald MIN5532', issuer_scope_reference=proof)
+
+            def check(binding=case, target=row, layer=government, selected=None):
+                return _resource_point_scope(binding, target, layer, {sha: issuer} if selected is None else selected,
+                                             '2026-11-13', 142.7814994, -36.4993766)
+
+            evidence = check()
+            self.assertEqual((659552, 5959185), (evidence['easting_m'], evidence['northing_m']))
+            for changes in [dict(physical_page=0), dict(physical_page=2), dict(figure='Figure 4'),
+                            dict(caption='Different resource'), dict(source_sha256='wrong'), dict(source_key='other')]:
+                with self.subTest(changes=changes):
+                    self.assertIsNone(check(binding=dict(case, issuer_scope_reference=dict(proof, **changes))))
+            self.assertIsNone(check(selected={}))
+            self.assertIsNone(check(target={'專案名稱': 'Donald RL2002'}))
+            self.assertIsNone(check(layer=dict(available_date='2026-11-14')))
+            self.assertIsNone(check(selected={sha: dict(issuer, publication_date='2026-11-14')}))
+
     def test_reviewed_wa_point_rejects_wrong_feature_and_conflicting_operator(self):
         with tempfile.TemporaryDirectory() as directory:
             path=Path(directory)/'layer.json'
