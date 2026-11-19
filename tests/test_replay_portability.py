@@ -12,6 +12,39 @@ from tools.bundle_census_replay import bundle
 
 
 class ReplayPortabilityTests(unittest.TestCase):
+    def test_bundle_separates_original_document_from_snapshot_and_receipt_status(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            lock = root/'results/phase22-2026-11-06/snapshot_lock.json'
+            lock.parent.mkdir(parents=True)
+            def fixture(name):
+                f = root/name
+                f.write_bytes(name.encode())
+                return dict(path=name, sha256=filehash(f))
+            pdf, page, response, older = [fixture(x) for x in ('report', 'page', 'raw', 'prior')]
+            original = dict(pdf, key='report',kind='pdf')
+            derived = dict(page, key='page',kind='pdf_page_extraction',source_sha256=pdf['sha256'],
+                           original_responses=[response],acquisition_method='DECLARED_METHOD')
+            lock.write_text(json.dumps([dict(older,key='page',kind='pdf_page_extraction',
+                                            parent_source_sha256=pdf['sha256'])]),encoding='utf8')
+            receipt = root/'receipt.json'
+            receipt.write_text(json.dumps(dict(snapshots=[original,derived],
+                outcomes=[dict(key='page',actual_sha256=page['sha256'],status='REPLAY_VERIFIED'),
+                          dict(key='page',expected_sha256=older['sha256'],status='UNAVAILABLE')])),encoding='utf8')
+            result = bundle(root,receipt,root/'kit')
+            self.assertEqual(2,result['manifest_version'])
+            self.assertEqual((4,4),(result['assets'],result['references']))
+            rows = json.loads((root/'kit/asset_manifest.json').read_text(encoding='utf8'))
+            by_sha = {row['sha256']:row for row in rows}
+            self.assertEqual(pdf['sha256'],by_sha[page['sha256']]['source_document_sha256'])
+            self.assertEqual(page['sha256'],by_sha[response['sha256']]['owning_snapshot_sha256'])
+            self.assertEqual(['REPLAY_VERIFIED'],by_sha[response['sha256']]['owning_snapshot_receipt_statuses'])
+            self.assertIsNone(by_sha[response['sha256']]['acquisition_method'])
+            self.assertEqual('DECLARED_METHOD',by_sha[response['sha256']]['owning_snapshot_acquisition_method'])
+            self.assertEqual(pdf['sha256'],by_sha[older['sha256']]['parent_source_sha256'])
+            self.assertEqual([],by_sha[older['sha256']]['owning_snapshot_receipt_statuses'])
+            self.assertEqual(receipt.read_bytes(),(root/'kit/source_acquisition.json').read_bytes())
+
     def test_orphaned_integrated_database_cannot_export_checkout_defaults(self):
         repository=Path(__file__).resolve().parents[1]
         with tempfile.TemporaryDirectory() as folder:
