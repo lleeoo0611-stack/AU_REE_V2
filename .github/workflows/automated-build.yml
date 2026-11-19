@@ -130,7 +130,12 @@ jobs:
                       if previous is None or record['successful_sources_after_first_attempt'] > previous['successful_sources_after_first_attempt']:
                           hosts[record['host']] = record
                   annotate_robots(rows)
-                  with report.open('w', encoding='utf-8-sig', newline='') as stream:
+                  annotated = report
+                  if report.is_relative_to(clean / 'runs'):
+                      # Run receipts are already hashed for independent Census export.
+                      annotated = root / 'work/ci-annotations' / report.relative_to(clean)
+                      annotated.parent.mkdir(parents=True, exist_ok=True)
+                  with annotated.open('w', encoding='utf-8-sig', newline='') as stream:
                       writer = csv.DictWriter(stream, fields)
                       writer.writeheader()
                       writer.writerows(rows)
@@ -249,6 +254,7 @@ jobs:
             work/r-tests.log
             work/clean-build.log
             work/clean/**/acquisition_report.csv
+            work/ci-annotations/
             work/clean/asx_probe.csv
             work/clean/dns_preflight.csv
             work/clean/network_status.json
