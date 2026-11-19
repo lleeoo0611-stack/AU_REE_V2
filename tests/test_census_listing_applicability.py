@@ -19,4 +19,3 @@ class ListingApplicabilityTests(unittest.TestCase):
         self.assertEqual(reason([dict(source, page_markers=[operator, 'Pty Ltd'])]), 'NO_SOURCE_VALUE')
         row['開發商'] = 'Other operator Ltd'
         self.assertEqual(reason([source]), 'NO_SOURCE_VALUE')
-

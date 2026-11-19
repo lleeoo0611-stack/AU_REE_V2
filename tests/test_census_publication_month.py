@@ -16,4 +16,3 @@ class PublicationMonthTests(unittest.TestCase):
         self.assertEqual(admit('2026-11-13')['date_used'], '2026-03-31')
         wrong = dict(registered, publication_date_interval=['2026-02-01', '2026-02-28'])
         self.assertEqual(admit('2026-11-13', wrong)['cutoff_status'], 'SOURCE_PUBLICATION_DATE_MISMATCH')
-
