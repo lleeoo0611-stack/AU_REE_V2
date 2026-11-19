@@ -32,6 +32,93 @@ class CompanyMarkerApprovals(unittest.TestCase):
         self.assertEqual(70,len(log))
         self.assertEqual(approvals.APPROVED_IDS,{r['proposal_id'] for r in log})
 
+    def test_frozen_whole_file_and_integrated_approval_locations(self):
+        published=audit.revision_claims(ROOT,audit.V10)
+        prior=audit.revision_claims(ROOT,audit.INTEGRATION_BASE)
+        current=json.loads((ROOT/'data/claims.json').read_bytes())
+        self.assertNotEqual(published,current)
+        audit.check_contract(published,published,self.rows)
+        with self.assertRaisesRegex(ValueError,'V10_CLAIMS'):
+            audit.check_contract(current,published,self.rows)
+        audit.check_contract(current,published,self.rows,prior)
+
+    def project_fixture(self, row):
+        published=audit.revision_claims(ROOT,audit.V10)
+        project=approvals.project_map(published)[row['project_id']]
+        return {'projects':[project]}
+
+    def test_approved_target_rejects_removal_page_source_value_and_new_marker(self):
+        row=self.approved[0]
+        published=self.project_fixture(row)
+        for change in ('delete','source','page','marker','remove_marker','value','column'):
+            with self.subTest(change=change):
+                current=copy.deepcopy(published)
+                attribute=current['projects'][0]['attributes'][2]
+                target=attribute['context_evidence'][0]
+                if change=='delete':attribute['context_evidence'].pop(0)
+                if change=='source':attribute['source_sha256']='0'*64
+                if change=='page':target['page']+=1
+                if change=='marker':target['markers'].append('Unapproved company marker')
+                if change=='remove_marker':target['markers'].pop()
+                if change=='value':attribute['value']='OTHER'
+                if change=='column':attribute['column']='開發商'
+                with self.assertRaisesRegex(ValueError,'APPROVED_COMPANY_BINDING_CHANGED'):
+                    audit.check_contract(current,published,[row],published)
+
+    def test_unapproved_and_cross_field_proposals_cannot_be_reused(self):
+        for disposition in ('HOLD',''):
+            row=next(r for r in self.rows if r['approved']==disposition and
+                     r['declaration_pointer'].startswith('/attributes/'))
+            published=self.project_fixture(row)
+            current=copy.deepcopy(published)
+            node=current['projects'][0]
+            for part in row['declaration_pointer'].strip('/').split('/'):
+                node=node[int(part)] if isinstance(node,list) else node[part]
+            markers=node.get('markers',node.get('page_markers'))
+            markers.extend([row['marker_1'],row['marker_2']])
+            with self.subTest(disposition=disposition):
+                with self.assertRaisesRegex(ValueError,'UNAPPROVED_PROPOSAL_MARKER_SCOPE'):
+                    audit.check_contract(current,published,[row],published)
+        row=self.approved[0]
+        published=self.project_fixture(row)
+        current=copy.deepcopy(published)
+        current['projects'][0]['attributes'].append(dict(column='礦床型態',
+            source_key=row['source_key'],source_sha256=row['source_sha256'],pdf_page=int(row['pdf_page']),
+            page_markers=[row['marker_1'],row['marker_2']]))
+        with self.assertRaisesRegex(ValueError,'UNAPPROVED_PROPOSAL_MARKER_SCOPE'):
+            audit.check_contract(current,published,[row],published)
+
+    def test_independent_evidence_can_be_added_without_v10_approval(self):
+        row=self.approved[0]
+        published=self.project_fixture(row)
+        current=copy.deepcopy(published)
+        for column in ('開發商','ASX代碼'):
+            current['projects'][0]['attributes'].append(dict(column=column,source_key='new_report',
+                source_sha256='3'*64,pdf_page=7,page_markers=['reviewed independently','new original']))
+        current['projects'][0]['attributes'].append(dict(column='ASX代碼',source_key=row['source_key'],
+            source_sha256=row['source_sha256'],pdf_page=7,
+            page_markers=[row['marker_1'],'separately verified company evidence']))
+        audit.check_contract(current,published,[row],published)
+        self.assertEqual(('NO_SELECTED_CENSUS_SOURCE',''),audit.selected_binding(row,None,set()))
+
+    def test_new_selected_source_or_same_source_distinct_attribute_requires_active_evidence(self):
+        row=self.approved[0]
+        for sha in ('2'*64,row['source_sha256']):
+            selection=dict(source_sha256=sha,attribute_ids='["new-attribute"]',observation_ids='["new-observation"]')
+            with self.subTest(sha=sha):
+                self.assertEqual(('SUPERSEDED_BY_VERIFIED_CENSUS_SOURCE',sha),
+                    audit.selected_binding(row,selection,{'new-observation'},'previous-attribute'))
+                with self.assertRaisesRegex(ValueError,'UNVERIFIED_REPLACEMENT_COMPANY_SOURCE'):
+                    audit.selected_binding(row,selection,{'unrelated-observation'},'previous-attribute')
+
+    def test_changed_original_sha_is_a_failure(self):
+        row=self.approved[0]
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            (root/'source.pdf').write_bytes(b'%PDF changed original')
+            record=audit.check_row(root,row,{},dict(path='source.pdf'),[],{},root)
+            self.assertEqual('FAILED_IN_CI',record['status'])
+
     def test_append_preserves_existing_marker_page_sha_and_unrelated_fields(self):
         original=copy.deepcopy(self.before)
         row=self.approved[0]

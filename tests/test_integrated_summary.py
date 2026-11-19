@@ -44,8 +44,8 @@ class SummaryContractTests(unittest.TestCase):
         ingest_claims(self.db,self.root,[self.source],'2026-11-13',claims_data=claims,conflict_selection=True)
         self.db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?,?)',('run','2026-11-15','2026-11-13','{}','config','sources','COMPLETED',None));self.db.commit()
 
-    def export(self):
-        out=self.root/'export';coverage=export_summary(self.root,self.database,out)
+    def export(self, **options):
+        out=self.root/'export';coverage=export_summary(self.root,self.database,out,**options)
         with (out/'專案總表.csv').open(encoding='utf8',newline='') as f:rows=list(csv.DictReader(f))
         with (out/'field_provenance.csv').open(encoding='utf8',newline='') as f:trace=list(csv.DictReader(f))
         with (out/'missing_fields.csv').open(encoding='utf8',newline='') as f:missing=list(csv.DictReader(f))
@@ -83,17 +83,30 @@ class SummaryContractTests(unittest.TestCase):
             (run/'configuration.json').write_text(canonical(config),encoding='utf8')
             (run/'snapshot_lock.json').write_text(canonical(lock),encoding='utf8')
             (run/'canonical_membership.csv').write_text('kind,canonical_id\n',encoding='utf8')
+            (run/'acquisition_report.csv').write_text('key,status\ndoc,RECEIPT_SHA_VERIFIED\n',encoding='utf8')
+            settings=('summary_rules.json','researcher_rule_decisions.json','project_summary_columns.json')
+            receipt=dict(run_id='run',status='COMPLETED',cutoff='2026-11-13',
+                configuration_sha256=digest(config),snapshot_sha256=digest(lock),
+                project_summary={'export_contract_sha256':{n:filehash(self.root/'config'/n) for n in settings}},
+                output_hashes={n:filehash(run/n) for n in ('canonical_membership.csv','acquisition_report.csv')})
+            (run/'summary.json').write_text(canonical(receipt),encoding='utf8')
             self.db.execute('UPDATE runs SET config_sha=?,snapshot_sha=?',(digest(config),digest(lock)))
             self.db.commit()
             before=filehash(self.database)
-            coverage,rows,_,_=self.export()
+            with self.assertRaises(ValueError):
+                export_summary(self.root,self.database,self.root/'implicit-external')
+            # The historical locked path can now disappear. Only declared hash-addressed bytes are used.
+            assets=Path(outside)/'relocated-library'
+            assets.mkdir()
+            original.rename(assets/self.source['sha256'])
+            coverage,rows,_,_=self.export(replay_assets=assets)
             self.assertEqual(rows[0]['ASX代碼'],'TST')
             self.assertIn('field_status_counts',coverage)
             self.assertTrue((self.root/'export/resource_statement_observations.csv').is_file())
             self.assertEqual(filehash(self.database),before)
             (run/'snapshot_lock.json').write_text('[]',encoding='utf8')
             with self.assertRaisesRegex(ValueError,'SUMMARY_RUN_SNAPSHOT_HASH_MISMATCH'):
-                export_summary(self.root,self.database,self.root/'tampered')
+                export_summary(self.root,self.database,self.root/'tampered',replay_assets=assets)
             self.assertFalse((self.root/'tampered').exists())
 
     def test_reported_oxide_groups_fill_only_matching_group_totals(self):

@@ -1,0 +1,347 @@
+{
+  "github_commit": "5d83732b22615224117b1ff2f8aac17a598585cc",
+  "github_workflow_run": 44604405484,
+  "github_clean_job": 135844441129,
+  "artifact_id": 14573153055,
+  "artifact_sha256": "a33425ecffaccb4efd3aa14be8a5b920b114d3025a0a2b68ca0965a88be51205",
+  "rundate": "20261119T200335-8c2be1df",
+  "source_mode": "live",
+  "cutoff": "2026-11-13",
+  "linux_summary_matches_latest": true,
+  "source_originals_downloaded": 0,
+  "files_bound_by_completion": {
+    "configuration.json": "76f04de99953a07f0bee041d0fcfe5f8b2fc6514a7596a706817e0ce5afd92a6",
+    "snapshot_lock.json": "15a4964b02d71e0024cc67dc870fba8d47b2251dff9a7bf491b8a6b4f81b4008",
+    "acquisition_report.csv": "fb3eab191fa4ab91f37d222f6290ca396da0ed71227d2e480578f8f6817ac737",
+    "project-summary/coverage.json": "24a89044370556c70fa8eb8d4a8f9e72e0806548e600a34eb5951728a5d43b96",
+    "project-summary/field_provenance.csv": "43383a8191028d70764421ff2fd0117c455646eabb0c34b66ee4ef47fdaca08f",
+    "project-summary/field_status.csv": "41cfd95d5f2c517e97e25036f965470aee6c897df13e57f778b1b79099747828",
+    "census_selection.csv": "7c033bba6ba0a231b3e34935fd706bbbe42450614f6ca73f0269be3244e53995",
+    "mcda_census_gate.csv": "7d7c2e0aef936418ed443ae0d6c39513e1143e2a6b4fabf609c831f0fd23df59",
+    "mcda_panel_decisions.csv": "c6b967e988f4dd39c3bb18dce9c691c6e72a53e78495ae081af89bf1ffd5e512",
+    "beneficiation_concentrate_screen/ranking.csv": "e22d3d97569072438dc932da734a73d65284aa3afbb8625c5145e659f6aca950",
+    "disclosure_only/ranking.csv": "83a87317275d07566dbfa32ae80b2e52faa6471c54a1831079124d623525e2e1",
+    "issuer_resource_composition/ranking.csv": "12b20c111f8c182f6ee335674c3aeba1412fccc31a4a855f5e67a29953f131a6",
+    "issuer_resource_concentrate/ranking.csv": "0acec29cac245bd1fca23ac6547130e0bfff8d7da440a10fe2a6be6e1c37ddad",
+    "issuer_resource_concentrate_recovery/ranking.csv": "2c054d7ac71231df50f7e7e34b5ade9b9ddd0da46ecb216b68acc0e3185a65ed",
+    "issuer_resource_financing_milestone/ranking.csv": "d4767715cb59926ebc7763c9864dd3625cdd2fb1f308840076d52f55ed722c92",
+    "issuer_resource_infrastructure/ranking.csv": "663fccfad53e747e79c2e93ba375acdb5f2456c28d3402b6a24e730f10118b2f",
+    "issuer_resource_study/ranking.csv": "d5ccfadcbc9f872562df8db7af8787055e7ea5a592497a2a8298973781176ca5",
+    "official_wa_resource_screen/ranking.csv": "2c6ff84f536ced6600dfff5441d363c3a11030898b581706499bf6cad9de3cac",
+    "resource_disclosure/ranking.csv": "be9a0a3cb4ae4ea7ae12086683d497fc14e92dd10c7719854f36d66bd6f65868",
+    "resource_infrastructure_pilot/ranking.csv": "0bbc2a705e7b66dab290d7ec043d93e6e1bc009c3af9f2433468a92693810af1",
+    "resource_port_disclosure/ranking.csv": "56c901187db1112894fc37604c70c8afccb822a1b473cdf77cd44493da4f53e5",
+    "six_domain/ranking.csv": "04e190fd0c010e3058e92436e24b86693be6031af464e36192b2fa557bcf1011",
+    "six_domain_disclosure/ranking.csv": "ac5e0807712ce3f3392db7c93a0fc5768a79a2b716e86967906fe5d6b31b6c9f",
+    "technical_process_concentrate_fixed/ranking.csv": "1202edaa3f3801ada86a7d47a5fa354d3598e5331f3dbbac3a1c49052e0a358f",
+    "technical_process_concentrate_sample_minmax/ranking.csv": "531999afc87606494f18e0e9cc758f37184a83d3ca5b924dd7f6299c3d7653f9"
+  },
+  "network": {
+    "status": "NETWORK_VALID",
+    "valid_for_delivery": true,
+    "network_error_sources": 1,
+    "sources": 235,
+    "network_error_fraction": 0.00425531914893617,
+    "maximum_network_error_fraction": 0.05
+  },
+  "dns_states": {
+    "DNS_OK": 50
+  },
+  "live_census": {
+    "rows": 93,
+    "columns": 51,
+    "total": 4743,
+    "populated": 1524,
+    "blank": 3219,
+    "not_applicable": 1291,
+    "applicable_blank": 1928,
+    "no_source_value": 49,
+    "other_applicable_blank": 1879,
+    "raw_coverage_pct": 32.1316,
+    "applicable_coverage_pct": 44.1483,
+    "field_status_counts": {
+      "VALUE_PRESENT": 1524,
+      "CLASSIFICATION_INPUT_NOT_VERIFIED": 45,
+      "SELECTED_STATEMENT_FIELD_INPUT_MISSING": 265,
+      "COMPATIBLE_FORECAST_INPUT_NOT_VERIFIED": 42,
+      "NO_SOURCE_VALUE": 49,
+      "SOURCE_NOT_ACQUIRED": 1370,
+      "REPRESENTATIVE_POINT_NOT_VERIFIED": 68,
+      "EVIDENCE_REVIEW_REQUIRED": 67,
+      "NOT_APPLICABLE_NO_MRE": 1260,
+      "NOT_APPLICABLE_STAGE": 28,
+      "SOURCE_AFTER_CUTOFF": 8,
+      "NOT_APPLICABLE_UNLISTED_DEVELOPER": 3,
+      "SOURCE_SHA_CHANGED": 14
+    },
+    "missing_reasons": {
+      "NOT_APPLICABLE_NO_MRE": 1260,
+      "NOT_APPLICABLE_STAGE": 28,
+      "NOT_APPLICABLE_UNLISTED_DEVELOPER": 3,
+      "NO_SOURCE_VALUE": 49,
+      "RULE_INPUT_MISSING": 487,
+      "SOURCE_AFTER_CUTOFF": 8,
+      "SOURCE_NOT_ACQUIRED": 1370,
+      "SOURCE_SHA_CHANGED": 14
+    },
+    "selected_resource_statement_groups": 18,
+    "complete_treo_resource_projects": 18,
+    "formal_c1_releasable": 0,
+    "formal_c1_signed_eligible": 0
+  },
+  "published_static_census": {
+    "rows": 93,
+    "columns": 51,
+    "total": 4743,
+    "populated": 2457,
+    "blank": 2286,
+    "not_applicable": 1709,
+    "applicable_blank": 577,
+    "no_source_value": 30,
+    "other_applicable_blank": 547,
+    "raw_coverage_pct": 51.8027,
+    "applicable_coverage_pct": 80.9822,
+    "field_status_counts": {
+      "VALUE_PRESENT": 2457,
+      "CLASSIFICATION_INPUT_NOT_VERIFIED": 41,
+      "SELECTED_STATEMENT_FIELD_INPUT_MISSING": 363,
+      "COMPATIBLE_FORECAST_INPUT_NOT_VERIFIED": 56,
+      "NO_SOURCE_VALUE": 30,
+      "REPRESENTATIVE_POINT_NOT_VERIFIED": 82,
+      "NOT_APPLICABLE_NO_MRE": 1650,
+      "NOT_APPLICABLE_STAGE": 56,
+      "NOT_APPLICABLE_UNLISTED_DEVELOPER": 3,
+      "PARTIAL_RESOURCE_BASIS_OR_COMPONENTS": 5
+    },
+    "missing_reasons": {
+      "NOT_APPLICABLE_NO_MRE": 1650,
+      "NOT_APPLICABLE_STAGE": 56,
+      "NOT_APPLICABLE_UNLISTED_DEVELOPER": 3,
+      "NO_SOURCE_VALUE": 30,
+      "RULE_INPUT_MISSING": 547
+    },
+    "selected_resource_statement_groups": 38,
+    "complete_treo_resource_projects": 37,
+    "formal_c1_releasable": 0,
+    "formal_c1_signed_eligible": 0
+  },
+  "live_cohort": {
+    "selection_statuses": {
+      "SELECTED": 74,
+      "UNRESOLVED_PROJECT": 19
+    },
+    "selected_canonical_projects": 74,
+    "selected_panel_memberships": 142,
+    "panel_members": {
+      "resource_infrastructure_pilot": 20,
+      "issuer_resource_infrastructure": 6,
+      "six_domain": 6,
+      "issuer_resource_composition": 14,
+      "issuer_resource_study": 8,
+      "issuer_resource_concentrate": 2,
+      "issuer_resource_financing_milestone": 8,
+      "issuer_resource_concentrate_recovery": 2,
+      "official_wa_resource_screen": 17,
+      "beneficiation_concentrate_screen": 2,
+      "disclosure_only": 20,
+      "resource_disclosure": 14,
+      "resource_port_disclosure": 13,
+      "six_domain_disclosure": 6,
+      "technical_process_concentrate_fixed": 2,
+      "technical_process_concentrate_sample_minmax": 2
+    },
+    "unique_projects_in_any_gate": 32
+  },
+  "published_static_cohort": {
+    "selection_statuses": {
+      "SELECTED": 93
+    },
+    "selected_canonical_projects": 93,
+    "selected_panel_memberships": 131,
+    "panel_members": {
+      "resource_infrastructure_pilot": 17,
+      "issuer_resource_infrastructure": 6,
+      "six_domain": 5,
+      "issuer_resource_composition": 10,
+      "issuer_resource_study": 7,
+      "issuer_resource_concentrate": 2,
+      "issuer_resource_financing_milestone": 8,
+      "issuer_resource_concentrate_recovery": 2,
+      "official_wa_resource_screen": 17,
+      "beneficiation_concentrate_screen": 2,
+      "disclosure_only": 20,
+      "resource_disclosure": 14,
+      "resource_port_disclosure": 12,
+      "six_domain_disclosure": 5,
+      "technical_process_concentrate_fixed": 2,
+      "technical_process_concentrate_sample_minmax": 2
+    },
+    "unique_projects_in_any_gate": 31
+  },
+  "publication_rank_comparison": {
+    "unit": "panel, scenario, project: ordinal PROMETHEE, SAW, TOPSIS rank triple",
+    "same_all": 8,
+    "panels": 16,
+    "panels_comparison": {
+      "beneficiation_concentrate_screen": {
+        "static_only": 0,
+        "live_only": 0,
+        "common": 6,
+        "different_rank_tuple": 0,
+        "scenario_methods_with_winner": 9,
+        "different_top_sets": 0
+      },
+      "disclosure_only": {
+        "static_only": 0,
+        "live_only": 0,
+        "common": 60,
+        "different_rank_tuple": 0,
+        "scenario_methods_with_winner": 9,
+        "different_top_sets": 0
+      },
+      "issuer_resource_composition": {
+        "static_only": 0,
+        "live_only": 12,
+        "common": 30,
+        "different_rank_tuple": 25,
+        "scenario_methods_with_winner": 9,
+        "different_top_sets": 0
+      },
+      "issuer_resource_concentrate": {
+        "static_only": 0,
+        "live_only": 0,
+        "common": 6,
+        "different_rank_tuple": 0,
+        "scenario_methods_with_winner": 9,
+        "different_top_sets": 0
+      },
+      "issuer_resource_concentrate_recovery": {
+        "static_only": 0,
+        "live_only": 0,
+        "common": 6,
+        "different_rank_tuple": 0,
+        "scenario_methods_with_winner": 9,
+        "different_top_sets": 0
+      },
+      "issuer_resource_financing_milestone": {
+        "static_only": 3,
+        "live_only": 3,
+        "common": 21,
+        "different_rank_tuple": 7,
+        "scenario_methods_with_winner": 9,
+        "different_top_sets": 0
+      },
+      "issuer_resource_infrastructure": {
+        "static_only": 0,
+        "live_only": 0,
+        "common": 18,
+        "different_rank_tuple": 0,
+        "scenario_methods_with_winner": 9,
+        "different_top_sets": 0
+      },
+      "issuer_resource_study": {
+        "static_only": 0,
+        "live_only": 3,
+        "common": 21,
+        "different_rank_tuple": 11,
+        "scenario_methods_with_winner": 9,
+        "different_top_sets": 0
+      },
+      "official_wa_resource_screen": {
+        "static_only": 0,
+        "live_only": 0,
+        "common": 51,
+        "different_rank_tuple": 0,
+        "scenario_methods_with_winner": 9,
+        "different_top_sets": 0
+      },
+      "resource_disclosure": {
+        "static_only": 12,
+        "live_only": 12,
+        "common": 72,
+        "different_rank_tuple": 35,
+        "scenario_methods_with_winner": 18,
+        "different_top_sets": 1
+      },
+      "resource_infrastructure_pilot": {
+        "static_only": 3,
+        "live_only": 12,
+        "common": 48,
+        "different_rank_tuple": 45,
+        "scenario_methods_with_winner": 9,
+        "different_top_sets": 2
+      },
+      "resource_port_disclosure": {
+        "static_only": 6,
+        "live_only": 12,
+        "common": 66,
+        "different_rank_tuple": 57,
+        "scenario_methods_with_winner": 18,
+        "different_top_sets": 1
+      },
+      "six_domain": {
+        "static_only": 0,
+        "live_only": 3,
+        "common": 15,
+        "different_rank_tuple": 10,
+        "scenario_methods_with_winner": 9,
+        "different_top_sets": 0
+      },
+      "six_domain_disclosure": {
+        "static_only": 0,
+        "live_only": 6,
+        "common": 30,
+        "different_rank_tuple": 20,
+        "scenario_methods_with_winner": 18,
+        "different_top_sets": 0
+      },
+      "technical_process_concentrate_fixed": {
+        "static_only": 0,
+        "live_only": 0,
+        "common": 20,
+        "different_rank_tuple": 0,
+        "scenario_methods_with_winner": 30,
+        "different_top_sets": 0
+      },
+      "technical_process_concentrate_sample_minmax": {
+        "static_only": 0,
+        "live_only": 0,
+        "common": 20,
+        "different_rank_tuple": 0,
+        "scenario_methods_with_winner": 30,
+        "different_top_sets": 0
+      }
+    }
+  },
+  "historical_markers": {
+    "ci_marker_summary": {
+      "approved_rows": 70,
+      "frozen_v10_claims_verified": true,
+      "current_binding_statuses": {
+        "SELECTED_SOURCE_MATCHES_APPROVAL": 70
+      },
+      "statuses": {
+        "PASS": 70
+      },
+      "claims_modified": false,
+      "markers_or_pages_repaired": false,
+      "http_requests": 0
+    },
+    "status_counts": {
+      "PASS": 70
+    },
+    "binding_status": {
+      "SELECTED_SOURCE_MATCHES_APPROVAL": 70
+    },
+    "matching_selected_sha": 70,
+    "receipt_counts": {
+      "('adopted', 'FETCHED_SHA_VERIFIED')": 70
+    },
+    "matched_verified_observation": {
+      "True": 70
+    }
+  },
+  "unit_tests": 568,
+  "r_analytical_regressions_passed": true,
+  "originals_and_frozen_history_passed": true
+}

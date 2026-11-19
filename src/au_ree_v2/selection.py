@@ -352,7 +352,7 @@ def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None,
 
 
 def export(selection, out):
-    from .analysis import write_csv
+    from .tabular import write_csv
     if 'technical_comparability' in selection:
         fields=['project_id','case_id','evidence_id','evidence_ids','source_sha256','source_shas','pdf_page','locator','source_locators',
                 'variable','value','unit','basis','scope','feed','endpoint','scale','process_stage','semantic_class',
@@ -404,7 +404,7 @@ def diagnostics(selection, prepared, snapshots, criteria, root, out):
     not-applicable require explicit checked-scope/stage rules, which this
     release does not invent.
     """
-    from .analysis import write_csv
+    from .tabular import write_csv
     from .pdf_extract import project_registry
     from pathlib import Path
     by_project=defaultdict(list)

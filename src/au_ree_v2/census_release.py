@@ -4,7 +4,7 @@ import math
 from collections import defaultdict
 from pathlib import Path
 
-from .analysis import read_csv as read_rows, write_csv
+from .tabular import read_csv as read_rows, write_csv
 from .census import summary_settings
 from .census_audit import date_precision
 from .security import public_export
@@ -140,6 +140,63 @@ def panel_artifacts(out, prepared, results, selected, identity):
     return panels
 
 
+def aim_c_profiles(out, census, trace, snapshots, statements, selection, matrix, ranking):
+    """One census-row profile, with an explicit counting unit for canonical projects."""
+    from collections import Counter
+    by_id = {r['project_id']: r for r in selection}
+    def canonical_id(r):
+        return r.get('canonical_project_id') or by_id.get(r['project_id'], {}).get('canonical_project_id') or r['project_id']
+    matrix_ids = {canonical_id(r) for r in matrix}
+    ranked_ids = {canonical_id(r) for r in ranking}
+    selected_scopes = defaultdict(set)
+    for r in statements:
+        if str(r['selected_for_census']) == '1':
+            selected_scopes[r['project_id']].add((r['statement_group_id'], r['scope']))
+    shas_by_project = defaultdict(set)
+    for field in trace:
+        if field.get('value') not in ('', None):
+            shas_by_project[field['project_id']].update(s for s in field['source_sha256'].split(';') if s)
+    pdf = {s['sha256'] for s in snapshots if s['kind']=='pdf'}
+    members = defaultdict(set)
+    for row in census:
+        pid = row['專案ID']
+        canonical_id = by_id.get(pid, {}).get('canonical_project_id')
+        if canonical_id:
+            members[canonical_id].add(pid)
+    # A filter may select a documented alias alone; count the eligible representative first.
+    count_ids = {min(group, key=lambda p:(by_id[p]['status']!='SELECTED',p!=key,p))
+                 for key,group in members.items()}
+    profiles = []
+    for row in sorted(census,key=lambda r:r['專案ID']):
+        pid = row['專案ID']
+        choice = by_id.get(pid, {})
+        cid = choice.get('canonical_project_id')
+        status = choice.get('status','UNRESOLVED_PROJECT')
+        cohort = ('FILTER_EXCLUDED' if status=='FILTER_EXCLUDED' else 'UNRESOLVED_PROJECT'
+                  if status!='SELECTED' or not cid else 'SIX_DOMAIN_RANKED' if cid in ranked_ids
+                  else 'SIX_DOMAIN_MATRIX_UNRANKED' if cid in matrix_ids else 'SELECTED_WITHOUT_SIX_DOMAIN_INPUT')
+        scopes = sorted(selected_scopes[pid])
+        shas = shas_by_project[pid]
+        profiles.append(dict(project_id=pid, canonical_project_id=cid, count_as_project=int(pid in count_ids),
+            census_selection=status, six_domain_group=cohort, state=row.get('州省地區'),
+            deposit_type=row.get('礦床型態'), deposit_code=row.get('礦床型態代碼'),
+            census_stage_code=row.get('開發階段代碼'), selected_statement_groups=len(scopes),
+            selected_resource_scopes=canonical(scopes), ore_mt=row.get('礦石蘊藏量_Mt'),
+            census_treo_grade_pct=row.get('TREO品位_pct'), contained_treo_kt=row.get('總TREO蘊藏量_kt'),
+            source_versions_in_populated_fields=len(shas), pdf_versions_in_populated_fields=len(shas & pdf),
+            unknown_deposit=int(not row.get('礦床型態')), unknown_stage_code=int(not row.get('開發階段代碼'))))
+    columns = ('project_id','canonical_project_id','count_as_project','census_selection','six_domain_group','state',
+        'deposit_type','deposit_code','census_stage_code','selected_statement_groups','selected_resource_scopes',
+        'ore_mt','census_treo_grade_pct','contained_treo_kt','source_versions_in_populated_fields',
+        'pdf_versions_in_populated_fields','unknown_deposit','unknown_stage_code')
+    write_csv(out/'aim_c_availability.csv', profiles, columns)
+    counts = Counter(p['six_domain_group'] for p in profiles)
+    unique = Counter(p['six_domain_group'] for p in profiles if p['count_as_project'])
+    return dict(panel='six_domain_disclosure', census_rows=dict(counts), unique_canonical_projects=dict(unique),
+                interpretation='DESCRIPTIVE_AVAILABILITY; SCOPED_PROJECTS_AND_DEPOSITS_ARE_NON_ADDITIVE',
+                source_count_basis='DISTINCT_SNAPSHOT_HASHES_CITED_IN_POPULATED_CENSUS_FIELDS')
+
+
 def write_release_contract(root, out, run_id, mode, cutoff, version, configuration,
                            snapshots, receipt, prepared, results, selected, identity):
     names = summary_settings(root)[0]['output_files']
@@ -147,6 +204,17 @@ def write_release_contract(root, out, run_id, mode, cutoff, version, configurati
     trace = read_rows(project_summary/names['provenance'])
     identity_roles(out, trace, identity)
     panels = panel_artifacts(out, prepared, results, selected, identity)
+    panel_dir = out/'six_domain_disclosure'
+    aim_c = aim_c_profiles(out, read_rows(project_summary/names['summary']), trace, snapshots,
+            read_rows(project_summary/'resource_statement_observations.csv'), read_rows(out/'census_selection.csv'),
+            read_rows(panel_dir/'matrix.csv'), read_rows(panel_dir/'ranking.csv'))
+    evidence_files = ('formal_c1_gates.csv', 'formal_c1_panel_comparison.csv','formal_c1_release.json',
+                      'milestone_events.csv','milestone_comparison.csv','assay_method_evidence.csv',
+                      'resource_statement_observations.csv','resource_statement_lineage.csv')
+    evidence_hashes = {name:filehash(project_summary/name) for name in evidence_files if (project_summary/name).is_file()}
+    formal_file = project_summary/'formal_c1_release.json'
+    formal = json.loads(formal_file.read_text(encoding='utf8')) if formal_file.is_file() else {}
+    compared_points = [r for r in read_rows(out/'census_gis_sensitivity.csv') if r['status']=='COMPARED_ON_SAME_LAYER']
     sources = [dict(key=s['key'], sha256=s['sha256'], kind=s['kind'], **source_dates(s),
                     original_response_shas=sorted(a['sha256'] for a in s.get('original_responses', [])))
                for s in sorted(snapshots, key=lambda s: s['key'])]
@@ -156,8 +224,9 @@ def write_release_contract(root, out, run_id, mode, cutoff, version, configurati
     hashes = {f.name: filehash(f) for f in (root/'config').glob('*.json')}
     lock = root/'results/phase22-2026-11-06/snapshot_lock.json'
     eligibility = out/'eligibility_audit.json'
-    release = dict(version='census-release-v1', run_id=run_id, mode=mode, cutoff=cutoff, code=version,
+    release = dict(version='census-release-v2-integrated-evidence', run_id=run_id, mode=mode, cutoff=cutoff, code=version,
         configuration_sha256=digest(configuration), configuration_files=hashes,
+        analytical_runtime=configuration.get('analytical_runtime'),
         claims_sha256=configuration['claims_sha256'], identity_links_sha256=identity_sha,
         phase22_lock_sha256=filehash(lock) if lock.is_file() else None,
         source_receipt_sha256=filehash(receipt) if receipt else None,
@@ -167,6 +236,14 @@ def write_release_contract(root, out, run_id, mode, cutoff, version, configurati
         eligibility_audit_sha256=filehash(eligibility) if eligibility.is_file() else None,
         methods=['SAW', 'TOPSIS', 'PROMETHEE II'], monte_carlo=research['monte_carlo'],
         scenarios=research['scenarios'], ranking_panels=panels,
+        evidence_outputs=evidence_hashes, aim_c_availability=aim_c,
+        aim_c_availability_sha256=filehash(out/'aim_c_availability.csv'),
+        formal_cohort=dict(policy_id=formal.get('policy_id'), source_asof=formal.get('source_asof'),
+            census_cutoff=cutoff, signed_eligible_projects=formal.get('signed_eligible_projects'),
+            release_status=formal.get('release_status'), publication_ids=formal.get('formally_releasable')),
+        sensitivity_scope=dict(comparable_spatial_alternative_observations=len(compared_points),
+            projects_with_comparable_spatial_alternative=len({r['canonical_project_id'] for r in compared_points}),
+            milestone_ranking='NO_ADOPTED_SCORE_MAPPING', assay_metadata_scored=False),
         research_roles=dict(ranking_criteria=[c['code'] for c in research['criteria']],
                             external_predictor_candidates=['deposit_type', 'mineralogy'],
                             interpretation='DESCRIPTIVE_ASSOCIATIONS_NOT_CAUSAL'))

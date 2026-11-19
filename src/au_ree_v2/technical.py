@@ -159,7 +159,7 @@ def ratio(numerator,denominator,mode):
 
 def analyze_cells(selection,definition,db,run_id,out,resource_project_ids=()):
     """Use selected observations, with raw transcript and permitted use separated."""
-    from .analysis import write_csv
+    from .tabular import write_csv
     rows=[]
     for c in selection['inventory']:
         raw=c['raw']
@@ -580,7 +580,7 @@ def analyze_profiles(selection, definition, out, resource_ids, root=None, snapsh
     No universal ordinal utility is established. Therefore no numeric mapping,
     new weight, imputed unknown, or maturity-based Technical rank is generated.
     """
-    from .analysis import write_csv
+    from .tabular import write_csv
     out=Path(out);rows=unified_observations(selection,definition) if observations is None else observations
     for r in rows:r.update(framework_fields(r,definition))
     if definition.get('version')=='technical-profile-remediation-v2':
@@ -830,7 +830,8 @@ def apply_disclosure(selection,result):
 
 def run_disclosure(root, config, cutoff, out, db=None, run_id=None, selection=None, assemble=None, registry=None, selected_snapshots=None):
     """Existing evidence store + versioned review + existing MCDA machinery."""
-    from .analysis import write_csv,prepare_disclosure_analysis
+    from .analysis import prepare_disclosure_analysis
+    from .tabular import write_csv
     from .store import filehash
     if assemble is None:assemble=not config.get('disclosure_current_baseline')
     settings=config['evidence_resolution']['technical_disclosure']
@@ -920,7 +921,8 @@ def analyze_jorc_screening(selection, definition, rows, out, root=None, claims_d
     project-transfer stress restores [0,1] where extrapolation is unproved.
     No midpoint, probability distribution, maturity bonus or case splicing.
     """
-    from .analysis import write_csv, interval_mcda
+    from .analysis import interval_mcda
+    from .tabular import write_csv
     policy=definition['jorc_screening'];out=Path(out)
     pids=sorted(selection['projects']);names={pid:pid for pid in pids}
     if root is not None:
@@ -1042,7 +1044,7 @@ def analyze_jorc_screening(selection, definition, rows, out, root=None, claims_d
 def export_remediation(selection,definition,rows,out,resource_ids,root,snapshots,claims_data=None):
     """Use existing inventory for coverage, provenance bridge and model decisions."""
     import csv
-    from .analysis import write_csv
+    from .tabular import write_csv
     from .pdf_extract import project_registry
     from .store import filehash
     sources={s['sha256']:s for s in snapshots};byproject=defaultdict(list)

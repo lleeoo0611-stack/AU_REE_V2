@@ -682,7 +682,7 @@ def live_status(discovery, acquisition=(), recognized=()):
 def source_coverage(root, snapshots, selection, prepared, out, claims_data=None):
     """Rebuild Project x document-type stages from locked bytes, not live state."""
     from collections import defaultdict
-    from .analysis import write_csv
+    from .tabular import write_csv
     from .pdf_extract import classify,project_registry
     from .store import canonical
     root=Path(root);mapping=selection['mapping'];by_project=defaultdict(list);receipts=[];receipt_shas=set()
