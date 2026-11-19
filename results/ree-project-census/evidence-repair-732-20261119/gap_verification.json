@@ -1,0 +1,78 @@
+{
+  "rows": 93,
+  "columns": 51,
+  "cells": 4743,
+  "cutoff": "2026-11-13",
+  "prior_filled": 2319,
+  "filled": 2414,
+  "blanks": 2329,
+  "not_applicable": 1709,
+  "evidence_gaps": 620,
+  "original_732": {
+    "REMAINS_BLANK": 620,
+    "FILLED": 95,
+    "NOT_APPLICABLE": 17
+  },
+  "target_fills_by_column": {
+    "開發階段": 29,
+    "總說明": 17,
+    "開發階段代碼": 14,
+    "開發階段類別": 14,
+    "預估年產TREO_t_per_year": 2,
+    "未上市公司": 1,
+    "緯度": 2,
+    "經度": 2,
+    "產品/產出": 6,
+    "礦床型態": 6,
+    "預估年產NdPr_t_per_year": 1,
+    "礦床型態代碼": 1
+  },
+  "changed_preexisting": {
+    "總說明": 14
+  },
+  "fills_from_prior_not_applicable": 0,
+  "previously_inapplicable_now_needs_evidence": [],
+  "remaining_by_category": {
+    "開發階段": 28,
+    "資源估算": 368,
+    "預估年產": 57,
+    "產品": 18,
+    "公司與上市資訊": 12,
+    "專案座標": 86,
+    "總說明": 8,
+    "礦床型態": 43
+  },
+  "reasons": {
+    "CLASSIFICATION_INPUT_NOT_VERIFIED": 33,
+    "COMPLETE_GROUP_INPUTS_UNAVAILABLE": 79,
+    "COMPATIBLE_FORECAST_INPUT_NOT_VERIFIED": 57,
+    "NO_SOURCE_VALUE": 66,
+    "NO_VERIFIED_INPUT_IN_SELECTED_STATEMENT": 261,
+    "AGGREGATE_WITHOUT_COMPONENT_SPLIT": 10,
+    "REPRESENTATIVE_POINT_NOT_VERIFIED": 82,
+    "EVIDENCE_REVIEW_REQUIRED": 10,
+    "SOURCE_AFTER_CUTOFF": 4,
+    "ALTERNATIVE_SCOPE_OR_MATERIAL_BASIS": 11,
+    "COMPOSITION_DENOMINATOR_BASIS_MISMATCH": 1,
+    "OXIDE_BASIS_UNRESOLVED": 1,
+    "MATCHED_BULK_TREO_DENOMINATOR_UNAVAILABLE": 5
+  },
+  "remaining_resource_cells": 368,
+  "all_blank_reasons": {
+    "RULE_INPUT_MISSING": 550,
+    "NO_SOURCE_VALUE": 66,
+    "NOT_APPLICABLE_NO_MRE": 1650,
+    "NOT_APPLICABLE_STAGE": 56,
+    "SOURCE_AFTER_CUTOFF": 4,
+    "NOT_APPLICABLE_UNLISTED_DEVELOPER": 3
+  },
+  "census_sha256": "be2b15b3776712440f714f3489ba011294e9285fb9dd1a07c1bedf63383851c1",
+  "resource_statement_groups": {
+    "previous": 38,
+    "current": 38,
+    "added": [],
+    "removed": []
+  },
+  "same_resource_scope_selection": true,
+  "same_census_project_ids": true
+}

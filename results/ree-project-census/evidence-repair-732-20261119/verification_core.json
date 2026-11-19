@@ -1,0 +1,124 @@
+{
+  "run_id": "20261119T012304-5ac4399a",
+  "cutoff": "2026-11-13",
+  "baseline": "resource-review-414-20261119",
+  "census_sha256": "be2b15b3776712440f714f3489ba011294e9285fb9dd1a07c1bedf63383851c1",
+  "v9": {
+    "2101": {
+      "previous": {
+        "SAME": 2022,
+        "POPULATED_DIFFERENT_OR_STRUCTURAL": 73,
+        "FORMAL_MISSING": 6
+      },
+      "current": {
+        "SAME": 2021,
+        "POPULATED_DIFFERENT_OR_STRUCTURAL": 76,
+        "FORMAL_MISSING": 4
+      },
+      "transitions": {
+        "SAME_TO_POPULATED_DIFFERENT_OR_STRUCTURAL": 1,
+        "FORMAL_MISSING_TO_POPULATED_DIFFERENT_OR_STRUCTURAL": 2
+      }
+    },
+    "609": {
+      "previous": {
+        "SAME": 604,
+        "POPULATED_DIFFERENT_OR_STRUCTURAL": 5
+      },
+      "current": {
+        "SAME": 604,
+        "POPULATED_DIFFERENT_OR_STRUCTURAL": 5
+      },
+      "transitions": {}
+    }
+  },
+  "new_reference_regressions": 1,
+  "unique_regressed_cells": 1,
+  "regressions_by_set": {
+    "2101": 1
+  },
+  "remaining_v9_blanks": 4,
+  "mcda": {
+    "panels": 16,
+    "byte_identical": 16,
+    "changed_files": [],
+    "position_changes": 0,
+    "methods": [
+      "SAW",
+      "TOPSIS",
+      "PROMETHEE II"
+    ],
+    "six_domain_ranked_projects": 5
+  },
+  "sqlite": {
+    "integrity_check": "ok",
+    "foreign_key_violations": 0,
+    "schema_matches_phase22": true,
+    "schema_objects": 25,
+    "schema_sha256": "cc7e85b456f3cdbad4c2f8e0fea58b163febe5b1a839d752b098dfa981ec1536",
+    "source_hashes": 803
+  },
+  "sources": {
+    "locked_versions": 1451,
+    "selection_rows": 186,
+    "statuses": {
+      "WITHIN_CUTOFF": 177,
+      "SOURCE_AFTER_CUTOFF": 9
+    },
+    "additions": [
+      {
+        "key": "copi_nsw_scoping_20220420",
+        "previous_sha256": "",
+        "sha256": "cbdda7c5d96958d226d5a10d44419da79d5971c64f26d8cb6cd31a27ebeb7702",
+        "disclosed_date": "2022-04-20",
+        "previous_date_used": "",
+        "date_used": "2022-04-20",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "nsw_critical_minerals_projects_jul2025",
+        "previous_sha256": "",
+        "sha256": "09185265e2ae83778d47d499c52ae6f13e950aa8d0e2ac8001a3fe2334f5cc67",
+        "disclosed_date": "2025-09",
+        "previous_date_used": "",
+        "date_used": "2025-09-30",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "fingerboards_issuer_jobs_guide_20260410",
+        "previous_sha256": "",
+        "sha256": "b8ca632328afd48b524eaff7c595e5a49c8e7be978deacac41da9c8ad38a9865",
+        "disclosed_date": "2026-04-10",
+        "previous_date_used": "",
+        "date_used": "2026-04-10",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      }
+    ],
+    "updates": [
+      {
+        "key": "wa_dmpe_ree_2026_pdf",
+        "previous_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+        "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+        "disclosed_date": "2026-02-01",
+        "previous_date_used": "2026-02-01",
+        "date_used": "2026-02-28",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "austrade_2026_prospectus_pdf",
+        "previous_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+        "sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+        "disclosed_date": "2026-03-01",
+        "previous_date_used": "2026-03-01",
+        "date_used": "2026-03-31",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      }
+    ],
+    "after_cutoff_only_versions_in_populated_census_cells": 0
+  },
+  "frozen_phase22": {
+    "status": "MATCHED",
+    "files": 64,
+    "tolerance": "numeric 1e-12; identities/text exact"
+  }
+}

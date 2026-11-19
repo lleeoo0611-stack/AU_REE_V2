@@ -4,6 +4,10 @@
 
 ## 現行成果
 
+本輪以 732 格待補證為母體，填入 95 格，改判不適用 17 格，仍待補證 620 格。 [發布說明](evidence-repair-732-20261119/README.md) · [Census CSV](evidence-repair-732-20261119/REE%20project%20census.csv) · [逐格處置](evidence-repair-732-20261119/gap_disposition.csv)
+
+## 前版資源複核
+
 2026-11-19 逐格複核 414 個資源欄位，補入 46 格，368 格待補證。 [發布說明](resource-review-414-20261119/README.md) · [Census CSV](resource-review-414-20261119/REE%20project%20census.csv) · [逐格處置](resource-review-414-20261119/resource_gap_disposition.csv) · [驗收](resource-review-414-20261119/verification.json)
 
 ## 2026-11-19 上一輪資源缺值複核
