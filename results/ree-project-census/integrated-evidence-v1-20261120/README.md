@@ -25,6 +25,10 @@
 
 Nutgrove 的昆州 EPM 28000 有 2026-11-03 官方凍結界線，礦權代表點距最遠頂點 8.10 公里，低於原門檻 25 公里。發行人 2026 年公告 p.10 支持當期勘探範圍，仍缺截至截日的完整專案礦權範圍。Barballin 有 E70/6146 的案號，尚缺適用版本的正式西澳礦權邊界。兩案經緯度續列待補證。[逐格缺值](missing_fields.csv) · [空間來源與精度](spatial_point_quality.csv)
 
+363 格選定估算缺值分布於 21 筆專案列，涉及 15 種氧化物的 266 格及合計、占比等衍生欄位的 97 格。Fingerboards、Lyons 12/13、Aileron、Charley Creek 和 Mt Weld 各缺 24 格；Mangaroon Yin、Yangibana 和 Mons Block 3 East 各缺 23 格，八案共 189 格。另 5 格部分基準全在 Wimmera WIM100。其原件分列 540 Mt 整礦、25 Mt 重礦物及重礦物組成，仍需同一估算的整礦 TREO 數據。[缺值與來源](field_status.csv)
+
+只有 **Dubbo 和 Yangibana** 現有五項可用的六構面準則。Dubbo 缺技術揭露的單點分數 T1；Toongi Phase B 堆浸試驗原件有加酸單位、重複欄題和 Dy 37.7%／37.3% 三處歧義，現行技術揭露區間為 57.14–71.43%。Yangibana 缺 S1，須取得對應 2026-06-30、100% 合資總資源估算的 Nd、Pr、Dy、Tb 氧化物占 TREO 或同基準可重算組成。若找到符合截日的來源且其他條件相同，可分別增加一個探索性六構面案例。若新公告晚於截日，應在新的研究截面評估。[93 案六構面上下界及已知值](disclosure_composite_matrix.csv)
+
 ## 研究母體與排名
 
 SQLite 有 7,845 個已登錄實體（含 5,525 個礦權、301 個礦床與 94 個 Project 節點）。Census 的 93 筆發表列依穩定 Project ID 核對。39,517 筆觀測中，2,882 筆為 AUTO_VALIDATED、35,617 筆為已登錄政府原始紀錄、558 筆為範圍待核的官方摘要、460 筆待審。資料庫有 328 個依來源分開的資源陳述脈絡、1,210 筆相關事實、9 個技術研究案例；Census 資源長表可選用的觀測有 519 筆。[驗收紀錄](verification.json) · [資源長表](resource_statement_observations.csv)
@@ -35,14 +39,39 @@ SQLite 有 7,845 個已登錄實體（含 5,525 個礦權、301 個礦床與 94 
 
 **Aim C**　六構面 5 案都有已選資源估算且具完整 TREO，現行分期為 B1 兩案、B2 三案。其餘 88 案有 33 案選到資源估算，其中 32 案有完整 TREO。兩組已填欄位引用的不同 PDF 版本數中位數為 3 和 2。這顯示排名母體受到揭露程度與成熟度的選樣影響；本版僅作描述。[逐案礦床、地區、資源與來源分布](aim_c_availability.csv)
 
+## 同一流程在 GitHub 即時取件時的差異
+
+研究主結果採用已固定日期、版本和 SHA 的原件套件。GitHub Clean 以公開來源重新取件，網路判定通過，235 個來源中有 1 個網路錯誤（0.43%）。兩者均通過各自的建置驗證。獨立核對的 25 份資料及排名檔與當次完成收據相符。[實際來源、面板與排名比較](public_clean_acceptance.json) · [GitHub 原始驗收產物](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44604405484/artifacts/14573153055)
+
+| 同為 93 案 × 51 欄 | 固定原件研究版 | GitHub 即時公開來源 |
+|---|---:|---:|
+| 有值／不適用／待補證 | 2,457／1,709／577 | 1,524／1,291／1,928 |
+| 選定資源估算組／完整 TREO | 38／37 | 18／18 |
+| Census 通過身分篩選 | 93 | 74 |
+| 至少進入一個面板的不同專案／專案面板成員次數 | 31／131 | 32／142 |
+| 六構面探索面板／正式 C1 | 5／0 | 6／0 |
+
+即時來源的 1,928 格待補證分為來源未取得 1,370、規則輸入缺 487、沒有來源值 49、SHA 已變 14、截日後 8。固定套件的組成、日期與內容決定可重現的研究截面。把輸入換成即時來源，16 個面板中有 8 個的成員或名次不同，另 8 個一致。三個面板共四組「情境 × 方法」的榜首有變化。
+
+即時六構面比固定版多 Cummins Range 一案，其餘五案相同。即時面板的資源與磁性占比來自 2023-05-01 的同一估算，範圍為 Rare Dyke 與 Phos Dyke 合併、P₂O₅ cutoff 2.5%，分別採 1,646.181 kt TREO 及 22.8%。固定版資料庫保有 2023-05-01 的 519.3 Mt、0.317% 與 2024-01-25 的 524.3 Mt、0.312%。Census 採後者；MCDA 的範圍審查保留 MULTIPLE_SCOPES_REQUIRE_DEFINITION，R1、S1 均未形成單點。GitHub 此次取得 2024 文件時遇到 HOST_STOPPED:NOT_PDF，2023 原件則以符合 SHA 的快照納入。即時環境少了一份原件，恰好未觸發同一項範圍歧義，因此形成第六個探索樣本。兩版正式 C1 都為 0。[固定版準則矩陣](disclosure_composite_matrix.csv) · [即時建庫驗收](public_clean_acceptance.json)
+
+| 面板與情境 | 方法 | 固定原件榜首 | 即時來源榜首 |
+|---|---|---|---|
+| resource_infrastructure_pilot，development | PROMETHEE II | Mount Ridley–Central Mia | Splinter Rock |
+| resource_infrastructure_pilot，development | TOPSIS | Jupiter（Brothers 內的開發研究） | Splinter Rock |
+| resource_disclosure，resource_assumption_with_T | PROMETHEE II | Jupiter | Mt Weld |
+| resource_port_disclosure，development_assumption_with_T | PROMETHEE II | Koppamurra | Cowalinya |
+
 ## 此版的驗收與重建
 
-- 開發基準 `a03cfb194a0e8ab2d9a441e4a1b6ea14e86ead61`，科學重播提交 `4c3a94e606d109f52cecc942acec48c64d8f648e`，設定 SHA-256 `35f2723687eab87223e250c72c53b88308b3a90705d047497d55958a1f34b3be`。後續 `d2bc53b` 修正 CI 產生註解副本，`ec23344` 修正可攜清單的原件歸屬。[草稿 PR 與當期 CI](https://github.com/lleeoo0611-stack/AU_REE_V2/pull/13)
+- 開發基準 `a03cfb194a0e8ab2d9a441e4a1b6ea14e86ead61`，科學重播提交 `4c3a94e606d109f52cecc942acec48c64d8f648e`，設定 SHA-256 `35f2723687eab87223e250c72c53b88308b3a90705d047497d55958a1f34b3be`。後續 `d2bc53b` 修正 CI 產生註解副本，`ec23344` 修正可攜清單的原件歸屬，`5d83732` 修正歷史公司標記在整合版中的稽核範圍。[草稿 PR 與當期 CI](https://github.com/lleeoo0611-stack/AU_REE_V2/pull/13)
 - Census 截日 2026-11-13，技術編碼基準 2026-11-05，正式 C1 政策截日 2026-10-29。公告公開日、封存收據日期和本次取得時間分欄。[發布收據](census_release.json)
 - 一次從乾淨 checkout、空白工作目錄及指定的原件庫建庫，全程來源重播禁止 Python 網路連線，產生 SQLite、Census、完整 R 與 16 份排名。另一個工作區獨立產生相同總表和 160 份面板研究檔案。唯讀匯出的 14 份 CSV／JSON 與建庫輸出逐位元相同，coverage 的差異僅為執行識別／資料庫雜湊欄；唯讀前後的 SQLite 位元組相同。SQLite integrity 為 ok、外鍵違規 0。歷史 Phase 22 的 64 份檔案通過既有比較規則。[重建指令與環境](../../../README.md) · [驗收明細](verification.json)
 - 乾淨科學提交實跑 560 項 Python 測試。後續打包及 CI 修正另跑 18 項相關測試（與全套有重疊）。R 五組數學與分組檢查通過。舊庫連續遷移兩次，五個核心資料表內容一致，716 個已填資源欄位均能解析其證據輸入。[驗收紀錄](verification.json)
-- 線上探測有 50 個 DNS 成功。六筆 ASX 測試中，Browns Range、Mia、Yttria 的靜態 PDF 均取得與封存相同的 SHA；另一主機首筆回 HTML，其餘兩筆依規則停止。Voyager 按離線原件政策重播。GitHub Clean 與 Research 為獨立驗收，最新狀態由 PR 的 Checks 提供。[GitHub Checks](https://github.com/lleeoo0611-stack/AU_REE_V2/pull/13/checks)
-- 開發時曾遇到舊 checkout 路徑長度與暫存資料夾權限限制，改用短路徑及新建的可攜套件完成獨立重播。早期在變動中的工作區試跑不足以驗收，以上結果採用固定提交。公開 Git 只交付原件清單與來源收據，重播的保管人須另提供 1,268,847,893 bytes 原件套件。[原件清單](asset_manifest.json) · [重播輸入收據](source_acquisition.json) · [套件雜湊](bundle_verification.json)
+- 線上探測有 50 個 DNS 成功。六筆 ASX 測試中，Browns Range、Mia、Yttria 的靜態 PDF 均取得與封存相同的 SHA；另一主機首筆回 HTML，其餘兩筆依規則停止。Voyager 按離線原件政策重播。本機另對 234 個來源執行全量線上取件，64 個直接下載且 SHA 符合。29 個有網路錯誤標記（12.39%，既有上限 5%），判為 RUN_INVALID_NETWORK，未進入本版建庫。詳見[線上逐來源收據](live_acquisition_report.csv)及[網路判定](live_network_status.json)。最終程式提交 5d83732 的 GitHub Clean 與 Research 均通過。Clean 執行 568 項測試，70/70 公司標記通過原頁驗證。[GitHub Checks](https://github.com/lleeoo0611-stack/AU_REE_V2/pull/13/checks)
+- 開發時曾遇到舊 checkout 路徑長度與暫存資料夾權限限制，改用短路徑及新建的可攜套件完成獨立重播。初次 GitHub Clean 也揭露孤立資料庫讀取設定、搬移後仍可讀舊路徑、環境套件資訊誤判等三項回歸。後續修正加入封閉失敗、搬移測試及環境版本讀取。最新版 GitHub Research 已通過 562 項測試、R 及兩次 Phase 22 重建。[早期失敗](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44590433142) · [最新版 Research](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44594143506)公開 Git 只交付原件清單與來源收據，重播的保管人須另提供 1,268,847,893 bytes 原件套件。[原件清單](asset_manifest.json) · [重播輸入收據](source_acquisition.json) · [套件雜湊](bundle_verification.json)
+
+本版公司標記稽核仍會重建 v10 的整份凍結聲明。對整合線，另驗原 70 筆簽核的 Project ID、欄位、來源、SHA、頁碼和標記，再核對本次總表實際選入的證據。原版工具比較整份當期聲明時，因後續歷史更新而誤判；`5d83732` 修正適用範圍。以本機 35 個不同原件頁面重驗，70 筆簽核全部通過，已選來源相同 70 筆、取代 0 筆，另通過 15 項相關測試。最終程式提交的 GitHub Research 實跑 568 項 Linux 測試、兩次 Phase 22 重建與發布檢查，全部通過。GitHub 前次 Linux 建庫的 4 份來源／設定／追溯檔也通過雜湊比對，70 筆簽核均對應同版原件。[最終 Clean](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44604405484) · [最終 Research](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/44604406584)
 
 ## 資料、方法與研究用途
 
@@ -55,7 +84,7 @@ SQLite 有 7,845 個已登錄實體（含 5,525 個礦權、301 個礦床與 94 
 | E　候選分期 | [93 案新舊對照](milestone_comparison.csv)、[來源事件](milestone_events.csv)和候選 codebook `candidate-milestones-20261120-v1` 可獨立審查。Avonbank、Copi、WIM150 有完成 FS／DFS 的原件，對應候選 B3。 | 候選資料分列已達門檻、首次 MRE 日期、截止時可查的營運狀態、進行中的工作與設施範圍。Coburn 的 D2 對應報導所指選廠及產品。兩個 Census ID 引用同一 Yttria 礦床時須依範圍去重。 |
 | F　正式 C1 與探索性研究 | [逐 Gate 判定](formal_c1_gates.csv)、[9／12 項對照](formal_c1_panel_comparison.csv)、[正式發布判定](formal_c1_release.json)和 [Aim C 資料可得性](aim_c_availability.csv)來自同次建置。正式政策截日為 2026-10-29。 | 現行核准 crosswalk 與簽核表均無紀錄，正式可發布案件為 0。探索面板仍採 SAW、PROMETHEE II 與 TOPSIS。Technical Disclosure Transparency 的 7 項固定分母繼續使用。 |
 
-候選里程碑有 23 筆來源事件。20 筆確認里程碑，另有 2 筆營運狀態與 1 筆進行中研究。93 專案中 17 案可列出最高已確認里程碑，分別為 A1 三案、A3 六案、B1 兩案、B2 一案、B3 四案、D2 一案；其餘 76 案保留待審。正式 C1 六項 Gate 共評估 558 次，兩種政策候選面板均有 24 案找到至少一項相關變數，完整且基準相符的案件均為 0。
+候選里程碑有 23 筆來源事件。20 筆確認里程碑，另有 2 筆營運狀態與 1 筆進行中研究。93 專案中 17 案可列出最高已確認里程碑，分別為 A1 三案、A3 六案、B1 兩案、B2 一案、B3 四案、D2 一案；其餘 76 案保留待審。正式 C1 六項 Gate 共評估 558 次，兩種政策候選面板均有 24 案找到至少一項相關變數，完整且基準相符的案件均為 0。依正式截日可定位部分來源事實的案數分別為 ID 92、ROLE 23、WINDOW 91、JORC 38、PANEL 24、GIS_RELEASE 0。進入正式樣本仍須逐 Gate 連到有效證據、固定面板與研究者簽核。
 
 Goschen Central 鋱含量可重算。2024-12-03 原件第 3 頁在整體礦石基準報告捨入值 2 ppm，乘 620 Mt 為 1.24 kt。第 12 頁報告重礦物含量 2.2%、其中 Tb₂O₃ 為 0.011%，換算為 Tb₄O₇ 得 1.533207 kt。Census 使用第 12 頁的計算鏈，第 3 頁以另一筆來源觀測保留。[兩條計算鏈](goschen_comparison.csv)
 

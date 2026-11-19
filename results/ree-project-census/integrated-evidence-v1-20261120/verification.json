@@ -233,7 +233,8 @@
   "source_code_heads": {
     "science": "4c3a94e606d109f52cecc942acec48c64d8f648e",
     "workflow_diagnostic_fix": "d2bc53ba4d4b14fa7f9943e33dc8eddf29f100d5",
-    "portable_manifest_tool": "ec23344"
+    "portable_manifest_tool": "ec23344",
+    "integrated_company_marker_audit": "5d83732b22615224117b1ff2f8aac17a598585cc"
   },
   "r_tests": {
     "status": "passed",
@@ -259,6 +260,12 @@
         "test_v5_workflow_diagnostics"
       ],
       "overlap_with_full_suite": true
+    },
+    "ci_marker_contract": {
+      "commit": "5d83732b22615224117b1ff2f8aac17a598585cc",
+      "python_tests": 15,
+      "status": "passed",
+      "network_requests": 0
     }
   },
   "live_acquisition": {
@@ -302,7 +309,51 @@
       }
     ],
     "dns_hosts_passed": 50,
-    "full_local_live_run": "At snapshot 2026-11-19T19:10Z the full live registry run was ongoing; no completed receipt. Separate from the 6 checked ASX requests and the completed offline scientific builds.",
+    "full_local_live_run": {
+      "maximum_network_error_fraction": 0.05,
+      "network_error_fraction": 0.12393162393162394,
+      "network_error_sources": 29,
+      "sources": 234,
+      "status": "RUN_INVALID_NETWORK",
+      "valid_for_delivery": false,
+      "diagnosis": "Real public network from Windows. Acquisition stopped before admission because the existing network-error threshold was exceeded. Sealed offline evidence remains the release input.",
+      "statuses": {
+        "NO_FIXED_QUERY_NOT_EXPANDED": 1,
+        "PARSED": 2,
+        "UNAVAILABLE": 23,
+        "HOST_STOPPED": 44,
+        "COMMITTED_SNAPSHOT_SAME_SHA": 27,
+        "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 2,
+        "FETCHED_SHA_VERIFIED": 64,
+        "NETWORK_ERROR": 28,
+        "SOURCE_NOT_ACQUIRED": 33,
+        "COMMITTED_MANAGED_SAME_SHA": 2,
+        "SNAPSHOT_FALLBACK_SAME_SHA": 3,
+        "CONFLICTING_DECLARED_SOURCE_SHA": 2,
+        "SOURCE_SHA_CHANGED": 3
+      },
+      "error_flag_by_status": {
+        "NETWORK_ERROR": 28,
+        "HOST_STOPPED": 1
+      },
+      "sha_change_keys": [
+        "wudinna_desorption20260916",
+        "browns_wolverine_mre20250116",
+        "reviewed_source_013de14181fdf89d"
+      ],
+      "acquisition_report_sha256": "f24304ffe6707d2f60621a8028619582b2dc154f3fa29553fdb946bbb75771c1",
+      "network_status_sha256": "744541dbed310eb7d657bbeeb926552956118c34e47d5a36c66bc93f5d7f0667",
+      "reported_primary_reasons": {
+        "name_resolution": 25,
+        "connection_reset": 2,
+        "read_timeout": 1,
+        "host_stopped_with_network_flag": 1
+      },
+      "source_reports": [
+        "live_acquisition_report.csv",
+        "live_network_status.json"
+      ]
+    },
     "voyager": {
       "replay_only": true,
       "static_pdf_bytes": 333419,
@@ -312,25 +363,405 @@
     }
   },
   "github": {
-    "head_at_online_submission": "ec23344",
-    "checked_at": "2026-11-19T19:10:00Z",
+    "code_commit": "5d83732b22615224117b1ff2f8aac17a598585cc",
+    "checked_at": "2026-11-19T20:55:28Z",
     "clean_public_build": {
-      "run": 44594143412,
-      "status": "in_progress"
+      "run": 44604405484,
+      "status": "completed",
+      "conclusion": "success",
+      "python_tests": 568,
+      "python_test_seconds": 375.421,
+      "approved_company_markers": 70,
+      "original_pdf_pass": 70,
+      "selected_source_matches_approval": 70,
+      "artifact_id": 14573153055,
+      "artifact_sha256": "a33425ecffaccb4efd3aa14be8a5b920b114d3025a0a2b68ca0965a88be51205",
+      "public_acceptance_summary": "public_clean_acceptance.json",
+      "public_acceptance_sha256": "40219b1bc2f186d342317c7419ee8fd0c2d3893440aa4cc450b09de2b2545a9c",
+      "run_id": "20261119T200335-8c2be1df",
+      "online_network": {
+        "status": "NETWORK_VALID",
+        "valid_for_delivery": true,
+        "network_error_sources": 1,
+        "sources": 235,
+        "network_error_fraction": 0.00425531914893617,
+        "maximum_network_error_fraction": 0.05
+      },
+      "filled": 1524,
+      "not_applicable": 1291,
+      "unknown": 1928,
+      "resource_groups": 18,
+      "six_domain_difference": {
+        "project": "AU-9b667066e6eb66753005",
+        "name": "Cummins Range",
+        "static_review": "RESOURCE_SCOPE_AMBIGUITY / MULTIPLE_SCOPES_REQUIRE_DEFINITION",
+        "live_2024": "HOST_STOPPED:NOT_PDF",
+        "live_2023": "COMMITTED_SNAPSHOT_SAME_SHA",
+        "live_r1_kt": 1646.181,
+        "live_s1_percent": 22.8,
+        "static_2024_ore_mt": 524.3,
+        "static_2024_treo_pct": 0.312,
+        "live_2023_ore_mt": 519.3,
+        "live_2023_treo_pct": 0.317,
+        "formal_approval": false
+      },
+      "source_selection_and_winner_evidence": {
+        "commit": "5d83732b22615224117b1ff2f8aac17a598585cc",
+        "project_id": "AU-9b667066e6eb66753005",
+        "project_name": "Cummins Range Rare Earths-Phosphate Project",
+        "published_static": {
+          "run": "20261119T184915-00daba84",
+          "panel_decision": {
+            "panel": "six_domain",
+            "project_id": "AU-9b667066e6eb66753005",
+            "canonical_project_id": "AU-9b667066e6eb66753005",
+            "status": "NO_ELIGIBLE_INPUT_IN_PANEL_MATRIX",
+            "formal_c1_status": "PENDING"
+          },
+          "review_queue": {
+            "issue_id": "a06d03ddc6a372079c13d8f27e23078f93570d08ed2c9a1c305ff667f190e755",
+            "reason": "RESOURCE_SCOPE_AMBIGUITY",
+            "details": "MULTIPLE_SCOPES_REQUIRE_DEFINITION",
+            "status": "OPEN"
+          },
+          "validated_resource_and_share_observations": [
+            {
+              "statement_id": "cummins-range-2023-05-01",
+              "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+              "effective_date": "2023-05-01",
+              "variable": "grade",
+              "value": 3170.0,
+              "unit": "ppm",
+              "source_sha": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053"
+            },
+            {
+              "statement_id": "cummins-range-2023-05-01",
+              "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+              "effective_date": "2023-05-01",
+              "variable": "magnet_reo_share_pct",
+              "value": 22.8,
+              "unit": "%",
+              "source_sha": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053"
+            },
+            {
+              "statement_id": "cummins-range-2023-05-01",
+              "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+              "effective_date": "2023-05-01",
+              "variable": "ore_mt",
+              "value": 519.3,
+              "unit": "Mt",
+              "source_sha": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053"
+            },
+            {
+              "statement_id": "cummins_global_202401",
+              "scope": "Cummins Range combined Rare Dyke+Phos Dyke global resource; Indicated+Inferred;P2O5>=2.5%; not6500ppm high-grade TREO subset",
+              "effective_date": "2024-01-25",
+              "variable": "grade",
+              "value": 3120.0,
+              "unit": "ppm",
+              "source_sha": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9"
+            },
+            {
+              "statement_id": "cummins_global_202401",
+              "scope": "Cummins Range combined Rare Dyke+Phos Dyke global resource; Indicated+Inferred;P2O5>=2.5%; not6500ppm high-grade TREO subset",
+              "effective_date": "2024-01-25",
+              "variable": "ore_mt",
+              "value": 524.3,
+              "unit": "Mt",
+              "source_sha": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9"
+            }
+          ]
+        },
+        "fresh_live": {
+          "run": "20261119T200335-8c2be1df",
+          "panel_decision": {
+            "panel": "six_domain",
+            "project_id": "AU-9b667066e6eb66753005",
+            "canonical_project_id": "AU-9b667066e6eb66753005",
+            "status": "IN_PANEL_MATRIX",
+            "formal_c1_status": "PENDING"
+          },
+          "selected_criteria": {
+            "R1": {
+              "evidence": {
+                "basis": "TREO",
+                "calculated_from_rounded_inputs_kt": 1646.1809999999998,
+                "contained_treo_kt": 1646.1809999999998,
+                "date": "2023-05-01",
+                "entity_id": "AU-9b667066e6eb66753005",
+                "grade_pct": 0.317,
+                "interpretation": "IN_SITU_RESOURCE_NOT_RECOVERABLE_PRODUCT",
+                "obs_ids": [
+                  "88704c6182103f7c63a83471e832cb0b94ff134283fcdea0eecba5fbde5d7db0",
+                  "e180c6d02e594f1b5ba0152197bd53077aaafb86b981b3f416fe0913e65b440f"
+                ],
+                "ore_mt": 519.3,
+                "rounding_bounds_kt": [
+                  1645.7628750000001,
+                  1646.5991749999998
+                ],
+                "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+                "source_sha": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+                "statement_id": "cummins-range-2023-05-01"
+              },
+              "raw_value": 1646.1809999999998
+            },
+            "S1": {
+              "evidence": {
+                "basis": "PrNdDyTb_REO_DIV_TREO",
+                "basis_transform": "EXPLICIT_FOUR_OXIDE_DEFINITION_ALIAS_ONLY_ORIGINAL_RAW_RETAINED",
+                "category": "NOT_APPLICABLE",
+                "domain": "Strategic",
+                "effective_date": "2023-05-01",
+                "entity_id": "AU-9b667066e6eb66753005",
+                "evidence_id": "27788e9311372e188f2c4d69ef0654ff8728063a3823cf14898afe20c0ca17e0",
+                "evidence_ids": [
+                  "27788e9311372e188f2c4d69ef0654ff8728063a3823cf14898afe20c0ca17e0"
+                ],
+                "extraction_method": "REVIEWED_NATIVE_AND_RENDERED_TABLE_SOURCE_BOUND_TRANSCRIPTION",
+                "locator": "physical PDF p2; resource oxide distribution TOTAL column, not recovery or price weights",
+                "material_basis": "OXIDE_DISTRIBUTION_NOT_ORE_GRADE",
+                "origin": "OBSERVATION",
+                "page_markers": [
+                  "Mineral Resource-Based Basket Price",
+                  "16.9%",
+                  "4.9%",
+                  "0.2%",
+                  "0.8%"
+                ],
+                "pdf_page": 2,
+                "project_id": "AU-9b667066e6eb66753005",
+                "reason": null,
+                "rounding_bounds": [
+                  22.6,
+                  23.0
+                ],
+                "scope": "Combined Rare Dyke and Phos Dyke; P2O5 >=2.5%; TREO including Y2O3; excludes Sc2O3",
+                "source_key": "cummins_mre2023",
+                "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+                "sources": [
+                  "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053"
+                ],
+                "statement_id": "cummins-range-2023-05-01",
+                "status": "AUTO_VALIDATED",
+                "transform": {
+                  "inputs": [
+                    "reported_resource_distribution_magnet_ppm",
+                    "normalized_resource_distribution_treo_ppm"
+                  ],
+                  "rule": "RATIO_PPM_PERCENT"
+                },
+                "uncertainty_type": "PRINTED_OXIDE_DISTRIBUTION_ROUNDING_ONLY",
+                "unit": "%",
+                "value": 22.8,
+                "variable": "magnet_reo_share_pct"
+              },
+              "raw_value": 22.8
+            }
+          },
+          "acquisition_receipts": [
+            {
+              "key": "cummins_mre2023",
+              "status": "COMMITTED_SNAPSHOT_SAME_SHA",
+              "stop_reason": "",
+              "actual_sha256": "",
+              "expected_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053"
+            },
+            {
+              "key": "asx_review_cummins_global_202401",
+              "status": "HOST_STOPPED",
+              "stop_reason": "HOST_STOPPED:NOT_PDF",
+              "actual_sha256": "",
+              "expected_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9"
+            }
+          ]
+        },
+        "differing_first_rank_sets": [
+          {
+            "panel": "resource_disclosure",
+            "scenario": "resource_assumption_with_T",
+            "method": "promethee",
+            "published_static": [
+              {
+                "project_id": "AU-dac3c8e40326b8244cdb",
+                "project_name": "Jupiter development study within Brothers"
+              }
+            ],
+            "fresh_live": [
+              {
+                "project_id": "AU-efff91a06cf344122d88",
+                "project_name": "Mt Weld Project"
+              }
+            ]
+          },
+          {
+            "panel": "resource_infrastructure_pilot",
+            "scenario": "development_assumption",
+            "method": "promethee",
+            "published_static": [
+              {
+                "project_id": "AU-73183907b9a389385bc8",
+                "project_name": "Mount Ridley Project — Central Mia scope"
+              }
+            ],
+            "fresh_live": [
+              {
+                "project_id": "AU-2262a37ca19531f08da3",
+                "project_name": "Splinter Rock Rare Earth Project"
+              }
+            ]
+          },
+          {
+            "panel": "resource_infrastructure_pilot",
+            "scenario": "development_assumption",
+            "method": "topsis",
+            "published_static": [
+              {
+                "project_id": "AU-dac3c8e40326b8244cdb",
+                "project_name": "Jupiter development study within Brothers"
+              }
+            ],
+            "fresh_live": [
+              {
+                "project_id": "AU-2262a37ca19531f08da3",
+                "project_name": "Splinter Rock Rare Earth Project"
+              }
+            ]
+          },
+          {
+            "panel": "resource_port_disclosure",
+            "scenario": "development_assumption_with_T",
+            "method": "promethee",
+            "published_static": [
+              {
+                "project_id": "AU-49b538453133bd968e8d",
+                "project_name": "Koppamurra Rare Earths Project"
+              }
+            ],
+            "fresh_live": [
+              {
+                "project_id": "AU-4ec1fb08563b42352d29",
+                "project_name": "Cowalinya Rare Earth Project"
+              }
+            ]
+          }
+        ]
+      }
     },
     "research": {
-      "run": 44594143506,
-      "status": "in_progress",
-      "completed_steps": [
-        "Core, clean bootstrap and replay tests",
-        "R analytical regression"
-      ]
+      "run": 44604406584,
+      "status": "completed",
+      "conclusion": "success",
+      "python_tests": 568,
+      "python_test_seconds": 330.393
     },
-    "updated_status": "See Draft PR #13 checks and the final review record."
+    "previous_program_commits": {
+      "head_at_online_submission": "ec23344",
+      "checked_at": "2026-11-19T20:01:00Z",
+      "clean_public_build": {
+        "run": 44594143412,
+        "status": "completed",
+        "conclusion": "failure",
+        "python_tests": 562,
+        "root_cause": "Historical v10 whole-claims comparison on integrated science; source build, Census, MCDA, R, immutable checks passed.",
+        "corrective_action": "Isolate historical v10 complete-file verification and verify approved current bindings and source-selected trace separately."
+      },
+      "research": {
+        "run": 44594143506,
+        "status": "completed",
+        "completed_steps": [
+          "Python regression, clean bootstrap and replay",
+          "R analytical regression",
+          "historical frozen scientific releases and Phase 22 twice",
+          "Final publication payload verification"
+        ],
+        "conclusion": "success",
+        "python_tests": 562,
+        "python_test_seconds": 274.269
+      },
+      "updated_status": "See Draft PR #13 checks and the final review record.",
+      "superseded_initial_clean": {
+        "run": 44590433142,
+        "commit": "88022ee",
+        "status": "completed",
+        "conclusion": "failure",
+        "diagnosis": [
+          "orphan database read claims without a run receipt",
+          "relocated export accepted a legacy external path",
+          "Shapely package metadata flagged as application input"
+        ],
+        "subsequent_full_research_tests": 562
+      },
+      "superseded_workflow_receipt_fix": {
+        "commit": "d2bc53b",
+        "run": 44592882479,
+        "conclusion": "failure",
+        "tests_passed": 561,
+        "failure": "v10 historic whole claims file compared with later integrated claims after the verified public build"
+      }
+    }
   },
   "preserved_http_diagnostic": {
     "receipt": "acquisition_report.csv",
     "sha256": "9da3d7aab35086d5d1c182eec9468ba653e0c0d97262616be188900e16efc900",
-    "note": "The archived HTTP 401 diagnostic retains its original trailing space."
+    "note": "The archived HTTP 401 diagnostic retains its original trailing space.",
+    "live_receipt": "live_acquisition_report.csv",
+    "live_sha256": "f24304ffe6707d2f60621a8028619582b2dc154f3fa29553fdb946bbb75771c1"
+  },
+  "exploratory_criterion_gaps": {
+    "file": "disclosure_composite_matrix.csv",
+    "sha256": "b8e1ac3a232e4131fcff38bb05487ab939bbae39282ba39bbae951ce08d05b9b",
+    "project_count": 93,
+    "missing_one_criterion": {
+      "Dubbo": "T1",
+      "Yangibana": "S1"
+    },
+    "comparison_to_independent_second_run": "byte_identical"
+  },
+  "publication_scan": {
+    "status": "passed",
+    "repository_text_artifacts": 5899,
+    "command": "python tools/check_publication.py",
+    "personal_absolute_paths_in_census_delivery": 0
+  },
+  "historical_company_marker_replay": {
+    "approved": 70,
+    "source_pages": 35,
+    "statuses": {
+      "PASS": 70
+    },
+    "rows_sha256": "646875074775095e8e9e5c7fabf7792f48fd11335019b110f97e649f8d86071b",
+    "source": "archived PDFs matched by acquisition SHA; no new HTTP request",
+    "integrated_main": {
+      "approved_rows": 70,
+      "frozen_v10_claims_verified": true,
+      "current_binding_statuses": {
+        "SELECTED_SOURCE_MATCHES_APPROVAL": 70
+      },
+      "statuses": {
+        "PASS": 70
+      },
+      "claims_modified": false,
+      "markers_or_pages_repaired": false,
+      "http_requests": 0
+    },
+    "linux_live_receipts": {
+      "commit": "d2bc53b",
+      "run": "20261119T185717-d83e7868",
+      "matching_file_digests": 4,
+      "fetched_pdfs_matching_approved_rows": 70,
+      "selected_approved_rows": 70,
+      "method": "GitHub public artifact receipt and trace verification; PDFs re-read only in the local sealed run",
+      "audit_commit": "5d83732b22615224117b1ff2f8aac17a598585cc",
+      "artifact": 14568882161,
+      "artifact_sha256": "de621c7b39004c61118a414b69ff9bfa65c20af37872718f39c4aa9f83cd2898",
+      "sealed_files": {
+        "configuration.json": "76f04de99953a07f0bee041d0fcfe5f8b2fc6514a7596a706817e0ce5afd92a6",
+        "snapshot_lock.json": "dccf669b6e5d7d9e82fc67c379ef781a826704377711d41c34e34950ac7d1148",
+        "acquisition_report.csv": "23c4a87e18c9f881ae70ed121e47a7244e4fe283b989e0b27128586dc68b8249",
+        "project-summary/field_provenance.csv": "43383a8191028d70764421ff2fd0117c455646eabb0c34b66ee4ef47fdaca08f"
+      },
+      "rows_with_verified_observation": 70
+    }
   }
 }
