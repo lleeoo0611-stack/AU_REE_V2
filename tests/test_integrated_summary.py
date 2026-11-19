@@ -191,6 +191,43 @@ class SummaryContractTests(unittest.TestCase):
             lambda *args,**kwargs:writes.append(args),project)
         self.assertIsNone(bundle);self.assertEqual(writes,[])
 
+    def test_preferred_mre_accepts_matching_supplemental_oxide_pdf(self):
+        ore = self.project['observations'][0]
+        fields = ('source_sha256', 'statement_id', 'scope', 'effective_date')
+        ore['raw'] = {'review_contract': {key: ore[key] for key in fields}}
+        self.build()
+        rules, decisions = summary_settings(self.root)
+        observations = [dict(o) for o in self.db.execute(
+            "SELECT * FROM observations WHERE variable!='project_attribute'")]
+        primary = next(o for o in observations if o['variable'] == 'ore_mt')
+        reference = dict(source_sha256=self.source['sha256'], ore_mt=10, grade_pct=0.1, contained_treo_kt=10)
+        raw = dict(page_extraction_sha256='2'*64, census_equivalent_resource_pdf=reference,
+                   material_basis='RESOURCE_ORE_GRADE_OXIDE_PPM')
+        supplement = dict(primary, obs_id='supplement-ce', source_sha='1'*64, basis='CeO2',
+                          variable='reported_ceo2_ppm', unit='ppm', value=120,
+                          locator='supplemental PDF p2', raw=canonical(raw))
+        wrong_scope = dict(supplement, obs_id='outside-dy', variable='reported_dy2o3_ppm',
+                           basis='Dy2O3', scope='Nested higher-grade resource only')
+        concentrate = dict(supplement, obs_id='concentrate-er', variable='reported_er2o3_ppm', basis='Er2O3',
+                           raw=canonical(dict(raw, material_basis='CONCENTRATE_OXIDE_PPM')))
+        observations.extend((supplement, wrong_scope, concentrate))
+        row = dict.fromkeys(json.loads((self.root/'config/project_summary_columns.json').read_text(encoding='utf8')), '')
+        trace = {}
+
+        def put(column, value, source, *evidence):
+            row[column] = value
+            trace[column] = source
+
+        bundle, _, _ = summary_resource_fields(row, observations, {self.source['sha256']: self.source},
+                                                rules, decisions, put, self.project)
+        self.assertEqual(self.source['sha256'], bundle['source_sha256'])
+        self.assertEqual('doc', row['資料來源名稱'])
+        self.assertAlmostEqual(1.2, row['CeO2_氧化鈰_kt'])
+        self.assertEqual(supplement['source_sha'], trace['CeO2_氧化鈰_kt'])
+        self.assertEqual('', row['Dy2O3_氧化鏑_kt'])
+        self.assertEqual('', row['Er2O3_氧化鉺_kt'])
+        self.assertEqual(2, row['已公布元素數_共15項'])
+
     def test_older_review_role_keeps_context_only_resource_out_of_preferred_scope(self):
         ore=self.project['observations'][0]
         fields=('source_sha256','statement_id','scope','effective_date')
