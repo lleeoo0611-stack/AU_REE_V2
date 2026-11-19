@@ -1,0 +1,141 @@
+{
+  "version": "candidate-milestones-20261120-v1",
+  "namespace": "research.stage_candidate",
+  "stages": [
+    {
+      "code": "A1",
+      "name": "初期探索",
+      "event_type": "REE_EXPLORATION",
+      "definition": "已確認 REE 目標或初期探查",
+      "required_status": "OBSERVED",
+      "scope_roles": [
+        "PROJECT",
+        "DEPOSIT"
+      ]
+    },
+    {
+      "code": "A2",
+      "name": "資源調查",
+      "event_type": "SYSTEMATIC_DELINEATION",
+      "definition": "系統性調查或鑽探與界定範圍均有證據，分界待研究者確認",
+      "required_status": "OBSERVED",
+      "scope_roles": [
+        "PROJECT",
+        "DEPOSIT"
+      ]
+    },
+    {
+      "code": "A3",
+      "name": "細部探勘",
+      "event_type": "RECOGNIZED_MRE",
+      "definition": "已按認可規範公開所選範圍的礦產資源估算，首發日期另行核對",
+      "required_status": "PUBLISHED",
+      "scope_roles": [
+        "SELECTED_RESOURCE"
+      ]
+    },
+    {
+      "code": "B1",
+      "name": "初期可行性評估",
+      "event_type": "SCOPING",
+      "definition": "已完成概評",
+      "required_status": "COMPLETED",
+      "scope_roles": [
+        "PROJECT",
+        "STUDY_SCENARIO"
+      ]
+    },
+    {
+      "code": "B2",
+      "name": "經濟評估",
+      "event_type": "PFS",
+      "definition": "已完成預可行性研究",
+      "required_status": "COMPLETED",
+      "scope_roles": [
+        "PROJECT",
+        "STUDY_SCENARIO"
+      ]
+    },
+    {
+      "code": "B3",
+      "name": "可行性評估",
+      "event_type": "FS",
+      "definition": "已完成 FS、DFS 或 BFS",
+      "required_status": "COMPLETED",
+      "scope_roles": [
+        "PROJECT",
+        "STUDY_SCENARIO"
+      ]
+    },
+    {
+      "code": "C1",
+      "name": "最終投資決定",
+      "event_type": "FID",
+      "definition": "正式作成且已揭露最終投資決定",
+      "required_status": "DECIDED",
+      "scope_roles": [
+        "PROJECT",
+        "COMMERCIAL_FACILITY"
+      ]
+    },
+    {
+      "code": "C2",
+      "name": "建設中",
+      "event_type": "MAIN_CONSTRUCTION",
+      "definition": "所指商業工程的主體工程已開始",
+      "required_status": "STARTED",
+      "scope_roles": [
+        "PROJECT",
+        "COMMERCIAL_FACILITY"
+      ]
+    },
+    {
+      "code": "C3",
+      "name": "建設完成",
+      "event_type": "MECHANICAL_COMPLETION",
+      "definition": "所指分期或商業工程範圍已機械完工",
+      "required_status": "COMPLETED",
+      "scope_roles": [
+        "PROJECT",
+        "COMMERCIAL_FACILITY"
+      ]
+    },
+    {
+      "code": "D1",
+      "name": "試車",
+      "event_type": "COMMISSIONING",
+      "definition": "所指商業設施已進入正式試車",
+      "required_status": "STARTED",
+      "scope_roles": [
+        "PROJECT",
+        "COMMERCIAL_FACILITY"
+      ]
+    },
+    {
+      "code": "D2",
+      "name": "產能提升",
+      "event_type": "RAMP_UP",
+      "definition": "已產出指定產品，並明示正在爬升產能",
+      "required_status": "IN_PROGRESS",
+      "scope_roles": [
+        "PROJECT",
+        "COMMERCIAL_FACILITY"
+      ]
+    },
+    {
+      "code": "D3",
+      "name": "產能達設計目標",
+      "event_type": "DESIGN_ACHIEVEMENT",
+      "definition": "設計版本、衡量指標及觀察期間均明確，穩定達標分界待確認",
+      "required_status": "SUSTAINED",
+      "scope_roles": [
+        "PROJECT",
+        "COMMERCIAL_FACILITY"
+      ]
+    }
+  ],
+  "deferred_boundaries": [
+    "SYSTEMATIC_DELINEATION",
+    "DESIGN_ACHIEVEMENT"
+  ]
+}

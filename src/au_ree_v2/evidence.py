@@ -552,7 +552,7 @@ def ingest_recognized(db, root, snapshots, cutoff, policy, acquired_through=None
 
 def document_report(root, snapshots, outcomes, out, shared_comparability=False):
     """Measured acquisition/extraction inventory; never count tables as Projects."""
-    from .analysis import write_csv
+    from .tabular import write_csv
     from collections import Counter
     root=Path(root);out=Path(out);documents=[];candidates=[];process=[]
     for artifact in snapshots:

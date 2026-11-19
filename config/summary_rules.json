@@ -2041,6 +2041,13 @@
               "alias": "Avonbank Mineral Sands",
               "source": "ROW_FULL_NAME_SUFFIX_REMOVAL",
               "original_name": "Avonbank Mineral Sands Project"
+            },
+            {
+              "alias": "Avonbank",
+              "source": "SOURCE_PAGE_PROJECT_ALIAS",
+              "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+              "physical_page": 46,
+              "quote": "The Avonbank Project Definitive Feasibility Study completed in 2021"
             }
           ]
         },
@@ -2057,6 +2064,13 @@
               "alias": "Copi Mineral Sands",
               "source": "ROW_FULL_NAME_SUFFIX_REMOVAL",
               "original_name": "Copi Mineral Sands Project"
+            },
+            {
+              "alias": "Copi",
+              "source": "SOURCE_PAGE_PROJECT_ALIAS",
+              "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+              "physical_page": 47,
+              "quote": "the Copi DFS completed in January 2024"
             }
           ]
         },
@@ -3956,7 +3970,7 @@
       "source_key": "scan_original native character threshold"
     },
     "stage_keyword_rule": {
-      "value": "round5-three-point-v2",
+      "value": "stage-attribution-v3",
       "source_file": "src/au_ree_v2/round5_stage.py",
       "source_key": "VERSION"
     },

@@ -2,9 +2,10 @@
 import json
 from collections import Counter
 
-from .analysis import write_csv
+from .tabular import write_csv
 from .census import summary_matching_resource_pdf, summary_observation
 from .store import canonical, digest
+from .evidence_model import compatible_resource_context, ensure_read_model
 
 
 def date_precision(text):
@@ -48,47 +49,50 @@ def field_diagnosis(column, reason, field_issues, stage_issues, bundle, resource
 def resource_statement_observations(db, observations, bundles):
     """Expose current observation groups at source/statement/scope/date grain.
 
-    The temporary view leaves the frozen database schema and scientific selector intact.
+    Source edition and run selection identities are distinct. An explicitly matched
+    PDF can support the selected edition without overwriting its own source key.
     """
-    db.execute('''CREATE TEMP VIEW IF NOT EXISTS census_resource_observation AS
-        SELECT o.*, s.publication_date, s.acquired_at
-        FROM observations o JOIN sources s ON s.sha=o.source_sha
-        WHERE o.status='AUTO_VALIDATED' ''')
+    ensure_read_model(db)
     observed_ids = {o['obs_id'] for rows in observations.values() for o in rows}
-    for o in db.execute('SELECT * FROM census_resource_observation ORDER BY entity_id, source_sha, statement_id, scope, effective_date, obs_id'):
+    for o in db.execute("""SELECT * FROM resource_statement_facts WHERE status='AUTO_VALIDATED'
+                           ORDER BY entity_id, source_sha, statement_id, scope, effective_date, obs_id"""):
         if o['obs_id'] not in observed_ids:
             continue
         raw = summary_observation(o)
         variable = o['variable']
-        if (variable not in ('ore_mt', 'grade', 'contained_treo_kt', 'magnet_reo_share_pct')
-                and not variable.startswith('reported_resource_')
-                and not (raw.get('material_basis') or '').startswith(('RESOURCE_', 'HEAVY_MINERAL_'))
-                and not (raw.get('review_contract') and variable.startswith('reported_'))):
-            continue
         pid = o['entity_id']
         key = (o['source_sha'], o['statement_id'], o['scope'], o['effective_date'])
         bundle = bundles.get(pid)
         bundle_key = tuple(bundle[k] for k in ('source_sha256', 'statement_id', 'scope', 'effective_date')) if bundle else None
         equivalent = bool(bundle and summary_matching_resource_pdf(o, raw, bundle))
-        selected = key == bundle_key or equivalent
-        contract = raw.get('review_contract') or {}
+        selected = bool(bundle and (key == bundle_key or equivalent) and
+                        o['obs_id'] not in bundle.get('incompatible_component_ids', ()) and
+                        compatible_resource_context([*bundle.get('observations', []), dict(o)]))
         yield dict(project_id=pid, statement_group_id=digest([pid, *(bundle_key if equivalent else key)]), statement_id=o['statement_id'],
                    source_sha256=o['source_sha'], scope=o['scope'], category=o['category'],
-                   reporting_standard=raw.get('reporting_standard') or contract.get('reporting_standard'),
-                   cutoff=raw.get('cutoff') or contract.get('cutoff'),
-                   effective_date=o['effective_date'], effective_date_precision=date_precision(o['effective_date']),
+                   reporting_standard=o['reporting_standard'], cutoff=o['cutoff_grade'],
+                   effective_date=o['effective_date'], effective_date_precision=o['declared_date_precision'] or date_precision(o['effective_date']),
                    publication_date=o['publication_date'], publication_date_precision=date_precision(o['publication_date']),
                    acquired_at=o['acquired_at'], selected_for_census=int(selected),
                    observation_id=o['obs_id'], variable=variable, value=o['value'], unit=o['unit'],
                    basis=o['basis'], material_basis=raw.get('material_basis'), locator=o['locator'],
-                   physical_page=raw.get('pdf_page'), transform_version=o['transform_version'])
+                   physical_page=raw.get('pdf_page') or raw.get('physical_page'), transform_version=o['transform_version'],
+                   source_statement_key=o['source_statement_key'], statement_kind=o['statement_kind'],
+                   date_role=o['date_role'], original_token=o['reported_token'], original_unit=o['reported_unit'],
+                   denominator_basis=o['denominator_basis'], rounding_half_width=o['rounding_half_width'],
+                   original_estimate_period=o['original_estimate_period'],
+                   source_transform=o['source_transform'], referenced_statement_label=o['referenced_statement_label'],
+                   selection_role=('VERIFIED_EQUIVALENT_SOURCE' if selected and equivalent else
+                                   'MATCHED_SELECTED_STATEMENT' if selected else 'NOT_SELECTED'))
 
 
 RESOURCE_FIELDS = ('project_id', 'statement_group_id', 'statement_id', 'source_sha256', 'scope', 'category',
                    'reporting_standard', 'cutoff', 'effective_date', 'effective_date_precision',
                    'publication_date', 'publication_date_precision', 'acquired_at', 'selected_for_census',
                    'observation_id', 'variable', 'value', 'unit', 'basis', 'material_basis', 'locator',
-                   'physical_page', 'transform_version')
+                   'physical_page', 'transform_version','source_statement_key','statement_kind',
+                   'date_role','original_token','original_unit','denominator_basis','rounding_half_width',
+                   'source_transform','referenced_statement_label','selection_role','original_estimate_period')
 
 SPATIAL_FIELDS = ('project_id', 'status', 'longitude', 'latitude', 'point_role', 'native_feature_id',
                   'origin_crs', 'export_crs', 'precision_m', 'source_sha256', 'locator', 'dataset',
@@ -122,7 +126,29 @@ def spatial_quality(row, trace):
                 distance_use='REQUIRES_SCOPE_CRS_AND_LAYER_REVIEW', review_details=point['scope'])
 
 
-def write_census_audit(db, out, rows, trace, diagnoses, observations, bundles):
+def resource_field_lineage(db, trace, resource_rows, bundles, resource_columns):
+    """Link the actual field formula and its recorded supporting observations to the selector."""
+    facts = {r['observation_id']: r for r in resource_rows}
+    observation_projects = dict(db.execute('SELECT obs_id,entity_id FROM observations'))
+    for (pid, column), field in trace.items():
+        if column not in resource_columns or field['value'] == '' or not bundles.get(pid):
+            continue
+        bundle = bundles[pid]
+        group = digest([pid, *(bundle[k] for k in ('source_sha256','statement_id','scope','effective_date'))])
+        support = sorted(set(json.loads(field['observation_ids'])))
+        editions = {facts[k]['source_statement_key'] for k in support if k in facts}
+        context_ids = [k for k in support if k not in facts and observation_projects.get(k) == pid]
+        selected_ids = [k for k in support if k in facts and facts[k]['project_id'] == pid
+                        and facts[k]['statement_group_id'] == group and facts[k]['selected_for_census']]
+        outside = sorted(set(support).difference(context_ids, selected_ids))
+        yield dict(project_id=pid, column=column, value=field['value'], statement_group_id=group,
+                   method=field['method'], source_sha256=field['source_sha256'], locator=field['locator'],
+                   supporting_observation_ids=canonical(support), source_statement_keys=canonical(sorted(editions)),
+                   selected_resource_observation_ids=canonical(selected_ids),context_observation_ids=canonical(context_ids),
+                   unresolved_support_ids=canonical(outside))
+
+
+def write_census_audit(db, out, rows, trace, diagnoses, observations, bundles, *, resource_columns=()):
     fields = ('project_id', 'column', 'value_state', 'legacy_reason', 'status', 'findings',
               'source_sha256', 'observation_ids', 'locator')
     entries = []
@@ -138,6 +164,10 @@ def write_census_audit(db, out, rows, trace, diagnoses, observations, bundles):
     write_csv(out/'field_status.csv', entries, fields)
     resource_rows = list(resource_statement_observations(db, observations, bundles))
     write_csv(out/'resource_statement_observations.csv', resource_rows, RESOURCE_FIELDS)
+    lineage = list(resource_field_lineage(db, trace, resource_rows, bundles, resource_columns))
+    write_csv(out/'resource_statement_lineage.csv', lineage, ('project_id','column','value','statement_group_id',
+              'method','source_sha256','locator','supporting_observation_ids','source_statement_keys',
+              'selected_resource_observation_ids','context_observation_ids','unresolved_support_ids'))
     write_csv(out/'spatial_point_quality.csv', [spatial_quality(r, trace) for r in rows], SPATIAL_FIELDS)
     return dict(field_status_counts=dict(Counter(r['status'] for r in entries)),
                 count_excluded_by_applicability=sum(r['legacy_reason'].startswith('NOT_APPLICABLE_')

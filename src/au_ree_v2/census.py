@@ -102,6 +102,7 @@ from datetime import date
 from decimal import Decimal, InvalidOperation
 from .store import digest, filehash
 from .selection import choose, date_end
+from .evidence_model import compatible_resource_context
 
 
 def summary_resource_bundle(observations, partial_resource=None):
@@ -120,6 +121,8 @@ def summary_resource_bundle(observations, partial_resource=None):
             grouped[(o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])].append(o)
     options=[]
     for key,rows in grouped.items():
+        if not compatible_resource_context(rows):
+            continue
         values={};invalid=False
         for variable in ('ore_mt','grade','contained_treo_kt'):
             found=[r for r in rows if r['variable']==variable]
@@ -488,6 +491,8 @@ def summary_partial_bundle(observations, contract):
     if not contract.get('basis_proof_verified'):return None,'PARTIAL_PROOFS_REQUIRED'
     key=tuple(contract[k] for k in ('source_sha256','statement_id','scope','effective_date'))
     rows=[o for o in observations if (o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])==key]
+    if not compatible_resource_context(rows):
+        return None,'PARTIAL_RESOURCE_STATEMENT_CONTEXT_CONFLICT'
     ores=[o for o in rows if o['variable']=='ore_mt' and o['unit']=='Mt' and o['value']>0]
     if not ores or len({o['value'] for o in ores})!=1:return None,'PARTIAL_ORE_REQUIRED'
     treo=contract.get('verified_in_situ_treo',{})
@@ -526,7 +531,17 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
     if 'grade_pct' in bundle['value']:put('有TREO資源估計','是',sha,locator,'COMPLETE_SOURCE_BOUND_RESOURCE_PAIR',scope,ids)
     put('資料來源名稱',sources[sha]['key'],sha,locator);put('資料來源URL',sources[sha]['url'],sha,locator)
     same=[o for o in primary if (o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])==
-          (sha,bundle['statement_id'],scope,bundle['effective_date'])]
+          (sha,bundle['statement_id'],scope,bundle['effective_date'])
+          and compatible_resource_context([*bundle['observations'],o])]
+    supplemental=[o for o in decoded if summary_matching_resource_pdf(o,json.loads(o['raw']),bundle)
+                  and compatible_resource_context([*bundle['observations'],o])]
+    # A bulk pair with an unspecified cutoff can be individually compatible with
+    # two mutually incompatible element rows. Test the proposed composition as a set.
+    if not compatible_resource_context([*same,*supplemental]):
+        core_ids = {o['obs_id'] for o in bundle['observations']}
+        bundle['incompatible_component_ids'] = {o['obs_id'] for o in [*same,*supplemental]} - core_ids
+        same = [o for o in same if o['obs_id'] in core_ids]
+        supplemental = []
     ids=sorted({o['obs_id'] for o in same})
     shares=[o for o in same if o['variable']=='magnet_reo_share_pct' and o['unit']=='%' and
         o['basis'] in ('PrNdDyTb_OXIDES_OVER_TREO','PrNdDyTb_REO_DIV_TREO') and 0<=o['value']<=100]
@@ -539,7 +554,6 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
     if not partial and shares and len({o['value'] for o in shares})==1:
         put('磁鐵稀土佔TREO_pct',shares[0]['value'],sha,shares[0]['locator'],'SOURCE_REPORTED',scope,[shares[0]['obs_id']])
         put('磁鐵稀土氧化物蘊藏量_kt',bundle['value']['contained_treo_kt']*shares[0]['value']/100,sha,locator,'TREO_KT_X_MAGNET_SHARE_PERCENT',scope,ids)
-    supplemental=[o for o in decoded if summary_matching_resource_pdf(o,json.loads(o['raw']),bundle)]
     composition=[*same,*supplemental]
     composition_ids=sorted({o['obs_id'] for o in composition})
     composition_sha=';'.join(sorted({o['source_sha'] for o in composition}))
@@ -684,6 +698,9 @@ def summary_stage_fields(row, trace, sources, associations, rules, decisions, pu
     from .pdf_extract import summary_scan_stage, summary_hit_priority, summary_source_assessment
     from .pdf_extract import summary_review_hit
     hits=[];blockers=[];eligible=[]
+    if not inventory:
+        audit.append(dict(project_id=pid,reason='STAGE_SOURCE_INVENTORY_UNVERIFIED'))
+        return
     metadata={m['source_sha256']:m for m in (inventory or [])}
     expected=associations.get(pid,set())|set(metadata)
     for sha in sorted(expected):
@@ -700,6 +717,9 @@ def summary_stage_fields(row, trace, sources, associations, rules, decisions, pu
         eligible.append(s)
         for h in found:hits.append(summary_review_hit(h,row,s,rules))
     audit.extend(dict(project_id=pid,**h) for h in blockers)
+    for hit in hits:
+        if hit['outcome']=='UNCLEAR':
+            hit['reason']=hit['reason2'] if hit['point2']=='UNCLEAR' else 'STAGE_HIT_REQUIRES_REVIEW'
     audit.extend(hits)
     if not expected or blockers or not eligible or any(h['outcome']!='FAIL' for h in hits):return
     dated=[s for s in eligible if s.get('publication_date')]
@@ -743,12 +763,15 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
 
 def _export_summary(root, database, out, db, cutoff, run_id, standalone,
                     configuration, snapshots, membership, acquisition_rows, audit, claim_declarations):
-    from .analysis import write_csv
-    from .analysis import read_csv
+    from .tabular import read_csv, write_csv
     from .evidence import load_claims,claim_evidence_ids
     rules,decisions=summary_settings(root)
     hashes={name:filehash(root/'config'/name) for name in
             ('summary_rules.json','researcher_rule_decisions.json','project_summary_columns.json')}
+    evidence_files = ('config/assay_evidence.json','config/candidate_milestones.json',
+                      'data/candidate_milestone_evidence.json','config/formal_c1_review.json',
+                      'config/eligibility_compatibility.json')
+    hashes.update({file:filehash(root/file) for file in evidence_files if (root/file).is_file()})
     columns=json.loads((root/'config/project_summary_columns.json').read_text(encoding='utf8'))
     if len(columns)!=51 or len(set(columns))!=51:raise ValueError('SUMMARY_51_COLUMN_CONTRACT_REQUIRED')
     db.row_factory=sqlite3.Row
@@ -770,7 +793,7 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
         summary_file=run_dir/'summary.json'
         summary=json.loads(summary_file.read_text(encoding='utf8')) if summary_file.is_file() else {}
         saved_hashes=summary.get('project_summary',{}).get('export_contract_sha256')
-        if saved_hashes and saved_hashes!=hashes:raise ValueError('SUMMARY_EXPORT_CONTRACT_CHANGED')
+        if saved_hashes and any(hashes.get(k)!=v for k,v in saved_hashes.items()):raise ValueError('SUMMARY_EXPORT_CONTRACT_CHANGED')
         if lock.is_file():
             saved=json.loads(lock.read_text(encoding='utf8'))
             if digest(saved)!=run['snapshot_sha']:raise ValueError('SUMMARY_RUN_SNAPSHOT_HASH_MISMATCH')
@@ -967,9 +990,20 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
     write_csv(out/names['missing'],missing,['project_id','column','reason','details'])
     write_csv(out/'stage_rule_audit.csv',stage_audit,sorted({k for r in stage_audit for k in r}))
     coverage=summary_coverage(rows,columns,missing,rules)
-    if audit:coverage.update(write_census_audit(db,out,rows,trace,diagnoses,observations,bundles))
+    if audit:
+        from .milestones import write_milestones
+        from .formal_cohort import write_formal_cohort
+        from .assays import write_assay_evidence
+        coverage.update(write_census_audit(db,out,rows,trace,diagnoses,observations,bundles,
+                                           resource_columns=rules['resource_columns']))
+        coverage.update(write_milestones(root,out,rows,sources,observations,bundles,stage_audit,cutoff))
+        if (root/'config/formal_c1_review.json').is_file():
+            coverage.update(write_formal_cohort(root,out,rows,trace,sources,observations,cutoff))
+        if (root/'config/assay_evidence.json').is_file():
+            coverage.update(write_assay_evidence(root,out,rows,sources,db,cutoff,active))
+    coverage.setdefault('formal_C1', False)
     coverage['export_contract_sha256']=hashes
-    coverage.update(database_sha256=filehash(database) if standalone else None,cutoff=cutoff,formal_C1=False,source_scope='LATEST_CANONICAL_RUN_ONLY',
+    coverage.update(database_sha256=filehash(database) if standalone else None,cutoff=cutoff,source_scope='LATEST_CANONICAL_RUN_ONLY',
         rows=len(rows),column_count=len(columns),same_mre_aggregation='NO_RESOURCE_SUMS_EXPORTED;Yttria/Mt_Stirling_NON_ADDITIVE')
     (out/names['coverage']).write_text(canonical(coverage)+'\n',encoding='utf8')
     return coverage
@@ -977,7 +1011,7 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
 
 def census_selection(summary_csv, membership, filters, out):
     """Match display fields first, then require a canonical Project in SQLite."""
-    from .analysis import write_csv
+    from .tabular import write_csv
     with Path(summary_csv).open(encoding='utf-8-sig',newline='') as stream:
         reader=csv.DictReader(stream)
         columns=reader.fieldnames
@@ -1021,12 +1055,15 @@ def publish_census(root, run_dir, run_id, destination=None):
         copyfile(summary/names['summary'],staging/'REE project census.csv')
         for name in (names['provenance'],names['missing'],names['coverage']):
             copyfile(summary/name,staging/name)
-        for name in ('field_status.csv','resource_statement_observations.csv','spatial_point_quality.csv'):
+        for name in ('field_status.csv','resource_statement_observations.csv','spatial_point_quality.csv',
+                     'resource_statement_lineage.csv','milestone_comparison.csv','milestone_events.csv',
+                     'formal_c1_gates.csv','formal_c1_panel_comparison.csv','formal_c1_release.json',
+                     'assay_method_evidence.csv'):
             if (summary/name).is_file():copyfile(summary/name,staging/name)
         for name in ('census_selection.csv','mcda_census_gate.csv','source_selection.csv',
                      'acquisition_report.csv','resource_scope_selection.csv','census_release.json',
                      'census_identity_roles.csv','mcda_criterion_lineage.csv','mcda_panel_decisions.csv',
-                     'census_evidence_requests.csv','census_gis_sensitivity.csv','census_gis_rank_sensitivity.csv'):
+                     'aim_c_availability.csv','census_evidence_requests.csv','census_gis_sensitivity.csv','census_gis_rank_sensitivity.csv'):
             if (run_dir/name).is_file():copyfile(run_dir/name,staging/name)
         for ranking in sorted(run_dir.glob('*/ranking.csv')):
             panel=staging/'MCDA'/ranking.parent.name
@@ -1098,7 +1135,7 @@ def summary_missing(column, project, row, bundle, registry, sources, source_erro
             evidence=dict(source_key=key,status=receipt.get('status'),reason=reason,source_sha256=c.get('source_sha256'))
             details.append(canonical(evidence))
             if findings is not None:findings.append(dict(kind='SOURCE_REVIEW',**evidence))
-    priority=['SOURCE_SHA_CHANGED','HOST_STOPPED_4XX','SOURCE_AFTER_CUTOFF','SOURCE_NOT_REGISTERED','SOURCE_NOT_ACQUIRED']
+    priority=['SOURCE_SHA_CHANGED','HOST_STOPPED_4XX','SOURCE_AFTER_CUTOFF','SOURCE_PUBLICATION_DATE_MISMATCH','SOURCE_DATE_UNVERIFIED','SOURCE_NOT_REGISTERED','SOURCE_NOT_ACQUIRED']
     if reasons:return next(r for r in priority if r in reasons),'; '.join(details)
     if resource and not bundle and not any(o['variable']=='ore_mt' for o in project.get('observations',[])):
         return 'NOT_APPLICABLE_NO_MRE','NO_SELECTED_MRE_IN_VERIFIED_PROJECT_DECLARATIONS;NOT_A_NATIONAL_ABSENCE_CLAIM'

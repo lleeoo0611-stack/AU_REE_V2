@@ -4,7 +4,8 @@ from math import isclose
 
 from pyproj import Transformer
 
-from .analysis import interval_mcda, read_csv as read_rows, score, write_csv
+from .analysis import interval_mcda, score
+from .tabular import read_csv as read_rows, write_csv
 from .gis import representative_coordinate, run as gis_run
 
 

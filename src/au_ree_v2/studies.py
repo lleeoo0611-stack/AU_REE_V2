@@ -3,7 +3,8 @@ import json,math
 from pathlib import Path
 from collections import defaultdict
 from .store import entity,canonical,issue,digest
-from .analysis import write_csv,score
+from .analysis import score
+from .tabular import write_csv
 from .hierarchy import link
 
 def ingest(db,root,snapshots,cutoff):

@@ -1,7 +1,7 @@
 """Evidence-qualified relationships; names alone never establish equivalence."""
 import json
 from .store import entity,digest,canonical
-from .analysis import write_csv
+from .tabular import write_csv
 
 def build(db,snapshots,collect=True,current=None):
     if not snapshots or max(s['available_date'] for s in snapshots)<'2026-11-03':

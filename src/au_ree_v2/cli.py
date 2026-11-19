@@ -13,7 +13,8 @@ from .screen_index import rows as screen_index_rows
 from pathlib import Path
 from . import __version__
 from .acquisition import select_snapshots
-from .analysis import prepare, run_r, write_csv
+from .analysis import prepare, run_r
+from .tabular import write_csv
 from .evidence import ingest_sources, ingest_claims, resource_values, strict_claims
 from .gis import run as run_gis, national_deposit_port_distances, deposit_type_port_summary
 from .official import official_inventory, exact_deposit_candidates, domain_evidence_coverage, national_prospectus_inventory
@@ -251,7 +252,10 @@ def execute(args):
     if strict:claims_data=strict_claims(db,root,snapshots,claim_declarations,acquisition,out/'verified-pages',args.tessdata)
     active_claim_ids=claim_evidence_ids(claims_data)
     configuration={'research':config,'sources':registry,'claims_sha256':claims_sha}
-    if integration:configuration.update(census_filter=list(census_filters),source_mode=mode)
+    if integration:
+        from .runtime import analytical_runtime
+        configuration.update(census_filter=list(census_filters),source_mode=mode,
+                             analytical_runtime=analytical_runtime(root,args.tessdata,args.rscript))
     if strict:configuration['verified_claim_ids']=sorted(active_claim_ids)
     for name in ('identity_links.json','study_cases.json'):
         if (root/'data'/name).exists():configuration[name+'_sha256']=filehash(root/'data'/name)
@@ -520,7 +524,8 @@ def execute(args):
                            'properties':{k:r[k] for k in ('entity_id','kind','name','state','source_sha')}})
         (out/'census.geojson').write_text(canonical({'type':'FeatureCollection','features':points})+'\n',encoding='utf-8')
         from .eligibility import audit
-        audit_summary=audit(db,out,identity,technical_rows,prepared,config,args.as_of,snapshots,root,current)
+        audit_summary=audit(db,out,identity,technical_rows,prepared,config,args.as_of,snapshots,root,current,
+                            integrated_census=census_coverage is not None)
         from .security import public_export
         dump=public_export(logical_dump(db))
         (out/'logical_database.json').write_text(canonical(dump)+'\n',encoding='utf-8')

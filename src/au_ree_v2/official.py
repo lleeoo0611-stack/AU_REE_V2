@@ -87,7 +87,7 @@ def ingest_minedex_resources(db, root, source, version=COMMODITY_VERSION):
 
 
 def minedex_resource_report(db,root,snapshots,out,version=COMMODITY_VERSION):
-    from .analysis import write_csv
+    from .tabular import write_csv
     reports=[];inventory=[]
     for source in snapshots:
         if source['kind']!='minedex_resource_batch':continue

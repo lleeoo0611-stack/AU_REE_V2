@@ -454,7 +454,7 @@ def strict_failure_status(exc):
 
 def strict_network_report(work, outcomes, dns_rows):
     """Persist receipts even when no database or valid research run is created."""
-    from .analysis import write_csv
+    from .tabular import write_csv
     work=Path(work);work.mkdir(parents=True,exist_ok=True)
     failed={r['key'] for r in outcomes if r.get('network_error') or r['status']=='NETWORK_ERROR'}
     keys={r['key'] for r in outcomes}
@@ -707,7 +707,7 @@ class SameSHAAlternates:
         return dict(source,url=report['found_url'],primary_url=source['url'],sha256=sha,path=str(path),available_date=now[:10],acquired_at=now)
 
     def save(self, work):
-        from .analysis import write_csv
+        from .tabular import write_csv
         rows = [dict(r,attempts=canonical(r['attempts'])) for r in self.reports]
         columns = ['key','primary_status','primary_reason','candidate_count','found_url','host_type','sha_match','stop_reason','attempts']
         write_csv(Path(work)/'fallback_report.csv', rows, columns)
@@ -948,7 +948,7 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
     return selected,outcomes
 
 
-def checked_snapshots(root, snapshots, cutoff, acquired_through=None, *, replay_assets=None):
+def checked_snapshots(root, snapshots, cutoff, acquired_through=None, *, replay_assets=None, receipt_paths=False):
     """Resolve immutable originals and their raw response attachments."""
     from .selection import date_end
 
@@ -959,7 +959,10 @@ def checked_snapshots(root, snapshots, cutoff, acquired_through=None, *, replay_
             raise ValueError(f"Snapshot after acquisition cutoff: {source['key']}")
         for entry in [source, *source.get('original_responses', [])]:
             path = root / entry['path']
-            if not path.is_file() and replay_assets is not None:
+            external = not path.resolve().is_relative_to(root.resolve())
+            if receipt_paths and external and replay_assets is None:
+                raise ValueError(f"External receipt path requires --replay-assets: {source['key']}")
+            if replay_assets is not None and (external or not path.is_file()):
                 sha = entry['sha256']
                 if not re.fullmatch('[0-9a-f]{64}', sha):
                     raise ValueError('Invalid asset SHA-256 in snapshot lock')
@@ -967,9 +970,8 @@ def checked_snapshots(root, snapshots, cutoff, acquired_through=None, *, replay_
                 asset = (folder / sha).resolve()
                 if not asset.is_relative_to(folder):
                     raise ValueError('Replay asset escapes its library')
-                if asset.is_file():
-                    path = asset
-                    entry['path'] = str(path)
+                path = asset
+                entry['path'] = str(path)
             if not path.is_file() or filehash(path) != entry['sha256']:
                 raise ValueError(f"Locked snapshot checksum mismatch: {source['key']} ({path.name})")
     return snapshots
@@ -1076,7 +1078,7 @@ def census_admission(root, source, registered, claim_hashes, cutoff):
 def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, static_pdfs=(),
                        replay_assets=None, receipt_path=None):
     """One ASX source stage. Replays use the same selected inputs and receipts."""
-    from .analysis import write_csv
+    from .tabular import write_csv
     from .discovery import strict_search_plan
 
     if replay:
@@ -1085,7 +1087,7 @@ def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, sta
             raise ValueError('Acquisition replay cutoff must match --as-of')
         if receipt['registry_sha256'] != digest(registry):
             raise ValueError('Acquisition replay source registry changed')
-        fresh = checked_snapshots(root, receipt['snapshots'], cutoff, replay_assets=replay_assets)
+        fresh = checked_snapshots(root, receipt['snapshots'], cutoff, replay_assets=replay_assets, receipt_paths=True)
         registered = {s['key']:s['kind'] for s in registry['sources']}
         if any(registered.get(s['key']) != s['kind'] for s in fresh):
             raise ValueError('Acquisition replay contains an unregistered source')
