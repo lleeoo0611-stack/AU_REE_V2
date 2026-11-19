@@ -97,7 +97,7 @@ def execute(args):
     if args.module=='export-summary':
         from .census import export_summary
         if not args.database or not args.out:raise ValueError('export-summary requires --database and --out')
-        return export_summary(root,args.database,args.out)
+        return export_summary(root,args.database,args.out,replay_assets=getattr(args,'replay_assets',None))
     source_replay=getattr(args,'source_replay',None)
     static_pdfs=getattr(args,'static_pdfs',())
     census_filters=getattr(args,'census_filter',[])
@@ -224,6 +224,9 @@ def execute(args):
     out=work/'runs'/run_id
     out.mkdir(parents=True)
     db=connect(work/'databases'/run_id/'canonical.sqlite' if integration else work/'canonical.sqlite')
+    if integration:
+        from .census_replay import INTEGRATED_APPLICATION_ID
+        db.execute(f'PRAGMA application_id={INTEGRATED_APPLICATION_ID}')
     if strict:
         import os
         previous_cache=os.environ.get('AU_REE_NATIVE_CACHE');os.environ['AU_REE_NATIVE_CACHE']=str(out/'native-pages')

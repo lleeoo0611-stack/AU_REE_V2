@@ -948,6 +948,25 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
     return selected,outcomes
 
 
+def checked_replay_path(root, entry, source_key, *, replay_assets=None, receipt_paths=False):
+    """Verify one immutable original or attachment within its declared library."""
+    path = root / entry['path']
+    external = not path.resolve().is_relative_to(root.resolve())
+    if receipt_paths and external and replay_assets is None:
+        raise ValueError(f"External receipt path requires --replay-assets: {source_key}")
+    if replay_assets is not None and (external or not path.is_file()):
+        sha = entry['sha256']
+        if not re.fullmatch('[0-9a-f]{64}', sha):
+            raise ValueError('Invalid asset SHA-256 in snapshot lock')
+        folder = Path(replay_assets).resolve(strict=True)
+        path = (folder / sha).resolve()
+        if not path.is_relative_to(folder):
+            raise ValueError('Replay asset escapes its library')
+    if not path.is_file() or filehash(path) != entry['sha256']:
+        raise ValueError(f"Locked snapshot checksum mismatch: {source_key} ({path.name})")
+    return path
+
+
 def checked_snapshots(root, snapshots, cutoff, acquired_through=None, *, replay_assets=None, receipt_paths=False):
     """Resolve immutable originals and their raw response attachments."""
     from .selection import date_end
@@ -958,22 +977,9 @@ def checked_snapshots(root, snapshots, cutoff, acquired_through=None, *, replay_
         if acquired_through and source['available_date'] > acquired_through:
             raise ValueError(f"Snapshot after acquisition cutoff: {source['key']}")
         for entry in [source, *source.get('original_responses', [])]:
-            path = root / entry['path']
-            external = not path.resolve().is_relative_to(root.resolve())
-            if receipt_paths and external and replay_assets is None:
-                raise ValueError(f"External receipt path requires --replay-assets: {source['key']}")
-            if replay_assets is not None and (external or not path.is_file()):
-                sha = entry['sha256']
-                if not re.fullmatch('[0-9a-f]{64}', sha):
-                    raise ValueError('Invalid asset SHA-256 in snapshot lock')
-                folder = Path(replay_assets).resolve(strict=True)
-                asset = (folder / sha).resolve()
-                if not asset.is_relative_to(folder):
-                    raise ValueError('Replay asset escapes its library')
-                path = asset
+            path = checked_replay_path(root, entry, source['key'], replay_assets=replay_assets, receipt_paths=receipt_paths)
+            if path != root / entry['path']:
                 entry['path'] = str(path)
-            if not path.is_file() or filehash(path) != entry['sha256']:
-                raise ValueError(f"Locked snapshot checksum mismatch: {source['key']} ({path.name})")
     return snapshots
 
 

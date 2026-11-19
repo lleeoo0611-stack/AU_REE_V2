@@ -1,5 +1,22 @@
 # AU_REE_V2
 
+## 2026-11-20 整合證據模型開發版
+
+Census 使用 2026-11-13 的來源截日，技術揭露使用 2026-11-05 的編碼基準，正式 C1 使用政策指定的 2026-10-29。SQLite 寫入連線可原地遷移先前版本。正式六 Gate、研究用十二階段與樣品方法均有各自的可追溯輸出。[資料契約](docs/phase22-asx-maintenance-audit.md) · [正式資格](docs/phase4-discovery-eligibility.md)
+
+在乾淨 checkout 安裝套件、R 4.5.2 和 Tesseract 英文模型。先把本版的原件套件放在指定位置。該套件包括 `assets/<SHA-256>`、`asset_manifest.json`、`bundle_verification.json` 及 `source_acquisition.json`。原件由提供套件的保管人交付，公開倉庫提供收據。CLI 在空的工作目錄建庫。
+
+```sh
+python -m pip install -c requirements-constraints.txt .
+au-ree-v2 all --source-mode offline --as-of 2026-11-13 --source-replay KIT/source_acquisition.json --replay-assets KIT/assets --tessdata TESSDATA_DIR --work work/rebuild
+```
+
+持有既有 SHA 原件庫時，可用下列命令建立並逐檔核對本版套件。Python、SQLite、R、Tesseract 版本、執行期套件及英文模型雜湊隨 `census_release.json` 保存。Linux CI 與 Windows 本機使用各自的 OCR 安裝，跨環境比較須同時核對模型雜湊。篩選後的三種 R 排名仍使用 Phase 22 的正式評分契約。
+
+```sh
+python tools/bundle_census_replay.py --receipt results/ree-project-census/integrated-evidence-v1-20261120/source_acquisition.json --source-assets ORIGINALS_BY_SHA --out work/portable-kit
+```
+
 ## Phase 22 × ASX Project Census
 
 同一入口執行來源擷取、SQLite 入庫、Census 匯出、篩選及 Phase 22 的 MCDA。
@@ -31,7 +48,12 @@ au-ree-v2 all --source-mode offline --source-replay work/census-replay-bundle/so
 
 歷史研究仍使用下方的 `rebuild --snapshot-lock`。 `discover` 提供搜尋計畫，實際取得來源由 `all --refresh` 執行。 `acquire` 是同一擷取階段的執行入口，只回傳來源收據。
 
-已完成的整合 SQLite 可用 `export-summary --database DB_PATH --out OUTPUT_DIR` 重新匯出。保留同一工作目錄的執行設定、來源鎖、專案身分及原件，匯出會沿用並核對這些紀錄。
+已完成的整合 SQLite 可以唯讀匯出。搬移時保留同一工作目錄下的 `databases/<run-id>/canonical.sqlite` 及 `runs/<run-id>/`。匯出會核對此執行的設定與來源鎖、完成收據、專案身分表、取得結果及已驗證的衍生頁面。外部原件以明確指定的 SHA 原件庫重新定位。來源驗證失敗會停止匯出。
+
+```sh
+au-ree-v2 export-summary --database WORK/databases/RUN_ID/canonical.sqlite \
+  --replay-assets BUNDLE/assets --out WORK/verified-export
+```
 
 Latest: **Phase 22 — native-candidate acquisition, source-bound evidence and shared-method MCDA**, cutoff **2026-11-05**, configuration `research-v8-native-candidate-shared-draws`. See [results, limits and reconstruction](results/phase22-2026-11-06/README.md), [verification](results/phase22-2026-11-06/evaluation.json), and [evidence priorities](results/phase22-2026-11-06/six_domain_gap_priority.csv).
 

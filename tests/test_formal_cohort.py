@@ -38,8 +38,9 @@ def approved_fixture():
             facts[key] = dict(project_id=pid, scope=meta['project_identity_scope'], source_sha='sha-'+key,
                 source_key='source-'+key, date='2026-06-16', acquired_at='2026-11-01T12:00:00',
                 effective_date='2026-06-01', source_url=None, locator='physical p.3; table 1',
-                variable=criteria.get('variable',key), gate=gate, candidate_code=key if criteria else None,
-                basis=criteria.get('basis'), unit=criteria.get('unit'), statement='dated-mre' if gate=='JORC' else None)
+                variable=criteria.get('variable',key), gate=gate, candidate_code=key if criteria else None, value=1,
+                basis='TREO' if key=='grade' else criteria.get('basis'), unit='ppm' if key=='grade' else criteria.get('unit'),
+                statement='dated-mre' if gate=='JORC' else None)
         ref = dict(project_id=pid, gate=gate, scope=meta['project_identity_scope'], source_asof=cutoff,
                    policy_id=policy['policy_id'], approval_ref='sign-'+gate, evidence={key:key for key in keys})
         if gate=='WINDOW':
@@ -143,6 +144,24 @@ class FormalGateTests(unittest.TestCase):
         self.assertEqual(self.evaluate()[0]['ID']['status'], 'EXCLUDE')
         self.facts['project_identity']['scope']='Other deposit'
         self.assertEqual(self.evaluate()[0]['ID']['status'], 'PENDING')
+
+    def test_unrelated_or_reused_observations_do_not_satisfy_independent_assertions(self):
+        reviews={r['gate']:r for r in self.inputs['review']['gate_evidence_bindings']}
+        reviews['ROLE']['evidence']['planned_ree_product_role']='tonnage'
+        self.assertEqual(self.evaluate()[0]['ROLE']['objective'],'ASSERTION_EVIDENCE_TYPE_MISMATCH')
+        reviews['WINDOW']['evidence']['pre_fid_at_cutoff']='published_economic_study'
+        self.assertEqual(self.evaluate()[0]['WINDOW']['objective'],'REUSED_ASSERTION_EVIDENCE')
+        self.facts['official_road_layer']['value']=0
+        self.assertEqual(self.evaluate()[0]['GIS_RELEASE']['objective'],'ASSERTION_EVIDENCE_TYPE_MISMATCH')
+
+    def test_one_original_can_document_multiple_independent_located_window_facts(self):
+        window=REQUIRED['WINDOW']
+        for key in window:
+            self.facts[key].update(source_sha='sha-published_economic_study',source_key='source-published_economic_study',
+                                   locator=f'physical p.3; {key} paragraph')
+        self.assertEqual(self.evaluate()[0]['WINDOW']['status'],'PASS')
+        self.facts['active_at_cutoff']['locator']=self.facts['pre_fid_at_cutoff']['locator']
+        self.assertEqual(self.evaluate()[0]['WINDOW']['objective'],'ASSERTION_LOCATORS_UNRESOLVED')
 
     def test_wrong_published_study_or_role_reference(self):
         self.inputs['metadata'][0]['approved_study_document_id']='unrelated-study'

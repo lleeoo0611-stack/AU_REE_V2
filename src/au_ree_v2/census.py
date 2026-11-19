@@ -748,7 +748,7 @@ def summary_deposit_fields(row,trace,attributes,rules,decisions,put):
 
 def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=None,
                    configuration=None, snapshots=None, membership=None, acquisition_rows=None, audit=None,
-                   claim_declarations=None):
+                   claim_declarations=None, replay_assets=None):
     """Project-scoped, read-only export from one canonical run, with every cell accounted for."""
     root=Path(root).resolve();database=Path(database).resolve();out=Path(out).resolve()
     if out==database.parent or any(out==root/p or (root/p) in out.parents for p in ('src','config','data')):
@@ -758,12 +758,12 @@ def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=
     session=closing(sqlite3.connect(database.as_uri()+'?mode=ro',uri=True)) if standalone else nullcontext(connection)
     with session as db:
         return _export_summary(root,database,out,db,cutoff,run_id,standalone,configuration,
-                               snapshots,membership,acquisition_rows,audit,claim_declarations)
+                               snapshots,membership,acquisition_rows,audit,claim_declarations,replay_assets)
 
 
 def _export_summary(root, database, out, db, cutoff, run_id, standalone,
-                    configuration, snapshots, membership, acquisition_rows, audit, claim_declarations):
-    from .tabular import read_csv, write_csv
+                    configuration, snapshots, membership, acquisition_rows, audit, claim_declarations, replay_assets):
+    from .tabular import write_csv
     from .evidence import load_claims,claim_evidence_ids
     rules,decisions=summary_settings(root)
     hashes={name:filehash(root/'config'/name) for name in
@@ -779,33 +779,15 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
          else db.execute('SELECT * FROM runs ORDER BY started_at DESC,run_id DESC LIMIT 1').fetchone())
     if not run or (standalone and run['status']!='COMPLETED'):
         raise ValueError('SUMMARY_REQUIRES_COMPLETED_RUN')
-    cutoff=cutoff or run['cutoff'];run_dir=None
-    for parent in database.parents:
-        candidate=parent/'runs'/run['run_id']
-        if candidate.is_dir() and (not standalone or (candidate/'configuration.json').is_file()):
-            run_dir=candidate;break
-        if parent==root:break
-    if configuration is None:
-        configuration=json.loads((run_dir/'configuration.json').read_text(encoding='utf8')) if run_dir else {}
-    if standalone and run_dir:
-        if digest(configuration)!=run['config_sha']:raise ValueError('SUMMARY_RUN_CONFIGURATION_HASH_MISMATCH')
-        lock=run_dir/'snapshot_lock.json'
-        summary_file=run_dir/'summary.json'
-        summary=json.loads(summary_file.read_text(encoding='utf8')) if summary_file.is_file() else {}
-        saved_hashes=summary.get('project_summary',{}).get('export_contract_sha256')
-        if saved_hashes and any(hashes.get(k)!=v for k,v in saved_hashes.items()):raise ValueError('SUMMARY_EXPORT_CONTRACT_CHANGED')
-        if lock.is_file():
-            saved=json.loads(lock.read_text(encoding='utf8'))
-            if digest(saved)!=run['snapshot_sha']:raise ValueError('SUMMARY_RUN_SNAPSHOT_HASH_MISMATCH')
-            if snapshots is None:snapshots=saved
-        elif configuration.get('source_mode'):
-            raise ValueError('SUMMARY_RUN_SNAPSHOT_REQUIRED')
-        if membership is None and configuration.get('source_mode'):
-            members=run_dir/'canonical_membership.csv'
-            expected=summary.get('output_hashes',{}).get(members.name)
-            if not members.is_file() or (expected and filehash(members)!=expected):
-                raise ValueError('SUMMARY_RUN_MEMBERSHIP_INVALID')
-            membership=read_csv(members)
+    cutoff=cutoff or run['cutoff']
+    if standalone:
+        from .census_replay import read_run_inputs
+        saved = read_run_inputs(db,database,root,run,hashes,cutoff,replay_assets)
+        if saved is not None:
+            configuration,snapshots,membership,acquisition_rows = saved
+        elif configuration and configuration.get('source_mode'):
+            raise ValueError('SUMMARY_RUN_METADATA_REQUIRED')
+    configuration = configuration or {}
     if audit is None:audit=standalone and bool(configuration.get('source_mode'))
     frozen=claim_declarations
     if frozen is None:frozen,_=load_claims(root,configuration.get('claims_sha256'))
@@ -817,19 +799,17 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
     by_key={s['key']:s for s in registry};sources={};source_errors={};acquisition={}
     if acquisition_rows is not None:
         acquisition={r['key']:r for r in acquisition_rows}
-    elif run_dir and (run_dir/'acquisition_report.csv').is_file():
-        with (run_dir/'acquisition_report.csv').open(encoding='utf8',newline='') as f:acquisition={r['key']:r for r in csv.DictReader(f)}
     selected=None if snapshots is None else {s['sha256']: (root/s['path']).resolve() for s in snapshots}
     for source in db.execute('SELECT * FROM sources'):
         if selected is not None and source['sha'] not in selected:continue
         s=dict(json.loads(source['metadata']),**dict(source));s['sha256']=source['sha'];s['key']=source['source_key']
-        path=(root/s['path']).resolve();reason=''
+        path=(selected[s['sha256']] if selected is not None else (root/s['path']).resolve());reason=''
         if not (path.is_relative_to(root) or (selected is not None and selected.get(s['sha256'])==path)) or not path.is_file():reason='SOURCE_NOT_ACQUIRED'
         elif filehash(path)!=s['sha256']:reason='SOURCE_SHA_CHANGED'
         elif s.get('publication_date') and date_end(s['publication_date'])>cutoff:reason='SOURCE_AFTER_CUTOFF'
         elif s['kind'] not in ('pdf','html','pdf_page_extraction','document_extraction') and s.get('available_date',s['acquired_at'][:10])>cutoff:reason='SOURCE_AFTER_CUTOFF'
         if reason:source_errors[s['key']]=reason
-        else:s['resolved_path']=str(path);sources[s['sha256']]=s
+        else:s['resolved_path']=str(path);s['path']=str(path);sources[s['sha256']]=s
     records=defaultdict(list);observations=defaultdict(list);attributes=defaultdict(list);studies=defaultdict(list)
     for r in db.execute('SELECT * FROM records'):
         if r['source_sha'] in sources:records[r['entity_id']].append(dict(r))

@@ -1,5 +1,5 @@
 """Record the analytical runtime alongside each integrated Census release."""
-from importlib.metadata import version
+from importlib import import_module
 from pathlib import Path
 import os
 import platform
@@ -23,10 +23,11 @@ def version_line(command):
 
 
 def analytical_runtime(root, tessdata, rscript):
+    tessdata = tessdata or os.environ.get('TESSDATA_PREFIX')
     model = Path(tessdata)/'eng.traineddata' if tessdata else None
     constraints = Path(root)/'requirements-constraints.txt'
     return dict(python=platform.python_version(), sqlite=sqlite3.sqlite_version,
-                packages={name:version(name) for name in ('shapely','pyproj','pypdf','PyMuPDF',
+                packages={name:import_module(name.lower()).__version__ for name in ('shapely','pyproj','pypdf','PyMuPDF',
                                                            'openpyxl','numpy','certifi','et_xmlfile')},
                 r=version_line(rscript or shutil.which('Rscript')),
                 tesseract=version_line(os.environ.get('TESSERACT') or shutil.which('tesseract')),

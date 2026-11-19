@@ -18,6 +18,22 @@ REQUIRED = {
     'GIS_RELEASE': ('representative_geometry', 'official_road_layer', 'official_rail_layer',
                     'official_power_layer', 'official_port_layer', 'distance_qa'),
 }
+ASSERTION_GATE = {assertion: gate for gate, assertions in REQUIRED.items() for assertion in assertions}
+# These authoritative observation variables express the specific predicate directly.
+# An arbitrary field from the same Project/document never becomes a different predicate.
+def supports_assertion(assertion, fact):
+    variable = fact.get('variable')
+    if fact.get('gate') != ASSERTION_GATE[assertion]:
+        return False
+    if variable == 'ore_mt' and assertion == 'tonnage':
+        return fact.get('unit') == 'Mt' and isinstance(fact.get('value'), (int,float)) and fact['value'] > 0
+    if variable == 'grade' and assertion == 'grade':
+        return (fact.get('unit') in ('ppm','%','pct') and fact.get('basis') in ('TREO','REO_SCOPED_BREAKDOWN')
+                and isinstance(fact.get('value'), (int,float)) and fact['value'] >= 0)
+    # Typed, affirmative observations can be verified by the same canonical claim workflow.
+    return variable == assertion and fact.get('value') == 1
+
+
 METADATA = {
     'ID': ('verified_project_id', 'project_identity_scope', 'project_footprint_ref'),
     'ROLE': ('ree_product_role_ref',),
@@ -85,6 +101,7 @@ def evidence_inventory(row, trace, observations, sources, criteria):
         gate = {'D1':'WINDOW', 'R1':'JORC', 'S1':'JORC'}.get(code)
         if o['variable'] in ('ore_mt', 'grade') or o['variable'].startswith('reported_resource_'):
             gate = 'JORC'
+        gate = ASSERTION_GATE.get(o['variable'], gate)
         raw = json.loads(o['raw'])
         facts[o['obs_id']] = dict(
             project_id=pid, scope=o['scope'], source_sha=sha, effective_date=o['effective_date'],
@@ -175,11 +192,17 @@ def check_attestation(gate, refs, facts, meta, inputs, panel, signing):
     assertions = ref.get('evidence') or {}
     if not all(assertions.get(key) in facts for key in required):
         return 'MISSING_LOCATED_GATE_EVIDENCE'
+    if len({assertions[key] for key in required}) != len(required):
+        return 'REUSED_ASSERTION_EVIDENCE'
     bound = [facts[assertions[key]] for key in required]
     if any(f['project_id'] != ref['project_id'] or f['scope'] != ref['scope'] for f in bound):
         return 'EVIDENCE_SCOPE_MISMATCH'
     if not all(visible(f, cutoff) for f in bound):
         return 'EVIDENCE_OUTSIDE_POLICY_WINDOW'
+    if gate != 'PANEL' and any(not supports_assertion(key, fact) for key, fact in zip(required, bound)):
+        return 'ASSERTION_EVIDENCE_TYPE_MISMATCH'
+    if gate in ('WINDOW','GIS_RELEASE') and len({(f['source_sha'],f['locator']) for f in bound}) != len(bound):
+        return 'ASSERTION_LOCATORS_UNRESOLVED'
     if gate == 'PANEL':
         for code, fact in zip(required, bound):
             crit = inputs['criteria'][code]
@@ -235,7 +258,7 @@ def assess_project(pid, facts, inputs, census_cutoff, panel):
     group_metadata = [r for r in inputs['metadata'] if r.get('review_group_id') == group]
     linked = (bool(group) and len(assigned) == 1 and bool(link.get('approval_ref'))
               and link.get('native_id_evidence') in facts and visible(facts[link['native_id_evidence']], cutoff)
-              and facts[link['native_id_evidence']].get('gate') == 'ID')
+              and supports_assertion('project_identity', facts[link['native_id_evidence']]))
     meta = group_metadata[0] if linked and len(group_metadata) == 1 else {}
     if meta and (not link.get('verified_project_id') or meta.get('verified_project_id') != link['verified_project_id']):
         linked = False
