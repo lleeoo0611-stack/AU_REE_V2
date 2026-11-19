@@ -911,7 +911,9 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
             any(o['variable']=='ore_mt' for o in p.get('observations',[])),p.get('identity_declaration',{}).get('stage_inventory'))
         stage_blockers=[{k:a[k] for k in ('reason','source_sha256','physical_page') if k in a}
             for a in stage_audit[stage_start:] if a.get('reason')]
-        for fill in summary_locations(row,rows,registry,sources,rules,decisions,read_json=read_spatial_json,cutoff=cutoff):put(**fill)
+        extent_rejections=[]
+        for fill in summary_locations(row,rows,registry,sources,rules,decisions,read_json=read_spatial_json,
+                                      cutoff=cutoff,extent_rejections=extent_rejections):put(**fill)
         for fill in summary_forecasts(pid,studies[pid],attributes[pid],sources,rules,decisions,cutoff,row,stage_audit):put(**fill)
         docs={r['source_sha'] for r in rs if sources[r['source_sha']]['kind']=='pdf'}|{o['source_sha'] for o in observations[pid] if sources[o['source_sha']]['kind']=='pdf'}
         docs.update(a['source_sha256'] for a in attributes[pid] if sources[a['source_sha256']]['kind']=='pdf')
@@ -933,7 +935,7 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
             if row[column]=='':
                 source_findings=[] if audit else None
                 reason,detail=summary_missing(column,p,row,bundle,by_key,sources,source_errors,acquisition,cutoff,rules,decisions,
-                    findings=source_findings, verified_attributes=attributes[pid])
+                    findings=source_findings, verified_attributes=attributes[pid], extent_rejections=extent_rejections)
                 if reason=='RULE_INPUT_MISSING':
                     blockers=field_issues[pid,column]
                     if not row['專案名稱'] and identity_issues[pid]:
@@ -1037,7 +1039,12 @@ def publish_census(root, run_dir, run_id, destination=None):
     return target/'REE project census.csv'
 
 
-def summary_missing(column, project, row, bundle, registry, sources, source_errors, acquisition, cutoff, rules, decisions, *, findings=None, verified_attributes=()):
+def summary_missing(column, project, row, bundle, registry, sources, source_errors, acquisition, cutoff, rules, decisions, *, findings=None, verified_attributes=(), extent_rejections=()):
+    if column in ('經度', '緯度') and extent_rejections:
+        # A measured, admitted tenure union explains the gap even if another capture was late.
+        if findings is not None:
+            findings.extend(extent_rejections)
+        return 'RULE_INPUT_MISSING', canonical(extent_rejections)
     attributes=[a for a in project.get('attributes',[]) if a['column']==column]
     if column == 'ASX代碼' and not attributes and row.get('未上市公司') == '是':
         # A developer may be a public company without being stock-exchange listed.

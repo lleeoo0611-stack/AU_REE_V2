@@ -50,6 +50,15 @@ def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
                           acquired_at=source['acquired_at'],available_date=source['available_date'])
             snapshots.append(artifact);verified[key]=artifact
         return verified[key]
+    def capture_context(source, context):
+        witness = by_key.get(context['source_key']) if 'source_key' in context else source
+        if (not witness or witness['kind'] != 'pdf' or
+                ('source_key' in context or 'source_sha256' in context) and
+                context.get('source_sha256') != witness['sha256']):
+            raise ValueError('CONTEXT_ORIGINAL_NOT_SELECTED_OR_CHANGED')
+        proof = page(witness, context)
+        context.update(page_extraction_key=proof['key'], page_extraction_sha256=proof['sha256'],
+                       marker_normalization='WHITESPACE_ONLY_V1')
     for p in claims['projects']:
         eid=entity(db,p.get('entity_namespace','project_registry_v1'),p['id'],p.get('entity_kind','PROJECT'))
         identity=by_key.get(p['identity_source']);identity_error=None
@@ -72,12 +81,7 @@ def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
                     artifact=page(source,o,clip)
                     o.update(page_extraction_key=artifact['key'],page_extraction_sha256=artifact['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
                     for context in o.get('context_evidence',[]):
-                        witness=by_key.get(context['source_key']) if 'source_key' in context else source
-                        if not witness or witness['kind']!='pdf' or (
-                                'source_sha256' in context and context['source_sha256']!=witness['sha256']):
-                            raise ValueError('CONTEXT_ORIGINAL_NOT_SELECTED_OR_CHANGED')
-                        proof=page(witness,context)
-                        context.update(page_extraction_key=proof['key'],page_extraction_sha256=proof['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
+                        capture_context(source,context)
                 except Exception as exc:reason=str(exc)
             if reason:issue(db,eid,o['source_sha256'],reason,canonical(o))
             else:accepted.append(o)
@@ -92,8 +96,7 @@ def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
                         artifact=page(source,a)
                         a.update(page_extraction_key=artifact['key'],page_extraction_sha256=artifact['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
                         for context in a.get('context_evidence',[]):
-                            proof=page(source,context)
-                            context.update(page_extraction_key=proof['key'],page_extraction_sha256=proof['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
+                            capture_context(source,context)
                     validate_project_attribute(root,source,a,snapshots)
                 except Exception as exc:reason=str(exc)
             if reason:issue(db,eid,a['source_sha256'],reason,canonical(a))

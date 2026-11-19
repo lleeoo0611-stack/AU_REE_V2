@@ -1323,6 +1323,83 @@ def summary_annual_region(page, rect):
         if rect.x0<=(w[0]+w[2])/2<=rect.x1 and rect.y0<=(w[1]+w[3])/2<=rect.y1)
 
 
+NAMEPLATE_NDPR_METHOD = 'NAMEPLATE_CONTAINED_TREO_X_PRODUCT_NDPR_SHARE'
+
+
+def summary_nameplate_ndpr(doc, review, study, spec, parameter, value, evidence, rules):
+    """Verify nameplate NdPr from the same study's contained REO and product mix."""
+    import pymupdf
+    if (parameter != 'average_annual_ndpr_product_t'
+            or study['scale'] != 'SCOPING_MODEL' or study['endpoint'] != 'MIXED_REE_CARBONATE'
+            or spec.get('assurance') != 'MODEL_ASSUMPTION_DERIVED_NOT_DIRECT_REPORTED_OUTPUT'
+            or any(spec.get(key) != review[key] for key in ('source_sha256', 'scope', 'statement_id', 'effective_date'))):
+        raise ValueError('NAMEPLATE_NDPR_STUDY_SCOPE_MISMATCH')
+    rate = spec['rate']
+    if (rate['column'] != rules['annual_columns'][0] or rate['source_sha256'] != review['source_sha256']
+            or rate['study_date'] != review['effective_date']
+            or rate['product_basis'] != 'REO_EQUIVALENT_IN_MIXED_CARBONATE'
+            or rate['annual_basis'] != 'EXPLICIT_TPA_NAMEPLATE_NOT_LOM_AVERAGE'
+            or rate['original_unit'] != 'tpa' or rate['page'] != study['annual_basis_evidence']['page']):
+        raise ValueError('NAMEPLATE_NDPR_ANNUAL_RATE_SCOPE_MISMATCH')
+    evidence(study['annual_basis_evidence'])
+    annual_treo = Decimal(summary_verify_annual_cell(rate, doc.name, rules))
+
+    def read(page, bounds):
+        rect = pymupdf.Rect(bounds)
+        if rect.is_empty or not page.rect.contains(rect):
+            raise ValueError('NAMEPLATE_NDPR_REGION_INVALID')
+        return summary_annual_norm(summary_annual_region(page, rect))
+
+    capacity = spec['capacity']
+    evidence(capacity['evidence'])
+    capacity_page = doc[capacity['evidence']['page'] - 1]
+    capacity_phrase = read(capacity_page, capacity['bbox'])
+    match = re.fullmatch(
+        r'the plant has a nameplate production capacity of (\d+(?:,\d{3})*(?:\.\d+)?) '
+        r'tpa of reo as a high purity mixed rare earth carbonate\.', capacity_phrase)
+    if not match or Decimal(match[1].replace(',', '')) != annual_treo:
+        raise ValueError('NAMEPLATE_NDPR_CAPACITY_PERIOD_OR_PRODUCT_MISMATCH')
+    composition = spec['composition']
+    evidence(composition['evidence'])
+    page = doc[composition['evidence']['page'] - 1]
+    title = read(page, composition['title_bbox'])
+    context = read(page, composition['context_bbox'])
+    header = pymupdf.Rect(composition['header_bbox'])
+    column = pymupdf.Rect(composition['column_bbox'])
+    if (title != 'table 6: average reo distribution and basket price.'
+            or 'the distribution of rare earths in mixed carbonate product' not in context
+            or 'is shown in table 6' not in context
+            or not column.contains(header)
+            or read(page, header) != 'distribution in mixed ree carbonate (%)'):
+        raise ValueError('NAMEPLATE_NDPR_PRODUCT_COMPOSITION_MISMATCH')
+    rows = composition['rows']
+    if set(rows) != {'Pr6O11', 'Nd2O3', 'Total'}:
+        raise ValueError('NAMEPLATE_NDPR_OXIDE_ROWS_MISSING')
+    shares = {}
+    for label, row in rows.items():
+        band = pymupdf.Rect(row['row_bbox'])
+        label_box = pymupdf.Rect(row['label_bbox'])
+        if (band.y0 <= header.y1 or not band.contains(label_box) or label_box.x1 >= column.x0
+                or read(page, label_box) != label.casefold()):
+            raise ValueError('NAMEPLATE_NDPR_OXIDE_LABEL_MISMATCH')
+        token = read(page, band & column)
+        if token != row['original_token'] or not re.fullmatch(r'\d+(?:\.\d+)?%', token):
+            raise ValueError('NAMEPLATE_NDPR_OXIDE_SHARE_MISMATCH')
+        shares[label] = Decimal(token[:-1])
+    combined_share = shares['Nd2O3'] + shares['Pr6O11']
+    if shares['Total'] != 100 or not 0 < combined_share < 100:
+        raise ValueError('NAMEPLATE_NDPR_SHARE_DENOMINATOR_MISMATCH')
+    expected = annual_treo * combined_share / 100
+    half_share = sum(Decimal(5).scaleb(s.as_tuple().exponent - 1) for label, s in shares.items() if label != 'Total')
+    half_rate = Decimal(5).scaleb(annual_treo.as_tuple().exponent - 1)
+    interval = [
+        (annual_treo - half_rate) * (combined_share - half_share) / 100,
+        (annual_treo + half_rate) * (combined_share + half_share) / 100,
+    ]
+    if Decimal(str(value)) != expected or [Decimal(str(t)) for t in spec['rounding_interval_tpa']] != interval:
+        raise ValueError('NAMEPLATE_NDPR_CALCULATION_MISMATCH')
+
+
 def summary_annual_hmc_card(doc, review, study, spec, parameter, value, evidence):
     """Read annual HMC mass and its TREO grade from the same labelled product card."""
     import pymupdf
@@ -1498,6 +1575,8 @@ def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutof
                     spec=study.get('parameter_derivations',{}).get(parameter)
                     if spec and spec.get('method')==rules['model_annual_method']:
                         summary_model_annual(doc,a,study,spec,value,evidence,rules)
+                    elif spec and spec.get('method')==NAMEPLATE_NDPR_METHOD:
+                        summary_nameplate_ndpr(doc,a,study,spec,parameter,value,evidence,rules)
                     elif spec and spec.get('method')=='ANNUAL_HMC_KTPA_X_PRODUCT_TREO_PERCENT':
                         summary_annual_hmc_card(doc,a,study,spec,parameter,value,evidence)
                     elif spec:
@@ -1530,6 +1609,8 @@ def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutof
             method='MODEL_ASSUMPTION_DERIVED_ANNUAL_NDPR_NOT_DIRECT_REPORTED_OUTPUT' if chosen['spec'].get('method')==rules['model_annual_method'] else 'DATED_ENGINEERING_FORECAST_T_PER_YEAR_NOT_OPERATING_OUTPUT'
             if chosen['spec'].get('method')=='ANNUAL_HMC_KTPA_X_PRODUCT_TREO_PERCENT':
                 method=chosen['spec']['method']
+            if chosen['spec'].get('method')==NAMEPLATE_NDPR_METHOD:
+                method='MODEL_ASSUMPTION_DERIVED_NAMEPLATE_NDPR_NOT_OPERATING_OUTPUT'
             fills.append(dict(column=column,value=chosen['value'],sha=chosen['source_sha256'],locator=chosen['locator'],method=method,scope=canonical(dict(study_scope=chosen['scope'],derivation=chosen['spec'])),obs_ids=chosen['ids']))
     products=[dict(evidence_id=s['case_id'],source_sha256=s['source_sha'],effective_date=s['effective_date'],scope=s['scope'],
         endpoint=s['endpoint'],scale=s['scale'],value=s['endpoint'],locator=json.loads(s['raw'])['locator'],ids=[s.get('obs_id',s['case_id'])]) for s in models]

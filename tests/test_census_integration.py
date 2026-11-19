@@ -141,14 +141,59 @@ class CensusIntegrationTests(unittest.TestCase):
 
             evidence = check()
             self.assertEqual((659552, 5959185), (evidence['easting_m'], evidence['northing_m']))
+            wgs84 = dict(case, issuer_scope_reference=dict(proof, grid_epsg=32755))
+            tas = _resource_point_scope(wgs84, row, government, {sha: issuer},
+                                        '2026-11-13', 146.74, -41.46)
+            self.assertEqual((478286, 5410144), (tas['easting_m'], tas['northing_m']))
             for changes in [dict(physical_page=0), dict(physical_page=2), dict(figure='Figure 4'),
-                            dict(caption='Different resource'), dict(source_sha256='wrong'), dict(source_key='other')]:
+                            dict(caption='Different resource'), dict(source_sha256='wrong'), dict(source_key='other'),
+                            dict(grid_epsg=32655)]:
                 with self.subTest(changes=changes):
                     self.assertIsNone(check(binding=dict(case, issuer_scope_reference=dict(proof, **changes))))
             self.assertIsNone(check(selected={}))
             self.assertIsNone(check(target={'專案名稱': 'Donald RL2002'}))
             self.assertIsNone(check(layer=dict(available_date='2026-11-14')))
             self.assertIsNone(check(selected={sha: dict(issuer, publication_date='2026-11-14')}))
+
+    def test_admitted_wide_tenure_records_reason_with_alternative_late_capture(self):
+        from au_ree_v2.census import summary_missing
+
+        project = dict(id='cannie')
+        pid = 'AU-' + digest(['project_registry_v1', 'cannie'])[:20]
+        row = {'專案ID': pid, '專案名稱': 'Cannie', '州省地區': 'Victoria'}
+        tenure = dict(project_id=pid, complete_project_scope=True, source_crs='EPSG:7844',
+                      tenement_ids=['EL6419', 'EL6664'], original_references=[])
+        recent = dict(key='recent', source_sha256='recent-sha', summary_tenements=[tenure])
+        old = dict(key='historic', source_sha256='historic-sha', summary_tenements=[tenure])
+        registry = {s['key']: s for s in (recent, old)}
+        rules = {'government_datasets': {}, 'aliases.projects': [], 'states': {'VIC': 'Victoria'},
+                 'tenement_precision_m': 25000, 'resource_columns': [], 'annual_columns': []}
+        decisions = [dict(rule='TENEMENT_CENTROID_RESEARCHER_APPROVED')]
+        admitted = {'historic-sha': dict(key='historic', sha256='historic-sha', url='local',
+                                          resolved_path='historic.json', available_date='2026-11-13')}
+        receipts = {'recent': dict(admission_status='SOURCE_AFTER_CUTOFF')}
+        features = []
+        for title, west in [('EL6419', 142), ('EL6664', 143)]:
+            ring = [[west, -36], [west + .8, -36], [west + .8, -35.8], [west, -35.8], [west, -36]]
+            features.append(dict(properties=dict(tno=title), geometry=dict(type='Polygon', coordinates=[ring])))
+        rejections = []
+        with patch.object(Path, 'read_bytes', return_value=json.dumps(
+                dict(numberMatched=2, features=features)).encode()):
+            self.assertEqual([], summary_locations(row, [], registry.values(), admitted, rules, decisions,
+                             cutoff='2026-11-13', extent_rejections=rejections))
+        self.assertEqual(len(rejections), 1)
+        self.assertGreater(rejections[0]['precision_m'], rejections[0]['limit_m'])
+        for column in ('緯度', '經度'):
+            findings = []
+            result, detail = summary_missing(column, project, row, None, registry, admitted, {}, receipts,
+                '2026-11-13', rules, decisions, extent_rejections=rejections, findings=findings)
+            self.assertEqual(result, 'RULE_INPUT_MISSING')
+            self.assertEqual(json.loads(detail), findings)
+            self.assertEqual(findings[0]['reason'], 'TENEMENT_UNION_EXCEEDS_25KM')
+            self.assertEqual(findings[0]['source_sha256'], 'historic-sha')
+            result, _ = summary_missing(column, project, row, None, {'recent': recent}, {}, {}, receipts,
+                                       '2026-11-13', rules, decisions)
+            self.assertEqual(result, 'SOURCE_AFTER_CUTOFF')
 
     def test_reviewed_wa_point_rejects_wrong_feature_and_conflicting_operator(self):
         with tempfile.TemporaryDirectory() as directory:

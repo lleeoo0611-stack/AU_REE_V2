@@ -217,7 +217,8 @@ def _resource_point_scope(case, row, government, sources, cutoff, lon, lat):
     page = proof.get('physical_page')
     figure, caption, grid = proof.get('figure'), proof.get('caption'), proof.get('grid_epsg')
     if (type(page) is not int or page < 1 or not figure or not caption or not proof.get('review')
-            or type(grid) is not int or grid not in range(28349, 28357)):
+            or type(grid) is not int
+            or (grid not in range(28349, 28357) and grid not in range(32749, 32757))):
         return None
     with pymupdf.open(original['resolved_path']) as document:
         if page > len(document):
@@ -232,7 +233,8 @@ def _resource_point_scope(case, row, government, sources, cutoff, lon, lat):
                 easting_m=round(x), northing_m=round(y))
 
 
-def summary_locations(row, all_rows, registry, sources, rules, decisions, *, read_json=None, cutoff=None):
+def summary_locations(row, all_rows, registry, sources, rules, decisions, *, read_json=None, cutoff=None,
+                      extent_rejections=None):
     """Native pairs and exact tenement unions; no coordinate values in declarations."""
     from .census import summary_decision,summary_norm,summary_region_text
     from .store import canonical
@@ -326,6 +328,10 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions, *, rea
                 if result['accepted']:
                     add(result['longitude'],result['latitude'],sha,'ROUND4_TENEMENT_CENTROID_RESEARCHER_APPROVED',
                         '; '.join(b['tenement_ids']),dict(result,tenement_ids=b['tenement_ids'],holders=[f['properties'].get('own_name') for f in chosen],meaning='TENEMENT_REPRESENTATIVE_POINT_NOT_RESOURCE_BOUNDARY'))
+                elif extent_rejections is not None and result['reason'] == 'TENEMENT_UNION_EXCEEDS_25KM':
+                    extent_rejections.append(dict(kind='TENEMENT_CENTROID_REVIEW', reason=result['reason'],
+                        source_key=registered['key'], source_sha256=sha, tenement_ids=b['tenement_ids'],
+                        precision_m=result['precision_m'], limit_m=rules['tenement_precision_m']))
             if fills:return fills
         dataset=next((key for key,cfg in rules['government_datasets'].items() if source['url'].startswith(cfg['url'])),None)
         if not dataset or dataset not in approved:continue

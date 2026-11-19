@@ -56968,6 +56968,44 @@
             }
           ],
           "attribute_id": "dbef30b2af247d53d0e08b3a63581c53c89841dd89876432dfbd03de2cd1e1b9"
+        },
+        {
+          "column": "產品/產出",
+          "value": "High-purity dysprosium oxide, yttrium oxide and mixed rare-earth oxide (2012 scoping study, preferred on-site base case)",
+          "source_key": "has_hastings_scoping_20120905",
+          "source_sha256": "5fd9b7d443bb498f9d171bc5173d522f2038cbb0b686e9ff7020e87cc30a9c9e",
+          "pdf_page": 7,
+          "page_markers": [
+            "At 1.0mtpa, annual production from the Hastings Project",
+            "140 tonnes of Dysprosium oxide",
+            "590 tonnes of a mixed rare earths oxide"
+          ],
+          "locator": "Physical PDF p7. Historical Hastings/Brockman 2012 scoping study preferred 1 Mtpa on-site oxide product suite, excluding its distinct niobium and zirconium oxides. The carbonate alternative and later Yangibana test work are outside this case. Issuer expressly links the historical name in the April 2015 quarterly report.",
+          "scope": "Historical Hastings/Brockman 2012 scoping study preferred 1 Mtpa on-site oxide product suite, excluding its distinct niobium and zirconium oxides. The carbonate alternative and later Yangibana test work are outside this case. Issuer expressly links the historical name in the April 2015 quarterly report.",
+          "effective_date": "2012-09-05",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_PROJECT_PRODUCT",
+          "review_id": "census620_brockman_product",
+          "statement_id": "census620_brockman_product",
+          "context_evidence": [
+            {
+              "page": 6,
+              "markers": [
+                "preferable to produce a suite of oxide products",
+                "Processing would occur on-site"
+              ]
+            },
+            {
+              "page": 6,
+              "markers": [
+                "Brockman (formerly Hastings) Project",
+                "No work was undertaken on the Brockman project"
+              ],
+              "source_key": "has_brockman_historical_alias_20150423",
+              "source_sha256": "00e8236380f1bd9f5860ff803660e08d21450c09d798afbbe772313ee4341180"
+            }
+          ],
+          "attribute_id": "0eb8ff7833bc251073a31b92b1ec3459ad2133563894a9512e1b9789145e595a"
         }
       ]
     },
@@ -82406,6 +82444,46 @@
             }
           ],
           "attribute_id": "b35be9136041a887e9ed2868974a5c482ec940c1f85d0d773330601871d265ee"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Bastnasite in oxidised copper-gold ore samples from West Kalkaroo saprolite",
+          "source_key": "kalkaroo_interim_20220411",
+          "source_sha256": "b8e5372b6a4356ee9af94f05cf34708a04df54143b4b0c8b8b3886f7c8d3ea82",
+          "pdf_page": 6,
+          "page_markers": [
+            "Bastnasite",
+            "West Kalkaroo saprolite gold ore"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p6. Havilah and UniSA mineralogy, West Kalkaroo sample subset of the broader project.",
+          "effective_date": "2022-04-11",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census_closure_1130520_geology_20261119",
+          "scope": "Havilah and UniSA mineralogy, West Kalkaroo sample subset of the broader project.",
+          "statement_id": "census_closure_1130520_geology_20261119",
+          "attribute_id": "afaa65e2f5b5a693b9f1527109b03673e971964d1f9d27a2f92e3dc9fe6af614"
+        },
+        {
+          "column": "開發階段",
+          "value": "Laboratory testwork on bastnasite recovery from oxidised West Kalkaroo ore; pilot separation equipment being set up（來源狀態日：2022-01-31）",
+          "source_key": "kalkaroo_interim_20220411",
+          "source_sha256": "b8e5372b6a4356ee9af94f05cf34708a04df54143b4b0c8b8b3886f7c8d3ea82",
+          "pdf_page": 6,
+          "page_markers": [
+            "Pilot scale separation equipment",
+            "Ongoing laboratory work"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p6. Historical REE recovery work at West Kalkaroo for the half year ended 31 January 2022. Separate from the development stage of the copper-gold mine.",
+          "effective_date": "2022-01-31",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_closure_1130520_stage_20261119",
+          "scope": "Historical REE recovery work at West Kalkaroo for the half year ended 31 January 2022. Separate from the development stage of the copper-gold mine.",
+          "statement_id": "census_closure_1130520_stage_20261119",
+          "attribute_id": "ddc00588b34fb79510fc6a1a55a0ab940a044a3b5fb267bce5f103fa2396a9c5"
         }
       ],
       "identity_declaration": {
@@ -126549,6 +126627,42 @@
               ]
             }
           ]
+        },
+        {
+          "column": "產品/產出",
+          "value": "REE_BEARING_HEAVY_MINERAL_CONCENTRATE",
+          "source_key": "reviewed_source_095f218d0cd94fc8",
+          "source_sha256": "095f218d0cd94fc8fdef24d38b16d8c67d10e778010c301a589277490e75ae70",
+          "pdf_page": 118,
+          "page_markers": [
+            "includes five separate deposits",
+            "concentrate (HMC) will be transported to mineral separation plants",
+            "feedstock for Iluka"
+          ],
+          "context_evidence": [
+            {
+              "page": 6,
+              "markers": [
+                "heavy mineral concentrate (HMC) produced by the project",
+                "Ki Downs is located outside the study area"
+              ]
+            },
+            {
+              "page": 2,
+              "markers": [
+                "11 January 2023",
+                "Euston Mineral Sands Project"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p118. Five-deposit Euston mine proposal, Appendix Social Impact Scoping Report section 1.1 printed p5. The pre-separation mine product is HMC. Main scoping report section 1.1 printed p1 distinguishes conditional Ki Downs and WA downstream refining.",
+          "effective_date": "2023-01-11",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_PROJECT_PRODUCT",
+          "review_id": "census620_euston_product",
+          "statement_id": "census620_euston_product",
+          "scope": "Five-deposit Euston mine proposal, Appendix Social Impact Scoping Report section 1.1 printed p5. The pre-separation mine product is HMC. Main scoping report section 1.1 printed p1 distinguishes conditional Ki Downs and WA downstream refining.",
+          "attribute_id": "1d81466f631653932255cc1dcf89b137004848f87ef9079b692ebe81397b9d8c"
         }
       ]
     },
@@ -126789,6 +126903,35 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration — iTech re-assayed kaolin-rich intervals from Archer’s 2019 drill holes for REEs at Franklyn（來源狀態日：2022-07-29）",
+          "source_key": "itech_franklyn_ree_assays_20220729",
+          "source_sha256": "c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9",
+          "pdf_page": 2,
+          "page_markers": [
+            "The Franklyn Prospect",
+            "2019 drilling program for REE analysis",
+            "significantly"
+          ],
+          "context_evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "29 July 2022",
+                "Franklyn Kaolin-Halloysite Prospect"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p2. Franklyn EL6160, not the Eyre Peninsula. iTech submitted selected earlier drill samples for REE analysis in June 2022. The historical kaolin Exploration Target is not an REE mineral resource.",
+          "effective_date": "2022-07-29",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census620_franklyn_status",
+          "statement_id": "census620_franklyn_status",
+          "scope": "Franklyn EL6160, not the Eyre Peninsula. iTech submitted selected earlier drill samples for REE analysis in June 2022. The historical kaolin Exploration Target is not an REE mineral resource.",
+          "attribute_id": "6e6bb521a621cbaac7ac8a7a37a6326dc6ca047ec887558024b0ec23046f1fbc"
         }
       ]
     },
@@ -129016,12 +129159,11 @@
           "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
           "pdf_page": 2,
           "page_markers": [
-            "completion",
-            "Scoping Study",
-            "Charley Creek",
-            "15 April 2013"
+            "Crossland",
+            "Scoping",
+            "2013"
           ],
-          "locator": "physical PDF p2; reviewed r6_charley_scoping2013",
+          "locator": "physical PDF pp5,10,14; Table 1 contained REO tpa, refinery nameplate, Table 6 mixed carbonate oxide distribution",
           "effective_date": "2013-04-15",
           "extraction_method": "INTEGRATED_REVIEW_MIGRATED_REVERIFIED_AT_BUILD",
           "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
@@ -129032,41 +129174,266 @@
             {
               "page": 2,
               "markers": [
-                "completion",
-                "Scoping Study"
+                "Crossland",
+                "Scoping",
+                "2013"
+              ]
+            },
+            {
+              "page": 5,
+              "markers": [
+                "Carbonate",
+                "3,645",
+                "tpa"
               ]
             },
             {
               "page": 10,
               "markers": [
-                "mixed rare earth carbonate",
-                "3,645 tpa of REO"
+                "nameplate",
+                "3,645",
+                "carbonate"
+              ]
+            },
+            {
+              "page": 14,
+              "markers": [
+                "Distribution",
+                "4.24%",
+                "14.93%"
               ]
             }
           ],
-          "attribute_id": "a0434cc7f3eca25f8e6edbe39625a022d384ca5791d3d660f74a008872aff5b2",
           "engineering_forecast": {
             "stage": "SCOPING",
             "endpoint": "MIXED_REE_CARBONATE",
             "element": "TREO",
             "scale": "SCOPING_MODEL",
-            "parameters": {},
+            "parameters": {
+              "average_annual_ndpr_product_t": 698.7465
+            },
             "evidence": [
               {
                 "page": 2,
                 "markers": [
-                  "completion",
-                  "Scoping Study"
+                  "Crossland",
+                  "Scoping",
+                  "2013"
+                ]
+              },
+              {
+                "page": 5,
+                "markers": [
+                  "Carbonate",
+                  "3,645",
+                  "tpa"
                 ]
               },
               {
                 "page": 10,
                 "markers": [
-                  "mixed rare earth carbonate"
+                  "nameplate",
+                  "3,645",
+                  "carbonate"
+                ]
+              },
+              {
+                "page": 14,
+                "markers": [
+                  "Distribution",
+                  "4.24%",
+                  "14.93%"
                 ]
               }
-            ]
-          }
+            ],
+            "annual_basis_evidence": {
+              "page": 5,
+              "markers": [
+                "Carbonate",
+                "3,645",
+                "tpa"
+              ]
+            },
+            "parameter_derivations": {
+              "average_annual_ndpr_product_t": {
+                "method": "NAMEPLATE_CONTAINED_TREO_X_PRODUCT_NDPR_SHARE",
+                "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
+                "scope": "CharleyCreek2013ScopingStudyMixedREECarbonate;historicmodelnotcurrentoperatingoutput",
+                "statement_id": "r6_charley_scoping2013",
+                "effective_date": "2013-04-15",
+                "assurance": "MODEL_ASSUMPTION_DERIVED_NOT_DIRECT_REPORTED_OUTPUT",
+                "rate": {
+                  "project_id": "AU-d9fb1b1e3e2ec9fa0851",
+                  "column": "預估年產TREO_t_per_year",
+                  "value": 3645,
+                  "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
+                  "study_title": "Charley Creek Alluvial REO Project Scoping Study",
+                  "study_date": "2013-04-15",
+                  "page": 5,
+                  "bbox": [
+                    359.65671997070314,
+                    529.4646728515625,
+                    382.8501770019531,
+                    539.8846923828125
+                  ],
+                  "original_token": "3,645",
+                  "original_unit": "tpa",
+                  "annual_basis": "EXPLICIT_TPA_NAMEPLATE_NOT_LOM_AVERAGE",
+                  "product_basis": "REO_EQUIVALENT_IN_MIXED_CARBONATE",
+                  "source_stated": true,
+                  "scope_relation": "2013 Scoping Study p7: project model uses Indicated resources plus a startup Exploration Target; selected research row is total Indicated only. The source p10 calls this refinery nameplate capacity, not achieved production or LOM average.",
+                  "scope_proof_pages": [
+                    7,
+                    10
+                  ],
+                  "row_bbox": [
+                    65,
+                    522,
+                    492,
+                    546
+                  ],
+                  "row_text": "Annual Production – REO Contained in Mixed Carbonate \n3,645 tpa ",
+                  "qualifier": [
+                    "STAGE_SOURCE_DATED"
+                  ],
+                  "context_proofs": [
+                    {
+                      "page": 10,
+                      "bbox": [
+                        65,
+                        214,
+                        530,
+                        253
+                      ],
+                      "text": "at a concentrate grade of 40% REO there is only 15% w/w of impurities present apart from monazite and \nxenotime with the balance being phosphate associated with monazite and xenotime.  Aluminium, iron and \nsilica account for 80% of the impurities present. "
+                    },
+                    {
+                      "page": 7,
+                      "bbox": [
+                        65,
+                        43,
+                        530,
+                        240
+                      ],
+                      "text": "An Initial Mineral Resource estimate was released by Crossland on 15 May 2012, and this has not varied for the \nScoping Study, but the Revised JORC Code (2012) Table 1 template and intersection data are appended to this \nrelease (Appendix 1), along with the relevant consents (at the rear of this report), and cautionary statements in \ncompliance with the 2012 Edition of the JORC Code, and ASX Listing Rules on page 2 of this document, and in \nthe footnotes on page 19of this document.  Sufficient tonnage of Indicated Resource has been demonstrated \nfor the 20 year life of the project as presented in the Scoping Study; however because the drill data used for \nthe Initial Mineral Resource was largely confined to available and approved access tracks at the time of drilling \nin 2011, there was no effort made to optimise the grade of alluvium in the drill program, and the resulting \nestimated Resource had an overall grade of around 300ppm TREO. This is used as the average grade for years 6 \nto 20 in the Scoping Study.  The Initial Resource estimate is reproduced in Table 2 below: \nTable 2:  Charley Creek Resource Estimate. \nRESOURCE \nMass \nWeighted \nContained \nContained  \nContained  \nCon"
+                    },
+                    {
+                      "page": 7,
+                      "bbox": [
+                        65,
+                        596,
+                        530,
+                        733
+                      ],
+                      "text": "tonnage has not been sufficiently defined, and in terms of the JORC Code and ASX Listing Rules should be \ndescribed as an Exploration Target². \n \nThe Exploration Target used in the Scoping Study as start‐up ROM would be 50Mt ‐ 100Mt at the average grade \nof 500 ‐ 1000ppm TREO. The Scoping Study is based upon the low end of this range for both grade and \ntonnage. There is firm evidence that this Exploration Target will be realised when additional Resource drilling is \nundertaken that targets higher grade start‐up pit sites:  \nSamples collected from trenches have provided material for metallurgical test work.  Higher grade zones for \nthese samples have been located using a combination of reconnaissance stream sample results and \nradiometrics.  Within the selected zones, radiometrics have been used to identify actual sites for trenches. The "
+                    }
+                  ]
+                },
+                "capacity": {
+                  "evidence": {
+                    "page": 10,
+                    "markers": [
+                      "nameplate",
+                      "3,645",
+                      "carbonate"
+                    ]
+                  },
+                  "bbox": [
+                    66,
+                    186,
+                    535,
+                    201
+                  ]
+                },
+                "composition": {
+                  "evidence": {
+                    "page": 14,
+                    "markers": [
+                      "Distribution",
+                      "4.24%",
+                      "14.93%"
+                    ]
+                  },
+                  "title_bbox": [
+                    66,
+                    479,
+                    286,
+                    492
+                  ],
+                  "context_bbox": [
+                    66,
+                    140,
+                    535,
+                    170
+                  ],
+                  "header_bbox": [
+                    155,
+                    497,
+                    274,
+                    525
+                  ],
+                  "column_bbox": [
+                    155,
+                    493,
+                    274,
+                    770
+                  ],
+                  "rows": {
+                    "Pr6O11": {
+                      "row_bbox": [
+                        66,
+                        555,
+                        280,
+                        568
+                      ],
+                      "label_bbox": [
+                        66,
+                        555,
+                        134,
+                        568
+                      ],
+                      "original_token": "4.24%"
+                    },
+                    "Nd2O3": {
+                      "row_bbox": [
+                        66,
+                        569,
+                        280,
+                        583
+                      ],
+                      "label_bbox": [
+                        66,
+                        569,
+                        134,
+                        583
+                      ],
+                      "original_token": "14.93%"
+                    },
+                    "Total": {
+                      "row_bbox": [
+                        66,
+                        754,
+                        280,
+                        767
+                      ],
+                      "label_bbox": [
+                        66,
+                        754,
+                        134,
+                        767
+                      ],
+                      "original_token": "100%"
+                    }
+                  }
+                },
+                "rounding_interval_tpa": [
+                  698.2862,
+                  699.2069
+                ]
+              }
+            }
+          },
+          "attribute_id": "5cdbd20ac17a3479392410853dd17d8c28e7d36153f28261c11eda8b747558a3"
         },
         {
           "column": "礦床型態",
@@ -129825,6 +130192,35 @@
               ]
             }
           ]
+        },
+        {
+          "column": "礦床型態",
+          "value": "Mapped zoned pegmatites on E70/5939, explored as possible REE hosts",
+          "source_key": "r17_primary_18",
+          "source_sha256": "60013b7e72a45b1d0ae746e3424784e5aa3c01f677fb65fe4d73edf550969f7c",
+          "pdf_page": 3,
+          "page_markers": [
+            "pegmatites already known within the Project",
+            "identified at least another five pegmatites",
+            "field mapping indicated evidence of compositional zonation"
+          ],
+          "context_evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Mukinbudin Rare Earth Element Project",
+                "E70/5939"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p3. Field reconnaissance on E70/5939 within the Caprice project. Regional Karloning mineralisation is excluded.",
+          "effective_date": "2023-01-31",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census_closure_mukinbudin_geology_20261119",
+          "scope": "Field reconnaissance on E70/5939 within the Caprice project. Regional Karloning mineralisation is excluded.",
+          "statement_id": "census_closure_mukinbudin_geology_20261119",
+          "attribute_id": "4dfa01f7e376f67681e74f69c789dbae794f7456fcc6fa4d0ecbddb1e6310532"
         }
       ]
     },
@@ -130002,6 +130398,35 @@
           "statement_id": "census_project_status_20261119_duke",
           "context_evidence": [],
           "attribute_id": "efc176f8cc2a02a33bf7289881e22926dc86022144ac4cd29227d6689f6bff1e"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Unconformity-related exploration model, with saprolite and fresh Warrego Granite as additional REE targets",
+          "source_key": "hre_duke_targets_20231113",
+          "source_sha256": "31efc775284b45cc43118d960eb7c26638d3697030abdf1013831e0da2cc7ea3",
+          "pdf_page": 13,
+          "page_markers": [
+            "unconformity-type exemplified by the Browns Range",
+            "Warrego Granite",
+            "potential for an ion adsorption"
+          ],
+          "context_evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "DUKE PROJECT",
+                "saprolite"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p13. Issuer distinguishes the original Duke exploration model and additional targets. Ionic adsorption was a geological possibility.",
+          "effective_date": "2023-11-13",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census_closure_duke_geology_20261119",
+          "scope": "Issuer distinguishes the original Duke exploration model and additional targets. Ionic adsorption was a geological possibility.",
+          "statement_id": "census_closure_duke_geology_20261119",
+          "attribute_id": "b24188a48817d0872867f735ed1e87c5cd1a57339a09fdb1bdd66f71f694ffc9"
         }
       ]
     },
@@ -131772,6 +132197,48 @@
               ]
             }
           ]
+        },
+        {
+          "column": "礦床型態",
+          "value": "Niobium–REE mineralised carbonatite at Luni",
+          "source_key": "luni_discovery_20221116",
+          "source_sha256": "1106052fbb1564fdb0788a727239f4f5987f18dcbc6cab61789ef070148ed221",
+          "pdf_page": 1,
+          "page_markers": [
+            "LUNI",
+            "MINERALISED CARBONATITE SYSTEM",
+            "all three"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p1. First three holes into the Luni carbonatite of the West Arunta project. P2 is a separate target.",
+          "effective_date": "2022-11-16",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census_closure_west-arunta-luni_geology_20261119",
+          "scope": "First three holes into the Luni carbonatite of the West Arunta project. P2 is a separate target.",
+          "statement_id": "census_closure_west-arunta-luni_geology_20261119",
+          "attribute_id": "6c833fa1dec00a9e9ae85f53522f02e0913a4aabb60eaa6fdbbaa40b80566044"
+        },
+        {
+          "column": "開發階段",
+          "value": "Maiden drilling reported niobium and rare earth intersections at Luni（來源狀態日：2022-11-16）",
+          "source_key": "luni_discovery_20221116",
+          "source_sha256": "1106052fbb1564fdb0788a727239f4f5987f18dcbc6cab61789ef070148ed221",
+          "pdf_page": 1,
+          "page_markers": [
+            "Luni Target",
+            "First drilling of the Luni target",
+            "rare earths and phosphorous mineralisation"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p1. Dated first drill confirmation for REE at Luni. Subsequent niobium mine development work is outside the REE-specific stage evidence.",
+          "effective_date": "2022-11-16",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_closure_west-arunta-luni_stage_20261119",
+          "scope": "Dated first drill confirmation for REE at Luni. Subsequent niobium mine development work is outside the REE-specific stage evidence.",
+          "statement_id": "census_closure_west-arunta-luni_stage_20261119",
+          "attribute_id": "c102df515f300a82d6e7921c11fd5f97023e3593822f8ffb010e4f2f7818c042"
         }
       ]
     },
@@ -132612,6 +133079,27 @@
             }
           ],
           "attribute_id": "b5c4ba5e495ff1bc908e8ea216a1ffcbe169a13623263b9ba18797c60a8ba772"
+        },
+        {
+          "column": "產品/產出",
+          "value": "MONAZITE_BEARING_ZIRCON_IN_CONCENTRATE",
+          "source_key": "strandline_coburn_msp_commissioning_20230821",
+          "source_sha256": "222d4f576f1240665a857e5bae8ede427939f82d6628cb54e337f5cf4f0ae89f",
+          "pdf_page": 1,
+          "page_markers": [
+            "at its Coburn mineral sands project",
+            "product (ZIC) containing monazite rare earths",
+            "The MSP is"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p1. Coburn on-site mineral separation plant, designed ZIC product during commissioning. First reported shipment on this page is chloride ilmenite; no ZIC annual output or separated REO tonnage is inferred.",
+          "effective_date": "2023-08-21",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_PROJECT_PRODUCT",
+          "review_id": "census620_coburn-mineral-sands_product",
+          "statement_id": "census620_coburn-mineral-sands_product",
+          "scope": "Coburn on-site mineral separation plant, designed ZIC product during commissioning. First reported shipment on this page is chloride ilmenite; no ZIC annual output or separated REO tonnage is inferred.",
+          "attribute_id": "823e2158c8c92e5707a74c093089ab3864cf78969182b4b7fc4cfd4729a3edf9"
         }
       ]
     },
@@ -132754,6 +133242,34 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Terra Metals withdrew from the Southern Cross project by relinquishing E77/3009, E77/3010, E77/3011 and E77/3012 after the June 2025 quarter（來源狀態日：2025-07-30）",
+          "source_key": "terra_quarterly_southern_cross_20250730",
+          "source_sha256": "dd29b311224f3e25692592f23d7efedec24b356fccc8513a7022f9534dfad1b1",
+          "pdf_page": 4,
+          "page_markers": [
+            "the Company relinquished its interest in non-core tenements E77/3009, E77/3010",
+            "E77/3011 and E77/3012 (Southern Cross project)"
+          ],
+          "locator": "Physical PDF p4. Quarterly disclosure dated 30 July 2025. The four Southern Cross licences match the original GCX project. Their relinquishment followed 30 June; the end-of-quarter granted-tenement schedule predates that event.",
+          "scope": "Quarterly disclosure dated 30 July 2025. The four Southern Cross licences match the original GCX project. Their relinquishment followed 30 June; the end-of-quarter granted-tenement schedule predates that event.",
+          "effective_date": "2025-07-30",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census620_southern-cross-gcx_status",
+          "statement_id": "census620_southern-cross-gcx_status",
+          "context_evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "30 July 2025",
+                "JUNE 2025 QUARTERLY REPORT"
+              ]
+            }
+          ],
+          "attribute_id": "44acdfb4eb84f20def53d6a451bfe3521c4fd10b08214051b2d04656a3e98600"
         }
       ]
     },
@@ -133222,6 +133738,27 @@
           "statement_id": "census_project_status_20261119_nutgrove-ree",
           "context_evidence": [],
           "attribute_id": "27cc9fac4570ca9541ddb0ddd3ecfebce466aeef9b3f09275e6ad141c8adc9cc"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Magmatic REE in spherulitic rhyolite and secondary REE in a basalt breccia clast",
+          "source_key": "nutgrove_rhyolite_20260303",
+          "source_sha256": "b015e3fa347138082ed14171e4921d32dde1377e6fe62317a0b0f8420131ef21",
+          "pdf_page": 1,
+          "page_markers": [
+            "spherulitic rhyolite",
+            "basalt breccia clast",
+            "Nutgrove"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p1. Source assays are rock-chip observations in EPM28000, with multiple host and alteration settings.",
+          "effective_date": "2026-03-03",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census_closure_nutgrove-ree_geology_20261119",
+          "scope": "Source assays are rock-chip observations in EPM28000, with multiple host and alteration settings.",
+          "statement_id": "census_closure_nutgrove-ree_geology_20261119",
+          "attribute_id": "d044f03398d9afc88dbd58b0ccff3204af1f87636dca9009936edc1ab65007c4"
         }
       ]
     },
@@ -133864,6 +134401,56 @@
             }
           ],
           "attribute_id": "8a19f11d769f4858f30ed9dae30327988d825d3327c561cce04415ff6901460d"
+        },
+        {
+          "column": "開發階段",
+          "value": "White Cliff signed to acquire the Lake Tay REE project and applied for surrounding licences. Its first field visit was still being planned（來源狀態日：2022-10-31）",
+          "source_key": "wcn_quarterly_lake_tay_20221031",
+          "source_sha256": "e5e4bc19476428a86bc09b9999621e0d6a50bff4ce8668372fb32739e7281a0d",
+          "pdf_page": 5,
+          "page_markers": [
+            "Acquisition of Lake Tay REE Project",
+            "reconnaissance field visit",
+            "the Company applied for ten exploration"
+          ],
+          "context_evidence": [
+            {
+              "page": 6,
+              "markers": [
+                "Historical exploration at Lake Tay",
+                "Shallow aircore drilling by Magnetic Resources NL in 2008"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p5. White Cliff reports its executed acquisition agreement and applications as at the quarterly publication. The prior operator Magnetic Resources did the historical drilling in 2008; White Cliff had only planned a site visit at this date.",
+          "effective_date": "2022-10-31",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census620_lake-tay-wcn_status",
+          "statement_id": "census620_lake-tay-wcn_status",
+          "scope": "White Cliff reports its executed acquisition agreement and applications as at the quarterly publication. The prior operator Magnetic Resources did the historical drilling in 2008; White Cliff had only planned a site visit at this date.",
+          "attribute_id": "844c79f35f6e086248a65a066f6285dd1024efafeacbbe21dfea8da8477d5e30"
+        },
+        {
+          "column": "礦床型態",
+          "value": "REE-anomalous composite drill samples from highly magnetic granitoid in historical shallow aircore holes",
+          "source_key": "wcn_quarterly_lake_tay_20221031",
+          "source_sha256": "e5e4bc19476428a86bc09b9999621e0d6a50bff4ce8668372fb32739e7281a0d",
+          "pdf_page": 6,
+          "page_markers": [
+            "Historical exploration at Lake Tay",
+            "a highly magnetic granitoid",
+            "anomalous REE results"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p6. Lake Tay historical Magnetic Resources 2008 shallow aircore programme, partial REE suite only. Describes drill-intersected host and not a project-wide deposit genesis.",
+          "effective_date": "2022-10-31",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census620_lake-tay-wcn_geology",
+          "statement_id": "census620_lake-tay-wcn_geology",
+          "scope": "Lake Tay historical Magnetic Resources 2008 shallow aircore programme, partial REE suite only. Describes drill-intersected host and not a project-wide deposit genesis.",
+          "attribute_id": "8654930b2b51093b1ce40e20dca1e68b40131acf733241f0a330ba3769143b28"
         }
       ]
     },
@@ -134022,6 +134609,27 @@
           "statement_id": "census_project_status_20261119_barballin-wcn",
           "context_evidence": [],
           "attribute_id": "579b809ed73bc965ff2f32e71928d6f78f2c3be9610b127f5289949891d82ce2"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Ionic adsorption REE exploration target in weathered granitoids at Barballin",
+          "source_key": "wcn_ree_acquisitions_20230518",
+          "source_sha256": "606cc24f03762ba4f73cd78e552127f5bc557195a9f1bae7d4f17c638f6a11a8",
+          "pdf_page": 5,
+          "page_markers": [
+            "Barballin REE (Live) E70/6146",
+            "ionic-adsorption deposit",
+            "widespread weathering of the underlying"
+          ],
+          "locator": "Physical PDF p5. Prospective geological model targeted for Barballin E70/6146. The issuer states that previous explorers had not explored for REE. Source applies to this prospect, not to Snake Well or neighbouring projects.",
+          "scope": "Prospective geological model targeted for Barballin E70/6146. The issuer states that previous explorers had not explored for REE. Source applies to this prospect, not to Snake Well or neighbouring projects.",
+          "effective_date": "2023-05-18",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census620_barballin-wcn_geology",
+          "statement_id": "census620_barballin-wcn_geology",
+          "context_evidence": [],
+          "attribute_id": "ebbf0756b24bd0ff1f3d2306f0e8f2b87d0e465464f7d007628ebf37ac7ba369"
         }
       ]
     },
@@ -134637,6 +135245,27 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Strategic review completed; divestment process initiated for the Ravensthorpe licences（來源狀態日：2024-06-30）",
+          "source_key": "mtm_ravensthorpe_fy2024",
+          "source_sha256": "31949313a2809151408ff4a141a93364c4b10904d619c1ce2851f0236cc24ca1",
+          "pdf_page": 12,
+          "page_markers": [
+            "Ravensthorpe Project",
+            "strategic review of the project",
+            "process to divest its exploration licences"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p12. Issuer FY24 operations for the Ravensthorpe group. Completion of a sale or relinquishment is not reported on this page.",
+          "effective_date": "2024-06-30",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_closure_ravensthorpe-mtm_stage_20261119",
+          "scope": "Issuer FY24 operations for the Ravensthorpe group. Completion of a sale or relinquishment is not reported on this page.",
+          "statement_id": "census_closure_ravensthorpe-mtm_stage_20261119",
+          "attribute_id": "59c564e1f12215e5ea8995046e222ce4dac2b1e783520ce226e2e675740f36c7"
         }
       ]
     },
@@ -135172,6 +135801,36 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "Lithium Universe formally relinquished its Voyager rare earth project in October 2024（來源狀態日：2024-10-31）",
+          "source_key": "voyager_relinquishment_fy2024",
+          "source_sha256": "250eb3778935dfdd8dd56c397ef38ffb396b15d82a0f5a464e99427fd08a5b75",
+          "pdf_page": 59,
+          "page_markers": [
+            "Rare Earth Projects (Voyager)",
+            "In October 2024",
+            "formally relinquished the Rare Earth Projects"
+          ],
+          "context_evidence": [
+            {
+              "page": 79,
+              "markers": [
+                "Tasmanian REE Pty Ltd",
+                "Voyager",
+                "Relinquished/Forfeited"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p59. Issuer records formal project relinquishment. The 2024 schedule uses /2023 suffixes while the 2023 report uses /2022. No licence geometry is inferred.",
+          "effective_date": "2024-10-31",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_closure_voyager-lu7_stage_20261119",
+          "scope": "Issuer records formal project relinquishment. The 2024 schedule uses /2023 suffixes while the 2023 report uses /2022. No licence geometry is inferred.",
+          "statement_id": "census_closure_voyager-lu7_stage_20261119",
+          "attribute_id": "c5e81e6ad62a65de16cbde58f01b4e5b3e447f87ee2b71c3ebf193f01dcbcfd8"
         }
       ]
     },
@@ -135346,6 +136005,69 @@
               ]
             }
           ]
+        },
+        {
+          "column": "開發階段",
+          "value": "IGO reports withdrawal of its mapped Lake Campion tenure during FY25（來源狀態日：2025-06-30）",
+          "source_key": "igo_fy25_exploration_portfolio_20250828",
+          "source_sha256": "d02cf6e37d7da28ac638f8ce9c00248ed688a4c0210ca8a23d39713394394840",
+          "pdf_page": 46,
+          "page_markers": [
+            "Figure 1: IGO’s tenements in July 2024 versus July 2025",
+            "Exploration Summary FY25"
+          ],
+          "context_evidence": [
+            {
+              "page": 45,
+              "markers": [
+                "shaded in black being tenure relinquished in FY25",
+                "1 July 2024 and on 30 June 2025"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p46. Figure 1, left-side Lake Campion label and its tenure polygons use the relinquished FY25 legend style. The preceding page defines the period and relinquished areas. Scope is IGO tenure only.",
+          "effective_date": "2025-06-30",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census620_lake-campion-igo_status",
+          "statement_id": "census620_lake-campion-igo_status",
+          "scope": "Figure 1, left-side Lake Campion label and its tenure polygons use the relinquished FY25 legend style. The preceding page defines the period and relinquished areas. Scope is IGO tenure only.",
+          "reviewed_pdf_table_image": {
+            "page": 46,
+            "sha256": "6085708f52273006a5032a8c117b48131d1f8daf70d299b1cf9901fcd20867be",
+            "size": [
+              1004,
+              848
+            ],
+            "bbox": [
+              78.6500015258789,
+              123.27996826171875,
+              516.5,
+              493.1299743652344
+            ]
+          },
+          "attribute_id": "83ce8ab321164f07dabb713e2414f69d2b25f731702adc8d6b236f0d011eab8c"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Conceptual paleochannel-related regolith-hosted REE model; exploration targeted both ionic adsorption and REE phosphate mineralisation",
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "pdf_page": 50,
+          "page_markers": [
+            "Lake Campion",
+            "conceptual paleochannel-related regolith-hosted REE",
+            "REE phosphate mineralisation"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p50. Lake Campion project, FY24 exploration, p48 printed. IGO presents a conceptual model with two target mechanisms. Mineralogical proof of either mechanism is not reported here.",
+          "effective_date": "2024-06-30",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census620_lake-campion-igo_geology",
+          "statement_id": "census620_lake-campion-igo_geology",
+          "scope": "Lake Campion project, FY24 exploration, p48 printed. IGO presents a conceptual model with two target mechanisms. Mineralogical proof of either mechanism is not reported here.",
+          "attribute_id": "adf17f48017c32ac336441ac55de85ea09aa64ed001e64e53e24dce88b556e92"
         }
       ]
     },
@@ -135555,6 +136277,48 @@
             }
           ],
           "attribute_id": "fe72c95dc61853afaff532012da1ed96ed4d957760eac4b3e499e7b0d4b41958"
+        },
+        {
+          "column": "開發階段",
+          "value": "EMU ceased its REE exploration focus after a passive seismic survey at Viper; the proposed aircore programme did not proceed and tenement relinquishment had commenced（來源狀態日：2024-06-30）",
+          "source_key": "emu_fy24_annual_report_20240930",
+          "source_sha256": "5cda0e1a4cabf309fb89d41649fd306adb09ed21711952b15d7bfeff0112806a",
+          "pdf_page": 9,
+          "page_markers": [
+            "Viper and Graceland Projects",
+            "did not undertake that drilling",
+            "commenced relinquishment of its REE project tenements"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p9. FY24 operations review, Viper and Graceland subsection. Viper is named as a survey site. The report describes the commencement of a REE portfolio relinquishment process, without establishing completion for every individual licence.",
+          "effective_date": "2024-06-30",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census620_viper-emu_status",
+          "statement_id": "census620_viper-emu_status",
+          "scope": "FY24 operations review, Viper and Graceland subsection. Viper is named as a survey site. The report describes the commencement of a REE portfolio relinquishment process, without establishing completion for every individual licence.",
+          "attribute_id": "41f60b9b7c772d1bfbf9d35b95d25949e57e983caf7877cbcfe686566b6100bd"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Basement gneiss and granite with REE-bearing adjacent weathered clays intersected by RC drilling",
+          "source_key": "emu_viper_ree_discovery_20230515",
+          "source_sha256": "de3bd4bffa11e7980fc624dcbdbd7d956e6b266008c5d1033446ebb1951d0604",
+          "pdf_page": 1,
+          "page_markers": [
+            "Viper Project",
+            "hosted in basement",
+            "weathered clays"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p1. Viper Project near Jerramungup. The issuer records multiple lithologies in its first project RC programme. These intersections do not uniquely establish one deposit-type code or adsorption mechanism.",
+          "effective_date": "2023-05-15",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census620_viper-emu_geology",
+          "statement_id": "census620_viper-emu_geology",
+          "scope": "Viper Project near Jerramungup. The issuer records multiple lithologies in its first project RC programme. These intersections do not uniquely establish one deposit-type code or adsorption mechanism.",
+          "attribute_id": "2be4a6b8b86f76a685e0e83611fcafee685160631bb9b8d732607cda72a27bb2"
         }
       ]
     },
@@ -136611,6 +137375,34 @@
             }
           ],
           "attribute_id": "a7dca07140d0cbc2b4eb1fc5e43c349a7c7fd020fef4f15c69fb84de60c85840"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Pegmatites under investigation for possible lithium and REE mineralisation",
+          "source_key": "new_goldfield20240321",
+          "source_sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "pdf_page": 2,
+          "page_markers": [
+            "true extent of the pegmatites",
+            "associated Lithium/REE mineralisation"
+          ],
+          "context_evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "New Goldfield",
+                "EPM 26646"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p2. Late-2023 fieldwork in the New Goldfield part of the Cape Project. The issuer proposes testing this host model. The nearby alluvial gold fields are excluded.",
+          "effective_date": "2024-03-21",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census_closure_new-goldfield-cape-gdm_geology_20261119",
+          "scope": "Late-2023 fieldwork in the New Goldfield part of the Cape Project. The issuer proposes testing this host model. The nearby alluvial gold fields are excluded.",
+          "statement_id": "census_closure_new-goldfield-cape-gdm_geology_20261119",
+          "attribute_id": "3ebae2ba3bef26f26873e14b084cbf2e65cb7699487063e9543d5f09e2241dbb"
         }
       ]
     },
@@ -150673,6 +151465,35 @@
             }
           ],
           "attribute_id": "dc09fde687cef5688662aa3c3ead835669822c49186d9d747fc3746aa8271858"
+        },
+        {
+          "column": "產品/產出",
+          "value": "REEC",
+          "source_key": "wim150_issuer_products_20150325",
+          "source_sha256": "c9381dbbb4d0e5907e43a8c1827f85ca33629a8f7f2c9c3160ec0677491c0e10",
+          "pdf_page": 19,
+          "page_markers": [
+            "Rare earth mineral concentrate with enhanced levels of heavy rare earth elements",
+            "Monazite + Xenotime",
+            "AZC"
+          ],
+          "context_evidence": [
+            {
+              "page": 16,
+              "markers": [
+                "WIM150",
+                "Rare earth mineral concentrate"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p19. The Australian Zircon WIM150 marketing plan defines the proposed monazite and xenotime concentrate. Percentage of product value is excluded from quantity.",
+          "effective_date": "2015-03-25",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_closure_wim150-australian-zircon_product_20261119",
+          "scope": "The Australian Zircon WIM150 marketing plan defines the proposed monazite and xenotime concentrate. Percentage of product value is excluded from quantity.",
+          "statement_id": "census_closure_wim150-australian-zircon_product_20261119",
+          "attribute_id": "2937821eb6bcb073440a44b060bc944536319d829c5992f41615f430ede98ccd"
         }
       ]
     },
@@ -150841,6 +151662,35 @@
           "statement_id": "census_project_status_20261119_kenny-evergreen",
           "context_evidence": [],
           "attribute_id": "cc2baaf29fb869b60db59cea70d349af788f8a991da206f536b1bf10d72cbaf7"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Geophysical REE targets: granite-related anomaly at REE1 and possible pegmatite dykes or apatite veins at REE3–4",
+          "source_key": "evergreen_kenny_ree_targets_20230525",
+          "source_sha256": "f571a145b96e1a73b612f73f0004c3fb98dd8baab7854837434e996bbf6a5635",
+          "pdf_page": 6,
+          "page_markers": [
+            "In the Kenny project",
+            "pegmatites or apatite veins enriched in REE",
+            "plug-like Yilgarn Craton Granite"
+          ],
+          "locator": "Physical PDF p6. Kenny target interpretation, not an identified economic deposit. Surface geochemistry is interpreted with radiometric and magnetic data; target areas have different potential hosts.",
+          "scope": "Kenny target interpretation, not an identified economic deposit. Surface geochemistry is interpreted with radiometric and magnetic data; target areas have different potential hosts.",
+          "effective_date": "2023-05-25",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census620_kenny-evergreen_geology",
+          "statement_id": "census620_kenny-evergreen_geology",
+          "context_evidence": [
+            {
+              "page": 1,
+              "markers": [
+                "Kenny Project",
+                "Four priority REE target zones"
+              ]
+            }
+          ],
+          "attribute_id": "f0a44b898911280d4ca3e8fa843a4ef75d3847a2b14ece11e9f7fe97881abb0d"
         }
       ]
     },
@@ -151168,6 +152018,27 @@
             }
           ],
           "attribute_id": "d64e6487403ec6560ac45dd00e5f7c3343844a67201b61e5ca9e9ea0a7cf9c58"
+        },
+        {
+          "column": "開發階段",
+          "value": "Exploration soil assays returned rare earth values without a spatially coherent anomalous zone（來源狀態日：2025-06-13）",
+          "source_key": "hre_perenjori20250613",
+          "source_sha256": "d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d",
+          "pdf_page": 1,
+          "page_markers": [
+            "Total rare earth assays",
+            "no spatially coherent anomalous zones",
+            "PERENJORI"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p1. REE exploration in the same palaeochannel system. The drilling proposal on this page concerns uranium.",
+          "effective_date": "2025-06-13",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REVIEWED_ATTRIBUTE_NOT_CURRENT_LEGAL_CERTIFICATION",
+          "review_id": "census_closure_perenjori-hre_stage_20261119",
+          "scope": "REE exploration in the same palaeochannel system. The drilling proposal on this page concerns uranium.",
+          "statement_id": "census_closure_perenjori-hre_stage_20261119",
+          "attribute_id": "3f1db20a35306cae3925b82d238fde4f49090f97e2d2b5161500571f240ab12f"
         }
       ]
     },
@@ -174895,6 +175766,35 @@
           "statement_id": "census_project_status_20261119_mt-craig-taruga",
           "context_evidence": [],
           "attribute_id": "fac74f3e65ec6f30e74de1aa1ccb8ee258186e5634721f680663cc7174afe420"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Clay-hosted REE mineralisation in the weathered Yednalue Quartzite at Morgans Creek, a Mt Craig prospect",
+          "source_key": "taruga_morgans_creek_ree_host_20221013",
+          "source_sha256": "970f4ce20adef0002cf68cede290af0ddb58a07a35106adfea386c1578ee46ac",
+          "pdf_page": 1,
+          "page_markers": [
+            "Clay hosted REEs have been discovered from surface at Morgans Creek",
+            "weathered Yednalue quartzite",
+            "Hydro Hill North"
+          ],
+          "locator": "Physical PDF p1. RAB programme and named Morgans Creek REE prospect. This is a local observed mineralised horizon within Mt Craig. No project-wide genetic or confirmed ionic adsorption class is implied.",
+          "scope": "RAB programme and named Morgans Creek REE prospect. This is a local observed mineralised horizon within Mt Craig. No project-wide genetic or confirmed ionic adsorption class is implied.",
+          "effective_date": "2022-10-13",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census620_mt-craig-taruga_geology",
+          "statement_id": "census620_mt-craig-taruga_geology",
+          "context_evidence": [
+            {
+              "page": 2,
+              "markers": [
+                "Mt Craig Project",
+                "Morgans"
+              ]
+            }
+          ],
+          "attribute_id": "840fffc2c0506f3a6ad344d03f603a8d31d846aace615d7f34e789523b476ffe"
         }
       ]
     },
@@ -176153,6 +177053,27 @@
           "statement_id": "residual_fullscope6_code_coondina_historical_mrr_listing",
           "scope": "Historical 14 February 2023 MinRex MRR REE drilling case, E45/4266 East Pilbara WA. Not Achilles E38/3153/E38/3741 or generic Tambourah REE. MinRex September 2023 annual p11 states disappointing results/low remaining REE prospectivity and sale to Tambourah late June 2023; Tambourah September 2025 annual p73 lists Coondina E45/4266 in WA. Developer/code below are the dated historical MinRex reporting association, not current ownership or current MRR/NRL corporate code. No global REE resource: drill samples TREE elements in mixed ppb/ppm are not bulk TREO resource grades/composition. REE host unresolved in original p12; no alluvial tin geology transfer.",
           "context_evidence": []
+        },
+        {
+          "column": "礦床型態",
+          "value": "Monzogranite interpreted by MinRex as the host of anomalous REE drill assays",
+          "source_key": "coondina_ree20230214",
+          "source_sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
+          "pdf_page": 1,
+          "page_markers": [
+            "Coondina Monzogranite",
+            "hosting the strongly anomalous REE assays",
+            "E45/4266"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p1. Historical MinRex drilling within the central eastern part of E45/4266. The host is the issuer interpretation of the assays.",
+          "effective_date": "2023-02-14",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census_closure_coondina-historical-minrex-ree_geology_20261119",
+          "scope": "Historical MinRex drilling within the central eastern part of E45/4266. The host is the issuer interpretation of the assays.",
+          "statement_id": "census_closure_coondina-historical-minrex-ree_geology_20261119",
+          "attribute_id": "728c9ebb2d561fe2d1b0f0850971828872ed7d9f9fcbd365e15f81144f2c717d"
         }
       ]
     },

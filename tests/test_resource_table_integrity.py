@@ -5,7 +5,8 @@ from pathlib import Path
 
 import pymupdf
 
-from au_ree_v2.evidence import validate_pages
+from au_ree_v2.evidence import strict_claims, validate_pages
+from au_ree_v2.store import connect
 
 
 class ResourceTableIntegrity(unittest.TestCase):
@@ -80,3 +81,30 @@ class ResourceTableIntegrity(unittest.TestCase):
         path.write_bytes(path.read_bytes() + b'\nchanged PDF')
         with self.assertRaisesRegex(ValueError, 'SOURCE_HASH_MISMATCH'):
             validate_pages(self.root, primary, evidence, snapshots)
+
+    def test_strict_attribute_captures_alias_page_from_its_own_source(self):
+        primary = self.make_pdf('study', 'Original mine study: oxide products')
+        witness = self.make_pdf('alias', 'New name was formerly Original mine')
+        for source in (primary, witness):
+            source.update(url='https://example.org/' + source['path'],
+                          acquired_at='2026-01-02', available_date='2026-01-01')
+        context = dict(source_key='alias', source_sha256=witness['sha256'], page=1,
+                       markers=['New name', 'formerly Original mine'])
+        attribute = dict(column='產品/產出', value='OXIDE', source_key='study',
+                         source_sha256=primary['sha256'], pdf_page=1,
+                         page_markers=['Original mine', 'oxide products'], context_evidence=[context],
+                         locator='study p1', effective_date='2026-01-01', extraction_method='STATIC_PDF')
+        project = dict(id='mine', identity_source='study', observations=[], attributes=[attribute])
+        db = connect(self.root / 'alias.sqlite')
+        self.addCleanup(db.close)
+        snapshots = [primary, witness]
+        claims = strict_claims(db, self.root, snapshots, {'projects':[project]}, [], self.root / 'pages')
+        accepted, = claims['projects'][0]['attributes']
+        binding, = accepted['context_evidence']
+        proof = next(s for s in snapshots if s['key'] == binding['page_extraction_key'])
+        self.assertEqual(proof['source_sha256'], witness['sha256'])
+        for originals in ([primary], [primary, dict(witness, sha256=primary['sha256'])]):
+            rejected = strict_claims(db, self.root, originals, {'projects':[project]}, [], self.root / 'pages')
+            self.assertEqual(rejected['projects'][0]['attributes'], [])
+            self.assertIn('CONTEXT_ORIGINAL_NOT_SELECTED_OR_CHANGED',
+                          [row[0] for row in db.execute('SELECT reason FROM review_queue')])

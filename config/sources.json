@@ -2678,6 +2678,30 @@
           },
           "dataset": "GA2025",
           "id_field": "OBJECTID"
+        },
+        {
+          "project_id": "AU-d1aeb21e18e60fe8e32e",
+          "feature_id": 2199,
+          "rule": "REVIEWED_GA_GDA94_NAMED_REPRESENTATIVE_POINT_NOT_BOUNDARY",
+          "binding": {
+            "review_id": "coordinate_scope_review_AU-d1aeb21e18e60fe8e32e",
+            "project_id": "AU-d1aeb21e18e60fe8e32e",
+            "census_project_name": "Deep Leads – Rubble Mound – Wind Break REE Project",
+            "source_project_name": "Deep Leads",
+            "state": "TAS",
+            "scope_match": "NAMED_DEPOSIT_WITHIN_SELECTED_RESOURCE",
+            "issuer_scope_reference": {
+              "source_key": "r4_deep_leads_rubble_mound_wind_break",
+              "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
+              "physical_page": 3,
+              "figure": "Figure 2",
+              "caption": "Map of block model showing the zones of high REE enrichment",
+              "grid_epsg": 32755,
+              "review": "The WGS84 / UTM 55S map in ABx Figure 2 (CRS confirmed on physical p21) shows GA feature 2199 at E478286 N5410144 within a coloured Deep Leads model block in the western group. The named deposit is part of the selected 88.6 Mt Deep Leads–Rubble Mound–Wind Break estimate. The point locates that deposit within the estimate and does not define a boundary."
+            }
+          },
+          "dataset": "GA2025",
+          "id_field": "OBJECTID"
         }
       ],
       "pre_cutoff_evidence": {
@@ -3075,6 +3099,309 @@
       "reviewed_static_pdf_sha256": "b8ca632328afd48b524eaff7c595e5a49c8e7be978deacac41da9c8ad38a9865",
       "enabled": false,
       "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY"
+    },
+    {
+      "key": "hre_duke_targets_20231113",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20231113/pdf/05x7tyw3tbq7b3.pdf",
+      "source_sha256": "31efc775284b45cc43118d960eb7c26638d3697030abdf1013831e0da2cc7ea3",
+      "reviewed_static_pdf_sha256": "31efc775284b45cc43118d960eb7c26638d3697030abdf1013831e0da2cc7ea3",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2023-11-13",
+      "source_kind": "ISSUER_REPORT"
+    },
+    {
+      "key": "nutgrove_rhyolite_20260303",
+      "kind": "pdf",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/7412204.pdf?v=63941896543",
+      "source_sha256": "b015e3fa347138082ed14171e4921d32dde1377e6fe62317a0b0f8420131ef21",
+      "reviewed_static_pdf_sha256": "b015e3fa347138082ed14171e4921d32dde1377e6fe62317a0b0f8420131ef21",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2026-03-03",
+      "source_kind": "ISSUER_REPORT"
+    },
+    {
+      "key": "kalkaroo_interim_20220411",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20220411/pdf/457xrc1d3g8nb2.pdf",
+      "source_sha256": "b8e5372b6a4356ee9af94f05cf34708a04df54143b4b0c8b8b3886f7c8d3ea82",
+      "reviewed_static_pdf_sha256": "b8e5372b6a4356ee9af94f05cf34708a04df54143b4b0c8b8b3886f7c8d3ea82",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2022-04-11",
+      "source_kind": "ISSUER_REPORT"
+    },
+    {
+      "key": "luni_discovery_20221116",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20221116/pdf/45hn6hvm6w1qht.pdf",
+      "source_sha256": "1106052fbb1564fdb0788a727239f4f5987f18dcbc6cab61789ef070148ed221",
+      "reviewed_static_pdf_sha256": "1106052fbb1564fdb0788a727239f4f5987f18dcbc6cab61789ef070148ed221",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2022-11-16",
+      "source_kind": "ISSUER_REPORT"
+    },
+    {
+      "key": "wim150_issuer_products_20150325",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20150325/pdf/42xhpt2gpbfsfs.pdf",
+      "source_sha256": "c9381dbbb4d0e5907e43a8c1827f85ca33629a8f7f2c9c3160ec0677491c0e10",
+      "reviewed_static_pdf_sha256": "c9381dbbb4d0e5907e43a8c1827f85ca33629a8f7f2c9c3160ec0677491c0e10",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2015-03-25",
+      "source_kind": "ISSUER_REPORT"
+    },
+    {
+      "key": "voyager_relinquishment_fy2024",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20250331/pdf/06h61k11cfbd3w.pdf",
+      "source_sha256": "250eb3778935dfdd8dd56c397ef38ffb396b15d82a0f5a464e99427fd08a5b75",
+      "reviewed_static_pdf_sha256": "250eb3778935dfdd8dd56c397ef38ffb396b15d82a0f5a464e99427fd08a5b75",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2025-03-31",
+      "source_kind": "ISSUER_REPORT"
+    },
+    {
+      "key": "mtm_ravensthorpe_fy2024",
+      "kind": "pdf",
+      "url": "https://hermes-cdn.investorhub.com/announcement-pdfs/asx/6553898.pdf?v=63941960415",
+      "source_sha256": "31949313a2809151408ff4a141a93364c4b10904d619c1ce2851f0236cc24ca1",
+      "reviewed_static_pdf_sha256": "31949313a2809151408ff4a141a93364c4b10904d619c1ce2851f0236cc24ca1",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2024-09-30",
+      "source_kind": "ISSUER_REPORT"
+    },
+    {
+      "key": "itech_franklyn_ree_assays_20220729",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20220729/pdf/45c9m44hzcdy91.pdf",
+      "source_sha256": "c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9",
+      "reviewed_static_pdf_sha256": "c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2022-07-29",
+      "source_kind": "ISSUER_STATIC_REPORT"
+    },
+    {
+      "key": "igo_fy24_exploration_results_20240829",
+      "kind": "pdf",
+      "url": "https://www.igo.com.au/site/pdf/861fc73d-91d3-4eb3-8f3b-c6da2b4ad8eb/FY24-Exploration-Results-Update.pdf?Platform=ListPage",
+      "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+      "reviewed_static_pdf_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2024-08-29",
+      "source_kind": "ISSUER_STATIC_REPORT"
+    },
+    {
+      "key": "igo_fy25_exploration_portfolio_20250828",
+      "kind": "pdf",
+      "url": "https://www.igo.com.au/site/pdf/dc6e3c38-112d-405b-9d81-99087ec25b1e/FY25-Mineral-Resources-and-Ore-Reserves.pdf?Platform=ListPage",
+      "source_sha256": "d02cf6e37d7da28ac638f8ce9c00248ed688a4c0210ca8a23d39713394394840",
+      "reviewed_static_pdf_sha256": "d02cf6e37d7da28ac638f8ce9c00248ed688a4c0210ca8a23d39713394394840",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2025-08-28",
+      "source_kind": "ISSUER_STATIC_REPORT"
+    },
+    {
+      "key": "wcn_quarterly_lake_tay_20221031",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20221031/pdf/45h1l6xvt9ngg4.pdf",
+      "source_sha256": "e5e4bc19476428a86bc09b9999621e0d6a50bff4ce8668372fb32739e7281a0d",
+      "reviewed_static_pdf_sha256": "e5e4bc19476428a86bc09b9999621e0d6a50bff4ce8668372fb32739e7281a0d",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2022-10-31",
+      "source_kind": "ISSUER_STATIC_REPORT"
+    },
+    {
+      "key": "strandline_coburn_msp_commissioning_20230821",
+      "kind": "pdf",
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02699350-6A1163850",
+      "source_sha256": "222d4f576f1240665a857e5bae8ede427939f82d6628cb54e337f5cf4f0ae89f",
+      "reviewed_static_pdf_sha256": "222d4f576f1240665a857e5bae8ede427939f82d6628cb54e337f5cf4f0ae89f",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2023-08-21",
+      "source_kind": "ISSUER_STATIC_REPORT"
+    },
+    {
+      "key": "emu_fy24_annual_report_20240930",
+      "kind": "pdf",
+      "url": "https://company-announcements.afr.com/asx/emu/d039faa6-7f07-11ef-8e7c-be773cd2d8da.pdf",
+      "source_sha256": "5cda0e1a4cabf309fb89d41649fd306adb09ed21711952b15d7bfeff0112806a",
+      "reviewed_static_pdf_sha256": "5cda0e1a4cabf309fb89d41649fd306adb09ed21711952b15d7bfeff0112806a",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2024-09-30",
+      "source_kind": "ISSUER_STATIC_REPORT"
+    },
+    {
+      "key": "emu_viper_ree_discovery_20230515",
+      "kind": "pdf",
+      "url": "https://company-announcements.afr.com/asx/emu/c9c664c6-f2b1-11ed-82f2-6e9c8c69ee5f.pdf",
+      "source_sha256": "de3bd4bffa11e7980fc624dcbdbd7d956e6b266008c5d1033446ebb1951d0604",
+      "reviewed_static_pdf_sha256": "de3bd4bffa11e7980fc624dcbdbd7d956e6b266008c5d1033446ebb1951d0604",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "publication_date": "2023-05-15",
+      "source_kind": "ISSUER_STATIC_REPORT"
+    },
+    {
+      "key": "wcn_ree_acquisitions_20230518",
+      "kind": "pdf",
+      "url": "https://www.aspecthuntley.com.au/asxdata/20230518/pdf/02667313.pdf",
+      "source_sha256": "606cc24f03762ba4f73cd78e552127f5bc557195a9f1bae7d4f17c638f6a11a8",
+      "reviewed_static_pdf_sha256": "606cc24f03762ba4f73cd78e552127f5bc557195a9f1bae7d4f17c638f6a11a8",
+      "publication_date": "2023-05-18",
+      "source_kind": "ISSUER_STATIC_REPORT",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY"
+    },
+    {
+      "key": "evergreen_kenny_ree_targets_20230525",
+      "kind": "pdf",
+      "url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02669486-6A1151580",
+      "source_sha256": "f571a145b96e1a73b612f73f0004c3fb98dd8baab7854837434e996bbf6a5635",
+      "reviewed_static_pdf_sha256": "f571a145b96e1a73b612f73f0004c3fb98dd8baab7854837434e996bbf6a5635",
+      "publication_date": "2023-05-25",
+      "source_kind": "ISSUER_STATIC_REPORT",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY"
+    },
+    {
+      "key": "taruga_morgans_creek_ree_host_20221013",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20221013/pdf/45g78nglkzk924.pdf",
+      "source_sha256": "970f4ce20adef0002cf68cede290af0ddb58a07a35106adfea386c1578ee46ac",
+      "reviewed_static_pdf_sha256": "970f4ce20adef0002cf68cede290af0ddb58a07a35106adfea386c1578ee46ac",
+      "publication_date": "2022-10-13",
+      "source_kind": "ISSUER_STATIC_REPORT",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY"
+    },
+    {
+      "key": "terra_quarterly_southern_cross_20250730",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20250730/pdf/06m9c8rkytc9sm.pdf",
+      "source_sha256": "dd29b311224f3e25692592f23d7efedec24b356fccc8513a7022f9534dfad1b1",
+      "reviewed_static_pdf_sha256": "dd29b311224f3e25692592f23d7efedec24b356fccc8513a7022f9534dfad1b1",
+      "publication_date": "2025-07-30",
+      "source_kind": "ISSUER_STATIC_REPORT",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY"
+    },
+    {
+      "key": "has_hastings_scoping_20120905",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20120905/pdf/428j0z4l082xrz.pdf",
+      "source_sha256": "5fd9b7d443bb498f9d171bc5173d522f2038cbb0b686e9ff7020e87cc30a9c9e",
+      "reviewed_static_pdf_sha256": "5fd9b7d443bb498f9d171bc5173d522f2038cbb0b686e9ff7020e87cc30a9c9e",
+      "publication_date": "2012-09-05",
+      "source_kind": "ISSUER_STATIC_REPORT",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY"
+    },
+    {
+      "key": "has_brockman_historical_alias_20150423",
+      "kind": "pdf",
+      "url": "https://announcements.asx.com.au/asxpdf/20150423/pdf/42y1zqmvwz33mk.pdf",
+      "source_sha256": "00e8236380f1bd9f5860ff803660e08d21450c09d798afbbe772313ee4341180",
+      "reviewed_static_pdf_sha256": "00e8236380f1bd9f5860ff803660e08d21450c09d798afbbe772313ee4341180",
+      "publication_date": "2015-04-23",
+      "source_kind": "ISSUER_STATIC_REPORT",
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY"
+    },
+    {
+      "key": "vic_minten_archived_20261112",
+      "kind": "government_wfs",
+      "url": "https://opendata.maps.vic.gov.au/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=open-data-platform%3Aminten&outputFormat=application%2Fjson&count=1000&startIndex=0&sortBy=tno&CQL_FILTER=tno+LIKE+%27%255532%27+OR+tno+LIKE+%27%252002%27+OR+tno+LIKE+%27%256904%27+OR+tno+LIKE+%27%256966%27+OR+tno+LIKE+%27%256906%27+OR+tno+LIKE+%27%256419%27+OR+tno+LIKE+%27%256664%27+OR+tno+LIKE+%27%256666%27&srsName=EPSG%3A7844",
+      "source_sha256": "31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953",
+      "fixed_query": true,
+      "summary_spatial_source": true,
+      "enabled": false,
+      "disabled_reason": "ARCHIVED_LOCAL_SNAPSHOT_REPLAY_ONLY",
+      "summary_tenements": [
+        {
+          "project_id": "AU-410159af7b79ea498ec2",
+          "state": "VIC",
+          "tenement_ids": [
+            "EL 6419",
+            "EL 6664"
+          ],
+          "complete_project_scope": true,
+          "historical": false,
+          "source_crs": "EPSG:7844",
+          "id_field": "tno",
+          "original_references": [
+            {
+              "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9",
+              "page": 16,
+              "quote": " \nVHM Limited | Annual Report 2026 | Page 15 \n \nCannie Project  \n \nResource: 190.0Mt MRE \nMineralogy: THM 3.1%, zircon 24.5%, \nrutile 15.5%, leucoxene 24.3%, ilmenite \n2.1%, monazite 4.1%, xenotime 0.81% \nVHM holds exploration tenement licences \nEL 6419 and EL 6664 where the Cannie \ndeposit is situated, until May 2028 and \nJune 2028 respectively.  \nThe Cannie Resource remains a highlight \nfrom the Company’s extensive exploration \ndrilling program with its 192Mt maiden \nMRE (Inferred) containing exceptional \ngrade TREO + Yttrium (Y2O3) and material \nuplift to the Company’s zircon and titanium \nmineral inventory. There are 176,000 \ntonnes of TREO in the Cannie Resource. \nDown hole geophysics and geological \nlogging from all 137 drill holes in EL 6664 \nand 5 drill holes from EL 6419 was \nsufficient to provide spatial continuity. The \nInferred \nclassification \nreflects \nthe \nappropriate level of confidence in grade \ntenor and spatial continuity of this estimate. \nThe Company plans to review the Cannie \nResource \nand \nupgrade \nits \nresource \ncategory as part of the Company’s ongoing \nexploration activities.  \n \n \nNowie Project \n \nResource: 16.4Mt MRE  \nMineralogy: THM 3.8%, zircon 16.1%, \nrutile 15.6%, leucoxene 24.4%, ilmenite \n5.0%, monazite 2.1%, xenotime 0.5% \nVHM holds exploration tenement licence \nEL 6666 where the Nowie deposit is \nsituated until June 2028. \nThe Company in prior years released the \nNowie Mineral Resource estimate (MRE) \n(Inferred) of 16.4Mt @ 3.8% THM grade. \nThe outcomes from the Nowie MRE \nconfirmed that the Company discovered a \nsignificant \ncritical \nminerals \nprovince \nstretching a strike length greater than \n55km. This province ranges from the \nCannie deposit in the south, to the \nadvanced Goschen Project, and north to \nNowie. \nGeological interpretation from 43 drill holes \nconcluded that the Nowie deposit is formed \nfrom \nmultiple \nhigh-grade \nstrandline \nsystems occurring above a 20 metre thick \nsequence of moderate THM grade sheet \nstyle mineralisation. Interpretation of the \ndrilling and airborne geophysics data \nindicates the Nowie deposit is at least 3km \nin width (east to west) and up to 11km in \nstrike length (north to south). \nThe maiden Mineral Resource includes \n6.4Mt @ 6.1% THM contained in high-\ngrade strandline deposits which remain \nopen along and across strike. Significantly, \nthese strandline deposits occur close to \nsurface and provide selective high grade \nmining opportunities.  \nDown hole geophysics and geological \nlogging the drill holes in Exploration \nLicence (EL) 6666 was sufficient to \nprovide geological continuity. The Inferred \nclassification \nreflects \nthe \nappropriate \nlevel of confidence in grade, tenor, and \ngeological continuity of this estimate. \n \n \n \n \n \n \n \n \nFor personal use only\n",
+              "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03137624",
+              "publication_date": "2026-09-09"
+            }
+          ],
+          "zip_member": null,
+          "decision_id": "round4-tenement-centroid-20261113"
+        },
+        {
+          "project_id": "AU-176852ef1348ac10d154",
+          "state": "VIC",
+          "tenement_ids": [
+            "EL 6666"
+          ],
+          "complete_project_scope": true,
+          "historical": false,
+          "source_crs": "EPSG:7844",
+          "id_field": "tno",
+          "original_references": [
+            {
+              "source_sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9",
+              "page": 16,
+              "quote": " \nVHM Limited | Annual Report 2026 | Page 15 \n \nCannie Project  \n \nResource: 190.0Mt MRE \nMineralogy: THM 3.1%, zircon 24.5%, \nrutile 15.5%, leucoxene 24.3%, ilmenite \n2.1%, monazite 4.1%, xenotime 0.81% \nVHM holds exploration tenement licences \nEL 6419 and EL 6664 where the Cannie \ndeposit is situated, until May 2028 and \nJune 2028 respectively.  \nThe Cannie Resource remains a highlight \nfrom the Company’s extensive exploration \ndrilling program with its 192Mt maiden \nMRE (Inferred) containing exceptional \ngrade TREO + Yttrium (Y2O3) and material \nuplift to the Company’s zircon and titanium \nmineral inventory. There are 176,000 \ntonnes of TREO in the Cannie Resource. \nDown hole geophysics and geological \nlogging from all 137 drill holes in EL 6664 \nand 5 drill holes from EL 6419 was \nsufficient to provide spatial continuity. The \nInferred \nclassification \nreflects \nthe \nappropriate level of confidence in grade \ntenor and spatial continuity of this estimate. \nThe Company plans to review the Cannie \nResource \nand \nupgrade \nits \nresource \ncategory as part of the Company’s ongoing \nexploration activities.  \n \n \nNowie Project \n \nResource: 16.4Mt MRE  \nMineralogy: THM 3.8%, zircon 16.1%, \nrutile 15.6%, leucoxene 24.4%, ilmenite \n5.0%, monazite 2.1%, xenotime 0.5% \nVHM holds exploration tenement licence \nEL 6666 where the Nowie deposit is \nsituated until June 2028. \nThe Company in prior years released the \nNowie Mineral Resource estimate (MRE) \n(Inferred) of 16.4Mt @ 3.8% THM grade. \nThe outcomes from the Nowie MRE \nconfirmed that the Company discovered a \nsignificant \ncritical \nminerals \nprovince \nstretching a strike length greater than \n55km. This province ranges from the \nCannie deposit in the south, to the \nadvanced Goschen Project, and north to \nNowie. \nGeological interpretation from 43 drill holes \nconcluded that the Nowie deposit is formed \nfrom \nmultiple \nhigh-grade \nstrandline \nsystems occurring above a 20 metre thick \nsequence of moderate THM grade sheet \nstyle mineralisation. Interpretation of the \ndrilling and airborne geophysics data \nindicates the Nowie deposit is at least 3km \nin width (east to west) and up to 11km in \nstrike length (north to south). \nThe maiden Mineral Resource includes \n6.4Mt @ 6.1% THM contained in high-\ngrade strandline deposits which remain \nopen along and across strike. Significantly, \nthese strandline deposits occur close to \nsurface and provide selective high grade \nmining opportunities.  \nDown hole geophysics and geological \nlogging the drill holes in Exploration \nLicence (EL) 6666 was sufficient to \nprovide geological continuity. The Inferred \nclassification \nreflects \nthe \nappropriate \nlevel of confidence in grade, tenor, and \ngeological continuity of this estimate. \n \n \n \n \n \n \n \n \nFor personal use only\n",
+              "url": "https://www.asx.com.au/asx/v2/statistics/displayAnnouncement.do?display=pdf&idsId=03137624",
+              "publication_date": "2026-09-09"
+            }
+          ],
+          "zip_member": null,
+          "decision_id": "round4-tenement-centroid-20261113"
+        }
+      ],
+      "snapshot_provenance": {
+        "wfs_generated_at": "2026-11-12T19:48:01.576Z",
+        "public_no_later_than": "2026-11-13T02:05:36Z",
+        "archived_git_activity": [
+          {
+            "id": 50097347219,
+            "timestamp": "2026-11-13T02:05:36Z",
+            "ref": "refs/heads/experiment/round4-researcher-approved-20261113",
+            "tree_head": "a35b151c92cc982dc0758cb4966c1655cf9fe9bb",
+            "git_blob": "d92a38a7c76d8cb93e52275b4e4d9ff36448967e",
+            "git_path": "results/round4-4-2026-11-13/acquisition/31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953.raw",
+            "response_sha256": "5ec027c7d83faf38f92922ba48e6050397bd24c148147afc76fc3d33a7ca6c4d",
+            "api_url": "https://api.github.com/repos/lleeoo0611-stack/AU_REE_V2/activity?ref=refs%2Fheads%2Fexperiment%2Fround4-researcher-approved-20261113&time_period=month&per_page=100"
+          },
+          {
+            "id": 50119919755,
+            "timestamp": "2026-11-13T06:34:19Z",
+            "ref": "refs/heads/experiment/round5-researcher-approved-20261113",
+            "tree_head": "980bedbcc250e720e1eab9c734032b5df72c3c39",
+            "git_blob": "d92a38a7c76d8cb93e52275b4e4d9ff36448967e",
+            "git_path": "results/round4-4-2026-11-13/acquisition/31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953.raw",
+            "response_sha256": "9e7bd9a53e83811a43f1a94fa3db7ffbe0aae1bed41ac2f9d59e67085bdd76f2",
+            "api_url": "https://api.github.com/repos/lleeoo0611-stack/AU_REE_V2/activity?ref=refs%2Fheads%2Fexperiment%2Fround5-researcher-approved-20261113&time_period=month&per_page=100"
+          }
+        ]
+      }
     }
   ]
 }
