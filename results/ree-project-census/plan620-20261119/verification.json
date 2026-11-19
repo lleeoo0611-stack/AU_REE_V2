@@ -1,0 +1,303 @@
+{
+  "cutoff": "2026-11-13",
+  "baseline": "evidence-repair-732-20261119",
+  "run_id": "20261119T091557-5b7388f4",
+  "census_sha256": "22bba33965d8ab011d92cd0b0a93fcb5bff080dfd68dfc077af3f55bb6749128",
+  "v9": {
+    "2101": {
+      "previous": {
+        "SAME": 2021,
+        "POPULATED_DIFFERENT_OR_STRUCTURAL": 76,
+        "FORMAL_MISSING": 4
+      },
+      "current": {
+        "SAME": 2019,
+        "POPULATED_DIFFERENT_OR_STRUCTURAL": 76,
+        "FORMAL_MISSING": 6
+      },
+      "transitions": {
+        "FORMAL_MISSING_TO_SAME": 2,
+        "SAME_TO_FORMAL_MISSING": 4
+      }
+    },
+    "609": {
+      "previous": {
+        "SAME": 604,
+        "POPULATED_DIFFERENT_OR_STRUCTURAL": 5
+      },
+      "current": {
+        "SAME": 602,
+        "POPULATED_DIFFERENT_OR_STRUCTURAL": 5,
+        "FORMAL_MISSING": 2
+      },
+      "transitions": {
+        "SAME_TO_FORMAL_MISSING": 2
+      }
+    }
+  },
+  "remaining_v9_blanks": 6,
+  "mcda": {
+    "panels": 16,
+    "byte_identical": 16,
+    "changed_files": [],
+    "position_changes": 0,
+    "methods": [
+      "SAW",
+      "TOPSIS",
+      "PROMETHEE II"
+    ],
+    "six_domain_ranked_projects": 5
+  },
+  "sqlite": {
+    "integrity_check": "ok",
+    "foreign_key_violations": 0,
+    "schema_matches_phase22": true,
+    "schema_objects": 25,
+    "schema_sha256": "cc7e85b456f3cdbad4c2f8e0fea58b163febe5b1a839d752b098dfa981ec1536",
+    "source_hashes": 859
+  },
+  "sources": {
+    "locked_versions": 1515,
+    "selection_rows": 207,
+    "statuses": {
+      "WITHIN_CUTOFF": 198,
+      "SOURCE_AFTER_CUTOFF": 9
+    },
+    "additions": [
+      {
+        "key": "vic_minten_archived_20261112",
+        "previous_sha256": "",
+        "sha256": "31a205168b6ae64719924940dfa50e4899cf625ca9f90167dbdd3c452d433953",
+        "disclosed_date": "2026-11-13",
+        "previous_date_used": "",
+        "date_used": "2026-11-13",
+        "date_basis": "SOURCE_AVAILABILITY"
+      },
+      {
+        "key": "hre_duke_targets_20231113",
+        "previous_sha256": "",
+        "sha256": "31efc775284b45cc43118d960eb7c26638d3697030abdf1013831e0da2cc7ea3",
+        "disclosed_date": "2023-11-13",
+        "previous_date_used": "",
+        "date_used": "2023-11-13",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "nutgrove_rhyolite_20260303",
+        "previous_sha256": "",
+        "sha256": "b015e3fa347138082ed14171e4921d32dde1377e6fe62317a0b0f8420131ef21",
+        "disclosed_date": "2026-03-03",
+        "previous_date_used": "",
+        "date_used": "2026-03-03",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "kalkaroo_interim_20220411",
+        "previous_sha256": "",
+        "sha256": "b8e5372b6a4356ee9af94f05cf34708a04df54143b4b0c8b8b3886f7c8d3ea82",
+        "disclosed_date": "2022-04-11",
+        "previous_date_used": "",
+        "date_used": "2022-04-11",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "luni_discovery_20221116",
+        "previous_sha256": "",
+        "sha256": "1106052fbb1564fdb0788a727239f4f5987f18dcbc6cab61789ef070148ed221",
+        "disclosed_date": "2022-11-16",
+        "previous_date_used": "",
+        "date_used": "2022-11-16",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "wim150_issuer_products_20150325",
+        "previous_sha256": "",
+        "sha256": "c9381dbbb4d0e5907e43a8c1827f85ca33629a8f7f2c9c3160ec0677491c0e10",
+        "disclosed_date": "2015-03-25",
+        "previous_date_used": "",
+        "date_used": "2015-03-25",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "voyager_relinquishment_fy2024",
+        "previous_sha256": "",
+        "sha256": "250eb3778935dfdd8dd56c397ef38ffb396b15d82a0f5a464e99427fd08a5b75",
+        "disclosed_date": "2025-03-31",
+        "previous_date_used": "",
+        "date_used": "2025-03-31",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "mtm_ravensthorpe_fy2024",
+        "previous_sha256": "",
+        "sha256": "31949313a2809151408ff4a141a93364c4b10904d619c1ce2851f0236cc24ca1",
+        "disclosed_date": "2024-09-30",
+        "previous_date_used": "",
+        "date_used": "2024-09-30",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "itech_franklyn_ree_assays_20220729",
+        "previous_sha256": "",
+        "sha256": "c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9",
+        "disclosed_date": "2022-07-29",
+        "previous_date_used": "",
+        "date_used": "2022-07-29",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "igo_fy24_exploration_results_20240829",
+        "previous_sha256": "",
+        "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+        "disclosed_date": "2024-08-29",
+        "previous_date_used": "",
+        "date_used": "2024-08-29",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "igo_fy25_exploration_portfolio_20250828",
+        "previous_sha256": "",
+        "sha256": "d02cf6e37d7da28ac638f8ce9c00248ed688a4c0210ca8a23d39713394394840",
+        "disclosed_date": "2025-08-28",
+        "previous_date_used": "",
+        "date_used": "2025-08-28",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "wcn_quarterly_lake_tay_20221031",
+        "previous_sha256": "",
+        "sha256": "e5e4bc19476428a86bc09b9999621e0d6a50bff4ce8668372fb32739e7281a0d",
+        "disclosed_date": "2022-10-31",
+        "previous_date_used": "",
+        "date_used": "2022-10-31",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "strandline_coburn_msp_commissioning_20230821",
+        "previous_sha256": "",
+        "sha256": "222d4f576f1240665a857e5bae8ede427939f82d6628cb54e337f5cf4f0ae89f",
+        "disclosed_date": "2023-08-21",
+        "previous_date_used": "",
+        "date_used": "2023-08-21",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "emu_fy24_annual_report_20240930",
+        "previous_sha256": "",
+        "sha256": "5cda0e1a4cabf309fb89d41649fd306adb09ed21711952b15d7bfeff0112806a",
+        "disclosed_date": "2024-09-30",
+        "previous_date_used": "",
+        "date_used": "2024-09-30",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "emu_viper_ree_discovery_20230515",
+        "previous_sha256": "",
+        "sha256": "de3bd4bffa11e7980fc624dcbdbd7d956e6b266008c5d1033446ebb1951d0604",
+        "disclosed_date": "2023-05-15",
+        "previous_date_used": "",
+        "date_used": "2023-05-15",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "wcn_ree_acquisitions_20230518",
+        "previous_sha256": "",
+        "sha256": "606cc24f03762ba4f73cd78e552127f5bc557195a9f1bae7d4f17c638f6a11a8",
+        "disclosed_date": "2023-05-18",
+        "previous_date_used": "",
+        "date_used": "2023-05-18",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "evergreen_kenny_ree_targets_20230525",
+        "previous_sha256": "",
+        "sha256": "f571a145b96e1a73b612f73f0004c3fb98dd8baab7854837434e996bbf6a5635",
+        "disclosed_date": "2023-05-25",
+        "previous_date_used": "",
+        "date_used": "2023-05-25",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "taruga_morgans_creek_ree_host_20221013",
+        "previous_sha256": "",
+        "sha256": "970f4ce20adef0002cf68cede290af0ddb58a07a35106adfea386c1578ee46ac",
+        "disclosed_date": "2022-10-13",
+        "previous_date_used": "",
+        "date_used": "2022-10-13",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "terra_quarterly_southern_cross_20250730",
+        "previous_sha256": "",
+        "sha256": "dd29b311224f3e25692592f23d7efedec24b356fccc8513a7022f9534dfad1b1",
+        "disclosed_date": "2025-07-30",
+        "previous_date_used": "",
+        "date_used": "2025-07-30",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "has_hastings_scoping_20120905",
+        "previous_sha256": "",
+        "sha256": "5fd9b7d443bb498f9d171bc5173d522f2038cbb0b686e9ff7020e87cc30a9c9e",
+        "disclosed_date": "2012-09-05",
+        "previous_date_used": "",
+        "date_used": "2012-09-05",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      },
+      {
+        "key": "has_brockman_historical_alias_20150423",
+        "previous_sha256": "",
+        "sha256": "00e8236380f1bd9f5860ff803660e08d21450c09d798afbbe772313ee4341180",
+        "disclosed_date": "2015-04-23",
+        "previous_date_used": "",
+        "date_used": "2015-04-23",
+        "date_basis": "DOCUMENT_PUBLICATION"
+      }
+    ],
+    "updates": [],
+    "after_cutoff_only_versions_in_populated_census_cells": 0
+  },
+  "frozen_phase22": {
+    "files": 64,
+    "status": "MATCHED"
+  },
+  "resource_selection_rows_unchanged": 4,
+  "python_tests": 520,
+  "portable_assets_verified": 683,
+  "original_620": {
+    "FILLED": 46,
+    "REMAINS_BLANK": 572,
+    "NOT_APPLICABLE": 2
+  },
+  "current_gaps": 578,
+  "filled_cells": 2456,
+  "not_applicable": 1709,
+  "blank_cells": 2287,
+  "reopened": 6,
+  "prior_gap_fills": {
+    "產品/產出": 4,
+    "礦床型態": 13,
+    "開發階段代碼": 2,
+    "開發階段類別": 2,
+    "開發階段": 10,
+    "緯度": 2,
+    "經度": 2,
+    "預估年產NdPr_t_per_year": 1,
+    "礦床型態代碼": 2,
+    "總說明": 8
+  },
+  "original_remaining_by_category": {
+    "礦床型態": 28,
+    "開發階段": 14,
+    "公司與上市資訊": 12,
+    "專案座標": 82,
+    "預估年產": 56,
+    "產品": 12,
+    "資源估算": 368
+  },
+  "changes": {
+    "FILLED": 46,
+    "UPDATED": 4,
+    "WITHDRAWN": 4
+  }
+}

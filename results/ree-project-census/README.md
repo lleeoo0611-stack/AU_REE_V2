@@ -4,6 +4,10 @@
 
 ## 現行成果
 
+本輪執行 620 格待補證的處理方案。補入 46 格，另有 2 格改判不適用。全表現有 578 格待補證。[發布說明](plan620-20261119/README.md) · [Census 總表](plan620-20261119/REE%20project%20census.csv) · [逐格處置](plan620-20261119/gap_disposition.csv)
+
+## 上一版缺值修復
+
 本輪以 732 格待補證為母體，填入 95 格，改判不適用 17 格，仍待補證 620 格。 [發布說明](evidence-repair-732-20261119/README.md) · [Census CSV](evidence-repair-732-20261119/REE%20project%20census.csv) · [逐格處置](evidence-repair-732-20261119/gap_disposition.csv)
 
 ## 前版資源複核
