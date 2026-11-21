@@ -1,0 +1,54 @@
+{
+  "version": "phase22-gap-review-20261121",
+  "cutoff": "2026-11-13",
+  "baseline": {
+    "path": "results/ree-project-census/integrated-evidence-v1-20261120/field_status.csv",
+    "sha256": "8d83fa26471ab7a7b8ff3d9f82146524fa66d47d5abf882e6f3eba50c7c4e13c"
+  },
+  "dispositions": {
+    "path": "results/ree-project-census/plan620-20261119/gap_disposition.csv",
+    "sha256": "7d87935c3cacd5c3a41c97ed52731b4b0480df26bf41bd44f36bc6312572e6a9"
+  },
+  "withdrawn_projects": [
+    "AU-5ea2535a2de9a1a3327e",
+    "AU-d99cf357d160df73387c"
+  ],
+  "withdrawn_columns": [
+    "開發階段代碼",
+    "開發階段類別",
+    "產品/產出"
+  ],
+  "priority_projects": [
+    "AU-6f0ecda27d291720036d",
+    "AU-216d0983f6892f9b58f9",
+    "AU-430f216ca620b69af5f9",
+    "AU-70fc8a7de18ad8209c32",
+    "AU-97137ef07af49e3607b2",
+    "AU-d1e3e2803f3c4287f6db"
+  ],
+  "case_reviews": [
+    {
+      "project_id": "AU-3eb7131e4daea18a60a0",
+      "columns": ["元素總和/TREO"],
+      "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+      "locator": "Physical PDF pp.2,88–89, total row 379,421,288 t, MzEq cut-off 1,957 ppm.",
+      "finding": "Appendix p88 distinguishes 344.6 ppm TREO from 374.3 ppm TREO plus yttrium oxide. The element sum includes yttrium; substituting the second denominator changes the defined ratio to the displayed TREO. Keep both published bases visible here."
+    },
+    {
+      "project_id": "AU-8c5887498873bf838e09",
+      "columns": ["礦床型態代碼"],
+      "source_sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
+      "locator": "Physical PDF pp.1,12, Coondina RC drilling, JORC geology.",
+      "finding": "The issuer interprets monzogranite on p1, but p12 explicitly leaves the REE host unresolved between alluvial/colluvial sediment and weathered granite or pegmatite."
+    },
+    {
+      "project_id": "AU-cae6c11543b0da5f840d",
+      "columns": [
+        "礦床型態代碼"
+      ],
+      "source_sha256": "1106052fbb1564fdb0788a727239f4f5987f18dcbc6cab61789ef070148ed221",
+      "locator": "Static ASX PDF pp.1–2,7: Luni drilling, oxidised and primary intervals.",
+      "finding": "Confirmed carbonatite mineralisation includes both near-surface supergene enrichment and deeper primary mineralisation. A unique deposit code for the full Luni scope is unresolved."
+    }
+  ]
+}

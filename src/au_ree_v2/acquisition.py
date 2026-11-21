@@ -1081,18 +1081,34 @@ def census_admission(root, source, registered, claim_hashes, cutoff):
                 date_basis=date_basis,date_used=used,version_status=version_status,cutoff_status=cutoff_status)
 
 
+def replay_pdf_extensions(registry, receipt_sha, static_pdfs):
+    """Accept an additive static PDF review only when the entire old registry still hashes identically."""
+    if digest(registry) == receipt_sha:
+        return []
+    added = [s for s in registry['sources'] if s.get('replay_extension_of') == receipt_sha]
+    retained = [s for s in registry['sources'] if s.get('replay_extension_of') != receipt_sha]
+    keys = [s['key'] for s in registry['sources']]
+    if (not static_pdfs or not added or len(keys) != len(set(keys))
+            or digest(dict(registry, sources=retained)) != receipt_sha
+            or any(s['kind'] != 'pdf' or not s.get('publication_date')
+                   or not s.get('reviewed_static_pdf_sha256')
+                   or s['reviewed_static_pdf_sha256'] != s.get('source_sha256') for s in added)):
+        raise ValueError('Acquisition replay source registry changed')
+    return [s['key'] for s in added]
+
+
 def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, static_pdfs=(),
                        replay_assets=None, receipt_path=None):
     """One ASX source stage. Replays use the same selected inputs and receipts."""
     from .tabular import write_csv
     from .discovery import strict_search_plan
 
+    extensions = []
     if replay:
         receipt = json.loads(Path(replay).read_text(encoding='utf8'))
         if receipt['cutoff'] != cutoff:
             raise ValueError('Acquisition replay cutoff must match --as-of')
-        if receipt['registry_sha256'] != digest(registry):
-            raise ValueError('Acquisition replay source registry changed')
+        extensions = replay_pdf_extensions(registry, receipt['registry_sha256'], static_pdfs)
         fresh = checked_snapshots(root, receipt['snapshots'], cutoff, replay_assets=replay_assets, receipt_paths=True)
         registered = {s['key']:s['kind'] for s in registry['sources']}
         if any(registered.get(s['key']) != s['kind'] for s in fresh):
@@ -1117,6 +1133,9 @@ def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, sta
         fresh = [s for s in fresh if (s.get('publication_date') or '') <= cutoff]
     if static_pdfs:
         added=static_pdf_sources(registry,claims,static_pdfs,cutoff,{s['key'] for s in fresh})
+        missing_extensions = set(extensions) - {s['key'] for s in added}
+        if missing_extensions:
+            raise ValueError('Missing verified static PDF extension: ' + ', '.join(sorted(missing_extensions)))
         checked_snapshots(root,added,cutoff)
         fresh=[*fresh,*added]
         updates={s['key']:dict(key=s['key'],host=urllib.parse.urlsplit(s['url']).hostname,
@@ -1165,6 +1184,9 @@ def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, sta
     captured = dict(receipt if replay else {}, cutoff=cutoff, registry_sha256=digest(registry),
         snapshots=[dict(portable(s), original_responses=[portable(a) for a in s.get('original_responses', [])])
                    if 'original_responses' in s else portable(s) for s in fresh], outcomes=outcomes)
+    if extensions:
+        captured['static_pdf_extension'] = dict(parent_registry_sha256=receipt['registry_sha256'],
+            parent_receipt_sha256=filehash(Path(replay)), added_keys=sorted(extensions))
     destination=Path(receipt_path) if receipt_path is not None else work/'source_acquisition.json'
     destination.parent.mkdir(parents=True,exist_ok=True)
     destination.write_text(canonical(captured)+'\n', encoding='utf8')

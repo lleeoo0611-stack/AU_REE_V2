@@ -259,6 +259,9 @@ def execute(args):
         from .runtime import analytical_runtime
         configuration.update(census_filter=list(census_filters),source_mode=mode,
                              analytical_runtime=analytical_runtime(root,args.tessdata,args.rscript))
+        gap_policy = root/'config/census_gap_review.json'
+        if gap_policy.is_file() and args.as_of == json.loads(gap_policy.read_bytes())['cutoff']:
+            configuration['census_gap_review_sha256'] = filehash(gap_policy)
     if strict:configuration['verified_claim_ids']=sorted(active_claim_ids)
     for name in ('identity_links.json','study_cases.json'):
         if (root/'data'/name).exists():configuration[name+'_sha256']=filehash(root/'data'/name)

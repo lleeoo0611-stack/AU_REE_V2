@@ -976,6 +976,10 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
         from .assays import write_assay_evidence
         coverage.update(write_census_audit(db,out,rows,trace,diagnoses,observations,bundles,
                                            resource_columns=rules['resource_columns']))
+        if configuration.get('census_gap_review_sha256'):
+            from .census_gap_review import write_gap_review
+            coverage.update(write_gap_review(root,out,rows,trace,diagnoses,sources,associations,cutoff,
+                                             configuration['census_gap_review_sha256']))
         coverage.update(write_milestones(root,out,rows,sources,observations,bundles,stage_audit,cutoff))
         if (root/'config/formal_c1_review.json').is_file():
             coverage.update(write_formal_cohort(root,out,rows,trace,sources,observations,cutoff))
@@ -1035,7 +1039,7 @@ def publish_census(root, run_dir, run_id, destination=None):
         copyfile(summary/names['summary'],staging/'REE project census.csv')
         for name in (names['provenance'],names['missing'],names['coverage']):
             copyfile(summary/name,staging/name)
-        for name in ('field_status.csv','resource_statement_observations.csv','spatial_point_quality.csv',
+        for name in ('field_status.csv','gap_review.csv','resource_statement_observations.csv','spatial_point_quality.csv',
                      'resource_statement_lineage.csv','milestone_comparison.csv','milestone_events.csv',
                      'formal_c1_gates.csv','formal_c1_panel_comparison.csv','formal_c1_release.json',
                      'assay_method_evidence.csv'):

@@ -210,7 +210,7 @@ def write_release_contract(root, out, run_id, mode, cutoff, version, configurati
             read_rows(panel_dir/'matrix.csv'), read_rows(panel_dir/'ranking.csv'))
     evidence_files = ('formal_c1_gates.csv', 'formal_c1_panel_comparison.csv','formal_c1_release.json',
                       'milestone_events.csv','milestone_comparison.csv','assay_method_evidence.csv',
-                      'resource_statement_observations.csv','resource_statement_lineage.csv')
+                      'resource_statement_observations.csv','resource_statement_lineage.csv','gap_review.csv')
     evidence_hashes = {name:filehash(project_summary/name) for name in evidence_files if (project_summary/name).is_file()}
     formal_file = project_summary/'formal_c1_release.json'
     formal = json.loads(formal_file.read_text(encoding='utf8')) if formal_file.is_file() else {}
