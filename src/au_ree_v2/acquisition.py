@@ -224,6 +224,9 @@ def refresh(root, registry):
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     outcomes = []
     for source in registry['sources']:
+        if source['kind'] == ASIC_REGISTER_KIND:
+            outcomes.append({'key': source['key'], 'status': 'MANAGED_BY_CENSUS_ACQUISITION'})
+            continue
         try:
             pages=[]
             def archive(raw):
@@ -1053,38 +1056,42 @@ def static_pdf_sources(registry, claims, directories, cutoff, already_selected, 
         if not publication or date_end(publication)>cutoff:
             continue
         pending.append((source,next(iter(expected))))
-    wanted={sha for _,sha in pending}
+    wanted={(source['kind'],sha) for source,sha in pending}
+    hashes={sha for _,sha in wanted}
     paths={}
     files=set()
+    suffixes={'.pdf', '.zip'} if any(kind==ASIC_REGISTER_KIND for kind,_ in wanted) else {'.pdf'}
     for directory in directories:
         folder=Path(directory).resolve(strict=True)
         if not folder.is_dir():
             raise ValueError(f'Static PDF library must be a directory: {folder}')
-        suffixes={'.pdf'}
-        if any(s['kind']==ASIC_REGISTER_KIND for s,_ in pending):
-            suffixes.add('.zip')
         files.update(p for p in folder.rglob('*') if p.suffix.lower() in suffixes and p.is_file())
-    for path in sorted(files,key=lambda p:(p.stem not in wanted,str(p))):
+    for path in sorted(files,key=lambda p:(p.stem not in hashes,str(p))):
         if wanted<=paths.keys():
             break
         with path.open('rb') as stream:
             signature=stream.read(5)
-            if signature!=b'%PDF-' and not signature.startswith(b'PK\x03\x04'):
+            if path.suffix.lower()=='.pdf' and signature==b'%PDF-':
+                kind='pdf'
+            elif path.suffix.lower()=='.zip' and signature.startswith(b'PK\x03\x04'):
+                kind=ASIC_REGISTER_KIND
+            else:
                 continue
         sha=filehash(path)
-        if sha in wanted:
-            paths.setdefault(sha,path.resolve())
+        if (kind,sha) in wanted:
+            paths.setdefault((kind,sha),path.resolve())
     now=datetime.now(timezone.utc).isoformat()
     selected=[]
     for source,sha in pending:
-        if sha in paths:
+        path=paths.get((source['kind'],sha))
+        if path is not None:
             if source['kind']==ASIC_REGISTER_KIND:
-                capture=asic_capture_date(root,source,paths[sha],sha)
+                capture=asic_capture_date(root,source,path,sha)
                 if capture<=cutoff:
-                    selected.append(dict(source,sha256=sha,path=str(paths[sha]),acquired_at=now,
+                    selected.append(dict(source,sha256=sha,path=str(path),acquired_at=now,
                         available_date=capture,acquisition_method='STATIC_ASIC_REGISTER_SHA_VERIFIED'))
                 continue
-            selected.append(dict(source,sha256=sha,path=str(paths[sha]),
+            selected.append(dict(source,sha256=sha,path=str(path),
                 acquired_at=now,available_date=now[:10],acquisition_method='STATIC_PDF_SHA_VERIFIED'))
     return selected
 
