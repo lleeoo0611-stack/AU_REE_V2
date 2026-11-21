@@ -1103,11 +1103,16 @@ def summary_missing(column, project, row, bundle, registry, sources, source_erro
         developer = row.get('開發商', '')
         for evidence in verified_attributes:
             markers = evidence.get('page_markers', [])
+            registration = evidence.get('asic_proprietary_company', {})
+            direct_status = {'Unlisted Private Company', 'Unlisted Public Company'}.intersection(markers)
             if (evidence['column'] == '未上市公司' and evidence['value'] == '是'
                     and developer and developer in markers
-                    and {'Unlisted Private Company', 'Unlisted Public Company'}.intersection(markers)):
+                    and (direct_status or registration.get('company') == developer)):
                 proof = dict(source_sha256=evidence['source_sha256'], pdf_page=evidence['pdf_page'],
                              effective_date=evidence['effective_date'], developer=developer)
+                if registration:
+                    proof.update(register_sha256=registration['source_sha256'], acn=registration['acn'],
+                                 register_line=registration['physical_line'], register_date=registration['register_date'])
                 if findings is not None:
                     findings.append(dict(kind='DATED_OPERATOR_LISTING', **proof))
                 return 'NOT_APPLICABLE_UNLISTED_DEVELOPER', canonical(proof)

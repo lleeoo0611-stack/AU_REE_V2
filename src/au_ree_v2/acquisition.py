@@ -6,6 +6,7 @@ import urllib.error
 import time
 import socket
 import re
+import zipfile
 from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone
 from pathlib import Path
@@ -416,7 +417,7 @@ gov={'services.ga.gov.au','public-services.slip.wa.gov.au','spatial-gis.informat
 delivery={'warsydprdstagsdspub.blob.core.windows.net','gsq-prod-ckan-horizon-public.s3.ap-southeast-2.amazonaws.com'}
 groups={
     'government-api':gov,
-    'government-resource':delivery|{'www.wa.gov.au','international.austrade.gov.au','www.industry.gov.au','dem-sdp.s3-ap-southeast-2.amazonaws.com'},
+    'government-resource':delivery|{'data.gov.au','www.wa.gov.au','international.austrade.gov.au','www.industry.gov.au','dem-sdp.s3-ap-southeast-2.amazonaws.com'},
     'asx':{'announcements.asx.com.au','www.asx.com.au'},
     'issuer-ir':{'investorpa.com','orbitresources.au','www.itechminerals.com.au','asm-au.com','www.arultd.com','www.astronlimited.com.au','victorymetalsaustralia.com','www.devexresources.com.au','www.gippslandcriticalminerals.com','www.iluka.com','wcsecure.weblink.com.au','hermes-cdn.investorhub.com','staff-web.automicgroup.com.au','assets.birdsoftware.io','assets.ctfassets.net'},
     'aggregator':{'api.investi.com.au','company-announcements.afr.com','newswire.iguana2.com','www.marketindex.com.au','cdn-api.markitdigital.com','cdn.financialreports.eu','data-api.marketindex.com.au','investornews.com','www.annualreports.com','www.londonstockexchange.com'},
@@ -872,6 +873,9 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
                     candidate_mismatch=True
                 if raw is None:raise ValueError('SOURCE_SHA_CHANGED' if attempted else 'WAMEX_NO_ELIGIBLE_DOCUMENT')
             elif source['kind']=='minedex_resource_batch':raw,headers=minedex_resource_batch(source['url'],source['product_alias'],fetch=transport)
+            elif source['kind']==ASIC_REGISTER_KIND:
+                raw,headers=transport(source['url'],timeout=source.get('timeout_seconds',60),
+                                      max_bytes=min(source.get('max_bytes',100_000_000),100_000_000))
             elif source.get('fixed_query'):raw,headers=transport(source['url'],max_bytes=source.get('max_bytes',50_000_000))
             elif source['kind'] in ('arcgis_census','arcgis_gis','government_arcgis'):
                 raw=(canonical(arcgis(source['url'],source.get('where','1=1'),windows=project_windows(root,{'snapshots':manifest},source['aoi_radius_km']) if source.get('aoi_radius_km') else None,fetch=transport))+'\n').encode();headers={}
@@ -898,12 +902,14 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
             row['sha_match'] = compared_sha in expected if expected else None
             if expected and compared_sha not in expected:
                 raise ValueError('SOURCE_SHA_CHANGED')
-            suffix='.pdf' if source['kind']=='pdf' else '.xlsx' if source['kind']=='xlsx_census' else '.zip' if source['kind']=='minedex_resource_batch' else '.csv' if source['kind']=='government_csv' else '.html' if source['kind']=='html' else '.json'
+            suffix='.pdf' if source['kind']=='pdf' else '.xlsx' if source['kind']=='xlsx_census' else '.zip' if source['kind'] in ('minedex_resource_batch',ASIC_REGISTER_KIND) else '.csv' if source['kind']=='government_csv' else '.html' if source['kind']=='html' else '.json'
             path=cache/(sha+suffix);path.write_bytes(raw)
             now=datetime.now(timezone.utc).isoformat()
             entry=dict(source,sha256=sha,path=str(path),acquired_at=now,available_date=now[:10])
             entry.update(hash_metadata)
             entry = evidenced_snapshot(root, entry, cutoff)
+            if source['kind']==ASIC_REGISTER_KIND:
+                entry['available_date']=asic_capture_date(root,source,path,sha)
             if source['kind']=='minedex_resource_batch':
                 entry.update(source_update=headers['X-DASC-Updated'],resolved_download_url=headers['X-DASC-Download'],last_modified=headers.get('Last-Modified'))
                 entry['publication_date']=datetime.strptime(headers['X-DASC-Updated'],'%d/%m/%Y').date().isoformat()
@@ -983,17 +989,53 @@ def checked_snapshots(root, snapshots, cutoff, acquired_through=None, *, replay_
     return snapshots
 
 
-def static_pdf_sources(registry, claims, directories, cutoff, already_selected):
-    """Resolve approved ASX and other PDF originals by bytes, never by title or filename."""
+ASIC_REGISTER_KIND = 'asic_company_register_zip'
+
+
+def asic_capture_date(root, source, archive, sha):
+    """Verify the original monthly ASIC ZIP and the independently archived publisher metadata."""
+    metadata_sha = source.get('archive_manifest_sha256', '')
+    if (not re.fullmatch('[0-9a-f]{64}', metadata_sha)
+            or sha != source.get('source_sha256') or sha != source.get('reviewed_static_archive_sha256')):
+        raise ValueError('ASIC archive or manifest SHA is not pinned')
+    metadata_path = Path(root) / 'data' / 'snapshots' / (metadata_sha + '.json')
+    if not metadata_path.is_file() or filehash(metadata_path) != metadata_sha:
+        raise ValueError('ASIC archive manifest checksum mismatch')
+    data = json.loads(metadata_path.read_bytes())
+    upstream = data['source']
+    publication = source['publication_date']
+    filename = 'company_' + publication[:7].replace('-', '') + '.zip'
+    base = 'https://data.gov.au/data/dataset/7b8656f9-606d-4337-af29-66b89b2eeefb/resource/'
+    official = base + 'd6d03876-71a4-4e82-8c77-2e4df5da4236/download/' + filename
+    capture = datetime.fromisoformat(data['fetched_at'])
+    modified = parsedate_to_datetime(upstream['http_last_modified'])
+    catalogue_date = datetime.fromisoformat(upstream['resource_last_modified']).date().isoformat()
+    if (data['dataset'] != 'asic-companies' or data.get('backfilled') is not False or data.get('tombstone')
+            or data['version'] != publication or data['filename'] != filename or data['encoding'] != 'zip'
+            or upstream['url'] != official or source['url'] != official
+            or source['archive_manifest_url'] != f'https://publicdata.au/d/asic-companies/v/{publication}/manifest.json'
+            or data['sha256'] != sha or data['bytes'] != Path(archive).stat().st_size
+            or not capture.tzinfo or not modified.tzinfo or capture < modified
+            or modified.date().isoformat() != publication or catalogue_date != publication):
+        raise ValueError('ASIC register version or publisher date mismatch')
+    with zipfile.ZipFile(archive) as dataset:
+        members = [entry.filename for entry in dataset.infolist() if not entry.is_dir()]
+        if members != [source['archive_member']]:
+            raise ValueError('ASIC register ZIP member mismatch')
+    return capture.astimezone(timezone.utc).date().isoformat()
+
+
+def static_pdf_sources(registry, claims, directories, cutoff, already_selected, *, root=None):
+    """Resolve registered PDF and ASIC archive originals in the same static library by their bytes."""
     from .selection import date_end
 
     declared, bindings=declared_source_hashes(registry,claims)
     pending=[]
     for source in registry['sources']:
         key=source['key']
-        if source['kind']!='pdf' or key in already_selected:
+        if source['kind'] not in ('pdf', ASIC_REGISTER_KIND) or key in already_selected:
             continue
-        pin=source.get('reviewed_static_pdf_sha256')
+        pin=source.get('reviewed_static_archive_sha256' if source['kind']==ASIC_REGISTER_KIND else 'reviewed_static_pdf_sha256')
         if pin:
             # A reviewed local version can have the same landing URL as another
             # version. The pin does not grant access to that remote URL.
@@ -1018,12 +1060,16 @@ def static_pdf_sources(registry, claims, directories, cutoff, already_selected):
         folder=Path(directory).resolve(strict=True)
         if not folder.is_dir():
             raise ValueError(f'Static PDF library must be a directory: {folder}')
-        files.update(p for p in folder.rglob('*') if p.suffix.lower()=='.pdf' and p.is_file())
+        suffixes={'.pdf'}
+        if any(s['kind']==ASIC_REGISTER_KIND for s,_ in pending):
+            suffixes.add('.zip')
+        files.update(p for p in folder.rglob('*') if p.suffix.lower() in suffixes and p.is_file())
     for path in sorted(files,key=lambda p:(p.stem not in wanted,str(p))):
         if wanted<=paths.keys():
             break
         with path.open('rb') as stream:
-            if stream.read(5)!=b'%PDF-':
+            signature=stream.read(5)
+            if signature!=b'%PDF-' and not signature.startswith(b'PK\x03\x04'):
                 continue
         sha=filehash(path)
         if sha in wanted:
@@ -1032,6 +1078,12 @@ def static_pdf_sources(registry, claims, directories, cutoff, already_selected):
     selected=[]
     for source,sha in pending:
         if sha in paths:
+            if source['kind']==ASIC_REGISTER_KIND:
+                capture=asic_capture_date(root,source,paths[sha],sha)
+                if capture<=cutoff:
+                    selected.append(dict(source,sha256=sha,path=str(paths[sha]),acquired_at=now,
+                        available_date=capture,acquisition_method='STATIC_ASIC_REGISTER_SHA_VERIFIED'))
+                continue
             selected.append(dict(source,sha256=sha,path=str(paths[sha]),
                 acquired_at=now,available_date=now[:10],acquisition_method='STATIC_PDF_SHA_VERIFIED'))
     return selected
@@ -1066,6 +1118,14 @@ def census_admission(root, source, registered, claim_hashes, cutoff):
             interval_mismatch = month_interval != [month + '-01', used]
     after_cutoff = used>cutoff or (publication and date_end(publication)>cutoff)
     cutoff_status = ('SOURCE_AFTER_CUTOFF' if after_cutoff else 'WITHIN_CUTOFF' if used else 'SOURCE_DATE_UNVERIFIED')
+    if kind==ASIC_REGISTER_KIND:
+        capture=asic_capture_date(root, registered, Path(root)/source['path'], sha)
+        date_basis='ARCHIVED_PUBLISHER_VERSION'
+        used=capture
+        if publication!=registered_publication or capture!=availability:
+            cutoff_status='SOURCE_PUBLICATION_DATE_MISMATCH'
+        elif capture>cutoff:
+            cutoff_status='SOURCE_AFTER_CUTOFF'
     approved = {h for h in (registered.get('source_sha256'), registered.get('committed_snapshot_sha256'),
                              registered.get('reviewed_static_pdf_sha256')) if h} | claim_hashes.get(key,set())
     version_status = 'PINNED_SHA_VERIFIED' if sha in approved else 'RECEIPT_SHA_VERIFIED'
@@ -1090,9 +1150,10 @@ def replay_pdf_extensions(registry, receipt_sha, static_pdfs):
     keys = [s['key'] for s in registry['sources']]
     if (not static_pdfs or not added or len(keys) != len(set(keys))
             or digest(dict(registry, sources=retained)) != receipt_sha
-            or any(s['kind'] != 'pdf' or not s.get('publication_date')
-                   or not s.get('reviewed_static_pdf_sha256')
-                   or s['reviewed_static_pdf_sha256'] != s.get('source_sha256') for s in added)):
+            or any(not s.get('publication_date') or not s.get('source_sha256') or
+                   (s['kind'], s['source_sha256']) not in (
+                       ('pdf', s.get('reviewed_static_pdf_sha256')),
+                       (ASIC_REGISTER_KIND, s.get('reviewed_static_archive_sha256'))) for s in added)):
         raise ValueError('Acquisition replay source registry changed')
     return [s['key'] for s in added]
 
@@ -1132,7 +1193,7 @@ def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, sta
         # A downloaded future publication remains an acquisition receipt.
         fresh = [s for s in fresh if (s.get('publication_date') or '') <= cutoff]
     if static_pdfs:
-        added=static_pdf_sources(registry,claims,static_pdfs,cutoff,{s['key'] for s in fresh})
+        added=static_pdf_sources(registry,claims,static_pdfs,cutoff,{s['key'] for s in fresh},root=root)
         missing_extensions = set(extensions) - {s['key'] for s in added}
         if missing_extensions:
             raise ValueError('Missing verified static PDF extension: ' + ', '.join(sorted(missing_extensions)))

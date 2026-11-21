@@ -6186,10 +6186,28 @@
                 "method": "FORECAST_CONTAINED_TREO_X_CONCENTRATE_NDPR_OXIDE_SHARE",
                 "page": 109,
                 "share_basis": "DFS_EXPECTED_RECOVERED_REO_IN_CONCENTRATE",
-                "composition_label_bbox": [112, 179, 214, 199],
-                "price_label_bbox": [393, 179, 474, 199],
-                "shares_bbox": [177, 58, 248, 80],
-                "oxide_share_percent": {"Pr": 0.3, "Nd": 1.7},
+                "composition_label_bbox": [
+                  112,
+                  179,
+                  214,
+                  199
+                ],
+                "price_label_bbox": [
+                  393,
+                  179,
+                  474,
+                  199
+                ],
+                "shares_bbox": [
+                  177,
+                  58,
+                  248,
+                  80
+                ],
+                "oxide_share_percent": {
+                  "Pr": 0.3,
+                  "Nd": 1.7
+                },
                 "contained_treo_tpa": 4350
               }
             },
@@ -195171,6 +195189,37 @@
           "statement_id": "census_project_status_20261119_charley-creek-north-uro-el33004-historical",
           "context_evidence": [],
           "attribute_id": "2861a2e5081d5d69af195d55b4fc72cef3fa20c6068cffb26b09e06bd9ed363d"
+        },
+        {
+          "column": "未上市公司",
+          "value": "是",
+          "source_key": "reviewed_source_e6bed25382926c6d",
+          "source_sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+          "pdf_page": 1,
+          "page_markers": [
+            "URO Corporation Pty Ltd",
+            "EL33004",
+            "22 August 2024",
+            "Title Holder: URO Corporation Pty Ltd"
+          ],
+          "effective_date": "2024-08-22",
+          "extraction_method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "review_id": "asic-uro-charley-creek-north-uro-el33004-historical",
+          "locator": "Physical PDF p1, EL33004, 22 August 2024; ASIC company register 2026-11-02, COMPANY_202611.csv line 2849732, ACN 653927998, ABN 24653927998; c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+          "scope": "Historical URO legal entity on the dated project report. ASIC APTY / LMSH / PROP, registered 23 September 2021. Corporations Act s148(5) and ABR entity type Australian Private Company (https://abr.business.gov.au/Help/EntityTypeDescription?Id=19).",
+          "asic_proprietary_company": {
+            "source_key": "asic_company_register_20261102",
+            "source_sha256": "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+            "archive_member": "COMPANY_202611.csv",
+            "physical_line": 2849732,
+            "acn": "653927998",
+            "abn": "24653927998",
+            "company": "URO Corporation Pty Ltd",
+            "dated_marker": "22 August 2024",
+            "project_marker": "EL33004",
+            "register_date": "2026-11-02"
+          }
         }
       ]
     },
@@ -195323,6 +195372,37 @@
           "statement_id": "census_project_status_20261119_charley-creek-north-east-uro-el33000-historical",
           "context_evidence": [],
           "attribute_id": "b95abbe6e975fb3f288537140ac0fd30616e234ecb6d588b34b4238593f6404d"
+        },
+        {
+          "column": "未上市公司",
+          "value": "是",
+          "source_key": "reviewed_source_06916f0c5d2b6e1c",
+          "source_sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+          "pdf_page": 1,
+          "page_markers": [
+            "URO Corporation Pty Ltd",
+            "EL33000",
+            "22 August 2024",
+            "Title Holder: URO Corporation Pty Ltd"
+          ],
+          "effective_date": "2024-08-22",
+          "extraction_method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "review_id": "asic-uro-charley-creek-north-east-uro-el33000-historical",
+          "locator": "Physical PDF p1, EL33000, 22 August 2024; ASIC company register 2026-11-02, COMPANY_202611.csv line 2849732, ACN 653927998, ABN 24653927998; c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+          "scope": "Historical URO legal entity on the dated project report. ASIC APTY / LMSH / PROP, registered 23 September 2021. Corporations Act s148(5) and ABR entity type Australian Private Company (https://abr.business.gov.au/Help/EntityTypeDescription?Id=19).",
+          "asic_proprietary_company": {
+            "source_key": "asic_company_register_20261102",
+            "source_sha256": "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+            "archive_member": "COMPANY_202611.csv",
+            "physical_line": 2849732,
+            "acn": "653927998",
+            "abn": "24653927998",
+            "company": "URO Corporation Pty Ltd",
+            "dated_marker": "22 August 2024",
+            "project_marker": "EL33000",
+            "register_date": "2026-11-02"
+          }
         }
       ]
     },
@@ -195449,6 +195529,37 @@
           "statement_id": "census_project_status_20261119_charley-creek-south-east-uro-el33006-historical",
           "context_evidence": [],
           "attribute_id": "e8a37ee182c7d074c07054abd6e838c6ba30fc0137bb440f486a4a85d813a58e"
+        },
+        {
+          "column": "未上市公司",
+          "value": "是",
+          "source_key": "reviewed_source_e37750161e156498",
+          "source_sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+          "pdf_page": 1,
+          "page_markers": [
+            "URO Corporation Pty Ltd",
+            "EL33006",
+            "22 August 2024",
+            "Title Holder: URO Corporation Pty Ltd"
+          ],
+          "effective_date": "2024-08-22",
+          "extraction_method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "review_id": "asic-uro-charley-creek-south-east-uro-el33006-historical",
+          "locator": "Physical PDF p1, EL33006, 22 August 2024; ASIC company register 2026-11-02, COMPANY_202611.csv line 2849732, ACN 653927998, ABN 24653927998; c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+          "scope": "Historical URO legal entity on the dated project report. ASIC APTY / LMSH / PROP, registered 23 September 2021. Corporations Act s148(5) and ABR entity type Australian Private Company (https://abr.business.gov.au/Help/EntityTypeDescription?Id=19).",
+          "asic_proprietary_company": {
+            "source_key": "asic_company_register_20261102",
+            "source_sha256": "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+            "archive_member": "COMPANY_202611.csv",
+            "physical_line": 2849732,
+            "acn": "653927998",
+            "abn": "24653927998",
+            "company": "URO Corporation Pty Ltd",
+            "dated_marker": "22 August 2024",
+            "project_marker": "EL33006",
+            "register_date": "2026-11-02"
+          }
         }
       ]
     },
@@ -195578,6 +195689,37 @@
           "statement_id": "census_project_status_20261119_charley-creek-south-uro-gr617-historical",
           "context_evidence": [],
           "attribute_id": "0e880c27d94a47ff801d6e436677e07a09e4b3282084632a681cf73256daf4b7"
+        },
+        {
+          "column": "未上市公司",
+          "value": "是",
+          "source_key": "reviewed_source_5d4d954c63513e05",
+          "source_sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59",
+          "pdf_page": 4,
+          "page_markers": [
+            "URO Corporation Pty Ltd",
+            "EL33054 and EL33055",
+            "14th August 2025",
+            "The Company holds a 100% interest in both tenements."
+          ],
+          "effective_date": "2025-08-14",
+          "extraction_method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "review_id": "asic-uro-charley-creek-south-uro-gr617-historical",
+          "locator": "Physical PDF p4, EL33054 and EL33055, 14th August 2025; ASIC company register 2026-11-02, COMPANY_202611.csv line 2849732, ACN 653927998, ABN 24653927998; c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+          "scope": "Historical URO legal entity on the dated project report. ASIC APTY / LMSH / PROP, registered 23 September 2021. Corporations Act s148(5) and ABR entity type Australian Private Company (https://abr.business.gov.au/Help/EntityTypeDescription?Id=19).",
+          "asic_proprietary_company": {
+            "source_key": "asic_company_register_20261102",
+            "source_sha256": "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+            "archive_member": "COMPANY_202611.csv",
+            "physical_line": 2849732,
+            "acn": "653927998",
+            "abn": "24653927998",
+            "company": "URO Corporation Pty Ltd",
+            "dated_marker": "14th August 2025",
+            "project_marker": "EL33054 and EL33055",
+            "register_date": "2026-11-02"
+          }
         }
       ]
     }
