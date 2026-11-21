@@ -314,6 +314,19 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions, *, rea
                 source = matches[0]
                 sha = source['sha256']
         if not source:continue
+        for notice in registered.get('statutory_title_maps', []):
+            if notice['project_id'] != pid or state != 'NT' or not summary_decision(decisions,'TENEMENT_CENTROID_RESEARCHER_APPROVED'):
+                continue
+            from .statutory_tenure import statutory_extent
+            reviewed = statutory_extent(source, sources, notice, row, cutoff, rules['tenement_precision_m'])
+            if reviewed and reviewed['accepted']:
+                add(reviewed['longitude'], reviewed['latitude'], sha, 'ROUND4_TENEMENT_CENTROID_RESEARCHER_APPROVED',
+                    'Mining Notice '+reviewed['notice_id']+' p1; EL'+notice['licence'], reviewed)
+                return fills
+            if reviewed and extent_rejections is not None:
+                extent_rejections.append(dict(kind='TENEMENT_CENTROID_REVIEW', source_key=source['key'],
+                    source_sha256=sha, limit_m=rules['tenement_precision_m'],
+                    **{k:reviewed[k] for k in ('reason','precision_m','tenement_ids','notice_id','block_count') if k in reviewed}))
         bindings=[b for b in registered.get('summary_bindings',[]) if b['project_id']==pid]
         if bindings:
             data=read_json(source['resolved_path'])

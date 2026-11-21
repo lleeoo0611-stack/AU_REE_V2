@@ -3,7 +3,7 @@ import json
 import unittest
 from pathlib import Path
 
-from tools.compare_census_release import (cell_changes, index, panel_result, records_delta,
+from tools.compare_census_release import (cell_changes, followup_rows, index, panel_result, records_delta,
                                            release, state, transition)
 
 
@@ -12,6 +12,21 @@ BASE = ROOT/'results/ree-project-census/plan620-20261119'
 
 
 class CensusComparisonTests(unittest.TestCase):
+    def test_followup_rechecks_exact_prior_targets_and_reads_values_from_release(self):
+        key = ('P1', '緯度')
+        old = dict(states={key:'UNKNOWN'}, status={key:{'status':'LOCATION_PENDING'}})
+        new = dict(states={key:'PRESENT'}, status={key:{'status':'VALUE_PRESENT'}},
+                   trace={key:{'source_sha256':'s', 'locator':'p3'}}, cells={key:'-23.5'},
+                   population={('P1',):{'專案名稱':'Project 1'}})
+        prior = [{'project_id':'P1', 'column':'緯度', 'class':'E2', 'current_status':'LOCATION_PENDING'}]
+        note = dict(prior[0], finding='Reviewed dated boundary', reviewed_evidence='survey p3',
+                    reopen_if='Boundary revision', current_value='999', outcome='HELD')
+        row, = followup_rows(old, new, prior, [note])
+        self.assertEqual((row['outcome'],row['current_value']),('FILLED','-23.5'))
+        for bad in ([], [note,note], [dict(note, **{'class':'E1'})]):
+            with self.assertRaises(ValueError):
+                followup_rows(old, new, prior, bad)
+
     def test_missing_and_inapplicable_are_not_counted_as_additions(self):
         self.assertEqual(transition('','','NOT_APPLICABLE','UNKNOWN'),'REOPENED')
         self.assertEqual(transition('','','UNKNOWN','NOT_APPLICABLE'),'RECLASSIFIED_NOT_APPLICABLE')

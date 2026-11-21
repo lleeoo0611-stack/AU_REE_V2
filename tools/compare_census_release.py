@@ -162,7 +162,35 @@ def panel_result(name, old, new):
                 changed_or_unavailable_hashes={f:[ha.get(f),hb.get(f)] for f in files if compared[f]!='SAME'})
 
 
-def compare(before, after, out):
+def followup_rows(old, new, earlier, notes):
+    """Attach review notes to precisely the prior release's still-active cells."""
+    prior = index(earlier, CELL_KEY)
+    active = {key for key, row in prior.items()
+              if row['class'] not in ('P1', 'P2', 'D2') and old['states'][key] == 'UNKNOWN'}
+    reviewed = index(notes, CELL_KEY)
+    if reviewed.keys() != active:
+        raise ValueError('Follow-up review does not match the previous active Census cohort')
+    rows = []
+    outcomes = {'PRESENT': 'FILLED', 'NOT_APPLICABLE': 'RECLASSIFIED_NOT_APPLICABLE', 'UNKNOWN': 'HELD'}
+    for key in sorted(active):
+        record, note = prior[key], reviewed[key]
+        if record['current_status'] != old['status'][key]['status'] or record['class'] != note['class']:
+            raise ValueError(f'Follow-up baseline mismatch: {key}')
+        if not all(note[field].strip() for field in ('finding', 'reviewed_evidence', 'reopen_if')):
+            raise ValueError(f'Incomplete follow-up evidence: {key}')
+        pid, column = key
+        trace = new['trace'][key]
+        rows.append(dict(project_id=pid, project_name=new['population'][pid,]['專案名稱'],
+                         column=column, **{'class': record['class']},
+                         outcome=outcomes[new['states'][key]], current_value=new['cells'][key],
+                         previous_status=record['current_status'], current_status=new['status'][key]['status'],
+                         source_sha256=trace['source_sha256'], locator=trace['locator'],
+                         finding=note['finding'], reviewed_evidence=note['reviewed_evidence'],
+                         reopen_if=note['reopen_if']))
+    return rows
+
+
+def compare(before, after, out, *, review_notes=None):
     old,new = (release(Path(x)) for x in (before,after))
     delta = cell_changes(old,new)
     def both(name):
@@ -210,6 +238,14 @@ def compare(before, after, out):
                                                ('canonical_project_id','score','scope','case_id','evidence_status','evidence')),
                  spatial=gis,
                  panel_hash_basis='Each ranking.csv rehashed; unpublished matrices and sensitivity tables compared using their release manifest SHA-256. Missing digests mean unavailable.')
+    if review_notes is not None:
+        rows = followup_rows(old, new, required_csv(old['folder'], 'gap_review.csv'), read_csv(review_notes))
+        fields = ('project_id', 'project_name', 'column', 'class', 'outcome', 'current_value',
+                  'previous_status', 'current_status', 'source_sha256', 'locator', 'finding',
+                  'reviewed_evidence', 'reopen_if')
+        write_csv(out/'followup_review.csv', rows, fields)
+        summary['followup'] = dict(active_at_baseline=len(rows), outcomes=count(rows, 'outcome'),
+                                   remaining_by_class=count([r for r in rows if r['outcome']=='HELD'], 'class'))
     (out/'research_comparison.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     return summary
 
@@ -218,5 +254,6 @@ if __name__ == '__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('before',type=Path); parser.add_argument('after',type=Path)
     parser.add_argument('--out',required=True,type=Path)
+    parser.add_argument('--review-notes', type=Path, help='Case notes for all previously active cells; a published followup_review.csv can be replayed.')
     args=parser.parse_args()
-    print(json.dumps(compare(args.before,args.after,args.out)['census'],ensure_ascii=False))
+    print(json.dumps(compare(args.before,args.after,args.out,review_notes=args.review_notes)['census'],ensure_ascii=False))
