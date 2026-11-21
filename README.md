@@ -1,5 +1,15 @@
 # AU_REE_V2
 
+## Phase 22 × ASX 的 173 格續查
+
+本輪追查 80 格座標、39 格礦床或開發階段分類，以及其他 54 格。兩版研究截日同為 2026-11-13，覆蓋率沿用原分母 3,034 格。[本輪總表與驗收](results/ree-project-census/gap173-20261122/README.md) · [逐格處置與來源](results/ree-project-census/gap173-20261122/followup_review.csv)
+
+持有本輪原件套件時可從空工作目錄重建全部結果。
+
+```sh
+au-ree-v2 all --source-mode offline --as-of 2026-11-13 --source-replay results/ree-project-census/gap173-20261122/source_acquisition.json --replay-assets KIT/assets --tessdata data/ocr --work work/replay173
+```
+
 ## Phase 22 × ASX 的 189 格補證與重播
 
 本輪沿用 2026-11-13 的研究截日，以原來的 3,034 個適用格比較覆蓋率。新總表、逐格補證紀錄、排名差異及重播收據見[本輪驗收](results/ree-project-census/gap189-20261122/README.md)。
