@@ -33,7 +33,7 @@ class GapReviewTests(unittest.TestCase):
                 'E2':38,'E3':44,'E4':41,'E5':12,'E6':12,'R':6})
             self.assertEqual(report['active_target_outcomes']['RECLASSIFIED_NOT_APPLICABLE'], 1)
             ledger = read_csv(Path(tmp)/'gap_review.csv')
-            goschen = next(x for x in ledger if 'Goschen Area 1' in x['project_name']
+            goschen = next(x for x in ledger if x['project_id'] == 'AU-6d807eb7caec9db0f35e'
                            and x['column'].startswith('完整重稀土'))
             self.assertEqual(set(goschen['still_missing_components'].split('|')), {'Ho2O3','Lu2O3'})
 
