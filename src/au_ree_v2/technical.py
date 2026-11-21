@@ -1326,6 +1326,108 @@ def summary_annual_region(page, rect):
 
 
 NAMEPLATE_NDPR_METHOD = 'NAMEPLATE_CONTAINED_TREO_X_PRODUCT_NDPR_SHARE'
+WHOLE_PLAN_ANNUAL_METHOD = 'PUBLISHED_WHOLE_PLAN_AVERAGE_VERIFIED_ANNUAL_PERIOD'
+CONCENTRATE_NDPR_SHARE_METHOD = 'FORECAST_CONTAINED_TREO_X_CONCENTRATE_NDPR_OXIDE_SHARE'
+
+
+def verify_forecast_concentrate_share(doc, review, study, spec, parameter, value):
+    """Bind the oxide assemblage in the recovered concentrate separately from its prices."""
+    import pymupdf
+
+    if (parameter != 'average_annual_ndpr_product_t' or study['endpoint'] != 'MINERAL_CONCENTRATE'
+            or spec['share_basis'] != 'DFS_EXPECTED_RECOVERED_REO_IN_CONCENTRATE'):
+        raise ValueError('FORECAST_CONCENTRATE_NDPR_BASIS')
+    treo_field = 'average_annual_treo_product_t'
+    rate = study['parameters'][treo_field]
+    binding = study['parameter_bindings'][treo_field]
+    if rate != spec['contained_treo_tpa'] or binding['original_unit'] != 'tpa':
+        raise ValueError('FORECAST_CONTAINED_TREO_RATE')
+    summary_annual_cell(doc, binding, treo_field, str(rate), 'tpa', review['scope'], study['selected_scenario'])
+    if not isinstance(spec['page'], int) or not 1 <= spec['page'] <= len(doc):
+        raise ValueError('FORECAST_CONCENTRATE_ASSEMBLAGE_PAGE')
+    page = doc[spec['page'] - 1]
+    text = summary_annual_norm(page.get_text()).replace('\x07', '')
+    if ('figure 42 browns range concentrate expected reo assemblage and basket value' not in text
+            or 'based on dfs expected process plant recoveries of individual reos in concentrate.' not in text):
+        raise ValueError('FORECAST_CONCENTRATE_ASSEMBLAGE_FIGURE')
+    composition, price, shares = (pymupdf.Rect(spec[key]) for key in
+                                  ('composition_label_bbox', 'price_label_bbox', 'shares_bbox'))
+    split = (composition.x1 + price.x0) / 2
+    if (not all(page.rect.contains(rect) for rect in (composition, price, shares))
+            or composition.x1 >= price.x0 or shares.x1 >= split or shares.y1 >= composition.y0
+            or summary_annual_region(page, composition) != 'REO Assemblage1'
+            or summary_annual_region(page, price) != 'Basket Value2'):
+        raise ValueError('FORECAST_CONCENTRATE_MASS_OR_PRICE')
+    tokens = re.fullmatch(r'Praseodymium ([\d.]+)% Neodymium ([\d.]+)%', summary_annual_region(page, shares))
+    if not tokens:
+        raise ValueError('FORECAST_CONCENTRATE_NDPR_SHARES')
+    pr, nd = map(float, tokens.groups())
+    if (not 0 < pr + nd <= 100 or spec['oxide_share_percent'] != {'Pr': pr, 'Nd': nd}
+            or not math.isclose(value, rate * (pr + nd) / 100, rel_tol=1e-12)):
+        raise ValueError('FORECAST_CONCENTRATE_NDPR_CALCULATION')
+
+
+def verified_whole_plan_average(doc, study, parameter, value, sources, cutoff):
+    """Read North Stanmore's total average. Verify its time basis across both PFS disclosures."""
+    import pymupdf
+
+    proof = study['annual_period_confirmation']
+    source = sources.get(proof['confirmation_source_sha256'])
+    if (not source or source['key'] != proof['confirmation_source_key'] or
+            not source.get('publication_date') or source['publication_date'] > cutoff):
+        raise ValueError('ANNUAL_PERIOD_SOURCE_UNAVAILABLE')
+
+    def page_text(document, key):
+        page = proof[key]
+        if not isinstance(page, int) or not 1 <= page <= len(document):
+            raise ValueError('ANNUAL_PERIOD_PAGE')
+        return summary_annual_norm(document[page - 1].get_text())
+
+    def unique_row(text, header, label, number_count):
+        # These native PDF tables serialize their two-level header, then each complete row.
+        if text.count(header) != 1:
+            raise ValueError('ANNUAL_PERIOD_TABLE_HEADER')
+        table = text.split(header, 1)[1]
+        pattern = re.escape(label + ' dt') + r'( [\d,]+)' * number_count + r'(?= production - )'
+        rows = re.findall(pattern, table)
+        if len(rows) != 1:
+            raise ValueError('ANNUAL_PERIOD_TABLE_ROW')
+        return [int(token.replace(',', '')) for token in rows[0]]
+
+    rows = {'average_annual_treo_product_t': 'production - treo',
+            'average_annual_ndpr_product_t': 'production - neodymium praseodymium (ndpr)'}
+    label = rows[parameter]
+    table = page_text(doc, 'production_table_page')
+    if ('table 2: production by contained oxide' not in table or
+            'production target is based entirely on the 47.0 mt probable ore reserve' not in table):
+        raise ValueError('ANNUAL_PERIOD_STUDY_SCOPE')
+    header = 'production - contained oxide unit total high grade low grade average lom average lom average lom'
+    average, lifetime, high_average, high_total, _, low_total = unique_row(table, header, label, 6)
+    annual_model = page_text(doc, 'annual_model_page')
+    if ('life-of-mine production schedule provides the basis for annual ore tonnes, head grades, '
+            'recovered product and revenue' not in annual_model):
+        raise ValueError('ANNUAL_PERIOD_WHOLE_PLAN')
+    schedule = page_text(doc, 'schedule_page')
+    periods = re.search(r'initial ~([\d.]+) years mining and processing .*? following '
+                        r'~([\d.]+) years stockpile processing processing of stockpiled ore', schedule)
+    if not periods:
+        raise ValueError('ANNUAL_PERIOD_OPERATING_SCHEDULE')
+    years = sum(map(float, periods.groups()))
+    if (not years or round(lifetime / years) != average or lifetime != high_total + low_total
+            or value != average):
+        raise ValueError('ANNUAL_PERIOD_WHOLE_PLAN_AVERAGE')
+
+    with pymupdf.open(source['resolved_path']) as confirmation:
+        reference = page_text(confirmation, 'study_reference_page')
+        if ('north stanmore' not in reference or 'maiden ore reserve, updated mineral resource and '
+                'pre-feasibility study "dated 18th august 2026"' not in reference):
+            raise ValueError('ANNUAL_PERIOD_STUDY_REFERENCE')
+        annual = page_text(confirmation, 'annual_table_page')
+        if 'scheduled annual mineral concentrate production' not in annual:
+            raise ValueError('ANNUAL_PERIOD_CONFIRMATION_TITLE')
+        header = 'production - contained oxide unit initial 10 years avera ge lom'
+        if unique_row(annual, header, label, 2) != [high_average, high_total]:
+            raise ValueError('ANNUAL_PERIOD_STUDY_TABLE_MISMATCH')
 
 
 def summary_nameplate_ndpr(doc, review, study, spec, parameter, value, evidence, rules):
@@ -1566,6 +1668,7 @@ def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutof
         study=a.get('engineering_forecast')
         if not study or study['scale'] not in rules['forecast_scales']:continue
         s=sources[a['source_sha256']];accepted={}
+        derivations=dict(study.get('parameter_derivations',{}))
         try:
             with pymupdf.open(s['resolved_path']) as doc:
                 def evidence(e):
@@ -1579,6 +1682,18 @@ def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutof
                         summary_model_annual(doc,a,study,spec,value,evidence,rules)
                     elif spec and spec.get('method')==NAMEPLATE_NDPR_METHOD:
                         summary_nameplate_ndpr(doc,a,study,spec,parameter,value,evidence,rules)
+                    elif spec and spec.get('method')==WHOLE_PLAN_ANNUAL_METHOD:
+                        verified_whole_plan_average(doc,study,parameter,value,sources,cutoff)
+                        derivations[parameter] = dict(spec, **study['annual_period_confirmation'])
+                    elif spec and spec.get('method')==CONCENTRATE_NDPR_SHARE_METHOD:
+                        try:
+                            evidence(study['annual_basis_evidence'])
+                            verify_forecast_concentrate_share(doc,a,study,spec,parameter,value)
+                        except (ValueError,KeyError,IndexError,OSError) as exc:
+                            # This additional share can fail while the independently published TREO rate remains valid.
+                            audit.append(dict(project_id=pid,source_sha256=a['source_sha256'],
+                                reason='FORECAST_INPUT_INVALID',detail=str(exc),parameter=parameter))
+                            continue
                     elif spec and spec.get('method')=='ANNUAL_HMC_KTPA_X_PRODUCT_TREO_PERCENT':
                         summary_annual_hmc_card(doc,a,study,spec,parameter,value,evidence)
                     elif spec:
@@ -1595,7 +1710,7 @@ def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutof
             audit.append(dict(project_id=pid,source_sha256=a['source_sha256'],reason='FORECAST_INPUT_INVALID',detail=str(exc)))
             accepted={}
         models.append(dict(source_sha=a['source_sha256'],effective_date=a['effective_date'],scope=a['scope'],case_id=a['review_id'],
-            endpoint=study['endpoint'],element=study['element'],scale=study['scale'],raw=canonical(dict(parameters=accepted,locator=a['locator'],parameter_derivations=study.get('parameter_derivations',{}))),obs_id=a['obs_id']))
+            endpoint=study['endpoint'],element=study['element'],scale=study['scale'],raw=canonical(dict(parameters=accepted,locator=a['locator'],parameter_derivations=derivations)),obs_id=a['obs_id']))
     if not models:models=[s for s in studies if s['scale'] in rules['forecast_scales']]
     for column,parameter in rules['annual_parameters'].items():
         options=[]
@@ -1611,8 +1726,17 @@ def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutof
             method='MODEL_ASSUMPTION_DERIVED_ANNUAL_NDPR_NOT_DIRECT_REPORTED_OUTPUT' if chosen['spec'].get('method')==rules['model_annual_method'] else 'DATED_ENGINEERING_FORECAST_T_PER_YEAR_NOT_OPERATING_OUTPUT'
             if chosen['spec'].get('method')=='ANNUAL_HMC_KTPA_X_PRODUCT_TREO_PERCENT':
                 method=chosen['spec']['method']
+            if chosen['spec'].get('method')==WHOLE_PLAN_ANNUAL_METHOD:
+                method=WHOLE_PLAN_ANNUAL_METHOD
+                proof=chosen['spec']
+                chosen['locator']=(f"PFS Table 2, physical PDF p{proof['production_table_page']}, Total / Average (dry tonnes); "
+                    f"operating schedule p{proof['schedule_page']}, annual model p{proof['annual_model_page']}; "
+                    f"{proof['confirmation_source_key']} pp{proof['study_reference_page']},{proof['annual_table_page']}")
             if chosen['spec'].get('method')==NAMEPLATE_NDPR_METHOD:
                 method='MODEL_ASSUMPTION_DERIVED_NAMEPLATE_NDPR_NOT_OPERATING_OUTPUT'
+            if chosen['spec'].get('method')==CONCENTRATE_NDPR_SHARE_METHOD:
+                method=CONCENTRATE_NDPR_SHARE_METHOD
+                chosen['locator']+=f"; physical PDF p{chosen['spec']['page']} Figure 42, REO Assemblage (forecast mass shares)"
             fills.append(dict(column=column,value=chosen['value'],sha=chosen['source_sha256'],locator=chosen['locator'],method=method,scope=canonical(dict(study_scope=chosen['scope'],derivation=chosen['spec'])),obs_ids=chosen['ids']))
     products=[dict(evidence_id=s['case_id'],source_sha256=s['source_sha'],effective_date=s['effective_date'],scope=s['scope'],
         endpoint=s['endpoint'],scale=s['scale'],value=s['endpoint'],locator=json.loads(s['raw'])['locator'],ids=[s.get('obs_id',s['case_id'])]) for s in models]

@@ -1,11 +1,38 @@
 """Live geometry regressions for the approved two-property spatial correction."""
 import unittest
-from shapely.geometry import Point,Polygon,mapping
+from shapely.geometry import Point,Polygon,mapping,shape
 from shapely.ops import unary_union
-from au_ree_v2.spatial import summary_tenement_centroid
+from au_ree_v2.spatial import summary_tenement_centroid, _arcgis_tenement_features
 
 
 class TenementCentroidGeometry(unittest.TestCase):
+    def test_arcgis_preserves_disjoint_parts_and_holes_and_checks_inventory(self):
+        rings = [
+            [[0, 0], [8, 0], [8, 8], [0, 8], [0, 0]],
+            [[1, 1], [2, 1], [2, 2], [1, 2], [1, 1]],
+            [[10, 0], [11, 0], [11, 1], [10, 1], [10, 0]],
+        ]
+        binding = dict(source_crs='EPSG:4326', tenement_ids=['EPM 12'], id_field='title',
+                       required_attributes=dict(status='Granted'))
+        data = dict(inventory=dict(complete=True, count=1, scope='global'),
+                    spatialReference=dict(wkid=4326),
+                    features=[dict(attributes=dict(title='EPM12', status='Granted'),
+                                   geometry=dict(rings=rings))])
+        selected = _arcgis_tenement_features(data, binding)
+        polygon = shape(selected[0]['geometry'])
+        self.assertEqual(polygon.geom_type, 'MultiPolygon')
+        self.assertEqual(polygon.area, 64)
+        self.assertFalse(polygon.covers(Point(1.5, 1.5)))
+        for invalid in [
+            dict(inventory=dict(complete=False, count=1, scope='global')),
+            dict(inventory=dict(complete=True, count=2, scope='global')),
+            dict(spatialReference=dict(wkid=4283)),
+            dict(exceededTransferLimit=True),
+        ]:
+            with self.subTest(invalid=invalid):
+                self.assertEqual(_arcgis_tenement_features(dict(data, **invalid), binding), [])
+        self.assertEqual(_arcgis_tenement_features(data, dict(binding, required_attributes=dict(status='Expired'))), [])
+
     def calculate(self,polygons):
         features=[{'properties':{'tno':'EL'+str(i+1)},'geometry':mapping(p)} for i,p in enumerate(polygons)]
         return summary_tenement_centroid(features,'EPSG:7844',25000,'tno')

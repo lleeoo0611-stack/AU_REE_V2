@@ -14,6 +14,36 @@ from au_ree_v2.store import digest, filehash
 
 
 class CensusIntegrationTests(unittest.TestCase):
+    def test_future_study_only_allows_verified_completed_drilling_and_same_resource(self):
+        import pymupdf
+        from au_ree_v2.census import _completed_drilling_stage, summary_classify_stage, summary_settings
+        rules, _ = summary_settings(Path(__file__).resolve().parents[1])
+        review = next(iter(rules['completed_drilling_stage_reviews'].values())).copy()
+        stage_text = review['stage_text']
+        review.update(stage_text=stage_text, stage_page=1, stage_sha256='report', resource_sha256='mre',
+                      original_pages=[dict(page=1, markers=['Completed exploration drilling.'])])
+        rules['completed_drilling_stage_reviews'] = {'p': review}
+        stage = dict(source_sha256='report', pdf_page='1', effective_date=review['stage_date'], value=stage_text)
+        ore = dict(source_sha256='mre', effective_date=review['resource_date'])
+        proposal = summary_classify_stage(stage_text, True, rules)
+        # This dated native text describes a future study; the PDF must independently prove drilling.
+        self.assertEqual(proposal['reason'], 'STUDY_COMPLETION_NOT_EXPLICIT')
+        self.assertIsNone(proposal['code'])
+        with tempfile.TemporaryDirectory() as tmp:
+            pdf = Path(tmp) / 'disclosure.pdf'
+            def classify(text, native=stage, estimate=ore):
+                with pymupdf.open() as document:
+                    document.new_page().insert_text((40, 40), text)
+                    document.save(pdf)
+                return _completed_drilling_stage(proposal, {'專案ID':'p'},
+                    {('p','開發階段'):native, ('p','礦石蘊藏量_Mt'):estimate},
+                    {'report':dict(kind='pdf', resolved_path=str(pdf))}, rules)['code']
+            self.assertIsNone(classify('No drilling completed. Scoping planned.'))
+            self.assertIsNone(classify('Planned exploration drilling.'))
+            self.assertIsNone(classify('Completed exploration drilling.', estimate=dict(ore, source_sha256='old')))
+            self.assertIsNone(classify('Completed exploration drilling.', native=dict(stage, pdf_page='2')))
+            self.assertEqual(classify('Completed exploration drilling.'), 'A2')
+
     def test_static_library_resolves_renamed_pdf_without_network(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)

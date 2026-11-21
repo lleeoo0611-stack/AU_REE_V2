@@ -11,7 +11,7 @@ FIELDS = (
     'current_status', 'action', 'current_value', 'current_locator', 'current_value_sha256',
     'reason', 'required_components', 'still_missing_components', 'checked_source_shas',
     'unavailable_review_shas', 'review_source_url', 'review_pages', 'review_locator',
-    'source_review', 'new_review', 'reopen_if',
+    'source_review', 'new_review', 'rechecked_original_pages', 'reopen_if',
 )
 
 RESOURCE_CLASSES = {
@@ -94,6 +94,11 @@ def write_gap_review(root, out, rows, trace, diagnoses, sources, associations, c
     if baseline.keys() != trace.keys():
         return {'gap_review': {'status':'DIFFERENT_CELL_POPULATION', 'policy':policy['version']}}
     extra = {(n['project_id'], c): n for n in policy['case_reviews'] for c in n['columns']}
+    page_reviews = {}
+    for item in policy.get('page_reviews', ()):
+        for column in item['columns']:
+            page_reviews.setdefault((item['project_id'], column), []).append(
+                {k:item[k] for k in ('source_sha256','page','locator')})
     priorities = {pid:i for i,pid in enumerate(policy['priority_projects'], 1)}
     report = []
     applicable = set()
@@ -125,6 +130,8 @@ def write_gap_review(root, out, rows, trace, diagnoses, sources, associations, c
         note = extra.get(key, {})
         if note:
             refs.add(note['source_sha256'])
+        reviewed_pages = page_reviews.get(key, [])
+        refs.update(p['source_sha256'] for p in reviewed_pages)
         # Report actual selected, version-checked originals of this case separately
         # from expected-but-unavailable historical sources.
         verified = refs.intersection(sources)
@@ -132,7 +139,7 @@ def write_gap_review(root, out, rows, trace, diagnoses, sources, associations, c
             verified = set(associations.get(pid, ())).intersection(sources)
         required = record.get('required_components', '').split('|') if record.get('required_components') else []
         oxide_values = {name.partition('_')[0]: v for name,v in current[pid].items() if name.endswith('_kt')}
-        remaining = [oxide for oxide in required if not oxide_values.get(oxide)]
+        remaining = [oxide for oxide in required if oxide_values.get(oxide) in (None, '')]
         action = action_for(group, before, status, changed, refs.difference(sources), required, remaining)
         review_note = ''
         if note and note['source_sha256'] in sources:
@@ -146,6 +153,8 @@ def write_gap_review(root, out, rows, trace, diagnoses, sources, associations, c
             review_source_url=record.get('source_url', ''), review_pages=record.get('physical_pages', ''),
             review_locator=record.get('locator', ''),
             source_review=record.get('source_review', ''), new_review=review_note,
+            rechecked_original_pages=json.dumps([p for p in reviewed_pages if p['source_sha256'] in sources],
+                                              ensure_ascii=False, sort_keys=True),
             reopen_if=reopening, **{'class':group}))
     report.sort(key=lambda r:(r['priority'] or 999, r['project_id'], r['column']))
     write_csv(out / 'gap_review.csv', report, FIELDS)

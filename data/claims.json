@@ -6178,7 +6178,20 @@
             "endpoint": "MINERAL_CONCENTRATE",
             "element": "TREO_INCLUDING_Y",
             "parameters": {
-              "average_annual_treo_product_t": 4350
+              "average_annual_treo_product_t": 4350,
+              "average_annual_ndpr_product_t": 87
+            },
+            "parameter_derivations": {
+              "average_annual_ndpr_product_t": {
+                "method": "FORECAST_CONTAINED_TREO_X_CONCENTRATE_NDPR_OXIDE_SHARE",
+                "page": 109,
+                "share_basis": "DFS_EXPECTED_RECOVERED_REO_IN_CONCENTRATE",
+                "composition_label_bbox": [112, 179, 214, 199],
+                "price_label_bbox": [393, 179, 474, 199],
+                "shares_bbox": [177, 58, 248, 80],
+                "oxide_share_percent": {"Pr": 0.3, "Nd": 1.7},
+                "contained_treo_tpa": 4350
+              }
             },
             "annual_basis_evidence": {
               "page": 116,
@@ -35829,7 +35842,27 @@
             "stage": 3,
             "endpoint": "MINERAL_CONCENTRATE",
             "element": "TREO_INCLUDING_Y",
-            "parameters": {},
+            "parameters": {
+              "average_annual_treo_product_t": 1156,
+              "average_annual_ndpr_product_t": 219
+            },
+            "annual_period_confirmation": {
+              "production_table_page": 7,
+              "schedule_page": 9,
+              "annual_model_page": 162,
+              "confirmation_source_key": "north_stanmore_pfs_annual20260914",
+              "confirmation_source_sha256": "e60ee62748c8399881f8fa2fbf07a08f0d80fa88b44231127dbabc18a9efa9dd",
+              "study_reference_page": 2,
+              "annual_table_page": 9
+            },
+            "parameter_derivations": {
+              "average_annual_treo_product_t": {
+                "method": "PUBLISHED_WHOLE_PLAN_AVERAGE_VERIFIED_ANNUAL_PERIOD"
+              },
+              "average_annual_ndpr_product_t": {
+                "method": "PUBLISHED_WHOLE_PLAN_AVERAGE_VERIFIED_ANNUAL_PERIOD"
+              }
+            },
             "evidence": [
               {
                 "page": 5,

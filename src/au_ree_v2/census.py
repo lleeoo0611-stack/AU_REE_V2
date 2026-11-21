@@ -676,11 +676,41 @@ def summary_observation(observation):
     return result
 
 
+def _completed_drilling_stage(proposal, row, trace, sources, rules):
+    """Bind completed drilling and a selected MRE to the same dated disclosure."""
+    pid = row['專案ID']
+    review = rules.get('completed_drilling_stage_reviews', {}).get(pid)
+    if not review or proposal['code'] or proposal['reason'] != 'STUDY_COMPLETION_NOT_EXPLICIT':
+        return proposal
+    stage = trace[pid, '開發階段']
+    ore = trace.get((pid, '礦石蘊藏量_Mt'), {})
+    report = sources.get(review['stage_sha256'])
+    if (not report or report.get('kind') != 'pdf' or stage['source_sha256'] != review['stage_sha256']
+            or stage.get('value') != review['stage_text'] or stage.get('pdf_page') != str(review['stage_page'])
+            or stage.get('effective_date') != review['stage_date']
+            or ore.get('source_sha256') != review['resource_sha256']
+            or ore.get('effective_date') != review['resource_date']):
+        return proposal
+    import pymupdf
+    with pymupdf.open(report['resolved_path']) as document:
+        for evidence in review['original_pages']:
+            page = evidence['page']
+            if not 1 <= page <= len(document):
+                return proposal
+            text = summary_norm(document[page - 1].get_text())
+            if not all(summary_norm(marker) in text for marker in evidence['markers']):
+                return proposal
+    return dict(proposal, code='A2', category=rules['stage_categories']['A2'], rule=rules['stage_rules']['A2'],
+                reason='COMPLETED_EXPLORATION_DRILLING_WITH_SELECTED_MRE', evidence=review)
+
+
 def summary_stage_fields(row, trace, sources, associations, rules, decisions, put, audit, cache, resource_expected=False, inventory=None):
     pid=row['專案ID'];native=trace.get((pid,'開發階段'))
     has_mre=True if row['礦石蘊藏量_Mt'] else None if resource_expected else False
     if native:
         proposal=summary_stage_case(row,summary_classify_stage(row['開發階段'],has_mre,rules),native,rules)
+        if has_mre:
+            proposal = _completed_drilling_stage(proposal, row, trace, sources, rules)
         decision=summary_decision(decisions,proposal.get('rule'))
         if decision and proposal.get('code') and (not proposal.get('ongoing_study') or summary_decision(decisions,'IN_PROGRESS_STUDY_USE_HIGHEST_EXPLICIT_COMPLETED')):
             for column,key in [('開發階段代碼','code'),('開發階段類別','category')]:

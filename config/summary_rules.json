@@ -4364,6 +4364,110 @@
       ],
       "source_file": "src/au_ree_v2/project_summary.py",
       "source_key": "export_summary canonical identity-dependent columns"
+    },
+    "frozen_tenement_scopes": {
+      "source_file": "config/sources.json",
+      "source_key": "gg1_tenure_schedule_20261030",
+      "value": {
+        "qld_epm_live": {
+          "source_sha256": "e106c9de3486ddf9dc2d4953972a864a2b8b06fd88d349cf4f4cbbbe239d4427",
+          "bindings": [
+            {
+              "project_id": "AU-6f0ecda27d291720036d",
+              "state": "QLD",
+              "tenement_ids": [
+                "EPM 28000"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4326",
+              "id_field": "displayname",
+              "holder_field": "authorisedholdername",
+              "required_attributes": {
+                "permitid": 222919,
+                "permitname": "NUTGROVE",
+                "permitstatus": "Granted",
+                "authorisedholdername": "WANDOO TENEMENTS PTY LTD"
+              },
+              "original_references": [
+                {
+                  "source_sha256": "a17dd388db00b3ca4ffb4c04fc4e5d08534ace4fde26c66dfee02fef53bfb158",
+                  "page": 42,
+                  "quote": "The Cosgrove Project consists of three EPMs"
+                },
+                {
+                  "source_sha256": "a17dd388db00b3ca4ffb4c04fc4e5d08534ace4fde26c66dfee02fef53bfb158",
+                  "page": 42,
+                  "quote": "EPM28000 (Nutgrove)"
+                },
+                {
+                  "source_sha256": "a17dd388db00b3ca4ffb4c04fc4e5d08534ace4fde26c66dfee02fef53bfb158",
+                  "page": 42,
+                  "quote": "EPM28107 (Mt Scoria)"
+                },
+                {
+                  "source_sha256": "a17dd388db00b3ca4ffb4c04fc4e5d08534ace4fde26c66dfee02fef53bfb158",
+                  "page": 42,
+                  "quote": "EPM27983 (Mt Ramsay)"
+                },
+                {
+                  "source_sha256": "b015e3fa347138082ed14171e4921d32dde1377e6fe62317a0b0f8420131ef21",
+                  "page": 10,
+                  "quote": "Results are reported from solely within EPM28000."
+                },
+                {
+                  "source_sha256": "5c0abb5243b3ed6dce0b03caa1ba9fdc2d84b44e49909a6020589a1507fee9a0",
+                  "page": 11,
+                  "quote": "tenement interests as of 30 September 2026 are shown below."
+                },
+                {
+                  "source_sha256": "5c0abb5243b3ed6dce0b03caa1ba9fdc2d84b44e49909a6020589a1507fee9a0",
+                  "page": 11,
+                  "quote": "EPM28000 EPM 29 16/05/2022 15/05/2027 Granted Wandoo Tenements Pty Ltd"
+                }
+              ],
+              "scope_review": "Nutgrove is the named single-tenement component of the three-title Cosgrove portfolio. The other two named components are Mt Scoria and Mt Ramsay. The September 2026 portfolio retains the same 29 Nutgrove sub-blocks under Wandoo, with Burlington licences listed separately. The 3 November Queensland capture supplies the granted polygon. Point represents this Nutgrove tenure, not the full Cosgrove portfolio or a mineral resource.",
+              "decision_id": "round4-tenement-centroid-20261113"
+            }
+          ]
+        }
+      }
+    },
+    "completed_drilling_stage_reviews": {
+      "source_file": "config/researcher_rule_decisions.json",
+      "source_key": "stage-a2-20261111",
+      "value": {
+        "AU-0098e17a63e7c05c213f": {
+          "stage_text": "Maiden REE mineral resource disclosed to underpin a future scoping study（來源狀態日：2026-10-26）",
+          "stage_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864",
+          "stage_page": 1,
+          "stage_date": "2026-10-26",
+          "resource_sha256": "e41fa365bd85fe16c468809804da59a3918326cd9990997e0c9ce8535b5e0950",
+          "resource_date": "2026-10-22",
+          "original_pages": [
+            {
+              "page": 1,
+              "markers": [
+                "RNS Number : 4065A",
+                "Wudinna Rare Earth Project's maiden Mineral Resource Estimate"
+              ]
+            },
+            {
+              "page": 2,
+              "markers": [
+                "This MRE will underpin the Scoping Study"
+              ]
+            },
+            {
+              "page": 3,
+              "markers": [
+                "Table 1 Wudinna REE Project Mineral Resource Estimate",
+                "Effective Date of 22 October, 2026",
+                "JORC Code, incorporating drilling data acquired between 2023 and 2026"
+              ]
+            }
+          ]
+        }
+      }
     }
   }
 }

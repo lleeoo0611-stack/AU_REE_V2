@@ -128,6 +128,38 @@ def summary_tenement_centroid(features, source_crs, limit_m=25000, id_field=None
     if not math.isfinite(precision):raise ValueError('NONFINITE_PRECISION')
     return dict(accepted=precision<=limit_m,reason='ACCEPTED' if precision<=limit_m else 'TENEMENT_UNION_EXCEEDS_25KM',longitude=lon,latitude=lat,precision_m=precision,location_method=method,input_crs=crs.to_string(),input_datum=crs.datum.name,output_crs='EPSG:7844',metric_crs=metric.to_string())
 
+def _arcgis_tenement_features(data, binding):
+    """Read the selected polygons from a complete, dated native ArcGIS inventory."""
+    from shapely import build_area
+    from shapely.geometry import LinearRing, MultiLineString, mapping
+
+    inventory = data.get('inventory', {})
+    features = data.get('features', [])
+    crs = data.get('spatialReference', {}).get('wkid')
+    if (inventory.get('complete') is not True or inventory.get('count') != len(features)
+            or inventory.get('scope') != 'global' or data.get('exceededTransferLimit')
+            or CRS.from_user_input(binding['source_crs']).to_epsg() != crs):
+        return []
+    wanted = {summary_identifier_key(identifier) for identifier in binding['tenement_ids']}
+    selected = []
+    for feature in features:
+        attributes = feature.get('attributes', {})
+        if summary_identifier_key(attributes.get(binding['id_field'], '')) not in wanted:
+            continue
+        if any(attributes.get(key) != value for key, value in binding['required_attributes'].items()):
+            return []
+        rings = (feature.get('geometry') or {}).get('rings', [])
+        if not rings or any(len(r) < 4 or r[0] != r[-1] or not LinearRing(r).is_valid for r in rings):
+            return []
+        lines = MultiLineString(rings)
+        polygon = build_area(lines)
+        if (polygon.geom_type not in ('Polygon', 'MultiPolygon') or not polygon.is_valid
+                or not polygon.boundary.equals(lines)):
+            return []
+        selected.append(dict(properties=attributes, geometry=mapping(polygon)))
+    return selected
+
+
 def summary_read_shapefile_zip(raw,member):
     """Read every native DBF/SHP/SHX record, preserving polygon rings and IDs."""
     import io,struct,zipfile
@@ -237,6 +269,7 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions, *, rea
                       extent_rejections=None):
     """Native pairs and exact tenement unions; no coordinate values in declarations."""
     from .census import summary_decision,summary_norm,summary_region_text
+    from .selection import date_end
     from .store import canonical
     import io,csv,zipfile
     if read_json is None:
@@ -257,7 +290,10 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions, *, rea
         for column,value in [('緯度',lat),('經度',lon)]:
             fills.append(dict(column=column,value=value,sha=sha,locator=locator,method=method,scope=canonical(scope)))
     for registered in registry:
-        sha=registered.get('source_sha256');source=sources.get(sha)
+        frozen_tenure = rules.get('frozen_tenement_scopes', {}).get(registered.get('key'), {})
+        sha=frozen_tenure.get('source_sha256') or registered.get('source_sha256');source=sources.get(sha)
+        if frozen_tenure and source and source['key'] != registered['key']:
+            continue
         if source is None and registered.get('hash_policy') == 'JSON_DROP_TOP_LEVEL_KEYS_V1':
             matches = [
                 candidate for candidate in sources.values()
@@ -303,21 +339,31 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions, *, rea
                 add(round(lon,rules['ga_display_digits']),round(lat,rules['ga_display_digits']),sha,b['rule'],
                     'native feature objectid='+str(b['feature_id']),scope)
             if fills:return fills
-        if registered.get('summary_tenements'):
-            for b in registered['summary_tenements']:
+        tenements = [*registered.get('summary_tenements', []), *frozen_tenure.get('bindings', [])]
+        if tenements:
+            for b in tenements:
                 if b['project_id']!=pid or not b['complete_project_scope'] or not summary_decision(decisions,'TENEMENT_CENTROID_RESEARCHER_APPROVED'):continue
                 import pymupdf
                 valid=True
                 for proof in b['original_references']:
                     original=sources.get(proof['source_sha256'])
                     if not original:valid=False;break
+                    if frozen_tenure and (not cutoff or original.get('kind') != 'pdf'
+                            or not original.get('publication_date') or date_end(original['publication_date']) > cutoff):
+                        valid=False;break
                     if original['kind']=='pdf':
-                        with pymupdf.open(original['resolved_path']) as doc:text=doc[proof['page']-1].get_text()
+                        with pymupdf.open(original['resolved_path']) as doc:
+                            if not 1 <= proof['page'] <= len(doc):valid=False;break
+                            text=doc[proof['page']-1].get_text()
                     else:text=Path(original['resolved_path']).read_text(encoding='utf8')
                     if summary_norm(proof['quote']) not in summary_norm(text):valid=False;break
                 if not valid:continue
                 raw=Path(source['resolved_path']).read_bytes()
-                if b.get('zip_member'):features,crs=summary_read_shapefile_zip(raw,b['zip_member'])
+                if frozen_tenure:
+                    if not cutoff or not source.get('available_date') or source['available_date'] > cutoff:
+                        continue
+                    features = _arcgis_tenement_features(json.loads(raw), b)
+                elif b.get('zip_member'):features,crs=summary_read_shapefile_zip(raw,b['zip_member'])
                 else:
                     data=json.loads(raw);features=data.get('features',[])
                     if str(data.get('numberMatched'))!=str(len(features)):continue
@@ -326,8 +372,15 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions, *, rea
                 if {summary_identifier_key(f['properties'][field]) for f in chosen}!=wanted:continue
                 result=summary_tenement_centroid(chosen,b['source_crs'],rules['tenement_precision_m'],field)
                 if result['accepted']:
+                    scope = dict(result, tenement_ids=b['tenement_ids'],
+                                 holders=[f['properties'].get(b.get('holder_field','own_name')) for f in chosen],
+                                 meaning='TENEMENT_REPRESENTATIVE_POINT_NOT_RESOURCE_BOUNDARY')
+                    if frozen_tenure:
+                        scope.update(dataset=registered['key'], feature_id=b['required_attributes']['permitid'],
+                                     scope_references=b['original_references'], scope_review=b['scope_review'],
+                                     government_available_date=source['available_date'])
                     add(result['longitude'],result['latitude'],sha,'ROUND4_TENEMENT_CENTROID_RESEARCHER_APPROVED',
-                        '; '.join(b['tenement_ids']),dict(result,tenement_ids=b['tenement_ids'],holders=[f['properties'].get('own_name') for f in chosen],meaning='TENEMENT_REPRESENTATIVE_POINT_NOT_RESOURCE_BOUNDARY'))
+                        '; '.join(b['tenement_ids']),scope)
                 elif extent_rejections is not None and result['reason'] == 'TENEMENT_UNION_EXCEEDS_25KM':
                     extent_rejections.append(dict(kind='TENEMENT_CENTROID_REVIEW', reason=result['reason'],
                         source_key=registered['key'], source_sha256=sha, tenement_ids=b['tenement_ids'],
