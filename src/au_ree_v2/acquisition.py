@@ -224,7 +224,7 @@ def refresh(root, registry):
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     outcomes = []
     for source in registry['sources']:
-        if source['kind'] == ASIC_REGISTER_KIND:
+        if source['kind'] in STATIC_ARCHIVE_KINDS:
             outcomes.append({'key': source['key'], 'status': 'MANAGED_BY_CENSUS_ACQUISITION'})
             continue
         try:
@@ -434,7 +434,8 @@ class InvalidNetworkRun(ValueError):
 
 def strict_dns_preflight(registry, reports=()):
     """Resolve every configured source/report host before any HTTP request."""
-    hosts={urllib.parse.urlsplit(s['url']).hostname for s in [*registry['sources'],*reports]}
+    hosts={urllib.parse.urlsplit(s['url']).hostname for s in [*registry['sources'],*reports]
+           if s.get('kind') != WA_TITLE_KIND}
     rows=[]
     for host in sorted(h for h in hosts if h):
         try:
@@ -461,7 +462,7 @@ def strict_network_report(work, outcomes, dns_rows):
     from .tabular import write_csv
     work=Path(work);work.mkdir(parents=True,exist_ok=True)
     failed={r['key'] for r in outcomes if r.get('network_error') or r['status']=='NETWORK_ERROR'}
-    keys={r['key'] for r in outcomes}
+    keys={r['key'] for r in outcomes if r['status'] != 'NEEDS_VERIFIED_STATIC_ARCHIVE'}
     dns_failed=any(r['status']!='DNS_OK' for r in dns_rows)
     invalid=dns_failed or bool(keys and len(failed)/len(keys)>.05)
     report=dict(status='RUN_INVALID_NETWORK' if invalid else 'NETWORK_VALID' if keys else 'DNS_PREFLIGHT_PASSED',
@@ -828,6 +829,11 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
         if source['kind'] in ('pdf','html'):expected.update(by_url.get(source['url'],set()))
         if source['kind'] in managed and not expected and old:expected={max(old,key=lambda x:x['acquired_at'])['sha256']}
         row=dict(key=key,host=host,http_status=None,sha_match=None,status='UNAVAILABLE',stop_reason='',expected_sha256=';'.join(sorted(expected)))
+        if source['kind'] == WA_TITLE_KIND:
+            row.update(status='NEEDS_VERIFIED_STATIC_ARCHIVE',
+                       stop_reason='Select the registered government ZIP through the static library or exact receipt replay')
+            outcomes.append(row)
+            continue
         if source.get('enabled') is False:
             row.update(status='SOURCE_NOT_ACQUIRED',stop_reason=source.get('disabled_reason','SOURCE_DISABLED'));outcomes.append(row);continue
         if source['url']=='https://www.gippslandcriticalminerals.com/project-overview/':
@@ -993,6 +999,61 @@ def checked_snapshots(root, snapshots, cutoff, acquired_through=None, *, replay_
 
 
 ASIC_REGISTER_KIND = 'asic_company_register_zip'
+WA_TITLE_KIND = 'wa_dasc_tenements_zip'
+STATIC_ARCHIVE_KINDS = {ASIC_REGISTER_KIND, WA_TITLE_KIND}
+WA_TITLE_ORIGIN = (r'https://warsydprdstadasc\.blob\.core\.windows\.net/downloads/dasc/Dynamic/Tenements/'
+                   r'(?:CurrentTenements(?:_GDA2020)?_shp|DeadTenements_shp)\.zip(?:\?ts=\d{14})?')
+WA_TITLE_REPLAY_URL = re.compile(r'https://web\.archive\.org/web/(\d{14})id_/(' + WA_TITLE_ORIGIN + ')')
+
+
+def wa_title_capture_date(root, source, archive, sha):
+    """Resolve the availability of the exact WA government ZIP from its archived HTTP 200 inventory row."""
+    import base64
+    import hashlib
+
+    replay = WA_TITLE_REPLAY_URL.fullmatch(source.get('url', ''))
+    metadata = source.get('archive_index_sha256', '')
+    if (not replay or not re.fullmatch('[0-9a-f]{64}', metadata) or
+            (source.get('archive_capture_timestamp'), source.get('archive_origin_url')) != replay.groups() or
+            sha != source.get('source_sha256') or sha != source.get('reviewed_static_archive_sha256')):
+        raise ValueError('WA title archive capture or version mismatch')
+    stamp, origin = replay.groups()
+    capture = datetime.strptime(stamp, '%Y%m%d%H%M%S').date().isoformat()
+    index = Path(root) / 'data' / 'snapshots' / (metadata + '.json')
+    if not index.is_file() or filehash(index) != metadata:
+        raise ValueError('WA title archive index checksum mismatch')
+    index_url = urllib.parse.urlsplit(source.get('archive_index_url', ''))
+    query = urllib.parse.parse_qs(index_url.query)
+    targets = query.get('url', [])
+    indexed_target = targets[0].removeprefix('https://').casefold() if len(targets) == 1 else ''
+    origin_path = origin.removeprefix('https://').casefold()
+    prefix_query = indexed_target.endswith('*') or query.get('matchType') == ['prefix']
+    in_query = (origin_path.startswith(indexed_target.rstrip('*')) if prefix_query else origin_path == indexed_target)
+    if ((index_url.scheme, index_url.netloc, index_url.path) != ('https', 'web.archive.org', '/cdx/search/cdx')
+            or query.get('output') != ['json'] or not indexed_target.strip('*') or not in_query):
+        raise ValueError('WA title archive index URL mismatch')
+    header, *rows = json.loads(index.read_bytes())
+    required = {'original', 'timestamp', 'digest', 'mimetype', 'statuscode'}
+    if len(set(header)) != len(header) or not required.issubset(header):
+        raise ValueError('WA title archive index schema mismatch')
+    records = (dict(zip(header, record, strict=True)) for record in rows)
+    matched = [r for r in records if r['original'] == origin and r['timestamp'] == stamp]
+    if (len(matched) != 1 or matched[0]['statuscode'] != '200'
+            or matched[0]['mimetype'] not in ('application/octet-stream', 'application/zip', 'application/x-zip-compressed')
+            or matched[0]['digest'] != source.get('archive_sha1')
+            or not zipfile.is_zipfile(archive)):
+        raise ValueError('WA title archive index record mismatch')
+    with Path(archive).open('rb') as stream:
+        actual = base64.b32encode(hashlib.file_digest(stream, 'sha1').digest()).decode('ascii')
+    if actual != matched[0]['digest'] or filehash(archive) != sha:
+        raise ValueError('WA title archive payload checksum mismatch')
+    return capture
+
+
+def archive_capture_date(root, source, path, sha):
+    if source['kind'] == WA_TITLE_KIND:
+        return wa_title_capture_date(root, source, path, sha)
+    return asic_capture_date(root, source, path, sha)
 
 
 def asic_capture_date(root, source, archive, sha):
@@ -1029,16 +1090,16 @@ def asic_capture_date(root, source, archive, sha):
 
 
 def static_pdf_sources(registry, claims, directories, cutoff, already_selected, *, root=None):
-    """Resolve registered PDF and ASIC archive originals in the same static library by their bytes."""
+    """Resolve registered PDF and archive originals in the same static library by their bytes."""
     from .selection import date_end
 
     declared, bindings=declared_source_hashes(registry,claims)
     pending=[]
     for source in registry['sources']:
         key=source['key']
-        if source['kind'] not in ('pdf', ASIC_REGISTER_KIND) or key in already_selected:
+        if source['kind'] not in ('pdf', *STATIC_ARCHIVE_KINDS) or key in already_selected:
             continue
-        pin=source.get('reviewed_static_archive_sha256' if source['kind']==ASIC_REGISTER_KIND else 'reviewed_static_pdf_sha256')
+        pin=source.get('reviewed_static_archive_sha256' if source['kind'] in STATIC_ARCHIVE_KINDS else 'reviewed_static_pdf_sha256')
         if pin:
             # A reviewed local version can have the same landing URL as another
             # version. The pin does not grant access to that remote URL.
@@ -1053,14 +1114,20 @@ def static_pdf_sources(registry, claims, directories, cutoff, already_selected, 
         if len(expected)!=1:
             continue
         publication=source.get('publication_date')
-        if not publication or date_end(publication)>cutoff:
+        if source['kind'] == WA_TITLE_KIND:
+            stamp = source.get('archive_capture_timestamp', '')
+            if not re.fullmatch(r'\d{14}', stamp):
+                raise ValueError('WA title archive capture timestamp missing')
+            if datetime.strptime(stamp, '%Y%m%d%H%M%S').date().isoformat() > cutoff:
+                continue
+        elif not publication or date_end(publication)>cutoff:
             continue
         pending.append((source,next(iter(expected))))
     wanted={(source['kind'],sha) for source,sha in pending}
     hashes={sha for _,sha in wanted}
     paths={}
     files=set()
-    suffixes={'.pdf', '.zip'} if any(kind==ASIC_REGISTER_KIND for kind,_ in wanted) else {'.pdf'}
+    suffixes={'.pdf', '.zip'} if any(kind in STATIC_ARCHIVE_KINDS for kind,_ in wanted) else {'.pdf'}
     for directory in directories:
         folder=Path(directory).resolve(strict=True)
         if not folder.is_dir():
@@ -1072,24 +1139,27 @@ def static_pdf_sources(registry, claims, directories, cutoff, already_selected, 
         with path.open('rb') as stream:
             signature=stream.read(5)
             if path.suffix.lower()=='.pdf' and signature==b'%PDF-':
-                kind='pdf'
+                kinds=('pdf',)
             elif path.suffix.lower()=='.zip' and signature.startswith(b'PK\x03\x04'):
-                kind=ASIC_REGISTER_KIND
+                kinds=STATIC_ARCHIVE_KINDS
             else:
                 continue
         sha=filehash(path)
-        if (kind,sha) in wanted:
-            paths.setdefault((kind,sha),path.resolve())
+        for kind in kinds:
+            if (kind,sha) in wanted:
+                paths.setdefault((kind,sha),path.resolve())
     now=datetime.now(timezone.utc).isoformat()
     selected=[]
     for source,sha in pending:
         path=paths.get((source['kind'],sha))
         if path is not None:
-            if source['kind']==ASIC_REGISTER_KIND:
-                capture=asic_capture_date(root,source,path,sha)
+            if source['kind'] in STATIC_ARCHIVE_KINDS:
+                capture=archive_capture_date(root,source,path,sha)
+                method=('STATIC_WA_DASC_ZIP_SHA_VERIFIED' if source['kind'] == WA_TITLE_KIND
+                        else 'STATIC_ASIC_REGISTER_SHA_VERIFIED')
                 if capture<=cutoff:
                     selected.append(dict(source,sha256=sha,path=str(path),acquired_at=now,
-                        available_date=capture,acquisition_method='STATIC_ASIC_REGISTER_SHA_VERIFIED'))
+                        available_date=capture,acquisition_method=method))
                 continue
             selected.append(dict(source,sha256=sha,path=str(path),
                 acquired_at=now,available_date=now[:10],acquisition_method='STATIC_PDF_SHA_VERIFIED'))
@@ -1108,6 +1178,12 @@ def census_admission(root, source, registered, claim_hashes, cutoff):
     from .selection import date_end
 
     key, sha, kind = source['key'], source['sha256'], source['kind']
+    if registered.get('kind') == WA_TITLE_KIND:
+        if kind != WA_TITLE_KIND:
+            raise ValueError('WA title archive receipt kind mismatch')
+        identity = ('url','archive_origin_url','archive_capture_timestamp','archive_sha1','archive_index_sha256','archive_index_url')
+        if any(source.get(field) != registered.get(field) for field in identity):
+            raise ValueError('WA title archive receipt identity mismatch')
     publication = source.get('publication_date')
     registered_publication = registered.get('publication_date')
     availability = source.get('available_date') or (source.get('acquired_at') or '')[:10]
@@ -1125,9 +1201,9 @@ def census_admission(root, source, registered, claim_hashes, cutoff):
             interval_mismatch = month_interval != [month + '-01', used]
     after_cutoff = used>cutoff or (publication and date_end(publication)>cutoff)
     cutoff_status = ('SOURCE_AFTER_CUTOFF' if after_cutoff else 'WITHIN_CUTOFF' if used else 'SOURCE_DATE_UNVERIFIED')
-    if kind==ASIC_REGISTER_KIND:
-        capture=asic_capture_date(root, registered, Path(root)/source['path'], sha)
-        date_basis='ARCHIVED_PUBLISHER_VERSION'
+    if kind in STATIC_ARCHIVE_KINDS:
+        capture=archive_capture_date(root, registered, Path(root)/source['path'], sha)
+        date_basis='ARCHIVED_HTTP_CAPTURE' if kind == WA_TITLE_KIND else 'ARCHIVED_PUBLISHER_VERSION'
         used=capture
         if publication!=registered_publication or capture!=availability:
             cutoff_status='SOURCE_PUBLICATION_DATE_MISMATCH'
@@ -1157,10 +1233,12 @@ def replay_pdf_extensions(registry, receipt_sha, static_pdfs):
     keys = [s['key'] for s in registry['sources']]
     if (not static_pdfs or not added or len(keys) != len(set(keys))
             or digest(dict(registry, sources=retained)) != receipt_sha
-            or any(not s.get('publication_date') or not s.get('source_sha256') or
+            or any(not (s.get('archive_capture_timestamp') if s['kind'] == WA_TITLE_KIND else s.get('publication_date'))
+                   or not s.get('source_sha256') or
                    (s['kind'], s['source_sha256']) not in (
                        ('pdf', s.get('reviewed_static_pdf_sha256')),
-                       (ASIC_REGISTER_KIND, s.get('reviewed_static_archive_sha256'))) for s in added)):
+                       (ASIC_REGISTER_KIND, s.get('reviewed_static_archive_sha256')),
+                       (WA_TITLE_KIND, s.get('reviewed_static_archive_sha256'))) for s in added)):
         raise ValueError('Acquisition replay source registry changed')
     return [s['key'] for s in added]
 

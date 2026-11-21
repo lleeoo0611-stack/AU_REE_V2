@@ -2,7 +2,7 @@
 import unittest
 from shapely.geometry import Point,Polygon,mapping,shape
 from shapely.ops import unary_union
-from au_ree_v2.spatial import summary_tenement_centroid, _arcgis_tenement_features
+from au_ree_v2.spatial import summary_tenement_centroid, _arcgis_tenement_features, _wa_bound_features
 
 
 class TenementCentroidGeometry(unittest.TestCase):
@@ -49,6 +49,19 @@ class TenementCentroidGeometry(unittest.TestCase):
             with self.subTest(features=invalid):
                 current = dict(data, inventory=dict(data['inventory'], count=len(invalid)), features=invalid)
                 self.assertEqual(_arcgis_tenement_features(current, binding), [])
+
+    def test_archived_title_requires_one_matching_record_and_holder_for_every_title(self):
+        first = dict(properties=dict(FMT_TENID='E 15/1495', HOLDER1='CUFE LIMITED', TENSTATUS='LIVE'))
+        second = dict(properties=dict(FMT_TENID='M 15/1841', HOLDER1='CUFE LTD', TENSTATUS='LIVE'))
+        selected = {('E', 15, 1495): [first], ('M', 15, 1841): [second]}
+        binding = dict(tenement_ids=['E 15/1495', 'M 15/1841'], attributes_by_title={
+            'E 15/1495': dict(HOLDER1='CUFE LIMITED', TENSTATUS='LIVE'),
+            'M 15/1841': dict(HOLDER1='CUFE LTD', TENSTATUS='LIVE')})
+        self.assertEqual(_wa_bound_features(selected, binding), [first, second])
+        for mismatched in ([first, first], [], [second]):
+            with self.subTest(mismatched=mismatched):
+                self.assertEqual(_wa_bound_features({**selected, ('E', 15, 1495): mismatched}, binding), [])
+        self.assertEqual(_wa_bound_features(selected, dict(binding, tenement_ids=['E 15/1495'])), [])
 
     def calculate(self,polygons):
         features=[{'properties':{'tno':'EL'+str(i+1)},'geometry':mapping(p)} for i,p in enumerate(polygons)]

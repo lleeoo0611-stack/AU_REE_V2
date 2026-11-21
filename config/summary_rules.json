@@ -4571,6 +4571,744 @@
               "decision_id": "round4-tenement-centroid-20261113"
             }
           ]
+        },
+        "wa_dasc_current_tenements_20260911": {
+          "source_sha256": "0caf2754da4e2a4854fa2e8b2e450ed0585f75de985e1a393a24c590df4f3c90",
+          "zip_member": "CurrentTenements",
+          "source_crs": "EPSG:7844",
+          "bindings": [
+            {
+              "project_id": "AU-3eaa906d8230334ef698",
+              "state": "WA",
+              "tenement_ids": [
+                "E 70/5939"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:7844",
+              "id_field": "FMT_TENID",
+              "holder_field": "HOLDER1",
+              "attributes_by_title": {
+                "E 70/5939": {
+                  "HOLDER1": "CAPRICE RESOURCES LIMITED",
+                  "TENSTATUS": "LIVE",
+                  "STARTDATE": "20211018",
+                  "GRANTDATE": "20220815",
+                  "ENDDATE": "20270814",
+                  "EXTRACT_DA": "20260910"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "c5a822c62132427bce97730f4b9d85b08465dfcd4111045dc49ac0e5fa3a95a8",
+                  "page": 14,
+                  "quote": "Appendix 1: Schedule of Mining Tenements as at 30 September 2026"
+                },
+                {
+                  "source_sha256": "c5a822c62132427bce97730f4b9d85b08465dfcd4111045dc49ac0e5fa3a95a8",
+                  "page": 14,
+                  "quote": "There were no acquisitions or further divestments during the quarter."
+                },
+                {
+                  "source_sha256": "c5a822c62132427bce97730f4b9d85b08465dfcd4111045dc49ac0e5fa3a95a8",
+                  "page": 14,
+                  "quote": "Mukinbudin E70/5939 Western Australia 100%"
+                }
+              ],
+              "scope_review": "The September 2026 quarter lists only E70/5939 under Mukinbudin. The 2024 three-title scope has been superseded. The archive and schedule both identify Caprice."
+            },
+            {
+              "project_id": "AU-cefbde90dc34312547d3",
+              "state": "WA",
+              "tenement_ids": [
+                "E 15/1495",
+                "M 15/1841"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:7844",
+              "id_field": "FMT_TENID",
+              "holder_field": "HOLDER1",
+              "attributes_by_title": {
+                "E 15/1495": {
+                  "HOLDER1": "CUFE LIMITED",
+                  "TENSTATUS": "LIVE",
+                  "STARTDATE": "20151126",
+                  "GRANTDATE": "20160726",
+                  "ENDDATE": "20260725",
+                  "EXTRACT_DA": "20260910"
+                },
+                "M 15/1841": {
+                  "HOLDER1": "CUFE LTD",
+                  "TENSTATUS": "LIVE",
+                  "STARTDATE": "20171218",
+                  "GRANTDATE": "20190220",
+                  "ENDDATE": "20400219",
+                  "EXTRACT_DA": "20260910"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "55b1fbe1d9a0de373bcb6d7e86cbf84d768f6d3c44a0a33e23d3fd2f5c23a6ca",
+                  "page": 8,
+                  "quote": "North Dam Project (lithium) – the Company has 100% ownership of E15/1495 and ML15/1841."
+                },
+                {
+                  "source_sha256": "68157bf7160d0479e622d6e4f13ccd45e2925e59d311416d275aeea79e221397",
+                  "page": 4,
+                  "quote": "North Dam Project - Western Australia (CuFe 100%)"
+                },
+                {
+                  "source_sha256": "68157bf7160d0479e622d6e4f13ccd45e2925e59d311416d275aeea79e221397",
+                  "page": 9,
+                  "quote": "E15/1495 East Yilgarn – Western Australia - - 100% 1 M15/1841 East Yilgarn – Western Australia - - 100% 1"
+                }
+              ],
+              "scope_review": "The issuer names both North Dam licences and confirms both interests at 30 September 2026. The September government archive records both licences LIVE. Its exploration-title expiry entry predates the extract. This point describes the reported project footprint and does not establish the legal renewal date."
+            },
+            {
+              "project_id": "AU-d0827cf51def7e0014fc",
+              "state": "WA",
+              "tenement_ids": [
+                "E 70/5037",
+                "E 70/6140"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:7844",
+              "id_field": "FMT_TENID",
+              "holder_field": "HOLDER1",
+              "attributes_by_title": {
+                "E 70/5037": {
+                  "HOLDER1": "ROCKY GULLY EXPLORATION PTY LTD",
+                  "TENSTATUS": "LIVE",
+                  "STARTDATE": "20170926",
+                  "GRANTDATE": "20180504",
+                  "ENDDATE": "20280503",
+                  "EXTRACT_DA": "20260910"
+                },
+                "E 70/6140": {
+                  "HOLDER1": "ROCKY GULLY EXPLORATION PTY LTD",
+                  "TENSTATUS": "LIVE",
+                  "STARTDATE": "20220526",
+                  "GRANTDATE": "20220905",
+                  "ENDDATE": "20270904",
+                  "EXTRACT_DA": "20260910"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0",
+                  "page": 70,
+                  "quote": "Rocky Gully Western Australia E70/5037 Rocky Gully Exploration Pty Ltd 100% E70/6140 Rocky Gully Exploration Pty Ltd 100%"
+                },
+                {
+                  "source_sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0",
+                  "page": 70,
+                  "quote": "Pingrup Western Australia E70/6783 Narryer Minerals Pty Ltd 100%"
+                },
+                {
+                  "source_sha256": "398b475143ae8a2a4f713722c79ef734bffefb9c2fcebdabeb13b879e642e15c",
+                  "page": 9,
+                  "quote": "E70/5037 Rocky Gully Exploration Pty Ltd 100% Nil E70/6140 Rocky Gully Exploration Pty Ltd 100% Nil"
+                },
+                {
+                  "source_sha256": "398b475143ae8a2a4f713722c79ef734bffefb9c2fcebdabeb13b879e642e15c",
+                  "page": 9,
+                  "quote": "Pingrup Western Australia E70/6783 Narryer Minerals Pty Ltd 100% Nil"
+                }
+              ],
+              "scope_review": "Two Rocky Gully titles share the registered subsidiary holder; the schedule explicitly assigns E70/6783 to the separate Pingrup project."
+            }
+          ]
+        },
+        "wa_dasc_dead_tenements_20250727": {
+          "source_sha256": "f0a39e633c5a0ae78b272e76ef26e9ac60de9d1abacf46ee02c58a28d957c67b",
+          "zip_member": "DeadTenements",
+          "source_crs": "EPSG:4283",
+          "bindings": [
+            {
+              "project_id": "AU-b3ae34ac85d16018bd4b",
+              "state": "WA",
+              "tenement_ids": [
+                "E 70/6146"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4283",
+              "id_field": "FMT_TENID",
+              "holder_field": "HOLDERNAME",
+              "attributes_by_title": {
+                "E 70/6146": {
+                  "HOLDERNAME": "MINERAL FIELDS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20220607",
+                  "GRANTDATE": "20230419",
+                  "ENDDATE": "20240301",
+                  "EXTRACT_DA": "20250725"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "606cc24f03762ba4f73cd78e552127f5bc557195a9f1bae7d4f17c638f6a11a8",
+                  "page": 5,
+                  "quote": "Barballin REE (Live) E70/6146"
+                },
+                {
+                  "source_sha256": "606cc24f03762ba4f73cd78e552127f5bc557195a9f1bae7d4f17c638f6a11a8",
+                  "page": 7,
+                  "quote": "Barballin E70/6146 42 130"
+                },
+                {
+                  "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+                  "page": 65,
+                  "quote": "E70/6146 Barballin Muckinbudin Granted – 100% Acquired"
+                }
+              ],
+              "scope_review": "Historical footprint of the sole E70/6146 grant held by Mineral Fields Pty Ltd. The schedule reports 42 blocks and 130 km²; the native record documents grant on 19 April 2023 and termination on 1 March 2024. The archived terminal polygon represents this historical scope."
+            },
+            {
+              "project_id": "AU-b50a5b57669586191c33",
+              "state": "WA",
+              "tenement_ids": [
+                "E 09/2499"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4283",
+              "id_field": "FMT_TENID",
+              "holder_field": "HOLDERNAME",
+              "attributes_by_title": {
+                "E 09/2499": {
+                  "HOLDERNAME": "WESTOZ LITHIUM PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20210216",
+                  "GRANTDATE": "20220602",
+                  "ENDDATE": "20240524",
+                  "EXTRACT_DA": "20250725"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7",
+                  "page": 4,
+                  "quote": "The Wandagee Project consists of one EL (E09/2499) covering an area of ~400km2."
+                },
+                {
+                  "source_sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7",
+                  "page": 8,
+                  "quote": "owns 100% interests in the Pilbara Lithium and Wandagee Projects"
+                }
+              ],
+              "scope_review": "Sole project licence before surrender. A separately evidenced representative point is required if the official polygon fails the existing in-scope or distance rule. Terminal archive geometry is used to test spatial eligibility of the historical project."
+            },
+            {
+              "project_id": "AU-f81823bd8ba271840345",
+              "state": "WA",
+              "tenement_ids": [
+                "E 59/2714",
+                "E 59/2715",
+                "E 59/2742"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4283",
+              "id_field": "FMT_TENID",
+              "holder_field": "HOLDERNAME",
+              "attributes_by_title": {
+                "E 59/2714": {
+                  "HOLDERNAME": "MINERAL FIELDS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20220509",
+                  "GRANTDATE": "20220712",
+                  "ENDDATE": "20240318",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 59/2715": {
+                  "HOLDERNAME": "MINERAL FIELDS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20220509",
+                  "GRANTDATE": "20220712",
+                  "ENDDATE": "20240318",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 59/2742": {
+                  "HOLDERNAME": "MINERAL FIELDS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20220707",
+                  "GRANTDATE": "20220908",
+                  "ENDDATE": "20240318",
+                  "EXTRACT_DA": "20250725"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+                  "page": 65,
+                  "quote": "E59/2715 Munbinia Mt Magnet Granted – 100% Acquired E59/2714 Munbinia Mt Magnet Granted – 100% Acquired E59/2742 Munbinia Mt Magnet Granted – 100% Acquired"
+                },
+                {
+                  "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+                  "page": 66,
+                  "quote": "E59/2715 Munbinia Mt Magnet Granted – 100% E59/2714 Munbinia Mt Magnet Granted – 100% E59/2742 Munbinia Mt Magnet Granted – 100%"
+                }
+              ],
+              "scope_review": "The single FY23 issuer project explicitly groups these three granted titles. Use all three; check against each registered holder, dates and full boundary. Terminal archive geometry is used to test spatial eligibility of the historical project."
+            },
+            {
+              "project_id": "AU-a9b72e86940271be45a3",
+              "state": "WA",
+              "tenement_ids": [
+                "E 77/2880",
+                "E 77/2881",
+                "E 77/2882",
+                "E 77/2883",
+                "E 77/2884",
+                "E 77/2885"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4283",
+              "id_field": "FMT_TENID",
+              "holder_field": "HOLDERNAME",
+              "attributes_by_title": {
+                "E 77/2880": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20211004",
+                  "GRANTDATE": "20230807",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 77/2881": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20211004",
+                  "GRANTDATE": "20230807",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 77/2882": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20211004",
+                  "GRANTDATE": "20230807",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 77/2883": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20211004",
+                  "GRANTDATE": "20230807",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 77/2884": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20211004",
+                  "GRANTDATE": "20230807",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 77/2885": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20211004",
+                  "GRANTDATE": "20230807",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+                  "page": 8,
+                  "quote": "Diemals Li/REE project consists of 6 tenements, (E77/2880 to E77/2885)"
+                },
+                {
+                  "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+                  "page": 64,
+                  "quote": "E77/2932 Diemals NW"
+                }
+              ],
+              "scope_review": "The issuer separately names Diemals NW in FY23. The six named titles are the minimum footprint of this row; any later enlarged grouping must meet the same extent rule. Terminal archive geometry is used to test spatial eligibility of the historical project."
+            },
+            {
+              "project_id": "AU-70cc41e3a7106f983f73",
+              "state": "WA",
+              "tenement_ids": [
+                "E 63/2035",
+                "E 63/2289",
+                "E 63/2290",
+                "E 63/2291",
+                "E 63/2292",
+                "E 63/2293",
+                "E 63/2294",
+                "E 74/754",
+                "E 74/755",
+                "E 74/756",
+                "E 74/757"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4283",
+              "id_field": "FMT_TENID",
+              "holder_field": "HOLDERNAME",
+              "attributes_by_title": {
+                "E 63/2035": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20200521",
+                  "GRANTDATE": "20211019",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 63/2289": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20221006",
+                  "GRANTDATE": "20230905",
+                  "ENDDATE": "20240815",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 63/2290": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20221006",
+                  "GRANTDATE": "20230905",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 63/2291": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20221006",
+                  "GRANTDATE": "20230905",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 63/2292": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20221006",
+                  "GRANTDATE": "20230905",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 63/2293": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20221006",
+                  "GRANTDATE": "20230905",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 63/2294": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20221006",
+                  "GRANTDATE": "20230905",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 74/754": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20221006",
+                  "GRANTDATE": "29991231",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 74/755": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20221006",
+                  "GRANTDATE": "20221223",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 74/756": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20221006",
+                  "GRANTDATE": "20221223",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 74/757": {
+                  "HOLDERNAME": "ELECTRIFICATION METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20221006",
+                  "GRANTDATE": "20221223",
+                  "ENDDATE": "20240730",
+                  "EXTRACT_DA": "20250725"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+                  "page": 64,
+                  "quote": "E63/2035 Lake Tay South Coastal 100%"
+                },
+                {
+                  "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+                  "page": 64,
+                  "quote": "E63/2289 Lake Tay South Coastal Application – 100% - E63/2290 Lake Tay South Coastal Application – 100% - E63/2291 Lake Tay South Coastal Application – 100%"
+                },
+                {
+                  "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+                  "page": 65,
+                  "quote": "E63/2292 Lake Tay South Coastal Application – 100% - E63/2293 Lake Tay South Coastal Application – 100% - E63/2294 Lake Tay South Coastal Application – 100%"
+                },
+                {
+                  "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+                  "page": 65,
+                  "quote": "E74/0754 Lake Tay South Coastal Application – 100% - E74/0755 Lake Tay South Coastal Granted – 100% - E74/0756 Lake Tay South Coastal Granted – 100% - E74/0757 Lake Tay South Coastal Granted – 100%"
+                }
+              ],
+              "scope_review": "The archived polygons of all 11 Lake Tay titles in the FY23 schedule exceed the project extent limit. Each terminal record names Electrification Metals. Terminal archive geometry is used to test spatial eligibility of the historical project."
+            },
+            {
+              "project_id": "AU-d99cf357d160df73387c",
+              "state": "WA",
+              "tenement_ids": [
+                "E 77/3009",
+                "E 77/3010",
+                "E 77/3011",
+                "E 77/3012"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4283",
+              "id_field": "FMT_TENID",
+              "holder_field": "HOLDERNAME",
+              "attributes_by_title": {
+                "E 77/3009": {
+                  "HOLDERNAME": "KSZ METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20220928",
+                  "GRANTDATE": "20230704",
+                  "ENDDATE": "20250703",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 77/3010": {
+                  "HOLDERNAME": "KSZ METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20220928",
+                  "GRANTDATE": "20230704",
+                  "ENDDATE": "20250703",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 77/3011": {
+                  "HOLDERNAME": "KSZ METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20220928",
+                  "GRANTDATE": "20230704",
+                  "ENDDATE": "20250703",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 77/3012": {
+                  "HOLDERNAME": "KSZ METALS PTY LTD",
+                  "TENSTATUS": "Dead",
+                  "STARTDATE": "20220928",
+                  "GRANTDATE": "20230704",
+                  "ENDDATE": "20250703",
+                  "EXTRACT_DA": "20250725"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5",
+                  "page": 52,
+                  "quote": "Southern Cross Li-REE Project, Western Australia E77/3009 100% Granted E77/3010 100% Granted E77/3011 100% Granted E77/3012 100% Granted"
+                }
+              ],
+              "scope_review": "The issuer lists four granted Southern Cross project titles. The complete union of the historical government polygons exceeds the extent limit. Terminal archive geometry is used to test spatial eligibility of the historical project."
+            }
+          ]
+        },
+        "wa_dasc_current_tenements_20250727": {
+          "source_sha256": "f45f27a7d469cc71c57819461a1b5e9594ef67440a87adb8deb68a9cb467f278",
+          "zip_member": "CurrentTenements",
+          "source_crs": "EPSG:4283",
+          "bindings": [
+            {
+              "project_id": "AU-794821a2df9b7a244f96",
+              "state": "WA",
+              "tenement_ids": [
+                "E 59/2905",
+                "E 70/6397",
+                "E 70/6398"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4283",
+              "id_field": "FMT_TENID",
+              "holder_field": "HOLDER1",
+              "attributes_by_title": {
+                "E 59/2905": {
+                  "HOLDER1": "HEAVY RARE EARTHS LIMITED",
+                  "TENSTATUS": "LIVE",
+                  "STARTDATE": "20240604",
+                  "GRANTDATE": "20250327",
+                  "ENDDATE": "20300326",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 70/6397": {
+                  "HOLDER1": "HEAVY RARE EARTHS LIMITED",
+                  "TENSTATUS": "LIVE",
+                  "STARTDATE": "20230124",
+                  "GRANTDATE": "20230517",
+                  "ENDDATE": "20280516",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 70/6398": {
+                  "HOLDER1": "HEAVY RARE EARTHS LIMITED",
+                  "TENSTATUS": "LIVE",
+                  "STARTDATE": "20230124",
+                  "GRANTDATE": "20231108",
+                  "ENDDATE": "20281107",
+                  "EXTRACT_DA": "20250725"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d",
+                  "page": 12,
+                  "quote": "Exploration licences E70/6397, E70/6398 and E59/2905 that comprise the Perenjori project"
+                },
+                {
+                  "source_sha256": "938c48f37d655d18c9bcbad0c8e544fdd7998ed27adb93f6f21fa65824ad001f",
+                  "page": 7,
+                  "quote": "E70/6397, E70/6398 and E59/2905"
+                },
+                {
+                  "source_sha256": "938c48f37d655d18c9bcbad0c8e544fdd7998ed27adb93f6f21fa65824ad001f",
+                  "page": 11,
+                  "quote": "E59/2905 – Perenjori Project"
+                }
+              ],
+              "scope_review": "Historical July 2025 footprint of the three licences. The June disclosure and July quarterly return identify precisely these three licences at 100% with the same 70, 39 and 32 blocks as recorded by the government. This predates later surrender."
+            },
+            {
+              "project_id": "AU-e6d859a831ed5954b440",
+              "state": "WA",
+              "tenement_ids": [
+                "E 63/1888"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4283",
+              "id_field": "FMT_TENID",
+              "holder_field": "HOLDER1",
+              "attributes_by_title": {
+                "E 63/1888": {
+                  "HOLDER1": "SYNERGY PROSPECTING PTY LTD",
+                  "TENSTATUS": "LIVE",
+                  "STARTDATE": "20171213",
+                  "GRANTDATE": "20181026",
+                  "ENDDATE": "20281025",
+                  "EXTRACT_DA": "20250725"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "68d2713e6e73899c9d2450e4726949a69a79a53b0d9b59942998b3e8a50a8898",
+                  "page": 14,
+                  "quote": "The Kenny project consists of a single tenure, Exploration Licence (“E”) 63/1888"
+                },
+                {
+                  "source_sha256": "5ac06404b9af5f0f99414358b5d5207196ce554c55a6850934cb6a2aaf893b48",
+                  "page": 6,
+                  "quote": "Surrendered 40% of tenure area in accordance with S.65 Compulsory Partial Surrender requirements."
+                },
+                {
+                  "source_sha256": "ec7c85a4cbb4a06f6d3b20719e494d4c30dc0a5e26b360c59b4bc1aa1ea7058e",
+                  "page": 4,
+                  "quote": "On 10 September 2025 exploration license E63/1888 held in the Dundas Mineral Field region Western Australia was surrendered."
+                }
+              ],
+              "scope_review": "Historical July 2025 single-licence footprint held by Synergy Prospecting for EverGreen, after the compulsory 40% reduction disclosed in April 2025 and before full surrender on 10 September 2025. It represents the retained 42 blocks."
+            },
+            {
+              "project_id": "AU-b31d00e2272ffa6ccbd3",
+              "state": "WA",
+              "tenement_ids": [
+                "E 63/2163"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4283",
+              "id_field": "FMT_TENID",
+              "holder_field": "HOLDER1",
+              "attributes_by_title": {
+                "E 63/2163": {
+                  "HOLDER1": "MOHO RESOURCES LIMITED",
+                  "TENSTATUS": "LIVE",
+                  "STARTDATE": "20211022",
+                  "GRANTDATE": "20211221",
+                  "ENDDATE": "20261220",
+                  "EXTRACT_DA": "20250725"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "88ee1617ec2c30a4a3e83301b90b5d430b994265852316e98a699f779e784d86",
+                  "page": 69,
+                  "quote": "PEAK CHARLES (WA) E63/2163 100% HAMPTON"
+                },
+                {
+                  "source_sha256": "7f46c1631aa6a6b9eab24314635bbc589905dd202e04de2203135e79f93b330a",
+                  "page": 15,
+                  "quote": "The proposed reconnaissance drilling program for the Gimli prospect on E63/2163"
+                }
+              ],
+              "scope_review": "Historical July 2025 scope. Moho lists a single granted Peak Charles licence (E63/2163) in its 30 June schedule. The earlier REE report specifically places Gimli on this retained title. Five former titles had terminated before the government snapshot. This point represents the reduced project at that date."
+            },
+            {
+              "project_id": "AU-e50ba6a268ea89226495",
+              "state": "WA",
+              "tenement_ids": [
+                "E 38/3153",
+                "E 38/3741"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4283",
+              "id_field": "FMT_TENID",
+              "holder_field": "HOLDER1",
+              "attributes_by_title": {
+                "E 38/3153": {
+                  "HOLDER1": "TAMBOURAH METALS LTD",
+                  "TENSTATUS": "LIVE",
+                  "STARTDATE": "20160630",
+                  "GRANTDATE": "20170913",
+                  "ENDDATE": "20270912",
+                  "EXTRACT_DA": "20250725"
+                },
+                "E 38/3741": {
+                  "HOLDER1": "TAMBOURAH METALS LTD",
+                  "TENSTATUS": "LIVE",
+                  "STARTDATE": "20220518",
+                  "GRANTDATE": "20221130",
+                  "ENDDATE": "20271129",
+                  "EXTRACT_DA": "20250725"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "107027bdd5524a7983907c25fa16f91b0212cd66833007ef892f2d85a0a04822",
+                  "page": 61,
+                  "quote": "On 21 July 2025, Tambourah Metals Limited and Dundas Minerals Limited entered into a binding agreement to sell and purchase Exploration Licenses E 38/3153 and E 38/3741 (the Achilles Project)."
+                },
+                {
+                  "source_sha256": "107027bdd5524a7983907c25fa16f91b0212cd66833007ef892f2d85a0a04822",
+                  "page": 53,
+                  "quote": "In July 2025, the Achilles Project was sold"
+                },
+                {
+                  "source_sha256": "21a922b1cc7d7bd14d71f4a09450fd3978bbb0c8b222cf349080bf418e019175",
+                  "page": 4,
+                  "quote": "CBRC005 RC MGA94_51 7043600 416270 555 -60 90 300 CBRC006 RC MGA94_51 7043600 416120 555 -60 90 300 CBRC007 RC MGA94_51 7043600 415970 555 -60 90 258"
+                },
+                {
+                  "source_sha256": "21a922b1cc7d7bd14d71f4a09450fd3978bbb0c8b222cf349080bf418e019175",
+                  "page": 5,
+                  "quote": "CBRC006 RC F202105 32 36 579.88 CBRC005 RC F202026 28 32 566.49 CBRC007 RC F202180 20 24 536.14"
+                }
+              ],
+              "scope_review": "Historical Achilles project footprint at the July 2025 sale. The 21 July agreement specifies the two titles, and the annual accounts confirm sale in July. The 25 July DASC extract still records Tambourah as registered holder. Three historical REE-bearing Windidda South collars (CBRC005/006/007) lie inside E38/3153 and four earlier collars (CBRC001–004) lie outside the reduced footprint. The location represents the two-title July project, not the position of any individual drill hole."
+            }
+          ]
         }
       }
     },
