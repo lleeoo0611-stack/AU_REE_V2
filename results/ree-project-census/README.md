@@ -4,6 +4,8 @@
 
 ## 整合證據模型審查版
 
+本分支最新固定研究版已完成 189 格補證。新增 11 個實值，5 格改判不適用；固定分母 3,034 下覆蓋率為 81.34%，16 個 MCDA 面板名次一致。[本輪結果與驗收](gap189-20261122/README.md) · [最新 Census](gap189-20261122/REE%20project%20census.csv)
+
 93 案共 4,743 格，有值 2,457 格、不適用 1,709 格、待補證 577 格。新增 Voyager 礦床型態。樣品方法、候選十二階段及正式 C1 六項資格均可從同次重播查核。[整合審查與驗收](integrated-evidence-v1-20261120/README.md) · [Census 總表](integrated-evidence-v1-20261120/REE%20project%20census.csv)
 
 ## 前版 620 格缺值處理

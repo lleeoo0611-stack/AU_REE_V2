@@ -1,5 +1,17 @@
 # AU_REE_V2
 
+## Phase 22 × ASX 的 189 格補證與重播
+
+本輪沿用 2026-11-13 的研究截日，以原來的 3,034 個適用格比較覆蓋率。新總表、逐格補證紀錄、排名差異及重播收據見[本輪驗收](results/ree-project-census/gap189-20261122/README.md)。
+
+持有本輪原件套件時，可用同一入口重建 SQLite、Census 及篩選後的 MCDA。
+
+```sh
+au-ree-v2 all --source-mode offline --as-of 2026-11-13 --source-replay results/ree-project-census/gap189-20261122/source_acquisition.json --replay-assets KIT/assets --tessdata TESSDATA_DIR --work work/gap189-replay
+```
+
+持有前版原件庫時，亦可使用前版收據與原件庫，外加 `--static-pdfs ADDITIONS`。該目錄應包含來源登錄指定的三份靜態 PDF 與 2026-11-02 ASIC 名冊 ZIP。流程會核對原件雜湊、版本及截日，另輸出 `gap_review.csv` 追蹤原始缺格。
+
 ## 2026-11-20 整合證據模型開發版
 
 Census 使用 2026-11-13 的來源截日，技術揭露使用 2026-11-05 的編碼基準，正式 C1 使用政策指定的 2026-10-29。SQLite 寫入連線可原地遷移先前版本。正式六 Gate、研究用十二階段與樣品方法均有各自的可追溯輸出。[本版實際結果與驗收](results/ree-project-census/integrated-evidence-v1-20261120/README.md) · [資料契約](docs/phase22-asx-maintenance-audit.md) · [正式資格](docs/phase4-discovery-eligibility.md)
