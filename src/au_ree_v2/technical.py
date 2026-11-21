@@ -1591,6 +1591,14 @@ def summary_annual_cell(doc,binding,field,token,unit,scope,selected_scenario=Non
             if not doc[pn-1].rect.contains(region):fail('STATEMENT_OXIDE_BASIS_REQUIRED')
             exact='Nd-Pr, Dy and Tb production figures are life-of-mine annual average calculated by multiplying REC production by TREO grade and its respective rare earth oxide composition as a % of TREO'
             if summary_annual_norm(summary_annual_region(doc[pn-1],region))!=summary_annual_norm(exact):fail('STATEMENT_OXIDE_BASIS_REQUIRED')
+        elif binding.get('semantic_profile') == 'full_project_concentrate_offtake':
+            # Only an offtake covering the full project product can support its annual output.
+            coverage = summary_annual_norm(page.get_textbox(rect('time_basis_bbox')))
+            if (field != 'average_annual_treo_product_t' or unit != 'tonnes per annum'
+                    or suffix != 'tonnes per annum of contained rare earth oxides'
+                    or not re.fullmatch(r'▪?\s*approximately [\d,]+ tonnes of rec over the life of the project, equivalent to around', prefix)
+                    or not re.fullmatch(r'▪?\s*iluka to purchase 100% of goschen’s rec, providing offtake certainty for approximately 18 years', coverage)):
+                fail('WHOLE_PROJECT_CONTAINED_OXIDE_REQUIRED')
         elif (field != 'average_annual_treo_product_t' or 'annual' not in prefix or
               not suffix.startswith('tpa of contained treo in concentrate') or unit != 'tpa'):
             fail('STATEMENT_SEMANTICS_MISMATCH')

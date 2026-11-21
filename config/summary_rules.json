@@ -4427,6 +4427,148 @@
               ],
               "scope_review": "Nutgrove is the named single-tenement component of the three-title Cosgrove portfolio. The other two named components are Mt Scoria and Mt Ramsay. The September 2026 portfolio retains the same 29 Nutgrove sub-blocks under Wandoo, with Burlington licences listed separately. The 3 November Queensland capture supplies the granted polygon. Point represents this Nutgrove tenure, not the full Cosgrove portfolio or a mineral resource.",
               "decision_id": "round4-tenement-centroid-20261113"
+            },
+            {
+              "project_id": "AU-41ee0148c804293cfc39",
+              "state": "QLD",
+              "tenement_ids": [
+                "EPM 26646",
+                "EPM 28913"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4326",
+              "id_field": "displayname",
+              "holder_field": "authorisedholdername",
+              "required_attributes": {
+                "authorisedholdername": "GDM CAPE PTY LTD"
+              },
+              "attributes_by_title": {
+                "EPM 26646": {
+                  "permitid": 215480,
+                  "permitstatus": "Granted"
+                },
+                "EPM 28913": {
+                  "permitid": 225639,
+                  "permitstatus": "Application"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+                  "page": 12,
+                  "quote": "The Project tenement comprises EPM 26646 and EPM Application 28913."
+                },
+                {
+                  "source_sha256": "cc24cda8b95699a075c215f2225f0787e046b687c96ac41179f88d30a85f97ba",
+                  "page": 15,
+                  "quote": "information on its mining tenements as at 30 September 2026"
+                },
+                {
+                  "source_sha256": "cc24cda8b95699a075c215f2225f0787e046b687c96ac41179f88d30a85f97ba",
+                  "page": 15,
+                  "quote": "EPM26646 New Goldfield Laura, QLD Granted 100% GDM Cape Pty Ltd"
+                },
+                {
+                  "source_sha256": "cc24cda8b95699a075c215f2225f0787e046b687c96ac41179f88d30a85f97ba",
+                  "page": 15,
+                  "quote": "EPM28913 New Goldfield Extended Laura, QLD Application 100% GDM Cape Pty Ltd"
+                }
+              ],
+              "scope_review": "Project footprint of one granted permit and one application. The issuer groups both New Goldfield titles within the wider Cape portfolio. The September 2026 schedule lists Bonanza separately. Each title and its distinct status must match the 3 November state inventory.",
+              "decision_id": "round4-tenement-centroid-20261113"
+            },
+            {
+              "project_id": "AU-88dfe58aac214c33e576",
+              "state": "QLD",
+              "tenement_ids": [
+                "EPM 28644",
+                "EPM 28645"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4326",
+              "id_field": "displayname",
+              "holder_field": "authorisedholdername",
+              "required_attributes": {
+                "authorisedholdername": "ACTIVEX LIMITED"
+              },
+              "attributes_by_title": {
+                "EPM 28644": {
+                  "permitid": 224525,
+                  "permitstatus": "Granted"
+                },
+                "EPM 28645": {
+                  "permitid": 224528,
+                  "permitstatus": "Granted"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "aab011288d038eeedc00578453cc7bf7cd9653f87ac4c43a321fcbddc8eb97ed",
+                  "page": 18,
+                  "quote": "The project (EPM 28644 & EPM 28645) is located 880km northwest of Brisbane."
+                },
+                {
+                  "source_sha256": "aab011288d038eeedc00578453cc7bf7cd9653f87ac4c43a321fcbddc8eb97ed",
+                  "page": 18,
+                  "quote": "Within the Aramac Project the Queensland Geological Survey has delineated"
+                }
+              ],
+              "scope_review": "Aramac exploration footprint includes Fortuna and Ivy Leaf in the September 2026 quarterly report. The full footprint must satisfy the existing representative-distance limit.",
+              "decision_id": "round4-tenement-centroid-20261113"
+            },
+            {
+              "project_id": "AU-7135b2eb1d3f193da9a6",
+              "state": "QLD",
+              "tenement_ids": [
+                "EPM 18615",
+                "EPM 18623",
+                "EPM 26232",
+                "EPM 26307"
+              ],
+              "complete_project_scope": true,
+              "source_crs": "EPSG:4326",
+              "id_field": "displayname",
+              "holder_field": "authorisedholdername",
+              "required_attributes": {
+                "authorisedholdername": "GILBERTON GOLD PTY LTD"
+              },
+              "attributes_by_title": {
+                "EPM 18615": {
+                  "permitid": 103939,
+                  "permitstatus": "Granted"
+                },
+                "EPM 18623": {
+                  "permitid": 103947,
+                  "permitstatus": "Granted"
+                },
+                "EPM 26232": {
+                  "permitid": 213151,
+                  "permitstatus": "Granted"
+                },
+                "EPM 26307": {
+                  "permitid": 213368,
+                  "permitstatus": "Granted"
+                }
+              },
+              "original_references": [
+                {
+                  "source_sha256": "61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd",
+                  "page": 8,
+                  "quote": "The Project consists of EPMs 18615 (Mt Hogan), 18623 (Gilberton), 26232 (Gum Flat) and 26307 (Split Rock)."
+                },
+                {
+                  "source_sha256": "aab011288d038eeedc00578453cc7bf7cd9653f87ac4c43a321fcbddc8eb97ed",
+                  "page": 9,
+                  "quote": "EPMs 18615, 18623, 26232 and 26307 – JV with Gilberton Gold Pty Ltd"
+                },
+                {
+                  "source_sha256": "aab011288d038eeedc00578453cc7bf7cd9653f87ac4c43a321fcbddc8eb97ed",
+                  "page": 9,
+                  "quote": "The Project consists of EPMs 18615, 18623, 26232 and 26307"
+                }
+              ],
+              "scope_review": "The issuer groups all four Gilberton permits in 2024 and confirms that same grouping and the joint venture in September 2026. The gold deposit and individual REE prospects are narrower than this exploration footprint.",
+              "decision_id": "round4-tenement-centroid-20261113"
             }
           ]
         }

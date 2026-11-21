@@ -762,6 +762,7 @@ def summary_stage_fields(row, trace, sources, associations, rules, decisions, pu
 def summary_deposit_fields(row,trace,attributes,rules,decisions,put):
     if row['礦床型態代碼']:return
     native=trace.get((row['專案ID'],'礦床型態'));text=row['礦床型態'];case=None
+    host_evidence = {}
     if text.casefold() in rules['deposit_clays']:case=('iac','clay')
     elif text in rules['deposit_exact']:case=rules['deposit_exact'][text]
     else:
@@ -770,10 +771,26 @@ def summary_deposit_fields(row,trace,attributes,rules,decisions,put):
             review=support['deposit_host_review'];ore=trace.get((row['專案ID'],'礦石蘊藏量_Mt'))
             if not review['selected_mre_required'] or ore and ore['source_sha256']==support['source_sha256']:
                 case=(review['code'],'g4');native=support
+                if 'evidence_level' in review:
+                    level = review['evidence_level']
+                    if (level not in ('EXPLORATION_MODEL_ONLY', 'DRILL_CONFIRMED_HOST') or not support.get('scope')
+                            or review.get('host_style') != 'CLAY_HOSTED_REE' or review['code'] != 'iac'):
+                        return
+                    case = ('iac', 'clay')
+                    host_evidence = dict(evidence_level=level, host_scope=support['scope'])
     if not native or not case:return
     rule=rules['deposit_rules'][case[1]];decision=summary_decision(decisions,rule)
-    if row['專案ID'] in rules['deposit_speculative'] and not summary_decision(decisions,rules['deposit_rules']['potential']):return
-    if decision:put('礦床型態代碼',case[0],native['source_sha256'],native.get('locator',''),rule,canonical(dict(decision=decision['decision_id'],source_value=text,qualifier='IONIC_NOT_CONFIRMED' if case[0]=='iac' else '')),native.get('observation_ids') or [native['obs_id']])
+    if row['專案ID'] in rules['deposit_speculative'] or host_evidence.get('evidence_level') == 'EXPLORATION_MODEL_ONLY':
+        potential = summary_decision(decisions,rules['deposit_rules']['potential'])
+        if not potential:
+            return
+        if host_evidence:
+            host_evidence['potential_decision'] = potential['decision_id']
+    if decision:
+        scope = dict(decision=decision['decision_id'], source_value=text,
+                     qualifier='IONIC_NOT_CONFIRMED' if case[0]=='iac' else '', **host_evidence)
+        put('礦床型態代碼', case[0], native['source_sha256'], native.get('locator',''),
+            rule, canonical(scope), native.get('observation_ids') or [native['obs_id']])
 
 
 def export_summary(root, database, out, cutoff=None, *, connection=None, run_id=None,

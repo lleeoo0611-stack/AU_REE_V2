@@ -314,6 +314,31 @@ class SummaryContractTests(unittest.TestCase):
 
 
 class IntegratedRuleTests(unittest.TestCase):
+    def test_full_concentrate_offtake_requires_total_scope_and_contained_annual_oxide(self):
+        from au_ree_v2.technical import summary_annual_cell
+        field = 'average_annual_treo_product_t'
+        coverage = 'Iluka to purchase 100% of Goschen’s REC, providing offtake certainty for approximately 18 years'
+        prefix = 'Approximately 145,620 tonnes of REC over the life of the project, equivalent to around'
+        suffix = 'tonnes per annum of contained rare earth oxides'
+        for share, product, value, valid in (
+                ('100%', suffix, '4900', True), ('80%', suffix, '4900', False),
+                ('100%', 'tonnes per annum of concentrate', '4900', False), ('100%', suffix, '4800', False)):
+            with self.subTest(share=share, product=product, value=value), pymupdf.open() as doc:
+                page = doc.new_page(width=850, height=110)
+                # Built-in font uses WinAnsi byte 0x92 for the issuer's apostrophe.
+                page.insert_text((10,20), coverage.replace('100%', share).replace('’', chr(146)), fontsize=8)
+                statement = f'{prefix} 4,900 {product}'
+                page.insert_text((10,45), statement, fontsize=8)
+                binding = dict(mode='native_statement', semantic_profile='full_project_concentrate_offtake',
+                    field=field, scope='DFS REC', page=1, time_basis_bbox=[5,5,830,24],
+                    statement_bbox=[5,31,830,49], statement=statement, before=prefix, after=product)
+                args = (doc, binding, field, value, 'tonnes per annum', 'DFS REC')
+                if valid:
+                    self.assertEqual('NATIVE_SCOPED_STATEMENT_BINDING', summary_annual_cell(*args))
+                else:
+                    with self.assertRaises(ValueError):
+                        summary_annual_cell(*args)
+
     def test_contains_product_grade_and_correct_annual_mass_unit(self):
         from au_ree_v2.technical import summary_annual_hmc_card
         review=dict(scope='HMC',statement_id='hmc',source_sha256='a'*64,effective_date='2026-04-10',pdf_page=1)

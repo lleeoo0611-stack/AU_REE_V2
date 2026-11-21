@@ -141,13 +141,21 @@ def _arcgis_tenement_features(data, binding):
             or CRS.from_user_input(binding['source_crs']).to_epsg() != crs):
         return []
     wanted = {summary_identifier_key(identifier) for identifier in binding['tenement_ids']}
+    by_title = {summary_identifier_key(title): required
+                for title, required in binding.get('attributes_by_title', {}).items()}
+    if by_title and set(by_title) != wanted:
+        return []
+    seen = set()
     selected = []
     for feature in features:
         attributes = feature.get('attributes', {})
-        if summary_identifier_key(attributes.get(binding['id_field'], '')) not in wanted:
+        title = summary_identifier_key(attributes.get(binding['id_field'], ''))
+        if title not in wanted:
             continue
-        if any(attributes.get(key) != value for key, value in binding['required_attributes'].items()):
+        required = {**binding['required_attributes'], **by_title.get(title, {})}
+        if title in seen or any(attributes.get(key) != value for key, value in required.items()):
             return []
+        seen.add(title)
         rings = (feature.get('geometry') or {}).get('rings', [])
         if not rings or any(len(r) < 4 or r[0] != r[-1] or not LinearRing(r).is_valid for r in rings):
             return []
@@ -157,7 +165,7 @@ def _arcgis_tenement_features(data, binding):
                 or not polygon.boundary.equals(lines)):
             return []
         selected.append(dict(properties=attributes, geometry=mapping(polygon)))
-    return selected
+    return selected if seen == wanted else []
 
 
 def summary_read_shapefile_zip(raw,member):
@@ -376,9 +384,16 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions, *, rea
                                  holders=[f['properties'].get(b.get('holder_field','own_name')) for f in chosen],
                                  meaning='TENEMENT_REPRESENTATIVE_POINT_NOT_RESOURCE_BOUNDARY')
                     if frozen_tenure:
-                        scope.update(dataset=registered['key'], feature_id=b['required_attributes']['permitid'],
-                                     scope_references=b['original_references'], scope_review=b['scope_review'],
-                                     government_available_date=source['available_date'])
+                        scope.update(dataset=registered['key'], scope_references=b['original_references'],
+                                     scope_review=b['scope_review'], government_available_date=source['available_date'])
+                        if b.get('attributes_by_title'):
+                            scope['title_features'] = {
+                                f['properties'][field]: {
+                                    'permitid': f['properties']['permitid'],
+                                    'permitstatus': f['properties']['permitstatus']}
+                                for f in chosen}
+                        else:
+                            scope['feature_id'] = b['required_attributes']['permitid']
                     add(result['longitude'],result['latitude'],sha,'ROUND4_TENEMENT_CENTROID_RESEARCHER_APPROVED',
                         '; '.join(b['tenement_ids']),scope)
                 elif extent_rejections is not None and result['reason'] == 'TENEMENT_UNION_EXCEEDS_25KM':

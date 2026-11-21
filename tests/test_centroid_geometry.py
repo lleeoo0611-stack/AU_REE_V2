@@ -33,6 +33,23 @@ class TenementCentroidGeometry(unittest.TestCase):
                 self.assertEqual(_arcgis_tenement_features(dict(data, **invalid), binding), [])
         self.assertEqual(_arcgis_tenement_features(data, dict(binding, required_attributes=dict(status='Expired'))), [])
 
+    def test_mixed_granted_and_application_require_both_matching_official_features(self):
+        ring = [[140, -35], [140.01, -35], [140, -34.99], [140, -35]]
+        def feature(title, status):
+            return dict(attributes=dict(title=title, holder='GDM', status=status), geometry=dict(rings=[ring]))
+        granted = feature('EPM 22', 'Granted')
+        application = feature('EPM 43', 'Application')
+        data = dict(inventory=dict(complete=True, count=2, scope='global'),
+                    spatialReference=dict(wkid=4326), features=[granted, application])
+        binding = dict(source_crs='EPSG:4326', tenement_ids=['EPM 22', 'EPM 43'], id_field='title',
+                       required_attributes=dict(holder='GDM'), attributes_by_title={
+                           'EPM 22': dict(status='Granted'), 'EPM 43': dict(status='Application')})
+        self.assertEqual(len(_arcgis_tenement_features(data, binding)), 2)
+        for invalid in ([granted, granted], [granted, feature('EPM 43', 'Granted')], [granted]):
+            with self.subTest(features=invalid):
+                current = dict(data, inventory=dict(data['inventory'], count=len(invalid)), features=invalid)
+                self.assertEqual(_arcgis_tenement_features(current, binding), [])
+
     def calculate(self,polygons):
         features=[{'properties':{'tno':'EL'+str(i+1)},'geometry':mapping(p)} for i,p in enumerate(polygons)]
         return summary_tenement_centroid(features,'EPSG:7844',25000,'tno')
