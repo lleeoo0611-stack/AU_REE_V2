@@ -1,0 +1,576 @@
+{
+  "schema_version": "ontology-review-cases-v1",
+  "source_review": "results/normalization-pilot-20261125/case_review.json",
+  "source_review_sha256": "3973b3323ff92d37ff7eaf310a6378ae8c575bd9cc0667d475a0dd53b6a0b86b",
+  "source_cutoff": "2026-11-13",
+  "annotation_method": "AI-assisted manual semantic projection of existing reviewed case descriptions, not an independent review of PDF bytes or a new NLP extraction. Comparator inputs are observed_context and target_context only; IDs, expected outcomes and prose are evaluation metadata.",
+  "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND",
+  "scope": "One representative candidate semantic check per existing review group plus five original-use positive controls. Admissibility is limited to the declared target_context, not complete cross-project comparability. affected_cells records original group size and must not inflate independent sample count.",
+  "unknown_policy": "Null means the reviewed evidence does not establish that context. Unknown is not a negative measurement and is never filled by a default.",
+  "positive_control_scope": "Preserve only the already reviewed source-bound use; matching projected contexts alone does not replace source, date, numerical, unit or statement validation.",
+  "input_dimensions": [
+    "analyte_set",
+    "annual_production_schedule",
+    "chemical_basis",
+    "denominator",
+    "entity_role",
+    "mass_balance",
+    "material",
+    "measurement_role",
+    "minor_oxide_resource_grades",
+    "numerator_analyte_set",
+    "oxide_product_grade",
+    "period",
+    "quantity_kind",
+    "resource_kind",
+    "resource_scope",
+    "scenario",
+    "statistic",
+    "unique_mine_output_forecast"
+  ],
+  "cases": [
+    {
+      "case_id": "review-00",
+      "group_id": "normalization-review-00",
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "project_name": "Donald Rare Earth and Mineral Sands Project — MIN5532 resource scope",
+      "original_review_index": 0,
+      "source_pages": [
+        "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097:6",
+        "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097:117",
+        "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097:118"
+      ],
+      "evidence_note": "Table 1 reports selected oxides in the 20–250 micron HM fraction. Element-to-oxide factors on pp117–118 are conversion constants, not resource-weighted grades for the nine minor oxides. Multiplying a factor or a product assay by 530 Mt would not recover bulk-resource mass.",
+      "projection_note": "Candidate use is the element-to-oxide constants on pp117–118 as if they supplied missing resource-weighted grades; no numerical factor is transcribed.",
+      "affected_cells": 9,
+      "target_columns": [
+        "Er2O3_氧化鉺_kt",
+        "Eu2O3_氧化銪_kt",
+        "Gd2O3_氧化釓_kt",
+        "Ho2O3_氧化鈥_kt",
+        "La2O3_氧化鑭_kt",
+        "Lu2O3_氧化鎦_kt",
+        "Sm2O3_氧化釤_kt",
+        "Tm2O3_氧化銩_kt",
+        "Yb2O3_氧化鐿_kt"
+      ],
+      "observed_context": {
+        "quantity_kind": "ELEMENT_TO_OXIDE_CONVERSION_FACTOR",
+        "measurement_role": "CHEMICAL_CONVERSION_CONSTANT",
+        "minor_oxide_resource_grades": null
+      },
+      "target_context": {
+        "quantity_kind": "RESOURCE_CONTAINED_OXIDE_MASS",
+        "measurement_role": "RESOURCE_ESTIMATE"
+      },
+      "expected_admissible": false,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "review-01",
+      "group_id": "normalization-review-01",
+      "project_id": "AU-3eb7131e4daea18a60a0",
+      "project_name": "Sandy Mitchell Rare Earths and Heavy Minerals Project — As at 22 September 2026 resource scope",
+      "original_review_index": 1,
+      "source_pages": [
+        "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d:74"
+      ],
+      "evidence_note": "The published sum of oxide masses in the Census includes yttrium. Table 7 shows TREO and TREO+Y separately. Dividing by 370 ppm would define a different denominator and subtracting Y would redefine the sum requested by the field.",
+      "projection_note": "Candidate substitution uses the explicitly separate TREO+Y denominator. The required field retains the original TREO denominator; this does not assert that the original ratio itself is admissible.",
+      "affected_cells": 1,
+      "target_columns": [
+        "元素總和/TREO"
+      ],
+      "observed_context": {
+        "denominator": "SOURCE_TREO_PLUS_Y",
+        "numerator_analyte_set": "OXIDE_SUM_INCLUDING_Y"
+      },
+      "target_context": {
+        "denominator": "SOURCE_TREO"
+      },
+      "expected_admissible": false,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "review-02",
+      "group_id": "normalization-review-02",
+      "project_id": "AU-7c198d219aa1db3e291f",
+      "project_name": "Lyons — 12&13 resource scope",
+      "original_review_index": 2,
+      "source_pages": [
+        "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4:1",
+        "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4:18"
+      ],
+      "evidence_note": "At Lyons 12&13, 0.69 Mt and 0.15% NdPr are linked to the correct model row, but the report labels the estimated variable as NdPr. The total row (0.99 Mt, 0.13%) has a larger scope. Neither row defines the pair as Nd2O3 + Pr6O11.",
+      "projection_note": "The candidate is the correctly scoped NdPr grade used to derive the combined oxide mass; its chemical form remains unknown, not proven different.",
+      "affected_cells": 1,
+      "target_columns": [
+        "NdPr蘊藏量_kt_需兩者皆公布"
+      ],
+      "observed_context": {
+        "analyte_set": "ND_AND_PR",
+        "chemical_basis": null,
+        "resource_scope": "LYONS_12_AND_13"
+      },
+      "target_context": {
+        "analyte_set": "ND_AND_PR",
+        "chemical_basis": "ND2O3_PLUS_PR6O11",
+        "resource_scope": "LYONS_12_AND_13"
+      },
+      "expected_admissible": false,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "review-03",
+      "group_id": "normalization-review-03",
+      "project_id": "AU-efff91a06cf344122d88",
+      "project_name": "Mt Weld Project",
+      "original_review_index": 3,
+      "source_pages": [
+        "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503:3",
+        "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503:9",
+        "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503:10"
+      ],
+      "evidence_note": "Table 4 has a selected 106.6 Mt in-situ resource, and p10 gives a combined 29,800 t Tb+Dy oxide in the deposit mineral resource without individual amounts. The 12,790 t Dy oxide on p3 is an ore reserve. Neither quantity allocates the two oxide masses in the selected resource.",
+      "projection_note": "The representative candidate is the reserve-scoped Dy oxide amount on p3. The original group also includes an unsplit Tb+Dy resource amount, which this one representative test does not separately resolve.",
+      "affected_cells": 2,
+      "target_columns": [
+        "Dy2O3_氧化鏑_kt",
+        "Tb4O7_氧化鋱_kt"
+      ],
+      "observed_context": {
+        "resource_kind": "ORE_RESERVE",
+        "quantity_kind": "CONTAINED_OXIDE_MASS",
+        "analyte_set": "DY_OXIDE"
+      },
+      "target_context": {
+        "resource_kind": "MINERAL_RESOURCE",
+        "quantity_kind": "CONTAINED_OXIDE_MASS"
+      },
+      "expected_admissible": false,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "review-04",
+      "group_id": "normalization-review-04",
+      "project_id": "AU-ff758cad5beb276d327d",
+      "project_name": "Wimmera Mineral Sands Project — Iluka WIM100",
+      "original_review_index": 4,
+      "source_pages": [
+        "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732:3",
+        "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732:4",
+        "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732:10"
+      ],
+      "evidence_note": "Table 1 supplies bulk tonnes and HM proportion; Table 2 gives oxides in the HM sinks. Without oxide grades in the remaining material or explicit evidence that they contain no REO, the HM contribution does not establish bulk TREO or dependent quantities.",
+      "projection_note": "Reported HM oxides describe the sink fraction. Non-HM oxide mass balance is undisclosed; it is not set to zero.",
+      "affected_cells": 5,
+      "target_columns": [
+        "TREO品位_pct",
+        "元素總和/TREO",
+        "有TREO資源估計",
+        "磁鐵稀土佔TREO_pct",
+        "總TREO蘊藏量_kt"
+      ],
+      "observed_context": {
+        "material": "HEAVY_MINERAL_SINK_FRACTION",
+        "denominator": "HEAVY_MINERAL_MASS",
+        "mass_balance": null
+      },
+      "target_context": {
+        "material": "BULK_RESOURCE_ORE",
+        "denominator": "BULK_ORE_MASS",
+        "mass_balance": "WHOLE_ORE_ACCOUNTED"
+      },
+      "expected_admissible": false,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "review-05",
+      "group_id": "normalization-review-05",
+      "project_id": "AU-0098e17a63e7c05c213f",
+      "project_name": "Wudinna Rare Earths Project",
+      "original_review_index": 5,
+      "source_pages": [
+        "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864:1",
+        "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864:4"
+      ],
+      "evidence_note": "MRE and planned scoping work establish in-situ tonnage and assay. An annual production schedule with a contained-oxide endpoint is missing.",
+      "projection_note": "Candidate use is the MRE inventory or assay as an annual contained-oxide production forecast.",
+      "affected_cells": 2,
+      "target_columns": [
+        "預估年產NdPr_t_per_year",
+        "預估年產TREO_t_per_year"
+      ],
+      "observed_context": {
+        "quantity_kind": "RESOURCE_INVENTORY",
+        "measurement_role": "MINERAL_RESOURCE_ESTIMATE",
+        "annual_production_schedule": null
+      },
+      "target_context": {
+        "quantity_kind": "ANNUAL_CONTAINED_OXIDE_PRODUCTION",
+        "measurement_role": "PRODUCTION_FORECAST",
+        "annual_production_schedule": "ADOPTED_SCHEDULE"
+      },
+      "expected_admissible": false,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "review-06",
+      "group_id": "normalization-review-06",
+      "project_id": "AU-2a3a86a4d971e9f9838d",
+      "project_name": "Brockman Project",
+      "original_review_index": 6,
+      "source_pages": [
+        "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb:11",
+        "00e8236380f1bd9f5860ff803660e08d21450c09d798afbbe772313ee4341180:3"
+      ],
+      "evidence_note": "The updated Brockman estimate and beneficiation work have no adopted annual contained-oxide schedule. Capacity elsewhere on the page is a proposed chloride plant; the historical case treats concentrate as feed.",
+      "projection_note": "Candidate use is the separately proposed chloride-plant capacity. The review identifies concentrate as feed, not the assessed mine’s contained-oxide output.",
+      "affected_cells": 2,
+      "target_columns": [
+        "預估年產NdPr_t_per_year",
+        "預估年產TREO_t_per_year"
+      ],
+      "observed_context": {
+        "entity_role": "SEPARATE_PROCESSING_PLANT",
+        "material": "CONCENTRATE_FEED",
+        "measurement_role": "PROPOSED_PLANT_CAPACITY"
+      },
+      "target_context": {
+        "entity_role": "ASSESSED_MINE_PROJECT",
+        "material": "CONTAINED_RARE_EARTH_OXIDES",
+        "measurement_role": "PROJECT_PRODUCTION_FORECAST"
+      },
+      "expected_admissible": false,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "review-07",
+      "group_id": "normalization-review-07",
+      "project_id": "AU-3eb7131e4daea18a60a0",
+      "project_name": "Sandy Mitchell Rare Earths and Heavy Minerals Project — As at 22 September 2026 resource scope",
+      "original_review_index": 7,
+      "source_pages": [
+        "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089:7",
+        "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089:6",
+        "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089:1"
+      ],
+      "evidence_note": "The 24-year schedule is for saleable minerals. Test extraction and in-situ TREO+Y do not establish an oxide-specific grade for the average saleable product.",
+      "projection_note": "The 24-year mineral schedule is not an oxide-specific product schedule; an in-situ assay or test extraction does not supply that missing product grade.",
+      "affected_cells": 2,
+      "target_columns": [
+        "預估年產NdPr_t_per_year",
+        "預估年產TREO_t_per_year"
+      ],
+      "observed_context": {
+        "material": "SALEABLE_MINERAL_PRODUCT",
+        "quantity_kind": "ANNUAL_MINERAL_PRODUCT_TONNAGE",
+        "oxide_product_grade": null
+      },
+      "target_context": {
+        "material": "CONTAINED_RARE_EARTH_OXIDES",
+        "quantity_kind": "ANNUAL_CONTAINED_OXIDE_PRODUCTION",
+        "oxide_product_grade": "SOURCE_BOUND_PRODUCT_GRADE"
+      },
+      "expected_admissible": false,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "review-08",
+      "group_id": "normalization-review-08",
+      "project_id": "AU-447261eed0e81eae88bf",
+      "project_name": "Goschen Central Rare Earths and Mineral Sands Project — ACDC",
+      "original_review_index": 8,
+      "source_pages": [
+        "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5:4",
+        "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5:9",
+        "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5:21"
+      ],
+      "evidence_note": "The phase 2 product carries Nd and Pr labels without an explicit product oxide convention. The ore assay table uses the HM denominator. The first five years and full-plan rates differ.",
+      "projection_note": "Candidate use combines the first-five-year product rate with Nd/Pr labels lacking an oxide convention to populate the full-plan NdPr oxide forecast. Both uncertainties remain explicit.",
+      "affected_cells": 1,
+      "target_columns": [
+        "預估年產NdPr_t_per_year"
+      ],
+      "observed_context": {
+        "analyte_set": "ND_AND_PR",
+        "chemical_basis": null,
+        "period": "FIRST_FIVE_YEARS",
+        "scenario": "PHASE_2"
+      },
+      "target_context": {
+        "analyte_set": "ND_AND_PR",
+        "chemical_basis": "EXPLICIT_NDPR_OXIDE_DEFINITION",
+        "period": "WHOLE_PLAN",
+        "scenario": "PHASE_2"
+      },
+      "expected_admissible": false,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "review-09",
+      "group_id": "normalization-review-09",
+      "project_id": "AU-9b667066e6eb66753005",
+      "project_name": "Cummins Range Rare Earths-Phosphate Project",
+      "original_review_index": 9,
+      "source_pages": [
+        "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07:41",
+        "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07:60",
+        "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07:77"
+      ],
+      "evidence_note": "The stage-2a TREO schedule and bulk concentrate TREO grade are reported. The Nd and Pr proportions refer to the resource estimate based pricing basket, not the stage-2a concentrate grade.",
+      "projection_note": "Candidate proportions are those of the resource-estimate pricing basket; the stage-2a concentrate grade is the required context.",
+      "affected_cells": 1,
+      "target_columns": [
+        "預估年產NdPr_t_per_year"
+      ],
+      "observed_context": {
+        "measurement_role": "RESOURCE_PRICING_BASKET",
+        "material": "RESOURCE_ESTIMATE",
+        "analyte_set": "ND_AND_PR"
+      },
+      "target_context": {
+        "measurement_role": "PRODUCT_GRADE",
+        "material": "STAGE_2A_CONCENTRATE",
+        "analyte_set": "ND_AND_PR"
+      },
+      "expected_admissible": false,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "review-10",
+      "group_id": "normalization-review-10",
+      "project_id": "AU-d28382dfa82f1664065e",
+      "project_name": "Narraburra Rare Earths Project",
+      "original_review_index": 10,
+      "source_pages": [
+        "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707:4",
+        "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28:2"
+      ],
+      "evidence_note": "The report describes exploration and a planned scoping study. The later nearby granites exploration release does not establish an annual production plan for this project.",
+      "projection_note": "Exploration and a planned study do not provide the requested annual production schedule.",
+      "affected_cells": 2,
+      "target_columns": [
+        "預估年產NdPr_t_per_year",
+        "預估年產TREO_t_per_year"
+      ],
+      "observed_context": {
+        "measurement_role": "PLANNED_SCOPING_STUDY",
+        "annual_production_schedule": null
+      },
+      "target_context": {
+        "measurement_role": "PROJECT_PRODUCTION_FORECAST",
+        "annual_production_schedule": "ADOPTED_SCHEDULE"
+      },
+      "expected_admissible": false,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "review-11",
+      "group_id": "normalization-review-11",
+      "project_id": "AU-efff91a06cf344122d88",
+      "project_name": "Mt Weld Project",
+      "original_review_index": 11,
+      "source_pages": [
+        "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503:1"
+      ],
+      "evidence_note": "Two reserve-life scenarios support downstream finished oxide capacity. Neither capacity denotes a unique mine output forecast. Total TREO output is unspecified.",
+      "projection_note": "Representative candidate uses one of the alternative downstream capacities as a unique mine forecast; no numerical choice between the alternatives is made.",
+      "affected_cells": 2,
+      "target_columns": [
+        "預估年產NdPr_t_per_year",
+        "預估年產TREO_t_per_year"
+      ],
+      "observed_context": {
+        "entity_role": "DOWNSTREAM_FINISHED_OXIDE_CAPACITY",
+        "scenario": "ALTERNATIVE_RESERVE_LIFE_SCENARIOS",
+        "unique_mine_output_forecast": null
+      },
+      "target_context": {
+        "entity_role": "ASSESSED_MINE_PROJECT_OUTPUT",
+        "scenario": "SELECTED_SINGLE_SCENARIO",
+        "unique_mine_output_forecast": "SOURCE_BOUND_FORECAST"
+      },
+      "expected_admissible": false,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "review-12",
+      "group_id": "normalization-review-12",
+      "project_id": "AU-ff758cad5beb276d327d",
+      "project_name": "Wimmera Mineral Sands Project — Iluka WIM100",
+      "original_review_index": 12,
+      "source_pages": [
+        "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732:1"
+      ],
+      "evidence_note": "The updated WIM100 MRE gives mineral inventory and identifies the DFS as being conducted. This evidence cannot establish an annual adopted contained-oxide rate.",
+      "projection_note": "The current MRE and statement that the DFS is being conducted do not establish an adopted annual oxide production rate.",
+      "affected_cells": 2,
+      "target_columns": [
+        "預估年產NdPr_t_per_year",
+        "預估年產TREO_t_per_year"
+      ],
+      "observed_context": {
+        "measurement_role": "MINERAL_RESOURCE_ESTIMATE",
+        "quantity_kind": "RESOURCE_INVENTORY",
+        "annual_production_schedule": null
+      },
+      "target_context": {
+        "measurement_role": "PROJECT_PRODUCTION_FORECAST",
+        "quantity_kind": "ANNUAL_CONTAINED_OXIDE_PRODUCTION",
+        "annual_production_schedule": "ADOPTED_SCHEDULE"
+      },
+      "expected_admissible": false,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "control-00",
+      "group_id": "normalization-control-00",
+      "project_id": "AU-0098e17a63e7c05c213f",
+      "control_index": 0,
+      "source_pages": [
+        "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864:3"
+      ],
+      "evidence_note": "Table 1 total, 200 ppm TREO-Ce cutoff, explicitly defines NdPr as the two oxides.",
+      "projection_note": "Retain the source-bound reported NdPr ppm control only. No full TREO membership or cross-project equivalence is asserted.",
+      "affected_cells": 1,
+      "target_columns": [
+        "reported_resource_ndpr_ppm"
+      ],
+      "observed_context": {
+        "quantity_kind": "RESOURCE_COMPONENT_GRADE",
+        "analyte_set": "ND_AND_PR",
+        "chemical_basis": "EXPLICIT_NDPR_OXIDE_DEFINITION"
+      },
+      "target_context": {
+        "quantity_kind": "RESOURCE_COMPONENT_GRADE",
+        "analyte_set": "ND_AND_PR",
+        "chemical_basis": "EXPLICIT_NDPR_OXIDE_DEFINITION"
+      },
+      "expected_admissible": true,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "control-01",
+      "group_id": "normalization-control-01",
+      "project_id": "AU-0098e17a63e7c05c213f",
+      "control_index": 1,
+      "source_pages": [
+        "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864:3",
+        "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864:15",
+        "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864:16"
+      ],
+      "evidence_note": "Rendered p15 Combined Estimate total indicated and inferred ISR & OP row: 149.92 Mt, 470 ppm TREO, 285 ppm TREO-Ce. On p16 TREO-Ce is explicitly defined.",
+      "projection_note": "Retain the existing source-bound CeO2 mass derived under the reviewed combined resource statement and explicitly defined TREO-Ce basis; no independent new derivation is performed.",
+      "affected_cells": 1,
+      "target_columns": [
+        "reported_resource_contained_ceo2_kt"
+      ],
+      "observed_context": {
+        "quantity_kind": "CONTAINED_OXIDE_MASS",
+        "chemical_basis": "CEO2",
+        "resource_kind": "MINERAL_RESOURCE",
+        "resource_scope": "COMBINED_ISR_AND_OP_INDICATED_INFERRED"
+      },
+      "target_context": {
+        "quantity_kind": "CONTAINED_OXIDE_MASS",
+        "chemical_basis": "CEO2",
+        "resource_kind": "MINERAL_RESOURCE",
+        "resource_scope": "COMBINED_ISR_AND_OP_INDICATED_INFERRED"
+      },
+      "expected_admissible": true,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "control-02",
+      "group_id": "normalization-control-02",
+      "project_id": "AU-9b667066e6eb66753005",
+      "control_index": 2,
+      "source_pages": [
+        "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07:77"
+      ],
+      "evidence_note": "The selected stage-2a annual TREO rate is 17 ktpa. Multiplication by 1000 changes the unit only.",
+      "projection_note": "Retain the already adopted stage-2a annual TREO schedule; ktpa-to-tpa scaling does not change its quantity or scenario.",
+      "affected_cells": 1,
+      "target_columns": [
+        "預估年產TREO_t_per_year"
+      ],
+      "observed_context": {
+        "quantity_kind": "ANNUAL_TREO_PRODUCTION",
+        "measurement_role": "PRODUCTION_FORECAST",
+        "scenario": "STAGE_2A",
+        "statistic": "ANNUAL_RATE"
+      },
+      "target_context": {
+        "quantity_kind": "ANNUAL_TREO_PRODUCTION",
+        "measurement_role": "PRODUCTION_FORECAST",
+        "scenario": "STAGE_2A",
+        "statistic": "ANNUAL_RATE"
+      },
+      "expected_admissible": true,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "control-03",
+      "group_id": "normalization-control-03",
+      "project_id": "AU-6d807eb7caec9db0f35e",
+      "control_index": 3,
+      "source_pages": [
+        "8a70d4ca8cdc287da19cd6a50060e0496f84c5f153c62b452870aed1ff92497c:14",
+        "5a783d0c7a9ed69fd62c532c77927af0f83e0813feeaab093ed617ae1556e0b3:2"
+      ],
+      "evidence_note": "Approximate contained oxide annual production for the project DFS; the 8,300 figure is concentrate production.",
+      "projection_note": "Retain the approximate contained-oxide annual forecast from the reviewed project DFS. The separate concentrate-tonnage figure is not used.",
+      "affected_cells": 1,
+      "target_columns": [
+        "預估年產TREO_t_per_year"
+      ],
+      "observed_context": {
+        "quantity_kind": "ANNUAL_CONTAINED_OXIDE_PRODUCTION",
+        "material": "CONTAINED_RARE_EARTH_OXIDES",
+        "measurement_role": "DFS_PRODUCTION_FORECAST",
+        "statistic": "APPROXIMATE_ANNUAL_RATE"
+      },
+      "target_context": {
+        "quantity_kind": "ANNUAL_CONTAINED_OXIDE_PRODUCTION",
+        "material": "CONTAINED_RARE_EARTH_OXIDES",
+        "measurement_role": "DFS_PRODUCTION_FORECAST",
+        "statistic": "APPROXIMATE_ANNUAL_RATE"
+      },
+      "expected_admissible": true,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    },
+    {
+      "case_id": "control-04",
+      "group_id": "normalization-control-04",
+      "project_id": "AU-447261eed0e81eae88bf",
+      "control_index": 4,
+      "source_pages": [
+        "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5:21",
+        "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5:4"
+      ],
+      "evidence_note": "The whole-plan average phase 2 mixed rare-earth oxide is distinct from the first-five-year 3,225 dmt/a.",
+      "projection_note": "Retain the reviewed whole-plan phase-2 MREO average only, distinct from its first-five-year rate. Individual Nd/Pr chemical forms are not inferred.",
+      "affected_cells": 1,
+      "target_columns": [
+        "預估年產TREO_t_per_year"
+      ],
+      "observed_context": {
+        "quantity_kind": "ANNUAL_PRODUCT_MASS_FLOW",
+        "material": "MIXED_RARE_EARTH_OXIDE_PRODUCT",
+        "period": "WHOLE_PLAN",
+        "statistic": "ANNUAL_AVERAGE",
+        "scenario": "PHASE_2"
+      },
+      "target_context": {
+        "quantity_kind": "ANNUAL_PRODUCT_MASS_FLOW",
+        "material": "MIXED_RARE_EARTH_OXIDE_PRODUCT",
+        "period": "WHOLE_PLAN",
+        "statistic": "ANNUAL_AVERAGE",
+        "scenario": "PHASE_2"
+      },
+      "expected_admissible": true,
+      "annotation_status": "DEVELOPMENT_REVIEW_DERIVED_NOT_BLIND"
+    }
+  ]
+}
