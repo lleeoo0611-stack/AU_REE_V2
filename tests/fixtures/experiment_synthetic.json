@@ -1,0 +1,2832 @@
+{
+  "schema_version": "experiment-dataset-v1",
+  "synthetic": true,
+  "identity_map_sha256": "27ea4693221eaabac563a5ea17bd3880cf502e892054918910e51ea3152576ec",
+  "cases": [
+    {
+      "case_id": "AU-0-2019",
+      "project_id": "AU-0",
+      "country": "AUS",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 100,
+        "S1": 10,
+        "T1": 20,
+        "D1": 2,
+        "I4": 100,
+        "C1": 0,
+        "permit_granted": 0
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2019-R1"
+          ],
+          "source_sha256": "004406f12c6b7cd63945ab02382df93007dcbb001a2dd76ef664f19355b1716b",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2019-S1"
+          ],
+          "source_sha256": "14d41d1c0a20317204853cabc98c57eb9ec4d2b15475619f16536d9b62f77cff",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2019-T1"
+          ],
+          "source_sha256": "5273b5b10c952b8ba6b9892ede20b0402f3a40fdab429d8867ab4f292b95ecf5",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2019-D1"
+          ],
+          "source_sha256": "ff5ed025c4856871c5552a6f0ce3326d446e5d5050676805bf1113229256808e",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2019-I4"
+          ],
+          "source_sha256": "b3835e6023fa25686a3e87349da216d53ff1acee6b8926b3bcb2550650a414e2",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2019-C1"
+          ],
+          "source_sha256": "a2c3b2c1777cc6d4f53685e7a1f08d849e52db5cb3b4653c6349a9c4a8e1634f",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2019-permit_granted"
+          ],
+          "source_sha256": "80394f640150f626b968d1487dfdaad2089dd49861dfd0b35f2d899a240e3ee6",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "NO_EVENT_VERIFIED",
+        "event_date": null,
+        "known_at": "2020-01-05",
+        "followup_end": "2020-01-01",
+        "source_sha256": "ea43833f9b48189d8e6f5358f9e3f664d7b1592bcdbd4f3978b442437fdef35f",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "AU-1-2019",
+      "project_id": "AU-1",
+      "country": "AUS",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 200,
+        "S1": 11,
+        "T1": 30,
+        "D1": 3,
+        "I4": 180,
+        "C1": 1,
+        "permit_granted": 1
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-1-2019-R1"
+          ],
+          "source_sha256": "8515810ad3621a0a6f8bc9fcce486f3b56d7ce62f31b414eed5a3d35289c7f6c",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-1-2019-S1"
+          ],
+          "source_sha256": "66c8394ffe988ecbf51a0828588f5984a2d0c85ce9162b343f4ed07caaea756a",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-1-2019-T1"
+          ],
+          "source_sha256": "903ea3dbf161918a7e566958f9514e4a3727fe533ecd37eb5b5513ba1f801b3a",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-1-2019-D1"
+          ],
+          "source_sha256": "26f10503caef82e3acd2cc41e8a21b9a2e3aafd0ab230ba6258c2fd4d36148b0",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-AU-1-2019-I4"
+          ],
+          "source_sha256": "cce6d5df8e59ae30d419375f2797c7b3465fb5778131363f9078261947c02244",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-1-2019-C1"
+          ],
+          "source_sha256": "011f497c7309cb680a459c0652a497bc41559da139bc8574043acd0511279749",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-AU-1-2019-permit_granted"
+          ],
+          "source_sha256": "6714fc15057e68c55de531647bbf24259bcb4f311c58683bb4d414fb8d80509f",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "OBSERVED",
+        "event_date": "2019-08-01",
+        "known_at": "2019-08-02",
+        "followup_end": null,
+        "source_sha256": "3ff1af5fab65b336b052a89ff592b2393bc7337071d77d028d89bef51a434b63",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "AU-2-2019",
+      "project_id": "AU-2",
+      "country": "AUS",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 300,
+        "S1": 12,
+        "T1": 40,
+        "D1": 4,
+        "I4": 260,
+        "C1": 2,
+        "permit_granted": 0
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-2-2019-R1"
+          ],
+          "source_sha256": "3cfd3bf52286922fe0c185198939d2312137038bb5825ba5ae477c36a2c09ef8",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-2-2019-S1"
+          ],
+          "source_sha256": "430ef7de6109c958a0b98b64e2b415531cff16a57b700f6c604966a5872c7d48",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-2-2019-T1"
+          ],
+          "source_sha256": "fbf8b15fd9f38f8754c2acbe4ef79f2adfc512b4d1e31852b354ac9b77d40807",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-2-2019-D1"
+          ],
+          "source_sha256": "eb4bb06c6086f9bed85348224e6bd2e886222540a9a561756697db7edd41b738",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-AU-2-2019-I4"
+          ],
+          "source_sha256": "d7b459a7fd4e7a78623696503463b278b9675d78fd5deb7f9a29ebcec039547d",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-2-2019-C1"
+          ],
+          "source_sha256": "58e63433d9395625f311911e708da10b9900e9d0d970db35bb9ac786f81870e0",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-AU-2-2019-permit_granted"
+          ],
+          "source_sha256": "aab434334a16e27804181aae8b7a0516238249ce0c340e5b0b1ad282049fb56b",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "NO_EVENT_VERIFIED",
+        "event_date": null,
+        "known_at": "2020-01-05",
+        "followup_end": "2020-01-01",
+        "source_sha256": "16df98f4cd77080983344ce91f4afd83f4c03a18bd40b4683c7736b97c6f773a",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "AU-3-2019",
+      "project_id": "AU-3",
+      "country": "AUS",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 400,
+        "S1": 13,
+        "T1": 50,
+        "D1": 2,
+        "I4": 340,
+        "C1": 3,
+        "permit_granted": 1
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-3-2019-R1"
+          ],
+          "source_sha256": "e0c375cdaa79761fd032726137d0c198d4bcea98791d7a918e0c3b897558d731",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-3-2019-S1"
+          ],
+          "source_sha256": "e583ac501f5bd5c1077b60ca770f54e7a473bfccb7de47a4fc8bdc21fd5e3004",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-3-2019-T1"
+          ],
+          "source_sha256": "15c6e7c75913029089622bbaabb6afcca3226f60b7b393fffe6898cdf74c127c",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-3-2019-D1"
+          ],
+          "source_sha256": "0fa2f53608018c3c37a70d8399d4f0450111444ef9d45652d27b506d73519816",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-AU-3-2019-I4"
+          ],
+          "source_sha256": "ceb412ddafdc88e75eccdc18c6befab800fb1ff9ccc6a324c96baff77a203729",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-3-2019-C1"
+          ],
+          "source_sha256": "46ad706a263a4e155f7456f83d5e0bf0c686c658a2d01dd3c24358bcf930c95a",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-AU-3-2019-permit_granted"
+          ],
+          "source_sha256": "4e96bca01dca887554ec2ec56c51a430ae88b6ea9f0f627eaa39ad1ab5e29379",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "OBSERVED",
+        "event_date": "2019-08-01",
+        "known_at": "2019-08-02",
+        "followup_end": null,
+        "source_sha256": "dc4a5dbba3195bffe81498c50bd54b3ae07f9d033b5a35acca37a241b7700cf7",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "AU-4-2019",
+      "project_id": "AU-4",
+      "country": "AUS",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 500,
+        "S1": 14,
+        "T1": 60,
+        "D1": 3,
+        "I4": 420,
+        "C1": 0,
+        "permit_granted": 0
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-4-2019-R1"
+          ],
+          "source_sha256": "5f85a60f4c86ebda2baa639b42159faecd76ddc057d698edeae0174635f02d47",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-4-2019-S1"
+          ],
+          "source_sha256": "55eb3880d2153d33f13e96e2127a794962965f812c0e8bac63fcf81cc6060e5a",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-4-2019-T1"
+          ],
+          "source_sha256": "33f5f7c2e5e25066349bb6f88431c2f25560a1d27e15b3507dbb1ccd7a5b37ed",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-4-2019-D1"
+          ],
+          "source_sha256": "06fb23c9bf5e85a8959e71bdbc72abf1a0f512eca2fd4df48844450b4a90064c",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-AU-4-2019-I4"
+          ],
+          "source_sha256": "9a216e9ad085406befd6e5e7f634a468c9ef38c1ba3b131dd03fbc3e79b5a781",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-4-2019-C1"
+          ],
+          "source_sha256": "a4895063248a8d94f28b11b3f4f18e0b7d6c89f9d41d7701c98d4dae42e3a3fc",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-AU-4-2019-permit_granted"
+          ],
+          "source_sha256": "ce6f24e77106d75af89f1257df3eccd0105751b6a2673fbf6a2ddca9a9ef43c7",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "NO_EVENT_VERIFIED",
+        "event_date": null,
+        "known_at": "2020-01-05",
+        "followup_end": "2020-01-01",
+        "source_sha256": "12f9acd62b33fe1312d625f61c425ac7341d222d59f58119bf99b4971c1d6390",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "AU-5-2019",
+      "project_id": "AU-5",
+      "country": "AUS",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 600,
+        "S1": 15,
+        "T1": 70,
+        "D1": 4,
+        "I4": 500,
+        "C1": 1,
+        "permit_granted": 1
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-5-2019-R1"
+          ],
+          "source_sha256": "4865f0ecb2ae33521ea4414b24aa3b88874a609fd3470abd8a127dc7247b650a",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-5-2019-S1"
+          ],
+          "source_sha256": "4ed5819541e6a9b2a96878a233154aeb901b746246d51ca6f6a1e707b40616dd",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-5-2019-T1"
+          ],
+          "source_sha256": "a350f11a5abeea3f01b5f38bd35d098fdf9237c6a1e38f0baf83f95694245a68",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-5-2019-D1"
+          ],
+          "source_sha256": "0a734b564e12b28f9d9c3581808d79d8e92949aa871774f4cf884403f4abb518",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-AU-5-2019-I4"
+          ],
+          "source_sha256": "16b65fcda19d6d4ea2eac89443d6b6f7b8b5d86dc8a21095bf74de1c91faf456",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-5-2019-C1"
+          ],
+          "source_sha256": "3b1db15af5e4d601cda3346c35c062afb411bfda939c0fd37d7493205eabfdc1",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-AU-5-2019-permit_granted"
+          ],
+          "source_sha256": "d29bd36c0cdf6e91bb459932a54bfc03b40af90ed674070f8f4186f734ecda39",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "OBSERVED",
+        "event_date": "2019-08-01",
+        "known_at": "2019-08-02",
+        "followup_end": null,
+        "source_sha256": "9a66108b1a54ffb89bf68af7c888ca1c6be273b259c16b61aa117be4932a52a3",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "CA-0-2019",
+      "project_id": "CA-0",
+      "country": "CAN",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 100,
+        "S1": 10,
+        "T1": 20,
+        "D1": 2,
+        "I4": 100,
+        "C1": 0,
+        "permit_granted": 0
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-0-2019-R1"
+          ],
+          "source_sha256": "3e8390ea7f936312e5949b7dd1db025b4d4d3d8357fc38f75db701644f48807b",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-0-2019-S1"
+          ],
+          "source_sha256": "705a194df38703a48bbc1f2afa3463757eb759c0594679584942dacc479da2e8",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-0-2019-T1"
+          ],
+          "source_sha256": "d0e2b7301c65309a08adadaa780ea05edfb63e69d4a7916bab799de9aa20322e",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-0-2019-D1"
+          ],
+          "source_sha256": "c12b01daefda9c6e6d0446ba2fbb350d5ac49466df0d0da26f4716efe294c531",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-CA-0-2019-I4"
+          ],
+          "source_sha256": "40bddb8e62cd32bcb7c5fa6e109c3374f11637021fe27598d76101ce0c811e0e",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-0-2019-C1"
+          ],
+          "source_sha256": "126af6c84f2ebd40e42c3b6e1572f353c93126d57729b9ff0ac0ac2fb5c26dd4",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-CA-0-2019-permit_granted"
+          ],
+          "source_sha256": "cb72f9214ce39a4006671ec0ba838aa5958a1b48d37ac92f94d69c1fe681e61e",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "NO_EVENT_VERIFIED",
+        "event_date": null,
+        "known_at": "2020-01-05",
+        "followup_end": "2020-01-01",
+        "source_sha256": "e4508f993f738d695c7e903603d635da04f4dabc767cfcc02368ab2e1e903307",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "CA-1-2019",
+      "project_id": "CA-1",
+      "country": "CAN",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 200,
+        "S1": 11,
+        "T1": 30,
+        "D1": 3,
+        "I4": 180,
+        "C1": 1,
+        "permit_granted": 1
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-1-2019-R1"
+          ],
+          "source_sha256": "96c16cde1cee06c02b3ad6b137c67eb67eb54a0502835e19db5350922c3a244b",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-1-2019-S1"
+          ],
+          "source_sha256": "157f21ffe63439393c23d0d8ccf07916d877c0c63a6d4987f53eaffdabb98660",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-1-2019-T1"
+          ],
+          "source_sha256": "605aff9f0b855c9b687cf33857d16520d91884a081c5f7f834bf1c73a7ff4f9a",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-1-2019-D1"
+          ],
+          "source_sha256": "1127bef75a2e033dfb4ed552fdbe173178acc64d3fc8d6d90c4fcb8268012ba2",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-CA-1-2019-I4"
+          ],
+          "source_sha256": "b1a57bad9664c3144ade5d7e991824481730bfe7ea75725d3801c840d90c0dcb",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-1-2019-C1"
+          ],
+          "source_sha256": "dcd9b4dd3c2330e8f3ff7deb8c853d18057a9359a45417d0738a6fc7e7e3fdaa",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-CA-1-2019-permit_granted"
+          ],
+          "source_sha256": "32396c8b10cc7704e539ed892cd6eb51f8ab9208a80710ebf6462d79b2b79ea2",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "OBSERVED",
+        "event_date": "2019-08-01",
+        "known_at": "2019-08-02",
+        "followup_end": null,
+        "source_sha256": "a3e83f3a78231078e381facd748d21a4544341c1786179c4e657e3ef0b0bd351",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "CA-2-2019",
+      "project_id": "CA-2",
+      "country": "CAN",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 300,
+        "S1": 12,
+        "T1": 40,
+        "D1": 4,
+        "I4": 260,
+        "C1": 2,
+        "permit_granted": 0
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-2-2019-R1"
+          ],
+          "source_sha256": "60fb83462953139c671d4c8befc7db21a79bd1fc131c06ca7e900b7106d202c6",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-2-2019-S1"
+          ],
+          "source_sha256": "61dc986a74de71e099db7f9195c8af52bb257b39965ffae7a52db628b014fdc1",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-2-2019-T1"
+          ],
+          "source_sha256": "9e0aa07eb094a718ac79ef99eeb08ab036c09697027eb35da2fa150b9c1e1798",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-2-2019-D1"
+          ],
+          "source_sha256": "6d0006c3a0f1c6d6fc11d95e75fc7aed140cc979a170670c4d4cbce4e19fc50a",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-CA-2-2019-I4"
+          ],
+          "source_sha256": "f14ddde69d4a226d1198453539a1059973788750cadafeb3d8417234bb999704",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-2-2019-C1"
+          ],
+          "source_sha256": "d9dd681332b6f9a70432adf4b16124ab1eebfd6250d594f0bf0c14a6db800ead",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-CA-2-2019-permit_granted"
+          ],
+          "source_sha256": "a48388326cb762eb13c3acfda22deb5c8d4e35ebf1b907a6b559c12410109150",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "NO_EVENT_VERIFIED",
+        "event_date": null,
+        "known_at": "2020-01-05",
+        "followup_end": "2020-01-01",
+        "source_sha256": "e7a148c1976a4645e7f46c0b75aee46bc921028f935abb75572eca17ae71efd2",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "CA-3-2019",
+      "project_id": "CA-3",
+      "country": "CAN",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 400,
+        "S1": 13,
+        "T1": 50,
+        "D1": 2,
+        "I4": 340,
+        "C1": 3,
+        "permit_granted": 1
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-3-2019-R1"
+          ],
+          "source_sha256": "90980dab1f7a9d7f1f0bd65f48fd7ac89f1f3ff32e9aa603bb4b9efaed28169f",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-3-2019-S1"
+          ],
+          "source_sha256": "17e7ec001cc05d0351411c58ec817d0628f4f6ce433477f4aa1897e7c90c6e9a",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-3-2019-T1"
+          ],
+          "source_sha256": "5fadfa0bb573c2015d4197f693598758149b0680e8cf745734aaee99ad20285e",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-3-2019-D1"
+          ],
+          "source_sha256": "5b060d7c9b0536821a0e13dba92a118ca85201440c18a17bc74972b15d1a6e26",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-CA-3-2019-I4"
+          ],
+          "source_sha256": "15f952d12cf7b541530e5fb67375459ce181ba7beea7511b56b68b907379a795",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-3-2019-C1"
+          ],
+          "source_sha256": "88a6b3532e51f788a58fa7359ba2a918768f4e14f8af2b583affbc85acde81e2",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-CA-3-2019-permit_granted"
+          ],
+          "source_sha256": "bd1b6c52bc0d8eae0f6dcb3517aa7e0fcaac9c8fcbee2016ba03c1397f2792e2",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "OBSERVED",
+        "event_date": "2019-08-01",
+        "known_at": "2019-08-02",
+        "followup_end": null,
+        "source_sha256": "807f2969a496b9401470597bc38f5df923a481d6f75aef9f10b3638c75982fe6",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "CA-4-2019",
+      "project_id": "CA-4",
+      "country": "CAN",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 500,
+        "S1": 14,
+        "T1": 60,
+        "D1": 3,
+        "I4": 420,
+        "C1": 0,
+        "permit_granted": 0
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-4-2019-R1"
+          ],
+          "source_sha256": "efa05365b619fe2d6e10ab5c6b0f97cfce0f7bd0b6b55df53804010f8d5a7e9e",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-4-2019-S1"
+          ],
+          "source_sha256": "a5412a9787ab759b7db85029f9c31b92ef6e94ed3ad582061e758cbf3aec42d0",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-4-2019-T1"
+          ],
+          "source_sha256": "e059618c111b316b6974e29d537153b6ed9fb42a2416ac5f6650ad2da7898449",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-4-2019-D1"
+          ],
+          "source_sha256": "5d80f2e31f9c9c1ad5ab5fef2715af2969b60ec3645bb611af5911704f985db6",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-CA-4-2019-I4"
+          ],
+          "source_sha256": "3d0a300f1ca6c96da63e3d892b6abdeebd52124a3214a3eacf90897b221a8513",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-4-2019-C1"
+          ],
+          "source_sha256": "968513e242972c881094d0f78d00754f0d21fc15d031507930f4c014f1d2eec3",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-CA-4-2019-permit_granted"
+          ],
+          "source_sha256": "2be674440490d0e91181281cece436bcf78c9417def00224a38948d579ed0400",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "NO_EVENT_VERIFIED",
+        "event_date": null,
+        "known_at": "2020-01-05",
+        "followup_end": "2020-01-01",
+        "source_sha256": "2313e7e7d93867ed5905d09e500cacad39294e5ca4374c4d743cf9bdb4e7802c",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "CA-5-2019",
+      "project_id": "CA-5",
+      "country": "CAN",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 600,
+        "S1": 15,
+        "T1": 70,
+        "D1": 4,
+        "I4": 500,
+        "C1": 1,
+        "permit_granted": 1
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-5-2019-R1"
+          ],
+          "source_sha256": "351054e45bb96c775224473a67d098b8190368e317369ed8079e47b7fc87a029",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-5-2019-S1"
+          ],
+          "source_sha256": "ff0ea28be1d479772ccbe3773e8266d58baa25c7d64b82f61c26eb3a8416144e",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-5-2019-T1"
+          ],
+          "source_sha256": "8a79a848c0975ce710d4a50c98fe2cc94b1a247a2a60784d8bcc2912aaf128e2",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-5-2019-D1"
+          ],
+          "source_sha256": "bdb9a2298cf45df15d9e916555f7370438f2b91f93b570e3a94e45ce7f36eb83",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-CA-5-2019-I4"
+          ],
+          "source_sha256": "e020ce24bda79054d65095b16051ba7d50baf9c26620aa122530455c80f9656a",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-CA-5-2019-C1"
+          ],
+          "source_sha256": "462ea1c053c4971710cbdc96e060a8f34bd6ac71899a657ca9bb806685ad3e72",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-CA-5-2019-permit_granted"
+          ],
+          "source_sha256": "da3cc3a8eb03b23ee91afc3a2e98b88d68d8e1f4d95e323b9504361b245ad5ff",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "OBSERVED",
+        "event_date": "2019-08-01",
+        "known_at": "2019-08-02",
+        "followup_end": null,
+        "source_sha256": "510c96c7cf20dcd9bd3986b0682bb439c3137eddf95defc3dddf8a5372432e6f",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "US-0-2019",
+      "project_id": "US-0",
+      "country": "USA",
+      "commodity": "LITHIUM",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 100,
+        "S1": 10,
+        "T1": 20,
+        "D1": 2,
+        "I4": 100,
+        "C1": 0,
+        "permit_granted": 0
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-US-0-2019-R1"
+          ],
+          "source_sha256": "6f164731b99c23a9f233b68155c0ee733278ba8ec409d0a721c8ce44ee6eb201",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-US-0-2019-S1"
+          ],
+          "source_sha256": "b08438c63ea4b7d1404a613a35d5d0a2a02846873215281cd36349dbfcf5c7f6",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-US-0-2019-T1"
+          ],
+          "source_sha256": "f21b3a263a608aee492b1cae9d7a64d0e84f9ca4cd8831b4c808d259d5b4405f",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-US-0-2019-D1"
+          ],
+          "source_sha256": "6357574730bfa13ac92b5dc047aa9db1b7c9846a3d7ebd9b949fa404977a6c4c",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-US-0-2019-I4"
+          ],
+          "source_sha256": "3bfd0dce514f3a0f20bbd25390cdb406663ab23c92a04809920b20e6be41a8a9",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-US-0-2019-C1"
+          ],
+          "source_sha256": "38d7a1d8e85f6038585885cf1e06264314b2daa816c3852421f4f294a1700390",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-US-0-2019-permit_granted"
+          ],
+          "source_sha256": "e4f25cf4eb9635ce5d68b6836b2f8d62ff099d70cfe4bf727a2ed9122f9d2250",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "NO_EVENT_VERIFIED",
+        "event_date": null,
+        "known_at": "2020-01-05",
+        "followup_end": "2020-01-01",
+        "source_sha256": "d3fa2ede8f1655a4631961a07326d4e8a2d3a1529323ae2197213f20e132f01e",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "US-1-2019",
+      "project_id": "US-1",
+      "country": "USA",
+      "commodity": "LITHIUM",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 200,
+        "S1": 11,
+        "T1": 30,
+        "D1": 3,
+        "I4": 180,
+        "C1": 1,
+        "permit_granted": 1
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-US-1-2019-R1"
+          ],
+          "source_sha256": "6bf539be500841c856e4ed6c43cb1c301c900a98687e926dfa7c03ea0923f865",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-US-1-2019-S1"
+          ],
+          "source_sha256": "947743edc6a6b245669e3abd77efefdda4ffe4ef7bd08beca881d0318610ec3a",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-US-1-2019-T1"
+          ],
+          "source_sha256": "162ac1f539f440959db94b09ccc202676281e427ea91cb0da0f7c46124a0aa83",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-US-1-2019-D1"
+          ],
+          "source_sha256": "580168f6040c8243efec793f04b068a8304a865d17e3c86d69b60ea833457865",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-US-1-2019-I4"
+          ],
+          "source_sha256": "81e4716379e09bc3135da3fa86ad7830cdbb4e66d2bccce0be6c146900506683",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-US-1-2019-C1"
+          ],
+          "source_sha256": "37b7b1e065900f41e6296320fb26a04aac8ff3bfa98fc128d03a647ff524873b",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-US-1-2019-permit_granted"
+          ],
+          "source_sha256": "a88ea51b2626015a57becdce693d7bf03f0ec43e04e62eae1cc470828524d0c7",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "OBSERVED",
+        "event_date": "2019-08-01",
+        "known_at": "2019-08-02",
+        "followup_end": null,
+        "source_sha256": "f8f4774c102ceb9fe0bbf1d57748e0de5ef5cc9b31fd2c2f4f5c2a1e62b6d224",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "US-2-2019",
+      "project_id": "US-2",
+      "country": "USA",
+      "commodity": "LITHIUM",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 300,
+        "S1": 12,
+        "T1": 40,
+        "D1": 4,
+        "I4": 260,
+        "C1": 2,
+        "permit_granted": 0
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-US-2-2019-R1"
+          ],
+          "source_sha256": "1448466a16db6778e627be085d25789bc4c9104d54854519aca8d75590bdc94c",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-US-2-2019-S1"
+          ],
+          "source_sha256": "15c25af4c60c7abbcb636f0ad24cfa8b38db85d6eef0d8ea45a9358ab0dc39d0",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-US-2-2019-T1"
+          ],
+          "source_sha256": "47b5a528156fa56d015837afafe706c5afb25ba6866ee32ecc28eaa3d1998b8a",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-US-2-2019-D1"
+          ],
+          "source_sha256": "3be03c4bd00e78b31da4569af4f8b9cdc191355cfb6904afb93ac82c0b878b02",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-US-2-2019-I4"
+          ],
+          "source_sha256": "b7177d50c57b8ab941f2dfe62a67316be1c4c34ec6c9e79f99e6ec9bca514688",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-US-2-2019-C1"
+          ],
+          "source_sha256": "b9c1ebaf7535e10fbc025c6306aa3e6b9a45266d1a3542d9fecf58ccc7ac03d4",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-US-2-2019-permit_granted"
+          ],
+          "source_sha256": "a04d720f6fc2dca58d2f1a1b1e87540a215751121ce126fae27b931863b96d4b",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "NO_EVENT_VERIFIED",
+        "event_date": null,
+        "known_at": "2020-01-05",
+        "followup_end": "2020-01-01",
+        "source_sha256": "ef888dc45a5da9567ea1b62c376f7205179e6a57dc8f98a19b7639782a34ad5b",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "US-3-2019",
+      "project_id": "US-3",
+      "country": "USA",
+      "commodity": "LITHIUM",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 400,
+        "S1": 13,
+        "T1": 50,
+        "D1": 2,
+        "I4": 340,
+        "C1": 3,
+        "permit_granted": 1
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-US-3-2019-R1"
+          ],
+          "source_sha256": "2e617711a353860988b35e9cfc313a681fa6fe123c776b95347a71c2aedab299",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-US-3-2019-S1"
+          ],
+          "source_sha256": "0e2d68f7f2753e2b3c8d5fa1021986c0fdcf2b032cd5332a4857eaa9de7f2602",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-US-3-2019-T1"
+          ],
+          "source_sha256": "f5401630cba1454690362ec6b19ad0e19c3f70ab86097641f7de9ea27131d1a8",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-US-3-2019-D1"
+          ],
+          "source_sha256": "31e49bd5840a4dd114d38811324eaeb42cf3480cdb30952fec54aa2454a0bfaa",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-US-3-2019-I4"
+          ],
+          "source_sha256": "eb4ecf5fb45bcc543af780e99094d124574c3f77882174ad0b312d830d679325",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-US-3-2019-C1"
+          ],
+          "source_sha256": "6a3cf701b20e90c89bcb46d5da54744db29099525c59704a50d207684eb9bad7",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-US-3-2019-permit_granted"
+          ],
+          "source_sha256": "8432985910ee2cc273adc4180771782860e7369429f90cfc624dcac2f4485d5e",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "OBSERVED",
+        "event_date": "2019-08-01",
+        "known_at": "2019-08-02",
+        "followup_end": null,
+        "source_sha256": "a8248e058a5a07b48b3731807bec77bd5791c7b097d424d1509e71870591e6b9",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "US-4-2019",
+      "project_id": "US-4",
+      "country": "USA",
+      "commodity": "LITHIUM",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 500,
+        "S1": 14,
+        "T1": 60,
+        "D1": 3,
+        "I4": 420,
+        "C1": 0,
+        "permit_granted": 0
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-US-4-2019-R1"
+          ],
+          "source_sha256": "3df3f4eddd115341180d5a84a4eff591a0205e4b8ae248e8be32722af58d1c09",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-US-4-2019-S1"
+          ],
+          "source_sha256": "c817b3becdb658fda468d11f0713e59ac63d8269c51b51f84137191261e62874",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-US-4-2019-T1"
+          ],
+          "source_sha256": "5ce9350102d0bb3c78973d9e02f44aa5efd3e7223967d599d9c04fbca269e9d8",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-US-4-2019-D1"
+          ],
+          "source_sha256": "f46d76be15df33ef3d426762a85e651c3a7a6e436593e120db4fdaf33adceffc",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-US-4-2019-I4"
+          ],
+          "source_sha256": "1b07f773d53e84186a8804cfcacb39e2df6da90680acf83f51cb50e3b3243147",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-US-4-2019-C1"
+          ],
+          "source_sha256": "f1e4e73c29012ecfa1cd763cf97bdcbdc81cb9812560bc2f6d11850bed255bb1",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-US-4-2019-permit_granted"
+          ],
+          "source_sha256": "9f7c3ca79cbece7853d95d70224f5c493e036fa108956fc38855c9868aa95803",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "NO_EVENT_VERIFIED",
+        "event_date": null,
+        "known_at": "2020-01-05",
+        "followup_end": "2020-01-01",
+        "source_sha256": "eff89e70758c133de98e054cb732ba6adf514b1126089403034f901fc6636000",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "US-5-2019",
+      "project_id": "US-5",
+      "country": "USA",
+      "commodity": "LITHIUM",
+      "scope": "PROJECT",
+      "as_of": "2019-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 600,
+        "S1": 15,
+        "T1": 70,
+        "D1": 4,
+        "I4": 500,
+        "C1": 1,
+        "permit_granted": 1
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-US-5-2019-R1"
+          ],
+          "source_sha256": "223082feb271b85daa91c0e00b9fcb0584fca5f97fefd261c686adba501301e1",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-US-5-2019-S1"
+          ],
+          "source_sha256": "d634087e402a56eb9fe3ce5c4ab1f4b18119b4df3357a8829eda696924464d19",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-US-5-2019-T1"
+          ],
+          "source_sha256": "8c6f668dcc90f8756e54c051107bcd847b089da5ad91c706df740ae805ae4361",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-US-5-2019-D1"
+          ],
+          "source_sha256": "a277256c2884b6d993ddd0d82a87649299346c4b940685884a6f2f053b8e9f4b",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-US-5-2019-I4"
+          ],
+          "source_sha256": "764f0621db3435532b94d0c68e8601e32538ddc9a6ba12d73a526ce6d10f04ef",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-US-5-2019-C1"
+          ],
+          "source_sha256": "cffe431aa67e1b10a4a69d5d79863e95f6d5ecc05ca489eb8fc8f2689045e4f5",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-US-5-2019-permit_granted"
+          ],
+          "source_sha256": "ec8849599df9642aeb5d7618550df8bbfcb28ee211eecd72be2998a4786eb3ff",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2019-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2019-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "OBSERVED",
+        "event_date": "2019-08-01",
+        "known_at": "2019-08-02",
+        "followup_end": null,
+        "source_sha256": "bc9012e74834389654de90126297c132cd6a1de13f90c94fc97c51dc67dce4ae",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "AU-0-2022",
+      "project_id": "AU-0",
+      "country": "AUS",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2022-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 600,
+        "S1": 15,
+        "T1": 70,
+        "D1": 4,
+        "I4": 500,
+        "C1": 1,
+        "permit_granted": 1
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2022-R1"
+          ],
+          "source_sha256": "2d43c8572d638d74b71e787471b480c2b7e4198f70ff51fa746f915f31a7a0dc",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2022-S1"
+          ],
+          "source_sha256": "2fd68db4a5dfbaed071e9b87eef20b93905d860184631dec7c11506518f6513b",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2022-T1"
+          ],
+          "source_sha256": "6c329acf8c3d79f26b84417cbcd801df68c8541a83b0a8b16da433cbce16d2ef",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2022-D1"
+          ],
+          "source_sha256": "53ae25284ed97cbfb86d11f42235f3878c3b5ff834fddef549b3738303008941",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2022-I4"
+          ],
+          "source_sha256": "993274e5f57920ec45b5b01e35a5ee63d7809f8d07eca2b9f73d0d2ab4313599",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2022-C1"
+          ],
+          "source_sha256": "ef3f4293733a51eaaad34ccdcc364bd6ffc79c29de2bd141df5a84fa7c714803",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-AU-0-2022-permit_granted"
+          ],
+          "source_sha256": "302425af367b931c938a4aab09cd91e0cd6d8024135e74aef722e577ef823ffc",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "OBSERVED",
+        "event_date": "2022-08-01",
+        "known_at": "2022-08-02",
+        "followup_end": null,
+        "source_sha256": "2acc1d1c41fe5fe657a56d97f3037cfb97ae6d17a0ad37d5b580425d42d2da6f",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "AU-H0-2022",
+      "project_id": "AU-H0",
+      "country": "AUS",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2022-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 100,
+        "S1": 10,
+        "T1": 20,
+        "D1": 2,
+        "I4": 100,
+        "C1": 0,
+        "permit_granted": 0
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H0-2022-R1"
+          ],
+          "source_sha256": "58b9dba3528727d165a8c88a3d78ec4c0e8df1bb92a499dee2ccfe96fd3698c3",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H0-2022-S1"
+          ],
+          "source_sha256": "64dbe89625bec8328d24eaa53f7a7752b02ee868a64d9ac149b3f1bfad081cf6",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H0-2022-T1"
+          ],
+          "source_sha256": "5ae47895a1ebacd387a0afd0f4358d28dc1f0d8627604c69ae102f72b41bc209",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H0-2022-D1"
+          ],
+          "source_sha256": "ad2402e8c20b7f8856c850fe4de313b7846ccecf2ed1e7de7accc9afa8e86548",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H0-2022-I4"
+          ],
+          "source_sha256": "944ac4ce19b7f8fd6dd1001c81e2a8ae816f47c074e1928eaf5c292545ee4609",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H0-2022-C1"
+          ],
+          "source_sha256": "ada6e6a53616651af406885040699cadbb3d6087d5b2f5bcbd778db70139f079",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H0-2022-permit_granted"
+          ],
+          "source_sha256": "ffc31b07207e51b779af5acbb682380f099446b843cdd521cdbeb390ffa8d975",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "NO_EVENT_VERIFIED",
+        "event_date": null,
+        "known_at": "2023-01-05",
+        "followup_end": "2023-01-01",
+        "source_sha256": "f24858d1c575509849e95c2b410627a646851e1b730cf660ac77438e49624e3b",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "AU-H1-2022",
+      "project_id": "AU-H1",
+      "country": "AUS",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2022-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 200,
+        "S1": 11,
+        "T1": 30,
+        "D1": 3,
+        "I4": 180,
+        "C1": 1,
+        "permit_granted": 1
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H1-2022-R1"
+          ],
+          "source_sha256": "b314b752c1d981832de238dc7a62860331a981e734ac4b7e3d66b7ae37f0803a",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H1-2022-S1"
+          ],
+          "source_sha256": "9ce623dafee50633e1bb85cc2d281499d5d7a2072c2ed84feb0ce51e118f08b8",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H1-2022-T1"
+          ],
+          "source_sha256": "60ff8eb14a55768ef2cd84e304dbd48c65dafaa040fb68cf8e90a24af3b8e1a4",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H1-2022-D1"
+          ],
+          "source_sha256": "3c66dbee4eefe173eb78306313b66274fce5b6826571d77726868aacca81f749",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H1-2022-I4"
+          ],
+          "source_sha256": "71fac72db18c3bab8e1bc23fc1ba16d5d55cc07ee931b96749bd0af6725f0aea",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H1-2022-C1"
+          ],
+          "source_sha256": "b9c4144fe9373eafa2581e2bb94fb39b39aa62f893511557f62436eaf7eac1c9",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H1-2022-permit_granted"
+          ],
+          "source_sha256": "eee5caae1ddb257ece00e1e93438ff25c4ba1a394915ecda0b49b38eca15c303",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "OBSERVED",
+        "event_date": "2022-08-01",
+        "known_at": "2022-08-02",
+        "followup_end": null,
+        "source_sha256": "cbb857e1b978545ac528c5e770502387563faf958243bb217fa221884979a88b",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "AU-H2-2022",
+      "project_id": "AU-H2",
+      "country": "AUS",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2022-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 300,
+        "S1": 12,
+        "T1": 40,
+        "D1": 4,
+        "I4": 260,
+        "C1": 2,
+        "permit_granted": 0
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H2-2022-R1"
+          ],
+          "source_sha256": "8563d89fde2d7f2c61ff047881ccf44c0d58eb48bca4584938bcea1ba2621d9a",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H2-2022-S1"
+          ],
+          "source_sha256": "b77820c2f2f6fc7c5830d5c546172d9ccf9695c33eb42d4c7a41b83b9410bc0c",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H2-2022-T1"
+          ],
+          "source_sha256": "876acef4db5181e4c9702852d9efc1594035c28d5537567e183e96d461c5b92c",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H2-2022-D1"
+          ],
+          "source_sha256": "d3b3b845e54694a343c42a1922fc44bbb73c3a0c421081aee97755f0a8a405df",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H2-2022-I4"
+          ],
+          "source_sha256": "5b69436a283aebc1246e89cc6baa1a76bd5ea07a63f0421f030ff2b0bc432b4b",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H2-2022-C1"
+          ],
+          "source_sha256": "03e68fcd025aa332ac21b3c5ae4f4fb1ecdcd0296b6a25fe619a0cc089aea0a3",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H2-2022-permit_granted"
+          ],
+          "source_sha256": "85f9edfe201073b91dd4cf8d5cb692a92608f31877d8045a256d775a95c593c0",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "NO_EVENT_VERIFIED",
+        "event_date": null,
+        "known_at": "2023-01-05",
+        "followup_end": "2023-01-01",
+        "source_sha256": "12c35b23601455187de25b811d66992978e8a110d6d5703722ac7271b2788771",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "AU-H3-2022",
+      "project_id": "AU-H3",
+      "country": "AUS",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2022-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 400,
+        "S1": 13,
+        "T1": 50,
+        "D1": 2,
+        "I4": 340,
+        "C1": 3,
+        "permit_granted": 1
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H3-2022-R1"
+          ],
+          "source_sha256": "b6cb27887f425819299a97ac129e2aaae3bcb33bb9bd70c7ec0143f6e95ba90c",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H3-2022-S1"
+          ],
+          "source_sha256": "cded495b8e7c3d607a9359c1ef74471a9b685c5090b9ec85e6874ce0341de56d",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H3-2022-T1"
+          ],
+          "source_sha256": "ed7f5641911042ad1a34bad027a0157dd4972a98cd8250132e7c1732a4dfb028",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H3-2022-D1"
+          ],
+          "source_sha256": "08e3f87e6b20b9e9d3a512b60339a5b311b14e64e773e0498471985ffa786ef6",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H3-2022-I4"
+          ],
+          "source_sha256": "54e852a2b7ef20b485020ea853e621597c43c209589ccb7aff42d0a9f0a75033",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H3-2022-C1"
+          ],
+          "source_sha256": "9fa7df6e3b25fe51be0f4ee376226d03369c937011783a8a8ab47917b980557e",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H3-2022-permit_granted"
+          ],
+          "source_sha256": "73ed473936cf58e018aefbde2328ed608a41d0ac8228d94c326d82dc6ad36dca",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "OBSERVED",
+        "event_date": "2022-08-01",
+        "known_at": "2022-08-02",
+        "followup_end": null,
+        "source_sha256": "10dd9f4a7317f2a4cdecbd25e8eb31685c8a74cc7ca7ee4e99db20ddfb748639",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "AU-H4-2022",
+      "project_id": "AU-H4",
+      "country": "AUS",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2022-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 500,
+        "S1": 14,
+        "T1": 60,
+        "D1": 3,
+        "I4": 420,
+        "C1": 0,
+        "permit_granted": 0
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H4-2022-R1"
+          ],
+          "source_sha256": "f9ea055f65c16dbfd731f22b38bf17fc316874564a2885710287f0940604acdd",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H4-2022-S1"
+          ],
+          "source_sha256": "b50bed04c63aaa18146f7d2f8586463e33583b0f399ccd1c4bec62d192132fbb",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H4-2022-T1"
+          ],
+          "source_sha256": "04c2dbd5d75ca37f5b977af20b57468171e288c0ac76eb5ec502d4e658aa417e",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H4-2022-D1"
+          ],
+          "source_sha256": "d90e99e67d9e2a30c08e97f87ba3c34c5405f148bc33360d63b01a40bf23c0e5",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H4-2022-I4"
+          ],
+          "source_sha256": "997bb6528e444c5f829adb3452616e91b29fe82d3551d07ae01605016dd96411",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H4-2022-C1"
+          ],
+          "source_sha256": "52e29c089679bd3d88cca74e4e697f49fb5fedcd4c92d2a22d6d300518af4bb5",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H4-2022-permit_granted"
+          ],
+          "source_sha256": "f0b97af5ebe92e051886cf90a367ab0a072474152e910013370f1e24e36460ba",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "NO_EVENT_VERIFIED",
+        "event_date": null,
+        "known_at": "2023-01-05",
+        "followup_end": "2023-01-01",
+        "source_sha256": "3e012d2e293efe1f7261f4f1ee340d6ec7939a684f203455031aa469e586bb2a",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    },
+    {
+      "case_id": "AU-H5-2022",
+      "project_id": "AU-H5",
+      "country": "AUS",
+      "commodity": "REE",
+      "scope": "PROJECT",
+      "as_of": "2022-01-01",
+      "at_risk": true,
+      "features": {
+        "R1": 600,
+        "S1": 15,
+        "T1": 70,
+        "D1": 4,
+        "I4": 500,
+        "C1": 1,
+        "permit_granted": 1
+      },
+      "lineage": {
+        "R1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H5-2022-R1"
+          ],
+          "source_sha256": "ca3bedbae5f8b1279a84ec6b5ae7b5c3013775c368289683d41e4ce77429a676",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "kt TREO",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "S1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H5-2022-S1"
+          ],
+          "source_sha256": "9b5320c046318dd0677178a849aea87dfd2248fdd8a82e5e319e1bba2547a035",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "T1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H5-2022-T1"
+          ],
+          "source_sha256": "48359a0f74245be35072374af57352d80a7ccebbbfabddccf535675e1f9ce3e7",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "%",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "D1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H5-2022-D1"
+          ],
+          "source_sha256": "a1b97aa486f72884b4839819dea29c1cef312f3e417d72d4b7ea2e3b9fdabd2b",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "I4": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H5-2022-I4"
+          ],
+          "source_sha256": "03aec0cd486ba89de7c69939802e2cfb5f52ecf215a70314e19b80c182ef640f",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "km",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "C1": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H5-2022-C1"
+          ],
+          "source_sha256": "229cb3a99f74e0dd2662d6985a14fd8da79c7cde603b0ed00a7d346c6cfa0732",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "ordinal",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        },
+        "permit_granted": {
+          "observation_ids": [
+            "SYNTHETIC-AU-H5-2022-permit_granted"
+          ],
+          "source_sha256": "2323b36ca763a7440c6ff8246435896c358a0f40f8b4d55d0c8918ac8832825b",
+          "locator": "SYNTHETIC_FIXTURE_ONLY",
+          "known_at": "2022-01-01",
+          "known_at_basis": "VERIFIED_PUBLICATION",
+          "effective_date": "2022-01-01",
+          "unit": "binary",
+          "basis": "SYNTHETIC_FIXED_DEFINITION"
+        }
+      },
+      "outcome": {
+        "target": "FID",
+        "event_status": "OBSERVED",
+        "event_date": "2022-08-01",
+        "known_at": "2022-08-02",
+        "followup_end": null,
+        "source_sha256": "07c2df1f7ba2a690961a1d9ec5bbef0fd053b888037b3204bc116d31d82cefb0",
+        "locator": "SYNTHETIC_FIXTURE_ONLY"
+      }
+    }
+  ]
+}

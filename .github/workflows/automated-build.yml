@@ -54,7 +54,7 @@ jobs:
           use-public-rspm: true
       - name: Install package and XML test reporter
         run: |
-          python -m pip install -c requirements-constraints.txt . unittest-xml-reporting
+          python -m pip install -c requirements-constraints.txt '.[experiments]' unittest-xml-reporting
           sudo apt-get update
           sudo apt-get install -y tesseract-ocr-eng
       - name: Verify checkout begins without work data
