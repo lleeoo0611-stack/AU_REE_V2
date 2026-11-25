@@ -1,0 +1,118 @@
+{
+  "experiment": "read-only-resource-comparability-v1",
+  "model_sha256": "cb5bc2c3627feac4c379ec7bf715921d544db34b7aecab1cc623dfeaccc0111c",
+  "release_inputs_sha256": {
+    "REE project census.csv": "35b46dd25262689dc4e2c1d72d1111da37d34581d67bfd313c2535d22a841d85",
+    "resource_statement_lineage.csv": "2ffb74c66ca8b6fe173a4e3c45da3473b541c6d9294aa786c30c50988d13f5b4",
+    "resource_statement_observations.csv": "067e6bf1d8ba46426fb5f16ec7ab404606aa58c181b6ec57445ea6321e97aeb2",
+    "source_selection.csv": "aa475199f5e13d1f14e3807e4ebfb70ec062e80d70cbc757a36e9452b1aafa75",
+    "census_release.json": "8068d410a208d1f3fa098983d65a5d0d4beccaa487f6685ca18e98614fbad8bf"
+  },
+  "census_rows": 93,
+  "research_cutoff": "2026-11-13",
+  "direct_observations": 62,
+  "projects": 28,
+  "cross_project_field_pairs": 699,
+  "baseline_field_pairs": 194,
+  "baseline_distinct_project_pairs": 106,
+  "all_field_pairs": {
+    "baseline": {
+      "CANDIDATE": 194,
+      "INCOMPATIBLE_CATEGORY_OR_UNIT": 505
+    },
+    "descriptive_status": {
+      "CANDIDATE": 192,
+      "CONFLICT": 505,
+      "DUPLICATE_SCOPE": 2
+    },
+    "nominal_status": {
+      "CONFLICT": 683,
+      "DUPLICATE_SCOPE": 2,
+      "MATCH": 1,
+      "UNRESOLVED": 13
+    },
+    "strict_status": {
+      "CONFLICT": 684,
+      "SAME_STATEMENT": 2,
+      "UNRESOLVED": 13
+    }
+  },
+  "among_baseline_candidates": {
+    "baseline": {
+      "CANDIDATE": 194
+    },
+    "descriptive_status": {
+      "CANDIDATE": 192,
+      "DUPLICATE_SCOPE": 2
+    },
+    "nominal_status": {
+      "CONFLICT": 178,
+      "DUPLICATE_SCOPE": 2,
+      "MATCH": 1,
+      "UNRESOLVED": 13
+    },
+    "strict_status": {
+      "CONFLICT": 179,
+      "SAME_STATEMENT": 2,
+      "UNRESOLVED": 13
+    }
+  },
+  "among_baseline_by_field": {
+    "TREO品位_pct": {
+      "baseline": {
+        "CANDIDATE": 72
+      },
+      "descriptive_status": {
+        "CANDIDATE": 71,
+        "DUPLICATE_SCOPE": 1
+      },
+      "nominal_status": {
+        "CONFLICT": 66,
+        "DUPLICATE_SCOPE": 1,
+        "UNRESOLVED": 5
+      },
+      "strict_status": {
+        "CONFLICT": 66,
+        "SAME_STATEMENT": 1,
+        "UNRESOLVED": 5
+      }
+    },
+    "礦石蘊藏量_Mt": {
+      "baseline": {
+        "CANDIDATE": 106
+      },
+      "descriptive_status": {
+        "CANDIDATE": 105,
+        "DUPLICATE_SCOPE": 1
+      },
+      "nominal_status": {
+        "CONFLICT": 96,
+        "DUPLICATE_SCOPE": 1,
+        "MATCH": 1,
+        "UNRESOLVED": 8
+      },
+      "strict_status": {
+        "CONFLICT": 97,
+        "SAME_STATEMENT": 1,
+        "UNRESOLVED": 8
+      }
+    },
+    "總TREO蘊藏量_kt": {
+      "baseline": {
+        "CANDIDATE": 16
+      },
+      "descriptive_status": {
+        "CANDIDATE": 16
+      },
+      "nominal_status": {
+        "CONFLICT": 16
+      },
+      "strict_status": {
+        "CONFLICT": 16
+      }
+    }
+  },
+  "descriptive_distinct_project_pairs": 105,
+  "oxide_extension_preexisting_comparisons": 4,
+  "census_values_written": 0
+}

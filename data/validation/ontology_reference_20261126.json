@@ -1,0 +1,439 @@
+{
+  "schema_version": "1.0",
+  "scope": "Source-reviewed purposive controls issued before inspecting the new ontology result. These controls test behavior on selected pairs, not representative performance. Historical normalization-pilot observations were used to locate sources and the four previously documented oxide comparisons; this set is not a blinded holdout.",
+  "grain": "One field and one unordered pair of source-bound observation IDs. Several fields can describe the same two statements. Physical PDF pages are one-based. Statements need only be available by the frozen cutoff, not simultaneous.",
+  "labels": {
+    "QUALIFIED_REPORTING_BASIS": "Comparable for the same named reporting criterion and scope of material, category and moisture, with an explicit qualification for any operational difference. Does not establish protocol equivalence.",
+    "DESCRIPTIVE_ONLY": "Side-by-side description is possible; a common cutoff or operational envelope cannot be claimed.",
+    "DUPLICATE_SCOPE": "Two project IDs restate the same selected statement; exclude as independent projects.",
+    "CONFLICT": "Source pages show an operational cutoff difference.",
+    "UNRESOLVED": "Available source pages do not establish equivalence.",
+    "SAME_STATEMENT": "The same estimate is reported twice."
+  },
+  "controls": [
+    {
+      "id": "HM-NOMINAL-ORE",
+      "cohort": "core",
+      "field": "礦石蘊藏量_Mt",
+      "left": {
+        "project_id": "AU-2fc429d0556dfa0b95c4",
+        "project_name": "Donald Rare Earth and Mineral Sands Project — MIN5532 resource scope",
+        "observation_id": "80b9becd64cb5208043f07b5b5adfd56a74b14ecd08fa952dac6695f964cb22c",
+        "pdf_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+        "pages": [
+          6,
+          33
+        ],
+        "statement_date": "2025-12-31",
+        "census_value": "530.0",
+        "basis": "MIN5532 Table 6: 530 Mt total whole ore across M+I+I; dry basis; above 1.0% total HM. HM fraction +20 to -250 micrometres."
+      },
+      "right": {
+        "project_id": "AU-ff758cad5beb276d327d",
+        "project_name": "Wimmera Mineral Sands Project — Iluka WIM100",
+        "observation_id": "e8d2e67299f95a3e4907c9d3182df60cb10bda05335152328fab026d41c027b0",
+        "pdf_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+        "pages": [
+          3,
+          10,
+          16,
+          31
+        ],
+        "statement_date": "2026-01-29",
+        "census_value": "540.0",
+        "basis": "2026 WIM100 Table 1: 540 Mt total whole ore across M+I+I; dry basis; 1.0% HM. HM measured on 38 to 710 micrometres at SG 2.85."
+      },
+      "expected": {
+        "comparison": "QUALIFIED_REPORTING_BASIS",
+        "operational_equivalence": "CONFLICT",
+        "reason": "DISTINCT_HM_SIZE_FRACTIONS"
+      }
+    },
+    {
+      "id": "YTTRIA-DUPLICATE-ORE",
+      "cohort": "core",
+      "field": "礦石蘊藏量_Mt",
+      "left": {
+        "project_id": "AU-d0ce731e1d8198ffaf58",
+        "project_name": "Mt Stirling — Yttria resource scope",
+        "observation_id": "31c91238185388beff51666ffc08888be57b8fa658d604cafa34cf023a42e643",
+        "pdf_sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726",
+        "pages": [
+          1,
+          2
+        ],
+        "statement_date": "2024-04-16",
+        "census_value": "15.0",
+        "basis": "Maiden MRE at Yttria REE Deposit; indicated and inferred total 15 Mt at 490 ppm; cutoff 200 ppm TREO-Ce; same release date and Table 1."
+      },
+      "right": {
+        "project_id": "AU-ee5ca893d12883df35f1",
+        "project_name": "Yttria REE Project",
+        "observation_id": "2be49826c0ce8e4dd16f8202d79f150ddbdb4340737ce8d2418a2e909165d0a5",
+        "pdf_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+        "pages": [
+          1,
+          2
+        ],
+        "statement_date": "2024-04-16",
+        "census_value": "15.0",
+        "basis": "Maiden MRE at Yttria REE Deposit; indicated and inferred total 15 Mt at 490 ppm; cutoff 200 ppm TREO-Ce; same release date and Table 1."
+      },
+      "expected": {
+        "comparison": "DUPLICATE_SCOPE",
+        "operational_equivalence": "SAME_STATEMENT",
+        "reason": "SAME_MRE_UNDER_TWO_PROJECT_IDS"
+      }
+    },
+    {
+      "id": "YTTRIA-DUPLICATE-GRADE",
+      "cohort": "core",
+      "field": "TREO品位_pct",
+      "left": {
+        "project_id": "AU-d0ce731e1d8198ffaf58",
+        "project_name": "Mt Stirling — Yttria resource scope",
+        "observation_id": "2857efbfb1846b1d40589fb1209c9df5211fe68e1e10994bfee2449f4091cb1d",
+        "pdf_sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726",
+        "pages": [
+          1,
+          2
+        ],
+        "statement_date": "2024-04-16",
+        "census_value": "0.049",
+        "basis": "Maiden MRE at Yttria REE Deposit; indicated and inferred total 15 Mt at 490 ppm; cutoff 200 ppm TREO-Ce; same release date and Table 1."
+      },
+      "right": {
+        "project_id": "AU-ee5ca893d12883df35f1",
+        "project_name": "Yttria REE Project",
+        "observation_id": "062c56167d9af9bba70ce00182821412d2b2df6e46e965b6a80995b88250fe07",
+        "pdf_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+        "pages": [
+          1,
+          2
+        ],
+        "statement_date": "2024-04-16",
+        "census_value": "0.049",
+        "basis": "Maiden MRE at Yttria REE Deposit; indicated and inferred total 15 Mt at 490 ppm; cutoff 200 ppm TREO-Ce; same release date and Table 1."
+      },
+      "expected": {
+        "comparison": "DUPLICATE_SCOPE",
+        "operational_equivalence": "SAME_STATEMENT",
+        "reason": "SAME_MRE_UNDER_TWO_PROJECT_IDS"
+      }
+    },
+    {
+      "id": "VHM-THM-TVHM",
+      "cohort": "core",
+      "field": "礦石蘊藏量_Mt",
+      "left": {
+        "project_id": "AU-410159af7b79ea498ec2",
+        "project_name": "Cannie Critical Mineral Project — VHM",
+        "observation_id": "a50517e0a1bae714872f9d6c5b069e1ca414126f98bd02f73cdb57176749ff0d",
+        "pdf_sha256": "7de6021ce23b5622e920f8a3169fe6252ea4ba24d7b616f19a1e90454ee4294c",
+        "pages": [
+          7,
+          24
+        ],
+        "statement_date": "2023-05-16",
+        "census_value": "192.0",
+        "basis": "Inferred 192 Mt material; assumed dry; 1.75% total heavy minerals (THM)."
+      },
+      "right": {
+        "project_id": "AU-176852ef1348ac10d154",
+        "project_name": "Nowie Rare Earths and Mineral Sands Project — VHM",
+        "observation_id": "97a9f8d30875994ed5678b73d3549fdbd61825ef4f8019634fae1a732bb4d8b8",
+        "pdf_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4",
+        "pages": [
+          17,
+          33
+        ],
+        "statement_date": "2024-01-24",
+        "census_value": "16.4",
+        "basis": "Inferred 16.4 Mt material; assumed dry; 1% total valuable heavy minerals (TVHM)."
+      },
+      "expected": {
+        "comparison": "DESCRIPTIVE_ONLY",
+        "operational_equivalence": "CONFLICT",
+        "reason": "DIFFERENT_HM_CUTOFF_PROPERTY_AND_THRESHOLD"
+      }
+    },
+    {
+      "id": "430PPM-DIFFERENT-BASKET-ORE",
+      "cohort": "core",
+      "field": "礦石蘊藏量_Mt",
+      "left": {
+        "project_id": "AU-ad64122c217f0dbfabc8",
+        "project_name": "Barkly Rare Earths Project",
+        "observation_id": "c3d971ee211af2b6069ca749f1fa5f32c4dfc3d40603c3cd4870cddd413090f5",
+        "pdf_sha256": "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e",
+        "pages": [
+          189
+        ],
+        "statement_date": "2025-11-17",
+        "census_value": "40.0",
+        "basis": "Table 9-2, 40 Mt at 2100 ppm TREO, 15-oxide TREO including Y and Ce. Inferred; 430 ppm of NdPr is the cutoff."
+      },
+      "right": {
+        "project_id": "AU-785536db5ff12c25350d",
+        "project_name": "Circle Valley",
+        "observation_id": "0b025b1d3a8e53f12fdb06042124b24e18b45e71f89d28b1cda8c4a7e362aed9",
+        "pdf_sha256": "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad",
+        "pages": [
+          2
+        ],
+        "statement_date": "2023-06-14",
+        "census_value": "98.0",
+        "basis": "Table 1, 98 Mt at 890 ppm TREO, same 15-oxide grade including Y and Ce. Inferred; 430 ppm of TREO less CeO2 is the cutoff."
+      },
+      "expected": {
+        "comparison": "DESCRIPTIVE_ONLY",
+        "operational_equivalence": "CONFLICT",
+        "reason": "IDENTICAL_THRESHOLD_DIFFERENT_CUTOFF_CHEMISTRY"
+      }
+    },
+    {
+      "id": "430PPM-DIFFERENT-BASKET-GRADE",
+      "cohort": "core",
+      "field": "TREO品位_pct",
+      "left": {
+        "project_id": "AU-ad64122c217f0dbfabc8",
+        "project_name": "Barkly Rare Earths Project",
+        "observation_id": "d62335c014b82ba4ea0691b9f7e7dd83d58aa0ab9816d9bf18a6bae3a15dc9af",
+        "pdf_sha256": "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e",
+        "pages": [
+          189
+        ],
+        "statement_date": "2025-11-17",
+        "census_value": "0.21",
+        "basis": "Table 9-2, 40 Mt at 2100 ppm TREO, 15-oxide TREO including Y and Ce. Inferred; 430 ppm of NdPr is the cutoff."
+      },
+      "right": {
+        "project_id": "AU-785536db5ff12c25350d",
+        "project_name": "Circle Valley",
+        "observation_id": "520f0c2a126f3b5d567115c456327db8bef68179f86dc43e4a14e3cc7dc19bf6",
+        "pdf_sha256": "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad",
+        "pages": [
+          2
+        ],
+        "statement_date": "2023-06-14",
+        "census_value": "0.089",
+        "basis": "Table 1, 98 Mt at 890 ppm TREO, same 15-oxide grade including Y and Ce. Inferred; 430 ppm of TREO less CeO2 is the cutoff."
+      },
+      "expected": {
+        "comparison": "DESCRIPTIVE_ONLY",
+        "operational_equivalence": "CONFLICT",
+        "reason": "IDENTICAL_THRESHOLD_DIFFERENT_CUTOFF_CHEMISTRY"
+      }
+    },
+    {
+      "id": "OXIDE-Dy2O3",
+      "cohort": "oxide_extension",
+      "field": "Dy2O3",
+      "left": {
+        "project_id": "AU-dac3c8e40326b8244cdb",
+        "project_name": "Jupiter development study within Brothers",
+        "observation_id": "c421b2e19832d8a3200612df1bc3a0ae9c1f6eb1f9347fada88c0886672bb34f",
+        "pdf_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+        "pages": [
+          3,
+          19
+        ],
+        "statement_date": "2026-10-12",
+        "ppm_oxide": "14",
+        "basis": "Table 8, 1000 ppm TREO row, selected indicated 160 Mt, inferred 1500 Mt, ore-tonnage-weighted oxide grade. Page 3 excludes Sc and Ga from TREO; complete cutoff basket not specified in the selected statement."
+      },
+      "right": {
+        "project_id": "AU-2262a37ca19531f08da3",
+        "project_name": "Splinter Rock Rare Earth Project",
+        "observation_id": "6449cc1a2640a2f4b8fbf0d0b73fae4e8a1bf6471bc27f8523eb063ba4cd175b",
+        "pdf_sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+        "pages": [
+          2
+        ],
+        "statement_date": "2024-05-29",
+        "ppm_oxide": "14",
+        "basis": "Table 1, indicated plus inferred total 682 Mt, 1000 ppm TREO cutoff; 15 oxides including Y and Ce are listed."
+      },
+      "expected": {
+        "comparison": "DESCRIPTIVE_ONLY",
+        "operational_equivalence": "UNRESOLVED",
+        "reason": "SAME_OXIDE_UNVERIFIED_CUTOFF_BASKET"
+      }
+    },
+    {
+      "id": "OXIDE-Nd2O3",
+      "cohort": "oxide_extension",
+      "field": "Nd2O3",
+      "left": {
+        "project_id": "AU-dac3c8e40326b8244cdb",
+        "project_name": "Jupiter development study within Brothers",
+        "observation_id": "25fff6b39b8b2a70411f11a8e5ac2615bbe7e8507b33865496de4adcbdc5db04",
+        "pdf_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+        "pages": [
+          3,
+          19
+        ],
+        "statement_date": "2026-10-12",
+        "ppm_oxide": "283",
+        "basis": "Table 8, 1000 ppm TREO row, selected indicated 160 Mt, inferred 1500 Mt, ore-tonnage-weighted oxide grade. Page 3 excludes Sc and Ga from TREO; complete cutoff basket not specified in the selected statement."
+      },
+      "right": {
+        "project_id": "AU-2262a37ca19531f08da3",
+        "project_name": "Splinter Rock Rare Earth Project",
+        "observation_id": "731d4bb6eb8021143dc853a8865843aa6093581ca08bef1a71d95f6890e031b4",
+        "pdf_sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+        "pages": [
+          2
+        ],
+        "statement_date": "2024-05-29",
+        "ppm_oxide": "226",
+        "basis": "Table 1, indicated plus inferred total 682 Mt, 1000 ppm TREO cutoff; 15 oxides including Y and Ce are listed."
+      },
+      "expected": {
+        "comparison": "DESCRIPTIVE_ONLY",
+        "operational_equivalence": "UNRESOLVED",
+        "reason": "SAME_OXIDE_UNVERIFIED_CUTOFF_BASKET"
+      }
+    },
+    {
+      "id": "OXIDE-Pr6O11",
+      "cohort": "oxide_extension",
+      "field": "Pr6O11",
+      "left": {
+        "project_id": "AU-dac3c8e40326b8244cdb",
+        "project_name": "Jupiter development study within Brothers",
+        "observation_id": "95e546eba24e35dcc5b123dcaf78b2bc04e343554b2cd2a4aa2ced0153bc3b2b",
+        "pdf_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+        "pages": [
+          3,
+          19
+        ],
+        "statement_date": "2026-10-12",
+        "ppm_oxide": "82",
+        "basis": "Table 8, 1000 ppm TREO row, selected indicated 160 Mt, inferred 1500 Mt, ore-tonnage-weighted oxide grade. Page 3 excludes Sc and Ga from TREO; complete cutoff basket not specified in the selected statement."
+      },
+      "right": {
+        "project_id": "AU-2262a37ca19531f08da3",
+        "project_name": "Splinter Rock Rare Earth Project",
+        "observation_id": "0eadb1a0ec32b4076381831d19b70e46a9e4010939eb06ec94d36e10621f47ae",
+        "pdf_sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+        "pages": [
+          2
+        ],
+        "statement_date": "2024-05-29",
+        "ppm_oxide": "64",
+        "basis": "Table 1, indicated plus inferred total 682 Mt, 1000 ppm TREO cutoff; 15 oxides including Y and Ce are listed."
+      },
+      "expected": {
+        "comparison": "DESCRIPTIVE_ONLY",
+        "operational_equivalence": "UNRESOLVED",
+        "reason": "SAME_OXIDE_UNVERIFIED_CUTOFF_BASKET"
+      }
+    },
+    {
+      "id": "OXIDE-Tb4O7",
+      "cohort": "oxide_extension",
+      "field": "Tb4O7",
+      "left": {
+        "project_id": "AU-dac3c8e40326b8244cdb",
+        "project_name": "Jupiter development study within Brothers",
+        "observation_id": "2a75ddc71177aded7d05b5de72583f952f79b3b6b2e5f3099503ef4c4e50132f",
+        "pdf_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+        "pages": [
+          3,
+          19
+        ],
+        "statement_date": "2026-10-12",
+        "ppm_oxide": "3",
+        "basis": "Table 8, 1000 ppm TREO row, selected indicated 160 Mt, inferred 1500 Mt, ore-tonnage-weighted oxide grade. Page 3 excludes Sc and Ga from TREO; complete cutoff basket not specified in the selected statement."
+      },
+      "right": {
+        "project_id": "AU-2262a37ca19531f08da3",
+        "project_name": "Splinter Rock Rare Earth Project",
+        "observation_id": "af1cb4d04120f3685697b7256867676e52184ce0474e38b7830c30ef3bd3140c",
+        "pdf_sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+        "pages": [
+          2
+        ],
+        "statement_date": "2024-05-29",
+        "ppm_oxide": "3",
+        "basis": "Table 1, indicated plus inferred total 682 Mt, 1000 ppm TREO cutoff; 15 oxides including Y and Ce are listed."
+      },
+      "expected": {
+        "comparison": "DESCRIPTIVE_ONLY",
+        "operational_equivalence": "UNRESOLVED",
+        "reason": "SAME_OXIDE_UNVERIFIED_CUTOFF_BASKET"
+      }
+    },
+    {
+      "id": "HOLDOUT-THRESHOLD-1",
+      "cohort": "core",
+      "field": "礦石蘊藏量_Mt",
+      "left": {
+        "project_id": "AU-12cc237ae66c7a6508ca",
+        "project_name": "Redlings Rare Earth Project",
+        "observation_id": "36f2e0c68736e6c69d5a2b215ce00822d4f30f24fd0a13087caa045ef91e978d",
+        "pdf_sha256": "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43",
+        "pages": [
+          2
+        ],
+        "statement_date": "2025-01-22",
+        "census_value": "11.0",
+        "basis": "Selected 800 ppm TREO cutoff row: inferred 11 Mt at 1130 ppm TREO."
+      },
+      "right": {
+        "project_id": "AU-af44c2bd1173b453953f",
+        "project_name": "Aileron Niobium–REE Project",
+        "observation_id": "8e37557f15b43f8d2a66e8dbdd89de681f8e31bd37bf12dcec20bd172d0d0a2f",
+        "pdf_sha256": "88dfed30776b41d3739253fefaa1e5972a0b9969ec4db39dc1130efa2164775a",
+        "pages": [
+          9
+        ],
+        "statement_date": "2026-10-27",
+        "census_value": "120.0",
+        "basis": "Expanded inferred estimate, selected 0.25% Nb2O5 cutoff: 120 Mt at 0.77% Nb2O5. The 1% cutoff subset and earlier estimate are separate rows."
+      },
+      "expected": {
+        "comparison": "DESCRIPTIVE_ONLY",
+        "operational_equivalence": "CONFLICT",
+        "reason": "DIFFERENT_CUTOFF_CHEMISTRY_AND_THRESHOLD"
+      },
+      "holdout_group": "REVIEWER_SELECTED_BEFORE_FIRST_OUTPUT"
+    },
+    {
+      "id": "HOLDOUT-THRESHOLD-2",
+      "cohort": "core",
+      "field": "礦石蘊藏量_Mt",
+      "left": {
+        "project_id": "AU-3651cf8448b9227adcf5",
+        "project_name": "Mount Ridley — Blocks 1 and 2 resource scope",
+        "observation_id": "a9731cbd3f757371c2d2455678f5196f4ea837ede2b8831ce86dd4a5c2e42258",
+        "pdf_sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+        "pages": [
+          6
+        ],
+        "statement_date": "2026-03-24",
+        "census_value": "122.546251",
+        "basis": "Table 1, selected Blocks 1 and 2: inferred total 122,546,251 tonnes (122.546251 Mt), above 300 ppm TREO."
+      },
+      "right": {
+        "project_id": "AU-4ec1fb08563b42352d29",
+        "project_name": "Cowalinya Rare Earth Project",
+        "observation_id": "1aefdfb3ebe88cf7bba0cd026274e083e470112aa8dd62b121de7422b925ff70",
+        "pdf_sha256": "39699576fe9ebe47225c083dc285d7a561b732ab357a9050a67472e89a5512aa",
+        "pages": [
+          16
+        ],
+        "statement_date": "2023-09-30",
+        "census_value": "158.9",
+        "basis": "All layers, inferred total 158.9 Mt. Cutoff 400 ppm TREO less CeO2, distinct from the reported total REO grade."
+      },
+      "expected": {
+        "comparison": "DESCRIPTIVE_ONLY",
+        "operational_equivalence": "CONFLICT",
+        "reason": "DIFFERENT_CUTOFF_CHEMISTRY_AND_THRESHOLD"
+      },
+      "holdout_group": "REVIEWER_SELECTED_BEFORE_FIRST_OUTPUT"
+    }
+  ]
+}

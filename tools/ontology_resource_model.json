@@ -1,0 +1,713 @@
+{
+  "version": "1.0",
+  "types": [
+    "Project",
+    "Statement",
+    "PDFPage",
+    "Observation",
+    "QuantityKind",
+    "CutoffCriterion",
+    "Material",
+    "Analyte",
+    "ResourceCategory"
+  ],
+  "relations": {
+    "reportsOn": [
+      "Statement",
+      "Project"
+    ],
+    "quotedOn": [
+      "Observation",
+      "PDFPage"
+    ],
+    "fromStatement": [
+      "Observation",
+      "Statement"
+    ],
+    "measures": [
+      "Observation",
+      "QuantityKind"
+    ],
+    "usesCutoff": [
+      "Statement",
+      "CutoffCriterion"
+    ],
+    "classifies": [
+      "Statement",
+      "ResourceCategory"
+    ],
+    "hasMaterial": [
+      "Observation",
+      "Material"
+    ],
+    "hasAnalyte": [
+      "Observation",
+      "Analyte"
+    ]
+  },
+  "nominal_required": {
+    "ore_mt": [
+      "scope_extent",
+      "cutoff_metric",
+      "cutoff_level",
+      "moisture"
+    ],
+    "grade": [
+      "scope_extent",
+      "cutoff_metric",
+      "cutoff_level",
+      "moisture",
+      "treo_includes_y",
+      "oxide_sum"
+    ],
+    "contained_treo_kt": [
+      "scope_extent",
+      "cutoff_metric",
+      "cutoff_level",
+      "moisture",
+      "treo_includes_y",
+      "oxide_sum"
+    ],
+    "oxide_grade": [
+      "scope_extent",
+      "cutoff_metric",
+      "cutoff_level",
+      "moisture",
+      "oxide"
+    ]
+  },
+  "strict_extra": [
+    "operational_cutoff_definition",
+    "cutoff_boundary"
+  ],
+  "claim": "Compare selected resources at the same cohort cutoff, allowing different disclosed estimate dates. Nominal reporting-envelope matching requires equal reporting extent, category, quantity, ore moisture and declared cutoff family and canonical level. TREO grade and mass further require an explicit equal oxide sum. Strict operational equivalence also requires matched cutoff definitions (including analytical particle size for HM, basket for TREO) and explicit boundary operator. No claim of common mining economics.",
+  "metric_concepts": {
+    "TREO": "source-labelled total rare-earth oxide",
+    "TREO_MINUS_CE": "source-labelled rare-earth oxide excluding cerium",
+    "HM": "total heavy minerals",
+    "TVHM": "total valuable heavy minerals",
+    "MZ_EQ": "monazite equivalent",
+    "NDPR": "source-labelled NdPr",
+    "NB2O5": "niobium pentoxide",
+    "P2O5": "phosphorus pentoxide",
+    "AUD_PER_T": "AUD per tonne mine gate value",
+    "USD_PER_T": "USD per tonne value"
+  },
+  "level_units": "Mass fractions as ppm. Currency per tonne kept in its own currency. Levels compared only within the same nominal metric.",
+  "scope_assertions": {
+    "redlings_reported_cutoff202501": {
+      "source_sha256": "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43",
+      "facts": [
+        {
+          "scope_contains": "declared 800 ppm TREO cutoff",
+          "set": {
+            "cutoff_metric": "TREO",
+            "cutoff_level": 800
+          }
+        },
+        {
+          "scope_contains": "global",
+          "set": {
+            "scope_extent": "PROJECT"
+          }
+        }
+      ]
+    },
+    "Nolans-MRE-20170607-total": {
+      "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "facts": [
+        {
+          "scope_contains": "1% TREO lower cut-off",
+          "set": {
+            "cutoff_metric": "TREO",
+            "cutoff_level": 10000
+          }
+        },
+        {
+          "scope_contains": "Global Nolans Bore",
+          "set": {
+            "scope_extent": "NAMED_RESOURCE"
+          }
+        }
+      ]
+    },
+    "nowie-appendix2-table1-20240124": {
+      "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4",
+      "facts": [
+        {
+          "scope_contains": "1percentTVHM cutoff",
+          "set": {
+            "cutoff_metric": "TVHM",
+            "cutoff_level": 10000
+          }
+        },
+        {
+          "scope_contains": "Nowie only",
+          "set": {
+            "scope_extent": "NAMED_RESOURCE"
+          }
+        },
+        {
+          "scope_contains": "includingY",
+          "set": {
+            "treo_includes_y": "YES"
+          }
+        }
+      ]
+    },
+    "north-stanmore-global-mre-202608-primary": {
+      "source_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+      "facts": [
+        {
+          "scope_contains": ">=300ppm TREO cutoff",
+          "set": {
+            "cutoff_metric": "TREO",
+            "cutoff_level": 300,
+            "cutoff_boundary": "GE"
+          }
+        },
+        {
+          "scope_contains": "global MRE",
+          "set": {
+            "scope_extent": "PROJECT"
+          }
+        },
+        {
+          "scope_contains": "; dry basis",
+          "set": {
+            "moisture": "DRY"
+          }
+        }
+      ]
+    },
+    "splinter_global_202405": {
+      "source_sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+      "facts": [
+        {
+          "scope_contains": "at1000ppm TREO cutoff",
+          "set": {
+            "cutoff_metric": "TREO",
+            "cutoff_level": 1000
+          }
+        },
+        {
+          "scope_contains": "total all six prospect",
+          "set": {
+            "scope_extent": "PROJECT"
+          }
+        }
+      ]
+    },
+    "donald_min5532_202512": {
+      "source_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+      "facts": [
+        {
+          "scope_contains": "at1% totalHM cutoff",
+          "set": {
+            "cutoff_metric": "HM",
+            "cutoff_level": 10000
+          }
+        },
+        {
+          "scope_contains": "MIN5532 only",
+          "set": {
+            "scope_extent": "NAMED_RESOURCE"
+          }
+        }
+      ]
+    },
+    "ridley_blocks12_202603": {
+      "source_sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+      "facts": [
+        {
+          "scope_contains": ">300ppm TREO cutoff",
+          "set": {
+            "cutoff_metric": "TREO",
+            "cutoff_level": 300,
+            "cutoff_boundary": "GT"
+          }
+        },
+        {
+          "scope_contains": "sub-scope",
+          "set": {
+            "scope_extent": "NAMED_RESOURCE"
+          }
+        }
+      ]
+    },
+    "sandy-global-mre-20260922": {
+      "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+      "facts": [
+        {
+          "scope_contains": "1957 ppm MzEq cutoff",
+          "set": {
+            "cutoff_metric": "MZ_EQ",
+            "cutoff_level": 1957
+          }
+        },
+        {
+          "scope_contains": "global Measured",
+          "set": {
+            "scope_extent": "PROJECT"
+          }
+        },
+        {
+          "scope_contains": "dry in-situ bulk ore",
+          "set": {
+            "moisture": "DRY"
+          }
+        },
+        {
+          "scope_contains": "excludes the separately reported Y",
+          "set": {
+            "treo_includes_y": "NO"
+          }
+        }
+      ]
+    },
+    "cannie-table3-20230516": {
+      "source_sha256": "7de6021ce23b5622e920f8a3169fe6252ea4ba24d7b616f19a1e90454ee4294c",
+      "facts": [
+        {
+          "scope_contains": "1.75percentTHM cutoff",
+          "set": {
+            "cutoff_metric": "HM",
+            "cutoff_level": 17500
+          }
+        },
+        {
+          "scope_contains": "Cannie only",
+          "set": {
+            "scope_extent": "NAMED_RESOURCE"
+          }
+        },
+        {
+          "scope_contains": "includingY",
+          "set": {
+            "treo_includes_y": "YES"
+          }
+        }
+      ]
+    },
+    "goschen-central-total-20241203": {
+      "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59",
+      "facts": [
+        {
+          "scope_contains": "1% total HM cutoff",
+          "set": {
+            "cutoff_metric": "HM",
+            "cutoff_level": 10000
+          }
+        },
+        {
+          "scope_contains": "EL5278 global",
+          "set": {
+            "scope_extent": "PROJECT"
+          }
+        },
+        {
+          "scope_contains": "dry bulk ore",
+          "set": {
+            "moisture": "DRY"
+          }
+        },
+        {
+          "scope_contains": "includes Y2O3",
+          "set": {
+            "treo_includes_y": "YES"
+          }
+        }
+      ]
+    },
+    "koppamurra-mre20260625": {
+      "source_sha256": "7595d024b25438cd5795635cb43f5f87717b9b5ac9a935eff7d1d3c07562fd01",
+      "facts": [
+        {
+          "scope_contains": "Global Koppamurra",
+          "set": {
+            "scope_extent": "PROJECT"
+          }
+        },
+        {
+          "scope_contains": "includesY",
+          "set": {
+            "treo_includes_y": "YES"
+          }
+        }
+      ]
+    },
+    "cowalinya_global_202309": {
+      "source_sha256": "39699576fe9ebe47225c083dc285d7a561b732ab357a9050a67472e89a5512aa",
+      "facts": [
+        {
+          "scope_contains": "400ppm TREO-CeO2 cutoff",
+          "set": {
+            "cutoff_metric": "TREO_MINUS_CE",
+            "cutoff_level": 400
+          }
+        }
+      ]
+    },
+    "splinter-inferred500-r254-20151109": {
+      "source_sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7",
+      "facts": [
+        {
+          "scope_contains": "500 ppm source-defined TREO+Y2O3 cutoff",
+          "set": {
+            "cutoff_metric": "TREO",
+            "cutoff_level": 500
+          }
+        },
+        {
+          "scope_contains": "Splinter only",
+          "set": {
+            "scope_extent": "NAMED_RESOURCE"
+          }
+        }
+      ]
+    },
+    "goschen-area1-table8-20251015": {
+      "source_sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
+      "facts": [
+        {
+          "scope_contains": "1percentTHMcutoff",
+          "set": {
+            "cutoff_metric": "HM",
+            "cutoff_level": 10000
+          }
+        },
+        {
+          "scope_contains": "Area1 only",
+          "set": {
+            "scope_extent": "NAMED_RESOURCE"
+          }
+        },
+        {
+          "scope_contains": "includingY",
+          "set": {
+            "treo_includes_y": "YES"
+          }
+        }
+      ]
+    },
+    "r3-fingerboards_resource_202208": {
+      "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+      "facts": [
+        {
+          "scope_contains": "A$5/t mine gate cutoff",
+          "set": {
+            "cutoff_metric": "AUD_PER_T",
+            "cutoff_level": 5
+          }
+        },
+        {
+          "scope_contains": "total Mineral Resources",
+          "set": {
+            "scope_extent": "PROJECT"
+          }
+        }
+      ]
+    },
+    "circle_valley_global_202306": {
+      "source_sha256": "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad",
+      "facts": [
+        {
+          "scope_contains": ">430ppm TREO-CeO2",
+          "set": {
+            "cutoff_metric": "TREO_MINUS_CE",
+            "cutoff_level": 430,
+            "cutoff_boundary": "GT"
+          }
+        },
+        {
+          "scope_contains": "global resource",
+          "set": {
+            "scope_extent": "PROJECT"
+          }
+        }
+      ]
+    },
+    "r5_lyons_12_13_resource": {
+      "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+      "facts": [
+        {
+          "scope_contains": "at0.2pctTREOcutoff",
+          "set": {
+            "cutoff_metric": "TREO",
+            "cutoff_level": 2000
+          }
+        },
+        {
+          "scope_contains": "12&13 Inferred dry resource",
+          "set": {
+            "scope_extent": "NAMED_RESOURCE"
+          }
+        },
+        {
+          "scope_contains": "Inferred dry resource",
+          "set": {
+            "moisture": "DRY"
+          }
+        }
+      ]
+    },
+    "cummins_global_202401": {
+      "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+      "facts": [
+        {
+          "scope_contains": "P2O5>=2.5%",
+          "set": {
+            "cutoff_metric": "P2O5",
+            "cutoff_level": 25000,
+            "cutoff_boundary": "GE"
+          }
+        },
+        {
+          "scope_contains": "global resource",
+          "set": {
+            "scope_extent": "PROJECT"
+          }
+        }
+      ]
+    },
+    "browns-range-2025-01-15": {
+      "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+      "facts": [
+        {
+          "scope_contains": "Wolverine only",
+          "set": {
+            "scope_extent": "NAMED_RESOURCE"
+          }
+        }
+      ]
+    },
+    "barkly_global_mre202511": {
+      "source_sha256": "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e",
+      "facts": [
+        {
+          "scope_contains": "430ppm NdPr cutoff",
+          "set": {
+            "cutoff_metric": "NDPR",
+            "cutoff_level": 430
+          }
+        },
+        {
+          "scope_contains": "global Inferred",
+          "set": {
+            "scope_extent": "PROJECT"
+          }
+        }
+      ]
+    },
+    "r5_aileron_resource2026": {
+      "source_sha256": "88dfed30776b41d3739253fefaa1e5972a0b9969ec4db39dc1130efa2164775a",
+      "facts": [
+        {
+          "scope_contains": "0.25pctNb2O5cutoff",
+          "set": {
+            "cutoff_metric": "NB2O5",
+            "cutoff_level": 2500
+          }
+        }
+      ]
+    },
+    "salazar_global_202410": {
+      "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+      "facts": [
+        {
+          "scope_contains": "600ppm TREO cutoff",
+          "set": {
+            "cutoff_metric": "TREO",
+            "cutoff_level": 600
+          }
+        },
+        {
+          "scope_contains": "global resource",
+          "set": {
+            "scope_extent": "PROJECT"
+          }
+        }
+      ]
+    },
+    "r3-kennedy_202509": {
+      "source_sha256": "d631b0e9edbc2162ee3cb12bf526834518b43cc5ce89c4d995e3497afbbf36fb",
+      "facts": [
+        {
+          "scope_contains": "325ppm TREO-CeO2 cutoff",
+          "set": {
+            "cutoff_metric": "TREO_MINUS_CE",
+            "cutoff_level": 325
+          }
+        },
+        {
+          "scope_contains": "total Inferred MRE",
+          "set": {
+            "scope_extent": "PROJECT"
+          }
+        }
+      ]
+    },
+    "yttria-table1-total-20240416": {
+      "source_sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726",
+      "facts": [
+        {
+          "scope_contains": "cutoff200ppmTREO-Ce",
+          "set": {
+            "cutoff_metric": "TREO_MINUS_CE",
+            "cutoff_level": 200
+          }
+        },
+        {
+          "scope_contains": "deposit ONLY",
+          "set": {
+            "scope_extent": "NAMED_RESOURCE"
+          }
+        },
+        {
+          "scope_contains": "including15REOs andY",
+          "set": {
+            "treo_includes_y": "YES"
+          }
+        }
+      ]
+    },
+    "r4_deep_leads_mre2024": {
+      "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
+      "facts": [
+        {
+          "scope_contains": "US$30/t(~350ppmTREO-CeO2)cutoff",
+          "set": {
+            "cutoff_metric": "USD_PER_T",
+            "cutoff_level": 30
+          }
+        }
+      ]
+    },
+    "r6_charley_indicated2012": {
+      "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
+      "facts": [
+        {
+          "scope_contains": "TOTAL INDICATED RESOURCES only",
+          "set": {
+            "scope_extent": "NAMED_RESOURCE"
+          }
+        }
+      ]
+    },
+    "r3-yttria_202404": {
+      "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+      "facts": [
+        {
+          "scope_contains": "200ppmTREO-Ce cutoff",
+          "set": {
+            "cutoff_metric": "TREO_MINUS_CE",
+            "cutoff_level": 200
+          }
+        },
+        {
+          "scope_contains": "Yttria total",
+          "set": {
+            "scope_extent": "NAMED_RESOURCE"
+          }
+        }
+      ]
+    },
+    "wim1002026hm_mre": {
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "facts": [
+        {
+          "scope_contains": "cutoff 1.0% HM",
+          "set": {
+            "cutoff_metric": "HM",
+            "cutoff_level": 10000
+          }
+        },
+        {
+          "scope_contains": "WIM100 2026 Mineral Resource",
+          "set": {
+            "scope_extent": "NAMED_RESOURCE"
+          }
+        }
+      ]
+    }
+  },
+  "pdf_assertions": {
+    "donald_min5532_202512": [
+      {
+        "page": 33,
+        "contains": "Tonnages have been estimated on a dry basis",
+        "set": {
+          "moisture": "DRY"
+        }
+      },
+      {
+        "page": 6,
+        "contains": "cut-off grade of 1.0% total HM",
+        "set": {
+          "cutoff_metric": "HM",
+          "cutoff_level": 10000
+        }
+      },
+      {
+        "page": 6,
+        "contains": "+20 micron to -250 micron size fraction",
+        "set": {
+          "hm_size_fraction_um": "20-250"
+        }
+      }
+    ],
+    "wim1002026hm_mre": [
+      {
+        "page": 31,
+        "contains": "The tonnages are estimated on a dry basis",
+        "set": {
+          "moisture": "DRY"
+        }
+      },
+      {
+        "page": 3,
+        "contains": "cut-off grade of 1.0% HM",
+        "set": {
+          "cutoff_metric": "HM",
+          "cutoff_level": 10000
+        }
+      },
+      {
+        "page": 10,
+        "contains": "38µm to 710µm sand frac",
+        "set": {
+          "hm_size_fraction_um": "38-710"
+        }
+      }
+    ],
+    "splinter_global_202405": [
+      {
+        "page": 2,
+        "contains": "La2O3 + CeO2 + Pr6O11 + Nd2O3 + Sm2O3 + Eu2O3 + Gd2O3 + Tb4O7 + Dy2O3 + Ho2O3 + Er2O3 + Tm2O3 + Yb2O3 + Lu2O3 + Y2O3",
+        "set": {
+          "oxide_sum": "CeO2+Dy2O3+Er2O3+Eu2O3+Gd2O3+Ho2O3+La2O3+Lu2O3+Nd2O3+Pr6O11+Sm2O3+Tb4O7+Tm2O3+Y2O3+Yb2O3",
+          "operational_cutoff_definition": "CeO2+Dy2O3+Er2O3+Eu2O3+Gd2O3+Ho2O3+La2O3+Lu2O3+Nd2O3+Pr6O11+Sm2O3+Tb4O7+Tm2O3+Y2O3+Yb2O3",
+          "treo_includes_y": "YES"
+        }
+      }
+    ]
+  },
+  "repeated_table": {
+    "statements": [
+      "yttria-table1-total-20240416",
+      "r3-yttria_202404"
+    ],
+    "page": 2,
+    "identifier": "Yttria Table 1, 16 April 2024",
+    "required_fragments": [
+      "Yttria Mineral Resource Estimate in accordance with the JORC (2012) Code",
+      "Total 15.0 490",
+      "Table 1: Yttria REE MRE and Exploration Target"
+    ]
+  },
+  "conditional_strict_facets": {
+    "HM": [
+      "hm_size_fraction_um"
+    ]
+  }
+}

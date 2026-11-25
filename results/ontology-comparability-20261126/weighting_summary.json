@@ -1,0 +1,253 @@
+{
+  "design": "Hypothesis-generating, purposive panels; no released MCDA or Census writes.",
+  "input_sha256": {
+    "config/research.json": "c9ce710fac929d99b638e2ea5c384df40a5ab3f84aa51cb4df09d5892759edb4",
+    "results/ree-project-census/nlp-retrieval-20261126/MCDA/issuer_resource_infrastructure/ranking.csv": "28923db7bda6b54e08959067958719d0f30d628b9105f110e6eb735bb3f2cb60",
+    "results/ree-project-census/nlp-retrieval-20261126/MCDA/official_wa_resource_screen/ranking.csv": "fa91b7aa0674e3598d7098c11c56badd3f5ba1b53526f5d638b83c9ca0f55cd9",
+    "results/ree-project-census/nlp-retrieval-20261126/mcda_criterion_lineage.csv": "6ca78acaf90cc7b532b00610077af19d233a701a26ade027eda6787663012cf1"
+  },
+  "limits": "WA screen has algebraically related inventory and grade. With two criteria, the CRITIC correlation term cancels in the ratio. For the infrastructure pilot n=6; four distances share regional factors; correlation is not semantic equivalence. Neither sample defines preferences.",
+  "panels": {
+    "issuer_resource_infrastructure": {
+      "criteria": {
+        "I1": {
+          "code": "I1",
+          "direction": "MIN",
+          "domain": "Infrastructure",
+          "function": "linear",
+          "high": 200,
+          "interpretation": "Official geometry proximity; not access, capacity or connection cost",
+          "low": 0,
+          "unit": "km",
+          "variable": "road_distance_km"
+        },
+        "I2": {
+          "code": "I2",
+          "direction": "MIN",
+          "domain": "Infrastructure",
+          "function": "linear",
+          "high": 1000,
+          "interpretation": "Official geometry proximity; not access, capacity or connection cost",
+          "low": 0,
+          "unit": "km",
+          "variable": "rail_distance_km"
+        },
+        "I3": {
+          "code": "I3",
+          "direction": "MIN",
+          "domain": "Infrastructure",
+          "function": "linear",
+          "high": 500,
+          "interpretation": "Official geometry proximity; not access, capacity or connection cost",
+          "low": 0,
+          "unit": "km",
+          "variable": "power_distance_km"
+        },
+        "I4": {
+          "code": "I4",
+          "direction": "MIN",
+          "domain": "Infrastructure",
+          "function": "linear",
+          "high": 2000,
+          "low": 0,
+          "unit": "km",
+          "variable": "port_distance_km"
+        },
+        "R1": {
+          "code": "R1",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": 5000,
+          "interpretation": "In-situ reported inventory; not recoverable product or success probability",
+          "low": 0,
+          "unit": "kt TREO",
+          "variable": "contained_treo_kt"
+        }
+      },
+      "domains": {
+        "Infrastructure": 0.6666666666666666,
+        "Resource": 0.3333333333333333
+      },
+      "pearson_correlations": {
+        "I1/I2": 0.9243973968542619,
+        "I1/I3": 0.46445680927896915,
+        "I1/I4": -0.18615063638961932,
+        "I1/R1": 0.6482330222475182,
+        "I2/I3": 0.5599995829786965,
+        "I2/I4": -0.0021129228480989398,
+        "I2/R1": 0.6371122362747134,
+        "I3/I4": 0.08947718683420458,
+        "I3/R1": 0.4545936208383483,
+        "I4/R1": -0.40310124939647435
+      },
+      "projects": 6,
+      "results": {
+        "critic": {
+          "greatest_shift_from_official": 0.0,
+          "loo_failed": [],
+          "loo_max_rank_shift": 0.0,
+          "loo_max_weight_shift": 0.0481056236357735,
+          "loo_top_changes": 0,
+          "loo_valid": 6,
+          "ranks_changed_from_official": 0,
+          "top": [
+            "Jupiter development study within Brothers"
+          ],
+          "weights": {
+            "I1": 0.13956430619007026,
+            "I2": 0.12056893635848717,
+            "I3": 0.1721309048894715,
+            "I4": 0.23440251922863775,
+            "R1": 0.3333333333333333
+          }
+        },
+        "entropy": {
+          "greatest_shift_from_official": 0.0,
+          "loo_failed": [],
+          "loo_max_rank_shift": 0.0,
+          "loo_max_weight_shift": 0.0937169137023507,
+          "loo_top_changes": 0,
+          "loo_valid": 6,
+          "ranks_changed_from_official": 0,
+          "top": [
+            "Jupiter development study within Brothers"
+          ],
+          "weights": {
+            "I1": 0.12657753146015388,
+            "I2": 0.11485892787019249,
+            "I3": 0.2820762106890772,
+            "I4": 0.14315399664724307,
+            "R1": 0.3333333333333333
+          }
+        },
+        "equal_within_domain": {
+          "greatest_shift_from_official": 0.0,
+          "loo_failed": [],
+          "loo_max_rank_shift": 0.0,
+          "loo_max_weight_shift": 0.0,
+          "loo_top_changes": 0,
+          "loo_valid": 6,
+          "ranks_changed_from_official": 0,
+          "top": [
+            "Jupiter development study within Brothers"
+          ],
+          "weights": {
+            "I1": 0.16666666666666666,
+            "I2": 0.16666666666666666,
+            "I3": 0.16666666666666666,
+            "I4": 0.16666666666666666,
+            "R1": 0.3333333333333333
+          }
+        },
+        "flat_critic": {
+          "greatest_shift_from_official": 1.0,
+          "loo_failed": [],
+          "loo_max_rank_shift": 1.0,
+          "loo_max_weight_shift": 0.08709981124077326,
+          "loo_top_changes": 1,
+          "loo_valid": 6,
+          "ranks_changed_from_official": 2,
+          "top": [
+            "Jupiter development study within Brothers"
+          ],
+          "weights": {
+            "I1": 0.15172575675343755,
+            "I2": 0.13583061114744907,
+            "I3": 0.20175612030007495,
+            "I4": 0.30961409311948446,
+            "R1": 0.20107341867955397
+          }
+        }
+      },
+      "scenario": "development_assumption"
+    },
+    "official_wa_resource_screen": {
+      "criteria": {
+        "R1": {
+          "code": "R1",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": 5000,
+          "interpretation": "In-situ reported inventory; not recoverable product or success probability",
+          "low": 0,
+          "unit": "kt TREO",
+          "variable": "contained_treo_kt"
+        },
+        "R2": {
+          "code": "R2",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "linear",
+          "high": 10,
+          "interpretation": "Published WA government summary TREO grade. Mathematically related to ore tonnes and contained TREO; redundancy acknowledged. Screen only.",
+          "low": 0,
+          "unit": "% TREO",
+          "variable": "grade_pct"
+        }
+      },
+      "domains": {
+        "Resource": 1.0
+      },
+      "pearson_correlations": {
+        "R1/R2": 0.4775833370930239
+      },
+      "projects": 17,
+      "results": {
+        "critic": {
+          "greatest_shift_from_official": 1.0,
+          "loo_failed": [],
+          "loo_max_rank_shift": 1.0,
+          "loo_max_weight_shift": 0.0791728639856758,
+          "loo_top_changes": 0,
+          "loo_valid": 17,
+          "ranks_changed_from_official": 2,
+          "top": [
+            "Mt Weld"
+          ],
+          "weights": {
+            "R1": 0.5419489836236105,
+            "R2": 0.45805101637638945
+          }
+        },
+        "entropy": {
+          "greatest_shift_from_official": 3.0,
+          "loo_failed": [],
+          "loo_max_rank_shift": 1.0,
+          "loo_max_weight_shift": 0.0701661924103425,
+          "loo_top_changes": 0,
+          "loo_valid": 17,
+          "ranks_changed_from_official": 13,
+          "top": [
+            "Mt Weld"
+          ],
+          "weights": {
+            "R1": 0.1352731747471865,
+            "R2": 0.8647268252528135
+          }
+        },
+        "equal_within_domain": {
+          "greatest_shift_from_official": 0.0,
+          "loo_failed": [],
+          "loo_max_rank_shift": 0.0,
+          "loo_max_weight_shift": 0.0,
+          "loo_top_changes": 0,
+          "loo_valid": 17,
+          "ranks_changed_from_official": 0,
+          "top": [
+            "Mt Weld"
+          ],
+          "weights": {
+            "R1": 0.5,
+            "R2": 0.5
+          }
+        }
+      },
+      "scenario": "balanced_resource_assumption"
+    }
+  },
+  "performance": "Same complete panel and published benefit utilities for SAW in all arms. No fill.",
+  "sensitivity": "Omit one project to learn weights; score the full fixed cohort for comparable ranks. This measures influence, not out-of-sample validity. Hierarchical domain budgets stay fixed.",
+  "weighting": "Equal benchmark retains the published domain budgets. CRITIC and Shannon entropy use within-domain sample min-max columns fitted to training projects only. Flat CRITIC estimates weights jointly across all criteria and ignores domain budgets. Empty empirical contrast abstains; a single-criterion domain retains its fixed budget."
+}
