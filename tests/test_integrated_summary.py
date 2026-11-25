@@ -127,6 +127,52 @@ class SummaryContractTests(unittest.TestCase):
         self.assertFalse(row['四項磁性元素皆公布'])
         self.assertFalse(any(value for key,value in row.items() if key.startswith(('Nd2O3_','Pr6O11_'))))
 
+    def test_linked_group_grade_uses_only_selected_resource_row(self):
+        from au_ree_v2.census import linked_ndpr_oxide_grade
+
+        sources = {}
+        documents = {}
+        for role, text in [('estimate','MRE'), ('campaign_link','The MRE uses the cited campaign'),
+                           ('assay_definition','Nd2O3+Pr6O11 NdPr:TREO')]:
+            path = self.root / (role+'.pdf')
+            with pymupdf.open() as document:
+                page = document.new_page()
+                page.insert_text((50,50),text)
+                if role == 'estimate':
+                    page.insert_text((8,150),'selected')
+                    page.insert_text((8,175),'other')
+                    for x, label, unit, grade, other in [(60,'Tonnes','(Mt)','0.69','0.30'),
+                            (150,'NdPr','(%)','0.15','0.10'),(230,'TREO','(%)','0.33','0.32')]:
+                        for y,token in [(100,label),(120,unit),(150,grade),(175,other)]:
+                            page.insert_text((x,y),token)
+                document.save(path)
+            sha = filehash(path)
+            documents[role] = dict(sha256=sha,publication_date='2022-01-01',
+                                   pages=[dict(page=1,markers=[text])])
+            sources[sha] = dict(kind='pdf',publication_date='2022-01-01',resolved_path=path)
+        identity = dict(source_sha256=documents['estimate']['sha256'], statement_id='estimate',
+                        scope='two prospects at 0.2% cutoff',effective_date='2022-01-01')
+        bundle = dict(identity,observations=[dict(category='INFERRED')],value=dict(ore_mt=0.69,grade_pct=0.33))
+        contract = dict(identity,documents=documents,category='INFERRED',row_label='selected',
+                        header_y=[91,101],unit_y=[108,121])
+        review = dict(ore_binding=dict(page=1,scope=identity['scope'],row_label='selected',
+                      table_bbox=[4,85,285,185],row_bbox=[4,135,285,154],row_label_bbox=[4,135,51,154],
+                      column_bbox=[55,85,110,185],section_id='ore_mt'))
+        linked = linked_ndpr_oxide_grade(bundle,review,sources,contract)
+        self.assertEqual(str(linked['contained_kt']),'1.0350')
+        self.assertEqual(linked['cell']['original_token'],'0.15')
+        for role in documents:
+            absent = {sha:s for sha,s in sources.items() if sha != documents[role]['sha256']}
+            self.assertIsNone(linked_ndpr_oxide_grade(bundle,review,absent,contract))
+        for key,value in [('scope','other cutoff'),('effective_date','2023-01-01'),('category','MEASURED')]:
+            self.assertIsNone(linked_ndpr_oxide_grade(bundle,review,sources,dict(contract,**{key:value})))
+        other_row = copy.deepcopy(review)
+        other_row['ore_binding']['row_bbox'] = [4,162,285,182]
+        self.assertIsNone(linked_ndpr_oxide_grade(bundle,other_row,sources,contract))
+        wrong_species = copy.deepcopy(contract)
+        wrong_species['documents']['assay_definition']['pages'][0]['markers'] = ['Nd2O3+Pr2O3']
+        self.assertIsNone(linked_ndpr_oxide_grade(bundle,review,sources,wrong_species))
+
     def test_pdf_supplement_pins_primary_scope_category_and_totals(self):
         key=dict(scope='Selected whole MRE',statement_id='mre-1',effective_date='2026-01-01')
         values=dict(ore_mt=10,grade_pct=0.1,contained_treo_kt=10)

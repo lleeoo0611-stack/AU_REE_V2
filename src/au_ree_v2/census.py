@@ -250,7 +250,7 @@ def linked_ndpr_oxide_grade(bundle, review, sources, contract):
     """A cited assay column can define the species, never the resource grade."""
     import pymupdf
 
-    if not contract or not review or bundle.get('partial_resource_projection'):
+    if not contract or not review or bundle.get('partial_resource_projection') or bundle.get('incompatible_component_ids'):
         return None
     if any(bundle[key] != contract[key] for key in ('source_sha256','statement_id','scope','effective_date')):
         return None
@@ -274,6 +274,13 @@ def linked_ndpr_oxide_grade(bundle, review, sources, contract):
                 if not all(summary_norm(marker) in text for marker in item['markers']):
                     return None
             if role == 'estimate':
+                page = document[binding['page']-1]
+                selected_row = pymupdf.Rect(binding['row_bbox'])
+                label = summary_region_text(page, selected_row & pymupdf.Rect(binding['row_label_bbox']))
+                ore = summary_region_text(page, selected_row & pymupdf.Rect(binding['column_bbox']))
+                if (summary_norm(label) != summary_norm(contract['row_label']) or not ore
+                        or summary_decimal_token(ore.replace(',','')) != Decimal(str(bundle['value']['ore_mt']))):
+                    return None
                 native = summary_native_column(document, binding, 'NdPr', contract['header_y'], contract['unit_y'], expected_unit='%')
     grade = summary_decimal_token(native['original_token'])
     if grade > Decimal(str(bundle['value']['grade_pct'])):
@@ -525,7 +532,7 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
                 o=reported[0]
                 put('NdPr蘊藏量_kt_需兩者皆公布',o['value'],o['source_sha'],o['locator'],
                     'SOURCE_REPORTED_MATCHED_NDPR_OXIDE_GROUP_KT',scope,ids+[o['obs_id']])
-            elif not reported:
+            elif not reported and not any(o['variable'] == 'reported_resource_ndpr_ppm' for o in composition):
                 contract = rules.get('linked_ndpr_oxide_grades', {}).get(row['專案ID'])
                 linked = linked_ndpr_oxide_grade(bundle, review, sources, contract)
                 if linked:
