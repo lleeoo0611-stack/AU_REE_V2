@@ -342,7 +342,7 @@ def _sarig_prospect_point(case, row, sources, cutoff):
     scope = dict(dataset='SA_SARIG', feature_id=feature_id, site_no=case['site_no'],
                  official_name=case['feature_name'], native_class=case['feature_class'],
                  native_commodity=case['native_commodity'], datum='EPSG:7844',
-                 horizontal_accuracy_m=accuracy, available_date=native['available_date'],
+                 precision_m=accuracy, available_date=native['available_date'],
                  references=[dict(source_sha256=p['sha256'], physical_page=p['page']) for p in proofs],
                  meaning='NAMED_PROSPECT_REPRESENTATIVE_POINT_NOT_BOUNDARY')
     return lon, lat, scope

@@ -7,6 +7,7 @@ import unittest
 
 import pymupdf
 
+from au_ree_v2.census_audit import spatial_quality
 from au_ree_v2.spatial import summary_locations
 
 
@@ -59,8 +60,13 @@ class SarigProspectPointTests(unittest.TestCase):
         for fill in fills:
             self.assertEqual(fill['sha'].split(';'), ['edition', 'government', 'issuer'])
             scope = json.loads(fill['scope'])
-            self.assertEqual((scope['datum'], scope['horizontal_accuracy_m']), ('EPSG:7844', 50))
+            self.assertEqual((scope['datum'], scope['precision_m']), ('EPSG:7844', 50))
             self.assertEqual(len(scope['references']), 2)
+        coordinates = {f['column']: f['value'] for f in fills}
+        latitude = dict(fills[0], source_sha256=fills[0]['sha'])
+        quality = spatial_quality(dict(self.row, **coordinates), {('project', '緯度'): latitude})
+        self.assertEqual((quality['precision_m'], quality['export_crs']), (50, 'EPSG:7844'))
+        self.assertEqual(quality['point_role'], 'OFFICIAL_FEATURE_REPRESENTATIVE_POINT')
 
     def test_wrong_native_row_or_inconsistent_pair_is_rejected(self):
         for override in [dict(MINERAL_DEPOSIT_NO='10127'), dict(SITE_NO='other'), dict(DEPOSIT_NAME='other'),
