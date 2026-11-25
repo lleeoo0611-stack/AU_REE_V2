@@ -3,7 +3,7 @@ import json
 from collections import Counter
 
 from .tabular import write_csv
-from .census import summary_matching_resource_pdf, summary_observation
+from .census_policy import summary_matching_resource_pdf, summary_observation
 from .store import canonical, digest
 from .evidence_model import compatible_resource_context, ensure_read_model
 

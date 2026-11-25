@@ -69,7 +69,7 @@ def objective_evidence(db,out,mapping,technical,policy,cutoff,snapshots,root,cur
     import csv,io
     from pathlib import Path
     from .store import filehash
-    from .selection import date_end,observation_visible
+    from .selection_rules import date_end,observation_visible
     root=Path(root);imports=policy['imports'];contents={}
     for key,entry in imports.items():
         if filehash(root/entry['path'])!=entry['sha256']:raise ValueError('UPSTREAM_POLICY_SHA_MISMATCH')

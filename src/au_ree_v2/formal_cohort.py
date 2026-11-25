@@ -4,7 +4,7 @@ from collections import defaultdict
 from datetime import date
 from pathlib import Path
 
-from .selection import date_end
+from .selection_rules import date_end
 from .store import canonical, digest, filehash
 from .tabular import read_csv, write_csv
 

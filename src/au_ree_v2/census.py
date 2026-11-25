@@ -1,107 +1,24 @@
-"""Read official project-list workbooks as source records, without fabricated Project IDs.
-
-A row mentioning REE is a discoverable candidate, not proof that it is one
-independent mining project, JORC resource, or an eligible MCDA alternative.
-"""
+"""Assemble and publish the project Census from selected SQLite evidence."""
+import csv
 import json
 import re
-from contextlib import closing, nullcontext
-from functools import lru_cache
-from io import BytesIO
-from pathlib import Path
-from openpyxl import load_workbook
-from .store import canonical, entity, issue
-
-REE = re.compile(r'rare[\s\-]*earth|\bTREO\b|\bREEs?\b',re.IGNORECASE)
-STATES = {'WA','SA','NT','NSW','QLD','VIC','TAS','ACT'}
-
-CANDIDATE_VERSION='ree-candidate-v3'
-ELEMENTS='lanthanum cerium praseodymium neodymium promethium samarium europium gadolinium terbium dysprosium holmium erbium thulium ytterbium lutetium yttrium'.split()
-SYMBOLS='La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Y'.split()
-AGGREGATE=re.compile(r'(?<!\w)(?:REEs?|REOs?|TREO|HREEs?|LREEs?|NdPr|rare[\s-]*earths?(?:\s*elements?)?|lanthanides?)(?!\w)',re.I)
-
-
-def classify_ree(fields, structured=(),version=None):
-    """Candidate recall only; short element symbols require commodity context."""
-    version=version or CANDIDATE_VERSION
-    if version not in ('ree-candidate-v2','ree-candidate-v3'):raise ValueError('UNKNOWN_CANDIDATE_CLASSIFICATION_VERSION')
-    matches=[];roles=set();structured=set(structured)
-    for field,value in sorted(fields.items()):
-        text=str(value or '')
-        if field.casefold() in ('ticker','asx_code','company','company_name'):continue
-        tests=[('REE_EXPLICIT',AGGREGATE),
-               ('REE_ELEMENT',re.compile(r'(?<!\w)(?:'+'|'.join(ELEMENTS)+r')(?:\s+oxides?)?(?!\w)',re.I)),
-               ('REE_MINERAL',re.compile(r'\b(?:monazite|xenotime)\b',re.I)),
-               ('SCANDIUM_RELATED',re.compile(r'\bscandium(?:\s+oxide)?\b',re.I))]
-        if field in structured:
-            tests.append(('REE_ELEMENT',re.compile(r'(?<![A-Za-z0-9_])(?:'+'|'.join(SYMBOLS)+r'|La2O3|CeO2|Pr6O11|Nd2O3|Tb4O7|Dy2O3|Y2O3)(?![A-Za-z0-9_])')))
-            if version=='ree-candidate-v3':tests.append(('SCANDIUM_RELATED',re.compile(r'(?<![A-Za-z0-9_])Sc(?:2O3)?(?![A-Za-z0-9_])')))
-        elif version=='ree-candidate-v3' and re.search(r'\b(?:mineralisation|mineralization|assays?|ppm|significant)\b',text,re.I):
-            # Narrative symbols require an explicit geological/assay context;
-            # degree titles, company codes and normal prose remain excluded.
-            tests.append(('REE_ELEMENT',re.compile(r'(?<![A-Za-z0-9_])(?:La|Ce|Pr|Nd|Tb|Dy|Y)(?![A-Za-z0-9_])')))
-        for role,pattern in tests:
-            for hit in pattern.finditer(text):
-                if re.search(r'\b(?:ASX|LSE|TSX)\s*:\s*$',text[:hit.start()],re.I):continue
-                roles.add(role);matches.append(dict(field=field,term=hit.group(),text=text,
-                    field_role='STRUCTURED_COMMODITY' if field in structured else 'NARRATIVE_MENTION',role=role))
-    role=('EXPLICIT_REE' if 'REE_EXPLICIT' in roles else 'REE_ELEMENT' if 'REE_ELEMENT' in roles else
-          'MINERAL_ONLY' if 'REE_MINERAL' in roles else 'SC_ONLY' if roles else 'NO_REE_MATCH')
-    if role in ('EXPLICIT_REE','REE_ELEMENT') and all(m['field_role']=='NARRATIVE_MENTION' for m in matches):role='MENTION_ONLY'
-    return dict(version=version,include=bool(matches),role=role,matches=matches,
-        reason='CANDIDATE_ONLY_NOT_PROJECT_OR_RESOURCE' if matches else 'NO_CONTEXTUAL_REE_TERM')
-
-def ingest_workbook(db, root, source, candidate_version=None):
-    path=Path(root)/source['path']
-    try:
-        workbook=path if path.suffix.lower() in ('.xlsx','.xlsm','.xltx','.xltm') else BytesIO(path.read_bytes())
-        wb=load_workbook(workbook,read_only=True,data_only=True)
-    except Exception as exc:
-        issue(db,None,source['sha256'],'CENSUS_WORKBOOK_UNREADABLE',str(exc))
-        return 0
-    count=0
-    try:
-        for ws in wb.worksheets:
-            headers=None
-            for index, row in enumerate(ws.iter_rows(values_only=True),start=1):
-                values=[str(v).strip() if v is not None else '' for v in row]
-                if sum(bool(v) for v in values)<2:
-                    continue
-                if any(re.fullmatch(r'commodit(?:y|ies)|mineral(?:s)?',v,re.I) for v in values):
-                    headers=values;continue
-                fields={((headers[i] if headers and i<len(headers) and headers[i] else f'column_{i+1}')):v for i,v in enumerate(values)}
-                structured=[k for k in fields if re.fullmatch(r'commodit(?:y|ies)|mineral(?:s)?',k,re.I)]
-                decision=classify_ree(fields,structured,candidate_version) if candidate_version else None
-                if not (decision['include'] if decision else any(REE.search(v) for v in values)):
-                    continue
-                native=f"{source['sha256']}:{ws.title}:{index}"
-                eid=entity(db,'DISR_REMP_ROW',native,'SOURCE_RECORD')
-                state=next((v.upper() for v in values if v.upper() in STATES),None)
-                payload={'source_key':source['key'],'sheet':ws.title,'row_number':index,
-                         'cells':values,'match_rule':candidate_version or 'REE_TERMS_V1',
-                         **({'candidate_classification':decision,'original_fields':fields} if decision else {}),
-                         'classification':'UNRESOLVED_PROJECT_CANDIDATE_SOURCE_RECORD'}
-                db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
-                           (eid,source['sha256'],f"{ws.title}!{index}",state,None,None,None,None,
-                            canonical(payload)))
-                count+=1
-    finally:
-        wb.close()
-    if count==0:
-        issue(db,None,source['sha256'],'NO_REE_WORKBOOK_ROWS',
-              'No multi-cell rows match versioned REE terms; inspect workbook layout')
-    return count
-
-
-# Integrated summary rules: reviewed functions, canonical evidence only.
-import csv
 import math
 import sqlite3
 from collections import Counter, defaultdict
 from datetime import date
 from decimal import Decimal, InvalidOperation
-from .store import digest, filehash
-from .selection import choose, date_end
+from contextlib import closing, nullcontext
+from functools import lru_cache
+from pathlib import Path
+
+from .census_policy import (
+    summary_decision, summary_matching_resource_pdf, summary_norm, summary_observation,
+    summary_region_text, summary_settings,
+)
+from .commodity import AGGREGATE, CANDIDATE_VERSION, ELEMENTS, REE, STATES, SYMBOLS, classify_ree
+from .official import ingest_workbook
+from .selection_rules import choose, date_end
+from .store import canonical, digest, filehash
 from .evidence_model import compatible_resource_context
 
 
@@ -166,20 +83,6 @@ def summary_reported_oxide_group(same,bundle,variable,basis,material_basis):
     g=groups[0]
     return dict(observation=g,contained_kt=bundle['value']['ore_mt']*g['value']*.001,share_percent=g['value']/grade*100)
 
-
-def summary_matching_resource_pdf(observation, raw, bundle):
-    """Allow page-verified composition from an explicitly matched PDF edition."""
-    reference = raw.get('census_equivalent_resource_pdf')
-    if not reference or bundle.get('partial_resource_projection'):
-        return False
-    ore = next(o for o in bundle['observations'] if o['variable']=='ore_mt')
-    return (
-        observation['source_sha'] != bundle['source_sha256']
-        and bool(raw.get('page_extraction_sha256'))
-        and reference == dict(source_sha256=bundle['source_sha256'], **bundle['value'])
-        and all(observation[k] == bundle[k] for k in ('statement_id','scope','effective_date'))
-        and observation['category'] == ore['category']
-    )
 
 def summary_decimal_token(value):
     if not isinstance(value,str) or not re.fullmatch(r'(?:0|[1-9][0-9]*)(?:\.[0-9]+)?',value):
@@ -342,34 +245,6 @@ def summary_native_column(doc, binding, label, header_y, unit_y):
     return {'value':parsed['value'],'original_token':token,'unit':'ppm','page':binding['page'],
             'bbox':list(cell),'header_bbox':list(h[:4]),'header':label,'row_bbox':list(row),
             'section_id':binding['section_id'],'rounding_half_width':float(Decimal(5)*Decimal(10)**(Decimal(token.replace(',','')).as_tuple().exponent-1))}
-
-def summary_settings(root):
-    book=json.loads((Path(root)/'config/summary_rules.json').read_text(encoding='utf8'))
-    if any(not p.get('source_file') or not p.get('source_key') for p in book['parameters'].values()):
-        raise ValueError('SUMMARY_RULE_ORIGIN_REQUIRED')
-    rules={k:v['value'] for k,v in book['parameters'].items()}
-    decisions=json.loads((Path(root)/'config/researcher_rule_decisions.json').read_text(encoding='utf8'))['decisions']
-    return rules,[d for d in decisions if isinstance(d.get('decided_by'),str) and d['decided_by'].strip()]
-
-
-def summary_decision(decisions, rule, project_id=None, bundle=None):
-    matches=[d for d in decisions if d.get('rule')==rule and (project_id is None or d.get('project_id')==project_id)]
-    if bundle is not None:
-        matches=[d for d in matches if isinstance(d.get('scope'),dict) and
-            d['scope'].get('statement_id')==bundle['statement_id'] and d['scope'].get('source_sha256')==bundle['source_sha256']]
-    if len(matches)>1:raise ValueError('SUMMARY_AMBIGUOUS_RULE_DECISION:'+rule)
-    return matches[0] if matches else None
-
-
-def summary_norm(text):
-    return re.sub(r'\s+',' ',str(text)).strip().casefold()
-
-
-def summary_region_text(page, rect):
-    words=[w for w in page.get_text('words',sort=True)
-           if rect.x0<=(w[0]+w[2])/2<=rect.x1 and rect.y0<=(w[1]+w[3])/2<=rect.y1]
-    return ' '.join(w[4] for w in words)
-
 
 def summary_hm_percent(raw, target):
     value = summary_decimal_token(raw['original_token'])
@@ -668,12 +543,6 @@ def summary_scoped_oxide_fields(row,bundle,review,elements,source,rules,decision
                 bundle['value'].update(grade_pct=ppm/10000,contained_treo_kt=ore*ppm*.001)
                 for column,value in [('TREO品位_pct',ppm/10000),('總TREO蘊藏量_kt',ore*ppm*.001),('有TREO資源估計','是')]:
                     put(column,value,sha,canonical(dict(native=native,cerium=ce,factor=factor,decision=decision['decision_id'])),'SOURCE_TREO_PLUS_Y_MINUS_CE2O3_PLUS_CEO2',scope,ids)
-
-
-def summary_observation(observation):
-    raw=json.loads(observation['raw']);reviewed=raw.get('raw',{}).get('reviewed_observation',{})
-    result=dict(reviewed,**raw);result['review_contract']=raw.get('raw',{}).get('review_contract',{})
-    return result
 
 
 def _completed_drilling_stage(proposal, row, trace, sources, rules):

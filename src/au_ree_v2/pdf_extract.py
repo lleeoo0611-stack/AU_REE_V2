@@ -461,7 +461,6 @@ def recognize_document(root, source, registry, tessdata=None, parser_version=Non
         if not bound and native:
             bound=[dict(project_id=p['entity_id'],method='SOURCE_REGISTRY_EXPLICIT_PROJECT_LINK') for p in registry if p['native_id']==native]
     if source['kind']=='html':
-        from .evidence import html_text
         texts=[html_text(root,source)];doc=None
     else:
         doc=pymupdf.open(path);texts=[p.get_text(sort=True) for p in doc]
@@ -972,7 +971,6 @@ def summary_scan_stage(source, rules):
                 while pending:
                     resolve_ocr(*pending.popleft())
         else:
-            from .evidence import html_text
             pages=[(None,html_text(path.parent,dict(source,path=str(path))))]
     except (OSError,ValueError,IndexError,subprocess.TimeoutExpired) as exc:
         problems.append(dict(source_sha256=sha,reason='SOURCE_SCAN_FAILED',detail=str(exc)))
@@ -988,3 +986,21 @@ def summary_scan_stage(source, rules):
                     pattern=r'\b'+re.escape(keyword)+(r'\b' if keyword.upper() in ('PFS','DFS','BFS','FID') else '')
                     if re.search(pattern,sentence,re.I):hits.append(dict(source_sha256=sha,physical_page=number,keyword=keyword,sentence=sentence,paragraph_heading=heading,paragraph_text=flat))
     return hits,problems
+
+
+def html_text(root, source):
+    """Decode an advertised static article payload without executing JavaScript."""
+    from html.parser import HTMLParser
+    text = (Path(root)/source['path']).read_text(encoding='utf-8')
+    if source.get('text_contract') == 'LSE_ARTICLE_BODY_JS_STRING_V1':
+        payload = re.findall(r'var articleBody="((?:\\.|[^"\\])*)";', text)
+        if len(payload) != 1:
+            raise ValueError('ARTICLE_BODY_MISSING_OR_AMBIGUOUS')
+        encoded = re.sub(r'\\x([0-9a-fA-F]{2})', r'\\u00\1', payload[0])
+        text = json.loads('"'+encoded+'"')
+        text = re.sub(r'<(script|style)\b[^>]*>.*?</\1\s*>', '', text, flags=re.I|re.S)
+    class Text(HTMLParser):
+        def __init__(self):super().__init__();self.parts=[]
+        def handle_data(self,value):self.parts.append(value)
+    parser=Text();parser.feed(text)
+    return re.sub(r'\s+', ' ', ' '.join(parser.parts))

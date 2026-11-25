@@ -4,9 +4,9 @@ import math
 import re
 from pathlib import Path
 from .store import canonical, digest, entity, issue, filehash
-from .census import ingest_workbook
-from .official import ingest_official_table, ingest_prospectus
+from .official import ingest_official_table, ingest_prospectus, ingest_workbook
 from .national import ingest_legacy_e1
+from .pdf_extract import html_text
 from .screen_index import ingest as ingest_screen_index
 
 # Individual oxides keep their own vocabulary; grouped totals are not aliases.
@@ -210,7 +210,7 @@ def validate_project_attribute(root, source, attribute, snapshots, cache=None, c
 
 def ingest_project_attributes(db, root, snapshots, cutoff, project, eid, cache):
     """Text occupies the existing evidence store and never a numeric criterion."""
-    from .selection import date_end
+    from .selection_rules import date_end
     by_key={s['key']:s for s in snapshots}
     for a in project.get('attributes',[]):
         source=by_key.get(a['source_key']);reasons=[]
@@ -227,24 +227,6 @@ def ingest_project_attributes(db, root, snapshots, cutoff, project, eid, cache):
                  a.get('review_id') or a.get('attribute_id') or obsid,'NOT_APPLICABLE',a['effective_date'],source['sha256'],
                  a['locator'],'REVIEW' if reasons else 'AUTO_VALIDATED',canonical(reasons),canonical(a),'normalization-v1'))
         for reason in reasons:issue(db,eid,a['source_sha256'],reason,canonical(a))
-
-
-def html_text(root, source):
-    """Decode an advertised static article payload without executing JavaScript."""
-    from html.parser import HTMLParser
-    text = (Path(root)/source['path']).read_text(encoding='utf-8')
-    if source.get('text_contract') == 'LSE_ARTICLE_BODY_JS_STRING_V1':
-        payload = re.findall(r'var articleBody="((?:\\.|[^"\\])*)";', text)
-        if len(payload) != 1:
-            raise ValueError('ARTICLE_BODY_MISSING_OR_AMBIGUOUS')
-        encoded = re.sub(r'\\x([0-9a-fA-F]{2})', r'\\u00\1', payload[0])
-        text = json.loads('"'+encoded+'"')
-        text = re.sub(r'<(script|style)\b[^>]*>.*?</\1\s*>', '', text, flags=re.I|re.S)
-    class Text(HTMLParser):
-        def __init__(self):super().__init__();self.parts=[]
-        def handle_data(self,value):self.parts.append(value)
-    parser=Text();parser.feed(text)
-    return re.sub(r'\s+', ' ', ' '.join(parser.parts))
 
 
 def validate_element_table_cell(root, source, evidence, cache):
@@ -283,7 +265,7 @@ def validate_pages(root, source, evidence, snapshots, cache=None):
     Existing selective extraction artifacts remain SHA-bound; no OCR is run
     implicitly while interpreting a financial or engineering observation.
     """
-    from .selection import source_check
+    from .selection_rules import source_check
     from pypdf import PdfReader
     root = Path(root)
     cache = cache if cache is not None else {}
@@ -427,7 +409,7 @@ def register_candidate(db,root,snapshots,cutoff,registration,claims):
     name similarity, distance, owner or a tenement hit as Project proof. Caller
     persists the returned claims/relation with the existing version mechanism.
     """
-    from .selection import source_check
+    from .selection_rules import source_check
     root=Path(root);r=registration;by_key={s['key']:s for s in snapshots}
     candidate=db.execute('''SELECT e.*,r.* FROM entities e JOIN records r USING(entity_id)
         WHERE e.entity_id=? AND r.source_sha=?''',(r['candidate_id'],r['candidate_source_sha256'])).fetchone()
@@ -473,7 +455,7 @@ def register_candidate(db,root,snapshots,cutoff,registration,claims):
 
 def ingest_events(db, root, snapshots, cutoff, claims_data=None):
     """Typed disclosures in the existing observation store; numeric value NULL."""
-    from .selection import date_end
+    from .selection_rules import date_end
     sources = {s['key']: s for s in snapshots}
     cache = {}
     events = (claims_data if claims_data is not None else json.loads((Path(root)/'data/claims.json').read_text(encoding='utf-8'))).get('events', [])
@@ -512,7 +494,7 @@ def ingest_recognized(db, root, snapshots, cutoff, policy, acquired_through=None
     resource scope/effective date is established. Text disclosures have NULL
     numerical values and cannot accidentally satisfy an MCDA criterion.
     """
-    from .selection import source_check, date_end
+    from .selection_rules import source_check, date_end
     from .store import filehash
     root=Path(root);sources={s['sha256']:s for s in snapshots};outcomes=[]
     aliases={}
@@ -1053,7 +1035,7 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
         if not valid:
             continue
         if strict:
-            from .selection import choose
+            from .selection_rules import choose
             candidates=[dict(v,evidence_id=digest(v),source_sha256=v['source_sha'],effective_date=v['date'],
                              value={k:v[k] for k in ('ore_mt','grade_pct','contained_treo_kt')}) for v in valid]
             chosen,reason=choose(candidates,('scope','basis'))

@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pymupdf
 
-from .selection import date_end
+from .selection_rules import date_end
 from .store import digest, filehash
 from .tabular import write_csv
 

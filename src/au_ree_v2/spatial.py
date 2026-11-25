@@ -85,49 +85,8 @@ def covered_project(inventory, project_id, lon, lat):
 import math
 import re
 from pyproj import CRS, Geod
-from shapely.geometry import shape
-from shapely.ops import transform, unary_union
+from .tenement_geometry import summary_identifier_key, summary_tenement_centroid
 
-
-def summary_identifier_key(value):
-    """Type and numeric identifier only, preserving WA district; no name match."""
-    value=re.sub(r'\s+','',str(value)).upper()
-    match=re.fullmatch(r'([A-Z]+)(\d+)(?:/(\d+))?',value)
-    if not match:return value
-    return (match[1],int(match[2]),int(match[3]) if match[3] else None)
-
-def summary_tenement_centroid(features, source_crs, limit_m=25000, id_field=None):
-    """Union ALL exact-matched tenements; measure ALL vertices after fallback."""
-    crs=CRS.from_user_input(source_crs)
-    to_ll=Transformer.from_crs(crs,7844,always_xy=True,allow_ballpark=False)
-    geometries=[transform(to_ll.transform,shape(f['geometry'])) for f in features]
-    if not geometries or any(g.is_empty or not g.is_valid or g.geom_type not in ('Polygon','MultiPolygon') for g in geometries):
-        return dict(accepted=False,reason='INVALID_OR_MISSING_POLYGON')
-    union=unary_union(geometries)
-    minx,miny,maxx,maxy=union.bounds
-    if not (110<=minx<=maxx<=155 and -45<=miny<=maxy<=-9):
-        return dict(accepted=False,reason='OUTSIDE_AUSTRALIA_OR_CRS_ERROR')
-    # Local equal-area projection avoids measuring longitude/latitude degrees.
-    metric=CRS.from_proj4(f'+proj=laea +lat_0={(miny+maxy)/2} +lon_0={(minx+maxx)/2} +ellps=GRS80 +units=m +no_defs')
-    forward=Transformer.from_crs(7844,metric,always_xy=True)
-    backward=Transformer.from_crs(metric,7844,always_xy=True)
-    native=[transform(forward.transform,g) for g in geometries]
-    titles={}
-    for index,(feature,geometry) in enumerate(zip(features,native)):
-        key=summary_identifier_key(feature['properties'][id_field]) if id_field else index
-        titles.setdefault(key,[]).append(geometry)
-    title_geometries=[unary_union(parts) for parts in titles.values()]
-    combined=unary_union(title_geometries);point=combined.centroid;method='TENEMENT_CENTROID'
-    if not combined.covers(point):
-        point=max(title_geometries,key=lambda g:g.area).centroid;method='LARGEST_TENEMENT_CENTROID'
-        if not combined.covers(point):return dict(accepted=False,reason='LARGEST_TENEMENT_CENTROID_OUTSIDE_UNION')
-    lon,lat=backward.transform(point.x,point.y)
-    geod=Geod(ellps='GRS80')
-    polygons=list(union.geoms) if union.geom_type=='MultiPolygon' else [union]
-    vertices=[xy for p in polygons for ring in [p.exterior,*p.interiors] for xy in ring.coords]
-    precision=max(geod.inv(lon,lat,x,y)[2] for x,y in vertices)
-    if not math.isfinite(precision):raise ValueError('NONFINITE_PRECISION')
-    return dict(accepted=precision<=limit_m,reason='ACCEPTED' if precision<=limit_m else 'TENEMENT_UNION_EXCEEDS_25KM',longitude=lon,latitude=lat,precision_m=precision,location_method=method,input_crs=crs.to_string(),input_datum=crs.datum.name,output_crs='EPSG:7844',metric_crs=metric.to_string())
 
 def _arcgis_tenement_features(data, binding):
     """Read the selected polygons from a complete, dated native ArcGIS inventory."""
@@ -291,8 +250,8 @@ def summary_location_name(value):
 def _resource_point_scope(case, row, government, sources, cutoff, lon, lat):
     """Replay the issuer figure used to review a native representative point."""
     import pymupdf
-    from .census import summary_norm
-    from .selection import date_end
+    from .census_policy import summary_norm
+    from .selection_rules import date_end
 
     proof = case.get('issuer_scope_reference') or {}
     original = sources.get(proof.get('source_sha256'))
@@ -325,8 +284,8 @@ def _resource_point_scope(case, row, government, sources, cutoff, lon, lat):
 def summary_locations(row, all_rows, registry, sources, rules, decisions, *, read_json=None, cutoff=None,
                       extent_rejections=None):
     """Native pairs and exact tenement unions; no coordinate values in declarations."""
-    from .census import summary_decision,summary_norm,summary_region_text
-    from .selection import date_end
+    from .census_policy import summary_decision,summary_norm,summary_region_text
+    from .selection_rules import date_end
     from .store import canonical
     import io,csv,zipfile
     if read_json is None:

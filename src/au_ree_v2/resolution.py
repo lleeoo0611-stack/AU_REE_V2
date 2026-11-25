@@ -1,31 +1,25 @@
 """Non-destructive, cutoff-bound national identity resolution and candidate census."""
-import json,re,unicodedata,math
+import json,re,math
 from pathlib import Path
-from pyproj import Geod
 from pypdf import PdfReader
 from .store import entity,digest,canonical,issue
 from .hierarchy import link
-from .national import NAME_FIELDS
+from .national import GEO, NAME_FIELDS, normalized
 
 SITE_FIELDS={'STATE_WA_MINDEX':('site_code','WA_MINDEX_SITE'),
  'STATE_QLD_MINOCC':('site_no','QLD_MINOCC_SITE'),'STATE_TAS_MRT':('DEPOSIT_ID','TAS_MRT_SITE'),
  'NT_MODAT_WFS':('identifier','NT_MODAT_SITE'),'NSW_METINDEX':('occurrence_id','NSW_METINDEX_SITE'),
  'VIC_MINSITE':('siteid','VIC_MINSITE_SITE'),'SA_GEODATA_MINDEP':('MINERAL_DEPOSIT_NO','SA_MINDEP_SITE'),
  'SA_CRITICAL_REE':('MINERAL_DEPOSIT_NO','SA_CRITICAL_SITE')}
-GEO=Geod(ellps='GRS80')
 def native(value):
     return str(int(value)) if isinstance(value,(float,int)) and not isinstance(value,bool) and float(value).is_integer() else str(value)
-def normalized(name):
-    return re.sub(r'\W+',' ',unicodedata.normalize('NFKC',name).casefold().replace('mt.','mount ').replace('mt ','mount ')).strip()
-
-
 def document_relations(db, root, snapshots, cutoff):
     """An explicit deposit-within-project sentence adds hierarchy, never identity.
 
     Both endpoints must already be registered uniquely. Representative points,
     fuzzy names and proximity cannot satisfy this rule.
     """
-    from .selection import source_check
+    from .selection_rules import source_check
     from .pdf_extract import project_registry, _matches
     sources={s['sha256']:s for s in snapshots};registry=project_registry(root);decisions=[]
     names={}
@@ -154,7 +148,7 @@ def resolve(db,root,snapshots,cutoff=None,rule_version=None,current=None):
         try:
             from .pdf_extract import extract_page
             if source['kind']=='html':
-                from .evidence import html_text
+                from .pdf_extract import html_text
                 text=html_text(root,source)
             else:text=extract_page(Path(root)/source['path'],relation['pdf_page'])['text']
             text=re.sub(r'\s+',' ',text)
@@ -217,7 +211,7 @@ def resolve(db,root,snapshots,cutoff=None,rule_version=None,current=None):
     return dict(ledger=ledger,accepted=valid,membership=membership,candidates=pairs,mapping={x['entity_id']:x['canonical_id'] for x in membership})
 
 def technical_coverage(db,resolution,resources,cases,snapshot_shas,current=None):
-    from .selection import observation_visible
+    from .selection_rules import observation_visible
     def active_raw(sql,eid):
         rows=[]
         for record in db.execute(sql,(eid,)):

@@ -10,6 +10,7 @@ from shapely.geometry import box, mapping
 from shapely.ops import unary_union
 
 from .store import filehash
+from .tenement_geometry import summary_tenement_centroid
 
 
 # Reviewed dimensions, labelled meridians/parallels (arcminutes E/S) and their pixel centres.
@@ -58,7 +59,6 @@ def read_graticule(pixmap, axes, image_grid):
 
 def statutory_extent(source, sources, binding, row, cutoff, limit_m):
     """Match the legal map, dated historical project scope and native block count before projection."""
-    from .spatial import summary_tenement_centroid
     title = binding['licence']
     region = sources.get(binding['report_sha256'])
     if (not cutoff or source.get('kind') != 'pdf' or source.get('sha256') != NOTICE_SHA

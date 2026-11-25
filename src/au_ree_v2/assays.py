@@ -6,7 +6,7 @@ import unicodedata
 
 import pymupdf
 
-from .selection import date_end
+from .selection_rules import date_end
 from .store import canonical, digest
 from .tabular import write_csv
 

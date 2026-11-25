@@ -5,7 +5,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from .tabular import read_csv as read_rows, write_csv
-from .census import summary_settings
+from .census_policy import summary_settings
 from .census_audit import date_precision
 from .security import public_export
 from .store import canonical, digest, filehash

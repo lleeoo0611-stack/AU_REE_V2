@@ -328,7 +328,7 @@ class LocalFallback(unittest.TestCase):
                 self.policy['issuer_ir_indexes'] = {'TEST':'https://issuer.test/index'}
                 _, helper = self.make()
                 self.routes['issuer.test','/index'] = (200,body,{})
-                with patch('au_ree_v2.discovery.candidates',wraps=candidates) as parse:
+                with patch('au_ree_v2.source_discovery.candidates',wraps=candidates) as parse:
                     result, _ = self.find(helper,self.source())
                 self.assertIsNone(result)
                 parse.assert_not_called()

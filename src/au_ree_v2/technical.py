@@ -8,6 +8,8 @@ import json
 import re
 from collections import defaultdict, Counter
 from pathlib import Path
+from .disclosure_analysis import DISCLOSURE_VERSION, prepare_disclosure_analysis
+from .mcda import interval_mcda
 from .store import canonical, digest
 
 
@@ -667,7 +669,6 @@ def analyze_profiles(selection, definition, out, resource_ids, root=None, snapsh
     return summary
 
 
-DISCLOSURE_VERSION = 'technical-disclosure-transparency-v1'
 DISCLOSURE_STATES = {'DISCLOSED':1,'EXPLICIT_UNKNOWN':1,'INSUFFICIENT':0,'UNVERIFIABLE':None}
 DISCLOSURE_FACETS = {
     'TD1': ('origin', 'sampling', 'preparation'),
@@ -699,7 +700,7 @@ def assess_disclosure(root, review, snapshots, cutoff):
     function checks their explicit facets, scope, dates and original quotes.
     Any local provenance failure becomes unknown; it cannot become zero.
     """
-    from .selection import source_check, date_end
+    from .selection_rules import source_check, date_end
     from .store import filehash
     root=Path(root);sources={s['key']:s for s in snapshots};pages={};errors={}
     if review['version'] != DISCLOSURE_VERSION or cutoff != review['cutoff']:
@@ -735,7 +736,7 @@ def assess_disclosure(root, review, snapshots, cutoff):
                     with fitz.open(root/s['path']) as pdf:
                         pages[key]=CitedPages(root/s['path'], len(pdf))
                 elif s['kind']=='html':
-                    from .evidence import html_text
+                    from .pdf_extract import html_text
                     pages[key]=[normalized(html_text(root,s))]
                 else:raise ValueError('NOT_PRIMARY_DOCUMENT')
             except Exception as exc:errors[key]=str(exc)
@@ -830,7 +831,6 @@ def apply_disclosure(selection,result):
 
 def run_disclosure(root, config, cutoff, out, db=None, run_id=None, selection=None, assemble=None, registry=None, selected_snapshots=None):
     """Existing evidence store + versioned review + existing MCDA machinery."""
-    from .analysis import prepare_disclosure_analysis
     from .tabular import write_csv
     from .store import filehash
     if assemble is None:assemble=not config.get('disclosure_current_baseline')
@@ -921,7 +921,6 @@ def analyze_jorc_screening(selection, definition, rows, out, root=None, claims_d
     project-transfer stress restores [0,1] where extrapolation is unproved.
     No midpoint, probability distribution, maturity bonus or case splicing.
     """
-    from .analysis import interval_mcda
     from .tabular import write_csv
     policy=definition['jorc_screening'];out=Path(out)
     pids=sorted(selection['projects']);names={pid:pid for pid in pids}
@@ -1668,8 +1667,8 @@ def summary_annual_cell(doc,binding,field,token,unit,scope,selected_scenario=Non
 
 def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutoff, row=None, audit=None):
     """Study output is scoped separately from MREs and never operating production."""
-    from .selection import choose
-    from .census import summary_decision
+    from .selection_rules import choose
+    from .census_policy import summary_decision
     import pymupdf
     models=[];fills=[];audit=audit if audit is not None else []
     for a in attributes:

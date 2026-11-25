@@ -169,7 +169,7 @@ class SourceContentHashTests(unittest.TestCase):
             row = {'專案ID': 'project', '經度': '', '緯度': '', '專案名稱': 'Example', '州省地區': 'VIC'}
             rules = {'tenement_precision_m': 25000, 'government_datasets': {}, 'aliases.projects': [], 'states': {'VIC': 'VIC'}}
             result = dict(accepted=True, longitude=140.0, latitude=-35.0)
-            with patch('au_ree_v2.census.summary_decision', return_value=True), \
+            with patch('au_ree_v2.census_policy.summary_decision', return_value=True), \
                  patch('au_ree_v2.spatial.summary_tenement_centroid', return_value=result):
                 fills = summary_locations(row, [], [registered], {raw_sha: snapshot}, rules, [])
             self.assertEqual(len(fills), 2)
