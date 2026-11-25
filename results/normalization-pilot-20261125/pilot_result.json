@@ -1,0 +1,976 @@
+{
+  "cutoff": "2026-11-13",
+  "census_sha256": "336a46c2f2fe8862042abe811275e8a8cb091b390eb795ad4a894a36f6e3cabb",
+  "coverage": {
+    "before": 2496,
+    "after": 2496,
+    "denominator": 3034,
+    "remaining_applicable_blanks": 532
+  },
+  "review": {
+    "held_by_class": {
+      "D1": 18,
+      "E1": 14
+    },
+    "held_by_reason": [
+      {
+        "class": "D1",
+        "reason": "COMBINED_LABEL_WITHOUT_OXIDE_FORMULA",
+        "cells": 1
+      },
+      {
+        "class": "D1",
+        "reason": "HM_SUBFRACTION_WITHOUT_MINOR_OXIDE_GRADES",
+        "cells": 9
+      },
+      {
+        "class": "D1",
+        "reason": "MISSING_NON_HM_MASS_BALANCE",
+        "cells": 5
+      },
+      {
+        "class": "D1",
+        "reason": "NUMERATOR_AND_DENOMINATOR_DIFFER_IN_Y_MEMBERSHIP",
+        "cells": 1
+      },
+      {
+        "class": "D1",
+        "reason": "UNSPLIT_OXIDE_GROUP_OR_RESERVE_SCOPE",
+        "cells": 2
+      },
+      {
+        "class": "E1",
+        "reason": "ALTERNATIVE_DOWNSTREAM_CAPACITIES",
+        "cells": 2
+      },
+      {
+        "class": "E1",
+        "reason": "CHEMICAL_BASIS_AND_FORECAST_PERIOD_UNRESOLVED",
+        "cells": 1
+      },
+      {
+        "class": "E1",
+        "reason": "CURRENT_MRE_WITHOUT_ADOPTED_ANNUAL_SCHEDULE",
+        "cells": 2
+      },
+      {
+        "class": "E1",
+        "reason": "MINERAL_TONNAGE_WITHOUT_OXIDE_PRODUCT_GRADE",
+        "cells": 2
+      },
+      {
+        "class": "E1",
+        "reason": "PLANNED_STUDY_WITHOUT_SCHEDULE",
+        "cells": 2
+      },
+      {
+        "class": "E1",
+        "reason": "RESOURCE_AND_UNRELATED_PROCESSING_CAPACITY",
+        "cells": 2
+      },
+      {
+        "class": "E1",
+        "reason": "RESOURCE_INVENTORY_ONLY",
+        "cells": 2
+      },
+      {
+        "class": "E1",
+        "reason": "RESOURCE_PRICING_BASKET_NOT_PRODUCT_ASSAY",
+        "cells": 1
+      }
+    ],
+    "positive_controls": 5,
+    "documents": 15,
+    "reviewed_pages": 34,
+    "pdf_bytes_checked": true,
+    "native_text_pages_checked": 32
+  },
+  "unit_comparison": {
+    "scope": "Unit compatibility for directly reported, selected, in-cutoff PDF resource fields in matching resource categories. Project-specific cutoffs, estimation dates, moisture and TREO definitions may differ.",
+    "stages": {
+      "native_unit": "Exact original unit string",
+      "observation_unit": "Exact exported observation unit",
+      "census_unit": "Already published Census unit verified against the original token"
+    },
+    "eligibility": {
+      "included_cells": 62,
+      "excluded_selected_cells": {
+        "derived_or_unresolved": 25,
+        "native_unit_source_context_or_numeric_gate": 25
+      }
+    },
+    "by_column": {
+      "礦石蘊藏量_Mt": {
+        "eligible_projects": 28,
+        "native_unit": 65,
+        "observation_unit": 106,
+        "census_unit": 106
+      },
+      "TREO品位_pct": {
+        "eligible_projects": 24,
+        "native_unit": 42,
+        "observation_unit": 37,
+        "census_unit": 72
+      },
+      "總TREO蘊藏量_kt": {
+        "eligible_projects": 10,
+        "native_unit": 10,
+        "observation_unit": 16,
+        "census_unit": 16
+      }
+    },
+    "distinct_project_pairs_any_field": {
+      "native_unit": 80,
+      "observation_unit": 106,
+      "census_unit": 106
+    },
+    "distinct_pairs_added_from_native_to_census": 26,
+    "distinct_pairs_lost_from_native_to_census": 0,
+    "observations": [
+      {
+        "project_id": "AU-12cc237ae66c7a6508ca",
+        "column": "TREO品位_pct",
+        "category": "INFERRED",
+        "observation_id": "c98b03b6c486c65e58b1cf5cf17a78f68be489cc2bd16a831f222a9b2126666d",
+        "source_sha256": "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-1345edd8165c10930e94",
+        "column": "TREO品位_pct",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "cd7bcdb50abcaa772c4e618ea8c3675fe67d4feaa8ddfd48bc2a05f7ba7f3e2a",
+        "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+        "native_unit": "%",
+        "observation_unit": "%",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-216d0983f6892f9b58f9",
+        "column": "TREO品位_pct",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "a97a662c2734e6e16106b3246e8d9e249441f74932d20987f4704c821426c62b",
+        "source_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-2262a37ca19531f08da3",
+        "column": "TREO品位_pct",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "observation_id": "a8c9f0bf1ffd2801bdf24cc93ce7d83dfdb7930b0e1ac2ed44a6b109cdb77136",
+        "source_sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-3651cf8448b9227adcf5",
+        "column": "TREO品位_pct",
+        "category": "INFERRED",
+        "observation_id": "d562c16794ee73fee905dd6b8031b53a989ac844dd39233a6f403209ae666d6e",
+        "source_sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-3eb7131e4daea18a60a0",
+        "column": "TREO品位_pct",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "5d3c12c4c1884165bdd22db77bb4acc0c3357127b9ecbd60ea43ffbb06a4d796",
+        "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-410159af7b79ea498ec2",
+        "column": "TREO品位_pct",
+        "category": "INFERRED",
+        "observation_id": "24ac37f9abab38f9124ecfcfea552e06904e6489c4fbb229b2e6dcf60890bf01",
+        "source_sha256": "7de6021ce23b5622e920f8a3169fe6252ea4ba24d7b616f19a1e90454ee4294c",
+        "native_unit": "%",
+        "observation_unit": "%",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-447261eed0e81eae88bf",
+        "column": "TREO品位_pct",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "observation_id": "fa0cc6c08cbbb67cacc7134bd3a9e9296965805fb7fb1d62dde149f105690747",
+        "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59",
+        "native_unit": "ppm",
+        "observation_unit": "%",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-49b538453133bd968e8d",
+        "column": "TREO品位_pct",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "c16f491ec26e7b3ff2f0c2be596804cf657f710ca4888ee95246d9a6f1789e4e",
+        "source_sha256": "7595d024b25438cd5795635cb43f5f87717b9b5ac9a935eff7d1d3c07562fd01",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-4ec1fb08563b42352d29",
+        "column": "TREO品位_pct",
+        "category": "INFERRED",
+        "observation_id": "5e8927dd5e524c896c9912618e8fbbd841be00b4b7d3c5ffd4fb515f28b78977",
+        "source_sha256": "39699576fe9ebe47225c083dc285d7a561b732ab357a9050a67472e89a5512aa",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-6d807eb7caec9db0f35e",
+        "column": "TREO品位_pct",
+        "category": "MEASURED_INDICATED_TOTAL",
+        "observation_id": "d3c4678ee4361f5500dac1926a2503729080435ae818a21b543768e1f70b357c",
+        "source_sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
+        "native_unit": "%",
+        "observation_unit": "%",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-7537d9555628040fab40",
+        "column": "TREO品位_pct",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "6bb2080ac84829ed737a65e30eb6dbd5f2b97014bce5571e072bec9dd56ed7ab",
+        "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+        "native_unit": "%",
+        "observation_unit": "%",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-785536db5ff12c25350d",
+        "column": "TREO品位_pct",
+        "category": "INFERRED",
+        "observation_id": "520f0c2a126f3b5d567115c456327db8bef68179f86dc43e4a14e3cc7dc19bf6",
+        "source_sha256": "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-7c198d219aa1db3e291f",
+        "column": "TREO品位_pct",
+        "category": "INFERRED",
+        "observation_id": "c84366f2f94bcea897e10029d8766de0694ad8bc042d72751a01fe640b97fb13",
+        "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+        "native_unit": "%",
+        "observation_unit": "%",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-9b667066e6eb66753005",
+        "column": "TREO品位_pct",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "observation_id": "95a6a8bbf355a7708a37354de6c49818d13ac3906eca1db07c9b75d2c145bef6",
+        "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-9bd8e5ed8408cd84d876",
+        "column": "TREO品位_pct",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "1478718ea062262d79625e367fc881c7fbdcbf60afe37aad9da0b40e5192718e",
+        "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+        "native_unit": "%",
+        "observation_unit": "%",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-ad64122c217f0dbfabc8",
+        "column": "TREO品位_pct",
+        "category": "INFERRED",
+        "observation_id": "d62335c014b82ba4ea0691b9f7e7dd83d58aa0ab9816d9bf18a6bae3a15dc9af",
+        "source_sha256": "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-af44c2bd1173b453953f",
+        "column": "TREO品位_pct",
+        "category": "INFERRED",
+        "observation_id": "5ed766eb756d081d281a75c1150dce57fd14186bef23a3667b5d074f5092f537",
+        "source_sha256": "88dfed30776b41d3739253fefaa1e5972a0b9969ec4db39dc1130efa2164775a",
+        "native_unit": "%",
+        "observation_unit": "%",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-bb565f5348679a46d4a0",
+        "column": "TREO品位_pct",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "observation_id": "698eb49b49dfbb3e5ed454cf7b22195ac05651b553e581ad45caa1ad5fdad419",
+        "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-cc4e217a90b7123dce0a",
+        "column": "TREO品位_pct",
+        "category": "INFERRED",
+        "observation_id": "2f1b5cafb29d9413b9481adb703c7ca3e070cb79dfb2d5f44e29fa6fa83b767c",
+        "source_sha256": "d631b0e9edbc2162ee3cb12bf526834518b43cc5ce89c4d995e3497afbbf36fb",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-d0ce731e1d8198ffaf58",
+        "column": "TREO品位_pct",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "observation_id": "2857efbfb1846b1d40589fb1209c9df5211fe68e1e10994bfee2449f4091cb1d",
+        "source_sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-d1aeb21e18e60fe8e32e",
+        "column": "TREO品位_pct",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "45e1e128928e48641b43089d3c2d9178f5ab9ba96d5166415e7b2702ac8f012b",
+        "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-d9fb1b1e3e2ec9fa0851",
+        "column": "TREO品位_pct",
+        "category": "INDICATED",
+        "observation_id": "4c1df94ba1a96ebfd4b15589b0a302cdb9e891b3eac7d14f84b7a7a7b78bfb12",
+        "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-ee5ca893d12883df35f1",
+        "column": "TREO品位_pct",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "observation_id": "062c56167d9af9bba70ce00182821412d2b2df6e46e965b6a80995b88250fe07",
+        "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+        "native_unit": "ppm",
+        "observation_unit": "ppm",
+        "census_unit": "%"
+      },
+      {
+        "project_id": "AU-12cc237ae66c7a6508ca",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INFERRED",
+        "observation_id": "36f2e0c68736e6c69d5a2b215ce00822d4f30f24fd0a13087caa045ef91e978d",
+        "source_sha256": "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-1345edd8165c10930e94",
+        "column": "礦石蘊藏量_Mt",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "309909a297973c04f4e2f88f1aec799a5ec609880bf0d650377b16c0756b5112",
+        "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-176852ef1348ac10d154",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INFERRED",
+        "observation_id": "97a9f8d30875994ed5678b73d3549fdbd61825ef4f8019634fae1a732bb4d8b8",
+        "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-216d0983f6892f9b58f9",
+        "column": "礦石蘊藏量_Mt",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "5f11575b9afd85229dc395fc093b9448edccc0d3f9e4ab0b2c60122e538ba138",
+        "source_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+        "native_unit": "t",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-2262a37ca19531f08da3",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "observation_id": "d867cd84109ede88b4e6b9640521a4dae298f7418c7e64a191c6590aa06ac752",
+        "source_sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-2fc429d0556dfa0b95c4",
+        "column": "礦石蘊藏量_Mt",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "80b9becd64cb5208043f07b5b5adfd56a74b14ecd08fa952dac6695f964cb22c",
+        "source_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-3651cf8448b9227adcf5",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INFERRED",
+        "observation_id": "a9731cbd3f757371c2d2455678f5196f4ea837ede2b8831ce86dd4a5c2e42258",
+        "source_sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+        "native_unit": "t",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-3eb7131e4daea18a60a0",
+        "column": "礦石蘊藏量_Mt",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "dec1951b9fbbdb95a771b125f402db0bcf0791affe4880668907ee61a63c7d85",
+        "source_sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+        "native_unit": "kt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-410159af7b79ea498ec2",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INFERRED",
+        "observation_id": "a50517e0a1bae714872f9d6c5b069e1ca414126f98bd02f73cdb57176749ff0d",
+        "source_sha256": "7de6021ce23b5622e920f8a3169fe6252ea4ba24d7b616f19a1e90454ee4294c",
+        "native_unit": "t",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-447261eed0e81eae88bf",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "observation_id": "e1d03006713c3630238db88b3795433b633ec425a98d55499ea18b11a5f0c174",
+        "source_sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-49b538453133bd968e8d",
+        "column": "礦石蘊藏量_Mt",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "44ea09200eea93762c598615cb76dbe286a424409ab2528b59b661db0dee0d2c",
+        "source_sha256": "7595d024b25438cd5795635cb43f5f87717b9b5ac9a935eff7d1d3c07562fd01",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-4ec1fb08563b42352d29",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INFERRED",
+        "observation_id": "1aefdfb3ebe88cf7bba0cd026274e083e470112aa8dd62b121de7422b925ff70",
+        "source_sha256": "39699576fe9ebe47225c083dc285d7a561b732ab357a9050a67472e89a5512aa",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-574465211976ec57b1ef",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INFERRED",
+        "observation_id": "4c86bf84ca63538b4d91e86943a3486b46cd6d7f50d4699c01a9cdebbec7e242",
+        "source_sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7",
+        "native_unit": "kt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-6d807eb7caec9db0f35e",
+        "column": "礦石蘊藏量_Mt",
+        "category": "MEASURED_INDICATED_TOTAL",
+        "observation_id": "480b36a237094c44a92b5319a8487d400a69f66c7787153cf2b711a85c3ae34d",
+        "source_sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
+        "native_unit": "t",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-7537d9555628040fab40",
+        "column": "礦石蘊藏量_Mt",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "90d5b70a339f198334382167f9b226a1f091ba97a31a812eff4846351e001d78",
+        "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-785536db5ff12c25350d",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INFERRED",
+        "observation_id": "0b025b1d3a8e53f12fdb06042124b24e18b45e71f89d28b1cda8c4a7e362aed9",
+        "source_sha256": "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-7c198d219aa1db3e291f",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INFERRED",
+        "observation_id": "fa1a0f4e9aa1ddec5217f4f6056b68677fa46f2c2186e83fd966b731bba808a0",
+        "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-9b667066e6eb66753005",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "observation_id": "2d952fbec8572765ca566b236c21842cdb3a0ad843c86b7258c5164dd214ac8c",
+        "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-9bd8e5ed8408cd84d876",
+        "column": "礦石蘊藏量_Mt",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "eb4371ad8c247416815e5a6aebaecf5ac5877690a8d284ac1e1e0bff44761122",
+        "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-ad64122c217f0dbfabc8",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INFERRED",
+        "observation_id": "c3d971ee211af2b6069ca749f1fa5f32c4dfc3d40603c3cd4870cddd413090f5",
+        "source_sha256": "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-af44c2bd1173b453953f",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INFERRED",
+        "observation_id": "8e37557f15b43f8d2a66e8dbdd89de681f8e31bd37bf12dcec20bd172d0d0a2f",
+        "source_sha256": "88dfed30776b41d3739253fefaa1e5972a0b9969ec4db39dc1130efa2164775a",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-bb565f5348679a46d4a0",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "observation_id": "81af246f3ef246138051d3ae300cf6ed37c32a7b773e7654378329c62123fab6",
+        "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-cc4e217a90b7123dce0a",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INFERRED",
+        "observation_id": "fbc79efad59f028bc0fd034950eda7cf5203bfcc038e1af35a0d24d0976c95b0",
+        "source_sha256": "d631b0e9edbc2162ee3cb12bf526834518b43cc5ce89c4d995e3497afbbf36fb",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-d0ce731e1d8198ffaf58",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "observation_id": "31c91238185388beff51666ffc08888be57b8fa658d604cafa34cf023a42e643",
+        "source_sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-d1aeb21e18e60fe8e32e",
+        "column": "礦石蘊藏量_Mt",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "18204a0f00d038f8e96e41f55cecaed02c077097c3a5e6fc5107bcad3996ff66",
+        "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-d9fb1b1e3e2ec9fa0851",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INDICATED",
+        "observation_id": "f47247795d7ab662445929531d719b904d57de6901f2837b1e6d2b9191b2d419",
+        "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
+        "native_unit": "t",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-ee5ca893d12883df35f1",
+        "column": "礦石蘊藏量_Mt",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "observation_id": "2be49826c0ce8e4dd16f8202d79f150ddbdb4340737ce8d2418a2e909165d0a5",
+        "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-ff758cad5beb276d327d",
+        "column": "礦石蘊藏量_Mt",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "e8d2e67299f95a3e4907c9d3182df60cb10bda05335152328fab026d41c027b0",
+        "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+        "native_unit": "Mt",
+        "observation_unit": "Mt",
+        "census_unit": "Mt"
+      },
+      {
+        "project_id": "AU-12cc237ae66c7a6508ca",
+        "column": "總TREO蘊藏量_kt",
+        "category": "INFERRED",
+        "observation_id": "452b161c4cf8f81e019539eefb70dd052ef839060bff309e9e8ef14d26eee0ec",
+        "source_sha256": "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43",
+        "native_unit": "t",
+        "observation_unit": "kt TREO",
+        "census_unit": "kt TREO"
+      },
+      {
+        "project_id": "AU-3651cf8448b9227adcf5",
+        "column": "總TREO蘊藏量_kt",
+        "category": "INFERRED",
+        "observation_id": "17badd9c2e01a11a6c43ccbdb28f5e066642b6bfc27d81a8fe10a7f9260a7e93",
+        "source_sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+        "native_unit": "t",
+        "observation_unit": "kt TREO",
+        "census_unit": "kt TREO"
+      },
+      {
+        "project_id": "AU-410159af7b79ea498ec2",
+        "column": "總TREO蘊藏量_kt",
+        "category": "INFERRED",
+        "observation_id": "24740e00156036c55ce7edd1f089130114a1571af251ed9a6cbb752c4f83d88d",
+        "source_sha256": "7de6021ce23b5622e920f8a3169fe6252ea4ba24d7b616f19a1e90454ee4294c",
+        "native_unit": "t",
+        "observation_unit": "kt TREO",
+        "census_unit": "kt TREO"
+      },
+      {
+        "project_id": "AU-6d807eb7caec9db0f35e",
+        "column": "總TREO蘊藏量_kt",
+        "category": "MEASURED_INDICATED_TOTAL",
+        "observation_id": "8543e181f9fb667d708fd716fe4dd942764cd1170c389b9f3e5c6d52ee31d104",
+        "source_sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
+        "native_unit": "t",
+        "observation_unit": "kt TREO",
+        "census_unit": "kt TREO"
+      },
+      {
+        "project_id": "AU-7537d9555628040fab40",
+        "column": "總TREO蘊藏量_kt",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "f94a506f474914c00e8473104dc16c3f9fd8151527d9d4d63851b429df7faa9b",
+        "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+        "native_unit": "kt",
+        "observation_unit": "kt TREO",
+        "census_unit": "kt TREO"
+      },
+      {
+        "project_id": "AU-7c198d219aa1db3e291f",
+        "column": "總TREO蘊藏量_kt",
+        "category": "INFERRED",
+        "observation_id": "7ac27b85960c787fcbd6e859bffd3dc313861aaf3bf1da0b5e693736c4bde1e8",
+        "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+        "native_unit": "t",
+        "observation_unit": "kt TREO",
+        "census_unit": "kt TREO"
+      },
+      {
+        "project_id": "AU-9bd8e5ed8408cd84d876",
+        "column": "總TREO蘊藏量_kt",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "observation_id": "81e82cfde2efda89d8aa0bd70e7eab397a37f76e05655063d0916ed42600710d",
+        "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+        "native_unit": "t",
+        "observation_unit": "kt TREO",
+        "census_unit": "kt TREO"
+      },
+      {
+        "project_id": "AU-ad64122c217f0dbfabc8",
+        "column": "總TREO蘊藏量_kt",
+        "category": "INFERRED",
+        "observation_id": "3d3e7288c8b701bfe8d58660b0a26e3c776f4581fd757b09701b3097dfb418d4",
+        "source_sha256": "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e",
+        "native_unit": "t",
+        "observation_unit": "kt TREO",
+        "census_unit": "kt TREO"
+      },
+      {
+        "project_id": "AU-af44c2bd1173b453953f",
+        "column": "總TREO蘊藏量_kt",
+        "category": "INFERRED",
+        "observation_id": "37c24a42fcef08d604dacc5a29dd18d5235087b6bbcca024d1c5e0206a80076e",
+        "source_sha256": "88dfed30776b41d3739253fefaa1e5972a0b9969ec4db39dc1130efa2164775a",
+        "native_unit": "kt",
+        "observation_unit": "kt TREO",
+        "census_unit": "kt TREO"
+      },
+      {
+        "project_id": "AU-d9fb1b1e3e2ec9fa0851",
+        "column": "總TREO蘊藏量_kt",
+        "category": "INDICATED",
+        "observation_id": "ee7189f1ed78d1179f8a43eabb50687333957bc4d232d555470b446eeeb3302f",
+        "source_sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
+        "native_unit": "kg",
+        "observation_unit": "kt TREO",
+        "census_unit": "kt TREO"
+      }
+    ],
+    "verified_pdf_count": 28
+  },
+  "category_grade_comparison": {
+    "jupiter_sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+    "jupiter_page": 19,
+    "jupiter_statement_date": "2026-10-12",
+    "splinter_sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+    "splinter_page": 2,
+    "splinter_statement_date": "2024-05-29",
+    "category": "INDICATED_INFERRED_TOTAL",
+    "unit": "ppm oxide in bulk ore",
+    "category_ore_mt": {
+      "INDICATED": "160",
+      "INFERRED": "1500"
+    },
+    "sum_of_reported_category_tonnes_mt": "1660",
+    "limit": "Issuer-specific reporting envelopes at nominal 1,000 ppm TREO. Splinter explicitly includes Y and Ce; Jupiter excludes Sc and Ga but does not specify the full cutoff oxide sum. Descriptive oxide grades only; source rounding applies.",
+    "weighted_views": [
+      {
+        "oxide": "CeO2",
+        "weighted_ppm": "768",
+        "category_ppm": {
+          "INDICATED": "750",
+          "INFERRED": "770"
+        },
+        "jupiter_observation": "322e9bc65288ce23e77d8406b87c7cec5ef3c03cf188c10620c311c845df71ca",
+        "already_present": false
+      },
+      {
+        "oxide": "Dy2O3",
+        "weighted_ppm": "14",
+        "category_ppm": {
+          "INDICATED": "18",
+          "INFERRED": "14"
+        },
+        "jupiter_observation": "c421b2e19832d8a3200612df1bc3a0ae9c1f6eb1f9347fada88c0886672bb34f",
+        "already_present": false
+      },
+      {
+        "oxide": "Er2O3",
+        "weighted_ppm": "6",
+        "category_ppm": {
+          "INDICATED": "8",
+          "INFERRED": "6"
+        },
+        "jupiter_observation": "8202596a941ec1e6e8f13532f888c8026427383478d85e6f070a3d53016a53ba",
+        "already_present": false
+      },
+      {
+        "oxide": "Eu2O3",
+        "weighted_ppm": "8",
+        "category_ppm": {
+          "INDICATED": "10",
+          "INFERRED": "8"
+        },
+        "jupiter_observation": "0b1f5b73b2bdabbc6a19224e5be2acbf3544afe382eb7f29d61197a9b4bd31ae",
+        "already_present": false
+      },
+      {
+        "oxide": "Gd2O3",
+        "weighted_ppm": "26",
+        "category_ppm": {
+          "INDICATED": "31",
+          "INFERRED": "25"
+        },
+        "jupiter_observation": "901e059352dd27029ebe37d15fadd31aaef55224d3f6390b96a4575c1ef0ac17",
+        "already_present": false
+      },
+      {
+        "oxide": "Ho2O3",
+        "weighted_ppm": "2",
+        "category_ppm": {
+          "INDICATED": "3",
+          "INFERRED": "2"
+        },
+        "jupiter_observation": "0b14b7d361c55ef2bafbfbd306646083a9ffafabfb7c0744c8257a64fc2962e2",
+        "already_present": false
+      },
+      {
+        "oxide": "La2O3",
+        "weighted_ppm": "347",
+        "category_ppm": {
+          "INDICATED": "320",
+          "INFERRED": "350"
+        },
+        "jupiter_observation": "2a00e4b0c94c0529c0124c8c303a589437df50a7ac443eadf06c3770817a3b7c",
+        "already_present": false
+      },
+      {
+        "oxide": "Lu2O3",
+        "weighted_ppm": "1",
+        "category_ppm": {
+          "INDICATED": "1",
+          "INFERRED": "1"
+        },
+        "jupiter_observation": "0d71717bba9372d093c579383c210936b3d654b322a8556215f3088fce41430e",
+        "already_present": false
+      },
+      {
+        "oxide": "Nd2O3",
+        "weighted_ppm": "283",
+        "category_ppm": {
+          "INDICATED": "310",
+          "INFERRED": "280"
+        },
+        "jupiter_observation": "25fff6b39b8b2a70411f11a8e5ac2615bbe7e8507b33865496de4adcbdc5db04",
+        "already_present": false
+      },
+      {
+        "oxide": "Pr6O11",
+        "weighted_ppm": "82",
+        "category_ppm": {
+          "INDICATED": "84",
+          "INFERRED": "82"
+        },
+        "jupiter_observation": "95e546eba24e35dcc5b123dcaf78b2bc04e343554b2cd2a4aa2ced0153bc3b2b",
+        "already_present": false
+      },
+      {
+        "oxide": "Sm2O3",
+        "weighted_ppm": "42",
+        "category_ppm": {
+          "INDICATED": "49",
+          "INFERRED": "41"
+        },
+        "jupiter_observation": "b9ca5ee6e275fd63b4b8607d5184016cbb3921d719adf830abef5a03e6fee8dd",
+        "already_present": false
+      },
+      {
+        "oxide": "Tb4O7",
+        "weighted_ppm": "3",
+        "category_ppm": {
+          "INDICATED": "4",
+          "INFERRED": "3"
+        },
+        "jupiter_observation": "2a75ddc71177aded7d05b5de72583f952f79b3b6b2e5f3099503ef4c4e50132f",
+        "already_present": false
+      },
+      {
+        "oxide": "Tm2O3",
+        "weighted_ppm": "1",
+        "category_ppm": {
+          "INDICATED": "1",
+          "INFERRED": "1"
+        },
+        "jupiter_observation": "917d58a58a4e0dbda2615360868789f6aa51b536d23b27a0a0a5060599923a34",
+        "already_present": false
+      },
+      {
+        "oxide": "Y2O3",
+        "weighted_ppm": "74",
+        "category_ppm": {
+          "INDICATED": "89",
+          "INFERRED": "72"
+        },
+        "jupiter_observation": "77c73088ee3c841488746d2dd8874730bd083e7b314e7d05d3fa3c7c3300ec74",
+        "already_present": false
+      },
+      {
+        "oxide": "Yb2O3",
+        "weighted_ppm": "5",
+        "category_ppm": {
+          "INDICATED": "6",
+          "INFERRED": "5"
+        },
+        "jupiter_observation": "33c031dc0c01853504b8a373dfd59f17f8014a9f61bab5de1584079f40cefc40",
+        "already_present": false
+      }
+    ],
+    "pairs": [
+      {
+        "oxide": "Dy2O3",
+        "weighted_ppm": "14",
+        "category_ppm": {
+          "INDICATED": "18",
+          "INFERRED": "14"
+        },
+        "jupiter_observation": "c421b2e19832d8a3200612df1bc3a0ae9c1f6eb1f9347fada88c0886672bb34f",
+        "already_present": false,
+        "splinter_ppm": "14",
+        "splinter_observation": "6449cc1a2640a2f4b8fbf0d0b73fae4e8a1bf6471bc27f8523eb063ba4cd175b"
+      },
+      {
+        "oxide": "Nd2O3",
+        "weighted_ppm": "283",
+        "category_ppm": {
+          "INDICATED": "310",
+          "INFERRED": "280"
+        },
+        "jupiter_observation": "25fff6b39b8b2a70411f11a8e5ac2615bbe7e8507b33865496de4adcbdc5db04",
+        "already_present": false,
+        "splinter_ppm": "226",
+        "splinter_observation": "731d4bb6eb8021143dc853a8865843aa6093581ca08bef1a71d95f6890e031b4"
+      },
+      {
+        "oxide": "Pr6O11",
+        "weighted_ppm": "82",
+        "category_ppm": {
+          "INDICATED": "84",
+          "INFERRED": "82"
+        },
+        "jupiter_observation": "95e546eba24e35dcc5b123dcaf78b2bc04e343554b2cd2a4aa2ced0153bc3b2b",
+        "already_present": false,
+        "splinter_ppm": "64",
+        "splinter_observation": "0eadb1a0ec32b4076381831d19b70e46a9e4010939eb06ec94d36e10621f47ae"
+      },
+      {
+        "oxide": "Tb4O7",
+        "weighted_ppm": "3",
+        "category_ppm": {
+          "INDICATED": "4",
+          "INFERRED": "3"
+        },
+        "jupiter_observation": "2a75ddc71177aded7d05b5de72583f952f79b3b6b2e5f3099503ef4c4e50132f",
+        "already_present": false,
+        "splinter_ppm": "3",
+        "splinter_observation": "af1cb4d04120f3685697b7256867676e52184ce0474e38b7830c30ef3bd3140c"
+      }
+    ],
+    "baseline_oxide_pairs": 0,
+    "after_oxide_pairs": 4,
+    "new_oxide_pairs": 4,
+    "matched_project_pairs": 1,
+    "equal_cutoff_composition_pairs": 0
+  }
+}
