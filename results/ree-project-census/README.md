@@ -2,6 +2,10 @@
 
 同一個 `au-ree-v2 all` 入口執行來源選入、證據驗證、SQLite 入庫、總表匯出、篩選與 MCDA。證據範圍、分數規則、情境權重和三方法 R 引擎沿用 Phase 22。整合開發版對既有 SQLite 增加可遷移的查詢視圖。總表保留 ASX 測試的 51 欄，與 2026-11-16 HTML 共用欄位及順序相符。
 
+## Census 覆蓋率正規化測試
+
+固定分母 3,034 格下，實際補入 Franklyn 經緯度、Voyager 礦床代碼與 Lyons 合併 NdPr 蘊藏量，覆蓋率由 82.27% 升至 82.40%。16 組排名相同。[本輪結果與重播方式](coverage-locked-20261125/README.md) · [逐格差異](coverage-locked-20261125/coverage_delta.csv)
+
 ## 整合證據模型審查版
 
 本分支固定研究版已逐項查核前版餘下的 173 格。新增 28 個實值，1 格改判不適用，144 格仍待補。固定分母 3,034 下覆蓋率為 82.27%。[本輪結果與驗收](gap173-20261122/README.md) · [最新 Census](gap173-20261122/REE%20project%20census.csv) · [逐格處置](gap173-20261122/followup_review.csv)

@@ -1,0 +1,211 @@
+{
+  "status": "PASSED",
+  "cutoff": "2026-11-13",
+  "baseline_run_id": "20261121T180616-f9542b39",
+  "run_id": "20261125T075247-2bacff4a",
+  "science_code": {
+    "commit": "0dff6beb5aca52e565c37289e3ab295737e76942",
+    "content_sha256": "9bcefb0fded6df4e25d32044a66b6dab07c534910d8eacc0fd984e1e389e5373",
+    "package": "0.1.0"
+  },
+  "phase22_lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
+  "projects": 93,
+  "columns": 51,
+  "total_cells": 4743,
+  "fixed_denominator": 3034,
+  "fixed_populated_before": 2496,
+  "populated": 2500,
+  "net_filled": 4,
+  "fixed_coverage_before": 0.8226763348714569,
+  "fixed_coverage_after": 0.8239947264337508,
+  "not_applicable": 1715,
+  "missing": 528,
+  "total_blank": 2243,
+  "not_applicable_status_counts": {
+    "NOT_APPLICABLE_NO_MRE": 1650,
+    "NOT_APPLICABLE_STAGE": 57,
+    "NOT_APPLICABLE_UNLISTED_DEVELOPER": 8
+  },
+  "missing_status_counts": {
+    "CLASSIFICATION_INPUT_NOT_VERIFIED": 34,
+    "COMPATIBLE_FORECAST_INPUT_NOT_VERIFIED": 52,
+    "NO_SOURCE_VALUE": 17,
+    "PARTIAL_RESOURCE_BASIS_OR_COMPONENTS": 5,
+    "REPRESENTATIVE_POINT_NOT_VERIFIED": 58,
+    "SELECTED_STATEMENT_FIELD_INPUT_MISSING": 362
+  },
+  "remaining_by_class": {
+    "D1": 17,
+    "D2": 38,
+    "E1": 14,
+    "E2": 22,
+    "E3": 36,
+    "E4": 32,
+    "E5": 2,
+    "E6": 11,
+    "P1": 271,
+    "P2": 79,
+    "R": 6
+  },
+  "changes": {
+    "filled": [
+      {
+        "project_id": "AU-0832169526bb5ec07626",
+        "project_name": "Franklyn Kaolin–REE Project — Nackara Arc",
+        "column": "經度",
+        "value": "139.4657582",
+        "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1;2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601;c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9",
+        "locator": "SARIG MinDep 10098 site 1982184; sa_gssa_rare_earth_elements_rb2024_00028 p17; itech_franklyn_ree_assays_20220729 p2",
+        "method": "REVIEWED_OFFICIAL_PROJECT_FEATURE"
+      },
+      {
+        "project_id": "AU-0832169526bb5ec07626",
+        "project_name": "Franklyn Kaolin–REE Project — Nackara Arc",
+        "column": "緯度",
+        "value": "-33.2772965",
+        "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1;2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601;c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9",
+        "locator": "SARIG MinDep 10098 site 1982184; sa_gssa_rare_earth_elements_rb2024_00028 p17; itech_franklyn_ree_assays_20220729 p2",
+        "method": "REVIEWED_OFFICIAL_PROJECT_FEATURE"
+      },
+      {
+        "project_id": "AU-68da41afe874c3bd66d4",
+        "project_name": "Voyager Rare Earth Project — Tasmania",
+        "column": "礦床型態代碼",
+        "value": "iac",
+        "source_sha256": "07f43fb166d2b18a32c19575615ec85fbae4bcc53721efcf7f917c7f6779aca0",
+        "locator": "Physical PDF p205 section 7.6, p55 both licences, p3 prospectus date. Issuer exploration model covering both Voyager licence areas, EL32/2022 and EL40/2022. The proposed target is regolith/laterite-hosted ion-adsorption REE; mapped clay and bauxite were untested for REE. ABx drilling, resources and recovery belong outside these tenements.",
+        "method": "RESEARCHER_RULE_CLAY_REGOLITH_TO_IAC"
+      },
+      {
+        "project_id": "AU-7c198d219aa1db3e291f",
+        "project_name": "Lyons — 12&13 resource scope",
+        "column": "NdPr蘊藏量_kt_需兩者皆公布",
+        "value": "1.035",
+        "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4;9c9df3bfd3cca3c86946638121c09cd07117d1bea12737ecfc06dbf8b7c14334;5ec06f3844f9d51d5515b47d06f15212ef6f4c2577556482a665e9916facbeb7",
+        "locator": "{\"documents\":{\"assay_definition\":{\"pages\":[{\"markers\":[\"Significant intersections (Table 1) at the Lyons 12 and 13 prospects\",\"LYRC018\",\"NdPr:TREO\"],\"page\":2},{\"markers\":[\"TREO (%) Nd2O3+Pr6O11 NdPr:TREO\",\"LYRC018\"],\"page\":9}],\"publication_date\":\"2022-12-14\",\"sha256\":\"5ec06f3844f9d51d5515b47d06f15212ef6f4c2577556482a665e9916facbeb7\"},\"campaign_link\":{\"pages\":[{\"markers\":[\"Table 3: Inferred Mineral Resources at Lyons above 0.2% TREO (25 October 2023)\",\"0.69 0.33 0.15 0.23 2,266\",\"12&13\",\"Tonnages are dry metric tonnes\",\"drilling informed the model. Of these 66 holes\",\"drilled at Lyons 12-13\",\"dated 14 December 2022)\",\"ASX 31 August 2023\"],\"page\":8}],\"publication_date\":\"2024-03-15\",\"sha256\":\"9c9df3bfd3cca3c86946638121c09cd07117d1bea12737ecfc06dbf8b7c14334\"},\"estimate\":{\"pages\":[{\"markers\":[\"all samples were submitted to ALS Laboratories in Perth for determination of Rare Earth Oxides\",\"ALS Method ME-XRF30\",\"Four parameters, TREO, NdPr, Nb2O5 and P, were estimated using parent cell estimation\"],\"page\":3},{\"markers\":[\"No adjustments to any assay data have been\",\"undertaken.\"],\"page\":12}],\"publication_date\":\"2023-10-25\",\"sha256\":\"3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4\"}},\"native_cell\":{\"bbox\":[298.1187744140625,177.0,353.25567626953125,205.0],\"header\":\"NdPr\",\"header_bbox\":[314.6600036621094,150.84495544433594,337.5313415527344,161.824951171875],\"original_token\":\"0.15\",\"page\":6,\"rounding_half_width\":0.005,\"row_bbox\":[132.0,177.0,458.0,205.0],\"section_id\":\"ore_mt\",\"unit\":\"%\",\"value\":0.15}}",
+        "method": "ORE_MT_X_LINKED_RESOURCE_NDPR_OXIDE_PERCENT_X_10"
+      }
+    ],
+    "lost": [],
+    "updated": [
+      {
+        "project_id": "AU-0832169526bb5ec07626",
+        "project_name": "Franklyn Kaolin–REE Project — Nackara Arc",
+        "column": "總說明",
+        "old_value": "開發階段依來源原文及其揭露日期：Exploration — iTech re-assayed kaolin-rich intervals from Archer’s 2019 drill holes for REEs at Franklyn（來源狀態日：2022-07-29）；分類僅對應該來源時點，不代表目前營運、法律或許可狀態。",
+        "value": "開發階段依來源原文及其揭露日期：Exploration — iTech re-assayed kaolin-rich intervals from Archer’s 2019 drill holes for REEs at Franklyn（來源狀態日：2022-07-29）；分類僅對應該來源時點，不代表目前營運、法律或許可狀態。；政府座標為來源資料集代表點（{\"available_date\":\"2026-11-03\",\"dataset\":\"SA_SARIG\",\"datum\":\"EPSG:7844\",\"feature_id\":\"10098\",\"meaning\":\"NAMED_PROSPECT_REPRESENTATIVE_POINT_NOT_BOUNDARY\",\"native_class\":\"Prospect\",\"native_commodity\":\"Kaolin\",\"official_name\":\"FRANKLYN\",\"precision_m\":50.0,\"references\":[{\"physical_page\":17,\"source_sha256\":\"2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601\"},{\"physical_page\":2,\"source_sha256\":\"c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9\"}],\"site_no\":\"1982184\"}），不是礦權或資源邊界；資料集日期不是資源估計有效日。"
+      }
+    ],
+    "reclassified_not_applicable": [],
+    "reopened_not_applicable": []
+  },
+  "mcda": {
+    "panels": 16,
+    "sha_pairs": 160,
+    "changed_files": [],
+    "changed_members": [],
+    "rank_comparisons": 1542,
+    "changed_ranks": [],
+    "pairwise_comparisons": 8322,
+    "changed_pairs": [],
+    "rank_comparison_methods": [
+      "saw_rank",
+      "topsis_rank",
+      "promethee_rank"
+    ],
+    "by_method": {
+      "saw_rank": {
+        "rank_comparisons": 514,
+        "changed_ranks": 0,
+        "pairwise_comparisons": 2774,
+        "changed_pairs": 0
+      },
+      "topsis_rank": {
+        "rank_comparisons": 514,
+        "changed_ranks": 0,
+        "pairwise_comparisons": 2774,
+        "changed_pairs": 0
+      },
+      "promethee_rank": {
+        "rank_comparisons": 514,
+        "changed_ranks": 0,
+        "pairwise_comparisons": 2774,
+        "changed_pairs": 0
+      }
+    }
+  },
+  "sqlite": {
+    "integrity": "ok",
+    "foreign_key_violations": 0,
+    "run_status": "COMPLETED",
+    "verified_fill_cells": 4,
+    "verified_distinct_fill_source_hashes": 7,
+    "sources": 904,
+    "entities": 7845,
+    "observations": 39529
+  },
+  "architecture": {
+    "baseline": {
+      "modules": 42,
+      "edges": 157,
+      "cycles": 0,
+      "edges_sha256": "a55f8d52b1ebc48fbefcad079b9da59fbc8006c12c904eb43f954b5a24dc7ecd"
+    },
+    "current": {
+      "modules": 42,
+      "edges": 157,
+      "cycles": 0,
+      "edges_sha256": "a55f8d52b1ebc48fbefcad079b9da59fbc8006c12c904eb43f954b5a24dc7ecd"
+    },
+    "dependency_manifests_changed": false,
+    "ranking_engine_changed": false,
+    "verified_code_commit": "0dff6beb5aca52e565c37289e3ab295737e76942",
+    "runtime_files": 45,
+    "verified_runtime_sha256": "9bcefb0fded6df4e25d32044a66b6dab07c534910d8eacc0fd984e1e389e5373"
+  },
+  "portable_replay": {
+    "asset_bytes": 1514770567,
+    "assets": 715,
+    "lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
+    "manifest_sha256": "082c26b30b2616445b4eabeefd1bc08265740268b146ae34085ccc0a8374b8ae",
+    "manifest_version": 2,
+    "receipt_sha256": "66556c196593a7ed84ef7642d9dcbf9d2852c75bfcce7cde62ea9617fecbddf6",
+    "references": 805,
+    "source_decisions_compared": 239
+  },
+  "new_sources": [
+    {
+      "key": "lu7_voyager_20230810_prospectus",
+      "source_sha256": "07f43fb166d2b18a32c19575615ec85fbae4bcc53721efcf7f917c7f6779aca0",
+      "date_used": "2023-08-10",
+      "date_basis": "DOCUMENT_PUBLICATION",
+      "cutoff_status": "WITHIN_CUTOFF"
+    },
+    {
+      "key": "sa_gssa_rare_earth_elements_rb2024_00028",
+      "source_sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601",
+      "date_used": "2024-08-31",
+      "date_basis": "DOCUMENT_PUBLICATION",
+      "cutoff_status": "WITHIN_CUTOFF"
+    },
+    {
+      "key": "lyons_2022_rc_assay_definition",
+      "source_sha256": "5ec06f3844f9d51d5515b47d06f15212ef6f4c2577556482a665e9916facbeb7",
+      "date_used": "2022-12-14",
+      "date_basis": "DOCUMENT_PUBLICATION",
+      "cutoff_status": "WITHIN_CUTOFF"
+    },
+    {
+      "key": "lyons_2024_mre_campaign_link",
+      "source_sha256": "9c9df3bfd3cca3c86946638121c09cd07117d1bea12737ecfc06dbf8b7c14334",
+      "date_used": "2024-03-15",
+      "date_basis": "DOCUMENT_PUBLICATION",
+      "cutoff_status": "WITHIN_CUTOFF"
+    }
+  ],
+  "regression": {
+    "full_python_during_development": 607,
+    "final_code_focused_python": 37,
+    "r_method_suites": 5
+  }
+}

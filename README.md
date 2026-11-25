@@ -1,5 +1,9 @@
 # AU_REE_V2
 
+## Census 覆蓋率正規化測試
+
+固定分母 3,034 格下，實際補入 Franklyn 經緯度、Voyager 礦床代碼與 Lyons 合併 NdPr 蘊藏量，覆蓋率由 82.27% 升至 82.40%。16 組排名相同。[本輪結果與重播方式](results/ree-project-census/coverage-locked-20261125/README.md) · [逐格差異](results/ree-project-census/coverage-locked-20261125/coverage_delta.csv)
+
 ## Phase 22 × ASX 的 173 格續查
 
 本輪追查 80 格座標、39 格礦床或開發階段分類，以及其他 54 格。兩版研究截日同為 2026-11-13，覆蓋率沿用原分母 3,034 格。[本輪總表與驗收](results/ree-project-census/gap173-20261122/README.md) · [逐格處置與來源](results/ree-project-census/gap173-20261122/followup_review.csv)
