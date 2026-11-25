@@ -152359,6 +152359,50 @@
           "scope": "REE exploration in the same palaeochannel system. The drilling proposal on this page concerns uranium.",
           "statement_id": "census_closure_perenjori-hre_stage_20261119",
           "attribute_id": "3f1db20a35306cae3925b82d238fde4f49090f97e2d2b5161500571f240ab12f"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Historical issuer exploration model targeting ion adsorption clay-hosted rare earth mineralisation at Perenjori",
+          "source_key": "hre_perenjori20250613",
+          "source_sha256": "d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d",
+          "pdf_page": 13,
+          "page_markers": [
+            "A secondary target is ion adsorption clay-hosted REE mineralisation",
+            "developed over bedrock granitic rock types which contain anomalous levels of REE",
+            "The deposit type being investigated is a palaeochannel- or calcrete-"
+          ],
+          "context_evidence": [
+            {
+              "page": 12,
+              "markers": [
+                "Exploration licences E70/6397, E70/6398 and E59/2905 that comprise the Perenjori project",
+                "located 185 kilometres"
+              ]
+            },
+            {
+              "page": 1,
+              "markers": [
+                "13 June 2025",
+                "SOIL ASSAYS CONFIRM URANIUM TARGET FOR",
+                "Palaeochannel-hosted rare earth deposits within the same drainage system are also being targeted"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p13 JORC Table 1 geology, p12 project licences, p1 issuer and publication date. Historical issuer exploration model for the secondary REE target at Perenjori, licences E70/6397, E70/6398 and E59/2905. Ionic adsorption in palaeochannels or clays weathered from granite is an exploration hypothesis. The primary calcrete-hosted uranium target is a different commodity. The model implies neither an REE resource nor demonstrated ion exchange.",
+          "scope": "Historical issuer exploration model for the secondary REE target at Perenjori, licences E70/6397, E70/6398 and E59/2905. Ionic adsorption in palaeochannels or clays weathered from granite is an exploration hypothesis. The primary calcrete-hosted uranium target is a different commodity. The model implies neither an REE resource nor demonstrated ion exchange.",
+          "effective_date": "2025-06-13",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "nlp_ab_perenjori_secondary_ree_exploration_model_20261126",
+          "statement_id": "nlp_ab_perenjori_secondary_ree_exploration_model_20261126",
+          "deposit_host_review": {
+            "code": "iac",
+            "selected_mre_required": false,
+            "evidence_level": "EXPLORATION_MODEL_ONLY",
+            "host_style": "CLAY_HOSTED_REE"
+          },
+          "support_only": true,
+          "attribute_id": "0b72d132324661838b28d44c0a680656895ca8fbf9b502280bcb789bc4ea6c3a"
         }
       ]
     },
