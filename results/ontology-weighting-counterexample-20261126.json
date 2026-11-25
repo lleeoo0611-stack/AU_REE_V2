@@ -1,0 +1,184 @@
+{
+  "case_count": 8,
+  "cases": [
+    {
+      "case_id": "SYNTHETIC-CONSTRUCTION-0",
+      "features": {
+        "noise": 0.0,
+        "signal": 0.0
+      },
+      "label": 0,
+      "project_id": "SYNTHETIC-CONSTRUCTION-0"
+    },
+    {
+      "case_id": "SYNTHETIC-CONSTRUCTION-1",
+      "features": {
+        "noise": 1.0,
+        "signal": 0.14285714285714285
+      },
+      "label": 0,
+      "project_id": "SYNTHETIC-CONSTRUCTION-1"
+    },
+    {
+      "case_id": "SYNTHETIC-CONSTRUCTION-2",
+      "features": {
+        "noise": 1.0,
+        "signal": 0.2857142857142857
+      },
+      "label": 0,
+      "project_id": "SYNTHETIC-CONSTRUCTION-2"
+    },
+    {
+      "case_id": "SYNTHETIC-CONSTRUCTION-3",
+      "features": {
+        "noise": 0.0,
+        "signal": 0.42857142857142855
+      },
+      "label": 0,
+      "project_id": "SYNTHETIC-CONSTRUCTION-3"
+    },
+    {
+      "case_id": "SYNTHETIC-CONSTRUCTION-4",
+      "features": {
+        "noise": 0.0,
+        "signal": 0.5714285714285714
+      },
+      "label": 1,
+      "project_id": "SYNTHETIC-CONSTRUCTION-4"
+    },
+    {
+      "case_id": "SYNTHETIC-CONSTRUCTION-5",
+      "features": {
+        "noise": 1.0,
+        "signal": 0.7142857142857143
+      },
+      "label": 1,
+      "project_id": "SYNTHETIC-CONSTRUCTION-5"
+    },
+    {
+      "case_id": "SYNTHETIC-CONSTRUCTION-6",
+      "features": {
+        "noise": 1.0,
+        "signal": 0.8571428571428571
+      },
+      "label": 1,
+      "project_id": "SYNTHETIC-CONSTRUCTION-6"
+    },
+    {
+      "case_id": "SYNTHETIC-CONSTRUCTION-7",
+      "features": {
+        "noise": 0.0,
+        "signal": 1.0
+      },
+      "label": 1,
+      "project_id": "SYNTHETIC-CONSTRUCTION-7"
+    }
+  ],
+  "construction_checks": {
+    "auc_interpretation": "CONSTRUCTED_VECTOR_CHECK_ONLY_NOT_HELD_OUT_PERFORMANCE",
+    "noise_distribution_identical_in_both_label_classes": true,
+    "noise_label_correlation": 0.0,
+    "signal_noise_correlation": 0.0,
+    "single_feature_auc": {
+      "noise": 0.5,
+      "signal": 1.0
+    }
+  },
+  "dispersion_diagnostics": {
+    "critic_information": {
+      "noise": 0.5,
+      "signal": 0.32732683535398854
+    },
+    "normalized_entropy": {
+      "noise": 0.6666666666666667,
+      "signal": 0.8700017902652676
+    },
+    "population_standard_deviation": {
+      "noise": 0.5,
+      "signal": 0.32732683535398854
+    }
+  },
+  "evaluation": {
+    "fit_cases": 8,
+    "generalization_metrics_reported": false,
+    "independent_test_set": false,
+    "prediction_vectors": "EXACT_REPETITION_OF_CONSTRUCTION_VECTORS_WITH_DISTINCT_API_IDS"
+  },
+  "normalization": "FIXED_0_TO_1_UTILITIES_ALSO_SPAN_SAMPLE_MIN_MAX_0_TO_1",
+  "outcome_mcda": {
+    "coefficients": {
+      "noise": 0.0,
+      "signal": 4.686349391310032
+    },
+    "intercept": -2.3431747132591543,
+    "interpretation": "OUTCOME_FITTED_MONOTONE_UTILITY_NOT_EXPERT_PREFERENCE",
+    "optimizer": {
+      "initialization": "TRAIN_PREVALENCE_INTERCEPT_AND_ZERO_COEFFICIENTS",
+      "iterations": 9,
+      "method": "L-BFGS-B",
+      "objective": 0.3886668817014426,
+      "options": {
+        "ftol": 1e-12,
+        "gtol": 1e-09,
+        "maxiter": 2000,
+        "maxls": 50
+      },
+      "success": true
+    },
+    "regularization": {
+      "lambda": 0.01,
+      "objective": "MEAN_LOG_LOSS_PLUS_0.5_LAMBDA_SUM_BETA_SQUARED",
+      "penalize_intercept": false
+    },
+    "runtime": {
+      "numpy": "2.3.5",
+      "python": "3.12.14",
+      "scipy": "1.17.0"
+    },
+    "seed": 0,
+    "strength": 4.686349391310032,
+    "weight_status": "OUTCOME_FITTED_NONNEGATIVE_WEIGHTS"
+  },
+  "purpose": "Demonstrate that greater dispersion need not imply outcome-predictive information",
+  "research_status": "SYNTHETIC_COUNTEREXAMPLE_ONLY_NOT_GENERALIZATION_EVIDENCE",
+  "schema_version": "weighting-counterexample-v1",
+  "sources": {
+    "critic": "https://doi.org/10.1016/0305-0548(94)00059-H",
+    "entropy": "https://doi.org/10.1016/S0377-2217(03)00146-2"
+  },
+  "synthetic": true,
+  "utility_definitions": {
+    "noise": {
+      "direction": "MAX",
+      "function": "linear",
+      "high": 1,
+      "low": 0,
+      "unit": "dimensionless"
+    },
+    "signal": {
+      "direction": "MAX",
+      "function": "linear",
+      "high": 1,
+      "low": 0,
+      "unit": "dimensionless"
+    }
+  },
+  "weights": {
+    "critic": {
+      "noise": 0.60435607626104,
+      "signal": 0.39564392373895996
+    },
+    "entropy": {
+      "noise": 0.7194272402135267,
+      "signal": 0.28057275978647334
+    },
+    "equal": {
+      "noise": 0.5,
+      "signal": 0.5
+    },
+    "outcome_mcda": {
+      "noise": 0.0,
+      "signal": 1.0
+    }
+  }
+}

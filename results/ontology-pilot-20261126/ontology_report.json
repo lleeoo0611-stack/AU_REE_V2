@@ -1,0 +1,818 @@
+{
+  "assessments": [
+    {
+      "admissible": false,
+      "affected_cells": 9,
+      "agrees_with_baseline": true,
+      "baseline_admissible": false,
+      "case_id": "review-00",
+      "contract_sha256": "5d9cca1aeda81bf45f8419969d481acb4230e49690144af37c27492005ed23b5",
+      "control_index": null,
+      "expected_admissible": false,
+      "mapping_trace": [],
+      "mismatched_context": [
+        "measurement_role",
+        "quantity_kind"
+      ],
+      "missing_context": [],
+      "original_review_index": 0,
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097:117",
+        "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097:118",
+        "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097:6"
+      ],
+      "status": "CONTEXT_MISMATCH",
+      "unresolved_mappings": [],
+      "violations": [
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "measurement_role"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "quantity_kind"
+        }
+      ]
+    },
+    {
+      "admissible": false,
+      "affected_cells": 1,
+      "agrees_with_baseline": true,
+      "baseline_admissible": false,
+      "case_id": "review-01",
+      "contract_sha256": "e2384d9da564c3bc36d4f687c702bcb35cd692e5aff42f5d1e849be86bba3fad",
+      "control_index": null,
+      "expected_admissible": false,
+      "mapping_trace": [],
+      "mismatched_context": [
+        "denominator"
+      ],
+      "missing_context": [],
+      "original_review_index": 1,
+      "project_id": "AU-3eb7131e4daea18a60a0",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d:74"
+      ],
+      "status": "CONTEXT_MISMATCH",
+      "unresolved_mappings": [],
+      "violations": [
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "denominator"
+        }
+      ]
+    },
+    {
+      "admissible": false,
+      "affected_cells": 1,
+      "agrees_with_baseline": true,
+      "baseline_admissible": false,
+      "case_id": "review-02",
+      "contract_sha256": "0250c954976b9c386ca6b7cf883474396314b33d9dcec29071a096295f2e0020",
+      "control_index": null,
+      "expected_admissible": false,
+      "mapping_trace": [],
+      "mismatched_context": [],
+      "missing_context": [
+        "chemical_basis"
+      ],
+      "original_review_index": 2,
+      "project_id": "AU-7c198d219aa1db3e291f",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4:1",
+        "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4:18"
+      ],
+      "status": "INSUFFICIENT_CONTEXT",
+      "unresolved_mappings": [],
+      "violations": [
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "chemical_basis"
+        },
+        {
+          "constraint": "MinCountConstraintComponent",
+          "dimension": "chemical_basis"
+        }
+      ]
+    },
+    {
+      "admissible": false,
+      "affected_cells": 2,
+      "agrees_with_baseline": true,
+      "baseline_admissible": false,
+      "case_id": "review-03",
+      "contract_sha256": "8fd6dc083922c7ec1bd65f095890968c12a418826c1e249aff9d493a661d7b72",
+      "control_index": null,
+      "expected_admissible": false,
+      "mapping_trace": [],
+      "mismatched_context": [
+        "resource_kind"
+      ],
+      "missing_context": [],
+      "original_review_index": 3,
+      "project_id": "AU-efff91a06cf344122d88",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503:10",
+        "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503:3",
+        "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503:9"
+      ],
+      "status": "CONTEXT_MISMATCH",
+      "unresolved_mappings": [],
+      "violations": [
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "resource_kind"
+        }
+      ]
+    },
+    {
+      "admissible": false,
+      "affected_cells": 5,
+      "agrees_with_baseline": true,
+      "baseline_admissible": false,
+      "case_id": "review-04",
+      "contract_sha256": "3abf3c0d18429c6863725eab6443a9958021d97dc0098da00b936b0e1272eb9c",
+      "control_index": null,
+      "expected_admissible": false,
+      "mapping_trace": [],
+      "mismatched_context": [
+        "denominator",
+        "material"
+      ],
+      "missing_context": [
+        "mass_balance"
+      ],
+      "original_review_index": 4,
+      "project_id": "AU-ff758cad5beb276d327d",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732:10",
+        "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732:3",
+        "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732:4"
+      ],
+      "status": "CONTEXT_MISMATCH",
+      "unresolved_mappings": [],
+      "violations": [
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "denominator"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "mass_balance"
+        },
+        {
+          "constraint": "MinCountConstraintComponent",
+          "dimension": "mass_balance"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "material"
+        }
+      ]
+    },
+    {
+      "admissible": false,
+      "affected_cells": 2,
+      "agrees_with_baseline": true,
+      "baseline_admissible": false,
+      "case_id": "review-05",
+      "contract_sha256": "7c78c7c0be2da19db5710dab4fe9611ac311f1794edaefaea22e24d12e4d084a",
+      "control_index": null,
+      "expected_admissible": false,
+      "mapping_trace": [],
+      "mismatched_context": [
+        "measurement_role",
+        "quantity_kind"
+      ],
+      "missing_context": [
+        "annual_production_schedule"
+      ],
+      "original_review_index": 5,
+      "project_id": "AU-0098e17a63e7c05c213f",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864:1",
+        "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864:4"
+      ],
+      "status": "CONTEXT_MISMATCH",
+      "unresolved_mappings": [],
+      "violations": [
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "annual_production_schedule"
+        },
+        {
+          "constraint": "MinCountConstraintComponent",
+          "dimension": "annual_production_schedule"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "measurement_role"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "quantity_kind"
+        }
+      ]
+    },
+    {
+      "admissible": false,
+      "affected_cells": 2,
+      "agrees_with_baseline": true,
+      "baseline_admissible": false,
+      "case_id": "review-06",
+      "contract_sha256": "8cfcb4bd27d5433da7cff934b1c2268f00b73a72c384cff9343f39bfaf32b3c4",
+      "control_index": null,
+      "expected_admissible": false,
+      "mapping_trace": [],
+      "mismatched_context": [
+        "entity_role",
+        "material",
+        "measurement_role"
+      ],
+      "missing_context": [],
+      "original_review_index": 6,
+      "project_id": "AU-2a3a86a4d971e9f9838d",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "00e8236380f1bd9f5860ff803660e08d21450c09d798afbbe772313ee4341180:3",
+        "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb:11"
+      ],
+      "status": "CONTEXT_MISMATCH",
+      "unresolved_mappings": [],
+      "violations": [
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "entity_role"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "material"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "measurement_role"
+        }
+      ]
+    },
+    {
+      "admissible": false,
+      "affected_cells": 2,
+      "agrees_with_baseline": true,
+      "baseline_admissible": false,
+      "case_id": "review-07",
+      "contract_sha256": "1665c8395110c164e99a73d6922d23a1e36613f4cde054292a27ca28b82e4081",
+      "control_index": null,
+      "expected_admissible": false,
+      "mapping_trace": [],
+      "mismatched_context": [
+        "material",
+        "quantity_kind"
+      ],
+      "missing_context": [
+        "oxide_product_grade"
+      ],
+      "original_review_index": 7,
+      "project_id": "AU-3eb7131e4daea18a60a0",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089:1",
+        "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089:6",
+        "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089:7"
+      ],
+      "status": "CONTEXT_MISMATCH",
+      "unresolved_mappings": [],
+      "violations": [
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "material"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "oxide_product_grade"
+        },
+        {
+          "constraint": "MinCountConstraintComponent",
+          "dimension": "oxide_product_grade"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "quantity_kind"
+        }
+      ]
+    },
+    {
+      "admissible": false,
+      "affected_cells": 1,
+      "agrees_with_baseline": true,
+      "baseline_admissible": false,
+      "case_id": "review-08",
+      "contract_sha256": "0839928dd7d5ca5b3a01711cbb17094eff2d5badbfcb3d7edd3991df0b8b63c4",
+      "control_index": null,
+      "expected_admissible": false,
+      "mapping_trace": [],
+      "mismatched_context": [
+        "period"
+      ],
+      "missing_context": [
+        "chemical_basis"
+      ],
+      "original_review_index": 8,
+      "project_id": "AU-447261eed0e81eae88bf",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5:21",
+        "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5:4",
+        "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5:9"
+      ],
+      "status": "CONTEXT_MISMATCH",
+      "unresolved_mappings": [],
+      "violations": [
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "chemical_basis"
+        },
+        {
+          "constraint": "MinCountConstraintComponent",
+          "dimension": "chemical_basis"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "period"
+        }
+      ]
+    },
+    {
+      "admissible": false,
+      "affected_cells": 1,
+      "agrees_with_baseline": true,
+      "baseline_admissible": false,
+      "case_id": "review-09",
+      "contract_sha256": "c9c87cc30796f976afb6186ece46636147013e38458401fa7e044f72908322ba",
+      "control_index": null,
+      "expected_admissible": false,
+      "mapping_trace": [],
+      "mismatched_context": [
+        "material",
+        "measurement_role"
+      ],
+      "missing_context": [],
+      "original_review_index": 9,
+      "project_id": "AU-9b667066e6eb66753005",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07:41",
+        "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07:60",
+        "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07:77"
+      ],
+      "status": "CONTEXT_MISMATCH",
+      "unresolved_mappings": [],
+      "violations": [
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "material"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "measurement_role"
+        }
+      ]
+    },
+    {
+      "admissible": false,
+      "affected_cells": 2,
+      "agrees_with_baseline": true,
+      "baseline_admissible": false,
+      "case_id": "review-10",
+      "contract_sha256": "c8ff760249cad204546ed6aaf01f3dfba6cbcaaacea563bb4d334bfc9c39b03b",
+      "control_index": null,
+      "expected_admissible": false,
+      "mapping_trace": [],
+      "mismatched_context": [
+        "measurement_role"
+      ],
+      "missing_context": [
+        "annual_production_schedule"
+      ],
+      "original_review_index": 10,
+      "project_id": "AU-d28382dfa82f1664065e",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707:4",
+        "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28:2"
+      ],
+      "status": "CONTEXT_MISMATCH",
+      "unresolved_mappings": [],
+      "violations": [
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "annual_production_schedule"
+        },
+        {
+          "constraint": "MinCountConstraintComponent",
+          "dimension": "annual_production_schedule"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "measurement_role"
+        }
+      ]
+    },
+    {
+      "admissible": false,
+      "affected_cells": 2,
+      "agrees_with_baseline": true,
+      "baseline_admissible": false,
+      "case_id": "review-11",
+      "contract_sha256": "b2c5483e1deca5a5645e46d299ee93f4d5583e0a42a9d17026be3e578cc213fc",
+      "control_index": null,
+      "expected_admissible": false,
+      "mapping_trace": [],
+      "mismatched_context": [
+        "entity_role",
+        "scenario"
+      ],
+      "missing_context": [
+        "unique_mine_output_forecast"
+      ],
+      "original_review_index": 11,
+      "project_id": "AU-efff91a06cf344122d88",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503:1"
+      ],
+      "status": "CONTEXT_MISMATCH",
+      "unresolved_mappings": [],
+      "violations": [
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "entity_role"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "scenario"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "unique_mine_output_forecast"
+        },
+        {
+          "constraint": "MinCountConstraintComponent",
+          "dimension": "unique_mine_output_forecast"
+        }
+      ]
+    },
+    {
+      "admissible": false,
+      "affected_cells": 2,
+      "agrees_with_baseline": true,
+      "baseline_admissible": false,
+      "case_id": "review-12",
+      "contract_sha256": "94e55d0ee6e836c76c7af9da82550cf5c062314a22fe3d8f911a3f62a321ad00",
+      "control_index": null,
+      "expected_admissible": false,
+      "mapping_trace": [],
+      "mismatched_context": [
+        "measurement_role",
+        "quantity_kind"
+      ],
+      "missing_context": [
+        "annual_production_schedule"
+      ],
+      "original_review_index": 12,
+      "project_id": "AU-ff758cad5beb276d327d",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732:1"
+      ],
+      "status": "CONTEXT_MISMATCH",
+      "unresolved_mappings": [],
+      "violations": [
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "annual_production_schedule"
+        },
+        {
+          "constraint": "MinCountConstraintComponent",
+          "dimension": "annual_production_schedule"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "measurement_role"
+        },
+        {
+          "constraint": "HasValueConstraintComponent",
+          "dimension": "quantity_kind"
+        }
+      ]
+    },
+    {
+      "admissible": true,
+      "affected_cells": 1,
+      "agrees_with_baseline": true,
+      "baseline_admissible": true,
+      "case_id": "control-00",
+      "contract_sha256": "33e837693c75a0b9647caf2dc07f8272ce5483a5d2892db379f3ef45d9bbf7eb",
+      "control_index": 0,
+      "expected_admissible": true,
+      "mapping_trace": [],
+      "mismatched_context": [],
+      "missing_context": [],
+      "original_review_index": null,
+      "project_id": "AU-0098e17a63e7c05c213f",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864:3"
+      ],
+      "status": "COMPATIBLE_FOR_DECLARED_USE",
+      "unresolved_mappings": [],
+      "violations": []
+    },
+    {
+      "admissible": true,
+      "affected_cells": 1,
+      "agrees_with_baseline": true,
+      "baseline_admissible": true,
+      "case_id": "control-01",
+      "contract_sha256": "b21f3a7b3f2b063c1e15b92adf1957ba03e24e8acec9d477c0014a0b756ca023",
+      "control_index": 1,
+      "expected_admissible": true,
+      "mapping_trace": [],
+      "mismatched_context": [],
+      "missing_context": [],
+      "original_review_index": null,
+      "project_id": "AU-0098e17a63e7c05c213f",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864:15",
+        "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864:16",
+        "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864:3"
+      ],
+      "status": "COMPATIBLE_FOR_DECLARED_USE",
+      "unresolved_mappings": [],
+      "violations": []
+    },
+    {
+      "admissible": true,
+      "affected_cells": 1,
+      "agrees_with_baseline": true,
+      "baseline_admissible": true,
+      "case_id": "control-02",
+      "contract_sha256": "923824ab2491d611ff708420591f0e05b2ff7305661bb2c3104b728534f749b0",
+      "control_index": 2,
+      "expected_admissible": true,
+      "mapping_trace": [],
+      "mismatched_context": [],
+      "missing_context": [],
+      "original_review_index": null,
+      "project_id": "AU-9b667066e6eb66753005",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07:77"
+      ],
+      "status": "COMPATIBLE_FOR_DECLARED_USE",
+      "unresolved_mappings": [],
+      "violations": []
+    },
+    {
+      "admissible": true,
+      "affected_cells": 1,
+      "agrees_with_baseline": true,
+      "baseline_admissible": true,
+      "case_id": "control-03",
+      "contract_sha256": "e95dbbf1781ba26ba072d485400a3aea5585c44ee5e1db5852c19dc64ae402f3",
+      "control_index": 3,
+      "expected_admissible": true,
+      "mapping_trace": [],
+      "mismatched_context": [],
+      "missing_context": [],
+      "original_review_index": null,
+      "project_id": "AU-6d807eb7caec9db0f35e",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "5a783d0c7a9ed69fd62c532c77927af0f83e0813feeaab093ed617ae1556e0b3:2",
+        "8a70d4ca8cdc287da19cd6a50060e0496f84c5f153c62b452870aed1ff92497c:14"
+      ],
+      "status": "COMPATIBLE_FOR_DECLARED_USE",
+      "unresolved_mappings": [],
+      "violations": []
+    },
+    {
+      "admissible": true,
+      "affected_cells": 1,
+      "agrees_with_baseline": true,
+      "baseline_admissible": true,
+      "case_id": "control-04",
+      "contract_sha256": "eeeee7885cdf633216e83be72844acd2f0f12465fbc9e939eba68a84867abe63",
+      "control_index": 4,
+      "expected_admissible": true,
+      "mapping_trace": [],
+      "mismatched_context": [],
+      "missing_context": [],
+      "original_review_index": null,
+      "project_id": "AU-447261eed0e81eae88bf",
+      "scope": "DECLARED_CONTEXT_ONLY_NOT_FULL_COMPARABILITY_OR_SOURCE_REVERIFICATION",
+      "source_pages": [
+        "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5:21",
+        "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5:4"
+      ],
+      "status": "COMPATIBLE_FOR_DECLARED_USE",
+      "unresolved_mappings": [],
+      "violations": []
+    }
+  ],
+  "code_sha256": {
+    "src/au_ree_v2/ontology.py": "c997d87a75a385ab1d545f0007b9b34e64841694121bcfd94563fc898c44d4a2",
+    "src/au_ree_v2/selection_rules.py": "ba5b1996c55b5935019a69925d08ed40b74c28919731925db77c9340f854e84b",
+    "src/au_ree_v2/store.py": "920203e0b1ff392e27576176989c9244f14859c902a7c648d83dcdf7608131fc",
+    "src/au_ree_v2/tabular.py": "52d2692cef449fc99127e85dca3b2127e56072f4b25316a02966b3b59cb74e5a",
+    "tools/compare_census_release.py": "0b12ba7bd750028cf0a9b477ff202ae493c674d958dd30772425116dd43da8f6",
+    "tools/evaluate_normalization.py": "d4867b3a2497777ea6aa7a071e95224ce5ad76bfff8f22b488f068405f0152b5",
+    "tools/evaluate_ontology.py": "6a2f288875109b582930efb4639fce0c29fae1d2b14d331d6200347a66995822",
+    "tools/normalization_comparison.py": "cde8e8a0085fcde1af68ef55326870402b85f4516481725fbd7f542ad5a7363f"
+  },
+  "comparison": {
+    "affected_original_held_cells": 32,
+    "baseline_disagreements": 0,
+    "distinct_review_projects": 11,
+    "existing_held_by_class": {
+      "D1": 18,
+      "E1": 14
+    },
+    "existing_positive_controls_passed": 5,
+    "new_validated_census_cells": 0,
+    "ontology_false_admissions": 0,
+    "ontology_positive_controls_passed": 5,
+    "ontology_status_counts": {
+      "COMPATIBLE_FOR_DECLARED_USE": 5,
+      "CONTEXT_MISMATCH": 12,
+      "INSUFFICIENT_CONTEXT": 1
+    },
+    "positive_controls": 5,
+    "review_groups": 13,
+    "scope": "One representative semantic check per known review group; not 32 independent tests"
+  },
+  "constructed_mapping_probes": {
+    "exact_aliases": 9,
+    "exact_aliases_resolved": 9,
+    "nonexact_relations_blocked": 2,
+    "probes": [
+      {
+        "declared_relation": "exactMatch",
+        "dimension": "resource_kind",
+        "expected": true,
+        "label": "Mineral Resource",
+        "ontology_admissible": true,
+        "raw_literal_equal": false,
+        "status": "COMPATIBLE_FOR_DECLARED_USE"
+      },
+      {
+        "declared_relation": "exactMatch",
+        "dimension": "resource_kind",
+        "expected": true,
+        "label": "礦產資源量",
+        "ontology_admissible": true,
+        "raw_literal_equal": false,
+        "status": "COMPATIBLE_FOR_DECLARED_USE"
+      },
+      {
+        "declared_relation": "exactMatch",
+        "dimension": "resource_kind",
+        "expected": true,
+        "label": "Ore Reserve",
+        "ontology_admissible": true,
+        "raw_literal_equal": false,
+        "status": "COMPATIBLE_FOR_DECLARED_USE"
+      },
+      {
+        "declared_relation": "exactMatch",
+        "dimension": "material",
+        "expected": true,
+        "label": "Run-of-mine ore",
+        "ontology_admissible": true,
+        "raw_literal_equal": false,
+        "status": "COMPATIBLE_FOR_DECLARED_USE"
+      },
+      {
+        "declared_relation": "exactMatch",
+        "dimension": "chemical_basis",
+        "expected": true,
+        "label": "Nd2O3 + Pr6O11",
+        "ontology_admissible": true,
+        "raw_literal_equal": false,
+        "status": "COMPATIBLE_FOR_DECLARED_USE"
+      },
+      {
+        "declared_relation": "closeMatch",
+        "dimension": "chemical_basis",
+        "expected": false,
+        "label": "NdPr",
+        "ontology_admissible": false,
+        "raw_literal_equal": false,
+        "status": "INSUFFICIENT_CONTEXT"
+      },
+      {
+        "declared_relation": "exactMatch",
+        "dimension": "quantity_kind",
+        "expected": true,
+        "label": "Leach extraction",
+        "ontology_admissible": true,
+        "raw_literal_equal": false,
+        "status": "COMPATIBLE_FOR_DECLARED_USE"
+      },
+      {
+        "declared_relation": "exactMatch",
+        "dimension": "quantity_kind",
+        "expected": true,
+        "label": "Overall process recovery",
+        "ontology_admissible": true,
+        "raw_literal_equal": false,
+        "status": "COMPATIBLE_FOR_DECLARED_USE"
+      },
+      {
+        "declared_relation": "closeMatch",
+        "dimension": "quantity_kind",
+        "expected": false,
+        "label": "recovery",
+        "ontology_admissible": false,
+        "raw_literal_equal": false,
+        "status": "INSUFFICIENT_CONTEXT"
+      },
+      {
+        "declared_relation": "exactMatch",
+        "dimension": "period",
+        "expected": true,
+        "label": "Whole-plan average",
+        "ontology_admissible": true,
+        "raw_literal_equal": false,
+        "status": "COMPATIBLE_FOR_DECLARED_USE"
+      },
+      {
+        "declared_relation": "exactMatch",
+        "dimension": "unit",
+        "expected": true,
+        "label": "percent",
+        "ontology_admissible": true,
+        "raw_literal_equal": false,
+        "status": "COMPATIBLE_FOR_DECLARED_USE"
+      }
+    ],
+    "scope": "Vocabulary contract exercise, not measured real-document recall gain",
+    "synthetic": true
+  },
+  "cutoff": "2026-11-13",
+  "input_sha256": {
+    "config/ontology/comparability_v1.json": "75f72c516cca580f35a091ee5838d916e95e48ac87c187cb25d199975e0f0f93",
+    "results/normalization-pilot-20261125/case_review.json": "3973b3323ff92d37ff7eaf310a6378ae8c575bd9cc0667d475a0dd53b6a0b86b",
+    "results/ree-project-census/gap173-20261122/REE project census.csv": "336a46c2f2fe8862042abe811275e8a8cb091b390eb795ad4a894a36f6e3cabb",
+    "results/ree-project-census/gap173-20261122/census_release.json": "6d457238d7b699508216ad28b9279a33921d8d32b9a2fc2ca1d09ba87f1205e7",
+    "results/ree-project-census/gap173-20261122/field_provenance.csv": "8bf2dc48fb0e2a1bc5371a3a4b98a407bb1436b02e021323b320b135d0151e6f",
+    "results/ree-project-census/gap173-20261122/field_status.csv": "d4637f2b7c569486c8fb4e5c95bd084496df9812ee86ab909b8f83e7d7362d84",
+    "results/ree-project-census/gap173-20261122/followup_review.csv": "803660e2b8f1b904634907328e4a3d98750fb4246d57d4ee345df862884e2c15",
+    "results/ree-project-census/gap173-20261122/resource_statement_lineage.csv": "510aa919b049d2b0be9d1d98000a58b119e45fc05610785bb5cae6ac5500e78e",
+    "results/ree-project-census/gap173-20261122/resource_statement_observations.csv": "067e6bf1d8ba46426fb5f16ec7ab404606aa58c181b6ec57445ea6321e97aeb2",
+    "results/ree-project-census/gap173-20261122/source_selection.csv": "197a460ae02c1497fe8f7ee2b4f1ca921127a472af29b07b2a20dc3613bb7fe4",
+    "tests/fixtures/ontology_review_cases.json": "cc601bb4c0b91d144d0877ef1054ba489f66a7c89fb178b59b2550ff6c570209"
+  },
+  "limitations": [
+    "Semantic annotations are AI-assisted projections of an existing development review",
+    "No independent annotator, new company holdout or end-to-end NLP performance test",
+    "Context contracts are local use profiles, not full cross-project equivalence",
+    "No OWL sameAs merging, inferred missing values, or Resource-to-Reserve conversion",
+    "SHACL conformance checks declared constraints; it does not authenticate source truth"
+  ],
+  "research_status": "DEVELOPMENT_REGRESSION_NOT_BLIND_VALIDATION",
+  "runtime": {
+    "pyshacl": "0.40.2",
+    "rdflib": "7.6.0"
+  },
+  "schema_version": "ontology-pilot-report-v1",
+  "source_verification": {
+    "census_manifest_verified": true,
+    "fresh_nlp_extraction": false,
+    "pdf_bytes_reverified": false,
+    "review_source_selection_verified": true
+  },
+  "unit_compatibility": {
+    "admitted_cells": 62,
+    "conversion_owner": "EXISTING_VERIFIED_NORMALIZATION_RULES_NOT_NEW_ONTOLOGY_INFERENCE",
+    "existing_pairs": {
+      "census_unit": 106,
+      "native_unit": 80,
+      "observation_unit": 106
+    },
+    "increment_over_existing_census": 0,
+    "ontology_pairs": {
+      "census_unit": 106,
+      "native_unit": 80,
+      "observation_unit": 106
+    },
+    "scope": "Unit compatibility for directly reported, selected, in-cutoff PDF resource fields in matching resource categories. Project-specific cutoffs, estimation dates, moisture and TREO definitions may differ."
+  }
+}

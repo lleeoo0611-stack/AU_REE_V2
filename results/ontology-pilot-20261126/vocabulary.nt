@@ -1,0 +1,60 @@
+<urn:au-ree:ontology:v1:concept/chemical_basis/ND2O3_PLUS_PR6O11> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/chemical_basis/ND2O3_PLUS_PR6O11> <http://www.w3.org/2004/02/skos/core#notation> "ND2O3_PLUS_PR6O11" .
+<urn:au-ree:ontology:v1:concept/chemical_basis/Nd2O3%20%2B%20Pr6O11> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/chemical_basis/Nd2O3%20%2B%20Pr6O11> <http://www.w3.org/2004/02/skos/core#exactMatch> <urn:au-ree:ontology:v1:concept/chemical_basis/ND2O3_PLUS_PR6O11> .
+<urn:au-ree:ontology:v1:concept/chemical_basis/Nd2O3%20%2B%20Pr6O11> <http://www.w3.org/2004/02/skos/core#prefLabel> "Nd2O3 + Pr6O11" .
+<urn:au-ree:ontology:v1:concept/chemical_basis/Nd2O3%20%2B%20Pr6O11> <http://www.w3.org/2004/02/skos/core#scopeNote> "Explicit chemical formulas; Unicode subscripts are lexical normalization only" .
+<urn:au-ree:ontology:v1:concept/chemical_basis/NdPr> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/chemical_basis/NdPr> <http://www.w3.org/2004/02/skos/core#closeMatch> <urn:au-ree:ontology:v1:concept/chemical_basis/ND2O3_PLUS_PR6O11> .
+<urn:au-ree:ontology:v1:concept/chemical_basis/NdPr> <http://www.w3.org/2004/02/skos/core#prefLabel> "NdPr" .
+<urn:au-ree:ontology:v1:concept/chemical_basis/NdPr> <http://www.w3.org/2004/02/skos/core#scopeNote> "Combined label alone does not establish elemental versus oxide reporting" .
+<urn:au-ree:ontology:v1:concept/material/BULK_ORE> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/material/BULK_ORE> <http://www.w3.org/2004/02/skos/core#notation> "BULK_ORE" .
+<urn:au-ree:ontology:v1:concept/material/Run-of-mine%20ore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/material/Run-of-mine%20ore> <http://www.w3.org/2004/02/skos/core#exactMatch> <urn:au-ree:ontology:v1:concept/material/BULK_ORE> .
+<urn:au-ree:ontology:v1:concept/material/Run-of-mine%20ore> <http://www.w3.org/2004/02/skos/core#prefLabel> "Run-of-mine ore" .
+<urn:au-ree:ontology:v1:concept/material/Run-of-mine%20ore> <http://www.w3.org/2004/02/skos/core#scopeNote> "Declared material identity; no assumed oxide mass balance" .
+<urn:au-ree:ontology:v1:concept/period/WHOLE_PLAN_AVERAGE> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/period/WHOLE_PLAN_AVERAGE> <http://www.w3.org/2004/02/skos/core#notation> "WHOLE_PLAN_AVERAGE" .
+<urn:au-ree:ontology:v1:concept/period/Whole-plan%20average> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/period/Whole-plan%20average> <http://www.w3.org/2004/02/skos/core#exactMatch> <urn:au-ree:ontology:v1:concept/period/WHOLE_PLAN_AVERAGE> .
+<urn:au-ree:ontology:v1:concept/period/Whole-plan%20average> <http://www.w3.org/2004/02/skos/core#prefLabel> "Whole-plan average" .
+<urn:au-ree:ontology:v1:concept/period/Whole-plan%20average> <http://www.w3.org/2004/02/skos/core#scopeNote> "Same declared plan and scenario still required" .
+<urn:au-ree:ontology:v1:concept/quantity_kind/LEACH_EXTRACTION> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/quantity_kind/LEACH_EXTRACTION> <http://www.w3.org/2004/02/skos/core#notation> "LEACH_EXTRACTION" .
+<urn:au-ree:ontology:v1:concept/quantity_kind/Leach%20extraction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/quantity_kind/Leach%20extraction> <http://www.w3.org/2004/02/skos/core#exactMatch> <urn:au-ree:ontology:v1:concept/quantity_kind/LEACH_EXTRACTION> .
+<urn:au-ree:ontology:v1:concept/quantity_kind/Leach%20extraction> <http://www.w3.org/2004/02/skos/core#prefLabel> "Leach extraction" .
+<urn:au-ree:ontology:v1:concept/quantity_kind/Leach%20extraction> <http://www.w3.org/2004/02/skos/core#scopeNote> "Process stage remains required for technical comparisons" .
+<urn:au-ree:ontology:v1:concept/quantity_kind/OVERALL_PROCESS_RECOVERY> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/quantity_kind/OVERALL_PROCESS_RECOVERY> <http://www.w3.org/2004/02/skos/core#notation> "OVERALL_PROCESS_RECOVERY" .
+<urn:au-ree:ontology:v1:concept/quantity_kind/Overall%20process%20recovery> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/quantity_kind/Overall%20process%20recovery> <http://www.w3.org/2004/02/skos/core#exactMatch> <urn:au-ree:ontology:v1:concept/quantity_kind/OVERALL_PROCESS_RECOVERY> .
+<urn:au-ree:ontology:v1:concept/quantity_kind/Overall%20process%20recovery> <http://www.w3.org/2004/02/skos/core#prefLabel> "Overall process recovery" .
+<urn:au-ree:ontology:v1:concept/quantity_kind/Overall%20process%20recovery> <http://www.w3.org/2004/02/skos/core#scopeNote> "Overall recovery is distinct from a single leach or beneficiation step" .
+<urn:au-ree:ontology:v1:concept/quantity_kind/recovery> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/quantity_kind/recovery> <http://www.w3.org/2004/02/skos/core#closeMatch> <urn:au-ree:ontology:v1:concept/quantity_kind/OVERALL_PROCESS_RECOVERY> .
+<urn:au-ree:ontology:v1:concept/quantity_kind/recovery> <http://www.w3.org/2004/02/skos/core#prefLabel> "recovery" .
+<urn:au-ree:ontology:v1:concept/quantity_kind/recovery> <http://www.w3.org/2004/02/skos/core#scopeNote> "Unqualified recovery needs a process definition" .
+<urn:au-ree:ontology:v1:concept/resource_kind/%E7%A4%A6%E7%94%A2%E8%B3%87%E6%BA%90%E9%87%8F> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/resource_kind/%E7%A4%A6%E7%94%A2%E8%B3%87%E6%BA%90%E9%87%8F> <http://www.w3.org/2004/02/skos/core#exactMatch> <urn:au-ree:ontology:v1:concept/resource_kind/MINERAL_RESOURCE> .
+<urn:au-ree:ontology:v1:concept/resource_kind/%E7%A4%A6%E7%94%A2%E8%B3%87%E6%BA%90%E9%87%8F> <http://www.w3.org/2004/02/skos/core#prefLabel> "礦產資源量" .
+<urn:au-ree:ontology:v1:concept/resource_kind/%E7%A4%A6%E7%94%A2%E8%B3%87%E6%BA%90%E9%87%8F> <http://www.w3.org/2004/02/skos/core#scopeNote> "Project vocabulary translation; no conversion to Ore Reserve" .
+<urn:au-ree:ontology:v1:concept/resource_kind/MINERAL_RESOURCE> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/resource_kind/MINERAL_RESOURCE> <http://www.w3.org/2004/02/skos/core#notation> "MINERAL_RESOURCE" .
+<urn:au-ree:ontology:v1:concept/resource_kind/Mineral%20Resource> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/resource_kind/Mineral%20Resource> <http://www.w3.org/2004/02/skos/core#exactMatch> <urn:au-ree:ontology:v1:concept/resource_kind/MINERAL_RESOURCE> .
+<urn:au-ree:ontology:v1:concept/resource_kind/Mineral%20Resource> <http://www.w3.org/2004/02/skos/core#prefLabel> "Mineral Resource" .
+<urn:au-ree:ontology:v1:concept/resource_kind/Mineral%20Resource> <http://www.w3.org/2004/02/skos/core#scopeNote> "Reporting category label only; report code/version and estimate scope remain separate" .
+<urn:au-ree:ontology:v1:concept/resource_kind/ORE_RESERVE> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/resource_kind/ORE_RESERVE> <http://www.w3.org/2004/02/skos/core#notation> "ORE_RESERVE" .
+<urn:au-ree:ontology:v1:concept/resource_kind/Ore%20Reserve> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/resource_kind/Ore%20Reserve> <http://www.w3.org/2004/02/skos/core#exactMatch> <urn:au-ree:ontology:v1:concept/resource_kind/ORE_RESERVE> .
+<urn:au-ree:ontology:v1:concept/resource_kind/Ore%20Reserve> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ore Reserve" .
+<urn:au-ree:ontology:v1:concept/resource_kind/Ore%20Reserve> <http://www.w3.org/2004/02/skos/core#scopeNote> "JORC reporting category label only" .
+<urn:au-ree:ontology:v1:concept/unit/%25> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/unit/%25> <http://www.w3.org/2004/02/skos/core#notation> "%" .
+<urn:au-ree:ontology:v1:concept/unit/percent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<urn:au-ree:ontology:v1:concept/unit/percent> <http://www.w3.org/2004/02/skos/core#exactMatch> <urn:au-ree:ontology:v1:concept/unit/%25> .
+<urn:au-ree:ontology:v1:concept/unit/percent> <http://www.w3.org/2004/02/skos/core#prefLabel> "percent" .
+<urn:au-ree:ontology:v1:concept/unit/percent> <http://www.w3.org/2004/02/skos/core#scopeNote> "Lexical unit alias; denominator and quantity kind are not inferred" .

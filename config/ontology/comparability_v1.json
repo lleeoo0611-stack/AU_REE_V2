@@ -1,0 +1,27 @@
+{
+  "version": "ree-comparability-ontology-v1",
+  "scope": "Experimental declared-use semantic contracts; not a replacement evidence database or automatic proof of scientific comparability",
+  "namespace": "urn:au-ree:ontology:v1:",
+  "standards": {
+    "SKOS": "https://www.w3.org/TR/2009/REC-skos-reference-20090818/",
+    "SHACL": "https://www.w3.org/TR/2017/REC-shacl-20170720/",
+    "PROV-O": "https://www.w3.org/TR/2013/REC-prov-o-20130430/",
+    "CRIRSCO": "https://crirsco.com/product/crirsco-international-reporting-template-2024/",
+    "EarthResourceML": "https://earthresourceml.org/",
+    "QUDT": "https://www.qudt.org/doc/DOC_SCHEMA-QUDT.html",
+    "SOSA": "https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/"
+  },
+  "mappings": [
+    {"dimension": "resource_kind", "label": "Mineral Resource", "concept": "MINERAL_RESOURCE", "relation": "exactMatch", "basis": "Reporting category label only; report code/version and estimate scope remain separate"},
+    {"dimension": "resource_kind", "label": "礦產資源量", "concept": "MINERAL_RESOURCE", "relation": "exactMatch", "basis": "Project vocabulary translation; no conversion to Ore Reserve"},
+    {"dimension": "resource_kind", "label": "Ore Reserve", "concept": "ORE_RESERVE", "relation": "exactMatch", "basis": "JORC reporting category label only"},
+    {"dimension": "material", "label": "Run-of-mine ore", "concept": "BULK_ORE", "relation": "exactMatch", "basis": "Declared material identity; no assumed oxide mass balance"},
+    {"dimension": "chemical_basis", "label": "Nd2O3 + Pr6O11", "concept": "ND2O3_PLUS_PR6O11", "relation": "exactMatch", "basis": "Explicit chemical formulas; Unicode subscripts are lexical normalization only"},
+    {"dimension": "chemical_basis", "label": "NdPr", "concept": "ND2O3_PLUS_PR6O11", "relation": "closeMatch", "basis": "Combined label alone does not establish elemental versus oxide reporting"},
+    {"dimension": "quantity_kind", "label": "Leach extraction", "concept": "LEACH_EXTRACTION", "relation": "exactMatch", "basis": "Process stage remains required for technical comparisons"},
+    {"dimension": "quantity_kind", "label": "Overall process recovery", "concept": "OVERALL_PROCESS_RECOVERY", "relation": "exactMatch", "basis": "Overall recovery is distinct from a single leach or beneficiation step"},
+    {"dimension": "quantity_kind", "label": "recovery", "concept": "OVERALL_PROCESS_RECOVERY", "relation": "closeMatch", "basis": "Unqualified recovery needs a process definition"},
+    {"dimension": "period", "label": "Whole-plan average", "concept": "WHOLE_PLAN_AVERAGE", "relation": "exactMatch", "basis": "Same declared plan and scenario still required"},
+    {"dimension": "unit", "label": "percent", "concept": "%", "relation": "exactMatch", "basis": "Lexical unit alias; denominator and quantity kind are not inferred"}
+  ]
+}
