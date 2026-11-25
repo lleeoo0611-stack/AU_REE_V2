@@ -221,8 +221,8 @@ def summary_template_fills(row, provenance, book, fields):
                     codebook_approval='UNCHANGED_DRAFT;ONLY_THESE_EXPLICIT_MAPPINGS'))))
     return result
 
-def summary_native_column(doc, binding, label, header_y, unit_y):
-    """Bind one native header, ppm unit and one token to the selected exact row."""
+def summary_native_column(doc, binding, label, header_y, unit_y, *, expected_unit='ppm'):
+    """Read the native grade under a unique header in the selected resource row."""
     import pymupdf
     region_text=summary_region_text; norm=summary_norm
     from .technical_tables import number_token
@@ -240,11 +240,46 @@ def summary_native_column(doc, binding, label, header_y, unit_y):
     token=region_text(page,cell)
     parsed=number_token(token)
     unit=region_text(page,pymupdf.Rect(x0,unit_y[0],x1,unit_y[1]))
-    if norm(unit).strip('()')!='ppm' or parsed is None or not 0<=parsed['value']<=1000000:
-        raise ValueError('SCOPED_EXCEPTION_NATIVE_PPM_CELL_REQUIRED:'+label)
-    return {'value':parsed['value'],'original_token':token,'unit':'ppm','page':binding['page'],
+    if norm(unit).strip('()')!=expected_unit or parsed is None or not 0<=parsed['value']<={'ppm':1000000,'%':100}[expected_unit]:
+        raise ValueError('SCOPED_EXCEPTION_NATIVE_GRADE_CELL_REQUIRED:'+label)
+    return {'value':parsed['value'],'original_token':token,'unit':expected_unit,'page':binding['page'],
             'bbox':list(cell),'header_bbox':list(h[:4]),'header':label,'row_bbox':list(row),
             'section_id':binding['section_id'],'rounding_half_width':float(Decimal(5)*Decimal(10)**(Decimal(token.replace(',','')).as_tuple().exponent-1))}
+
+def linked_ndpr_oxide_grade(bundle, review, sources, contract):
+    """A cited assay column can define the species, never the resource grade."""
+    import pymupdf
+
+    if not contract or not review or bundle.get('partial_resource_projection'):
+        return None
+    if any(bundle[key] != contract[key] for key in ('source_sha256','statement_id','scope','effective_date')):
+        return None
+    binding = review.get('ore_binding', {})
+    if binding.get('scope') != bundle['scope'] or binding.get('row_label') != contract['row_label']:
+        return None
+    if {o['category'] for o in bundle['observations']} != {contract['category']}:
+        return None
+    evidence = contract['documents']
+    if set(evidence) != {'estimate','campaign_link','assay_definition'} or evidence['estimate']['sha256'] != bundle['source_sha256']:
+        return None
+    for role, proof in evidence.items():
+        source = sources.get(proof['sha256'])
+        if not source or source.get('kind') != 'pdf' or source.get('publication_date') != proof['publication_date']:
+            return None
+        with pymupdf.open(source['resolved_path']) as document:
+            for item in proof['pages']:
+                if not 1 <= item['page'] <= len(document):
+                    return None
+                text = summary_norm(document[item['page']-1].get_text(sort=True))
+                if not all(summary_norm(marker) in text for marker in item['markers']):
+                    return None
+            if role == 'estimate':
+                native = summary_native_column(document, binding, 'NdPr', contract['header_y'], contract['unit_y'], expected_unit='%')
+    grade = summary_decimal_token(native['original_token'])
+    if grade > Decimal(str(bundle['value']['grade_pct'])):
+        return None
+    return dict(contained_kt=Decimal(str(bundle['value']['ore_mt'])) * grade * 10, cell=native, documents=evidence)
+
 
 def summary_hm_percent(raw, target):
     value = summary_decimal_token(raw['original_token'])
@@ -490,6 +525,15 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
                 o=reported[0]
                 put('NdPr蘊藏量_kt_需兩者皆公布',o['value'],o['source_sha'],o['locator'],
                     'SOURCE_REPORTED_MATCHED_NDPR_OXIDE_GROUP_KT',scope,ids+[o['obs_id']])
+            elif not reported:
+                contract = rules.get('linked_ndpr_oxide_grades', {}).get(row['專案ID'])
+                linked = linked_ndpr_oxide_grade(bundle, review, sources, contract)
+                if linked:
+                    proofs = linked['documents']
+                    source_hashes = ';'.join(proofs[role]['sha256'] for role in ('estimate','campaign_link','assay_definition'))
+                    detail = canonical(dict(native_cell=linked['cell'], documents=proofs))
+                    put('NdPr蘊藏量_kt_需兩者皆公布', linked['contained_kt'], source_hashes, detail,
+                        'ORE_MT_X_LINKED_RESOURCE_NDPR_OXIDE_PERCENT_X_10',scope,ids)
     magnet=summary_complete_sum(elements,rules['magnet'])
     if magnet is not None:
         put('四項磁性元素皆公布','是',composition_sha,composition_locator,'SUM_COMPLETE_MATCHED_OXIDE_SET',scope,composition_ids)

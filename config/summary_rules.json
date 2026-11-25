@@ -5348,6 +5348,128 @@
           ]
         }
       }
+    },
+    "reviewed_sarig_points": {
+      "source_file": "SA GSSA Report Book 2024/00028 p17; iTech 2022-07-29 p2; Phase 22 SARIG MinDep frozen 2026-11-03",
+      "source_key": "sa_gssa_rare_earth_elements_rb2024_00028",
+      "value": {
+        "AU-0832169526bb5ec07626": {
+          "census_project_name": "Franklyn Kaolin–REE Project — Nackara Arc",
+          "developer": "iTech Minerals Ltd",
+          "source_sha256": "cb23be1e28cbd8c2500e275363e46cfa217008de390f716582da6368e65343f1",
+          "feature_id": "10098",
+          "site_no": "1982184",
+          "feature_name": "FRANKLYN",
+          "feature_class": "Prospect",
+          "native_commodity": "Kaolin",
+          "government_proof": {
+            "source_key": "sa_gssa_rare_earth_elements_rb2024_00028",
+            "sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601",
+            "page": 17,
+            "markers": [
+              "Exploration at the Franklyn prospect (MinDep no. 10098)",
+              "halloysite-kaolinite mineralisation with numerous assays reporting >1,000 ppm TREO",
+              "(iTECH Minerals Ltd 2024; iTECH Minerals 2022a, b)"
+            ]
+          },
+          "issuer_proof": {
+            "source_key": "itech_franklyn_ree_assays_20220729",
+            "sha256": "c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9",
+            "page": 2,
+            "markers": [
+              "The Franklyn Prospect is within EL 6160",
+              "subsidiary of iTech Minerals Ltd",
+              "The Franklyn Kaolin-Halloysite Prospect fits this exploration model",
+              "Bendigo Granite which is enriched in REEs"
+            ]
+          }
+        }
+      }
+    },
+    "linked_ndpr_oxide_grades": {
+      "source_file": "config/summary_rules.json",
+      "source_key": "ASX_MRE_CITED_ASSAY_OXIDE_DEFINITION",
+      "value": {
+        "AU-7c198d219aa1db3e291f": {
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "statement_id": "r5_lyons_12_13_resource",
+          "scope": "Lyons 12&13 Inferred dry resource at0.2pctTREOcutoff only;excludes conflictingLyons11 andwholeLyonsTotal;0.69Mt0.33pct2266tTREO",
+          "effective_date": "2023-10-25",
+          "category": "INFERRED",
+          "row_label": "Lyons 12&13",
+          "header_y": [
+            150,
+            160
+          ],
+          "unit_y": [
+            164,
+            175
+          ],
+          "documents": {
+            "estimate": {
+              "sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+              "publication_date": "2023-10-25",
+              "pages": [
+                {
+                  "page": 3,
+                  "markers": [
+                    "all samples were submitted to ALS Laboratories in Perth for determination of Rare Earth Oxides",
+                    "ALS Method ME-XRF30",
+                    "Four parameters, TREO, NdPr, Nb2O5 and P, were estimated using parent cell estimation"
+                  ]
+                },
+                {
+                  "page": 12,
+                  "markers": [
+                    "No adjustments to any assay data have been",
+                    "undertaken."
+                  ]
+                }
+              ]
+            },
+            "campaign_link": {
+              "sha256": "9c9df3bfd3cca3c86946638121c09cd07117d1bea12737ecfc06dbf8b7c14334",
+              "publication_date": "2024-03-15",
+              "pages": [
+                {
+                  "page": 8,
+                  "markers": [
+                    "Table 3: Inferred Mineral Resources at Lyons above 0.2% TREO (25 October 2023)",
+                    "0.69 0.33 0.15 0.23 2,266",
+                    "12&13",
+                    "Tonnages are dry metric tonnes",
+                    "drilling informed the model. Of these 66 holes",
+                    "drilled at Lyons 12-13",
+                    "dated 14 December 2022)",
+                    "ASX 31 August 2023"
+                  ]
+                }
+              ]
+            },
+            "assay_definition": {
+              "sha256": "5ec06f3844f9d51d5515b47d06f15212ef6f4c2577556482a665e9916facbeb7",
+              "publication_date": "2022-12-14",
+              "pages": [
+                {
+                  "page": 2,
+                  "markers": [
+                    "Significant intersections (Table 1) at the Lyons 12 and 13 prospects",
+                    "LYRC018",
+                    "NdPr:TREO"
+                  ]
+                },
+                {
+                  "page": 9,
+                  "markers": [
+                    "TREO (%) Nd2O3+Pr6O11 NdPr:TREO",
+                    "LYRC018"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
     }
   }
 }

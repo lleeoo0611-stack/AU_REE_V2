@@ -281,6 +281,73 @@ def _resource_point_scope(case, row, government, sources, cutoff, lon, lat):
                 easting_m=round(x), northing_m=round(y))
 
 
+def _sarig_prospect_point(case, row, sources, cutoff):
+    """Resolve a reviewed project to one MinDep site in the frozen SARIG edition."""
+    import csv
+    import pymupdf
+    from .census_policy import summary_norm
+    from .selection_rules import date_end
+
+    native = sources.get(case['source_sha256'])
+    if (not cutoff or case['census_project_name'] != row['專案名稱']
+            or case['developer'] != row['開發商'] or not native
+            or native['key'] != 'sa_mindep_live' or native['kind'] != 'government_csv'
+            or native.get('namespace') != 'SA_MINDEP_SITE' or native.get('state') != 'SA'
+            or not native.get('available_date') or date_end(native['available_date']) > cutoff):
+        return None
+    proofs = [case['government_proof'], case['issuer_proof']]
+    feature_id = case['feature_id']
+    if (proofs[0]['sha256'] == proofs[1]['sha256']
+            or not any(f'MinDep no. {feature_id})'.casefold() in marker.casefold()
+                       for marker in proofs[0]['markers'])):
+        return None
+    for proof in proofs:
+        original = sources.get(proof['sha256'])
+        page = proof['page']
+        if (not original or original['key'] != proof['source_key'] or original['kind'] != 'pdf'
+                or not original.get('publication_date') or date_end(original['publication_date']) > cutoff
+                or type(page) is not int or page < 1 or not proof['markers']):
+            return None
+        with pymupdf.open(original['resolved_path']) as document:
+            if page > len(document):
+                return None
+            text = summary_norm(document[page-1].get_text())
+        if any(not marker.strip() or summary_norm(marker) not in text for marker in proof['markers']):
+            return None
+
+    with Path(native['resolved_path']).open(encoding=native['encoding'],
+            errors=native.get('encoding_errors', 'strict'), newline='') as stream:
+        matches = [record for record in csv.DictReader(stream) if record['MINERAL_DEPOSIT_NO'] == feature_id]
+    if len(matches) != 1:
+        return None
+    site = matches[0]
+    expected = {'DEPOSIT_NAME': case['feature_name'], 'SITE_NO': case['site_no'],
+                'DEPOSIT_CLASS': case['feature_class'], 'COMMODITIES': case['native_commodity']}
+    if any(site.get(column) != value for column, value in expected.items()):
+        return None
+    try:
+        lon, lat = float(site['LONGITUDE_GDA2020']), float(site['LATITUDE_GDA2020'])
+        accuracy = float(site['HORIZ_ACCRCY_M'])
+        easting, northing = float(site['EASTING_GDA2020']), float(site['NORTHING_GDA2020'])
+        zone = int(site['ZONE_GDA2020'])
+    except (ValueError, KeyError, TypeError):
+        return None
+    if (not all(math.isfinite(n) for n in (lon, lat, easting, northing, accuracy))
+            or not (110 <= lon <= 155 and -45 <= lat <= -9 and 0 < accuracy and 52 <= zone <= 54)):
+        return None
+    projected = Transformer.from_crs(7844, 7800+zone, always_xy=True,
+                                     allow_ballpark=False).transform(lon, lat, errcheck=True)
+    if math.dist(projected, (easting, northing)) > accuracy:
+        return None
+    scope = dict(dataset='SA_SARIG', feature_id=feature_id, site_no=case['site_no'],
+                 official_name=case['feature_name'], native_class=case['feature_class'],
+                 native_commodity=case['native_commodity'], datum='EPSG:7844',
+                 horizontal_accuracy_m=accuracy, available_date=native['available_date'],
+                 references=[dict(source_sha256=p['sha256'], physical_page=p['page']) for p in proofs],
+                 meaning='NAMED_PROSPECT_REPRESENTATIVE_POINT_NOT_BOUNDARY')
+    return lon, lat, scope
+
+
 def summary_locations(row, all_rows, registry, sources, rules, decisions, *, read_json=None, cutoff=None,
                       extent_rejections=None):
     """Native pairs and exact tenement unions; no coordinate values in declarations."""
@@ -305,6 +372,20 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions, *, rea
             raise ValueError('SUMMARY_COORDINATE_RANGE')
         for column,value in [('緯度',lat),('經度',lon)]:
             fills.append(dict(column=column,value=value,sha=sha,locator=locator,method=method,scope=canonical(scope)))
+    point_case = rules.get('reviewed_sarig_points', {}).get(pid)
+    layer = approved.get('SA_SARIG', {}).get('scope', {}).get('layer')
+    if (point_case and state == 'SA' and layer == 'mines_and_mineral_deposits:all_mines_and_mineral_deposits'
+            and summary_decision(decisions, 'NORMALIZED_NAME_MATCH')):
+        reviewed = _sarig_prospect_point(point_case, row, sources, cutoff)
+        if reviewed:
+            lon, lat, scope = reviewed
+            proofs = [point_case['government_proof'], point_case['issuer_proof']]
+            locator = '; '.join(['SARIG MinDep '+point_case['feature_id']+' site '+point_case['site_no']]
+                                + [p['source_key']+' p'+str(p['page']) for p in proofs])
+            shas = ';'.join([point_case['source_sha256']] + [p['sha256'] for p in proofs])
+            digits = '.'+str(rules['point_display_digits'])+'g'
+            add(format(lon, digits), format(lat, digits), shas, 'REVIEWED_OFFICIAL_PROJECT_FEATURE', locator, scope)
+            return fills
     for registered in registry:
         frozen_tenure = rules.get('frozen_tenement_scopes', {}).get(registered.get('key'), {})
         sha=frozen_tenure.get('source_sha256') or registered.get('source_sha256');source=sources.get(sha)
