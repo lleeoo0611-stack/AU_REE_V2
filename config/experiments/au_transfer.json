@@ -1,0 +1,60 @@
+{
+  "schema_version": "experiment-config-v1",
+  "task": "event_prediction",
+  "dataset": "data/experiments/project_time_cases.json",
+  "target": {"name": "FID", "horizon_days": 1095},
+  "evaluation_as_of": "2026-11-13",
+  "seed": 20261126,
+  "feature_sets": {
+    "stage_only": ["D1"],
+    "shared_development": ["D1", "I4", "C1", "permit_granted"],
+    "six_criteria": ["R1", "S1", "T1", "D1", "I4", "C1"],
+    "nlp_enriched": ["R1", "S1", "T1", "D1", "I4", "C1", "permit_granted"]
+  },
+  "cohort_feature_sets": {
+    "GLOBAL_REE_PLUS_OTHER": ["stage_only", "shared_development"]
+  },
+  "models": ["prior", "logistic", "fixed_mcda", "outcome_mcda"],
+  "additional_utility_criteria": {
+    "permit_granted": {
+      "code": "permit_granted", "direction": "MAX", "function": "linear",
+      "low": 0, "high": 1, "unit": "binary",
+      "interpretation": "Experimental verified permit-status hypothesis; not a formal MCDA criterion"
+    }
+  },
+  "auxiliary_commodities": ["LITHIUM", "COPPER"],
+  "mcda_baseline": {
+    "research_config": "config/research.json",
+    "scenario": "development_assumption"
+  },
+  "splits": [
+    {
+      "id": "new_au_projects_2023",
+      "mode": "new_project",
+      "train_cutoff": "2022-12-31",
+      "test_start": "2023-01-01",
+      "test_end": "2023-11-13",
+      "target_country": "AUS",
+      "target_commodity": "REE",
+      "holdout_fraction": 0.25
+    },
+    {
+      "id": "future_au_projects_2023",
+      "mode": "future_project",
+      "train_cutoff": "2022-12-31",
+      "test_start": "2023-01-01",
+      "test_end": "2023-11-13",
+      "target_country": "AUS",
+      "target_commodity": "REE"
+    },
+    {
+      "id": "leave_australia_out_2023",
+      "mode": "leave_country",
+      "train_cutoff": "2022-12-31",
+      "test_start": "2023-01-01",
+      "test_end": "2023-11-13",
+      "target_country": "AUS",
+      "target_commodity": "REE"
+    }
+  ]
+}

@@ -94,6 +94,12 @@ def source_mode(args):
 
 def execute(args):
     root=Path(args.root).resolve()
+    if args.module=='experiment':
+        from .experiments import run_experiment
+        if not getattr(args,'experiment_config',None):
+            raise ValueError('experiment requires --experiment-config')
+        return run_experiment(root,args.experiment_config,getattr(args,'out',None),
+                              dry_run=getattr(args,'dry_run',False))
     if args.module=='export-summary':
         from .census import export_summary
         if not args.database or not args.out:raise ValueError('export-summary requires --database and --out')
@@ -654,10 +660,11 @@ def execute(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate','export-summary'])
+    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate','export-summary','experiment'])
     parser.add_argument('--root',default='.')
     parser.add_argument('--work')
     parser.add_argument('--database');parser.add_argument('--out')
+    parser.add_argument('--experiment-config',help='Versioned research experiment definition; independent of formal source modes')
     parser.add_argument('--as-of',default=datetime.now(timezone.utc).date().isoformat())
     parser.add_argument('--project',help='Stable native project registry ID')
     parser.add_argument('--refresh',action='store_true')
@@ -690,6 +697,8 @@ def main():
         else:
             result=execute(args)
         print(json.dumps(result,ensure_ascii=False,indent=2))
+        if args.module=='experiment' and result.get('status')=='BLOCKED' and not args.dry_run:
+            sys.exit(2)
     except Exception as exc:
         print(str(exc),file=sys.stderr)
         sys.exit(1)

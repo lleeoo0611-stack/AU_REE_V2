@@ -1,0 +1,51 @@
+{
+  "schema_version": "experiment-config-v1",
+  "task": "event_prediction",
+  "dataset": "tests/fixtures/experiment_synthetic.json",
+  "target": {
+    "name": "FID",
+    "horizon_days": 365
+  },
+  "evaluation_as_of": "2023-12-31",
+  "seed": 31,
+  "feature_sets": {
+    "six_criteria": [
+      "R1",
+      "S1",
+      "T1",
+      "D1",
+      "I4",
+      "C1"
+    ]
+  },
+  "models": [
+    "prior",
+    "logistic",
+    "fixed_mcda",
+    "outcome_mcda"
+  ],
+  "auxiliary_commodities": [
+    "LITHIUM"
+  ],
+  "mcda_baseline": {
+    "research_config": "config/research.json",
+    "scenario": "development_assumption"
+  },
+  "splits": [
+    {
+      "id": "new_project",
+      "mode": "new_project",
+      "train_cutoff": "2021-12-31",
+      "test_start": "2022-01-01",
+      "test_end": "2022-12-31",
+      "target_country": "AUS",
+      "target_commodity": "REE",
+      "test_project_ids": [
+        "AU-0",
+        "AU-H0",
+        "AU-H1"
+      ]
+    }
+  ],
+  "description": "Fictional Projects and evidence for execution checks only; never a research result"
+}
