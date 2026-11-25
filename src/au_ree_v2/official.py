@@ -9,7 +9,12 @@ import json
 import math
 import re
 from datetime import datetime
+from io import BytesIO
 from pathlib import Path
+
+from openpyxl import load_workbook
+
+from .commodity import ELEMENTS, REE, STATES, classify_ree
 from .store import canonical, digest, entity, filehash, issue
 
 CROSSWALK = {"mt-weld": "mt-weld", "browns-range": "browns-range"}
@@ -19,7 +24,6 @@ COLUMNS = ("row", "project", "status", "owner", "ore_mt", "grade_pct",
            "contained_treo_kt", "resource_date")
 
 COMMODITY_VERSION = 'minedex-commodity-v2'
-from .census import ELEMENTS
 LANTHANIDES = [name for name in ELEMENTS if name!='yttrium']
 
 
@@ -87,7 +91,7 @@ def ingest_minedex_resources(db, root, source, version=COMMODITY_VERSION):
 
 
 def minedex_resource_report(db,root,snapshots,out,version=COMMODITY_VERSION):
-    from .analysis import write_csv
+    from .tabular import write_csv
     reports=[];inventory=[]
     for source in snapshots:
         if source['kind']!='minedex_resource_batch':continue
@@ -374,3 +378,45 @@ def national_prospectus_inventory(db, selected_shas):
                      "status":"DESCRIPTIVE_ONLY_NO_NUMERIC_C1_SCORING",
                      "source_url":d["source_url"]})
     return sorted(rows,key=lambda x:x["project_name"])
+
+
+def ingest_workbook(db, root, source, candidate_version=None):
+    path=Path(root)/source['path']
+    try:
+        workbook=path if path.suffix.lower() in ('.xlsx','.xlsm','.xltx','.xltm') else BytesIO(path.read_bytes())
+        wb=load_workbook(workbook,read_only=True,data_only=True)
+    except Exception as exc:
+        issue(db,None,source['sha256'],'CENSUS_WORKBOOK_UNREADABLE',str(exc))
+        return 0
+    count=0
+    try:
+        for ws in wb.worksheets:
+            headers=None
+            for index, row in enumerate(ws.iter_rows(values_only=True),start=1):
+                values=[str(v).strip() if v is not None else '' for v in row]
+                if sum(bool(v) for v in values)<2:
+                    continue
+                if any(re.fullmatch(r'commodit(?:y|ies)|mineral(?:s)?',v,re.I) for v in values):
+                    headers=values;continue
+                fields={((headers[i] if headers and i<len(headers) and headers[i] else f'column_{i+1}')):v for i,v in enumerate(values)}
+                structured=[k for k in fields if re.fullmatch(r'commodit(?:y|ies)|mineral(?:s)?',k,re.I)]
+                decision=classify_ree(fields,structured,candidate_version) if candidate_version else None
+                if not (decision['include'] if decision else any(REE.search(v) for v in values)):
+                    continue
+                native=f"{source['sha256']}:{ws.title}:{index}"
+                eid=entity(db,'DISR_REMP_ROW',native,'SOURCE_RECORD')
+                state=next((v.upper() for v in values if v.upper() in STATES),None)
+                payload={'source_key':source['key'],'sheet':ws.title,'row_number':index,
+                         'cells':values,'match_rule':candidate_version or 'REE_TERMS_V1',
+                         **({'candidate_classification':decision,'original_fields':fields} if decision else {}),
+                         'classification':'UNRESOLVED_PROJECT_CANDIDATE_SOURCE_RECORD'}
+                db.execute('INSERT OR IGNORE INTO records VALUES(?,?,?,?,?,?,?,?,?)',
+                           (eid,source['sha256'],f"{ws.title}!{index}",state,None,None,None,None,
+                            canonical(payload)))
+                count+=1
+    finally:
+        wb.close()
+    if count==0:
+        issue(db,None,source['sha256'],'NO_REE_WORKBOOK_ROWS',
+              'No multi-cell rows match versioned REE terms; inspect workbook layout')
+    return count

@@ -6,6 +6,7 @@ strictly inside that radius. No legal road, rail or power access is inferred.
 """
 import json
 import statistics
+from functools import lru_cache
 from pathlib import Path
 from pyproj import Transformer
 from .store import filehash
@@ -84,72 +85,85 @@ def covered_project(inventory, project_id, lon, lat):
 import math
 import re
 from pyproj import CRS, Geod
-from shapely.geometry import shape
-from shapely.ops import transform, unary_union
+from .tenement_geometry import summary_identifier_key, summary_tenement_centroid
 
 
-def summary_identifier_key(value):
-    """Type and numeric identifier only, preserving WA district; no name match."""
-    value=re.sub(r'\s+','',str(value)).upper()
-    match=re.fullmatch(r'([A-Z]+)(\d+)(?:/(\d+))?',value)
-    if not match:return value
-    return (match[1],int(match[2]),int(match[3]) if match[3] else None)
+def _arcgis_tenement_features(data, binding):
+    """Read the selected polygons from a complete, dated native ArcGIS inventory."""
+    from shapely import build_area
+    from shapely.geometry import LinearRing, MultiLineString, mapping
 
-def summary_tenement_centroid(features, source_crs, limit_m=25000, id_field=None):
-    """Union ALL exact-matched tenements; measure ALL vertices after fallback."""
-    crs=CRS.from_user_input(source_crs)
-    to_ll=Transformer.from_crs(crs,7844,always_xy=True,allow_ballpark=False)
-    geometries=[transform(to_ll.transform,shape(f['geometry'])) for f in features]
-    if not geometries or any(g.is_empty or not g.is_valid or g.geom_type not in ('Polygon','MultiPolygon') for g in geometries):
-        return dict(accepted=False,reason='INVALID_OR_MISSING_POLYGON')
-    union=unary_union(geometries)
-    minx,miny,maxx,maxy=union.bounds
-    if not (110<=minx<=maxx<=155 and -45<=miny<=maxy<=-9):
-        return dict(accepted=False,reason='OUTSIDE_AUSTRALIA_OR_CRS_ERROR')
-    # Local equal-area projection avoids measuring longitude/latitude degrees.
-    metric=CRS.from_proj4(f'+proj=laea +lat_0={(miny+maxy)/2} +lon_0={(minx+maxx)/2} +ellps=GRS80 +units=m +no_defs')
-    forward=Transformer.from_crs(7844,metric,always_xy=True)
-    backward=Transformer.from_crs(metric,7844,always_xy=True)
-    native=[transform(forward.transform,g) for g in geometries]
-    titles={}
-    for index,(feature,geometry) in enumerate(zip(features,native)):
-        key=summary_identifier_key(feature['properties'][id_field]) if id_field else index
-        titles.setdefault(key,[]).append(geometry)
-    title_geometries=[unary_union(parts) for parts in titles.values()]
-    combined=unary_union(title_geometries);point=combined.centroid;method='TENEMENT_CENTROID'
-    if not combined.covers(point):
-        point=max(title_geometries,key=lambda g:g.area).centroid;method='LARGEST_TENEMENT_CENTROID'
-        if not combined.covers(point):return dict(accepted=False,reason='LARGEST_TENEMENT_CENTROID_OUTSIDE_UNION')
-    lon,lat=backward.transform(point.x,point.y)
-    geod=Geod(ellps='GRS80')
-    polygons=list(union.geoms) if union.geom_type=='MultiPolygon' else [union]
-    vertices=[xy for p in polygons for ring in [p.exterior,*p.interiors] for xy in ring.coords]
-    precision=max(geod.inv(lon,lat,x,y)[2] for x,y in vertices)
-    if not math.isfinite(precision):raise ValueError('NONFINITE_PRECISION')
-    return dict(accepted=precision<=limit_m,reason='ACCEPTED' if precision<=limit_m else 'TENEMENT_UNION_EXCEEDS_25KM',longitude=lon,latitude=lat,precision_m=precision,location_method=method,input_crs=crs.to_string(),input_datum=crs.datum.name,output_crs='EPSG:7844',metric_crs=metric.to_string())
+    inventory = data.get('inventory', {})
+    features = data.get('features', [])
+    crs = data.get('spatialReference', {}).get('wkid')
+    if (inventory.get('complete') is not True or inventory.get('count') != len(features)
+            or inventory.get('scope') != 'global' or data.get('exceededTransferLimit')
+            or CRS.from_user_input(binding['source_crs']).to_epsg() != crs):
+        return []
+    wanted = {summary_identifier_key(identifier) for identifier in binding['tenement_ids']}
+    by_title = {summary_identifier_key(title): required
+                for title, required in binding.get('attributes_by_title', {}).items()}
+    if by_title and set(by_title) != wanted:
+        return []
+    seen = set()
+    selected = []
+    for feature in features:
+        attributes = feature.get('attributes', {})
+        title = summary_identifier_key(attributes.get(binding['id_field'], ''))
+        if title not in wanted:
+            continue
+        required = {**binding['required_attributes'], **by_title.get(title, {})}
+        if title in seen or any(attributes.get(key) != value for key, value in required.items()):
+            return []
+        seen.add(title)
+        rings = (feature.get('geometry') or {}).get('rings', [])
+        if not rings or any(len(r) < 4 or r[0] != r[-1] or not LinearRing(r).is_valid for r in rings):
+            return []
+        lines = MultiLineString(rings)
+        polygon = build_area(lines)
+        if (polygon.geom_type not in ('Polygon', 'MultiPolygon') or not polygon.is_valid
+                or not polygon.boundary.equals(lines)):
+            return []
+        selected.append(dict(properties=attributes, geometry=mapping(polygon)))
+    return selected if seen == wanted else []
 
-def summary_read_shapefile_zip(raw,member):
-    """Read every native DBF/SHP/SHX record, preserving polygon rings and IDs."""
+
+def summary_read_shapefile_zip(raw,member, *, select_ids=None, id_field=None):
+    """Read aligned native DBF/SHP/SHX records and preserve polygon rings and IDs."""
     import io,struct,zipfile
     from shapely.geometry import Polygon,MultiPolygon,mapping
-    with zipfile.ZipFile(io.BytesIO(raw)) as z:
-        dbf=z.read(member+'.dbf');shp=z.read(member+'.shp');shx=z.read(member+'.shx')
+    archive = io.BytesIO(raw) if isinstance(raw,bytes) else raw
+    with zipfile.ZipFile(archive) as z, z.open(member+'.dbf') as dbf, z.open(member+'.shp') as shp:
+        dbf_header=dbf.read(32)
+        n,header,width=struct.unpack_from('<IHH',dbf_header,4)
+        schema=dbf_header+dbf.read(header-32)
+        fields=[(schema[i:i+11].split(b'\x00')[0].decode('ascii'),schema[i+16]) for i in range(32,header-1,32)]
+        if sum(w for _,w in fields)+1!=width or z.getinfo(member+'.dbf').file_size<header+n*width:raise ValueError('NT_DBF_LENGTH')
+        shx=z.read(member+'.shx'); shp_header=shp.read(100); shp_size=z.getinfo(member+'.shp').file_size
         crs=CRS.from_wkt(z.read(member+'.prj').decode('ascii'))
         encoding=z.read(member+'.cpg').decode('ascii').strip() if member+'.cpg' in z.namelist() else 'ascii'
-        n,header,width=struct.unpack_from('<IHH',dbf,4)
-        fields=[(dbf[i:i+11].split(b'\x00')[0].decode('ascii'),dbf[i+16]) for i in range(32,header-1,32)]
-        if sum(w for _,w in fields)+1!=width or len(dbf)<header+n*width:raise ValueError('NT_DBF_LENGTH')
-        if struct.unpack_from('>i',shp,24)[0]*2!=len(shp) or struct.unpack_from('>i',shx,24)[0]*2!=len(shx) or (len(shx)-100)//8!=n:raise ValueError('NT_SHP_SHX_COMPLETENESS')
+        if struct.unpack_from('>i',shp_header,24)[0]*2!=shp_size or struct.unpack_from('>i',shx,24)[0]*2!=len(shx) or (len(shx)-100)//8!=n:raise ValueError('NT_SHP_SHX_COMPLETENESS')
+        pos=1
+        slices={}
+        for name,size in fields:
+            slices[name]=slice(pos,pos+size)
+            pos+=size
+        if select_ids is not None and id_field not in slices:raise ValueError('MISSING_TENEMENT_ID_FIELD')
         features=[]
         for i in range(n):
-            row=dbf[header+i*width:header+(i+1)*width]
-            if row[0]!=32:raise ValueError('NT_DELETED_DBF_RECORD')
-            props={};pos=1
-            for name,size in fields:props[name]=row[pos:pos+size].decode(encoding).strip();pos+=size
+            row=dbf.read(width)
+            if len(row)!=width or row[0]!=32:raise ValueError('NT_DELETED_DBF_RECORD')
+            if select_ids is not None:
+                title=row[slices[id_field]].decode('ascii').strip()
+                if summary_identifier_key(title) not in select_ids:continue
+            props={name:row[sl].decode(encoding).strip() for name,sl in slices.items()
+                   if select_ids is None or not name.startswith('ADDR')}
             offset,length=struct.unpack_from('>ii',shx,100+i*8);offset*=2;length*=2
-            recno,reclen=struct.unpack_from('>ii',shp,offset)
+            if offset<100 or offset+8+length>shp_size:raise ValueError('NT_SHP_RECORD_ALIGNMENT')
+            shp.seek(offset)
+            recno,reclen=struct.unpack('>ii',shp.read(8))
             if recno!=i+1 or reclen*2!=length:raise ValueError('NT_SHP_RECORD_ALIGNMENT')
-            b=shp[offset+8:offset+8+length]
+            b=shp.read(length)
             if struct.unpack_from('<i',b)[0] not in (5,15,25):raise ValueError('NT_POLYGON_SHAPE_REQUIRED')
             parts,count=struct.unpack_from('<ii',b,36)
             starts=list(struct.unpack_from('<'+'i'*parts,b,44))+[count]
@@ -171,6 +185,40 @@ def summary_read_shapefile_zip(raw,member):
             if not geom.is_valid:raise ValueError('NT_INVALID_MULTIPOLYGON')
             features.append(dict(type='Feature',id=member+'.'+str(i+1),properties=props,geometry=mapping(geom)))
         return features,crs
+
+@lru_cache(maxsize=4)
+def _wa_archive_features(path, source_sha256, member, expected_crs, title_ids):
+    """Read the selected statewide records once per exact archive and policy selection."""
+    if filehash(Path(path)) != source_sha256:
+        raise ValueError('WA_ARCHIVE_SHA256')
+    wanted = {summary_identifier_key(title) for title in title_ids}
+    features, crs = summary_read_shapefile_zip(Path(path), member, select_ids=wanted, id_field='FMT_TENID')
+    if not crs.equals(CRS.from_user_input(expected_crs), ignore_axis_order=True):
+        raise ValueError('WA_ARCHIVE_NATIVE_CRS')
+    by_title = {}
+    for feature in features:
+        title = summary_identifier_key(feature['properties']['FMT_TENID'])
+        by_title.setdefault(title, []).append(feature)
+    return by_title
+
+
+def _wa_bound_features(by_title, binding):
+    """Require exactly one native record per expected title and its reviewed attributes."""
+    wanted = {summary_identifier_key(t) for t in binding['tenement_ids']}
+    checks = {summary_identifier_key(t): expected for t,expected in binding['attributes_by_title'].items()}
+    if not wanted or set(checks) != wanted:
+        return []
+    result = []
+    for title, expected in checks.items():
+        candidates = by_title.get(title, [])
+        if len(candidates) != 1 or not expected:
+            return []
+        feature = candidates[0]
+        if any(feature['properties'].get(k) != v for k,v in expected.items()):
+            return []
+        result.append(feature)
+    return result
+
 
 def summary_assess_controls(controls):
     keys=[(c.get('nt_id',c.get('name')),c.get('ga_id',c.get('name'))) for c in controls]
@@ -202,8 +250,8 @@ def summary_location_name(value):
 def _resource_point_scope(case, row, government, sources, cutoff, lon, lat):
     """Replay the issuer figure used to review a native representative point."""
     import pymupdf
-    from .census import summary_norm
-    from .selection import date_end
+    from .census_policy import summary_norm
+    from .selection_rules import date_end
 
     proof = case.get('issuer_scope_reference') or {}
     original = sources.get(proof.get('source_sha256'))
@@ -236,7 +284,8 @@ def _resource_point_scope(case, row, government, sources, cutoff, lon, lat):
 def summary_locations(row, all_rows, registry, sources, rules, decisions, *, read_json=None, cutoff=None,
                       extent_rejections=None):
     """Native pairs and exact tenement unions; no coordinate values in declarations."""
-    from .census import summary_decision,summary_norm,summary_region_text
+    from .census_policy import summary_decision,summary_norm,summary_region_text
+    from .selection_rules import date_end
     from .store import canonical
     import io,csv,zipfile
     if read_json is None:
@@ -257,7 +306,10 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions, *, rea
         for column,value in [('緯度',lat),('經度',lon)]:
             fills.append(dict(column=column,value=value,sha=sha,locator=locator,method=method,scope=canonical(scope)))
     for registered in registry:
-        sha=registered.get('source_sha256');source=sources.get(sha)
+        frozen_tenure = rules.get('frozen_tenement_scopes', {}).get(registered.get('key'), {})
+        sha=frozen_tenure.get('source_sha256') or registered.get('source_sha256');source=sources.get(sha)
+        if frozen_tenure and source and source['key'] != registered['key']:
+            continue
         if source is None and registered.get('hash_policy') == 'JSON_DROP_TOP_LEVEL_KEYS_V1':
             matches = [
                 candidate for candidate in sources.values()
@@ -270,6 +322,19 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions, *, rea
                 source = matches[0]
                 sha = source['sha256']
         if not source:continue
+        for notice in registered.get('statutory_title_maps', []):
+            if notice['project_id'] != pid or state != 'NT' or not summary_decision(decisions,'TENEMENT_CENTROID_RESEARCHER_APPROVED'):
+                continue
+            from .statutory_tenure import statutory_extent
+            reviewed = statutory_extent(source, sources, notice, row, cutoff, rules['tenement_precision_m'])
+            if reviewed and reviewed['accepted']:
+                add(reviewed['longitude'], reviewed['latitude'], sha, 'ROUND4_TENEMENT_CENTROID_RESEARCHER_APPROVED',
+                    'Mining Notice '+reviewed['notice_id']+' p1; EL'+notice['licence'], reviewed)
+                return fills
+            if reviewed and extent_rejections is not None:
+                extent_rejections.append(dict(kind='TENEMENT_CENTROID_REVIEW', source_key=source['key'],
+                    source_sha256=sha, limit_m=rules['tenement_precision_m'],
+                    **{k:reviewed[k] for k in ('reason','precision_m','tenement_ids','notice_id','block_count') if k in reviewed}))
         bindings=[b for b in registered.get('summary_bindings',[]) if b['project_id']==pid]
         if bindings:
             data=read_json(source['resolved_path'])
@@ -303,35 +368,81 @@ def summary_locations(row, all_rows, registry, sources, rules, decisions, *, rea
                 add(round(lon,rules['ga_display_digits']),round(lat,rules['ga_display_digits']),sha,b['rule'],
                     'native feature objectid='+str(b['feature_id']),scope)
             if fills:return fills
-        if registered.get('summary_tenements'):
-            for b in registered['summary_tenements']:
+        tenements = [*registered.get('summary_tenements', []), *frozen_tenure.get('bindings', [])]
+        if tenements:
+            for b in tenements:
                 if b['project_id']!=pid or not b['complete_project_scope'] or not summary_decision(decisions,'TENEMENT_CENTROID_RESEARCHER_APPROVED'):continue
                 import pymupdf
                 valid=True
                 for proof in b['original_references']:
                     original=sources.get(proof['source_sha256'])
                     if not original:valid=False;break
+                    if frozen_tenure and (not cutoff or original.get('kind') != 'pdf'
+                            or not original.get('publication_date') or date_end(original['publication_date']) > cutoff):
+                        valid=False;break
                     if original['kind']=='pdf':
-                        with pymupdf.open(original['resolved_path']) as doc:text=doc[proof['page']-1].get_text()
+                        with pymupdf.open(original['resolved_path']) as doc:
+                            if not 1 <= proof['page'] <= len(doc):valid=False;break
+                            text=doc[proof['page']-1].get_text()
                     else:text=Path(original['resolved_path']).read_text(encoding='utf8')
                     if summary_norm(proof['quote']) not in summary_norm(text):valid=False;break
                 if not valid:continue
-                raw=Path(source['resolved_path']).read_bytes()
-                if b.get('zip_member'):features,crs=summary_read_shapefile_zip(raw,b['zip_member'])
+                archive_member = frozen_tenure.get('zip_member')
+                if frozen_tenure:
+                    if not cutoff or not source.get('available_date') or source['available_date'] > cutoff:
+                        continue
+                    if archive_member:
+                        if (source['kind'] != 'wa_dasc_tenements_zip' or state != 'WA'
+                                or b.get('id_field') != 'FMT_TENID' or b['source_crs'] != frozen_tenure['source_crs']):
+                            continue
+                        all_ids = tuple(sorted({title for scope in tenements for title in scope['tenement_ids']}))
+                        by_title = _wa_archive_features(source['resolved_path'], sha, archive_member,
+                                                        b['source_crs'], all_ids)
+                        features = _wa_bound_features(by_title, b)
+                    else:
+                        features = _arcgis_tenement_features(read_json(source['resolved_path']), b)
+                elif b.get('zip_member'):features,crs=summary_read_shapefile_zip(Path(source['resolved_path']),b['zip_member'])
                 else:
-                    data=json.loads(raw);features=data.get('features',[])
+                    data=json.loads(Path(source['resolved_path']).read_bytes());features=data.get('features',[])
                     if str(data.get('numberMatched'))!=str(len(features)):continue
                 wanted={summary_identifier_key(i) for i in b['tenement_ids']};field=b.get('id_field') or 'tno'
                 chosen=[f for f in features if summary_identifier_key(f['properties'].get(field,'')) in wanted]
                 if {summary_identifier_key(f['properties'][field]) for f in chosen}!=wanted:continue
                 result=summary_tenement_centroid(chosen,b['source_crs'],rules['tenement_precision_m'],field)
                 if result['accepted']:
+                    scope = dict(result, tenement_ids=b['tenement_ids'],
+                                 holders=[f['properties'].get(b.get('holder_field','own_name')) for f in chosen],
+                                 meaning='TENEMENT_REPRESENTATIVE_POINT_NOT_RESOURCE_BOUNDARY')
+                    if frozen_tenure:
+                        scope.update(dataset=registered['key'], scope_references=b['original_references'],
+                                     scope_review=b['scope_review'], government_available_date=source['available_date'])
+                        if archive_member:
+                            scope['archive_member'] = archive_member
+                            scope['source_crs'] = b['source_crs']
+                            scope['title_features'] = [{
+                                'tenement_id': f['properties'][field], 'record': f['id'],
+                                'attributes': dict(b['attributes_by_title'][f['properties'][field]])}
+                                for f in chosen]
+                        elif b.get('attributes_by_title'):
+                            scope['title_features'] = {
+                                f['properties'][field]: {
+                                    'permitid': f['properties']['permitid'],
+                                    'permitstatus': f['properties']['permitstatus']}
+                                for f in chosen}
+                        else:
+                            scope['feature_id'] = b['required_attributes']['permitid']
                     add(result['longitude'],result['latitude'],sha,'ROUND4_TENEMENT_CENTROID_RESEARCHER_APPROVED',
-                        '; '.join(b['tenement_ids']),dict(result,tenement_ids=b['tenement_ids'],holders=[f['properties'].get('own_name') for f in chosen],meaning='TENEMENT_REPRESENTATIVE_POINT_NOT_RESOURCE_BOUNDARY'))
-                elif extent_rejections is not None and result['reason'] == 'TENEMENT_UNION_EXCEEDS_25KM':
-                    extent_rejections.append(dict(kind='TENEMENT_CENTROID_REVIEW', reason=result['reason'],
-                        source_key=registered['key'], source_sha256=sha, tenement_ids=b['tenement_ids'],
-                        precision_m=result['precision_m'], limit_m=rules['tenement_precision_m']))
+                        '; '.join(b['tenement_ids']),scope)
+                elif extent_rejections is not None and result['reason'] in {
+                        'TENEMENT_UNION_EXCEEDS_25KM', 'LARGEST_TENEMENT_CENTROID_OUTSIDE_UNION'}:
+                    failure = dict(kind='TENEMENT_CENTROID_REVIEW', reason=result['reason'],
+                        source_key=registered['key'], source_sha256=sha, tenement_ids=b['tenement_ids'])
+                    if 'precision_m' in result:
+                        failure.update(precision_m=result['precision_m'], limit_m=rules['tenement_precision_m'])
+                    if archive_member:
+                        failure.update(archive_member=archive_member, scope_references=b['original_references'],
+                                       scope_review=b['scope_review'])
+                    extent_rejections.append(failure)
             if fills:return fills
         dataset=next((key for key,cfg in rules['government_datasets'].items() if source['url'].startswith(cfg['url'])),None)
         if not dataset or dataset not in approved:continue

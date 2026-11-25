@@ -461,7 +461,6 @@ def recognize_document(root, source, registry, tessdata=None, parser_version=Non
         if not bound and native:
             bound=[dict(project_id=p['entity_id'],method='SOURCE_REGISTRY_EXPLICIT_PROJECT_LINK') for p in registry if p['native_id']==native]
     if source['kind']=='html':
-        from .evidence import html_text
         texts=[html_text(root,source)];doc=None
     else:
         doc=pymupdf.open(path);texts=[p.get_text(sort=True) for p in doc]
@@ -879,22 +878,34 @@ def summary_review_hit(hit,row,entry,rules):
     sentence=hit.get('sentence',hit.get('text','')); heading=hit.get('paragraph_heading','')
     if len(heading.split())>10 or re.search(r'\b(?:is|was|has|have|will|completed|plans)\b',heading,re.I): heading=''
     text=sentence+' '+heading
-    matched=[a for a in records if re.search(r'(?<!\w)'+re.escape(a['alias'])+r'(?!\w)',text,re.I)]
-    owners=summary_alias_index(alias_data)
-    # Any ambiguous alias match remains UNCLEAR, including alongside unique matches.
-    unique=[a for a in matched if len(owners[summary_alias_normalize(a['alias'])])==1]
-    if matched and len(unique)!=len(matched):
-        result['point2']='UNCLEAR';result['reason2']='AMBIGUOUS_ALIAS'
-    elif unique:
-        result['point2']='PASS';result['reason2']='UNIQUE_PROJECT_ALIAS_IN_SENTENCE_OR_HEADING'
-        matched=unique
+    def occurs(alias):
+        return bool(re.search(r'(?<!\w)'+re.escape(alias)+r'(?!\w)', text, re.I))
+
+    def applicable(record):
+        return record.get('source') != 'SOURCE_PAGE_PROJECT_ALIAS' or (
+            record.get('source_sha256') == entry['sha256'] and
+            record.get('physical_page') == hit.get('physical_page'))
+
+    matched = [a for a in records if applicable(a) and occurs(a['alias'])]
+    owners = summary_alias_index(alias_data)
+    other_match = any(
+        p['project_id'] != row['專案ID'] and any(applicable(a) and occurs(a['alias']) for a in p['aliases'])
+        for p in alias_data['projects'])
+    if result['point1'] == 'FAIL':
+        result['point2'], result['reason2'] = 'FAIL', 'SOURCE_EXCLUDED_BY_POLICY'
+    elif matched and (other_match or any(len(owners[summary_alias_normalize(a['alias'])]) != 1 for a in matched)):
+        result['point2'], result['reason2'] = 'UNCLEAR', 'AMBIGUOUS_ALIAS'
     elif matched:
-        result['point2']='UNCLEAR';result['reason2']='AMBIGUOUS_ALIAS'
-    elif hit.get('point2')=='UNCLEAR':
-        result['point2']='UNCLEAR';result['reason2']=hit.get('reason2','PROJECT_ATTRIBUTION_UNCLEAR')
+        result['point2'], result['reason2'] = 'PASS', 'UNIQUE_PROJECT_ALIAS_IN_SENTENCE_OR_HEADING'
+    elif hit.get('point2') == 'UNCLEAR' or result['point2'] == 'UNCLEAR':
+        result['point2'], result['reason2'] = 'UNCLEAR', 'PARAGRAPH_ATTRIBUTION_UNVERIFIED'
+    elif other_match:
+        result['point2'], result['reason2'] = 'FAIL', 'OTHER_NAMED_PROJECT'
+    elif result['point3'] == 'PASS':
+        result['point2'], result['reason2'] = 'UNCLEAR', 'POSITIVE_MILESTONE_ATTRIBUTION_UNVERIFIED'
     else:
-        result['point2']='UNCLEAR' if hit.get('ocr') and not heading else 'FAIL'
-        result['reason2']='OCR_NO_PROJECT_ATTRIBUTION' if result['point2']=='UNCLEAR' else 'NO_PROJECT_ALIAS_IN_SENTENCE_OR_HEADING'
+        result['point2'] = 'UNCLEAR' if hit.get('ocr') and not heading else 'FAIL'
+        result['reason2'] = 'OCR_NO_PROJECT_ATTRIBUTION' if result['point2']=='UNCLEAR' else 'NO_PROJECT_ALIAS_IN_SENTENCE_OR_HEADING'
     result['alias_matched']=[a['alias'] for a in matched]
     result['alias_source']=[a for a in matched]
     if hit.get('ocr_confidence') is not None and float(hit['ocr_confidence'])<rules['ocr_settings']['hit_line_confidence']:
@@ -960,7 +971,6 @@ def summary_scan_stage(source, rules):
                 while pending:
                     resolve_ocr(*pending.popleft())
         else:
-            from .evidence import html_text
             pages=[(None,html_text(path.parent,dict(source,path=str(path))))]
     except (OSError,ValueError,IndexError,subprocess.TimeoutExpired) as exc:
         problems.append(dict(source_sha256=sha,reason='SOURCE_SCAN_FAILED',detail=str(exc)))
@@ -976,3 +986,21 @@ def summary_scan_stage(source, rules):
                     pattern=r'\b'+re.escape(keyword)+(r'\b' if keyword.upper() in ('PFS','DFS','BFS','FID') else '')
                     if re.search(pattern,sentence,re.I):hits.append(dict(source_sha256=sha,physical_page=number,keyword=keyword,sentence=sentence,paragraph_heading=heading,paragraph_text=flat))
     return hits,problems
+
+
+def html_text(root, source):
+    """Decode an advertised static article payload without executing JavaScript."""
+    from html.parser import HTMLParser
+    text = (Path(root)/source['path']).read_text(encoding='utf-8')
+    if source.get('text_contract') == 'LSE_ARTICLE_BODY_JS_STRING_V1':
+        payload = re.findall(r'var articleBody="((?:\\.|[^"\\])*)";', text)
+        if len(payload) != 1:
+            raise ValueError('ARTICLE_BODY_MISSING_OR_AMBIGUOUS')
+        encoded = re.sub(r'\\x([0-9a-fA-F]{2})', r'\\u00\1', payload[0])
+        text = json.loads('"'+encoded+'"')
+        text = re.sub(r'<(script|style)\b[^>]*>.*?</\1\s*>', '', text, flags=re.I|re.S)
+    class Text(HTMLParser):
+        def __init__(self):super().__init__();self.parts=[]
+        def handle_data(self,value):self.parts.append(value)
+    parser=Text();parser.feed(text)
+    return re.sub(r'\s+', ' ', ' '.join(parser.parts))

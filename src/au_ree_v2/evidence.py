@@ -4,9 +4,9 @@ import math
 import re
 from pathlib import Path
 from .store import canonical, digest, entity, issue, filehash
-from .census import ingest_workbook
-from .official import ingest_official_table, ingest_prospectus
+from .official import ingest_official_table, ingest_prospectus, ingest_workbook
 from .national import ingest_legacy_e1
+from .pdf_extract import html_text
 from .screen_index import ingest as ingest_screen_index
 
 # Individual oxides keep their own vocabulary; grouped totals are not aliases.
@@ -97,7 +97,7 @@ def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
                         a.update(page_extraction_key=artifact['key'],page_extraction_sha256=artifact['sha256'],marker_normalization='WHITESPACE_ONLY_V1')
                         for context in a.get('context_evidence',[]):
                             capture_context(source,context)
-                    validate_project_attribute(root,source,a,snapshots)
+                    validate_project_attribute(root,source,a,snapshots,verified)
                 except Exception as exc:reason=str(exc)
             if reason:issue(db,eid,a['source_sha256'],reason,canonical(a))
             else:attributes.append(a)
@@ -118,7 +118,63 @@ def strict_claims(db, root, snapshots, claims, outcomes, cache, tessdata=None):
     return claims
 
 
-def validate_project_attribute(root, source, attribute, snapshots, cache=None):
+def validate_historical_proprietary_company(root, attribute, snapshots, cache, cutoff):
+    """Bind a dated title-holder name to the ASIC register's legal entity and type."""
+    import csv
+    import datetime
+    import io
+    import zipfile
+
+    proof = attribute['asic_proprietary_company']
+    company = proof['company']
+    if (attribute['column'] != '未上市公司' or attribute['value'] != '是'
+            or not company.upper().endswith(' PTY LTD') or company not in attribute['page_markers']
+            or proof['dated_marker'] not in attribute['page_markers']
+            or proof['project_marker'] not in attribute['page_markers']
+            or not re.fullmatch(r'\d{9}', proof['acn']) or not re.fullmatch(r'\d{11}', proof['abn'])):
+        raise ValueError('HISTORICAL_COMPANY_ROLE_OR_DATE_NOT_BOUND')
+    date_text = re.sub(r'(?<=\d)(st|nd|rd|th)\b', '', proof['dated_marker'])
+    if datetime.datetime.strptime(date_text, '%d %B %Y').date().isoformat() != attribute['effective_date']:
+        raise ValueError('HISTORICAL_COMPANY_DATE_MISMATCH')
+    register = next((s for s in snapshots if s['key'] == proof['source_key']), None)
+    if (not register or register['kind'] != 'asic_company_register_zip'
+            or register['sha256'] != proof['source_sha256']
+            or register['available_date'] != proof['register_date']
+            or not attribute['effective_date'] <= proof['register_date'] <= cutoff):
+        raise ValueError('HISTORICAL_COMPANY_REGISTER_VERSION_NOT_VERIFIED')
+
+    cache = cache if cache is not None else {}
+    key = ('asic_company', register['sha256'], proof['archive_member'], proof['acn'])
+    if key not in cache:
+        path = Path(root) / register['path']
+        if filehash(path) != register['sha256']:
+            raise ValueError('SOURCE_SHA_CHANGED')
+        rows = []
+        with zipfile.ZipFile(path) as archive, archive.open(proof['archive_member']) as source:
+            with io.TextIOWrapper(source, encoding='utf-8-sig', newline='') as text:
+                records = csv.reader(text, delimiter='\t')
+                header = next(records)
+                acn_col = header.index('ACN')
+                current_col = header.index('Current Name Indicator')
+                for record in records:
+                    if record[acn_col] == proof['acn'] and record[current_col] == 'Y':
+                        rows.append((records.line_num, dict(zip(header, record))))
+        cache[key] = rows
+    rows = cache[key]
+    if len(rows) != 1 or rows[0][0] != proof['physical_line']:
+        raise ValueError('ASIC_CURRENT_REGISTRATION_ROW_NOT_UNIQUE')
+    record = rows[0][1]
+    expected = {'Company Name': company.upper(), 'ABN': proof['abn'], 'Type': 'APTY',
+                'Class': 'LMSH', 'Sub Class': 'PROP', 'Status': 'REGD'}
+    registered = datetime.datetime.strptime(record['Date of Registration'], '%d/%m/%Y').date().isoformat()
+    # Corporations Act s148(5) grandfathers some pre-July-1998 public names.
+    # The ABR Australian Private Company definition expressly excludes stock-exchange listing.
+    if (any(record[k] != v for k, v in expected.items())
+            or not '1998-07-01' <= registered <= attribute['effective_date']):
+        raise ValueError('ASIC_PROPRIETARY_COMPANY_OR_PERIOD_MISMATCH')
+
+
+def validate_project_attribute(root, source, attribute, snapshots, cache=None, cutoff='9999-12-31'):
     """The same immutable page checks as observations; layer features stay native."""
     a=attribute
     allowed={'開發商','未上市公司','ASX代碼','專案名稱','礦床型態','開發階段','產品/產出'}
@@ -148,18 +204,20 @@ def validate_project_attribute(root, source, attribute, snapshots, cache=None):
         if source['kind']!='pdf' or not isinstance(a.get('pdf_page'),int) or len(a.get('page_markers',[]))<2:
             raise ValueError('ATTRIBUTE_PAGE_AND_TWO_MARKERS_REQUIRED')
         validate_pages(root,source,a,snapshots,cache)
+        if 'asic_proprietary_company' in a:
+            validate_historical_proprietary_company(root, a, snapshots, cache, cutoff)
 
 
 def ingest_project_attributes(db, root, snapshots, cutoff, project, eid, cache):
     """Text occupies the existing evidence store and never a numeric criterion."""
-    from .selection import date_end
+    from .selection_rules import date_end
     by_key={s['key']:s for s in snapshots}
     for a in project.get('attributes',[]):
         source=by_key.get(a['source_key']);reasons=[]
         try:
             if not source:raise ValueError('SOURCE_NOT_ACQUIRED')
             if date_end(a['effective_date'])>cutoff:raise ValueError('SOURCE_AFTER_CUTOFF')
-            validate_project_attribute(root,source,a,snapshots,cache)
+            validate_project_attribute(root,source,a,snapshots,cache,cutoff)
         except (ValueError,KeyError,IndexError,OSError,TypeError) as exc:
             reasons.append(str(exc) or type(exc).__name__)
         obsid=digest([eid,a['source_sha256'],a])
@@ -169,24 +227,6 @@ def ingest_project_attributes(db, root, snapshots, cutoff, project, eid, cache):
                  a.get('review_id') or a.get('attribute_id') or obsid,'NOT_APPLICABLE',a['effective_date'],source['sha256'],
                  a['locator'],'REVIEW' if reasons else 'AUTO_VALIDATED',canonical(reasons),canonical(a),'normalization-v1'))
         for reason in reasons:issue(db,eid,a['source_sha256'],reason,canonical(a))
-
-
-def html_text(root, source):
-    """Decode an advertised static article payload without executing JavaScript."""
-    from html.parser import HTMLParser
-    text = (Path(root)/source['path']).read_text(encoding='utf-8')
-    if source.get('text_contract') == 'LSE_ARTICLE_BODY_JS_STRING_V1':
-        payload = re.findall(r'var articleBody="((?:\\.|[^"\\])*)";', text)
-        if len(payload) != 1:
-            raise ValueError('ARTICLE_BODY_MISSING_OR_AMBIGUOUS')
-        encoded = re.sub(r'\\x([0-9a-fA-F]{2})', r'\\u00\1', payload[0])
-        text = json.loads('"'+encoded+'"')
-        text = re.sub(r'<(script|style)\b[^>]*>.*?</\1\s*>', '', text, flags=re.I|re.S)
-    class Text(HTMLParser):
-        def __init__(self):super().__init__();self.parts=[]
-        def handle_data(self,value):self.parts.append(value)
-    parser=Text();parser.feed(text)
-    return re.sub(r'\s+', ' ', ' '.join(parser.parts))
 
 
 def validate_element_table_cell(root, source, evidence, cache):
@@ -225,7 +265,7 @@ def validate_pages(root, source, evidence, snapshots, cache=None):
     Existing selective extraction artifacts remain SHA-bound; no OCR is run
     implicitly while interpreting a financial or engineering observation.
     """
-    from .selection import source_check
+    from .selection_rules import source_check
     from pypdf import PdfReader
     root = Path(root)
     cache = cache if cache is not None else {}
@@ -369,7 +409,7 @@ def register_candidate(db,root,snapshots,cutoff,registration,claims):
     name similarity, distance, owner or a tenement hit as Project proof. Caller
     persists the returned claims/relation with the existing version mechanism.
     """
-    from .selection import source_check
+    from .selection_rules import source_check
     root=Path(root);r=registration;by_key={s['key']:s for s in snapshots}
     candidate=db.execute('''SELECT e.*,r.* FROM entities e JOIN records r USING(entity_id)
         WHERE e.entity_id=? AND r.source_sha=?''',(r['candidate_id'],r['candidate_source_sha256'])).fetchone()
@@ -415,7 +455,7 @@ def register_candidate(db,root,snapshots,cutoff,registration,claims):
 
 def ingest_events(db, root, snapshots, cutoff, claims_data=None):
     """Typed disclosures in the existing observation store; numeric value NULL."""
-    from .selection import date_end
+    from .selection_rules import date_end
     sources = {s['key']: s for s in snapshots}
     cache = {}
     events = (claims_data if claims_data is not None else json.loads((Path(root)/'data/claims.json').read_text(encoding='utf-8'))).get('events', [])
@@ -454,7 +494,7 @@ def ingest_recognized(db, root, snapshots, cutoff, policy, acquired_through=None
     resource scope/effective date is established. Text disclosures have NULL
     numerical values and cannot accidentally satisfy an MCDA criterion.
     """
-    from .selection import source_check, date_end
+    from .selection_rules import source_check, date_end
     from .store import filehash
     root=Path(root);sources={s['sha256']:s for s in snapshots};outcomes=[]
     aliases={}
@@ -552,7 +592,7 @@ def ingest_recognized(db, root, snapshots, cutoff, policy, acquired_through=None
 
 def document_report(root, snapshots, outcomes, out, shared_comparability=False):
     """Measured acquisition/extraction inventory; never count tables as Projects."""
-    from .analysis import write_csv
+    from .tabular import write_csv
     from collections import Counter
     root=Path(root);out=Path(out);documents=[];candidates=[];process=[]
     for artifact in snapshots:
@@ -995,7 +1035,7 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
         if not valid:
             continue
         if strict:
-            from .selection import choose
+            from .selection_rules import choose
             candidates=[dict(v,evidence_id=digest(v),source_sha256=v['source_sha'],effective_date=v['date'],
                              value={k:v[k] for k in ('ore_mt','grade_pct','contained_treo_kt')}) for v in valid]
             chosen,reason=choose(candidates,('scope','basis'))

@@ -7,15 +7,10 @@ No derived candidate is written back over an original observation.
 import json
 import math
 from collections import defaultdict
-from datetime import date
-from .store import canonical, digest, filehash
+from .store import canonical, digest
+from .commodity import classify_ree
+from .selection_rules import choose, date_end, evidence_domain, observation_visible, source_check
 from .technical import technical_record, technical_compare, technical_comparability
-
-
-def observation_visible(raw, selected_shas, validation_version=None):
-    """Extraction versions must be in the lock, as well as their original PDF."""
-    return (not raw.get('extraction_artifact_sha256') or raw['extraction_artifact_sha256'] in selected_shas) and (
-        not validation_version or not raw.get('parser_version') or raw.get('validation_version')==validation_version)
 
 
 def current_evidence_view(db,snapshots,cutoff,active_claim_ids,validation_version=None,candidate_version=None,claims_data=None):
@@ -38,7 +33,6 @@ def current_evidence_view(db,snapshots,cutoff,active_claim_ids,validation_versio
         if source and candidate_version:
             if raw.get('source_kind')=='LIVE_GOVERNMENT_PROJECT_PARENT':pending_parents.append(r);continue
             attrs=raw.get('original_attributes',{})
-            from .census import classify_ree
             structured=[k for k in source['commodity_fields'] if not any(t in k.lower() for t in ('description','summary','ore_min','gangue','min_ass'))]
             if not classify_ree({k:attrs.get(k) for k in source['commodity_fields']},structured,candidate_version)['include']:continue
         records.add((r['entity_id'],r['source_sha']))
@@ -72,71 +66,6 @@ def current_evidence_view(db,snapshots,cutoff,active_claim_ids,validation_versio
         eid='AU-'+digest([p.get('entity_namespace','project_registry_v1'),str(p['id'])])[:20]
         aliases[eid]=[p['name']]+p.get('aliases',[])
     return dict(observation_ids=observations,historical_scope_ids=historical_scopes,record_ids=records,record_values=record_values,project_aliases=aliases,invalid_native_ids=invalid_native_ids)
-
-
-def evidence_domain(variable, raw):
-    """Shared raw-domain taxonomy; a domain assignment never grants a score."""
-    if raw.get('domain'):
-        return raw['domain']
-    v=variable
-    if v in ('ore_mt','grade','contained_treo_kt') or v.startswith(('reported_resource_','reported_reserve_','reported_bulk_','reported_fine_fraction_')):return 'Resource'
-    if v.startswith(('reported_technical_','uranium','thorium')) or 'recovery' in v:return 'Technical'
-    if 'share_pct' in v or v.startswith(('reported_magnet','reported_dy','reported_tb','reported_nd','reported_pr')):return 'Strategic'
-    if v=='study_maturity_ord':return 'Development'
-    if v=='commercial_event' or any(w in v for w in ('equity','financ','offtake','debt','capex','convertible','note_')):return 'Commercial'
-    return None
-
-
-def date_end(value):
-    """Conservative end of disclosed month/year, without inventing an exact day."""
-    import calendar
-    if len(value) == 4:
-        return value + '-12-31'
-    if len(value) == 7:
-        year, month = map(int, value.split('-'))
-        return f'{value}-{calendar.monthrange(year, month)[1]:02d}'
-    date.fromisoformat(value)
-    return value
-
-
-def source_check(source, cutoff, root=None, acquired_through=None):
-    if not source:
-        return 'SOURCE_NOT_SELECTED'
-    try:
-        if any(date_end(source[k]) > (acquired_through or cutoff if k=='available_date' else cutoff) for k in ('publication_date', 'available_date') if source.get(k)):
-            return 'SOURCE_AFTER_CUTOFF'
-        if root is not None and filehash(root / source['path']) != source['sha256']:
-            return 'SOURCE_HASH_MISMATCH'
-    except (ValueError, KeyError, OSError):
-        return 'INVALID_SOURCE_IDENTITY_OR_DATE'
-    return None
-
-
-def choose(options, dimensions=('scope', 'unit', 'basis', 'endpoint', 'scale', 'feed')):
-    """Latest *within* a semantic scope; cross-scope choice requires a rule.
-
-    Identical same-date evidence is corroboration, never an insertion-order tie
-    break. Multiple studies are not corroboration unless their study ID agrees.
-    """
-    options = list({digest(o): o for o in options}.values())
-    if not options:
-        return None, 'NO_COMPATIBLE_EVIDENCE'
-    groups = defaultdict(list)
-    for o in options:
-        groups[tuple(o.get(k) for k in dimensions)].append(o)
-    active = []
-    for group in groups.values():
-        latest = max(date_end(o['effective_date']) for o in group)
-        current = [o for o in group if date_end(o['effective_date']) == latest]
-        if len({canonical(o.get('value')) for o in current}) != 1:
-            return None, 'CONCURRENT_SOURCE_CONFLICT'
-        merged = dict(sorted(current, key=canonical)[0])
-        merged['evidence_ids'] = sorted({i for o in current for i in o.get('evidence_ids', [o['evidence_id']])})
-        merged['sources'] = sorted({o['source_sha256'] for o in current})
-        active.append(merged)
-    if len(active) != 1:
-        return None, 'MULTIPLE_SCOPES_REQUIRE_DEFINITION'
-    return active[0], 'SELECTED'
 
 
 def select_cases(cases, canonical_ids, group):
@@ -352,7 +281,7 @@ def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None,
 
 
 def export(selection, out):
-    from .analysis import write_csv
+    from .tabular import write_csv
     if 'technical_comparability' in selection:
         fields=['project_id','case_id','evidence_id','evidence_ids','source_sha256','source_shas','pdf_page','locator','source_locators',
                 'variable','value','unit','basis','scope','feed','endpoint','scale','process_stage','semantic_class',
@@ -404,7 +333,7 @@ def diagnostics(selection, prepared, snapshots, criteria, root, out):
     not-applicable require explicit checked-scope/stage rules, which this
     release does not invent.
     """
-    from .analysis import write_csv
+    from .tabular import write_csv
     from .pdf_extract import project_registry
     from pathlib import Path
     by_project=defaultdict(list)

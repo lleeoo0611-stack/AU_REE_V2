@@ -54,7 +54,7 @@ jobs:
           use-public-rspm: true
       - name: Install package and XML test reporter
         run: |
-          python -m pip install . unittest-xml-reporting
+          python -m pip install -c requirements-constraints.txt . unittest-xml-reporting
           sudo apt-get update
           sudo apt-get install -y tesseract-ocr-eng
       - name: Verify checkout begins without work data
@@ -130,7 +130,12 @@ jobs:
                       if previous is None or record['successful_sources_after_first_attempt'] > previous['successful_sources_after_first_attempt']:
                           hosts[record['host']] = record
                   annotate_robots(rows)
-                  with report.open('w', encoding='utf-8-sig', newline='') as stream:
+                  annotated = report
+                  if report.is_relative_to(clean / 'runs'):
+                      # Run receipts are already hashed for independent Census export.
+                      annotated = root / 'work/ci-annotations' / report.relative_to(clean)
+                      annotated.parent.mkdir(parents=True, exist_ok=True)
+                  with annotated.open('w', encoding='utf-8-sig', newline='') as stream:
                       writer = csv.DictWriter(stream, fields)
                       writer.writeheader()
                       writer.writerows(rows)
@@ -249,6 +254,7 @@ jobs:
             work/r-tests.log
             work/clean-build.log
             work/clean/**/acquisition_report.csv
+            work/ci-annotations/
             work/clean/asx_probe.csv
             work/clean/dns_preflight.csv
             work/clean/network_status.json
@@ -256,6 +262,7 @@ jobs:
             work/clean/fallback_report.csv
             work/clean/proposed_sources_patch.json
             work/clean/latest.json
+            work/clean/**/summary.json
             work/clean/**/configuration.json
             work/clean/**/snapshot_lock.json
             work/clean/**/project-summary/

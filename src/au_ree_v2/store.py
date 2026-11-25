@@ -3,6 +3,7 @@ import hashlib
 import json
 import sqlite3
 from pathlib import Path
+from .evidence_model import SCHEMA_VERSION, migrate_evidence_model
 
 SCHEMA = '''
 PRAGMA foreign_keys=ON;
@@ -93,6 +94,9 @@ def connect(path):
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     db = sqlite3.connect(path,timeout=30)
     db.row_factory = sqlite3.Row
+    if db.execute('PRAGMA user_version').fetchone()[0] not in (0, SCHEMA_VERSION):
+        db.close()
+        raise ValueError('Unsupported evidence schema version')
     db.execute('PRAGMA journal_mode=WAL')
     db.executescript(SCHEMA)
     # Access paths only: no logical data or historical schema contract changes.
@@ -102,7 +106,12 @@ def connect(path):
         CREATE INDEX IF NOT EXISTS relations_parent_kind ON relations(parent_id,relation);
         CREATE INDEX IF NOT EXISTS observations_source ON observations(source_sha);
     ''')
-    return db
+    try:
+        migrate_evidence_model(db)
+        return db
+    except BaseException:
+        db.close()
+        raise
 
 def entity(db, namespace, native_id, kind):
     # Names, ownership and locations can change without changing identity.

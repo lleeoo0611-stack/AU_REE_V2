@@ -1,4 +1,5 @@
 """Immutable content-addressed acquisition, complete ArcGIS ID retrieval."""
+import hashlib
 import json
 import urllib.parse
 import urllib.request
@@ -6,9 +7,13 @@ import urllib.error
 import time
 import socket
 import re
+import zipfile
 from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urljoin, urlsplit
+from .security import sensitive_reference
+from .source_discovery import official_query, strict_search_plan
 from .store import canonical, digest, filehash, append_snapshots
 from .spatial import project_windows
 
@@ -223,6 +228,9 @@ def refresh(root, registry):
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     outcomes = []
     for source in registry['sources']:
+        if source['kind'] in STATIC_ARCHIVE_KINDS:
+            outcomes.append({'key': source['key'], 'status': 'MANAGED_BY_CENSUS_ACQUISITION'})
+            continue
         try:
             pages=[]
             def archive(raw):
@@ -416,7 +424,7 @@ gov={'services.ga.gov.au','public-services.slip.wa.gov.au','spatial-gis.informat
 delivery={'warsydprdstagsdspub.blob.core.windows.net','gsq-prod-ckan-horizon-public.s3.ap-southeast-2.amazonaws.com'}
 groups={
     'government-api':gov,
-    'government-resource':delivery|{'www.wa.gov.au','international.austrade.gov.au','www.industry.gov.au','dem-sdp.s3-ap-southeast-2.amazonaws.com'},
+    'government-resource':delivery|{'data.gov.au','www.wa.gov.au','international.austrade.gov.au','www.industry.gov.au','dem-sdp.s3-ap-southeast-2.amazonaws.com'},
     'asx':{'announcements.asx.com.au','www.asx.com.au'},
     'issuer-ir':{'investorpa.com','orbitresources.au','www.itechminerals.com.au','asm-au.com','www.arultd.com','www.astronlimited.com.au','victorymetalsaustralia.com','www.devexresources.com.au','www.gippslandcriticalminerals.com','www.iluka.com','wcsecure.weblink.com.au','hermes-cdn.investorhub.com','staff-web.automicgroup.com.au','assets.birdsoftware.io','assets.ctfassets.net'},
     'aggregator':{'api.investi.com.au','company-announcements.afr.com','newswire.iguana2.com','www.marketindex.com.au','cdn-api.markitdigital.com','cdn.financialreports.eu','data-api.marketindex.com.au','investornews.com','www.annualreports.com','www.londonstockexchange.com'},
@@ -430,7 +438,8 @@ class InvalidNetworkRun(ValueError):
 
 def strict_dns_preflight(registry, reports=()):
     """Resolve every configured source/report host before any HTTP request."""
-    hosts={urllib.parse.urlsplit(s['url']).hostname for s in [*registry['sources'],*reports]}
+    hosts={urllib.parse.urlsplit(s['url']).hostname for s in [*registry['sources'],*reports]
+           if s.get('kind') != WA_TITLE_KIND}
     rows=[]
     for host in sorted(h for h in hosts if h):
         try:
@@ -454,10 +463,10 @@ def strict_failure_status(exc):
 
 def strict_network_report(work, outcomes, dns_rows):
     """Persist receipts even when no database or valid research run is created."""
-    from .analysis import write_csv
+    from .tabular import write_csv
     work=Path(work);work.mkdir(parents=True,exist_ok=True)
     failed={r['key'] for r in outcomes if r.get('network_error') or r['status']=='NETWORK_ERROR'}
-    keys={r['key'] for r in outcomes}
+    keys={r['key'] for r in outcomes if r['status'] != 'NEEDS_VERIFIED_STATIC_ARCHIVE'}
     dns_failed=any(r['status']!='DNS_OK' for r in dns_rows)
     invalid=dns_failed or bool(keys and len(failed)/len(keys)>.05)
     report=dict(status='RUN_INVALID_NETWORK' if invalid else 'NETWORK_VALID' if keys else 'DNS_PREFLIGHT_PASSED',
@@ -611,7 +620,7 @@ class SameSHAAlternates:
 
     def find(self, source, receipt, expected, cache):
         import hashlib, re
-        from .discovery import candidates
+        from .source_discovery import candidates
         trigger = receipt['stop_reason'].split(':')[0]
         if receipt['http_status'] == 404:
             trigger = 'HTTP_404'
@@ -707,7 +716,7 @@ class SameSHAAlternates:
         return dict(source,url=report['found_url'],primary_url=source['url'],sha256=sha,path=str(path),available_date=now[:10],acquired_at=now)
 
     def save(self, work):
-        from .analysis import write_csv
+        from .tabular import write_csv
         rows = [dict(r,attempts=canonical(r['attempts'])) for r in self.reports]
         columns = ['key','primary_status','primary_reason','candidate_count','found_url','host_type','sha_match','stop_reason','attempts']
         write_csv(Path(work)/'fallback_report.csv', rows, columns)
@@ -770,11 +779,172 @@ def declared_source_hashes(registry, claims):
     return declared,by_url
 
 
+def official_reports(registry, tasks, fetch, save, originals=()):
+    """Official metadata -> candidate documents, within the existing manifest.
+
+    Report IDs are source identities, never Project IDs. Name/company matches
+    remain candidate relations; no entity mutation or resource admission here.
+    """
+    from .security import public_export
+    reports=[];outcomes=[];seeds=[];documents=[]
+    for source in registry.get('official_reports',[]):
+        key=source['key'];url=source['url'];page_shas=[]
+        def archive(raw):
+            sha=save(raw,dict(key=key+'_response_'+hashlib.sha256(raw).hexdigest()[:16],
+                kind='discovery_receipt',url=url,metadata_only=True),'.json')
+            page_shas.append(sha)
+        try:
+            if source['protocol']=='arcgis':
+                where=official_query(source,tasks)
+                if where is None:
+                    outcomes.append(dict(seed_key=key,url=url,status='NO_APPLICABLE_CANDIDATE_TASK',query_complete=False));continue
+                contract=hashlib.sha256((url+'|'+where).encode()).hexdigest()
+                cursor=registry.get('official_cursors',{}).get(contract,0) if source.get('dynamic_candidates') else None
+                data=arcgis(url,where,archive=archive,fetch=fetch,max_records=source.get('max_records',30),start_after=cursor)
+                if source.get('dynamic_candidates'):data['inventory'].update(query_contract=contract,
+                    termination='SOURCE_EXHAUSTED' if data['inventory']['complete'] else 'RECORD_BUDGET_EXHAUSTED_RESUMABLE')
+                records=[dict(native_id='WAMEX:A'+str(f['attributes']['anumber']),
+                    title=f['attributes'].get('title'),attributes=f['attributes'],geometry=f.get('geometry'),
+                    spatial_reference=data['spatialReference'],
+                    detail_url=f['attributes'].get('dpxe_rep'),report_year=f['attributes'].get('report_year'),
+                    released_date=(datetime.fromtimestamp(f['attributes']['date_released']/1000,timezone.utc).date().isoformat()
+                                   if f['attributes'].get('date_released') else None),
+                    resources=[]) for f in data['features']]
+            elif source['protocol']=='ckan':
+                query=source['query']
+                if source.get('dynamic_candidates'):
+                    aliases=sorted({a for task in tasks if task.get('state')=='QLD' for a in task['aliases'] if len(a)>=4})
+                    if not aliases:
+                        outcomes.append(dict(seed_key=key,url=url,status='NO_APPLICABLE_CANDIDATE_TASK',query_complete=False));continue
+                    query='('+' OR '.join('"'+a.replace('"','').replace('\\','')+'"' for a in aliases)+') AND ('+query+')'
+                contract=hashlib.sha256((url+'|'+query).encode()).hexdigest()
+                start=registry.get('official_cursors',{}).get(contract,0) if source.get('resume') else 0
+                data=ckan(url,query,source.get('rows',10),source.get('max_pages',2),fetch,archive,start_offset=start)
+                if source.get('resume'):data['inventory'].update(query_contract=contract,start_offset=start,
+                    next_start=start+len(data['results']) if not data['inventory']['complete'] else None,
+                    termination='SOURCE_EXHAUSTED' if data['inventory']['complete'] else 'PAGE_BUDGET_EXHAUSTED_RESUMABLE')
+                for item in data['results'][:source.get('max_package_show',2)]:
+                    try:
+                        raw,_=fetch(url.rstrip('/')+'/package_show',{'id':item['id']});archive(raw)
+                        shown=json.loads(raw)
+                        if shown.get('success') is not True or shown['result'].get('id')!=item['id']:
+                            raise ValueError('CKAN_PACKAGE_IDENTITY_MISMATCH')
+                        item.update(shown['result'])
+                    except Exception as exc:
+                        outcomes.append(dict(seed_key=key+'_package_'+item['id'],url=url,status='UNAVAILABLE',metadata_only=True,**failure_details(exc)))
+                records=[dict(native_id='GSQ:'+r['name'],package_id=r['id'],title=r.get('title'),
+                    attributes=r,detail_url=urljoin(url,'/dataset/'+r['name']),
+                    released_date=r.get('open_file_date'),resources=r.get('resources',[])) for r in data['results']]
+            else:raise ValueError('UNSUPPORTED_OFFICIAL_REPORT_PROTOCOL')
+            for record in records:
+                record.update(source_key=key,metadata_sha256=page_shas,identity_status='OFFICIAL_REPORT_NOT_PROJECT',
+                    relation_status='CANDIDATE_ONLY_NO_ENTITY_EQUIVALENCE')
+                text=json.dumps(record.get('attributes',{}),ensure_ascii=False).casefold()
+                record['project_candidates']=[]
+                for task in tasks:
+                    aliases=[a for a in task['aliases'] if len(a)>=5 and a.casefold() in text]
+                    company=task.get('company');company_match=bool(company and company.casefold() in text)
+                    if aliases:record['project_candidates'].append(dict(project_id=task['project_id'],
+                        alias_matches=aliases,company_match=company_match,
+                        decision='CANDIDATE_REQUIRES_INDEPENDENT_SCOPE_AND_IDENTITY_EVIDENCE'))
+                record['document_candidates']=[]
+                for resource in record['resources']:
+                    if str(resource.get('format','')).upper()!='PDF':continue
+                    docurl=(resource.get('url') or resource.get('download_url','')) if source.get('prefer_original_resource_url') else (resource.get('download_url') or resource.get('url',''))
+                    rid=resource.get('id')
+                    status='DISCOVERED_BUDGET_DEFERRED'
+                    # Signed credentials stay out of receipts/manifest/logs.
+                    if sensitive_reference(docurl):status='SIGNED_LINK_NOT_PUBLISHED_OR_FETCHED'
+                    elif urlsplit(docurl).scheme!='https' or urlsplit(docurl).hostname not in source.get('document_hosts',[]):status='UNCONFIGURED_DOCUMENT_HOST'
+                    size=resource.get('resource:size','')
+                    match=re.fullmatch(r'([\d.]+)\s*(KB|MB|GB)',size,re.I)
+                    estimated=float(match[1])*{'KB':1024,'MB':1024**2,'GB':1024**3}[match[2].upper()] if match else None
+                    if estimated is not None and estimated>source.get('max_document_bytes',20000000):status='DOCUMENT_SIZE_BUDGET_DEFERRED'
+                    item=dict(resource_id=rid,title=resource.get('name'),status=status,estimated_bytes=estimated)
+                    if not sensitive_reference(docurl):item['url']=docurl
+                    record['document_candidates'].append(item)
+                    if status!='DISCOVERED_BUDGET_DEFERRED' or len(seeds)>=registry.get('max_official_documents',4):continue
+                    seeds.append(dict(key=key+'_'+hashlib.sha256((record['native_id']+'|'+str(rid)).encode()).hexdigest()[:16],
+                        url=docurl,allowed_hosts=source['document_hosts'],authority='OFFICIAL_PUBLIC_REPORT_DELIVERY',
+                        report_native_id=record['native_id'],resource_native_id=rid,project_id=None,
+                        max_document_bytes=source.get('max_document_bytes',20000000),
+                        source_document_version=hashlib.sha256(json.dumps([resource.get(k) for k in ('id','metadata_modified','last_modified','hash','resource:size')]).encode()).hexdigest(),
+                        publication_date=record.get('released_date'),metadata_sha256=page_shas))
+                    item['status']='QUEUED_DOCUMENT_ACQUISITION'
+                if not record['resources'] and record.get('detail_url'):
+                    # WAMEX permanent details are public HTML. No assumed private
+                    # download API, terms submission or signed-token persistence.
+                    record['document_access']='DETAIL_PAGE_REQUIRES_PUBLIC_LINK_DISCOVERY'
+                reports.append(public_export(record))
+            outcomes.append(dict(seed_key=key,url=url,status='PARSED',sha256=page_shas[-1],
+                metadata_only=True,inventory=data['inventory'],reports=len(records)))
+        except Exception as exc:outcomes.append(dict(seed_key=key,url=url,status='UNAVAILABLE',**failure_details(exc)))
+    # The public WAMEX UI's ReportDocuments_Read transport is a read-only POST.
+    # Signed links are transient: public snapshots retain a declared sanitized
+    # derivative and SHA of the ignored original, never the bearer URL.
+    for report in sorted(reports,key=lambda r:(-int(bool(re.search(r'metallurg|mineralo|mineral process|recover',str(r.get('attributes',{})),re.I))),
+                                              -(r.get('report_year') or 0),r['native_id'])):
+        if report.get('resources') or not report.get('detail_url') or not report.get('project_candidates'):continue
+        if sum(s.get('report_detail') is True for s in outcomes)>=registry.get('max_official_details',2):break
+        key='wamex_'+report['native_id'].split(':')[-1];native=report['attributes']['anumber']
+        endpoint='https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails/ReportDocuments_Read'
+        try:
+            raw,_=fetch(endpoint,{'aNumber[0]':native,'page':1,'pageSize':20},method='POST')
+            data=json.loads(raw)
+            if data.get('Errors') or not isinstance(data.get('Total'),int) or not isinstance(data.get('Data'),list):raise ValueError('WAMEX_DOCUMENT_LIST_INVALID')
+            if any(r.get('ANumber')!=native for r in data['Data']):raise ValueError('WAMEX_REPORT_IDENTITY_MISMATCH')
+            sha=save(raw,dict(key=key+'_document_list',url=report['detail_url'],kind='discovery_receipt',metadata_only=True,omit_signed_urls=True),'.json')
+            report['document_list_sha256']=sha;report['document_list_total']=data['Total']
+            report['document_list_complete']=len(data['Data'])==data['Total']
+            for resource in data['Data']:
+                if str(resource.get('FileType','')).lower()!='.pdf':continue
+                rid=str(resource['BLTId']);link=resource.get('Link','');size=resource.get('FileSize','')
+                match=re.fullmatch(r'([\d.]+)\s*(KB|MB|GB)',size,re.I)
+                estimated=float(match[1])*{'KB':1024,'MB':1024**2,'GB':1024**3}[match[2].upper()] if match else None
+                item=dict(resource_id=rid,title=resource.get('FileName'),estimated_bytes=estimated,status='DISCOVERED_BUDGET_DEFERRED')
+                report['document_candidates'].append(item)
+                if re.search(r'logging.?codes|litholog.?codes',item['title'] or '',re.I):
+                    item['status']='METHODOLOGY_APPENDIX_RETAINED_NOT_PRIORITY_TECHNICAL_REPORT';continue
+                if estimated is None or estimated>registry.get('max_wamex_document_bytes',20000000):
+                    item['status']='DOCUMENT_SIZE_UNKNOWN_OR_BUDGET_DEFERRED';continue
+                if len(documents)>=registry.get('max_wamex_documents',2):continue
+                if urlsplit(link).scheme!='https' or urlsplit(link).hostname!='warsydprdstagsdspub.blob.core.windows.net':
+                    item['status']='UNCONFIGURED_DOCUMENT_HOST';continue
+                identity=key+'_'+rid
+                resource_version=hashlib.sha256(json.dumps([resource.get(k) for k in ('BLTId','FileName','FileSize','EditDate')]).encode()).hexdigest()
+                cached=next((s for s in reversed(originals) if s.get('report_native_id')==report['native_id'] and s.get('resource_native_id')==rid and s.get('source_document_version')==resource_version),None)
+                if cached:
+                    item.update(status='REUSED_VERIFIED_ORIGINAL',document_sha256=cached['sha256'])
+                    documents.append(dict(candidate_id=hashlib.sha256(identity.encode()).hexdigest(),source_key=cached['key'],seed_key=key,
+                        url=report['detail_url'],document_sha256=cached['sha256'],status='REUSED_VERIFIED_ORIGINAL'))
+                    continue
+                try:
+                    # A signed link is acquired only from the current public
+                    # response; it is not copied into the manifest or receipt.
+                    body,_=fetch(link,max_bytes=registry.get('max_wamex_document_bytes',20000000))
+                    if not body.startswith(b'%PDF'):raise ValueError('NOT_PDF')
+                    pdfsha=save(body,dict(key=identity,url=report['detail_url'],kind='pdf',
+                        report_native_id=report['native_id'],resource_native_id=rid,original_filename=item['title'],
+                        source_document_version=resource_version,
+                        metadata_sha256=[sha],**({'publication_date':report['released_date']} if report.get('released_date') else {}),
+                        date_role='OPEN_FILE_RELEASE_NOT_RESOURCE_EFFECTIVE_DATE',authority='OFFICIAL_WAMEX_REPORT'),'.pdf')
+                    item.update(status='ORIGINAL_ACQUIRED',document_sha256=pdfsha)
+                    documents.append(dict(candidate_id=hashlib.sha256(identity.encode()).hexdigest(),source_key=identity,seed_key=key,
+                        url=report['detail_url'],title=item['title'],document_sha256=pdfsha,
+                        report_native_id=report['native_id'],resource_native_id=rid,status='SNAPSHOT_REQUIRES_DATED_SCOPE_EXTRACTION'))
+                except Exception as exc:
+                    item.update(status='DOWNLOAD_UNAVAILABLE',**failure_details(exc))
+                    documents.append(dict(candidate_id=hashlib.sha256(identity.encode()).hexdigest(),seed_key=key,
+                        url=report['detail_url'],title=item['title'],status='DOWNLOAD_UNAVAILABLE',**failure_details(exc)))
+            outcomes.append(dict(seed_key=key,url=report['detail_url'],status='PARSED',sha256=sha,report_detail=True))
+        except Exception as exc:outcomes.append(dict(seed_key=key,url=report['detail_url'],status='UNAVAILABLE',report_detail=True,**failure_details(exc)))
+    return reports,outcomes,seeds,documents
+
+
 def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_rows=None):
     """Fresh work-only originals and bounded, policy-approved same-SHA copies."""
     import hashlib,subprocess,uuid
     root=Path(root).resolve();work=Path(work).resolve()
-    from .discovery import official_reports, strict_search_plan
     policy,deferred=strict_search_plan(root)
     reports=policy.get('official_reports',[])
     dns_rows=strict_dns_preflight(registry,reports) if dns_rows is None else dns_rows
@@ -824,6 +994,11 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
         if source['kind'] in ('pdf','html'):expected.update(by_url.get(source['url'],set()))
         if source['kind'] in managed and not expected and old:expected={max(old,key=lambda x:x['acquired_at'])['sha256']}
         row=dict(key=key,host=host,http_status=None,sha_match=None,status='UNAVAILABLE',stop_reason='',expected_sha256=';'.join(sorted(expected)))
+        if source['kind'] == WA_TITLE_KIND:
+            row.update(status='NEEDS_VERIFIED_STATIC_ARCHIVE',
+                       stop_reason='Select the registered government ZIP through the static library or exact receipt replay')
+            outcomes.append(row)
+            continue
         if source.get('enabled') is False:
             row.update(status='SOURCE_NOT_ACQUIRED',stop_reason=source.get('disabled_reason','SOURCE_DISABLED'));outcomes.append(row);continue
         if source['url']=='https://www.gippslandcriticalminerals.com/project-overview/':
@@ -872,6 +1047,9 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
                     candidate_mismatch=True
                 if raw is None:raise ValueError('SOURCE_SHA_CHANGED' if attempted else 'WAMEX_NO_ELIGIBLE_DOCUMENT')
             elif source['kind']=='minedex_resource_batch':raw,headers=minedex_resource_batch(source['url'],source['product_alias'],fetch=transport)
+            elif source['kind']==ASIC_REGISTER_KIND:
+                raw,headers=transport(source['url'],timeout=source.get('timeout_seconds',60),
+                                      max_bytes=min(source.get('max_bytes',100_000_000),100_000_000))
             elif source.get('fixed_query'):raw,headers=transport(source['url'],max_bytes=source.get('max_bytes',50_000_000))
             elif source['kind'] in ('arcgis_census','arcgis_gis','government_arcgis'):
                 raw=(canonical(arcgis(source['url'],source.get('where','1=1'),windows=project_windows(root,{'snapshots':manifest},source['aoi_radius_km']) if source.get('aoi_radius_km') else None,fetch=transport))+'\n').encode();headers={}
@@ -898,12 +1076,14 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
             row['sha_match'] = compared_sha in expected if expected else None
             if expected and compared_sha not in expected:
                 raise ValueError('SOURCE_SHA_CHANGED')
-            suffix='.pdf' if source['kind']=='pdf' else '.xlsx' if source['kind']=='xlsx_census' else '.zip' if source['kind']=='minedex_resource_batch' else '.csv' if source['kind']=='government_csv' else '.html' if source['kind']=='html' else '.json'
+            suffix='.pdf' if source['kind']=='pdf' else '.xlsx' if source['kind']=='xlsx_census' else '.zip' if source['kind'] in ('minedex_resource_batch',ASIC_REGISTER_KIND) else '.csv' if source['kind']=='government_csv' else '.html' if source['kind']=='html' else '.json'
             path=cache/(sha+suffix);path.write_bytes(raw)
             now=datetime.now(timezone.utc).isoformat()
             entry=dict(source,sha256=sha,path=str(path),acquired_at=now,available_date=now[:10])
             entry.update(hash_metadata)
             entry = evidenced_snapshot(root, entry, cutoff)
+            if source['kind']==ASIC_REGISTER_KIND:
+                entry['available_date']=asic_capture_date(root,source,path,sha)
             if source['kind']=='minedex_resource_batch':
                 entry.update(source_update=headers['X-DASC-Updated'],resolved_download_url=headers['X-DASC-Download'],last_modified=headers.get('Last-Modified'))
                 entry['publication_date']=datetime.strptime(headers['X-DASC-Updated'],'%d/%m/%Y').date().isoformat()
@@ -948,9 +1128,28 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
     return selected,outcomes
 
 
-def checked_snapshots(root, snapshots, cutoff, acquired_through=None, *, replay_assets=None):
+def checked_replay_path(root, entry, source_key, *, replay_assets=None, receipt_paths=False):
+    """Verify one immutable original or attachment within its declared library."""
+    path = root / entry['path']
+    external = not path.resolve().is_relative_to(root.resolve())
+    if receipt_paths and external and replay_assets is None:
+        raise ValueError(f"External receipt path requires --replay-assets: {source_key}")
+    if replay_assets is not None and (external or not path.is_file()):
+        sha = entry['sha256']
+        if not re.fullmatch('[0-9a-f]{64}', sha):
+            raise ValueError('Invalid asset SHA-256 in snapshot lock')
+        folder = Path(replay_assets).resolve(strict=True)
+        path = (folder / sha).resolve()
+        if not path.is_relative_to(folder):
+            raise ValueError('Replay asset escapes its library')
+    if not path.is_file() or filehash(path) != entry['sha256']:
+        raise ValueError(f"Locked snapshot checksum mismatch: {source_key} ({path.name})")
+    return path
+
+
+def checked_snapshots(root, snapshots, cutoff, acquired_through=None, *, replay_assets=None, receipt_paths=False):
     """Resolve immutable originals and their raw response attachments."""
-    from .selection import date_end
+    from .selection_rules import date_end
 
     for source in snapshots:
         if source.get('publication_date') and date_end(source['publication_date']) > cutoff:
@@ -958,34 +1157,114 @@ def checked_snapshots(root, snapshots, cutoff, acquired_through=None, *, replay_
         if acquired_through and source['available_date'] > acquired_through:
             raise ValueError(f"Snapshot after acquisition cutoff: {source['key']}")
         for entry in [source, *source.get('original_responses', [])]:
-            path = root / entry['path']
-            if not path.is_file() and replay_assets is not None:
-                sha = entry['sha256']
-                if not re.fullmatch('[0-9a-f]{64}', sha):
-                    raise ValueError('Invalid asset SHA-256 in snapshot lock')
-                folder = Path(replay_assets).resolve(strict=True)
-                asset = (folder / sha).resolve()
-                if not asset.is_relative_to(folder):
-                    raise ValueError('Replay asset escapes its library')
-                if asset.is_file():
-                    path = asset
-                    entry['path'] = str(path)
-            if not path.is_file() or filehash(path) != entry['sha256']:
-                raise ValueError(f"Locked snapshot checksum mismatch: {source['key']} ({path.name})")
+            path = checked_replay_path(root, entry, source['key'], replay_assets=replay_assets, receipt_paths=receipt_paths)
+            if path != root / entry['path']:
+                entry['path'] = str(path)
     return snapshots
 
 
-def static_pdf_sources(registry, claims, directories, cutoff, already_selected):
-    """Resolve approved ASX and other PDF originals by bytes, never by title or filename."""
-    from .selection import date_end
+ASIC_REGISTER_KIND = 'asic_company_register_zip'
+WA_TITLE_KIND = 'wa_dasc_tenements_zip'
+STATIC_ARCHIVE_KINDS = {ASIC_REGISTER_KIND, WA_TITLE_KIND}
+WA_TITLE_ORIGIN = (r'https://warsydprdstadasc\.blob\.core\.windows\.net/downloads/dasc/Dynamic/Tenements/'
+                   r'(?:CurrentTenements(?:_GDA2020)?_shp|DeadTenements_shp)\.zip(?:\?ts=\d{14})?')
+WA_TITLE_REPLAY_URL = re.compile(r'https://web\.archive\.org/web/(\d{14})id_/(' + WA_TITLE_ORIGIN + ')')
+
+
+def wa_title_capture_date(root, source, archive, sha):
+    """Resolve the availability of the exact WA government ZIP from its archived HTTP 200 inventory row."""
+    import base64
+    import hashlib
+
+    replay = WA_TITLE_REPLAY_URL.fullmatch(source.get('url', ''))
+    metadata = source.get('archive_index_sha256', '')
+    if (not replay or not re.fullmatch('[0-9a-f]{64}', metadata) or
+            (source.get('archive_capture_timestamp'), source.get('archive_origin_url')) != replay.groups() or
+            sha != source.get('source_sha256') or sha != source.get('reviewed_static_archive_sha256')):
+        raise ValueError('WA title archive capture or version mismatch')
+    stamp, origin = replay.groups()
+    capture = datetime.strptime(stamp, '%Y%m%d%H%M%S').date().isoformat()
+    index = Path(root) / 'data' / 'snapshots' / (metadata + '.json')
+    if not index.is_file() or filehash(index) != metadata:
+        raise ValueError('WA title archive index checksum mismatch')
+    index_url = urllib.parse.urlsplit(source.get('archive_index_url', ''))
+    query = urllib.parse.parse_qs(index_url.query)
+    targets = query.get('url', [])
+    indexed_target = targets[0].removeprefix('https://').casefold() if len(targets) == 1 else ''
+    origin_path = origin.removeprefix('https://').casefold()
+    prefix_query = indexed_target.endswith('*') or query.get('matchType') == ['prefix']
+    in_query = (origin_path.startswith(indexed_target.rstrip('*')) if prefix_query else origin_path == indexed_target)
+    if ((index_url.scheme, index_url.netloc, index_url.path) != ('https', 'web.archive.org', '/cdx/search/cdx')
+            or query.get('output') != ['json'] or not indexed_target.strip('*') or not in_query):
+        raise ValueError('WA title archive index URL mismatch')
+    header, *rows = json.loads(index.read_bytes())
+    required = {'original', 'timestamp', 'digest', 'mimetype', 'statuscode'}
+    if len(set(header)) != len(header) or not required.issubset(header):
+        raise ValueError('WA title archive index schema mismatch')
+    records = (dict(zip(header, record, strict=True)) for record in rows)
+    matched = [r for r in records if r['original'] == origin and r['timestamp'] == stamp]
+    if (len(matched) != 1 or matched[0]['statuscode'] != '200'
+            or matched[0]['mimetype'] not in ('application/octet-stream', 'application/zip', 'application/x-zip-compressed')
+            or matched[0]['digest'] != source.get('archive_sha1')
+            or not zipfile.is_zipfile(archive)):
+        raise ValueError('WA title archive index record mismatch')
+    with Path(archive).open('rb') as stream:
+        actual = base64.b32encode(hashlib.file_digest(stream, 'sha1').digest()).decode('ascii')
+    if actual != matched[0]['digest'] or filehash(archive) != sha:
+        raise ValueError('WA title archive payload checksum mismatch')
+    return capture
+
+
+def archive_capture_date(root, source, path, sha):
+    if source['kind'] == WA_TITLE_KIND:
+        return wa_title_capture_date(root, source, path, sha)
+    return asic_capture_date(root, source, path, sha)
+
+
+def asic_capture_date(root, source, archive, sha):
+    """Verify the original monthly ASIC ZIP and the independently archived publisher metadata."""
+    metadata_sha = source.get('archive_manifest_sha256', '')
+    if (not re.fullmatch('[0-9a-f]{64}', metadata_sha)
+            or sha != source.get('source_sha256') or sha != source.get('reviewed_static_archive_sha256')):
+        raise ValueError('ASIC archive or manifest SHA is not pinned')
+    metadata_path = Path(root) / 'data' / 'snapshots' / (metadata_sha + '.json')
+    if not metadata_path.is_file() or filehash(metadata_path) != metadata_sha:
+        raise ValueError('ASIC archive manifest checksum mismatch')
+    data = json.loads(metadata_path.read_bytes())
+    upstream = data['source']
+    publication = source['publication_date']
+    filename = 'company_' + publication[:7].replace('-', '') + '.zip'
+    base = 'https://data.gov.au/data/dataset/7b8656f9-606d-4337-af29-66b89b2eeefb/resource/'
+    official = base + 'd6d03876-71a4-4e82-8c77-2e4df5da4236/download/' + filename
+    capture = datetime.fromisoformat(data['fetched_at'])
+    modified = parsedate_to_datetime(upstream['http_last_modified'])
+    catalogue_date = datetime.fromisoformat(upstream['resource_last_modified']).date().isoformat()
+    if (data['dataset'] != 'asic-companies' or data.get('backfilled') is not False or data.get('tombstone')
+            or data['version'] != publication or data['filename'] != filename or data['encoding'] != 'zip'
+            or upstream['url'] != official or source['url'] != official
+            or source['archive_manifest_url'] != f'https://publicdata.au/d/asic-companies/v/{publication}/manifest.json'
+            or data['sha256'] != sha or data['bytes'] != Path(archive).stat().st_size
+            or not capture.tzinfo or not modified.tzinfo or capture < modified
+            or modified.date().isoformat() != publication or catalogue_date != publication):
+        raise ValueError('ASIC register version or publisher date mismatch')
+    with zipfile.ZipFile(archive) as dataset:
+        members = [entry.filename for entry in dataset.infolist() if not entry.is_dir()]
+        if members != [source['archive_member']]:
+            raise ValueError('ASIC register ZIP member mismatch')
+    return capture.astimezone(timezone.utc).date().isoformat()
+
+
+def static_pdf_sources(registry, claims, directories, cutoff, already_selected, *, root=None):
+    """Resolve registered PDF and archive originals in the same static library by their bytes."""
+    from .selection_rules import date_end
 
     declared, bindings=declared_source_hashes(registry,claims)
     pending=[]
     for source in registry['sources']:
         key=source['key']
-        if source['kind']!='pdf' or key in already_selected:
+        if source['kind'] not in ('pdf', *STATIC_ARCHIVE_KINDS) or key in already_selected:
             continue
-        pin=source.get('reviewed_static_pdf_sha256')
+        pin=source.get('reviewed_static_archive_sha256' if source['kind'] in STATIC_ARCHIVE_KINDS else 'reviewed_static_pdf_sha256')
         if pin:
             # A reviewed local version can have the same landing URL as another
             # version. The pin does not grant access to that remote URL.
@@ -1000,31 +1279,54 @@ def static_pdf_sources(registry, claims, directories, cutoff, already_selected):
         if len(expected)!=1:
             continue
         publication=source.get('publication_date')
-        if not publication or date_end(publication)>cutoff:
+        if source['kind'] == WA_TITLE_KIND:
+            stamp = source.get('archive_capture_timestamp', '')
+            if not re.fullmatch(r'\d{14}', stamp):
+                raise ValueError('WA title archive capture timestamp missing')
+            if datetime.strptime(stamp, '%Y%m%d%H%M%S').date().isoformat() > cutoff:
+                continue
+        elif not publication or date_end(publication)>cutoff:
             continue
         pending.append((source,next(iter(expected))))
-    wanted={sha for _,sha in pending}
+    wanted={(source['kind'],sha) for source,sha in pending}
+    hashes={sha for _,sha in wanted}
     paths={}
     files=set()
+    suffixes={'.pdf', '.zip'} if any(kind in STATIC_ARCHIVE_KINDS for kind,_ in wanted) else {'.pdf'}
     for directory in directories:
         folder=Path(directory).resolve(strict=True)
         if not folder.is_dir():
             raise ValueError(f'Static PDF library must be a directory: {folder}')
-        files.update(p for p in folder.rglob('*') if p.suffix.lower()=='.pdf' and p.is_file())
-    for path in sorted(files,key=lambda p:(p.stem not in wanted,str(p))):
+        files.update(p for p in folder.rglob('*') if p.suffix.lower() in suffixes and p.is_file())
+    for path in sorted(files,key=lambda p:(p.stem not in hashes,str(p))):
         if wanted<=paths.keys():
             break
         with path.open('rb') as stream:
-            if stream.read(5)!=b'%PDF-':
+            signature=stream.read(5)
+            if path.suffix.lower()=='.pdf' and signature==b'%PDF-':
+                kinds=('pdf',)
+            elif path.suffix.lower()=='.zip' and signature.startswith(b'PK\x03\x04'):
+                kinds=STATIC_ARCHIVE_KINDS
+            else:
                 continue
         sha=filehash(path)
-        if sha in wanted:
-            paths.setdefault(sha,path.resolve())
+        for kind in kinds:
+            if (kind,sha) in wanted:
+                paths.setdefault((kind,sha),path.resolve())
     now=datetime.now(timezone.utc).isoformat()
     selected=[]
     for source,sha in pending:
-        if sha in paths:
-            selected.append(dict(source,sha256=sha,path=str(paths[sha]),
+        path=paths.get((source['kind'],sha))
+        if path is not None:
+            if source['kind'] in STATIC_ARCHIVE_KINDS:
+                capture=archive_capture_date(root,source,path,sha)
+                method=('STATIC_WA_DASC_ZIP_SHA_VERIFIED' if source['kind'] == WA_TITLE_KIND
+                        else 'STATIC_ASIC_REGISTER_SHA_VERIFIED')
+                if capture<=cutoff:
+                    selected.append(dict(source,sha256=sha,path=str(path),acquired_at=now,
+                        available_date=capture,acquisition_method=method))
+                continue
+            selected.append(dict(source,sha256=sha,path=str(path),
                 acquired_at=now,available_date=now[:10],acquisition_method='STATIC_PDF_SHA_VERIFIED'))
     return selected
 
@@ -1038,9 +1340,15 @@ SOURCE_SELECTION_FIELDS = (
 
 def census_admission(root, source, registered, claim_hashes, cutoff):
     """Verify the version and the time basis before a source reaches SQLite."""
-    from .selection import date_end
+    from .selection_rules import date_end
 
     key, sha, kind = source['key'], source['sha256'], source['kind']
+    if registered.get('kind') == WA_TITLE_KIND:
+        if kind != WA_TITLE_KIND:
+            raise ValueError('WA title archive receipt kind mismatch')
+        identity = ('url','archive_origin_url','archive_capture_timestamp','archive_sha1','archive_index_sha256','archive_index_url')
+        if any(source.get(field) != registered.get(field) for field in identity):
+            raise ValueError('WA title archive receipt identity mismatch')
     publication = source.get('publication_date')
     registered_publication = registered.get('publication_date')
     availability = source.get('available_date') or (source.get('acquired_at') or '')[:10]
@@ -1058,6 +1366,14 @@ def census_admission(root, source, registered, claim_hashes, cutoff):
             interval_mismatch = month_interval != [month + '-01', used]
     after_cutoff = used>cutoff or (publication and date_end(publication)>cutoff)
     cutoff_status = ('SOURCE_AFTER_CUTOFF' if after_cutoff else 'WITHIN_CUTOFF' if used else 'SOURCE_DATE_UNVERIFIED')
+    if kind in STATIC_ARCHIVE_KINDS:
+        capture=archive_capture_date(root, registered, Path(root)/source['path'], sha)
+        date_basis='ARCHIVED_HTTP_CAPTURE' if kind == WA_TITLE_KIND else 'ARCHIVED_PUBLISHER_VERSION'
+        used=capture
+        if publication!=registered_publication or capture!=availability:
+            cutoff_status='SOURCE_PUBLICATION_DATE_MISMATCH'
+        elif capture>cutoff:
+            cutoff_status='SOURCE_AFTER_CUTOFF'
     approved = {h for h in (registered.get('source_sha256'), registered.get('committed_snapshot_sha256'),
                              registered.get('reviewed_static_pdf_sha256')) if h} | claim_hashes.get(key,set())
     version_status = 'PINNED_SHA_VERIFIED' if sha in approved else 'RECEIPT_SHA_VERIFIED'
@@ -1073,19 +1389,37 @@ def census_admission(root, source, registered, claim_hashes, cutoff):
                 date_basis=date_basis,date_used=used,version_status=version_status,cutoff_status=cutoff_status)
 
 
+def replay_pdf_extensions(registry, receipt_sha, static_pdfs):
+    """Accept an additive static PDF review only when the entire old registry still hashes identically."""
+    if digest(registry) == receipt_sha:
+        return []
+    added = [s for s in registry['sources'] if s.get('replay_extension_of') == receipt_sha]
+    retained = [s for s in registry['sources'] if s.get('replay_extension_of') != receipt_sha]
+    keys = [s['key'] for s in registry['sources']]
+    if (not static_pdfs or not added or len(keys) != len(set(keys))
+            or digest(dict(registry, sources=retained)) != receipt_sha
+            or any(not (s.get('archive_capture_timestamp') if s['kind'] == WA_TITLE_KIND else s.get('publication_date'))
+                   or not s.get('source_sha256') or
+                   (s['kind'], s['source_sha256']) not in (
+                       ('pdf', s.get('reviewed_static_pdf_sha256')),
+                       (ASIC_REGISTER_KIND, s.get('reviewed_static_archive_sha256')),
+                       (WA_TITLE_KIND, s.get('reviewed_static_archive_sha256'))) for s in added)):
+        raise ValueError('Acquisition replay source registry changed')
+    return [s['key'] for s in added]
+
+
 def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, static_pdfs=(),
                        replay_assets=None, receipt_path=None):
     """One ASX source stage. Replays use the same selected inputs and receipts."""
-    from .analysis import write_csv
-    from .discovery import strict_search_plan
+    from .tabular import write_csv
 
+    extensions = []
     if replay:
         receipt = json.loads(Path(replay).read_text(encoding='utf8'))
         if receipt['cutoff'] != cutoff:
             raise ValueError('Acquisition replay cutoff must match --as-of')
-        if receipt['registry_sha256'] != digest(registry):
-            raise ValueError('Acquisition replay source registry changed')
-        fresh = checked_snapshots(root, receipt['snapshots'], cutoff, replay_assets=replay_assets)
+        extensions = replay_pdf_extensions(registry, receipt['registry_sha256'], static_pdfs)
+        fresh = checked_snapshots(root, receipt['snapshots'], cutoff, replay_assets=replay_assets, receipt_paths=True)
         registered = {s['key']:s['kind'] for s in registry['sources']}
         if any(registered.get(s['key']) != s['kind'] for s in fresh):
             raise ValueError('Acquisition replay contains an unregistered source')
@@ -1108,7 +1442,10 @@ def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, sta
         # A downloaded future publication remains an acquisition receipt.
         fresh = [s for s in fresh if (s.get('publication_date') or '') <= cutoff]
     if static_pdfs:
-        added=static_pdf_sources(registry,claims,static_pdfs,cutoff,{s['key'] for s in fresh})
+        added=static_pdf_sources(registry,claims,static_pdfs,cutoff,{s['key'] for s in fresh},root=root)
+        missing_extensions = set(extensions) - {s['key'] for s in added}
+        if missing_extensions:
+            raise ValueError('Missing verified static PDF extension: ' + ', '.join(sorted(missing_extensions)))
         checked_snapshots(root,added,cutoff)
         fresh=[*fresh,*added]
         updates={s['key']:dict(key=s['key'],host=urllib.parse.urlsplit(s['url']).hostname,
@@ -1157,6 +1494,9 @@ def census_acquisition(root, registry, work, claims, cutoff, replay=None, *, sta
     captured = dict(receipt if replay else {}, cutoff=cutoff, registry_sha256=digest(registry),
         snapshots=[dict(portable(s), original_responses=[portable(a) for a in s.get('original_responses', [])])
                    if 'original_responses' in s else portable(s) for s in fresh], outcomes=outcomes)
+    if extensions:
+        captured['static_pdf_extension'] = dict(parent_registry_sha256=receipt['registry_sha256'],
+            parent_receipt_sha256=filehash(Path(replay)), added_keys=sorted(extensions))
     destination=Path(receipt_path) if receipt_path is not None else work/'source_acquisition.json'
     destination.parent.mkdir(parents=True,exist_ok=True)
     destination.write_text(canonical(captured)+'\n', encoding='utf8')

@@ -6178,7 +6178,38 @@
             "endpoint": "MINERAL_CONCENTRATE",
             "element": "TREO_INCLUDING_Y",
             "parameters": {
-              "average_annual_treo_product_t": 4350
+              "average_annual_treo_product_t": 4350,
+              "average_annual_ndpr_product_t": 87
+            },
+            "parameter_derivations": {
+              "average_annual_ndpr_product_t": {
+                "method": "FORECAST_CONTAINED_TREO_X_CONCENTRATE_NDPR_OXIDE_SHARE",
+                "page": 109,
+                "share_basis": "DFS_EXPECTED_RECOVERED_REO_IN_CONCENTRATE",
+                "composition_label_bbox": [
+                  112,
+                  179,
+                  214,
+                  199
+                ],
+                "price_label_bbox": [
+                  393,
+                  179,
+                  474,
+                  199
+                ],
+                "shares_bbox": [
+                  177,
+                  58,
+                  248,
+                  80
+                ],
+                "oxide_share_percent": {
+                  "Pr": 0.3,
+                  "Nd": 1.7
+                },
+                "contained_treo_tpa": 4350
+              }
             },
             "annual_basis_evidence": {
               "page": 116,
@@ -35829,7 +35860,27 @@
             "stage": 3,
             "endpoint": "MINERAL_CONCENTRATE",
             "element": "TREO_INCLUDING_Y",
-            "parameters": {},
+            "parameters": {
+              "average_annual_treo_product_t": 1156,
+              "average_annual_ndpr_product_t": 219
+            },
+            "annual_period_confirmation": {
+              "production_table_page": 7,
+              "schedule_page": 9,
+              "annual_model_page": 162,
+              "confirmation_source_key": "north_stanmore_pfs_annual20260914",
+              "confirmation_source_sha256": "e60ee62748c8399881f8fa2fbf07a08f0d80fa88b44231127dbabc18a9efa9dd",
+              "study_reference_page": 2,
+              "annual_table_page": 9
+            },
+            "parameter_derivations": {
+              "average_annual_treo_product_t": {
+                "method": "PUBLISHED_WHOLE_PLAN_AVERAGE_VERIFIED_ANNUAL_PERIOD"
+              },
+              "average_annual_ndpr_product_t": {
+                "method": "PUBLISHED_WHOLE_PLAN_AVERAGE_VERIFIED_ANNUAL_PERIOD"
+              }
+            },
             "evidence": [
               {
                 "page": 5,
@@ -69041,6 +69092,99 @@
             }
           ],
           "attribute_id": "61793cf44cb9b9c6bcb8ba324fddc71a87e70edd964249341f40948e9c5d6efa"
+        },
+        {
+          "column": "產品/產出",
+          "value": "REEC",
+          "source_key": "goschen_rec_offtake_20261019",
+          "source_sha256": "8a70d4ca8cdc287da19cd6a50060e0496f84c5f153c62b452870aed1ff92497c",
+          "pdf_page": 14,
+          "page_markers": [
+            "100% of Goschen’s REC",
+            "certainty for approximately 18 years",
+            "4,900 tonnes per annum",
+            "contained rare earth oxides"
+          ],
+          "context_evidence": [
+            {
+              "page": 15,
+              "markers": [
+                "Operational metrics (life-of-mine annual average)",
+                "18 years",
+                "8,300 tpa",
+                "See company ASX release dated 21 September 2026."
+              ]
+            },
+            {
+              "page": 19,
+              "markers": [
+                "Goschen Rare Earth Mineral Concentrate has an average REO grade of 58.9%",
+                "Goschen, Victoria: about 8,300 tonnes a year"
+              ]
+            },
+            {
+              "page": 2,
+              "source_key": "asx_document_03141511",
+              "source_sha256": "5a783d0c7a9ed69fd62c532c77927af0f83e0813feeaab093ed617ae1556e0b3",
+              "markers": [
+                "Operations metrics (life-of-mine annual average)",
+                "Rare earth concentrate (REC) production",
+                "8,300 tpa",
+                "Nd-Pr contained in REC",
+                "990 tpa"
+              ]
+            }
+          ],
+          "effective_date": "2026-10-19",
+          "extraction_method": "DATED_WHOLE_PROJECT_CONCENTRATE_OFFTAKE",
+          "method": "DATED_WHOLE_PROJECT_CONCENTRATE_OFFTAKE",
+          "review_id": "goschen-20260921-dfs-confirmed-by-20261019-full-offtake",
+          "locator": "Physical PDF p14, approximate contained REO per annum in 100% project REC offtake, p15 18-year 8,300 tpa DFS annual average, p19 58.9% REO grade; matches DFS 21 Sep 2026 p2. 8,300 x 58.9% = 4,889 tpa, consistent with the reported approximate 4,900 tpa.",
+          "scope": "Goschen DFS18-year5Mtpa93Mt mine plan;REC endpoint; not Area1/global MineralResource substitution",
+          "support_only": true,
+          "engineering_forecast": {
+            "scale": "DFS_MODEL",
+            "stage": 4,
+            "endpoint": "REEC",
+            "element": "TREO_INCLUDING_Y",
+            "parameters": {
+              "average_annual_treo_product_t": 4900
+            },
+            "parameter_bindings": {
+              "average_annual_treo_product_t": {
+                "mode": "native_statement",
+                "semantic_profile": "full_project_concentrate_offtake",
+                "field": "average_annual_treo_product_t",
+                "scope": "Goschen DFS18-year5Mtpa93Mt mine plan;REC endpoint; not Area1/global MineralResource substitution",
+                "page": 14,
+                "original_unit": "tonnes per annum",
+                "statement_bbox": [
+                  224,
+                  429,
+                  882,
+                  520
+                ],
+                "statement": "▪Approximately 145,620 tonnes of REC over the life of the project, equivalent to around 4,900 tonnes per annum of contained rare earth oxides",
+                "before": "▪Approximately 145,620 tonnes of REC over the life of the project, equivalent to around",
+                "after": "tonnes per annum of contained rare earth oxides",
+                "time_basis_bbox": [
+                  224,
+                  321,
+                  879,
+                  385
+                ]
+              }
+            },
+            "annual_basis_evidence": {
+              "page": 14,
+              "markers": [
+                "100% of Goschen’s REC",
+                "certainty for approximately 18 years",
+                "4,900 tonnes per annum",
+                "contained rare earth oxides"
+              ]
+            }
+          }
         }
       ]
     },
@@ -72072,6 +72216,34 @@
             }
           ],
           "attribute_id": "89ca5c29f8863ad66aaddaafcf5e12a4acfb045c55a1e354fd358be59ac8a249"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Drilled clay-hosted REE mineralisation at the Greater Brothers Project",
+          "source_key": "venture_greater_brothers_20230801",
+          "source_sha256": "9d3798d57ca198cfd766a2cc83881427be0a3f9ee5e2dabe7b6028e48d544415",
+          "pdf_page": 1,
+          "page_markers": [
+            "Greater Brothers Project (Brothers including Iron Duke)",
+            "Greater Brothers clay hosted TREO drill results",
+            "Reconnaissance drilling has tested approximately 20%"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p1. Issuer-reported host of the Greater Brothers discovery in its own project-wide reconnaissance program. Drilling covered 20% of the area; possible bedrock targets and the separate Jupiter MRE are outside this host determination.",
+          "scope": "Issuer-reported host of the Greater Brothers discovery in its own project-wide reconnaissance program. Drilling covered 20% of the area; possible bedrock targets and the separate Jupiter MRE are outside this host determination.",
+          "effective_date": "2023-08-01",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census_gap173_host_greater_brothers",
+          "statement_id": "census_gap173_host_greater_brothers",
+          "deposit_host_review": {
+            "code": "iac",
+            "selected_mre_required": false,
+            "evidence_level": "DRILL_CONFIRMED_HOST",
+            "host_style": "CLAY_HOSTED_REE"
+          },
+          "support_only": true,
+          "attribute_id": "a63a5d138236eec821d4a2676ed316cbbea7991c19c1e8e71a0ef8cf8edc3eb8"
         }
       ]
     },
@@ -134630,6 +134802,34 @@
           "statement_id": "census620_barballin-wcn_geology",
           "context_evidence": [],
           "attribute_id": "ebbf0756b24bd0ff1f3d2306f0e8f2b87d0e465464f7d007628ebf37ac7ba369"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Ionic adsorption REE exploration target in weathered granitoids at Barballin",
+          "source_key": "wcn_ree_acquisitions_20230518",
+          "source_sha256": "606cc24f03762ba4f73cd78e552127f5bc557195a9f1bae7d4f17c638f6a11a8",
+          "pdf_page": 5,
+          "page_markers": [
+            "Barballin REE (Live) E70/6146",
+            "ionic-adsorption deposit",
+            "widespread weathering of the underlying"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p5. Single issuer-defined IAD exploration target on E70/6146. Adjacent project drilling and ion-exchange results are excluded.",
+          "scope": "Single issuer-defined IAD exploration target on E70/6146. Adjacent project drilling and ion-exchange results are excluded.",
+          "effective_date": "2023-05-18",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census_gap173_host_barballin_wcn",
+          "statement_id": "census_gap173_host_barballin_wcn",
+          "deposit_host_review": {
+            "code": "iac",
+            "selected_mre_required": false,
+            "evidence_level": "EXPLORATION_MODEL_ONLY",
+            "host_style": "CLAY_HOSTED_REE"
+          },
+          "support_only": true,
+          "attribute_id": "f06a538ee493a75f131f1b000156a187c51135594c72499e5dfa2a9d73531895"
         }
       ]
     },
@@ -135266,6 +135466,41 @@
           "scope": "Issuer FY24 operations for the Ravensthorpe group. Completion of a sale or relinquishment is not reported on this page.",
           "statement_id": "census_closure_ravensthorpe-mtm_stage_20261119",
           "attribute_id": "59c564e1f12215e5ea8995046e222ce4dac2b1e783520ce226e2e675740f36c7"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Ionic clay-hosted REE exploration model for the Ravensthorpe licences; historical drilling over and adjacent to the tenements indicates prospectivity",
+          "source_key": "mtm_ravensthorpe_20221003",
+          "source_sha256": "6c05b1a7e173975bd520ec05efd6c3ba9f97157064cf779a7202441db564484b",
+          "pdf_page": 14,
+          "page_markers": [
+            "prospectivity for ionic REE mineralisation",
+            "over and adjacent to its tenements",
+            "central part of the Ravensthorpe project"
+          ],
+          "context_evidence": [
+            {
+              "page": 12,
+              "markers": [
+                "Young River, Dalyup and Bremer",
+                "clay-hosted rare earth element"
+              ]
+            }
+          ],
+          "locator": "Physical PDF p14, context p12. Issuer exploration model for the Ravensthorpe group. Figure 18 shows adjacent Young River drilling; it provides no on-tenement REE resource, exchange test or grade for this Census row.",
+          "scope": "Issuer exploration model for the Ravensthorpe group. Figure 18 shows adjacent Young River drilling; it provides no on-tenement REE resource, exchange test or grade for this Census row.",
+          "effective_date": "2022-10-03",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census_gap173_host_ravensthorpe_mtm",
+          "statement_id": "census_gap173_host_ravensthorpe_mtm",
+          "deposit_host_review": {
+            "code": "iac",
+            "selected_mre_required": false,
+            "evidence_level": "EXPLORATION_MODEL_ONLY",
+            "host_style": "CLAY_HOSTED_REE"
+          },
+          "attribute_id": "fb190a4d2233968688f7efbddbeb5da4f4bbaedd1dad93727eb9be89334288a3"
         }
       ]
     },
@@ -135658,6 +135893,27 @@
           "statement_id": "census_project_status_20261119_wandagee-czl",
           "context_evidence": [],
           "attribute_id": "74ba98649cbbaee8203ac3077e8e6b3ba05e6a0757bf25a1f7612f64b254ebc8"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Kimberlite exploration target for potential REE mineralisation at Wandagee",
+          "source_key": "yari_wandagee_20230913",
+          "source_sha256": "45ff30236b16929984e94eeb073cf9a22444f578d0c04c98b27c1a2d4d7a03e6",
+          "pdf_page": 6,
+          "page_markers": [
+            "Wandagee Rare Earth Elements Project",
+            "possible host for REE mineralisation",
+            "kimberlite REE potential targets"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p6. Wandagee tenement exploration model based on a regional gravity high. Kimberlite is the proposed igneous host; no project mineralised body or resource is established.",
+          "scope": "Wandagee tenement exploration model based on a regional gravity high. Kimberlite is the proposed igneous host; no project mineralised body or resource is established.",
+          "effective_date": "2023-09-13",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census_gap173_host_wandagee_czl",
+          "statement_id": "census_gap173_host_wandagee_czl",
+          "attribute_id": "53cbc4712df8706ff2c0d378893279cb58f17fb5c0fdf4448647bf6ecab7f26b"
         }
       ]
     },
@@ -135831,6 +136087,27 @@
           "scope": "Issuer records formal project relinquishment. The 2024 schedule uses /2023 suffixes while the 2023 report uses /2022. No licence geometry is inferred.",
           "statement_id": "census_closure_voyager-lu7_stage_20261119",
           "attribute_id": "c5e81e6ad62a65de16cbde58f01b4e5b3e447f87ee2b71c3ebf193f01dcbcfd8"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Mapped clay and bauxite on Voyager tenures; REE exploration target",
+          "source_key": "voyager_mapped_tenures_20230814",
+          "source_sha256": "d89d425f252770e5d8fa332f11331b93b21e03aea466545a45397351c91ec402",
+          "pdf_page": 3,
+          "page_markers": [
+            "Voyager Rare Earth Project",
+            "Geological mapping of Voyager's tenures",
+            "areas of clay and bauxite"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p3, Voyager Rare Earth Project. Issuer maps clay and bauxite on its tenures. The adjacent ABx resource and leaching tests refer to another project.",
+          "effective_date": "2023-08-14",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "voyager_tenure_geology_20261120",
+          "scope": "Voyager tenures, Tasmania; prospective geological setting only. No Voyager REE assay or adsorption mechanism is established on this page.",
+          "statement_id": "voyager_tenure_geology_20261120",
+          "attribute_id": "3c4eb2d960de6035c6124409f82c2dae23ce117f9efb6434157d9277e3b40f35"
         }
       ]
     },
@@ -175795,6 +176072,35 @@
             }
           ],
           "attribute_id": "840fffc2c0506f3a6ad344d03f603a8d31d846aace615d7f34e789523b476ffe"
+        },
+        {
+          "column": "礦床型態",
+          "value": "Clay-hosted REE exploration at Mt Craig, confirmed by drilling at Morgans Creek",
+          "source_key": "taruga_mt_craig_20230131",
+          "source_sha256": "855a5a164804247ff40a8640ae29cde536c5869b83d4faeccbbe40625751cfcc",
+          "pdf_page": 2,
+          "page_markers": [
+            "Mt Craig Project (MCP)",
+            "clay hosted REE, and copper targets at the Mt Craig Project",
+            "clay hosted REEs discovered",
+            "high-grade clay-hosted REEs"
+          ],
+          "context_evidence": [],
+          "locator": "Physical PDF p2. Quarterly report specifies the REE target style for Mt Craig and distinguishes separate copper targets. RAB drilling demonstrates this host at Morgans Creek, without extrapolating its grade or continuity across the project.",
+          "scope": "Quarterly report specifies the REE target style for Mt Craig and distinguishes separate copper targets. RAB drilling demonstrates this host at Morgans Creek, without extrapolating its grade or continuity across the project.",
+          "effective_date": "2023-01-31",
+          "extraction_method": "STATIC_PDF_REVIEW_REVERIFIED_AT_BUILD",
+          "method": "SOURCE_REPORTED_GEOLOGY_WITH_SCOPE",
+          "review_id": "census_gap173_host_mt_craig_taruga",
+          "statement_id": "census_gap173_host_mt_craig_taruga",
+          "deposit_host_review": {
+            "code": "iac",
+            "selected_mre_required": false,
+            "evidence_level": "DRILL_CONFIRMED_HOST",
+            "host_style": "CLAY_HOSTED_REE"
+          },
+          "support_only": true,
+          "attribute_id": "c6db96cc64659872fe1f7520fe06a37c2f507829a319f4c2de4bea67f197d9d2"
         }
       ]
     },
@@ -192055,6 +192361,57 @@
               ]
             }
           }
+        },
+        {
+          "column": "未上市公司",
+          "value": "是",
+          "source_key": "wamex_splinter_r254_20151109",
+          "source_sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7",
+          "pdf_page": 1,
+          "page_markers": [
+            "Salazar Gold Pty Ltd",
+            "Esperance Rare Earth Project",
+            "09 November 2015",
+            "Report No: R254.2015"
+          ],
+          "effective_date": "2015-11-09",
+          "extraction_method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "review_id": "asic-salazar-splinter-r254-20151109",
+          "locator": "R254.2015 PDF p1, Splinter project scope pp3 and 72; ASIC COMPANY_202611.csv line 1118277, ACN 140211221, ABN 40140211221, 2026-11-02.",
+          "scope": "Salazar Gold Pty Ltd as named on the dated 2015 Splinter project resource report. Registered 2009-10-26 as a proprietary company; this is a dated developer status.",
+          "asic_proprietary_company": {
+            "source_key": "asic_company_register_20261102",
+            "source_sha256": "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+            "archive_member": "COMPANY_202611.csv",
+            "physical_line": 1118277,
+            "acn": "140211221",
+            "abn": "40140211221",
+            "company": "Salazar Gold Pty Ltd",
+            "dated_marker": "09 November 2015",
+            "project_marker": "Esperance Rare Earth Project",
+            "register_date": "2026-11-02"
+          },
+          "context_evidence": [
+            {
+              "page": 3,
+              "markers": [
+                "Salazar",
+                "Splinter and Newmont",
+                "E63/1415"
+              ]
+            },
+            {
+              "page": 72,
+              "markers": [
+                "Table 35.",
+                "Splinter Mineral Resource",
+                "22,849",
+                "Inferred",
+                "500"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -195117,6 +195474,37 @@
           "statement_id": "census_project_status_20261119_charley-creek-north-uro-el33004-historical",
           "context_evidence": [],
           "attribute_id": "2861a2e5081d5d69af195d55b4fc72cef3fa20c6068cffb26b09e06bd9ed363d"
+        },
+        {
+          "column": "未上市公司",
+          "value": "是",
+          "source_key": "reviewed_source_e6bed25382926c6d",
+          "source_sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+          "pdf_page": 1,
+          "page_markers": [
+            "URO Corporation Pty Ltd",
+            "EL33004",
+            "22 August 2024",
+            "Title Holder: URO Corporation Pty Ltd"
+          ],
+          "effective_date": "2024-08-22",
+          "extraction_method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "review_id": "asic-uro-charley-creek-north-uro-el33004-historical",
+          "locator": "Physical PDF p1, EL33004, 22 August 2024; ASIC company register 2026-11-02, COMPANY_202611.csv line 2849732, ACN 653927998, ABN 24653927998; c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+          "scope": "Historical URO legal entity on the dated project report. ASIC APTY / LMSH / PROP, registered 23 September 2021. Corporations Act s148(5) and ABR entity type Australian Private Company (https://abr.business.gov.au/Help/EntityTypeDescription?Id=19).",
+          "asic_proprietary_company": {
+            "source_key": "asic_company_register_20261102",
+            "source_sha256": "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+            "archive_member": "COMPANY_202611.csv",
+            "physical_line": 2849732,
+            "acn": "653927998",
+            "abn": "24653927998",
+            "company": "URO Corporation Pty Ltd",
+            "dated_marker": "22 August 2024",
+            "project_marker": "EL33004",
+            "register_date": "2026-11-02"
+          }
         }
       ]
     },
@@ -195269,6 +195657,37 @@
           "statement_id": "census_project_status_20261119_charley-creek-north-east-uro-el33000-historical",
           "context_evidence": [],
           "attribute_id": "b95abbe6e975fb3f288537140ac0fd30616e234ecb6d588b34b4238593f6404d"
+        },
+        {
+          "column": "未上市公司",
+          "value": "是",
+          "source_key": "reviewed_source_06916f0c5d2b6e1c",
+          "source_sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+          "pdf_page": 1,
+          "page_markers": [
+            "URO Corporation Pty Ltd",
+            "EL33000",
+            "22 August 2024",
+            "Title Holder: URO Corporation Pty Ltd"
+          ],
+          "effective_date": "2024-08-22",
+          "extraction_method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "review_id": "asic-uro-charley-creek-north-east-uro-el33000-historical",
+          "locator": "Physical PDF p1, EL33000, 22 August 2024; ASIC company register 2026-11-02, COMPANY_202611.csv line 2849732, ACN 653927998, ABN 24653927998; c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+          "scope": "Historical URO legal entity on the dated project report. ASIC APTY / LMSH / PROP, registered 23 September 2021. Corporations Act s148(5) and ABR entity type Australian Private Company (https://abr.business.gov.au/Help/EntityTypeDescription?Id=19).",
+          "asic_proprietary_company": {
+            "source_key": "asic_company_register_20261102",
+            "source_sha256": "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+            "archive_member": "COMPANY_202611.csv",
+            "physical_line": 2849732,
+            "acn": "653927998",
+            "abn": "24653927998",
+            "company": "URO Corporation Pty Ltd",
+            "dated_marker": "22 August 2024",
+            "project_marker": "EL33000",
+            "register_date": "2026-11-02"
+          }
         }
       ]
     },
@@ -195395,6 +195814,37 @@
           "statement_id": "census_project_status_20261119_charley-creek-south-east-uro-el33006-historical",
           "context_evidence": [],
           "attribute_id": "e8a37ee182c7d074c07054abd6e838c6ba30fc0137bb440f486a4a85d813a58e"
+        },
+        {
+          "column": "未上市公司",
+          "value": "是",
+          "source_key": "reviewed_source_e37750161e156498",
+          "source_sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+          "pdf_page": 1,
+          "page_markers": [
+            "URO Corporation Pty Ltd",
+            "EL33006",
+            "22 August 2024",
+            "Title Holder: URO Corporation Pty Ltd"
+          ],
+          "effective_date": "2024-08-22",
+          "extraction_method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "review_id": "asic-uro-charley-creek-south-east-uro-el33006-historical",
+          "locator": "Physical PDF p1, EL33006, 22 August 2024; ASIC company register 2026-11-02, COMPANY_202611.csv line 2849732, ACN 653927998, ABN 24653927998; c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+          "scope": "Historical URO legal entity on the dated project report. ASIC APTY / LMSH / PROP, registered 23 September 2021. Corporations Act s148(5) and ABR entity type Australian Private Company (https://abr.business.gov.au/Help/EntityTypeDescription?Id=19).",
+          "asic_proprietary_company": {
+            "source_key": "asic_company_register_20261102",
+            "source_sha256": "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+            "archive_member": "COMPANY_202611.csv",
+            "physical_line": 2849732,
+            "acn": "653927998",
+            "abn": "24653927998",
+            "company": "URO Corporation Pty Ltd",
+            "dated_marker": "22 August 2024",
+            "project_marker": "EL33006",
+            "register_date": "2026-11-02"
+          }
         }
       ]
     },
@@ -195524,6 +195974,37 @@
           "statement_id": "census_project_status_20261119_charley-creek-south-uro-gr617-historical",
           "context_evidence": [],
           "attribute_id": "0e880c27d94a47ff801d6e436677e07a09e4b3282084632a681cf73256daf4b7"
+        },
+        {
+          "column": "未上市公司",
+          "value": "是",
+          "source_key": "reviewed_source_5d4d954c63513e05",
+          "source_sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59",
+          "pdf_page": 4,
+          "page_markers": [
+            "URO Corporation Pty Ltd",
+            "EL33054 and EL33055",
+            "14th August 2025",
+            "The Company holds a 100% interest in both tenements."
+          ],
+          "effective_date": "2025-08-14",
+          "extraction_method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "method": "HISTORICAL_DATED_PROPRIETARY_COMPANY_CONFIRMED_IN_ASIC_REGISTER",
+          "review_id": "asic-uro-charley-creek-south-uro-gr617-historical",
+          "locator": "Physical PDF p4, EL33054 and EL33055, 14th August 2025; ASIC company register 2026-11-02, COMPANY_202611.csv line 2849732, ACN 653927998, ABN 24653927998; c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+          "scope": "Historical URO legal entity on the dated project report. ASIC APTY / LMSH / PROP, registered 23 September 2021. Corporations Act s148(5) and ABR entity type Australian Private Company (https://abr.business.gov.au/Help/EntityTypeDescription?Id=19).",
+          "asic_proprietary_company": {
+            "source_key": "asic_company_register_20261102",
+            "source_sha256": "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+            "archive_member": "COMPANY_202611.csv",
+            "physical_line": 2849732,
+            "acn": "653927998",
+            "abn": "24653927998",
+            "company": "URO Corporation Pty Ltd",
+            "dated_marker": "14th August 2025",
+            "project_marker": "EL33054 and EL33055",
+            "register_date": "2026-11-02"
+          }
         }
       ]
     }

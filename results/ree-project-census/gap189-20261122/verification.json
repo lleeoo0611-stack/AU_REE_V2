@@ -1,0 +1,610 @@
+{
+  "status": "PASSED",
+  "census": {
+    "dimensions": [
+      93,
+      51
+    ],
+    "fixed_denominator": 3034,
+    "fixed_populated": 2468,
+    "fixed_coverage": 0.8134475939353988,
+    "all_populated": 2468,
+    "all_na": 1714,
+    "remaining_unknown_reasons": {
+      "SELECTED_STATEMENT_FIELD_INPUT_MISSING": 363,
+      "COMPATIBLE_FORECAST_INPUT_NOT_VERIFIED": 53,
+      "NO_SOURCE_VALUE": 21,
+      "REPRESENTATIVE_POINT_NOT_VERIFIED": 80,
+      "CLASSIFICATION_INPUT_NOT_VERIFIED": 39,
+      "PARTIAL_RESOURCE_BASIS_OR_COMPONENTS": 5
+    },
+    "baseline_gaps": 577,
+    "active_count": 189,
+    "class_counts": {
+      "P1": 271,
+      "P2": 79,
+      "D1": 18,
+      "D2": 38,
+      "E1": 18,
+      "E2": 38,
+      "E3": 44,
+      "E4": 41,
+      "E5": 12,
+      "E6": 12,
+      "R": 6
+    },
+    "active_actions": {
+      "FILLED": 11,
+      "REVIEW_CASE": 155,
+      "RECLASSIFIED_NOT_APPLICABLE": 5,
+      "VERIFY_BASIS": 18
+    },
+    "remaining_reasons_by_class": {
+      "D1": {
+        "UNVERIFIED_CHEMICAL_FORM": 1,
+        "REJECTED_MATERIAL_OR_RESOURCE_SCOPE": 11,
+        "INCOMPATIBLE_OXIDE_SUITE_DENOMINATOR": 1,
+        "HEAVY_MINERAL_DENOMINATOR_CANNOT_SUPPORT_BULK": 5
+      },
+      "E1": {
+        "SOURCE_SCOPING_NOT_COMPLETED": 2,
+        "HISTORICAL_GROSS_PRODUCT_SCHEDULE_SCOPE_MISMATCH": 2,
+        "ALTERNATE_CAPACITY_SCENARIOS_DOWNSTREAM": 2,
+        "OLDER_CONDITIONAL_STUDY_ENDPOINT_UNVERIFIED": 2,
+        "SOURCE_RESTATE_MRE_SCOPING_PENDING": 2,
+        "NOT_SAME_MODEL_PRODUCT_BASIS": 2,
+        "MIXED_OXIDE_COMPONENT_BASIS_NOT_EXPLICIT": 1,
+        "NO_MATCHED_TOTAL_CONCENTRATE_GRADE": 1,
+        "PRODUCT_SPEC_NOT_STAGE_MATCHED": 1
+      },
+      "E2": {
+        "NO_VERSIONED_REPRESENTATIVE_FEATURE": 36
+      },
+      "E3": {
+        "OTHER_COMMODITY_OR_SCOPE": 10,
+        "POINT_OUTSIDE_RESOURCE": 2,
+        "DIFFERENT_OPERATOR": 2,
+        "HISTORICAL_TENURE_CONFLICT": 10,
+        "OTHER_OPERATOR_OR_SUBSCOPE": 2,
+        "MULTIPLE_RESOURCE_COMPONENTS": 4,
+        "TENEMENT_UNION_EXCEEDS_25KM": 2,
+        "DRILLHOLES_ONLY": 4,
+        "MULTIPLE_SUBSITES": 2,
+        "SUBSITE_OR_PARTIAL_TITLES": 2,
+        "HISTORICAL_OPTION_SITE_MISMATCH": 2,
+        "RESOURCE_SCOPE_AND_25KM": 2
+      },
+      "E4": {
+        "上游礦床描述及分類證據不足": 16,
+        "缺專案稀土賦存描述": 4,
+        "階段文字或分類必要證據不足": 10,
+        "現有描述尚無唯一合格分類": 7,
+        "已有階段文字，映射條件不足": 2
+      },
+      "E5": {
+        "開發商的上市身分或交易所代號尚未證實": 4
+      },
+      "E6": {
+        "尚無可採用的稀土產品終點": 11
+      },
+      "R": {
+        "PREVIOUS_VALUE_WITHDRAWN": 6
+      }
+    },
+    "changes": [
+      {
+        "project_id": "AU-0098e17a63e7c05c213f",
+        "name": "Wudinna Rare Earths Project",
+        "column": "開發階段代碼",
+        "change": "FILLED",
+        "value": "A2",
+        "status": "VALUE_PRESENT",
+        "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864",
+        "locator": "physical PDF p1; Issuer describes the maiden MRE and the purpose of the planned study. No study completion claimed."
+      },
+      {
+        "project_id": "AU-0098e17a63e7c05c213f",
+        "name": "Wudinna Rare Earths Project",
+        "column": "開發階段類別",
+        "change": "FILLED",
+        "value": "探勘",
+        "status": "VALUE_PRESENT",
+        "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864",
+        "locator": "physical PDF p1; Issuer describes the maiden MRE and the purpose of the planned study. No study completion claimed."
+      },
+      {
+        "project_id": "AU-0098e17a63e7c05c213f",
+        "name": "Wudinna Rare Earths Project",
+        "column": "產品/產出",
+        "change": "RECLASSIFIED_NOT_APPLICABLE",
+        "value": "",
+        "status": "NOT_APPLICABLE_STAGE",
+        "source_sha256": "",
+        "locator": "APPROVED_PRE_STUDY_PRODUCT_RULE"
+      },
+      {
+        "project_id": "AU-216d0983f6892f9b58f9",
+        "name": "North Stanmore Heavy Rare Earth Project",
+        "column": "預估年產TREO_t_per_year",
+        "change": "FILLED",
+        "value": "1156",
+        "status": "VALUE_PRESENT",
+        "source_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+        "locator": "PFS Table 2, physical PDF p7, Total / Average (dry tonnes); operating schedule p9, annual model p162; north_stanmore_pfs_annual20260914 pp2,9"
+      },
+      {
+        "project_id": "AU-216d0983f6892f9b58f9",
+        "name": "North Stanmore Heavy Rare Earth Project",
+        "column": "預估年產NdPr_t_per_year",
+        "change": "FILLED",
+        "value": "219",
+        "status": "VALUE_PRESENT",
+        "source_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+        "locator": "PFS Table 2, physical PDF p7, Total / Average (dry tonnes); operating schedule p9, annual model p162; north_stanmore_pfs_annual20260914 pp2,9"
+      },
+      {
+        "project_id": "AU-430f216ca620b69af5f9",
+        "name": "Charley Creek South-East Project — historical URO EL33006 exploration",
+        "column": "未上市公司",
+        "change": "FILLED",
+        "value": "是",
+        "status": "VALUE_PRESENT",
+        "source_sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+        "locator": "Physical PDF p1, EL33006, 22 August 2024; ASIC company register 2026-11-02, COMPANY_202611.csv line 2849732, ACN 653927998, ABN 24653927998; c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d"
+      },
+      {
+        "project_id": "AU-430f216ca620b69af5f9",
+        "name": "Charley Creek South-East Project — historical URO EL33006 exploration",
+        "column": "ASX代碼",
+        "change": "RECLASSIFIED_NOT_APPLICABLE",
+        "value": "",
+        "status": "NOT_APPLICABLE_UNLISTED_DEVELOPER",
+        "source_sha256": "",
+        "locator": "{\"acn\":\"653927998\",\"developer\":\"URO Corporation Pty Ltd\",\"effective_date\":\"2024-08-22\",\"pdf_page\":1,\"register_date\":\"2026-11-02\",\"register_line\":2849732,\"register_sha256\":\"c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d\",\"source_sha256\":\"e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757\"}"
+      },
+      {
+        "project_id": "AU-6f0ecda27d291720036d",
+        "name": "Nutgrove REE Project",
+        "column": "緯度",
+        "change": "FILLED",
+        "value": "-27.04294614575421",
+        "status": "VALUE_PRESENT",
+        "source_sha256": "e106c9de3486ddf9dc2d4953972a864a2b8b06fd88d349cf4f4cbbbe239d4427",
+        "locator": "EPM 28000"
+      },
+      {
+        "project_id": "AU-6f0ecda27d291720036d",
+        "name": "Nutgrove REE Project",
+        "column": "經度",
+        "change": "FILLED",
+        "value": "151.75425132139875",
+        "status": "VALUE_PRESENT",
+        "source_sha256": "e106c9de3486ddf9dc2d4953972a864a2b8b06fd88d349cf4f4cbbbe239d4427",
+        "locator": "EPM 28000"
+      },
+      {
+        "project_id": "AU-6f0ecda27d291720036d",
+        "name": "Nutgrove REE Project",
+        "column": "總說明",
+        "change": "UPDATED",
+        "value": "開發階段依來源原文及其揭露日期：Exploration — rock-chip sampling at Nutgrove（來源狀態日：2025-10-30）；分類僅對應該來源時點，不代表目前營運、法律或許可狀態。；政府座標為來源資料集代表點（{\"accepted\":true,\"dataset\":\"qld_epm_live\",\"feature_id\":222919,\"government_available_date\":\"2026-11-03\",\"holders\":[\"WANDOO TENEMENTS PTY LTD\"],\"input_crs\":\"EPSG:4326\",\"input_datum\":\"World Geodetic System 1984 ensemble\",\"latitude\":-27.04294614575421,\"location_method\":\"TENEMENT_CENTROID\",\"longitude\":151.75425132139875,\"meaning\":\"TENEMENT_REPRESENTATIVE_POINT_NOT_RESOURCE_BOUNDARY\",\"metric_crs\":\"+proj=laea +lat_0=-27.040079576735355 +lon_0=151.75108479850007 +ellps=GRS80 +units=m +no_defs +type=crs\",\"output_crs\":\"EPSG:7844\",\"precision_m\":8098.423744048137,\"reason\":\"ACCEPTED\",\"scope_references\":[{\"page\":42,\"quote\":\"The Cosgrove Project consists of three EPMs\",\"source_sha256\":\"a17dd388db00b3ca4ffb4c04fc4e5d08534ace4fde26c66dfee02fef53bfb158\"},{\"page\":42,\"quote\":\"EPM28000 (Nutgrove)\",\"source_sha256\":\"a17dd388db00b3ca4ffb4c04fc4e5d08534ace4fde26c66dfee02fef53bfb158\"},{\"page\":42,\"quote\":\"EPM28107 (Mt Scoria)\",\"source_sha256\":\"a17dd388db00b3ca4ffb4c04fc4e5d08534ace4fde26c66dfee02fef53bfb158\"},{\"page\":42,\"quote\":\"EPM27983 (Mt Ramsay)\",\"source_sha256\":\"a17dd388db00b3ca4ffb4c04fc4e5d08534ace4fde26c66dfee02fef53bfb158\"},{\"page\":10,\"quote\":\"Results are reported from solely within EPM28000.\",\"source_sha256\":\"b015e3fa347138082ed14171e4921d32dde1377e6fe62317a0b0f8420131ef21\"},{\"page\":11,\"quote\":\"tenement interests as of 30 September 2026 are shown below.\",\"source_sha256\":\"5c0abb5243b3ed6dce0b03caa1ba9fdc2d84b44e49909a6020589a1507fee9a0\"},{\"page\":11,\"quote\":\"EPM28000 EPM 29 16/05/2022 15/05/2027 Granted Wandoo Tenements Pty Ltd\",\"source_sha256\":\"5c0abb5243b3ed6dce0b03caa1ba9fdc2d84b44e49909a6020589a1507fee9a0\"}],\"scope_review\":\"Nutgrove is the named single-tenement component of the three-title Cosgrove portfolio. The other two named components are Mt Scoria and Mt Ramsay. The September 2026 portfolio retains the same 29 Nutgrove sub-blocks under Wandoo, with Burlington licences listed separately. The 3 November Queensland capture supplies the granted polygon. Point represents this Nutgrove tenure, not the full Cosgrove portfolio or a mineral resource.\",\"tenement_ids\":[\"EPM 28000\"]}），不是礦權或資源邊界；資料集日期不是資源估計有效日。",
+        "status": "VALUE_PRESENT",
+        "source_sha256": "0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126;e106c9de3486ddf9dc2d4953972a864a2b8b06fd88d349cf4f4cbbbe239d4427",
+        "locator": "source records retained in scope"
+      },
+      {
+        "project_id": "AU-70fc8a7de18ad8209c32",
+        "name": "Charley Creek North-East Project — historical URO EL33000 exploration",
+        "column": "未上市公司",
+        "change": "FILLED",
+        "value": "是",
+        "status": "VALUE_PRESENT",
+        "source_sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+        "locator": "Physical PDF p1, EL33000, 22 August 2024; ASIC company register 2026-11-02, COMPANY_202611.csv line 2849732, ACN 653927998, ABN 24653927998; c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d"
+      },
+      {
+        "project_id": "AU-70fc8a7de18ad8209c32",
+        "name": "Charley Creek North-East Project — historical URO EL33000 exploration",
+        "column": "ASX代碼",
+        "change": "RECLASSIFIED_NOT_APPLICABLE",
+        "value": "",
+        "status": "NOT_APPLICABLE_UNLISTED_DEVELOPER",
+        "source_sha256": "",
+        "locator": "{\"acn\":\"653927998\",\"developer\":\"URO Corporation Pty Ltd\",\"effective_date\":\"2024-08-22\",\"pdf_page\":1,\"register_date\":\"2026-11-02\",\"register_line\":2849732,\"register_sha256\":\"c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d\",\"source_sha256\":\"06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a\"}"
+      },
+      {
+        "project_id": "AU-97137ef07af49e3607b2",
+        "name": "Charley Creek North Project — historical URO EL33004 exploration",
+        "column": "未上市公司",
+        "change": "FILLED",
+        "value": "是",
+        "status": "VALUE_PRESENT",
+        "source_sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+        "locator": "Physical PDF p1, EL33004, 22 August 2024; ASIC company register 2026-11-02, COMPANY_202611.csv line 2849732, ACN 653927998, ABN 24653927998; c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d"
+      },
+      {
+        "project_id": "AU-97137ef07af49e3607b2",
+        "name": "Charley Creek North Project — historical URO EL33004 exploration",
+        "column": "ASX代碼",
+        "change": "RECLASSIFIED_NOT_APPLICABLE",
+        "value": "",
+        "status": "NOT_APPLICABLE_UNLISTED_DEVELOPER",
+        "source_sha256": "",
+        "locator": "{\"acn\":\"653927998\",\"developer\":\"URO Corporation Pty Ltd\",\"effective_date\":\"2024-08-22\",\"pdf_page\":1,\"register_date\":\"2026-11-02\",\"register_line\":2849732,\"register_sha256\":\"c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d\",\"source_sha256\":\"e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0\"}"
+      },
+      {
+        "project_id": "AU-9bd8e5ed8408cd84d876",
+        "name": "Browns Range Project — Wolverine scope",
+        "column": "預估年產NdPr_t_per_year",
+        "change": "FILLED",
+        "value": "87",
+        "status": "VALUE_PRESENT",
+        "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+        "locator": "physical PDF p116; reviewed review_browns_dfs_output202509; physical PDF p109 Figure 42, REO Assemblage (forecast mass shares)"
+      },
+      {
+        "project_id": "AU-d1e3e2803f3c4287f6db",
+        "name": "Charley Creek South Project — historical URO EL33054 and EL33055 exploration",
+        "column": "未上市公司",
+        "change": "FILLED",
+        "value": "是",
+        "status": "VALUE_PRESENT",
+        "source_sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59",
+        "locator": "Physical PDF p4, EL33054 and EL33055, 14th August 2025; ASIC company register 2026-11-02, COMPANY_202611.csv line 2849732, ACN 653927998, ABN 24653927998; c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d"
+      },
+      {
+        "project_id": "AU-d1e3e2803f3c4287f6db",
+        "name": "Charley Creek South Project — historical URO EL33054 and EL33055 exploration",
+        "column": "ASX代碼",
+        "change": "RECLASSIFIED_NOT_APPLICABLE",
+        "value": "",
+        "status": "NOT_APPLICABLE_UNLISTED_DEVELOPER",
+        "source_sha256": "",
+        "locator": "{\"acn\":\"653927998\",\"developer\":\"URO Corporation Pty Ltd\",\"effective_date\":\"2025-08-14\",\"pdf_page\":4,\"register_date\":\"2026-11-02\",\"register_line\":2849732,\"register_sha256\":\"c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d\",\"source_sha256\":\"5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59\"}"
+      }
+    ]
+  },
+  "mcda": {
+    "panels": {
+      "beneficiation_concentrate_screen": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 18,
+        "changed_ranks": [],
+        "pairwise_comparisons": 9,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "disclosure_only": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 180,
+        "changed_ranks": [],
+        "pairwise_comparisons": 1710,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "issuer_resource_composition": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 90,
+        "changed_ranks": [],
+        "pairwise_comparisons": 405,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "issuer_resource_concentrate": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 18,
+        "changed_ranks": [],
+        "pairwise_comparisons": 9,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "issuer_resource_concentrate_recovery": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 18,
+        "changed_ranks": [],
+        "pairwise_comparisons": 9,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "issuer_resource_financing_milestone": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 72,
+        "changed_ranks": [],
+        "pairwise_comparisons": 252,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "issuer_resource_infrastructure": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 54,
+        "changed_ranks": [],
+        "pairwise_comparisons": 135,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "issuer_resource_study": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 63,
+        "changed_ranks": [],
+        "pairwise_comparisons": 189,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "official_wa_resource_screen": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 153,
+        "changed_ranks": [],
+        "pairwise_comparisons": 1224,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "resource_disclosure": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 252,
+        "changed_ranks": [],
+        "pairwise_comparisons": 1638,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "resource_infrastructure_pilot": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 153,
+        "changed_ranks": [],
+        "pairwise_comparisons": 1224,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "resource_port_disclosure": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 216,
+        "changed_ranks": [],
+        "pairwise_comparisons": 1188,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "six_domain": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 45,
+        "changed_ranks": [],
+        "pairwise_comparisons": 90,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "six_domain_disclosure": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 90,
+        "changed_ranks": [],
+        "pairwise_comparisons": 180,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "technical_process_concentrate_fixed": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 60,
+        "changed_ranks": [],
+        "pairwise_comparisons": 30,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      },
+      "technical_process_concentrate_sample_minmax": {
+        "added": [],
+        "removed": [],
+        "ranks_checked": 60,
+        "changed_ranks": [],
+        "pairwise_comparisons": 30,
+        "changed_pairs": [],
+        "changed_artifacts": []
+      }
+    },
+    "complete_panels": 16,
+    "rehashed_artifacts": 160,
+    "rehashed_baseline_copies": 160,
+    "changed_artifact_count": 0,
+    "changed_project_ranks": 0,
+    "pairwise_comparisons": 8322,
+    "changed_pairs": 0
+  },
+  "sqlite": {
+    "integrity": "ok",
+    "foreign_key_violations": 0,
+    "run_id": "20261121T161124-30a06780",
+    "registered_sources": 866
+  },
+  "priority_source_checks": {
+    "AU-6f0ecda27d291720036d": {
+      "0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126": {
+        "source_key": "nutgrove20251030",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2025-10-30",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      },
+      "5c0abb5243b3ed6dce0b03caa1ba9fdc2d84b44e49909a6020589a1507fee9a0": {
+        "source_key": "gg1_tenure_schedule_20261030",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2026-10-30",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      },
+      "a17dd388db00b3ca4ffb4c04fc4e5d08534ace4fde26c66dfee02fef53bfb158": {
+        "source_key": "gg1_cosgrove_portfolio_20250708",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2025-07-08",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      },
+      "b015e3fa347138082ed14171e4921d32dde1377e6fe62317a0b0f8420131ef21": {
+        "source_key": "nutgrove_rhyolite_20260303",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2026-03-03",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      },
+      "e106c9de3486ddf9dc2d4953972a864a2b8b06fd88d349cf4f4cbbbe239d4427": {
+        "source_key": "qld_epm_live",
+        "date_basis": "FROZEN_GOVERNMENT_CAPTURE",
+        "date_used": "2026-11-03",
+        "version_status": "PINNED_PHASE22",
+        "original_rehashed": true
+      }
+    },
+    "AU-216d0983f6892f9b58f9": {
+      "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491": {
+        "source_key": "asx_document_03126345",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2026-08-18",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      },
+      "e60ee62748c8399881f8fa2fbf07a08f0d80fa88b44231127dbabc18a9efa9dd": {
+        "source_key": "north_stanmore_pfs_annual20260914",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2026-09-14",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      }
+    },
+    "AU-430f216ca620b69af5f9": {
+      "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d": {
+        "source_key": "asic_company_register_20261102",
+        "date_basis": "ARCHIVED_PUBLISHER_VERSION",
+        "date_used": "2026-11-02",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      },
+      "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757": {
+        "source_key": "reviewed_source_e37750161e156498",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2024-11-30",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      }
+    },
+    "AU-70fc8a7de18ad8209c32": {
+      "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a": {
+        "source_key": "reviewed_source_06916f0c5d2b6e1c",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2024-11-30",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      },
+      "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d": {
+        "source_key": "asic_company_register_20261102",
+        "date_basis": "ARCHIVED_PUBLISHER_VERSION",
+        "date_used": "2026-11-02",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      }
+    },
+    "AU-97137ef07af49e3607b2": {
+      "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d": {
+        "source_key": "asic_company_register_20261102",
+        "date_basis": "ARCHIVED_PUBLISHER_VERSION",
+        "date_used": "2026-11-02",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      },
+      "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0": {
+        "source_key": "reviewed_source_e6bed25382926c6d",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2024-11-30",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      }
+    },
+    "AU-d1e3e2803f3c4287f6db": {
+      "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59": {
+        "source_key": "reviewed_source_5d4d954c63513e05",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2026-02-26",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      },
+      "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d": {
+        "source_key": "asic_company_register_20261102",
+        "date_basis": "ARCHIVED_PUBLISHER_VERSION",
+        "date_used": "2026-11-02",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      },
+      "edb1583a4bcc4eddb7142b233ced822c1ef711df9c7c72051399dd22c7ad9b75": {
+        "source_key": "reviewed_source_edb1583a4bcc4edd",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2023-10-31",
+        "version_status": "PINNED_SHA_VERIFIED",
+        "original_rehashed": true
+      }
+    }
+  },
+  "baseline_commit": "c44c854c6d070fbf6b016d4f5bb58d954bab05f9",
+  "research_code": {
+    "commit": "e7184598eaeb16482af5e711c13eb6e7adfb465f",
+    "content_sha256": "cf08f79bd3020d18024e0f8c4f41f37b9dea14e1b0ebb1f844a2b3185c60018c",
+    "package": "0.1.0"
+  },
+  "source_cutoff": "2026-11-13",
+  "coverage_transitions": {
+    "EVIDENCE_OR_REASON_CHANGED": 40,
+    "FILLED": 11,
+    "RECLASSIFIED_NOT_APPLICABLE": 5,
+    "UPDATED": 1
+  },
+  "panel_membership": {
+    "old_count": 1488,
+    "new_count": 1488,
+    "removed": [],
+    "added": [],
+    "changed": []
+  },
+  "criteria_lineage": {
+    "old_count": 318,
+    "new_count": 318,
+    "removed": [],
+    "added": [],
+    "changed": []
+  },
+  "portable_replay": {
+    "selection_identical": true,
+    "selection_rows": 212,
+    "selected_snapshots": 448,
+    "receipt_sha256": "f65eb6095d00720505418597531682beb48ce276889df9ce1b9562bf8f6b8fbc",
+    "original_execution_receipt_sha256": "fcd7dae07fc373c91e5c3ca8e9bc805f3d15efe966cc48f09b14bd8b24587699",
+    "only_paths_rebased": true,
+    "bundle": {
+      "asset_bytes": 1369856569,
+      "assets": 688,
+      "lock_sha256": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
+      "manifest_sha256": "2b6ae4e0fb9c2584c84e70a961c9fbb975c3629882b8781d84a1ffcc06471fc9",
+      "manifest_version": 2,
+      "receipt_sha256": "f65eb6095d00720505418597531682beb48ce276889df9ce1b9562bf8f6b8fbc",
+      "references": 778
+    }
+  },
+  "tests": {
+    "python_passed": 580,
+    "r_suites_passed": 5,
+    "python_tested_commit": "ac9ba19",
+    "r_suites": [
+      "analytical invariants",
+      "identity RNG",
+      "evidence cohort and mathematical contribution",
+      "zero-weight exclusion",
+      "technical group budget"
+    ]
+  }
+}

@@ -1,10 +1,10 @@
 """Rebuildable coverage and formal-policy compatibility audit; no gate invention."""
 import json
-from .analysis import write_csv
+from .tabular import read_csv, write_csv
 from .store import canonical, digest
 
 
-def audit(db,out,identity,technical,prepared,config,cutoff,snapshots,root=None,current=None):
+def audit(db,out,identity,technical,prepared,config,cutoff,snapshots,root=None,current=None,*,integrated_census=False):
     mapping=identity['mapping']; selected={s['sha256'] for s in snapshots}
     names={r['entity_id']:r['name'] for r in db.execute('SELECT * FROM records ORDER BY source_sha') if r['source_sha'] in selected}
     coverage={r['canonical_project_id']:r for r in prepared['coverage']}
@@ -29,7 +29,30 @@ def audit(db,out,identity,technical,prepared,config,cutoff,snapshots,root=None,c
     write_csv(out/'formal_gate_compatibility.csv',gates,['canonical_project_id','gate','status','objective_source_facts','reason','cutoff','rule_version'])
     write_csv(out/'eligibility_cohorts.csv',cohorts,['canonical_project_id','project_names','registry_group','resource_defined','development','full_evidence','formal_c1_status','exploratory_available','cutoff','rule_version'])
     stats={'unresolved_pairs':len(pairs),'primary_scope_gaps':len(gaps),'formal_c1_evaluated':0,'formal_c1_admitted':0,'formal_c1_reason':'UPSTREAM_GATE_LEDGER_AND_FIXED_PANEL_NOT_IMPORTED','registry_groups':len(cohorts),'source_snapshots':len(snapshots),'resource_defined':sum(c['resource_defined'] for c in cohorts),'development':sum(c['development'] for c in cohorts),'full_evidence':sum(c['full_evidence'] for c in cohorts)}
-    if config.get('eligibility_evidence',{}).get('imports'):
+    if integrated_census and root and (root/'config/formal_c1_review.json').is_file():
+        folder = out/'project-summary'
+        release = json.loads((folder/'formal_c1_release.json').read_text(encoding='utf8'))
+        verified = set(release['signed_eligible_projects'])
+        released = set(release['formally_releasable'])
+        evaluated = {}
+        formal = read_csv(folder/'formal_c1_gates.csv')
+        for row in formal:
+            pid = row['project_id']
+            evaluated.setdefault(pid, set()).add(row['status'])
+            row.update(canonical_project_id=pid, objective_source_facts=row['evidence'],
+                       reason=row['objective'], cutoff=row['source_asof'], rule_version=release['evaluator'])
+        for cohort in cohorts:
+            pid = cohort['canonical_project_id']
+            states = evaluated.get(pid, set())
+            cohort['formal_c1_status'] = ('RELEASABLE' if pid in released else 'ELIGIBLE_PENDING_RELEASE_QA'
+                if pid in verified else 'EXCLUDED' if 'EXCLUDE' in states else 'PENDING' if states else 'OUTSIDE_CENSUS_REVIEW')
+        write_csv(out/'eligibility_cohorts.csv',cohorts,list(cohorts[0]) if cohorts else ['canonical_project_id','formal_c1_status'])
+        write_csv(out/'formal_gate_compatibility.csv',formal,
+                  ['canonical_project_id','gate','status','objective_source_facts','reason','cutoff','rule_version','crosswalk','signoff'])
+        stats.update(formal_c1_evaluated=len(evaluated), formal_c1_admitted=len(verified),
+                     formal_c1_releasable=len(released), formal_c1_reason=release['release_status'],
+                     formal_c1_policy=release['policy_id'], formal_c1_source_asof=release['source_asof'])
+    elif config.get('eligibility_evidence',{}).get('imports'):
         stats['formal_c1_reason']='IMPORTED_POLICY_EMPTY_SIGNOFF_LEDGERS_NO_APPROVED_CROSSWALK_OR_PANEL'
         stats['objective_evidence']=objective_evidence(db,out,mapping,technical,config['eligibility_evidence'],cutoff,snapshots,root,current)
     (out/'eligibility_audit.json').write_text(json.dumps(stats,indent=2)+'\n',encoding='utf-8')
@@ -46,7 +69,7 @@ def objective_evidence(db,out,mapping,technical,policy,cutoff,snapshots,root,cur
     import csv,io
     from pathlib import Path
     from .store import filehash
-    from .selection import date_end,observation_visible
+    from .selection_rules import date_end,observation_visible
     root=Path(root);imports=policy['imports'];contents={}
     for key,entry in imports.items():
         if filehash(root/entry['path'])!=entry['sha256']:raise ValueError('UPSTREAM_POLICY_SHA_MISMATCH')

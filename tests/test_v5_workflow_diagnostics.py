@@ -170,9 +170,33 @@ class V5WorkflowDiagnostics(unittest.TestCase):
         self.assertEqual(summary[host]['first_http_status'], '403')
         self.assertEqual(summary[host]['successful_sources_after_first_attempt'], '1')
         self.assertEqual(summary[host]['marked'], 'True')
-        with report.open(encoding='utf-8-sig', newline='') as stream:
+        annotated = root/'work/ci-annotations/runs/test/acquisition_report.csv'
+        with annotated.open(encoding='utf-8-sig', newline='') as stream:
             marked = [row for row in csv.DictReader(stream) if row['host'] == host]
         self.assertEqual([MARKER, MARKER], [row['stop_reason'] for row in marked])
+
+    def test_capture_preserves_hashed_run_receipt_and_annotates_unsealed_top_level(self):
+        root = self.fixture.root
+        clean = root/'work/clean'
+        report = clean/'runs'/'run-1'/'acquisition_report.csv'
+        report.parent.mkdir(parents=True)
+        attempts = [dict(host=GA, http_status=code) for code in (403, 200)]
+        row = dict(key='example', host=GA, status='FETCHED_SHA_VERIFIED', stop_reason='',
+                   http_attempts=json.dumps(attempts))
+        with report.open('w', encoding='utf8', newline='') as stream:
+            writer = csv.DictWriter(stream, row)
+            writer.writeheader()
+            writer.writerow(row)
+        top_level = clean/'acquisition_report.csv'
+        top_level.write_bytes(report.read_bytes())
+        captured_hash = hashlib.sha256(report.read_bytes()).hexdigest()
+        for _ in range(2):
+            self.functions['capture'](root)
+            self.assertEqual(hashlib.sha256(report.read_bytes()).hexdigest(), captured_hash)
+            annotated = root/'work/ci-annotations/runs/run-1/acquisition_report.csv'
+            for diagnostic in (annotated, top_level):
+                with diagnostic.open(encoding='utf-8-sig', newline='') as stream:
+                    self.assertEqual(next(csv.DictReader(stream))['stop_reason'], MARKER)
 
     def test_other_host_alternate_does_not_prove_primary_host_success(self):
         host = 'blocked.example'

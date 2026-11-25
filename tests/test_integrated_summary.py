@@ -44,8 +44,8 @@ class SummaryContractTests(unittest.TestCase):
         ingest_claims(self.db,self.root,[self.source],'2026-11-13',claims_data=claims,conflict_selection=True)
         self.db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?,?)',('run','2026-11-15','2026-11-13','{}','config','sources','COMPLETED',None));self.db.commit()
 
-    def export(self):
-        out=self.root/'export';coverage=export_summary(self.root,self.database,out)
+    def export(self, **options):
+        out=self.root/'export';coverage=export_summary(self.root,self.database,out,**options)
         with (out/'專案總表.csv').open(encoding='utf8',newline='') as f:rows=list(csv.DictReader(f))
         with (out/'field_provenance.csv').open(encoding='utf8',newline='') as f:trace=list(csv.DictReader(f))
         with (out/'missing_fields.csv').open(encoding='utf8',newline='') as f:missing=list(csv.DictReader(f))
@@ -83,17 +83,30 @@ class SummaryContractTests(unittest.TestCase):
             (run/'configuration.json').write_text(canonical(config),encoding='utf8')
             (run/'snapshot_lock.json').write_text(canonical(lock),encoding='utf8')
             (run/'canonical_membership.csv').write_text('kind,canonical_id\n',encoding='utf8')
+            (run/'acquisition_report.csv').write_text('key,status\ndoc,RECEIPT_SHA_VERIFIED\n',encoding='utf8')
+            settings=('summary_rules.json','researcher_rule_decisions.json','project_summary_columns.json')
+            receipt=dict(run_id='run',status='COMPLETED',cutoff='2026-11-13',
+                configuration_sha256=digest(config),snapshot_sha256=digest(lock),
+                project_summary={'export_contract_sha256':{n:filehash(self.root/'config'/n) for n in settings}},
+                output_hashes={n:filehash(run/n) for n in ('canonical_membership.csv','acquisition_report.csv')})
+            (run/'summary.json').write_text(canonical(receipt),encoding='utf8')
             self.db.execute('UPDATE runs SET config_sha=?,snapshot_sha=?',(digest(config),digest(lock)))
             self.db.commit()
             before=filehash(self.database)
-            coverage,rows,_,_=self.export()
+            with self.assertRaises(ValueError):
+                export_summary(self.root,self.database,self.root/'implicit-external')
+            # The historical locked path can now disappear. Only declared hash-addressed bytes are used.
+            assets=Path(outside)/'relocated-library'
+            assets.mkdir()
+            original.rename(assets/self.source['sha256'])
+            coverage,rows,_,_=self.export(replay_assets=assets)
             self.assertEqual(rows[0]['ASX代碼'],'TST')
             self.assertIn('field_status_counts',coverage)
             self.assertTrue((self.root/'export/resource_statement_observations.csv').is_file())
             self.assertEqual(filehash(self.database),before)
             (run/'snapshot_lock.json').write_text('[]',encoding='utf8')
             with self.assertRaisesRegex(ValueError,'SUMMARY_RUN_SNAPSHOT_HASH_MISMATCH'):
-                export_summary(self.root,self.database,self.root/'tampered')
+                export_summary(self.root,self.database,self.root/'tampered',replay_assets=assets)
             self.assertFalse((self.root/'tampered').exists())
 
     def test_reported_oxide_groups_fill_only_matching_group_totals(self):
@@ -301,6 +314,31 @@ class SummaryContractTests(unittest.TestCase):
 
 
 class IntegratedRuleTests(unittest.TestCase):
+    def test_full_concentrate_offtake_requires_total_scope_and_contained_annual_oxide(self):
+        from au_ree_v2.technical import summary_annual_cell
+        field = 'average_annual_treo_product_t'
+        coverage = 'Iluka to purchase 100% of Goschen’s REC, providing offtake certainty for approximately 18 years'
+        prefix = 'Approximately 145,620 tonnes of REC over the life of the project, equivalent to around'
+        suffix = 'tonnes per annum of contained rare earth oxides'
+        for share, product, value, valid in (
+                ('100%', suffix, '4900', True), ('80%', suffix, '4900', False),
+                ('100%', 'tonnes per annum of concentrate', '4900', False), ('100%', suffix, '4800', False)):
+            with self.subTest(share=share, product=product, value=value), pymupdf.open() as doc:
+                page = doc.new_page(width=850, height=110)
+                # Built-in font uses WinAnsi byte 0x92 for the issuer's apostrophe.
+                page.insert_text((10,20), coverage.replace('100%', share).replace('’', chr(146)), fontsize=8)
+                statement = f'{prefix} 4,900 {product}'
+                page.insert_text((10,45), statement, fontsize=8)
+                binding = dict(mode='native_statement', semantic_profile='full_project_concentrate_offtake',
+                    field=field, scope='DFS REC', page=1, time_basis_bbox=[5,5,830,24],
+                    statement_bbox=[5,31,830,49], statement=statement, before=prefix, after=product)
+                args = (doc, binding, field, value, 'tonnes per annum', 'DFS REC')
+                if valid:
+                    self.assertEqual('NATIVE_SCOPED_STATEMENT_BINDING', summary_annual_cell(*args))
+                else:
+                    with self.assertRaises(ValueError):
+                        summary_annual_cell(*args)
+
     def test_contains_product_grade_and_correct_annual_mass_unit(self):
         from au_ree_v2.technical import summary_annual_hmc_card
         review=dict(scope='HMC',statement_id='hmc',source_sha256='a'*64,effective_date='2026-04-10',pdf_page=1)

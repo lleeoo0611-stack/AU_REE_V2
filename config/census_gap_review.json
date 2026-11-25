@@ -1,0 +1,640 @@
+{
+  "version": "phase22-gap-review-20261121",
+  "cutoff": "2026-11-13",
+  "baseline": {
+    "path": "results/ree-project-census/integrated-evidence-v1-20261120/field_status.csv",
+    "sha256": "8d83fa26471ab7a7b8ff3d9f82146524fa66d47d5abf882e6f3eba50c7c4e13c"
+  },
+  "dispositions": {
+    "path": "results/ree-project-census/plan620-20261119/gap_disposition.csv",
+    "sha256": "7d87935c3cacd5c3a41c97ed52731b4b0480df26bf41bd44f36bc6312572e6a9"
+  },
+  "withdrawn_projects": [
+    "AU-5ea2535a2de9a1a3327e",
+    "AU-d99cf357d160df73387c"
+  ],
+  "withdrawn_columns": [
+    "開發階段代碼",
+    "開發階段類別",
+    "產品/產出"
+  ],
+  "priority_projects": [
+    "AU-6f0ecda27d291720036d",
+    "AU-216d0983f6892f9b58f9",
+    "AU-430f216ca620b69af5f9",
+    "AU-70fc8a7de18ad8209c32",
+    "AU-97137ef07af49e3607b2",
+    "AU-d1e3e2803f3c4287f6db"
+  ],
+  "case_reviews": [
+    {
+      "project_id": "AU-5ea2535a2de9a1a3327e",
+      "columns": [
+        "開發階段代碼",
+        "開發階段類別",
+        "產品/產出"
+      ],
+      "source_sha256": "5cda0e1a4cabf309fb89d41649fd306adb09ed21711952b15d7bfeff0112806a",
+      "locator": "FY24 operations review, physical PDF p9, Viper and Graceland.",
+      "finding": "The passive survey was undertaken, the proposed drilling did not proceed and relinquishment had commenced. No completed new development milestone or REE product is established for Viper."
+    },
+    {
+      "project_id": "AU-d99cf357d160df73387c",
+      "columns": [
+        "開發階段代碼",
+        "開發階段類別",
+        "產品/產出"
+      ],
+      "source_sha256": "dd29b311224f3e25692592f23d7efedec24b356fccc8513a7022f9534dfad1b1",
+      "locator": "2025-07-30 quarterly, physical PDF p4, four Southern Cross licences.",
+      "finding": "Four licences were relinquished. The event verifies the operator's withdrawal, with no completed development milestone or REE product in that disclosure."
+    },
+    {
+      "project_id": "AU-3eb7131e4daea18a60a0",
+      "columns": [
+        "元素總和/TREO"
+      ],
+      "source_sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+      "locator": "Physical PDF pp.2,88–89, total row 379,421,288 t, MzEq cut-off 1,957 ppm.",
+      "finding": "Appendix p88 distinguishes 344.6 ppm TREO from 374.3 ppm TREO plus yttrium oxide. The element sum includes yttrium; substituting the second denominator changes the defined ratio to the displayed TREO. Keep both published bases visible here."
+    },
+    {
+      "project_id": "AU-8c5887498873bf838e09",
+      "columns": [
+        "礦床型態代碼"
+      ],
+      "source_sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
+      "locator": "Physical PDF pp.1,12, Coondina RC drilling, JORC geology.",
+      "finding": "The issuer interprets monzogranite on p1, but p12 explicitly leaves the REE host unresolved between alluvial/colluvial sediment and weathered granite or pegmatite."
+    },
+    {
+      "project_id": "AU-cae6c11543b0da5f840d",
+      "columns": [
+        "礦床型態代碼"
+      ],
+      "source_sha256": "1106052fbb1564fdb0788a727239f4f5987f18dcbc6cab61789ef070148ed221",
+      "locator": "Static ASX PDF pp.1–2,7: Luni drilling, oxidised and primary intervals.",
+      "finding": "Confirmed carbonatite mineralisation includes both near-surface supergene enrichment and deeper primary mineralisation. A unique deposit code for the full Luni scope is unresolved."
+    },
+    {
+      "project_id": "AU-216d0983f6892f9b58f9",
+      "columns": [
+        "預估年產TREO_t_per_year",
+        "預估年產NdPr_t_per_year"
+      ],
+      "source_sha256": "e60ee62748c8399881f8fa2fbf07a08f0d80fa88b44231127dbabc18a9efa9dd",
+      "locator": "September presentation p9, scheduled annual concentrate production; prior PFS identified on p2.",
+      "finding": "Cross-checks the annual reporting period of the August PFS. The project-wide averages are read from the Total/Average column of the PFS, not the high-grade phase."
+    },
+    {
+      "project_id": "AU-9bd8e5ed8408cd84d876",
+      "columns": [
+        "預估年產NdPr_t_per_year"
+      ],
+      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "locator": "2025 DFS p109 Figure 42, concentrate REO assemblage and footnote 1.",
+      "finding": "Steady-state contained TREO 4,350 t/y times (Pr 0.3% + Nd 1.7%) yields approximately 87 t/y NdPr oxides."
+    },
+    {
+      "project_id": "AU-6f0ecda27d291720036d",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "source_sha256": "5c0abb5243b3ed6dce0b03caa1ba9fdc2d84b44e49909a6020589a1507fee9a0",
+      "locator": "Quarterly tenure schedule, Nutgrove EPM 28000, 29 blocks.",
+      "finding": "Complete project extent reviewed with the prospectus tenure mapping and the 3 November Queensland geometry. Point denotes the single tenure, not a mineral resource boundary."
+    },
+    {
+      "project_id": "AU-2fc429d0556dfa0b95c4",
+      "columns": [
+        "La2O3_氧化鑭_kt",
+        "Sm2O3_氧化釤_kt",
+        "Eu2O3_氧化銪_kt",
+        "Gd2O3_氧化釓_kt",
+        "Ho2O3_氧化鈥_kt",
+        "Er2O3_氧化鉺_kt",
+        "Tm2O3_氧化銩_kt",
+        "Yb2O3_氧化鐿_kt",
+        "Lu2O3_氧化鎦_kt"
+      ],
+      "source_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+      "locator": "Selected estimate, physical PDF p6.",
+      "finding": "The 530 Mt total row identifies a limited set of whole-ore and heavy-mineral variables. The nine missing individual REOs have no matched in-situ grades here."
+    },
+    {
+      "project_id": "AU-efff91a06cf344122d88",
+      "columns": [
+        "Tb4O7_氧化鋱_kt",
+        "Dy2O3_氧化鏑_kt"
+      ],
+      "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+      "locator": "Selected estimate, physical PDF p9.",
+      "finding": "The 106.6 Mt in-situ resource row reports total TREO; individual rare earth values from a 32 Mt reserve cannot supply its Tb and Dy."
+    },
+    {
+      "project_id": "AU-ff758cad5beb276d327d",
+      "columns": [
+        "TREO品位_pct",
+        "總TREO蘊藏量_kt",
+        "磁鐵稀土佔TREO_pct",
+        "有TREO資源估計",
+        "元素總和/TREO"
+      ],
+      "source_sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "locator": "Selected estimate, physical PDF p3.",
+      "finding": "The 540 Mt bulk ore and 25 Mt heavy mineral masses are explicit. The heavy-mineral fraction accounts for 476.25 kt oxides; the residual fraction lacks the same-edition REO mass balance."
+    },
+    {
+      "project_id": "AU-7c198d219aa1db3e291f",
+      "columns": [
+        "NdPr蘊藏量_kt_需兩者皆公布"
+      ],
+      "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+      "locator": "Selected estimate, physical PDF p6.",
+      "finding": "The 0.69 Mt row states 0.15% NdPr. The model and quarterly restatement do not define that aggregate explicitly as Nd2O3 plus Pr6O11."
+    },
+    {
+      "project_id": "AU-97137ef07af49e3607b2",
+      "columns": [
+        "未上市公司",
+        "ASX代碼"
+      ],
+      "source_sha256": "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+      "locator": "ASIC COMPANY_202611.csv line 2849732, ABN 24653927998, ACN 653927998.",
+      "finding": "The 2026-11-02 register row corroborates the legal identity and proprietary type of the company named in the dated historical project report. The company role and report date are checked separately for each tenure."
+    },
+    {
+      "project_id": "AU-70fc8a7de18ad8209c32",
+      "columns": [
+        "未上市公司",
+        "ASX代碼"
+      ],
+      "source_sha256": "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+      "locator": "ASIC COMPANY_202611.csv line 2849732, ABN 24653927998, ACN 653927998.",
+      "finding": "The 2026-11-02 register row corroborates the legal identity and proprietary type of the company named in the dated historical project report. The company role and report date are checked separately for each tenure."
+    },
+    {
+      "project_id": "AU-430f216ca620b69af5f9",
+      "columns": [
+        "未上市公司",
+        "ASX代碼"
+      ],
+      "source_sha256": "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+      "locator": "ASIC COMPANY_202611.csv line 2849732, ABN 24653927998, ACN 653927998.",
+      "finding": "The 2026-11-02 register row corroborates the legal identity and proprietary type of the company named in the dated historical project report. The company role and report date are checked separately for each tenure."
+    },
+    {
+      "project_id": "AU-d1e3e2803f3c4287f6db",
+      "columns": [
+        "未上市公司",
+        "ASX代碼"
+      ],
+      "source_sha256": "c9600b00754baf5ca17b3710d2f1a118be01e26b929d1e6d29227a5966a9e72d",
+      "locator": "ASIC COMPANY_202611.csv line 2849732, ABN 24653927998, ACN 653927998.",
+      "finding": "The 2026-11-02 register row corroborates the legal identity and proprietary type of the company named in the dated historical project report. The company role and report date are checked separately for each tenure."
+    }
+  ],
+  "page_reviews": [
+    {
+      "project_id": "AU-0098e17a63e7c05c213f",
+      "source_sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864",
+      "page": 1,
+      "locator": "physical PDF p1; Issuer describes the maiden MRE and the purpose of the planned study. No study completion claimed.",
+      "columns": [
+        "產品/產出",
+        "開發階段代碼",
+        "開發階段類別"
+      ]
+    },
+    {
+      "project_id": "AU-2ab3e8eb7b5784e64f9b",
+      "source_sha256": "31efc775284b45cc43118d960eb7c26638d3697030abdf1013831e0da2cc7ea3",
+      "page": 13,
+      "locator": "Physical PDF p13. Issuer distinguishes the original Duke exploration model and additional targets. Ionic adsorption was a geological possibility.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-2af694147ae21c393820",
+      "source_sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+      "page": 50,
+      "locator": "Physical PDF p50. Lake Campion project, FY24 exploration, p48 printed. IGO presents a conceptual model with two target mechanisms. Mineralogical proof of either mechanism is not reported here.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-2af694147ae21c393820",
+      "source_sha256": "d02cf6e37d7da28ac638f8ce9c00248ed688a4c0210ca8a23d39713394394840",
+      "page": 46,
+      "locator": "Physical PDF p46. Figure 1, left-side Lake Campion label and its tenure polygons use the relinquished FY25 legend style. The preceding page defines the period and relinquished areas. Scope is IGO tenure only.",
+      "columns": [
+        "產品/產出",
+        "開發階段代碼",
+        "開發階段類別"
+      ]
+    },
+    {
+      "project_id": "AU-430f216ca620b69af5f9",
+      "source_sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+      "page": 3,
+      "locator": "Physical PDF p3; Relinquished portion of EL33006; report distinguishes conceptual models and prospective local alluvial sediments.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-430f216ca620b69af5f9",
+      "source_sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+      "page": 3,
+      "locator": "physical PDF p3; Reporting period and partial surrender date on p. 1. Applies only to the relinquished western portion.",
+      "columns": [
+        "產品/產出"
+      ]
+    },
+    {
+      "project_id": "AU-47d12ebe6b66df8e5936",
+      "source_sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "page": 2,
+      "locator": "physical PDF p2; reviewed continuation2_wa_legend_AU-47d12ebe6b66df8e5936",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-5ea2535a2de9a1a3327e",
+      "source_sha256": "5cda0e1a4cabf309fb89d41649fd306adb09ed21711952b15d7bfeff0112806a",
+      "page": 9,
+      "locator": "Physical PDF p9. FY24 operations review, Viper and Graceland subsection. Viper is named as a survey site. The report describes the commencement of a REE portfolio relinquishment process, without establishing completion for every individual licence.",
+      "columns": [
+        "產品/產出",
+        "開發階段代碼",
+        "開發階段類別"
+      ]
+    },
+    {
+      "project_id": "AU-5ea2535a2de9a1a3327e",
+      "source_sha256": "de3bd4bffa11e7980fc624dcbdbd7d956e6b266008c5d1033446ebb1951d0604",
+      "page": 1,
+      "locator": "Physical PDF p1. Viper Project near Jerramungup. The issuer records multiple lithologies in its first project RC programme. These intersections do not uniquely establish one deposit-type code or adsorption mechanism.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-68da41afe874c3bd66d4",
+      "source_sha256": "250eb3778935dfdd8dd56c397ef38ffb396b15d82a0f5a464e99427fd08a5b75",
+      "page": 59,
+      "locator": "Physical PDF p59. Issuer records formal project relinquishment. The 2024 schedule uses /2023 suffixes while the 2023 report uses /2022. No licence geometry is inferred.",
+      "columns": [
+        "產品/產出",
+        "開發階段代碼",
+        "開發階段類別"
+      ]
+    },
+    {
+      "project_id": "AU-68da41afe874c3bd66d4",
+      "source_sha256": "d89d425f252770e5d8fa332f11331b93b21e03aea466545a45397351c91ec402",
+      "page": 3,
+      "locator": "Physical PDF p3, Voyager Rare Earth Project. Issuer maps clay and bauxite on its tenures. The adjacent ABx resource and leaching tests refer to another project.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-6f0ecda27d291720036d",
+      "source_sha256": "b015e3fa347138082ed14171e4921d32dde1377e6fe62317a0b0f8420131ef21",
+      "page": 1,
+      "locator": "Physical PDF p1. Source assays are rock-chip observations in EPM28000, with multiple host and alteration settings.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-70cc41e3a7106f983f73",
+      "source_sha256": "e5e4bc19476428a86bc09b9999621e0d6a50bff4ce8668372fb32739e7281a0d",
+      "page": 5,
+      "locator": "Physical PDF p5. White Cliff reports its executed acquisition agreement and applications as at the quarterly publication. The prior operator Magnetic Resources did the historical drilling in 2008; White Cliff had only planned a site visit at this date.",
+      "columns": [
+        "產品/產出",
+        "開發階段代碼",
+        "開發階段類別"
+      ]
+    },
+    {
+      "project_id": "AU-70cc41e3a7106f983f73",
+      "source_sha256": "e5e4bc19476428a86bc09b9999621e0d6a50bff4ce8668372fb32739e7281a0d",
+      "page": 6,
+      "locator": "Physical PDF p6. Lake Tay historical Magnetic Resources 2008 shallow aircore programme, partial REE suite only. Describes drill-intersected host and not a project-wide deposit genesis.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-70fc8a7de18ad8209c32",
+      "source_sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+      "page": 3,
+      "locator": "Physical PDF p3; Relinquished portions of EL33000; exploration target.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-70fc8a7de18ad8209c32",
+      "source_sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+      "page": 3,
+      "locator": "physical PDF p3; Reporting period and partial surrender date on p. 1. URO explicitly retains other parts of EL33000.",
+      "columns": [
+        "產品/產出"
+      ]
+    },
+    {
+      "project_id": "AU-75fe0f1a81005bd19586",
+      "source_sha256": "5ebb04f84564bebc1f8e96073fe45b1e3792b6b6115414c28be94d4886bcea28",
+      "page": 6,
+      "locator": "physical PDF p6; reviewed fullscope5_durack_withdrawal",
+      "columns": [
+        "產品/產出"
+      ]
+    },
+    {
+      "project_id": "AU-794821a2df9b7a244f96",
+      "source_sha256": "d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d",
+      "page": 1,
+      "locator": "physical PDF p1; reviewed fullscope2_literal_hre_perenjori20250613",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-8c5887498873bf838e09",
+      "source_sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
+      "page": 1,
+      "locator": "Physical PDF p1. Historical MinRex drilling within the central eastern part of E45/4266. The host is the issuer interpretation of the assays.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-97137ef07af49e3607b2",
+      "source_sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+      "page": 4,
+      "locator": "physical PDF p4; Reporting period and partial surrender date on p. 1. The status applies only to the relinquished eastern section.",
+      "columns": [
+        "產品/產出"
+      ]
+    },
+    {
+      "project_id": "AU-97137ef07af49e3607b2",
+      "source_sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+      "page": 8,
+      "locator": "Physical PDF p8; EL33004 local geology and exploration prospectivity of alluvial fans; historical relinquished area.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-9d967ecaac6e02fc76a5",
+      "source_sha256": "f6f127c62e9c4ddcab67c5f01552f21cc9ee1c17095451b963e7b66e757981b3",
+      "page": 5,
+      "locator": "Physical PDF p5; Figure 3, drill section RDRC001–004, near-surface enrichment in upper 30 m; multiple host lithologies.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-b3ae34ac85d16018bd4b",
+      "source_sha256": "606cc24f03762ba4f73cd78e552127f5bc557195a9f1bae7d4f17c638f6a11a8",
+      "page": 5,
+      "locator": "Physical PDF p5. Prospective geological model targeted for Barballin E70/6146. The issuer states that previous explorers had not explored for REE. Source applies to this prospect, not to Snake Well or neighbouring projects.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-b50a5b57669586191c33",
+      "source_sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7",
+      "page": 5,
+      "locator": "physical PDF p5; Quarterly activities describe the actual level of work on Wandagee and distinguish field exploration from document review.",
+      "columns": [
+        "產品/產出",
+        "礦床型態",
+        "礦床型態代碼",
+        "開發階段代碼",
+        "開發階段類別"
+      ]
+    },
+    {
+      "project_id": "AU-c5e94422a89a23f82408",
+      "source_sha256": "970f4ce20adef0002cf68cede290af0ddb58a07a35106adfea386c1578ee46ac",
+      "page": 1,
+      "locator": "Physical PDF p1. RAB programme and named Morgans Creek REE prospect. This is a local observed mineralised horizon within Mt Craig. No project-wide genetic or confirmed ionic adsorption class is implied.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-cae6c11543b0da5f840d",
+      "source_sha256": "1106052fbb1564fdb0788a727239f4f5987f18dcbc6cab61789ef070148ed221",
+      "page": 1,
+      "locator": "Physical PDF p1. First three holes into the Luni carbonatite of the West Arunta project. P2 is a separate target.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-d1e3e2803f3c4287f6db",
+      "source_sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59",
+      "page": 3,
+      "locator": "physical PDF p3; Final group report; p. 1 gives reporting period to 14 August 2025. NT repository public availability 26 February 2026.",
+      "columns": [
+        "產品/產出"
+      ]
+    },
+    {
+      "project_id": "AU-d1e3e2803f3c4287f6db",
+      "source_sha256": "edb1583a4bcc4eddb7142b233ced822c1ef711df9c7c72051399dd22c7ad9b75",
+      "page": 3,
+      "locator": "Physical PDF p3; EL33054 and EL33055 group report; considered exploration models and reconnaissance sampling.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-d99cf357d160df73387c",
+      "source_sha256": "dd29b311224f3e25692592f23d7efedec24b356fccc8513a7022f9534dfad1b1",
+      "page": 4,
+      "locator": "Physical PDF p4. Quarterly disclosure dated 30 July 2025. The four Southern Cross licences match the original GCX project. Their relinquishment followed 30 June; the end-of-quarter granted-tenement schedule predates that event.",
+      "columns": [
+        "產品/產出",
+        "礦床型態",
+        "礦床型態代碼",
+        "開發階段代碼",
+        "開發階段類別"
+      ]
+    },
+    {
+      "project_id": "AU-e6d859a831ed5954b440",
+      "source_sha256": "f571a145b96e1a73b612f73f0004c3fb98dd8baab7854837434e996bbf6a5635",
+      "page": 6,
+      "locator": "Physical PDF p6. Kenny target interpretation, not an identified economic deposit. Surface geochemistry is interpreted with radiometric and magnetic data; target areas have different potential hosts.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-ee34781b030807146e64",
+      "source_sha256": "31949313a2809151408ff4a141a93364c4b10904d619c1ce2851f0236cc24ca1",
+      "page": 12,
+      "locator": "Physical PDF p12. Issuer FY24 operations for the Ravensthorpe group. Completion of a sale or relinquishment is not reported on this page.",
+      "columns": [
+        "產品/產出",
+        "礦床型態",
+        "礦床型態代碼",
+        "開發階段代碼",
+        "開發階段類別"
+      ]
+    },
+    {
+      "project_id": "AU-f46f6d53e7196650495d",
+      "source_sha256": "b8e5372b6a4356ee9af94f05cf34708a04df54143b4b0c8b8b3886f7c8d3ea82",
+      "page": 6,
+      "locator": "Physical PDF p6. Havilah and UniSA mineralogy, West Kalkaroo sample subset of the broader project.",
+      "columns": [
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-f46f6d53e7196650495d",
+      "source_sha256": "b8e5372b6a4356ee9af94f05cf34708a04df54143b4b0c8b8b3886f7c8d3ea82",
+      "page": 6,
+      "locator": "Physical PDF p6. Historical REE recovery work at West Kalkaroo for the half year ended 31 January 2022. Separate from the development stage of the copper-gold mine.",
+      "columns": [
+        "產品/產出",
+        "開發階段代碼",
+        "開發階段類別"
+      ]
+    },
+    {
+      "project_id": "AU-f81823bd8ba271840345",
+      "source_sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+      "page": 4,
+      "locator": "physical PDF p4; The specifically named project appears in the list of completed maiden reconnaissance programs. Status as disclosed in the annual report.",
+      "columns": [
+        "礦床型態",
+        "礦床型態代碼"
+      ]
+    },
+    {
+      "project_id": "AU-216d0983f6892f9b58f9",
+      "columns": [
+        "預估年產TREO_t_per_year",
+        "預估年產NdPr_t_per_year"
+      ],
+      "source_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+      "page": 7,
+      "locator": "PFS Table 2 Total/Average, compared with Total/LoM and high/low phases."
+    },
+    {
+      "project_id": "AU-216d0983f6892f9b58f9",
+      "columns": [
+        "預估年產TREO_t_per_year",
+        "預估年產NdPr_t_per_year"
+      ],
+      "source_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+      "page": 9,
+      "locator": "PFS Table 7 mining and stockpile processing phases."
+    },
+    {
+      "project_id": "AU-216d0983f6892f9b58f9",
+      "columns": [
+        "預估年產TREO_t_per_year",
+        "預估年產NdPr_t_per_year"
+      ],
+      "source_sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+      "page": 162,
+      "locator": "Full production schedule and annual recovered product."
+    },
+    {
+      "project_id": "AU-216d0983f6892f9b58f9",
+      "columns": [
+        "預估年產TREO_t_per_year",
+        "預估年產NdPr_t_per_year"
+      ],
+      "source_sha256": "e60ee62748c8399881f8fa2fbf07a08f0d80fa88b44231127dbabc18a9efa9dd",
+      "page": 9,
+      "locator": "September presentation p9, scheduled annual concentrate production; prior PFS identified on p2."
+    },
+    {
+      "project_id": "AU-9bd8e5ed8408cd84d876",
+      "columns": [
+        "預估年產NdPr_t_per_year"
+      ],
+      "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "page": 109,
+      "locator": "2025 DFS p109 Figure 42, concentrate REO assemblage and footnote 1."
+    },
+    {
+      "project_id": "AU-6f0ecda27d291720036d",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "source_sha256": "a17dd388db00b3ca4ffb4c04fc4e5d08534ace4fde26c66dfee02fef53bfb158",
+      "page": 42,
+      "locator": "Prospectus section 2.7 Table 2, Nutgrove and the other two projects."
+    },
+    {
+      "project_id": "AU-6f0ecda27d291720036d",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "source_sha256": "5c0abb5243b3ed6dce0b03caa1ba9fdc2d84b44e49909a6020589a1507fee9a0",
+      "page": 11,
+      "locator": "Quarterly tenure schedule, Nutgrove EPM 28000, 29 blocks."
+    },
+    {
+      "project_id": "AU-97137ef07af49e3607b2",
+      "columns": [
+        "未上市公司",
+        "ASX代碼"
+      ],
+      "source_sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+      "page": 1,
+      "locator": "Physical PDF p1, EL33004, 22 August 2024"
+    },
+    {
+      "project_id": "AU-70fc8a7de18ad8209c32",
+      "columns": [
+        "未上市公司",
+        "ASX代碼"
+      ],
+      "source_sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+      "page": 1,
+      "locator": "Physical PDF p1, EL33000, 22 August 2024"
+    },
+    {
+      "project_id": "AU-430f216ca620b69af5f9",
+      "columns": [
+        "未上市公司",
+        "ASX代碼"
+      ],
+      "source_sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+      "page": 1,
+      "locator": "Physical PDF p1, EL33006, 22 August 2024"
+    },
+    {
+      "project_id": "AU-d1e3e2803f3c4287f6db",
+      "columns": [
+        "未上市公司",
+        "ASX代碼"
+      ],
+      "source_sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59",
+      "page": 4,
+      "locator": "Physical PDF p4, EL33054 and EL33055, 14th August 2025"
+    }
+  ]
+}

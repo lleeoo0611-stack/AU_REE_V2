@@ -8,6 +8,8 @@ import json
 import re
 from collections import defaultdict, Counter
 from pathlib import Path
+from .disclosure_analysis import DISCLOSURE_VERSION, prepare_disclosure_analysis
+from .mcda import interval_mcda
 from .store import canonical, digest
 
 
@@ -159,7 +161,7 @@ def ratio(numerator,denominator,mode):
 
 def analyze_cells(selection,definition,db,run_id,out,resource_project_ids=()):
     """Use selected observations, with raw transcript and permitted use separated."""
-    from .analysis import write_csv
+    from .tabular import write_csv
     rows=[]
     for c in selection['inventory']:
         raw=c['raw']
@@ -580,7 +582,7 @@ def analyze_profiles(selection, definition, out, resource_ids, root=None, snapsh
     No universal ordinal utility is established. Therefore no numeric mapping,
     new weight, imputed unknown, or maturity-based Technical rank is generated.
     """
-    from .analysis import write_csv
+    from .tabular import write_csv
     out=Path(out);rows=unified_observations(selection,definition) if observations is None else observations
     for r in rows:r.update(framework_fields(r,definition))
     if definition.get('version')=='technical-profile-remediation-v2':
@@ -667,7 +669,6 @@ def analyze_profiles(selection, definition, out, resource_ids, root=None, snapsh
     return summary
 
 
-DISCLOSURE_VERSION = 'technical-disclosure-transparency-v1'
 DISCLOSURE_STATES = {'DISCLOSED':1,'EXPLICIT_UNKNOWN':1,'INSUFFICIENT':0,'UNVERIFIABLE':None}
 DISCLOSURE_FACETS = {
     'TD1': ('origin', 'sampling', 'preparation'),
@@ -699,7 +700,7 @@ def assess_disclosure(root, review, snapshots, cutoff):
     function checks their explicit facets, scope, dates and original quotes.
     Any local provenance failure becomes unknown; it cannot become zero.
     """
-    from .selection import source_check, date_end
+    from .selection_rules import source_check, date_end
     from .store import filehash
     root=Path(root);sources={s['key']:s for s in snapshots};pages={};errors={}
     if review['version'] != DISCLOSURE_VERSION or cutoff != review['cutoff']:
@@ -735,7 +736,7 @@ def assess_disclosure(root, review, snapshots, cutoff):
                     with fitz.open(root/s['path']) as pdf:
                         pages[key]=CitedPages(root/s['path'], len(pdf))
                 elif s['kind']=='html':
-                    from .evidence import html_text
+                    from .pdf_extract import html_text
                     pages[key]=[normalized(html_text(root,s))]
                 else:raise ValueError('NOT_PRIMARY_DOCUMENT')
             except Exception as exc:errors[key]=str(exc)
@@ -830,7 +831,7 @@ def apply_disclosure(selection,result):
 
 def run_disclosure(root, config, cutoff, out, db=None, run_id=None, selection=None, assemble=None, registry=None, selected_snapshots=None):
     """Existing evidence store + versioned review + existing MCDA machinery."""
-    from .analysis import write_csv,prepare_disclosure_analysis
+    from .tabular import write_csv
     from .store import filehash
     if assemble is None:assemble=not config.get('disclosure_current_baseline')
     settings=config['evidence_resolution']['technical_disclosure']
@@ -920,7 +921,7 @@ def analyze_jorc_screening(selection, definition, rows, out, root=None, claims_d
     project-transfer stress restores [0,1] where extrapolation is unproved.
     No midpoint, probability distribution, maturity bonus or case splicing.
     """
-    from .analysis import write_csv, interval_mcda
+    from .tabular import write_csv
     policy=definition['jorc_screening'];out=Path(out)
     pids=sorted(selection['projects']);names={pid:pid for pid in pids}
     if root is not None:
@@ -1042,7 +1043,7 @@ def analyze_jorc_screening(selection, definition, rows, out, root=None, claims_d
 def export_remediation(selection,definition,rows,out,resource_ids,root,snapshots,claims_data=None):
     """Use existing inventory for coverage, provenance bridge and model decisions."""
     import csv
-    from .analysis import write_csv
+    from .tabular import write_csv
     from .pdf_extract import project_registry
     from .store import filehash
     sources={s['sha256']:s for s in snapshots};byproject=defaultdict(list)
@@ -1324,6 +1325,108 @@ def summary_annual_region(page, rect):
 
 
 NAMEPLATE_NDPR_METHOD = 'NAMEPLATE_CONTAINED_TREO_X_PRODUCT_NDPR_SHARE'
+WHOLE_PLAN_ANNUAL_METHOD = 'PUBLISHED_WHOLE_PLAN_AVERAGE_VERIFIED_ANNUAL_PERIOD'
+CONCENTRATE_NDPR_SHARE_METHOD = 'FORECAST_CONTAINED_TREO_X_CONCENTRATE_NDPR_OXIDE_SHARE'
+
+
+def verify_forecast_concentrate_share(doc, review, study, spec, parameter, value):
+    """Bind the oxide assemblage in the recovered concentrate separately from its prices."""
+    import pymupdf
+
+    if (parameter != 'average_annual_ndpr_product_t' or study['endpoint'] != 'MINERAL_CONCENTRATE'
+            or spec['share_basis'] != 'DFS_EXPECTED_RECOVERED_REO_IN_CONCENTRATE'):
+        raise ValueError('FORECAST_CONCENTRATE_NDPR_BASIS')
+    treo_field = 'average_annual_treo_product_t'
+    rate = study['parameters'][treo_field]
+    binding = study['parameter_bindings'][treo_field]
+    if rate != spec['contained_treo_tpa'] or binding['original_unit'] != 'tpa':
+        raise ValueError('FORECAST_CONTAINED_TREO_RATE')
+    summary_annual_cell(doc, binding, treo_field, str(rate), 'tpa', review['scope'], study['selected_scenario'])
+    if not isinstance(spec['page'], int) or not 1 <= spec['page'] <= len(doc):
+        raise ValueError('FORECAST_CONCENTRATE_ASSEMBLAGE_PAGE')
+    page = doc[spec['page'] - 1]
+    text = summary_annual_norm(page.get_text()).replace('\x07', '')
+    if ('figure 42 browns range concentrate expected reo assemblage and basket value' not in text
+            or 'based on dfs expected process plant recoveries of individual reos in concentrate.' not in text):
+        raise ValueError('FORECAST_CONCENTRATE_ASSEMBLAGE_FIGURE')
+    composition, price, shares = (pymupdf.Rect(spec[key]) for key in
+                                  ('composition_label_bbox', 'price_label_bbox', 'shares_bbox'))
+    split = (composition.x1 + price.x0) / 2
+    if (not all(page.rect.contains(rect) for rect in (composition, price, shares))
+            or composition.x1 >= price.x0 or shares.x1 >= split or shares.y1 >= composition.y0
+            or summary_annual_region(page, composition) != 'REO Assemblage1'
+            or summary_annual_region(page, price) != 'Basket Value2'):
+        raise ValueError('FORECAST_CONCENTRATE_MASS_OR_PRICE')
+    tokens = re.fullmatch(r'Praseodymium ([\d.]+)% Neodymium ([\d.]+)%', summary_annual_region(page, shares))
+    if not tokens:
+        raise ValueError('FORECAST_CONCENTRATE_NDPR_SHARES')
+    pr, nd = map(float, tokens.groups())
+    if (not 0 < pr + nd <= 100 or spec['oxide_share_percent'] != {'Pr': pr, 'Nd': nd}
+            or not math.isclose(value, rate * (pr + nd) / 100, rel_tol=1e-12)):
+        raise ValueError('FORECAST_CONCENTRATE_NDPR_CALCULATION')
+
+
+def verified_whole_plan_average(doc, study, parameter, value, sources, cutoff):
+    """Read North Stanmore's total average. Verify its time basis across both PFS disclosures."""
+    import pymupdf
+
+    proof = study['annual_period_confirmation']
+    source = sources.get(proof['confirmation_source_sha256'])
+    if (not source or source['key'] != proof['confirmation_source_key'] or
+            not source.get('publication_date') or source['publication_date'] > cutoff):
+        raise ValueError('ANNUAL_PERIOD_SOURCE_UNAVAILABLE')
+
+    def page_text(document, key):
+        page = proof[key]
+        if not isinstance(page, int) or not 1 <= page <= len(document):
+            raise ValueError('ANNUAL_PERIOD_PAGE')
+        return summary_annual_norm(document[page - 1].get_text())
+
+    def unique_row(text, header, label, number_count):
+        # These native PDF tables serialize their two-level header, then each complete row.
+        if text.count(header) != 1:
+            raise ValueError('ANNUAL_PERIOD_TABLE_HEADER')
+        table = text.split(header, 1)[1]
+        pattern = re.escape(label + ' dt') + r'( [\d,]+)' * number_count + r'(?= production - )'
+        rows = re.findall(pattern, table)
+        if len(rows) != 1:
+            raise ValueError('ANNUAL_PERIOD_TABLE_ROW')
+        return [int(token.replace(',', '')) for token in rows[0]]
+
+    rows = {'average_annual_treo_product_t': 'production - treo',
+            'average_annual_ndpr_product_t': 'production - neodymium praseodymium (ndpr)'}
+    label = rows[parameter]
+    table = page_text(doc, 'production_table_page')
+    if ('table 2: production by contained oxide' not in table or
+            'production target is based entirely on the 47.0 mt probable ore reserve' not in table):
+        raise ValueError('ANNUAL_PERIOD_STUDY_SCOPE')
+    header = 'production - contained oxide unit total high grade low grade average lom average lom average lom'
+    average, lifetime, high_average, high_total, _, low_total = unique_row(table, header, label, 6)
+    annual_model = page_text(doc, 'annual_model_page')
+    if ('life-of-mine production schedule provides the basis for annual ore tonnes, head grades, '
+            'recovered product and revenue' not in annual_model):
+        raise ValueError('ANNUAL_PERIOD_WHOLE_PLAN')
+    schedule = page_text(doc, 'schedule_page')
+    periods = re.search(r'initial ~([\d.]+) years mining and processing .*? following '
+                        r'~([\d.]+) years stockpile processing processing of stockpiled ore', schedule)
+    if not periods:
+        raise ValueError('ANNUAL_PERIOD_OPERATING_SCHEDULE')
+    years = sum(map(float, periods.groups()))
+    if (not years or round(lifetime / years) != average or lifetime != high_total + low_total
+            or value != average):
+        raise ValueError('ANNUAL_PERIOD_WHOLE_PLAN_AVERAGE')
+
+    with pymupdf.open(source['resolved_path']) as confirmation:
+        reference = page_text(confirmation, 'study_reference_page')
+        if ('north stanmore' not in reference or 'maiden ore reserve, updated mineral resource and '
+                'pre-feasibility study "dated 18th august 2026"' not in reference):
+            raise ValueError('ANNUAL_PERIOD_STUDY_REFERENCE')
+        annual = page_text(confirmation, 'annual_table_page')
+        if 'scheduled annual mineral concentrate production' not in annual:
+            raise ValueError('ANNUAL_PERIOD_CONFIRMATION_TITLE')
+        header = 'production - contained oxide unit initial 10 years avera ge lom'
+        if unique_row(annual, header, label, 2) != [high_average, high_total]:
+            raise ValueError('ANNUAL_PERIOD_STUDY_TABLE_MISMATCH')
 
 
 def summary_nameplate_ndpr(doc, review, study, spec, parameter, value, evidence, rules):
@@ -1487,6 +1590,14 @@ def summary_annual_cell(doc,binding,field,token,unit,scope,selected_scenario=Non
             if not doc[pn-1].rect.contains(region):fail('STATEMENT_OXIDE_BASIS_REQUIRED')
             exact='Nd-Pr, Dy and Tb production figures are life-of-mine annual average calculated by multiplying REC production by TREO grade and its respective rare earth oxide composition as a % of TREO'
             if summary_annual_norm(summary_annual_region(doc[pn-1],region))!=summary_annual_norm(exact):fail('STATEMENT_OXIDE_BASIS_REQUIRED')
+        elif binding.get('semantic_profile') == 'full_project_concentrate_offtake':
+            # Only an offtake covering the full project product can support its annual output.
+            coverage = summary_annual_norm(page.get_textbox(rect('time_basis_bbox')))
+            if (field != 'average_annual_treo_product_t' or unit != 'tonnes per annum'
+                    or suffix != 'tonnes per annum of contained rare earth oxides'
+                    or not re.fullmatch(r'▪?\s*approximately [\d,]+ tonnes of rec over the life of the project, equivalent to around', prefix)
+                    or not re.fullmatch(r'▪?\s*iluka to purchase 100% of goschen’s rec, providing offtake certainty for approximately 18 years', coverage)):
+                fail('WHOLE_PROJECT_CONTAINED_OXIDE_REQUIRED')
         elif (field != 'average_annual_treo_product_t' or 'annual' not in prefix or
               not suffix.startswith('tpa of contained treo in concentrate') or unit != 'tpa'):
             fail('STATEMENT_SEMANTICS_MISMATCH')
@@ -1556,14 +1667,15 @@ def summary_annual_cell(doc,binding,field,token,unit,scope,selected_scenario=Non
 
 def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutoff, row=None, audit=None):
     """Study output is scoped separately from MREs and never operating production."""
-    from .selection import choose
-    from .census import summary_decision
+    from .selection_rules import choose
+    from .census_policy import summary_decision
     import pymupdf
     models=[];fills=[];audit=audit if audit is not None else []
     for a in attributes:
         study=a.get('engineering_forecast')
         if not study or study['scale'] not in rules['forecast_scales']:continue
         s=sources[a['source_sha256']];accepted={}
+        derivations=dict(study.get('parameter_derivations',{}))
         try:
             with pymupdf.open(s['resolved_path']) as doc:
                 def evidence(e):
@@ -1577,6 +1689,18 @@ def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutof
                         summary_model_annual(doc,a,study,spec,value,evidence,rules)
                     elif spec and spec.get('method')==NAMEPLATE_NDPR_METHOD:
                         summary_nameplate_ndpr(doc,a,study,spec,parameter,value,evidence,rules)
+                    elif spec and spec.get('method')==WHOLE_PLAN_ANNUAL_METHOD:
+                        verified_whole_plan_average(doc,study,parameter,value,sources,cutoff)
+                        derivations[parameter] = dict(spec, **study['annual_period_confirmation'])
+                    elif spec and spec.get('method')==CONCENTRATE_NDPR_SHARE_METHOD:
+                        try:
+                            evidence(study['annual_basis_evidence'])
+                            verify_forecast_concentrate_share(doc,a,study,spec,parameter,value)
+                        except (ValueError,KeyError,IndexError,OSError) as exc:
+                            # This additional share can fail while the independently published TREO rate remains valid.
+                            audit.append(dict(project_id=pid,source_sha256=a['source_sha256'],
+                                reason='FORECAST_INPUT_INVALID',detail=str(exc),parameter=parameter))
+                            continue
                     elif spec and spec.get('method')=='ANNUAL_HMC_KTPA_X_PRODUCT_TREO_PERCENT':
                         summary_annual_hmc_card(doc,a,study,spec,parameter,value,evidence)
                     elif spec:
@@ -1593,7 +1717,7 @@ def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutof
             audit.append(dict(project_id=pid,source_sha256=a['source_sha256'],reason='FORECAST_INPUT_INVALID',detail=str(exc)))
             accepted={}
         models.append(dict(source_sha=a['source_sha256'],effective_date=a['effective_date'],scope=a['scope'],case_id=a['review_id'],
-            endpoint=study['endpoint'],element=study['element'],scale=study['scale'],raw=canonical(dict(parameters=accepted,locator=a['locator'],parameter_derivations=study.get('parameter_derivations',{}))),obs_id=a['obs_id']))
+            endpoint=study['endpoint'],element=study['element'],scale=study['scale'],raw=canonical(dict(parameters=accepted,locator=a['locator'],parameter_derivations=derivations)),obs_id=a['obs_id']))
     if not models:models=[s for s in studies if s['scale'] in rules['forecast_scales']]
     for column,parameter in rules['annual_parameters'].items():
         options=[]
@@ -1609,8 +1733,17 @@ def summary_forecasts(pid, studies, attributes, sources, rules, decisions, cutof
             method='MODEL_ASSUMPTION_DERIVED_ANNUAL_NDPR_NOT_DIRECT_REPORTED_OUTPUT' if chosen['spec'].get('method')==rules['model_annual_method'] else 'DATED_ENGINEERING_FORECAST_T_PER_YEAR_NOT_OPERATING_OUTPUT'
             if chosen['spec'].get('method')=='ANNUAL_HMC_KTPA_X_PRODUCT_TREO_PERCENT':
                 method=chosen['spec']['method']
+            if chosen['spec'].get('method')==WHOLE_PLAN_ANNUAL_METHOD:
+                method=WHOLE_PLAN_ANNUAL_METHOD
+                proof=chosen['spec']
+                chosen['locator']=(f"PFS Table 2, physical PDF p{proof['production_table_page']}, Total / Average (dry tonnes); "
+                    f"operating schedule p{proof['schedule_page']}, annual model p{proof['annual_model_page']}; "
+                    f"{proof['confirmation_source_key']} pp{proof['study_reference_page']},{proof['annual_table_page']}")
             if chosen['spec'].get('method')==NAMEPLATE_NDPR_METHOD:
                 method='MODEL_ASSUMPTION_DERIVED_NAMEPLATE_NDPR_NOT_OPERATING_OUTPUT'
+            if chosen['spec'].get('method')==CONCENTRATE_NDPR_SHARE_METHOD:
+                method=CONCENTRATE_NDPR_SHARE_METHOD
+                chosen['locator']+=f"; physical PDF p{chosen['spec']['page']} Figure 42, REO Assemblage (forecast mass shares)"
             fills.append(dict(column=column,value=chosen['value'],sha=chosen['source_sha256'],locator=chosen['locator'],method=method,scope=canonical(dict(study_scope=chosen['scope'],derivation=chosen['spec'])),obs_ids=chosen['ids']))
     products=[dict(evidence_id=s['case_id'],source_sha256=s['source_sha'],effective_date=s['effective_date'],scope=s['scope'],
         endpoint=s['endpoint'],scale=s['scale'],value=s['endpoint'],locator=json.loads(s['raw'])['locator'],ids=[s.get('obs_id',s['case_id'])]) for s in models]

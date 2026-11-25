@@ -8,11 +8,14 @@ is not a substitute for the original complete government raw API snapshots.
 import json
 import math
 import re
+import unicodedata
 from pathlib import Path
+from pyproj import Geod
 from shapely.geometry import Point
 from shapely.ops import transform
 from .store import canonical, digest, entity, filehash, issue
 from .gis import geometry, PROJECT
+from .commodity import classify_ree
 
 STATE_BY_SOURCE = {
  "STATE_WA_MINDEX":"WA","STATE_TAS_MRT":"TAS","STATE_QLD_MINOCC":"QLD",
@@ -32,6 +35,13 @@ NAME_FIELDS = {
  "VIC_MINSITE":("site_name","site_nm","min_name"),
  "":("canonical_name","project_id")
 }
+GEO=Geod(ellps='GRS80')
+
+
+def normalized(name):
+    return re.sub(r'\W+',' ',unicodedata.normalize('NFKC',name).casefold().replace('mt.','mount ').replace('mt ','mount ')).strip()
+
+
 def _numeric(x):
     if x is None or isinstance(x,bool):
         return None
@@ -252,7 +262,6 @@ def ingest_government(db,root,source,candidate_version=None):
         tenure=source.get('record_filter')=='ALL_TENURE_RECORDS' and source.get('entity_kind')=='TENEMENT'
         decision=None
         if candidate_version:
-            from .census import classify_ree
             structured=[k for k in source['commodity_fields'] if not any(x in k.lower() for x in ('description','summary','ore_min','gangue','min_ass'))]
             decision=classify_ree({k:a.get(k) for k in source['commodity_fields']},structured,candidate_version)
         if not tenure and not (decision['include'] if decision else REE_TERMS.search(terms)):continue
@@ -366,7 +375,6 @@ def live_government_coverage(root,snapshots,rows):
 
 def government_link_candidates(db,snapshots,mapping=None,version=None,current=None):
     """Source-location hints only; a name or proximity can never confirm identity."""
-    from .resolution import normalized,GEO
     shas={s['sha256'] for s in snapshots};live=live_government_inventory(db,snapshots,current)
     groups={}
     for r in live:
@@ -451,7 +459,7 @@ def government_link_candidates(db,snapshots,mapping=None,version=None,current=No
 
 def raw_domain_coverage(db,snapshot_shas,validation_version=None,active_claim_ids=None,current=None):
     """Validated numeric statements and typed government text are separate evidence classes."""
-    from .selection import evidence_domain,observation_visible
+    from .selection_rules import evidence_domain,observation_visible
     groups={}
     for r in db.execute('SELECT o.*,e.kind FROM observations o JOIN entities e USING(entity_id)'):
         if r['source_sha'] not in snapshot_shas:continue

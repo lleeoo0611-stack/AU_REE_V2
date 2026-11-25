@@ -56,3 +56,19 @@ v9 固定對照的 6 格空白是 Mount Ridley Blocks 1 & 2、Nowie 與 Wimmera 
 ## 本輪驗證
 
 135 項相關測試通過。Phase 22 重播的 64 份凍結成果符合歷史比對。正式整合 SQLite 的獨立匯出與發布版有 6 份逐位元相同的 CSV，包含主表、逐格追溯、缺值、逐格狀態、資源觀測及位置品質。覆蓋率內容相符，差異限於執行識別與資料庫雜湊欄位。
+
+## 2026-11-20 整合開發版的 SQLite 資料契約
+
+`store.connect` 在寫入連線上取得資料庫鎖後，以單一交易將舊庫的 `PRAGMA user_version=0` 升級為 1。遷移會先驗證各視圖可查詢，再提交版本。來源 SHA、原文、實體 ID 和觀測 ID 保存在既有資料表。獨立匯出對 v0 唯讀連線使用同一定義的暫存視圖。以原版程式重播歷史成果時仍可使用原版 schema。SQLite 需提供 JSON 函式。
+
+| 查詢對象 | 資料的意義與使用方式 |
+| --- | --- |
+| `resource_statement_editions` | 以來源 SHA、實體、原有 statement ID、範圍、紀錄日期、已知聲明種類及 cutoff 組成可逆的 JSON 陣列鍵。未確定的種類有獨立標記。這裡計算的是來源與脈絡組別；同一 MRE 可能被不同文件重述。資源案例數應依當次 Census 的 `statement_group_id` 和選用結果計算。 |
+| `resource_statement_facts` | 每筆觀測保有原始類別、單位、原文值、材料基準、化學基準、分母、來源換算、精度與 locator。來源揭露的估算期間、原始日期字串及日期角色可搭配公開日與取得日查詢。缺少聲明種類、明示取代關係或分類包含關係時保留待查。相同來源的 Reserve 或 Target 不會成為 Mineral Resource 的數值輸入。 |
+| `resource_statement_observations.csv` 和 `resource_statement_lineage.csv` | 第一份檔保留通過當次來源及截日檢查的資源觀測。第二份依「專案 × 有值資源欄」列出實際投影規則、來源版本、已選估算與原文觀測。 `supporting_observation_ids` 是舊有逐格追溯所保存的完整支撐範圍，內含證據驗證需要的脈絡；精確公式與原始運算元需依 `method`、`locator` 與原件查驗。等同版本需通過既有 PDF 對應驗證。 |
+| `relation_chronology` | 連回既有節點與原件，區分舊參考日期、刊物參考日、來源公開日、取得日及有記載的估算期間。歷史 `hierarchy.link` 常以 2026-11-03 記錄建置規則。這些資料缺關係生效日的證明，`relationship_effective_date` 留空。 |
+| `technical_study_context` 與 `product_disclosures` | 以當時的 study 或 attribute 觀測查給料、參數、製程、終點、元素及尺度。工程預估連回當時的設計情境。產品文字缺少產量角色時保留來源原文待判。年產量採用仍須通過原有 Census 的參數及頁面檢查。 |
+| `company_role_disclosures` | 保留每筆指向礦權或專案的角色資料。登記持有人、交易代碼、上市狀態與開發商文字各有不同語義。股權比例和有效期間僅採來源提供的明確欄位，專案層缺少 owner、operator 或 JV participant 證據時繼續待查。 |
+| `spatial_point_quality.csv` | 沿用來源圖徵、CRS、角色及空間證據。礦權代表點用於既有距離分析，保留其精度與適用範圍。 |
+
+檢查單一專案時，可先由 Census 發布版的 `resource_statement_lineage.csv` 取得 source statement key，再以參數化查詢 `SELECT * FROM resource_statement_facts WHERE source_statement_key=?` 讀取同來源脈絡的原值與換算，並按 observation ID 對照原件。整庫視圖包含未選入與待核的觀測，研究計算仍以同次發布之選入關係、資料截日及狀態為準。

@@ -146,7 +146,7 @@ class Phase21(unittest.TestCase):
     def test_current_disclosure_defers_analysis_and_adds_unknown_scopes(self):
         config=research_configuration(ROOT)
         with tempfile.TemporaryDirectory(dir=ROOT/'work') as tmp:
-            with patch('au_ree_v2.analysis.prepare_disclosure_analysis',side_effect=AssertionError('duplicate assembly')):
+            with patch('au_ree_v2.technical.prepare_disclosure_analysis',side_effect=AssertionError('duplicate assembly')):
                 result,prepared,summary=run_disclosure(ROOT,config,'2026-11-05',Path(tmp),
                     registry=[dict(entity_id='NEW',name='New confirmed native Project')])
             self.assertIsNone(prepared)
