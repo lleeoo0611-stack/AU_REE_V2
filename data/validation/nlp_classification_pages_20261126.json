@@ -1,0 +1,593 @@
+{
+  "protocol": "phase22-asx-nlp-page-reference-v1",
+  "cutoff": "2026-11-13",
+  "baseline_commit": "8b5ac86ef0ff24999c503b4268586274c10fe9ca",
+  "scope": "All 32 E4 classification gaps in the frozen Census. Physical pages are counted from one. Each locator is paired with a byte-verified in-cutoff PDF. Benchmarks evidence for the stated classification decision, including competing hosts, fieldwork limited to a prospect, exit events and scope exclusions. No evaluated-arm predictions or retrieval ranks were used. Locators from earlier case review identified candidates; direct inspection removed pages that only listed project names or tenure. This is a retrospective reference recorded by a model reviewer with access to historical findings; it is neither independent human annotation nor an exhaustive search of every relevant page. UNJUDGED has no hit-rate denominator or negative label. CONTEXT_ONLY provides material for deciding a hold, not an admissible field value. No reviewer minutes were observed.",
+  "cases_metadata": {
+    "raster_review": "For Lake Campion the Lake Campion label and Relinquished FY25 legend were visually checked on the rendered map on physical page 46; the native-text marker is the figure caption."
+  },
+  "cells": [
+    {
+      "project_id": "AU-2ab3e8eb7b5784e64f9b",
+      "project_name": "Duke Rare Earth Project",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "31efc775284b45cc43118d960eb7c26638d3697030abdf1013831e0da2cc7ea3",
+          "page": 13,
+          "source_key": "hre_duke_targets_20231113",
+          "report_family": "HRE-issuer-exploration-disclosures",
+          "role": "COMPETING_HOSTS",
+          "marker": "may itself be a target for a hard-rock deposit"
+        }
+      ],
+      "rationale": "The issuer distinguishes its original unconformity hypothesis from saprolite and fresh granite targets. No primary versus secondary REE host is established for the full Duke scope."
+    },
+    {
+      "project_id": "AU-2af694147ae21c393820",
+      "project_name": "Lake Campion REE Exploration Project — IGO",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 50,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "report_family": "IGO-FY-exploration-portfolio-updates",
+          "role": "COMPETING_HOSTS",
+          "marker": "target areas for ionic adsorption of REE"
+        }
+      ],
+      "rationale": "Lake Campion drilling targeted both ionic adsorption and REE phosphate mineralisation. Groundwater, basement and regolith are components of a conceptual model."
+    },
+    {
+      "project_id": "AU-2af694147ae21c393820",
+      "project_name": "Lake Campion REE Exploration Project — IGO",
+      "column": "開發階段代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "d02cf6e37d7da28ac638f8ce9c00248ed688a4c0210ca8a23d39713394394840",
+          "page": 46,
+          "source_key": "igo_fy25_exploration_portfolio_20250828",
+          "report_family": "IGO-FY-exploration-portfolio-updates",
+          "role": "RELINQUISHMENT_MAP",
+          "marker": "tenements in July 2024 versus July 2025"
+        }
+      ],
+      "rationale": "FY25 map shows IGO relinquished tenure. The approved X declaration applies to four Charley Creek historical scopes. Neither the older drilling milestone nor the map establishes an onward current development stage for Lake Campion."
+    },
+    {
+      "project_id": "AU-2af694147ae21c393820",
+      "project_name": "Lake Campion REE Exploration Project — IGO",
+      "column": "開發階段類別",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "d02cf6e37d7da28ac638f8ce9c00248ed688a4c0210ca8a23d39713394394840",
+          "page": 46,
+          "source_key": "igo_fy25_exploration_portfolio_20250828",
+          "report_family": "IGO-FY-exploration-portfolio-updates",
+          "role": "RELINQUISHMENT_MAP",
+          "marker": "tenements in July 2024 versus July 2025"
+        }
+      ],
+      "rationale": "FY25 map shows IGO relinquished tenure. The approved X declaration applies to four Charley Creek historical scopes. Neither the older drilling milestone nor the map establishes an onward current development stage for Lake Campion."
+    },
+    {
+      "project_id": "AU-430f216ca620b69af5f9",
+      "project_name": "Charley Creek South-East Project — historical URO EL33006 exploration",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+          "page": 3,
+          "source_key": "reviewed_source_e37750161e156498",
+          "report_family": "URO-NT-Charley-Creek-statutory-reports",
+          "role": "COMPETING_HOSTS",
+          "marker": "felsic intrusion-related REEs"
+        },
+        {
+          "sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+          "page": 6,
+          "source_key": "reviewed_source_e37750161e156498",
+          "report_family": "URO-NT-Charley-Creek-statutory-reports",
+          "role": "COMPETING_HOSTS",
+          "marker": "for alluvial rare earth elements"
+        }
+      ],
+      "rationale": "URO describes the EL33006 alluvial setting and also a felsic intrusion-related REE model. Coarse cover alone cannot select a single style."
+    },
+    {
+      "project_id": "AU-5ea2535a2de9a1a3327e",
+      "project_name": "Viper REE Project — EMU",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "de3bd4bffa11e7980fc624dcbdbd7d956e6b266008c5d1033446ebb1951d0604",
+          "page": 1,
+          "source_key": "emu_viper_ree_discovery_20230515",
+          "report_family": "EMU-Viper-exploration-disclosures",
+          "role": "COMPETING_HOSTS",
+          "marker": "hosted in basement Gneiss/Granite rocks and adjacent"
+        }
+      ],
+      "rationale": "The first RC intersections record REE mineralisation in basement gneiss/granite AND adjacent weathered clays. The issuer reports both potential bedrock and weathering controls."
+    },
+    {
+      "project_id": "AU-68da41afe874c3bd66d4",
+      "project_name": "Voyager Rare Earth Project — Tasmania",
+      "column": "開發階段代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "250eb3778935dfdd8dd56c397ef38ffb396b15d82a0f5a464e99427fd08a5b75",
+          "page": 59,
+          "source_key": "voyager_relinquishment_fy2024",
+          "report_family": "Voyager-issuer-financial-reports",
+          "role": "RELINQUISHMENT",
+          "marker": "formally relinquished the Rare Earth Projects"
+        }
+      ],
+      "rationale": "Issuer records project surrender. Existing X mapping is limited to the four historically reviewed Charley Creek scopes. No current operating or technical stage follows from Voyager relinquishment."
+    },
+    {
+      "project_id": "AU-68da41afe874c3bd66d4",
+      "project_name": "Voyager Rare Earth Project — Tasmania",
+      "column": "開發階段類別",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "250eb3778935dfdd8dd56c397ef38ffb396b15d82a0f5a464e99427fd08a5b75",
+          "page": 59,
+          "source_key": "voyager_relinquishment_fy2024",
+          "report_family": "Voyager-issuer-financial-reports",
+          "role": "RELINQUISHMENT",
+          "marker": "formally relinquished the Rare Earth Projects"
+        }
+      ],
+      "rationale": "Issuer records project surrender. Existing X mapping is limited to the four historically reviewed Charley Creek scopes. No current operating or technical stage follows from Voyager relinquishment."
+    },
+    {
+      "project_id": "AU-6f0ecda27d291720036d",
+      "project_name": "Nutgrove REE Project",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "b015e3fa347138082ed14171e4921d32dde1377e6fe62317a0b0f8420131ef21",
+          "page": 1,
+          "source_key": "nutgrove_rhyolite_20260303",
+          "report_family": "GG1-Nutgrove-project-announcements",
+          "role": "COMPETING_HOSTS",
+          "marker": "both magmatic rare earths and secondary supergene"
+        }
+      ],
+      "rationale": "Rock chips record magmatic rhyolite and separate supergene REE in basalt breccia. The primary versus secondary setting remains unresolved for the project as a whole."
+    },
+    {
+      "project_id": "AU-70cc41e3a7106f983f73",
+      "project_name": "Lake Tay REE Project",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "e5e4bc19476428a86bc09b9999621e0d6a50bff4ce8668372fb32739e7281a0d",
+          "page": 6,
+          "source_key": "wcn_quarterly_lake_tay_20221031",
+          "report_family": "WCN-issuer-exploration-portfolio",
+          "role": "LIMITED_HISTORICAL_SAMPLING",
+          "marker": "highly magnetic granitoid"
+        }
+      ],
+      "rationale": "Historical shallow four-metre composite samples in magnetic granitoid are anomalous for part of the REE suite. The source does not establish the mineralised interval host and weathering state for Lake Tay."
+    },
+    {
+      "project_id": "AU-70cc41e3a7106f983f73",
+      "project_name": "Lake Tay REE Project",
+      "column": "開發階段代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "e5e4bc19476428a86bc09b9999621e0d6a50bff4ce8668372fb32739e7281a0d",
+          "page": 5,
+          "source_key": "wcn_quarterly_lake_tay_20221031",
+          "report_family": "WCN-issuer-exploration-portfolio",
+          "role": "PLANNED_WORK",
+          "marker": "is being planned for coming weeks"
+        }
+      ],
+      "rationale": "The original sale announcement plans a first site visit. Later Lake Johnston/South Lake Tay sampling targeted lithium and gold, while the REE drilling is historical. No later same-scope REE work milestone has been verified."
+    },
+    {
+      "project_id": "AU-70cc41e3a7106f983f73",
+      "project_name": "Lake Tay REE Project",
+      "column": "開發階段類別",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "e5e4bc19476428a86bc09b9999621e0d6a50bff4ce8668372fb32739e7281a0d",
+          "page": 5,
+          "source_key": "wcn_quarterly_lake_tay_20221031",
+          "report_family": "WCN-issuer-exploration-portfolio",
+          "role": "PLANNED_WORK",
+          "marker": "is being planned for coming weeks"
+        }
+      ],
+      "rationale": "The original sale announcement plans a first site visit. Later Lake Johnston/South Lake Tay sampling targeted lithium and gold, while the REE drilling is historical. No later same-scope REE work milestone has been verified."
+    },
+    {
+      "project_id": "AU-70fc8a7de18ad8209c32",
+      "project_name": "Charley Creek North-East Project — historical URO EL33000 exploration",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+          "page": 3,
+          "source_key": "reviewed_source_06916f0c5d2b6e1c",
+          "report_family": "URO-NT-Charley-Creek-statutory-reports",
+          "role": "COMPETING_HOSTS",
+          "marker": "alluvial REEs, and polymetallic systems"
+        },
+        {
+          "sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+          "page": 10,
+          "source_key": "reviewed_source_06916f0c5d2b6e1c",
+          "report_family": "URO-NT-Charley-Creek-statutory-reports",
+          "role": "COMPETING_HOSTS",
+          "marker": "sediment and hard rock REEs"
+        }
+      ],
+      "rationale": "The EL33000 report mentions alluvial REE targets and regional granite-hosted polymetallic targets. No local heavy-mineral concentration or diagnostic placer mechanism is demonstrated."
+    },
+    {
+      "project_id": "AU-794821a2df9b7a244f96",
+      "project_name": "Perenjori Uranium–REE Exploration Project — HRE",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d",
+          "page": 1,
+          "source_key": "hre_perenjori20250613",
+          "report_family": "HRE-issuer-exploration-disclosures",
+          "role": "COMMODITY_SCOPE",
+          "marker": "calcrete (palaeochannel-hosted) uranium deposit"
+        }
+      ],
+      "rationale": "The palaeochannel REE target is geological, with no coherent REE soil anomaly. A palaeochannel alone cannot distinguish bedload, phosphate precipitation or adsorption."
+    },
+    {
+      "project_id": "AU-8c5887498873bf838e09",
+      "project_name": "Coondina REE Project — historical MinRex drilling",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
+          "page": 12,
+          "source_key": "coondina_ree20230214",
+          "report_family": "MinRex-Coondina-issuer-drilling",
+          "role": "COMPETING_HOSTS",
+          "marker": "associated with the alluvial/colluvial sediments or weathered"
+        }
+      ],
+      "rationale": "The abstract interprets monzogranite. The same JORC table explicitly leaves the host unresolved between alluvial/colluvial sediment and weathered granite or pegmatite."
+    },
+    {
+      "project_id": "AU-97137ef07af49e3607b2",
+      "project_name": "Charley Creek North Project — historical URO EL33004 exploration",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+          "page": 8,
+          "source_key": "reviewed_source_e6bed25382926c6d",
+          "report_family": "URO-NT-Charley-Creek-statutory-reports",
+          "role": "COMPETING_HOSTS",
+          "marker": "underlying crystalline basement are likewise prospective"
+        },
+        {
+          "sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+          "page": 4,
+          "source_key": "reviewed_source_e6bed25382926c6d",
+          "report_family": "URO-NT-Charley-Creek-statutory-reports",
+          "role": "COMPETING_HOSTS",
+          "marker": "underlying crystalline basement"
+        }
+      ],
+      "rationale": "The EL33004 report describes fans and the same commodities in the underlying crystalline basement and considers felsic intrusion-related REE. Both hypotheses remain open."
+    },
+    {
+      "project_id": "AU-9d967ecaac6e02fc76a5",
+      "project_name": "Rankin Dome Rare Earth Project",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "f6f127c62e9c4ddcab67c5f01552f21cc9ee1c17095451b963e7b66e757981b3",
+          "page": 5,
+          "source_key": "r6_identity_rankin_dome",
+          "report_family": "Rankin-Dome-issuer-drilling",
+          "role": "COMPETING_HOSTS",
+          "marker": "saprolitic clays and oxidised intrusive rock"
+        }
+      ],
+      "rationale": "The drill section reports primary mineralisation in monzogranite and secondary enrichment in saprolitic clays and oxidised intrusive rock. Both intervals are project-specific."
+    },
+    {
+      "project_id": "AU-b50a5b57669586191c33",
+      "project_name": "Wandagee REE Exploration Project — Consolidated Zinc",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "45ff30236b16929984e94eeb073cf9a22444f578d0c04c98b27c1a2d4d7a03e6",
+          "page": 6,
+          "source_key": "yari_wandagee_20230913",
+          "report_family": "Yari-Consolidated-Zinc-portfolio-reports",
+          "role": "CONCEPTUAL_TARGET_AND_DESKTOP_WORK",
+          "marker": "kimberlites, which can be a possible host"
+        }
+      ],
+      "rationale": "Issuer describes a possible kimberlite REE target. The existing pegmatite-to-hard and case-specific archived-host rules do not map this new kimberlite prospect to a Censused hard-rock deposit."
+    },
+    {
+      "project_id": "AU-b50a5b57669586191c33",
+      "project_name": "Wandagee REE Exploration Project — Consolidated Zinc",
+      "column": "開發階段代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7",
+          "page": 5,
+          "source_key": "wandagee20230131",
+          "report_family": "Yari-Consolidated-Zinc-portfolio-reports",
+          "role": "DESKTOP_WORK",
+          "marker": "No field exploration activities were undertaken"
+        },
+        {
+          "sha256": "45ff30236b16929984e94eeb073cf9a22444f578d0c04c98b27c1a2d4d7a03e6",
+          "page": 6,
+          "source_key": "yari_wandagee_20230913",
+          "report_family": "Yari-Consolidated-Zinc-portfolio-reports",
+          "role": "CONCEPTUAL_TARGET_AND_DESKTOP_WORK",
+          "marker": "kimberlites, which can be a possible host"
+        }
+      ],
+      "rationale": "The later interim report describes completion of a historical-data review on the kimberlite target. Subsequent filings record an intention to relinquish. A completed field/engineering milestone or eligible X rule is absent."
+    },
+    {
+      "project_id": "AU-b50a5b57669586191c33",
+      "project_name": "Wandagee REE Exploration Project — Consolidated Zinc",
+      "column": "開發階段類別",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7",
+          "page": 5,
+          "source_key": "wandagee20230131",
+          "report_family": "Yari-Consolidated-Zinc-portfolio-reports",
+          "role": "DESKTOP_WORK",
+          "marker": "No field exploration activities were undertaken"
+        },
+        {
+          "sha256": "45ff30236b16929984e94eeb073cf9a22444f578d0c04c98b27c1a2d4d7a03e6",
+          "page": 6,
+          "source_key": "yari_wandagee_20230913",
+          "report_family": "Yari-Consolidated-Zinc-portfolio-reports",
+          "role": "CONCEPTUAL_TARGET_AND_DESKTOP_WORK",
+          "marker": "kimberlites, which can be a possible host"
+        }
+      ],
+      "rationale": "The later interim report describes completion of a historical-data review on the kimberlite target. Subsequent filings record an intention to relinquish. A completed field/engineering milestone or eligible X rule is absent."
+    },
+    {
+      "project_id": "AU-cae6c11543b0da5f840d",
+      "project_name": "West Arunta Project — Luni Niobium–REE scope",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "1106052fbb1564fdb0788a727239f4f5987f18dcbc6cab61789ef070148ed221",
+          "page": 1,
+          "source_key": "luni_discovery_20221116",
+          "report_family": "WA1-Luni-issuer-drilling",
+          "role": "SOURCE_HOST_NOT_UNIQUE_CODE",
+          "marker": "REE mineralised carbonatite system"
+        }
+      ],
+      "rationale": "Luni drilling includes supergene and primary niobium/REE in the same carbonatite system. Treating the entire REE scope as a primary hard-rock or a clay model alone drops a documented mineralisation domain."
+    },
+    {
+      "project_id": "AU-d1e3e2803f3c4287f6db",
+      "project_name": "Charley Creek South Project — historical URO EL33054 and EL33055 exploration",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "edb1583a4bcc4eddb7142b233ced822c1ef711df9c7c72051399dd22c7ad9b75",
+          "page": 3,
+          "source_key": "reviewed_source_edb1583a4bcc4edd",
+          "report_family": "URO-NT-Charley-Creek-statutory-reports",
+          "role": "COMPETING_HOSTS",
+          "marker": "felsic intrusion-related uranium and rare earths"
+        }
+      ],
+      "rationale": "The southern group report describes promising alluvial pXRF readings and a possible felsic intrusive REE model. It flags uncertain origins for some samples."
+    },
+    {
+      "project_id": "AU-d99cf357d160df73387c",
+      "project_name": "Southern Cross Li-REE Project — GCX",
+      "column": "礦床型態",
+      "judgment": "UNJUDGED",
+      "pages": [],
+      "rationale": "Known GCX documents delimit the four Southern Cross licences. The previously cited page 7 describes the unrelated Dante intrusion. Pages 8 and 52 identify Southern Cross tenure only. No native host or competing-host evidence page was established for this field."
+    },
+    {
+      "project_id": "AU-d99cf357d160df73387c",
+      "project_name": "Southern Cross Li-REE Project — GCX",
+      "column": "礦床型態代碼",
+      "judgment": "UNJUDGED",
+      "pages": [],
+      "rationale": "Known GCX documents delimit the four Southern Cross licences. The previously cited page 7 describes the unrelated Dante intrusion. Pages 8 and 52 identify Southern Cross tenure only. No native host or competing-host evidence page was established for this field."
+    },
+    {
+      "project_id": "AU-e6d859a831ed5954b440",
+      "project_name": "Kenny Li–REE Exploration Project — EverGreen",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "f571a145b96e1a73b612f73f0004c3fb98dd8baab7854837434e996bbf6a5635",
+          "page": 6,
+          "source_key": "evergreen_kenny_ree_targets_20230525",
+          "report_family": "EverGreen-Kenny-issuer-exploration",
+          "role": "COMPETING_HOSTS",
+          "marker": "pegmatites or apatite veins"
+        }
+      ],
+      "rationale": "The issuer distinguishes REE1 granite-related anomaly from alternative pegmatite dykes or apatite veins at REE3-4. Geophysics does not resolve the REE host or a unique whole-project code."
+    },
+    {
+      "project_id": "AU-ee34781b030807146e64",
+      "project_name": "Ravensthorpe REE Exploration Project — Young River, Dalyup and Bremer",
+      "column": "開發階段代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "31949313a2809151408ff4a141a93364c4b10904d619c1ce2851f0236cc24ca1",
+          "page": 12,
+          "source_key": "mtm_ravensthorpe_fy2024",
+          "report_family": "MTM-annual-report",
+          "role": "PROPOSED_DIVESTMENT",
+          "marker": "process to divest its exploration licences"
+        }
+      ],
+      "rationale": "FY24 annual financial report confirms initiation of divestment after strategic review. It does not establish completed sale, continued active REE technical development or the inclusion of these licences in an approved exit rule."
+    },
+    {
+      "project_id": "AU-ee34781b030807146e64",
+      "project_name": "Ravensthorpe REE Exploration Project — Young River, Dalyup and Bremer",
+      "column": "開發階段類別",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "31949313a2809151408ff4a141a93364c4b10904d619c1ce2851f0236cc24ca1",
+          "page": 12,
+          "source_key": "mtm_ravensthorpe_fy2024",
+          "report_family": "MTM-annual-report",
+          "role": "PROPOSED_DIVESTMENT",
+          "marker": "process to divest its exploration licences"
+        }
+      ],
+      "rationale": "FY24 annual financial report confirms initiation of divestment after strategic review. It does not establish completed sale, continued active REE technical development or the inclusion of these licences in an approved exit rule."
+    },
+    {
+      "project_id": "AU-f46f6d53e7196650495d",
+      "project_name": "Kalkaroo",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "b8e5372b6a4356ee9af94f05cf34708a04df54143b4b0c8b8b3886f7c8d3ea82",
+          "page": 6,
+          "source_key": "kalkaroo_interim_20220411",
+          "report_family": "Havilah-financial-reports",
+          "role": "SAMPLE_OR_METALLURGICAL_SCOPE",
+          "marker": "REE host in West Kalkaroo oxidised copper-gold ore samples"
+        }
+      ],
+      "rationale": "Bastnasite was identified in West Kalkaroo oxide/saprolite samples for metallurgical trials. Oxidised sample mineralogy cannot establish the whole copper-gold and REE project host."
+    },
+    {
+      "project_id": "AU-f46f6d53e7196650495d",
+      "project_name": "Kalkaroo",
+      "column": "開發階段代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "b8e5372b6a4356ee9af94f05cf34708a04df54143b4b0c8b8b3886f7c8d3ea82",
+          "page": 6,
+          "source_key": "kalkaroo_interim_20220411",
+          "report_family": "Havilah-financial-reports",
+          "role": "SAMPLE_OR_METALLURGICAL_SCOPE",
+          "marker": "REE host in West Kalkaroo oxidised copper-gold ore samples"
+        },
+        {
+          "sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+          "page": 12,
+          "source_key": "austrade_2026_prospectus_pdf",
+          "report_family": "Austrade-national-critical-minerals-prospectus",
+          "role": "STUDY_SCOPE",
+          "marker": "REE (in bastnasite concentrate): under study"
+        }
+      ],
+      "rationale": "The 2019 PFS was for the copper-gold project. The March 2026 government prospectus separately identifies REE coproduct flowsheet modifications as being studied. No completed REE engineering study was located."
+    },
+    {
+      "project_id": "AU-f46f6d53e7196650495d",
+      "project_name": "Kalkaroo",
+      "column": "開發階段類別",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "b8e5372b6a4356ee9af94f05cf34708a04df54143b4b0c8b8b3886f7c8d3ea82",
+          "page": 6,
+          "source_key": "kalkaroo_interim_20220411",
+          "report_family": "Havilah-financial-reports",
+          "role": "SAMPLE_OR_METALLURGICAL_SCOPE",
+          "marker": "REE host in West Kalkaroo oxidised copper-gold ore samples"
+        },
+        {
+          "sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+          "page": 12,
+          "source_key": "austrade_2026_prospectus_pdf",
+          "report_family": "Austrade-national-critical-minerals-prospectus",
+          "role": "STUDY_SCOPE",
+          "marker": "REE (in bastnasite concentrate): under study"
+        }
+      ],
+      "rationale": "The 2019 PFS was for the copper-gold project. The March 2026 government prospectus separately identifies REE coproduct flowsheet modifications as being studied. No completed REE engineering study was located."
+    },
+    {
+      "project_id": "AU-f81823bd8ba271840345",
+      "project_name": "Munbinia REE Project",
+      "column": "礦床型態",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "606cc24f03762ba4f73cd78e552127f5bc557195a9f1bae7d4f17c638f6a11a8",
+          "page": 5,
+          "source_key": "wcn_ree_acquisitions_20230518",
+          "report_family": "WCN-issuer-exploration-portfolio",
+          "role": "NEIGHBOUR_HOST_SCOPE",
+          "marker": "some 45km to the west of the target area"
+        }
+      ],
+      "rationale": "The FY23 annual report identifies the three Munbinia licences and completed reconnaissance. The acquisition paper calls E59/2714 Snake Well and discusses an external clay deposit; it does not establish a shared native REE host across E59/2714, E59/2715, and E59/2742."
+    },
+    {
+      "project_id": "AU-f81823bd8ba271840345",
+      "project_name": "Munbinia REE Project",
+      "column": "礦床型態代碼",
+      "judgment": "CONTEXT_ONLY",
+      "pages": [
+        {
+          "sha256": "606cc24f03762ba4f73cd78e552127f5bc557195a9f1bae7d4f17c638f6a11a8",
+          "page": 5,
+          "source_key": "wcn_ree_acquisitions_20230518",
+          "report_family": "WCN-issuer-exploration-portfolio",
+          "role": "NEIGHBOUR_HOST_SCOPE",
+          "marker": "some 45km to the west of the target area"
+        }
+      ],
+      "rationale": "The FY23 annual report identifies the three Munbinia licences and completed reconnaissance. The acquisition paper calls E59/2714 Snake Well and discusses an external clay deposit; it does not establish a shared native REE host across E59/2714, E59/2715, and E59/2742."
+    }
+  ]
+}
