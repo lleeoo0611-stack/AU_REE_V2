@@ -240,8 +240,10 @@ def summary_native_column(doc, binding, label, header_y, unit_y, *, expected_uni
     token=region_text(page,cell)
     parsed=number_token(token)
     unit=region_text(page,pymupdf.Rect(x0,unit_y[0],x1,unit_y[1]))
-    if norm(unit).strip('()')!=expected_unit or parsed is None or not 0<=parsed['value']<={'ppm':1000000,'%':100}[expected_unit]:
-        raise ValueError('SCOPED_EXCEPTION_NATIVE_GRADE_CELL_REQUIRED:'+label)
+    upper_limit = {'ppm':1000000, '%':100}[expected_unit]
+    if (norm(unit).strip('()') != expected_unit or not parsed or parsed['token_state'] != 'NUMBER'
+            or not 0 <= parsed['value'] <= upper_limit):
+        raise ValueError('SCOPED_EXCEPTION_NATIVE_'+('PPM' if expected_unit=='ppm' else 'PERCENT')+'_CELL_REQUIRED:'+label)
     return {'value':parsed['value'],'original_token':token,'unit':expected_unit,'page':binding['page'],
             'bbox':list(cell),'header_bbox':list(h[:4]),'header':label,'row_bbox':list(row),
             'section_id':binding['section_id'],'rounding_half_width':float(Decimal(5)*Decimal(10)**(Decimal(token.replace(',','')).as_tuple().exponent-1))}
@@ -278,11 +280,15 @@ def linked_ndpr_oxide_grade(bundle, review, sources, contract):
                 selected_row = pymupdf.Rect(binding['row_bbox'])
                 label = summary_region_text(page, selected_row & pymupdf.Rect(binding['row_label_bbox']))
                 ore = summary_region_text(page, selected_row & pymupdf.Rect(binding['column_bbox']))
-                if (summary_norm(label) != summary_norm(contract['row_label']) or not ore
-                        or summary_decimal_token(ore.replace(',','')) != Decimal(str(bundle['value']['ore_mt']))):
+                if summary_norm(label) != summary_norm(contract['row_label']):
                     return None
-                native = summary_native_column(document, binding, 'NdPr', contract['header_y'], contract['unit_y'], expected_unit='%')
-    grade = summary_decimal_token(native['original_token'])
+                try:
+                    if summary_decimal_token(ore.replace(',','')) != Decimal(str(bundle['value']['ore_mt'])):
+                        return None
+                    native = summary_native_column(document, binding, 'NdPr', contract['header_y'], contract['unit_y'], expected_unit='%')
+                    grade = summary_decimal_token(native['original_token'])
+                except ValueError:
+                    return None
     if grade > Decimal(str(bundle['value']['grade_pct'])):
         return None
     return dict(contained_kt=Decimal(str(bundle['value']['ore_mt'])) * grade * 10, cell=native, documents=evidence)
