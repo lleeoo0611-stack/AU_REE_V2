@@ -2,6 +2,10 @@
 
 同一個 `au-ree-v2 all` 入口執行來源選入、證據驗證、SQLite 入庫、總表匯出、篩選與 MCDA。證據範圍、分數規則、情境權重和三方法 R 引擎沿用 Phase 22。整合開發版對既有 SQLite 增加可遷移的查詢視圖。總表保留 ASX 測試的 51 欄，與 2026-11-16 HTML 共用欄位及順序相符。
 
+## NLP 證據頁配對實驗
+
+在 39 個留出專案中，前五頁已知證據命中由 24／49 提升至 31／49。Perenjori 正式新增 1 格；固定分母覆蓋率達 82.43%。[逐組結果、排名驗收與獨立真人計時](../nlp-census-ab-20261126/README.md)
+
 ## Census 覆蓋率正規化測試
 
 固定分母 3,034 格下，實際補入 Franklyn 經緯度、Voyager 礦床代碼與 Lyons 合併 NdPr 蘊藏量，覆蓋率由 82.27% 升至 82.40%。16 組排名相同。[本輪結果與重播方式](coverage-locked-20261125/README.md) · [逐格差異](coverage-locked-20261125/coverage_delta.csv)

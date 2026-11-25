@@ -1,0 +1,464 @@
+{
+  "query": {
+    "n": 53,
+    "unjudged": 1,
+    "references_outside_pool": 3,
+    "paired_hit5": {
+      "neither": 18,
+      "nlp_only": 7,
+      "both": 24
+    },
+    "rules": {
+      "hit1": {
+        "hits": 24,
+        "n": 49,
+        "rate": 0.4897959183673469
+      },
+      "hit5": {
+        "hits": 24,
+        "n": 49,
+        "rate": 0.4897959183673469
+      },
+      "known_hits_over_all_targets": {
+        "hits": 24,
+        "n": 53,
+        "rate": 0.4528301886792453
+      },
+      "sufficient_hit5": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "empty_queues": 28,
+      "page_slots": 29
+    },
+    "rules_nlp": {
+      "hit1": {
+        "hits": 24,
+        "n": 49,
+        "rate": 0.4897959183673469
+      },
+      "hit5": {
+        "hits": 31,
+        "n": 49,
+        "rate": 0.6326530612244898
+      },
+      "known_hits_over_all_targets": {
+        "hits": 31,
+        "n": 53,
+        "rate": 0.5849056603773585
+      },
+      "sufficient_hit5": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "empty_queues": 0,
+      "page_slots": 265
+    }
+  },
+  "cell": {
+    "n": 90,
+    "unjudged": 2,
+    "references_outside_pool": 4,
+    "paired_hit5": {
+      "neither": 35,
+      "nlp_only": 14,
+      "both": 35
+    },
+    "rules": {
+      "hit1": {
+        "hits": 35,
+        "n": 84,
+        "rate": 0.4166666666666667
+      },
+      "hit5": {
+        "hits": 35,
+        "n": 84,
+        "rate": 0.4166666666666667
+      },
+      "known_hits_over_all_targets": {
+        "hits": 35,
+        "n": 90,
+        "rate": 0.3888888888888889
+      },
+      "sufficient_hit5": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "empty_queues": 54,
+      "page_slots": 44
+    },
+    "rules_nlp": {
+      "hit1": {
+        "hits": 35,
+        "n": 84,
+        "rate": 0.4166666666666667
+      },
+      "hit5": {
+        "hits": 49,
+        "n": 84,
+        "rate": 0.5833333333333334
+      },
+      "known_hits_over_all_targets": {
+        "hits": 49,
+        "n": 90,
+        "rate": 0.5444444444444444
+      },
+      "sufficient_hit5": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "empty_queues": 0,
+      "page_slots": 450
+    }
+  },
+  "query_by_field": {
+    "coordinate": {
+      "n": 29,
+      "unjudged": 0,
+      "references_outside_pool": 1,
+      "paired_hit5": {
+        "neither": 16,
+        "nlp_only": 7,
+        "both": 5
+      },
+      "rules": {
+        "hit1": {
+          "hits": 5,
+          "n": 28,
+          "rate": 0.17857142857142858
+        },
+        "hit5": {
+          "hits": 5,
+          "n": 28,
+          "rate": 0.17857142857142858
+        },
+        "known_hits_over_all_targets": {
+          "hits": 5,
+          "n": 29,
+          "rate": 0.1724137931034483
+        },
+        "sufficient_hit5": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "empty_queues": 24,
+        "page_slots": 9
+      },
+      "rules_nlp": {
+        "hit1": {
+          "hits": 5,
+          "n": 28,
+          "rate": 0.17857142857142858
+        },
+        "hit5": {
+          "hits": 12,
+          "n": 28,
+          "rate": 0.42857142857142855
+        },
+        "known_hits_over_all_targets": {
+          "hits": 12,
+          "n": 29,
+          "rate": 0.41379310344827586
+        },
+        "sufficient_hit5": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "empty_queues": 0,
+        "page_slots": 145
+      }
+    },
+    "deposit": {
+      "n": 18,
+      "unjudged": 1,
+      "references_outside_pool": 2,
+      "paired_hit5": {
+        "both": 13,
+        "neither": 2
+      },
+      "rules": {
+        "hit1": {
+          "hits": 13,
+          "n": 15,
+          "rate": 0.8666666666666667
+        },
+        "hit5": {
+          "hits": 13,
+          "n": 15,
+          "rate": 0.8666666666666667
+        },
+        "known_hits_over_all_targets": {
+          "hits": 13,
+          "n": 18,
+          "rate": 0.7222222222222222
+        },
+        "sufficient_hit5": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "empty_queues": 4,
+        "page_slots": 14
+      },
+      "rules_nlp": {
+        "hit1": {
+          "hits": 13,
+          "n": 15,
+          "rate": 0.8666666666666667
+        },
+        "hit5": {
+          "hits": 13,
+          "n": 15,
+          "rate": 0.8666666666666667
+        },
+        "known_hits_over_all_targets": {
+          "hits": 13,
+          "n": 18,
+          "rate": 0.7222222222222222
+        },
+        "sufficient_hit5": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "empty_queues": 0,
+        "page_slots": 90
+      }
+    },
+    "stage": {
+      "n": 6,
+      "unjudged": 0,
+      "references_outside_pool": 0,
+      "paired_hit5": {
+        "both": 6
+      },
+      "rules": {
+        "hit1": {
+          "hits": 6,
+          "n": 6,
+          "rate": 1.0
+        },
+        "hit5": {
+          "hits": 6,
+          "n": 6,
+          "rate": 1.0
+        },
+        "known_hits_over_all_targets": {
+          "hits": 6,
+          "n": 6,
+          "rate": 1.0
+        },
+        "sufficient_hit5": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "empty_queues": 0,
+        "page_slots": 6
+      },
+      "rules_nlp": {
+        "hit1": {
+          "hits": 6,
+          "n": 6,
+          "rate": 1.0
+        },
+        "hit5": {
+          "hits": 6,
+          "n": 6,
+          "rate": 1.0
+        },
+        "known_hits_over_all_targets": {
+          "hits": 6,
+          "n": 6,
+          "rate": 1.0
+        },
+        "sufficient_hit5": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "empty_queues": 0,
+        "page_slots": 30
+      }
+    }
+  },
+  "cell_by_field": {
+    "coordinate": {
+      "n": 58,
+      "unjudged": 0,
+      "references_outside_pool": 2,
+      "paired_hit5": {
+        "neither": 32,
+        "nlp_only": 14,
+        "both": 10
+      },
+      "rules": {
+        "hit1": {
+          "hits": 10,
+          "n": 56,
+          "rate": 0.17857142857142858
+        },
+        "hit5": {
+          "hits": 10,
+          "n": 56,
+          "rate": 0.17857142857142858
+        },
+        "known_hits_over_all_targets": {
+          "hits": 10,
+          "n": 58,
+          "rate": 0.1724137931034483
+        },
+        "sufficient_hit5": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "empty_queues": 48,
+        "page_slots": 18
+      },
+      "rules_nlp": {
+        "hit1": {
+          "hits": 10,
+          "n": 56,
+          "rate": 0.17857142857142858
+        },
+        "hit5": {
+          "hits": 24,
+          "n": 56,
+          "rate": 0.42857142857142855
+        },
+        "known_hits_over_all_targets": {
+          "hits": 24,
+          "n": 58,
+          "rate": 0.41379310344827586
+        },
+        "sufficient_hit5": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "empty_queues": 0,
+        "page_slots": 290
+      }
+    },
+    "deposit": {
+      "n": 20,
+      "unjudged": 2,
+      "references_outside_pool": 2,
+      "paired_hit5": {
+        "both": 13,
+        "neither": 3
+      },
+      "rules": {
+        "hit1": {
+          "hits": 13,
+          "n": 16,
+          "rate": 0.8125
+        },
+        "hit5": {
+          "hits": 13,
+          "n": 16,
+          "rate": 0.8125
+        },
+        "known_hits_over_all_targets": {
+          "hits": 13,
+          "n": 20,
+          "rate": 0.65
+        },
+        "sufficient_hit5": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "empty_queues": 6,
+        "page_slots": 14
+      },
+      "rules_nlp": {
+        "hit1": {
+          "hits": 13,
+          "n": 16,
+          "rate": 0.8125
+        },
+        "hit5": {
+          "hits": 13,
+          "n": 16,
+          "rate": 0.8125
+        },
+        "known_hits_over_all_targets": {
+          "hits": 13,
+          "n": 20,
+          "rate": 0.65
+        },
+        "sufficient_hit5": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "empty_queues": 0,
+        "page_slots": 100
+      }
+    },
+    "stage": {
+      "n": 12,
+      "unjudged": 0,
+      "references_outside_pool": 0,
+      "paired_hit5": {
+        "both": 12
+      },
+      "rules": {
+        "hit1": {
+          "hits": 12,
+          "n": 12,
+          "rate": 1.0
+        },
+        "hit5": {
+          "hits": 12,
+          "n": 12,
+          "rate": 1.0
+        },
+        "known_hits_over_all_targets": {
+          "hits": 12,
+          "n": 12,
+          "rate": 1.0
+        },
+        "sufficient_hit5": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "empty_queues": 0,
+        "page_slots": 12
+      },
+      "rules_nlp": {
+        "hit1": {
+          "hits": 12,
+          "n": 12,
+          "rate": 1.0
+        },
+        "hit5": {
+          "hits": 12,
+          "n": 12,
+          "rate": 1.0
+        },
+        "known_hits_over_all_targets": {
+          "hits": 12,
+          "n": 12,
+          "rate": 1.0
+        },
+        "sufficient_hit5": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "empty_queues": 0,
+        "page_slots": 60
+      }
+    }
+  }
+}

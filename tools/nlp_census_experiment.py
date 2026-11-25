@@ -110,7 +110,8 @@ def run(release, assets, out, cache):
     dump(out/'split.json', dict(control_projects=sorted(CONTROL_PROJECTS), development_smoke=dev_results,
          heldout_projects=sorted({r['project_id'] for r in cases}), documents=documents,
          release_sha256=checksum(release/'census_release.json'), decisions_sha256=checksum(release/'source_selection.csv'),
-         retrieval_source_sha256=checksum(Path(__file__).with_name('nlp_page_retrieval.py'))))
+         retrieval_source_hash_basis='UTF-8 source bytes with LF line endings',
+         retrieval_source_sha256=hashlib.sha256(Path(__file__).with_name('nlp_page_retrieval.py').read_bytes().replace(b'\r\n',b'\n')).hexdigest()))
     for c in cases:
         result=index.rank_pair([project_alias(c['project_name'])],c['field'],baseline.get((c['project_id'],c['field']),()),k=K)
         c.update(result)

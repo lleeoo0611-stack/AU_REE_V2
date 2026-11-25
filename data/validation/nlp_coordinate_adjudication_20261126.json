@@ -1,0 +1,1372 @@
+{
+  "protocol": "blinded-coordinate-candidate-adjudication-v1",
+  "population": "Remaining coordinate pairs in the 2026-11-13 Census, release 8b5ac86.",
+  "packet_sha256": "5505b6acfa478c080b82c31770353f144353b71508f3996a2a27a39807c16916",
+  "review_method": "One model reviewer examined the masked union of A/B candidate pages per project. Each unique source PDF was checked against its selected edition SHA-256. Unresolved graphic-only positions and scope conflicts remain held. The frozen retrieval reference was retained.",
+  "human_reviewer_minutes": null,
+  "cases": [
+    {
+      "case_id": "AU-02d486d425ca0792bdc5_coordinate",
+      "project_id": "AU-02d486d425ca0792bdc5",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7",
+          "page": 26,
+          "source_key": "wamex_splinter_r254_20151109",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Esperance/Salazar report gives grid/projection and procedures for its own aircore drilling; it does not identify other project points."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        },
+        {
+          "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+          "page": 18,
+          "source_key": "norwest_arunta_20230222",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Norwest reports surveying prior RC drillholes in MGA Zone 52. These coordinates describe collars, not a whole project."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The five candidates concern surveying or drilling on other projects; none binds the Northern Gawler Comet project to an approved native site."
+    },
+    {
+      "case_id": "AU-14f7cb8ca1fcd58f536c_coordinate",
+      "project_id": "AU-14f7cb8ca1fcd58f536c",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a",
+          "page": 28,
+          "source_key": "r6_identity_itech_eyre_peninsula",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "iTech's portfolio discusses copper-gold targets in central Gawler; regional name overlap does not identify Indiana's REE project."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631",
+          "page": 7,
+          "source_key": "itech_franklyn_identity20211027",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "iTech locates its South Australian exploration licences and copper-gold projects relative to the Gawler Craton; it is not Indiana's Central Gawler project."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The geographic match is the Gawler region, but these iTech records concern other projects and operators. No candidate establishes Indiana's project-wide location."
+    },
+    {
+      "case_id": "AU-203b4d90e5c23a323610_coordinate",
+      "project_id": "AU-203b4d90e5c23a323610",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226",
+          "page": 18,
+          "source_key": "nfm_hartsrange20250724",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Harts Range sampling locations, assays and geological setting concern fieldwork within the larger licence area."
+        },
+        {
+          "sha256": "e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226",
+          "page": 21,
+          "source_key": "nfm_hartsrange20250724",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Harts Range JORC page names EL32046 and EL32513 and 110 sq km; its stated STRIKE tenure-status check is dated October 2024."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The two Harts Range licences provide a dated tenure lead, but no candidates establish a complete, contemporaneous admitted NT polygon pair or an official site representing the whole corridor."
+    },
+    {
+      "case_id": "AU-2af694147ae21c393820_coordinate",
+      "project_id": "AU-2af694147ae21c393820",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 50,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Lake Campion project inventory spans 15 tenements and reports a survey/program within the larger project."
+        },
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "250eb3778935dfdd8dd56c397ef38ffb396b15d82a0f5a464e99427fd08a5b75",
+          "page": 79,
+          "source_key": "voyager_relinquishment_fy2024",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Lithium Universe's schedule lists two Voyager licences as relinquished and also separately lists other projects."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The 15-tenement scope and regional survey are explicit. No admitted coeval footprint or official representative point is supported."
+    },
+    {
+      "case_id": "AU-3651cf8448b9227adcf5_coordinate",
+      "project_id": "AU-3651cf8448b9227adcf5",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+          "page": 46,
+          "source_key": "asx_ridley_blocks12_202603",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Blocks 1/2 technical table discusses geological data, sample spacing and location of drill information within domains."
+        },
+        {
+          "sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+          "page": 52,
+          "source_key": "asx_ridley_blocks12_202603",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Drill information and TREO assays are referenced to appendices; no single point representing the entire Blocks 1/2 resource is identified."
+        },
+        {
+          "sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95",
+          "page": 60,
+          "source_key": "mia_ar2024",
+          "inspection": "ORIGINAL_PAGE_TEXT_AND_RENDER",
+          "observation": "The Mount Ridley balance-date schedule lists several titles for Mt Ridley and separately lists Weld Range West."
+        },
+        {
+          "sha256": "eac3b88bddeeda7a38488b44300d70ad4ceaa9b86db3383d950556952bac77e0",
+          "page": 25,
+          "source_key": "asx_review_mia_central_202405",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Mia technical disclosure describes exploration and drilling on the Mt Ridley project, including separately named prospects."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "Locations concern surveys, the Mia prospect, or portfolio licences. They do not bind one official feature to the selected combined Blocks 1 and 2 estimate."
+    },
+    {
+      "case_id": "AU-3a0020b6daf659f62138_coordinate",
+      "project_id": "AU-3a0020b6daf659f62138",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7",
+          "page": 26,
+          "source_key": "wamex_splinter_r254_20151109",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Esperance/Salazar report gives grid/projection and procedures for its own aircore drilling; it does not identify other project points."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        },
+        {
+          "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+          "page": 18,
+          "source_key": "norwest_arunta_20230222",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Norwest reports surveying prior RC drillholes in MGA Zone 52. These coordinates describe collars, not a whole project."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "No candidate concerns the Iluka Euston project footprint. Unrelated collars and grid datums cannot identify it."
+    },
+    {
+      "case_id": "AU-3eb7131e4daea18a60a0_coordinate",
+      "project_id": "AU-3eb7131e4daea18a60a0",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+          "page": 5,
+          "source_key": "ark_annual2026",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Ark's chairman describes Sandy Mitchell and the project location. No coordinate pair tied to the September resource boundary is given."
+        },
+        {
+          "sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+          "page": 20,
+          "source_key": "ark_annual2026",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Ark describes the EPM and mining lease as distinct parts of Sandy Mitchell. The licence is a tenure envelope, not the selected estimate."
+        },
+        {
+          "sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+          "page": 43,
+          "source_key": "ark_annual2026",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Financial reporting gives royalties and expenditure for Sandy Mitchell; these do not identify its spatial footprint."
+        },
+        {
+          "sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+          "page": 54,
+          "source_key": "ark_annual2026",
+          "inspection": "ORIGINAL_PAGE_TEXT_AND_RENDER",
+          "observation": "The tenure table lists Sandy Mitchell EPM28013 and ML100409 and different approximate distances from Chillagoe."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The two Sandy Mitchell title identifiers, different licence scopes and approximate town distances do not define the selected September resource extent. A mine-lease or EPM point would change scope."
+    },
+    {
+      "case_id": "AU-410159af7b79ea498ec2_coordinate",
+      "project_id": "AU-410159af7b79ea498ec2",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4",
+          "page": 7,
+          "source_key": "nowie_mre20240124",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "VHM lists Cannie's EL6419 and EL6664 among several projects, without assigning an estimate-wide point."
+        },
+        {
+          "sha256": "7de6021ce23b5622e920f8a3169fe6252ea4ba24d7b616f19a1e90454ee4294c",
+          "page": 31,
+          "source_key": "cannie_mre20230516",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The numeric columns give GDA94 drill collars in EL6419, individually associated with holes; these cannot stand for the Cannie mineral resource."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The scope-bearing pages identify two titles and individual collar coordinates. The collar points are not resource-wide; the previous full title set exceeded the extent limit."
+    },
+    {
+      "case_id": "AU-47d12ebe6b66df8e5936_coordinate",
+      "project_id": "AU-47d12ebe6b66df8e5936",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "9d3798d57ca198cfd766a2cc83881427be0a3f9ee5e2dabe7b6028e48d544415",
+          "page": 33,
+          "source_key": "venture_greater_brothers_20230801",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The earlier Brothers project list identifies granted and pending titles and drilling context at its statement date."
+        },
+        {
+          "sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+          "page": 28,
+          "source_key": "asx_jupiter_latest_mre202610",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Fifteen Brothers titles are listed; Jupiter is entirely within E59/2463. This separates the Jupiter subset from Greater Brothers."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The October JORC page lists 15 titles and expressly confines Jupiter to one. All 15 title IDs match the 2026-09-11 government archive, but the existing centroid function rejects the union because its fallback centroid lies outside. Neither candidate set supplies an accepted alternative site."
+    },
+    {
+      "case_id": "AU-68da41afe874c3bd66d4_coordinate",
+      "project_id": "AU-68da41afe874c3bd66d4",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "250eb3778935dfdd8dd56c397ef38ffb396b15d82a0f5a464e99427fd08a5b75",
+          "page": 79,
+          "source_key": "voyager_relinquishment_fy2024",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Lithium Universe's schedule lists two Voyager licences as relinquished and also separately lists other projects."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        },
+        {
+          "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+          "page": 18,
+          "source_key": "norwest_arunta_20230222",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Norwest reports surveying prior RC drillholes in MGA Zone 52. These coordinates describe collars, not a whole project."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The issuer reports relinquishment of two separate licences. The schedule has no dated permitted Tasmania location geometry or uniquely bound government feature for the combined historical project."
+    },
+    {
+      "case_id": "AU-6a5615e0ed95d955c2dd_coordinate",
+      "project_id": "AU-6a5615e0ed95d955c2dd",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a",
+          "page": 17,
+          "source_key": "r6_identity_itech_eyre_peninsula",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Sugarloaf is a graphite exploration target adjacent to a proposed processing plant; its mapped target covers a different scope."
+        },
+        {
+          "sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a",
+          "page": 23,
+          "source_key": "r6_identity_itech_eyre_peninsula",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The report describes Eyre Peninsula REE-kaolin over 1,445 sq km and four prospects, distinguishing the Caralue Bluff target."
+        },
+        {
+          "sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a",
+          "page": 33,
+          "source_key": "r6_identity_itech_eyre_peninsula",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Another dated iTech tenement schedule identifies multiple Eyre Peninsula holdings, without a native representative point."
+        },
+        {
+          "sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631",
+          "page": 5,
+          "source_key": "itech_franklyn_identity20211027",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "iTech describes separate REE/kaolin projects including Franklyn and Eyre Peninsula; the regional portfolio context is explicit."
+        },
+        {
+          "sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631",
+          "page": 10,
+          "source_key": "itech_franklyn_identity20211027",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "iTech's tenure schedule groups permits and names holders. The project geometry/representative point is not supplied."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The four prospects and portfolio holdings are evidenced. The Sugarloaf graphite target and separate Franklyn project have different scopes and cannot supply this row's location."
+    },
+    {
+      "case_id": "AU-70cc41e3a7106f983f73_coordinate",
+      "project_id": "AU-70cc41e3a7106f983f73",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "page": 64,
+          "source_key": "wcn_annual2023",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "White Cliff's WA schedule names component titles of Lake Tay and Diemals, without any single survey position for either project."
+        },
+        {
+          "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "page": 65,
+          "source_key": "wcn_annual2023",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "White Cliff's schedule continues Lake Tay applications and names the three Munbinia titles."
+        },
+        {
+          "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "page": 66,
+          "source_key": "wcn_annual2023",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The continuation repeats components of Lake Tay and Munbinia under the balance-date tenement grouping."
+        },
+        {
+          "sha256": "e5e4bc19476428a86bc09b9999621e0d6a50bff4ce8668372fb32739e7281a0d",
+          "page": 5,
+          "source_key": "wcn_quarterly_lake_tay_20221031",
+          "inspection": "ORIGINAL_PAGE_TEXT_AND_RENDER",
+          "observation": "The map depicts Hines Hill. A separate paragraph describes acquisition of Lake Tay licence holdings and planned exploration."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The title schedules identify components and the acquisition text describes projected exploration. The map on the acquisition page belongs to Hines Hill; the previously checked Lake Tay union exceeds the distance gate."
+    },
+    {
+      "case_id": "AU-70fc8a7de18ad8209c32_coordinate",
+      "project_id": "AU-70fc8a7de18ad8209c32",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "2b5aa789537b0e291490b265995312b8a9111c097f9b65a6ce5ac96d4def3c12",
+          "page": 8,
+          "source_key": "charley_creek_env20240430",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Charley Creek holdings on this page are CNPL licences such as EL24281/EL25230, distinct from the URO relinquishments under review."
+        },
+        {
+          "sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59",
+          "page": 4,
+          "source_key": "reviewed_source_5d4d954c63513e05",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The URO Charley Creek South report identifies EL33054 and EL33055, describes access, gives block counts and shows a location map."
+        },
+        {
+          "sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+          "page": 2,
+          "source_key": "reviewed_source_e37750161e156498",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The contents page names Charley Creek South-East EL33006, not the North-East licence EL33000."
+        },
+        {
+          "sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+          "page": 3,
+          "source_key": "reviewed_source_e6bed25382926c6d",
+          "inspection": "ORIGINAL_PAGE_TEXT_AND_RENDER",
+          "observation": "This list of figures names North EL33004 and points onward to a map of its historical relinquished area."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "Pages name EL33004, EL33006, the South titles or CNPL holdings. They cannot establish the URO North-East EL33000 representative point. Its previous historical geometry was too extensive."
+    },
+    {
+      "case_id": "AU-7135b2eb1d3f193da9a6_coordinate",
+      "project_id": "AU-7135b2eb1d3f193da9a6",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7",
+          "page": 26,
+          "source_key": "wamex_splinter_r254_20151109",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Esperance/Salazar report gives grid/projection and procedures for its own aircore drilling; it does not identify other project points."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        },
+        {
+          "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+          "page": 18,
+          "source_key": "norwest_arunta_20230222",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Norwest reports surveying prior RC drillholes in MGA Zone 52. These coordinates describe collars, not a whole project."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The packet gives survey methods and coordinate references for unrelated projects; no new Gilberton feature or geometry resolves the previously oversized four-permit footprint."
+    },
+    {
+      "case_id": "AU-75fe0f1a81005bd19586_coordinate",
+      "project_id": "AU-75fe0f1a81005bd19586",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "5ebb04f84564bebc1f8e96073fe45b1e3792b6b6115414c28be94d4886bcea28",
+          "page": 9,
+          "source_key": "bpm_quarter20260716",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The July 2026 schedule concerns three Durack exploration titles and their changing agreements. This differs from the four earlier option applications."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        },
+        {
+          "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+          "page": 18,
+          "source_key": "norwest_arunta_20230222",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Norwest reports surveying prior RC drillholes in MGA Zone 52. These coordinates describe collars, not a whole project."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The later quarterly records three Durack tenements. It cannot establish identity/geometry of the four historical option applications on the same date."
+    },
+    {
+      "case_id": "AU-81b21bdd06796fa2217d_coordinate",
+      "project_id": "AU-81b21bdd06796fa2217d",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "255a8a234012fc664bdae06c6f4cbf2f987ca6ffd81e07902e21018e8e7cc04b",
+          "page": 10,
+          "source_key": "emu_merredin_schedule_20240131",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Emu's December schedule groups multiple Avon and Nelson Merredin permits and assigns status; no project representative coordinate is reported."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        },
+        {
+          "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+          "page": 18,
+          "source_key": "norwest_arunta_20230222",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Norwest reports surveying prior RC drillholes in MGA Zone 52. These coordinates describe collars, not a whole project."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The schedule confirms Avon and Nelson identifiers and pending status. The earlier government-versus-issuer grant status conflict remains unresolved."
+    },
+    {
+      "case_id": "AU-88dfe58aac214c33e576_coordinate",
+      "project_id": "AU-88dfe58aac214c33e576",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "aab011288d038eeedc00578453cc7bf7cd9653f87ac4c43a321fcbddc8eb97ed",
+          "page": 17,
+          "source_key": "aiv_tenure_schedule_20261028",
+          "inspection": "ORIGINAL_PAGE_TEXT_AND_RENDER",
+          "observation": "Two Aramac survey maps locate the Dunns Road sampling grid and barium results, rather than a point representing both project permits."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        },
+        {
+          "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+          "page": 18,
+          "source_key": "norwest_arunta_20230222",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Norwest reports surveying prior RC drillholes in MGA Zone 52. These coordinates describe collars, not a whole project."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The two Aramac maps show sampling at Dunns Road. They cannot replace the previously reviewed two-permit union, which exceeded the coverage limit."
+    },
+    {
+      "case_id": "AU-97137ef07af49e3607b2_coordinate",
+      "project_id": "AU-97137ef07af49e3607b2",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "2b5aa789537b0e291490b265995312b8a9111c097f9b65a6ce5ac96d4def3c12",
+          "page": 8,
+          "source_key": "charley_creek_env20240430",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Charley Creek holdings on this page are CNPL licences such as EL24281/EL25230, distinct from the URO relinquishments under review."
+        },
+        {
+          "sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59",
+          "page": 3,
+          "source_key": "reviewed_source_5d4d954c63513e05",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "This URO Charley Creek South report names the South project and covers exploration/relinquishment, not a native coordinate pair."
+        },
+        {
+          "sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59",
+          "page": 4,
+          "source_key": "reviewed_source_5d4d954c63513e05",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The URO Charley Creek South report identifies EL33054 and EL33055, describes access, gives block counts and shows a location map."
+        },
+        {
+          "sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+          "page": 3,
+          "source_key": "reviewed_source_e6bed25382926c6d",
+          "inspection": "ORIGINAL_PAGE_TEXT_AND_RENDER",
+          "observation": "This list of figures names North EL33004 and points onward to a map of its historical relinquished area."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The North EL33004 candidate refers to a relinquishment map in the list of figures. The previously reviewed partial geometry exceeds the extent limit; other candidates concern neighbouring projects."
+    },
+    {
+      "case_id": "AU-a9b72e86940271be45a3_coordinate",
+      "project_id": "AU-a9b72e86940271be45a3",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "page": 8,
+          "source_key": "wcn_annual2023",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Diemals Li/REE project covers 2,427 sq km on the Southern Cross Belt. The regional name is not GCX's project identity."
+        },
+        {
+          "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "page": 64,
+          "source_key": "wcn_annual2023",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "White Cliff's WA schedule names component titles of Lake Tay and Diemals, without any single survey position for either project."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The six Diemals titles, including the annual-report inventory, describe a project too extensive for the existing centroid gate. A distinct government representative site remains unverified."
+    },
+    {
+      "case_id": "AU-ad64122c217f0dbfabc8_coordinate",
+      "project_id": "AU-ad64122c217f0dbfabc8",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e",
+          "page": 217,
+          "source_key": "asx_barkly_prospectus20260128",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The JORC table puts the Barkly Mineral Resource within EL32473/4; it identifies a containing licence area without binding a representative resource point or a resource polygon."
+        },
+        {
+          "sha256": "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e",
+          "page": 238,
+          "source_key": "asx_barkly_prospectus20260128",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The legal report groups Barkly exploration licences for expenditure/reporting purposes; grouped legal tenure does not delineate the selected 40 Mt estimate."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The prospectus narrows the resource to EL32473/4 but describes it as within that licence area. Neither the licence's centroid nor the wider portfolio delineates the resource boundary, and no same-estimate official location is provided."
+    },
+    {
+      "case_id": "AU-b2dadf9c8046c3c68a02_coordinate",
+      "project_id": "AU-b2dadf9c8046c3c68a02",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7",
+          "page": 26,
+          "source_key": "wamex_splinter_r254_20151109",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Esperance/Salazar report gives grid/projection and procedures for its own aircore drilling; it does not identify other project points."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        },
+        {
+          "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+          "page": 18,
+          "source_key": "norwest_arunta_20230222",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Norwest reports surveying prior RC drillholes in MGA Zone 52. These coordinates describe collars, not a whole project."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "These candidates concern other projects' collars and survey datums. They do not establish a location for the 2,068 sq km Cascade footprint."
+    },
+    {
+      "case_id": "AU-b50a5b57669586191c33_coordinate",
+      "project_id": "AU-b50a5b57669586191c33",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7",
+          "page": 4,
+          "source_key": "wandagee20230131",
+          "inspection": "ORIGINAL_PAGE_TEXT_AND_RENDER",
+          "observation": "Wandagee text identifies E09/2499 and approximate distances; the coordinate grid plotted above belongs to Ant Hill and Camel Creek."
+        },
+        {
+          "sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7",
+          "page": 8,
+          "source_key": "wandagee20230131",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "This corporate description groups Pilbara Lithium and Wandagee holdings; statements on their combined area cannot fix a Wandagee representative point."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "A dated report identifies E09/2499, but its plotted coordinate grid applies to two other licences. Prior geometry failed the existing gate; no alternative official site is identified."
+    },
+    {
+      "case_id": "AU-c4391f8d2a6690076436_coordinate",
+      "project_id": "AU-c4391f8d2a6690076436",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        },
+        {
+          "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+          "page": 18,
+          "source_key": "norwest_arunta_20230222",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Norwest reports surveying prior RC drillholes in MGA Zone 52. These coordinates describe collars, not a whole project."
+        },
+        {
+          "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+          "page": 20,
+          "source_key": "norwest_arunta_20230222",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The February Arunta West drill report places its project of work within EL80/5031 and gives that title's grant/renewal dates."
+        },
+        {
+          "sha256": "efaafa511113d00eda8fbccd8e407a364ddad320df36452091277a0f63052fb4",
+          "page": 14,
+          "source_key": "nwm_arunta_west_20230801",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The August Arunta exploration reporting identifies the drilling geology/tenure and reports sample/drillhole information."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The drilling reports tie a program to E80/5031 and give drill grid data. The wider project is distinct. Even for the single named title, the production centroid test on its 2026-09-11 archived polygon rejects its centroid outside the union."
+    },
+    {
+      "case_id": "AU-c5e94422a89a23f82408_coordinate",
+      "project_id": "AU-c5e94422a89a23f82408",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "855a5a164804247ff40a8640ae29cde536c5869b83d4faeccbbe40625751cfcc",
+          "page": 2,
+          "source_key": "taruga_mt_craig_20230131",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Taruga's regional tenement map and narrative identify Mt Craig and REE/copper targets within it."
+        },
+        {
+          "sha256": "970f4ce20adef0002cf68cede290af0ddb58a07a35106adfea386c1578ee46ac",
+          "page": 25,
+          "source_key": "taruga_morgans_creek_ree_host_20221013",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Morgans Creek JORC text identifies EL6541 and its holder within the Mt Craig reporting context."
+        },
+        {
+          "sha256": "b0faf81a98d605436700670fbaff7e6b3d10f733c5af9a5311fbe9ddf08bb246",
+          "page": 5,
+          "source_key": "taruga_ar2024",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The annual report maps the Mt Craig area along the Worumba Anticline and states its extent exceeds 850 sq km."
+        },
+        {
+          "sha256": "ec7c85a4cbb4a06f6d3b20719e494d4c30dc0a5e26b360c59b4bc1aa1ea7058e",
+          "page": 3,
+          "source_key": "evergreen_kenny_surrender_20251030",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "This report concerns Craig's Rest gold and other prospects in Western Australia, distinct from Taruga's South Australian Mt Craig."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The reports identify the Worumba Anticline, regional tenure and Morgans Creek sampling on EL6541. The eligible South Australian spatial layers do not establish this single prospect as the project-wide site."
+    },
+    {
+      "case_id": "AU-d1394abdef4c8d971c78_coordinate",
+      "project_id": "AU-d1394abdef4c8d971c78",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+          "page": 5,
+          "source_key": "asx_review_splinter_global_202405",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "This Splinter Rock location-and-access description refers to Condingup on an access route."
+        },
+        {
+          "sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+          "page": 42,
+          "source_key": "asx_review_splinter_global_202405",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "Splinter Rock exploration licences and access via Condingup are described; the mapped/licensed project is Splinter Rock."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The Splinter Rock report mentions Condingup as an access town. These candidates cannot resolve Emu's historically separate, extensive Condingup project."
+    },
+    {
+      "case_id": "AU-d1e3e2803f3c4287f6db_coordinate",
+      "project_id": "AU-d1e3e2803f3c4287f6db",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "2b5aa789537b0e291490b265995312b8a9111c097f9b65a6ce5ac96d4def3c12",
+          "page": 8,
+          "source_key": "charley_creek_env20240430",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Charley Creek holdings on this page are CNPL licences such as EL24281/EL25230, distinct from the URO relinquishments under review."
+        },
+        {
+          "sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59",
+          "page": 3,
+          "source_key": "reviewed_source_5d4d954c63513e05",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "This URO Charley Creek South report names the South project and covers exploration/relinquishment, not a native coordinate pair."
+        },
+        {
+          "sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59",
+          "page": 4,
+          "source_key": "reviewed_source_5d4d954c63513e05",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The URO Charley Creek South report identifies EL33054 and EL33055, describes access, gives block counts and shows a location map."
+        },
+        {
+          "sha256": "edb1583a4bcc4eddb7142b233ced822c1ef711df9c7c72051399dd22c7ad9b75",
+          "page": 3,
+          "source_key": "reviewed_source_edb1583a4bcc4edd",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Charley Creek South report summarises field observations and the two title areas, including locations of samples."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The South report identifies both URO titles and relinquishment. The pages lack a verified full boundary/representative site; the separate CNPL holdings and individual drill intersections cannot fill the pair."
+    },
+    {
+      "case_id": "AU-d99cf357d160df73387c_coordinate",
+      "project_id": "AU-d99cf357d160df73387c",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "94a57655d74ead667ce7adbbb0923b68b011641b9249992ff12a017c2e96252f",
+          "page": 14,
+          "source_key": "iluka_balranald_fid20230221",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "A West Balranald cross-section uses a local drill grid and a northing; it does not concern GCX's Southern Cross project."
+        },
+        {
+          "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "page": 8,
+          "source_key": "wcn_annual2023",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Diemals Li/REE project covers 2,427 sq km on the Southern Cross Belt. The regional name is not GCX's project identity."
+        },
+        {
+          "sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5",
+          "page": 52,
+          "source_key": "auto2_identity_southern_cross",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "GCX lists Southern Cross E77/3009, E77/3010, E77/3011 and E77/3012. A portfolio title list has no point geometry."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The GCX page identifies four licences whose historical union exceeded 25 km. White Cliff's Southern Cross Belt and Iluka's cross-sections concern different scopes."
+    },
+    {
+      "case_id": "AU-ee34781b030807146e64_coordinate",
+      "project_id": "AU-ee34781b030807146e64",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "6c05b1a7e173975bd520ec05efd6c3ba9f97157064cf779a7202441db564484b",
+          "page": 19,
+          "source_key": "mtm_ravensthorpe_20221003",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Mt Monger Ravensthorpe schedule lists separate interests in Esperance and Jerramungup; it is tenure inventory, not a single site."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+          "page": 13,
+          "source_key": "ravensthorpe20230428",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Ravensthorpe report places 11 granted titles plus one application in Young River, Dalyup and Bremer."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The issuer documents multiple Ravensthorpe subareas and titles, with changing interests. No candidate identifies the project-wide representative point."
+    },
+    {
+      "case_id": "AU-f81823bd8ba271840345_coordinate",
+      "project_id": "AU-f81823bd8ba271840345",
+      "columns": [
+        "經度",
+        "緯度"
+      ],
+      "inspected_pages": [
+        {
+          "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+          "page": 58,
+          "source_key": "igo_fy24_exploration_results_20240829",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The IGO JORC text documents sampling and a survey grid datum. It supplies no target-specific representative point."
+        },
+        {
+          "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 111,
+          "source_key": "asx_review_donald_min5532_202512",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The Donald technical report describes datums used for Donald drillholes before and after 2025."
+        },
+        {
+          "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "page": 65,
+          "source_key": "wcn_annual2023",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "White Cliff's schedule continues Lake Tay applications and names the three Munbinia titles."
+        },
+        {
+          "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+          "page": 66,
+          "source_key": "wcn_annual2023",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The continuation repeats components of Lake Tay and Munbinia under the balance-date tenement grouping."
+        },
+        {
+          "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+          "page": 10,
+          "source_key": "new_goldfield20240321",
+          "inspection": "ORIGINAL_NATIVE_PAGE_TEXT",
+          "observation": "The New Goldfield JORC page describes a map grid and coordinate reference for surveying its own exploration samples."
+        }
+      ],
+      "disposition": "HELD",
+      "reason": "The schedule lists three granted Munbinia titles. Their previously measured union exceeded 25 km and no candidate provides an alternative official representative point."
+    }
+  ]
+}

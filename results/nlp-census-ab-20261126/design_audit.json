@@ -1,0 +1,578 @@
+{
+  "status": "PASSED",
+  "cutoff": "2026-11-13",
+  "fixed_coverage_denominator": 3034,
+  "signatures_sha256": {
+    "results/nlp-census-ab-20261126/protocol.md": "cf6f4805a4e7f9306cc2e9bdb5a1ee44aea41c04428febacedcaddceee894587",
+    "results/nlp-census-ab-20261126/predictions.json": "1e0b94deac721d2b89aa1ae36e9da85629fe7a72116acaa4416df311c9e89615",
+    "results/nlp-census-ab-20261126/split.json": "6273d6865596a56cf436d3e81e12bd14aeabbd25254ff3546a83bd05034cb109",
+    "results/nlp-census-ab-20261126/query_hits.csv": "8a776ad4952ad33af27284b5646498f3132048bdd03cdc7cbb4d3bb4cb56bf83",
+    "results/nlp-census-ab-20261126/cell_hits.csv": "eabdca9fb5a0b9b308457729cb6ae3ac1f9eef6e7a47d55ad1ba83729aa163cd",
+    "results/nlp-census-ab-20261126/retrieval_metrics.json": "155905c380d2a473310817636b8d8a5e343671bfdcd28c42a8dd52b1d5cf2b11",
+    "results/nlp-census-ab-20261126/human_timing.json": "f465c0870d4a14868f4550a99019afaaf2559e1b103917e2e2a05e98875f2c2f",
+    "data/validation/nlp_classification_pages_20261126.json": "2c16c6d8917a045bb148ad4cb0a8b7f060bfd77d0439c9902db96d8596450658",
+    "data/validation/nlp_coordinate_pages_20261126.json": "9316b317b6c51cf5e93fff5980fce5600909b6b039271653e0d6caca9b7b19b1",
+    "results/ree-project-census/coverage-locked-20261125/census_release.json": "9b10857fca27163b173ab4540aaa1f59898d270181b7b147b43a30ba4b52bcd6",
+    "results/ree-project-census/coverage-locked-20261125/source_selection.csv": "aa475199f5e13d1f14e3807e4ebfb70ec062e80d70cbc757a36e9452b1aafa75",
+    "results/ree-project-census/coverage-locked-20261125/gap_review.csv": "4b493e096bb7ce2aa9e851a587707539ef3d5a0ec1f40d95c6c74d918063ebb4",
+    "tools/nlp_page_retrieval.py": "8983704f069bce39ec2bd9b56c22b9f326c51c542445241dc6592d0f230f33ad",
+    "tools/nlp_census_experiment.py": "1586cb053cb65d5bcf7eb72653091345e3578b4886470a362efeb97add2a74cb",
+    "tools/score_nlp_page_retrieval.py": "7c49a1725874a527ed25ea12625157c67bc0eba24d6e39e92bfb83b6522bafb2"
+  },
+  "signature_basis": "All result, source-selection, population and personal-review-status files are hashed as stored. Python source uses Git LF line endings.",
+  "frozen_retrieval_source": {
+    "commit": "e6314ee",
+    "lf_sha256": "8983704f069bce39ec2bd9b56c22b9f326c51c542445241dc6592d0f230f33ad",
+    "split_hash_matches_git": true,
+    "experiment_driver_frozen_ast_matches_excluding_source_hash_metadata": true
+  },
+  "source_scope": {
+    "source_original_hashes_verified": 207,
+    "cached_native_page_counts_verified": 10515,
+    "by_split": {
+      "development": {
+        "documents": 3,
+        "pages": 164,
+        "nonempty_native_pages": 164,
+        "not_native_pages": 0
+      },
+      "holdout": {
+        "documents": 166,
+        "pages": 7607,
+        "nonempty_native_pages": 7597,
+        "not_native_pages": 10
+      },
+      "quarantine": {
+        "documents": 38,
+        "pages": 2744,
+        "nonempty_native_pages": 2743,
+        "not_native_pages": 1
+      }
+    },
+    "control_projects": 2,
+    "target_projects": 39,
+    "searched_by_both_arms": "holdout only",
+    "reference_pages_outside_frame_distinct": {
+      "quarantine": 4
+    }
+  },
+  "query": {
+    "all": {
+      "cases": 53,
+      "judged_in_frame": 49,
+      "known_outside_pool": 3,
+      "unjudged": 1,
+      "arms": {
+        "rules": {
+          "top1": 24,
+          "top5": 24,
+          "slots": 29,
+          "distinct_returned_pages": 26,
+          "distinct_matched_query_specific_pages": 24,
+          "empty": 28
+        },
+        "rules_nlp": {
+          "top1": 24,
+          "top5": 31,
+          "slots": 265,
+          "distinct_returned_pages": 100,
+          "distinct_matched_query_specific_pages": 30,
+          "empty": 0
+        }
+      },
+      "paired_top5": {
+        "neither": 18,
+        "nlp_only": 7,
+        "both": 24
+      }
+    },
+    "by_evidence_field": {
+      "coordinate": {
+        "cases": 29,
+        "judged_in_frame": 28,
+        "known_outside_pool": 1,
+        "unjudged": 0,
+        "arms": {
+          "rules": {
+            "top1": 5,
+            "top5": 5,
+            "slots": 9,
+            "distinct_returned_pages": 7,
+            "distinct_matched_query_specific_pages": 6,
+            "empty": 24
+          },
+          "rules_nlp": {
+            "top1": 5,
+            "top5": 12,
+            "slots": 145,
+            "distinct_returned_pages": 58,
+            "distinct_matched_query_specific_pages": 13,
+            "empty": 0
+          }
+        },
+        "paired_top5": {
+          "neither": 16,
+          "nlp_only": 7,
+          "both": 5
+        }
+      },
+      "deposit": {
+        "cases": 18,
+        "judged_in_frame": 15,
+        "known_outside_pool": 2,
+        "unjudged": 1,
+        "arms": {
+          "rules": {
+            "top1": 13,
+            "top5": 13,
+            "slots": 14,
+            "distinct_returned_pages": 14,
+            "distinct_matched_query_specific_pages": 13,
+            "empty": 4
+          },
+          "rules_nlp": {
+            "top1": 13,
+            "top5": 13,
+            "slots": 90,
+            "distinct_returned_pages": 37,
+            "distinct_matched_query_specific_pages": 13,
+            "empty": 0
+          }
+        },
+        "paired_top5": {
+          "both": 13,
+          "neither": 2
+        }
+      },
+      "stage": {
+        "cases": 6,
+        "judged_in_frame": 6,
+        "known_outside_pool": 0,
+        "unjudged": 0,
+        "arms": {
+          "rules": {
+            "top1": 6,
+            "top5": 6,
+            "slots": 6,
+            "distinct_returned_pages": 6,
+            "distinct_matched_query_specific_pages": 6,
+            "empty": 0
+          },
+          "rules_nlp": {
+            "top1": 6,
+            "top5": 6,
+            "slots": 30,
+            "distinct_returned_pages": 14,
+            "distinct_matched_query_specific_pages": 6,
+            "empty": 0
+          }
+        },
+        "paired_top5": {
+          "both": 6
+        }
+      }
+    }
+  },
+  "cell": {
+    "all": {
+      "cases": 90,
+      "judged_in_frame": 84,
+      "known_outside_pool": 4,
+      "unjudged": 2,
+      "arms": {
+        "rules": {
+          "top1": 35,
+          "top5": 35,
+          "slots": 44,
+          "distinct_returned_pages": 26,
+          "distinct_matched_query_specific_pages": 24,
+          "empty": 54
+        },
+        "rules_nlp": {
+          "top1": 35,
+          "top5": 49,
+          "slots": 450,
+          "distinct_returned_pages": 100,
+          "distinct_matched_query_specific_pages": 30,
+          "empty": 0
+        }
+      },
+      "paired_top5": {
+        "neither": 35,
+        "nlp_only": 14,
+        "both": 35
+      }
+    },
+    "by_evidence_field": {
+      "coordinate": {
+        "cases": 58,
+        "judged_in_frame": 56,
+        "known_outside_pool": 2,
+        "unjudged": 0,
+        "arms": {
+          "rules": {
+            "top1": 10,
+            "top5": 10,
+            "slots": 18,
+            "distinct_returned_pages": 7,
+            "distinct_matched_query_specific_pages": 6,
+            "empty": 48
+          },
+          "rules_nlp": {
+            "top1": 10,
+            "top5": 24,
+            "slots": 290,
+            "distinct_returned_pages": 58,
+            "distinct_matched_query_specific_pages": 13,
+            "empty": 0
+          }
+        },
+        "paired_top5": {
+          "neither": 32,
+          "nlp_only": 14,
+          "both": 10
+        }
+      },
+      "deposit": {
+        "cases": 20,
+        "judged_in_frame": 16,
+        "known_outside_pool": 2,
+        "unjudged": 2,
+        "arms": {
+          "rules": {
+            "top1": 13,
+            "top5": 13,
+            "slots": 14,
+            "distinct_returned_pages": 14,
+            "distinct_matched_query_specific_pages": 13,
+            "empty": 6
+          },
+          "rules_nlp": {
+            "top1": 13,
+            "top5": 13,
+            "slots": 100,
+            "distinct_returned_pages": 37,
+            "distinct_matched_query_specific_pages": 13,
+            "empty": 0
+          }
+        },
+        "paired_top5": {
+          "both": 13,
+          "neither": 3
+        }
+      },
+      "stage": {
+        "cases": 12,
+        "judged_in_frame": 12,
+        "known_outside_pool": 0,
+        "unjudged": 0,
+        "arms": {
+          "rules": {
+            "top1": 12,
+            "top5": 12,
+            "slots": 12,
+            "distinct_returned_pages": 6,
+            "distinct_matched_query_specific_pages": 6,
+            "empty": 0
+          },
+          "rules_nlp": {
+            "top1": 12,
+            "top5": 12,
+            "slots": 60,
+            "distinct_returned_pages": 14,
+            "distinct_matched_query_specific_pages": 6,
+            "empty": 0
+          }
+        },
+        "paired_top5": {
+          "both": 12
+        }
+      }
+    }
+  },
+  "reference_report_families": {
+    "columns": [
+      "judged_queries",
+      "rules_top1",
+      "rules_top5",
+      "rules_nlp_top1",
+      "rules_nlp_top5"
+    ],
+    "rows": {
+      "ActivEX exploration portfolio reports": [
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Ark Sandy Mitchell project studies": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Barkly issuer exploration reports": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Consolidated Zinc Wandagee exploration reports": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "EMU-Viper-exploration-disclosures": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "Emu exploration and tenure reports": [
+        2,
+        0,
+        0,
+        0,
+        1
+      ],
+      "EverGreen-Kenny-issuer-exploration": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "GCX annual reports": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "GG1-Nutgrove-project-announcements": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "HRE-issuer-exploration-disclosures": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "Havilah-financial-reports": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "IGO exploration portfolio reports": [
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "IGO-FY-exploration-portfolio-updates": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "Iluka Euston development reports": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Indiana Central Gawler exploration releases": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Lithium Universe Voyager project reports": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "MTM-annual-report": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "Meeka Cascade exploration reports": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "MinRex-Coondina-issuer-drilling": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Mt Monger Resources exploration reports": [
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "Mt Ridley project resource statements": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "NT mineral title cessation notices": [
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "New Frontier Harts Range exploration releases": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Norwest Arunta West exploration releases": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Petratherm annual reports": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Rankin-Dome-issuer-drilling": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "Taruga annual reports": [
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "URO Charley Creek statutory reports": [
+        3,
+        0,
+        0,
+        0,
+        1
+      ],
+      "URO-NT-Charley-Creek-statutory-reports": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "VHM Cannie mineral resource reports": [
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "Venture Greater Brothers exploration reports": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Voyager-issuer-financial-reports": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "WCN-issuer-exploration-portfolio": [
+        3,
+        2,
+        2,
+        2,
+        2
+      ],
+      "White Cliff annual reports": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "Yari-Consolidated-Zinc-portfolio-reports": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "iTech Eyre Peninsula annual reports": [
+        1,
+        0,
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "independent_comparison_checks": {
+    "every_rule_queue_preserved_as_nlp_prefix": true,
+    "both_arms_in_frame_within_5": true,
+    "frozen_reference_file_commits": [
+      {
+        "file": "data/validation/nlp_classification_pages_20261126.json",
+        "commit": "e6314ee"
+      },
+      {
+        "file": "data/validation/nlp_coordinate_pages_20261126.json",
+        "commit": "61c57eb"
+      }
+    ],
+    "no_human_sessions_supplied": true
+  },
+  "interpretation": [
+    "The NLP held-out split uses two named issuer/project families and disjoint SHA editions. The historical rules and retrospective reviewers had prior exposure to earlier Census cases.",
+    "Family checks use registered source keys and control aliases in searchable native text. Native images, alternate names, near-identical differently hashed editions and unrecognized family relationships limit claims about unseen issuers.",
+    "Queries coalesce sibling cells. Source-specific reference-family counts may overlap across families; repeated page slots are a review burden, not independent measurements.",
+    "All in-frame frozen positives are contextual. Sufficient-only reference hit rate and actual human review time have no observations. A separately adjudicated new fill is a different endpoint.",
+    "The augmented queue keeps the whole rule prefix; top-five known-page hits cannot decrease by construction. Queues have equal maximum capacity but differ in actual size."
+  ]
+}

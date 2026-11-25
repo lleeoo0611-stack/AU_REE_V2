@@ -1,0 +1,81 @@
+{
+  "baseline_run": "20261125T075247-2bacff4a",
+  "cutoff": "2026-11-13",
+  "target_cells": 90,
+  "original_applicable": 3034,
+  "unique_reviewed_pdf_pages": 100,
+  "review_outcomes": {
+    "HELD": 52,
+    "SUPPORTED": 1
+  },
+  "arms": {
+    "rules": {
+      "run_id": "20261125T201340-b7cbfa0c",
+      "code": {
+        "commit": "8b5ac86ef0ff24999c503b4268586274c10fe9ca",
+        "content_sha256": "9bcefb0fded6df4e25d32044a66b6dab07c534910d8eacc0fd984e1e389e5373",
+        "package": "0.1.0"
+      },
+      "filled": 2500,
+      "fixed_coverage": 0.8239947264337508,
+      "actual_target_fills": 0,
+      "wrong_new_admissions": 0,
+      "admission_precision": null,
+      "existing_positive_control_cells": 3,
+      "all_value_changes": [],
+      "census_sha256": "a643607a1fe104e3cd7c6590fc4752e37a09902087000882430931aa69b25308",
+      "panels": 16,
+      "verified_r_artifacts": 160,
+      "changed_r_artifacts": [],
+      "sqlite_integrity": "ok",
+      "source_selection_matches_baseline": true,
+      "cell_status_matches_baseline": true,
+      "field_provenance_matches_baseline": true
+    },
+    "rules_nlp": {
+      "run_id": "20261125T203224-b7ae208a",
+      "code": {
+        "commit": "ac870afbeb43b002508a4fc877e271b181e25674",
+        "content_sha256": "9bcefb0fded6df4e25d32044a66b6dab07c534910d8eacc0fd984e1e389e5373",
+        "package": "0.1.0"
+      },
+      "filled": 2501,
+      "fixed_coverage": 0.8243243243243243,
+      "actual_target_fills": 1,
+      "wrong_new_admissions": 0,
+      "admission_precision": 1.0,
+      "existing_positive_control_cells": 3,
+      "all_value_changes": [
+        {
+          "project_id": "AU-794821a2df9b7a244f96",
+          "column": "礦床型態代碼",
+          "before": "",
+          "after": "iac"
+        }
+      ],
+      "census_sha256": "35b46dd25262689dc4e2c1d72d1111da37d34581d67bfd313c2535d22a841d85",
+      "panels": 16,
+      "verified_r_artifacts": 160,
+      "changed_r_artifacts": [],
+      "sqlite_integrity": "ok",
+      "source_selection_matches_baseline": true,
+      "cell_status_matches_baseline": false,
+      "field_provenance_matches_baseline": false
+    }
+  },
+  "engineering": {
+    "baseline": "8b5ac86",
+    "production_sources_and_requirements_identical": true,
+    "module_graph": {
+      "modules": 42,
+      "edges": 157,
+      "cycles": 0,
+      "edges_sha256": "a55f8d52b1ebc48fbefcad079b9da59fbc8006c12c904eb43f954b5a24dc7ecd"
+    },
+    "full_python_regressions": 615,
+    "final_focused_regressions": 36,
+    "r_method_suites": 5
+  },
+  "human_review_summary_sha256": "f465c0870d4a14868f4550a99019afaaf2559e1b103917e2e2a05e98875f2c2f",
+  "blind_design_audit_sha256": "8140b47f30384c28bc6fc831a91a668b506b1d77860af579d86eae3bfb249fd6"
+}

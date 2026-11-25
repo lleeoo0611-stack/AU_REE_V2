@@ -1,0 +1,2264 @@
+{
+  "control_projects": [
+    "AU-9bd8e5ed8408cd84d876",
+    "AU-efff91a06cf344122d88"
+  ],
+  "development_smoke": {
+    "AU-efff91a06cf344122d88": {
+      "rules": [],
+      "rules_nlp": [
+        [
+          "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          39
+        ],
+        [
+          "dd6bbb85714387a29b2c5498df5cd0cfbdacd63246782bd2a2beeca0793b193f",
+          39
+        ],
+        [
+          "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          13
+        ],
+        [
+          "dd6bbb85714387a29b2c5498df5cd0cfbdacd63246782bd2a2beeca0793b193f",
+          13
+        ],
+        [
+          "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          11
+        ]
+      ]
+    },
+    "AU-9bd8e5ed8408cd84d876": {
+      "rules": [],
+      "rules_nlp": [
+        [
+          "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+          28
+        ],
+        [
+          "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+          19
+        ],
+        [
+          "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+          8
+        ],
+        [
+          "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          39
+        ],
+        [
+          "dd6bbb85714387a29b2c5498df5cd0cfbdacd63246782bd2a2beeca0793b193f",
+          39
+        ]
+      ]
+    }
+  },
+  "heldout_projects": [
+    "AU-02d486d425ca0792bdc5",
+    "AU-14f7cb8ca1fcd58f536c",
+    "AU-203b4d90e5c23a323610",
+    "AU-2ab3e8eb7b5784e64f9b",
+    "AU-2af694147ae21c393820",
+    "AU-3651cf8448b9227adcf5",
+    "AU-3a0020b6daf659f62138",
+    "AU-3eb7131e4daea18a60a0",
+    "AU-410159af7b79ea498ec2",
+    "AU-430f216ca620b69af5f9",
+    "AU-47d12ebe6b66df8e5936",
+    "AU-5ea2535a2de9a1a3327e",
+    "AU-68da41afe874c3bd66d4",
+    "AU-6a5615e0ed95d955c2dd",
+    "AU-6f0ecda27d291720036d",
+    "AU-70cc41e3a7106f983f73",
+    "AU-70fc8a7de18ad8209c32",
+    "AU-7135b2eb1d3f193da9a6",
+    "AU-75fe0f1a81005bd19586",
+    "AU-794821a2df9b7a244f96",
+    "AU-81b21bdd06796fa2217d",
+    "AU-88dfe58aac214c33e576",
+    "AU-8c5887498873bf838e09",
+    "AU-97137ef07af49e3607b2",
+    "AU-9d967ecaac6e02fc76a5",
+    "AU-a9b72e86940271be45a3",
+    "AU-ad64122c217f0dbfabc8",
+    "AU-b2dadf9c8046c3c68a02",
+    "AU-b50a5b57669586191c33",
+    "AU-c4391f8d2a6690076436",
+    "AU-c5e94422a89a23f82408",
+    "AU-cae6c11543b0da5f840d",
+    "AU-d1394abdef4c8d971c78",
+    "AU-d1e3e2803f3c4287f6db",
+    "AU-d99cf357d160df73387c",
+    "AU-e6d859a831ed5954b440",
+    "AU-ee34781b030807146e64",
+    "AU-f46f6d53e7196650495d",
+    "AU-f81823bd8ba271840345"
+  ],
+  "documents": [
+    {
+      "sha256": "00e8236380f1bd9f5860ff803660e08d21450c09d798afbbe772313ee4341180",
+      "keys": [
+        "has_brockman_historical_alias_20150423"
+      ],
+      "split": "holdout",
+      "pages": 8,
+      "searchable_pages": 8,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "03ee0d0da9323708e1ed5008c4a35981cdc85ec16ddb06b299da1a10ce59914b",
+      "keys": [
+        "asx_nolans_clarification202606"
+      ],
+      "split": "holdout",
+      "pages": 18,
+      "searchable_pages": 18,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "06916f0c5d2b6e1c52d38f04cfcab7f17d95d23f77bf5d12389d351a37b2205a",
+      "keys": [
+        "reviewed_source_06916f0c5d2b6e1c"
+      ],
+      "split": "holdout",
+      "pages": 11,
+      "searchable_pages": 11,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "075a54f0b388184f869ea1a9f0aec59119405b46661cbe7173d78be7f05f3ce0",
+      "keys": [
+        "north_dam20230822"
+      ],
+      "split": "holdout",
+      "pages": 17,
+      "searchable_pages": 17,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "07f43fb166d2b18a32c19575615ec85fbae4bcc53721efcf7f917c7f6779aca0",
+      "keys": [
+        "lu7_voyager_20230810_prospectus"
+      ],
+      "split": "holdout",
+      "pages": 292,
+      "searchable_pages": 292,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "09185265e2ae83778d47d499c52ae6f13e950aa8d0e2ac8001a3fe2334f5cc67",
+      "keys": [
+        "nsw_critical_minerals_projects_jul2025"
+      ],
+      "split": "holdout",
+      "pages": 2,
+      "searchable_pages": 2,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "095f218d0cd94fc8fdef24d38b16d8c67d10e778010c301a589277490e75ae70",
+      "keys": [
+        "reviewed_source_095f218d0cd94fc8"
+      ],
+      "split": "holdout",
+      "pages": 153,
+      "searchable_pages": 153,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "0a592d02d0a071484617f6a39c041a28523466db007282956c905447b8cc56d9",
+      "keys": [
+        "reviewed_snapshot_0a592d02d0a07148"
+      ],
+      "split": "holdout",
+      "pages": 17,
+      "searchable_pages": 17,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+      "keys": [
+        "tower_quarter2023"
+      ],
+      "split": "holdout",
+      "pages": 7,
+      "searchable_pages": 7,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "0c8a2522657ada2f0b778f0f8b3c7c3e973be6bea630da929355a80a30e2c126",
+      "keys": [
+        "nutgrove20251030"
+      ],
+      "split": "holdout",
+      "pages": 10,
+      "searchable_pages": 10,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "0ee87a6876f4ab20b39d67303f84f0cdf04372a4588c6cb9a74a741b33481736",
+      "keys": [
+        "reviewed_snapshot_0ee87a6876f4ab20"
+      ],
+      "split": "holdout",
+      "pages": 22,
+      "searchable_pages": 22,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "1015a12c4459f8a43c0dd735ddd1603971b6785997a9c7955dfcbf9ce1e84fc2",
+      "keys": [
+        "nolans_quarter202610"
+      ],
+      "split": "holdout",
+      "pages": 14,
+      "searchable_pages": 14,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "107027bdd5524a7983907c25fa16f91b0212cd66833007ef892f2d85a0a04822",
+      "keys": [
+        "tmb_achilles_sale_20250930"
+      ],
+      "split": "holdout",
+      "pages": 74,
+      "searchable_pages": 74,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "1106052fbb1564fdb0788a727239f4f5987f18dcbc6cab61789ef070148ed221",
+      "keys": [
+        "luni_discovery_20221116"
+      ],
+      "split": "quarantine",
+      "pages": 20,
+      "searchable_pages": 20,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43",
+      "keys": [
+        "asx_redlings_maiden202501"
+      ],
+      "split": "quarantine",
+      "pages": 21,
+      "searchable_pages": 21,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "157a0749d62f96166a4b26188aaf3401c3074fba74eef8e56ab3d07da22492f0",
+      "keys": [
+        "r6_identity_rocky_gully"
+      ],
+      "split": "holdout",
+      "pages": 70,
+      "searchable_pages": 70,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "188f2437560f2ec98af07e444782bd40a7612450b51c988bbe97c3e412dccd70",
+      "keys": [
+        "yangibana_quarter2026"
+      ],
+      "split": "holdout",
+      "pages": 19,
+      "searchable_pages": 19,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "19e61b328cdd14e6174e1de0870bf44a576642c66053214118e8433e7f7673b8",
+      "keys": [
+        "r5_identity_comet"
+      ],
+      "split": "holdout",
+      "pages": 56,
+      "searchable_pages": 56,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "1a069bb6aaa19d44b36b00b391de98ffe21a2910f53c1eab335456648b20a181",
+      "keys": [
+        "goschen_hydromet_pilot20230606"
+      ],
+      "split": "holdout",
+      "pages": 15,
+      "searchable_pages": 15,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "keys": [
+        "cummins_scoping2023"
+      ],
+      "split": "quarantine",
+      "pages": 98,
+      "searchable_pages": 98,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876",
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "1c89734fa687ee61b1ed2457de9de276987eb9b8ffc7dc8b084721b680cc584c",
+      "keys": [
+        "reviewed_source_1c89734fa687ee61"
+      ],
+      "split": "holdout",
+      "pages": 82,
+      "searchable_pages": 82,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "1f5e83ea28b7b59ef46355ecb6d3f7d47d4eb88adcc7c0e4502f60362cab5b74",
+      "keys": [
+        "r6_identity_mukinbudin"
+      ],
+      "split": "holdout",
+      "pages": 51,
+      "searchable_pages": 51,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "21a922b1cc7d7bd14d71f4a09450fd3978bbb0c8b222cf349080bf418e019175",
+      "keys": [
+        "tmb_achilles_windidda_collar_20221128"
+      ],
+      "split": "holdout",
+      "pages": 13,
+      "searchable_pages": 13,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59",
+      "keys": [
+        "goschen_central_mre2024"
+      ],
+      "split": "holdout",
+      "pages": 26,
+      "searchable_pages": 26,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "2216995c003de902672e4cb90be0b6d3049e94dd5f812b92b9c970029ae4cb23",
+      "keys": [
+        "igo_fy24_exploration_results_20240829"
+      ],
+      "split": "holdout",
+      "pages": 74,
+      "searchable_pages": 74,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "222d4f576f1240665a857e5bae8ede427939f82d6628cb54e337f5cf4f0ae89f",
+      "keys": [
+        "strandline_coburn_msp_commissioning_20230821"
+      ],
+      "split": "holdout",
+      "pages": 2,
+      "searchable_pages": 2,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "2244941bf326848ba9dcd36e4fc44533ab914fe34cd683f8bedc25ddb9ab9601",
+      "keys": [
+        "sa_gssa_rare_earth_elements_rb2024_00028"
+      ],
+      "split": "quarantine",
+      "pages": 26,
+      "searchable_pages": 26,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876",
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "24310293a028482c34bb289de1ddfb1ff05db1677385b9017593336fd131f08a",
+      "keys": [
+        "r6_identity_itech_eyre_peninsula"
+      ],
+      "split": "holdout",
+      "pages": 78,
+      "searchable_pages": 78,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
+      "keys": [
+        "asx_ridley_blocks12_202603"
+      ],
+      "split": "holdout",
+      "pages": 62,
+      "searchable_pages": 62,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "246dea894d0044a3ca5a35ff838389a463409dd9131ffbace4753b1e0b67240e",
+      "keys": [
+        "reviewed_source_246dea894d0044a3"
+      ],
+      "split": "holdout",
+      "pages": 24,
+      "searchable_pages": 24,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "250eb3778935dfdd8dd56c397ef38ffb396b15d82a0f5a464e99427fd08a5b75",
+      "keys": [
+        "voyager_relinquishment_fy2024"
+      ],
+      "split": "holdout",
+      "pages": 82,
+      "searchable_pages": 82,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "255a8a234012fc664bdae06c6f4cbf2f987ca6ffd81e07902e21018e8e7cc04b",
+      "keys": [
+        "emu_merredin_schedule_20240131"
+      ],
+      "split": "holdout",
+      "pages": 16,
+      "searchable_pages": 16,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad",
+      "keys": [
+        "asx_review_circle_valley_global_202306"
+      ],
+      "split": "holdout",
+      "pages": 32,
+      "searchable_pages": 32,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "2b5aa789537b0e291490b265995312b8a9111c097f9b65a6ce5ac96d4def3c12",
+      "keys": [
+        "charley_creek_env20240430"
+      ],
+      "split": "holdout",
+      "pages": 17,
+      "searchable_pages": 17,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "31949313a2809151408ff4a141a93364c4b10904d619c1ce2851f0236cc24ca1",
+      "keys": [
+        "mtm_ravensthorpe_fy2024"
+      ],
+      "split": "holdout",
+      "pages": 66,
+      "searchable_pages": 66,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "31efc775284b45cc43118d960eb7c26638d3697030abdf1013831e0da2cc7ea3",
+      "keys": [
+        "hre_duke_targets_20231113"
+      ],
+      "split": "quarantine",
+      "pages": 15,
+      "searchable_pages": 15,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876"
+      ]
+    },
+    {
+      "sha256": "35827076ddfd075f906a2a4d549a397ed35c810e8f4743c114c93e0a0b01814d",
+      "keys": [
+        "r6_identity_duke"
+      ],
+      "split": "holdout",
+      "pages": 47,
+      "searchable_pages": 47,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089",
+      "keys": [
+        "r4_sandy_mitchell"
+      ],
+      "split": "holdout",
+      "pages": 17,
+      "searchable_pages": 17,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "37f08bb13d2089d6601f424c4fa8a76b85843b901bfeff7ac84e0f6012f56720",
+      "keys": [
+        "r6_identity_condingup"
+      ],
+      "split": "holdout",
+      "pages": 13,
+      "searchable_pages": 13,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "38df62723a26b2d94bacfe0f0673b3e6ece3dc09465e36620a57c11bab461000",
+      "keys": [
+        "circle_valley20220602"
+      ],
+      "split": "holdout",
+      "pages": 8,
+      "searchable_pages": 8,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+      "keys": [
+        "mons_mre2025"
+      ],
+      "split": "holdout",
+      "pages": 41,
+      "searchable_pages": 41,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "39699576fe9ebe47225c083dc285d7a561b732ab357a9050a67472e89a5512aa",
+      "keys": [
+        "asx_review_cowalinya_global_202309"
+      ],
+      "split": "holdout",
+      "pages": 63,
+      "searchable_pages": 63,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "398b475143ae8a2a4f713722c79ef734bffefb9c2fcebdabeb13b879e642e15c",
+      "keys": [
+        "narryer_rocky_gully_schedule_20261030"
+      ],
+      "split": "holdout",
+      "pages": 16,
+      "searchable_pages": 16,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+      "keys": [
+        "lyons_mre2023"
+      ],
+      "split": "holdout",
+      "pages": 22,
+      "searchable_pages": 22,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "3cd2e2eb8f681926b8e8169c1ee350e6c1a612ddb329bebd7bdfb84d33a96b13",
+      "keys": [
+        "goschen_iluka2026"
+      ],
+      "split": "holdout",
+      "pages": 6,
+      "searchable_pages": 6,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "3f9db544c68335bbaf29ee2018280e28633df2b58395cf5d6d0eb906b3749226",
+      "keys": [
+        "graceland_discovery20230525"
+      ],
+      "split": "holdout",
+      "pages": 14,
+      "searchable_pages": 14,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70",
+      "keys": [
+        "charley_jorc2013"
+      ],
+      "split": "holdout",
+      "pages": 54,
+      "searchable_pages": 54,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "428c8f759ec2f4dc393177f0fccce12cc96c9b1359638d003f7ea30b6d388df7",
+      "keys": [
+        "wamex_splinter_r254_20151109"
+      ],
+      "split": "holdout",
+      "pages": 395,
+      "searchable_pages": 392,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "436db5f42cee6172bdb0efc023e997138c0c3eb8b979af60e2b60411b9cde095",
+      "keys": [
+        "goldarc_annual2025_native"
+      ],
+      "split": "holdout",
+      "pages": 100,
+      "searchable_pages": 97,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8",
+      "keys": [
+        "r6_identity_bencubbin"
+      ],
+      "split": "holdout",
+      "pages": 135,
+      "searchable_pages": 135,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
+      "keys": [
+        "asx_document_03126345"
+      ],
+      "split": "quarantine",
+      "pages": 167,
+      "searchable_pages": 167,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "45ff30236b16929984e94eeb073cf9a22444f578d0c04c98b27c1a2d4d7a03e6",
+      "keys": [
+        "yari_wandagee_20230913"
+      ],
+      "split": "holdout",
+      "pages": 31,
+      "searchable_pages": 31,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "463c341f20d41c5a3596163ca0c80889fe147acc949e74a4ed1a64f589918097",
+      "keys": [
+        "voyager20240328"
+      ],
+      "split": "holdout",
+      "pages": 93,
+      "searchable_pages": 93,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "4aeb63ac0341402bfc14f7b8021533a293790088865324cdc4e513f8f1554ee9",
+      "keys": [
+        "dubbo_phaseb20250617"
+      ],
+      "split": "holdout",
+      "pages": 24,
+      "searchable_pages": 24,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "4b622bb6796fc414c55a0c81f89e4186468a95bca99076969d3989335f2713b2",
+      "keys": [
+        "brockman_ar2025"
+      ],
+      "split": "quarantine",
+      "pages": 112,
+      "searchable_pages": 112,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc",
+      "keys": [
+        "auto_identity_coburn"
+      ],
+      "split": "quarantine",
+      "pages": 92,
+      "searchable_pages": 92,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876"
+      ]
+    },
+    {
+      "sha256": "4ed22ad39457baf2ec0904d2199ec8f59199f2b1cd39535c232a74fdd6b2ca79",
+      "keys": [
+        "ark_annual2026"
+      ],
+      "split": "holdout",
+      "pages": 60,
+      "searchable_pages": 60,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "51f880cf3d1e2ea890434886739d82500c0b3bb9d0fa4131a1b2376ccbac79b9",
+      "keys": [
+        "vhm_ar2026"
+      ],
+      "split": "quarantine",
+      "pages": 112,
+      "searchable_pages": 112,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "keys": [
+        "wim100_mre20260129"
+      ],
+      "split": "holdout",
+      "pages": 33,
+      "searchable_pages": 33,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "55b1fbe1d9a0de373bcb6d7e86cbf84d768f6d3c44a0a33e23d3fd2f5c23a6ca",
+      "keys": [
+        "cufe_north_dam_project_scope_20240911"
+      ],
+      "split": "holdout",
+      "pages": 21,
+      "searchable_pages": 21,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
+      "keys": [
+        "asx_review_splinter_global_202405"
+      ],
+      "split": "holdout",
+      "pages": 42,
+      "searchable_pages": 42,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
+      "keys": [
+        "r4_deep_leads_rubble_mound_wind_break"
+      ],
+      "split": "holdout",
+      "pages": 51,
+      "searchable_pages": 51,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "59a905135b56269f05984a05b1717e0bcf8b902ad8222ddba1a0e6203aee3c95",
+      "keys": [
+        "mia_ar2024"
+      ],
+      "split": "holdout",
+      "pages": 64,
+      "searchable_pages": 64,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "5a783d0c7a9ed69fd62c532c77927af0f83e0813feeaab093ed617ae1556e0b3",
+      "keys": [
+        "asx_document_03141511"
+      ],
+      "split": "holdout",
+      "pages": 11,
+      "searchable_pages": 11,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+      "keys": [
+        "browns_range_2025"
+      ],
+      "split": "quarantine",
+      "pages": 186,
+      "searchable_pages": 186,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876",
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "5ac06404b9af5f0f99414358b5d5207196ce554c55a6850934cb6a2aaf893b48",
+      "keys": [
+        "evergreen_kenny_partial_surrender_20250430"
+      ],
+      "split": "holdout",
+      "pages": 25,
+      "searchable_pages": 25,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "5c0abb5243b3ed6dce0b03caa1ba9fdc2d84b44e49909a6020589a1507fee9a0",
+      "keys": [
+        "gg1_tenure_schedule_20261030"
+      ],
+      "split": "holdout",
+      "pages": 22,
+      "searchable_pages": 22,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+      "keys": [
+        "asx_review_cummins_global_202401"
+      ],
+      "split": "holdout",
+      "pages": 41,
+      "searchable_pages": 41,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "5cda0e1a4cabf309fb89d41649fd306adb09ed21711952b15d7bfeff0112806a",
+      "keys": [
+        "emu_fy24_annual_report_20240930"
+      ],
+      "split": "holdout",
+      "pages": 51,
+      "searchable_pages": 51,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "5d4d954c63513e05659c8545630ec2a6b1d0aafeb599c8552d38892a13b2ee59",
+      "keys": [
+        "reviewed_source_5d4d954c63513e05"
+      ],
+      "split": "holdout",
+      "pages": 14,
+      "searchable_pages": 14,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "5e88f8aaf0d5da1a9de7f64ec7628ffea48e1a22a7daf296b563e5ee5aa65328",
+      "keys": [
+        "asx_document_03154309"
+      ],
+      "split": "quarantine",
+      "pages": 55,
+      "searchable_pages": 55,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "5ebb04f84564bebc1f8e96073fe45b1e3792b6b6115414c28be94d4886bcea28",
+      "keys": [
+        "bpm_quarter20260716"
+      ],
+      "split": "holdout",
+      "pages": 13,
+      "searchable_pages": 13,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "5ec06f3844f9d51d5515b47d06f15212ef6f4c2577556482a665e9916facbeb7",
+      "keys": [
+        "lyons_2022_rc_assay_definition"
+      ],
+      "split": "quarantine",
+      "pages": 19,
+      "searchable_pages": 19,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
+      "keys": [
+        "goschen_mre2025"
+      ],
+      "split": "holdout",
+      "pages": 101,
+      "searchable_pages": 101,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "5fd9b7d443bb498f9d171bc5173d522f2038cbb0b686e9ff7020e87cc30a9c9e",
+      "keys": [
+        "has_hastings_scoping_20120905"
+      ],
+      "split": "holdout",
+      "pages": 11,
+      "searchable_pages": 11,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "60013b7e72a45b1d0ae746e3424784e5aa3c01f677fb65fe4d73edf550969f7c",
+      "keys": [
+        "r17_primary_18"
+      ],
+      "split": "holdout",
+      "pages": 17,
+      "searchable_pages": 17,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "606cc24f03762ba4f73cd78e552127f5bc557195a9f1bae7d4f17c638f6a11a8",
+      "keys": [
+        "wcn_ree_acquisitions_20230518"
+      ],
+      "split": "holdout",
+      "pages": 13,
+      "searchable_pages": 13,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "61a1e373fbb3651668e4cc7916fb0299ec5dff4e4ad7fea8e9ca734fedc070fd",
+      "keys": [
+        "aiv_ar2024_native"
+      ],
+      "split": "holdout",
+      "pages": 83,
+      "searchable_pages": 83,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+      "keys": [
+        "nolans_dfs2019_asx"
+      ],
+      "split": "quarantine",
+      "pages": 178,
+      "searchable_pages": 178,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "66c73ea45aa00561067651fdadfa11b90b4c479222b3c546b56c055cd51b5b53",
+      "keys": [
+        "euston_annual2022_metadata"
+      ],
+      "split": "quarantine",
+      "pages": 180,
+      "searchable_pages": 180,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876"
+      ]
+    },
+    {
+      "sha256": "68157bf7160d0479e622d6e4f13ccd45e2925e59d311416d275aeea79e221397",
+      "keys": [
+        "cufe_north_dam_schedule_20261030"
+      ],
+      "split": "holdout",
+      "pages": 16,
+      "searchable_pages": 16,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "68d2713e6e73899c9d2450e4726949a69a79a53b0d9b59942998b3e8a50a8898",
+      "keys": [
+        "evergreen_kenny_scope_20230510"
+      ],
+      "split": "holdout",
+      "pages": 16,
+      "searchable_pages": 16,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "6c05b1a7e173975bd520ec05efd6c3ba9f97157064cf779a7202441db564484b",
+      "keys": [
+        "mtm_ravensthorpe_20221003"
+      ],
+      "split": "holdout",
+      "pages": 59,
+      "searchable_pages": 59,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "6f67ebbe197e435ad53153e5faafdd004823b36f355964a47573cd649378ca64",
+      "keys": [
+        "eg1_kenny20230731"
+      ],
+      "split": "holdout",
+      "pages": 12,
+      "searchable_pages": 12,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "6faf69a2970df7948b3d04ddb5835eec18302d4d6e2896e8013fb45de24b0dfa",
+      "keys": [
+        "reviewed_snapshot_6faf69a2970df794"
+      ],
+      "split": "quarantine",
+      "pages": 46,
+      "searchable_pages": 46,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+      "keys": [
+        "salazar_mre2024"
+      ],
+      "split": "holdout",
+      "pages": 39,
+      "searchable_pages": 39,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513",
+      "keys": [
+        "cowalinya_ar2024"
+      ],
+      "split": "quarantine",
+      "pages": 49,
+      "searchable_pages": 49,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876"
+      ]
+    },
+    {
+      "sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+      "keys": [
+        "narraburra_ar2023"
+      ],
+      "split": "holdout",
+      "pages": 96,
+      "searchable_pages": 95,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "72c12db7a0c3b86d7c5baf0bbf6fc17d5fcb767009a36637931266b396fb69c7",
+      "keys": [
+        "r6_identity_merredin"
+      ],
+      "split": "holdout",
+      "pages": 10,
+      "searchable_pages": 10,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+      "keys": [
+        "dubbo_scoping2025"
+      ],
+      "split": "holdout",
+      "pages": 69,
+      "searchable_pages": 69,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+      "keys": [
+        "yttria_maiden2024"
+      ],
+      "split": "holdout",
+      "pages": 30,
+      "searchable_pages": 30,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
+      "keys": [
+        "redlings_quarter2025"
+      ],
+      "split": "quarantine",
+      "pages": 16,
+      "searchable_pages": 16,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "7595d024b25438cd5795635cb43f5f87717b9b5ac9a935eff7d1d3c07562fd01",
+      "keys": [
+        "asx_document_03107711"
+      ],
+      "split": "quarantine",
+      "pages": 65,
+      "searchable_pages": 65,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4",
+      "keys": [
+        "nowie_mre20240124"
+      ],
+      "split": "holdout",
+      "pages": 40,
+      "searchable_pages": 40,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "773be501babb87dc78ba444e8fc0d914d7b0fb0df4333679e3ef016c4a7a5b49",
+      "keys": [
+        "nt_statutory_cessations_mn101_20240822"
+      ],
+      "split": "holdout",
+      "pages": 2,
+      "searchable_pages": 2,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "79fb3bcab351602dcddbe7d79192b3d304b01281021ef59801e6f37eb5a9c566",
+      "keys": [
+        "kennedy_mre20240704"
+      ],
+      "split": "holdout",
+      "pages": 16,
+      "searchable_pages": 16,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "7c39273cc15b4e56b59d0514a3134eadb203230add73e24d36eb8cd0094fda1e",
+      "keys": [
+        "pending_source_7c39273cc15b4e56"
+      ],
+      "split": "quarantine",
+      "pages": 72,
+      "searchable_pages": 72,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
+      "keys": [
+        "barkly_ipo20260130"
+      ],
+      "split": "holdout",
+      "pages": 11,
+      "searchable_pages": 11,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "7de6021ce23b5622e920f8a3169fe6252ea4ba24d7b616f19a1e90454ee4294c",
+      "keys": [
+        "cannie_mre20230516"
+      ],
+      "split": "holdout",
+      "pages": 33,
+      "searchable_pages": 33,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "7e80a7f29787898f9c422bde35d14337651c5975c3e7e6cda06968721bff2a79",
+      "keys": [
+        "splinter_presentation2026"
+      ],
+      "split": "holdout",
+      "pages": 44,
+      "searchable_pages": 44,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "7f46c1631aa6a6b9eab24314635bbc589905dd202e04de2203135e79f93b330a",
+      "keys": [
+        "r6_identity_peak_charles"
+      ],
+      "split": "holdout",
+      "pages": 72,
+      "searchable_pages": 72,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+      "keys": [
+        "asx_review_donald_min5532_202512"
+      ],
+      "split": "holdout",
+      "pages": 254,
+      "searchable_pages": 254,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "83d558a6e132c3b280fa45449f07b5ac8ee1d27b5da603b7c0bf9876925adce5",
+      "keys": [
+        "hastings_brockman20260127"
+      ],
+      "split": "holdout",
+      "pages": 6,
+      "searchable_pages": 6,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "855a5a164804247ff40a8640ae29cde536c5869b83d4faeccbbe40625751cfcc",
+      "keys": [
+        "taruga_mt_craig_20230131"
+      ],
+      "split": "holdout",
+      "pages": 12,
+      "searchable_pages": 12,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "88dfed30776b41d3739253fefaa1e5972a0b9969ec4db39dc1130efa2164775a",
+      "keys": [
+        "enr_ar2026"
+      ],
+      "split": "quarantine",
+      "pages": 88,
+      "searchable_pages": 88,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "88ee1617ec2c30a4a3e83301b90b5d430b994265852316e98a699f779e784d86",
+      "keys": [
+        "moho_peak_charles_scope_20250930"
+      ],
+      "split": "holdout",
+      "pages": 70,
+      "searchable_pages": 70,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864",
+      "keys": [
+        "metadata_wudinna_cobra_20261026"
+      ],
+      "split": "holdout",
+      "pages": 32,
+      "searchable_pages": 32,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "8a70d4ca8cdc287da19cd6a50060e0496f84c5f153c62b452870aed1ff92497c",
+      "keys": [
+        "goschen_rec_offtake_20261019"
+      ],
+      "split": "holdout",
+      "pages": 25,
+      "searchable_pages": 25,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "8d4f0bb34133cea1d8ac9704e9abdaa3c62ce829895bc8cdbf1115689594b399",
+      "keys": [
+        "aileron_drilling20260616"
+      ],
+      "split": "holdout",
+      "pages": 5,
+      "searchable_pages": 5,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "8f549e413628e9ff57471f039d909e8ef7fad226660dd0c717a959b2441e9d46",
+      "keys": [
+        "discovery_rarex_met_search_result_alternative_f9ffac4be94a"
+      ],
+      "split": "holdout",
+      "pages": 13,
+      "searchable_pages": 13,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "915ba8ed727c24113d27d9510c50bee05a03b080955df6d867a6ee5f22aa0f5e",
+      "keys": [
+        "wim150_20151030"
+      ],
+      "split": "holdout",
+      "pages": 11,
+      "searchable_pages": 11,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "9256d094dca299e55713370e068730b90b7a96942959e0610518fc51f5acb631",
+      "keys": [
+        "itech_franklyn_identity20211027"
+      ],
+      "split": "holdout",
+      "pages": 33,
+      "searchable_pages": 33,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "938c48f37d655d18c9bcbad0c8e544fdd7998ed27adb93f6f21fa65824ad001f",
+      "keys": [
+        "hre_perenjori_schedule_20250730"
+      ],
+      "split": "quarantine",
+      "pages": 17,
+      "searchable_pages": 17,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876"
+      ]
+    },
+    {
+      "sha256": "94a57655d74ead667ce7adbbb0923b68b011641b9249992ff12a017c2e96252f",
+      "keys": [
+        "iluka_balranald_fid20230221"
+      ],
+      "split": "holdout",
+      "pages": 43,
+      "searchable_pages": 43,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "9515f0ef55e0d108720907ce8a119357371aa781eb6d33c28466c8be822373b2",
+      "keys": [
+        "asx_review_nolans_ndpr_forecast_202211"
+      ],
+      "split": "holdout",
+      "pages": 39,
+      "searchable_pages": 39,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "970f4ce20adef0002cf68cede290af0ddb58a07a35106adfea386c1578ee46ac",
+      "keys": [
+        "taruga_morgans_creek_ree_host_20221013"
+      ],
+      "split": "holdout",
+      "pages": 28,
+      "searchable_pages": 28,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "99233befa81a1e193848122f00dfaa25079d0b2adbc2f19ef96326ca63c38f2a",
+      "keys": [
+        "asx_document_03114333"
+      ],
+      "split": "holdout",
+      "pages": 69,
+      "searchable_pages": 69,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "993f28ea1716b0a1e233eb2f37f7281d0ea4f0ef73a02d3af0a5f57d2bc9da58",
+      "keys": [
+        "donald_ar2024"
+      ],
+      "split": "holdout",
+      "pages": 116,
+      "searchable_pages": 116,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+      "keys": [
+        "browns_wolverine_mre20250116"
+      ],
+      "split": "development",
+      "pages": 46,
+      "searchable_pages": 46,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876"
+      ]
+    },
+    {
+      "sha256": "9c4f1f01212bbc65471d4bcb1806688390ed5aba16ce958a5fcbb0f51e8a9471",
+      "keys": [
+        "nfm_annual2026"
+      ],
+      "split": "holdout",
+      "pages": 64,
+      "searchable_pages": 64,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "9c9df3bfd3cca3c86946638121c09cd07117d1bea12737ecfc06dbf8b7c14334",
+      "keys": [
+        "lyons_2024_mre_campaign_link"
+      ],
+      "split": "quarantine",
+      "pages": 32,
+      "searchable_pages": 32,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "9d23cfd05efad75d66ec9c2e86b701876f7bdbde332cc6b22a4fb8005fca6481",
+      "keys": [
+        "durack_20240703"
+      ],
+      "split": "quarantine",
+      "pages": 16,
+      "searchable_pages": 16,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876"
+      ]
+    },
+    {
+      "sha256": "9d3798d57ca198cfd766a2cc83881427be0a3f9ee5e2dabe7b6028e48d544415",
+      "keys": [
+        "venture_greater_brothers_20230801"
+      ],
+      "split": "holdout",
+      "pages": 34,
+      "searchable_pages": 34,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "9d863e075258b45c84d5c29961c77331c6c1cff3ac0d6ee6f13d6b54fc6e999f",
+      "keys": [
+        "asx_review_donald_bfs_product_202603"
+      ],
+      "split": "holdout",
+      "pages": 75,
+      "searchable_pages": 75,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "9db2f5de7122f05ebb0e9870e2d77bfd2d0da0af05fbd877c6b65c17160b2df3",
+      "keys": [
+        "r5_identity_balranald"
+      ],
+      "split": "quarantine",
+      "pages": 176,
+      "searchable_pages": 176,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876"
+      ]
+    },
+    {
+      "sha256": "9dcf2e38d36aa616a4fd5042faeb57e23a1a2543908c7678da3711a0c0c1cd8f",
+      "keys": [
+        "narraburra2023"
+      ],
+      "split": "holdout",
+      "pages": 40,
+      "searchable_pages": 40,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "9e263ac3d2b1ef16e79da666295aa6dac391b85cf633a3b996fb3f9dbbefc425",
+      "keys": [
+        "wcn_annual2023"
+      ],
+      "split": "holdout",
+      "pages": 66,
+      "searchable_pages": 66,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "9e3227e2cfbc2c75259b78b5c8096d7fe02cc18629cf47d9ef1f2af49e0843eb",
+      "keys": [
+        "zmi_cascade20230725"
+      ],
+      "split": "holdout",
+      "pages": 17,
+      "searchable_pages": 17,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "9f049399b0e97a04d85c1842d4401187d04dcbb59bd86c37fd80e4921d45c43d",
+      "keys": [
+        "cascade20220530"
+      ],
+      "split": "holdout",
+      "pages": 41,
+      "searchable_pages": 41,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "a17dd388db00b3ca4ffb4c04fc4e5d08534ace4fde26c66dfee02fef53bfb158",
+      "keys": [
+        "gg1_cosgrove_portfolio_20250708"
+      ],
+      "split": "holdout",
+      "pages": 370,
+      "searchable_pages": 370,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+      "keys": [
+        "ark_sandy_mre20260922"
+      ],
+      "split": "holdout",
+      "pages": 370,
+      "searchable_pages": 370,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "a40893cb537f1d9cdeb2eeb9cc7b2289d3cfee4e11974dc33e8ab765dafd6376",
+      "keys": [
+        "devex_kennedy_halfyear20260313"
+      ],
+      "split": "holdout",
+      "pages": 28,
+      "searchable_pages": 28,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "a4392118bfbb95fc082b5ca74c47c92da40cbcdfb5a4bd60855187e6bc0cd8eb",
+      "keys": [
+        "wa_dmpe_ree2026_original",
+        "wa_dmpe_ree_2026_pdf"
+      ],
+      "split": "quarantine",
+      "pages": 2,
+      "searchable_pages": 2,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876",
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "a672dd1f460420a9912d9423a3b96e130b1dee110879f36df7c050946ced578a",
+      "keys": [
+        "igo_annual2022"
+      ],
+      "split": "holdout",
+      "pages": 166,
+      "searchable_pages": 166,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+      "keys": [
+        "yangibana_ar2026"
+      ],
+      "split": "quarantine",
+      "pages": 104,
+      "searchable_pages": 103,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "a8d5bb873fb84f0884b3960b0eb48692843e3dbba55eb1eaaf8314924f635c4c",
+      "keys": [
+        "r6_identity_achilles_tambourah"
+      ],
+      "split": "holdout",
+      "pages": 6,
+      "searchable_pages": 6,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "aaa865cfb08d10c134cd7fa562fc88064821c4f64cfec5af34085ba7bdddfc14",
+      "keys": [
+        "barkly_amended_quarter20260518"
+      ],
+      "split": "holdout",
+      "pages": 7,
+      "searchable_pages": 7,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "aab011288d038eeedc00578453cc7bf7cd9653f87ac4c43a321fcbddc8eb97ed",
+      "keys": [
+        "aiv_tenure_schedule_20261028"
+      ],
+      "split": "holdout",
+      "pages": 24,
+      "searchable_pages": 24,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "abd44d8d94bc3bf89e8186d260982e8652d723e3eca2b571bc6c96d4ab8569a1",
+      "keys": [
+        "central_gawler_ida20220614"
+      ],
+      "split": "holdout",
+      "pages": 12,
+      "searchable_pages": 12,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "ae8825f63b7ce1ac8bb26e0406fb9c75adf12fe31b8a86658a33fff4715f1766",
+      "keys": [
+        "r6_identity_west_arunta_luni"
+      ],
+      "split": "quarantine",
+      "pages": 61,
+      "searchable_pages": 61,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "aeb46f66fa72d0bb9003a61b01356fc65151db75185f91d980adcd86b21dbbf5",
+      "keys": [
+        "auto2_identity_southern_cross"
+      ],
+      "split": "holdout",
+      "pages": 56,
+      "searchable_pages": 56,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+      "keys": [
+        "austrade_2026_prospectus_pdf"
+      ],
+      "split": "quarantine",
+      "pages": 88,
+      "searchable_pages": 88,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876",
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "b015e3fa347138082ed14171e4921d32dde1377e6fe62317a0b0f8420131ef21",
+      "keys": [
+        "nutgrove_rhyolite_20260303"
+      ],
+      "split": "holdout",
+      "pages": 11,
+      "searchable_pages": 11,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "b0faf81a98d605436700670fbaff7e6b3d10f733c5af9a5311fbe9ddf08bb246",
+      "keys": [
+        "taruga_ar2024"
+      ],
+      "split": "holdout",
+      "pages": 54,
+      "searchable_pages": 54,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "b40e90345756f9a687a9a4953ce3bb2a77665c31e9609ed0a8f63359ed5ff8e1",
+      "keys": [
+        "iluka_vhm2026"
+      ],
+      "split": "holdout",
+      "pages": 3,
+      "searchable_pages": 3,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "b65a525000fb8d74d87024056f7c001df5ee466eb4cf4a8ccf9d6fd5ae08ce19",
+      "keys": [
+        "circle_met2022"
+      ],
+      "split": "holdout",
+      "pages": 11,
+      "searchable_pages": 11,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "b8ca632328afd48b524eaff7c595e5a49c8e7be978deacac41da9c8ad38a9865",
+      "keys": [
+        "fingerboards_issuer_jobs_guide_20260410"
+      ],
+      "split": "holdout",
+      "pages": 116,
+      "searchable_pages": 115,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "b8e5372b6a4356ee9af94f05cf34708a04df54143b4b0c8b8b3886f7c8d3ea82",
+      "keys": [
+        "kalkaroo_interim_20220411"
+      ],
+      "split": "holdout",
+      "pages": 22,
+      "searchable_pages": 22,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "b8fa9ae2d9a218bd3f178671301b07dabb0ccb817aec99c20f4d85a936320eb7",
+      "keys": [
+        "wandagee20230131"
+      ],
+      "split": "holdout",
+      "pages": 14,
+      "searchable_pages": 14,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "bb46f35ad584143bdf7915b53b84c7ff55b6e8dc2aa23bab52f45eb0da057726",
+      "keys": [
+        "asra_yttria_maiden20240416"
+      ],
+      "split": "holdout",
+      "pages": 30,
+      "searchable_pages": 30,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "bc93c9d96bccf1d5badff0508915633117c723f7858ccddbfedb8a3be938ef7e",
+      "keys": [
+        "asx_jupiter_latest_mre202610"
+      ],
+      "split": "holdout",
+      "pages": 39,
+      "searchable_pages": 39,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "bdcab78f450659e5ca81305004f18be9c64b497472d8c462c27d3ae0078377e5",
+      "keys": [
+        "kalkaroo_ree2020"
+      ],
+      "split": "quarantine",
+      "pages": 41,
+      "searchable_pages": 41,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876",
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "c016a2d9fae34fa766a461d7011c18bc56db0a43f843949807e039cb91df6e77",
+      "keys": [
+        "reviewed_source_c016a2d9fae34fa7"
+      ],
+      "split": "holdout",
+      "pages": 100,
+      "searchable_pages": 100,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "c0684f1fa2358241c68110d1c1ac471239caa5995c79da9872108423e32f0986",
+      "keys": [
+        "ida_half20250314"
+      ],
+      "split": "holdout",
+      "pages": 24,
+      "searchable_pages": 24,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "c0de51d6c074432a65021864590f87035d66889c4e55e8d9280006c79ab586c4",
+      "keys": [
+        "discovery_lanthanein_reports_page_3ebae993bf18"
+      ],
+      "split": "holdout",
+      "pages": 69,
+      "searchable_pages": 69,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "c14ed919368d815403c67780f8d76e4f01cb789da8e3d5547ed531055f23c979",
+      "keys": [
+        "koppamurra_pfs2026"
+      ],
+      "split": "quarantine",
+      "pages": 65,
+      "searchable_pages": 65,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "c241e248affde53e8e1753ad9f880caa3b0c53eff8c16445134334cd55716fc9",
+      "keys": [
+        "itech_franklyn_ree_assays_20220729"
+      ],
+      "split": "holdout",
+      "pages": 14,
+      "searchable_pages": 14,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "c2a8b91970be9298bae77c8547268abd7f0969e8ceebeb7cf73530fa6d965e77",
+      "keys": [
+        "r5_identity_wimmera"
+      ],
+      "split": "holdout",
+      "pages": 33,
+      "searchable_pages": 33,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84",
+      "keys": [
+        "north_stanmore_mre2025"
+      ],
+      "split": "quarantine",
+      "pages": 61,
+      "searchable_pages": 61,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "c5a822c62132427bce97730f4b9d85b08465dfcd4111045dc49ac0e5fa3a95a8",
+      "keys": [
+        "caprice_mukinbudin_schedule_20261030"
+      ],
+      "split": "holdout",
+      "pages": 20,
+      "searchable_pages": 20,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "c70e72f9257f4eef7f8c9254b5be1d29cafe019ce89d6c11766c3bc567254ae0",
+      "keys": [
+        "ravensthorpe20230428"
+      ],
+      "split": "holdout",
+      "pages": 24,
+      "searchable_pages": 24,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "c9381dbbb4d0e5907e43a8c1827f85ca33629a8f7f2c9c3160ec0677491c0e10",
+      "keys": [
+        "wim150_issuer_products_20150325"
+      ],
+      "split": "holdout",
+      "pages": 20,
+      "searchable_pages": 20,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "cad9eef849d62a11d3eee3bc036d553f7860522502b7fa655f3755cbe5f8039b",
+      "keys": [
+        "r17_primary_20"
+      ],
+      "split": "quarantine",
+      "pages": 14,
+      "searchable_pages": 14,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "cbdda7c5d96958d226d5a10d44419da79d5971c64f26d8cb6cd31a27ebeb7702",
+      "keys": [
+        "copi_nsw_scoping_20220420"
+      ],
+      "split": "holdout",
+      "pages": 60,
+      "searchable_pages": 60,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "cc24cda8b95699a075c215f2225f0787e046b687c96ac41179f88d30a85f97ba",
+      "keys": [
+        "gdm_tenure_schedule_20261030"
+      ],
+      "split": "holdout",
+      "pages": 23,
+      "searchable_pages": 23,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb",
+      "keys": [
+        "od6_quarter20230427"
+      ],
+      "split": "holdout",
+      "pages": 18,
+      "searchable_pages": 18,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "cd348c2df55c4677fb57be2d242201366d226574169903669208bd46133278c1",
+      "keys": [
+        "r17_primary_19"
+      ],
+      "split": "holdout",
+      "pages": 11,
+      "searchable_pages": 11,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "ce906009372d81146577ceaea0c670ff082e277ebdd7b122b6b48de7ac299e66",
+      "keys": [
+        "mrd_ree20230112"
+      ],
+      "split": "holdout",
+      "pages": 7,
+      "searchable_pages": 7,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "cfffe61a6c30d43c50a1988a0d7af0c4f5b5a2e7253c9bef42983c587932ed2f",
+      "keys": [
+        "coondina_ree20230214"
+      ],
+      "split": "holdout",
+      "pages": 13,
+      "searchable_pages": 13,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f",
+      "keys": [
+        "nolans_ar2025"
+      ],
+      "split": "holdout",
+      "pages": 95,
+      "searchable_pages": 95,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "d02cf6e37d7da28ac638f8ce9c00248ed688a4c0210ca8a23d39713394394840",
+      "keys": [
+        "igo_fy25_exploration_portfolio_20250828"
+      ],
+      "split": "holdout",
+      "pages": 52,
+      "searchable_pages": 50,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "d413df91d19ec8bdb153fc1244d4274b4fe499c26ebecf46873e4356e5039431",
+      "keys": [
+        "pending_source_d413df91d19ec8bd"
+      ],
+      "split": "holdout",
+      "pages": 60,
+      "searchable_pages": 60,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "d4476ed757c90a90654ffd2415bcc660ae8ee8ba26c10a7092bebdef7264714d",
+      "keys": [
+        "hre_perenjori20250613"
+      ],
+      "split": "holdout",
+      "pages": 14,
+      "searchable_pages": 14,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "d4c0b6d3f40a66b4d328574f390f797ec75d412d8328040b427d46d1cd98fa08",
+      "keys": [
+        "lyons_met_quarter20220729"
+      ],
+      "split": "quarantine",
+      "pages": 27,
+      "searchable_pages": 27,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "d631b0e9edbc2162ee3cb12bf526834518b43cc5ce89c4d995e3497afbbf36fb",
+      "keys": [
+        "asx_devex_ar2025"
+      ],
+      "split": "holdout",
+      "pages": 66,
+      "searchable_pages": 66,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e",
+      "keys": [
+        "asx_barkly_prospectus20260128"
+      ],
+      "split": "holdout",
+      "pages": 255,
+      "searchable_pages": 255,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "d89d425f252770e5d8fa332f11331b93b21e03aea466545a45397351c91ec402",
+      "keys": [
+        "voyager_mapped_tenures_20230814"
+      ],
+      "split": "holdout",
+      "pages": 3,
+      "searchable_pages": 3,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "d9211f418e3de534d69f8f7d599b434a8353d2293a53a0c63cf7f85d150d2828",
+      "keys": [
+        "nim_mons20260312"
+      ],
+      "split": "holdout",
+      "pages": 27,
+      "searchable_pages": 27,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "dd29b311224f3e25692592f23d7efedec24b356fccc8513a7022f9534dfad1b1",
+      "keys": [
+        "terra_quarterly_southern_cross_20250730"
+      ],
+      "split": "holdout",
+      "pages": 11,
+      "searchable_pages": 11,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "dd6bbb85714387a29b2c5498df5cd0cfbdacd63246782bd2a2beeca0793b193f",
+      "keys": [
+        "asx_mtweld_mre202408"
+      ],
+      "split": "development",
+      "pages": 59,
+      "searchable_pages": 59,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "de3bd4bffa11e7980fc624dcbdbd7d956e6b266008c5d1033446ebb1951d0604",
+      "keys": [
+        "emu_viper_ree_discovery_20230515"
+      ],
+      "split": "holdout",
+      "pages": 18,
+      "searchable_pages": 18,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "de5b5c737eb582bb2092d84bb900ecb7a27fb321fe7ecd58d38f2b5c834a5831",
+      "keys": [
+        "north_stanmore_pfs2026"
+      ],
+      "split": "quarantine",
+      "pages": 167,
+      "searchable_pages": 167,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "e04deab59d81ea702497402ea761e481bdadc126e76fcd93ed015479c3f6f226",
+      "keys": [
+        "nfm_hartsrange20250724"
+      ],
+      "split": "holdout",
+      "pages": 33,
+      "searchable_pages": 33,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+      "keys": [
+        "asx_document_02904920"
+      ],
+      "split": "quarantine",
+      "pages": 46,
+      "searchable_pages": 46,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876"
+      ]
+    },
+    {
+      "sha256": "e37750161e156498c0462ab537117037e61d77295243037a0be0fbf720be2757",
+      "keys": [
+        "reviewed_source_e37750161e156498"
+      ],
+      "split": "holdout",
+      "pages": 11,
+      "searchable_pages": 11,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "e3ece5b0173dae538cf610486f76b2815d1830abd1dfbf7f29039955a4db224c",
+      "keys": [
+        "north_stanmore_quarter202610"
+      ],
+      "split": "holdout",
+      "pages": 16,
+      "searchable_pages": 16,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "e5e4bc19476428a86bc09b9999621e0d6a50bff4ce8668372fb32739e7281a0d",
+      "keys": [
+        "wcn_quarterly_lake_tay_20221031"
+      ],
+      "split": "holdout",
+      "pages": 14,
+      "searchable_pages": 14,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "e60ee62748c8399881f8fa2fbf07a08f0d80fa88b44231127dbabc18a9efa9dd",
+      "keys": [
+        "north_stanmore_pfs_annual20260914"
+      ],
+      "split": "holdout",
+      "pages": 16,
+      "searchable_pages": 16,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "e6bed25382926c6dc85a982e9f8831d70f681fe64782283f4825b00947f650e0",
+      "keys": [
+        "reviewed_source_e6bed25382926c6d"
+      ],
+      "split": "holdout",
+      "pages": 12,
+      "searchable_pages": 12,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+      "keys": [
+        "cummins_mre2023"
+      ],
+      "split": "holdout",
+      "pages": 32,
+      "searchable_pages": 32,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+      "keys": [
+        "jupiter_scoping2026"
+      ],
+      "split": "quarantine",
+      "pages": 55,
+      "searchable_pages": 55,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28",
+      "keys": [
+        "metadata_narraburra_orbit_20261030"
+      ],
+      "split": "holdout",
+      "pages": 4,
+      "searchable_pages": 4,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "eac3b88bddeeda7a38488b44300d70ad4ceaa9b86db3383d950556952bac77e0",
+      "keys": [
+        "asx_review_mia_central_202405"
+      ],
+      "split": "holdout",
+      "pages": 33,
+      "searchable_pages": 33,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+      "keys": [
+        "mangaroon_mre2023"
+      ],
+      "split": "quarantine",
+      "pages": 51,
+      "searchable_pages": 51,
+      "control_project_mentions": [
+        "AU-9bd8e5ed8408cd84d876"
+      ]
+    },
+    {
+      "sha256": "eb73f28443e453f9663f7957b0b9d3950d8734cf910543acc213d5ef6742a668",
+      "keys": [
+        "yttria_2025"
+      ],
+      "split": "holdout",
+      "pages": 19,
+      "searchable_pages": 19,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "eba3ca8ecb4a5a29f0db08fd4432585f3ea31bd34ec1950ea8e06735c90ec24c",
+      "keys": [
+        "new_goldfield20240321"
+      ],
+      "split": "holdout",
+      "pages": 14,
+      "searchable_pages": 14,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "ec7c85a4cbb4a06f6d3b20719e494d4c30dc0a5e26b360c59b4bc1aa1ea7058e",
+      "keys": [
+        "evergreen_kenny_surrender_20251030"
+      ],
+      "split": "holdout",
+      "pages": 10,
+      "searchable_pages": 10,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "eca5e18b8e794e76f5531147875fea3b156899d745a4404d1cebac73b0027df2",
+      "keys": [
+        "norwest_arunta_20230222"
+      ],
+      "split": "holdout",
+      "pages": 22,
+      "searchable_pages": 22,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "edb1583a4bcc4eddb7142b233ced822c1ef711df9c7c72051399dd22c7ad9b75",
+      "keys": [
+        "reviewed_source_edb1583a4bcc4edd"
+      ],
+      "split": "holdout",
+      "pages": 13,
+      "searchable_pages": 13,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "efaafa511113d00eda8fbccd8e407a364ddad320df36452091277a0f63052fb4",
+      "keys": [
+        "nwm_arunta_west_20230801"
+      ],
+      "split": "holdout",
+      "pages": 16,
+      "searchable_pages": 16,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "f03cdb2769d58dcc65159e1f3bc892b3525e871c4bf685e480aa428bcf47a260",
+      "keys": [
+        "hastings_ar2026"
+      ],
+      "split": "quarantine",
+      "pages": 104,
+      "searchable_pages": 104,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    },
+    {
+      "sha256": "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5",
+      "keys": [
+        "goschen_central_scoping"
+      ],
+      "split": "holdout",
+      "pages": 28,
+      "searchable_pages": 28,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "f571a145b96e1a73b612f73f0004c3fb98dd8baab7854837434e996bbf6a5635",
+      "keys": [
+        "evergreen_kenny_ree_targets_20230525"
+      ],
+      "split": "holdout",
+      "pages": 18,
+      "searchable_pages": 18,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "f6f127c62e9c4ddcab67c5f01552f21cc9ee1c17095451b963e7b66e757981b3",
+      "keys": [
+        "r6_identity_rankin_dome"
+      ],
+      "split": "holdout",
+      "pages": 15,
+      "searchable_pages": 15,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+      "keys": [
+        "burracoppin_maiden2023"
+      ],
+      "split": "holdout",
+      "pages": 34,
+      "searchable_pages": 34,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "fc466daa68b5f988ef61f0dc494b08cb14e2dcbed0e297b00a2c0a8379a975b3",
+      "keys": [
+        "pending_source_fc466daa68b5f988"
+      ],
+      "split": "holdout",
+      "pages": 31,
+      "searchable_pages": 31,
+      "control_project_mentions": []
+    },
+    {
+      "sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+      "keys": [
+        "mt_weld_2024"
+      ],
+      "split": "development",
+      "pages": 59,
+      "searchable_pages": 59,
+      "control_project_mentions": [
+        "AU-efff91a06cf344122d88"
+      ]
+    }
+  ],
+  "release_sha256": "9b10857fca27163b173ab4540aaa1f59898d270181b7b147b43a30ba4b52bcd6",
+  "decisions_sha256": "aa475199f5e13d1f14e3807e4ebfb70ec062e80d70cbc757a36e9452b1aafa75",
+  "retrieval_source_hash_basis": "UTF-8 source bytes with LF line endings",
+  "retrieval_source_sha256": "8983704f069bce39ec2bd9b56c22b9f326c51c542445241dc6592d0f230f33ad"
+}

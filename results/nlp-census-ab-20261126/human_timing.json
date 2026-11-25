@@ -1,0 +1,52 @@
+{
+  "status": "AWAITING_INDEPENDENT_HUMAN_SESSIONS",
+  "predictions_file_sha256": "1e0b94deac721d2b89aa1ae36e9da85629fe7a72116acaa4416df311c9e89615",
+  "queries": 53,
+  "projects": 39,
+  "cells": 90,
+  "packets": 2,
+  "allocation_sha256": "cca6fb7cb7e6fd2ab720c9758e23fe49fdf72b13b242784717e52f78ccaa5b26",
+  "blinding": {
+    "projects_kept_in_one_condition_per_reviewer": true,
+    "complementary_conditions_for_every_query": true,
+    "per_reviewer_arm_query_count_range": [
+      26,
+      27
+    ],
+    "case_columns_reviewed_together": true
+  },
+  "clock": "monotonic_ns; manual start to manual stop; excludes image rendering and verdict entry",
+  "human_sessions_supplied": 0,
+  "arms": {
+    "rules": {
+      "assigned_cases": 53,
+      "completed_cases": 0,
+      "skipped_cases": 0,
+      "incomplete_cases": 0,
+      "unmeasured_cases": 53,
+      "completed_seconds": null,
+      "median_completed_seconds": null,
+      "full_arm_seconds": null
+    },
+    "rules_nlp": {
+      "assigned_cases": 53,
+      "completed_cases": 0,
+      "skipped_cases": 0,
+      "incomplete_cases": 0,
+      "unmeasured_cases": 53,
+      "completed_seconds": null,
+      "median_completed_seconds": null,
+      "full_arm_seconds": null
+    }
+  },
+  "independent_reviewers": 0,
+  "completed_matched_cases": 0,
+  "mean_paired_seconds_change": null,
+  "page_render_check": {
+    "private_packets": 2,
+    "page_images": 294,
+    "distinct_original_pages": 100,
+    "duplicate_render_hashes_agree": true,
+    "raw_media_published": false
+  }
+}

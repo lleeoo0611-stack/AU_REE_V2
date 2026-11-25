@@ -80,6 +80,14 @@ def verify(args):
         errors=[k for k,v in new.items() if expected_values.get(k)!=v]
         omitted=[k for k in expected_values if k not in new]
         unexpected_fills=[v for v in difference if not v['before'] and (v['project_id'],v['column']) not in target]
+        notes_only={k[0] for k in new}
+        for changed in difference:
+            if changed['before'] and (not changed['after'] or changed['column']!='總說明' or changed['project_id'] not in notes_only):
+                raise ValueError(f'Unexplained change to previous value: {changed}')
+        status_key=lambda row:(row['project_id'],row['column'])
+        applicability=lambda file:{status_key(r) for r in rows(file) if r['status'].startswith('NOT_APPLICABLE_')}
+        if applicability(release/'field_status.csv')!=applicability(args.baseline/'field_status.csv'):
+            raise ValueError('Not-applicable cell set changed')
         if errors or omitted or unexpected_fills:
             raise ValueError(f'Admission discrepancy in {arm}: {errors}, {omitted}, {unexpected_fills}')
         if sha(release/'source_selection.csv')!=sha(args.baseline/'source_selection.csv'):

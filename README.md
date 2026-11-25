@@ -1,5 +1,9 @@
 # AU_REE_V2
 
+## NLP 證據頁配對實驗
+
+在 39 個留出專案中，前五頁已知證據命中由 24／49 提升至 31／49。Perenjori 正式新增 1 格；固定分母覆蓋率達 82.43%。[逐組結果、排名驗收與獨立真人計時](results/nlp-census-ab-20261126/README.md)
+
 ## Census 覆蓋率正規化測試
 
 固定分母 3,034 格下，實際補入 Franklyn 經緯度、Voyager 礦床代碼與 Lyons 合併 NdPr 蘊藏量，覆蓋率由 82.27% 升至 82.40%。16 組排名相同。[本輪結果與重播方式](results/ree-project-census/coverage-locked-20261125/README.md) · [逐格差異](results/ree-project-census/coverage-locked-20261125/coverage_delta.csv)

@@ -1,0 +1,1009 @@
+{
+  "census": {
+    "projects": 93,
+    "columns": 51,
+    "cells": 4743,
+    "counts": [
+      {
+        "PRESENT": 2500,
+        "UNKNOWN": 528,
+        "NOT_APPLICABLE": 1715
+      },
+      {
+        "PRESENT": 2501,
+        "UNKNOWN": 527,
+        "NOT_APPLICABLE": 1715
+      }
+    ],
+    "unknown_by_reason": [
+      {
+        "SELECTED_STATEMENT_FIELD_INPUT_MISSING": 362,
+        "COMPATIBLE_FORECAST_INPUT_NOT_VERIFIED": 52,
+        "NO_SOURCE_VALUE": 17,
+        "REPRESENTATIVE_POINT_NOT_VERIFIED": 58,
+        "CLASSIFICATION_INPUT_NOT_VERIFIED": 34,
+        "PARTIAL_RESOURCE_BASIS_OR_COMPONENTS": 5
+      },
+      {
+        "SELECTED_STATEMENT_FIELD_INPUT_MISSING": 362,
+        "COMPATIBLE_FORECAST_INPUT_NOT_VERIFIED": 52,
+        "NO_SOURCE_VALUE": 17,
+        "REPRESENTATIVE_POINT_NOT_VERIFIED": 58,
+        "CLASSIFICATION_INPUT_NOT_VERIFIED": 33,
+        "PARTIAL_RESOURCE_BASIS_OR_COMPONENTS": 5
+      }
+    ],
+    "changes": {
+      "FILLED": 1
+    },
+    "fills_by_family": {
+      "SCIENTIFIC_DESCRIPTION": 1
+    },
+    "transition_counts": {
+      "UNKNOWN -> PRESENT": 1
+    }
+  },
+  "releases": [
+    {
+      "run_id": "20261125T075247-2bacff4a",
+      "cutoff": "2026-11-13",
+      "code": {
+        "commit": "0dff6beb5aca52e565c37289e3ab295737e76942",
+        "content_sha256": "9bcefb0fded6df4e25d32044a66b6dab07c534910d8eacc0fd984e1e389e5373",
+        "package": "0.1.0"
+      },
+      "mode": "offline",
+      "configuration_sha256": "d57087889f760ee1b28a58ccf6c7e122fd041ecb55887aeff3cf7c3456b2a3fe",
+      "claims_sha256": "d1cca97e5a3314f3778f48c6ec2af317bf9551f07e1d8371fae2e4191392c44e",
+      "release_manifest_sha256": "9b10857fca27163b173ab4540aaa1f59898d270181b7b147b43a30ba4b52bcd6",
+      "methods": [
+        "SAW",
+        "TOPSIS",
+        "PROMETHEE II"
+      ],
+      "monte_carlo": {
+        "dirichlet_concentration": 30,
+        "method_version": "entity-keyed-rng-v2",
+        "reps": 1000,
+        "seed": 20261102
+      }
+    },
+    {
+      "run_id": "20261125T203224-b7ae208a",
+      "cutoff": "2026-11-13",
+      "code": {
+        "commit": "ac870afbeb43b002508a4fc877e271b181e25674",
+        "content_sha256": "9bcefb0fded6df4e25d32044a66b6dab07c534910d8eacc0fd984e1e389e5373",
+        "package": "0.1.0"
+      },
+      "mode": "offline",
+      "configuration_sha256": "f452960a4c30d4cedd18a2e8044c263628831ae60be79b5f32d7a720183f5842",
+      "claims_sha256": "2908f2dce9bd11b77dc96739a34ea1c8914b724d39181c7f09a47aa0a094b026",
+      "release_manifest_sha256": "8068d410a208d1f3fa098983d65a5d0d4beccaa487f6685ca18e98614fbad8bf",
+      "methods": [
+        "SAW",
+        "TOPSIS",
+        "PROMETHEE II"
+      ],
+      "monte_carlo": {
+        "dirichlet_concentration": 30,
+        "method_version": "entity-keyed-rng-v2",
+        "reps": 1000,
+        "seed": 20261102
+      }
+    }
+  ],
+  "resource": {
+    "old_count": 519,
+    "new_count": 519,
+    "removed": [],
+    "added": [],
+    "changed": [],
+    "selected_groups": [
+      38,
+      38
+    ],
+    "complete_treo_projects": [
+      37,
+      37
+    ],
+    "scope_decisions": {
+      "old_count": 4,
+      "new_count": 4,
+      "removed": [],
+      "added": [],
+      "changed": []
+    }
+  },
+  "panels": {
+    "beneficiation_concentrate_screen": {
+      "old_projects": 2,
+      "new_projects": 2,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "TC1",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        },
+        {
+          "code": "TC2",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "disclosure_only": {
+      "old_projects": 20,
+      "new_projects": 20,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "T1",
+          "definition_version": "technical-disclosure-transparency-v1",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "issuer_resource_composition": {
+      "old_projects": 10,
+      "new_projects": 10,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "R1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": "5000",
+          "low": "0"
+        },
+        {
+          "code": "S1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Strategic",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "issuer_resource_concentrate": {
+      "old_projects": 2,
+      "new_projects": 2,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "R1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": "5000",
+          "low": "0"
+        },
+        {
+          "code": "TC1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        },
+        {
+          "code": "TC2",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "issuer_resource_concentrate_recovery": {
+      "old_projects": 2,
+      "new_projects": 2,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "R1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": "5000",
+          "low": "0"
+        },
+        {
+          "code": "TC1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "issuer_resource_financing_milestone": {
+      "old_projects": 8,
+      "new_projects": 8,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "C1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Commercial",
+          "function": "linear",
+          "high": "4",
+          "low": "0"
+        },
+        {
+          "code": "R1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": "5000",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "issuer_resource_infrastructure": {
+      "old_projects": 6,
+      "new_projects": 6,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "I1",
+          "definition_version": "",
+          "direction": "MIN",
+          "domain": "Infrastructure",
+          "function": "linear",
+          "high": "200",
+          "low": "0"
+        },
+        {
+          "code": "I2",
+          "definition_version": "",
+          "direction": "MIN",
+          "domain": "Infrastructure",
+          "function": "linear",
+          "high": "1000",
+          "low": "0"
+        },
+        {
+          "code": "I3",
+          "definition_version": "",
+          "direction": "MIN",
+          "domain": "Infrastructure",
+          "function": "linear",
+          "high": "500",
+          "low": "0"
+        },
+        {
+          "code": "I4",
+          "definition_version": "",
+          "direction": "MIN",
+          "domain": "Infrastructure",
+          "function": "linear",
+          "high": "2000",
+          "low": "0"
+        },
+        {
+          "code": "R1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": "5000",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "issuer_resource_study": {
+      "old_projects": 7,
+      "new_projects": 7,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "D1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Development",
+          "function": "linear",
+          "high": "6",
+          "low": "1"
+        },
+        {
+          "code": "R1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": "5000",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "official_wa_resource_screen": {
+      "old_projects": 17,
+      "new_projects": 17,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "R1",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": "5000",
+          "low": "0"
+        },
+        {
+          "code": "R2",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "linear",
+          "high": "10",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "resource_disclosure": {
+      "old_projects": 14,
+      "new_projects": 14,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "R1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": "5000",
+          "low": "0"
+        },
+        {
+          "code": "T1",
+          "definition_version": "technical-disclosure-transparency-v1",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "resource_infrastructure_pilot": {
+      "old_projects": 17,
+      "new_projects": 17,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "I4",
+          "definition_version": "",
+          "direction": "MIN",
+          "domain": "Infrastructure",
+          "function": "linear",
+          "high": "2000",
+          "low": "0"
+        },
+        {
+          "code": "R1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": "5000",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "resource_port_disclosure": {
+      "old_projects": 12,
+      "new_projects": 12,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "I4",
+          "definition_version": "",
+          "direction": "MIN",
+          "domain": "Infrastructure",
+          "function": "linear",
+          "high": "2000",
+          "low": "0"
+        },
+        {
+          "code": "R1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": "5000",
+          "low": "0"
+        },
+        {
+          "code": "T1",
+          "definition_version": "technical-disclosure-transparency-v1",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "six_domain": {
+      "old_projects": 5,
+      "new_projects": 5,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "C1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Commercial",
+          "function": "linear",
+          "high": "4",
+          "low": "0"
+        },
+        {
+          "code": "D1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Development",
+          "function": "linear",
+          "high": "6",
+          "low": "1"
+        },
+        {
+          "code": "I4",
+          "definition_version": "",
+          "direction": "MIN",
+          "domain": "Infrastructure",
+          "function": "linear",
+          "high": "2000",
+          "low": "0"
+        },
+        {
+          "code": "R1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": "5000",
+          "low": "0"
+        },
+        {
+          "code": "S1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Strategic",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        },
+        {
+          "code": "T1",
+          "definition_version": "technical-disclosure-transparency-v1",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "six_domain_disclosure": {
+      "old_projects": 5,
+      "new_projects": 5,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "C1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Commercial",
+          "function": "linear",
+          "high": "4",
+          "low": "0"
+        },
+        {
+          "code": "D1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Development",
+          "function": "linear",
+          "high": "6",
+          "low": "1"
+        },
+        {
+          "code": "I4",
+          "definition_version": "",
+          "direction": "MIN",
+          "domain": "Infrastructure",
+          "function": "linear",
+          "high": "2000",
+          "low": "0"
+        },
+        {
+          "code": "R1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Resource",
+          "function": "log1p",
+          "high": "5000",
+          "low": "0"
+        },
+        {
+          "code": "S1",
+          "definition_version": "",
+          "direction": "MAX",
+          "domain": "Strategic",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        },
+        {
+          "code": "T1",
+          "definition_version": "technical-disclosure-transparency-v1",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "technical_process_concentrate_fixed": {
+      "old_projects": 2,
+      "new_projects": 2,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "D1",
+          "direction": "MAX",
+          "domain": "Development",
+          "function": "linear",
+          "high": "6",
+          "low": "1"
+        },
+        {
+          "code": "TPG",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        },
+        {
+          "code": "TPR",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    },
+    "technical_process_concentrate_sample_minmax": {
+      "old_projects": 2,
+      "new_projects": 2,
+      "removed_projects": [],
+      "added_projects": [],
+      "old_status": "COMPLETED",
+      "new_status": "COMPLETED",
+      "criteria_before": [
+        {
+          "code": "D1",
+          "direction": "MAX",
+          "domain": "Development",
+          "function": "linear",
+          "high": "6",
+          "low": "1"
+        },
+        {
+          "code": "TPG",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        },
+        {
+          "code": "TPR",
+          "direction": "MAX",
+          "domain": "Technical",
+          "function": "linear",
+          "high": "100",
+          "low": "0"
+        }
+      ],
+      "criteria_after": "SAME",
+      "rank_changes": [],
+      "added_scenario_projects": [],
+      "removed_scenario_projects": [],
+      "score_changes": [],
+      "comparison_by_file": {
+        "cohort_sensitivity.csv": "SAME",
+        "criteria.csv": "SAME",
+        "evidence_cohort_sensitivity.csv": "SAME",
+        "function_sensitivity.csv": "SAME",
+        "matrix.csv": "SAME",
+        "method_comparison.csv": "SAME",
+        "ranking.csv": "SAME",
+        "rounding_uncertainty.csv": "SAME",
+        "weight_uncertainty.csv": "SAME",
+        "weights.csv": "SAME"
+      },
+      "changed_or_unavailable_hashes": {}
+    }
+  },
+  "panel_membership": {
+    "old_count": 1488,
+    "new_count": 1488,
+    "removed": [],
+    "added": [],
+    "changed": []
+  },
+  "criteria_lineage": {
+    "old_count": 318,
+    "new_count": 318,
+    "removed": [],
+    "added": [],
+    "changed": []
+  },
+  "spatial": [
+    {
+      "file": "census_gis_sensitivity.csv",
+      "old_status": {
+        "NO_DISTINCT_SCOPE_VERIFIED_ALTERNATIVE": 46
+      },
+      "new_status": {
+        "NO_DISTINCT_SCOPE_VERIFIED_ALTERNATIVE": 46
+      },
+      "byte_identical": true
+    },
+    {
+      "file": "census_gis_rank_sensitivity.csv",
+      "old_status": {
+        "NO_VERIFIED_COMPARABLE_POINT_PAIR_IN_PANEL": 5
+      },
+      "new_status": {
+        "NO_VERIFIED_COMPARABLE_POINT_PAIR_IN_PANEL": 5
+      },
+      "byte_identical": true
+    }
+  ],
+  "panel_hash_basis": "Each ranking.csv rehashed; unpublished matrices and sensitivity tables compared using their release manifest SHA-256. Missing digests mean unavailable."
+}
