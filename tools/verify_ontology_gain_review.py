@@ -51,15 +51,21 @@ def verify(sample, labels, assets):
             continue
         if not anchors or not re.fullmatch(r"[a-f0-9]{64}", source):
             raise ValueError(f"Missing PDF identity or anchors for {cid}")
-        path = assets / source
-        if source not in verified:
-            with path.open("rb") as stream:
-                if hashlib.file_digest(stream, "sha256").hexdigest() != source:
-                    raise ValueError(f"Original checksum mismatch for {cid}")
-            verified.add(source)
+        targets = {statement[1] for statement in candidate.get("target_statements", [])}
+        if not any(a.get("source_sha256", source) == source for a in anchors):
+            raise ValueError(f"Missing candidate original anchor for {cid}")
         for anchor in anchors:
+            sha = anchor.get("source_sha256", source)
+            if not re.fullmatch(r"[a-f0-9]{64}", sha) or (sha != source and sha not in targets):
+                raise ValueError(f"Unbound supporting source for {cid}")
+            path = assets / sha
+            if sha not in verified:
+                with path.open("rb") as stream:
+                    if hashlib.file_digest(stream, "sha256").hexdigest() != sha:
+                        raise ValueError(f"Original checksum mismatch for {cid}")
+                verified.add(sha)
             number = anchor["page"]
-            key = (source, number)
+            key = (sha, number)
             if key not in pages:
                 with pymupdf.open(path) as doc:
                     if not isinstance(number, int) or not 1 <= number <= len(doc):
@@ -72,6 +78,24 @@ def verify(sample, labels, assets):
     return {"packet_candidates": len(sample_rows), "originals_verified": len(verified),
             "physical_pages_verified": len(pages),
             "verdicts": {v: sum(r["verdict"] == v for r in review_rows.values()) for v in sorted(VERDICTS)}}
+
+
+def diagnostic_packet(directory):
+    """Produce a blind follow-up for changes in disposition with no admission change."""
+    def records(name):
+        return [json.loads(line) for line in (directory / name).read_text(encoding="utf-8").splitlines()]
+    skip = {r["candidate_id"] for r in records("review_sample.jsonl")}
+    ids = set()
+    for r in records("decisions.jsonl"):
+        states = {r[a]["status"] for a in ("A0", "B0", "A1", "B1")}
+        if len(states) > 1 and "ACCEPT" not in states and r["candidate_id"] not in skip:
+            ids.add(r["candidate_id"])
+    allowed = set(records("review_sample.jsonl")[0]) - {"independent_observation_id"}
+    with (directory / "review_dispositions.jsonl").open("w", encoding="utf-8", newline="\n") as stream:
+        for r in records("candidates.jsonl"):
+            if r["candidate_id"] in ids:
+                stream.write(json.dumps({k:v for k,v in r.items() if k in allowed}, sort_keys=True,
+                                        ensure_ascii=False) + "\n")
 
 
 if __name__ == "__main__":

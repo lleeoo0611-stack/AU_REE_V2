@@ -1,0 +1,55 @@
+{
+  "acquisition_rows": 262,
+  "missing_cell_fields": {
+    "acid_concentration": 111,
+    "basis": 36,
+    "case_id": 0,
+    "endpoint": 0,
+    "feed": 2,
+    "process_stage": 331,
+    "quantity": 0,
+    "reagent": 98,
+    "sample_id": 33,
+    "scale": 52,
+    "test_id": 357
+  },
+  "run_outputs_sha256": {
+    "resolved_evidence.csv": "90414f5fc8f0b22026aee7bc6b0ad0b0d99b9cf1bb09941f47c337d3bc9b9ad9",
+    "technical_cells.csv": "8b5b40586242c55de89b74b04a6e24de32a32b7205d861f3c0eed7c360ca04e4",
+    "technical_comparability.csv": "ad840ed208baffd13b8443b2b611a7f373791ca9348571fe65db54d37903a6d8"
+  },
+  "scope": "Existing technical records and contracts summarized at their own grain; no technical A/B or new admission measured.",
+  "source_denominator": "Acquisition receipts; a missing document supplies no observation or number of would-be values.",
+  "technical_cell_uses": {
+    "DESIGN_DRY_FEED_REAGENT": 12,
+    "SOURCE_BRANCH_CONSISTENCY": 25,
+    "SOURCE_DESIGN_COMPONENT_PROFILE": 14,
+    "SOURCE_TRANSCRIPT_ONLY": 33,
+    "WITHIN_COMPOSITE_FLOTATION": 28,
+    "WITHIN_TABLE_ELEMENT_LEACH": 269
+  },
+  "technical_comparability_rows": 1957,
+  "technical_db_table_cells": 381,
+  "technical_db_table_projects": 5,
+  "technical_existing_dispositions": {
+    "DESCRIPTIVE_ONLY": 879,
+    "NOT_COMPARABLE": 1074,
+    "NUMERIC_COMPARABLE": 4
+  },
+  "technical_export_cells": 381,
+  "technical_export_projects": 5,
+  "technical_study_context_rows": 9,
+  "upstream_receipts_with_block": 33,
+  "upstream_status": {
+    "CACHED_UNBOUND_SOURCE_NOT_ADOPTED": 2,
+    "FETCHED_UNBOUND_GOVERNMENT_OR_SOURCE": 6,
+    "HOST_STOPPED": 4,
+    "NETWORK_ERROR": 1,
+    "NO_FIXED_QUERY_NOT_EXPANDED": 1,
+    "REPLAY_ORIGINAL_BYTES_UNAVAILABLE": 10,
+    "SOURCE_AFTER_CUTOFF": 2,
+    "SOURCE_NOT_ACQUIRED": 2,
+    "SOURCE_SHA_CHANGED": 1,
+    "UNAVAILABLE": 4
+  }
+}

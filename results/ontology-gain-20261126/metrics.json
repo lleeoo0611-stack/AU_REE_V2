@@ -1,0 +1,1809 @@
+{
+  "additional_disagreement_reviews": 26,
+  "additional_review_types": {
+    "acceptance": 3,
+    "nonadmission_status": 23
+  },
+  "aggregation": "Raw sample (micro) and stratum counts; no population precision or recall estimated.",
+  "diagnostic_review_by_reference": {
+    "INCOMPATIBLE": 12,
+    "SUPPORTED": 11
+  },
+  "formal_mcda": {
+    "effect": "Research eligibility only; all six existing gates and official outputs are read-only.",
+    "eligible_at_freeze": [],
+    "gaining_projects_already_formally_releasable": [],
+    "gates_checked": 558,
+    "release": "results/ree-project-census/gap173-20261122/formal_c1_release.json"
+  },
+  "full_decision_counts": {
+    "A0": {
+      "ACCEPT": 62,
+      "BLOCKED": 198,
+      "INCOMPATIBLE": 37,
+      "INSUFFICIENT": 54
+    },
+    "A1": {
+      "ACCEPT": 64,
+      "BLOCKED": 198,
+      "INCOMPATIBLE": 37,
+      "INSUFFICIENT": 52
+    },
+    "B0": {
+      "ACCEPT": 62,
+      "BLOCKED": 198,
+      "INCOMPATIBLE": 60,
+      "INSUFFICIENT": 31
+    },
+    "B1": {
+      "ACCEPT": 65,
+      "BLOCKED": 198,
+      "INCOMPATIBLE": 60,
+      "INSUFFICIENT": 28
+    }
+  },
+  "full_review_counts": {
+    "INCOMPATIBLE": 17,
+    "INSUFFICIENT": 1,
+    "NOT_REVIEWED": 312,
+    "SUPPORTED": 21
+  },
+  "ids_needing_evidence_or_review": [
+    "691ae665d16c35bbe003d17e55a7caf18bee2377346fc76b9d5332c9c03469d0",
+    "bdf1435075d491b6fc3b661a61baf9a88774beecdbfded5258cb943fd03e8899",
+    "871b87b2a6f33dd5625b920903d8c02f061bcdc8310a5d624b8001290026a6a9",
+    "b5d59895cf7acedf4bffd9f84e136b6e319a1aab417530c4904f5e85ba9444ed",
+    "4d407e73534d015e440bfef90224f776e1c90c5603d2d50a41a33320009f73f2",
+    "2e80179732a8c4f682d4f083c96f01d405175ded8414760df1820d69f503bd3f",
+    "1fc68af35da65a2a32a2dcc1b7f9f74e23871a419efecfdcbfffb3837a79dc0d",
+    "ae9da255ee67b46c1daec88ea16b3aaadc278a5bb22ec28237403fd362006221",
+    "bb94b9186ca2bfd43313874453d601690389fe34e895c0e5477f0a57e9ae2097",
+    "98356fc63ff30660d9fc27b4d86d561fd48ca01ea481113e98561f76b30baadd",
+    "b3aabdb57fde0eb9a7f525a26c3773a674315b53469dc79021c16cfc4f5a8ca0",
+    "c29df7372b8728e7df8a32d051d806bb37bbf6890866fca34483ec8fd648d9d4",
+    "f368c2afebc7bbbcd1908d80931f78505dca17f098d6082b44373063f51ced09",
+    "e690565d79cf4670f83725036885dc6a93e7240166372ea67eca04e6c24e3ec0",
+    "c004c63181c7636842d1ccdaacca9f05df02b95baccc077e4a6645331d8e9514",
+    "c7452d2445548298b32b89fd70d5a41aec8f12e7be75658c0add1277a3d3d168",
+    "d928eda29f7adfa6b1a63c40cfe5287de332f13353ce6ec890830d346b16a1f9",
+    "a6adf03802840fb56029864b9d49c54d38a044425537457622b618c2e757ff36",
+    "2b5b1d8ded09a163d37aeadf5999a7c58d40ce5c3d46fe05f76c37a07318eff6",
+    "28296331a9fd7d921e40278b025c29f46620728ab1049cebc0b88ea999f5785d",
+    "41a25b90ba3a6bc373c65088788bea7a613822070bc421fe20ed80125bdcfc76",
+    "a5920146f32efddbc44ccafee5063b19e3c54fd6e1ba77f3a831c2eb30871a07",
+    "138c34d4f6e86a4563c74f873bd69151c6852c173cee700eabedf625ffab6d4e",
+    "e195cebb8906f19f73d22c92d406ed9176a3061859638debaef3ee85186305f7",
+    "162ed98609416c2563df071738d097f824ca498ad8e5f61c847106c78d58da8b",
+    "f3f6a07584f417974b070d92549271870e5a60cf0332658005fa3fd8d56b4285",
+    "7f4b4a9563540c4c60e4d11685a41084d6c9b60a9adee1901457bf744a764fc7",
+    "c0d0e92226f687267d6006b5bfa95b655bd3765d57fe982b32d5c0dad4ce373e",
+    "95ca793cbf82276c200430291ccb17961957ac8111d1b7bcf2948af635024cbd",
+    "513c666b701932774a723d28e52366a1fd064121abba00ea96d5f0832b61d4f1",
+    "0ec69071fa978e1ef1b71437e4cf1bcb843b20eff1518e534df3152ad5b5cd3e",
+    "28c90e66f137caa9c3b201a6a82786dcbb856fae81197d67c7bc86ca6704d3d8",
+    "48627973a88d553b9817ebe3bb52980349fb9f0da82c3c40030405765c8c36b4",
+    "51502a9c2fcd723f69e8f9d3e57bb0efab310ed9f5d4c87dd28a73d9fefe69ff",
+    "e2770208ee448ec896d2545a3a6ccb096293f9f8d94e5b93967e74120ee8c778",
+    "ea6b5e304b7a2cb931f7de6434a80b2262fd979a22cab8dd0e63b6c41912f648",
+    "fa6d93c932628a7b7ce917201f9a562bbcabe1e55a8d6ebc02e9ff49d24a2d60",
+    "5072c01e9787a993932b1a137989838442b7b2b3ed6093f553f8373a91390330",
+    "2cd0e261bc068414008d86363dbebc699b4ef10e8272674e41f9e38d03f05ccb",
+    "073417e78335410e4e61db254d824f7dcc0d6254e96a4bdb31ea503c0b45ddc4",
+    "f91da272664861c1260c86dca59bdeb4b6eb874c22778934e6e43b6410a41f61",
+    "c8dff94a55feab7277c0975789addced81d6d157b996efe5ddcfb9703317f5bf",
+    "37dcaa342dded81afbc832e966ac3ff66153b599583a1fa82875232201e7fb50",
+    "b9b60b7778b3d4f790698746778f4d1cf5ad82141f6936f49f0974f6a8e10196",
+    "675db1718ec3ca719b42d44b3d0cbff8edaa232b6e74b23d14f3cbad8008ced0",
+    "4e89b99386502b5879940ef31d86d4cdcdf743185f9194067fa3ccf499ccd484",
+    "cd1dbf4c89631bc8c204d92f86a3ab02b0229d119abe5a16ca3071a3e38c64a8",
+    "83b87169c8ffe2aadfb7d633f3eec0e06ff6e7895d84b3ec34c2c0ee2190840d",
+    "3c7467e60135153f0dc58ea4f8f4e677ae0ae31bbcc5a1f67251a648d7f16ef1",
+    "a67eb95ac9e76d04531944e9465e5615fa50840139e48d3acacd18123c886ecb",
+    "bf48a6d4ce57133c34c73c4e3c98c8c50f3bbb3da0b8a4bbe25fe7a26fb84dbf",
+    "0cb0ea58281bc833f14f3a1d627cff9cd7298d95cf2272423f852d1959d953ce",
+    "c02ceb6a98c45b30e4d9f3a3479fc038a15b097d6e1e621ecd8f32b9575f96f8",
+    "790c396546f0d053e6e86cbc4281b581fcc3ab4cc4c6c661417799c8319435ae",
+    "59f6876f5bb2f961e0ae787feb0f370f837a467cfdab4e0595d32f599f61c11a",
+    "9f5ba7bae97018088dd2bd9798683249fe575f1eb1c14a28fd0acad35efcbe33",
+    "568f206e86f29240aa75b4b13bcf8c4d5816acf37e7b5c6a6f0f5f66b467215f",
+    "e5e44f4544a294081d8e72c1cf2037f13429798cfa611fc6c5008f313dd6b353",
+    "46bba45d1ad0ed6c5f6aabd4ce863014cd41db3bd1eccb5be7f472343a5fd7a3",
+    "2b572ae6189bd2f9ac064055bbea332a80e4b5b1b6c9124d8beb8b9bfbec7e90",
+    "a591d66531f49a0e7a901d8a62ce2b4ff0321611f3deb0e428d3295431344811",
+    "134f9a5a182f6f1341504f1730e8b0440827ffb0b8577565e3547a210764d6e1",
+    "a4ccfc49f326400f2bde97e19ace38f8dca62fa0ebcffd8e4e8a9933b9f27171",
+    "267f7bff432446f4112ba6e766ad17fb2b57e234e8733dbe8369c9807e1623a2",
+    "161db0bb69ead2ec77c5614bf551d7be30f8269647031bec114693e6002267ef",
+    "da6eb5bce0d1adc621c8a46fada43317a25948ca201158892446c00b2cc4c631",
+    "7d924b546e7eb9de377b521c1a083f515452d989f2473112468c7822299b0196",
+    "a0100a04434b9aa92ce78bd44dfc215a9fdcee31a40043ee5aca5e74ca1adc0b",
+    "d257965f8f36af0cda7a435750eeb7c958fecdeea8d104759ff82794f92937c9",
+    "f9257412cbbc67a28602938dde2d24e8a13eb3c9d492d093921431146d6b6633",
+    "a0053be9b74c91ee7bc6e828d6440df85475bb530bc0b4768b32126eda40b689",
+    "9589eaab3959fb6b5451ee52d7b35c02a9d1d7fe71b047a5fed058387d21d0c6",
+    "bde6f26f11940c7c7f8313ce805ecefc8ccb77691d7a0c80f50272aa8e1dc5e5",
+    "4655ce5ed9390c6f5937bd5917e0933edda92719fda22f1946d2613390a27e24",
+    "7cd2fab9c9d8df5b9d718e78d3304bbd501d31654be12ae2cc2b067c9f20f163",
+    "ed6e9ef42f293eb1a91fdb81169b99e071c5841d7482b4ee4bbc1fa992e152f9",
+    "9d2cdb3a6b96c188e0ebcf25ac1666879a6b7d55b7bdc66b8172189faca9f554",
+    "4f2ef62502207c0a230abbf3ef9a469cbe6c1d46b3014c592298ce5edcb43e41",
+    "cfbe9ddb471759c6387f5a052e61524501c315b10806066be1e2afc5bdb89045",
+    "f927892e81a681db7396a111290102d9502bd0b72a49eb17b328fbff85cd9e2a",
+    "4853a2fa7362dc91fd15aa18299fe5c12a504adfd76b118b67caa8874a5f4328",
+    "442ff9bea5eca19ce5a96a68a56c602b64482a06b49f3de542e22ad6c8889991",
+    "6e984e4a95d7ec3cd6b9774b5b79625c4a79bb8cd6882e8f4ad155c7f32d0586",
+    "8f8bc8304ee286fcd7a8a801f4ffef2fd6a70c8d5db7a2331270d95f0d4f08a3",
+    "e26e93bb7a0baf721add5cddfb84f329d142ac1422185f03287996e2ddb17417",
+    "9f072c000cfa795143889aaf2ffb054042a492661648b4050673b258193517bc",
+    "398938338aae25985cd4d2e1f2239546b06917a8ddcb0fef6fcfd460de3199c5",
+    "302896f3f2e7602b3d6b110ca498b2271e1fbd535e194a2ebb8f36601a425503",
+    "fcedff1ab2b363b0559b3cb612d0fd000b811b66d413de4fb535dc1af50cafe0",
+    "ba7da5c63cc2e853cfe8fea68d78f6bd9a4fb491e3f2af0ce6b48a94c002f336",
+    "da608145850f866048bfd53c9f20c4802a8078331ae22d21f8a4fd2095946838",
+    "aff6d120a3fa9dc23bb6b4b3d80476a754a31c8c7bd15ddb47c50b4f64bf107c",
+    "6647a631b722b44fd01c8024cc44e2983a0d7e08a86558dfdae1c61895aa031a",
+    "052d4c9be20150e18eb03aab14d1e1e00cbad4d7a02a96243bfc2321ae67697f",
+    "a32202b39338b8700193f53612c6cd76213e72f5618f8c6aef92fd491ddde8cd",
+    "c270cb3350f0885274cf0356eeb5788ed94953632000e2008e708ac778bd187f",
+    "64b52e09e60419b7dd58621419a31cc21e944a9a31d2909d696328fddaf7404e",
+    "126375c6f16880c010d7b73653b24dbc578727010fb4068edbc9beea501c6532",
+    "fd232194da75f8922f5da108480d18398faa1e2f5fa535056cd19f59872275e6",
+    "7eb93849d05be8ac4df0cf48ec5551034c2a7a66d64ca8d3a227f3e628b1f0d0",
+    "d5f53bc3ebea0fa3eabe9f9c6c654ec8d8dfe53426c5c488329eef9f360684d4",
+    "9e1cde0ddae23953f25e6a47efb32727b768cadd321ce08b993a7d9af6b5b788",
+    "f61e33a3a3f6ebe7014e17734f6b9a821f6c20473a5b455e791da3cab9dcbca3",
+    "a6beb60a45f97ce7f69f00fd04009f3ff9fa739bc733863fded1043151068747",
+    "615b089f37b8efec34490c8052a45151a4294e0d6f4f50165fe2c4449772f353",
+    "4dd486d33921d63821e794eebc132ee5704c3caae255ca6b1cae7d4dafbbe5a1",
+    "d37b64021e5352363ac2d37235bb003c38061d9ccb828ead0f37ad4ed264aa2e",
+    "db0993735c5f89f203b906a5cfea257ccfe28a80b71ab0c557c2f196dc737459",
+    "31af3979585d1dc634dd24f650537dcd5844590a8d454a964ff3922cc752fed2",
+    "aec937e6c2ca4c34747b483d25f18be1c949f6f6983aa7d710defbaf4cb83a7a",
+    "69c48f7c8988e81f1f9016e100e9aa420444486f362e8f6aeb1183a7c5ef4a54",
+    "1b4d1adfbcd45c6d2f0f50149d23a7e3f5ea8541d24fa65e2d3106a2d1b48222",
+    "cc084b7d15d437ec78d25386d4a7147c016a04eaf61de724e0ad8e13f30fd191",
+    "5e106f6d9af6136cd6c0a92e22e0eccf0cc218e65f5414c97cb79c48f6accf43",
+    "d5fb138f0c38484eab8d5c9c324e20da93284a64ed4f61f2f76755debfe2c55b",
+    "db92d65ab8012bff7becd160964e14756c1b76809237207b92f73377d5625059",
+    "73c4a098c9b8e9baf25fd7ac84a4986f0e474136aa8c94297a31aa0840da8d66",
+    "95334d00a20ef3ce04f2197792a027eddba389a3f54f81abed4f94ad6b6b7c07",
+    "f04df8a617b28d1338ec43e96dc95e2e8ba32cbea02aed7cbaa6502e07cb83d2",
+    "8f75eb918275a08226341677deb76f4ceec99883b1aa12838162e6a039e9e1c7",
+    "b92718e8d66126522bfb8ab389ed6973d0871c6f6d449ac9a068b7dac16a0465",
+    "312f916cf7b578ae93c2d0be99aec377e8005fc52d3e34ef190af322f27daa32",
+    "766355e0f36e406ecfaaa53f37f4e88f05cd4fbf6563fb592b8ac74ded293c40",
+    "fa8b725ebaf4f37a911ef311e6a7eb3a6be2c7b50637a52f1ebb474514ffa178",
+    "9c864c12deafb0df27add714875712509654a5940d3c1b33270722dd47c86e36",
+    "f930b17895bc74f958df2e6369341f964b365d7a45e5489a7835fdc4ddc15c3a",
+    "9635c748320d343e1b5d77b8608a93875a8dc3fe298891b06b6ad7c19729a90c",
+    "d7a26f5e81f0293956fcf7dbed6f04127cb7add9681b0e4acfb23af743b5d3d3",
+    "caca456765071216a3c8748d3aeabbdff82cd96b9e6029b6608c5527e509cc60",
+    "5b1b0d7b11df740a68196387377da59a65d13de7259f46f13c37a7dd995e520d",
+    "a4f826c61c480d869184ecb1140a85388f70ef18a3439005ecb99ce060725239",
+    "4ce0a11175ccaefeb03796c2196993b825d82098667d8a3210f101789a4e9ac2",
+    "9e9d8793f1030c1eb8fd5cbfd8661d9f4c22853966ec6f845c7103994d8d4ade",
+    "39d3b071ca6d8af1e8275d7bba1b91fba46ee0d3606926e197a108b62ec2d204",
+    "f4299ea1d60a50979f4431b36524ce81092cbda15cc0d49cfa30387e005bd11a",
+    "a1b2c2f65f5fe77d3a9f3ab3d3928c8af43e6b913d3981460d99bbd78b9489db",
+    "1e10f37b1ddaef5042699089348e8de74af37428c08ae806d247ccdc72ebe141",
+    "79b57b6b2fc5a83b51bfc54bf1bbb920e163467ed76e81ea099b7295688d511e",
+    "62ac1842c1d344b5c08f0990f49c3fba80d88c046eeab26eb492be478af8d0b5",
+    "55810d5fbb132e1ca9ac775489f976d9677095ac3b7ca22182a1491d751fc21a",
+    "26be58dba39c2484bae2f5624db8182e44a14e1828e52b14e272ecb1265ad01a",
+    "299935dd5a14e081e38166e54083f83074cfb330796ba1f55601395cb1963024",
+    "360810356bb8a72334a70773c8881a626af0921f9cfd82dcc53327a43b1282aa",
+    "b207771d56f2868aa769121b1086b85a27f4ba92da3bc789e23ab68e684e99cd",
+    "ea881cc8a959a41eb7db4fc7274786ce75fb4435157655106274baa8bb5f74af",
+    "31211d3dd15fc34023329387bfd1adf7948480a759d53b3d074984ff8f60e72a",
+    "3958d7caac5035da9f644c6c2e586c2babef84afad55ab0870c79d7422985737",
+    "665cbcfacd4a2c7dbd93241607f3fa68583d65335ce6b177e967017dc5867f62",
+    "97c339ee286afc595a11157fbb8fb6075f3a6d0113543f8d4940cc7c67929374",
+    "c1c4caf33f1a2dfb60efea1306a37db44d40cb0e1622da96cbec484a16dcc580",
+    "acf16049e8bbda90149c850c577be1154304e882ef92f0717d0e498fff456989",
+    "b061359a04df1782c32ddd1ce44a79bbc46e44b710d8fc7c4aea2c697988faf1",
+    "d2fdd0b1f57768dc42fa0420725f4115c71d3312291ebfa1647916dac8e6f6eb",
+    "50a557be21add8c0aa2a40c8310c324ea227e49509f2259181a4f6935d33134b",
+    "18c197fc1ed8827b9f8d1370ca61bffa9131dfef1f3285c7a789d7d8dab78dc6",
+    "54d173737cc39082f2d5125533d4b1ed4abf5b5724d9045a324311abda94f7cf",
+    "aaeb09bbbc039deed59016d683d098e9001d086fdcadb1bc1a50edc22e2c0c49",
+    "8e960e43448c37a2820ac9fdc2d758cac7a9644263ba52c6f14b4e31f3bc725e",
+    "778efdb097e92c2454c4c43aad1ef6453296926f8eea59201569c5d2df952544",
+    "c58c4d2cc1b1ba03530cf4243e176ae42c5dc0ff72f96144449d7321603e62b6",
+    "39d9f98e702ea4eedc8bf62f67ae1059b2cf8bec244b96725f4362d1d51bc2e2",
+    "3be90c9f176a1b0b4078c7cfe7dbf11ce5ef019248314d80aefbab011d6dfd54",
+    "458c9ac56841a385a454d6094a100c6cdf15cb321fa6ce52439abe6e72d10a95",
+    "d34d7c190efe48efbc05c73ba771e9640b7e729fffddafed9d0df220c6baad87",
+    "bec07a4e065f57ad60809e9626b79fc169dd35f1e7c4d7111c0dcd51746f0fce",
+    "00ab441f1e9872bf3dcc375bb560cf97f02bdb5693542f300c2d3056d99f9b22",
+    "cff2b7bb8a907eff8fb2b907123aabcb3d89857c7bbc9d0c5c32a5bfbfa45694",
+    "3b1ebc6f688166051b2b220ab8713b6339fd6e3181507c393d518c15e93c13b8",
+    "64fffce0a5a3527f9bd99a395f2213dcdf3a8d828a18abe7dcab68d6426311fe",
+    "dd4c1f6d57ff74ff90142841e9a332272d1588afbb8d4d29aa0a724e1e033587",
+    "32d716a07494a17e2bd99272bd4fd546971b4d92898161c65bf6e61bcfa0395f",
+    "4cb11dd876983e2b5b5c41551d361190a364ac6041e46a9e3cfb3adb039be669",
+    "d8574b95e04d2fd6933232b4b022e5f4cd148fd737eb7e331b686fd2210fe4df",
+    "bd3d979fe0725be2d679da79f6641c8071eeff87da007d734cd04672dd735503",
+    "8a205e9def0849e00f72fe66b96915a43e8e8aa011757afc5b6fb3562781289b",
+    "2e3695943c1afc8c87a2f3d8d901beda167b6414333cc5808cdb5e9b6b4bce85",
+    "5c0b737a2862476a2a569cd8bba76660956c0e6dd9a793202d7734cb6a1db058",
+    "ee0bb06e272e27ea61d731c02e96bd3548ce9ca01676f5225ed70bda9f189486",
+    "6cd06e4efb2875d10a997b733dc7ea89ec0d91b8b6dda4026ecb88c18659b6e5",
+    "35793580798c4c80f4a82b464c3ac42bf5c3793f396894d7af262c44430c6bc7",
+    "52aa2c47bb500149a7bdfc601c3351aaeef827c01b002f4529cd9ebb441687c2",
+    "9e4f4b0d6a9bc8233533e872f1b1213e17d98f037a37de2fc6ae04dea7532c9d",
+    "3a24a889d478cd12c2b2e542ded525f6e8762d49f85e8b82f25fe6a2cb22e2c0",
+    "92ea08c2e1a2a1ca766be133ac6004ae484458a0b0e026b909476a4a8fa48af2",
+    "6cdc8f77d23da77c4ab4c175824f5f27cbbb9afe70020b4f99107d9f2422f266",
+    "7477ff8f9a6e15a78adf9722890e326b85f7435cf11548d0075f89a7b759323a",
+    "057865260b26aa7bd07725cf3df8c74de42950cced80cb27f9c8b19ccb5d6d6a",
+    "514167797879d2bdaef84f60f37fb6cd4b2969eef9ec3dbca935a8bc877daad8",
+    "d0226d69979c8676b6f2cd28cb893137bdfe6a198046dc6765d99337060e501c",
+    "5cfdf8514a9bbb114610434338f1a0a07eb38a144de7a0e304fed5cc68705f1a",
+    "7e861e33676c8a3175be75804b360e8275c25e3d2817e6a10227e2bb0c04afa1",
+    "7d85ec1db34692b06fe69b992aa37163dd373035a500342873d56f9d57ab99d9",
+    "93cd38b8cc6750f3b16f0abaec7c43404c011bab937dae5dabef84de2ab86ae8",
+    "5a3cc9e0f45c42b6a0dcb42f8f7ca20ee18344d808cf21652551a4aaa70886cc",
+    "77171426f185f02cf7fb93033933caa04e9d002230de9da24ab7e11b5dab1324",
+    "d7337eb18d3d3fa5102348779aef3305fac56384ed234d0c1c129741f2b9b1a6",
+    "d6b22a5b5b0b725e7198229cffe974da9cfd2c921503ff5724c92d8eba9da98d",
+    "0248e8c1323aec803733b66fc38bb23d8815ab1b014cbefc610705aa3a5e8ca1",
+    "ad52190c31e7c0b8118ac3c92bcb07c8ece99e9c0fe449a6761507530d8f13b8",
+    "1e21bbf37b9e4ec11067b8ec4ef8d7ac279ff8be3aaa0b36646497e2121b7fa2",
+    "a41b9e31f2344a58d3ae20af9c300aa21d08a9b63b2a9918c2a15b9bd7e45859",
+    "cc95d9db61e75d224d2614c1040f264c8b26ecafea9768065251f3ba7e68d7d8",
+    "be256d65149b16c0f41cc8a4024b4b45253a0f7cdb17cf52c3924e1f72d4d323",
+    "79186d1d9046b2dd489199b51f9fb978d3ad9f8bbc3808f161f40edafd830f08",
+    "5f647683fc94dbd44419794261fb4237718822597aabddbaf9de7ee6d4e5ac64",
+    "4bd016cf1f90d26a3620ce18f235555813230ccc0609a671eef190dd1a8c7bfe",
+    "c930dbf7a4420659d8cde450dcd785945a291b72958850beb849deb31a65b9b2",
+    "5e16a13ccbdbcce2664a63f8c0242413eeaaee672c0a4db1b4da26c4bfb63547",
+    "1aca057460afb4ced42088182e1cf280bcaca924f133ad7a1ebd67287253313c",
+    "88ebaa3f130aa0a165f4b1265df8da972536aeebf456da537f2b442b00cfdd8a",
+    "661af320ef0356b73cc79481fac31a24d38e47f5e611223fc11cec586ca47345",
+    "0a3d8847512b3c4c516d2fa83005e0f379d1f979804e3a826f8275a9bbfe2295",
+    "55035938bd2db9bc0052cab09ced4eb2bc1ba09b3210975a367fe372998ac475",
+    "ddc220fa4f374e6c152c81480159d67908593c768b3c8977abe00abe8547a623",
+    "6b9b50849f84b2efe323bad901350c47b5aa3bf6d42b94fb9f54ca44a39617cb",
+    "72bb80c8ce471fcfde44bd26ff32f3ed4e64c3e115a2a109e45d53cb3a0cc642",
+    "7382ea1dd7bec912ed3197a8f2d5345aa1709f90d40e2eac04a3e5600e3ccbe8",
+    "fb14e8c31d63ab03b26785d51a938492d2b755fc6c7864a81279e35475d229fc",
+    "d108cf0f879f2574b0540e1ebc3ee16b90b651f03185338963166970f8a28340",
+    "76e6c9dd3001339f73059890e0fb359c2a5957e1aedcb824cb6469309b36e232",
+    "27135c8d09df7e83ed867c22a28069203cb7fc7c67508f065afde6a58b8f98c0",
+    "a53582fb680b32bfcd57f79c13db5429c22d9e46996345396bc001e394dce1ca",
+    "e311e63f8315ba014407d1d48fdc2c1994f977efc6086e196b4d561e5243a490",
+    "4f578eb522f0f7d0f34398980e67a34de1e5021475caafe3c01b55dadf7ea8d7",
+    "3ede49331790f2b6083f6e2bb919bad2fda2bfa1dff87dab1b1c13e6dd6a124f",
+    "71187430eb849ed7a0e3a4e51dce29838d0b7f4d510048603db3963e2eb74550",
+    "569e4f2479af715c3b109fa498b08c543f373b57d20b346ce20e02e3558a20e5",
+    "39e98aa89eccd327acd11f5bd6e37ae5aebc6cdaf74381dc7001213d4816acc2",
+    "4ef0a31b6670734bb943379793523ccc832e0b54818053af1110eab6916c23b1",
+    "b08f94cefa4dc00747e0da4d22f7f654463a02861789f22269cdd95fb3c64a12",
+    "e4ef7960e668966c7ddd0c333c0e0eb20e51a7cde53e985218dee847f918aa5b",
+    "0722cc1c15830bf5fe19b7a473a6fba11d03bc9b3c3161eacedf49ee59b57034",
+    "fc1b91765bbc43ef2f3d725faf0c2196158d1e98430bd7ce20fed002ff8ef87d",
+    "9fcaf0a902dc19aea8415d0b9abb7db2d61580aa1a70bbbd858dca2ae3c8fac7",
+    "8f166adc67b4707493f3dea38b9aa61d4b4d95f1fa2f928135aae0e5ab2bf252",
+    "4c167155791dd1656873cd9fc5abee4386d180ea2af54bfa8fd56d1580d33f9a",
+    "06d68711c50925a28788651532dc5219f4315aadbb588d238d792b1e95a2981c",
+    "50abe3ef6e1158a0254e08db6b2360d70b3cc4c7bbfe2a5f8827b59df833f86f",
+    "7ec50d2bc85b3ef33fc7e50f9de4112f94c446d22f0b22bafbb2b12f99cf5acf",
+    "4840634d6467d139d0f1ee8ab257dca90f2fc94f0471534c1b6b619585157fe9",
+    "84c66fa5577016e95ff4bd36a3f274df041df6bccf9617c8025dd14969564730",
+    "aa5890a56b821d57c9fa9b4ffbcff7c647efce06363efa7cf8368a77089b05d4",
+    "5454fddb4f0071fe5d671228da99fb039212fdca67f24e4944d3dbd30198f4ae",
+    "b7de938012cec56f36a0e674207bb88f12b961046bd7d9711fcfb70dfab06a6c",
+    "8b8f6a16d4370c4db4f5ad917a981b66d0200b4a83af62e7360a728d650b412c",
+    "2c90afefe478f93807a191a148ae9fd5e82e3706000b70bc7cc34be01a7ce20a",
+    "1923c99c2875efb6f8a8370a2bca9014063e829412dc2cbf496d6b2ef8f1fa3f",
+    "a74feea91d20111aa850b02e357a7781ceaf2e35b36287b3e21af095b3e9ce35",
+    "87d906f2cfa4de4dd6c5c58f44e82d89ba32860bbada0263a65bdf1b23ad1797",
+    "035ccf4d60a030e01a14c16cdbe497a49a21c288fe20cfd628c966de034605f4",
+    "d270c7983fc3f2ee139284ce071e18cae4525f751f6a46a45ad21c19968e1af6",
+    "19805d1fddeb7bd5fe9b4db995e54910b8d356fa6d3b6bfde0f5935801ed268c",
+    "3199eeb11f1877473362c5056cbca8e07252ac4a5c36e4b3c34dcaa5eaea78c7",
+    "2215fc34b0d284824ebde30e5e5427b786765a8bc65d09c061e39005faf50a14",
+    "6caf16067d753594dfe579bb3101427e9e092f9778c8b2185002c43be5d9a739",
+    "4b360a859152797b46b75c9a71a6cc024721cfecddc4823f9d718e947b97df7c",
+    "825d08161cfe077bb817253ca48a4adea8187258be1cb29ed467ee19b87bd213",
+    "e0ec637f5999970ef5dc3fde08662bf4a8b9ff23478b7c6162a24860e803d5b1",
+    "549d3852e18c5fa6b7c734c38f6658f2c79fb937a34d99bc24ba0459784648ec",
+    "ffe30d8af938aa02ce230bac02fac43dff1c20d45e5f49171020bd7fca20f996",
+    "ecb95a2151eb6e1adaa52883a238ff61124df221a5b72eb9a138f454cb23f401",
+    "0a695dab1d6b269171b334f45e5e66acbc4bf3ed18cb17c625edc2db5c36af25",
+    "03fb3fb03b55823304e077c536ab9ca76e852e504659578e79351901138ed23d",
+    "c367ec14fccaa2862acc1926611e2b3add68648f6ee813ff8ad55fddeea346b4",
+    "cc8affcf1e9691fa73520cd7fe8dbe6e3141c0a397c25a3f006d436a680a440b",
+    "65187a6ed4f213fbb1bd537f6b5d8848672b0dec5bf5172c1bdf138fb75a96cb",
+    "1396dcde6bac726a8e64468eab9f479d46fd229baabbe03b8be4c8e450684740",
+    "94a706ee2ca3d72206e95051db49dce36a8496ca692f54a97c526b44109a343b",
+    "f3c5f1671300f5ae09565be5db428ec45be7d780b8d4317980d43c5624b34500",
+    "10642466d590d9bdcff2d064addabf269112652f5239111f1cdf2189da38c735",
+    "596a1d07f6705326e23a977f9e3eec1747df352eafae33858d12d672f167d934",
+    "079bb945b418a7f5062b70208178f59026a55b28509c45f103406fc1b8414221",
+    "60d2bbfb67f7a47baad05b8bcbdc4a9d26a7f08145bf25380e40620ee4ce69c2",
+    "91c2a8afef26b5a2fc99748077bd56950e15748bff3083d0e26b34a633cb9867",
+    "5031ffe91e05018d910d850022de01df47e3cd3bb2b62983c0fd25e006546ce2",
+    "e5e2d57309ef57573c813de819fa1c00c3c96f7f94c30dff7a705282cb67653c",
+    "582203e7bcdefd68876f70832bb7211f97a7ca8c01537419d09dc846f11f66e0",
+    "4ce6ee9587d8e0e0fd2764244d1ce709e2366b71345224323e5c72b6ee0445a9",
+    "d4c6938b83db580b58edaff8f61fcb8ca6c2717146ce58b5b0fe747857d53de1",
+    "72759cb134453b8d7c4e7742f90de4872d9ef9937bb1765cc6601ca237f9a76a",
+    "c866875a293117dbebbd521430800e8236541f3a2a87a44fba892e87fb3b10b8",
+    "5647ebc1050b4e387d0496153ed698db52a8eadd93b408ab15c8f455550d2cec",
+    "3707df54a85d02bd7c563fc94ce44c9e1d16f8cdf70f28cebce2f3f2570fdf90",
+    "2e9be0a25332f5eccb909eee6a727a288d16197e3b1e8c037001fa2a2d13af1b",
+    "f663fc74063506935cdd96db2eb13eb1fc9fd105782f943dc352331f02d7822f",
+    "77ad22b007dba67edb51098e94f8bf67b491c0961b65ff855784fbf43d069e68",
+    "1f70c68ac76e60d319cd7f993f5ec1f162bba053210794a8df90c679493392ab",
+    "51808312a9c8bd4ae3ebf11d53fcc491cf9b815363c4c40377f7a2703be4365f",
+    "ea8314b6eaa7fcb5056ac626a485c25829f4166dedf92000dcc31f88fc083a02",
+    "1f20adff34774ae2e37f4017f61697a06adb71bbd363ad32038cb5cd1f31a070",
+    "1d3f45c164517d65bda7f75fcffb5faf12b008d19584fab0f215318ad06dfca8",
+    "f0c2a485332d7a1735e92980d135ac5a4de46a9ae2050e741a5cfd06c50cffcc",
+    "59abec494a80ae1e08f79b07d2a2c1ee257706290e6a0200f2d019c986f8f486",
+    "665a9a4a9165e7c69285fddc5113e537ab9673ad0d2276cba0acbbd964869edf",
+    "6382a7e131a8b08a2aef248448fdce3ca189b3e20aaacbc64b009283dc48e6ca",
+    "28a8b7ab2bce87de615b6ec06533acf6e76b2029089283684e1b577d151b266b",
+    "2659b63aaa25603db653297fca60c010b412d0917f453a17ff042b4ea35641b3",
+    "68471e22e0683a2c6ec96f2b31b77d6bf5bc354b6bdeb785166ab78b94273d9a",
+    "e97810fcf598896fabe4d424afba871eb4f60dde38e6bebebc9c94f4d6d1b627",
+    "0ab4e4a4972766221414d3b1f783282bbe8dc57a3b56a35cbb13b80a0b32ba35",
+    "3b78c1f7b8778cb0e93bd86df05f07132745e7fdd9cf56fdecf427163e7e0baa",
+    "4a4496a44f6bb4092998f7532cb570fe94d4dca6b009588d5f617e776c4f1d0e",
+    "4809836f2287c23fc5640274244507cfbcea10072a1fec761e0fb8c7a6f81807",
+    "9c1b27a5ae8eab68b0f5f8ef7a9ad05b3d90f3d48bce2587fbf34bf81607bdda",
+    "2f2bfe41c3139282cb2ed93b48fe8155556dbc810963f9c3b7add43b1dcd13b8",
+    "212ba5b0d434b5fd6498fb1cf3c008fbdfc018ef28631d4925b8f9bd97bfa5bd",
+    "42a4d30fb6fa07043b15e208518fe6edd46f48910ec326fa5a186ad9f473912c",
+    "53845ad42dcc88436342a1ace32b1f9b2b5b334d297494101572b53f7e064cc0",
+    "e7c3ef2b502ab26315d01ed7ff2e56b241f64026336fb53dc5c36bd561fe9779",
+    "050430fc96955efc3b9e9d466776219bff75e484224329fd1d2b038551d55c1a",
+    "72a6cb902721c8558b0392986aece4a17c3abf7442002e8952bf6fcc0f619990",
+    "5f377fd65b6ef2b6a4163d2909e5b1699e5138788a82fa744c814829e63b06fa",
+    "e031a7239452208acdedada9be2ac36581a847b3b0a4f868c90ecc86f3d9d109"
+  ],
+  "independent_population_uses": 346,
+  "overall_change_by_split": {
+    "DEVELOPMENT": {
+      "added": 3,
+      "added_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 3
+      },
+      "distinct_uses_with_gains": [
+        "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+      ],
+      "ids_added": [
+        "02464613b62f9f7d3421302e72aadc5b1050a2324a07a2601ef4e34259384806",
+        "acb8cd5decb723c2c8c10352062a6cd901b5d4b113713d2be2cd5452ebeefea2",
+        "2c177d24717bbf4e69e42b359c7ad6ef02beca906b966b9992df16ab076ff45b"
+      ],
+      "ids_removed": [],
+      "independent_accepted_uses_after": 55,
+      "independent_accepted_uses_before": 52,
+      "new_selected_project_fields": [
+        [
+          "AU-908fd6f4461622e89548",
+          "TREO品位_pct",
+          "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+        ],
+        [
+          "AU-908fd6f4461622e89548",
+          "礦石蘊藏量_Mt",
+          "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+        ],
+        [
+          "AU-908fd6f4461622e89548",
+          "總TREO蘊藏量_kt",
+          "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+        ]
+      ],
+      "new_supported_observation_uses": 3,
+      "new_supported_observations": 3,
+      "new_supported_records_already_represented": 0,
+      "newly_supported_record_ids": [
+        "02464613b62f9f7d3421302e72aadc5b1050a2324a07a2601ef4e34259384806",
+        "acb8cd5decb723c2c8c10352062a6cd901b5d4b113713d2be2cd5452ebeefea2",
+        "2c177d24717bbf4e69e42b359c7ad6ef02beca906b966b9992df16ab076ff45b"
+      ],
+      "paired": 317,
+      "projects_with_supported_gains": [
+        "AU-908fd6f4461622e89548"
+      ],
+      "removed": 0,
+      "removed_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 0
+      },
+      "unevaluable_or_unimplemented": 0
+    },
+    "HOLDOUT": {
+      "added": 0,
+      "added_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 0
+      },
+      "distinct_uses_with_gains": [],
+      "ids_added": [],
+      "ids_removed": [],
+      "independent_accepted_uses_after": 8,
+      "independent_accepted_uses_before": 8,
+      "new_selected_project_fields": [],
+      "new_supported_observation_uses": 0,
+      "new_supported_observations": 0,
+      "new_supported_records_already_represented": 0,
+      "newly_supported_record_ids": [],
+      "paired": 34,
+      "projects_with_supported_gains": [],
+      "removed": 0,
+      "removed_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 0
+      },
+      "unevaluable_or_unimplemented": 0
+    }
+  },
+  "paired_contrasts_using_all_available_reviews": {
+    "A0_to_A1": {
+      "added": 2,
+      "added_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 2
+      },
+      "distinct_uses_with_gains": [
+        "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+      ],
+      "ids_added": [
+        "acb8cd5decb723c2c8c10352062a6cd901b5d4b113713d2be2cd5452ebeefea2",
+        "2c177d24717bbf4e69e42b359c7ad6ef02beca906b966b9992df16ab076ff45b"
+      ],
+      "ids_removed": [],
+      "independent_accepted_uses_after": 62,
+      "independent_accepted_uses_before": 60,
+      "new_selected_project_fields": [
+        [
+          "AU-908fd6f4461622e89548",
+          "TREO品位_pct",
+          "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+        ],
+        [
+          "AU-908fd6f4461622e89548",
+          "總TREO蘊藏量_kt",
+          "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+        ]
+      ],
+      "new_supported_observation_uses": 2,
+      "new_supported_observations": 2,
+      "new_supported_records_already_represented": 0,
+      "newly_supported_record_ids": [
+        "acb8cd5decb723c2c8c10352062a6cd901b5d4b113713d2be2cd5452ebeefea2",
+        "2c177d24717bbf4e69e42b359c7ad6ef02beca906b966b9992df16ab076ff45b"
+      ],
+      "paired": 351,
+      "projects_with_supported_gains": [
+        "AU-908fd6f4461622e89548"
+      ],
+      "removed": 0,
+      "removed_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 0
+      },
+      "unevaluable_or_unimplemented": 0
+    },
+    "A0_to_B0": {
+      "added": 0,
+      "added_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 0
+      },
+      "distinct_uses_with_gains": [],
+      "ids_added": [],
+      "ids_removed": [],
+      "independent_accepted_uses_after": 60,
+      "independent_accepted_uses_before": 60,
+      "new_selected_project_fields": [],
+      "new_supported_observation_uses": 0,
+      "new_supported_observations": 0,
+      "new_supported_records_already_represented": 0,
+      "newly_supported_record_ids": [],
+      "paired": 351,
+      "projects_with_supported_gains": [],
+      "removed": 0,
+      "removed_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 0
+      },
+      "unevaluable_or_unimplemented": 0
+    },
+    "A0_to_B1": {
+      "added": 3,
+      "added_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 3
+      },
+      "distinct_uses_with_gains": [
+        "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+      ],
+      "ids_added": [
+        "02464613b62f9f7d3421302e72aadc5b1050a2324a07a2601ef4e34259384806",
+        "acb8cd5decb723c2c8c10352062a6cd901b5d4b113713d2be2cd5452ebeefea2",
+        "2c177d24717bbf4e69e42b359c7ad6ef02beca906b966b9992df16ab076ff45b"
+      ],
+      "ids_removed": [],
+      "independent_accepted_uses_after": 63,
+      "independent_accepted_uses_before": 60,
+      "new_selected_project_fields": [
+        [
+          "AU-908fd6f4461622e89548",
+          "TREO品位_pct",
+          "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+        ],
+        [
+          "AU-908fd6f4461622e89548",
+          "礦石蘊藏量_Mt",
+          "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+        ],
+        [
+          "AU-908fd6f4461622e89548",
+          "總TREO蘊藏量_kt",
+          "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+        ]
+      ],
+      "new_supported_observation_uses": 3,
+      "new_supported_observations": 3,
+      "new_supported_records_already_represented": 0,
+      "newly_supported_record_ids": [
+        "02464613b62f9f7d3421302e72aadc5b1050a2324a07a2601ef4e34259384806",
+        "acb8cd5decb723c2c8c10352062a6cd901b5d4b113713d2be2cd5452ebeefea2",
+        "2c177d24717bbf4e69e42b359c7ad6ef02beca906b966b9992df16ab076ff45b"
+      ],
+      "paired": 351,
+      "projects_with_supported_gains": [
+        "AU-908fd6f4461622e89548"
+      ],
+      "removed": 0,
+      "removed_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 0
+      },
+      "unevaluable_or_unimplemented": 0
+    },
+    "A1_to_B1": {
+      "added": 1,
+      "added_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 1
+      },
+      "distinct_uses_with_gains": [
+        "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+      ],
+      "ids_added": [
+        "02464613b62f9f7d3421302e72aadc5b1050a2324a07a2601ef4e34259384806"
+      ],
+      "ids_removed": [],
+      "independent_accepted_uses_after": 63,
+      "independent_accepted_uses_before": 62,
+      "new_selected_project_fields": [
+        [
+          "AU-908fd6f4461622e89548",
+          "礦石蘊藏量_Mt",
+          "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+        ]
+      ],
+      "new_supported_observation_uses": 1,
+      "new_supported_observations": 1,
+      "new_supported_records_already_represented": 0,
+      "newly_supported_record_ids": [
+        "02464613b62f9f7d3421302e72aadc5b1050a2324a07a2601ef4e34259384806"
+      ],
+      "paired": 351,
+      "projects_with_supported_gains": [
+        "AU-908fd6f4461622e89548"
+      ],
+      "removed": 0,
+      "removed_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 0
+      },
+      "unevaluable_or_unimplemented": 0
+    },
+    "B0_to_B1": {
+      "added": 3,
+      "added_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 3
+      },
+      "distinct_uses_with_gains": [
+        "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+      ],
+      "ids_added": [
+        "02464613b62f9f7d3421302e72aadc5b1050a2324a07a2601ef4e34259384806",
+        "acb8cd5decb723c2c8c10352062a6cd901b5d4b113713d2be2cd5452ebeefea2",
+        "2c177d24717bbf4e69e42b359c7ad6ef02beca906b966b9992df16ab076ff45b"
+      ],
+      "ids_removed": [],
+      "independent_accepted_uses_after": 63,
+      "independent_accepted_uses_before": 60,
+      "new_selected_project_fields": [
+        [
+          "AU-908fd6f4461622e89548",
+          "TREO品位_pct",
+          "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+        ],
+        [
+          "AU-908fd6f4461622e89548",
+          "礦石蘊藏量_Mt",
+          "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+        ],
+        [
+          "AU-908fd6f4461622e89548",
+          "總TREO蘊藏量_kt",
+          "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
+        ]
+      ],
+      "new_supported_observation_uses": 3,
+      "new_supported_observations": 3,
+      "new_supported_records_already_represented": 0,
+      "newly_supported_record_ids": [
+        "02464613b62f9f7d3421302e72aadc5b1050a2324a07a2601ef4e34259384806",
+        "acb8cd5decb723c2c8c10352062a6cd901b5d4b113713d2be2cd5452ebeefea2",
+        "2c177d24717bbf4e69e42b359c7ad6ef02beca906b966b9992df16ab076ff45b"
+      ],
+      "paired": 351,
+      "projects_with_supported_gains": [
+        "AU-908fd6f4461622e89548"
+      ],
+      "removed": 0,
+      "removed_by_reference": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 0
+      },
+      "unevaluable_or_unimplemented": 0
+    }
+  },
+  "population": 351,
+  "primary_by_stratum": {
+    "contained_treo_kt/core/pdf": {
+      "A0": {
+        "accepted": 1,
+        "accepted_by_label": {
+          "SUPPORTED": 1
+        },
+        "cases": 1,
+        "decisions": {
+          "ACCEPT": 1
+        },
+        "insufficient_evidence_share": {
+          "denominator": 1,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "recall_on_supported_labels": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "reference_labels": {
+          "SUPPORTED": 1
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "unreviewed_share": {
+          "denominator": 1,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "A1": {
+        "accepted": 1,
+        "accepted_by_label": {
+          "SUPPORTED": 1
+        },
+        "cases": 1,
+        "decisions": {
+          "ACCEPT": 1
+        },
+        "insufficient_evidence_share": {
+          "denominator": 1,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "recall_on_supported_labels": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "reference_labels": {
+          "SUPPORTED": 1
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "unreviewed_share": {
+          "denominator": 1,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "B0": {
+        "accepted": 1,
+        "accepted_by_label": {
+          "SUPPORTED": 1
+        },
+        "cases": 1,
+        "decisions": {
+          "ACCEPT": 1
+        },
+        "insufficient_evidence_share": {
+          "denominator": 1,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "recall_on_supported_labels": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "reference_labels": {
+          "SUPPORTED": 1
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "unreviewed_share": {
+          "denominator": 1,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "B1": {
+        "accepted": 1,
+        "accepted_by_label": {
+          "SUPPORTED": 1
+        },
+        "cases": 1,
+        "decisions": {
+          "ACCEPT": 1
+        },
+        "insufficient_evidence_share": {
+          "denominator": 1,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "recall_on_supported_labels": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "reference_labels": {
+          "SUPPORTED": 1
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "unreviewed_share": {
+          "denominator": 1,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      }
+    },
+    "grade/core/pdf": {
+      "A0": {
+        "accepted": 1,
+        "accepted_by_label": {
+          "SUPPORTED": 1
+        },
+        "cases": 3,
+        "decisions": {
+          "ACCEPT": 1,
+          "BLOCKED": 1,
+          "INCOMPATIBLE": 1
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 1,
+          "rate": 0.3333333333333333
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "recall_on_supported_labels": {
+          "denominator": 2,
+          "numerator": 1,
+          "rate": 0.5
+        },
+        "reference_labels": {
+          "INSUFFICIENT": 1,
+          "SUPPORTED": 2
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "A1": {
+        "accepted": 1,
+        "accepted_by_label": {
+          "SUPPORTED": 1
+        },
+        "cases": 3,
+        "decisions": {
+          "ACCEPT": 1,
+          "BLOCKED": 1,
+          "INCOMPATIBLE": 1
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 1,
+          "rate": 0.3333333333333333
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "recall_on_supported_labels": {
+          "denominator": 2,
+          "numerator": 1,
+          "rate": 0.5
+        },
+        "reference_labels": {
+          "INSUFFICIENT": 1,
+          "SUPPORTED": 2
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "B0": {
+        "accepted": 1,
+        "accepted_by_label": {
+          "SUPPORTED": 1
+        },
+        "cases": 3,
+        "decisions": {
+          "ACCEPT": 1,
+          "BLOCKED": 1,
+          "INCOMPATIBLE": 1
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 1,
+          "rate": 0.3333333333333333
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "recall_on_supported_labels": {
+          "denominator": 2,
+          "numerator": 1,
+          "rate": 0.5
+        },
+        "reference_labels": {
+          "INSUFFICIENT": 1,
+          "SUPPORTED": 2
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "B1": {
+        "accepted": 1,
+        "accepted_by_label": {
+          "SUPPORTED": 1
+        },
+        "cases": 3,
+        "decisions": {
+          "ACCEPT": 1,
+          "BLOCKED": 1,
+          "INCOMPATIBLE": 1
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 1,
+          "rate": 0.3333333333333333
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "recall_on_supported_labels": {
+          "denominator": 2,
+          "numerator": 1,
+          "rate": 0.5
+        },
+        "reference_labels": {
+          "INSUFFICIENT": 1,
+          "SUPPORTED": 2
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 1,
+          "numerator": 1,
+          "rate": 1.0
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      }
+    },
+    "grade/related/pdf": {
+      "A0": {
+        "accepted": 0,
+        "accepted_by_label": {},
+        "cases": 3,
+        "decisions": {
+          "BLOCKED": 3
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "recall_on_supported_labels": {
+          "denominator": 1,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "reference_labels": {
+          "INCOMPATIBLE": 2,
+          "SUPPORTED": 1
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "A1": {
+        "accepted": 0,
+        "accepted_by_label": {},
+        "cases": 3,
+        "decisions": {
+          "BLOCKED": 3
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "recall_on_supported_labels": {
+          "denominator": 1,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "reference_labels": {
+          "INCOMPATIBLE": 2,
+          "SUPPORTED": 1
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "B0": {
+        "accepted": 0,
+        "accepted_by_label": {},
+        "cases": 3,
+        "decisions": {
+          "BLOCKED": 3
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "recall_on_supported_labels": {
+          "denominator": 1,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "reference_labels": {
+          "INCOMPATIBLE": 2,
+          "SUPPORTED": 1
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "B1": {
+        "accepted": 0,
+        "accepted_by_label": {},
+        "cases": 3,
+        "decisions": {
+          "BLOCKED": 3
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "recall_on_supported_labels": {
+          "denominator": 1,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "reference_labels": {
+          "INCOMPATIBLE": 2,
+          "SUPPORTED": 1
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      }
+    },
+    "ore_mt/core/pdf": {
+      "A0": {
+        "accepted": 2,
+        "accepted_by_label": {
+          "SUPPORTED": 2
+        },
+        "cases": 3,
+        "decisions": {
+          "ACCEPT": 2,
+          "INCOMPATIBLE": 1
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 2,
+          "numerator": 2,
+          "rate": 1.0
+        },
+        "recall_on_supported_labels": {
+          "denominator": 3,
+          "numerator": 2,
+          "rate": 0.6666666666666666
+        },
+        "reference_labels": {
+          "SUPPORTED": 3
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 2,
+          "numerator": 2,
+          "rate": 1.0
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "A1": {
+        "accepted": 2,
+        "accepted_by_label": {
+          "SUPPORTED": 2
+        },
+        "cases": 3,
+        "decisions": {
+          "ACCEPT": 2,
+          "INCOMPATIBLE": 1
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 2,
+          "numerator": 2,
+          "rate": 1.0
+        },
+        "recall_on_supported_labels": {
+          "denominator": 3,
+          "numerator": 2,
+          "rate": 0.6666666666666666
+        },
+        "reference_labels": {
+          "SUPPORTED": 3
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 2,
+          "numerator": 2,
+          "rate": 1.0
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "B0": {
+        "accepted": 2,
+        "accepted_by_label": {
+          "SUPPORTED": 2
+        },
+        "cases": 3,
+        "decisions": {
+          "ACCEPT": 2,
+          "INCOMPATIBLE": 1
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 2,
+          "numerator": 2,
+          "rate": 1.0
+        },
+        "recall_on_supported_labels": {
+          "denominator": 3,
+          "numerator": 2,
+          "rate": 0.6666666666666666
+        },
+        "reference_labels": {
+          "SUPPORTED": 3
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 2,
+          "numerator": 2,
+          "rate": 1.0
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "B1": {
+        "accepted": 2,
+        "accepted_by_label": {
+          "SUPPORTED": 2
+        },
+        "cases": 3,
+        "decisions": {
+          "ACCEPT": 2,
+          "INCOMPATIBLE": 1
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 2,
+          "numerator": 2,
+          "rate": 1.0
+        },
+        "recall_on_supported_labels": {
+          "denominator": 3,
+          "numerator": 2,
+          "rate": 0.6666666666666666
+        },
+        "reference_labels": {
+          "SUPPORTED": 3
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 2,
+          "numerator": 2,
+          "rate": 1.0
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      }
+    },
+    "ore_mt/related/pdf": {
+      "A0": {
+        "accepted": 0,
+        "accepted_by_label": {},
+        "cases": 3,
+        "decisions": {
+          "BLOCKED": 3
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "recall_on_supported_labels": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "reference_labels": {
+          "INCOMPATIBLE": 3
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "A1": {
+        "accepted": 0,
+        "accepted_by_label": {},
+        "cases": 3,
+        "decisions": {
+          "BLOCKED": 3
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "recall_on_supported_labels": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "reference_labels": {
+          "INCOMPATIBLE": 3
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "B0": {
+        "accepted": 0,
+        "accepted_by_label": {},
+        "cases": 3,
+        "decisions": {
+          "BLOCKED": 3
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "recall_on_supported_labels": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "reference_labels": {
+          "INCOMPATIBLE": 3
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      },
+      "B1": {
+        "accepted": 0,
+        "accepted_by_label": {},
+        "cases": 3,
+        "decisions": {
+          "BLOCKED": 3
+        },
+        "insufficient_evidence_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        },
+        "precision_on_determinate_labels": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "recall_on_supported_labels": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "reference_labels": {
+          "INCOMPATIBLE": 3
+        },
+        "supported_share_of_reviewed_admissions": {
+          "denominator": 0,
+          "numerator": 0,
+          "rate": null
+        },
+        "unreviewed_share": {
+          "denominator": 3,
+          "numerator": 0,
+          "rate": 0.0
+        }
+      }
+    }
+  },
+  "primary_independent_observations": {
+    "A0": {
+      "accepted": 4,
+      "accepted_by_label": {
+        "SUPPORTED": 4
+      },
+      "cases": 10,
+      "decisions": {
+        "ACCEPT": 4,
+        "NO_ACCEPTANCE": 6
+      },
+      "insufficient_evidence_share": {
+        "denominator": 10,
+        "numerator": 1,
+        "rate": 0.1
+      },
+      "precision_on_determinate_labels": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "recall_on_supported_labels": {
+        "denominator": 5,
+        "numerator": 4,
+        "rate": 0.8
+      },
+      "reference_labels": {
+        "INCOMPATIBLE": 4,
+        "INSUFFICIENT": 1,
+        "SUPPORTED": 5
+      },
+      "supported_share_of_reviewed_admissions": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "unreviewed_share": {
+        "denominator": 10,
+        "numerator": 0,
+        "rate": 0.0
+      }
+    },
+    "A1": {
+      "accepted": 4,
+      "accepted_by_label": {
+        "SUPPORTED": 4
+      },
+      "cases": 10,
+      "decisions": {
+        "ACCEPT": 4,
+        "NO_ACCEPTANCE": 6
+      },
+      "insufficient_evidence_share": {
+        "denominator": 10,
+        "numerator": 1,
+        "rate": 0.1
+      },
+      "precision_on_determinate_labels": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "recall_on_supported_labels": {
+        "denominator": 5,
+        "numerator": 4,
+        "rate": 0.8
+      },
+      "reference_labels": {
+        "INCOMPATIBLE": 4,
+        "INSUFFICIENT": 1,
+        "SUPPORTED": 5
+      },
+      "supported_share_of_reviewed_admissions": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "unreviewed_share": {
+        "denominator": 10,
+        "numerator": 0,
+        "rate": 0.0
+      }
+    },
+    "B0": {
+      "accepted": 4,
+      "accepted_by_label": {
+        "SUPPORTED": 4
+      },
+      "cases": 10,
+      "decisions": {
+        "ACCEPT": 4,
+        "NO_ACCEPTANCE": 6
+      },
+      "insufficient_evidence_share": {
+        "denominator": 10,
+        "numerator": 1,
+        "rate": 0.1
+      },
+      "precision_on_determinate_labels": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "recall_on_supported_labels": {
+        "denominator": 5,
+        "numerator": 4,
+        "rate": 0.8
+      },
+      "reference_labels": {
+        "INCOMPATIBLE": 4,
+        "INSUFFICIENT": 1,
+        "SUPPORTED": 5
+      },
+      "supported_share_of_reviewed_admissions": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "unreviewed_share": {
+        "denominator": 10,
+        "numerator": 0,
+        "rate": 0.0
+      }
+    },
+    "B1": {
+      "accepted": 4,
+      "accepted_by_label": {
+        "SUPPORTED": 4
+      },
+      "cases": 10,
+      "decisions": {
+        "ACCEPT": 4,
+        "NO_ACCEPTANCE": 6
+      },
+      "insufficient_evidence_share": {
+        "denominator": 10,
+        "numerator": 1,
+        "rate": 0.1
+      },
+      "precision_on_determinate_labels": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "recall_on_supported_labels": {
+        "denominator": 5,
+        "numerator": 4,
+        "rate": 0.8
+      },
+      "reference_labels": {
+        "INCOMPATIBLE": 4,
+        "INSUFFICIENT": 1,
+        "SUPPORTED": 5
+      },
+      "supported_share_of_reviewed_admissions": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "unreviewed_share": {
+        "denominator": 10,
+        "numerator": 0,
+        "rate": 0.0
+      }
+    }
+  },
+  "primary_sample": 13,
+  "primary_summary": {
+    "A0": {
+      "accepted": 4,
+      "accepted_by_label": {
+        "SUPPORTED": 4
+      },
+      "cases": 13,
+      "decisions": {
+        "ACCEPT": 4,
+        "BLOCKED": 7,
+        "INCOMPATIBLE": 2
+      },
+      "insufficient_evidence_share": {
+        "denominator": 13,
+        "numerator": 1,
+        "rate": 0.07692307692307693
+      },
+      "precision_on_determinate_labels": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "recall_on_supported_labels": {
+        "denominator": 7,
+        "numerator": 4,
+        "rate": 0.5714285714285714
+      },
+      "reference_labels": {
+        "INCOMPATIBLE": 5,
+        "INSUFFICIENT": 1,
+        "SUPPORTED": 7
+      },
+      "supported_share_of_reviewed_admissions": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "unreviewed_share": {
+        "denominator": 13,
+        "numerator": 0,
+        "rate": 0.0
+      }
+    },
+    "A1": {
+      "accepted": 4,
+      "accepted_by_label": {
+        "SUPPORTED": 4
+      },
+      "cases": 13,
+      "decisions": {
+        "ACCEPT": 4,
+        "BLOCKED": 7,
+        "INCOMPATIBLE": 2
+      },
+      "insufficient_evidence_share": {
+        "denominator": 13,
+        "numerator": 1,
+        "rate": 0.07692307692307693
+      },
+      "precision_on_determinate_labels": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "recall_on_supported_labels": {
+        "denominator": 7,
+        "numerator": 4,
+        "rate": 0.5714285714285714
+      },
+      "reference_labels": {
+        "INCOMPATIBLE": 5,
+        "INSUFFICIENT": 1,
+        "SUPPORTED": 7
+      },
+      "supported_share_of_reviewed_admissions": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "unreviewed_share": {
+        "denominator": 13,
+        "numerator": 0,
+        "rate": 0.0
+      }
+    },
+    "B0": {
+      "accepted": 4,
+      "accepted_by_label": {
+        "SUPPORTED": 4
+      },
+      "cases": 13,
+      "decisions": {
+        "ACCEPT": 4,
+        "BLOCKED": 7,
+        "INCOMPATIBLE": 2
+      },
+      "insufficient_evidence_share": {
+        "denominator": 13,
+        "numerator": 1,
+        "rate": 0.07692307692307693
+      },
+      "precision_on_determinate_labels": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "recall_on_supported_labels": {
+        "denominator": 7,
+        "numerator": 4,
+        "rate": 0.5714285714285714
+      },
+      "reference_labels": {
+        "INCOMPATIBLE": 5,
+        "INSUFFICIENT": 1,
+        "SUPPORTED": 7
+      },
+      "supported_share_of_reviewed_admissions": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "unreviewed_share": {
+        "denominator": 13,
+        "numerator": 0,
+        "rate": 0.0
+      }
+    },
+    "B1": {
+      "accepted": 4,
+      "accepted_by_label": {
+        "SUPPORTED": 4
+      },
+      "cases": 13,
+      "decisions": {
+        "ACCEPT": 4,
+        "BLOCKED": 7,
+        "INCOMPATIBLE": 2
+      },
+      "insufficient_evidence_share": {
+        "denominator": 13,
+        "numerator": 1,
+        "rate": 0.07692307692307693
+      },
+      "precision_on_determinate_labels": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "recall_on_supported_labels": {
+        "denominator": 7,
+        "numerator": 4,
+        "rate": 0.5714285714285714
+      },
+      "reference_labels": {
+        "INCOMPATIBLE": 5,
+        "INSUFFICIENT": 1,
+        "SUPPORTED": 7
+      },
+      "supported_share_of_reviewed_admissions": {
+        "denominator": 4,
+        "numerator": 4,
+        "rate": 1.0
+      },
+      "unreviewed_share": {
+        "denominator": 13,
+        "numerator": 0,
+        "rate": 0.0
+      }
+    }
+  },
+  "review_status": "PROVISIONAL_SOURCE_REVIEW_NO_INDEPENDENT_HUMAN",
+  "unit": "one frozen candidate observation x declared use"
+}

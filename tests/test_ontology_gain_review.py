@@ -44,3 +44,8 @@ class SourceReviewChecks(unittest.TestCase):
             self.check(dict(self.reference, source_access="NO_ORIGINAL", anchors=[]))
         with self.assertRaisesRegex(ValueError, "cover exactly"):
             self.check(dict(self.reference, candidate_id="absent"))
+
+    def test_additional_page_source_must_belong_to_target_statement(self):
+        foreign = {"page": 1, "text": "12 Mt", "source_sha256": "a" * 64}
+        with self.assertRaisesRegex(ValueError, "Unbound supporting source"):
+            self.check(dict(self.reference, anchors=self.reference["anchors"] + [foreign]))

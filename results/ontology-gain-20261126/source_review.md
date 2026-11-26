@@ -28,3 +28,9 @@ Central Mia 第 13 頁確實給出 1,201 ppm TREO 與 750 ppm 門檻；該專案
 ```sh
 python tools/verify_ontology_gain_review.py --sample results/ontology-gain-20261126/review_sample.jsonl --labels results/ontology-gain-20261126/source_review_primary.jsonl --assets /path/to/gap173-kit/assets
 ```
+
+## 方法分歧的追加核對
+
+初次比較產生 3 個分歧候選。以全部 3 個 ID 及原來的盲審欄位投影產生補查包，補查者只接收候選及預期資源聲明，再檢視原件。3 筆均為 Yangibana。原件第 13 頁明訂 2026 年 6 月 30 日年度覆核，第 14 頁表二列的是 2023 年 10 月 JORC 資源量，按合資專案 100% 基準揭露。可核實的資料為總礦石量 29.93 Mt、TREO 品位 0.93%、所含 TREO 276,955 噸（276.955 kt）。每一筆在既有 Census 已有同一數值及來源。這 3 個不同欄位現在具有額外的可追溯研究用途，沒有新增礦量估算、化驗值或 Census 數值。[補查名單](review_additional.jsonl) · [逐筆原件判讀](source_review_additional.jsonl)
+
+補查涵蓋 1 份已驗證 PDF 的 2 個實體頁。AI 輔助來源核對的經過時間約 75 秒（臺北時間 17:17:00 至 17:18:15，含開檔、逐表查核與指紋驗證）。真人查核時間未量測。此批因方法分歧而入選，統計與事前固定的主樣本分開。

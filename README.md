@@ -1,5 +1,9 @@
 # AU_REE_V2
 
+## 選值前的本體論增益驗證
+
+351 筆資源候選中，表格擷取與明示單位對照使 Yangibana 的三筆數值取得描述性比較用途。34 筆留出組的接納結果相同。[四組對照、原件及重播方式](results/ontology-gain-20261126/README.md)
+
 ## Census 覆蓋率正規化測試
 
 固定分母 3,034 格下，實際補入 Franklyn 經緯度、Voyager 礦床代碼與 Lyons 合併 NdPr 蘊藏量，覆蓋率由 82.27% 升至 82.40%。16 組排名相同。[本輪結果與重播方式](results/ree-project-census/coverage-locked-20261125/README.md) · [逐格差異](results/ree-project-census/coverage-locked-20261125/coverage_delta.csv)
