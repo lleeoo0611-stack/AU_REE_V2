@@ -12,6 +12,7 @@ from .derived_cache import code_fingerprint
 from .document_processing import (
     DocumentUnavailable, PdfDocumentCache, SHA256, _file_sha, ocr_model_sha, pdf_view_spec,
 )
+from .numeric_evidence import numeric_token_spans
 from .pdf_extract import DOCUMENT_VERSION, NUMBER, extraction_dependencies, recognize_document
 from .store import digest
 from .semantic_resource import extract_resource_observations
@@ -291,7 +292,7 @@ def _extraction_spec(domain):
         "format": "source-bound-captures-v1",
         "domain": domain,
         "code": code_fingerprint(_source_captures, files=(
-            package / module, package / "technical_tables.py",
+            package / module, package / "technical_tables.py", package / "numeric_evidence.py",
         )),
         "unicode": unicodedata.unidata_version if domain == "resource" else None,
         "numeric_pattern": NUMBER if domain == "resource" else None,
@@ -403,6 +404,7 @@ def recognize_source(root, source, registry, *, cache=None, tessdata=None, page_
 
 
 RECOGNITION_PROJECTION_VERSION = "document-recognition-observations-v1"
+LOCATED_RECOGNITION_VERSION = "document-recognition-observations-v2-typed-span"
 STRATEGIC_ANALYTES = frozenset({"Nd2O3", "Pr6O11", "Dy2O3", "Tb4O7"})
 
 
@@ -414,7 +416,7 @@ def _reported_quantities(candidate):
         for default_index, variable in enumerate(("ore_mt", "grade")):
             index = (candidate.get("row_token_indices") or {}).get(variable, default_index)
             if index < len(tokens):
-                yield "RESOURCE", variable, tokens[index], candidate["units"].get(variable), {}
+                yield "RESOURCE", variable, tokens[index], candidate["units"].get(variable), {"row_token_index": index}
         position = candidate.get("positioned_column_evidence") or {}
         if position.get("method") == "positioned-resource-columns-v4":
             for value in candidate.get("extra_values", []):
@@ -430,9 +432,41 @@ def _reported_quantities(candidate):
                 if number.get("quantity_role"):
                     yield ("TECHNICAL", number["quantity_role"].lower(), number["token"], number["unit"],
                            {"offset": number["start"], "chemical_basis": number.get("basis"),
-                            "claim_nature": number.get("evidence_nature")})
+                            "claim_nature": number.get("evidence_nature"), "token_state": number.get("token_state"),
+                            "bounds": number.get("bounds")})
         elif candidate.get("domain") in {"Development", "Commercial"}:
             yield "EVENT", candidate["domain"].lower() + "_event_mention", None, None, {}
+
+
+def _recognition_span(candidate, token, unit, qualifiers):
+    """Locate the printed token only when its recognition convention is known."""
+    if not token:
+        return None
+    quote = candidate["raw_text"]
+    allowed = numeric_token_spans(quote, token, unit)
+    kind = candidate["kind"]
+    if kind == "SCOPED_TEXT_DISCLOSURE" and "offset" in qualifiers:
+        start = qualifiers["offset"]
+        span = (start, start + len(token))
+        view = "RECOGNITION_SENTENCE"
+        if span not in allowed:
+            return None
+    elif kind == "RESOURCE_TABLE_TOTAL" and "row_token_index" in qualifiers:
+        tokens = candidate["original_tokens"]
+        aligned = sorted({match for literal in set(tokens)
+                          for match in numeric_token_spans(quote, literal)})
+        if len(aligned) != len(tokens):
+            return None
+        span = aligned[qualifiers["row_token_index"]]
+        if span not in allowed:
+            return None
+        view = "RECOGNITION_TABLE_ROW"
+    elif len(allowed) == 1 and kind in {"RESOURCE_TABLE_TOTAL", "TECHNICAL_TABLE_CELL"}:
+        span = allowed[0]
+        view = "RECOGNITION_TABLE_ROW" if kind == "RESOURCE_TABLE_TOTAL" else "MUPDF_TABLE_CELL"
+    else:
+        return None
+    return {"scope": "QUOTE", "view": view, "start": span[0], "end": span[1], "quote_start": 0}
 
 
 def automatic_observations(report):
@@ -441,7 +475,7 @@ def automatic_observations(report):
 
     source_sha256 = report["source_sha256"]
     source_key = report["source_key"]
-    extraction_version = RECOGNITION_PROJECTION_VERSION + "/" + report["version"]
+    previous_version = RECOGNITION_PROJECTION_VERSION + "/" + report["version"]
     fingerprint = digest([report.get(key) for key in ("backend_version", "registry_identity_sha256",
                                                       "source_binding_sha256", "extraction_dependency_sha256")])
     for candidate in report["candidates"]:
@@ -466,6 +500,13 @@ def automatic_observations(report):
                                                        "column_index", "bbox") if key in candidate}
             anchor.update(source_sha256=source_sha256, role="token", quote=candidate["raw_text"],
                           offset=qualifiers.get("offset"))
+            span = _recognition_span(candidate, token, unit, qualifiers)
+            extraction_version = previous_version
+            if span is not None:
+                anchor["text_span"] = span
+                extraction_version = LOCATED_RECOGNITION_VERSION + "/" + report["version"]
+                context["prior_extractor_version"] = previous_version
+                context["extraction_change_reason"] = "EXPLICIT_PRINTED_TOKEN_SPAN"
             yield raw_from_candidate({
                 "observation_id": identifiers[ordinal], "project_id": candidate.get("project_id"),
                 "source_sha256": source_sha256, "physical_page": candidate["physical_page"],
@@ -476,3 +517,133 @@ def automatic_observations(report):
                            "token_state": qualifiers.get("token_state"), "bounds": qualifiers.get("bounds")},
                 "extraction_fingerprint": fingerprint,
             }, source_id=source_key, extractor_version=extraction_version)
+
+
+SOURCE_DISCOVERY_VERSION = "source-page-discovery-v1"
+
+
+def _page_captures(sha, page, text_value, text_view, blocks, tables):
+    """Discover independent table cells and scoped clauses on the requested page."""
+    from .semantic_resource import discover_resource_page
+    from .semantic_technical import narrative_mentions
+
+    for record in discover_resource_page(sha, page, blocks, tables):
+        yield {"quantity_kind": "RESOURCE", **record}
+    for mention in narrative_mentions(text_value, sha, page, text_view=text_view):
+        number = mention["native"]
+        anchor = mention["anchor"]
+        yield {"quantity_kind": "TECHNICAL",
+               "native": {"quantity": mention["quantity_role"].lower(), "token": number["token"],
+                          "unit": number["unit"], "token_state": number["token_state"], "bounds": number["bounds"]},
+               "anchors": [{**anchor, "role": "token", "offset": anchor["text_span"]["start"]}],
+               "context": {"chemical_basis": mention["basis"], "claim_nature": mention["claim_nature"]}}
+
+
+def _project_page_captures(source, page, project_id, captures):
+    from .observation_pipeline import raw_from_candidate
+
+    sha = source["sha256"]
+    for capture in captures:
+        witness = capture["anchors"][0]
+        span = witness["text_span"]
+        identity = digest([SOURCE_DISCOVERY_VERSION, sha, page, capture["native"]["quantity"],
+                           witness.get("table_index"), witness.get("row"), witness.get("column"),
+                           witness.get("bbox"), span])
+        yield raw_from_candidate({
+            **capture, "observation_id": identity, "source_sha256": sha, "physical_page": page,
+            "project_id": project_id,
+        }, source_id=source["key"], extractor_version=SOURCE_DISCOVERY_VERSION, metadata=source)
+
+
+def _observation_discovery_key(observation):
+    anchor = observation.evidence
+    return (observation.variable, observation.original_value, observation.original_unit, anchor.page,
+            anchor.table, anchor.row, anchor.column, anchor.bbox, anchor.quote, anchor.offset)
+
+
+def discover_source_observations(root, source, registry, *, page_numbers, cache=None, tessdata=None,
+                                 ocr_comparison_pages=()):
+    """Make a page-complete discovery record without changing or selecting formal observations."""
+    from .pdf_extract import _matches, readable
+    from .semantic_resource import clean
+
+    pages = sorted(set(page_numbers))
+    if not pages or any(type(page) is not int or page < 1 for page in pages):
+        raise ValueError("Discovery requires positive physical page numbers")
+    if source["kind"] != "pdf":
+        raise ValueError("Source-page discovery requires a PDF")
+    ocr_comparison = set(ocr_comparison_pages)
+    if not ocr_comparison <= set(pages):
+        raise ValueError("OCR comparison pages must belong to the discovery frame")
+    sha, source_key = source["sha256"], source["key"]
+    original = Path(root) / source["path"]
+    with PdfDocumentCache(original.parent, source_paths={sha: original}, cache=cache) as documents:
+        document = documents.open(sha)
+        pinned = [page for page in pages if page <= len(document)]
+        recognition_error = None
+        try:
+            report = recognize_source(root, source, registry, cache=cache,
+                                      tessdata=tessdata, page_numbers=pinned) if pinned else None
+        except DocumentUnavailable:
+            raise
+        except (RuntimeError, ValueError, OSError) as exc:
+            if str(exc) == "SOURCE_HASH_MISMATCH":
+                raise DocumentUnavailable(str(exc)) from exc
+            recognition_error = "RECOGNITION_" + type(exc).__name__
+            report = None
+        raw_candidates = defaultdict(list)
+        projected = defaultdict(list)
+        continued = {}
+        if report is not None:
+            continued = {(table["physical_page"], table["table_index"]): table for table in report["tables"]
+                         if table.get("continuation_candidate")}
+            for candidate in report["candidates"]:
+                raw_candidates[candidate["physical_page"]].append(candidate)
+            for candidate in automatic_observations(report):
+                projected[candidate.evidence.page].append(candidate)
+        records = []
+        for page in pages:
+            record = {"physical_page": page, "observations": (), "recognition": (), "tables": (), "blocks": (),
+                      "evidence": None, "error": recognition_error}
+            if page not in pinned:
+                records.append({**record, "status": "PAGE_UNAVAILABLE", "error": "PHYSICAL_PAGE_OUT_OF_RANGE"})
+                continue
+            ocr_error = None
+            try:
+                try:
+                    evidence = document.evidence(page, tessdata=tessdata, compare_ocr=page in ocr_comparison)
+                except (ValueError, RuntimeError, OSError) as exc:
+                    if tessdata is None:
+                        raise
+                    ocr_error = "OCR_" + type(exc).__name__
+                    evidence = document.evidence(page)
+                blocks = [(list(block[:4]), clean(block[4])) for block in document.blocks(page) if block[6] == 0]
+                tables, table_error = document.tables(page)
+            except (ValueError, RuntimeError, OSError) as exc:
+                records.append({**record, "status": "UNREADABLE", "observations": tuple(projected[page]),
+                                "recognition": tuple(raw_candidates[page]), "error": "PAGE_" + type(exc).__name__})
+                continue
+            positioned = evidence["text_views"]["MUPDF_POSITIONED"]
+            text_view = "MUPDF_POSITIONED" if readable(positioned) else evidence["method"]
+            text_value = evidence["text_views"][text_view]
+            hits = _matches(text_value, registry)
+            project_id = hits[0]["entity_id"] if len(hits) == 1 else None
+            if source.get("project_binding_status") == "UNRESOLVED_DISTINCT_PROJECT":
+                project_id = None
+            captures = _page_captures(sha, page, text_value, text_view, blocks, tables)
+            raw = [*projected[page], *_project_page_captures(source, page, project_id, captures)]
+            observations = tuple({_observation_discovery_key(row): row for row in raw}.values())
+            status = "DISCOVERED" if observations else ("NO_CANDIDATES" if readable(evidence["text"]) else "UNREADABLE")
+            errors = (recognition_error, ocr_error, table_error)
+            grids = []
+            for table in tables:
+                related = continued.get((page, table["table_index"]))
+                if related and related["cells"] == table["cells"] and related["bbox"] == table["bbox"]:
+                    table = {**table, "continuation_candidate": related["continuation_candidate"]}
+                grids.append(table)
+            records.append({**record, "status": status, "observations": observations,
+                            "recognition": tuple(raw_candidates[page]), "tables": tuple(grids),
+                            "blocks": tuple(blocks), "evidence": evidence,
+                            "error": "|".join(error for error in errors if error) or None})
+        counts = dict(documents.counts)
+    return {"source_sha256": sha, "source_key": source_key, "pages": records, "parser_operations": counts}

@@ -6,9 +6,10 @@ from decimal import Decimal, InvalidOperation
 from math import isfinite
 import re
 
+from .numeric_evidence import header_unit_issue, numeric_witness_issue
 from .store import digest
 
-SCHEMA_VERSION = "observation-v2"
+SCHEMA_VERSION = "observation-v3"
 RAW_ID_VERSION = "observation-v1"
 QUANTITY_KINDS = frozenset({"RESOURCE", "STRATEGIC_COMPOSITION", "TECHNICAL", "EVENT", "OTHER"})
 EVIDENCE_STATES = frozenset({"VERIFIED", "UNVERIFIED", "SOURCE_BLOCKED", "CONFLICT", "NOT_APPLICABLE"})
@@ -52,6 +53,29 @@ def payload(record):
 
 
 @dataclass(frozen=True, slots=True)
+class TextSpan:
+    """Half-open Unicode code-point offsets in a named QUOTE, BLOCK or PAGE view."""
+
+    scope: str
+    view: str
+    start: int
+    end: int
+    quote_start: int = 0
+
+    def __post_init__(self):
+        _require_text(self.view, "text view")
+        if (self.scope not in {"QUOTE", "BLOCK", "PAGE"}
+                or any(type(x) is not int for x in (self.quote_start, self.start, self.end))
+                or not 0 <= self.quote_start <= self.start < self.end
+                or self.scope == "QUOTE" and self.quote_start != 0):
+            raise ValueError("Invalid numeric evidence text span")
+
+    @property
+    def in_quote(self):
+        return self.start - self.quote_start, self.end - self.quote_start
+
+
+@dataclass(frozen=True, slots=True)
 class EvidenceAnchor:
     source_id: str | None
     sha256: str | None
@@ -64,6 +88,7 @@ class EvidenceAnchor:
     locator: str | None = None
     role: str | None = None
     offset: int | None = None
+    text_span: TextSpan | None = None
 
     def __post_init__(self):
         for name in ("source_id", "quote", "locator", "role"):
@@ -76,6 +101,8 @@ class EvidenceAnchor:
             raise ValueError("Physical page numbers start at one")
         if self.offset is not None and (type(self.offset) is not int or self.offset < 0):
             raise ValueError("Evidence offset must be a nonnegative integer")
+        if self.text_span is not None and not isinstance(self.text_span, TextSpan):
+            raise ValueError("Evidence text span must declare scope, view, start and end")
         for name in ("table", "row", "column"):
             value = getattr(self, name)
             if type(value) is int and value >= 0:
@@ -189,15 +216,19 @@ class RawObservation:
                        self.denominator_basis])
 
 
-def _flat(text):
-    return " ".join(text.split())
-
-
-def _contains_value(quote, value):
-    if not quote or not value:
-        return False
-    token = re.escape(_flat(value))
-    return bool(re.search(r"(?<![0-9,.+−-])" + token + r"(?![0-9]|[,.][0-9]|[Ee][+-]?[0-9])", _flat(quote)))
+def _numeric_location_issue(raw, anchor, *, cell):
+    if anchor.offset is not None and anchor.text_span and anchor.offset != anchor.text_span.start:
+        return "NUMERIC_EVIDENCE_BINDING_MISMATCH"
+    issue = numeric_witness_issue(anchor.quote, raw.original_value, raw.original_unit,
+                                  span=anchor.text_span.in_quote if anchor.text_span else None,
+                                  cell=cell, token_state=raw.source_value_state)
+    if issue is not None:
+        return issue
+    # At new typed entries the legacy identity offset remains in the same view
+    # as the span. An offset alone cannot select a token in another view.
+    if anchor.offset is not None and anchor.text_span is None:
+        return "NUMERIC_EVIDENCE_LOCATION_INSUFFICIENT"
+    return None
 
 
 def value_evidence_issue(raw, supporting_evidence):
@@ -208,34 +239,51 @@ def value_evidence_issue(raw, supporting_evidence):
     witnesses = tuple(anchor for anchor in supporting_evidence
                       if anchor.role is None or anchor.role in VALUE_EVIDENCE_ROLES)
     if (primary.role is not None and primary.role not in VALUE_EVIDENCE_ROLES
-            or not raw.original_value or not any(char.isdigit() for char in raw.original_value)
+            or not raw.original_value or not raw.original_unit
             or not primary.sha256 or not witnesses):
         return "NUMERIC_EVIDENCE_LOCATION_INSUFFICIENT"
-    if primary.quote is not None and not _contains_value(primary.quote, raw.original_value):
-        return "NUMERIC_EVIDENCE_BINDING_MISMATCH"
-    complete = True
+    primary_cell = (all(getattr(primary, key) is not None for key in ("table", "row", "column"))
+                    or primary.role in {"VERIFIED_TABLE_CELL", "FROZEN_TABLE_CELL"})
+    primary_issue = _numeric_location_issue(raw, primary, cell=primary_cell)
+    if primary_issue == "NUMERIC_EVIDENCE_BINDING_MISMATCH":
+        return primary_issue
+    complete = primary_issue is None
+    for header in (*raw.evidence_anchors, *supporting_evidence):
+        if (header.role not in {"unit", "VALUE_UNIT_HEADER"} or header.sha256 != primary.sha256
+                or header.page != primary.page or header.table is None or header.column is None
+                or header.table != primary.table or header.column != primary.column):
+            continue
+        issue = header_unit_issue(header.quote, raw.original_unit)
+        if issue == "NUMERIC_EVIDENCE_BINDING_MISMATCH":
+            return issue
+        complete &= issue is None
     for anchor in witnesses:
         known = ("page", "table", "row", "column", "offset", "locator")
         mismatch = any(getattr(primary, key) is not None and getattr(anchor, key) is not None
                        and getattr(primary, key) != getattr(anchor, key) for key in known)
         boxes = primary.bbox is not None and anchor.bbox is not None
         matching_box = boxes and all(abs(a - b) < .01 for a, b in zip(primary.bbox, anchor.bbox))
-        if ((anchor.sha256 is not None and anchor.sha256 != primary.sha256) or mismatch or (boxes and not matching_box)
-                or (anchor.quote is not None and not _contains_value(anchor.quote, raw.original_value))):
+        typed_shape = primary.text_span and anchor.text_span
+        span_conflict = (typed_shape and (primary.text_span.scope, primary.text_span.view) ==
+                         (anchor.text_span.scope, anchor.text_span.view) and primary.text_span != anchor.text_span)
+        if ((anchor.sha256 is not None and anchor.sha256 != primary.sha256)
+                or mismatch or (boxes and not matching_box) or span_conflict):
             return "NUMERIC_EVIDENCE_BINDING_MISMATCH"
         same_page = primary.page is not None and anchor.page == primary.page
         cell = all(getattr(primary, key) is not None and getattr(primary, key) == getattr(anchor, key)
                    for key in ("table", "row", "column"))
         # Non-paged sources can identify a table cell with a complete table/row/column key.
         cell &= same_page or primary.page is None and anchor.page is None
-        if (not anchor.sha256 or not anchor.quote
-                or (primary.offset is not None and anchor.offset is None)):
+        issue = _numeric_location_issue(raw, anchor, cell=cell or anchor.role in {"VERIFIED_TABLE_CELL", "FROZEN_TABLE_CELL"})
+        if issue == "NUMERIC_EVIDENCE_BINDING_MISMATCH":
+            return issue
+        if (issue is not None or not anchor.sha256
+                or (primary.offset is not None and anchor.offset is None)
+                or (primary.text_span is not None and anchor.text_span is None)):
             complete = False
             continue
-        # Extractors locate narrative text by its recorded span or source
-        # block, so an offset is compared together with the same excerpt.
-        same_text = (same_page and anchor.offset is not None and anchor.offset == primary.offset
-                     and primary.quote is not None and _flat(anchor.quote) == _flat(primary.quote))
+        same_text = (same_page and primary.text_span is not None and anchor.text_span == primary.text_span
+                     and anchor.quote == primary.quote)
         # A box must enclose a real region. The raw location may come from the
         # same provider with small floating-point variations in coordinates.
         box = (same_page and matching_box and primary.bbox[0] < primary.bbox[2]
@@ -371,7 +419,9 @@ def _record_fields(mapping):
 
 
 def _anchor(mapping):
-    return EvidenceAnchor(**{**mapping, "bbox": tuple(mapping["bbox"]) if mapping.get("bbox") is not None else None})
+    span = mapping.get("text_span")
+    return EvidenceAnchor(**{**mapping, "bbox": tuple(mapping["bbox"]) if mapping.get("bbox") is not None else None,
+                             "text_span": TextSpan(**span) if span is not None else None})
 
 
 def raw_from_payload(mapping):

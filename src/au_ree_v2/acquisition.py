@@ -569,6 +569,43 @@ class StrictTransport:
                 if not isinstance(getattr(exc,'reason',exc),(TimeoutError,socket.timeout)) or attempt:raise
 
 
+
+def wamex_report_documents(transport, url, *, timeout=25):
+    """Read at most two PDFs from the government's registered WAMEX report listing."""
+    parsed = urllib.parse.urlsplit(url)
+    query = urllib.parse.parse_qs(parsed.query)
+    numbers = [part for key, values in query.items() if key.casefold() == 'anumber' for part in values]
+    if ((parsed.scheme, parsed.hostname, parsed.path.casefold())
+            != ('https', 'wamex.dmp.wa.gov.au', '/wamex/search/reportdetails')
+            or len(numbers) != 1 or not numbers[0].isdigit()):
+        raise ValueError('INVALID_WAMEX_REPORT_REFERENCE')
+    native = int(numbers[0])
+    payload, _ = transport(
+        'https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails/ReportDocuments_Read',
+        {'aNumber[0]': native, 'page': 1, 'pageSize': 20},
+        method='POST', timeout=timeout, max_bytes=2_000_000,
+    )
+    listing = json.loads(payload)
+    if (listing.get('Errors') or not isinstance(listing.get('Total'), int)
+            or not isinstance(listing.get('Data'), list)
+            or any(row.get('ANumber') != native for row in listing['Data'])):
+        raise ValueError('WAMEX_REPORT_IDENTITY_MISMATCH')
+    attempts = 0
+    for row in listing['Data']:
+        url = row.get('Link', '')
+        parsed = urllib.parse.urlsplit(url)
+        size = re.fullmatch(r'([\d.]+)\s*(KB|MB|GB)', row.get('FileSize', ''), re.I)
+        if (str(row.get('FileType', '')).lower() != '.pdf' or size is None
+                or parsed.scheme != 'https' or parsed.hostname != 'warsydprdstagsdspub.blob.core.windows.net'):
+            continue
+        if float(size[1]) * {'KB': 1024, 'MB': 1024**2, 'GB': 1024**3}[size[2].upper()] > 30_000_000:
+            continue
+        attempts += 1
+        data, headers = transport(url, max_bytes=30_000_000, timeout=timeout)
+        yield data, headers, url
+        if attempts >= 2:
+            break
+
 class SameSHAAlternates:
     """Bounded discovery of immutable copies; no change to declared evidence."""
     def __init__(self, root, primary):
@@ -618,7 +655,7 @@ class SameSHAAlternates:
         if not self.robots[origin] or not self.robots[origin].can_fetch('AU_REE_V2/0.1 public research', url):
             raise ValueError('ROBOTS_DISALLOWED')
 
-    def find(self, source, receipt, expected, cache):
+    def find(self, source, receipt, expected, cache, *, observe=None, timeout=25):
         import hashlib, re
         from .source_discovery import candidates
         trigger = receipt['stop_reason'].split(':')[0]
@@ -652,7 +689,7 @@ class SameSHAAlternates:
                 try:
                     if index not in self.indexes:
                         self.indexes[index] = None
-                        raw, _ = self.transport(index, max_bytes=2000000)
+                        raw, _ = self.transport(index, max_bytes=2000000, timeout=timeout)
                         if re.search(br'<form[^>]*(?:login|consent|terms)|terms\s+(?:and\s+conditions|of\s+use)|<(?:title|h1)[^>]*>[^<]*(?:consent|log.?in|sign.?in)', raw, re.I):
                             self.transport.stopped[issuer] = 'PROTECTED_INDEX_NOT_PARSED'
                             raise ValueError('PROTECTED_INDEX_NOT_PARSED')
@@ -682,7 +719,9 @@ class SameSHAAlternates:
                 attempt = dict(url=url,stage='PDF',actual_sha256='',reason='')
                 report['attempts'].append(attempt)
                 try:
-                    raw, _ = self.transport(url, max_bytes=30000000)
+                    raw, headers = self.transport(url, max_bytes=30000000, timeout=timeout)
+                    if observe is not None:
+                        observe(raw, self.transport.resolved_url, headers)
                     actual = hashlib.sha256(raw).hexdigest()
                     attempt['actual_sha256'] = actual
                     if actual not in expected:
@@ -1027,20 +1066,9 @@ def strict_refresh(root, registry, work, claims, cutoff, transport=None, dns_row
                 raw,headers,http,attempts=transport.probed.pop(key);transport.http[host]=http
                 row.update(reused_successful_probe=True,probe_http_attempts=canonical(attempts))
             elif host=='wamex.dmp.wa.gov.au' and 'ReportDetails' in source['url']:
-                import re
-                query=urllib.parse.parse_qs(urllib.parse.urlsplit(source['url']).query)
-                native=int(next(v[0] for k,v in query.items() if k.lower()=='anumber'))
-                body,headers=transport('https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails/ReportDocuments_Read',{'aNumber[0]':native,'page':1,'pageSize':20},method='POST')
-                listing=json.loads(body)
-                if listing.get('Errors') or not isinstance(listing.get('Total'),int) or not isinstance(listing.get('Data'),list) or any(r.get('ANumber')!=native for r in listing['Data']):raise ValueError('WAMEX_REPORT_IDENTITY_MISMATCH')
                 raw=None;attempted=0
-                for item in listing['Data']:
-                    if attempted>=2:break
-                    link=item.get('Link','');size=re.fullmatch(r'([\d.]+)\s*(KB|MB|GB)',item.get('FileSize',''),re.I)
-                    if str(item.get('FileType','')).lower()!='.pdf' or not size:continue
-                    if float(size[1])*{'KB':1024,'MB':1024**2,'GB':1024**3}[size[2].upper()]>30000000:continue
-                    if urllib.parse.urlsplit(link).scheme!='https' or urllib.parse.urlsplit(link).hostname!='warsydprdstagsdspub.blob.core.windows.net':continue
-                    attempted+=1;candidate,headers=transport(link,max_bytes=30000000)
+                for candidate,headers,_ in wamex_report_documents(transport, source['url']):
+                    attempted+=1
                     if not candidate.startswith(b'%PDF'):continue
                     sha=hashlib.sha256(candidate).hexdigest();(cache/(sha+'.pdf')).write_bytes(candidate)
                     if sha in expected:raw=candidate;break

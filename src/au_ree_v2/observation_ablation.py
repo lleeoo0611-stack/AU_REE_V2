@@ -93,6 +93,8 @@ def _typed_assessments(rows, metadata, pipeline, reviews, workspace=None):
                                           normalized.value, normalized.unit)
             if semantic.evidence_status == "SOURCE_BLOCKED":
                 pipeline.cache.record("assessment", subject, "SOURCE_BLOCKED", reason=semantic.reason)
+            elif semantic.evidence_status == "CONFLICT":
+                pipeline.cache.record("assessment", subject, "CONFLICT", reason=semantic.reason)
             elif semantic.comparability == "INSUFFICIENT_CONTEXT":
                 pipeline.cache.record("assessment", subject, "INSUFFICIENT_CONTEXT", reason=semantic.reason,
                                       missing_context=list(semantic.missing_context))
@@ -204,6 +206,31 @@ def _quality(rows):
     return result
 
 
+def _typed_replay_counts(rows):
+    """Count candidates, deduplicated observation groups and Projects for each outcome."""
+    arm = "E1V1"
+    counts = {}
+    for profile in (RESOURCE_PROFILE, TECHNICAL_PROFILE):
+        cohort = [row for row in rows if row["profile_id"] == profile]
+
+        def total(selected):
+            return {"candidates": len(selected),
+                    "observation_groups": len({observation_group(row, arm) for row in selected}),
+                    "projects": len({row["project_id"] for row in selected if row.get("project_id")})}
+
+        dispositions = {"evidence_status": {}, "comparability": {}}
+        for dimension, statuses in dispositions.items():
+            for status in sorted({row["integrated"][arm]["assessment"][dimension] for row in cohort}):
+                statuses[status] = total([row for row in cohort
+                                          if row["integrated"][arm]["assessment"][dimension] == status])
+        counts[profile] = {"evaluated": total(cohort), **dispositions,
+                           "usable_under_shadow_profile": total([row for row in cohort
+                                                                  if row["integrated"][arm]["analysis_feature"]])}
+    return {"arm": arm, "formal_admissions_by_shadow": 0,
+            "grouping": "A group with multiple source representations may occur in multiple outcome categories.",
+            "profiles": counts}
+
+
 def _review(files, rows):
     reference = json.loads(files["review_evaluation"].read_bytes())
     pages = read_jsonl(files["review_pages"])
@@ -236,13 +263,14 @@ def _write_outputs(root, output, rows, relations, settings, study, files, frozen
         "fixed_census_project_count": len(projects), "comparison": sections,
         "frozen_capture_and_verdict_match": _coverage(rows, frozen), "quality": _quality(rows),
         "independent_review": _review(files, rows), "relationship_digest": digest(relations),
+        "typed_replay_counts": _typed_replay_counts(rows),
         "technical_context": technical_audit([r["e0"] for r in rows if r["profile_id"] == TECHNICAL_PROFILE],
                                              [r["e1"] for r in rows if r["profile_id"] == TECHNICAL_PROFILE]),
         "input_sha256": {str(path.relative_to(root)) if path.is_relative_to(root) else name: filehash(path)
                          for name, path in sorted(files.items())},
         "code_sha256": {name: filehash(Path(__file__).with_name(name)) for name in (
             "observation_ablation.py", "observation_shadow.py", "observation_pipeline.py", "observation_schema.py",
-            "observation_incremental.py",
+            "observation_incremental.py", "numeric_evidence.py",
             "observation_semantics.py", "normalization.py", "ontology.py", "resource_use.py", "technical.py",
             "technical_tables.py", "semantic_resource.py", "semantic_technical.py", "document_processing.py", "nlp.py",
             "pdf_extract.py",

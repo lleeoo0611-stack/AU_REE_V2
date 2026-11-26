@@ -1,8 +1,10 @@
 """Bind established extraction records to the common observation contract."""
 
+from dataclasses import replace
 import json
 
-from .observation_schema import EvidenceAnchor, ManualDecision, ObservationContext, RawObservation
+from .numeric_evidence import numeric_token_spans
+from .observation_schema import EvidenceAnchor, ManualDecision, ObservationContext, RawObservation, TextSpan, VALUE_EVIDENCE_ROLES
 from .store import canonical
 
 
@@ -20,6 +22,7 @@ def _index(*values):
 def anchor_from_candidate(anchor, *, source_id=None):
     """Carry physical PDF locations and legacy locators without rewriting the source."""
     bbox = anchor.get("bbox")
+    span = anchor.get("text_span")
     return EvidenceAnchor(
         source_id=source_id or _text(anchor.get("source_key")),
         sha256=_text(anchor.get("source_sha256") or anchor.get("source_sha")),
@@ -32,7 +35,29 @@ def anchor_from_candidate(anchor, *, source_id=None):
         locator=_text(anchor.get("locator")),
         role=_text(anchor.get("role") or anchor.get("field")),
         offset=_index(anchor.get("offset"), anchor.get("token_occurrence_in_quote")),
+        text_span=TextSpan(**span) if isinstance(span, dict) else span,
     )
+
+
+def _legacy_resource_span(anchor, anchors, native):
+    """Recover the historic resource block offset from its captured full text witness."""
+    if anchor.text_span or anchor.role != "token" or anchor.offset is None or not anchor.quote or not anchor.bbox:
+        return anchor
+    blocks = {other.quote for other in anchors if other.role == "estimate_reference" and other.quote
+              and other.page == anchor.page and other.sha256 == anchor.sha256 and other.bbox == anchor.bbox}
+    if len(blocks) != 1:
+        return anchor
+    block = blocks.pop()
+    quote_start = block.find(anchor.quote)
+    if quote_start < 0 or block.find(anchor.quote, quote_start + 1) != -1:
+        return anchor
+    matches = [(start, end) for start, end in numeric_token_spans(block, native.get("token"), native.get("unit"))
+               if start == anchor.offset and quote_start <= start and end <= quote_start + len(anchor.quote)]
+    if len(matches) != 1:
+        return anchor
+    start, end = matches[0]
+    return replace(anchor, text_span=TextSpan("BLOCK", "MUPDF_NATIVE_BLOCK_WHITESPACE_FOLDED",
+                                             start, end, quote_start))
 
 
 def _kind(candidate, variable):
@@ -59,14 +84,19 @@ def raw_from_candidate(candidate, *, source_id=None, extractor_version, metadata
         for anchor in candidate.get("anchors", ())
         if anchor.get("source_sha256") or anchor.get("source_sha")
     )
+    # Legacy narrative offsets were block-relative. Translate only the historic
+    # resource extractor's exactly co-located block and uniquely located excerpt.
+    if candidate.get("profile_id") == "DIRECT_RESOURCE_UNIT_COMPARISON_V1":
+        anchors = tuple(_legacy_resource_span(anchor, anchors, native) for anchor in anchors)
     located = next((anchor for anchor in anchors if anchor.sha256 == sha and anchor.page == page
-                    and anchor.role in {"token", "FROZEN_TABLE_CELL", "VERIFIED_TABLE_CELL"}), None)
+                    and anchor.role in VALUE_EVIDENCE_ROLES), None)
     evidence = anchor_from_candidate({
         "source_sha256": sha, "physical_page": page,
         "table_index": _index(located.table if located else None, provenance.get("table_index")),
         "row_index": _index(located.row if located else None, provenance.get("row_index")),
         "column_index": _index(located.column if located else None, provenance.get("column_index")),
         "offset": located.offset if located else None,
+        "text_span": located.text_span if located else None,
         "bbox": located.bbox if located and located.bbox else provenance.get("bbox"),
         "quote": located.quote if located and located.quote else candidate.get("source_excerpt") or
                  (metadata.get("source_excerpt") if not anchors else None),

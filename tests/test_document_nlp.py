@@ -8,7 +8,9 @@ import pymupdf
 
 from au_ree_v2.derived_cache import DerivedCache
 from au_ree_v2.document_processing import DocumentUnavailable, PdfDocumentCache
-from au_ree_v2.nlp import PageIndex, automatic_observations, extract_bound_observations, recognize_source
+from au_ree_v2.nlp import (
+    PageIndex, automatic_observations, discover_source_observations, extract_bound_observations, recognize_source,
+)
 from au_ree_v2.store import filehash
 
 
@@ -16,6 +18,11 @@ def mock_ocr(path, page, tessdata):
     return {"source_sha256": filehash(path), "physical_page": page,
             "model_sha256": filehash(tessdata / "eng.traineddata"),
             "method": "MOCK_OCR", "text": "Mineral resource 6 Mt."}
+
+
+def mock_ocr_comparison(document, page, tessdata, model_sha):
+    return {"source_sha256": document.sha256, "physical_page": page, "model_sha256": model_sha,
+            "method": "MUPDF_TESSERACT_200DPI_SELECTED_PAGE", "text": "Mineral resource 7 Mt."}
 
 
 class DocumentNLPTests(unittest.TestCase):
@@ -182,6 +189,29 @@ class PersistentDocumentNLPTests(unittest.TestCase):
             self.assertNotEqual(changed["model_sha256"], first["model_sha256"])
             self.assertEqual((stages["pdf"], stages["ocr"], ran), ({"HIT": 3}, {"COMPUTED": 1}, 1))
 
+    @patch("au_ree_v2.document_processing.PdfDocument._comparison_ocr", new=mock_ocr_comparison)
+    def test_opt_in_ocr_support_does_not_replace_readable_native_text(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            sha = self.make_pdf(root, "Mineral resource 6 Mt.")
+            (root / "eng.traineddata").write_bytes(b"mock OCR model")
+            outputs = []
+            for expected in ("COMPUTED", "HIT"):
+                cache = DerivedCache(root / "cache")
+                with PdfDocumentCache(root, cache=cache) as documents:
+                    document = documents.open(sha)
+                    primary = document.evidence(1, tessdata=root)
+                    self.assertEqual(primary["method"], "PYPDF_NATIVE")
+                    self.assertIsNone(primary["model_sha256"])
+                    compared = document.evidence(1, tessdata=root, compare_ocr=True)
+                    self.assertEqual(compared["text"], primary["text"])
+                    self.assertEqual(compared["status"], "PARSER_DISAGREEMENT_REQUIRES_REVIEW")
+                    self.assertEqual(compared["text_views"]["MUPDF_TESSERACT_200DPI_SELECTED_PAGE"],
+                                     "Mineral resource 7 Mt.")
+                    self.assertEqual(cache.receipt()["counts"]["ocr"], {expected: 1})
+                    outputs.append(compared)
+            self.assertEqual(*outputs)
+
     def test_missing_original_never_returns_cached_extraction(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
@@ -207,6 +237,48 @@ class PersistentDocumentNLPTests(unittest.TestCase):
             absent, stages, _ = result()
             self.assertEqual(absent["status"], "SOURCE_BLOCKED")
             self.assertEqual(stages["extraction"], {"SOURCE_BLOCKED": 1})
+
+    def test_discovery_reads_selected_pages_with_no_frozen_candidate_inputs(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / "data").mkdir()
+            (root / "data/claims.json").write_text('{"projects":[]}', encoding="utf-8")
+            file = root / "issuer-original.pdf"
+            with pymupdf.open() as pdf:
+                page = pdf.new_page()
+                page.insert_text((40, 60), "Crater Project mineral resource is 6 Mt at 200 ppm TREO.")
+                page.insert_text((40, 90), "Testwork measured 90% Nd recovery, but 70% Dy recovery.")
+                pdf.new_page().insert_text((40, 60), "Copyright holder and report layout.")
+                pdf.new_page()
+                pdf.save(file)
+            sha = filehash(file)
+            source = {"key": "issuer", "sha256": sha, "path": file.name, "kind": "pdf",
+                      "url": "https://example.org/report.pdf", "publication_date": "2026-01-01"}
+            registry = [{"entity_id": "CRATER", "native_id": "crater", "aliases": ["Crater"]}]
+
+            def discover():
+                return discover_source_observations(root, source, registry, page_numbers=[4, 1, 3, 2],
+                                                    cache=DerivedCache(root / "cache"))
+
+            initial, repeat = discover(), discover()
+            self.assertEqual(initial["pages"], repeat["pages"])
+            self.assertEqual(repeat["parser_operations"].get("opened_documents", 0), 0)
+            self.assertEqual([row["status"] for row in initial["pages"]],
+                             ["DISCOVERED", "NO_CANDIDATES", "UNREADABLE", "PAGE_UNAVAILABLE"])
+            page = initial["pages"][0]
+            self.assertIn("PYPDF_NATIVE", page["evidence"]["text_views"])
+            candidates = page["observations"]
+            self.assertTrue({"6", "200", "90%", "70%"} <= {row.original_value for row in candidates})
+            discovery = [item for item in candidates if item.extractor_version == "source-page-discovery-v1"]
+            for item in discovery:
+                self.assertEqual(item.project_id, "CRATER")
+                self.assertEqual(item.publication_date, "2026-01-01")
+                anchor = item.evidence
+                start, end = anchor.text_span.in_quote
+                self.assertEqual(anchor.quote[start:end], item.original_value)
+            file.unlink()
+            with self.assertRaisesRegex(DocumentUnavailable, "PDF_BYTES_UNAVAILABLE"):
+                discover()
 
     def test_pdf_edition_change_recomputes_only_affected_extraction(self):
         with tempfile.TemporaryDirectory() as folder:

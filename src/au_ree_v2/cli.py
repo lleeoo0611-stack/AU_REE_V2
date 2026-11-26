@@ -120,6 +120,18 @@ def _run_mcda(args, root, out, prepared, config):
 
 
 def execute(args):
+    if args.module == 'observation-validate':
+        if not args.out:
+            raise ValueError('Observation validation requires --out')
+        if args.cache_plan or args.force_stage or args.shadow_reviews:
+            raise ValueError('Use semantic-ablation for shadow-only planning, forcing or review journals')
+        if args.dry_run:
+            return {'status': 'DRY_RUN', 'module': args.module, 'writes': False}
+        from .observation_validation import run
+        libraries = [*args.static_pdfs, *([args.replay_assets] if args.replay_assets else [])]
+        return run(args.root, args.out, libraries=libraries, online=not args.recovery_offline,
+                   request_budget=args.recovery_budget, cache_dir=args.cache_dir, cache_mode=args.cache_mode,
+                   database=args.database, formal_run=args.shadow_run, rscript=args.rscript, tessdata=args.tessdata)
     cache_plan = getattr(args, 'cache_plan', False)
     cache_controls = (getattr(args, 'cache_dir', None) or getattr(args, 'force_stage', ())
                       or getattr(args, 'shadow_reviews', None) or getattr(args, 'cache_mode', 'use') != 'use')
@@ -781,7 +793,7 @@ def _execute(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate','export-summary','experiment','semantic-shadow','semantic-ablation','cache-status','mcda-plan'])
+    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate','export-summary','experiment','semantic-shadow','semantic-ablation','observation-validate','cache-status','mcda-plan'])
     parser.add_argument('--root',default='.')
     parser.add_argument('--work')
     parser.add_argument('--database');parser.add_argument('--out')
@@ -792,6 +804,8 @@ def main():
     parser.add_argument('--shadow-originals',help='Existing SHA-named static PDF directory')
     parser.add_argument('--shadow-run',help='Existing Phase 22 run directory for standalone replay')
     parser.add_argument('--shadow-output',help='Separate output directory for experimental results')
+    parser.add_argument('--recovery-offline', action='store_true', help='Use only local sources for observation-validate')
+    parser.add_argument('--recovery-budget', type=int, default=80, help='Maximum network requests for observation-validate')
     parser.add_argument('--cache-dir', help='Disposable cross-run cache for the unified shadow pipeline')
     parser.add_argument('--cache-mode', choices=('use', 'off', 'refresh'), default='use')
     parser.add_argument('--cache-plan', action='store_true', help='Read-only semantic-ablation dependency preview')
@@ -824,7 +838,7 @@ def main():
     parser.add_argument('--before');parser.add_argument('--after')
     args=parser.parse_args()
     try:
-        if args.module == 'semantic-ablation' or args.unified_observations:
+        if args.module in ('semantic-ablation', 'observation-validate') or args.unified_observations:
             import pymupdf
             pymupdf.set_messages(stream=sys.stderr)
         if args.module=='diff':
@@ -833,7 +847,7 @@ def main():
             before=json.loads(Path(args.before).read_text(encoding='utf-8'));after=json.loads(Path(args.after).read_text(encoding='utf-8'))
             result={table:{'added':[json.loads(v) for v in sorted({canonical(r) for r in after[table]}-{canonical(r) for r in before[table]})],
                            'removed':[json.loads(v) for v in sorted({canonical(r) for r in before[table]}-{canonical(r) for r in after[table]})]} for table in before}
-        elif args.module == 'semantic-ablation' or args.unified_observations:
+        elif args.module in ('semantic-ablation', 'observation-validate') or args.unified_observations:
             from contextlib import redirect_stdout
             with redirect_stdout(sys.stderr):
                 result = execute(args)
@@ -842,6 +856,8 @@ def main():
         print(json.dumps(result,ensure_ascii=False,indent=2))
         if args.module=='experiment' and result.get('status')=='BLOCKED' and not args.dry_run:
             sys.exit(2)
+        if args.module == 'observation-validate' and result.get('status') == 'FAILED':
+            sys.exit(1)
     except Exception as exc:
         print(str(exc),file=sys.stderr)
         sys.exit(1)
