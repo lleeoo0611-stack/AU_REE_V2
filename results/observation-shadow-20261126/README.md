@@ -53,4 +53,13 @@ python -m au_ree_v2 semantic-shadow --shadow-originals "$ASSETS" \
 
 正式離線流程可附 `--semantic-shadow --shadow-originals "$ASSETS" --shadow-output work/shadow-side`，正式出表完成後，會核對 Census 與技術讀取投影，再產生獨立影子結果。舊的 Gap173 來源收據與目前登錄的指紋不同。重跑正式流程使用 coverage-locked 的相符收據及原件，影子評估採與凍結專案和用途相符的讀取投影。
 
+已用 `all` 從 coverage-locked 收據與原件離線重建 `20261126T110134-be870614`，同次選用式影子流程成功。該輪先啟動的是工程驗證版本，之後以封存比較器重讀新正式產物，重現本報告的逐筆決策、關係和科學統計。正式 Census、C1 檔及 16 組排名都與同快照基準逐位元一致。資料庫的邏輯指紋有變化，逐表比較只顯示 618 筆來源存放路徑，以及其中 4 筆原始回應的收據後設資料有差異。觀測、實體、關係、審查佇列與試驗案例的資料列一致。
+
+```sh
+python -m au_ree_v2 all --as-of 2026-11-13 --source-mode offline \
+  --source-replay "$CURRENT_RECEIPT" --replay-assets "$CURRENT_ASSETS" \
+  --tessdata data/ocr --rscript "$RSCRIPT" --work work/formal-shadow-current \
+  --semantic-shadow --shadow-originals "$CURRENT_ASSETS" --shadow-output work/formal-side
+```
+
 [程式版本、輸入快照、指紋及驗收](verification.json)

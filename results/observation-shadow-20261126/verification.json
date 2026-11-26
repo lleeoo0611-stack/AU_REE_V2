@@ -27,7 +27,105 @@
   },
   "code_freeze": "e5b06c7",
   "formal_opt_in_rebuild": {
-    "status": "RUNNING_AT_LOCAL_SHADOW_VALIDATION"
+    "actual_logical_database_sha256": "12647d075772f992a85713385313e065d9dd6c389b8bb3693e92ef0de7ef75bb",
+    "actual_run": "20261126T110134-be870614",
+    "baseline_logical_database_sha256": "86a3f563043b70dbf39b588260caab65d6c4b9f10b09026dbb2d910590058839",
+    "baseline_run": "20261125T075247-2bacff4a",
+    "changed_files": {
+      "project-summary/coverage.json": {
+        "after_sha256": "68dfc365ddf68f6939ff008ccfd60668a1d94bbff08267d0e08df317b2ef40be",
+        "before_sha256": "ac3ab7b47e0961c16ec580a8edcc870905f61dcec4b7ada4482704642609cce2"
+      }
+    },
+    "changed_raw_receipt_inputs": {
+      "resolved_evidence.csv": "6a5ca41067b4d1388484165b60b746ba7e6692bb3f660beb690f7df49b76e824"
+    },
+    "frozen_comparator_replayed_on_rebuilt_formal_projection": true,
+    "initial_shadow_integration_smoke_test": "SHADOW_COMPLETE",
+    "initial_shadow_used_pre_freeze_B1_comparator": true,
+    "logical_table_differences": {
+      "census_screen_index": {
+        "added": 0,
+        "changed_fields": {},
+        "removed": 0,
+        "updated": 0
+      },
+      "entities": {
+        "added": 0,
+        "changed_fields": {},
+        "removed": 0,
+        "updated": 0
+      },
+      "observations": {
+        "added": 0,
+        "changed_fields": {},
+        "removed": 0,
+        "updated": 0,
+        "variables": {}
+      },
+      "records": {
+        "added": 0,
+        "changed_fields": {},
+        "removed": 0,
+        "updated": 0
+      },
+      "relations": {
+        "added": 0,
+        "changed_fields": {},
+        "removed": 0,
+        "updated": 0
+      },
+      "review_queue": {
+        "added": 0,
+        "changed_fields": {},
+        "removed": 0,
+        "updated": 0
+      },
+      "sources": {
+        "added": 0,
+        "changed_fields": {
+          "metadata": 618,
+          "path": 618
+        },
+        "metadata_fields": {
+          "original_responses": 4,
+          "path": 618
+        },
+        "removed": 0,
+        "updated": 618
+      },
+      "study_cases": {
+        "added": 0,
+        "changed_fields": {},
+        "removed": 0,
+        "updated": 0
+      }
+    },
+    "same_files": {
+      "REE project census.csv": "a643607a1fe104e3cd7c6590fc4752e37a09902087000882430931aa69b25308",
+      "beneficiation_concentrate_screen/ranking.csv": "32406d2c49f92abd94bb64946bb84ac1bac0d9622fd43c1d59bebd9bc3109336",
+      "census.csv": "127df6f912bedf5134746fc1f35dae557214f9751b390a20ea67d83ef865e54c",
+      "disclosure_only/ranking.csv": "76b5325be5ed7c98a5e3cb8f0d33671c942ccdc6ce4d4515465151390610a229",
+      "issuer_resource_composition/ranking.csv": "bb888f757dc9c1440dceab230af06af91b216fc3ce406c7229d5f8ccbb56023f",
+      "issuer_resource_concentrate/ranking.csv": "b7fb5541b8ca97e46f91da8b683bb1843fa9d4c60e2c1c120703db7da8f6381d",
+      "issuer_resource_concentrate_recovery/ranking.csv": "cd98fd10fa368599daf6c848f7d96a1a7e59a7aa7798b917d849507fd56dfef9",
+      "issuer_resource_financing_milestone/ranking.csv": "aa8a59cb5b47269c809d698a1b7a155f720e70cac90d67f5aa75e0842de44cf7",
+      "issuer_resource_infrastructure/ranking.csv": "28923db7bda6b54e08959067958719d0f30d628b9105f110e6eb735bb3f2cb60",
+      "issuer_resource_study/ranking.csv": "ec22df671fbf7aa883ee4945c4bafd7e8d3ae017b6683fd62a8602533edcc61d",
+      "official_wa_resource_screen/ranking.csv": "fa91b7aa0674e3598d7098c11c56badd3f5ba1b53526f5d638b83c9ca0f55cd9",
+      "project-summary/formal_c1_gates.csv": "72a3e1d52b8bc3dec34de7b40fb0332f1cf5b99c44ab53f4c028c53bd9ea6b13",
+      "project-summary/formal_c1_release.json": "b93c1770e86bd47c63920e25dee450b2514b72035640c18b6b399f4ec2aab5a8",
+      "resource_disclosure/ranking.csv": "107c0e1a59207614c9d637adcb0c18fc130f82f8201deb8ad4f24533cf84bbee",
+      "resource_infrastructure_pilot/ranking.csv": "1d85eff70f3e54ef6fe379a86bbf47526f80fdf4261da6957040ee185c333c7b",
+      "resource_port_disclosure/ranking.csv": "49f79d4b678e155da4f94bbe82502fe15da3d2122fb08cbf686b9bbc1daebef0",
+      "six_domain/ranking.csv": "c756306e08eb78973f2fa0df4ab8cfdaae901618d4f37bd2781a9fcaa2923499",
+      "six_domain_disclosure/ranking.csv": "466b85c422c2b151439d2a7e838a38f77245089e645c7fc4ea57c87c280465aa",
+      "technical_process_concentrate_fixed/ranking.csv": "650fb24c3391ff116ea23d1bf1b23ac68842db52e4162908a0e17b7d7821a723",
+      "technical_process_concentrate_sample_minmax/ranking.csv": "beb33bc54d5804ff0629c26e21b645b8572ae0ac0c98153abe76c08ca6da71d8"
+    },
+    "same_logical_database": false,
+    "same_shadow_scientific_payload": true,
+    "status": "COMPLETED"
   },
   "frozen_formal_input_run": "20261121T180616-f9542b39",
   "historical_and_formal_paths_equal": [
