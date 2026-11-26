@@ -378,7 +378,10 @@ def observation_suite(root, args, output):
         (moved_root / folder).symlink_to(root / folder, target_is_directory=True)
     (moved_root / 'README.md').write_text('Benchmark probe with unrelated documentation edit.\n', encoding='utf-8')
     moved_originals = probes / 'relocated-originals'
-    moved_originals.symlink_to(originals, target_is_directory=True)
+    moved_originals.mkdir()
+    for asset in originals.iterdir():
+        if asset.is_file():
+            (moved_originals / asset.name).symlink_to(asset)
     if execute(probes, 'relocation_and_documentation', chosen_root=moved_root,
                asset_root=moved_originals, cache=restored_cache) != baseline:
         raise ValueError('Relocation or unrelated documentation changed the science artifacts')
