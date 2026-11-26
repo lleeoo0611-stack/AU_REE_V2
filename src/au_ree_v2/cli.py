@@ -93,6 +93,41 @@ def source_mode(args):
 
 
 def execute(args):
+    shadow_only = args.module == 'semantic-shadow'
+    enabled = shadow_only or getattr(args, 'semantic_shadow', False)
+    if not enabled:
+        return _execute(args)
+    if not shadow_only and args.module != 'all':
+        raise ValueError('--semantic-shadow applies to all or the standalone semantic-shadow replay')
+    originals, shadow_out = getattr(args, 'shadow_originals', None), getattr(args, 'shadow_output', None)
+    if not originals or not shadow_out:
+        raise ValueError('Shadow requires --shadow-originals and --shadow-output')
+    if args.dry_run:
+        return {'status':'DRY_RUN','module':args.module,'semantic_shadow':True,'writes':False}
+    from .observation_shadow import run as observation_shadow
+    if shadow_only:
+        if not getattr(args, 'shadow_run', None):
+            raise ValueError('Standalone shadow requires the existing Phase 22 --shadow-run directory')
+        return observation_shadow(Path(args.root).resolve(), originals, args.shadow_run, shadow_out,
+                                  development_only=getattr(args, 'shadow_development_only', False))
+    if getattr(args, 'shadow_run', None):
+        raise ValueError('The all command uses its own completed run for the shadow inputs')
+    target=Path(shadow_out).resolve()
+    work=Path(getattr(args,'work',None) or Path(args.root)/'work/phase5').resolve()
+    if target.is_relative_to(work/'runs') or target.is_relative_to(work/'databases'):
+        raise ValueError('Shadow output must be separate from formal run and database directories')
+    summary = _execute(args)
+    # All official outputs and the latest receipt are already finalized. A failed
+    # experimental assay is reported separately from the completed formal run.
+    try:
+        shadow = observation_shadow(Path(args.root).resolve(), originals, summary['output_dir'], target,
+                                    development_only=getattr(args, 'shadow_development_only', False))
+    except (OSError, ValueError, KeyError) as exc:
+        shadow = {'status':'SHADOW_BLOCKED','reason':str(exc)}
+    return {**summary,'semantic_shadow':shadow}
+
+
+def _execute(args):
     root=Path(args.root).resolve()
     if args.module=='experiment':
         from .experiments import run_experiment
@@ -660,11 +695,16 @@ def execute(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate','export-summary','experiment'])
+    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate','export-summary','experiment','semantic-shadow'])
     parser.add_argument('--root',default='.')
     parser.add_argument('--work')
     parser.add_argument('--database');parser.add_argument('--out')
     parser.add_argument('--experiment-config',help='Versioned research experiment definition; independent of formal source modes')
+    parser.add_argument('--semantic-shadow',action='store_true',help='Run source-bound comparison after formal publication')
+    parser.add_argument('--shadow-originals',help='Existing SHA-named static PDF directory')
+    parser.add_argument('--shadow-run',help='Existing Phase 22 run directory for standalone replay')
+    parser.add_argument('--shadow-output',help='Separate output directory for experimental results')
+    parser.add_argument('--shadow-development-only',action='store_true',help='Exclude preregistered review groups')
     parser.add_argument('--as-of',default=datetime.now(timezone.utc).date().isoformat())
     parser.add_argument('--project',help='Stable native project registry ID')
     parser.add_argument('--refresh',action='store_true')

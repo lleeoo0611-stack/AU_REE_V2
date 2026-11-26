@@ -1,0 +1,77 @@
+{
+  "cutoff": "2026-11-13",
+  "denominator_scope": "Sampled physical pages. Counts do not estimate whole-corpus extraction performance.",
+  "documents": [
+    {
+      "available_date": "2026-11-18",
+      "cutoff_date_basis": "DOCUMENT_PUBLICATION",
+      "cutoff_date_used": "2024-05-02",
+      "cutoff_status": "WITHIN_CUTOFF",
+      "empty_native_text_pages": 0,
+      "group_id": "c4cdf5cdecc15d3b2e914963f214ec6671b54003da1b55524b3263b14b5d5687",
+      "physical_pages": 51,
+      "project_ids": [
+        "AU-d1aeb21e18e60fe8e32e"
+      ],
+      "publication_date": "2024-05-02",
+      "sample_frame_counts": {
+        "RESOURCE": 12
+      },
+      "sampled_physical_pages": [
+        1,
+        19,
+        21,
+        40
+      ],
+      "source_key": "r4_deep_leads_rubble_mound_wind_break",
+      "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
+      "strata": [
+        "RESOURCE"
+      ]
+    },
+    {
+      "available_date": "2026-11-17",
+      "cutoff_date_basis": "DOCUMENT_PUBLICATION",
+      "cutoff_date_used": "2026-03-31",
+      "cutoff_status": "WITHIN_CUTOFF",
+      "empty_native_text_pages": 0,
+      "group_id": "34638d0bb4b7a6786ed3d94a651c0ab745a27f43d92811a7f7499a4b2213ca25",
+      "physical_pages": 88,
+      "project_ids": [
+        "AU-7537d9555628040fab40"
+      ],
+      "publication_date": "2026-03-01",
+      "sample_frame_counts": {
+        "RESOURCE": 47
+      },
+      "sampled_physical_pages": [
+        24,
+        34,
+        40,
+        77
+      ],
+      "source_key": "austrade_2026_prospectus_pdf",
+      "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+      "strata": [
+        "RESOURCE"
+      ]
+    }
+  ],
+  "independent_review": "PENDING",
+  "page_count": 8,
+  "reference_fields": [
+    "project_id",
+    "quantity",
+    "token",
+    "unit",
+    "context",
+    "verdict",
+    "quote",
+    "token_occurrence_in_quote"
+  ],
+  "sampling": "Three source-topic-cue pages and one non-cue page per frozen document and topical stratum. Sampled pages are fixed by a seeded SHA order; no predictions or reference answers enter selection.",
+  "seed": "AU-REE-OBSERVATIONS-20261126-R1",
+  "source_count": 2,
+  "source_group_manifest_sha256": "0826fd86db8aec6bbde975fd1e96e04b6c59b11632688442b60add6861fa0be6",
+  "source_page_packet_sha256": "6de42a4060a034f14e187d2f47b45a927ab40850e127dc9cdf0603dfea10452c"
+}
