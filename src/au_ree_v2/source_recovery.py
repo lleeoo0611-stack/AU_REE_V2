@@ -15,6 +15,7 @@ from .acquisition import (
     ASIC_REGISTER_KIND, STRICT_HOSTS, SameSHAAlternates, StrictTransport,
     asic_capture_date, declared_json_hash, strict_failure_status, wamex_report_documents,
 )
+from .census_policy import summary_settings
 from .derived_cache import atomic_json
 from .security import public_export, sensitive_reference
 from .store import digest, filehash
@@ -359,6 +360,9 @@ def _impact(root, release, missing):
     rows = {sha: defaultdict(set) for sha in missing}
     panels = defaultdict(set)
     input_hashes = {}
+    provenance_name = summary_settings(root)[0]['output_files']['provenance']
+    if Path(provenance_name).name != provenance_name or not provenance_name.endswith('.csv'):
+        raise ValueError('Invalid Census provenance artifact name')
 
     def read(name):
         path = release / name
@@ -372,7 +376,7 @@ def _impact(root, release, missing):
             if project:
                 panels[project].add(line['panel'])
     for filename, source, key, columns in (
-        ('field_provenance.csv', 'source_sha256', 'census_fields', ('project_id', 'column')),
+        (provenance_name, 'source_sha256', 'census_fields', ('project_id', 'column')),
         ('resource_statement_observations.csv', 'source_sha256', 'resource_observations', ('project_id', 'observation_id', 'variable')),
         ('mcda_criterion_lineage.csv', 'evidence', 'analysis_inputs', ('project_id', 'panel', 'criterion')),
         ('formal_c1_gates.csv', 'evidence', 'eligibility_gates', ('project_id', 'gate')),

@@ -59,6 +59,13 @@ class RecoveryTests(unittest.TestCase):
         self.library.mkdir()
         (self.root / LOCK).parent.mkdir(parents=True)
         (self.root / LOCK).write_text('[]\n')
+        config = self.root / 'config'
+        config.mkdir()
+        (config / 'summary_rules.json').write_text(json.dumps({'parameters': {'output_files': {
+            'source_key': 'fixture', 'source_file': 'fixture.csv',
+            'value': {'provenance': 'census-lineage.csv'},
+        }}}))
+        (config / 'researcher_rule_decisions.json').write_text('{"decisions": []}')
         FakeTransport.documents = {}
         FakeTransport.requested = []
 
@@ -192,7 +199,7 @@ class RecoveryTests(unittest.TestCase):
     def test_impact_separates_direct_and_potential_panel_lineage(self):
         locked = source('original', PDF)
         self.seal([locked])
-        self.write_csv('field_provenance.csv', [{'project_id': 'P', 'column': 'ore',
+        self.write_csv('census-lineage.csv', [{'project_id': 'P', 'column': 'ore',
                                                  'source_sha256': locked['sha256']}])
         self.write_csv('mcda_criterion_lineage.csv', [
             {'project_id': 'P', 'panel': 'direct', 'criterion': 'R1',
