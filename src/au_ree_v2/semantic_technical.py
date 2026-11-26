@@ -12,8 +12,7 @@ import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from .pdf_extract import _native_tables
-from .store import filehash
+from .document_processing import DocumentUnavailable, PdfDocumentCache
 from .technical import technical_compare
 from .technical_tables import quantity_binding, technical_cells, technical_numbers
 
@@ -213,52 +212,65 @@ def _technical_context(record, texts, actual, relations):
                 status="SOURCE_VERIFIED_CANDIDATE")
 
 
-def extract_technical(candidates, assets):
+def extract_technical(candidates, assets, *, documents=None):
     """Verify original cells and attach explicit procedure links before scoring."""
+    return reextract_technical(baseline_technical(candidates), assets, documents=documents)
+
+
+def reextract_technical(captured, assets, *, documents=None):
+    """Re-read source-bound cells using the frozen or live legacy projection."""
+    if documents is None:
+        with PdfDocumentCache(assets) as cache:
+            return reextract_technical(captured, assets, documents=cache)
     import pymupdf
 
     groups = defaultdict(list)
-    for row in baseline_technical(candidates):
+    for row in captured:
         groups[row["source_sha256"]].append(row)
     result = []
-    for sha, rows in sorted(groups.items()):
+    for sha, rows in sorted(groups.items(), key=lambda item: str(item[0])):
         relevant = [row for row in rows if row["native"]["quantity"] == "extraction_pct"]
-        other = [row for row in rows if row["native"]["quantity"] != "extraction_pct"]
-        result.extend(other)
+        result.extend(row for row in rows if row["native"]["quantity"] != "extraction_pct")
         if not relevant:
             continue
-        path = Path(assets) / sha
-        if not path.is_file() or filehash(path) != sha:
+        try:
+            document = documents.open(sha)
+        except DocumentUnavailable:
             result.extend(dict(row, extraction_version=VERSION, status="BLOCKED",
                                evidence_reason="ORIGINAL_TECHNICAL_SOURCE_UNVERIFIED") for row in relevant)
             continue
-        with pymupdf.open(path) as pdf:
-            texts = [page.get_text(sort=False) for page in pdf]
-            relations = {}
-            geometry_by_page = {}
-            for row in relevant:
-                page = row["physical_page"]
-                box = row["provenance"]["bbox"]
-                row["extraction_version"] = VERSION
-                if row["evidence_reason"]:
-                    result.append(dict(row, status="BLOCKED"))
-                    continue
-                if not isinstance(page, int) or not 1 <= page <= len(pdf) or not box:
-                    result.append(dict(row, status="BLOCKED", evidence_reason="ORIGINAL_TECHNICAL_LOCATOR_UNBOUND"))
-                    continue
-                rect = pymupdf.Rect(box)
-                if not pdf[page - 1].rect.contains(rect) or rect.is_empty:
-                    result.append(dict(row, status="BLOCKED", evidence_reason="ORIGINAL_TECHNICAL_LOCATOR_UNBOUND"))
-                    continue
-                if page not in geometry_by_page:
-                    tables = _native_tables(pdf, page, None, True, "document-recognition-v6-context-bound")
-                    geometry_by_page[page] = {
-                        (c["table_index"], c["row_index"], c["column_index"]): c
-                        for table in tables
-                        for c in technical_cells(table, pdf[page - 1].get_text(sort=True))
-                        if c["quantity"] == "extraction_pct"}
-                indices = tuple(row["provenance"][k] for k in ("table_index", "row_index", "column_index"))
-                result.append(_technical_context(row, texts, geometry_by_page[page].get(indices), relations))
+        texts = [document.text(page) for page in range(1, len(document) + 1)]
+        relations = {}
+        geometry_by_page = {}
+        for original in relevant:
+            row = dict(original, extraction_version=VERSION)
+            page = row["physical_page"]
+            box = row["provenance"]["bbox"]
+            if row["evidence_reason"]:
+                result.append(dict(row, status="BLOCKED"))
+                continue
+            if type(page) is not int or not 1 <= page <= len(document) or not box:
+                result.append(dict(row, status="BLOCKED", evidence_reason="ORIGINAL_TECHNICAL_LOCATOR_UNBOUND"))
+                continue
+            rect = pymupdf.Rect(box)
+            if not pymupdf.Rect(document.bounds(page)).contains(rect) or rect.is_empty:
+                result.append(dict(row, status="BLOCKED", evidence_reason="ORIGINAL_TECHNICAL_LOCATOR_UNBOUND"))
+                continue
+            if page not in geometry_by_page:
+                tables, error = document.tables(page)
+                geometry_by_page[page] = ({
+                    (cell["table_index"], cell["row_index"], cell["column_index"]): cell
+                    for table in tables
+                    for cell in technical_cells(table, document.text(page, positioned=True))
+                    if cell["quantity"] == "extraction_pct"
+                }, error)
+            cells, error = geometry_by_page[page]
+            if error:
+                result.append(dict(row, status="BLOCKED", evidence_reason="ORIGINAL_TECHNICAL_TABLE_UNREADABLE",
+                                   table_parser_error=error))
+                continue
+            indices = tuple(row["provenance"][key] for key in ("table_index", "row_index", "column_index"))
+            result.append(_technical_context(row, texts, cells.get(indices), relations))
     return sorted(result, key=lambda row: row["candidate_id"])
 
 

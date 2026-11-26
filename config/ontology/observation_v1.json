@@ -1,0 +1,53 @@
+{
+  "version": "observation-ontology-v1",
+  "exact_labels": {
+    "resource_kind": {
+      "Exploration Target": "EXPLORATION_TARGET"
+    },
+    "category": {
+      "Measured": "MEASURED",
+      "Indicated": "INDICATED",
+      "Inferred": "INFERRED"
+    },
+    "chemical_basis": {
+      "Rare earth elements": "REE",
+      "Rare earth oxides": "REO",
+      "Total rare earth oxides": "TREO",
+      "Neodymium": "Nd",
+      "Praseodymium": "Pr",
+      "Dysprosium": "Dy",
+      "Terbium": "Tb"
+    },
+    "material_basis": {
+      "Whole ore": "WHOLE_ORE",
+      "Concentrate": "CONCENTRATE",
+      "Product": "PRODUCT"
+    },
+    "denominator_basis": {
+      "Whole ore": "WHOLE_ORE",
+      "Concentrate": "CONCENTRATE",
+      "Product": "PRODUCT",
+      "Total rare earth oxides": "TREO"
+    },
+    "quantity_kind": {
+      "Stage recovery": "STAGE_RECOVERY",
+      "Mineralogy": "MINERALOGY",
+      "Feed material": "FEED_MATERIAL"
+    },
+    "process": {
+      "Beneficiation": "BENEFICIATION",
+      "Leaching": "LEACHING",
+      "Separation": "SEPARATION"
+    },
+    "measurement_role": {
+      "Engineering design": "ENGINEERING_DESIGN",
+      "Measured testwork": "TESTWORK"
+    },
+    "scale": {
+      "Laboratory scale": "LABORATORY",
+      "Pilot scale": "PILOT",
+      "Demonstration scale": "DEMONSTRATION",
+      "Commercial scale": "COMMERCIAL"
+    }
+  }
+}

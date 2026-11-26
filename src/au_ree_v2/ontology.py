@@ -43,6 +43,30 @@ def load_vocabulary(path):
     return vocabulary
 
 
+def load_observation_vocabulary(root, *, extended=True):
+    """Combine the frozen SKOS mappings and QUDT aliases with observation labels."""
+    directory = Path(root) / "config/ontology"
+    vocabulary = load_vocabulary(directory / "comparability_v1.json")
+    portfolio = json.loads((directory / "resource_portfolio_v1.json").read_bytes())
+    crosswalk = portfolio["crosswalk"]
+    units = crosswalk["QUDT"]["lexical_units"]
+    mappings = [m for m in vocabulary["mappings"] if m["dimension"] != "unit" or m["label"] not in units]
+    mappings.extend({"dimension": "unit", "label": label, "concept": concept, "relation": "exactMatch",
+                     "basis": "Source-bound metric unit; selected original gate still applies."}
+                    for label, concept in units.items() if label != concept)
+    version = vocabulary["version"] + ":" + portfolio["version"]
+    if extended:
+        overlay = json.loads((directory / "observation_v1.json").read_bytes())
+        if overlay["version"] != "observation-ontology-v1":
+            raise ValueError("Unsupported observation ontology version")
+        mappings.extend({"dimension": dimension, "label": label, "concept": concept, "relation": "exactMatch",
+                         "basis": "Explicit observation label; no inference about context or equivalence."}
+                        for dimension, labels in overlay["exact_labels"].items()
+                        for label, concept in labels.items())
+        version += ":" + overlay["version"]
+    return {**vocabulary, "version": version, "mappings": mappings, "crosswalk": crosswalk}
+
+
 def normalize_context(context, vocabulary):
     if not isinstance(context, dict):
         raise ValueError("Context must be a mapping")
@@ -68,6 +92,22 @@ def normalize_context(context, vocabulary):
                               "canonical": normalized[dimension],
                               "rule": "DOCUMENTED_EXACT_LABEL" if mapping else "UNICODE_AND_WHITESPACE_ONLY"})
     return {"context": normalized, "mappings": trace, "unresolved_mappings": uncertain}
+
+
+def compare_context(observed_context, target_context, vocabulary):
+    """Compare an explicitly declared contract without loading an RDF runtime."""
+    if not target_context:
+        raise ValueError("An empty contract would give vacuous comparability")
+    observed = normalize_context(observed_context, vocabulary)
+    target = normalize_context(target_context, vocabulary)
+    expected = target["context"]
+    if any(v is None for v in expected.values()) or target["unresolved_mappings"]:
+        raise ValueError("Target contract must use explicit, unambiguous concepts")
+    actual = observed["context"]
+    missing = sorted(k for k in expected if actual.get(k) is None)
+    mismatches = sorted(k for k, value in expected.items() if actual.get(k) is not None
+                        and (type(actual[k]) is not type(value) or str(actual[k]) != str(value)))
+    return observed, target, missing, mismatches
 
 
 def _dependencies():
@@ -107,14 +147,9 @@ def assess_context(observed_context, target_context, vocabulary, *, case_id="cas
     """
     if not isinstance(case_id, str) or not case_id:
         raise ValueError("A stable case_id is required")
-    if not target_context:
-        raise ValueError("An empty contract would give vacuous comparability")
     if any(not isinstance(p, str) or not re.fullmatch(r"[a-f0-9]{64}:[1-9][0-9]*", p) for p in source_pages):
         raise ValueError("Source locators require SHA256:physical_page")
-    observed = normalize_context(observed_context, vocabulary)
-    target = normalize_context(target_context, vocabulary)
-    if any(v is None for v in target["context"].values()) or target["unresolved_mappings"]:
-        raise ValueError("Target contract must use explicit, unambiguous concepts")
+    observed, target, missing, mismatches = compare_context(observed_context, target_context, vocabulary)
     Graph, Literal, Namespace, URIRef, validate = _dependencies()
     ns = Namespace(vocabulary["namespace"])
     rdf = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
@@ -159,10 +194,6 @@ def assess_context(observed_context, target_context, vocabulary, *, case_id="cas
         issues.append({"dimension": str(path).removeprefix(str(ns)),
                        "constraint": str(component).split("#")[-1]})
     issues = sorted({(i["dimension"], i["constraint"]) for i in issues})
-    missing = sorted(k for k in target["context"] if observed["context"].get(k) is None)
-    mismatches = sorted(k for k, v in target["context"].items()
-                        if observed["context"].get(k) is not None
-                        and term(k, observed["context"][k]) != term(k, v))
     expected_conformance = not missing and not mismatches
     if bool(conforms) != expected_conformance:
         raise ValueError("SHACL and explicit contract results disagree")

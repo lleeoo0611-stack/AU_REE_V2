@@ -142,52 +142,11 @@ def transitions(rows):
     return comparison
 
 
-def run(root, originals, frozen_run, output, *, development_only=False):
-    """The evidence under evaluation comes from existing Phase 22 outputs and its static kit."""
-    from .semantic_resource import extract_resource_observations, resource_relations
-    from .semantic_technical import baseline_technical, extract_technical, technical_audit, technical_gate, technical_rows
+def evaluate_captures(resource_seeds, technical_old, technical_new, e1_resources,
+                      old, portfolio, contract, policy, study, settings):
+    from .semantic_resource import resource_relations
+    from .semantic_technical import technical_gate
 
-    start = perf_counter()
-    root, originals, frozen_run, output = map(Path, (root, originals, frozen_run, output))
-    prior, release = root / BASELINE, root / RELEASE
-    profile_path = root / "config/ontology/shadow_profiles_v1.json"
-    policy_path = root / "config/evidence_policy.json"
-    manifest_path = root / STUDY / "review_split.json"
-    study = json.loads(manifest_path.read_bytes())
-    settings = json.loads(profile_path.read_bytes())
-    policy = json.loads(policy_path.read_bytes())
-    input_manifest = json.loads((prior / "inventory_manifest.json").read_bytes())
-    seed_path = prior / "candidates.jsonl"
-    technical_path = frozen_run / "technical_cells.csv"
-    resolved_path = frozen_run / "resolved_evidence.csv"
-    formal_census = frozen_run / "census.csv"
-    old_path = prior / "decisions.jsonl"
-    upstream = json.loads((prior / "upstream_audit.json").read_bytes())
-    if (filehash(seed_path) != input_manifest["candidate_sha256"] or study["cutoff"] != input_manifest["cutoff"]
-            or filehash(technical_path) != upstream["run_outputs_sha256"][technical_path.name]):
-        raise ValueError("Shadow requires the checksum-bound Phase 22 replay inputs")
-    if any(filehash(release / n) != sha for n, sha in input_manifest["release_inputs_sha256"].items()):
-        raise ValueError("Shadow release input differs from the original Phase 22 snapshot")
-    resource_seeds = read_jsonl(seed_path)
-    technical_seeds = list(technical_rows(technical_path, resolved_path))
-    projection = settings["frozen_formal_projection"]
-    if (digest(technical_seeds) != projection["technical_semantic_rows_sha256"]
-            or filehash(formal_census) != projection["census_csv_sha256"]):
-        raise ValueError("Formal resource Census or technical evidence under comparison differs from the frozen projection")
-    if development_only:
-        resource_seeds = [r for r in resource_seeds if partition(r, study) == "DEVELOPMENT_OR_REGRESSION"]
-        technical_seeds = [r for r in technical_seeds if partition(r, study) == "DEVELOPMENT_OR_REGRESSION"]
-    old = by_id(read_jsonl(old_path))
-    portfolio_path = root / PORTFOLIO / "decisions_overlay.jsonl"
-    portfolio = by_id(read_jsonl(portfolio_path))
-    if set(old) != set(portfolio) or any(portfolio[cid]["B1"] != r["B1"] for cid, r in old.items()):
-        raise ValueError("Prior deterministic and reviewed portfolio arms do not share their original baseline")
-    e1_resources = by_id(extract_resource_observations(resource_seeds, originals))
-    technical_old = by_id(baseline_technical(technical_seeds))
-    technical_new = by_id(extract_technical(technical_seeds, originals))
-    if set(e1_resources) != {r["candidate_id"] for r in resource_seeds} or set(technical_old) != set(technical_new):
-        raise ValueError("Keep unextracted inputs with explicit absence or review dispositions")
-    contract = ResourceContract(root, release, settings["profiles"][RESOURCE_PROFILE])
     rows = []
     seed_map = by_id(resource_seeds)
     for seed in resource_seeds:
@@ -219,10 +178,13 @@ def run(root, originals, frozen_run, output, *, development_only=False):
     relations = resource_relations(list(e1_resources.values()))
     use_relations(rows, resource_seeds, relations)
     use_relations(rows, resource_seeds, relations, "AUTO_E1V1")
-    output.mkdir(parents=True, exist_ok=True)
     for row in rows:
         for arm in ARMS:
             row[arm]["profile_version"] = settings["version"] + ":" + arm[-2:]
+    return rows, relations
+
+
+def comparison_sections(rows, settings):
     sections = {}
     for profile_id in settings["profiles"]:
         selected = [r for r in rows if r["profile_id"] == profile_id]
@@ -232,7 +194,67 @@ def run(root, originals, frozen_run, output, *, development_only=False):
                 [r for r in selected if r["split"] == "QUARANTINED_FOR_INDEPENDENT_REVIEW"], arm) for arm in ARMS},
             "contrasts": transitions(selected),
         }
-    input_paths = [seed_path, technical_path, resolved_path, formal_census, old_path, portfolio_path,
+    return sections
+
+
+def formal_projection(root, frozen_run, settings):
+    """Reconcile technical and Census projections to the exact published frame."""
+    from .semantic_technical import technical_rows
+
+    paths = {name: frozen_run / name for name in ("technical_cells.csv", "resolved_evidence.csv", "census.csv")}
+    upstream = json.loads((root / BASELINE / "upstream_audit.json").read_bytes())
+    if filehash(paths["technical_cells.csv"]) != upstream["run_outputs_sha256"]["technical_cells.csv"]:
+        raise ValueError("Shadow requires the checksum-bound Phase 22 replay inputs")
+    technical = list(technical_rows(paths["technical_cells.csv"], paths["resolved_evidence.csv"]))
+    projection = settings["frozen_formal_projection"]
+    if (digest(technical) != projection["technical_semantic_rows_sha256"]
+            or filehash(paths["census.csv"]) != projection["census_csv_sha256"]):
+        raise ValueError("Formal resource Census or technical evidence under comparison differs from the frozen projection")
+    return technical, paths
+
+
+def run(root, originals, frozen_run, output, *, development_only=False):
+    """The evidence under evaluation comes from existing Phase 22 outputs and its static kit."""
+    from .semantic_resource import extract_resource_observations
+    from .semantic_technical import baseline_technical, extract_technical, technical_audit
+
+    start = perf_counter()
+    root, originals, frozen_run, output = map(Path, (root, originals, frozen_run, output))
+    prior, release = root / BASELINE, root / RELEASE
+    profile_path = root / "config/ontology/shadow_profiles_v1.json"
+    policy_path = root / "config/evidence_policy.json"
+    manifest_path = root / STUDY / "review_split.json"
+    study = json.loads(manifest_path.read_bytes())
+    settings = json.loads(profile_path.read_bytes())
+    policy = json.loads(policy_path.read_bytes())
+    input_manifest = json.loads((prior / "inventory_manifest.json").read_bytes())
+    seed_path = prior / "candidates.jsonl"
+    old_path = prior / "decisions.jsonl"
+    if filehash(seed_path) != input_manifest["candidate_sha256"] or study["cutoff"] != input_manifest["cutoff"]:
+        raise ValueError("Shadow requires the checksum-bound Phase 22 replay inputs")
+    if any(filehash(release / n) != sha for n, sha in input_manifest["release_inputs_sha256"].items()):
+        raise ValueError("Shadow release input differs from the original Phase 22 snapshot")
+    resource_seeds = read_jsonl(seed_path)
+    technical_seeds, formal_paths = formal_projection(root, frozen_run, settings)
+    if development_only:
+        resource_seeds = [r for r in resource_seeds if partition(r, study) == "DEVELOPMENT_OR_REGRESSION"]
+        technical_seeds = [r for r in technical_seeds if partition(r, study) == "DEVELOPMENT_OR_REGRESSION"]
+    old = by_id(read_jsonl(old_path))
+    portfolio_path = root / PORTFOLIO / "decisions_overlay.jsonl"
+    portfolio = by_id(read_jsonl(portfolio_path))
+    if set(old) != set(portfolio) or any(portfolio[cid]["B1"] != r["B1"] for cid, r in old.items()):
+        raise ValueError("Prior deterministic and reviewed portfolio arms do not share their original baseline")
+    e1_resources = by_id(extract_resource_observations(resource_seeds, originals))
+    technical_old = by_id(baseline_technical(technical_seeds))
+    technical_new = by_id(extract_technical(technical_seeds, originals))
+    if set(e1_resources) != {r["candidate_id"] for r in resource_seeds} or set(technical_old) != set(technical_new):
+        raise ValueError("Keep unextracted inputs with explicit absence or review dispositions")
+    contract = ResourceContract(root, release, settings["profiles"][RESOURCE_PROFILE])
+    rows, relations = evaluate_captures(resource_seeds, technical_old, technical_new, e1_resources,
+                                        old, portfolio, contract, policy, study, settings)
+    output.mkdir(parents=True, exist_ok=True)
+    sections = comparison_sections(rows, settings)
+    input_paths = [seed_path, *formal_paths.values(), old_path, portfolio_path,
                    manifest_path, profile_path, policy_path]
     module_names = ("observation_shadow.py", "observation_semantics.py", "semantic_resource.py",
                     "semantic_technical.py", "resource_use.py", "technical.py", "technical_tables.py", "ontology.py")
