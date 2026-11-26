@@ -1,0 +1,31 @@
+{
+  "version": "direct-resource-comparison-gain-v1",
+  "use": "DIRECT_RESOURCE_UNIT_COMPARISON_V1",
+  "purpose": "Unit-normalized direct values in the frozen selected Mineral Resource, for descriptive comparisons within the same Census field and resource class. Not an operating comparison or MCDA eligibility.",
+  "scope": "Only the same observation, project, source SHA, selected resource statement, estimate, page, quantity, category and material basis. All original direct-value, numeric reconciliation and eligibility checks remain active.",
+  "vocabulary_base": "config/ontology/comparability_v1.json",
+  "unit_mappings": [
+    {"dimension":"unit","label":"M Tonnes","concept":"Mt","relation":"exactMatch","basis":"Mass column of a metric-tonnage resource table; uppercase SI M (mega) qualifies tonnes. Case is preserved. Applied only with selected whole-resource context and original/stored/published value agreement."},
+    {"dimension":"unit","label":"million tonnes","concept":"Mt","relation":"exactMatch","basis":"SI prefix mega (10^6) applied to the metric tonne. Applicable to a complete bulk-resource mass expression; the ore-grade evidence and selected source are checked separately."},
+    {"dimension":"unit","label":"tonnes","concept":"t","relation":"exactMatch","basis":"Written name of the metric tonne, with an explicitly identified mass and commodity. Does not apply to short or long tons."}
+  ],
+  "quantity_mappings": [
+    {"dimension":"quantity_kind","label":"reported_resource_ore_mt","concept":"ore_mt","relation":"exactMatch","basis":"Same source-reported ore mass field and unit; ore resource support, source statement and selection checked separately."},
+    {"dimension":"quantity_kind","label":"reported_resource_grade_pct","concept":"grade","relation":"exactMatch","basis":"Source-reported resource grade; requires the existing verified TREO basis, field support and unit agreement."},
+    {"dimension":"quantity_kind","label":"reported_resource_grade","concept":"grade","relation":"exactMatch","basis":"Same reported grade variable only conditional on the verified TREO resource, original unit and selected direct cell."},
+    {"dimension":"quantity_kind","label":"reported_resource_contained_treo_kt","concept":"contained_treo_kt","relation":"exactMatch","basis":"Source-reported contained TREO; exact scope and native-to-published numeric agreement remain necessary."}
+  ],
+  "marker_recovery": {
+    "version":"source-marker-quantity-v1",
+    "applies_to":"Previously absent native token and unit on an existing resource observation, from a uniquely stated measure in its own page marker, or a complete source-marked table row and same-column native header. Requires the original hash-verified physical PDF page.",
+    "failure":"MISSING_OR_AMBIGUOUS_RESOURCE_EXPRESSION",
+    "excludes":"Table headers in separate markers; cutoff and alternative statements; resource targets, reserves, subcomponent masses; any token or unit contradicted by previous source-bound values."
+  },
+  "literal_table_headers": {
+    "ore_mt": {"M Tonnes":"M Tonnes","Million tonnes":"million tonnes","Mt":"Mt","Tonnes (Mt)":"Mt"},
+    "grade": {"% TREO":"%","TREO (%)":"%","TREO (ppm)":"ppm","TREO ppm":"ppm"},
+    "contained_treo_kt": {"TREO t":"t","Contained TREO (t)":"t","Contained TREO (kt)":"kt"}
+  },
+  "failure":"Unsupported or ambiguous context, conflicting values and unavailable source identity/date/eligibility remain unresolved or blocked.",
+  "references":["https://www.bipm.org/en/measurement-units/si-prefixes","https://www.qudt.org/doc/DOC_SCHEMA-QUDT.html","https://www.jorc.org/docs/JORC_code_2012.pdf"]
+}
