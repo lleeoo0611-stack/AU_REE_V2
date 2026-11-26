@@ -229,9 +229,11 @@ class RecoveryTests(unittest.TestCase):
                 return json.dumps({'Errors': None, 'Total': len(rows), 'Data': rows}).encode(), {}
             return PDF, {}
 
-        url = 'https://wamex.dmp.wa.gov.au/Wamex/Search/ReportDetails?ANumber=123'
-        self.assertEqual([link.rsplit('/', 1)[-1] for _, _, link in wamex_report_documents(emit, url)],
-                         ['0.pdf', '1.pdf'])
+        for route in ('Wamex/ReportDetails', 'Wamex/Search/ReportDetails'):
+            url = f'https://wamex.dmp.wa.gov.au/{route}?ANumber=123'
+            with self.subTest(route=route):
+                self.assertEqual([link.rsplit('/', 1)[-1] for _, _, link in wamex_report_documents(emit, url)],
+                                 ['0.pdf', '1.pdf'])
         with self.assertRaisesRegex(ValueError, 'INVALID_WAMEX_REPORT_REFERENCE'):
             list(wamex_report_documents(emit, url + '&ANumber=999'))
 

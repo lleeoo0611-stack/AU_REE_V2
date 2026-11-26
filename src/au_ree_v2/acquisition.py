@@ -575,8 +575,8 @@ def wamex_report_documents(transport, url, *, timeout=25):
     parsed = urllib.parse.urlsplit(url)
     query = urllib.parse.parse_qs(parsed.query)
     numbers = [part for key, values in query.items() if key.casefold() == 'anumber' for part in values]
-    if ((parsed.scheme, parsed.hostname, parsed.path.casefold())
-            != ('https', 'wamex.dmp.wa.gov.au', '/wamex/search/reportdetails')
+    if ((parsed.scheme, parsed.hostname) != ('https', 'wamex.dmp.wa.gov.au')
+            or parsed.path.casefold() not in {'/wamex/reportdetails', '/wamex/search/reportdetails'}
             or len(numbers) != 1 or not numbers[0].isdigit()):
         raise ValueError('INVALID_WAMEX_REPORT_REFERENCE')
     native = int(numbers[0])
