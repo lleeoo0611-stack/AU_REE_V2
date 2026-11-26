@@ -1,0 +1,2714 @@
+{
+  "version": "portfolio-statement-evidence-v1",
+  "cutoff": "2026-11-13",
+  "purpose": "DIRECT_RESOURCE_UNIT_COMPARISON_V1",
+  "evidence_method": "PDF-bound development assertions from known source reviews. Validate both source versions and explicit table context before use. Semantic support does not replace source, date, category, precision or eligibility checks.",
+  "assertions": [
+    {
+      "candidate_id": "6edd07292ee3164d36648ce80f9e13e56adfa080ef48a1d4fedf20cb8bc79854",
+      "target_candidate_id": "ae9da255ee67b46c1daec88ea16b3aaadc278a5bb22ec28237403fd362006221",
+      "relation": "SAME_REPORTED_CELL",
+      "estimate": {
+        "project_id": "AU-ee5ca893d12883df35f1",
+        "scope": "Yttria total Indicated+Inferred MRE;200ppmTREO-Ce cutoff;15Mt;not110-300Mt MtStirling exploration target",
+        "estimate_date": "2024-04-16",
+        "scope_detail": "Yttria deposit, combined Indicated + Inferred",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "cutoff": "200 ppm TREO-Ce",
+        "reporting_standard": "JORC 2012",
+        "ownership_basis": null
+      },
+      "facts": {
+        "quantity_kind": "grade",
+        "chemical_basis": "16 April 2024 issuer-defined TREO including Y",
+        "material_basis": "mineral-resource bulk ore",
+        "denominator_basis": null,
+        "reported_basis_from": "TREO",
+        "reported_basis_to": "TREO",
+        "from": {
+          "text": "490",
+          "unit": "ppm",
+          "canonical_value": "0.04900"
+        },
+        "to": {
+          "text": "490",
+          "unit": "ppm",
+          "canonical_value": "0.04900"
+        }
+      },
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "table",
+          "text": "Yttria Mineral Resource Estimate in accordance with the JORC (2012) Code"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "header",
+          "text": "JORC Classification Tonnes TREO MREO LREO HREO Pr6O11 Nd2O3 Dy2O3 Tb4O7 Sc2O3 U Th Mt ppm"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "row",
+          "text": "Total 15.0 490 110 220 270 15 64 24 3.7"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 1,
+          "role": "context",
+          "text": "16 April 2024"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "context",
+          "text": "Rare Earth Mineral Resources reported above a cut-off grade of 200 ppm TREO-Ce"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "context",
+          "text": "Total Rare Earth Oxides (TREO) defined as La, Ce, Pr, Nd Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu plus Y"
+        },
+        {
+          "side": "target",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "table",
+          "text": "Yttria Mineral Resource Estimate in accordance with the JORC (2012) Code"
+        },
+        {
+          "side": "target",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "header",
+          "text": "JORC Classification Tonnes TREO MREO LREO HREO Pr6O11 Nd2O3 Dy2O3 Tb4O7 Sc2O3 U Th Mt ppm"
+        },
+        {
+          "side": "target",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "row",
+          "text": "Total 15.0 490 110 220 270 15 64 24 3.7"
+        },
+        {
+          "side": "target",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 1,
+          "role": "context",
+          "text": "16 April 2024"
+        },
+        {
+          "side": "target",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "context",
+          "text": "Rare Earth Mineral Resources reported above a cut-off grade of 200 ppm TREO-Ce"
+        },
+        {
+          "side": "target",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "context",
+          "text": "Total Rare Earth Oxides (TREO) defined as La, Ce, Pr, Nd Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu plus Y"
+        }
+      ],
+      "rationale": "The issuer identifies the maiden Yttria deposit MRE, its total of Indicated and Inferred, and its 200 ppm TREO-Ce threshold. Table 1 directly reports 490.0 ppm for this total. The larger exploration target is a separate labelled row."
+    },
+    {
+      "candidate_id": "6f1247dd4ea7dabb7c6d5163001123a9647551fcd6c739ca47ad51caafc0d3d9",
+      "target_candidate_id": "5b1b0d7b11df740a68196387377da59a65d13de7259f46f13c37a7dd995e520d",
+      "relation": "SAME_REPORTED_CELL",
+      "estimate": {
+        "project_id": "AU-bb565f5348679a46d4a0",
+        "scope": "Salazar combined Newmont+OConnor Indicated+Inferred global resource;600ppm TREO cutoff; not Newmont-only123Mt or scandium/titania resources",
+        "estimate_date": "2024-10-08",
+        "scope_detail": "Salazar Newmont and O’Connor combined Indicated + Inferred",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "cutoff": "600 ppm TREO",
+        "reporting_standard": "JORC 2012",
+        "ownership_basis": null
+      },
+      "facts": {
+        "quantity_kind": "grade",
+        "chemical_basis": "same Salazar Table 1 issuer-defined TREO",
+        "material_basis": "mineral-resource bulk ore",
+        "denominator_basis": null,
+        "reported_basis_from": "TREO",
+        "reported_basis_to": "TREO",
+        "from": {
+          "text": "1178",
+          "unit": "ppm",
+          "canonical_value": "0.11780"
+        },
+        "to": {
+          "text": "1178",
+          "unit": "ppm",
+          "canonical_value": "0.11780"
+        }
+      },
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "table",
+          "text": "Table 1: Salazar Project, Newmont and O’Connor Deposits - Indicated and Inferred TREO Mineral Resource"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "header",
+          "text": "Cut-off (TREO ppm) Deposit Category Tonnes (Mt) TREO* (ppm)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "row",
+          "text": "TOTAL Indicated + Inferred 230 1178 55 193 22 4.0"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 1,
+          "role": "context",
+          "text": "8 OCTOBER 2024"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "context",
+          "text": "600 Newmont Indicated 44"
+        },
+        {
+          "side": "target",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "table",
+          "text": "Table 1: Salazar Project, Newmont and O’Connor Deposits - Indicated and Inferred TREO Mineral Resource"
+        },
+        {
+          "side": "target",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "header",
+          "text": "Cut-off (TREO ppm) Deposit Category Tonnes (Mt) TREO* (ppm)"
+        },
+        {
+          "side": "target",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "row",
+          "text": "TOTAL Indicated + Inferred 230 1178 55 193 22 4.0"
+        },
+        {
+          "side": "target",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 1,
+          "role": "context",
+          "text": "8 OCTOBER 2024"
+        },
+        {
+          "side": "target",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "context",
+          "text": "600 Newmont Indicated 44"
+        }
+      ],
+      "rationale": "The selected 8 October 2024 release Table 1 explicitly totals Newmont and O'Connor, Indicated + Inferred at 600 ppm TREO. The total row gives 230 Mt and 1,178 ppm TREO. The candidate value 1178 ppm is the directly reported TREO grade on that combined scope."
+    },
+    {
+      "candidate_id": "760ff5690433b9800afd6a9546e8264a4e3f8537be083967c873575d7b44936e",
+      "target_candidate_id": "18c197fc1ed8827b9f8d1370ca61bffa9131dfef1f3285c7a789d7d8dab78dc6",
+      "relation": "SAME_REPORTED_CELL",
+      "estimate": {
+        "project_id": "AU-bb565f5348679a46d4a0",
+        "scope": "Salazar combined Newmont+OConnor Indicated+Inferred global resource;600ppm TREO cutoff; not Newmont-only123Mt or scandium/titania resources",
+        "estimate_date": "2024-10-08",
+        "scope_detail": "Salazar Newmont and O’Connor combined Indicated + Inferred",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "cutoff": "600 ppm TREO",
+        "reporting_standard": "JORC 2012",
+        "ownership_basis": null
+      },
+      "facts": {
+        "quantity_kind": "ore_mt",
+        "chemical_basis": "same Salazar Table 1 issuer-defined TREO",
+        "material_basis": "mineral-resource bulk ore",
+        "denominator_basis": null,
+        "reported_basis_from": "TREO",
+        "reported_basis_to": "TREO",
+        "from": {
+          "text": "230",
+          "unit": "Mt",
+          "canonical_value": "230.0"
+        },
+        "to": {
+          "text": "230",
+          "unit": "Mt",
+          "canonical_value": "230.0"
+        }
+      },
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "table",
+          "text": "Table 1: Salazar Project, Newmont and O’Connor Deposits - Indicated and Inferred TREO Mineral Resource"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "header",
+          "text": "Cut-off (TREO ppm) Deposit Category Tonnes (Mt) TREO* (ppm)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "row",
+          "text": "TOTAL Indicated + Inferred 230 1178 55 193 22 4.0"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 1,
+          "role": "context",
+          "text": "8 OCTOBER 2024"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "context",
+          "text": "600 Newmont Indicated 44"
+        },
+        {
+          "side": "target",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "table",
+          "text": "Table 1: Salazar Project, Newmont and O’Connor Deposits - Indicated and Inferred TREO Mineral Resource"
+        },
+        {
+          "side": "target",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "header",
+          "text": "Cut-off (TREO ppm) Deposit Category Tonnes (Mt) TREO* (ppm)"
+        },
+        {
+          "side": "target",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "row",
+          "text": "TOTAL Indicated + Inferred 230 1178 55 193 22 4.0"
+        },
+        {
+          "side": "target",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 1,
+          "role": "context",
+          "text": "8 OCTOBER 2024"
+        },
+        {
+          "side": "target",
+          "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+          "page": 7,
+          "role": "context",
+          "text": "600 Newmont Indicated 44"
+        }
+      ],
+      "rationale": "The selected 8 October 2024 release Table 1 explicitly totals Newmont and O'Connor, Indicated + Inferred at 600 ppm TREO. The total row gives 230 Mt and 1,178 ppm TREO. The candidate value 230 Mt is the directly reported ore tonnage on that combined scope."
+    },
+    {
+      "candidate_id": "7c41462b84d59ea59ca2c3c8b1425ae67a8a2d440ca3981d98ff87f7ac1d3306",
+      "target_candidate_id": "7ec50d2bc85b3ef33fc7e50f9de4112f94c446d22f0b22bafbb2b12f99cf5acf",
+      "relation": "SAME_ESTIMATE_COMPARABILITY_UNRESOLVED",
+      "estimate": {
+        "project_id": "AU-7c198d219aa1db3e291f",
+        "scope": "Lyons 12&13 Inferred dry resource at0.2pctTREOcutoff only;excludes conflictingLyons11 andwholeLyonsTotal;0.69Mt0.33pct2266tTREO",
+        "estimate_date": "2023-10-25",
+        "scope_detail": "Lyons 12 & 13 only, Inferred",
+        "category": "INFERRED",
+        "cutoff": "0.2% TREO",
+        "reporting_standard": "JORC 2012",
+        "ownership_basis": null
+      },
+      "facts": {
+        "quantity_kind": "grade",
+        "chemical_basis": "same Lyons issuer-defined TREO; Y inclusion unconfirmed",
+        "material_basis": "mineral-resource bulk ore",
+        "denominator_basis": "dry metric tonnes",
+        "reported_basis_from": "REPORTED_TREO_Y_INCLUSION_UNCONFIRMED",
+        "reported_basis_to": "TREO",
+        "from": {
+          "text": "0.33",
+          "unit": "%",
+          "canonical_value": "0.33"
+        },
+        "to": {
+          "text": "0.33",
+          "unit": "%",
+          "canonical_value": "0.33"
+        }
+      },
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "table",
+          "text": "Table 1: Inferred Mineral Resources at Lyons above 0.2% TREO"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "header",
+          "text": "Area Tonnes (Mt) TREO (%) NdPr (%) Nb2O5 (%) TREO (t)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "row",
+          "text": "Lyons 12&13 0.69 0.33 0.15 0.23 2,266"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "context",
+          "text": "25 October 2023"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "context",
+          "text": "Tonnages are dry metric tonnes."
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "table",
+          "text": "Appendix 1. Mineral Resource Statement for Ironstone-hosted REE mineralisation at Lyons"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "header",
+          "text": "Area Tonnes (Mt) TREO (%) NdPr (%) Nb2O5 (%) TREO (t)"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "row",
+          "text": "Lyons 12&13 0.69 0.33 0.15 0.23 2,266"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "context",
+          "text": "Tonnages are dry metric tonnes."
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "table",
+          "text": "Table 1: Inferred Mineral Resources at Lyons above 0.2% TREO"
+        }
+      ],
+      "rationale": "Table 1 and the Appendix 1 restatement identify the selected Lyons 12 & 13 row and its Inferred category at 0.2% TREO cutoff. This row directly reports 0.33 % (issuer-defined TREO grade in bulk ore, without asserting inclusion of Y). The published contained-tonnage discrepancy on other rows does not enter this direct value. The source does not resolve yttrium inclusion; preserve both stored bases and link as evidence only."
+    },
+    {
+      "candidate_id": "8a2dd5a606a1cba20aa84a738abb89522990cdbb7e8459497886fb309cef683d",
+      "target_candidate_id": "53845ad42dcc88436342a1ace32b1f9b2b5b334d297494101572b53f7e064cc0",
+      "relation": "REPRINTS_SAME_ESTIMATE",
+      "estimate": {
+        "project_id": "AU-7c198d219aa1db3e291f",
+        "scope": "Lyons 12&13 Inferred dry resource at0.2pctTREOcutoff only;excludes conflictingLyons11 andwholeLyonsTotal;0.69Mt0.33pct2266tTREO",
+        "estimate_date": "2023-10-25",
+        "scope_detail": "Lyons 12 & 13 only, Inferred",
+        "category": "INFERRED",
+        "cutoff": "0.2% TREO",
+        "reporting_standard": "JORC 2012",
+        "ownership_basis": null
+      },
+      "facts": {
+        "quantity_kind": "ore_mt",
+        "chemical_basis": "mass of dry in-scope ore; same issuer 0.2% TREO cutoff with Y inclusion unconfirmed",
+        "material_basis": "mineral-resource bulk ore",
+        "denominator_basis": "dry metric tonnes",
+        "reported_basis_from": "REPORTED_TREO_Y_INCLUSION_UNCONFIRMED",
+        "reported_basis_to": "TREO",
+        "from": {
+          "text": "0.69",
+          "unit": "Mt",
+          "canonical_value": "0.69"
+        },
+        "to": {
+          "text": "0.69",
+          "unit": "Mt",
+          "canonical_value": "0.69"
+        }
+      },
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "table",
+          "text": "Table 1: Inferred Mineral Resources at Lyons above 0.2% TREO"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "header",
+          "text": "Area Tonnes (Mt) TREO (%) NdPr (%) Nb2O5 (%) TREO (t)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "row",
+          "text": "Lyons 12&13 0.69 0.33 0.15 0.23 2,266"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "context",
+          "text": "25 October 2023"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "context",
+          "text": "Tonnages are dry metric tonnes."
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "table",
+          "text": "Appendix 1. Mineral Resource Statement for Ironstone-hosted REE mineralisation at Lyons"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "header",
+          "text": "Area Tonnes (Mt) TREO (%) NdPr (%) Nb2O5 (%) TREO (t)"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "row",
+          "text": "Lyons 12&13 0.69 0.33 0.15 0.23 2,266"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "context",
+          "text": "Tonnages are dry metric tonnes."
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "table",
+          "text": "Table 1: Inferred Mineral Resources at Lyons above 0.2% TREO"
+        }
+      ],
+      "rationale": "Table 1 and the Appendix 1 restatement identify the selected Lyons 12 & 13 row and its Inferred category at 0.2% TREO cutoff. This row directly reports 0.69 Mt (dry ore tonnage). The published contained-tonnage discrepancy on other rows does not enter this direct value."
+    },
+    {
+      "candidate_id": "95d20677fb72a04adc366cf1e2c95d36a721220a2dcf7f882a4e0c54130730df",
+      "target_candidate_id": "0722cc1c15830bf5fe19b7a473a6fba11d03bc9b3c3161eacedf49ee59b57034",
+      "relation": "SAME_ESTIMATE_ROUNDING_ONLY",
+      "estimate": {
+        "project_id": "AU-efff91a06cf344122d88",
+        "scope": "Mt Weld Mineral Resource",
+        "estimate_date": "2024-06-30",
+        "scope_detail": "Mt Weld Rare Earth Deposit total M+I+I",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "cutoff": "2.5% TREO",
+        "reporting_standard": "JORC 2012",
+        "ownership_basis": null
+      },
+      "facts": {
+        "quantity_kind": "grade",
+        "chemical_basis": "Mt Weld Table 1 TREO including Y",
+        "material_basis": "mineral-resource bulk ore",
+        "denominator_basis": null,
+        "reported_basis_from": "TREO",
+        "reported_basis_to": "TREO",
+        "from": {
+          "text": "4.1",
+          "unit": "%",
+          "canonical_value": "4.1"
+        },
+        "to": {
+          "text": "4.12",
+          "unit": "%",
+          "canonical_value": "4.12"
+        }
+      },
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "header",
+          "text": "JORC Classification Million Tonnes TREO* (%) TREO* (‘000 tonnes)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "row",
+          "text": "Total 106.6 4.1 4,389"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "table",
+          "text": "Table 1: Mt Weld Rare Earth Deposit Mineral Resource summary June 2024 at 2.5% TREO cut-off grade"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "106.6 million tonnes at an average grade of 4.12% Total Rare Earth Oxide (TREO) for a total of 4.39 million tonnes of contained TREO."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "accordance with JORC 2012 guidelines and is summarised in Table 1."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 1,
+          "role": "context",
+          "text": "106.6 Mt at 4.12% Total Rare Earth Oxide (TREO) from 30 June 2018 to 30 June 2024"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "Lu2O3) + Yttrium (Y2O3). Totals may not balance due to rounding of figures."
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "header",
+          "text": "average grade of 4.12% Total Rare Earth Oxide (TREO)"
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "row",
+          "text": "106.6 million tonnes at an average grade of 4.12% Total Rare Earth Oxide (TREO)"
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "table",
+          "text": "Table 1: Mt Weld Rare Earth Deposit Mineral Resource summary June 2024 at 2.5% TREO cut-off grade"
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "106.6 million tonnes at an average grade of 4.12% Total Rare Earth Oxide (TREO) for a total of 4.39 million tonnes of contained TREO."
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "accordance with JORC 2012 guidelines and is summarised in Table 1."
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 1,
+          "role": "context",
+          "text": "106.6 Mt at 4.12% Total Rare Earth Oxide (TREO) from 30 June 2018 to 30 June 2024"
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "Lu2O3) + Yttrium (Y2O3). Totals may not balance due to rounding of figures."
+        }
+      ],
+      "rationale": "The front-page date and Table 1 identify the June 2024 Mt Weld MRE and its 2.5% TREO cutoff. 5 August is disclosure, not a new estimate. Table 1 gives the rounded 4.1% grade. The narrative gives the same MRE at 4.12%; comparison is supported only at the precision of this reported table cell. It is not a numerically exact 4.12% observation. Preserve both displayed values. No equality or uniform rounding precision is assumed."
+    },
+    {
+      "candidate_id": "a84d09b4c4194a3f48a0073dea058539beaf7bd0755e7b4ad3a4be0241d66348",
+      "target_candidate_id": "7eb93849d05be8ac4df0cf48ec5551034c2a7a66d64ca8d3a227f3e628b1f0d0",
+      "relation": "SAME_REPORTED_CELL",
+      "estimate": {
+        "project_id": "AU-efff91a06cf344122d88",
+        "scope": "Mt Weld Mineral Resource",
+        "estimate_date": "2024-06-30",
+        "scope_detail": "Mt Weld Rare Earth Deposit total M+I+I",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "cutoff": "2.5% TREO",
+        "reporting_standard": "JORC 2012",
+        "ownership_basis": null
+      },
+      "facts": {
+        "quantity_kind": "contained_treo_kt",
+        "chemical_basis": "Mt Weld Table 1 TREO including Y",
+        "material_basis": "mineral-resource bulk ore",
+        "denominator_basis": null,
+        "reported_basis_from": "TREO",
+        "reported_basis_to": "TREO",
+        "from": {
+          "text": "4,389",
+          "unit": "‘000 tonnes",
+          "canonical_value": "4389.0"
+        },
+        "to": {
+          "text": "4,389",
+          "unit": "‘000 tonnes",
+          "canonical_value": "4389.0"
+        }
+      },
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "header",
+          "text": "JORC Classification Million Tonnes TREO* (%) TREO* (‘000 tonnes)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "row",
+          "text": "Total 106.6 4.1 4,389"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "table",
+          "text": "Table 1: Mt Weld Rare Earth Deposit Mineral Resource summary June 2024 at 2.5% TREO cut-off grade"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "106.6 million tonnes at an average grade of 4.12% Total Rare Earth Oxide (TREO) for a total of 4.39 million tonnes of contained TREO."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "accordance with JORC 2012 guidelines and is summarised in Table 1."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 1,
+          "role": "context",
+          "text": "106.6 Mt at 4.12% Total Rare Earth Oxide (TREO) from 30 June 2018 to 30 June 2024"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "Lu2O3) + Yttrium (Y2O3). Totals may not balance due to rounding of figures."
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "header",
+          "text": "JORC Classification Million Tonnes TREO* (%) TREO* (‘000 tonnes)"
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "row",
+          "text": "Total 106.6 4.1 4,389"
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "table",
+          "text": "Table 1: Mt Weld Rare Earth Deposit Mineral Resource summary June 2024 at 2.5% TREO cut-off grade"
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "106.6 million tonnes at an average grade of 4.12% Total Rare Earth Oxide (TREO) for a total of 4.39 million tonnes of contained TREO."
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "accordance with JORC 2012 guidelines and is summarised in Table 1."
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 1,
+          "role": "context",
+          "text": "106.6 Mt at 4.12% Total Rare Earth Oxide (TREO) from 30 June 2018 to 30 June 2024"
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "Lu2O3) + Yttrium (Y2O3). Totals may not balance due to rounding of figures."
+        }
+      ],
+      "rationale": "The front-page date and Table 1 identify the June 2024 Mt Weld MRE and its 2.5% TREO cutoff. 5 August is disclosure, not a new estimate. The total is 4,389 in the TREO (thousand tonnes) column. This directly states 4,389 kt contained TREO. The selected observation and alternate extraction share page 2 Table 1 and its original total row."
+    },
+    {
+      "candidate_id": "c7e8504623c8a06db0c1398c3759866a2218941337d771197702f3e69edea641",
+      "target_candidate_id": "a5920146f32efddbc44ccafee5063b19e3c54fd6e1ba77f3a831c2eb30871a07",
+      "relation": "REPRINTS_SAME_ESTIMATE",
+      "estimate": {
+        "project_id": "AU-9bd8e5ed8408cd84d876",
+        "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+        "estimate_date": "2025-01-15",
+        "scope_detail": "Wolverine open pit and underground only, excluding BRPP stockpile",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "cutoff": "0.15% TREO; separate spatial constraints for open pit and underground",
+        "reporting_standard": null,
+        "ownership_basis": null
+      },
+      "facts": {
+        "quantity_kind": "grade",
+        "chemical_basis": "Wolverine MRE TREO including Y",
+        "material_basis": "mineral-resource bulk ore",
+        "denominator_basis": null,
+        "reported_basis_from": "TREO",
+        "reported_basis_to": "TREO",
+        "from": {
+          "text": "0.96",
+          "unit": "%",
+          "canonical_value": "0.96"
+        },
+        "to": {
+          "text": "0.96",
+          "unit": "%",
+          "canonical_value": "0.96"
+        }
+      },
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "table",
+          "text": "Table 3 Wolverine Mineral Resource estimate as at 15 January 2025"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "header",
+          "text": "Classification Tonnage Mt TREO % Dy2O3 kg/t Y2O3 kg/t"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "row",
+          "text": "Total 7.3 0.96 0.85 5.68 0.12 89 70,500"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "context",
+          "text": "Wolverine Open Pit MRE constrained within open pit design, and above 0.15% TREO COG"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "context",
+          "text": "Wolverine Underground MRE reported below base of open pit design, i.e. 325mRL, and above 0.15% TREO COG."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "context",
+          "text": "In addition to the Wolverine MRE, an existing stockpile"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "table",
+          "text": "Table 2: Mineral Resource estimate for the Wolverine deposit as at 15 January 2025"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "header",
+          "text": "Classification Tonnage Mt TREO Dy2O3 Y2O3 Tb4O7 HREO / TREO TREO % kg/t kg/t kg/t % t"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "row",
+          "text": "Total 7.3 0.96 0.85 5.68 0.12 89 70,500"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "context",
+          "text": "reported above a 0.15 % TREO cut-off grade."
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "context",
+          "text": "Wolverine Underground MRE reported below base of open pit design, i.e., 325mRL, and above 0.15% TREO COG"
+        }
+      ],
+      "rationale": "The DFS reprints the Wolverine deposit resource as at 15 January 2025. Its Table 3 total gives 7.3 Mt and 0.96% TREO. The selected January announcement Table 2 has the same date, deposit scope, classification total and numbers. The September date belongs to the reprinting document. This is corroborating evidence for the selected TREO grade."
+    },
+    {
+      "candidate_id": "c94b9c60513fbf6d368e1933520a4717d4af3b7761ccd6f2b8f6e96ae1fc93f5",
+      "target_candidate_id": "2e9be0a25332f5eccb909eee6a727a288d16197e3b1e8c037001fa2a2d13af1b",
+      "relation": "REPRINTS_SAME_ESTIMATE",
+      "estimate": {
+        "project_id": "AU-9bd8e5ed8408cd84d876",
+        "scope": "Wolverine only; excludes Pilot Plant stockpiles and other deposits",
+        "estimate_date": "2025-01-15",
+        "scope_detail": "Wolverine open pit and underground only, excluding BRPP stockpile",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "cutoff": "0.15% TREO; separate spatial constraints for open pit and underground",
+        "reporting_standard": null,
+        "ownership_basis": null
+      },
+      "facts": {
+        "quantity_kind": "ore_mt",
+        "chemical_basis": "Wolverine MRE TREO including Y",
+        "material_basis": "mineral-resource bulk ore",
+        "denominator_basis": null,
+        "reported_basis_from": "TREO",
+        "reported_basis_to": "TREO",
+        "from": {
+          "text": "7.3",
+          "unit": "Mt",
+          "canonical_value": "7.3"
+        },
+        "to": {
+          "text": "7.3",
+          "unit": "Mt",
+          "canonical_value": "7.3"
+        }
+      },
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "table",
+          "text": "Table 3 Wolverine Mineral Resource estimate as at 15 January 2025"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "header",
+          "text": "Classification Tonnage Mt TREO % Dy2O3 kg/t Y2O3 kg/t"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "row",
+          "text": "Total 7.3 0.96 0.85 5.68 0.12 89 70,500"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "context",
+          "text": "Wolverine Open Pit MRE constrained within open pit design, and above 0.15% TREO COG"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "context",
+          "text": "Wolverine Underground MRE reported below base of open pit design, i.e. 325mRL, and above 0.15% TREO COG."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "context",
+          "text": "In addition to the Wolverine MRE, an existing stockpile"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "table",
+          "text": "Table 2: Mineral Resource estimate for the Wolverine deposit as at 15 January 2025"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "header",
+          "text": "Classification Tonnage Mt TREO Dy2O3 Y2O3 Tb4O7 HREO / TREO TREO % kg/t kg/t kg/t % t"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "row",
+          "text": "Total 7.3 0.96 0.85 5.68 0.12 89 70,500"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "context",
+          "text": "reported above a 0.15 % TREO cut-off grade."
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "context",
+          "text": "Wolverine Underground MRE reported below base of open pit design, i.e., 325mRL, and above 0.15% TREO COG"
+        }
+      ],
+      "rationale": "The DFS reprints the Wolverine deposit resource as at 15 January 2025. Its Table 3 total gives 7.3 Mt and 0.96% TREO. The selected January announcement Table 2 has the same date, deposit scope, classification total and numbers. The September date belongs to the reprinting document. This is corroborating evidence for the selected ore tonnage."
+    },
+    {
+      "candidate_id": "d2988060d24893f4495816410b7311da13bb0d0daebe0898e743731cb7c73cad",
+      "target_candidate_id": "83b87169c8ffe2aadfb7d633f3eec0e06ff6e7895d84b3ec34c2c0ee2190840d",
+      "relation": "SAME_REPORTED_CELL",
+      "estimate": {
+        "project_id": "AU-ee5ca893d12883df35f1",
+        "scope": "Yttria total Indicated+Inferred MRE;200ppmTREO-Ce cutoff;15Mt;not110-300Mt MtStirling exploration target",
+        "estimate_date": "2024-04-16",
+        "scope_detail": "Yttria deposit, combined Indicated + Inferred",
+        "category": "INDICATED_INFERRED_TOTAL",
+        "cutoff": "200 ppm TREO-Ce",
+        "reporting_standard": "JORC 2012",
+        "ownership_basis": null
+      },
+      "facts": {
+        "quantity_kind": "ore_mt",
+        "chemical_basis": "16 April 2024 issuer-defined TREO including Y",
+        "material_basis": "mineral-resource bulk ore",
+        "denominator_basis": null,
+        "reported_basis_from": "TREO",
+        "reported_basis_to": "TREO",
+        "from": {
+          "text": "15.0",
+          "unit": "Mt",
+          "canonical_value": "15.0"
+        },
+        "to": {
+          "text": "15.0",
+          "unit": "Mt",
+          "canonical_value": "15.0"
+        }
+      },
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "table",
+          "text": "Yttria Mineral Resource Estimate in accordance with the JORC (2012) Code"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "header",
+          "text": "JORC Classification Tonnes TREO MREO LREO HREO Pr6O11 Nd2O3 Dy2O3 Tb4O7 Sc2O3 U Th Mt ppm"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "row",
+          "text": "Total 15.0 490 110 220 270 15 64 24 3.7"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 1,
+          "role": "context",
+          "text": "16 April 2024"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "context",
+          "text": "Rare Earth Mineral Resources reported above a cut-off grade of 200 ppm TREO-Ce"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "context",
+          "text": "Total Rare Earth Oxides (TREO) defined as La, Ce, Pr, Nd Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu plus Y"
+        },
+        {
+          "side": "target",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "table",
+          "text": "Yttria Mineral Resource Estimate in accordance with the JORC (2012) Code"
+        },
+        {
+          "side": "target",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "header",
+          "text": "JORC Classification Tonnes TREO MREO LREO HREO Pr6O11 Nd2O3 Dy2O3 Tb4O7 Sc2O3 U Th Mt ppm"
+        },
+        {
+          "side": "target",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "row",
+          "text": "Total 15.0 490 110 220 270 15 64 24 3.7"
+        },
+        {
+          "side": "target",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 1,
+          "role": "context",
+          "text": "16 April 2024"
+        },
+        {
+          "side": "target",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "context",
+          "text": "Rare Earth Mineral Resources reported above a cut-off grade of 200 ppm TREO-Ce"
+        },
+        {
+          "side": "target",
+          "source_sha256": "73936d124c5ce52038f968db521713ba86e72b92c847fb391254ebc47c0f0d51",
+          "page": 2,
+          "role": "context",
+          "text": "Total Rare Earth Oxides (TREO) defined as La, Ce, Pr, Nd Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu plus Y"
+        }
+      ],
+      "rationale": "The issuer identifies the maiden Yttria deposit MRE, its total of Indicated and Inferred, and its 200 ppm TREO-Ce threshold. Table 1 directly reports 15.0 Mt for this total. The larger exploration target is a separate labelled row."
+    },
+    {
+      "candidate_id": "d4c83ff505bd7476cf8c02781eacea1767ce21be4d04e881c6de33ac488b5ddd",
+      "target_candidate_id": "b207771d56f2868aa769121b1086b85a27f4ba92da3bc789e23ab68e684e99cd",
+      "relation": "SAME_REPORTED_CELL",
+      "estimate": {
+        "project_id": "AU-efff91a06cf344122d88",
+        "scope": "Mt Weld Mineral Resource",
+        "estimate_date": "2024-06-30",
+        "scope_detail": "Mt Weld Rare Earth Deposit total M+I+I",
+        "category": "MEASURED_INDICATED_INFERRED_TOTAL",
+        "cutoff": "2.5% TREO",
+        "reporting_standard": "JORC 2012",
+        "ownership_basis": null
+      },
+      "facts": {
+        "quantity_kind": "ore_mt",
+        "chemical_basis": "Mt Weld Table 1 TREO including Y",
+        "material_basis": "mineral-resource bulk ore",
+        "denominator_basis": null,
+        "reported_basis_from": "TREO",
+        "reported_basis_to": "TREO",
+        "from": {
+          "text": "106.6",
+          "unit": "Million Tonnes",
+          "canonical_value": "106.6"
+        },
+        "to": {
+          "text": "106.6",
+          "unit": "Million Tonnes",
+          "canonical_value": "106.6"
+        }
+      },
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "header",
+          "text": "JORC Classification Million Tonnes TREO* (%) TREO* (‘000 tonnes)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "row",
+          "text": "Total 106.6 4.1 4,389"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "table",
+          "text": "Table 1: Mt Weld Rare Earth Deposit Mineral Resource summary June 2024 at 2.5% TREO cut-off grade"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "106.6 million tonnes at an average grade of 4.12% Total Rare Earth Oxide (TREO) for a total of 4.39 million tonnes of contained TREO."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "accordance with JORC 2012 guidelines and is summarised in Table 1."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 1,
+          "role": "context",
+          "text": "106.6 Mt at 4.12% Total Rare Earth Oxide (TREO) from 30 June 2018 to 30 June 2024"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "Lu2O3) + Yttrium (Y2O3). Totals may not balance due to rounding of figures."
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "header",
+          "text": "JORC Classification Million Tonnes TREO* (%) TREO* (‘000 tonnes)"
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "row",
+          "text": "Total 106.6 4.1 4,389"
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "table",
+          "text": "Table 1: Mt Weld Rare Earth Deposit Mineral Resource summary June 2024 at 2.5% TREO cut-off grade"
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "106.6 million tonnes at an average grade of 4.12% Total Rare Earth Oxide (TREO) for a total of 4.39 million tonnes of contained TREO."
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "accordance with JORC 2012 guidelines and is summarised in Table 1."
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 1,
+          "role": "context",
+          "text": "106.6 Mt at 4.12% Total Rare Earth Oxide (TREO) from 30 June 2018 to 30 June 2024"
+        },
+        {
+          "side": "target",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "Lu2O3) + Yttrium (Y2O3). Totals may not balance due to rounding of figures."
+        }
+      ],
+      "rationale": "The front-page date and Table 1 identify the June 2024 Mt Weld MRE and its 2.5% TREO cutoff. 5 August is disclosure, not a new estimate. The three JORC resource classes sum to the reported total of 106.6 Mt. The selected observation and alternate extraction share page 2 Table 1 and its original total row."
+    }
+  ],
+  "negative_controls": [
+    {
+      "candidate_id": "13b501ff077671b42ea5630293b80d2ecacc5f75fbccc1e9ada1826f91a0afe8",
+      "target_candidate_id": "a67eb95ac9e76d04531944e9465e5615fa50840139e48d3acacd18123c886ecb",
+      "relation": "SUPERSEDED_ESTIMATE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 1,
+          "role": "context",
+          "text": "1 May 2023"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 2,
+          "role": "context",
+          "text": "Table 1. Cummins Range Mineral Resource Estimate"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 2,
+          "role": "context",
+          "text": "Total 519.3 4.6 3170"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 1,
+          "role": "context",
+          "text": "25 January 2024"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 1,
+          "role": "context",
+          "text": "Cummins Range Mineral Resource Estimate Update"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 2,
+          "role": "context",
+          "text": "Total 524.3 4.6 3,120"
+        }
+      ],
+      "rationale": "The May 2023 Table 1 COMBINED row at the 2.5% P2O5 cutoff reports 519.3 Mt. The January 2024 selected replacement MRE explicitly updates drilling and reports 524.3 Mt and 3,120 ppm in the combined total. The earlier value does not represent the selected estimate."
+    },
+    {
+      "candidate_id": "2583869a744cd24b8ab1bb17511477d5c6d8784990844e62b1121df66843fe4c",
+      "target_candidate_id": "7ec50d2bc85b3ef33fc7e50f9de4112f94c446d22f0b22bafbb2b12f99cf5acf",
+      "relation": "DIFFERENT_RESOURCE_SCOPE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "context",
+          "text": "Table 1: Inferred Mineral Resources at Lyons above 0.2% TREO"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "context",
+          "text": "Lyons 11 0.30 0.32 0.10 670"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "context",
+          "text": "Tonnages are dry metric tonnes."
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "table",
+          "text": "Appendix 1. Mineral Resource Statement for Ironstone-hosted REE mineralisation at Lyons"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "header",
+          "text": "Area Tonnes (Mt) TREO (%) NdPr (%) Nb2O5 (%) TREO (t)"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "row",
+          "text": "Lyons 12&13 0.69 0.33 0.15 0.23 2,266"
+        }
+      ],
+      "rationale": "Table 1 identifies the 0.32 % value in the separate Lyons 11 row. The target is the Lyons 12 & 13 row, with 0.69 Mt at 0.33% TREO. Same announcement and cutoff, different estimate scope."
+    },
+    {
+      "candidate_id": "2ab519cd6270eb46bccb544e31dccaf13512930d35c2da763824ccdaefdb3d07",
+      "target_candidate_id": "2e3695943c1afc8c87a2f3d8d901beda167b6414333cc5808cdb5e9b6b4bce85",
+      "relation": "SUPERSEDED_ESTIMATE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 1,
+          "role": "context",
+          "text": "1 May 2023"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 2,
+          "role": "context",
+          "text": "Table 1. Cummins Range Mineral Resource Estimate"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 2,
+          "role": "context",
+          "text": "Total 519.3 4.6 3170"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 1,
+          "role": "context",
+          "text": "25 January 2024"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 1,
+          "role": "context",
+          "text": "Cummins Range Mineral Resource Estimate Update"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 2,
+          "role": "context",
+          "text": "Total 524.3 4.6 3,120"
+        }
+      ],
+      "rationale": "The May 2023 Table 1 COMBINED row at the 2.5% P2O5 cutoff reports 3170 ppm. The January 2024 selected replacement MRE explicitly updates drilling and reports 524.3 Mt and 3,120 ppm in the combined total. The earlier value does not represent the selected estimate."
+    },
+    {
+      "candidate_id": "50773c17e4ab84728ba16813f89f20b2bb5932344e160cc24505255910f04916",
+      "target_candidate_id": "a67eb95ac9e76d04531944e9465e5615fa50840139e48d3acacd18123c886ecb",
+      "relation": "SUPERSEDED_ESTIMATE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 1,
+          "role": "context",
+          "text": "1 May 2023"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 2,
+          "role": "context",
+          "text": "Table 1. Cummins Range Mineral Resource Estimate"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 2,
+          "role": "context",
+          "text": "Total 104.6 5.9 2590"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 1,
+          "role": "context",
+          "text": "25 January 2024"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 1,
+          "role": "context",
+          "text": "Cummins Range Mineral Resource Estimate Update"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 2,
+          "role": "context",
+          "text": "Total 524.3 4.6 3,120"
+        }
+      ],
+      "rationale": "The May 2023 Table 1 PHOS DYKE row at the 2.5% P2O5 cutoff reports 104.6 Mt. The January 2024 selected replacement MRE explicitly updates drilling and reports 524.3 Mt and 3,120 ppm in the combined total. The earlier value does not represent the selected estimate. The candidate is also a single-dyke subtotal rather than the combined estimate."
+    },
+    {
+      "candidate_id": "5b885069b5c28a730fc1a718e2d40ab57a95bcdac87e1384348221918c268e2a",
+      "target_candidate_id": "a67eb95ac9e76d04531944e9465e5615fa50840139e48d3acacd18123c886ecb",
+      "relation": "SUPERSEDED_ESTIMATE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 1,
+          "role": "context",
+          "text": "1 May 2023"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 2,
+          "role": "context",
+          "text": "Table 1. Cummins Range Mineral Resource Estimate"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 2,
+          "role": "context",
+          "text": "Total 414.8 4.2 3320"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 1,
+          "role": "context",
+          "text": "25 January 2024"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 1,
+          "role": "context",
+          "text": "Cummins Range Mineral Resource Estimate Update"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 2,
+          "role": "context",
+          "text": "Total 524.3 4.6 3,120"
+        }
+      ],
+      "rationale": "The May 2023 Table 1 RARE DYKE row at the 2.5% P2O5 cutoff reports 414.8 Mt. The January 2024 selected replacement MRE explicitly updates drilling and reports 524.3 Mt and 3,120 ppm in the combined total. The earlier value does not represent the selected estimate. The candidate is also a single-dyke subtotal rather than the combined estimate."
+    },
+    {
+      "candidate_id": "64e4a85c9aca82413430b0a44908d7fa7ebabe45468d73d81571908764da1b8c",
+      "target_candidate_id": "53845ad42dcc88436342a1ace32b1f9b2b5b334d297494101572b53f7e064cc0",
+      "relation": "DIFFERENT_RESOURCE_SCOPE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "context",
+          "text": "Table 1: Inferred Mineral Resources at Lyons above 0.2% TREO"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "context",
+          "text": "Lyons 11 0.30 0.32 0.10 670"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "context",
+          "text": "Tonnages are dry metric tonnes."
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "table",
+          "text": "Appendix 1. Mineral Resource Statement for Ironstone-hosted REE mineralisation at Lyons"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "header",
+          "text": "Area Tonnes (Mt) TREO (%) NdPr (%) Nb2O5 (%) TREO (t)"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "row",
+          "text": "Lyons 12&13 0.69 0.33 0.15 0.23 2,266"
+        }
+      ],
+      "rationale": "Table 1 identifies the 0.3 Mt value in the separate Lyons 11 row. The target is the Lyons 12 & 13 row, with 0.69 Mt at 0.33% TREO. Same announcement and cutoff, different estimate scope."
+    },
+    {
+      "candidate_id": "728cc1b30aea0f969eb2f99e205a414671b06b19080098f5b6804a686068a3ed",
+      "target_candidate_id": "2e9be0a25332f5eccb909eee6a727a288d16197e3b1e8c037001fa2a2d13af1b",
+      "relation": "INCLUDES_STOCKPILE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 55,
+          "role": "context",
+          "text": "Table 4 DFS component of the Mineral Resource estimate as at 15 January 2025"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 55,
+          "role": "context",
+          "text": "Stockpile Inferred"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 55,
+          "role": "context",
+          "text": "Total 7.5 0.96 0.84 5.64"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "context",
+          "text": "Table 3 Wolverine Mineral Resource estimate as at 15 January 2025"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "context",
+          "text": "Total 7.3 0.96 0.85 5.68"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "table",
+          "text": "Table 2: Mineral Resource estimate for the Wolverine deposit as at 15 January 2025"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "context",
+          "text": "reported above a 0.15 % TREO cut-off grade."
+        }
+      ],
+      "rationale": "Table 4 gives 7.5 Mt over the broader DFS resource, including stockpiles. Wolverine alone in Table 3 and the selected January statement is 7.3 Mt at 0.96% TREO. Identical rounded grades do not equate the two material inventories."
+    },
+    {
+      "candidate_id": "927c9743f1eab1a43ece044ea16d0aacf03bbff46cea081fae92641929e0767c",
+      "target_candidate_id": "2e3695943c1afc8c87a2f3d8d901beda167b6414333cc5808cdb5e9b6b4bce85",
+      "relation": "SUPERSEDED_ESTIMATE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 1,
+          "role": "context",
+          "text": "1 May 2023"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 2,
+          "role": "context",
+          "text": "Table 1. Cummins Range Mineral Resource Estimate"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 2,
+          "role": "context",
+          "text": "Total 414.8 4.2 3320"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 1,
+          "role": "context",
+          "text": "25 January 2024"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 1,
+          "role": "context",
+          "text": "Cummins Range Mineral Resource Estimate Update"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 2,
+          "role": "context",
+          "text": "Total 524.3 4.6 3,120"
+        }
+      ],
+      "rationale": "The May 2023 Table 1 RARE DYKE row at the 2.5% P2O5 cutoff reports 3320 ppm. The January 2024 selected replacement MRE explicitly updates drilling and reports 524.3 Mt and 3,120 ppm in the combined total. The earlier value does not represent the selected estimate. The candidate is also a single-dyke subtotal rather than the combined estimate."
+    },
+    {
+      "candidate_id": "c4c0cd45cab9c967d67c8291d020be52d0f4ace6ac084327e76d316866a33bf1",
+      "target_candidate_id": "a5920146f32efddbc44ccafee5063b19e3c54fd6e1ba77f3a831c2eb30871a07",
+      "relation": "INCLUDES_STOCKPILE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 55,
+          "role": "context",
+          "text": "Table 4 DFS component of the Mineral Resource estimate as at 15 January 2025"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 55,
+          "role": "context",
+          "text": "Stockpile Inferred"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 55,
+          "role": "context",
+          "text": "Total 7.5 0.96 0.84 5.64"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "5aad631c770a3a73dc1ff86e1bd3ae97f6972700f9ca9ca018dae65895fc8075",
+          "page": 54,
+          "role": "context",
+          "text": "Table 3 Wolverine Mineral Resource estimate as at 15 January 2025"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "context",
+          "text": "Total 7.3 0.96 0.85 5.68"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "table",
+          "text": "Table 2: Mineral Resource estimate for the Wolverine deposit as at 15 January 2025"
+        },
+        {
+          "side": "target",
+          "source_sha256": "e29ab1305c8edb5bd1074806d5cf31c323c82cfd68c5c5b2e9b545137f09ccb0",
+          "page": 5,
+          "role": "context",
+          "text": "reported above a 0.15 % TREO cut-off grade."
+        }
+      ],
+      "rationale": "Table 4 gives 0.96 % over the broader DFS resource, including stockpiles. Wolverine alone in Table 3 and the selected January statement is 7.3 Mt at 0.96% TREO. Identical rounded grades do not equate the two material inventories."
+    },
+    {
+      "candidate_id": "d7e8a873d90245a0da10f57f664424f6ed2968123ac89b4226b8c51de8a3740f",
+      "target_candidate_id": "53845ad42dcc88436342a1ace32b1f9b2b5b334d297494101572b53f7e064cc0",
+      "relation": "DIFFERENT_RESOURCE_SCOPE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "context",
+          "text": "Table 1: Inferred Mineral Resources at Lyons above 0.2% TREO"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "context",
+          "text": "Total 0.99 0.32 0.13 3,221"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "context",
+          "text": "Tonnages are dry metric tonnes."
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "table",
+          "text": "Appendix 1. Mineral Resource Statement for Ironstone-hosted REE mineralisation at Lyons"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "header",
+          "text": "Area Tonnes (Mt) TREO (%) NdPr (%) Nb2O5 (%) TREO (t)"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "row",
+          "text": "Lyons 12&13 0.69 0.33 0.15 0.23 2,266"
+        }
+      ],
+      "rationale": "Table 1 gives 0.99 Mt for the sum of Lyons 11, 12 & 13. The selected scope is Lyons 12 & 13 only. Lyons 11 contributes to this total."
+    },
+    {
+      "candidate_id": "e930cc12f75d41ab0970447e4ecd07babe1f0f8f8bda92c690d5930d1a9dc039",
+      "target_candidate_id": "7ec50d2bc85b3ef33fc7e50f9de4112f94c446d22f0b22bafbb2b12f99cf5acf",
+      "relation": "DIFFERENT_RESOURCE_SCOPE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "context",
+          "text": "Table 1: Inferred Mineral Resources at Lyons above 0.2% TREO"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 1,
+          "role": "context",
+          "text": "Total 0.99 0.32 0.13 3,221"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "context",
+          "text": "Tonnages are dry metric tonnes."
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "table",
+          "text": "Appendix 1. Mineral Resource Statement for Ironstone-hosted REE mineralisation at Lyons"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "header",
+          "text": "Area Tonnes (Mt) TREO (%) NdPr (%) Nb2O5 (%) TREO (t)"
+        },
+        {
+          "side": "target",
+          "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+          "page": 6,
+          "role": "row",
+          "text": "Lyons 12&13 0.69 0.33 0.15 0.23 2,266"
+        }
+      ],
+      "rationale": "Table 1 gives 0.32 % for the sum of Lyons 11, 12 & 13. The selected scope is Lyons 12 & 13 only. Lyons 11 contributes to this total."
+    },
+    {
+      "candidate_id": "ecb4d25a6d9dd6c9e13cbc7d48ae987be8a269ccd007ee4d3d22c5b8970f726e",
+      "target_candidate_id": "2e3695943c1afc8c87a2f3d8d901beda167b6414333cc5808cdb5e9b6b4bce85",
+      "relation": "SUPERSEDED_ESTIMATE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 1,
+          "role": "context",
+          "text": "1 May 2023"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 2,
+          "role": "context",
+          "text": "Table 1. Cummins Range Mineral Resource Estimate"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "e85d5345b06dc42448cee9fba03d0a667b8d698bc7b408521357edfb88e3c053",
+          "page": 2,
+          "role": "context",
+          "text": "Total 104.6 5.9 2590"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 1,
+          "role": "context",
+          "text": "25 January 2024"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 1,
+          "role": "context",
+          "text": "Cummins Range Mineral Resource Estimate Update"
+        },
+        {
+          "side": "target",
+          "source_sha256": "5c0fe372d968048482b4c5a1faf80fb8927fa377882ae3b745588d9d5b43bfd9",
+          "page": 2,
+          "role": "context",
+          "text": "Total 524.3 4.6 3,120"
+        }
+      ],
+      "rationale": "The May 2023 Table 1 PHOS DYKE row at the 2.5% P2O5 cutoff reports 2590 ppm. The January 2024 selected replacement MRE explicitly updates drilling and reports 524.3 Mt and 3,120 ppm in the combined total. The earlier value does not represent the selected estimate. The candidate is also a single-dyke subtotal rather than the combined estimate."
+    }
+  ],
+  "selected_witnesses": [
+    {
+      "candidate_id": "057865260b26aa7bd07725cf3df8c74de42950cced80cb27f9c8b19ccb5d6d6a",
+      "text": "101",
+      "unit": "Mt",
+      "parser_unit": "Mt",
+      "canonical_value": "101.0",
+      "quantity_kind": "ore_mt",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "page": 7,
+          "role": "table",
+          "text": "Tower Mineral Resource Summary"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "page": 7,
+          "role": "header",
+          "text": "JORC Classification Tonnes TREO TREO – CeO2 CREO HREO LREO U3O8 ThO2 (Mt) (ppm)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "page": 7,
+          "role": "row",
+          "text": "Total(1) 101 840 517 267 233 607 2 32"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "page": 7,
+          "role": "context",
+          "text": "Mineral Resources previously reported to the ASX on 21 November 2022"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "page": 7,
+          "role": "context",
+          "text": "based on a cut-off grade of 300 ppm TREO-CeO2"
+        }
+      ],
+      "rationale": "Use Tower resource summary TOTAL, originally disclosed 21 November 2022, at 300 ppm TREO-CeO2; keep original estimate and republication dates separate."
+    },
+    {
+      "candidate_id": "0722cc1c15830bf5fe19b7a473a6fba11d03bc9b3c3161eacedf49ee59b57034",
+      "text": "4.12",
+      "unit": "%",
+      "parser_unit": "%",
+      "canonical_value": "4.12",
+      "quantity_kind": "grade",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "header",
+          "text": "average grade of 4.12% Total Rare Earth Oxide (TREO)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "row",
+          "text": "106.6 million tonnes at an average grade of 4.12% Total Rare Earth Oxide (TREO)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "table",
+          "text": "Table 1: Mt Weld Rare Earth Deposit Mineral Resource summary June 2024 at 2.5% TREO cut-off grade"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "106.6 million tonnes at an average grade of 4.12% Total Rare Earth Oxide (TREO) for a total of 4.39 million tonnes of contained TREO."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "accordance with JORC 2012 guidelines and is summarised in Table 1."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 1,
+          "role": "context",
+          "text": "106.6 Mt at 4.12% Total Rare Earth Oxide (TREO) from 30 June 2018 to 30 June 2024"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "Lu2O3) + Yttrium (Y2O3). Totals may not balance due to rounding of figures."
+        }
+      ],
+      "rationale": "The selected 4.12 is the explicitly stated p2 narrative grade. Table 1 4.1 is preserved separately and never substituted."
+    },
+    {
+      "candidate_id": "51808312a9c8bd4ae3ebf11d53fcc491cf9b815363c4c40377f7a2703be4365f",
+      "text": "75.18",
+      "unit": "Mt",
+      "parser_unit": "Mt",
+      "canonical_value": "75.18",
+      "quantity_kind": "ore_mt",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "page": 26,
+          "role": "table",
+          "text": "Table 2 - Dubbo Project Toongi JORC Resource (2017)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "page": 26,
+          "role": "header",
+          "text": "Resource Category Tonnes (Mt) ZrO2 (%) HfO2 (%) Nb2O5 (%) Ta2O5 (%)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "page": 26,
+          "role": "row",
+          "text": "Total 75.18 1.89 0.04 0.44 0.03 1,400 7,400 1,660"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "page": 26,
+          "role": "context",
+          "text": "prepared by independent consultants Mining One Pty Ltd in 2017, has not been updated for the purposes of this Scoping Study."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+          "page": 26,
+          "role": "context",
+          "text": "all of the production targets assumed in this Scoping Study are derived from the 2017 Measured Mineral Resource (42.81 Mt)."
+        }
+      ],
+      "rationale": "Use the 2017 Toongi Measured + Inferred total, distinct from 42.81 Mt Measured material underlying the study production target."
+    },
+    {
+      "candidate_id": "5f377fd65b6ef2b6a4163d2909e5b1699e5138788a82fa744c814829e63b06fa",
+      "text": "840",
+      "unit": "ppm",
+      "parser_unit": "ppm",
+      "canonical_value": "0.08400",
+      "quantity_kind": "grade",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "page": 7,
+          "role": "table",
+          "text": "Tower Mineral Resource Summary"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "page": 7,
+          "role": "header",
+          "text": "JORC Classification Tonnes TREO TREO – CeO2 CREO HREO LREO U3O8 ThO2 (Mt) (ppm)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "page": 7,
+          "role": "row",
+          "text": "Total(1) 101 840 517 267 233 607 2 32"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "page": 7,
+          "role": "context",
+          "text": "Mineral Resources previously reported to the ASX on 21 November 2022"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "0ae98cfd93d554b8d948267a50f9c821761fee97c5a230440055c06029fc9d63",
+          "page": 7,
+          "role": "context",
+          "text": "based on a cut-off grade of 300 ppm TREO-CeO2"
+        }
+      ],
+      "rationale": "Use total TREO grade (840 ppm), not the 517 ppm TREO minus CeO2 column used to describe the cutoff-related grade."
+    },
+    {
+      "candidate_id": "72bb80c8ce471fcfde44bd26ff32f3ed4e64c3e115a2a109e45d53cb3a0cc642",
+      "text": "94.9",
+      "unit": "Mt",
+      "parser_unit": "Mt",
+      "canonical_value": "94.9",
+      "quantity_kind": "ore_mt",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "page": 94,
+          "role": "table",
+          "text": "Narraburra Rare Earth Oxide (REO) Mineral Resources - 4/2023 Weathered regolith (above fresh granitic bed-rock)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "page": 94,
+          "role": "header",
+          "text": "Tonnes TREO1- Ce-O2 Total TREO1 Light REO"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "page": 94,
+          "role": "header",
+          "text": "(t/m3) (ppm) (Mt) (ppm) (ppm)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "page": 94,
+          "role": "row",
+          "text": "ALL Ind + Inf 300.00 94.9 500.31 738.95 444.66 294.28 130.79 32.93 11.10"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "page": 94,
+          "role": "context",
+          "text": "Summary of Mineral Resources (JORC 2012) Contained Within Godolphin Tenements"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "page": 94,
+          "role": "context",
+          "text": "Total REO (TREO) = Total REOs + Yttrium oxide"
+        }
+      ],
+      "rationale": "Use ALL Ind + Inf weathered-regolith domains at 300 ppm TREO−CeO2. The later Mt Aubrey/Yeoval table reports different projects."
+    },
+    {
+      "candidate_id": "73c4a098c9b8e9baf25fd7ac84a4986f0e474136aa8c94297a31aa0840da8d66",
+      "text": "738.95",
+      "unit": "ppm",
+      "parser_unit": "ppm",
+      "canonical_value": "0.073895",
+      "quantity_kind": "grade",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "page": 94,
+          "role": "table",
+          "text": "Narraburra Rare Earth Oxide (REO) Mineral Resources - 4/2023 Weathered regolith (above fresh granitic bed-rock)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "page": 94,
+          "role": "header",
+          "text": "Tonnes TREO1- Ce-O2 Total TREO1 Light REO"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "page": 94,
+          "role": "header",
+          "text": "(t/m3) (ppm) (Mt) (ppm) (ppm)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "page": 94,
+          "role": "row",
+          "text": "ALL Ind + Inf 300.00 94.9 500.31 738.95 444.66 294.28 130.79 32.93 11.10"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "page": 94,
+          "role": "context",
+          "text": "Summary of Mineral Resources (JORC 2012) Contained Within Godolphin Tenements"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+          "page": 94,
+          "role": "context",
+          "text": "Total REO (TREO) = Total REOs + Yttrium oxide"
+        }
+      ],
+      "rationale": "Use Total TREO including Y grade; the preceding 500.31 ppm is TREO without CeO2. Do not reconstruct an oxide-basket value from the report footnote."
+    },
+    {
+      "candidate_id": "7eb93849d05be8ac4df0cf48ec5551034c2a7a66d64ca8d3a227f3e628b1f0d0",
+      "text": "4,389",
+      "unit": "‘000 tonnes",
+      "parser_unit": "kt",
+      "canonical_value": "4389.0",
+      "quantity_kind": "contained_treo_kt",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "table",
+          "text": "Table 1: Mt Weld Rare Earth Deposit Mineral Resource summary June 2024 at 2.5% TREO cut-off grade"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "header",
+          "text": "JORC Classification Million Tonnes TREO* (%) TREO* (‘000 tonnes)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "row",
+          "text": "Total 106.6 4.1 4,389"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "106.6 million tonnes at an average grade of 4.12% Total Rare Earth Oxide (TREO) for a total of 4.39 million tonnes of contained TREO."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "accordance with JORC 2012 guidelines and is summarised in Table 1."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 1,
+          "role": "context",
+          "text": "106.6 Mt at 4.12% Total Rare Earth Oxide (TREO) from 30 June 2018 to 30 June 2024"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "Lu2O3) + Yttrium (Y2O3). Totals may not balance due to rounding of figures."
+        }
+      ],
+      "rationale": "Table 1 reports thousands of metric tonnes of TREO. Retain its rounded displayed 4,389, not the p2 prose 4.39 million."
+    },
+    {
+      "candidate_id": "88ebaa3f130aa0a165f4b1265df8da972536aeebf456da537f2b442b00cfdd8a",
+      "text": "1.04",
+      "unit": "%",
+      "parser_unit": "%",
+      "canonical_value": "1.04",
+      "quantity_kind": "grade",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "page": 1,
+          "role": "table",
+          "text": "Table 1: Yin Resource as adjusted for different cut-off grades."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "page": 1,
+          "role": "header",
+          "text": "Cut-Off (%TREO) Resource (Mt) TREO (%) NdPr:TREO (%) Contained TREO (t) Contained NdPr (t)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "page": 1,
+          "role": "row",
+          "text": "0.20 29.98 1.04 29% 311,800 89,900"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "page": 1,
+          "role": "context",
+          "text": "Large, High Confidence Yin Ironstone Resource - Mangaroon (100%)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "page": 1,
+          "role": "context",
+          "text": "Large, independent JORC Code 2012 Mineral Resource (“Resource”) at the Yin REE Ironstone Complex"
+        }
+      ],
+      "rationale": "Bind to the TREO grade column in the same 0.20% cutoff row of Yin Table 1."
+    },
+    {
+      "candidate_id": "9e4f4b0d6a9bc8233533e872f1b1213e17d98f037a37de2fc6ae04dea7532c9d",
+      "text": "0.20",
+      "unit": "%",
+      "parser_unit": "%",
+      "canonical_value": "0.2",
+      "quantity_kind": "grade",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "page": 14,
+          "role": "table",
+          "text": "Table 4: Updated JORC Code (2012) Brockman Project Mineral Resources. Lower cut-off grade is 700 ppm Nb2O5."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "page": 14,
+          "role": "header",
+          "text": "Inferred M Tonnes % TREO % HREO % Nb2O5 % Ta2O5 % Y2O3 % ZrO2"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "page": 14,
+          "role": "row",
+          "text": "TOTAL 41.6 0.20 0.17 0.35 0.02 0.11 0.86"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "page": 14,
+          "role": "context",
+          "text": "Resources are shown for the main Brockman Project (Table 4)."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "page": 14,
+          "role": "context",
+          "text": "The Brockman Mineral Resource estimate was first reported in September 2011"
+        }
+      ],
+      "rationale": "Brockman Table 4 has % TREO in column 3; the neighbouring 0.17% HREO and 0.35% Nb2O5 are separate fields."
+    },
+    {
+      "candidate_id": "aec937e6c2ca4c34747b483d25f18be1c949f6f6983aa7d710defbaf4cb83a7a",
+      "text": "41.6",
+      "unit": "M Tonnes",
+      "parser_unit": "Mt",
+      "canonical_value": "41.6",
+      "quantity_kind": "ore_mt",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "page": 14,
+          "role": "table",
+          "text": "Table 4: Updated JORC Code (2012) Brockman Project Mineral Resources. Lower cut-off grade is 700 ppm Nb2O5."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "page": 14,
+          "role": "header",
+          "text": "Inferred M Tonnes % TREO % HREO % Nb2O5 % Ta2O5 % Y2O3 % ZrO2"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "page": 14,
+          "role": "row",
+          "text": "TOTAL 41.6 0.20 0.17 0.35 0.02 0.11 0.86"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "page": 14,
+          "role": "context",
+          "text": "Resources are shown for the main Brockman Project (Table 4)."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+          "page": 14,
+          "role": "context",
+          "text": "The Brockman Mineral Resource estimate was first reported in September 2011"
+        }
+      ],
+      "rationale": "Brockman main Project Table 4 total, distinct from the Yangibana Resource and the adjacent Yangibana Nb2O5 tables."
+    },
+    {
+      "candidate_id": "b061359a04df1782c32ddd1ce44a79bbc46e44b710d8fc7c4aea2c697988faf1",
+      "text": "1,700",
+      "unit": "ppm",
+      "parser_unit": "ppm",
+      "canonical_value": "0.17000",
+      "quantity_kind": "grade",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "page": 14,
+          "role": "table",
+          "text": "Table 1 | Jupiter Mineral Resource by TREO Cut-off Grade"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "page": 14,
+          "role": "header",
+          "text": "TREO cut-off Indicated Inferred Total Mineral Resource"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "page": 14,
+          "role": "row",
+          "text": "1,000 ppm 160 Mt at 1,700 ppm 1,500 Mt at 1,700 ppm 1.7 Bt at 1,700 ppm"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "page": 14,
+          "role": "context",
+          "text": "The updated Mineral Resource is reported at a primary 1,000 ppm TREO cut-off, while a 1,500 ppm TREO cut-off was adopted to define the Resource inventory used for Scoping Study mine planning."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "page": 14,
+          "role": "context",
+          "text": "Mineral Resources are rounded to two significant figures and totals may not sum precisely due to rounding."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "ea4d6aead116a7db9547f251dac5a06c8f237595b4293669a1edab78a289367a",
+          "page": 14,
+          "role": "narrative",
+          "text": "1.7 Bt at 1,700 ppm"
+        }
+      ],
+      "rationale": "Use rightmost Total Mineral Resource column for the 1,000 ppm cutoff row, not its Indicated or Inferred subcolumns, and not the 1,500 ppm mine-planning scenario."
+    },
+    {
+      "candidate_id": "b207771d56f2868aa769121b1086b85a27f4ba92da3bc789e23ab68e684e99cd",
+      "text": "106.6",
+      "unit": "Million Tonnes",
+      "parser_unit": "Mt",
+      "canonical_value": "106.6",
+      "quantity_kind": "ore_mt",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "table",
+          "text": "Table 1: Mt Weld Rare Earth Deposit Mineral Resource summary June 2024 at 2.5% TREO cut-off grade"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "header",
+          "text": "JORC Classification Million Tonnes"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "row",
+          "text": "Total 106.6 4.1 4,389"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "106.6 million tonnes at an average grade of 4.12% Total Rare Earth Oxide (TREO) for a total of 4.39 million tonnes of contained TREO."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "accordance with JORC 2012 guidelines and is summarised in Table 1."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 1,
+          "role": "context",
+          "text": "106.6 Mt at 4.12% Total Rare Earth Oxide (TREO) from 30 June 2018 to 30 June 2024"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+          "page": 2,
+          "role": "context",
+          "text": "Lu2O3) + Yttrium (Y2O3). Totals may not balance due to rounding of figures."
+        }
+      ],
+      "rationale": "Native Mt is explicitly given on p1, the same 2024 MRE reported in p2 Table 1."
+    },
+    {
+      "candidate_id": "d2fdd0b1f57768dc42fa0420725f4115c71d3312291ebfa1647916dac8e6f6eb",
+      "text": "538",
+      "unit": "ppm",
+      "parser_unit": "ppm",
+      "canonical_value": "0.05380",
+      "quantity_kind": "grade",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "page": 7,
+          "role": "table",
+          "text": "Table 1: Block 3 East Inferred Mineral Resource estimates - October 2025"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "page": 7,
+          "role": "header",
+          "text": "Tonnage (Mt) Ga2O3 (ppm) TREO (ppm) NdPr (ppm)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "page": 7,
+          "role": "row",
+          "text": "7.23 102 538 104"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "page": 7,
+          "role": "context",
+          "text": "estimates are based on a Ga2O3 cut-off grade of 70g/t"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "page": 7,
+          "role": "context",
+          "text": "The Mineral Resource is limited to material located within oxide and transition zone material."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "page": 7,
+          "role": "context",
+          "text": "The REO mineralisation contained within the gallium resource model cells has been reported as a potential by-product."
+        }
+      ],
+      "rationale": "Table 1 labels 538 as TREO ppm by-product within gallium resource. The neighbouring 102 ppm Ga2O3 and 104 ppm NdPr are separate columns."
+    },
+    {
+      "candidate_id": "e690565d79cf4670f83725036885dc6a93e7240166372ea67eca04e6c24e3ec0",
+      "text": "7.23",
+      "unit": "Mt",
+      "parser_unit": "Mt",
+      "canonical_value": "7.23",
+      "quantity_kind": "ore_mt",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "page": 7,
+          "role": "table",
+          "text": "Table 1: Block 3 East Inferred Mineral Resource estimates - October 2025"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "page": 7,
+          "role": "header",
+          "text": "Tonnage (Mt) Ga2O3 (ppm) TREO (ppm) NdPr (ppm)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "page": 7,
+          "role": "row",
+          "text": "7.23 102 538 104"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "page": 7,
+          "role": "context",
+          "text": "estimates are based on a Ga2O3 cut-off grade of 70g/t"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "page": 7,
+          "role": "context",
+          "text": "The Mineral Resource is limited to material located within oxide and transition zone material."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+          "page": 7,
+          "role": "context",
+          "text": "The REO mineralisation contained within the gallium resource model cells has been reported as a potential by-product."
+        }
+      ],
+      "rationale": "Estimate is economic gallium-resource model only; keep oxide/transition material and 70 g/t Ga2O3 cutoff. Physical page inspection locates the Table 1 title with these columns despite text-order interleaving from Table 5."
+    },
+    {
+      "candidate_id": "f4299ea1d60a50979f4431b36524ce81092cbda15cc0d49cfa30387e005bd11a",
+      "text": "29.98",
+      "unit": "Mt",
+      "parser_unit": "Mt",
+      "canonical_value": "29.98",
+      "quantity_kind": "ore_mt",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "page": 1,
+          "role": "table",
+          "text": "Table 1: Yin Resource as adjusted for different cut-off grades."
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "page": 1,
+          "role": "header",
+          "text": "Cut-Off (%TREO) Resource (Mt) TREO (%) NdPr:TREO (%) Contained TREO (t) Contained NdPr (t)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "page": 1,
+          "role": "row",
+          "text": "0.20 29.98 1.04 29% 311,800 89,900"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "page": 1,
+          "role": "context",
+          "text": "Large, High Confidence Yin Ironstone Resource - Mangaroon (100%)"
+        },
+        {
+          "side": "candidate",
+          "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+          "page": 1,
+          "role": "context",
+          "text": "Large, independent JORC Code 2012 Mineral Resource (“Resource”) at the Yin REE Ironstone Complex"
+        }
+      ],
+      "rationale": "Bind to the 0.20% TREO cutoff in Yin Table 1; the positive resource rows at 0.40 and 1.00 are alternatives."
+    }
+  ],
+  "selected_witnesses_design": "Original selected AUTO_VALIDATED cells whose B1 disposition was MISSING_OR_UNSUPPORTED_UNIT or NONPOSITIVE_OR_UNBOUND_NUMERIC_TOKEN. Exhausted the 17 cases, preserving 2 incompatible heavy-mineral denominators.",
+  "selected_witnesses_excluded": [
+    {
+      "candidate_id": "871b87b2a6f33dd5625b920903d8c02f061bcdc8310a5d624b8001290026a6a9",
+      "reason": "HEAVY_MINERAL_DENOMINATOR_REQUIRES_SEPARATE_CONVERSION_EVIDENCE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "77097e83c9434efe3ce797b8400aa1b5159d152a66994db3425a5ad86e03f4e4",
+          "page": 17,
+          "role": "context",
+          "text": "reported as a percentage of in situ THM content."
+        }
+      ]
+    },
+    {
+      "candidate_id": "e5e2d57309ef57573c813de819fa1c00c3c96f7f94c30dff7a705282cb67653c",
+      "reason": "HEAVY_MINERAL_DENOMINATOR_REQUIRES_SEPARATE_CONVERSION_EVIDENCE",
+      "anchors": [
+        {
+          "side": "candidate",
+          "source_sha256": "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+          "page": 6,
+          "role": "context",
+          "text": "REOs from laser ablation data are presented as percentages of the total HM component."
+        }
+      ]
+    }
+  ]
+}
