@@ -1,0 +1,23 @@
+{
+  "version": "observation-shadow-profiles-v1",
+  "frozen_formal_projection": {
+    "census_csv_sha256": "127df6f912bedf5134746fc1f35dae557214f9751b390a20ea67d83ef865e54c",
+    "technical_semantic_rows_sha256": "4767b9884abe32a74fc51cfa2fcb8ea896c82ea78167114303850e9460276cdc"
+  },
+  "profiles": {
+    "DIRECT_RESOURCE_UNIT_COMPARISON_V1": {
+      "quantities": ["ore_mt", "grade", "contained_treo_kt"],
+      "gate": "phase22_direct_resource",
+      "required_context": ["project_id", "scope", "category", "statement_id", "effective_date", "basis"],
+      "formal_use": false
+    },
+    "WITHIN_TABLE_ELEMENT_LEACH": {
+      "gate": "technical_analysis.contracts.WITHIN_TABLE_ELEMENT_LEACH",
+      "required_context": ["scope", "case_id", "sample_id", "feed", "endpoint", "scale"],
+      "formal_use": false
+    }
+  },
+  "promotion": {
+    "requires": ["independent source-first reference", "checked harmful admissions and lost supported cases", "formal eligibility and research acceptance"]
+  }
+}
