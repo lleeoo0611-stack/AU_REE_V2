@@ -1,0 +1,17 @@
+{
+  "version": "resource-portfolio-v1",
+  "use": "DIRECT_RESOURCE_UNIT_COMPARISON_V1",
+  "crosswalk": {
+    "JORC": {"edition": "Original report edition", "fields": ["statement_kind", "category", "scope", "cutoff", "estimate_date"]},
+    "EarthResourceML": {"fields": ["project_id", "estimate_scope"], "local_relation": "Evidence-bound comparison within the same Project and selected resource scope"},
+    "QUDT": {
+      "units": {"t":"unit:TONNE", "kt":"unit:KiloTONNE", "Mt":"unit:MegaTONNE", "ppm":"unit:PPM", "%":"unit:PERCENT"},
+      "lexical_units": {"t":"t", "tonnes":"t", "kt":"kt", "kt TREO":"kt", "000 tonnes":"kt", "‘000 tonnes":"kt", "Mt":"Mt", "M Tonnes":"Mt", "Million Tonnes":"Mt", "million tonnes":"Mt", "%":"%", "ppm":"ppm"},
+      "context": ["quantity_kind", "chemical_basis", "material_basis", "denominator_basis"]
+    },
+    "SKOS": {"policy": "Exact unit labels and reviewed quantity concepts. Concept links never prove that two observations concern the same estimate."}
+  },
+  "same_estimate_relations": ["SAME_REPORTED_CELL", "REPRINTS_SAME_ESTIMATE"],
+  "non_numeric_support": ["SAME_ESTIMATE_ROUNDING_ONLY", "SAME_ESTIMATE_COMPARABILITY_UNRESOLVED"],
+  "confirmed_exclusions": ["SUPERSEDED_ESTIMATE", "DIFFERENT_RESOURCE_SCOPE", "INCLUDES_STOCKPILE"]
+}

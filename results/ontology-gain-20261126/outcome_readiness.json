@@ -1,0 +1,163 @@
+{
+  "block_reason": "VERIFIED_PROJECT_TIME_DATASET_REQUIRED",
+  "catalogue_projects": 19,
+  "catalogue_records": 23,
+  "config_sha256": "054117b31bc8cd4e889c23c56c80e0fc5d00477cd13f175b6496fdb825c40c63",
+  "configured_dataset": "data/experiments/project_time_cases.json",
+  "cutoff": "2026-11-13",
+  "event_types": {
+    "COMMISSIONING": 1,
+    "FS": 5,
+    "OPERATING_STATUS": 2,
+    "PFS": 1,
+    "RAMP_UP": 1,
+    "RECOGNIZED_MRE": 8,
+    "REE_EXPLORATION": 3,
+    "SCOPING": 2
+  },
+  "experiment_contract_files": {
+    "evidence_model.py": "81f86be78bdafc659597611256df9de73b4f6821021a470aa7f3cb9a6362c51e",
+    "experiment_data.py": "426a5f5a501fcf05bd8230ba8f1dac1d023f851e6fa1aef34a3abbdcead82bc0",
+    "experiment_models.py": "392c31279a81c755c0327e7e07ab5d3b70bf7761d97edab75318ba7ce078198b",
+    "experiments.py": "c887f21998d9314eeff2ca7ab3fbb261cabcee50f1f8f5df0a2b5400819d113c",
+    "mcda.py": "f61d0baa42927df003671f83d7449a7f6be5967446d9f683d1846c83059c1dab",
+    "store.py": "920203e0b1ff392e27576176989c9244f14859c902a7c648d83dcdf7608131fc"
+  },
+  "experiment_status": "BLOCKED",
+  "interpretation": "A commissioning notice, a shipment of chloride ilmenite during ramp-up and operator withdrawal do not establish first commercial REE production. The frozen catalogue contains no dated FID or main construction start and no completed at-risk Project-by-date follow-up cohort. The existing outcome_mcda requires observed targets and historical features through each prediction time. No weights were fitted or used in production.",
+  "prediction_target": {
+    "horizon_days": 1095,
+    "name": "FID"
+  },
+  "readiness": {
+    "T1_interpretation": "Technical Disclosure Transparency; fixed seven binary items; not technical capability, recovery performance or feasibility",
+    "candidate_milestones": {
+      "complete_day_event_dates": 0,
+      "event_types": {
+        "COMMISSIONING": 1,
+        "FS": 5,
+        "OPERATING_STATUS": 2,
+        "PFS": 1,
+        "RAMP_UP": 1,
+        "RECOGNIZED_MRE": 8,
+        "REE_EXPLORATION": 3,
+        "SCOPING": 2
+      },
+      "nonempty_event_dates": 4,
+      "projects": 19,
+      "records": 23
+    },
+    "inputs": {
+      "config/research.json": "c9ce710fac929d99b638e2ea5c384df40a5ab3f84aa51cb4df09d5892759edb4",
+      "data/candidate_milestone_evidence.json": "bcb86b4c772a2250d591ccf750ba06a935365661e0ec1bccd0cffcd0d1841b5e",
+      "data/study_cases.json": "58ae87c26b5cf9b1e09b1c1305330edb3c70663f402dccfac33bd811216af5c0"
+    },
+    "required_before_real_training": [
+      "Verified Project-by-date feature exports with availability evidence",
+      "Dated target events plus explicit follow-up for negative labels",
+      "Source-supported country and commodity metadata",
+      "Versioned canonical identity mapping"
+    ],
+    "scope": "NAMED_CATALOGUES_ONLY_NOT_ALL_DATABASE_EVIDENCE",
+    "study_cases": {
+      "operating_outcomes_inferred": false,
+      "records": 9
+    },
+    "weight_status": "RESEARCHER_ASSUMPTIONS_NOT_ELICITED_EXPERT_PREFERENCES"
+  },
+  "release_sha256": "94625edbbc915d328e9b3253fdb2cda65d1bee98f183a6a2169ed30a6fd8e17b",
+  "scope": "Frozen milestone_events and the named input of the existing AU transfer experiment.",
+  "splits_realized": 0,
+  "splits_requested": [
+    {
+      "holdout_fraction": 0.25,
+      "id": "new_au_projects_2023",
+      "mode": "new_project",
+      "target_commodity": "REE",
+      "target_country": "AUS",
+      "test_end": "2023-11-13",
+      "test_start": "2023-01-01",
+      "train_cutoff": "2022-12-31"
+    },
+    {
+      "id": "future_au_projects_2023",
+      "mode": "future_project",
+      "target_commodity": "REE",
+      "target_country": "AUS",
+      "test_end": "2023-11-13",
+      "test_start": "2023-01-01",
+      "train_cutoff": "2022-12-31"
+    },
+    {
+      "id": "leave_australia_out_2023",
+      "mode": "leave_country",
+      "target_commodity": "REE",
+      "target_country": "AUS",
+      "test_end": "2023-11-13",
+      "test_start": "2023-01-01",
+      "train_cutoff": "2022-12-31"
+    }
+  ],
+  "verified_context": [
+    {
+      "actual_product": "",
+      "event_date": "2024-10",
+      "event_id": "aeaaf22962f9c5c3c85c612b4a243a04d3d77c469220688d5fe589a6321b5ebd",
+      "event_type": "OPERATING_STATUS",
+      "markers": "[\"In October 2024, the Company formally relinquished the Rare Earth Projects\"]",
+      "physical_page": "59",
+      "project_id": "AU-68da41afe874c3bd66d4",
+      "publication_date": "2025-03-31",
+      "scope": "Lithium Universe, Voyager REE project",
+      "scope_role": "PROJECT",
+      "source_sha256": "250eb3778935dfdd8dd56c397ef38ffb396b15d82a0f5a464e99427fd08a5b75",
+      "source_url": "https://announcements.asx.com.au/asxpdf/20250331/pdf/06h61k11cfbd3w.pdf",
+      "status": "OPERATOR_WITHDREW"
+    },
+    {
+      "actual_product": "chloride ilmenite",
+      "event_date": "",
+      "event_id": "9fe4d8864df4122244c070bf9feaee0784dfbb6456085358a2e3a44276f32bdf",
+      "event_type": "RAMP_UP",
+      "markers": "[\"first shipment of chloride ilmenite product now completed\",\"commissioning and ramp-up of Coburn\"]",
+      "physical_page": "1",
+      "project_id": "AU-73549b8a9b1c6faf55eb",
+      "publication_date": "2023-08-21",
+      "scope": "Coburn downstream mineral separation plant, chloride ilmenite product",
+      "scope_role": "COMMERCIAL_FACILITY",
+      "source_sha256": "222d4f576f1240665a857e5bae8ede427939f82d6628cb54e337f5cf4f0ae89f",
+      "source_url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02699350-6A1163850",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "actual_product": "",
+      "event_date": "",
+      "event_id": "a03c11a537c52a5b46764142504ed5b8459637332ae6c5522b5f468459618baa",
+      "event_type": "COMMISSIONING",
+      "markers": "[\"commissioning of the Mineral Separation Plant\",\"Coburn mineral sands project\"]",
+      "physical_page": "1",
+      "project_id": "AU-73549b8a9b1c6faf55eb",
+      "publication_date": "2023-08-21",
+      "scope": "Coburn downstream mineral separation plant",
+      "scope_role": "COMMERCIAL_FACILITY",
+      "source_sha256": "222d4f576f1240665a857e5bae8ede427939f82d6628cb54e337f5cf4f0ae89f",
+      "source_url": "https://cdn-api.markitdigital.com/apiman-gateway/ASX/asx-research/1.0/file/2924-02699350-6A1163850",
+      "status": "STARTED"
+    },
+    {
+      "actual_product": "",
+      "event_date": "",
+      "event_id": "7163b936739c13b63e255e081ed1a6d788ce687cfbe878deed5e4afbce8855f8",
+      "event_type": "OPERATING_STATUS",
+      "markers": "[\"the Company relinquished its interest in non-core tenements E77/3009\",\"E77/3010, E77/3011 and E77/3012\"]",
+      "physical_page": "4",
+      "project_id": "AU-d99cf357d160df73387c",
+      "publication_date": "2025-07-30",
+      "scope": "Terra Metals, E77/3009–3012",
+      "scope_role": "PROJECT",
+      "source_sha256": "dd29b311224f3e25692592f23d7efedec24b356fccc8513a7022f9534dfad1b1",
+      "source_url": "https://announcements.asx.com.au/asxpdf/20250730/pdf/06m9c8rkytc9sm.pdf",
+      "status": "OPERATOR_WITHDREW"
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "candidate_count": 351,
+  "candidate_counts": {
+    "DEVELOPMENT": 317,
+    "HOLDOUT": 34
+  },
+  "candidate_id_set_sha256": "e655808d5af6e3e6c049c631729ce41ec4e044ceaed6e8ee4c3426f86b778594",
+  "candidate_sha256": "407bf4a05254c5347ad46a6a16fe374612f025acb77ea90ccc2b7684969aa566",
+  "code_sha256": "642d12a6e7f361395a5e400184f88c068294cd4eae61fcc0e23d283b71c50ed9",
+  "cutoff": "2026-11-13",
+  "deduplication_limit": "Candidates use verified same-statement or explicit same-cell identity where available. Scientific units with unresolved corroboration can still recur; this automatic count is an upper bound. The original blind packet's independent_observation_id is a retrieval blocking key, not an equivalence decision. For reviewed units use source adjudications.",
+  "excluded_resource_variables": {
+    "magnet_reo_share_pct": 16,
+    "official_batch_res_con": 83,
+    "official_batch_res_qty": 83,
+    "official_batch_res_qty_g": 83,
+    "official_batch_rv_con": 83,
+    "official_batch_rv_qty": 83,
+    "official_batch_rv_qty_g": 83,
+    "reported_ceo2_ppm": 20,
+    "reported_dy2o3_ppm": 2,
+    "reported_er2o3_ppm": 18,
+    "reported_eu2o3_ppm": 18,
+    "reported_gd2o3_ppm": 18,
+    "reported_ho2o3_ppm": 17,
+    "reported_la2o3_ppm": 18,
+    "reported_lu2o3_ppm": 17,
+    "reported_nd2o3_ppm": 2,
+    "reported_pr6o11_ppm": 2,
+    "reported_resource_contained_ceo2_kt": 3,
+    "reported_resource_contained_dy2o3_kt": 1,
+    "reported_resource_contained_er2o3_kt": 1,
+    "reported_resource_contained_eu2o3_kt": 1,
+    "reported_resource_contained_gd2o3_kt": 1,
+    "reported_resource_contained_ho2o3_kt": 1,
+    "reported_resource_contained_la2o3_kt": 1,
+    "reported_resource_contained_lu2o3_kt": 1,
+    "reported_resource_contained_nd2o3_kt": 1,
+    "reported_resource_contained_pr6o11_kt": 1,
+    "reported_resource_contained_sm2o3_kt": 1,
+    "reported_resource_contained_tb4o7_kt": 1,
+    "reported_resource_contained_tm2o3_kt": 1,
+    "reported_resource_contained_y2o3_kt": 2,
+    "reported_resource_contained_yb2o3_kt": 2,
+    "reported_resource_distribution_dy_ppm": 2,
+    "reported_resource_distribution_magnet_ppm": 2,
+    "reported_resource_distribution_nd_ppm": 2,
+    "reported_resource_distribution_pr_ppm": 2,
+    "reported_resource_distribution_tb_ppm": 2,
+    "reported_resource_dy_ppm": 24,
+    "reported_resource_magnet_ppm": 4,
+    "reported_resource_nd_ppm": 25,
+    "reported_resource_ndpr_kt": 1,
+    "reported_resource_ndpr_ppm": 3,
+    "reported_resource_pr_ppm": 26,
+    "reported_resource_tb_ppm": 25,
+    "reported_resource_tho2_ppm": 1,
+    "reported_resource_u3o8_ppm": 1,
+    "reported_resource_y_ppm": 1,
+    "reported_sm2o3_ppm": 18,
+    "reported_tb4o7_ppm": 2,
+    "reported_tm2o3_ppm": 18,
+    "reported_y2o3_ppm": 18,
+    "reported_yb2o3_ppm": 17
+  },
+  "holdout_counts": {
+    "contained_treo_kt/core/pdf": 1,
+    "grade/core/pdf": 7,
+    "grade/related/pdf": 10,
+    "ore_mt/core/pdf": 7,
+    "ore_mt/related/pdf": 9
+  },
+  "logical_sha256": "49f14afba53a9f8ea6cf6d47af2e4a9f5082bc6ceea283e3855848f00068705b",
+  "page_text_extractor": {
+    "library": "PyMuPDF",
+    "operation": "native get_text(sort=True); whitespace collapsed; original PDF bytes bound by SHA-256",
+    "version": "1.26.7"
+  },
+  "project_count": 41,
+  "project_identity_sha256": "4719845c91bf2b999be0875e541202873eee6fe6826f8fafb63519535a8cb74b",
+  "raw_gate_counts": {
+    "PROJECT_OUTSIDE_CONFIRMED_CENSUS_MEMBERSHIP": 2,
+    "SOURCE_NOT_IN_SELECTION_RECEIPT": 12,
+    "SOURCE_NOT_STATIC_PDF": 63,
+    "SOURCE_VERSION_NOT_VERIFIED": 12
+  },
+  "release_inputs_sha256": {
+    "acquisition_report.csv": "22440b52072a6e79cdd4eef0549da704c72d39dfa593c11cc4d0ef64a80292b0",
+    "census_release.json": "6d457238d7b699508216ad28b9279a33921d8d32b9a2fc2ca1d09ba87f1205e7",
+    "census_selection.csv": "d8cb35a3b66e9cfd1862bb479178f6a82280dbd53c923fe46d163c07ef6bebec",
+    "coverage.json": "f73fe4f48d18418e74f65263859b363a8a581a9526920cac5f3aae6cefbefe48",
+    "resource_statement_lineage.csv": "510aa919b049d2b0be9d1d98000a58b119e45fc05610785bb5cae6ac5500e78e",
+    "resource_statement_observations.csv": "067e6bf1d8ba46426fb5f16ec7ab404606aa58c181b6ec57445ea6321e97aeb2",
+    "source_selection.csv": "197a460ae02c1497fe8f7ee2b4f1ca921127a472af29b07b2a20dc3613bb7fe4"
+  },
+  "resolved_inventory_reason_counts": {
+    "SOURCE_AFTER_CUTOFF": 51,
+    "SOURCE_OBSERVATION_NOT_VALIDATED": 193,
+    "VALID_RAW_EVIDENCE": 107
+  },
+  "resource_fact_count": 1210,
+  "run_id": "20261121T180616-f9542b39",
+  "sample_counts": {
+    "contained_treo_kt/core/pdf": 1,
+    "grade/core/pdf": 3,
+    "grade/related/pdf": 3,
+    "ore_mt/core/pdf": 3,
+    "ore_mt/related/pdf": 3
+  },
+  "sample_design": "Within each holdout target/native quantity family/source kind stratum, first three salted candidate hashes without replacement; groups linked by projects, statement IDs, source SHA or equal full PDF page. Previous fixture projects quarantined in development. No issuer-generalization claim.",
+  "sample_id_set_sha256": "6beb74cbf5f0b37b5614b8e5b375f8372f151e3d45b8d9234aa8f90b28b76379",
+  "sample_sha256": "2189b54b395fc2285fef38676a666fbb23c804715b3390e4a71e161220bb5f26",
+  "seed": "AU-REE-ONTOLOGY-GAIN-20261126-v1",
+  "sole_use_scope": "Pre-selection source observations for three existing resource quantity kinds and named related or incompatible measures. Other resource facts and technical records are not scored.",
+  "source_byte_checks": {
+    "VERIFIED": 60
+  },
+  "source_id_count": 60,
+  "sqlite_observation_count": 39528,
+  "sqlite_sha256": "c6fd40e9bc7bf10e139853baad7fdcf6242fdb3a34bd17e6294710012178e1b6",
+  "unique_evidence_count": 349,
+  "use": "DIRECT_RESOURCE_UNIT_COMPARISON_V1",
+  "use_assignment": {
+    "contained_treo_kt": [
+      "contained_treo_kt",
+      "reported_resource_contained_kt",
+      "reported_resource_contained_treo_kt"
+    ],
+    "grade": [
+      "grade",
+      "reported_resource_grade",
+      "reported_resource_grade_pct",
+      "reported_resource_treo_grade_pct",
+      "reported_resource_treo_grade_ppm",
+      "reported_resource_treo_ppm",
+      "normalized_resource_treo_ppm",
+      "reported_resource_thm_treo_pct",
+      "reported_resource_treo_ex_ceo2_ppm",
+      "reported_resource_ndpr_grade_pct",
+      "reported_resource_y2o3_grade_pct"
+    ],
+    "ore_mt": [
+      "ore_mt",
+      "reported_resource_ore_mt"
+    ]
+  }
+}

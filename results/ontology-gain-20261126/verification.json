@@ -1,0 +1,86 @@
+{
+  "byte_identical_replay_sha256": {
+    "candidates.jsonl": "407bf4a05254c5347ad46a6a16fe374612f025acb77ea90ccc2b7684969aa566",
+    "decision_audit.json": "adbd75c0142d364c70ed98dec1d7c8b7541dd82ab9363b9a0032b90a56d94253",
+    "decisions.jsonl": "e1b9510267c3eb515cc5c6b73349df175eab6a07f4fecfeeafbbe10f3f88ecfd",
+    "disagreement_ids.json": "20b1861988db1d259ef566b1660c9385d023837060b79cbe09c820845b579d9e",
+    "inventory_manifest.json": "0afe80c3fd6155772bfe2b536c0c085f4b800bed18d00406201117afc22741a4",
+    "metrics.json": "7494fcc4d2551cfa805621601fca536eb63abd6350603f470c1faf6e996e2bda",
+    "outcome_readiness.json": "4b7ea0c22668a8a775048c72d064e19fb8aa79b208334a68eb69074e21ecfdd9",
+    "project_pairs.jsonl": "e155921097487652c824298adb3f48818d6912e2660a9658991d6528905d4f87",
+    "review_dispositions.jsonl": "019b3c7d8415894eefbe50aae9a1941d70a6a321ad28725256bfea5a312df42a",
+    "review_sample.jsonl": "2189b54b395fc2285fef38676a666fbb23c804715b3390e4a71e161220bb5f26",
+    "upstream_audit.json": "74bc51e3da68c83e9ae2a627491c3d6ba8e5c8332140b7e05e7d1035fc05c387",
+    "upstream_source_blocks.jsonl": "d8e053fa5c4ae3695b710062ba24add0c18e2ee95e2840a5059c5729c6a547d9"
+  },
+  "experiment_code_sha256": {
+    "ontology_gain_compare": "608f97a7f8c987653d99dbb2e93004ade0addbe72fbf5252fdf6dfb58efd61e4",
+    "ontology_gain_freeze": "8d7c41147a0e65d9a6e1fe9451c283347b74cdf0e595eb1fafa873c99ad02a5f",
+    "ontology_gain_inventory": "642d12a6e7f361395a5e400184f88c068294cd4eae61fcc0e23d283b71c50ed9",
+    "ontology_gain_metrics": "30b938fc3e521ad83620cd4786fbe9dd6269542cf3b2f0c7dc31f8e70e6a4bee",
+    "ontology_outcome_readiness": "ed48161b666a655f560ec4573f250c847c825627bc30cab7232ba6b16174612a",
+    "verify_ontology_gain_release": "7e0eca9a21d476332cc2e8513954b776f8dc6aa1d172774b653b4a21d64c44f9",
+    "verify_ontology_gain_review": "9ec3d45be62ff5361be960e26fbeae4826b6f435c99511260273760ea3d3b9b6"
+  },
+  "frozen_comparator_commit": "c0844e5",
+  "historical_output_sha256": {
+    "evidence.nt": "d9eb707a5527a9adbd8286e729a9f8308fca8763c0def24b0892488cd3299f0f",
+    "ontology_report.json": "8c1e74398d387523601f5bd62e6fc105cebc67429f055547cc3d4080214a7e84",
+    "shapes.nt": "25ae4eb4bd7fc999eeb9af97d009f8583378dbec284d3ddb53553f2e1e982ab1",
+    "vocabulary.nt": "418ded6eeb4b6a9c881f59cd2fd661c7742cece3029f6247e47fd14e9370c913"
+  },
+  "presampled_review_commit": "e5d3a2d",
+  "reference_base": "cc36d77bcb7891a03b51b7e6111ca72d1dc2b382",
+  "registration_commit": "2169f16",
+  "source": "same canonical frozen database and static original kit",
+  "source_review_verification": {
+    "changed_admission": {
+      "originals_verified": 1,
+      "packet_candidates": 3,
+      "physical_pages_verified": 2,
+      "reference_sha256": "428105359fd3b90eac2dc8f73463832965c9ce3f701a5c8dada8d79356bc3761",
+      "sample_sha256": "700055b50b3fb34cee79857641200437bb52e5ef2fbf3151fb4bb3410a9de023",
+      "verdicts": {
+        "INCOMPATIBLE": 0,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 3
+      }
+    },
+    "changed_disposition": {
+      "originals_verified": 8,
+      "packet_candidates": 23,
+      "physical_pages_verified": 15,
+      "reference_sha256": "fcf04ed67a4fef1f5ed8714120841a8b314aba529017af430fd45f3cc69914ae",
+      "sample_sha256": "019b3c7d8415894eefbe50aae9a1941d70a6a321ad28725256bfea5a312df42a",
+      "verdicts": {
+        "INCOMPATIBLE": 12,
+        "INSUFFICIENT": 0,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 11
+      }
+    },
+    "presampled": {
+      "originals_verified": 4,
+      "packet_candidates": 13,
+      "physical_pages_verified": 8,
+      "reference_sha256": "345059e2bb704c3b1d74b8f98d11103faa033d0d5ae596c4b3ac9fb91672aec7",
+      "sample_sha256": "2189b54b395fc2285fef38676a666fbb23c804715b3390e4a71e161220bb5f26",
+      "verdicts": {
+        "INCOMPATIBLE": 5,
+        "INSUFFICIENT": 1,
+        "NOT_REVIEWED": 0,
+        "SUPPORTED": 7
+      }
+    }
+  },
+  "unchanged_vs_parent": [
+    "src",
+    "R",
+    "config/research.json",
+    "config/eligibility_compatibility.json",
+    "results/ontology-pilot-20261126",
+    "results/ree-project-census/gap173-20261122",
+    "tests/fixtures/ontology_review_cases.json"
+  ]
+}

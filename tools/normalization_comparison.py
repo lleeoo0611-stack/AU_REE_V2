@@ -57,39 +57,66 @@ def _keyed(rows, key):
     return result
 
 
-def _admit(obs, lineage, verified_sources, published):
+def diagnose_admission(obs, lineage, verified_sources, published):
+    """Return the original admission and its first failing check, in evaluation order."""
     column = lineage["column"]
     variable, unit, factors = FIELDS[column]
     native = obs["original_unit"]
     stored = obs["unit"]
-    if (obs["selected_for_census"] != "1" or obs["selection_role"] != "MATCHED_SELECTED_STATEMENT"
-            or obs["statement_kind"] != "RESOURCE_CONTEXT" or obs["basis"] != "TREO"
-            or obs["category"] not in CATEGORIES or obs["material_basis"] or obs["denominator_basis"]
-            or obs["source_transform"] or obs["variable"] != variable):
-        return None
-    if (obs["project_id"] != lineage["project_id"] or obs["statement_group_id"] != lineage["statement_group_id"]
-            or obs["source_sha256"] not in verified_sources or obs["source_sha256"] != lineage["source_sha256"]
-            or not all(obs[k] for k in ("scope", "locator", "effective_date", "statement_id", "statement_group_id"))):
-        return None
+    if obs["selected_for_census"] != "1" or obs["selection_role"] != "MATCHED_SELECTED_STATEMENT":
+        return None, "NOT_MATCHED_SELECTED_STATEMENT"
+    if obs["statement_kind"] != "RESOURCE_CONTEXT" or obs["category"] not in CATEGORIES:
+        return None, "RESOURCE_KIND_OR_CATEGORY"
+    if obs["basis"] != "TREO" or obs["material_basis"] or obs["denominator_basis"]:
+        return None, "CHEMICAL_MATERIAL_OR_DENOMINATOR_BASIS"
+    if obs["source_transform"] or obs["variable"] != variable:
+        return None, "TRANSFORMED_VALUE_OR_DIFFERENT_QUANTITY"
+    if obs["project_id"] != lineage["project_id"] or obs["statement_group_id"] != lineage["statement_group_id"]:
+        return None, "PROJECT_OR_STATEMENT_GROUP_MISMATCH"
+    if obs["source_sha256"] not in verified_sources or obs["source_sha256"] != lineage["source_sha256"]:
+        return None, "SOURCE_NOT_VERIFIED_OR_MISMATCH"
+    if not all(obs[k] for k in ("scope", "locator", "effective_date", "statement_id", "statement_group_id")):
+        return None, "INCOMPLETE_STATEMENT_CONTEXT"
     if date_end(obs["effective_date"]) > verified_sources[obs["source_sha256"]]:
-        return None
+        return None, "RESOURCE_EFFECTIVE_AFTER_CUTOFF"
     key = json.loads(obs["source_statement_key"])
     if (obs["source_statement_key"] not in json.loads(lineage["source_statement_keys"])
             or key[:6] != [obs[k] for k in ("project_id", "source_sha256", "statement_id",
                                            "scope", "effective_date", "statement_kind")]):
-        return None
+        return None, "SOURCE_STATEMENT_KEY_MISMATCH"
     if native not in factors or stored not in factors:
-        return None
+        return None, "MISSING_OR_UNSUPPORTED_UNIT"
     original = _positive(obs["original_token"], native)
     stored_value = _positive(obs["value"], stored)
     if original is None or stored_value is None:
-        return None
+        return None, "NONPOSITIVE_OR_UNBOUND_NUMERIC_TOKEN"
     canonical = original * Decimal(factors[native])
     if not (_equal(canonical, stored_value * Decimal(factors[stored])) and _equal(canonical, published)):
-        return None
+        return None, "ORIGINAL_STORED_PUBLISHED_DISAGREE"
     return {"project_id": obs["project_id"], "column": column, "category": obs["category"],
             "observation_id": obs["observation_id"], "source_sha256": obs["source_sha256"],
-            "native_unit": native, "observation_unit": stored, "census_unit": unit}
+            "native_unit": native, "observation_unit": stored, "census_unit": unit}, None
+
+
+def _admit(obs, lineage, verified_sources, published):
+    return diagnose_admission(obs, lineage, verified_sources, published)[0]
+
+
+def direct_cell(cell, census, observations):
+    """Resolve a published cell's direct observation, before testing its units/context."""
+    column = cell["column"]
+    if cell["method"] != DIRECT_METHODS[FIELDS[column][0]] or json.loads(cell["unresolved_support_ids"]):
+        return None, None, "derived_or_unresolved"
+    canonical_value = _positive(census[cell["project_id"]][column], FIELDS[column][1])
+    if canonical_value is None or not _equal(canonical_value, Decimal(cell["value"])):
+        raise ValueError(f"Resource lineage disagrees with Census: {cell['project_id']}, {column}")
+    observation_ids = set(json.loads(cell["selected_resource_observation_ids"]))
+    observation_ids.intersection_update(json.loads(cell["supporting_observation_ids"]))
+    direct = [observations[identifier] for identifier in sorted(observation_ids)
+              if observations[identifier]["variable"] == FIELDS[column][0]]
+    if len(direct) != 1:
+        return None, canonical_value, "missing_or_ambiguous_direct_observation"
+    return direct[0], canonical_value, None
 
 
 def _pair_report(rows):
@@ -135,20 +162,11 @@ def compare_release(release_dir):
         if (project, column) in seen:
             raise ValueError(f"Duplicate resource lineage cell: {project}, {column}")
         seen.add((project, column))
-        if cell["method"] != DIRECT_METHODS[FIELDS[column][0]] or json.loads(cell["unresolved_support_ids"]):
-            exclusions["derived_or_unresolved"] += 1
+        obs, canonical_value, reason = direct_cell(cell, census, observations)
+        if reason:
+            exclusions[reason] += 1
             continue
-        canonical_value = _positive(census[project][column], FIELDS[column][1])
-        if canonical_value is None or not _equal(canonical_value, Decimal(cell["value"])):
-            raise ValueError(f"Resource lineage disagrees with Census: {project}, {column}")
-        observation_ids = set(json.loads(cell["selected_resource_observation_ids"]))
-        observation_ids.intersection_update(json.loads(cell["supporting_observation_ids"]))
-        direct = [observations[identifier] for identifier in sorted(observation_ids)
-                  if observations[identifier]["variable"] == FIELDS[column][0]]
-        if len(direct) != 1:
-            exclusions["missing_or_ambiguous_direct_observation"] += 1
-            continue
-        record = _admit(direct[0], cell, approved, canonical_value)
+        record = _admit(obs, cell, approved, canonical_value)
         if record is None:
             exclusions["native_unit_source_context_or_numeric_gate"] += 1
             continue
