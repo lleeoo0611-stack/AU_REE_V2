@@ -168,9 +168,15 @@ class PdfDocument:
         except (OSError, ValueError, IndexError, PdfReadError) as exc:
             return "", type(exc).__name__
 
-    def _ocr(self, page, tessdata, native, positioned):
+    def _comparison_ocr(self, page, tessdata, model_sha):
+        original = self._open()[page - 1]
+        text_page = original.get_textpage_ocr(language="eng", dpi=200, full=True, tessdata=str(tessdata))
+        return {"source_sha256": self.sha256, "physical_page": page, "model_sha256": model_sha,
+                "text": original.get_text(textpage=text_page), "method": "MUPDF_TESSERACT_200DPI_SELECTED_PAGE"}
+
+    def _ocr(self, page, tessdata, native, positioned, *, compare_ocr=False):
         model_sha = ocr_model_sha(tessdata)
-        key = page, "ocr", model_sha
+        key = page, "ocr_comparison" if compare_ocr else "ocr", model_sha
 
         def validate(value):
             if (not isinstance(value, dict) or value.get("source_sha256") != self.sha256
@@ -180,7 +186,8 @@ class PdfDocument:
 
         def build():
             self._counts["ocr"] += 1
-            result = extract_page(self.path, page, tessdata)
+            result = (self._comparison_ocr(page, tessdata, model_sha) if compare_ocr
+                      else extract_page(self.path, page, tessdata))
             validate(result)
             return result
 
@@ -188,29 +195,35 @@ class PdfDocument:
             if self._cache is None:
                 self._views[key] = build()
             else:
+                spec = {"version": "pdf-page-v1", "page": page, "dpi": 200, "clip": None, "language": "eng",
+                        "model_sha256": model_sha, "backend": self.backend_version, "pypdf": pypdf.__version__,
+                        "code": code_fingerprint(extract_page, readable)}
+                subject = f"{self.sha256}:{page}"
+                if compare_ocr:
+                    spec.update(version="pdf-independent-ocr-v1", code=code_fingerprint(PdfDocument._comparison_ocr))
+                    subject += ":comparison"
                 self._views[key] = self._cache.compute(
-                    "ocr", f"{self.sha256}:{page}", {"version": "pdf-page-v1", "page": page, "dpi": 200,
-                    "clip": None, "language": "eng", "model_sha256": model_sha,
-                    "backend": self.backend_version, "pypdf": pypdf.__version__,
-                    "code": code_fingerprint(extract_page, readable)},
-                    build, upstream={"source_snapshot": self.sha256, "native_text": digest(native),
-                                     "positioned_text": digest(positioned)}, validate=validate,
+                    "ocr", subject, spec, build, upstream={"source_snapshot": self.sha256,
+                    "native_text": digest(native), "positioned_text": digest(positioned)}, validate=validate,
                 )
         else:
             self._counts["cached_views"] += 1
         return self._views[key]
 
-    def evidence(self, page, *, tessdata=None):
-        """Expose alternate text and optionally use the existing selective OCR fallback."""
+    def evidence(self, page, *, tessdata=None, compare_ocr=False):
+        """Expose native views and optional OCR alongside the unchanged selected text."""
         native, native_error = self.native_text(page)
         positioned = self.text(page, positioned=True)
         alternatives = {"PYPDF_NATIVE": native, "MUPDF_POSITIONED": positioned}
         selected = "PYPDF_NATIVE" if readable(native) else "MUPDF_POSITIONED"
         model_sha = None
-        if not readable(alternatives[selected]) and tessdata is not None:
-            ocr = self._ocr(page, Path(tessdata).resolve(), native, positioned)
-            selected = ocr["method"]
-            alternatives[selected] = ocr["text"]
+        native_readable = readable(alternatives[selected])
+        if tessdata is not None and (compare_ocr or not native_readable):
+            ocr = self._ocr(page, Path(tessdata).resolve(), native, positioned,
+                            compare_ocr=compare_ocr and native_readable)
+            alternatives[ocr["method"]] = ocr["text"]
+            if not native_readable:
+                selected = ocr["method"]
             model_sha = ocr["model_sha256"]
         text = alternatives[selected]
         differs = len({" ".join(view.split()) for view in alternatives.values() if view}) > 1
@@ -251,10 +264,11 @@ def pdf_view_spec(kind):
 class PdfDocumentCache:
     """Bounded reader cache with optional reusable views across executions."""
 
-    def __init__(self, assets, *, max_documents=8, cache=None):
+    def __init__(self, assets, *, max_documents=8, cache=None, source_paths=None):
         if type(max_documents) is not int or max_documents < 1:
             raise ValueError("max_documents must be a positive integer")
         self.assets = Path(assets)
+        self.source_paths = dict(source_paths or {})
         self.cache = cache
         self.max_documents = max_documents
         self._documents = OrderedDict()
@@ -279,9 +293,12 @@ class PdfDocumentCache:
         if sha256 in self._unavailable:
             raise DocumentUnavailable(self._unavailable[sha256])
         if sha256 not in self._verified_paths:
-            path = self.assets / sha256
-            if not path.is_file():
-                path = path.with_suffix(".pdf")
+            if sha256 in self.source_paths:
+                path = Path(self.source_paths[sha256])
+            else:
+                path = self.assets / sha256
+                if not path.is_file():
+                    path = path.with_suffix(".pdf")
             try:
                 if not path.is_file():
                     raise DocumentUnavailable("PDF_BYTES_UNAVAILABLE")

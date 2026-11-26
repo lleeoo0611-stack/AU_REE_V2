@@ -8,11 +8,11 @@ import unittest
 
 from au_ree_v2.observation_pipeline import canonical_resource_observation, raw_from_candidate
 from au_ree_v2.observation_schema import (
-    AnalysisFeature, EvidenceAnchor, ManualDecision, NormalizedObservation, RawObservation, SemanticAssessment,
-    ValidatedObservation, assessment_from_payload, normalized_from_payload, payload, raw_from_payload,
+    AnalysisFeature, EvidenceAnchor, ManualDecision, NormalizedObservation, RawObservation, SemanticAssessment, TextSpan,
+    ValidatedObservation, assessment_from_payload, normalized_from_payload, payload, raw_from_payload, value_evidence_issue,
 )
 from au_ree_v2.observation_store import ObservationWorkspace, open_observation_workspace
-from au_ree_v2.store import canonical, connect, filehash
+from au_ree_v2.store import canonical, connect, digest, filehash
 
 
 SHA = "a" * 64
@@ -63,7 +63,8 @@ class ObservationSchemaTests(unittest.TestCase):
 
     def test_direct_verified_construction_and_staging_reject_conflicting_numeric_evidence(self):
         anchor = EvidenceAnchor("report", SHA, 2, table=0, row=1, column=2, quote="1000",
-                                bbox=(10, 20, 30, 40), role="NUMERIC_VALUE", offset=5)
+                                bbox=(10, 20, 30, 40), role="NUMERIC_VALUE", offset=0,
+                                text_span=TextSpan("QUOTE", "FIXTURE", 0, 4))
         raw = RawObservation("obs", "project", "grade", "RESOURCE", anchor, "parser-v1", "1000", "ppm")
         supplement = EvidenceAnchor("report", SHA, 3, quote="The bore samples were processed...", role="SAMPLE_CONTEXT")
         other_anchors = (
@@ -100,6 +101,33 @@ class ObservationSchemaTests(unittest.TestCase):
         finally:
             db.close()
 
+    def test_precise_number_binding_reapplies_on_reloading_and_direct_staging(self):
+        quote = "測試 90% and 70% achieved"
+        left = quote.index("90%")
+        anchor = EvidenceAnchor("report", SHA, page=2, bbox=(10, 20, 30, 40), quote=quote, offset=left,
+                                role="NUMERIC_VALUE", text_span=TextSpan("QUOTE", "FIXTURE", left, left + 3))
+        raw = RawObservation("obs", "project", "recovery", "TECHNICAL", anchor, "parser-v1", "90%", "%")
+        verified = SemanticAssessment(raw.raw_id, "test", "v3", "o1", "VERIFIED", "COMPARABLE", "source",
+                                      supporting_evidence=(anchor,), raw=raw)
+        self.assertEqual(raw_from_payload(payload(raw)), raw)
+        self.assertEqual(assessment_from_payload(payload(verified), raw=raw), verified)
+        self.assertEqual(replace(raw, evidence=replace(anchor, text_span=None)).raw_id, raw.raw_id)
+        wrong = replace(raw, original_value="70%")
+        same_cell_payload = {**payload(verified), "raw_fingerprint": digest(payload(wrong))}
+        with self.assertRaisesRegex(ValueError, "BINDING_MISMATCH"):
+            assessment_from_payload(same_cell_payload, raw=wrong)
+        with self.assertRaisesRegex(ValueError, "BINDING_MISMATCH"):
+            replace(verified, raw=wrong, raw_fingerprint=same_cell_payload["raw_fingerprint"])
+        db = connect(":memory:")
+        try:
+            workspace = ObservationWorkspace(db)
+            object.__setattr__(verified, "raw_fingerprint", same_cell_payload["raw_fingerprint"])
+            with self.assertRaisesRegex(ValueError, "BINDING_MISMATCH"):
+                workspace.append(wrong, assessments=(verified,))
+            self.assertEqual(db.execute("SELECT count(*) FROM temp.observation_raw_v1").fetchone()[0], 0)
+        finally:
+            db.close()
+
     def test_raw_adapter_keeps_original_values_and_coordinates(self):
         raw = raw_from_candidate({
             "observation_id": "obs", "project_id": "project", "target_quantity": "grade",
@@ -117,6 +145,29 @@ class ObservationSchemaTests(unittest.TestCase):
         self.assertEqual(raw.scope_id, "reported zone")
         self.assertEqual(raw.chemical_basis, "TREO")
         self.assertNotEqual(raw.raw_id, replace(raw, extractor_version="parser-v2").raw_id)
+
+    def test_legacy_resource_block_recovers_only_the_bound_span(self):
+        quote = "106.6 million tonnes at an average grade of 4.12% Total Rare Earth Oxide"
+        block = "Measured Mineral Resource estimate totals " + quote + "."
+        offset = block.index("4.12")
+        position = {"page": 3, "source_sha256": SHA, "bbox": (1, 2, 30, 40)}
+        token = {**position, "field": "token", "quote": quote, "offset": offset}
+        context = {**position, "field": "estimate_reference", "quote": block}
+        candidate = {
+            "observation_id": "historic-obs", "project_id": "project", "physical_page": 3,
+            "source_sha256": SHA, "profile_id": "DIRECT_RESOURCE_UNIT_COMPARISON_V1",
+            "native": {"quantity": "grade", "token": "4.12", "unit": "%", "token_state": "NUMBER"},
+        }
+        restored = raw_from_candidate({**candidate, "anchors": [token, context]}, extractor_version="old-v1")
+        unresolved = raw_from_candidate({**candidate, "anchors": [token]}, extractor_version="old-v1")
+        self.assertEqual(restored.raw_id, unresolved.raw_id)
+        self.assertEqual(restored.evidence.text_span,
+                         TextSpan("BLOCK", "MUPDF_NATIVE_BLOCK_WHITESPACE_FOLDED",
+                                  offset, offset + 4, block.index(quote)))
+        self.assertIsNone(value_evidence_issue(restored, restored.evidence_anchors))
+        self.assertIsNone(unresolved.evidence.text_span)
+        self.assertEqual(value_evidence_issue(unresolved, unresolved.evidence_anchors),
+                         "NUMERIC_EVIDENCE_LOCATION_INSUFFICIENT")
 
     def test_existing_database_stays_read_only_and_retries_are_atomic(self):
         with TemporaryDirectory() as tmp:

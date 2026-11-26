@@ -6,8 +6,9 @@ from pathlib import Path
 
 from . import resource_use
 from .normalization import (
-    MAGNET_ATOMIC_WEIGHTS, MAGNET_SPECIES, MASS_FRACTION, MASS_IN_TONNES, decimal_token, oxide_factor, unit_factor,
+    MAGNET_ATOMIC_WEIGHTS, MAGNET_SPECIES, MASS_FRACTION, MASS_IN_TONNES, oxide_factor, unit_factor,
 )
+from .numeric_evidence import scalar_decimal
 from .observation_schema import (
     NormalizedObservation, SemanticAssessment, validate_normalized_binding, value_evidence_issue,
 )
@@ -17,8 +18,8 @@ from .tabular import read_csv
 
 
 RESOURCE_PROFILE = "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
-NORMALIZATION_VERSION = "observation-normalization-v1"
-ASSESSMENT_VERSION = "observation-assessment-v2"
+NORMALIZATION_VERSION = "observation-normalization-v2"
+ASSESSMENT_VERSION = "observation-assessment-v3"
 RESOURCE_UNITS = {variable: unit for variable, unit, _ in resource_use.FIELDS.values()}
 OBSERVATION_STATUS = {
     "ACCEPT": "COMPARABLE", "COMPARABLE": "COMPARABLE", "DESCRIPTIVE_ONLY": "DESCRIPTIVE_ONLY",
@@ -82,7 +83,7 @@ class SemanticEngine:
         species = chemical
         try:
             with localcontext(Context(prec=28)):
-                value = decimal_token(raw.original_value.strip().replace("−", "-"), original_unit, signed=True)
+                value = scalar_decimal(raw.original_value, original_unit)
                 if (value is None or not value.is_finite()
                         or not self._value_in_domain(value, original_unit, raw.variable)):
                     return None
@@ -180,8 +181,10 @@ class SemanticEngine:
         if evidence_status == "VERIFIED":
             issue = value_evidence_issue(raw, supporting_evidence)
             if issue == "NUMERIC_EVIDENCE_BINDING_MISMATCH":
-                raise ValueError(f"Verified support must bind the original value and location: {issue}")
-            if issue is not None:
+                evidence_status = "CONFLICT"
+                comparison = "NOT_COMPARABLE"
+                reason += "|" + issue
+            elif issue is not None:
                 evidence_status = "UNVERIFIED"
                 reason += "|" + issue
                 missing.add("numeric_evidence_location")

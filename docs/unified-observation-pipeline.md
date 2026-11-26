@@ -250,3 +250,30 @@ python tools/benchmark_pipeline.py --observation-suite --originals "$ASSETS" \
 2026-11-13 的 93 專案正式套件單獨核對。公開封存可核對的 28 份檔案及 93 個唯一 Project ID 均相符，包含 16 份排名。截至本輪已核驗 658／715 份原件。剩餘 57 份包含 51 份 PDF、4 份政府 WFS 產物與 2 份政府 CSV。依封存 SHA 直接連結，缺件涉及 42 個影子資源候選、243 個封存資源觀測及 48 個專案的 813 個 Census 欄位座標。完整離線重建在首個缺件 `asx_nolans_clarification202606` 停止。補齊原件後，才能驗證這個截面的選值和下游影響。[93 專案封存](../results/ree-project-census/coverage-locked-20261125/README.md) · [715 份原件及指紋](../results/ree-project-census/coverage-locked-20261125/asset_manifest.json)
 
 下一步優先補齊 57 份原件，驗證完整 93 專案重建在冷、暖及來源變更後的等價性。對候選擷取品質的判斷需要原有留出頁的獨立人工標註。Precision、Recall、F1、誤收及誤拒仍待量測。[來源盲審](../results/observation-shadow-20261126/review_protocol.md)
+
+## 第三輪自動驗證與正式面板接線
+
+第三輪使用 PR #19 的 `d6d4121`。該分支包含前兩輪的觀測契約和增量處理。第三輪將來源恢復、全文候選發現、數值證據核對、影子用途判定及正式資源面板驗證串成一個無人值守入口。每個階段完成或受阻時，入口更新 `validation.json` 並繼續可執行的獨立工作。[基準 PR](https://github.com/lleeoo0611-stack/AU_REE_V2/pull/19) · [整合入口](../src/au_ree_v2/observation_validation.py)
+
+```bash
+python -m au_ree_v2 observation-validate --out work/observation-validation \
+  --replay-assets "$ASSET_LIBRARY" --recovery-budget 80
+```
+
+可重複指定 `--static-pdfs` 加入供影子檢查使用的原件庫。`--recovery-offline` 限用本機原件或封存套件。預設會依原有來源政策做有界公開來源恢復。有既存的凍結正式資料庫時，可同時傳入 `--database` 和 `--shadow-run` 指定配套的執行目錄。省略兩項參數會執行既有 Phase 22 鎖檔重建。原件、來源顯示版本、拒收或下載差異保存在來源恢復收據。快取置於 `derived-cache` 或 `--cache-dir` 指定目錄，`--cache-mode off` 可完整重算。 [原件恢復工具](../tools/recover_census_replay.py)
+
+`observation-v3` 數值證據使用完整數字段和精確文字跨度。跨度記錄文字視圖、頁面／區塊／引文範圍、起點、排除式終點及引文在該視圖的位置。字元以 Python Unicode code point 計數。數值、單位和來源定位一致才可自動驗證。對化學式下標、指數片段、範圍、不等式及同句其他數值有分立檢查。舊位置只有在能由既存的來源文字與同一區塊定位重建時予以轉換。其他候選保留來源與待判定理由，由程式繼續處理。既有 Project ID 和 canonical observation ID 保留。數值檢查變更會使相關投影、正規化及判定快取失效，可繼續重用未受影響的原件解析。 [數值標記](../src/au_ree_v2/numeric_evidence.py) · [觀測契約](../src/au_ree_v2/observation_schema.py)
+
+自動品質檢查按固定 Project、報告家族及版次分組，對指定頁面從來源重新發現候選。統計保留缺件、無候選、無法解析與分歧頁。來源可得、數值／單位定位、解析器比對、用途可用及去重分別回報分子和分母。解析器一致與算術相符各留獨立證據。沒有獨立答案時，Precision、Recall、F1、誤收與誤拒維持未量測，流程照常完成。 [固定品質框架](../config/ontology/quality_frame_v1.json) · [自動檢查](../src/au_ree_v2/observation_quality.py)
+
+2026-11-13 的完整 93 專案重建，只在 715 個鎖定原件皆通過驗證時進入正式離線入口。否則 `formal_93` 保留缺件影響。來源具備的 2026-11-05 Phase 22 另驗證既有 `issuer_resource_composition` 面板。接線從 canonical SQLite 和既有選值重建 R1（TREO 含量），連同既有 S1 準則比對矩陣、採納理由及排名。逐 Project 記錄原始觀測、來源、同一資源範圍、轉換、缺值和採納結果。正式 C1 六項 Gate 沿用原有條件。 [正式資源接線](../src/au_ree_v2/formal_resource_bridge.py)
+
+### 第三輪重播結果
+
+實際來源恢復重新核驗 715 份鎖定原件。續跑重用已有的 658 份，並從登記來源取回 SHA 相符的 `cufe_north_dam_schedule_20261030`。核驗總數為 659／715。同一網址曾回傳另一份內容，已分開保存觀測時間與 SHA。其餘 56 份包含 50 份 PDF、4 份政府 WFS 產物與 2 份政府 CSV。缺件直接連到 42 筆影子候選、243 筆封存資源觀測及 48 個 Project 的 813 個 Census 欄位。68 項 C1 閘門參照與四個面板的五項準則輸入也直接引用缺件。完整 93 案離線重播停在 Nolans 鎖定原件驗證。[來源套件與影響輸出](../tools/recover_census_replay.py) · [既有 Census 重播規格](../results/ree-project-census/coverage-locked-20261125/README.md)
+
+Phase 22 的 `issuer_resource_composition` 接線使用 47 筆 canonical 觀測，21 份關聯原件全部核對 SHA。33 個 Project 中有 15 個進入面板，矩陣與排名同既有正式輸出逐位元一致。排除原因包括 7 案欠缺相容 S1、9 案欠缺正式資源選值、1 案資源範圍歧義及 1 案含量衝突。抽除已鎖定的 Wudinna 原件時，該案因來源不可用而排除，其他 14 案完成 R 計算並輸出逐筆差異。兩組的正式 C1 採納均為 0。[正式接線與負向回歸](../tests/test_formal_resource_bridge.py)
+
+固定影子原件重讀的 732 筆候選保留既有 Project ID 與 canonical observation ID。其中 294 筆通過新數值綁定。資源的 19 個可用候選表示對應 15 個觀測組及 10 個 Project，技術的 269 個表格候選對應同一 Project 的觀測。這些用途資格保存在影子結果，正式面板仍從正式選值和 canonical evidence views 取值。[影子重播與分母](../src/au_ree_v2/observation_ablation.py)
+
+固定評估組涵蓋三份文件和十二個實體頁。兩份文件通過 SHA 驗證，八頁實際處理，其中五頁有候選、三頁無候選、四頁因一份缺件受阻。25 個候選表示全部保留。22 個數值候選中，6 個定位到數值，4 個同時定位到數值與單位，22 個可產生數值正規化試算。四個有來源驗證，正式新增採納為 0。兩種原生解析器的整頁正規化文字完全一致為 0／8，已定位引文一致為 4／6，固定 OCR 探針完成 2／3。整頁或引文一致性量測只用於診斷解析差異。[自動品質輸出契約與分母](../src/au_ree_v2/observation_quality.py)

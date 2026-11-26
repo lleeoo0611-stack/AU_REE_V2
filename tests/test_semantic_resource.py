@@ -3,7 +3,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from au_ree_v2.semantic_resource import _resolve, extract_resource_observations, resource_relations
+from au_ree_v2.semantic_resource import _resolve, discover_resource_page, extract_resource_observations, resource_relations
 
 
 SHA = "a" * 64
@@ -78,6 +78,33 @@ class ResourceObservationTests(unittest.TestCase):
         [rel] = resource_relations([a, b])
         self.assertEqual(rel["relation"], "SAME_ESTIMATE_ROUNDING_ONLY")
         self.assertEqual(rel["status"], "REVIEW_REQUIRED")
+
+    def test_source_page_discovers_all_classified_rows_and_quantity_columns(self):
+        grid = table(1, [["Classification", "Tonnage (Mt)", "TREO (%)", "TREO (kt)"],
+                         ["Indicated", "16", "4", "640"], ["Inferred", "20", "3", "600"],
+                         ["Total", "36", "3.44", "1,240"]])
+        blocks = [([0, 70, 420, 97], "Table 1: Estimate of the Mineral Resource")]
+        found = discover_resource_page(SHA, 2, blocks, [grid])
+        self.assertEqual(len(found), 9)
+        self.assertEqual({row["anchors"][0]["row"] for row in found}, {1, 2, 3})
+        for row in found:
+            anchor = row["anchors"][0]
+            start, end = anchor["text_span"]["start"], anchor["text_span"]["end"]
+            self.assertEqual(anchor["quote"][start:end], row["native"]["token"])
+            self.assertIsNone(row["context"]["denominator"])
+
+    def test_narrative_position_references_the_printed_block_and_quote(self):
+        block = "Mineral resource estimate is 5 Mt at 5 ppm TREO."
+        captured = _resolve(frozen_candidate(kind="grade", markers=["5"]),
+                            ([], [([2, 4, 200, 100], block)], []))
+        witness, *_ = captured["anchors"]
+        span = witness["text_span"]
+        self.assertEqual(span["scope"], "BLOCK")
+        self.assertEqual(witness["offset"], span["start"])
+        self.assertEqual(block[span["start"]:span["end"]], captured["native"]["token"])
+        start, end = span["start"] - span["quote_start"], span["end"] - span["quote_start"]
+        self.assertEqual(witness["quote"][start:end], "5")
+        self.assertGreater(start, 0)
 
     def test_same_cell_and_cross_project_boundaries(self):
         geo = table(1, [["Classification", "Tonnage (Mt)", "TREO (%)", "TREO (kt)"],

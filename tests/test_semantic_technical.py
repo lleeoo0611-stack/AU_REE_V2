@@ -88,6 +88,11 @@ class TechnicalSemanticTests(unittest.TestCase):
         for m in mentions:
             start, end = m["anchor"]["offset"]
             self.assertEqual(text[start:end], m["native"]["token"])
+            span = m["anchor"]["text_span"]
+            self.assertEqual((span["scope"], span["start"], span["end"]), ("PAGE", start, end))
+            quote_offset = span["quote_start"]
+            self.assertEqual(m["anchor"]["quote"][start - quote_offset:end - quote_offset],
+                             m["native"]["token"])
         more = narrative_mentions("Bench tests measured an extraction of Nd2O3 at 74%; feed moisture was 8%.", "hash", 3)
         self.assertEqual([(m["basis"], m["native"]["value"]) for m in more], [("Nd2O3", 74.)])
 

@@ -3,8 +3,9 @@ from dataclasses import replace
 from decimal import Decimal
 from pathlib import Path
 
-from au_ree_v2.observation_schema import EvidenceAnchor, ObservationContext, RawObservation, ValidatedObservation
+from au_ree_v2.observation_schema import EvidenceAnchor, ObservationContext, RawObservation, TextSpan, ValidatedObservation
 from au_ree_v2.observation_semantics import RESOURCE_PROFILE, SemanticEngine
+from au_ree_v2.numeric_evidence import numeric_token_spans, scalar_decimal
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -74,8 +75,9 @@ class ObservationSemanticsTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             ValidatedObservation(normalized, unchecked)
         for anchor in (replace(self.anchor, sha256="b" * 64), replace(self.anchor, page=6)):
-            with self.assertRaisesRegex(ValueError, "bind the original"):
-                self.engine.assess(self.grade, self.decision, evidence_status="VERIFIED", supporting_evidence=(anchor,))
+            conflict = self.engine.assess(self.grade, self.decision, evidence_status="VERIFIED",
+                                          supporting_evidence=(anchor,))
+            self.assertEqual((conflict.evidence_status, conflict.comparability), ("CONFLICT", "NOT_COMPARABLE"))
         checked = self.engine.assess(self.grade, self.decision, normalized=normalized, evidence_status="VERIFIED",
                                      supporting_evidence=(self.anchor,), expected_context={"unit": "%", "chemical_basis": "TREO"})
         self.assertEqual(checked.comparability, "COMPARABLE")
@@ -98,7 +100,8 @@ class ObservationSemanticsTests(unittest.TestCase):
         self.assertEqual((incomplete.comparability, incomplete.missing_context), ("INSUFFICIENT_CONTEXT", ("chemical_basis",)))
 
     def test_verification_distinguishes_numeric_location_from_context(self):
-        numeric = replace(self.anchor, role="NUMERIC_VALUE", bbox=(10, 20, 30, 40), offset=5)
+        numeric = replace(self.anchor, role="NUMERIC_VALUE", bbox=(10, 20, 30, 40), offset=0,
+                          text_span=TextSpan("QUOTE", "FIXTURE", 0, 6))
         raw = replace(self.grade, evidence=numeric)
         context = EvidenceAnchor("report", numeric.sha256, page=7, quote="Pilot leaching context", role="TEST_SCALE")
         norm = self.engine.normalize(raw)
@@ -108,9 +111,11 @@ class ObservationSemanticsTests(unittest.TestCase):
         self.assertIn(context, valid.supporting_evidence)
         for wrong in (replace(numeric, row=5), replace(numeric, column=4), replace(numeric, offset=6),
                       replace(numeric, bbox=(40, 40, 60, 60)), replace(numeric, quote="18,300.5 ppm TREO")):
-            with self.subTest(wrong=wrong), self.assertRaisesRegex(ValueError, "BINDING_MISMATCH"):
-                self.engine.assess(raw, self.decision, evidence_status="VERIFIED",
-                                   supporting_evidence=(numeric, wrong, context))
+            with self.subTest(wrong=wrong):
+                conflict = self.engine.assess(raw, self.decision, evidence_status="VERIFIED",
+                                              supporting_evidence=(numeric, wrong, context))
+                self.assertEqual(conflict.evidence_status, "CONFLICT")
+                self.assertIn("BINDING_MISMATCH", conflict.reason)
         for missing in ((), (context,), (replace(numeric, sha256=None),),
                         (replace(numeric, offset=None),),
                         (replace(numeric, table=None, row=None, column=None, bbox=None, offset=None),)):
@@ -122,3 +127,66 @@ class ObservationSemanticsTests(unittest.TestCase):
                 self.assertIn("numeric_evidence_location", pending.missing_context)
         with self.assertRaisesRegex(ValueError, "observation contents"):
             self.engine.assess(replace(raw, original_value="2"), self.decision, normalized=norm)
+
+    def test_complete_numeric_tokens_reject_chemistry_exponents_and_wrong_spans(self):
+        for quote, value in (("Nd2O3", "2"), ("Nd₂O₃", "2"), ("1e1000", "1000"), ("5 × 10^1000", "1000"),
+                             ("Grade <70 ppm", "70"),
+                             ("70–90 ppm", "70"), ("2026-11-06", "2026"), ("Table 3", "3")):
+            with self.subTest(quote=quote, value=value):
+                self.assertEqual(numeric_token_spans(quote, value, "ppm"), ())
+                anchor = replace(self.anchor, quote=quote)
+                raw = replace(self.grade, evidence=anchor, original_value=value)
+                verdict = self.engine.assess(raw, self.decision, evidence_status="VERIFIED",
+                                             supporting_evidence=(anchor,))
+                self.assertEqual(verdict.evidence_status, "CONFLICT")
+        quote = "Measured 90% and 70%."
+        span = TextSpan("BLOCK", "FIXTURE_SOURCE_BLOCK", 46, 49, quote_start=37)
+        anchor = replace(self.anchor, quote=quote, offset=46, text_span=span)
+        raw = replace(self.grade, evidence=anchor, original_value="70%", original_unit="%")
+        verdict = self.engine.assess(raw, self.decision, evidence_status="VERIFIED",
+                                     supporting_evidence=(anchor,))
+        self.assertEqual(verdict.evidence_status, "CONFLICT")
+        legacy = replace(anchor, text_span=None)
+        pending = self.engine.assess(replace(raw, evidence=legacy), self.decision, evidence_status="VERIFIED",
+                                      supporting_evidence=(legacy,))
+        self.assertEqual(pending.evidence_status, "UNVERIFIED")
+        right = replace(anchor, offset=54, text_span=TextSpan("BLOCK", "FIXTURE_SOURCE_BLOCK", 54, 57, quote_start=37))
+        verdict = self.engine.assess(replace(raw, evidence=right), self.decision, evidence_status="VERIFIED",
+                                     supporting_evidence=(right,))
+        self.assertEqual(verdict.evidence_status, "VERIFIED")
+        contradictory = replace(right, offset=46)
+        verdict = self.engine.assess(replace(raw, evidence=contradictory), self.decision,
+                                     evidence_status="VERIFIED", supporting_evidence=(contradictory,))
+        self.assertEqual(verdict.evidence_status, "CONFLICT")
+
+    def test_printed_signed_decimal_and_units_preserve_scientific_dispositions(self):
+        for token, unit, value in (("−.5%", "%", "-0.5"), ("+1,000 ppm", "ppm", "1000"),
+                                   ("3.5e−2 ppm", "ppm", "0.035"), ("1\u202f000 ppm", "ppm", "1000"),
+                                   ("3.5 × 10⁻² ppm", "ppm", "0.035"),
+                                   ("0", "%", "0")):
+            with self.subTest(token=token, unit=unit):
+                self.assertEqual(scalar_decimal(token, unit), Decimal(value))
+        self.assertEqual(numeric_token_spans("Measured 70 ppm", "70%", "%"), ())
+        self.assertEqual(numeric_token_spans("Measured 70Mt", "70", "kt"), ())
+        self.assertEqual(numeric_token_spans("grade<70 ppm", "70", "ppm"), ())
+        for token, state in (("≤0.1 ppm", "BOUND"), ("70–90%", "RANGE")):
+            with self.subTest(token=token):
+                anchor = replace(self.anchor, quote=token)
+                raw = replace(self.grade, original_value=token, original_unit="%" if "%" in token else "ppm",
+                              evidence=anchor, source_value_state=state)
+                verdict = self.engine.assess(raw, self.decision, evidence_status="VERIFIED",
+                                             supporting_evidence=(anchor,))
+                self.assertEqual(verdict.evidence_status, "VERIFIED")
+                self.assertIsNone(self.engine.normalize(raw))
+
+    def test_explicit_unit_header_binds_the_same_table_column(self):
+        number = replace(self.anchor, quote="18,300")
+        unit = replace(number, quote="Tonnes (Mt)", role="unit")
+        wrong_column = replace(unit, column=number.column + 1)
+        raw = replace(self.grade, evidence=number, evidence_anchors=(number, unit))
+        verdict = self.engine.assess(raw, self.decision, evidence_status="VERIFIED",
+                                     supporting_evidence=(number,))
+        self.assertEqual(verdict.evidence_status, "CONFLICT")
+        accepted = self.engine.assess(replace(raw, evidence_anchors=(number, wrong_column)), self.decision,
+                                      evidence_status="VERIFIED", supporting_evidence=(number,))
+        self.assertEqual(accepted.evidence_status, "VERIFIED")

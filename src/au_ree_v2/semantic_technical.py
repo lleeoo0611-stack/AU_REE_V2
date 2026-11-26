@@ -19,6 +19,7 @@ from .technical_tables import quantity_binding, technical_cells, technical_numbe
 
 PROFILE = "WITHIN_TABLE_ELEMENT_LEACH"
 VERSION = "source-bound-table-leach-v1"
+LOCATED_VERSION = "source-bound-table-leach-v2-typed-span"
 BASELINE_VERSION = "frozen-technical-cells-projection-v1"
 CONTEXT_FIELDS = (
     "scope", "case_id", "table_scope_id", "sample_id", "sample_population", "test_id", "basis",
@@ -178,13 +179,16 @@ def _technical_context(record, texts, actual, relations):
     program, reference = relations[caption]
     if not program or not reference:
         return dict(record, status="INSUFFICIENT", evidence_reason="EXPLICIT_PROGRAM_OR_SAMPLE_LINK_MISSING")
-    context = dict(record["context"], process_stage="LEACH_EXTRACTION", claim_nature="TESTWORK")
+    context = dict(record["context"], process_stage="LEACH_EXTRACTION", claim_nature="TESTWORK",
+                   prior_extractor_version=VERSION, extraction_change_reason="EXPLICIT_PRINTED_TOKEN_SPAN")
     relation = dict(program=parsed["program"], sample=parsed["sample"], table_number=parsed["table"],
                     proof="EXPLICIT_PROGRAM_CAPTION_AND_SAMPLE_TABLE_REFERENCE")
     procedure_page, heading, paragraph = program
     anchors = [
         _anchor(sha, current, raw_value, "VERIFIED_TABLE_CELL", bbox=actual["bbox"],
-                row_index=actual["row_index"], column_index=actual["column_index"], table_index=actual["table_index"]),
+                row_index=actual["row_index"], column_index=actual["column_index"], table_index=actual["table_index"],
+                text_span={"scope": "QUOTE", "view": "MUPDF_TABLE_CELL_WHITESPACE_FOLDED",
+                           "start": 0, "end": len(_flat(raw_value)), "quote_start": 0}),
         _anchor(sha, current, caption, "TABLE_CAPTION"),
         _anchor(sha, reference[0], reference[1], "EXPLICIT_SAMPLE_TABLE_REFERENCE"),
         _anchor(sha, procedure_page, heading, "PROGRAM_LEACH_PROCEDURE"),
@@ -209,7 +213,7 @@ def _technical_context(record, texts, actual, relations):
             context["reagent_basis_warning"] = "PRINTED_G_L_AND_PROCEDURE_KG_T_NOT_RECONCILED"
             anchors.append(_anchor(sha, procedure_page, acid[0], "REAGENT_BASIS_MISMATCH"))
     return dict(record, context=context, anchors=anchors, relation=relation,
-                status="SOURCE_VERIFIED_CANDIDATE")
+                status="SOURCE_VERIFIED_CANDIDATE", extraction_version=LOCATED_VERSION)
 
 
 def extract_technical(candidates, assets, *, documents=None):
@@ -316,7 +320,7 @@ def _named_clause_number(clause, number):
     return result
 
 
-def narrative_mentions(text, source_sha256, physical_page):
+def narrative_mentions(text, source_sha256, physical_page, *, text_view="MUPDF_POSITIONED"):
     """Preserve scoped claim mentions, using local clause cues and token offsets."""
     result = []
     positions = [0, *(m.end() for m in BOUNDARY.finditer(text))]
@@ -331,9 +335,14 @@ def narrative_mentions(text, source_sha256, physical_page):
                 continue
             marker = next((key for key, pattern in CLAIM_CUES.items() if re.search(pattern, local, re.I)), "UNKNOWN")
             offset = start + number["start"]
-            result.append({**binding, "native": dict(number), "claim_nature": marker,
-                           "anchor": _anchor(source_sha256, physical_page, clause, "TECHNICAL_NARRATIVE_CLAUSE",
-                                             offset=[offset, offset + len(number["token"])])})
+            token_end = offset + len(number["token"])
+            # The legacy pair refers to the supplied text view. Retain it for
+            # consumers of narrative_mentions while spelling out the new span.
+            anchor = {"source_sha256": source_sha256, "physical_page": physical_page,
+                      "quote": clause, "role": "TECHNICAL_NARRATIVE_CLAUSE", "offset": [offset, token_end],
+                      "text_span": {"scope": "PAGE", "view": text_view,
+                                    "start": offset, "end": token_end, "quote_start": start}}
+            result.append({**binding, "native": dict(number), "claim_nature": marker, "anchor": anchor})
     return result
 
 

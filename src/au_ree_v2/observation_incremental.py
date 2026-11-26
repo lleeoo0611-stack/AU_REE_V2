@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import unicodedata
 
-from . import normalization as units, observation_pipeline, ontology
+from . import normalization as units, numeric_evidence, observation_pipeline, observation_schema, ontology
 from .derived_cache import code_fingerprint
 from .observation_schema import (
     SCHEMA_VERSION, EvidenceAnchor, ManualDecision, ObservationContext, RawObservation, payload,
@@ -84,17 +84,17 @@ class IncrementalObservations:
         self.ontology_code = code_fingerprint(ontology.normalize_context, ontology._label)
         self.projection_code = code_fingerprint(
             RawObservation, EvidenceAnchor, ObservationContext, ManualDecision, payload,
-            files=(observation_pipeline.__file__,),
+            files=(observation_pipeline.__file__, numeric_evidence.__file__),
         )
         self.normalization_code = code_fingerprint(
             SemanticEngine.normalize, SemanticEngine._value_in_domain, SemanticEngine.raw_context,
-            SemanticEngine.map_observation, units.decimal_token, units.unit_factor,
+            SemanticEngine.map_observation, units.unit_factor,
+            files=(numeric_evidence.__file__,),
         )
-        from . import observation_schema
 
         self.assessment_code = code_fingerprint(
             SemanticEngine.assess, SemanticEngine.raw_context, review_verdict,
-            files=(observation_schema.__file__,),
+            files=(observation_schema.__file__, numeric_evidence.__file__),
         )
 
     def _vocabulary(self, context):
@@ -147,7 +147,7 @@ class IncrementalObservations:
         }
         data = self.cache.compute("normalization", subject, {
             "code": self.normalization_code, "version": NORMALIZATION_VERSION, "vocabulary": vocabulary,
-            "quantity_target": target, "unit_rules": factors, "token_pattern": [units.NUMBER.pattern, units.NUMBER.flags],
+            "quantity_target": target, "unit_rules": factors,
         }, build, upstream={"raw_normalization_context": raw.normalization_fingerprint}, validate=load)
         return load(data), data
 

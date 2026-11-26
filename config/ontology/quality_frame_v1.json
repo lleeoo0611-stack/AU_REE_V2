@@ -1,0 +1,134 @@
+{
+  "schema": "observation-quality-frame-v1",
+  "cutoff": "2026-11-13",
+  "design": "Preserve the prior source-first resource page draw. Use the Nolans definitive feasibility report as a disjoint historical technical regression and include the physical pages adjacent to archived technical cells 44–45. Salazar and Dubbo are development controls. These strata evaluate automated rules and no independent accuracy reference is supplied.",
+  "frozen_before_rule_evaluation": true,
+  "classification": "PUBLIC_REAL_SOURCE_REPLAY",
+  "input_sha256": {
+    "results/observation-shadow-20261126/review_split.json": "0826fd86db8aec6bbde975fd1e96e04b6c59b11632688442b60add6861fa0be6",
+    "results/observation-shadow-20261126/review_packet_manifest.json": "2c2c0dd5da1b96ba485f80d9715f2d454b80bf449afe22f27abbd8d3038c3651",
+    "results/ree-project-census/coverage-locked-20261125/source_selection.csv": "aa475199f5e13d1f14e3807e4ebfb70ec062e80d70cbc757a36e9452b1aafa75"
+  },
+  "partitions": {
+    "DEVELOPMENT": [
+      {
+        "source_key": "salazar_mre2024",
+        "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+        "pages": [
+          6,
+          7,
+          8
+        ],
+        "stratum": "RESOURCE_DEVELOPMENT_CONTROL",
+        "group_id": "0d8a566d83dbf94135823a5e994fe075214c23677571d224b3cceb7e0e4f1791",
+        "project_ids": [
+          "AU-bb565f5348679a46d4a0"
+        ],
+        "edition_sha256": [
+          "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e"
+        ],
+        "publication_date": "2024-10-08",
+        "acquired_at": "2026-11-17",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2024-10-08",
+        "cutoff_status": "WITHIN_CUTOFF"
+      },
+      {
+        "source_key": "dubbo_scoping2025",
+        "source_sha256": "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab",
+        "pages": [
+          29,
+          30,
+          31,
+          32
+        ],
+        "stratum": "TECHNICAL_DEVELOPMENT_CONTROL",
+        "group_id": "87b3fe4fd5053338ca3d9434e8d72e6078322c6c6207bbb48389d30ec42b61f4",
+        "project_ids": [
+          "AU-2cfeb25aefee0c4f95fb"
+        ],
+        "edition_sha256": [
+          "4aeb63ac0341402bfc14f7b8021533a293790088865324cdc4e513f8f1554ee9",
+          "734d9ea35fd9617eb2bad21c48fec17cdae08a5c66fa3e3cf7857390d04218ab"
+        ],
+        "publication_date": "2025-07-11",
+        "acquired_at": "2026-11-17",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2025-07-11",
+        "cutoff_status": "WITHIN_CUTOFF"
+      }
+    ],
+    "EVALUATION": [
+      {
+        "source_key": "r4_deep_leads_rubble_mound_wind_break",
+        "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
+        "pages": [
+          1,
+          19,
+          21,
+          40
+        ],
+        "stratum": "FROZEN_SOURCE_FIRST_RESOURCE_HOLDOUT",
+        "group_id": "c4cdf5cdecc15d3b2e914963f214ec6671b54003da1b55524b3263b14b5d5687",
+        "project_ids": [
+          "AU-d1aeb21e18e60fe8e32e"
+        ],
+        "edition_sha256": [
+          "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b"
+        ],
+        "publication_date": "2024-05-02",
+        "acquired_at": "2026-11-18",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2024-05-02",
+        "cutoff_status": "WITHIN_CUTOFF"
+      },
+      {
+        "source_key": "austrade_2026_prospectus_pdf",
+        "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
+        "pages": [
+          24,
+          34,
+          40,
+          77
+        ],
+        "stratum": "FROZEN_SOURCE_FIRST_RESOURCE_HOLDOUT",
+        "group_id": "34638d0bb4b7a6786ed3d94a651c0ab745a27f43d92811a7f7499a4b2213ca25",
+        "project_ids": [
+          "AU-7537d9555628040fab40"
+        ],
+        "edition_sha256": [
+          "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5"
+        ],
+        "publication_date": "2026-03-01",
+        "acquired_at": "2026-11-17",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2026-03-31",
+        "cutoff_status": "WITHIN_CUTOFF"
+      },
+      {
+        "source_key": "nolans_dfs2019_asx",
+        "source_sha256": "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+        "pages": [
+          43,
+          44,
+          45,
+          46
+        ],
+        "stratum": "HISTORICAL_TECHNICAL_REGRESSION",
+        "group_id": "3b2f3deda8b8d59848e51aacf3395696c19e7abf8fef0e4c72d1c98fe0fa4293",
+        "project_ids": [
+          "AU-1345edd8165c10930e94"
+        ],
+        "edition_sha256": [
+          "63bc0386c935658dc977d4a5552390ad51ba2f0c7ce0e5c2b31754b8e7a1a5eb",
+          "d02c9266e500ee396195a299e15436f4faef5613c2a6393ea6493a6e7c7a5d6f"
+        ],
+        "publication_date": "2019-02-07",
+        "acquired_at": "2026-11-17",
+        "date_basis": "DOCUMENT_PUBLICATION",
+        "date_used": "2019-02-07",
+        "cutoff_status": "WITHIN_CUTOFF"
+      }
+    ]
+  }
+}

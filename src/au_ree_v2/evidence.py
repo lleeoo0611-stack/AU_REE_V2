@@ -991,6 +991,25 @@ def retain_phase22_resource(candidates, observation_ids):
     return retained
 
 
+def resource_statement_metrics(ore, grade, reported=None):
+    """Compute the existing R1 inventory and rounding interval for one selected statement."""
+    ore_raw, grade_raw = json.loads(ore['raw']), json.loads(grade['raw'])
+    ore_half = ore_raw.get('rounding_half_width') or 0
+    grade_half = grade_raw.get('rounding_half_width') or 0
+    factor = 10 if grade['unit'] == '%' else .001
+    calculated = ore['value'] * grade['value'] * factor
+    return {
+        'ore_mt': ore['value'],
+        'grade_pct': grade['value'] if grade['unit'] == '%' else grade['value'] / 10000,
+        'contained_treo_kt': reported['value'] if reported else calculated,
+        'calculated_from_rounded_inputs_kt': calculated,
+        'rounding_bounds_kt': [
+            (ore['value'] - ore_half) * (grade['value'] - grade_half) * factor,
+            (ore['value'] + ore_half) * (grade['value'] + grade_half) * factor,
+        ],
+    }
+
+
 def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=None,
                     phase22_bindings=None, scope_audit=None):
     """Pick latest complete statement per scope; competing scopes require review."""
@@ -1014,21 +1033,14 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
             ore, grade = values['ore_mt'], values['grade']
             if ore['unit'] != 'Mt' or ore['basis'] != grade['basis'] or ore['source_sha'] != grade['source_sha']:
                 continue
-            contained = ore['value'] * grade['value'] * (10 if grade['unit'] == '%' else .001)
-            ore_raw, grade_raw = json.loads(ore['raw']), json.loads(grade['raw'])
-            ore_half = ore_raw.get('rounding_half_width') or 0
-            grade_half = grade_raw.get('rounding_half_width') or 0
-            factor = 10 if grade['unit']=='%' else .001
-            bounds = [(ore['value']-ore_half)*(grade['value']-grade_half)*factor,
-                      (ore['value']+ore_half)*(grade['value']+grade_half)*factor]
             reported = values.get('contained_treo_kt')
+            metrics = resource_statement_metrics(ore, grade, reported)
+            bounds = metrics['rounding_bounds_kt']
             if reported and not bounds[0] <= reported['value'] <= bounds[1]:
                 issue(db,eid,reported['source_sha'],'REPORTED_CONTAINED_CONFLICT',canonical([reported['value'],bounds]))
                 continue
             valid.append({'entity_id': eid, 'statement_id': sid, 'scope': scope, 'date': date,
-                          'ore_mt': ore['value'], 'grade_pct': grade['value'] if grade['unit']=='%' else grade['value']/10000,
-                          'contained_treo_kt': reported['value'] if reported else contained,
-                          'calculated_from_rounded_inputs_kt':contained,'rounding_bounds_kt':bounds,
+                          **metrics,
                           'obs_ids': [ore['obs_id'], grade['obs_id']] + ([reported['obs_id']] if reported else []),
                           'source_sha': ore['source_sha'], 'basis': 'TREO',
                           'interpretation': 'IN_SITU_RESOURCE_NOT_RECOVERABLE_PRODUCT'})
