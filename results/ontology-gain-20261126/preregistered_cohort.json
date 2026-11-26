@@ -1,0 +1,2843 @@
+{
+  "cutoff": "2026-11-13",
+  "entries": [
+    {
+      "candidate_id": "00ab441f1e9872bf3dcc375bb560cf97f02bdb5693542f300c2d3056d99f9b22",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "02a4c8fd97ba1e4e481fbd94a366db80dcbe2aa593a87fc5cd3f5700c47647fb",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "02464613b62f9f7d3421302e72aadc5b1050a2324a07a2601ef4e34259384806",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "577893cdde0e1f6e3743ac93b3ae6f7fcdb0303091989c5605f91d07052a68ef",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "0248e8c1323aec803733b66fc38bb23d8815ab1b014cbefc610705aa3a5e8ca1",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "23dea22ef4225f01410fc63e7289099b04d1943f2b63a41ac62dfa8ba99462e2",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "02573b327d1ed4f67066a9df4a0b3acb15e63166e4b69683e04751ce849be1de",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "62f198fd025d395ec4400ff891a653ae1889d10d93869388c72d3d80efa28453",
+      "primary_review": true,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "035ccf4d60a030e01a14c16cdbe497a49a21c288fe20cfd628c966de034605f4",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "15ba397398ccc8611022cacb520ab0a565be399b25d9193f949e40789bdf1a16",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "03fb3fb03b55823304e077c536ab9ca76e852e504659578e79351901138ed23d",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "eaad9c985fe6222b5b04150ab29f374b2ab259db26face80aab1da9fa52228c8",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "050430fc96955efc3b9e9d466776219bff75e484224329fd1d2b038551d55c1a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "5ab5678efdb2fe265f8e55839669b8fa34ada38f5b470046fb5e476d1e2bca97",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "052d4c9be20150e18eb03aab14d1e1e00cbad4d7a02a96243bfc2321ae67697f",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "b85243b22d6c17920b7fd88d94fba78e5ce46e494039c6db865c7c7ecc1f9019",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "057865260b26aa7bd07725cf3df8c74de42950cced80cb27f9c8b19ccb5d6d6a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "5aa567e498fed41457d4ae1cd2fe51799e3a078091b311aed60f9684c4c8eb93",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "05cdb3aaebf6776fa1f48de59fdbfea0a7ad5a824cc3137f379a0f897fab23d0",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "24b0a232372115b30fb24f8d1e4a509a6fef1604e9a7e4b2346adaff0b30a371",
+      "primary_review": true,
+      "split": "HOLDOUT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "06d68711c50925a28788651532dc5219f4315aadbb588d238d792b1e95a2981c",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "b01b3003e1d834ecc661e8ae7c179742fc079ab83d29c2980dbe80acb7756ac3",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "0722cc1c15830bf5fe19b7a473a6fba11d03bc9b3c3161eacedf49ee59b57034",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "4e164b067b408c62eca1ce87af5a230e0eb32324e9744584876ae3490162e3cd",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "073417e78335410e4e61db254d824f7dcc0d6254e96a4bdb31ea503c0b45ddc4",
+      "component": "108e5916aa534884eb378497d2c310c8063628474bbcd2c259acd0f6d956528f",
+      "evidence_sha256": "e609b3f87f06a75573ff40a9110fda2499c6951e94365e10d6f1d352a7b56167",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "079bb945b418a7f5062b70208178f59026a55b28509c45f103406fc1b8414221",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "32febe832378e25fa953fcc05f4c626c1c2cde712caa1d8f1acee21b421268f7",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "0a3d8847512b3c4c516d2fa83005e0f379d1f979804e3a826f8275a9bbfe2295",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "ab5b7e1596f8daa148bb7fd43495b8bd2b4210513579612726858f4aed93f234",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "0a695dab1d6b269171b334f45e5e66acbc4bf3ed18cb17c625edc2db5c36af25",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "e4e4ff2a6248f0a153b85f78afdace01db9c98637022f6686005cc8b3276ee19",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "0ab4e4a4972766221414d3b1f783282bbe8dc57a3b56a35cbb13b80a0b32ba35",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "6a9d3797e77a2c21706e0da5d18ee0c8356a3666393f9687e551cbb43c98026f",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "0cb0ea58281bc833f14f3a1d627cff9cd7298d95cf2272423f852d1959d953ce",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "56332d631667b904be88fe3a18bc0999f448870e226fbfb126a855fe59b40264",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "0ec69071fa978e1ef1b71437e4cf1bcb843b20eff1518e534df3152ad5b5cd3e",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "fdc6c608ad3fa7f4ba29dbfd48a4a68d2fc2e738eafbbe09727d22411af26653",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "10642466d590d9bdcff2d064addabf269112652f5239111f1cdf2189da38c735",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "bb8928bcfaf532c177cfb0b3432446d3b6f907f8585297e52bb55084f9ff6404",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "126375c6f16880c010d7b73653b24dbc578727010fb4068edbc9beea501c6532",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "a20aedcc488be96ee2c8260c3c44a3aa7860ccf145b64ea94b8a0c86aa3d8236",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "134f9a5a182f6f1341504f1730e8b0440827ffb0b8577565e3547a210764d6e1",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "c66c217a8f69f3db1e97b3a4eff5fba4e659ec034aa94132cdd3c9fcda00589d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "138c34d4f6e86a4563c74f873bd69151c6852c173cee700eabedf625ffab6d4e",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "640a961e3b8fd206673dca1138a7ad93bb3f58d0e382839828898d518d197c5a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "1396dcde6bac726a8e64468eab9f479d46fd229baabbe03b8be4c8e450684740",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "757d8e3b6e8f0cb823f8170a02973aa06ef7b5e5c239df6bb8a29bb2c1220f58",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "13b501ff077671b42ea5630293b80d2ecacc5f75fbccc1e9ada1826f91a0afe8",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "286b780c79eb0a46537dc87e25303c384f24d6c086d9123801433c50d69deb79",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "161db0bb69ead2ec77c5614bf551d7be30f8269647031bec114693e6002267ef",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "c60b935a77c9107588582b4539987c2b44b0f0bc8bbd727403be9eddad500e2b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "162ed98609416c2563df071738d097f824ca498ad8e5f61c847106c78d58da8b",
+      "component": "41268ae82fdf96904772796ad5e607eb04a0acb414ece24d22f3278f4cbdeafe",
+      "evidence_sha256": "1e992eac5e5e91b156f814800063bb7b1ee7ef70abbbd19bcf93ab82a5e547cd",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "18c197fc1ed8827b9f8d1370ca61bffa9131dfef1f3285c7a789d7d8dab78dc6",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "e63ce97023811fd6c2ca105d3463d27bad6acb64a4361ab910996fc5baa13dfb",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "1923c99c2875efb6f8a8370a2bca9014063e829412dc2cbf496d6b2ef8f1fa3f",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "5bbd658a5a2ab41c22b5c60654318509076294f1e9f2376ca7d07cc74b84d69a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "19805d1fddeb7bd5fe9b4db995e54910b8d356fa6d3b6bfde0f5935801ed268c",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "34c3515a4bad6ed131920d2d4387c9ca7615e10af164838b618542ce69f2ffca",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "1aca057460afb4ced42088182e1cf280bcaca924f133ad7a1ebd67287253313c",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "7b0f82cfe929e52de2875d4d3aa3353b125498d214c5f9dde682f785855c740b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "1b4d1adfbcd45c6d2f0f50149d23a7e3f5ea8541d24fa65e2d3106a2d1b48222",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "4963bab85a040de41777d2761bdacd308ce2d06f0e989a3341f9966df0a31184",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "1d3f45c164517d65bda7f75fcffb5faf12b008d19584fab0f215318ad06dfca8",
+      "component": "4933c02efbce0886fcdee22e68d7e597f102eb913b45af796616c0bddade0d46",
+      "evidence_sha256": "b89164ee3b85d9df60d0c8ab3d49bbf969fb7b96e36a5534605a993cb7961fcc",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "1e10f37b1ddaef5042699089348e8de74af37428c08ae806d247ccdc72ebe141",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "cc8d02f3618c91c252067ed9f236005b9ff0acaf27ae09b7bcd18c1252834fe5",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "1e21bbf37b9e4ec11067b8ec4ef8d7ac279ff8be3aaa0b36646497e2121b7fa2",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "2bfc18a7ad5fd4679a3bfcc03df975b992069bfeb51950a732589c810a5e8599",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "1f20adff34774ae2e37f4017f61697a06adb71bbd363ad32038cb5cd1f31a070",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "04b7ba4dfe09802126b7271678a000b434256b2b08c5053ae542d535cdf352e0",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "1f70c68ac76e60d319cd7f993f5ec1f162bba053210794a8df90c679493392ab",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "3f48f6236cf1c8a64da6555fcf7e8bbd4766d4b303d3c9e420dfadbd06c9a95c",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "1fc68af35da65a2a32a2dcc1b7f9f74e23871a419efecfdcbfffb3837a79dc0d",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "081a579f5b4bf29f69f43582d1f2b26a34dca082b6d3861f7a24d7ffcb844ef2",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "212ba5b0d434b5fd6498fb1cf3c008fbdfc018ef28631d4925b8f9bd97bfa5bd",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "ab62054119279b1d14d523629cdd80c408660dd440588a714574c4e44f9a326d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "2215fc34b0d284824ebde30e5e5427b786765a8bc65d09c061e39005faf50a14",
+      "component": "b42ab0b9c5dfd7612a8850723986df00eda995d9156c2ef18d76ee6db9fbbbaa",
+      "evidence_sha256": "f8c2d00635b96fbe2c319f04997c0c027fb416c23440a9048842110af9b26b7a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "2583869a744cd24b8ab1bb17511477d5c6d8784990844e62b1121df66843fe4c",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "cb2633f9d247b198a0eb8b556662d0659759240ff830d689ff549f49a7dccdcc",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "2659b63aaa25603db653297fca60c010b412d0917f453a17ff042b4ea35641b3",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "ec289533ace54a957d647cee3b5efa8a7f78db40dac773f90574b4c82cd0e9b7",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "267f7bff432446f4112ba6e766ad17fb2b57e234e8733dbe8369c9807e1623a2",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "f335cd0df8cfdc9f0c89b640f42b4bf5142b693f6bd7d3c97efb0eba41e14b9c",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "26be58dba39c2484bae2f5624db8182e44a14e1828e52b14e272ecb1265ad01a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "4e52b2f2c0be74f41e6febda534460012812ee07d9da433ed9a6d47d50f013d2",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "27135c8d09df7e83ed867c22a28069203cb7fc7c67508f065afde6a58b8f98c0",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "f2a1e203e668b9b52e611b3bf6aa81acd889f091d58decda8c7a707dc02ecac8",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "28296331a9fd7d921e40278b025c29f46620728ab1049cebc0b88ea999f5785d",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "b4341178ba628870f47825e3b7926bfa329ed61750f887d125e1f1af331b6fe5",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "2841708ae3bdf82d72add4572978a66180d75b7c12e599128cb525fbe4aa6bab",
+      "component": "848487657bc44f4ea5c4e5b39d508ddbdf8b4b656670234ab22b57a9f21dc415",
+      "evidence_sha256": "4f28667106713f1496080ef32ee088fa2f57a57d05de0fa71816171835578799",
+      "primary_review": true,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "28a8b7ab2bce87de615b6ec06533acf6e76b2029089283684e1b577d151b266b",
+      "component": "d206a85a64602dda36e73c6209da2ca63c6402011d93c6531074e91c766be2e3",
+      "evidence_sha256": "772f9dfe1443d635b64e546475c466235b7de6d90c08e6774ad402db83822fbc",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "28c90e66f137caa9c3b201a6a82786dcbb856fae81197d67c7bc86ca6704d3d8",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "ae056048847252af77d8df520a8633cca33d495233232e18846717b2428501e3",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "29078459f0ea2ab1249b1d052004f16467a3ca05301d8313cebf83f1967fb2c0",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "a7820ce468663d86c4b90208c3c1e301004a44bca2760d121212def6a6976109",
+      "primary_review": true,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "299935dd5a14e081e38166e54083f83074cfb330796ba1f55601395cb1963024",
+      "component": "b42ab0b9c5dfd7612a8850723986df00eda995d9156c2ef18d76ee6db9fbbbaa",
+      "evidence_sha256": "bdec7f7f37356b49b02c071e9ec1cf9ddf33a4c135ebfc386b8abdc5e907faff",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "2ab519cd6270eb46bccb544e31dccaf13512930d35c2da763824ccdaefdb3d07",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "fa529f07ae8e1ed73fed928e4451bbe7f424c9a37cfaa77dbc5840bf38bf9926",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "2b572ae6189bd2f9ac064055bbea332a80e4b5b1b6c9124d8beb8b9bfbec7e90",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "3929ee8df14e7d3724d5150c06fc627b98e6ce4e88dbeedfab29f1f4d6ef43a8",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "2b5b1d8ded09a163d37aeadf5999a7c58d40ce5c3d46fe05f76c37a07318eff6",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "aeb3b90be84aae2cf51b3b95dbd4655621c02315a32fe752959a56a40f7b2366",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "2c177d24717bbf4e69e42b359c7ad6ef02beca906b966b9992df16ab076ff45b",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "a1113665401e0e5506da342c43b790cf55e8503edece5728aee81e875ebc8df9",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "2c90afefe478f93807a191a148ae9fd5e82e3706000b70bc7cc34be01a7ce20a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "93d57f11de9ab877e08b8f7074c266265b7bc87cba4977d0cc30c59fbba9924b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "2cd0e261bc068414008d86363dbebc699b4ef10e8272674e41f9e38d03f05ccb",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "a8872b53a9557c73207bc2425f53bd177d9e821639fa31d43e55fc2993194d55",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "2e3695943c1afc8c87a2f3d8d901beda167b6414333cc5808cdb5e9b6b4bce85",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "fec51e99af8c6bef82d5b425dd06fda5f33b2ecdf76921cf80cdad4b7712f500",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "2e80179732a8c4f682d4f083c96f01d405175ded8414760df1820d69f503bd3f",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "ff6052bedec8eb14fe99ec30f8a2f39a2673307a392ad72184c425d79f028f8e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "2e9be0a25332f5eccb909eee6a727a288d16197e3b1e8c037001fa2a2d13af1b",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "54e3bd8a6ae8c8ae6a7db7cd707676d3ba498bb7eaba93e2610314932f8af8ea",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "2f2bfe41c3139282cb2ed93b48fe8155556dbc810963f9c3b7add43b1dcd13b8",
+      "component": "626901af81bc94932abb829268a4a369666783a023d3c09bb1f7fb8390882197",
+      "evidence_sha256": "dadb177caccb57d09168e8e2658887d42347874e363b6416bafd0e5ac1353607",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "302896f3f2e7602b3d6b110ca498b2271e1fbd535e194a2ebb8f36601a425503",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "0a106c4e2fecedc1245a3f0f4cfe2e3b09a76c70e420d26a7e3a0e689b5df556",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "31211d3dd15fc34023329387bfd1adf7948480a759d53b3d074984ff8f60e72a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "3e51750433e1d261ce8d5c532cb80143abf2217df97de6a27b48c489ad740135",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "312f916cf7b578ae93c2d0be99aec377e8005fc52d3e34ef190af322f27daa32",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "82633714dfbb8d818d0b07ee5ec9fa4de5201a8f9a50e30f6935ac1207e04ee8",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "3199eeb11f1877473362c5056cbca8e07252ac4a5c36e4b3c34dcaa5eaea78c7",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "3c586a5070c429f9a3328216230896c4f9f84885c20320089096e5c56894fe18",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/related/pdf"
+    },
+    {
+      "candidate_id": "31af3979585d1dc634dd24f650537dcd5844590a8d454a964ff3922cc752fed2",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "3bd7ef5bdf8d1dae595e62377cf648c5e17d4259ef552f1d3db3ecc15e9dbc0d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "32d716a07494a17e2bd99272bd4fd546971b4d92898161c65bf6e61bcfa0395f",
+      "component": "626901af81bc94932abb829268a4a369666783a023d3c09bb1f7fb8390882197",
+      "evidence_sha256": "9e10f711bdca55cd44362ef129f1393ffb2b7a281bec3a5fe233eb789976a327",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "35793580798c4c80f4a82b464c3ac42bf5c3793f396894d7af262c44430c6bc7",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "5f55b7233e94b2ed881d417cc6d6a666c1e72819b9af843e83916726c22e6a5e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "360810356bb8a72334a70773c8881a626af0921f9cfd82dcc53327a43b1282aa",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "ff2576c904b14562d0f594e51e2fbb17d16bd8ea22a113b030d5eb76fab46198",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "3707df54a85d02bd7c563fc94ce44c9e1d16f8cdf70f28cebce2f3f2570fdf90",
+      "component": "bc824d4867898114f9d752f00f0a744d91ef12608e78cdd265fbe0ef09097af4",
+      "evidence_sha256": "197b945c3472ad09bd82870ad252331b4036761f035096fc1a38cf62f50a0b65",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "37dcaa342dded81afbc832e966ac3ff66153b599583a1fa82875232201e7fb50",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "de7980f8afa99ce319373c5d5b7051cd7f42245c10aef2847316f559840f6c9c",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "3958d7caac5035da9f644c6c2e586c2babef84afad55ab0870c79d7422985737",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "ae80a9142bf5951c0969e38fb3fd01246a3f032e1e63140b95e4ca5cde5c84b3",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "398938338aae25985cd4d2e1f2239546b06917a8ddcb0fef6fcfd460de3199c5",
+      "component": "b42ab0b9c5dfd7612a8850723986df00eda995d9156c2ef18d76ee6db9fbbbaa",
+      "evidence_sha256": "9a9bc104a7693c52405ac0520d3e168bd2c8ea33f7d614df82873fb80766ba12",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "39d3b071ca6d8af1e8275d7bba1b91fba46ee0d3606926e197a108b62ec2d204",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "fe2c8c0b29b0df32cce3a9225fd6512368c0d12950770b7ef1ae4ff7130c3d9e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "39d9f98e702ea4eedc8bf62f67ae1059b2cf8bec244b96725f4362d1d51bc2e2",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "89795e03ab3e26741788a4ed6768826acc2cebea44393bc06e9979d5fec3760c",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "39e98aa89eccd327acd11f5bd6e37ae5aebc6cdaf74381dc7001213d4816acc2",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "2f86c8f0c233e4e4bbb828609e361eb731682f43660477071db5852baecf0416",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "3a24a889d478cd12c2b2e542ded525f6e8762d49f85e8b82f25fe6a2cb22e2c0",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "8fd6c0da1a44294fbac79909ff9a089520044b3dd23488490c1a8b06b7f101ee",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "3b1ebc6f688166051b2b220ab8713b6339fd6e3181507c393d518c15e93c13b8",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "26667d90237e3e7b0d42acebf3e45845fd5f187f932d6f298509ad197a7b50f9",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "3b78c1f7b8778cb0e93bd86df05f07132745e7fdd9cf56fdecf427163e7e0baa",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "41babd0aa21b4c94833869fa8db852c410e066794f91bed29227e2188c90c957",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "3be90c9f176a1b0b4078c7cfe7dbf11ce5ef019248314d80aefbab011d6dfd54",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "2ceb18781ada638183dd853b99f2a0f885d3470ac7c7090970805bd690c193cf",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "3c7467e60135153f0dc58ea4f8f4e677ae0ae31bbcc5a1f67251a648d7f16ef1",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "6966c7d53f356df04e058d3ea29d31e8e2840e44d244cf8f99e36d895a308460",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "3ede49331790f2b6083f6e2bb919bad2fda2bfa1dff87dab1b1c13e6dd6a124f",
+      "component": "5deec9702fe661c023ec7c28bac70ce33cfd59b7e3f402994a7c900c75cde58d",
+      "evidence_sha256": "b336a2d2fad6975e6e205eebe20e7aa35457195f07e58a9fe418540c4e7df590",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "41a25b90ba3a6bc373c65088788bea7a613822070bc421fe20ed80125bdcfc76",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "d438cde86d88c20deed99337228a2e9437bba513654c9c17625000430c4fb50a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "42a4d30fb6fa07043b15e208518fe6edd46f48910ec326fa5a186ad9f473912c",
+      "component": "ce618cfe944ba0ca4f1d33633ad1719672acdfa0a84b38d3f29c2209a349c17c",
+      "evidence_sha256": "239cfdbc0ff8b1b92a30536c912dfb58a9d19d2e58d3202f5cbcb1a939a269f8",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "442ff9bea5eca19ce5a96a68a56c602b64482a06b49f3de542e22ad6c8889991",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "f6588d51e6259e3facb3b7b52aa2742dea80829df787c9c12340e157c5d1c2a9",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "458c9ac56841a385a454d6094a100c6cdf15cb321fa6ce52439abe6e72d10a95",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "24d44864ac16c0ce0a7a13a5e88b19be5903354ea1655569b81bbfcbf2591095",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "4655ce5ed9390c6f5937bd5917e0933edda92719fda22f1946d2613390a27e24",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "37204bd5ee32696977ea094ae628542748e0553067773034d715cccc1055b467",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "46bba45d1ad0ed6c5f6aabd4ce863014cd41db3bd1eccb5be7f472343a5fd7a3",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "e2f0018950c5e7afc56535622b252fb93e2d75d266a8676c51232423d878e978",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "4809836f2287c23fc5640274244507cfbcea10072a1fec761e0fb8c7a6f81807",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "5374c6fde5d7ae272cb7e9eb97137323b34eb1a7314ba0ba680bd6d5bf26e10b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "4840634d6467d139d0f1ee8ab257dca90f2fc94f0471534c1b6b619585157fe9",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "afddee7080cdac1fd5b685630ab73b375a342f70b24d67b583cd5cde9c588b05",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "4853a2fa7362dc91fd15aa18299fe5c12a504adfd76b118b67caa8874a5f4328",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "14460e311057e4f7a34d7ea74574f425ce852f778805ea8d9d93e88cef9c4aeb",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "48627973a88d553b9817ebe3bb52980349fb9f0da82c3c40030405765c8c36b4",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "5dadd9a61e33dc1b995d4c43c438709d671b5824ef38b18b8689fe9ffee629f4",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "4a4496a44f6bb4092998f7532cb570fe94d4dca6b009588d5f617e776c4f1d0e",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "9758f54b24f74904cea67616d6a1760321864829fb2ee55a1bcba672596de588",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "4b360a859152797b46b75c9a71a6cc024721cfecddc4823f9d718e947b97df7c",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "9b848862bd4dbbf5afbe87654e4ebe6219b3edb4c093ca7e827b5dc46581fd80",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "4bd016cf1f90d26a3620ce18f235555813230ccc0609a671eef190dd1a8c7bfe",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "f4116d537d9f15ed8d55e8601c82a315d2cc3c95dee9b2a56549b583031ca316",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "4c167155791dd1656873cd9fc5abee4386d180ea2af54bfa8fd56d1580d33f9a",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "95c49978d92c574542e559f13c1a5ba5db8aea595442ef2139fa531e58b916a5",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "4cb11dd876983e2b5b5c41551d361190a364ac6041e46a9e3cfb3adb039be669",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "f01f841e4a8fcf076f19a47c6b957d567eb90b092d7e33bc0721e59d932e9b5d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "4ce0a11175ccaefeb03796c2196993b825d82098667d8a3210f101789a4e9ac2",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "c78cda9d6c1a2b4f5081be9549133be8babf5d55272ef4046bac4db75dd730a9",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "4ce6ee9587d8e0e0fd2764244d1ce709e2366b71345224323e5c72b6ee0445a9",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "9e66b59b8cac168e0fddf205fc7a0589d57a198eee2606c17c8caa6e2157ed53",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "4d3d4826f489df0a066c0b7a4ecc3ead79fffefea36bc74b61021956b9c07f2b",
+      "component": "848487657bc44f4ea5c4e5b39d508ddbdf8b4b656670234ab22b57a9f21dc415",
+      "evidence_sha256": "d525de4e4f07fcd2cdf24c176510cb3c0ea3c5cec056cb6ed26e89af2976244c",
+      "primary_review": true,
+      "split": "HOLDOUT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "4d407e73534d015e440bfef90224f776e1c90c5603d2d50a41a33320009f73f2",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "1d36e593c3a9e5deb5cefdd33c399af40eb0d573138f1baf90413f8cfd0da184",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "4dd486d33921d63821e794eebc132ee5704c3caae255ca6b1cae7d4dafbbe5a1",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "8224824bf137f5cdfe68a73699a4782fc81ac02fbd21f05d891756771088aed3",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "4e89b99386502b5879940ef31d86d4cdcdf743185f9194067fa3ccf499ccd484",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "f27b563f03f6ceb359b0a24c419fd428c2812746b0addfcf6c7d82efb5277dc7",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "4ef0a31b6670734bb943379793523ccc832e0b54818053af1110eab6916c23b1",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "8e20ecd8d04e10a540a0c48f9fc850228f3bc77042e7224514edb0d835564d5d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "4f2ef62502207c0a230abbf3ef9a469cbe6c1d46b3014c592298ce5edcb43e41",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "af1aee62a4ebdad383dea74b0f45ef87faa8919685da24650073ddf8a8c68b87",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "4f578eb522f0f7d0f34398980e67a34de1e5021475caafe3c01b55dadf7ea8d7",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "3fdabd25d4d2537c1cbbe8f821b00384232ce7b800e20f604e5fb2e64c917b78",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "5031ffe91e05018d910d850022de01df47e3cd3bb2b62983c0fd25e006546ce2",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "49384860396a93ca4a779f53100a9c19432a75fcf1f4ad2f1bd8fdf58eef9a93",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "5072c01e9787a993932b1a137989838442b7b2b3ed6093f553f8373a91390330",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "c6e6e5bdc55820e170d2024ed0da4ca87f04a522ca9336744963f096bab9fc65",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/related/pdf"
+    },
+    {
+      "candidate_id": "50773c17e4ab84728ba16813f89f20b2bb5932344e160cc24505255910f04916",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "11856535247c76152c0fe8210a9ba4a276599bec722233270d8922ccb04690c9",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "50a557be21add8c0aa2a40c8310c324ea227e49509f2259181a4f6935d33134b",
+      "component": "3b630a7720ba2e10fe02d73b48e03117d3ca72ace7e6d0aff69ff168781b9838",
+      "evidence_sha256": "a0c28283632442bb2382aff33c53c2a34760450fad1ded3606970446d612fb40",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "50abe3ef6e1158a0254e08db6b2360d70b3cc4c7bbfe2a5f8827b59df833f86f",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "e269f1828bafd684c4c0a75c64b04a5380f3f5b0791f9a743b47bcea1cdd103f",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "513c666b701932774a723d28e52366a1fd064121abba00ea96d5f0832b61d4f1",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "b0daf47e96f3fc99f74ce09130a8eb3633f57403341bacbf956b3c885a18d0db",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "514167797879d2bdaef84f60f37fb6cd4b2969eef9ec3dbca935a8bc877daad8",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "0cfcb2dc7f991607764af22946f6f0ffe8fab6d2d2e13764474b02efce76678f",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "51502a9c2fcd723f69e8f9d3e57bb0efab310ed9f5d4c87dd28a73d9fefe69ff",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "763b2ba95e78dc9dc0ce7e354b910e377d97ea37df532cb63812e1f3b39edc24",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "51808312a9c8bd4ae3ebf11d53fcc491cf9b815363c4c40377f7a2703be4365f",
+      "component": "d206a85a64602dda36e73c6209da2ca63c6402011d93c6531074e91c766be2e3",
+      "evidence_sha256": "eebc9de4b1bec72914e9882085392a2db12906febdf67426002c3c315eedb835",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "52aa2c47bb500149a7bdfc601c3351aaeef827c01b002f4529cd9ebb441687c2",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "df756cb21a575742b98746fb4ee0638761c8339021e60b4e60169d6e8c31024d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "53845ad42dcc88436342a1ace32b1f9b2b5b334d297494101572b53f7e064cc0",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "1f9d28525273b965d7a204b59622079687259ae55d0f631e64604c269ff3793f",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "5454fddb4f0071fe5d671228da99fb039212fdca67f24e4944d3dbd30198f4ae",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "ef8127ff17d63cb337253b7037f3abc9aaac5f16b49247fd90bdfaaea9e0b40e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "549d3852e18c5fa6b7c734c38f6658f2c79fb937a34d99bc24ba0459784648ec",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "aa27201772498174b36d61bbda3b7a74ba8bb2725acc3e9f2c5c4a7195ec8212",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/related/pdf"
+    },
+    {
+      "candidate_id": "54d173737cc39082f2d5125533d4b1ed4abf5b5724d9045a324311abda94f7cf",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "3cd6bb9f5e564a3af1a5a5c53171f394a03589abf6c462fc2f6f6e3eb536f520",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "55035938bd2db9bc0052cab09ced4eb2bc1ba09b3210975a367fe372998ac475",
+      "component": "35d64c4a5fb5d213727566b6771e54cf25398f6aeeac9b672cbccb8a24649790",
+      "evidence_sha256": "1e6c7ae37a657386cdc20d6b735b061f1828b73e70ccf6a9de0f9f848108562b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "55810d5fbb132e1ca9ac775489f976d9677095ac3b7ca22182a1491d751fc21a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "5be9ac901a515687b94e91c44f2eff83740d8f4d61962fc58baca193fd23eb28",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "5647ebc1050b4e387d0496153ed698db52a8eadd93b408ab15c8f455550d2cec",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "14b58452c9fa2f26ea4c15d2f7656dfa6397e98f549c4e9bc8836921dca7611e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "568f206e86f29240aa75b4b13bcf8c4d5816acf37e7b5c6a6f0f5f66b467215f",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "d47d9848f3eb27c9ab4c3a97d98f1f108089dba8b2b0c5bcf5a2f68faddca792",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "569e4f2479af715c3b109fa498b08c543f373b57d20b346ce20e02e3558a20e5",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "8160b0e6c491c0ce06ae5956c4dfabc099ad01c5bf8af671b7635666851632ee",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "582203e7bcdefd68876f70832bb7211f97a7ca8c01537419d09dc846f11f66e0",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "fab0881e1f438ddbb520f9a738d1f27eee1f0745a40cb8f248d4bd77ad993b56",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "596a1d07f6705326e23a977f9e3eec1747df352eafae33858d12d672f167d934",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "f5da2bcfa9d10ac78ab22e28a3e7c6c0e084f9980045355531e4df42e7fc2c23",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "59abec494a80ae1e08f79b07d2a2c1ee257706290e6a0200f2d019c986f8f486",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "31af270e364842cbfb943771306e95b55c16498ac9aac2b62ce55ccd28e8d831",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "59f6876f5bb2f961e0ae787feb0f370f837a467cfdab4e0595d32f599f61c11a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "6c7548458a7d20e76ff00fa0d421c05f0d426fd04050b4c83f34096f3e2350e0",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "5a3cc9e0f45c42b6a0dcb42f8f7ca20ee18344d808cf21652551a4aaa70886cc",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "53f7483720736375527b446bd5309223a9ed47d3b1d3ef3158ed6d0c89a9bba5",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "5b1b0d7b11df740a68196387377da59a65d13de7259f46f13c37a7dd995e520d",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "cb08b732a0d3b3ede991e351e37188eaff381006c785530a6bd4efb00a6e8c36",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "5b885069b5c28a730fc1a718e2d40ab57a95bcdac87e1384348221918c268e2a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "bb5cb9fc283b0cf650aa960963def3b51e959a1bdf75ddd93656b65969891e9a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "5c0b737a2862476a2a569cd8bba76660956c0e6dd9a793202d7734cb6a1db058",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "5632fc82c6995ffcb0033110d5beaa55e95ab0fbcc073e6dd26444cd840aef76",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "5cfdf8514a9bbb114610434338f1a0a07eb38a144de7a0e304fed5cc68705f1a",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "dc89e6c7beaeb548989f493446753e531041c2e00c0a609752624aa5bc418385",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "5e106f6d9af6136cd6c0a92e22e0eccf0cc218e65f5414c97cb79c48f6accf43",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "edf7bda15125f3b25e9ab5b2091c1f48554b438f94480ac8e8d7db50f30da1e6",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "5e16a13ccbdbcce2664a63f8c0242413eeaaee672c0a4db1b4da26c4bfb63547",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "6e6ecaf1e6f60081e3a439f0c3393e92dd8ad9cfca1a72bd4a31888fb31b09d8",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "5f377fd65b6ef2b6a4163d2909e5b1699e5138788a82fa744c814829e63b06fa",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "801eb59fde0d5f392b08bb4d167ca7209f20f85942b311573fa844a92163de29",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "5f647683fc94dbd44419794261fb4237718822597aabddbaf9de7ee6d4e5ac64",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "27abe576fc4384fd1c854fc334ab18aa45efa1f34eba17ca5bfeb403e093b544",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "60d2bbfb67f7a47baad05b8bcbdc4a9d26a7f08145bf25380e40620ee4ce69c2",
+      "component": "ce618cfe944ba0ca4f1d33633ad1719672acdfa0a84b38d3f29c2209a349c17c",
+      "evidence_sha256": "540c805a5652484809783205bb48c548a1afa6b20a559c9a1b983caf2bb7b109",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "615b089f37b8efec34490c8052a45151a4294e0d6f4f50165fe2c4449772f353",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "66e950f72849ce5eee16d50309a61eaeb48c10e407655ba673d65059c2a9a06b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "62ac1842c1d344b5c08f0990f49c3fba80d88c046eeab26eb492be478af8d0b5",
+      "component": "b42ab0b9c5dfd7612a8850723986df00eda995d9156c2ef18d76ee6db9fbbbaa",
+      "evidence_sha256": "de54305a3dcad97f172952ae4ac92164e57a5180012451a597a109203a9fb2e5",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "6382a7e131a8b08a2aef248448fdce3ca189b3e20aaacbc64b009283dc48e6ca",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "a950df3721cfb5283841592c4559392942599c2fe2125898c40b0a89c535d60b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "64b52e09e60419b7dd58621419a31cc21e944a9a31d2909d696328fddaf7404e",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "46ce9caeae78413a858414f082fd22178d0f5d4daa7f7ee674aabcc2c8d3cded",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "64e4a85c9aca82413430b0a44908d7fa7ebabe45468d73d81571908764da1b8c",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "cf91519db68c83b34461b7140bab864e1220ad518b1e49062f9357747e17f25a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "64fffce0a5a3527f9bd99a395f2213dcdf3a8d828a18abe7dcab68d6426311fe",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "fdb94df878be9bef7dc60aea900ddde546b8e9f35d24435c578dc8174eee4f54",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "65187a6ed4f213fbb1bd537f6b5d8848672b0dec5bf5172c1bdf138fb75a96cb",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "303f92b3b326dc3a154f3438223783f495e374e7e3907fdeb15341814e69744e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "65cef38124fc2fc2ffd5d53bc7a2e5800041f4dc0c494bba7b80f6341b49bb23",
+      "component": "848487657bc44f4ea5c4e5b39d508ddbdf8b4b656670234ab22b57a9f21dc415",
+      "evidence_sha256": "d2291c0fac1e8725949fdb0a221334a7faf04b1e589e5cb899e2f6955620c7d5",
+      "primary_review": true,
+      "split": "HOLDOUT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "661af320ef0356b73cc79481fac31a24d38e47f5e611223fc11cec586ca47345",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "8929a939dc44aa88c2f8bf314f65d47ad829dbfe3177c8b795e3561de1e44d9d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "6647a631b722b44fd01c8024cc44e2983a0d7e08a86558dfdae1c61895aa031a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "75848fa57c8d2efcf960c2290989481afbc80431dabf26c565ab84f73e230dbe",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "665a9a4a9165e7c69285fddc5113e537ab9673ad0d2276cba0acbbd964869edf",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "cda5b18524994af066e28ded11ef3ed223761029417865994221e0ac316d70a7",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "665cbcfacd4a2c7dbd93241607f3fa68583d65335ce6b177e967017dc5867f62",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "7da84cbe40b0c105c3d04e8aa56dc9e402ee647abf2f2d260c5f1206b98176f7",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "675db1718ec3ca719b42d44b3d0cbff8edaa232b6e74b23d14f3cbad8008ced0",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "3bca90aa3bb740604c5c948b7eb61c310458ab2de8eb94412b6c0fe952b14979",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "68471e22e0683a2c6ec96f2b31b77d6bf5bc354b6bdeb785166ab78b94273d9a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "8c8a1934742d8659b7a4ff91527c058824ee98f0d9e1e47c489c7c76e9411be7",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "691ae665d16c35bbe003d17e55a7caf18bee2377346fc76b9d5332c9c03469d0",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "98d84dbf1dd39dad53420348c39558076d767d4bfae21b4e429e1c2e4cc043fd",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "69c48f7c8988e81f1f9016e100e9aa420444486f362e8f6aeb1183a7c5ef4a54",
+      "component": "bc824d4867898114f9d752f00f0a744d91ef12608e78cdd265fbe0ef09097af4",
+      "evidence_sha256": "67a81129db1c1938c4a38c40dc61a5382cad10e417b506aeb6baaaf3cb970cdf",
+      "primary_review": true,
+      "split": "HOLDOUT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "6b9b50849f84b2efe323bad901350c47b5aa3bf6d42b94fb9f54ca44a39617cb",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "8a9f830fee079868e7ca7fb4afe4bce72d7ca328927eff7ea765e0cf37e6631b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "6caf16067d753594dfe579bb3101427e9e092f9778c8b2185002c43be5d9a739",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "9b8fe0baaa8c9a52decb3de1ecd9ed53fe3e107c65a7cacc0e39cb7b67ed3b29",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "6cd06e4efb2875d10a997b733dc7ea89ec0d91b8b6dda4026ecb88c18659b6e5",
+      "component": "72e73d4ea915ba6a1eac6810ca2eeccb870dd1b935a321058825b27f78f3c01a",
+      "evidence_sha256": "8a89246cf27469e6335fd76b0d50f9625ae4255fa8cb46c017060522d2949b26",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "6cdc8f77d23da77c4ab4c175824f5f27cbbb9afe70020b4f99107d9f2422f266",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "b71dd5431e6280cc3893c23151a3a1e9b9c51f42f048ac918a4cfc0d1a5c1c09",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "6e984e4a95d7ec3cd6b9774b5b79625c4a79bb8cd6882e8f4ad155c7f32d0586",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "80ce21e3711ce467ea1ed7609d6fec408c6df84ac3d00b642cb4f3c38e1968b5",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "6edd07292ee3164d36648ce80f9e13e56adfa080ef48a1d4fedf20cb8bc79854",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "1ec6dfead7894b8596aad118526a720698e83e64cc4e9e38f009dfa4c7d20eb7",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "6f1247dd4ea7dabb7c6d5163001123a9647551fcd6c739ca47ad51caafc0d3d9",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "cf35d51b2bccfa75ddb7eb2564df1c955508fe03ff6c90b1201caa2192404557",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "71187430eb849ed7a0e3a4e51dce29838d0b7f4d510048603db3963e2eb74550",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "aa0e36a5d577da9b5dc2014ac176c9886d73b4e20d0dbfd54a136e9c7efa6b61",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "72759cb134453b8d7c4e7742f90de4872d9ef9937bb1765cc6601ca237f9a76a",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "59530a97186605081f9e9c4f7c3b9ab4101c4ff7adca8cd67c4e22e4a4b90be9",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "728cc1b30aea0f969eb2f99e205a414671b06b19080098f5b6804a686068a3ed",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "bdca75194222adb6eba8986c357e055e0d34b9c4270c03bb326c155abc0baa8c",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "72a6cb902721c8558b0392986aece4a17c3abf7442002e8952bf6fcc0f619990",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "c3f8f1958c121c91487c154f4c0a81830e6a37842391d025c40fc918f4f6bd29",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "72bb80c8ce471fcfde44bd26ff32f3ed4e64c3e115a2a109e45d53cb3a0cc642",
+      "component": "5deec9702fe661c023ec7c28bac70ce33cfd59b7e3f402994a7c900c75cde58d",
+      "evidence_sha256": "551752a79f658fc5ad89caee0999620a11cf9955e033ee7a11b766bffed36c64",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "7382ea1dd7bec912ed3197a8f2d5345aa1709f90d40e2eac04a3e5600e3ccbe8",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "3351934243a7e50faa6f789268eb90d01d2cc299213e6c635865b6dd76e63cf0",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "73c4a098c9b8e9baf25fd7ac84a4986f0e474136aa8c94297a31aa0840da8d66",
+      "component": "5deec9702fe661c023ec7c28bac70ce33cfd59b7e3f402994a7c900c75cde58d",
+      "evidence_sha256": "f2dc513c7cb06f40e8e1021f686e8a1154e9b199858a433328b0d2352ccf135d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "7477ff8f9a6e15a78adf9722890e326b85f7435cf11548d0075f89a7b759323a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "e2497ef7e0613888d09b95857bc5dbb2f00c9d1f7aa15c5d53f26646507a4f61",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "748e3a5e52c717f732d3c3bbbe388aac3be2faa78ba73b141adce47c1ed16486",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "fa9d2877c38068565a4ad7b61327e9c689cf516773d7e40b53c13d8617845026",
+      "primary_review": true,
+      "split": "HOLDOUT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "760ff5690433b9800afd6a9546e8264a4e3f8537be083967c873575d7b44936e",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "0a53d5b73d18c66d2b8014e4919266be579f43d60fba11bb788a3474c61cf18d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "766355e0f36e406ecfaaa53f37f4e88f05cd4fbf6563fb592b8ac74ded293c40",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "dcac24faf55690ec1b9bfca5f2729354f445a840d6311ecd19b3681ecc1274e9",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "76e6c9dd3001339f73059890e0fb359c2a5957e1aedcb824cb6469309b36e232",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "e6d9ee529cf64c2d637ddd8002e8537bb8e4a385790ed5f8a21750b6e497ba87",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "77171426f185f02cf7fb93033933caa04e9d002230de9da24ab7e11b5dab1324",
+      "component": "ecb76c358dc2e54065cf92610a624a45976f489d56cb0aaceadd3efc5f64fa9c",
+      "evidence_sha256": "43e6b63314680af93084074d85e80157984aa4d44ebfc89d4aa8aa8bb5817995",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "778efdb097e92c2454c4c43aad1ef6453296926f8eea59201569c5d2df952544",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "5ad851815e1baa237e1f2d157fafeb03a6f7c80907f1aae43c50353354a1734f",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "77ad22b007dba67edb51098e94f8bf67b491c0961b65ff855784fbf43d069e68",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "eeb0334b715bbd281587397f53156e3aeaf1d695161febd472b527d51753fd17",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "790c396546f0d053e6e86cbc4281b581fcc3ab4cc4c6c661417799c8319435ae",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "99277b6e29c1abf169f65be397e9cd17940c077522845c5ca094e84f3d4bcaa1",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "79186d1d9046b2dd489199b51f9fb978d3ad9f8bbc3808f161f40edafd830f08",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "2b52f1ad84d91aa45b5eb58d19371ade405642109f6b43a95af5a8dffa6f66fd",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "79b57b6b2fc5a83b51bfc54bf1bbb920e163467ed76e81ea099b7295688d511e",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "a1551949e50c35802f533c93d120576c75f206f375a048b9d36f0f05a842d442",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "7c41462b84d59ea59ca2c3c8b1425ae67a8a2d440ca3981d98ff87f7ac1d3306",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "0159535ed341054479c12699e0decaf7323165df81340fe34de3e669f9b47f68",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "7cd2fab9c9d8df5b9d718e78d3304bbd501d31654be12ae2cc2b067c9f20f163",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "bcf3e7c38e8341f4f0d752ad30a2702c328f6672227e2c088e18763fb0a9e873",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "7d85ec1db34692b06fe69b992aa37163dd373035a500342873d56f9d57ab99d9",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "841b51c5fdba746b75ab874c627fa5f04c66fc19b946c65687fbc81f7401058b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "7d924b546e7eb9de377b521c1a083f515452d989f2473112468c7822299b0196",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "e353cd0c42171f1e4041675adb72e123293bf54a98b2ff28c38ab209656f674a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "7e861e33676c8a3175be75804b360e8275c25e3d2817e6a10227e2bb0c04afa1",
+      "component": "ecb76c358dc2e54065cf92610a624a45976f489d56cb0aaceadd3efc5f64fa9c",
+      "evidence_sha256": "591c4da7d08811e6ccdb76b9ffa520195a587031feeb56fc1157d4bef57564c0",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "7eb93849d05be8ac4df0cf48ec5551034c2a7a66d64ca8d3a227f3e628b1f0d0",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "db8bf098e7c99bf457dff4f54877dd0730c63f5f228c81c4cc035cffa89a9df8",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "7ec50d2bc85b3ef33fc7e50f9de4112f94c446d22f0b22bafbb2b12f99cf5acf",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "39a994a8c9d7a1ac2a5cc37175668a066b1545ceeb7e868ce04a6a1a3af98442",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "7f4b4a9563540c4c60e4d11685a41084d6c9b60a9adee1901457bf744a764fc7",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "a8af1c014ca464dfaeb28be3617310e387af18f63ab7d2e0a3990bc1b23e068b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "825d08161cfe077bb817253ca48a4adea8187258be1cb29ed467ee19b87bd213",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "bd06e03567f462b8e61179db636c634ad8a5293e8bc847a2e134abaa30d51aac",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "83b87169c8ffe2aadfb7d633f3eec0e06ff6e7895d84b3ec34c2c0ee2190840d",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "c65134dbc9fd95020e3c3ee2d3a4bbdfb035ce47af74607feba19f7bd707cd1d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "84c66fa5577016e95ff4bd36a3f274df041df6bccf9617c8025dd14969564730",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "a1b97a74aa730916c9ce7b0e841c942d44bfe7fe28c99bd231f5c8f09977107e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "871b87b2a6f33dd5625b920903d8c02f061bcdc8310a5d624b8001290026a6a9",
+      "component": "72e73d4ea915ba6a1eac6810ca2eeccb870dd1b935a321058825b27f78f3c01a",
+      "evidence_sha256": "32fd158b16e4cae326c86c70322b8acddff9f90a798dc63d893535c6bb5271d7",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "87d906f2cfa4de4dd6c5c58f44e82d89ba32860bbada0263a65bdf1b23ad1797",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "51f96ae5ce3f5bb5e550131f6729c74f8259ee104301bc5bab92f49d02e9a775",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/related/pdf"
+    },
+    {
+      "candidate_id": "88ebaa3f130aa0a165f4b1265df8da972536aeebf456da537f2b442b00cfdd8a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "74e31acddfed0fb8265b3886ef62849f47bdaba90c8579e0e0f465946a3ecb51",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "8a205e9def0849e00f72fe66b96915a43e8e8aa011757afc5b6fb3562781289b",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "e87878c321626cf3d7ea19327ffe0a09ffc5bc6536aeac5128f1669ddc01d643",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "8a2dd5a606a1cba20aa84a738abb89522990cdbb7e8459497886fb309cef683d",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "1cd1eafe875d67e736cb37c8fd6f61147159f8782cf696073811781a9de3515d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "8b8f6a16d4370c4db4f5ad917a981b66d0200b4a83af62e7360a728d650b412c",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "3a7280e84c33eab34b1cc3fcba3e264b1426762da5bd2e1b1ec1b46f2501942a",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "8e960e43448c37a2820ac9fdc2d758cac7a9644263ba52c6f14b4e31f3bc725e",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "3708d61bf3187454f06a89d242bb18d5423018c7709424ec64a21482e14947f4",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "8f166adc67b4707493f3dea38b9aa61d4b4d95f1fa2f928135aae0e5ab2bf252",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "48215737a36cb29faf96bae4a18ad51265f22b5e1e941cb77674b7a7727037e3",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "8f75eb918275a08226341677deb76f4ceec99883b1aa12838162e6a039e9e1c7",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "95f8317809727f1bdaede4134c0aa25f060d590432873e65e1744c9b8370abeb",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "8f8bc8304ee286fcd7a8a801f4ffef2fd6a70c8d5db7a2331270d95f0d4f08a3",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "d2853e93bf06fae617d5ef2c9a425c1e3a3f082b4aef026c80959f4ba7e21f4e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "91c2a8afef26b5a2fc99748077bd56950e15748bff3083d0e26b34a633cb9867",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "f92f61f0bdfa171d932657853777d7701828a832831592cd0ec8dd7f32b30ca0",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "927c9743f1eab1a43ece044ea16d0aacf03bbff46cea081fae92641929e0767c",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "72f0f2543c2e80776d0e438f13e4d4a91837fa64bb4467f2b785ffd7ada12b9a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "92ea08c2e1a2a1ca766be133ac6004ae484458a0b0e026b909476a4a8fa48af2",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "e84c4075ed1b1a533882777a4541c8dc380deebb63a43cf3cb366d4c01dc2a7f",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "93cd38b8cc6750f3b16f0abaec7c43404c011bab937dae5dabef84de2ab86ae8",
+      "component": "108e5916aa534884eb378497d2c310c8063628474bbcd2c259acd0f6d956528f",
+      "evidence_sha256": "cc6ea7dfed7649bfe72e9d0e14cde7c29c341c8e56ceafec58a9934379023401",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "94a706ee2ca3d72206e95051db49dce36a8496ca692f54a97c526b44109a343b",
+      "component": "fcc6bda21458786d5164084d6be5f56b970c0d90c1dd2bc9b9d7bfd486d89da0",
+      "evidence_sha256": "d9103605d5dde8ceddbbed198e4c7a83e8f0dd643bd78576ad39c1f35a38d5f0",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "95334d00a20ef3ce04f2197792a027eddba389a3f54f81abed4f94ad6b6b7c07",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "7776b66e609d3f947349f7455acb4016cd277b2d2ecb1fa0e7888ede192f8480",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "9589eaab3959fb6b5451ee52d7b35c02a9d1d7fe71b047a5fed058387d21d0c6",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "b3d2e7ee0927d5d44bc68a3df340fe4ce04b4f5ad6a4cb847d5eacfe1635ba9c",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "95ca793cbf82276c200430291ccb17961957ac8111d1b7bcf2948af635024cbd",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "4fa5f8e7c75bcb892320d0fefe2d55688dd457c12f2a30c739c476131b4ff15a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "95d20677fb72a04adc366cf1e2c95d36a721220a2dcf7f882a4e0c54130730df",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "5ff352cd831bc3e3d1e1840f801290499b6d4ab2496d576f46a0c3c3886a562a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "9635c748320d343e1b5d77b8608a93875a8dc3fe298891b06b6ad7c19729a90c",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "31a60504e406f0fb62c6b8631ae416bba3bb4014a4d4975a58c8c3f55f864b99",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "97c339ee286afc595a11157fbb8fb6075f3a6d0113543f8d4940cc7c67929374",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "50ebc07847d97da01250f13eb20a844fb7f2b93a66019be02cef5d2c845642ec",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "98356fc63ff30660d9fc27b4d86d561fd48ca01ea481113e98561f76b30baadd",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "2a3569a8816ee6ed492abfff848263dc7e8fb17f63c01c63d108570d922a3f72",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "9902569355d596023d0b5a5f212bba2f99c0f20c3faa073c64603087bc9503a1",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "d49e7831a27a18a5540e16237e047cb450093df1ecc73986223824effd7a68c3",
+      "primary_review": true,
+      "split": "HOLDOUT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "9c1b27a5ae8eab68b0f5f8ef7a9ad05b3d90f3d48bce2587fbf34bf81607bdda",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "c2a8a4cd86e3b13bb925aefb37e72f892f989ee9ca3f077e352909f3ecf7b3cd",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "9c864c12deafb0df27add714875712509654a5940d3c1b33270722dd47c86e36",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "8a1d64eb5d7749d7efd4acbac526dba297494592ba0c8e5b06497ef57d743e2d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "9d2cdb3a6b96c188e0ebcf25ac1666879a6b7d55b7bdc66b8172189faca9f554",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "eae135c1bfe798c0c1a056c65f6cd8d893328c14b5a0e23186bb85a2c5da2d38",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "9e1cde0ddae23953f25e6a47efb32727b768cadd321ce08b993a7d9af6b5b788",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "9500518cd69bf06a5bc8108fbad84970e36eae771e12f3bf3f1be6a0832738de",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "9e4f4b0d6a9bc8233533e872f1b1213e17d98f037a37de2fc6ae04dea7532c9d",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "4ab329520339e5dbd71dfd761e475e7dcf14c9a024e6911b2a5368d2856e7628",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "9e9d8793f1030c1eb8fd5cbfd8661d9f4c22853966ec6f845c7103994d8d4ade",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "8d94fc5f0f18103a62dded0f557bbc7e242d0ea04a060390ff6535990a44c471",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "9f072c000cfa795143889aaf2ffb054042a492661648b4050673b258193517bc",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "f50885e4c4f307ab0b87994939beecffe827a850bf701fc4cf87b8d7e66fddfc",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "9f5ba7bae97018088dd2bd9798683249fe575f1eb1c14a28fd0acad35efcbe33",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "fc1a4783fe5a34991bc47f283504d52c3bbc14608113140e6cb8c37535aaef41",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "9fcaf0a902dc19aea8415d0b9abb7db2d61580aa1a70bbbd858dca2ae3c8fac7",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "51a37f4af4e90f68972a477f50f5fef86ea169a758a9f674e9b0aa0ab4121629",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "a0053be9b74c91ee7bc6e828d6440df85475bb530bc0b4768b32126eda40b689",
+      "component": "6759ffc9d0ed2013f3dfa267da1a0901cb40422fa251692ea6a5fe90d04eaa73",
+      "evidence_sha256": "ac97cab72416857d89b7401a9d248725177ba5525f29045b99c4391885a3977c",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/html"
+    },
+    {
+      "candidate_id": "a0100a04434b9aa92ce78bd44dfc215a9fdcee31a40043ee5aca5e74ca1adc0b",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "82146c76ed9a2a07d01786314fc66ddd3ab8a125e31c8853c116c1699357c61a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "a1b2c2f65f5fe77d3a9f3ab3d3928c8af43e6b913d3981460d99bbd78b9489db",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "e24e3f0ac8d06cba172fdba2bfe667ef5f071710bcb9e543e088d240d1265be0",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "a1caff7111fd71e123f684e8dc645f5e3479c02ff92c241928da381dd019e21f",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "ded2b2531abb45e04c20c8ffd11b8fc5319f697229fe536d31a353818e076e59",
+      "primary_review": true,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "a32202b39338b8700193f53612c6cd76213e72f5618f8c6aef92fd491ddde8cd",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "6726d05d2aaf30f8fbfa9d29e247477f04ae8189a2404b5465a6a2c89ccc11bd",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "a41b9e31f2344a58d3ae20af9c300aa21d08a9b63b2a9918c2a15b9bd7e45859",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "132079f90e4aa6b2235e69d54baa078074d6938b3c35e013a11e4f1508d62bf0",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "a4ccfc49f326400f2bde97e19ace38f8dca62fa0ebcffd8e4e8a9933b9f27171",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "6968d2acf0ee016d57bcd3636e63514b6b8abd475e2f83871f5c299b2cb658b9",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "a4f826c61c480d869184ecb1140a85388f70ef18a3439005ecb99ce060725239",
+      "component": "626901af81bc94932abb829268a4a369666783a023d3c09bb1f7fb8390882197",
+      "evidence_sha256": "15e2d60b6d36658b7459f51eda6f588022a1dd265d4437f30b35b6fc279bdc1f",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "a53582fb680b32bfcd57f79c13db5429c22d9e46996345396bc001e394dce1ca",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "d183541d76568bbbf36b4328e490ae7baa3df34621bf3fb11eb4699af46d96eb",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "a591d66531f49a0e7a901d8a62ce2b4ff0321611f3deb0e428d3295431344811",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "b5d2cb814f9a0b5c30f5d649056d05137e24fb919853b97bdaa027252643e7a8",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "a5920146f32efddbc44ccafee5063b19e3c54fd6e1ba77f3a831c2eb30871a07",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "93a2cb9e9ddfec622cd248f710ac9ba19e432357869b815882e9356f50b40057",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "a67eb95ac9e76d04531944e9465e5615fa50840139e48d3acacd18123c886ecb",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "2a5f705d784b62d499d7ba80d2f15c0902099c15a84ebf6626e90e2a67554139",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "a6adf03802840fb56029864b9d49c54d38a044425537457622b618c2e757ff36",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "02d73d66aca8cf055da9996165bd26acfca07ff99dafbe4d22914f72b6c872ce",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "a6beb60a45f97ce7f69f00fd04009f3ff9fa739bc733863fded1043151068747",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "a2e509456117dd5f22b8e07376ca5d1d450fe20ec1236b080d08f235a7b6090d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "a74feea91d20111aa850b02e357a7781ceaf2e35b36287b3e21af095b3e9ce35",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "309ad3cd51cb56932518c04c356cbaffdb0e884e5264f8e6a81b56eb13877f1e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "a84d09b4c4194a3f48a0073dea058539beaf7bd0755e7b4ad3a4be0241d66348",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "ef9c74b004366b466ea14bdb8f17b64a1b3c082eb39a726452c2c74be4363fa3",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/related/pdf"
+    },
+    {
+      "candidate_id": "aa5890a56b821d57c9fa9b4ffbcff7c647efce06363efa7cf8368a77089b05d4",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "a4c9ca0a2a95d24ae3b8ca6a4885ca5249dae75105e2ace2149cca320fda4324",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "aaeb09bbbc039deed59016d683d098e9001d086fdcadb1bc1a50edc22e2c0c49",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "27cec4cd98c268a0247e27f1283d6eb2b66f2b8ad91012fc7b498ece455170b4",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "acb8cd5decb723c2c8c10352062a6cd901b5d4b113713d2be2cd5452ebeefea2",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "810aa57e9e3919953959b4fd098ff0cddd72e7e1a813f521eb66ba928459062b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "acf16049e8bbda90149c850c577be1154304e882ef92f0717d0e498fff456989",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "a28f48076f3f0bc7a85202497a314d9897ccc8534c28566b60a3902e6169ef61",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "ad52190c31e7c0b8118ac3c92bcb07c8ece99e9c0fe449a6761507530d8f13b8",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "716fc2d8d55093de5b876d61e584b068136e0bc9212ddb32c01f0f04b0b3dad7",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "ae9da255ee67b46c1daec88ea16b3aaadc278a5bb22ec28237403fd362006221",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "150f9bcbcb4da9ca90cb95ea0e4327fbbc1eb569c979255948e0c9ae0ec31542",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "aec937e6c2ca4c34747b483d25f18be1c949f6f6983aa7d710defbaf4cb83a7a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "14f1c0bc81940e73dce0852fbfe6bd58a61144847f1a2f1d3f6b07b7225c7aca",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "aff6d120a3fa9dc23bb6b4b3d80476a754a31c8c7bd15ddb47c50b4f64bf107c",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "d5eb5a3491d9760ab321fa8a962d11bac15cc2c87c242531232c7a528b496e42",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "b061359a04df1782c32ddd1ce44a79bbc46e44b710d8fc7c4aea2c697988faf1",
+      "component": "35d64c4a5fb5d213727566b6771e54cf25398f6aeeac9b672cbccb8a24649790",
+      "evidence_sha256": "f05b092b1d6ff4ddcae905db16e6c6aa9fb37e0dc1a4c89b3d934f64be1f5827",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "b08f94cefa4dc00747e0da4d22f7f654463a02861789f22269cdd95fb3c64a12",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "0f2ad7a22f702f48792f66c88572c7528735df509037bf7fcb1d79ca9fd05e58",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "b207771d56f2868aa769121b1086b85a27f4ba92da3bc789e23ab68e684e99cd",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "d96e0c7d513af5c5dff3044ca3711eec57c3c180b8cdcf18f9669d8016e71d1f",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "b3aabdb57fde0eb9a7f525a26c3773a674315b53469dc79021c16cfc4f5a8ca0",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "ffe83832e76695f5e260df5eb261aad48a3822deba6117190d1560633482442e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "b5d59895cf7acedf4bffd9f84e136b6e319a1aab417530c4904f5e85ba9444ed",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "f3d71e000f012da47262ff421c1db6a7393037bfe078e80e24a4773c71db907f",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "b7de938012cec56f36a0e674207bb88f12b961046bd7d9711fcfb70dfab06a6c",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "52130bd60374eda9d27cbaee8acd190aff8dd6cfc92c720806a52cf6e47d5366",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "b92718e8d66126522bfb8ab389ed6973d0871c6f6d449ac9a068b7dac16a0465",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "0018bcd7ba105550be1d46fbc894a548da0e574054565b2740cdcd40c260af62",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/related/pdf"
+    },
+    {
+      "candidate_id": "b9b60b7778b3d4f790698746778f4d1cf5ad82141f6936f49f0974f6a8e10196",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "0e64f8ca035ad202283ecd1afa0c7d005325be93d1f4e73e4697afb2425bc445",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "ba7da5c63cc2e853cfe8fea68d78f6bd9a4fb491e3f2af0ce6b48a94c002f336",
+      "component": "b42ab0b9c5dfd7612a8850723986df00eda995d9156c2ef18d76ee6db9fbbbaa",
+      "evidence_sha256": "12d09de7996e62c99935d58e89910450127e2ff9423a68a0dea022ded75b37e0",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "bb94b9186ca2bfd43313874453d601690389fe34e895c0e5477f0a57e9ae2097",
+      "component": "d206a85a64602dda36e73c6209da2ca63c6402011d93c6531074e91c766be2e3",
+      "evidence_sha256": "13b5d7f3bc6fec226dfae2213d23af1b326e8c6c8b8d407bcce61881be3bebb1",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "bd3d979fe0725be2d679da79f6641c8071eeff87da007d734cd04672dd735503",
+      "component": "6759ffc9d0ed2013f3dfa267da1a0901cb40422fa251692ea6a5fe90d04eaa73",
+      "evidence_sha256": "0038162604849ffedf05999a9c00f2a9cc581a0db9e3d9087c7cad0d125b8e9a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/html"
+    },
+    {
+      "candidate_id": "bde6f26f11940c7c7f8313ce805ecefc8ccb77691d7a0c80f50272aa8e1dc5e5",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "f7737dd20e0827a7782749d3f6f04558c84b08dddf2f2d9e120a4b0338ca7d6a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "bdf1435075d491b6fc3b661a61baf9a88774beecdbfded5258cb943fd03e8899",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "12f8ad07e617e88b26ea3dbeb5c94150c2cd297ce8022c632bf413e70f58b5d7",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "be256d65149b16c0f41cc8a4024b4b45253a0f7cdb17cf52c3924e1f72d4d323",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "066ae11f909ca55b36b835c909f195186a79cf3019e02134e14de028f2afab9e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "bec07a4e065f57ad60809e9626b79fc169dd35f1e7c4d7111c0dcd51746f0fce",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "b97416a675eea02a6066a4fbcdd6c1d3caa6ca9b4080c274c80c5d1443f8132f",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "bf48a6d4ce57133c34c73c4e3c98c8c50f3bbb3da0b8a4bbe25fe7a26fb84dbf",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "2ef9871c76b438b95cc26adab729c5e0ff63a727ec5eea76c0a188c40f35ec02",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "c004c63181c7636842d1ccdaacca9f05df02b95baccc077e4a6645331d8e9514",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "15fae3bfa89561d6ca93b969b24bbbdf8a31e49d98ae48f7de7be6a1b6459442",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "c02ceb6a98c45b30e4d9f3a3479fc038a15b097d6e1e621ecd8f32b9575f96f8",
+      "component": "ecb76c358dc2e54065cf92610a624a45976f489d56cb0aaceadd3efc5f64fa9c",
+      "evidence_sha256": "212bb158e05c791692731f05716e1e46f2c98c1fe60fcd18ede54e56e2ab24e6",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "c0d0e92226f687267d6006b5bfa95b655bd3765d57fe982b32d5c0dad4ce373e",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "96a4f1265a1ad2b7b201a65ccf4ba91b1f095c4f4cfedbe535cf1e4ccc255f60",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "c1c4caf33f1a2dfb60efea1306a37db44d40cb0e1622da96cbec484a16dcc580",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "10f4b0b64ec81dc0fe648f53d3ea2baf4b8ff65aded2ff67a14748fbea1cdef3",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "c270cb3350f0885274cf0356eeb5788ed94953632000e2008e708ac778bd187f",
+      "component": "4933c02efbce0886fcdee22e68d7e597f102eb913b45af796616c0bddade0d46",
+      "evidence_sha256": "5f297fd19a5fd5e4261b3cded8080e9d621d81d3dedfc38e7e8d1d5bb15dbbbd",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "c29df7372b8728e7df8a32d051d806bb37bbf6890866fca34483ec8fd648d9d4",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "17c6098d8e7992cd3da3e3eb299a2d654c76904e845b291516e35278060ede34",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "c367ec14fccaa2862acc1926611e2b3add68648f6ee813ff8ad55fddeea346b4",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "a936a6434fef82febf9d71cacdfcac0a91eba7c1f81915f404b244e2495a1490",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "c4c0cd45cab9c967d67c8291d020be52d0f4ace6ac084327e76d316866a33bf1",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "a15e150b4cc682be3cb7b5f9aa4188754759aead30d684f4d28fb79b19d105b4",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "c58c4d2cc1b1ba03530cf4243e176ae42c5dc0ff72f96144449d7321603e62b6",
+      "component": "b42ab0b9c5dfd7612a8850723986df00eda995d9156c2ef18d76ee6db9fbbbaa",
+      "evidence_sha256": "462c00e4f1a69f0ff1efe36b49ce30b60bf8122d640292c1607aec09bba64d18",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "c7452d2445548298b32b89fd70d5a41aec8f12e7be75658c0add1277a3d3d168",
+      "component": "ecb76c358dc2e54065cf92610a624a45976f489d56cb0aaceadd3efc5f64fa9c",
+      "evidence_sha256": "6dccbcfa911087177cd03189f327693bb435ed3c841d78957f2e268d1da35605",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "c7e8504623c8a06db0c1398c3759866a2218941337d771197702f3e69edea641",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "79a8c0b2c7a4fc5505c945cc4c9ae1a33ad7f74d23d81fa6d8236a64ea4f9876",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "c866875a293117dbebbd521430800e8236541f3a2a87a44fba892e87fb3b10b8",
+      "component": "b95af562f9f9c583b726473536456b685caeff5e8991caf4fa0f8b79f95dff60",
+      "evidence_sha256": "a35df88f9e335b759fb1ee8d158835021d5303d98f9dc67827af4689c74d6a36",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "c8dff94a55feab7277c0975789addced81d6d157b996efe5ddcfb9703317f5bf",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "6dadb8d1d2247c56b22c33200844f5547cad6207bdc6d14db0fcafbdf64741a0",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "c930dbf7a4420659d8cde450dcd785945a291b72958850beb849deb31a65b9b2",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "3c9cd4aeaad1dd5c61368a65da2ab640543de60f10f32b37c5df6a6a5770f892",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "c94b9c60513fbf6d368e1933520a4717d4af3b7761ccd6f2b8f6e96ae1fc93f5",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "2a70326ecbaf4bb6f2faf0c51e25ec77810dba3c7edfdce2e72dab9527995eb0",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "caca456765071216a3c8748d3aeabbdff82cd96b9e6029b6608c5527e509cc60",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "e334f71284fce4cf3af071b4e97efedf13ceaae5a38da1caf37a6522300fd83b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "cc084b7d15d437ec78d25386d4a7147c016a04eaf61de724e0ad8e13f30fd191",
+      "component": "fcc6bda21458786d5164084d6be5f56b970c0d90c1dd2bc9b9d7bfd486d89da0",
+      "evidence_sha256": "49a695eadd12de4fbd664256c85c8baf8d0e5a97c82350705ae0a981567890fc",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "cc8affcf1e9691fa73520cd7fe8dbe6e3141c0a397c25a3f006d436a680a440b",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "726d18694fd9d6e407fba040b5a56b1d8c2adeb8ceecced5bf90972c8fe3bb1e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "cc95d9db61e75d224d2614c1040f264c8b26ecafea9768065251f3ba7e68d7d8",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "e73daf2c184cdfca694827eb8e5b78dfd1120952dd1399620c46f6af2e80ca89",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "cd1dbf4c89631bc8c204d92f86a3ab02b0229d119abe5a16ca3071a3e38c64a8",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "8bfd3759b01a9b8393a4b60e32e72ba3fa474fbc36025123e62c8126214c5187",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "cfbe9ddb471759c6387f5a052e61524501c315b10806066be1e2afc5bdb89045",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "1d35d45a4db770ab53d42ca62c65e36684d61255bd9b1bedac06e206555ba3c3",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "cff2b7bb8a907eff8fb2b907123aabcb3d89857c7bbc9d0c5c32a5bfbfa45694",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "ec09f462f2c82924e18b58e542074ac4b3dffb7b2e431363975629ab09cd39e2",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "d0226d69979c8676b6f2cd28cb893137bdfe6a198046dc6765d99337060e501c",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "0f130a419fc1581ae84e6cab3ca9673cd439ab003d00770190c7e8abd37520fa",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "d108cf0f879f2574b0540e1ebc3ee16b90b651f03185338963166970f8a28340",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "fb8f0ee1fd48dd58ab626cd3fde171c7a64fab7be4ba7aff94a7a4237b20002f",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "d110546192f999678f0d1f9e004cf8882d188f1427e87d9533d27481a2dfe52e",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "dfec1bcaac15602d613109238fd2eaa1722345768c0f4c2a71acaff84a419527",
+      "primary_review": true,
+      "split": "HOLDOUT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "d257965f8f36af0cda7a435750eeb7c958fecdeea8d104759ff82794f92937c9",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "bf2f649616501af15a08c4cf867196398c748e88c5864a2b4058879c16fe1f40",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "d270c7983fc3f2ee139284ce071e18cae4525f751f6a46a45ad21c19968e1af6",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "5d5fdf84a029cbb744800028b1717f1bbac2c096ae45fbbf70a6ac005f5ec187",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "d2988060d24893f4495816410b7311da13bb0d0daebe0898e743731cb7c73cad",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "9714067376a5c9389047d285dfbf0553b8dad8e59df20d04a04e26ca022a6346",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "d2fdd0b1f57768dc42fa0420725f4115c71d3312291ebfa1647916dac8e6f6eb",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "b80b2c08e4c87d5f5bd2580a2110b5f437e36683195d5438a24996def92c5963",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "d34d7c190efe48efbc05c73ba771e9640b7e729fffddafed9d0df220c6baad87",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "0ac6f11b45a0dded98c8b468ea228083572a4658c2b4989870f908771f75fdb8",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "d37b64021e5352363ac2d37235bb003c38061d9ccb828ead0f37ad4ed264aa2e",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "eb97120ed76c88012395ed9a1295f491b5c5834ff4fb25466086230f79cbd131",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/related/pdf"
+    },
+    {
+      "candidate_id": "d4c6938b83db580b58edaff8f61fcb8ca6c2717146ce58b5b0fe747857d53de1",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "780437d887ec10d556b0f23bd3a28a23dea90f1d3185a529698a57267d86a68b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "d4c83ff505bd7476cf8c02781eacea1767ce21be4d04e881c6de33ac488b5ddd",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "49faf9e3079097f19d2985d5f2d8ce603be0d6f0ff411b71ef4cc5943a67f87a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "d5f53bc3ebea0fa3eabe9f9c6c654ec8d8dfe53426c5c488329eef9f360684d4",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "29c7d94bdaec53fa4112cf9a15eba25f6a805a848a2c04b96874f1c5fcf281b1",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "d5fb138f0c38484eab8d5c9c324e20da93284a64ed4f61f2f76755debfe2c55b",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "abc0931494393e3bb51845b20870851a3049052aed8b3816301809fc0f76e0a4",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "d6b22a5b5b0b725e7198229cffe974da9cfd2c921503ff5724c92d8eba9da98d",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "fb53c957c71b668917d3b9ce6496ea8e38a1698d3b1cd28500a8698718e9d359",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "d7337eb18d3d3fa5102348779aef3305fac56384ed234d0c1c129741f2b9b1a6",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "fd8e918455b0ef02b639a6496d52320e1bf02f3edf5a5a68867fe5bd8f9ff48a",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "d7a26f5e81f0293956fcf7dbed6f04127cb7add9681b0e4acfb23af743b5d3d3",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "0860d9ca9839f0d57932380f70b1d95f3cfb870f9db969939023015cb85190bb",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "d7e8a873d90245a0da10f57f664424f6ed2968123ac89b4226b8c51de8a3740f",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "e5f8521fbc4080fe28ef2134500854a2fe9d4a2f830a8dbe7721521e4b97e3a9",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "d8574b95e04d2fd6933232b4b022e5f4cd148fd737eb7e331b686fd2210fe4df",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "2200551528dfd0ef5e0afa178f1a8714398744d317f84941968e72daad545b58",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "d928eda29f7adfa6b1a63c40cfe5287de332f13353ce6ec890830d346b16a1f9",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "ab2692c8a304de8226c3abcf390ef0f52fc81d87b06159d3a5f4e81b0c6c2593",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "da608145850f866048bfd53c9f20c4802a8078331ae22d21f8a4fd2095946838",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "551089bfabff500b8a77b5b26bc3691da99e0e0bf1924101da656647ccc0f713",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "da6eb5bce0d1adc621c8a46fada43317a25948ca201158892446c00b2cc4c631",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "2fc5ed388e1e937944e94d9f433358dd9010f40c8d88432fafd9cd7d35f84d9d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "db0993735c5f89f203b906a5cfea257ccfe28a80b71ab0c557c2f196dc737459",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "d587c328526f4006fcdb8ab856ca4d60c2f87e77561e6f6174324bca9a84836c",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "db92d65ab8012bff7becd160964e14756c1b76809237207b92f73377d5625059",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "95bb1cf17bd49856a8918abaaa3520541d67da050d41275f0271cb8a2754a3a5",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "dd4c1f6d57ff74ff90142841e9a332272d1588afbb8d4d29aa0a724e1e033587",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "7c21f1445ca1ca837cd6cc191de37d74fcf69ce4e1923287d2b88e256af3add4",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "ddc220fa4f374e6c152c81480159d67908593c768b3c8977abe00abe8547a623",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "aa03390ef200f47bf10eabd5719f2534cff569ab30d18bdb963b8a6f9321ae5b",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "e031a7239452208acdedada9be2ac36581a847b3b0a4f868c90ecc86f3d9d109",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "d94079a539d6dae48e04dfc6dbb4b5f1bcb86d2e31a74fb854c990ebd2e51b0c",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "e0ec637f5999970ef5dc3fde08662bf4a8b9ff23478b7c6162a24860e803d5b1",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "32576cdf7097205232900e3e856319a6d0e44a8abde7db623d5b50fe8a595ebd",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "e195cebb8906f19f73d22c92d406ed9176a3061859638debaef3ee85186305f7",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "83724c1d192d9a96ac93465c9416941ee481bcdc39bcfaa2d34cb69862b8a621",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "e26e93bb7a0baf721add5cddfb84f329d142ac1422185f03287996e2ddb17417",
+      "component": "41268ae82fdf96904772796ad5e607eb04a0acb414ece24d22f3278f4cbdeafe",
+      "evidence_sha256": "4e543eeee45a75b1ad432d512f924041a942dbc8f840530dc9a9733e0d40c124",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "e2770208ee448ec896d2545a3a6ccb096293f9f8d94e5b93967e74120ee8c778",
+      "component": "6759ffc9d0ed2013f3dfa267da1a0901cb40422fa251692ea6a5fe90d04eaa73",
+      "evidence_sha256": "93029f28485c78efb693d18b7acd826f0e12a2bd65268b2aea1d3ebc1983e076",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/html"
+    },
+    {
+      "candidate_id": "e311e63f8315ba014407d1d48fdc2c1994f977efc6086e196b4d561e5243a490",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "b67edf87f911a507645e247ab564e324d8dc265f68fff3b6d95e77e757927e9c",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "e4ef7960e668966c7ddd0c333c0e0eb20e51a7cde53e985218dee847f918aa5b",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "a479bc862c52a022db220179d0ad53b27976f35d2c4e3d3a0c3c5f96ebc75acf",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "e527ec1b1a6a74cc72cbfe0788cb76eb967e5df5e9b351f545c0b9e3fd2c9c77",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "18371fca8f3dba95d0b740e70d1ad6a3dcf73a6996c77308c7de35621bb2de29",
+      "primary_review": true,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "e5e2d57309ef57573c813de819fa1c00c3c96f7f94c30dff7a705282cb67653c",
+      "component": "3b630a7720ba2e10fe02d73b48e03117d3ca72ace7e6d0aff69ff168781b9838",
+      "evidence_sha256": "42b0fee1eba01a689aaf500303576ab0576ed2795e17fc24b1380ec5b63a8a85",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "e5e44f4544a294081d8e72c1cf2037f13429798cfa611fc6c5008f313dd6b353",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "b75d2c88b39f05afe74860998f67c662a409724f1324e8a88c8dc2b6735caf2e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "e690565d79cf4670f83725036885dc6a93e7240166372ea67eca04e6c24e3ec0",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "caa5c4a694416c4ced369a8c22256c704a6d80de7b4ce468a0739124111bbdd5",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "e7c3ef2b502ab26315d01ed7ff2e56b241f64026336fb53dc5c36bd561fe9779",
+      "component": "ecb76c358dc2e54065cf92610a624a45976f489d56cb0aaceadd3efc5f64fa9c",
+      "evidence_sha256": "abcff87fd9d2eee0a4e9dee501bcf7bb682883d350c49751a1ada1d16e1174ff",
+      "primary_review": false,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "e930cc12f75d41ab0970447e4ecd07babe1f0f8f8bda92c690d5930d1a9dc039",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "1889f0cc21d59c82306f95dea6c9355d187d0cefabe9639ee47c11be2aee7bd2",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "e97810fcf598896fabe4d424afba871eb4f60dde38e6bebebc9c94f4d6d1b627",
+      "component": "4933c02efbce0886fcdee22e68d7e597f102eb913b45af796616c0bddade0d46",
+      "evidence_sha256": "ebdff4cef86798032a3ea85cfeb509576a0dc0ca35acdd0d22edd3c9377fa287",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "ea6b5e304b7a2cb931f7de6434a80b2262fd979a22cab8dd0e63b6c41912f648",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "fa062e1c81c9b96e459e18d1b5e186bebd6125e92a54d1996948480d972e0e86",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "ea8314b6eaa7fcb5056ac626a485c25829f4166dedf92000dcc31f88fc083a02",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "4cacfcc518d714ded1f4dbc3de26a25d2947729de9b9c17bb251f2ab073172d7",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "ea881cc8a959a41eb7db4fc7274786ce75fb4435157655106274baa8bb5f74af",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "ee46cd6b2e354d4640a3801894c794ef6e3c8cae1ac6f0b09ffaabdfe936a78d",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "eb5e0758b6a7d7ec71f1d7f4af976a27342289951d34677392d5551bf8038af8",
+      "component": "4c0511e38e021bf720afd074e3c2f50fe136bfe208d1471ad90ff463b901b9d9",
+      "evidence_sha256": "b36c8b8164e5e0b164fa1e5b2f1eb2a5f8bcdba093c9587328a67d66450e6b6c",
+      "primary_review": true,
+      "split": "HOLDOUT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "ecb4d25a6d9dd6c9e13cbc7d48ae987be8a269ccd007ee4d3d22c5b8970f726e",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "edcc719951543d4a51b7f8b74ebd95cdddf29e739349fac34a31a9a4fb80d938",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "ecb95a2151eb6e1adaa52883a238ff61124df221a5b72eb9a138f454cb23f401",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "4dc7a382ee25fdc9f01a77c049dc2a113c16eab287fd9f67657fa7f668449517",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "ed6e9ef42f293eb1a91fdb81169b99e071c5841d7482b4ee4bbc1fa992e152f9",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "95d2d3bf10137fd34787216d05d403ced68424d114560bc031494daca1d6d33e",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "ee0bb06e272e27ea61d731c02e96bd3548ce9ca01676f5225ed70bda9f189486",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "469b151c9bb8863c761303d40199a0b3a9b4b865ded0b616cb359318d710aefa",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "f04df8a617b28d1338ec43e96dc95e2e8ba32cbea02aed7cbaa6502e07cb83d2",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "e34205aa44a36dbdb8e3076cd238ad4257145cede732c468d23d1dc1019b602c",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "f0c2a485332d7a1735e92980d135ac5a4de46a9ae2050e741a5cfd06c50cffcc",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "eb42adf0c8ed806706195243417e34ba939ef65e03280ae9952cf78079d59e20",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "f368c2afebc7bbbcd1908d80931f78505dca17f098d6082b44373063f51ced09",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "a788d4b08e2b8edfafe565f9049289decf9577772370c7b0cba4d97882786f23",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "f3c5f1671300f5ae09565be5db428ec45be7d780b8d4317980d43c5624b34500",
+      "component": "d206a85a64602dda36e73c6209da2ca63c6402011d93c6531074e91c766be2e3",
+      "evidence_sha256": "5fa681b0441329485e400ae59228727800db56c5c9cb205d961a2631f4bff0ea",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "f3f6a07584f417974b070d92549271870e5a60cf0332658005fa3fd8d56b4285",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "62ac10ca397589474bd69d4dbf5fed033208e52e76a46d40cd5352891a663ac7",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    },
+    {
+      "candidate_id": "f4299ea1d60a50979f4431b36524ce81092cbda15cc0d49cfa30387e005bd11a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "12257a57789b8a601378f0c4040d083a5082b885a667243ec78999cac0f941c1",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/pdf"
+    },
+    {
+      "candidate_id": "f61e33a3a3f6ebe7014e17734f6b9a821f6c20473a5b455e791da3cab9dcbca3",
+      "component": "b42ab0b9c5dfd7612a8850723986df00eda995d9156c2ef18d76ee6db9fbbbaa",
+      "evidence_sha256": "8b922165344ddd58b743bdc696097781b58ca956ee10b167e322deb4919e379b",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "f663fc74063506935cdd96db2eb13eb1fc9fd105782f943dc352331f02d7822f",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "54543e99d2ee401aac435fb6deb792782a9bd436f266e170c4bb7ea5dd4ae569",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "f91da272664861c1260c86dca59bdeb4b6eb874c22778934e6e43b6410a41f61",
+      "component": "108e5916aa534884eb378497d2c310c8063628474bbcd2c259acd0f6d956528f",
+      "evidence_sha256": "ca519da4a6096c66739c2c98ae793bbb9cf51482bbc5163cf28d3e3ea11ccb89",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "f9257412cbbc67a28602938dde2d24e8a13eb3c9d492d093921431146d6b6633",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "0687c05d041ca8fc65ea8ea38e47daeda4e35085231eba9996c2ec5cfdf4c553",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/pdf"
+    },
+    {
+      "candidate_id": "f927892e81a681db7396a111290102d9502bd0b72a49eb17b328fbff85cd9e2a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "a606707cb8a695086bc3b15737da37f89129bdde81ce2a54e8e0f282de907cfd",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "f930b17895bc74f958df2e6369341f964b365d7a45e5489a7835fdc4ddc15c3a",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "a6443b76a8785b00899ca863eb5b85daa64a5dafdcd02ecda4f878f8bf263070",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "contained_treo_kt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "fa6d93c932628a7b7ce917201f9a562bbcabe1e55a8d6ebc02e9ff49d24a2d60",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "e753b770ca4c87b9b02e19360d26f04839a72774c7b2b71fe2fb1ebdb060d878",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "fa8b725ebaf4f37a911ef311e6a7eb3a6be2c7b50637a52f1ebb474514ffa178",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "8c32976fdba8f32070e73842e02145e2db319e73799fc5664fe67b71cbdac307",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "fb14e8c31d63ab03b26785d51a938492d2b755fc6c7864a81279e35475d229fc",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "acb7001e2dc8cfb932ddd6b86bf8b0dd63fec90c8f7d77080010f1e1b47f8576",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "fc1b91765bbc43ef2f3d725faf0c2196158d1e98430bd7ce20fed002ff8ef87d",
+      "component": "c6967b16646d68578181c4f05d4f5f747222e05f01ce6ef44f775033e7384e80",
+      "evidence_sha256": "3e483f9089ac69ab8df16fe455be94fe1641b3e27d375301f37198d1dbaf1973",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/core/pdf"
+    },
+    {
+      "candidate_id": "fcedff1ab2b363b0559b3cb612d0fd000b811b66d413de4fb535dc1af50cafe0",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "04ded0429c4d4fdfcae30988802674a48f2648eb86bc72a68fed1b815b026de1",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/related/pdf"
+    },
+    {
+      "candidate_id": "fd232194da75f8922f5da108480d18398faa1e2f5fa535056cd19f59872275e6",
+      "component": "e6391ec26df606bfda7f9b30bd4d4dcd6e0f1af5e9f5b0336e1e4a52be233e73",
+      "evidence_sha256": "cc607c661e56a1951bea46981f426097b8a5ca25de12c39c2c1f1ba7913d66fb",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "ore_mt/core/official_table_transcription"
+    },
+    {
+      "candidate_id": "ffe30d8af938aa02ce230bac02fac43dff1c20d45e5f49171020bd7fca20f996",
+      "component": "d6662f2aa01be406cf8ef866700b1f2ab7dfb6222da61ee3ec0036079bfd3a2b",
+      "evidence_sha256": "01b53b7a830c16ba61254b0e23f00a1472a297d9055a50ad2e6673d963ec6605",
+      "primary_review": false,
+      "split": "DEVELOPMENT",
+      "stratum": "grade/related/pdf"
+    }
+  ],
+  "frozen_fields": [
+    "observation_id",
+    "project_id",
+    "source_sha256",
+    "physical_page",
+    "statement_id",
+    "scope",
+    "category",
+    "effective_date",
+    "publication_date",
+    "variable",
+    "value",
+    "unit",
+    "basis",
+    "original_token",
+    "original_unit",
+    "target_variable",
+    "target_column",
+    "target_unit",
+    "material_basis",
+    "denominator_basis",
+    "use_id",
+    "use_definition_version"
+  ],
+  "identity_map_sha256": "4719845c91bf2b999be0875e541202873eee6fe6826f8fafb63519535a8cb74b",
+  "logical_sha256": "49f14afba53a9f8ea6cf6d47af2e4a9f5082bc6ceea283e3855848f00068705b",
+  "primary_analysis": "Raw and stratum-specific counts on the predeclared reviewed holdout only. Review disagreements after first run separately. No population accuracy estimate.",
+  "sampling": "Within each holdout target/native quantity family/source kind stratum, first three salted candidate hashes without replacement; groups linked by projects, statement IDs, source SHA or equal full PDF page. Previous fixture projects quarantined in development. No issuer-generalization claim.",
+  "seed": "AU-REE-ONTOLOGY-GAIN-20261126-v1",
+  "source_sha256": "c6fd40e9bc7bf10e139853baad7fdcf6242fdb3a34bd17e6294710012178e1b6"
+}
