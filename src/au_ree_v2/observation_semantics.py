@@ -8,7 +8,9 @@ from . import resource_use
 from .normalization import (
     MAGNET_ATOMIC_WEIGHTS, MAGNET_SPECIES, MASS_FRACTION, MASS_IN_TONNES, decimal_token, oxide_factor, unit_factor,
 )
-from .observation_schema import NormalizedObservation, SemanticAssessment
+from .observation_schema import (
+    NormalizedObservation, SemanticAssessment, validate_normalized_binding, value_evidence_issue,
+)
 from .ontology import compare_context, load_observation_vocabulary, normalize_context
 from .store import digest
 from .tabular import read_csv
@@ -16,7 +18,7 @@ from .tabular import read_csv
 
 RESOURCE_PROFILE = "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
 NORMALIZATION_VERSION = "observation-normalization-v1"
-ASSESSMENT_VERSION = "observation-assessment-v1"
+ASSESSMENT_VERSION = "observation-assessment-v2"
 RESOURCE_UNITS = {variable: unit for variable, unit, _ in resource_use.FIELDS.values()}
 OBSERVATION_STATUS = {
     "ACCEPT": "COMPARABLE", "COMPARABLE": "COMPARABLE", "DESCRIPTIVE_ONLY": "DESCRIPTIVE_ONLY",
@@ -123,7 +125,8 @@ class SemanticEngine:
         except (DecimalException, ValueError):
             return None
         version = NORMALIZATION_VERSION + ":" + digest([self.vocabulary["version"], target_unit, formula, conditions])
-        return NormalizedObservation(raw.raw_id, version, value, target_unit, formula, tuple(conditions), species)
+        return NormalizedObservation(raw.raw_id, version, value, target_unit, formula, tuple(conditions), species,
+                                     raw_fingerprint=raw.normalization_fingerprint)
 
     @staticmethod
     def _value_in_domain(value, unit, variable):
@@ -138,8 +141,8 @@ class SemanticEngine:
     def assess(self, raw, decision, *, normalized=None, evidence_status=None, supporting_evidence=(), expected_context=None,
                apply_profile=False):
         """Preserve the source gate and assess a declared use as a separate decision."""
-        if normalized is not None and normalized.raw_id != raw.raw_id:
-            raise ValueError("Normalization and assessment must refer to the same raw observation")
+        if normalized is not None:
+            validate_normalized_binding(raw, normalized)
         status = decision["status"]
         comparison = OBSERVATION_STATUS[status]
         missing = set(decision.get("missing", ()))
@@ -174,16 +177,19 @@ class SemanticEngine:
         elif evidence_status is None:
             evidence_status = "NOT_APPLICABLE" if status == "NOT_APPLICABLE" else "UNVERIFIED"
         supporting_evidence = tuple(supporting_evidence)
-        if evidence_status == "VERIFIED" and not any(
-                raw.evidence.sha256 is not None and anchor.sha256 == raw.evidence.sha256
-                and ((raw.evidence.page is not None and anchor.page == raw.evidence.page)
-                     or (raw.evidence.locator is not None and anchor.locator == raw.evidence.locator))
-                for anchor in supporting_evidence):
-            raise ValueError("Verified support must bind the original evidence fingerprint and location")
+        if evidence_status == "VERIFIED":
+            issue = value_evidence_issue(raw, supporting_evidence)
+            if issue == "NUMERIC_EVIDENCE_BINDING_MISMATCH":
+                raise ValueError(f"Verified support must bind the original value and location: {issue}")
+            if issue is not None:
+                evidence_status = "UNVERIFIED"
+                reason += "|" + issue
+                missing.add("numeric_evidence_location")
         return SemanticAssessment(raw.raw_id, purpose, rule_version,
                                   self.vocabulary["version"], evidence_status, comparison, reason,
                                   tuple(sorted(missing)), supporting_evidence,
-                                  normalized.version if normalized is not None else None)
+                                  normalized.version if normalized is not None else None,
+                                  raw=raw, normalized=normalized)
 
 
 def assessment(status, reason, profile, version, *, normalized=None, missing=(), evidence=()):

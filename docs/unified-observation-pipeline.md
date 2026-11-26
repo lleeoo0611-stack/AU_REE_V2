@@ -152,3 +152,101 @@ python -m tools.observations_from_recognition --report "$CACHED_RECOGNITION_REPO
 使用同一份 2026-11-05 快照，在基準與開發版各自建立 SQLite 並執行 R。455／455 個由程式記錄的輸出指紋完全相同，涵蓋 Census、Eligibility、16 組 MCDA 面板。歷史 `check_replay.py` 的 64 份研究表格亦通過。兩個 SQLite 的邏輯資料指紋相同，以 `293218a2` 開頭。正式 Schema 相同，`PRAGMA integrity_check` 回傳 `ok`，`foreign_key_check` 為空。歷史來源、觀測及關係逐列相同。執行 ID、時間和程式版次等 run 後設資料依執行變動。11-02 的另一次凍結建置也有 135／135 個輸出指紋與邏輯資料指紋相同。[Phase 22 鎖檔](../results/phase22-2026-11-06/snapshot_lock.json) · [重建核對](../tools/check_replay.py)
 
 以 93 專案正式封存檔核對 19 個公布指紋，包括 Census、兩項 C1 檔案及 16 份排名。93 個 Project ID 唯一且集合指紋與基準相同。這項核對限於封存檔，正式 93 專案端到端重建待補齊原件。以正式 Phase 22 SQLite 的 820 筆資源事實測試型別投影與重複匯入，得到 820 個可定位的 Canonical Observation ID 和 820 個暫存原始記錄。暫存及正式外鍵檢查皆無錯誤，SQLite 檔案 SHA 相同。[93 專案封存](../results/ree-project-census/coverage-locked-20261125/README.md) · [SQLite 契約測試](../tests/test_observation_schema.py)
+
+## 第二輪的開發基準與既有快取
+
+第二輪以 `c94a7d18873ef064eb2b371406d651a0e41048b8` 為基準。開工時，PR #18 的分支頭仍指向該提交，研究重建與乾淨公開建置均已通過。`main` 仍指向 `a16df75`。[PR #18](https://github.com/lleeoo0611-stack/AU_REE_V2/pull/18) · [研究重建](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/45820910981) · [乾淨建置](https://github.com/lleeoo0611-stack/AU_REE_V2/actions/runs/45820910909)
+
+| 既有入口 | 第一輪之後的重用範圍與有效條件 |
+|---|---|
+| `PdfDocumentCache` / `PageIndex` | 在同一程序中重用 PDF 物件、文字、版面及表格。BM25 每次從供應原件建立全語料統計。`semantic-ablation` 可重播凍結候選或重讀原件。 |
+| `capture_documents` / `capture_pages` | 產物登記於 `data/manifest.json`，以內容 SHA 存於 `data/snapshots/`。辨識續用會檢查原件、登記內容指紋、解析與版面版本、專案登錄與來源綁定。已登記的頁面產物可作為正式證據的一部分。 |
+| `evidence.validate_pages` | 每次研究流程核對來源與頁面標記。原生 pypdf 文字以原件 SHA、實體頁、pypdf 版本及解析參數重用，讀取時核對文字指紋。既有嚴格重播將這層快取放在當次執行的 `native-pages`。 |
+| `selection.resolve` / `analysis.prepare` | 依選用來源、可用日期、有效日期、當前身分關係及有效聲明重選，寫出採納證據、理由、門檻與面板資料。 |
+| `analysis.run_r` | 在設定啟用時，依矩陣、準則、權重、R 程式、執行環境及蒙地卡羅設定重用面板產物。共同比較另受其他面板資料影響。 |
+
+正式來源及研究版本包含 `data/snapshots/`、來源清單、canonical SQLite、版本化設定、選值與人工決策。這些檔案提供重建依據。影子 JSONL 和研究報告保留此次結果及追溯資訊。可刪除重建的衍生快取使用獨立工作目錄。[既有證據入口](../src/au_ree_v2/evidence.py) · [來源快照選擇](../src/au_ree_v2/acquisition.py) · [正式選值](../src/au_ree_v2/selection.py) · [MCDA](../src/au_ree_v2/analysis.py)
+
+### 證據綁定與快取讀取
+
+`observation-v2` 保留既有原始觀測 ID，另以內容指紋綁定原始資料、正規化和語義判定。原始數值需要同一來源 SHA 和足以識別數值的儲存格、文字位置或座標。兩端都記載的定位必須一致。頁碼相同但儲存格不同、來源不同或只有頁碼的數值證據會被擋下。標示為語境的表頭、樣品、流程或尺度可附於其他位置。快取重新載入及 SQLite 暫存入口會再核對原始與正規化版本，以及已驗證數值的來源綁定。[觀測資料契約](../src/au_ree_v2/observation_schema.py) · [暫存入口](../src/au_ree_v2/observation_store.py)
+
+| 衍生階段 | 內容依賴與重建範圍 |
+|---|---|
+| `pdf` / `ocr` | 頁面產物依原件 SHA、實體頁、讀取模式、解析程式及版本重用。OCR 另依文字視圖、模型內容、語言及影像參數。重用前仍核對本次供應的原件。 |
+| `recognition` / `extraction` | 辨識依解析環境、適用頁碼、實體登錄、來源綁定和辨識規則。影子擷取依來源、資源或技術類別及該批候選重用。來源缺件由本次檢查回報。 |
+| `bm25-index` / `bm25-query` | 文件詞頻可單獨重用。索引以整組已核對 SHA 與頁數、文字解析與 tokenizer 版本為基礎。增減文件會重組語料並重算受索引變更影響的查詢，包含既有文件的排名。 |
+| `projection` / `normalization` | 型別投影依擷取內容與實體、來源中繼資料。正規化依原始內容、單位、量別、化學與材料基礎、分母及相關別名與換算因子。 |
+| `assessment` | 用途判定依原始觀測、正規化結果、適用本體映射、用途與來源資格，以及該候選的人工決策版本。 |
+| 既有 R 面板快取 | 面板核心的快取單位是完整面板。採納觀測或 Eligibility 改變產生不同矩陣時，該面板共同計算須重跑。準則、權重、方法、種子、共同抽樣與 R 執行環境均參與指紋。共同比較另依可能用到的各面板輸入。 |
+
+衍生產物用內容鍵及輸出指紋驗證，執行收據另列階段、依賴指紋與原因。每個內容鍵由同一寫入鎖保護，完成後以原子替換發佈。失效產物會被隔離，重新計算後用可驗證的新收據承接。在未改變研究依賴時強制重算若得到不同結果，原快取保留並記錄失敗。只有衍生快取可刪除後重算。影子暫存仍隨 SQLite 連線釋放。[衍生快取](../src/au_ree_v2/derived_cache.py) · [觀測依賴](../src/au_ree_v2/observation_incremental.py) · [查詢與語料](../src/au_ree_v2/nlp.py) · [面板重用](../src/au_ree_v2/analysis.py)
+
+### 依賴預覽、重播與收據
+
+```bash
+python -m au_ree_v2 semantic-ablation --shadow-originals "$ASSETS" \
+  --cache-dir work/cache/observation --cache-plan
+python -m au_ree_v2 semantic-ablation --shadow-originals "$ASSETS" \
+  --cache-dir work/cache/observation --shadow-output work/observation-run
+python -m au_ree_v2 cache-status --shadow-output work/observation-run --cache-events
+python -m au_ree_v2 semantic-ablation --shadow-originals "$ASSETS" \
+  --cache-dir work/cache/observation --force-stage normalization \
+  --shadow-output work/observation-normalization-refresh
+python -m au_ree_v2 semantic-ablation --shadow-originals "$ASSETS" \
+  --cache-mode off --shadow-output work/observation-rebuild
+python -m au_ree_v2 mcda-plan --shadow-run "$PHASE22_FORMAL_RUN" \
+  --mcda-force-panel resource_infrastructure_pilot
+python tools/benchmark_pipeline.py --observation-suite --originals "$ASSETS" \
+  --rounds 3 --out work/observation-performance
+```
+
+預覽核對現有來源並列出已知的變更與可能受影響的階段。正式執行以逐產物的內容比對決定實際重用範圍。`cache_run.json` 保存命中、重新計算、原件受阻、語境不足及程式錯誤，與 `decisions.jsonl` 及 `comparison.json` 的科學內容分開。`--cache-mode refresh` 重算所有啟用的衍生階段。正式面板的重跑使用相同 `rebuild` 或 `all` 入口，附 `--mcda-cache-mode` 或 `--mcda-force-panel`。MCDA 收據與各面板輸出一起保存。BM25 的封存查詢重播可用 `tools/replay_bm25.py --cache-directory` 指定可重用的索引與查詢產物。[CLI](../src/au_ree_v2/cli.py) · [影子重播](../src/au_ree_v2/observation_ablation.py) · [效能測試](../tools/benchmark_pipeline.py) · [檢索重播](../tools/replay_bm25.py)
+
+`--shadow-reviews` 可讀取獨立於衍生快取的 `shadow-observation-review-v1` JSON 日誌。每筆記錄附候選 ID、決策 ID、審查人、處置、原因及時間，可附預期來源或實體綁定。以同一候選最後附加的決策處理影子用途，保留歷史決策。預期綁定與原始觀測不符時送審。人工接受仍要通過原有來源及用途條件。[審查依賴與格式](../src/au_ree_v2/observation_incremental.py)
+
+另可透過 `tools/observations_from_recognition.py --source-key` 補讀指定截日已選用的文件，以 `--pages` 選頁、`--tessdata` 指定 OCR 模型、`--cache-directory` 分享衍生快取。每次指定新的 `--out` 或 `--receipt` 路徑保留獨立匯出。既有 `--report` 仍可直接投影已封存的辨識報告。[文件辨識與投影](../tools/observations_from_recognition.py)
+
+### 影子重建的等價性與效能
+
+在同一 351 筆資源與 381 筆技術候選框架，分別執行兩次停用快取、冷快取、暖快取、用途規則增量及其完整重算。冷快取是空的應用程式快取，共用主機的檔案系統快取及背景負載。停用、冷與暖的科學輸出一致，規則變更與對應的完整重建也一致。
+
+| 影子執行方式 | 牆鐘秒數，中位數（最小至最大） | 峰值 RSS 中位數 |
+|---|---:|---:|
+| 停用快取 | 25.17（24.22–26.12） | 242.68 MiB |
+| 冷快取 | 43.40（36.70–50.10） | 242.05 MiB |
+| 暖快取 | 4.79（4.50–5.09） | 218.10 MiB |
+| 用途規則變更後完整重算 | 34.69（32.71–36.68） | 241.81 MiB |
+| 用途規則變更後增量重算 | 8.12（5.54–10.70） | 218.27 MiB |
+
+暖跑重用 47 批擷取、37 筆頁數及每個型別階段各 1,464 項產物。冷跑開啟 PDF 37 次、解析表格 71 次，暖跑均為零。這組原件未觸發 OCR。暖跑的擷取階段中位數為 0.40 秒，停用快取為 21.86 秒。冷跑持久化約 19.25 MB 檔案內容，佔約 44.01 MB 檔案系統空間。型別投影、正規化及判定的快取讀取和驗證有自身成本，冷跑開銷較高。型別層的重用範圍限於影子處理，主要速度收益來自跳過 PDF 與擷取。
+
+只加強技術用途規則時，重新計算 762 個判定、重用 702 個判定，解析、擷取、投影及正規化沿用有效結果。另一次改變礦石質量輸出單位，重新計算 179 筆正規化及 84 筆下游判定，4.06 秒的結果與 24.09 秒的停用快取重跑相同。恢復一份已鎖定的 PDF 僅重新開啟該原件，重新擷取一批，5.47 秒的結果等於完整來源重跑。再次移除原件後，既有快取也回到與缺件完整重建相同的結果。移動原件及變更說明文件維持全部有效產物可重用。以上時間仍屬固定子集的工程量測。[可重跑基準與逐階段收據](../tools/benchmark_pipeline.py)
+
+### BM25 語料變更驗證
+
+以 126 份可取得的封存 PDF、5,232 個實體頁和 53 題重跑一次冷、暖快取。兩次查詢輸出指紋相同。冷跑 139.86 秒、暖跑 1.25 秒，峰值 RSS 約 190 和 126 MiB。暖跑核對來源指紋，重用整份索引及 53 個查詢，PDF 開啟由 126 次降為 0，快取約 53.4 MB。這組為全語料的單次量測。
+
+移除一份 153 頁的文件後，重用其餘 125 份文件的詞頻，重算整份語料及 53 題排名。該文件原先未進入任何前五，仍有 5 題排序改變，說明語料統計會影響其他文件。重算未開啟原件，耗時 10.01 秒。另以真實文件子集加入一份原件，增量與停用快取的更新後查詢逐筆一致。[檢索工具及收據](../tools/replay_bm25.py) · [語料增減回歸測試](../tests/test_document_nlp.py)
+
+以十份真實 PDF、70 頁及同一組 53 題各重複三次，停用快取、冷跑、暖跑的中位數分別為 0.828、1.384、0.035 秒，範圍分別為 0.776–0.840、1.176–1.620、0.028–0.043 秒。新增一份四頁 PDF 後，增量中位數為 0.283 秒（0.252–0.306），更新後停用快取的中位數為 0.909 秒（0.863–0.963）。增量開啟一份原件，暖跑開啟零次。單頁合成文件的實際 OCR 測試核對模型 SHA 並重用相同文字，冷跑呼叫一次，暖跑零次。文件辨識快取重用整份已核對的報告，失效後仍經既有辨識入口執行。[文件與檢索測試](../tests/test_document_nlp.py)
+
+### 正式回歸與 R 分階段量測
+
+同一 2026-11-05 Phase 22 快照的正式重建，Census、四個 Eligibility 檔、16 份排名與 SQLite 邏輯資料指紋相同。SQLite 完整性及外鍵檢查通過。和基準相比的 32 個差異均為改版的快取收據。暖跑另外變更 R 執行日誌，科學輸出的指紋一致。[凍結輸入](../results/phase22-2026-11-06/snapshot_lock.json) · [回歸核對工具](../tools/check_replay.py)
+
+另在兩個封存面板對 80 次共同抽樣各量測三次。停用快取、冷快取及暖快取的科學輸出一致。只改一個面板的權重時，該面板核心和兩個受影響的共同樣本比較重算，另一個面板核心重用。增量與同權重完整重建的科學輸出一致。以下為 R 階段的本機中位數與範圍，背景負載共用。
+
+| R 執行方式 | 牆鐘秒數，中位數（最小至最大） | 峰值 RSS 中位數 |
+|---|---:|---:|
+| 停用快取 | 7.906（6.557–9.923） | 84.6 MiB |
+| 冷快取 | 5.450（4.602–6.372） | 84.4 MiB |
+| 暖快取 | 0.626（0.418–0.697） | 53.3 MiB |
+| 權重調整後完整重算 | 5.574（3.553–6.465） | 84.5 MiB |
+| 權重調整後增量重算 | 4.275（2.678–7.263） | 78.9 MiB |
+
+暖跑重用四份核心或共同樣本比較產物，快取約 1.55 MB。保留權重調整前後的產物，快取約 2.87 MB。[面板相依測試](../tests/test_mcda_execution_cache.py)
+
+2026-11-13 的 93 專案正式套件單獨核對。公開封存可核對的 28 份檔案及 93 個唯一 Project ID 均相符，包含 16 份排名。截至本輪已核驗 658／715 份原件。剩餘 57 份包含 51 份 PDF、4 份政府 WFS 產物與 2 份政府 CSV。依封存 SHA 直接連結，缺件涉及 42 個影子資源候選、243 個封存資源觀測及 48 個專案的 813 個 Census 欄位座標。完整離線重建在首個缺件 `asx_nolans_clarification202606` 停止。補齊原件後，才能驗證這個截面的選值和下游影響。[93 專案封存](../results/ree-project-census/coverage-locked-20261125/README.md) · [715 份原件及指紋](../results/ree-project-census/coverage-locked-20261125/asset_manifest.json)
+
+下一步優先補齊 57 份原件，驗證完整 93 專案重建在冷、暖及來源變更後的等價性。對候選擷取品質的判斷需要原有留出頁的獨立人工標註。Precision、Recall、F1、誤收及誤拒仍待量測。[來源盲審](../results/observation-shadow-20261126/review_protocol.md)

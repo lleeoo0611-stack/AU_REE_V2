@@ -92,16 +92,71 @@ def source_mode(args):
     return mode
 
 
+def _cache_options(args):
+    from .derived_cache import DerivedCache
+
+    directory = getattr(args, 'cache_dir', None)
+    if directory:
+        directory = _shadow_target(args, directory)
+        source_assets = getattr(args, 'shadow_originals', None)
+        if source_assets and directory.is_relative_to(Path(source_assets).resolve()):
+            raise ValueError('Keep disposable cache outside the original source directory')
+        work = Path(getattr(args, 'work', None) or Path(args.root) / 'work/phase5').resolve()
+        protected = [work / 'runs', work / 'databases', work / 'canonical.sqlite']
+        if getattr(args, 'database', None):
+            protected.append(Path(args.database).resolve())
+        if any(path.is_relative_to(directory) for path in protected):
+            raise ValueError('Keep disposable cache outside formal output and database paths')
+    return {'cache': DerivedCache(directory, mode=getattr(args, 'cache_mode', 'use'),
+                                  force=getattr(args, 'force_stage', ())),
+            'review_path': getattr(args, 'shadow_reviews', None)}
+
+
+def _run_mcda(args, root, out, prepared, config):
+    if getattr(args, 'mcda_cache_mode', 'use') == 'use' and not getattr(args, 'mcda_force_panel', ()):
+        return run_r(root, out, prepared, config, args.rscript)
+    return run_r(root, out, prepared, config, args.rscript,
+                 cache_mode=args.mcda_cache_mode, force_panels=args.mcda_force_panel)
+
+
 def execute(args):
+    cache_plan = getattr(args, 'cache_plan', False)
+    cache_controls = (getattr(args, 'cache_dir', None) or getattr(args, 'force_stage', ())
+                      or getattr(args, 'shadow_reviews', None) or getattr(args, 'cache_mode', 'use') != 'use')
+    unified_shadow = getattr(args, 'unified_observations', False)
+    if cache_plan and args.module != 'semantic-ablation':
+        raise ValueError('--cache-plan applies to semantic-ablation')
+    if cache_controls and args.module != 'semantic-ablation' and not unified_shadow:
+        raise ValueError('Shadow cache options require semantic-ablation or --unified-observations')
+    if args.module == 'cache-status':
+        if not args.shadow_output:
+            raise ValueError('Cache status requires --shadow-output')
+        from .derived_cache import read_receipt
+        return read_receipt(Path(args.shadow_output) / 'cache_run.json', events=args.cache_events)
+    if args.module == 'mcda-plan':
+        if not args.shadow_run:
+            raise ValueError('MCDA plan requires --shadow-run with an existing formal run')
+        from .analysis import plan_mcda
+        prior = Path(args.shadow_run).resolve()
+        summary = json.loads((prior / 'summary.json').read_bytes())
+        config = json.loads((prior / 'configuration.json').read_bytes())['research']
+        prepared = {'panels': {panel: details['n'] for panel, details in summary['r_results'].items()}}
+        if not prepared['panels']:
+            raise ValueError('MCDA plan requires a run with prepared panel results')
+        return plan_mcda(Path(args.root).resolve(), prior, prepared, config, args.rscript,
+                         cache_mode=args.mcda_cache_mode, force_panels=args.mcda_force_panel)
     if args.module == 'semantic-ablation':
-        from .observation_ablation import replay
+        from .observation_ablation import replay, plan_replay
+        root = Path(args.root).resolve()
+        options = {'originals': args.shadow_originals, 'development_only': args.shadow_development_only,
+                   **_cache_options(args)}
+        if cache_plan:
+            return plan_replay(root, **options)
         if not args.shadow_output:
             raise ValueError('Ablation requires --shadow-output')
         if args.dry_run:
             return {'status':'DRY_RUN','module':args.module,'writes':False}
         target = _shadow_target(args, args.shadow_output)
-        root = Path(args.root).resolve()
-        options = {'originals': args.shadow_originals, 'development_only': args.shadow_development_only}
         if args.database:
             from .observation_store import open_observation_workspace
             with open_observation_workspace(args.database) as workspace:
@@ -121,8 +176,10 @@ def execute(args):
         raise ValueError('Shadow requires --shadow-originals and --shadow-output')
     if args.dry_run:
         return {'status':'DRY_RUN','module':args.module,'semantic_shadow':True,'writes':False}
+    shadow_options = {'development_only': getattr(args, 'shadow_development_only', False)}
     if unified:
         from .observation_ablation import replay_formal_projection as observation_shadow
+        shadow_options.update(_cache_options(args))
     else:
         from .observation_shadow import run as observation_shadow
     if shadow_only:
@@ -130,7 +187,7 @@ def execute(args):
             raise ValueError('Standalone shadow requires the existing Phase 22 --shadow-run directory')
         target = _shadow_target(args, shadow_out)
         return observation_shadow(Path(args.root).resolve(), originals, args.shadow_run, target,
-                                  development_only=getattr(args, 'shadow_development_only', False))
+                                  **shadow_options)
     if getattr(args, 'shadow_run', None):
         raise ValueError('The all command uses its own completed run for the shadow inputs')
     target = _shadow_target(args, shadow_out)
@@ -139,7 +196,7 @@ def execute(args):
     # experimental assay is reported separately from the completed formal run.
     try:
         shadow = observation_shadow(Path(args.root).resolve(), originals, summary['output_dir'], target,
-                                    development_only=getattr(args, 'shadow_development_only', False))
+                                    **shadow_options)
     except (OSError, ValueError, KeyError) as exc:
         shadow = {'status':'SHADOW_BLOCKED','reason':str(exc)}
     return {**summary,'semantic_shadow':shadow}
@@ -240,7 +297,7 @@ def _execute(args):
             db.execute('INSERT OR IGNORE INTO runs VALUES(?,?,?,?,?,?,?,?)',
                 (run_id,datetime.now(timezone.utc).isoformat(),args.as_of,canonical(version),digest(config),filehash(review_path),'RUNNING',None))
             result,prepared,summary=run_disclosure(root,config,args.as_of,out,db,run_id)
-            r_results={} if args.skip_r else run_r(root,out,prepared,config,args.rscript)
+            r_results={} if args.skip_r else _run_mcda(args,root,out,prepared,config)
             summary.update(run_id=run_id,output_dir=str(out),R=r_results,code=version)
             (out/'summary.json').write_text(canonical(summary)+'\n',encoding='utf8')
             (out/'configuration.json').write_text(canonical({'research':config})+'\n',encoding='utf8')
@@ -518,7 +575,7 @@ def _execute(args):
                 from .analysis import prepare_commercial_coverage
                 commercial=prepare_commercial_coverage(selection,out)
             if not args.skip_r:
-                results=run_r(root,out,prepared,config,args.rscript)
+                results=_run_mcda(args,root,out,prepared,config)
             if config.get('research_utilization') and selection:
                 from .analysis import research_readiness
                 research_readiness(selection,out,config.get('research_analysis_version'),commercial)
@@ -724,7 +781,7 @@ def _execute(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate','export-summary','experiment','semantic-shadow','semantic-ablation'])
+    parser.add_argument('module',choices=['all','bootstrap','acquire','evidence','gis','analyze','rebuild','diff','discover','pdf-extract','recognize','disclosure','register-candidate','export-summary','experiment','semantic-shadow','semantic-ablation','cache-status','mcda-plan'])
     parser.add_argument('--root',default='.')
     parser.add_argument('--work')
     parser.add_argument('--database');parser.add_argument('--out')
@@ -735,6 +792,14 @@ def main():
     parser.add_argument('--shadow-originals',help='Existing SHA-named static PDF directory')
     parser.add_argument('--shadow-run',help='Existing Phase 22 run directory for standalone replay')
     parser.add_argument('--shadow-output',help='Separate output directory for experimental results')
+    parser.add_argument('--cache-dir', help='Disposable cross-run cache for the unified shadow pipeline')
+    parser.add_argument('--cache-mode', choices=('use', 'off', 'refresh'), default='use')
+    parser.add_argument('--cache-plan', action='store_true', help='Read-only semantic-ablation dependency preview')
+    parser.add_argument('--cache-events', action='store_true', help='Include individual events in cache-status')
+    parser.add_argument('--force-stage', action='append', default=[], help='Recompute this shadow stage and its downstream')
+    parser.add_argument('--shadow-reviews', help='Versioned shadow decision journal outside the disposable cache')
+    parser.add_argument('--mcda-cache-mode', choices=('use', 'off', 'refresh'), default='use')
+    parser.add_argument('--mcda-force-panel', action='append', default=[])
     parser.add_argument('--shadow-development-only',action='store_true',help='Exclude preregistered review groups')
     parser.add_argument('--as-of',default=datetime.now(timezone.utc).date().isoformat())
     parser.add_argument('--project',help='Stable native project registry ID')
@@ -759,12 +824,19 @@ def main():
     parser.add_argument('--before');parser.add_argument('--after')
     args=parser.parse_args()
     try:
+        if args.module == 'semantic-ablation' or args.unified_observations:
+            import pymupdf
+            pymupdf.set_messages(stream=sys.stderr)
         if args.module=='diff':
             if not args.before or not args.after:
                 parser.error('diff requires --before and --after logical_database.json')
             before=json.loads(Path(args.before).read_text(encoding='utf-8'));after=json.loads(Path(args.after).read_text(encoding='utf-8'))
             result={table:{'added':[json.loads(v) for v in sorted({canonical(r) for r in after[table]}-{canonical(r) for r in before[table]})],
                            'removed':[json.loads(v) for v in sorted({canonical(r) for r in before[table]}-{canonical(r) for r in after[table]})]} for table in before}
+        elif args.module == 'semantic-ablation' or args.unified_observations:
+            from contextlib import redirect_stdout
+            with redirect_stdout(sys.stderr):
+                result = execute(args)
         else:
             result=execute(args)
         print(json.dumps(result,ensure_ascii=False,indent=2))

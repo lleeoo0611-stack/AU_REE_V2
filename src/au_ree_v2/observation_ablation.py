@@ -9,8 +9,10 @@ from pathlib import Path
 import re
 from time import perf_counter
 
-from .observation_schema import AnalysisFeature, ValidatedObservation, payload
-from .observation_semantics import RESOURCE_PROFILE, ResourceContract
+from .derived_cache import DEPENDENCIES, DerivedCache, atomic_json, downstream
+from .observation_incremental import IncrementalObservations, load_reviews
+from .observation_schema import AnalysisFeature, ValidatedObservation
+from .observation_semantics import RESOURCE_PROFILE, RESOURCE_UNITS, ResourceContract
 from .observation_shadow import (
     ARMS, BASELINE, PORTFOLIO, RELEASE, STUDY, by_id, comparison_sections, evaluate_captures,
     formal_projection, jsonl, observation_group, partition, read_jsonl, write,
@@ -70,49 +72,41 @@ def _resource_seeds(files, frozen):
     return seeds
 
 
-def _typed_assessments(rows, metadata, root, workspace=None):
-    from .observation_pipeline import raw_from_candidate
-    from .observation_semantics import SemanticEngine
-
-    engine = SemanticEngine(root)
+def _typed_assessments(rows, metadata, pipeline, reviews, workspace=None):
     for row in rows:
         did = row["candidate_id"]
+        journal = reviews.get(did, [])
         typed = {}
         for extraction, arm in (("e0", "E0V1"), ("e1", "E1V1")):
             capture = row[extraction]
-            # Attachment identity keeps alternate representations distinct even
-            # when they refer to the same canonical observation and location.
+            subject = f"{did}/{extraction}"
+            # Attachment identity keeps alternate source representations distinct.
             projection = {**capture, "extraction_fingerprint": did}
-            raw = raw_from_candidate(projection, extractor_version=(
-                capture.get("extraction_version") or "frozen-resource-source-view-v1"),
-                metadata=metadata.get(did),
-            )
-            normalized = engine.normalize(raw)
-            decision = row[arm]
-            # Only source-witnessed candidates with a supported profile can be
-            # marked as verified by the ablation. Imported acceptances remain
-            # in the profile verdict with their original provenance.
-            verified = (capture["status"] in {"EXTRACTED", "SOURCE_VERIFIED_CANDIDATE"}
-                        and decision["status"] == "ACCEPT"
-                        and raw.evidence.sha256 and raw.evidence.page and raw.evidence.quote)
-            status = "VERIFIED" if verified else None
-            semantic = engine.assess(raw, decision, normalized=normalized, evidence_status=status, apply_profile=True,
-                                     supporting_evidence=raw.evidence_anchors or (raw.evidence,))
+            raw, raw_data = pipeline.project(subject, projection, metadata.get(did))
+            normalized, normalized_data = pipeline.normalize(subject, raw)
+            semantic, semantic_data = pipeline.assess(subject, raw, raw_data, normalized, normalized_data,
+                                                       row[arm], capture["status"], journal)
             feature = None
             if normalized and semantic.evidence_status == "VERIFIED" and semantic.comparability == "COMPARABLE":
                 validated = ValidatedObservation(normalized, semantic)
                 feature = AnalysisFeature(validated, raw.variable, semantic.rule_version,
                                           normalized.value, normalized.unit)
+            if semantic.evidence_status == "SOURCE_BLOCKED":
+                pipeline.cache.record("assessment", subject, "SOURCE_BLOCKED", reason=semantic.reason)
+            elif semantic.comparability == "INSUFFICIENT_CONTEXT":
+                pipeline.cache.record("assessment", subject, "INSUFFICIENT_CONTEXT", reason=semantic.reason,
+                                      missing_context=list(semantic.missing_context))
             if workspace is not None and arm == "E1V1":
                 workspace.append(raw, normalized=(normalized,) if normalized else (), assessments=(semantic,),
                                  features=(feature,) if feature else ())
             typed[arm] = {
-                "raw": {**payload(raw), "raw_id": raw.raw_id},
-                "normalized": payload(normalized) if normalized else None,
-                "assessment": payload(semantic),
+                "raw": {**raw_data, "raw_id": raw.raw_id},
+                "normalized": normalized_data, "assessment": semantic_data,
                 "analysis_feature": {"name": feature.name, "definition_version": feature.definition_version,
                                      "value": str(feature.value), "unit": feature.unit} if feature else None,
             }
+            if journal:
+                typed[arm]["manual_decisions"] = journal
         row["integrated"] = typed
 
 
@@ -228,7 +222,7 @@ def _review(files, rows):
 
 
 def _write_outputs(root, output, rows, relations, settings, study, files, frozen, capture_mode, engineering,
-                   source_coverage, development_only, started):
+                   source_coverage, development_only, started, reviews):
     sections = comparison_sections(rows, settings)
     release_path = files["census"]
     with release_path.open(encoding="utf-8-sig", newline="") as stream:
@@ -248,6 +242,7 @@ def _write_outputs(root, output, rows, relations, settings, study, files, frozen
                          for name, path in sorted(files.items())},
         "code_sha256": {name: filehash(Path(__file__).with_name(name)) for name in (
             "observation_ablation.py", "observation_shadow.py", "observation_pipeline.py", "observation_schema.py",
+            "observation_incremental.py",
             "observation_semantics.py", "normalization.py", "ontology.py", "resource_use.py", "technical.py",
             "technical_tables.py", "semantic_resource.py", "semantic_technical.py", "document_processing.py", "nlp.py",
             "pdf_extract.py",
@@ -255,6 +250,8 @@ def _write_outputs(root, output, rows, relations, settings, study, files, frozen
         "dependencies": {name: version(name) for name in ("PyMuPDF", "pypdf")},
         "canonical_payload_sha256": {"decisions": digest(rows), "relationship_candidates": digest(relations)},
     }
+    if reviews:
+        report["manual_review_sha256"] = digest(reviews)
     output.mkdir(parents=True, exist_ok=True)
     jsonl(output / "decisions.jsonl", rows)
     jsonl(output / "relationship_candidates.jsonl", relations)
@@ -273,7 +270,7 @@ def _write_outputs(root, output, rows, relations, settings, study, files, frozen
             "capture_mode": capture_mode, "elapsed_seconds": engineering["elapsed_seconds"]}
 
 
-def _original_coverage(assets, seeds, technical_old, frozen, rows):
+def _original_coverage(assets, seeds, technical_old, frozen, rows, source_states):
     def file_available(sha):
         return (isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha)
                 and ((assets / sha).is_file() or (assets / f"{sha}.pdf").is_file()))
@@ -298,28 +295,131 @@ def _original_coverage(assets, seeds, technical_old, frozen, rows):
                 r["E0V0"]["status"] == "ACCEPT" and r["E1V1"]["status"] in {"BLOCKED", "SOURCE_BLOCKED"}
                 for r in missing),
             "missing_source_sha256": sorted({r["source_sha256"] for r in missing}),
+            "unavailable_source_reasons": {sha: source_states[sha] for sha in sorted({
+                r["source_sha256"] for r in cohort if source_states[r["source_sha256"]] != "ORIGINAL_VERIFIED"
+            })},
+            "unavailable_candidate_ids": sorted(r["candidate_id"] for r in cohort
+                                                if source_states[r["source_sha256"]] != "ORIGINAL_VERIFIED"),
         }
     return report
 
 
-def _run(root, output, originals, development_only, *, frozen_run=None, workspace=None):
-    from . import nlp
-    from .document_processing import PdfDocumentCache
-
-    started = perf_counter()
-    root, output = Path(root).resolve(), Path(output).resolve()
-    # Protect the frozen release plus the historical review inputs from accidental overwrite.
-    protected = (root / name for name in ("data", "config", STUDY, BASELINE, PORTFOLIO, RELEASE))
-    if any(output.is_relative_to(path) for path in protected):
-        raise ValueError("Write ablation output separately from frozen inputs")
+def _read_frame(root, development_only, review_path):
     release, files = _shadow_settings(root)
     study, settings, policy = (json.loads(files[k].read_bytes()) for k in ("holdout", "profiles", "evidence_policy"))
     frozen = read_jsonl(files["captures"])
     seeds = _resource_seeds(files, frozen)
+    reviews = load_reviews(review_path, {r["candidate_id"] for r in frozen})
     if development_only:
         frozen = [r for r in frozen if partition(r, study) == "DEVELOPMENT_OR_REGRESSION"]
         seeds = [r for r in seeds if partition(r, study) == "DEVELOPMENT_OR_REGRESSION"]
     technical_old = {r["candidate_id"]: r["e0"] for r in frozen if r["profile_id"] == TECHNICAL_PROFILE}
+    return release, files, study, settings, policy, frozen, seeds, technical_old, reviews
+
+
+def _source_states(documents, seeds, technical):
+    from .document_processing import DocumentUnavailable
+
+    hashes = {r["source_sha256"] for r in seeds if type(r["physical_page"]) is int and not r["source_gates"]}
+    hashes.update(r["source_sha256"] for r in technical.values() if r["native"]["quantity"] == "extraction_pct")
+    states = {}
+    for sha in sorted(hashes):
+        try:
+            documents.verify(sha)
+        except DocumentUnavailable as exc:
+            states[sha] = str(exc)
+        else:
+            states[sha] = "ORIGINAL_VERIFIED"
+    return states
+
+
+def _plan_inputs(files, pipeline, reviews, assets, development_only):
+    module = Path(__file__).parent
+    return {
+        "pdf": {"originals": assets, "parser": filehash(module / "document_processing.py"),
+                "parser_dependencies": [version("PyMuPDF"), version("pypdf")]},
+        "extraction": {"candidate_seeds": filehash(files["seeds"]),
+                       "capture_base": filehash(files["captures"]), "development_only": development_only,
+                       "extractors": {name: filehash(module / name) for name in
+                                      ("nlp.py", "semantic_resource.py", "semantic_technical.py", "technical_tables.py")}},
+        "projection": {"projection_code": pipeline.projection_code},
+        "normalization": {"conversion": filehash(module / "normalization.py"), "rules": pipeline.normalization_code,
+                          "resource_units": RESOURCE_UNITS,
+                          "conversion_vocabulary": {name: filehash(files[name]) for name in
+                                                    ("comparability_ontology", "portfolio_ontology", "observation_ontology")}},
+        "assessment": {"profiles": filehash(files["profiles"]), "evidence_policy": filehash(files["evidence_policy"]),
+                       "old_decisions": filehash(files["legacy_decisions"]), "portfolio": filehash(files["portfolio"]),
+                       "manual_decisions": {candidate: digest(records) for candidate, records in reviews.items()},
+                       "assessment_code": pipeline.assessment_code},
+    }
+
+
+def _previous_plan(cache):
+    if cache.directory is not None:
+        try:
+            value = json.loads((cache.directory / "latest-ablation.json").read_bytes())
+            if isinstance(value, dict) and all(isinstance(item, dict) for item in value.values()):
+                return value
+        except (OSError, ValueError):
+            pass
+    return {}
+
+
+def plan_replay(root, *, originals=None, development_only=False, cache=None, review_path=None):
+    """Preview known dependency changes before building any artifact."""
+    from .document_processing import PdfDocumentCache
+
+    cache = cache if cache is not None else DerivedCache()
+    _validate_paths(Path(root).resolve(), None, originals, cache, review_path)
+    _, files, _, _, _, _, seeds, technical, reviews = _read_frame(Path(root), development_only, review_path)
+    if originals is not None:
+        if not Path(originals).is_dir():
+            raise ValueError("Original source assets must be a directory")
+        with PdfDocumentCache(originals) as documents:
+            assets = _source_states(documents, seeds, technical)
+    else:
+        assets = None
+    inputs = _plan_inputs(files, IncrementalObservations(root, cache), reviews, assets, development_only)
+    previous = _previous_plan(cache)
+    changes = {stage: sorted(key for key in values.keys() | previous.get(stage, {}).keys()
+                             if previous.get(stage, {}).get(key) != values.get(key))
+               for stage, values in inputs.items()}
+    affected = downstream(stage for stage, keys in changes.items() if keys)
+    states = {}
+    for stage in DEPENDENCIES:
+        if stage in {"ocr", "recognition", "bm25-index", "bm25-query"} or (
+                stage in {"pdf", "extraction"} and originals is None):
+            action = "INACTIVE_IN_THIS_REPLAY"
+        elif cache.mode in {"off", "refresh"} or stage in cache.force:
+            action = "COMPUTE"
+        elif not previous:
+            action = "LOOK_UP_OR_COMPUTE"
+        elif stage in affected:
+            action = "RECHECK_AFFECTED_ITEMS"
+        else:
+            action = "CHECK_EXISTING_PRODUCTS"
+        states[stage] = {"action": action, "changed_inputs": changes.get(stage, [])}
+    prior_assets = previous.get("pdf", {}).get("originals") or {}
+    source_changes = {sha: {"before": prior_assets.get(sha), "after": (assets or {}).get(sha)}
+                      for sha in sorted(prior_assets.keys() | (assets or {}).keys())
+                      if prior_assets.get(sha) != (assets or {}).get(sha)}
+    prior_reviews = previous.get("assessment", {}).get("manual_decisions", {})
+    manual_changes = sorted(key for key in prior_reviews.keys() | reviews.keys()
+                            if prior_reviews.get(key) != inputs["assessment"]["manual_decisions"].get(key))
+    return {"status": "CACHE_PLAN", "writes": False, "mode": cache.mode, "stages": states,
+            "forced_stages": sorted(cache.force), "changed_sources": source_changes,
+            "changed_review_candidates": manual_changes, "dependency_graph": DEPENDENCIES,
+            "scope": "Known input changes; per-product checks and exact reuse are recorded during execution."}
+
+
+def _run(root, output, originals, development_only, cache, reviews_path, *, frozen_run=None, workspace=None):
+    from . import nlp
+    from .document_processing import PdfDocumentCache
+
+    started = perf_counter()
+    release, files, study, settings, policy, frozen, seeds, technical_old, reviews = _read_frame(
+        root, development_only, reviews_path)
+    pipeline = IncrementalObservations(root, cache)
     old = by_id(read_jsonl(files["legacy_decisions"]))
     portfolio = by_id(read_jsonl(files["portfolio"]))
     if set(old) != set(portfolio) or any(portfolio[cid]["B1"] != r["B1"] for cid, r in old.items()):
@@ -336,6 +436,7 @@ def _run(root, output, originals, development_only, *, frozen_run=None, workspac
     engineering = {}
     mode = "FROZEN_CAPTURE_REPLAY"
     source_coverage = None
+    source_states = None
     if originals is None:
         resource_new = {r["candidate_id"]: r["e1"] for r in frozen if r["profile_id"] == RESOURCE_PROFILE}
         technical_new = {r["candidate_id"]: r["e1"] for r in frozen if r["profile_id"] == TECHNICAL_PROFILE}
@@ -343,7 +444,11 @@ def _run(root, output, originals, development_only, *, frozen_run=None, workspac
         if not Path(originals).is_dir():
             raise ValueError("Original source assets must be a directory")
         mode = "SUPPLIED_ORIGINALS_REPLAY"
-        with PdfDocumentCache(originals) as documents:
+        with PdfDocumentCache(originals, cache=cache) as documents:
+            source_states = _source_states(documents, seeds, technical_old)
+            for sha, status in source_states.items():
+                if status != "ORIGINAL_VERIFIED":
+                    cache.record("pdf", sha, "SOURCE_BLOCKED", reason=status)
             resources, technical = nlp.extract_bound_observations(seeds, list(technical_old.values()), documents)
             engineering["parser_operations"] = dict(documents.counts)
         resource_new, technical_new = by_id(resources), by_id(technical)
@@ -353,21 +458,48 @@ def _run(root, output, originals, development_only, *, frozen_run=None, workspac
     contract = ResourceContract(root, release, settings["profiles"][RESOURCE_PROFILE])
     rows, relations = evaluate_captures(seeds, technical_old, technical_new, resource_new,
                                         old, portfolio, contract, policy, study, settings)
-    _typed_assessments(rows, by_id(seeds), root, workspace)
+    _typed_assessments(rows, by_id(seeds), pipeline, reviews, workspace)
     if originals is not None:
-        source_coverage = _original_coverage(Path(originals), seeds, technical_old, frozen, rows)
+        source_coverage = _original_coverage(Path(originals), seeds, technical_old, frozen, rows, source_states)
     summary = _write_outputs(root, output, rows, relations, settings, study, files, frozen, mode, engineering,
-                             source_coverage, development_only, started)
+                             source_coverage, development_only, started, reviews)
     if workspace is not None:
         summary["staged_e1_records"] = len(rows)
-    return summary
+    return summary, _plan_inputs(files, pipeline, reviews, source_states, development_only)
 
 
-def replay(root, output, *, originals=None, development_only=False, workspace=None):
-    """Replay the fixed public capture frame, optionally re-reading supplied originals."""
-    return _run(root, output, originals, development_only, workspace=workspace)
+def _validate_paths(root, output, originals, cache, review_path):
+    def overlap(left, right):
+        return left.is_relative_to(right) or right.is_relative_to(left)
+
+    protected = [root / name for name in ("data", "config", "results", ".git")]
+    if output is not None and any(overlap(output, path) for path in protected):
+        raise ValueError("Write ablation output separately from frozen inputs")
+    if cache.directory is not None:
+        extra = [Path(path).resolve() for path in (output, originals, review_path) if path is not None]
+        if any(overlap(cache.directory, path) for path in protected + extra):
+            raise ValueError("Keep disposable cache separate from originals, decisions and run outputs")
 
 
-def replay_formal_projection(root, originals, frozen_run, output, *, development_only=False, workspace=None):
+def replay(root, output, *, originals=None, development_only=False, workspace=None, cache=None,
+           review_path=None, frozen_run=None):
+    """Replay the fixed frame; keep cache telemetry outside the scientific outputs."""
+    root, output = Path(root).resolve(), Path(output).resolve()
+    cache = cache if cache is not None else DerivedCache()
+    _validate_paths(root, output, originals, cache, review_path)
+    try:
+        summary, inputs = _run(root, output, originals, development_only, cache, review_path,
+                               frozen_run=frozen_run, workspace=workspace)
+    except Exception as exc:
+        atomic_json(output / "cache_run.json", {**cache.receipt(), "status": "FAILED", "error": str(exc)})
+        raise
+    receipt = {**cache.receipt(), "status": "COMPLETED", "plan_inputs": inputs}
+    atomic_json(output / "cache_run.json", receipt)
+    if cache.directory is not None and cache.mode != "off":
+        atomic_json(cache.directory / "latest-ablation.json", inputs)
+    return {**summary, "cache_counts": receipt["counts"]}
+
+
+def replay_formal_projection(root, originals, frozen_run, output, **options):
     """Read verified formal projections before the optional integrated side run."""
-    return _run(root, output, originals, development_only, frozen_run=frozen_run, workspace=workspace)
+    return replay(root, output, originals=originals, frozen_run=frozen_run, **options)

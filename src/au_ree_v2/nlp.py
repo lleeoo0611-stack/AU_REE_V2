@@ -1,11 +1,19 @@
 """Rule-based source-bound extraction and BM25 evidence-page retrieval."""
+import json
 import math
 import re
 import unicodedata
 from collections import Counter, defaultdict
+from functools import lru_cache
+from pathlib import Path
 from typing import Protocol
 
-from .document_processing import PdfDocumentCache, SHA256
+from .derived_cache import code_fingerprint
+from .document_processing import (
+    DocumentUnavailable, PdfDocumentCache, SHA256, _file_sha, ocr_model_sha, pdf_view_spec,
+)
+from .pdf_extract import DOCUMENT_VERSION, NUMBER, extraction_dependencies, recognize_document
+from .store import digest
 from .semantic_resource import extract_resource_observations
 from .semantic_technical import reextract_technical
 
@@ -54,38 +62,148 @@ class PageRetriever(Protocol):
     def rank_pair(self, aliases, field, baseline_pages=(), *, k=5): ...
 
 
+def _page_key(sha, number):
+    if not isinstance(sha, str) or not SHA256.fullmatch(sha) or type(number) is not int or number < 1:
+        raise ValueError("A page needs a SHA-256 and a positive physical page")
+    return sha, number
+
+
+def _term_counts(text):
+    if not isinstance(text, str):
+        raise ValueError("A page needs text")
+    return dict(Counter(_tokens(text)))
+
+
+def _term_rows(value):
+    if not isinstance(value, list):
+        raise ValueError("Invalid indexed term rows")
+    for row in value:
+        if (not isinstance(row, (list, tuple)) or len(row) != 3
+                or not isinstance(row[2], dict)
+                or any(not isinstance(term, str) or type(frequency) is not int or frequency < 1
+                       for term, frequency in row[2].items())):
+            raise ValueError("Invalid indexed term frequencies")
+        _page_key(*row[:2])
+
+
+@lru_cache
+def _tokenizer_signature():
+    return code_fingerprint(_tokens, _term_counts), WORDS.pattern, WORDS.flags, unicodedata.unidata_version
+
+
 class PageIndex:
-    """One SHA/page-addressed text pool, shared by both arms of a query."""
+    """One verified SHA/page-addressed corpus, shared by both arms of a query."""
 
     def __init__(self, pages):
+        self._load_terms((sha, number, _term_counts(text)) for sha, number, text in pages)
+
+    def _load_terms(self, pages):
+        self._cache = None
+        self._index_sha = None
         self.page_keys = set()
         self.documents = {}
         self.lengths = {}
         self.df = Counter()
-        for sha, number, text in pages:
-            key = sha, number
-            if (not isinstance(sha, str) or not SHA256.fullmatch(sha) or type(number) is not int
-                    or number < 1 or not isinstance(text, str)):
-                raise ValueError("A page needs a SHA-256, a positive physical page and text")
+        for sha, number, terms in pages:
+            key = _page_key(sha, number)
             if key in self.page_keys:
                 raise ValueError("Duplicate PDF edition and physical page")
             self.page_keys.add(key)
-            words = _tokens(text)
-            if words:
-                terms = Counter(words)
+            if terms:
                 self.documents[key] = terms
-                self.lengths[key] = len(words)
+                self.lengths[key] = sum(terms.values())
                 self.df.update(terms.keys())
         count = len(self.documents)
         self.average_length = sum(self.lengths.values()) / count if count else 0
 
     @classmethod
-    def from_documents(cls, documents: PdfDocumentCache, source_hashes):
-        """Rank physical pages in verified editions, using the historical positioned view."""
-        return cls((sha, page, document.text(page, positioned=True))
-                   for sha in dict.fromkeys(source_hashes)
-                   for document in (documents.open(sha),)
-                   for page in range(1, len(document) + 1))
+    def from_documents(cls, documents: PdfDocumentCache, source_hashes, *,
+                       expected_pages=None, missing=None):
+        """Validate original editions and use the positioned text view for BM25."""
+        cache = documents.cache
+        if cache is None and expected_pages is None and missing is None:
+            return cls((sha, page, document.text(page, positioned=True))
+                       for sha in dict.fromkeys(source_hashes)
+                       for document in (documents.open(sha),)
+                       for page in range(1, len(document) + 1))
+        corpus = []
+        for sha in sorted(set(source_hashes)):
+            try:
+                documents.verify(sha)
+            except DocumentUnavailable as exc:
+                if missing is None:
+                    raise
+                missing[sha] = str(exc)
+                continue
+            corpus.append(sha)
+        settings = {"format": "bm25-term-counts-v1", "tokenizer": _tokenizer_signature(),
+                    "text_parser": pdf_view_spec("positioned_text"), "page_count": pdf_view_spec("page_count"),
+                    "code": _index_signature()}
+
+        def terms(sha):
+            document = documents.open(sha)
+            return [[sha, page, _term_counts(document.text(page, positioned=True))]
+                    for page in range(1, len(document) + 1)]
+
+        def validate_document(rows, sha):
+            _term_rows(rows)
+            if [tuple(row[:2]) for row in rows] != [(sha, n) for n in range(1, len(rows) + 1)]:
+                raise ValueError("BM25 document term counts disagree with their source edition")
+
+        def build_index():
+            rows, errors = [], {}
+            for sha in corpus:
+                try:
+                    if cache is None:
+                        document_terms = terms(sha)
+                        validate_document(document_terms, sha)
+                    else:
+                        document_terms = cache.compute(
+                            "bm25-index", f"document:{sha}", settings,
+                            lambda: terms(sha), upstream={"source_snapshot": sha},
+                            validate=lambda rows: validate_document(rows, sha),
+                        )
+                    rows.extend(document_terms)
+                except DocumentUnavailable as exc:
+                    if missing is None:
+                        raise
+                    errors[sha] = str(exc)
+            return {"terms": rows, "errors": errors}
+
+        def validate_index(value):
+            if (not isinstance(value, dict) or not isinstance(value.get("errors"), dict)
+                    or any(sha not in corpus or not isinstance(reason, str)
+                           for sha, reason in value["errors"].items())):
+                raise ValueError("Invalid BM25 corpus artifact")
+            _term_rows(value.get("terms"))
+            documents_by_sha = defaultdict(list)
+            for row in value["terms"]:
+                documents_by_sha[row[0]].append(row)
+            if not documents_by_sha.keys() <= set(corpus) - value["errors"].keys():
+                raise ValueError("BM25 index differs from its verified corpus manifest")
+            for sha in corpus:
+                if sha not in value["errors"]:
+                    validate_document(documents_by_sha[sha], sha)
+
+        value = build_index() if cache is None else cache.compute(
+            "bm25-index", "verified-corpus", {**settings, "corpus": corpus}, build_index,
+            upstream={sha: sha for sha in corpus}, validate=validate_index,
+        )
+        if value["errors"]:
+            if missing is None:
+                raise DocumentUnavailable(next(iter(value["errors"].values())))
+            missing.update(value["errors"])
+        if expected_pages is not None:
+            actual_pages = Counter(row[0] for row in value["terms"])
+            for sha in corpus:
+                if sha not in value["errors"] and actual_pages[sha] != expected_pages[sha]:
+                    raise ValueError(f"Physical page count differs from the frozen edition: {sha}")
+        index = cls.__new__(cls)
+        index._load_terms(value["terms"])
+        index._cache = cache
+        if cache is not None:
+            index._index_sha = digest(value)
+        return index
 
     def rank_pair(self, aliases, field, baseline_pages=(), *, k=5):
         """Rules keep their original pages; add BM25 pages only to unused slots.
@@ -99,15 +217,35 @@ class PageIndex:
             raise ValueError(f"Unsupported evidence field {field!r}")
         if type(k) is not int or k < 1:
             raise ValueError("k must be a positive integer")
-        baseline = list(dict.fromkeys(tuple(pair) for pair in baseline_pages
-                                      if tuple(pair) in self.page_keys))[:k]
+        supplied_baseline = list(dict.fromkeys(tuple(pair) for pair in baseline_pages))
+        baseline = [pair for pair in supplied_baseline if pair in self.page_keys][:k]
+        if isinstance(aliases, str):
+            aliases = [aliases]
+        names = {word for alias in aliases for word in _tokens(alias)
+                 if len(word) > 1 and word not in GENERIC_NAMES}
+        terms = set(_tokens(FIELD_TERMS[family]))
+        if self._cache is None:
+            return self._rank(baseline, names, terms, k)
+        inputs = {"baseline": baseline, "names": sorted(names), "terms": sorted(terms), "k": k,
+                  "family": family, "code": _query_signature()}
+        value = self._cache.compute(
+            "bm25-query", f"{family}:{digest([sorted(names), supplied_baseline])}", inputs,
+            lambda: self._rank(baseline, names, terms, k),
+            upstream={"corpus_index": self._index_sha}, validate=self._validate_queue,
+        )
+        return {key: [tuple(pair) for pair in queue] for key, queue in value.items()}
+
+    def _validate_queue(self, value):
+        if not isinstance(value, dict) or set(value) != {"rules", "rules_nlp"}:
+            raise ValueError("Invalid BM25 ranking queues")
+        for queue in value.values():
+            if not isinstance(queue, list) or any(not isinstance(pair, (list, tuple)) or len(pair) != 2
+                                                  or _page_key(*pair) not in self.page_keys for pair in queue):
+                raise ValueError("BM25 queue refers to an unknown indexed page")
+
+    def _rank(self, baseline, names, terms, k):
         augmented = list(baseline)
         if len(augmented) < k and self.documents:
-            if isinstance(aliases, str):
-                aliases = [aliases]
-            names = {word for alias in aliases for word in _tokens(alias)
-                     if len(word) > 1 and word not in GENERIC_NAMES}
-            terms = set(_tokens(FIELD_TERMS[family]))
             weights = {term: 1 + int(term in names) for term in sorted(names | terms)}
             count = len(self.documents)
             idf = {term: math.log1p((count - self.df[term] + 0.5) / (self.df[term] + 0.5))
@@ -125,10 +263,80 @@ class PageIndex:
         return {"rules": baseline, "rules_nlp": augmented}
 
 
+@lru_cache
+def _index_signature():
+    return code_fingerprint(PageIndex.from_documents, _page_key, PageIndex._load_terms)
+
+
+@lru_cache
+def _query_signature():
+    return code_fingerprint(PageIndex.rank_pair, PageIndex._rank, _tokens)
+
+
+
 class BoundObservationExtractor(Protocol):
     """Contract for candidate extraction from the fixed source and page frame."""
 
     def __call__(self, resource_candidates, technical_captures, documents: PdfDocumentCache): ...
+
+
+@lru_cache
+def _extraction_spec(domain):
+    package = Path(__file__).parent
+    module = "semantic_resource.py" if domain == "resource" else "semantic_technical.py"
+    readers = ("content_order_text", "text_blocks", "native_tables") if domain == "resource" else (
+        "content_order_text", "positioned_text", "page_bounds", "native_tables",
+    )
+    return {
+        "format": "source-bound-captures-v1",
+        "domain": domain,
+        "code": code_fingerprint(_source_captures, files=(
+            package / module, package / "technical_tables.py",
+        )),
+        "unicode": unicodedata.unidata_version if domain == "resource" else None,
+        "numeric_pattern": NUMBER if domain == "resource" else None,
+        "parser": {kind: pdf_view_spec(kind) for kind in readers},
+    }
+
+
+def _source_captures(domain, sha, rows, documents):
+    if not rows:
+        return []
+    extractor = extract_resource_observations if domain == "resource" else reextract_technical
+    rows = sorted(rows, key=lambda row: row["candidate_id"])
+
+    def build():
+        documents.counts[f"{domain}_extractions"] += 1
+        return extractor(rows, documents.assets, documents=documents)
+
+    if documents.cache is None:
+        return build()
+    requires_original = (any(type(row["physical_page"]) is int and row["physical_page"] > 0
+                             and not row.get("source_gates") for row in rows) if domain == "resource"
+                         else any(row["native"]["quantity"] == "extraction_pct" for row in rows))
+    upstream = {}
+    if requires_original:
+        # Pinned bytes are always reverified before a previously extracted
+        # candidate can be reused. Missing originals keep the extractor's
+        # existing blocked dispositions and never populate this cached key.
+        try:
+            length = len(documents.open(sha))
+        except DocumentUnavailable as exc:
+            documents.cache.record("extraction", f"{domain}:{sha}", "SOURCE_BLOCKED", reason=str(exc),
+                                   affected_candidates=len(rows))
+            return build()
+        upstream = {"source_snapshot": sha, "pdf_page_count": digest(length)}
+
+    def validate(captures):
+        if (not isinstance(captures, list) or sorted(row["candidate_id"] for row in rows)
+                != [capture.get("candidate_id") for capture in captures]
+                or any(capture.get("source_sha256") != sha for capture in captures)):
+            raise ValueError("Cached captures differ from their frozen source frame")
+
+    return documents.cache.compute(
+        "extraction", f"{domain}:{sha}", {**_extraction_spec(domain), "candidates": digest(rows)},
+        build, upstream=upstream, validate=validate,
+    )
 
 
 def extract_bound_observations(resource_candidates, technical_captures, documents: PdfDocumentCache):
@@ -141,10 +349,57 @@ def extract_bound_observations(resource_candidates, technical_captures, document
         technical_sources[row["source_sha256"]].append(row)
     resource, technical = [], []
     for sha in sorted(resource_sources.keys() | technical_sources.keys(), key=str):
-        resource.extend(extract_resource_observations(resource_sources[sha], documents.assets, documents=documents))
-        technical.extend(reextract_technical(technical_sources[sha], documents.assets, documents=documents))
+        resource.extend(_source_captures("resource", sha, resource_sources[sha], documents))
+        technical.extend(_source_captures("technical", sha, technical_sources[sha], documents))
     return (sorted(resource, key=lambda row: row["candidate_id"]),
             sorted(technical, key=lambda row: row["candidate_id"]))
+
+
+def recognize_source(root, source, registry, *, cache=None, tessdata=None, page_numbers=None):
+    """Reuse the existing document recognizer's report without registering a source artifact."""
+    root = Path(root)
+    pages = sorted(set(page_numbers)) if page_numbers is not None else None
+    if source["kind"] != "pdf":
+        tessdata = None
+    if cache is None:
+        return recognize_document(root, source, registry, tessdata, page_numbers=pages)
+    sha = source["sha256"]
+    try:
+        original_sha = _file_sha(root / source["path"])
+    except OSError as exc:
+        cache.record("recognition", source["key"], "SOURCE_BLOCKED", reason="PDF_BYTES_UNAVAILABLE")
+        raise DocumentUnavailable("PDF_BYTES_UNAVAILABLE") from exc
+    if original_sha != sha:
+        cache.record("recognition", source["key"], "SOURCE_BLOCKED", reason="SOURCE_HASH_MISMATCH")
+        raise DocumentUnavailable("SOURCE_HASH_MISMATCH")
+    # Entity identity can change while the report's bytes stay the same. Only
+    # claims that bind this source enter the report dependency fingerprint.
+    claims = json.loads((root / "data/claims.json").read_bytes())["projects"]
+    linked = sorted((p.get("entity_namespace", "project_registry_v1"), str(p["id"]),
+                     p.get("entity_kind", "PROJECT")) for p in claims if
+                    any(o.get("source_sha256") == sha for o in p.get("observations", [])))
+    inputs = {
+        "format": DOCUMENT_VERSION, "recognizer": extraction_dependencies(), "registry": digest(registry),
+        "code": code_fingerprint(recognize_source),
+        "source_bindings": digest(linked),
+        "publication_metadata": {key: source.get(key) for key in
+                                 ("kind", "key", "url", "publication_date", "recognition_project_native_id",
+                                  "project_binding_status")},
+        "pages": pages, "ocr_model_sha256": ocr_model_sha(tessdata),
+        "native_parser": pdf_view_spec("pypdf_text") if tessdata is not None else None,
+    }
+
+    def validate(report):
+        if (not isinstance(report, dict) or report.get("source_sha256") != sha
+                or report.get("source_key") != source["key"] or report.get("version") != DOCUMENT_VERSION
+                or report.get("requested_physical_pages") != pages or not isinstance(report.get("candidates"), list)):
+            raise ValueError("Cached recognition differs from its source and parser contract")
+
+    return cache.compute(
+        "recognition", source["key"], inputs,
+        lambda: recognize_document(root, source, registry, tessdata, page_numbers=pages),
+        upstream={"source_snapshot": sha}, validate=validate,
+    )
 
 
 RECOGNITION_PROJECTION_VERSION = "document-recognition-observations-v1"
@@ -183,7 +438,6 @@ def _reported_quantities(candidate):
 def automatic_observations(report):
     """Project a cached automatic recognition report into raw review candidates."""
     from .observation_pipeline import raw_from_candidate
-    from .store import digest
 
     source_sha256 = report["source_sha256"]
     source_key = report["source_key"]

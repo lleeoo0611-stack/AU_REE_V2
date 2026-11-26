@@ -280,6 +280,184 @@ def method_expansion(root,args,output):
     (output/'method_expansion.json').write_text(canonical(result)+'\n',encoding='utf8')
 
 
+def observation_suite(root, args, output):
+    """Measure cross-process reuse and check complete shadow artifacts on fixed inputs."""
+    from collections import Counter
+    from statistics import median
+
+    from au_ree_v2.store import canonical, filehash
+
+    originals = Path(args.originals).resolve()
+    if not originals.is_dir() or args.rounds < 2:
+        raise ValueError('Provide a SHA-named original directory and at least two benchmark rounds')
+    scoped_root = output / 'changed-use-policy'
+    if any((output / name).exists() for name in ('round-0', scoped_root.name)):
+        raise ValueError('Use a new output directory for an isolated benchmark')
+    runtime = output / 'runtime'
+    shutil.copytree(root / 'src/au_ree_v2', runtime / 'au_ree_v2', ignore=shutil.ignore_patterns('__pycache__'))
+    base_environment = {**os.environ, 'PYTHONPATH': str(runtime) + os.pathsep + os.environ.get('PYTHONPATH', '')}
+    # Only the synthetic policy changes. Source inputs and application code are shared.
+    config = scoped_root / 'config'
+    ontology = config / 'ontology'
+    ontology.mkdir(parents=True)
+    (scoped_root / 'results').symlink_to(root / 'results', target_is_directory=True)
+    (config / 'evidence_policy.json').symlink_to(root / 'config/evidence_policy.json')
+    profile_path = 'shadow_profiles_v1.json'
+    for path in (root / 'config/ontology').iterdir():
+        if path.name != profile_path:
+            (ontology / path.name).symlink_to(path, target_is_directory=path.is_dir())
+    profiles = json.loads((root / 'config/ontology' / profile_path).read_bytes())
+    profiles['profiles']['WITHIN_TABLE_ELEMENT_LEACH']['required_context'].append('deposit_id')
+    (ontology / profile_path).write_text(canonical(profiles) + '\n', encoding='utf-8')
+
+    files = ('decisions.jsonl', 'relationship_candidates.jsonl', 'comparison.json')
+    measurements = []
+
+    def execute(area, mode, *, chosen_root=root, asset_root=originals, cache=None, cache_mode='use', extra=(),
+                environment=None):
+        dest = area / mode
+        if cache is None:
+            cache = area / 'disabled-cache'
+        command = [sys.executable, '-m', 'au_ree_v2', 'semantic-ablation', '--root', str(chosen_root),
+                   '--shadow-originals', str(asset_root), '--shadow-output', str(dest),
+                   '--cache-dir', str(cache), '--cache-mode', cache_mode, *extra]
+        run = measure_process(command, area / f'{mode}.log', root, environment or base_environment)
+        if run['exit_code']:
+            raise RuntimeError(f'Observation benchmark failed, see {area / (mode + ".log")}')
+        cache_files = [path.stat() for path in cache.rglob('*') if path.is_file()]
+        cache_bytes = sum(file.st_size for file in cache_files)
+        allocated_bytes = sum(getattr(file, 'st_blocks', 0) * 512 or file.st_size for file in cache_files)
+        signature = {name: filehash(dest / name) for name in files}
+        engineering = json.loads((dest / 'engineering.json').read_bytes())
+        cache_receipt = dest / 'cache_run.json'
+        log = (area / f'{mode}.log').read_text(encoding='utf-8').strip()
+        summary = json.loads(log[log.rfind('\n{') + 1:])
+        measurement = {'mode': mode, 'science_sha256': signature, 'cache_bytes': cache_bytes,
+                       'cache_allocated_bytes': allocated_bytes, 'cache_files': len(cache_files),
+                       'engineering': engineering, 'cache_counts': summary.get('cache_counts'),
+                       'command': command, 'output_dir': str(dest), **run}
+        if cache_receipt.is_file():
+            receipt = json.loads(cache_receipt.read_bytes())
+            measurement['cache_receipt_sha256'] = filehash(cache_receipt)
+            measurement['stage_seconds'] = receipt['stage_seconds']
+            measurement['cache_reasons'] = dict(Counter(
+                event['reason'] for event in receipt['events'] if 'reason' in event))
+        measurements.append(measurement)
+        (output / 'measurements.json').write_text(canonical(measurements) + '\n', encoding='utf-8')
+        print(f'{area.name} {mode}: {run["seconds"]:.2f}s; cache bytes {cache_bytes}', flush=True)
+        return signature
+
+    baseline = None
+    changed = None
+    for iteration in range(args.rounds):
+        area = output / f'round-{iteration}'
+        area.mkdir()
+        cache = area / 'cache'
+        signatures = {
+            'disabled': execute(area, 'disabled', cache_mode='off'),
+            'cold': execute(area, 'cold', cache=cache),
+            'warm': execute(area, 'warm', cache=cache),
+            'rule_increment': execute(area, 'rule_increment', chosen_root=scoped_root, cache=cache),
+            'rule_full': execute(area, 'rule_full', chosen_root=scoped_root, cache_mode='off'),
+        }
+        baseline = baseline or signatures['disabled']
+        changed = changed or signatures['rule_full']
+        if any(signatures[mode] != baseline for mode in ('disabled', 'cold', 'warm')):
+            raise ValueError('Disabled, cold and warm observation outputs differ')
+        if any(signatures[mode] != changed for mode in ('rule_increment', 'rule_full')):
+            raise ValueError('Incremental use-policy outputs differ from a disabled-cache rebuild')
+        if changed['decisions.jsonl'] == baseline['decisions.jsonl']:
+            raise ValueError('Use-policy probe did not change any decisions')
+
+    probes = output / 'additional-probes'
+    probes.mkdir()
+    restored_cache = output / 'round-0/cache'
+    moved_root = probes / 'relocated-inputs'
+    moved_root.mkdir()
+    for folder in ('config', 'results'):
+        (moved_root / folder).symlink_to(root / folder, target_is_directory=True)
+    (moved_root / 'README.md').write_text('Benchmark probe with unrelated documentation edit.\n', encoding='utf-8')
+    moved_originals = probes / 'relocated-originals'
+    moved_originals.symlink_to(originals, target_is_directory=True)
+    if execute(probes, 'relocation_and_documentation', chosen_root=moved_root,
+               asset_root=moved_originals, cache=restored_cache) != baseline:
+        raise ValueError('Relocation or unrelated documentation changed the science artifacts')
+    if execute(probes, 'force_assessment', cache=restored_cache, extra=('--force-stage', 'assessment')) != baseline:
+        raise ValueError('Forced assessment changed the science artifacts')
+
+    masked_originals = probes / 'masked-originals'
+    masked_originals.mkdir()
+    captures = root / 'results/observation-shadow-20261126/decisions.jsonl'
+    with captures.open(encoding='utf-8') as stream:
+        captured_shas = {row['source_sha256'] for line in stream if
+                         (row := json.loads(line))['e1']['status'] in ('EXTRACTED', 'SOURCE_VERIFIED_CANDIDATE')}
+    files_by_size = sorted((asset.stat().st_size, asset.name, asset) for asset in originals.iterdir() if asset.is_file())
+    eligible_assets = [asset for _, _, asset in files_by_size if asset.stem in captured_shas]
+    if not eligible_assets:
+        raise ValueError('At least one original must support a source-bound candidate for the source-change probe')
+    withheld = eligible_assets[0]
+    for _, _, asset in files_by_size:
+        if asset != withheld:
+            (masked_originals / asset.name).symlink_to(asset)
+    source_cache = probes / 'source-cache'
+    masked_rebuild = execute(probes, 'missing_original_full', asset_root=masked_originals, cache_mode='off')
+    if masked_rebuild['decisions.jsonl'] == baseline['decisions.jsonl']:
+        raise ValueError('Withheld source did not change the science artifacts')
+    if execute(probes, 'missing_original_cold', asset_root=masked_originals, cache=source_cache) != masked_rebuild:
+        raise ValueError('Missing-original cold output differs from a disabled-cache rebuild')
+    if execute(probes, 'added_original', cache=source_cache) != baseline:
+        raise ValueError('Added-original increment differs from a disabled-cache rebuild')
+    if execute(probes, 'missing_original_after_cache', asset_root=masked_originals, cache=source_cache) != masked_rebuild:
+        raise ValueError('Removed-original increment differs from a disabled-cache rebuild')
+
+    # Load the same code from an isolated Python path with a legitimate alternate
+    # unit representation. The explicit normalization rule remains outside formal runs.
+    alternate = probes / 'alternate-normalization'
+    alternate.mkdir()
+    shutil.copytree(runtime / 'au_ree_v2', alternate / 'au_ree_v2', ignore=shutil.ignore_patterns('__pycache__'))
+    semantics = alternate / 'au_ree_v2/observation_semantics.py'
+    old = 'RESOURCE_UNITS = {variable: unit for variable, unit, _ in resource_use.FIELDS.values()}'
+    program = semantics.read_text(encoding='utf-8')
+    if program.count(old) != 1:
+        raise ValueError('Update the normalization probe for the current target-unit rule')
+    semantics.write_text(program.replace(old, old + '\nRESOURCE_UNITS["ore_mt"] = "kt"'), encoding='utf-8')
+    environment = {**os.environ, 'PYTHONPATH': str(alternate) + os.pathsep + os.environ.get('PYTHONPATH', '')}
+    conversion = execute(probes, 'normalization_increment', cache=restored_cache, environment=environment)
+    conversion_full = execute(probes, 'normalization_full', environment=environment, cache_mode='off')
+    if conversion != conversion_full or conversion['decisions.jsonl'] == baseline['decisions.jsonl']:
+        raise ValueError('Target-unit increment must change decisions and match a disabled-cache rebuild')
+
+    summary = {}
+    for mode in sorted({row['mode'] for row in measurements}):
+        rows = [row for row in measurements if row['mode'] == mode]
+        measurements_for_mode = {'wall_seconds': [row['seconds'] for row in rows],
+                                 'cache_bytes': [row['cache_bytes'] for row in rows],
+                                 'cache_allocated_bytes': [row['cache_allocated_bytes'] for row in rows],
+                                 'peak_rss_bytes': [row['engineering'].get('process_peak_rss_bytes')
+                                                    or row['python_peak_working_set_bytes'] for row in rows]}
+        for stage in sorted({stage for row in rows for stage in row['engineering'] if stage.endswith('_seconds')}):
+            measurements_for_mode[stage] = [row['engineering'].get(stage) for row in rows]
+        for stage in sorted({stage for row in rows for stage in row.get('stage_seconds', {})}):
+            measurements_for_mode['cached_stage_seconds/' + stage] = [row.get('stage_seconds', {}).get(stage)
+                                                                      for row in rows]
+        summary[mode] = {field: {'median': median(values), 'minimum': min(values), 'maximum': max(values)}
+                         for field, observed in measurements_for_mode.items()
+                         if (values := [value for value in observed if value is not None])}
+    result = {'rounds': args.rounds, 'scope': 'Frozen 351 resource and 381 technical shadow candidates',
+              'peak_memory': 'Process-reported RSS high-water mark, sampled Python peak as fallback',
+              'cold_definition': 'Fresh application cache; OS page cache and no acquisition network are shared',
+              'science_equal': ['disabled=cold=warm=relocation_and_documentation=force_assessment=added_original',
+                                'rule_increment=rule_full',
+                                'missing_original_full=missing_original_cold=missing_original_after_cache',
+                                'normalization_increment=normalization_full'],
+              'baseline_science_sha256': baseline, 'changed_use_policy_science_sha256': changed,
+              'policy_change': 'Require deposit_id for the technical use, in an isolated input overlay',
+              'withheld_original_sha256': withheld.stem,
+              'normalization_change': 'Report normalized ore mass in kt in an isolated code overlay',
+              'summary': summary}
+    (output / 'observation_performance.json').write_text(canonical(result) + '\n', encoding='utf-8')
+
+
 def run():
     parser=argparse.ArgumentParser()
     parser.add_argument('--label',default='phase22')
@@ -288,6 +466,8 @@ def run():
     parser.add_argument('--rscript',default=os.environ.get('AU_REE_RSCRIPT') or shutil.which('Rscript'))
     parser.add_argument('--current-suite',action='store_true')
     parser.add_argument('--method-expansion',action='store_true')
+    parser.add_argument('--observation-suite', action='store_true', help='Cold, warm, disabled and rule-change shadow benchmark')
+    parser.add_argument('--originals', help='SHA-named PDF directory for the observation benchmark')
     parser.add_argument('--resume',action='store_true',help='Reuse only completed identical-workload measurements; reject increments with prepopulated final caches')
     parser.add_argument('--snapshot-lock',default='results/phase22-2026-11-06/snapshot_lock.json')
     parser.add_argument('--baseline-lock',default='results/phase21-2026-11-05/snapshot_lock.json')
@@ -295,13 +475,19 @@ def run():
     parser.add_argument('--start',type=int,default=0)
     parser.add_argument('--runtime',help='Frozen source directory for before measurements')
     parser.add_argument('--resolution-only',action='store_true',help='Isolated same-database resolution diagnostic with SQL rows/peak memory')
-    parser.add_argument('--r-only',action='store_true',help='Cold/warm R-stage benchmark on the actual current cohort')
+    parser.add_argument('--r-only', action='store_true', help='Disabled/cold/warm/incremental R on a sealed interchange')
+    parser.add_argument('--r-benchmark-panel', action='append', default=[], help='Limit R benchmark to selected panels')
+    parser.add_argument('--r-benchmark-draws', type=int, help='Override draw count in isolated benchmark only')
     parser.add_argument('--run',default='work/phase5/latest.json')
     parser.add_argument('--skip-r',action='store_true')
     args=parser.parse_args()
     root=Path(__file__).resolve().parents[1]
     output=(root/args.out) if args.out else root/'work/phase21'/args.label
     output.mkdir(parents=True,exist_ok=True)
+    if args.observation_suite:
+        if not args.originals or not args.out:
+            parser.error('--observation-suite requires --originals and --out')
+        observation_suite(root, args, output.resolve());return
     if args.method_expansion:
         if not args.rscript:parser.error('--rscript required when not on PATH')
         method_expansion(root,args,output);return
@@ -314,37 +500,116 @@ def run():
         (output/'measurement.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf8')
         print(json.dumps(result));return
     if args.r_only:
-        from au_ree_v2.analysis import run_r,mcda_cache_contract
-        from au_ree_v2.store import digest,filehash
-        receipt=json.loads((root/args.run).read_text(encoding='utf8'));source=Path(receipt['output_dir'])
-        config=json.loads((source/'configuration.json').read_text(encoding='utf8'))['research']
-        panels={p:r['n'] for p,r in receipt['r_results'].items() if r['status']=='COMPLETED'}
-        interchange=output/'interchange';interchange.mkdir(exist_ok=True)
-        for p in panels:
-            (interchange/p).mkdir(exist_ok=True)
-            for name in ('matrix.csv','criteria.csv','weights.csv'):shutil.copy2(source/p/name,interchange/p/name)
-        shutil.copy2(source/'commercial_project_coverage.csv',interchange/'commercial_project_coverage.csv')
-        original={p:json.loads((source/p/'r_cache.json').read_text()) for p in panels};measurements=[]
-        expected=None;cache_root=(root/'work/cache/mcda').resolve()
+        from au_ree_v2.store import canonical, digest, filehash
+        from au_ree_v2.tabular import read_csv, write_csv
+        from statistics import median
+
+        receipt = json.loads((root / args.run).read_bytes())
+        source = Path(receipt['output_dir'])
+        config = json.loads((source / 'configuration.json').read_bytes())['research']
+        panels = {panel: record['n'] for panel, record in receipt['r_results'].items()
+                  if record['status'] == 'COMPLETED'}
+        if args.r_benchmark_panel:
+            panels = {panel: panels[panel] for panel in args.r_benchmark_panel}
+        if not panels or not config.get('mcda_cache'):
+            raise ValueError('R benchmark requires a completed cache-enabled interchange')
+        if args.r_benchmark_draws is not None:
+            config['monte_carlo']['reps'] = args.r_benchmark_draws
+        target = 'six_domain' if 'six_domain' in panels else next(iter(panels))
+        inputs = ('matrix.csv', 'criteria.csv', 'weights.csv')
+        benchmark_config = output / 'r_benchmark_inputs.json'
+        benchmark_config.write_text(canonical({'config': config, 'panels': panels}) + '\n', encoding='utf-8')
+        runner = """
+import json, sys
+from pathlib import Path
+from au_ree_v2.analysis import run_r
+root, out, contract, executable, mode = sys.argv[1:]
+settings = json.loads(Path(contract).read_bytes())
+run_r(root, out, {'panels': settings['panels']}, settings['config'], executable or None, cache_mode=mode)
+"""
+        measurements = []
+        signatures = {}
+
+        def execute(stage, area, cache, *, change_weights=False, disable=False):
+            interchange = area / stage
+            interchange.mkdir(parents=True)
+            # The cohort stage considers sibling interchange even for panels that
+            # are not themselves submitted to R.
+            for folder in sorted(p for p in source.iterdir() if p.is_dir()):
+                paths = [folder / name for name in inputs]
+                if not all(path.is_file() for path in paths):
+                    continue
+                destination = interchange / folder.name
+                destination.mkdir()
+                for path in paths:
+                    expected = receipt['output_hashes'].get(path.relative_to(source).as_posix())
+                    if expected is None or filehash(path) != expected:
+                        raise ValueError(f'R benchmark interchange is not receipt-bound: {path}')
+                    shutil.copyfile(path, destination / path.name)
+            coverage = source / 'commercial_project_coverage.csv'
+            if coverage.is_file():
+                if filehash(coverage) != receipt['output_hashes'].get(coverage.name):
+                    raise ValueError('R benchmark commercial evidence differs from its receipt')
+                shutil.copyfile(coverage, interchange / coverage.name)
+            if change_weights:
+                weights_path = interchange / target / 'weights.csv'
+                weights = read_csv(weights_path)
+                scenario = weights[0]['scenario']
+                weighted = [row for row in weights if row['scenario'] == scenario and float(row['weight']) > 0]
+                if len(weighted) < 2:
+                    raise ValueError('R weight intervention requires at least two nonzero criteria')
+                first, second = weighted[:2]
+                delta = min(float(second['weight']) / 2, 0.01)
+                first['weight'] = float(first['weight']) + delta
+                second['weight'] = float(second['weight']) - delta
+                write_csv(weights_path, weights, list(weights[0]))
+            command = [sys.executable, '-c', runner, str(root), str(interchange), str(benchmark_config),
+                       args.rscript or '', 'off' if disable else 'use']
+            execution = measure_process(command, area / f'{stage}.log', root,
+                                        {**os.environ, 'AU_REE_MCDA_CACHE': str(cache)})
+            if execution['exit_code']:
+                raise RuntimeError(f'R benchmark failed, see {area / (stage + ".log")}')
+            hashes = {p.relative_to(interchange).as_posix(): filehash(p)
+                      for p in sorted(interchange.glob('*/*.csv'))}
+            group = 'changed' if change_weights else 'baseline'
+            expected = signatures.setdefault(group, hashes)
+            if expected != hashes:
+                raise ValueError(f'R {stage} benchmark differs from its complete rebuild')
+            receipts = [json.loads(p.read_bytes()) for p in sorted(interchange.glob('*/r*cache.json'))]
+            stages = {r['status'] for r in receipts}
+            return {'mode': stage, 'science_sha256': digest(hashes), 'cache_bytes': sum(
+                        p.stat().st_size for p in cache.rglob('*') if p.is_file()),
+                    'stages': {status: sum(r['status'] == status for r in receipts) for status in stages},
+                    'core_seconds': sum(r['elapsed_seconds'] for r in receipts if r['contract']['stage'] != 'cohort'),
+                    'cohort_seconds': sum(r['elapsed_seconds'] for r in receipts if r['contract']['stage'] == 'cohort'),
+                    **execution}
+
         for iteration in range(args.rounds):
-            for p,metadata in original.items():
-                contract=mcda_cache_contract(root,interchange,p,config,metadata['contract']['R'])
-                if digest(contract)!=metadata['key']:raise ValueError('R benchmark differs from sealed inputs')
-                cache=cache_root/metadata['key'];destination=output/'cold-cache-backups'/str(iteration)/metadata['key']
-                if cache.is_dir():
-                    if not cache.resolve().is_relative_to(cache_root) or not destination.resolve().is_relative_to(output.resolve()):raise ValueError('Unsafe cache archive path')
-                    destination.parent.mkdir(parents=True,exist_ok=True);cache.rename(destination)
-            for mode in ('cold','warm','unrelated_metadata_increment'):
-                if mode=='unrelated_metadata_increment':(interchange/'unrelated-source-metadata.json').write_text('{"not_an_R_input":true}')
-                started=time.perf_counter();result=run_r(root,interchange,dict(panels=panels),config,args.rscript)
-                signature=digest({str(p.relative_to(interchange)):filehash(p) for p in sorted(interchange.glob('*/*.csv'))})
-                if expected is None:expected=signature
-                if expected!=signature:raise ValueError('R cache changed scientific output bytes')
-                measurements.append(dict(iteration=iteration,mode=mode,seconds=time.perf_counter()-started,
-                    computed=sum(r.get('cache_status')=='COMPUTED_AND_CACHED' for r in result.values()),
-                    reused=sum(r.get('cache_status')=='REUSED_VERIFIED' for r in result.values()),scientific_sha256=signature))
-                (output/'r_measurements.json').write_text(json.dumps(measurements,indent=2),encoding='utf8')
-                print(json.dumps(measurements[-1]),flush=True)
+            area = output / f'r-round-{iteration}'
+            cache = area / 'cache'
+            for stage, change, disable in (
+                ('disabled', False, True), ('cold', False, False), ('warm', False, False),
+                ('weight_full', True, True), ('weight_increment', True, False),
+            ):
+                row = execute(stage, area, cache, change_weights=change, disable=disable)
+                measurements.append(row)
+                (output / 'r_measurements.json').write_text(canonical(measurements) + '\n', encoding='utf8')
+                print(canonical({'stage': stage, 'seconds': row['seconds'], 'stages': row['stages']}), flush=True)
+        if signatures['baseline'] == signatures['changed']:
+            raise ValueError('R weight intervention did not alter the interchange')
+        summary = {
+            mode: {field: {'minimum': min(values), 'median': median(values), 'maximum': max(values)}
+                   for field in ('seconds', 'core_seconds', 'cohort_seconds', 'sampled_combined_working_set_bytes',
+                                 'r_peak_working_set_bytes', 'cache_bytes')
+                   if (values := [row[field] for row in measurements if row['mode'] == mode and row.get(field) is not None])}
+            for mode in sorted({row['mode'] for row in measurements})
+        }
+        (output / 'r_performance.json').write_text(canonical({
+            'rounds': args.rounds, 'panels': panels, 'draws': config['monte_carlo']['reps'],
+            'weight_intervention_panel': target, 'summary': summary,
+            'science_equal': ['disabled=cold=warm', 'weight_full=weight_increment'],
+            'scope': 'R stage only on frozen matrix, criteria, and weights',
+        }) + '\n', encoding='utf-8')
         return
     if args.resolution_only:
         import sqlite3,ctypes

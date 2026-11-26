@@ -6,7 +6,8 @@ from pathlib import Path
 import re
 from time import perf_counter
 
-from au_ree_v2.document_processing import DocumentUnavailable, PdfDocumentCache
+from au_ree_v2.derived_cache import DerivedCache
+from au_ree_v2.document_processing import PdfDocumentCache
 from au_ree_v2.nlp import PageIndex
 from au_ree_v2.store import digest, filehash
 
@@ -17,7 +18,7 @@ def project_alias(name):
                     r"Project\b|Mineral Sands)", name, maxsplit=1, flags=re.I)[0].strip()
 
 
-def replay(historical, assets, output, *, allow_incomplete=False):
+def replay(historical, assets, output, *, allow_incomplete=False, cache=None):
     historical, assets, output = map(Path, (historical, assets, output))
     if any(output.resolve().is_relative_to(path.resolve()) for path in (historical, assets)):
         raise ValueError("Choose a separate experiment output directory")
@@ -27,27 +28,17 @@ def replay(historical, assets, output, *, allow_incomplete=False):
     frame = [doc for doc in split["documents"] if doc["split"] == "holdout"]
     if not frame or len(frame) != len({doc["sha256"] for doc in frame}):
         raise ValueError("Historical holdout documents must have distinct source fingerprints")
-    missing, included = [], []
-
-    def pages(documents):
-        for source in frame:
-            sha = source["sha256"]
-            try:
-                document = documents.open(sha)
-            except DocumentUnavailable as exc:
-                if not allow_incomplete:
-                    raise
-                missing.append({"sha256": sha, "reason": str(exc)})
-                continue
-            if len(document) != source["pages"]:
-                raise ValueError(f"Physical page count differs from the frozen edition: {sha}")
-            included.append(source)
-            for page in range(1, len(document) + 1):
-                yield sha, page, document.text(page, positioned=True)
-
-    with PdfDocumentCache(assets, max_documents=1) as documents:
-        index = PageIndex(pages(documents))
+    expected_pages = {source["sha256"]: source["pages"] for source in frame}
+    unsupported = {}
+    with PdfDocumentCache(assets, max_documents=1, cache=cache) as documents:
+        index = PageIndex.from_documents(
+            documents, expected_pages, expected_pages=expected_pages,
+            missing=unsupported if allow_incomplete else None,
+        )
         document_counts = dict(documents.counts)
+    missing = [{"sha256": source["sha256"], "reason": unsupported[source["sha256"]]}
+               for source in frame if source["sha256"] in unsupported]
+    included = [source for source in frame if source["sha256"] not in unsupported]
     if not index.page_keys:
         raise ValueError("No verified historical holdout pages")
 
@@ -80,6 +71,10 @@ def replay(historical, assets, output, *, allow_incomplete=False):
     }
     for filename, value in (("split.json", reduced_split), ("predictions.json", reranked), ("replay.json", receipt)):
         (output / filename).write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if cache is not None:
+        (output / "cache_receipt.json").write_text(
+            json.dumps(cache.receipt(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8",
+        )
     return receipt
 
 
@@ -88,8 +83,18 @@ def main():
     for option in ("historical", "assets", "out"):
         parser.add_argument(f"--{option}", type=Path, required=True)
     parser.add_argument("--allow-incomplete", action="store_true")
+    parser.add_argument("--cache-directory", type=Path)
+    parser.add_argument("--cache-mode", choices=("use", "off", "refresh"), default="use")
     args = parser.parse_args()
-    replay(args.historical, args.assets, args.out, allow_incomplete=args.allow_incomplete)
+    if args.cache_directory is not None:
+        cache_path = args.cache_directory.resolve()
+        protected = [path.resolve() for path in (args.historical, args.assets, args.out)]
+        if any(cache_path.is_relative_to(path) or path.is_relative_to(cache_path) for path in protected):
+            parser.error("Choose a cache separate from historical inputs, source assets and output")
+    if args.cache_directory is None and args.cache_mode == "refresh":
+        parser.error("Refresh requires --cache-directory")
+    cache = DerivedCache(args.cache_directory, mode=args.cache_mode) if args.cache_directory is not None else None
+    replay(args.historical, args.assets, args.out, allow_incomplete=args.allow_incomplete, cache=cache)
 
 
 if __name__ == "__main__":

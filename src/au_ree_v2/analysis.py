@@ -2,12 +2,17 @@
 import csv
 import json
 import math
+import os
 import shutil
 import subprocess
 from pathlib import Path
+from tempfile import TemporaryDirectory
+from time import perf_counter
+from uuid import uuid4
+from .derived_cache import exclusive_lock
 from .disclosure_analysis import prepare_disclosure_analysis
 from .mcda import interval_mcda, score
-from .store import canonical
+from .store import canonical, digest, filehash
 
 from .tabular import read_csv, write_csv
 
@@ -343,63 +348,313 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
     return {'coverage':coverage,'traces':traces,'matrices':matrices,'panels':{**{p:len(v) for p,v in matrices.items()},**case_panels},
             'trace_values':len(traces),'government_screen_n':len(screen_rows)}
 
-def mcda_cache_contract(root,out,panel,config,runtime,stage=None):
-    """Actual R dependencies, including cross-panel cohort comparisons."""
-    from .store import filehash
-    out=Path(out);inputs={}
-    folders=sorted(p for p in out.iterdir() if p.is_dir()) if config.get('research_analysis_version') and stage!='core' else [out/panel]
+_R_INPUTS = ("matrix.csv", "criteria.csv", "weights.csv")
+_R_CORE_OUTPUTS = frozenset({
+    "ranking.csv", "weight_uncertainty.csv", "rounding_uncertainty.csv", "leave_out.csv",
+    "method_comparison.csv", "function_sensitivity.csv", "cohort_sensitivity.csv",
+    "ahp_audit.csv", "partial_order.csv", "runtime.csv",
+})
+_R_CONDITIONAL_OUTPUTS = frozenset({
+    "aim_c_host_type_description.csv", "aim_c_stage_rank_association.csv",
+    "commercial_saw_crossings.csv", "commercial_weight_sensitivity.csv",
+    "criterion_contributions.csv", "evidence_cohort_sensitivity.csv",
+    "shared_draw_contract.csv", "shared_draw_ranks.csv", "uncertainty_by_method.csv",
+})
+_R_COHORT_OUTPUT = "evidence_cohort_sensitivity.csv"
+_R_CACHE_MODES = frozenset({"use", "off", "refresh"})
+
+
+def mcda_cache_contract(root, out, panel, config, runtime, stage=None):
+    """Identify the complete panel or sibling-panel input set read by R."""
+    out = Path(out)
+    cohort = config.get("research_analysis_version") and stage != "core"
+    folders = sorted(p for p in out.iterdir() if p.is_dir()) if cohort else [out / panel]
+    inputs = {}
     for folder in folders:
-        paths=[folder/name for name in ('matrix.csv','criteria.csv','weights.csv')]
-        if all(p.is_file() for p in paths):inputs.update({p.relative_to(out).as_posix():filehash(p) for p in paths})
-    coverage=out/'commercial_project_coverage.csv'
-    with (out/panel/'criteria.csv').open(encoding='utf8') as stream:codes={r['code'] for r in csv.DictReader(stream)}
-    if coverage.is_file() and (stage is None or stage=='core' and codes=={'R1','C1'}):inputs[coverage.name]=filehash(coverage)
-    return dict(version='mcda-input-cache-v1',panel=panel,inputs=inputs,R=runtime,vanilla=True,
-        programs={name:filehash(Path(root)/'R'/name) for name in ('run_mcda.R','methods.R')},
-        monte_carlo=config['monte_carlo'],threshold=config['promethee_threshold'],analysis=config.get('research_analysis_version'),
-        **(dict(stage=stage,sampling=config.get('shared_method_draws')) if stage else {}))
+        paths = [folder / name for name in _R_INPUTS]
+        if all(path.is_file() for path in paths):
+            inputs.update({path.relative_to(out).as_posix(): filehash(path) for path in paths})
+    target_inputs = [f"{panel}/{name}" for name in _R_INPUTS]
+    if any(path not in inputs for path in target_inputs):
+        raise ValueError(f"Incomplete MCDA interchange for {panel}")
+    codes = {row["code"] for row in read_csv(out / panel / "criteria.csv")}
+    mc = config["monte_carlo"]
+    coverage = out / "commercial_project_coverage.csv"
+    if stage != "cohort" and mc.get("method_version") == "entity-keyed-rng-v2" and codes == {"R1", "C1"}:
+        inputs[coverage.name] = filehash(coverage)
+    monte_carlo = {"method_version": mc.get("method_version")}
+    if stage != "cohort":
+        monte_carlo.update({key: mc[key] for key in ("seed", "reps", "dirichlet_concentration")})
+    return {
+        "version": "mcda-input-cache-v2", "panel": panel, "inputs": inputs, "R": runtime,
+        "vanilla": True, "programs": {name: filehash(Path(root) / "R" / name)
+                                      for name in ("run_mcda.R", "methods.R")},
+        "monte_carlo": monte_carlo,
+        "threshold": config["promethee_threshold"], "analysis": config.get("research_analysis_version"),
+        "sampling": config.get("shared_method_draws"), "stage": stage,
+    }
 
 
-def cached_r(root,folder,command,contract):
-    """Reuse only complete, SHA-checked deterministic R outputs; never input CSVs."""
-    from .store import digest,filehash
-    import uuid
-    folder=Path(folder);key=digest(contract)
-    import os
-    cache=Path(os.environ.get('AU_REE_MCDA_CACHE',str(Path(root)/'work/cache/mcda')))/key
-    receipt=cache/'receipt.json';hit=False;metadata=None;stage=contract.get('stage')
-    sentinel='evidence_cohort_sensitivity.csv' if stage=='cohort' else 'ranking.csv'
-    if receipt.is_file():
+def _r_runtime(executable):
+    """Fingerprint the selected runtime without keying on its installation path."""
+    probe = """
+    info <- sessionInfo()
+    cat(R.home(), info$BLAS, info$LAPACK, sep="\\n")
+    cat("\\n---R-RUNTIME---\\n")
+    dput(list(version=R.version, locale=Sys.getlocale(), external=extSoftVersion()[names(extSoftVersion()) != "BLAS"],
+      matprod=getOption("matprod"), lapack=La_version(),
+      stats=as.character(packageVersion("stats")), utils=as.character(packageVersion("utils"))))
+    """
+    result = subprocess.run([str(executable), "--vanilla", "-e", probe],
+                            capture_output=True, text=True, timeout=30)
+    files, _, session = result.stdout.partition("\n---R-RUNTIME---\n")
+    if result.returncode or not session.strip():
+        raise RuntimeError("R runtime identification failed: " + result.stderr[-2000:])
+    home, *libraries = files.strip().splitlines()
+    runtime_files = {
+        "interpreter": Path(home) / "bin/exec/R",
+        "libR": Path(home) / "lib/libR.so",
+        "libR_macos": Path(home) / "lib/libR.dylib",
+        "libR_windows": Path(executable).parent / "R.dll",
+        **{f"math_library_{i}": Path(name) for i, name in enumerate(libraries)},
+    }
+    return {
+        "session": session.strip(), "executable_sha256": filehash(executable),
+        "runtime_sha256": {name: filehash(path) for name, path in runtime_files.items() if path.is_file()},
+    }
+
+
+def _mcda_cache_root(root):
+    return Path(os.environ.get("AU_REE_MCDA_CACHE", str(Path(root) / "work/cache/mcda")))
+
+
+def _r_output_contract(contract):
+    """R writes a known bundle, including conditional reports for relevant panels."""
+    if contract["stage"] == "cohort":
+        return {_R_COHORT_OUTPUT}, {_R_COHORT_OUTPUT}
+    required = set(_R_CORE_OUTPUTS)
+    if contract["analysis"]:
+        required.add("criterion_contributions.csv")
+    if contract["sampling"]:
+        required.update({"uncertainty_by_method.csv", "shared_draw_contract.csv"})
+        if contract["panel"] == "six_domain":
+            required.add("shared_draw_ranks.csv")
+    if "commercial_project_coverage.csv" in contract["inputs"]:
+        required.add("commercial_weight_sensitivity.csv")
+    allowed = required | _R_CONDITIONAL_OUTPUTS
+    if contract["stage"] == "core":
+        allowed.remove(_R_COHORT_OUTPUT)
+    return required, allowed
+
+
+def _read_r_bundle(cache, contract):
+    if not cache.exists():
+        return None, "MISSING_CACHE_ENTRY"
+    try:
+        metadata = json.loads((cache / "receipt.json").read_bytes())
+        if (metadata["format"] != "mcda-output-bundle-v2" or metadata["status"] != "COMPLETE"
+                or metadata["contract"] != contract):
+            return None, "INCOMPATIBLE_CACHE_CONTRACT"
+        outputs = metadata["outputs"]
+        required, allowed = _r_output_contract(contract)
+        if not isinstance(outputs, dict) or not required <= outputs.keys() <= allowed:
+            return None, "INCOMPLETE_CACHE_OUTPUTS"
+        if metadata["output_sha256"] != digest(outputs):
+            return None, "INVALID_CACHE_OUTPUT_MANIFEST"
+        if any(filehash(cache / name) != sha for name, sha in outputs.items()):
+            return None, "CACHE_OUTPUT_HASH_MISMATCH"
+    except (OSError, ValueError, KeyError, TypeError):
+        return None, "UNREADABLE_CACHE_RECEIPT_OR_OUTPUT"
+    return metadata, "VERIFIED_CACHE_ENTRY"
+
+
+def _lock_r_bundle(cache_root, key):
+    return exclusive_lock(cache_root / "locks" / key)
+
+def _save_r_receipt(folder, name, receipt):
+    temporary = folder / f".{name}.{uuid4().hex}.tmp"
+    try:
+        temporary.write_text(canonical(receipt) + "\n", encoding="utf8")
+        temporary.replace(folder / name)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def _copy_r_outputs(source, folder, outputs, allowed):
+    # Remove a conditional output from a prior run only after a complete
+    # successful bundle supplies the new scientific result.
+    for name in sorted(outputs):
+        temporary = folder / f".{name}.{uuid4().hex}.tmp"
         try:
-            metadata=json.loads(receipt.read_text(encoding='utf8'))
-            hit=(metadata['contract']==contract and sentinel in metadata['outputs'] and
-                 all(Path(name).name==name and filehash(cache/name)==sha for name,sha in metadata['outputs'].items()))
-        except (KeyError,ValueError,OSError):hit=False
-    if hit:
-        for name in metadata['outputs']:shutil.copy2(cache/name,folder/name)
-        (folder/('R_cohort.log' if stage=='cohort' else 'R.log')).write_text('REUSED_SHA_VERIFIED_R_OUTPUTS; no Monte Carlo rerun; generating runtime in runtime.csv\n',encoding='utf8')
-    else:
-        result=subprocess.run(command,capture_output=True,text=True,timeout=300)
-        (folder/('R_cohort.log' if stage=='cohort' else 'R.log')).write_text(result.stdout+'\n'+result.stderr,encoding='utf8')
-        if result.returncode:raise RuntimeError('R MCDA failed: '+result.stderr[-2000:])
-        outputs={p.name:filehash(p) for p in folder.glob('*.csv') if p.name not in ('matrix.csv','criteria.csv','weights.csv')}
-        required={'ranking.csv','weight_uncertainty.csv','rounding_uncertainty.csv','leave_out.csv',
-                  'method_comparison.csv','function_sensitivity.csv','cohort_sensitivity.csv','ahp_audit.csv'}
-        if stage=='cohort':
-            outputs={k:v for k,v in outputs.items() if k=='evidence_cohort_sensitivity.csv'}
-            required={'evidence_cohort_sensitivity.csv'}
-        elif stage=='core':
-            outputs.pop('evidence_cohort_sensitivity.csv',None)
-            if contract.get('sampling'):required|={'uncertainty_by_method.csv','shared_draw_contract.csv'}
-        if not required<=outputs.keys():raise RuntimeError('R output contract incomplete')
-        cache.mkdir(parents=True,exist_ok=True)
-        for name in outputs:
-            temporary=cache/(name+'.'+uuid.uuid4().hex+'.tmp');shutil.copy2(folder/name,temporary);temporary.replace(cache/name)
-        metadata=dict(contract=contract,outputs=outputs)
-        temporary=cache/('receipt.'+uuid.uuid4().hex+'.tmp');temporary.write_text(canonical(metadata)+'\n',encoding='utf8');temporary.replace(receipt)
-    status=dict(key=key,status='REUSED_VERIFIED' if hit else 'COMPUTED_AND_CACHED',contract=contract)
-    (folder/('r_cohort_cache.json' if stage=='cohort' else 'r_cache.json')).write_text(canonical(status)+'\n',encoding='utf8')
-    return status['status']
+            shutil.copyfile(source / name, temporary)
+            if filehash(temporary) != outputs[name]:
+                raise RuntimeError("MCDA output changed while copying: " + name)
+            temporary.replace(folder / name)
+        finally:
+            temporary.unlink(missing_ok=True)
+    for name in allowed - outputs.keys():
+        (folder / name).unlink(missing_ok=True)
+
+
+def _run_r_bundle(folder, command, contract, cache=None, old=None, reason=None):
+    """Run in a fresh interchange to prevent a stale CSV satisfying the contract."""
+    required, allowed = _r_output_contract(contract)
+    stage = contract["stage"]
+    log = folder / ("R_cohort.log" if stage == "cohort" else "R.log")
+    with TemporaryDirectory(prefix="au-ree-mcda-") as tmp:
+        staged = Path(tmp) / "interchange"
+        for name, sha in contract["inputs"].items():
+            target = staged / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(folder.parent / name, target)
+            if filehash(target) != sha:
+                raise RuntimeError("MCDA input changed while preparing the run: " + name)
+        staged_panel = staged / folder.name
+        isolated = list(command)
+        script_index = isolated.index("--vanilla") + 1
+        script_dir = Path(isolated[script_index]).parent
+        staged_scripts = Path(tmp) / "R"
+        staged_scripts.mkdir()
+        for name, sha in contract["programs"].items():
+            program = staged_scripts / name
+            shutil.copyfile(script_dir / name, program)
+            if filehash(program) != sha:
+                raise RuntimeError("MCDA program changed while preparing the run: " + name)
+        isolated[script_index:script_index + 2] = [str(staged_scripts / "run_mcda.R"), str(staged_panel)]
+        result = subprocess.run(isolated, capture_output=True, text=True, timeout=300)
+        log.write_text(result.stdout + "\n" + result.stderr, encoding="utf8")
+        if result.returncode:
+            raise RuntimeError("R MCDA failed: " + result.stderr[-2000:])
+        outputs = {p.name: filehash(p) for p in staged_panel.glob("*.csv") if p.name in allowed}
+        if not required <= outputs.keys():
+            raise RuntimeError("R output contract incomplete: " + ", ".join(sorted(required - outputs.keys())))
+        metadata = {"format": "mcda-output-bundle-v2", "contract": contract, "outputs": outputs,
+                    "output_sha256": digest(outputs), "status": "COMPLETE", "producer": "RSCRIPT_VANILLA"}
+        if old is not None and metadata["output_sha256"] != old["output_sha256"]:
+            raise RuntimeError("Forced MCDA rebuild disagrees with a verified bundle for the same inputs")
+        if cache is not None and old is None:
+            # Keep completed bundles immutable and publish a complete directory
+            # under the same key lock used by readers.
+            with TemporaryDirectory(prefix=".publishing-", dir=cache.parent) as pending_dir:
+                pending = Path(pending_dir) / "bundle"
+                pending.mkdir()
+                for name in outputs:
+                    shutil.copyfile(staged_panel / name, pending / name)
+                _save_r_receipt(pending, "receipt.json", metadata)
+                if cache.exists():
+                    quarantine = cache.parent / "quarantine" / f"{cache.name}-{uuid4().hex}"
+                    quarantine.parent.mkdir(parents=True, exist_ok=True)
+                    cache.replace(quarantine)
+                    _save_r_receipt(quarantine, "invalid.json", {"reason": reason, "key": cache.name})
+                pending.replace(cache)
+        _copy_r_outputs(staged_panel, folder, outputs, allowed)
+        return metadata
+
+
+def cached_r(root, folder, command, contract, *, mode="use"):
+    """Reuse one whole verified panel bundle or compute it under a per-key lock."""
+    folder = Path(folder)
+    key = digest(contract)
+    stage = contract["stage"]
+    status_file = "r_cohort_cache.json" if stage == "cohort" else "r_cache.json"
+    log = folder / ("R_cohort.log" if stage == "cohort" else "R.log")
+    status = {"key": key, "contract": contract, "mode": mode}
+    started = perf_counter()
+    try:
+        if mode == "off":
+            status.update(status="COMPUTED_WITHOUT_CACHE", reason="CACHE_DISABLED")
+            metadata = _run_r_bundle(folder, command, contract)
+        else:
+            cache_root = _mcda_cache_root(root)
+            cache = cache_root / key
+            with _lock_r_bundle(cache_root, key):
+                existing, reason = _read_r_bundle(cache, contract)
+                if existing is not None and mode == "use":
+                    _copy_r_outputs(cache, folder, existing["outputs"], _r_output_contract(contract)[1])
+                    log.write_text("REUSED_SHA_VERIFIED_R_OUTPUTS\n", encoding="utf8")
+                    metadata = existing
+                    status.update(status="REUSED_VERIFIED", reason=reason)
+                else:
+                    status.update(status="COMPUTED_AND_CACHED",
+                                  reason="FORCED_REBUILD" if mode == "refresh" else reason,
+                                  prior_entry=reason)
+                    metadata = _run_r_bundle(folder, command, contract, cache, existing, reason)
+    except Exception as exc:
+        status.update(status="FAILED", error=type(exc).__name__, elapsed_seconds=perf_counter() - started)
+        _save_r_receipt(folder, status_file, status)
+        raise
+    status.update(output_sha256=metadata["output_sha256"], elapsed_seconds=perf_counter() - started)
+    _save_r_receipt(folder, status_file, status)
+    return status["status"]
+
+
+def _mcda_plan_mode(out, panel, stage, config, mode, forced):
+    if mode == "off" or not config.get("mcda_cache"):
+        return "off"
+    if mode == "refresh" or panel in forced:
+        return "refresh"
+    # Cohort comparisons, including the historical unsplit R command, may use
+    # sibling interchange files as their broader reference.
+    if stage != "core" and config.get("research_analysis_version") and any(
+        all((Path(out) / source / name).is_file() for name in _R_INPUTS) for source in forced
+    ):
+        return "refresh"
+    return "use"
+
+
+def _validate_mcda_mode(prepared, cache_mode, force_panels):
+    if cache_mode not in _R_CACHE_MODES:
+        raise ValueError(f"Unknown MCDA cache mode: {cache_mode}")
+    forced = set(force_panels)
+    unknown = forced - prepared["panels"].keys()
+    if unknown:
+        raise ValueError("Unknown MCDA panels: " + ", ".join(sorted(unknown)))
+    return forced
+
+
+def _r_executable(rscript):
+    executable = shutil.which(rscript or "Rscript")
+    if not executable:
+        raise RuntimeError("Rscript is required. Supply --rscript or explicitly use --skip-r for coverage only.")
+    return executable
+
+
+def plan_mcda(root, out, prepared, config, rscript=None, *, cache_mode="use", force_panels=(), previous=None):
+    """Inspect existing interchange and receipts without creating cache or output files."""
+    forced = _validate_mcda_mode(prepared, cache_mode, force_panels)
+    runtime = _r_runtime(_r_executable(rscript))
+    split = config.get("mcda_dependency_version") == "panel-core-and-cohort-v2"
+    items = {}
+    for panel, n in prepared["panels"].items():
+        if n < 2:
+            items[panel] = {"action": "INSUFFICIENT_SAMPLE", "n": n}
+            continue
+        stages = ("core", "cohort") if split and config.get("research_analysis_version") else ("core",) if split else (None,)
+        for stage in stages:
+            name = panel + "/" + (stage or "all")
+            contract = mcda_cache_contract(root, out, panel, config, runtime, stage)
+            key = digest(contract)
+            mode = _mcda_plan_mode(out, panel, stage, config, cache_mode, forced)
+            if mode == "off":
+                action, reason = "COMPUTE", "CACHE_DISABLED"
+            elif mode == "refresh":
+                action, reason = "COMPUTE", "FORCED_REBUILD"
+            else:
+                receipt, reason = _read_r_bundle(_mcda_cache_root(root) / key, contract)
+                action = "REUSE" if receipt else "COMPUTE"
+            old = (previous or {}).get("stages", {}).get(name, {}).get("contract")
+            changes = {}
+            if old:
+                changes = {k: {"before": old.get(k), "after": value}
+                           for k, value in contract.items() if value != old.get(k) and k != "inputs"}
+                files = old["inputs"].keys() | contract["inputs"].keys()
+                changed = {path: {"before": old["inputs"].get(path), "after": contract["inputs"].get(path)}
+                           for path in sorted(files) if old["inputs"].get(path) != contract["inputs"].get(path)}
+                if changed:
+                    changes["inputs"] = changed
+            items[name] = {"action": action, "reason": reason, "key": key, "contract": contract,
+                           "changed_dependencies": changes}
+    return {"status": "MCDA_PLAN", "stages": items}
 
 
 def apply_census_cohort(out, prepared, selected, canonical_ids):
@@ -428,16 +683,11 @@ def apply_census_cohort(out, prepared, selected, canonical_ids):
     write_csv(Path(out)/'mcda_census_gate.csv',panel_audit,['panel','project_id','canonical_project_id','included'])
 
 
-def run_r(root, out, prepared, config, rscript=None):
-    executable = rscript or shutil.which('Rscript')
-    if not executable:
-        raise RuntimeError('Rscript is required. Supply --rscript or explicitly use --skip-r for coverage only.')
-    results={};runtime=None
-    if config.get('mcda_cache'):
-        version=subprocess.run([str(executable),'--version'],capture_output=True,text=True,timeout=30)
-        if version.returncode:raise RuntimeError('R runtime identification failed')
-        import platform
-        runtime=dict(version=version.stdout+version.stderr,executable=str(Path(executable).resolve()),platform=platform.platform())
+def run_r(root, out, prepared, config, rscript=None, *, cache_mode="use", force_panels=()):
+    executable = _r_executable(rscript)
+    forced = _validate_mcda_mode(prepared, cache_mode, force_panels)
+    results = {}
+    runtime = _r_runtime(executable) if config.get("mcda_cache") else None
     for panel,n in prepared['panels'].items():
         if n<2:
             results[panel]={'status':'INSUFFICIENT_SAMPLE','n':n};continue
@@ -459,7 +709,10 @@ def run_r(root, out, prepared, config, rscript=None):
         cache_status=None
         if config.get('mcda_cache'):
             command.insert(1,'--vanilla')
-            cache_status=cached_r(root,folder,command,mcda_cache_contract(root,out,panel,config,runtime,'core' if split else None))
+            stage = 'core' if split else None
+            mode = _mcda_plan_mode(out, panel, stage, config, cache_mode, forced)
+            cache_status = cached_r(root, folder, command, mcda_cache_contract(root, out, panel, config, runtime, stage),
+                                    mode=mode)
         else:
             result=subprocess.run(command,capture_output=True,text=True,timeout=300)
             (folder/'R.log').write_text(result.stdout+'\n'+result.stderr,encoding='utf-8')
@@ -475,8 +728,9 @@ def run_r(root, out, prepared, config, rscript=None):
         if split and config.get('research_analysis_version'):
             peer_command=[*command[:-1],'cohort']
             if config.get('mcda_cache'):
-                results[panel]['cohort_cache_status']=cached_r(root,folder,peer_command,
-                    mcda_cache_contract(root,out,panel,config,runtime,'cohort'))
+                mode = _mcda_plan_mode(out, panel, 'cohort', config, cache_mode, forced)
+                results[panel]['cohort_cache_status'] = cached_r(root, folder, peer_command,
+                    mcda_cache_contract(root, out, panel, config, runtime, 'cohort'), mode=mode)
             else:
                 peer=subprocess.run(peer_command,capture_output=True,text=True,timeout=300)
                 (folder/'R_cohort.log').write_text(peer.stdout+'\n'+peer.stderr,encoding='utf8')
