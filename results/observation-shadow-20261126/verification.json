@@ -1,0 +1,54 @@
+{
+  "additional_source_corroboration_rechecked": [
+    {
+      "candidate_id": "71187430eb849ed7a0e3a4e51dce29838d0b7f4d510048603db3963e2eb74550",
+      "column": 3,
+      "physical_page": 7,
+      "quote": "230",
+      "row": 11,
+      "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+      "table_index": 0
+    },
+    {
+      "candidate_id": "d270c7983fc3f2ee139284ce071e18cae4525f751f6a46a45ad21c19968e1af6",
+      "column": 4,
+      "physical_page": 7,
+      "quote": "1178",
+      "row": 11,
+      "source_sha256": "6fc10fc0475c5572ae75a4b36099526c8ecea7ecfe790f07a80e495487fbad7e",
+      "table_index": 0
+    }
+  ],
+  "baseline_commit": "d993ebd5bcbe8915e98d469ad91d6646f04ff3ab",
+  "byte_identical_shadow_replay": {
+    "comparison.json": "64a928b38685d012e1e6cd2bbc5183418cf181380194d8f463c965f50448d00c",
+    "decisions.jsonl": "b32a763cc7090449cc962b57527582ff51690991b2dc2d92dc42435bd2d5d35f",
+    "relationship_candidates.jsonl": "b40488a17645be651b245ceb9ef362459aad663955a02b5ffe4bf46e472fa68e"
+  },
+  "code_freeze": "e5b06c7",
+  "formal_opt_in_rebuild": {
+    "status": "RUNNING_AT_LOCAL_SHADOW_VALIDATION"
+  },
+  "frozen_formal_input_run": "20261121T180616-f9542b39",
+  "historical_and_formal_paths_equal": [
+    "R",
+    "config/research.json",
+    "config/eligibility_compatibility.json",
+    "results/ree-project-census",
+    "results/ontology-gain-20261126",
+    "results/ontology-portfolio-20261126"
+  ],
+  "preregistered_split": "1c49316",
+  "replay_seconds_non_scientific": [
+    134.865,
+    131.689
+  ],
+  "review_package_sha256": {
+    "review_evaluation.json": "fda9e703fec40f05aeace16341b74488b6b4a3f327b84bf01c0b2d69d65080b1",
+    "review_packet_manifest.json": "2c2c0dd5da1b96ba485f80d9715f2d454b80bf449afe22f27abbd8d3038c3651",
+    "review_pages.jsonl": "6de42a4060a034f14e187d2f47b45a927ab40850e127dc9cdf0603dfea10452c",
+    "review_reference_template.json": "8135132eeed2e7963dd2543b3a91a92161ea4206ed502723001a01104fbed277",
+    "review_split.json": "0826fd86db8aec6bbde975fd1e96e04b6c59b11632688442b60add6861fa0be6"
+  },
+  "tests_passed": 134
+}

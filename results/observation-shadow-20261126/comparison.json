@@ -1,0 +1,855 @@
+{
+  "automatic_resource_reproduction": {
+    "automatically_recovered_ids": [
+      "057865260b26aa7bd07725cf3df8c74de42950cced80cb27f9c8b19ccb5d6d6a",
+      "0722cc1c15830bf5fe19b7a473a6fba11d03bc9b3c3161eacedf49ee59b57034",
+      "51808312a9c8bd4ae3ebf11d53fcc491cf9b815363c4c40377f7a2703be4365f",
+      "5f377fd65b6ef2b6a4163d2909e5b1699e5138788a82fa744c814829e63b06fa",
+      "6f1247dd4ea7dabb7c6d5163001123a9647551fcd6c739ca47ad51caafc0d3d9",
+      "71187430eb849ed7a0e3a4e51dce29838d0b7f4d510048603db3963e2eb74550",
+      "760ff5690433b9800afd6a9546e8264a4e3f8537be083967c873575d7b44936e",
+      "7eb93849d05be8ac4df0cf48ec5551034c2a7a66d64ca8d3a227f3e628b1f0d0",
+      "88ebaa3f130aa0a165f4b1265df8da972536aeebf456da537f2b442b00cfdd8a",
+      "9e4f4b0d6a9bc8233533e872f1b1213e17d98f037a37de2fc6ae04dea7532c9d",
+      "a84d09b4c4194a3f48a0073dea058539beaf7bd0755e7b4ad3a4be0241d66348",
+      "aec937e6c2ca4c34747b483d25f18be1c949f6f6983aa7d710defbaf4cb83a7a",
+      "b207771d56f2868aa769121b1086b85a27f4ba92da3bc789e23ab68e684e99cd",
+      "d270c7983fc3f2ee139284ce071e18cae4525f751f6a46a45ad21c19968e1af6",
+      "d2fdd0b1f57768dc42fa0420725f4115c71d3312291ebfa1647916dac8e6f6eb",
+      "d4c83ff505bd7476cf8c02781eacea1767ce21be4d04e881c6de33ac488b5ddd",
+      "e690565d79cf4670f83725036885dc6a93e7240166372ea67eca04e6c24e3ec0",
+      "f4299ea1d60a50979f4431b36524ce81092cbda15cc0d49cfa30387e005bd11a"
+    ],
+    "baseline": 65,
+    "candidate_admissions": 83,
+    "interpretation": "Automatic reconstruction from B1, explicitly separate from the inherited C baseline."
+  },
+  "base_commit": "d993ebd5bcbe8915e98d469ad91d6646f04ff3ab",
+  "code_sha256": {
+    "observation_semantics.py": "1b90628afb6ebfb9a58d62f5a1731faec55117a99211a63bc5a62ba21b1d5ffe",
+    "observation_shadow.py": "769219c2428d1ed793bd22f8a5b624bdee88189bfcab7ba0c7a1c629a260ae97",
+    "ontology.py": "c997d87a75a385ab1d545f0007b9b34e64841694121bcfd94563fc898c44d4a2",
+    "resource_use.py": "82fe2b79f2c84cc4b76574b0fa102cf056053495800740d03ea66484eb354937",
+    "semantic_resource.py": "ae84a7ce0f125885a53225b81e7333b765b3b7d598347c87474632b0d85ecba3",
+    "semantic_technical.py": "e1b0bd86a92ffd18e073c847b9db8ee0baba3dcab0878167adc62660f007e8f7",
+    "technical.py": "38c4642009552440ff74013dbac289d00aa81b4dda787de59c6aa5d14cedd14a",
+    "technical_tables.py": "b6f09dc91ac8ee8de872c3416a30de01e42d4b5d783615408c20ffd60d15678d"
+  },
+  "cutoff": "2026-11-13",
+  "dependencies": {
+    "PyMuPDF": "1.26.7"
+  },
+  "development_only": false,
+  "formal_effect": "SIDE_OUTPUT_ONLY",
+  "independent_precision": null,
+  "independent_recall": null,
+  "independent_validation_pending": true,
+  "input_sha256": {
+    "candidates.jsonl": "407bf4a05254c5347ad46a6a16fe374612f025acb77ea90ccc2b7684969aa566",
+    "census.csv": "127df6f912bedf5134746fc1f35dae557214f9751b390a20ea67d83ef865e54c",
+    "decisions.jsonl": "e1b9510267c3eb515cc5c6b73349df175eab6a07f4fecfeeafbbe10f3f88ecfd",
+    "decisions_overlay.jsonl": "d259b252ac09364e27f614ddddf497be1f6ca3ad979ffb850cfec95447f4b552",
+    "evidence_policy.json": "c86f8fe81c21a5147d82b633c1d54f310e979d07487fad0f02db5504d5130d80",
+    "resolved_evidence.csv": "90414f5fc8f0b22026aee7bc6b0ad0b0d99b9cf1bb09941f47c337d3bc9b9ad9",
+    "review_split.json": "0826fd86db8aec6bbde975fd1e96e04b6c59b11632688442b60add6861fa0be6",
+    "shadow_profiles_v1.json": "308b8a96634003cbe27c3b41fba9ef9e4e8af00f05b2832b0b81c8bb16d6d77f",
+    "technical_cells.csv": "8b5b40586242c55de89b74b04a6e24de32a32b7205d861f3c0eed7c360ca04e4"
+  },
+  "profiles": "observation-shadow-profiles-v1",
+  "promotion_ready": false,
+  "relationship_candidates": 181,
+  "relationship_digest": "c8b05fed56b1a828435d4fe17153abaa43d54828e1a77ff37261bc1e92f1b1d0",
+  "resource_capture": {
+    "EXTRACTED": 102,
+    "INSUFFICIENT": 172,
+    "SOURCE_BLOCKED": 77
+  },
+  "schema": "observation-shadow-v1",
+  "sections": {
+    "DIRECT_RESOURCE_UNIT_COMPARISON_V1": {
+      "by_arm": {
+        "E0V0": {
+          "accepted_observation_groups": 78,
+          "accepted_source_records": 88,
+          "candidate_observation_groups": 341,
+          "candidate_records": 351,
+          "context_missing": {
+            "case_id": 351,
+            "claim_nature": 351,
+            "cutoff": 351,
+            "denominator_basis": 351,
+            "endpoint": 351,
+            "estimate_date": 351,
+            "feed": 351,
+            "material_basis": 348,
+            "process_stage": 351,
+            "sample_id": 351,
+            "scale": 351
+          },
+          "descriptive_resource_pairs": 179,
+          "disposition": {
+            "ACCEPT": 88,
+            "INCOMPATIBLE": 16,
+            "INSUFFICIENT": 49,
+            "SOURCE_BLOCKED": 198
+          },
+          "extraction_dispositions": {
+            "LEGACY_SOURCE_VIEW": 351
+          },
+          "new_corroborating_records": 0,
+          "project_field_use_count": 80,
+          "projects": [
+            "AU-12cc237ae66c7a6508ca",
+            "AU-1345edd8165c10930e94",
+            "AU-176852ef1348ac10d154",
+            "AU-216d0983f6892f9b58f9",
+            "AU-2262a37ca19531f08da3",
+            "AU-2a3a86a4d971e9f9838d",
+            "AU-2cfeb25aefee0c4f95fb",
+            "AU-2fc429d0556dfa0b95c4",
+            "AU-3651cf8448b9227adcf5",
+            "AU-3eb7131e4daea18a60a0",
+            "AU-410159af7b79ea498ec2",
+            "AU-447261eed0e81eae88bf",
+            "AU-49b538453133bd968e8d",
+            "AU-4ec1fb08563b42352d29",
+            "AU-574465211976ec57b1ef",
+            "AU-6d807eb7caec9db0f35e",
+            "AU-7537d9555628040fab40",
+            "AU-785536db5ff12c25350d",
+            "AU-7c198d219aa1db3e291f",
+            "AU-8f3fe174a998d20ee4cf",
+            "AU-908fd6f4461622e89548",
+            "AU-9b667066e6eb66753005",
+            "AU-9bd8e5ed8408cd84d876",
+            "AU-a8258e4989c7bd95b7af",
+            "AU-ad64122c217f0dbfabc8",
+            "AU-af44c2bd1173b453953f",
+            "AU-bb565f5348679a46d4a0",
+            "AU-cc4e217a90b7123dce0a",
+            "AU-d0ce731e1d8198ffaf58",
+            "AU-d1aeb21e18e60fe8e32e",
+            "AU-d28382dfa82f1664065e",
+            "AU-d2cd77f89298d6dae330",
+            "AU-d9fb1b1e3e2ec9fa0851",
+            "AU-dac3c8e40326b8244cdb",
+            "AU-ee5ca893d12883df35f1",
+            "AU-efff91a06cf344122d88",
+            "AU-ff758cad5beb276d327d"
+          ],
+          "source_tokens_present": 235
+        },
+        "E0V1": {
+          "accepted_observation_groups": 78,
+          "accepted_source_records": 88,
+          "candidate_observation_groups": 341,
+          "candidate_records": 351,
+          "context_missing": {
+            "case_id": 351,
+            "claim_nature": 351,
+            "cutoff": 351,
+            "denominator_basis": 351,
+            "endpoint": 351,
+            "estimate_date": 351,
+            "feed": 351,
+            "material_basis": 348,
+            "process_stage": 351,
+            "sample_id": 351,
+            "scale": 351
+          },
+          "descriptive_resource_pairs": 179,
+          "disposition": {
+            "ACCEPT": 88,
+            "INCOMPATIBLE": 16,
+            "INSUFFICIENT": 49,
+            "SOURCE_BLOCKED": 198
+          },
+          "extraction_dispositions": {
+            "LEGACY_SOURCE_VIEW": 351
+          },
+          "new_corroborating_records": 0,
+          "project_field_use_count": 80,
+          "projects": [
+            "AU-12cc237ae66c7a6508ca",
+            "AU-1345edd8165c10930e94",
+            "AU-176852ef1348ac10d154",
+            "AU-216d0983f6892f9b58f9",
+            "AU-2262a37ca19531f08da3",
+            "AU-2a3a86a4d971e9f9838d",
+            "AU-2cfeb25aefee0c4f95fb",
+            "AU-2fc429d0556dfa0b95c4",
+            "AU-3651cf8448b9227adcf5",
+            "AU-3eb7131e4daea18a60a0",
+            "AU-410159af7b79ea498ec2",
+            "AU-447261eed0e81eae88bf",
+            "AU-49b538453133bd968e8d",
+            "AU-4ec1fb08563b42352d29",
+            "AU-574465211976ec57b1ef",
+            "AU-6d807eb7caec9db0f35e",
+            "AU-7537d9555628040fab40",
+            "AU-785536db5ff12c25350d",
+            "AU-7c198d219aa1db3e291f",
+            "AU-8f3fe174a998d20ee4cf",
+            "AU-908fd6f4461622e89548",
+            "AU-9b667066e6eb66753005",
+            "AU-9bd8e5ed8408cd84d876",
+            "AU-a8258e4989c7bd95b7af",
+            "AU-ad64122c217f0dbfabc8",
+            "AU-af44c2bd1173b453953f",
+            "AU-bb565f5348679a46d4a0",
+            "AU-cc4e217a90b7123dce0a",
+            "AU-d0ce731e1d8198ffaf58",
+            "AU-d1aeb21e18e60fe8e32e",
+            "AU-d28382dfa82f1664065e",
+            "AU-d2cd77f89298d6dae330",
+            "AU-d9fb1b1e3e2ec9fa0851",
+            "AU-dac3c8e40326b8244cdb",
+            "AU-ee5ca893d12883df35f1",
+            "AU-efff91a06cf344122d88",
+            "AU-ff758cad5beb276d327d"
+          ],
+          "source_tokens_present": 235
+        },
+        "E1V0": {
+          "accepted_observation_groups": 78,
+          "accepted_source_records": 88,
+          "candidate_observation_groups": 341,
+          "candidate_records": 351,
+          "context_missing": {
+            "basis": 351,
+            "case_id": 351,
+            "claim_nature": 351,
+            "cutoff": 341,
+            "denominator_basis": 351,
+            "effective_date": 351,
+            "endpoint": 351,
+            "estimate_date": 348,
+            "feed": 351,
+            "material_basis": 351,
+            "process_stage": 351,
+            "sample_id": 351,
+            "scale": 351
+          },
+          "descriptive_resource_pairs": 179,
+          "disposition": {
+            "ACCEPT": 88,
+            "INCOMPATIBLE": 16,
+            "INSUFFICIENT": 49,
+            "SOURCE_BLOCKED": 198
+          },
+          "extraction_dispositions": {
+            "EXTRACTED": 102,
+            "INSUFFICIENT": 172,
+            "SOURCE_BLOCKED": 77
+          },
+          "new_corroborating_records": 0,
+          "project_field_use_count": 80,
+          "projects": [
+            "AU-12cc237ae66c7a6508ca",
+            "AU-1345edd8165c10930e94",
+            "AU-176852ef1348ac10d154",
+            "AU-216d0983f6892f9b58f9",
+            "AU-2262a37ca19531f08da3",
+            "AU-2a3a86a4d971e9f9838d",
+            "AU-2cfeb25aefee0c4f95fb",
+            "AU-2fc429d0556dfa0b95c4",
+            "AU-3651cf8448b9227adcf5",
+            "AU-3eb7131e4daea18a60a0",
+            "AU-410159af7b79ea498ec2",
+            "AU-447261eed0e81eae88bf",
+            "AU-49b538453133bd968e8d",
+            "AU-4ec1fb08563b42352d29",
+            "AU-574465211976ec57b1ef",
+            "AU-6d807eb7caec9db0f35e",
+            "AU-7537d9555628040fab40",
+            "AU-785536db5ff12c25350d",
+            "AU-7c198d219aa1db3e291f",
+            "AU-8f3fe174a998d20ee4cf",
+            "AU-908fd6f4461622e89548",
+            "AU-9b667066e6eb66753005",
+            "AU-9bd8e5ed8408cd84d876",
+            "AU-a8258e4989c7bd95b7af",
+            "AU-ad64122c217f0dbfabc8",
+            "AU-af44c2bd1173b453953f",
+            "AU-bb565f5348679a46d4a0",
+            "AU-cc4e217a90b7123dce0a",
+            "AU-d0ce731e1d8198ffaf58",
+            "AU-d1aeb21e18e60fe8e32e",
+            "AU-d28382dfa82f1664065e",
+            "AU-d2cd77f89298d6dae330",
+            "AU-d9fb1b1e3e2ec9fa0851",
+            "AU-dac3c8e40326b8244cdb",
+            "AU-ee5ca893d12883df35f1",
+            "AU-efff91a06cf344122d88",
+            "AU-ff758cad5beb276d327d"
+          ],
+          "source_tokens_present": 102
+        },
+        "E1V1": {
+          "accepted_observation_groups": 78,
+          "accepted_source_records": 90,
+          "candidate_observation_groups": 341,
+          "candidate_records": 351,
+          "context_missing": {
+            "basis": 351,
+            "case_id": 351,
+            "claim_nature": 351,
+            "cutoff": 341,
+            "denominator_basis": 351,
+            "effective_date": 351,
+            "endpoint": 351,
+            "estimate_date": 348,
+            "feed": 351,
+            "material_basis": 351,
+            "process_stage": 351,
+            "sample_id": 351,
+            "scale": 351
+          },
+          "descriptive_resource_pairs": 179,
+          "disposition": {
+            "ACCEPT": 90,
+            "INCOMPATIBLE": 16,
+            "INSUFFICIENT": 47,
+            "SOURCE_BLOCKED": 198
+          },
+          "extraction_dispositions": {
+            "EXTRACTED": 102,
+            "INSUFFICIENT": 172,
+            "SOURCE_BLOCKED": 77
+          },
+          "new_corroborating_records": 2,
+          "project_field_use_count": 80,
+          "projects": [
+            "AU-12cc237ae66c7a6508ca",
+            "AU-1345edd8165c10930e94",
+            "AU-176852ef1348ac10d154",
+            "AU-216d0983f6892f9b58f9",
+            "AU-2262a37ca19531f08da3",
+            "AU-2a3a86a4d971e9f9838d",
+            "AU-2cfeb25aefee0c4f95fb",
+            "AU-2fc429d0556dfa0b95c4",
+            "AU-3651cf8448b9227adcf5",
+            "AU-3eb7131e4daea18a60a0",
+            "AU-410159af7b79ea498ec2",
+            "AU-447261eed0e81eae88bf",
+            "AU-49b538453133bd968e8d",
+            "AU-4ec1fb08563b42352d29",
+            "AU-574465211976ec57b1ef",
+            "AU-6d807eb7caec9db0f35e",
+            "AU-7537d9555628040fab40",
+            "AU-785536db5ff12c25350d",
+            "AU-7c198d219aa1db3e291f",
+            "AU-8f3fe174a998d20ee4cf",
+            "AU-908fd6f4461622e89548",
+            "AU-9b667066e6eb66753005",
+            "AU-9bd8e5ed8408cd84d876",
+            "AU-a8258e4989c7bd95b7af",
+            "AU-ad64122c217f0dbfabc8",
+            "AU-af44c2bd1173b453953f",
+            "AU-bb565f5348679a46d4a0",
+            "AU-cc4e217a90b7123dce0a",
+            "AU-d0ce731e1d8198ffaf58",
+            "AU-d1aeb21e18e60fe8e32e",
+            "AU-d28382dfa82f1664065e",
+            "AU-d2cd77f89298d6dae330",
+            "AU-d9fb1b1e3e2ec9fa0851",
+            "AU-dac3c8e40326b8244cdb",
+            "AU-ee5ca893d12883df35f1",
+            "AU-efff91a06cf344122d88",
+            "AU-ff758cad5beb276d327d"
+          ],
+          "source_tokens_present": 102
+        }
+      },
+      "contrasts": {
+        "E0V0_to_E0V1": {
+          "dispositions": [],
+          "gained": [],
+          "lost": []
+        },
+        "E0V0_to_E1V0": {
+          "dispositions": [],
+          "gained": [],
+          "lost": []
+        },
+        "E0V0_to_E1V1": {
+          "dispositions": [
+            {
+              "after": "ACCEPT",
+              "before": "INSUFFICIENT",
+              "candidate_id": "71187430eb849ed7a0e3a4e51dce29838d0b7f4d510048603db3963e2eb74550",
+              "reason_after": "VERIFIED_SAME_SOURCE_CELL_CORROBORATION",
+              "reason_before": "UNVERIFIED_SELECTED_STATEMENT_RELATION"
+            },
+            {
+              "after": "ACCEPT",
+              "before": "INSUFFICIENT",
+              "candidate_id": "d270c7983fc3f2ee139284ce071e18cae4525f751f6a46a45ad21c19968e1af6",
+              "reason_after": "VERIFIED_SAME_SOURCE_CELL_CORROBORATION",
+              "reason_before": "UNVERIFIED_SELECTED_STATEMENT_RELATION"
+            }
+          ],
+          "gained": [
+            "71187430eb849ed7a0e3a4e51dce29838d0b7f4d510048603db3963e2eb74550",
+            "d270c7983fc3f2ee139284ce071e18cae4525f751f6a46a45ad21c19968e1af6"
+          ],
+          "lost": []
+        },
+        "E1V0_to_E1V1": {
+          "dispositions": [
+            {
+              "after": "ACCEPT",
+              "before": "INSUFFICIENT",
+              "candidate_id": "71187430eb849ed7a0e3a4e51dce29838d0b7f4d510048603db3963e2eb74550",
+              "reason_after": "VERIFIED_SAME_SOURCE_CELL_CORROBORATION",
+              "reason_before": "UNVERIFIED_SELECTED_STATEMENT_RELATION"
+            },
+            {
+              "after": "ACCEPT",
+              "before": "INSUFFICIENT",
+              "candidate_id": "d270c7983fc3f2ee139284ce071e18cae4525f751f6a46a45ad21c19968e1af6",
+              "reason_after": "VERIFIED_SAME_SOURCE_CELL_CORROBORATION",
+              "reason_before": "UNVERIFIED_SELECTED_STATEMENT_RELATION"
+            }
+          ],
+          "gained": [
+            "71187430eb849ed7a0e3a4e51dce29838d0b7f4d510048603db3963e2eb74550",
+            "d270c7983fc3f2ee139284ce071e18cae4525f751f6a46a45ad21c19968e1af6"
+          ],
+          "lost": []
+        }
+      },
+      "quarantined_by_arm": {
+        "E0V0": {
+          "accepted_observation_groups": 5,
+          "accepted_source_records": 5,
+          "candidate_observation_groups": 5,
+          "candidate_records": 5,
+          "context_missing": {
+            "case_id": 5,
+            "claim_nature": 5,
+            "cutoff": 5,
+            "denominator_basis": 5,
+            "endpoint": 5,
+            "estimate_date": 5,
+            "feed": 5,
+            "material_basis": 5,
+            "process_stage": 5,
+            "sample_id": 5,
+            "scale": 5
+          },
+          "descriptive_resource_pairs": 1,
+          "disposition": {
+            "ACCEPT": 5
+          },
+          "extraction_dispositions": {
+            "LEGACY_SOURCE_VIEW": 5
+          },
+          "new_corroborating_records": 0,
+          "project_field_use_count": 5,
+          "projects": [
+            "AU-7537d9555628040fab40",
+            "AU-d1aeb21e18e60fe8e32e"
+          ],
+          "source_tokens_present": 5
+        },
+        "E0V1": {
+          "accepted_observation_groups": 5,
+          "accepted_source_records": 5,
+          "candidate_observation_groups": 5,
+          "candidate_records": 5,
+          "context_missing": {
+            "case_id": 5,
+            "claim_nature": 5,
+            "cutoff": 5,
+            "denominator_basis": 5,
+            "endpoint": 5,
+            "estimate_date": 5,
+            "feed": 5,
+            "material_basis": 5,
+            "process_stage": 5,
+            "sample_id": 5,
+            "scale": 5
+          },
+          "descriptive_resource_pairs": 1,
+          "disposition": {
+            "ACCEPT": 5
+          },
+          "extraction_dispositions": {
+            "LEGACY_SOURCE_VIEW": 5
+          },
+          "new_corroborating_records": 0,
+          "project_field_use_count": 5,
+          "projects": [
+            "AU-7537d9555628040fab40",
+            "AU-d1aeb21e18e60fe8e32e"
+          ],
+          "source_tokens_present": 5
+        },
+        "E1V0": {
+          "accepted_observation_groups": 5,
+          "accepted_source_records": 5,
+          "candidate_observation_groups": 5,
+          "candidate_records": 5,
+          "context_missing": {
+            "basis": 5,
+            "case_id": 5,
+            "claim_nature": 5,
+            "cutoff": 5,
+            "denominator_basis": 5,
+            "effective_date": 5,
+            "endpoint": 5,
+            "estimate_date": 5,
+            "feed": 5,
+            "material_basis": 5,
+            "process_stage": 5,
+            "sample_id": 5,
+            "scale": 5
+          },
+          "descriptive_resource_pairs": 1,
+          "disposition": {
+            "ACCEPT": 5
+          },
+          "extraction_dispositions": {
+            "EXTRACTED": 1,
+            "INSUFFICIENT": 4
+          },
+          "new_corroborating_records": 0,
+          "project_field_use_count": 5,
+          "projects": [
+            "AU-7537d9555628040fab40",
+            "AU-d1aeb21e18e60fe8e32e"
+          ],
+          "source_tokens_present": 1
+        },
+        "E1V1": {
+          "accepted_observation_groups": 5,
+          "accepted_source_records": 5,
+          "candidate_observation_groups": 5,
+          "candidate_records": 5,
+          "context_missing": {
+            "basis": 5,
+            "case_id": 5,
+            "claim_nature": 5,
+            "cutoff": 5,
+            "denominator_basis": 5,
+            "effective_date": 5,
+            "endpoint": 5,
+            "estimate_date": 5,
+            "feed": 5,
+            "material_basis": 5,
+            "process_stage": 5,
+            "sample_id": 5,
+            "scale": 5
+          },
+          "descriptive_resource_pairs": 1,
+          "disposition": {
+            "ACCEPT": 5
+          },
+          "extraction_dispositions": {
+            "EXTRACTED": 1,
+            "INSUFFICIENT": 4
+          },
+          "new_corroborating_records": 0,
+          "project_field_use_count": 5,
+          "projects": [
+            "AU-7537d9555628040fab40",
+            "AU-d1aeb21e18e60fe8e32e"
+          ],
+          "source_tokens_present": 1
+        }
+      }
+    },
+    "WITHIN_TABLE_ELEMENT_LEACH": {
+      "by_arm": {
+        "E0V0": {
+          "accepted_observation_groups": 269,
+          "accepted_source_records": 269,
+          "candidate_observation_groups": 381,
+          "candidate_records": 381,
+          "context_missing": {
+            "basis": 36,
+            "cutoff": 381,
+            "denominator_basis": 381,
+            "effective_date": 381,
+            "estimate_date": 381,
+            "feed": 2,
+            "material_basis": 381,
+            "process_stage": 331,
+            "sample_id": 33,
+            "scale": 52
+          },
+          "descriptive_resource_pairs": 0,
+          "disposition": {
+            "ACCEPT": 269,
+            "BLOCKED": 1,
+            "NOT_APPLICABLE": 111
+          },
+          "extraction_dispositions": {
+            "CANDIDATE": 381
+          },
+          "new_corroborating_records": 0,
+          "project_field_use_count": 1,
+          "projects": [
+            "AU-2cfeb25aefee0c4f95fb"
+          ],
+          "source_tokens_present": 381
+        },
+        "E0V1": {
+          "accepted_observation_groups": 269,
+          "accepted_source_records": 269,
+          "candidate_observation_groups": 381,
+          "candidate_records": 381,
+          "context_missing": {
+            "basis": 36,
+            "cutoff": 381,
+            "denominator_basis": 381,
+            "effective_date": 381,
+            "estimate_date": 381,
+            "feed": 2,
+            "material_basis": 381,
+            "process_stage": 331,
+            "sample_id": 33,
+            "scale": 52
+          },
+          "descriptive_resource_pairs": 0,
+          "disposition": {
+            "ACCEPT": 269,
+            "BLOCKED": 1,
+            "NOT_APPLICABLE": 111
+          },
+          "extraction_dispositions": {
+            "CANDIDATE": 381
+          },
+          "new_corroborating_records": 0,
+          "project_field_use_count": 1,
+          "projects": [
+            "AU-2cfeb25aefee0c4f95fb"
+          ],
+          "source_tokens_present": 381
+        },
+        "E1V0": {
+          "accepted_observation_groups": 269,
+          "accepted_source_records": 269,
+          "candidate_observation_groups": 381,
+          "candidate_records": 381,
+          "context_missing": {
+            "basis": 36,
+            "cutoff": 381,
+            "denominator_basis": 381,
+            "effective_date": 381,
+            "estimate_date": 381,
+            "feed": 2,
+            "material_basis": 381,
+            "process_stage": 62,
+            "sample_id": 33,
+            "scale": 52
+          },
+          "descriptive_resource_pairs": 0,
+          "disposition": {
+            "ACCEPT": 269,
+            "BLOCKED": 1,
+            "NOT_APPLICABLE": 111
+          },
+          "extraction_dispositions": {
+            "BLOCKED": 1,
+            "CANDIDATE": 111,
+            "SOURCE_VERIFIED_CANDIDATE": 269
+          },
+          "new_corroborating_records": 0,
+          "project_field_use_count": 1,
+          "projects": [
+            "AU-2cfeb25aefee0c4f95fb"
+          ],
+          "source_tokens_present": 381
+        },
+        "E1V1": {
+          "accepted_observation_groups": 269,
+          "accepted_source_records": 269,
+          "candidate_observation_groups": 381,
+          "candidate_records": 381,
+          "context_missing": {
+            "basis": 36,
+            "cutoff": 381,
+            "denominator_basis": 381,
+            "effective_date": 381,
+            "estimate_date": 381,
+            "feed": 2,
+            "material_basis": 381,
+            "process_stage": 62,
+            "sample_id": 33,
+            "scale": 52
+          },
+          "descriptive_resource_pairs": 0,
+          "disposition": {
+            "ACCEPT": 269,
+            "BLOCKED": 1,
+            "NOT_APPLICABLE": 111
+          },
+          "extraction_dispositions": {
+            "BLOCKED": 1,
+            "CANDIDATE": 111,
+            "SOURCE_VERIFIED_CANDIDATE": 269
+          },
+          "new_corroborating_records": 0,
+          "project_field_use_count": 1,
+          "projects": [
+            "AU-2cfeb25aefee0c4f95fb"
+          ],
+          "source_tokens_present": 381
+        }
+      },
+      "contrasts": {
+        "E0V0_to_E0V1": {
+          "dispositions": [],
+          "gained": [],
+          "lost": []
+        },
+        "E0V0_to_E1V0": {
+          "dispositions": [],
+          "gained": [],
+          "lost": []
+        },
+        "E0V0_to_E1V1": {
+          "dispositions": [],
+          "gained": [],
+          "lost": []
+        },
+        "E1V0_to_E1V1": {
+          "dispositions": [],
+          "gained": [],
+          "lost": []
+        }
+      },
+      "quarantined_by_arm": {
+        "E0V0": {
+          "accepted_observation_groups": 0,
+          "accepted_source_records": 0,
+          "candidate_observation_groups": 0,
+          "candidate_records": 0,
+          "context_missing": {},
+          "descriptive_resource_pairs": 0,
+          "disposition": {},
+          "extraction_dispositions": {},
+          "new_corroborating_records": 0,
+          "project_field_use_count": 0,
+          "projects": [],
+          "source_tokens_present": 0
+        },
+        "E0V1": {
+          "accepted_observation_groups": 0,
+          "accepted_source_records": 0,
+          "candidate_observation_groups": 0,
+          "candidate_records": 0,
+          "context_missing": {},
+          "descriptive_resource_pairs": 0,
+          "disposition": {},
+          "extraction_dispositions": {},
+          "new_corroborating_records": 0,
+          "project_field_use_count": 0,
+          "projects": [],
+          "source_tokens_present": 0
+        },
+        "E1V0": {
+          "accepted_observation_groups": 0,
+          "accepted_source_records": 0,
+          "candidate_observation_groups": 0,
+          "candidate_records": 0,
+          "context_missing": {},
+          "descriptive_resource_pairs": 0,
+          "disposition": {},
+          "extraction_dispositions": {},
+          "new_corroborating_records": 0,
+          "project_field_use_count": 0,
+          "projects": [],
+          "source_tokens_present": 0
+        },
+        "E1V1": {
+          "accepted_observation_groups": 0,
+          "accepted_source_records": 0,
+          "candidate_observation_groups": 0,
+          "candidate_records": 0,
+          "context_missing": {},
+          "descriptive_resource_pairs": 0,
+          "disposition": {},
+          "extraction_dispositions": {},
+          "new_corroborating_records": 0,
+          "project_field_use_count": 0,
+          "projects": [],
+          "source_tokens_present": 0
+        }
+      }
+    }
+  },
+  "seed": "AU-REE-OBSERVATIONS-20261126-R1",
+  "technical_context_audit": {
+    "all_technical_cells": {
+      "missing": {
+        "endpoint": 0,
+        "feed": 2,
+        "process_stage": 331,
+        "scale": 52,
+        "test_id": 357
+      },
+      "observations": 381,
+      "projects": 5,
+      "states": {
+        "CANDIDATE": 381
+      }
+    },
+    "other_technical_cells": {
+      "missing": {
+        "endpoint": 0,
+        "feed": 2,
+        "process_stage": 61,
+        "scale": 52,
+        "test_id": 87
+      },
+      "observations": 111,
+      "projects": 4,
+      "states": {
+        "CANDIDATE": 111
+      }
+    },
+    "target_after": {
+      "missing": {
+        "endpoint": 0,
+        "feed": 0,
+        "process_stage": 1,
+        "scale": 0,
+        "test_id": 270
+      },
+      "observations": 270,
+      "projects": 1,
+      "states": {
+        "BLOCKED": 1,
+        "SOURCE_VERIFIED_CANDIDATE": 269
+      }
+    },
+    "target_before": {
+      "missing": {
+        "endpoint": 0,
+        "feed": 0,
+        "process_stage": 270,
+        "scale": 0,
+        "test_id": 270
+      },
+      "observations": 270,
+      "projects": 1,
+      "states": {
+        "CANDIDATE": 270
+      }
+    },
+    "target_linked_fields": {
+      "ANALYTICAL_ENDPOINT": 269,
+      "EXPLICIT_SAMPLE_TABLE_REFERENCE": 269,
+      "PROGRAM_LEACH_PROCEDURE": 269,
+      "REAGENT_BASIS_MISMATCH": 269,
+      "TABLE_CAPTION": 269,
+      "VERIFIED_TABLE_CELL": 269,
+      "aliquot_mass_kg": 269,
+      "procedure_duration_days": 269,
+      "pulp_density_mass_pct": 269
+    }
+  }
+}
