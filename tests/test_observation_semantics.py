@@ -96,3 +96,29 @@ class ObservationSemanticsTests(unittest.TestCase):
         self.assertEqual(self.engine.assess(raw, decision, apply_profile=True).comparability, "COMPARABLE")
         incomplete = self.engine.assess(replace(raw, chemical_basis="NdPr"), decision, apply_profile=True)
         self.assertEqual((incomplete.comparability, incomplete.missing_context), ("INSUFFICIENT_CONTEXT", ("chemical_basis",)))
+
+    def test_verification_distinguishes_numeric_location_from_context(self):
+        numeric = replace(self.anchor, role="NUMERIC_VALUE", bbox=(10, 20, 30, 40), offset=5)
+        raw = replace(self.grade, evidence=numeric)
+        context = EvidenceAnchor("report", numeric.sha256, page=7, quote="Pilot leaching context", role="TEST_SCALE")
+        norm = self.engine.normalize(raw)
+        valid = self.engine.assess(raw, self.decision, normalized=norm, evidence_status="VERIFIED",
+                                   supporting_evidence=(numeric, context))
+        self.assertEqual(valid.evidence_status, "VERIFIED")
+        self.assertIn(context, valid.supporting_evidence)
+        for wrong in (replace(numeric, row=5), replace(numeric, column=4), replace(numeric, offset=6),
+                      replace(numeric, bbox=(40, 40, 60, 60)), replace(numeric, quote="18,300.5 ppm TREO")):
+            with self.subTest(wrong=wrong), self.assertRaisesRegex(ValueError, "BINDING_MISMATCH"):
+                self.engine.assess(raw, self.decision, evidence_status="VERIFIED",
+                                   supporting_evidence=(numeric, wrong, context))
+        for missing in ((), (context,), (replace(numeric, sha256=None),),
+                        (replace(numeric, offset=None),),
+                        (replace(numeric, table=None, row=None, column=None, bbox=None, offset=None),)):
+            with self.subTest(missing=missing):
+                pending = self.engine.assess(raw, self.decision, evidence_status="VERIFIED",
+                                             supporting_evidence=missing)
+                self.assertEqual(pending.evidence_status, "UNVERIFIED")
+                self.assertIn("NUMERIC_EVIDENCE_LOCATION_INSUFFICIENT", pending.reason)
+                self.assertIn("numeric_evidence_location", pending.missing_context)
+        with self.assertRaisesRegex(ValueError, "observation contents"):
+            self.engine.assess(replace(raw, original_value="2"), self.decision, normalized=norm)

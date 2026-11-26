@@ -1,17 +1,20 @@
 """Versioned records crossing extraction, validation, storage and research boundaries."""
 
-from dataclasses import dataclass, fields
+from dataclasses import InitVar, dataclass, fields
 from datetime import date, datetime
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 from math import isfinite
+import re
 
 from .store import digest
 
-SCHEMA_VERSION = "observation-v1"
+SCHEMA_VERSION = "observation-v2"
+RAW_ID_VERSION = "observation-v1"
 QUANTITY_KINDS = frozenset({"RESOURCE", "STRATEGIC_COMPOSITION", "TECHNICAL", "EVENT", "OTHER"})
 EVIDENCE_STATES = frozenset({"VERIFIED", "UNVERIFIED", "SOURCE_BLOCKED", "CONFLICT", "NOT_APPLICABLE"})
 COMPARABILITY_STATES = frozenset({"COMPARABLE", "DESCRIPTIVE_ONLY", "INSUFFICIENT_CONTEXT",
                                  "NOT_COMPARABLE", "NOT_APPLICABLE"})
+VALUE_EVIDENCE_ROLES = frozenset({"token", "FROZEN_TABLE_CELL", "VERIFIED_TABLE_CELL", "NUMERIC_VALUE"})
 
 
 def _require_text(value, name):
@@ -173,9 +176,72 @@ class RawObservation:
         # Evidence edition and extraction specification qualify the existing observation ID.
         # Review, normalization and research use never form part of a raw identity.
         anchor = self.evidence
-        return digest([SCHEMA_VERSION, self.observation_id, anchor.sha256 or anchor.source_id,
+        return digest([RAW_ID_VERSION, self.observation_id, anchor.sha256 or anchor.source_id,
                        anchor.page, anchor.table, anchor.row, anchor.column, anchor.bbox, anchor.offset,
                        self.variable, self.extractor_version, self.extraction_fingerprint])
+
+    @property
+    def normalization_fingerprint(self):
+        """Identify the original value and scientific conditions read by the normalizer."""
+        return digest([self.raw_id, self.original_value, self.original_unit, self.source_value_state,
+                       self.quantity_kind, self.scope_id or dict(self.context.conditions).get("reported_scope"),
+                       self.chemical_basis, self.material_basis,
+                       self.denominator_basis])
+
+
+def _flat(text):
+    return " ".join(text.split())
+
+
+def _contains_value(quote, value):
+    if not quote or not value:
+        return False
+    token = re.escape(_flat(value))
+    return bool(re.search(r"(?<![0-9,.+−-])" + token + r"(?![0-9]|[,.][0-9]|[Ee][+-]?[0-9])", _flat(quote)))
+
+
+def value_evidence_issue(raw, supporting_evidence):
+    """Check all explicit value anchors and return a scientific binding disposition."""
+    _tuple_of(supporting_evidence, EvidenceAnchor, "supporting_evidence")
+    primary = raw.evidence
+    # Untyped anchors were used as numeric evidence before roles were recorded.
+    witnesses = tuple(anchor for anchor in supporting_evidence
+                      if anchor.role is None or anchor.role in VALUE_EVIDENCE_ROLES)
+    if (primary.role is not None and primary.role not in VALUE_EVIDENCE_ROLES
+            or not raw.original_value or not any(char.isdigit() for char in raw.original_value)
+            or not primary.sha256 or not witnesses):
+        return "NUMERIC_EVIDENCE_LOCATION_INSUFFICIENT"
+    if primary.quote is not None and not _contains_value(primary.quote, raw.original_value):
+        return "NUMERIC_EVIDENCE_BINDING_MISMATCH"
+    complete = True
+    for anchor in witnesses:
+        known = ("page", "table", "row", "column", "offset", "locator")
+        mismatch = any(getattr(primary, key) is not None and getattr(anchor, key) is not None
+                       and getattr(primary, key) != getattr(anchor, key) for key in known)
+        boxes = primary.bbox is not None and anchor.bbox is not None
+        matching_box = boxes and all(abs(a - b) < .01 for a, b in zip(primary.bbox, anchor.bbox))
+        if ((anchor.sha256 is not None and anchor.sha256 != primary.sha256) or mismatch or (boxes and not matching_box)
+                or (anchor.quote is not None and not _contains_value(anchor.quote, raw.original_value))):
+            return "NUMERIC_EVIDENCE_BINDING_MISMATCH"
+        same_page = primary.page is not None and anchor.page == primary.page
+        cell = all(getattr(primary, key) is not None and getattr(primary, key) == getattr(anchor, key)
+                   for key in ("table", "row", "column"))
+        # Non-paged sources can identify a table cell with a complete table/row/column key.
+        cell &= same_page or primary.page is None and anchor.page is None
+        if (not anchor.sha256 or not anchor.quote
+                or (primary.offset is not None and anchor.offset is None)):
+            complete = False
+            continue
+        # Extractors locate narrative text by its recorded span or source
+        # block, so an offset is compared together with the same excerpt.
+        same_text = (same_page and anchor.offset is not None and anchor.offset == primary.offset
+                     and primary.quote is not None and _flat(anchor.quote) == _flat(primary.quote))
+        # A box must enclose a real region. The raw location may come from the
+        # same provider with small floating-point variations in coordinates.
+        box = (same_page and matching_box and primary.bbox[0] < primary.bbox[2]
+               and primary.bbox[1] < primary.bbox[3])
+        complete &= cell or same_text or box
+    return None if complete else "NUMERIC_EVIDENCE_LOCATION_INSUFFICIENT"
 
 
 @dataclass(frozen=True, slots=True)
@@ -187,6 +253,7 @@ class NormalizedObservation:
     formula: str
     conditions: tuple[str, ...] = ()
     chemical_basis: str | None = None
+    raw_fingerprint: str | None = None
 
     def __post_init__(self):
         for name in ("raw_id", "version", "unit", "formula"):
@@ -194,6 +261,15 @@ class NormalizedObservation:
         _finite_decimal(self.value)
         _tuple_of(self.conditions, str, "conditions")
         _optional_text(self.chemical_basis, "chemical_basis")
+        if self.raw_fingerprint is not None:
+            if not isinstance(self.raw_fingerprint, str) or not re.fullmatch("[0-9a-f]{64}", self.raw_fingerprint):
+                raise ValueError("Normalization fingerprint must be a SHA-256 digest")
+
+
+def validate_normalized_binding(raw, normalized):
+    if (not isinstance(normalized, NormalizedObservation) or normalized.raw_id != raw.raw_id
+            or normalized.raw_fingerprint != raw.normalization_fingerprint):
+        raise ValueError("Normalization must bind the original observation contents")
 
 
 @dataclass(frozen=True, slots=True)
@@ -208,8 +284,12 @@ class SemanticAssessment:
     missing_context: tuple[str, ...] = ()
     supporting_evidence: tuple[EvidenceAnchor, ...] = ()
     normalized_version: str | None = None
+    raw_fingerprint: str | None = None
+    normalized_fingerprint: str | None = None
+    raw: InitVar[RawObservation | None] = None
+    normalized: InitVar[NormalizedObservation | None] = None
 
-    def __post_init__(self):
+    def __post_init__(self, raw, normalized):
         for name in ("raw_id", "purpose", "rule_version", "ontology_version", "reason"):
             _require_text(getattr(self, name), name)
         if not isinstance(self.evidence_status, str) or self.evidence_status not in EVIDENCE_STATES:
@@ -217,13 +297,39 @@ class SemanticAssessment:
         if not isinstance(self.comparability, str) or self.comparability not in COMPARABILITY_STATES:
             raise ValueError("Unknown comparability disposition")
         _tuple_of(self.supporting_evidence, EvidenceAnchor, "supporting_evidence")
-        if self.evidence_status == "VERIFIED" and not any(
-            anchor.sha256 and (anchor.page or anchor.locator)
-            for anchor in self.supporting_evidence
-        ):
-            raise ValueError("Verified evidence requires a fingerprint and source locator")
         _tuple_of(self.missing_context, str, "missing_context")
         _optional_text(self.normalized_version, "normalized_version")
+        if raw is not None and self.raw_fingerprint is None:
+            object.__setattr__(self, "raw_fingerprint", digest(payload(raw)))
+        if normalized is not None and self.normalized_fingerprint is None:
+            object.__setattr__(self, "normalized_fingerprint", digest(payload(normalized)))
+        if raw is not None or self.raw_fingerprint is not None or self.evidence_status == "VERIFIED":
+            validate_assessment_binding(raw, self, normalized)
+        elif normalized is not None or self.normalized_fingerprint is not None:
+            raise ValueError("Assessment must bind the original observation before linking normalization")
+
+
+def validate_assessment_binding(raw, assessment, normalized=None):
+    """Enforce subject and exact normalization binding again when staging or reloading."""
+    if not isinstance(raw, RawObservation) or assessment.raw_id != raw.raw_id:
+        raise ValueError("Assessment must bind the original observation")
+    if assessment.raw_fingerprint is not None and assessment.raw_fingerprint != digest(payload(raw)):
+        raise ValueError("Assessment must bind the original observation contents")
+    if assessment.evidence_status == "VERIFIED":
+        if not assessment.raw_fingerprint:
+            raise ValueError("Verified evidence must bind the original observation contents")
+        if issue := value_evidence_issue(raw, assessment.supporting_evidence):
+            raise ValueError(f"Verified support must bind the original value and location: {issue}")
+    if normalized is not None:
+        validate_normalized_binding(raw, normalized)
+        if assessment.normalized_version != normalized.version:
+            raise ValueError("Assessment must match the normalization version")
+    if assessment.normalized_fingerprint is not None:
+        if normalized is None or assessment.normalized_fingerprint != digest(payload(normalized)):
+            raise ValueError("Assessment must match the normalization contents")
+    if assessment.evidence_status == "VERIFIED" and assessment.normalized_version is not None:
+        if normalized is None or assessment.normalized_fingerprint is None:
+            raise ValueError("Verified assessment must bind the referenced normalization")
 
 
 @dataclass(frozen=True, slots=True)
@@ -236,6 +342,7 @@ class ValidatedObservation:
                 or not isinstance(self.assessment, SemanticAssessment)
                 or self.normalized.raw_id != self.assessment.raw_id
                 or self.normalized.version != self.assessment.normalized_version
+                or digest(payload(self.normalized)) != self.assessment.normalized_fingerprint
                 or self.assessment.evidence_status != "VERIFIED"):
             raise ValueError("Validation requires matching verified evidence for this normalization version")
 
@@ -255,3 +362,56 @@ class AnalysisFeature:
         for name in ("name", "definition_version", "unit"):
             _require_text(getattr(self, name), name)
         _finite_decimal(self.value)
+
+
+def _record_fields(mapping):
+    if not isinstance(mapping, dict) or mapping.get("schema_version") != SCHEMA_VERSION:
+        raise ValueError("Unsupported observation record schema")
+    return {name: value for name, value in mapping.items() if name != "schema_version"}
+
+
+def _anchor(mapping):
+    return EvidenceAnchor(**{**mapping, "bbox": tuple(mapping["bbox"]) if mapping.get("bbox") is not None else None})
+
+
+def raw_from_payload(mapping):
+    data = _record_fields(mapping)
+    raw_id = data.pop("raw_id", None)
+    context = data.pop("context")
+    raw = RawObservation(**{
+        **data,
+        "evidence": _anchor(data["evidence"]),
+        "context": ObservationContext(**{**context, "conditions": tuple(tuple(pair) for pair in context["conditions"])}),
+        "related_observation_ids": tuple(data["related_observation_ids"]),
+        "manual_decisions": tuple(ManualDecision(**item) for item in data["manual_decisions"]),
+        "evidence_anchors": tuple(_anchor(item) for item in data["evidence_anchors"]),
+    })
+    if raw_id is not None and raw_id != raw.raw_id:
+        raise ValueError("Serialized raw observation ID does not match")
+    return raw
+
+
+def normalized_from_payload(mapping, *, raw=None):
+    data = _record_fields(mapping)
+    if not isinstance(data.get("value"), str):
+        raise ValueError("Serialized normalization requires a textual Decimal")
+    try:
+        value = Decimal(data["value"])
+    except InvalidOperation as exc:
+        raise ValueError("Invalid serialized normalization value") from exc
+    record = NormalizedObservation(**{**data, "value": value, "conditions": tuple(data["conditions"])})
+    if raw is not None:
+        validate_normalized_binding(raw, record)
+    return record
+
+
+def assessment_from_payload(mapping, *, raw, normalized=None):
+    data = _record_fields(mapping)
+    if (data.get("raw_fingerprint") is None or
+            (data.get("normalized_version") is not None and data.get("normalized_fingerprint") is None)):
+        raise ValueError("Serialized assessment lacks binding fingerprints")
+    return SemanticAssessment(**{
+        **data,
+        "missing_context": tuple(data["missing_context"]),
+        "supporting_evidence": tuple(_anchor(item) for item in data["supporting_evidence"]),
+    }, raw=raw, normalized=normalized)

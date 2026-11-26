@@ -1,11 +1,15 @@
 """Versioned shadow layers on an existing canonical SQLite connection."""
 
 from contextlib import contextmanager
+import json
 from pathlib import Path
 import sqlite3
 
 from .evidence_model import ensure_read_model
-from .observation_schema import AnalysisFeature, ManualDecision, NormalizedObservation, RawObservation, SemanticAssessment, payload
+from .observation_schema import (
+    AnalysisFeature, ManualDecision, RawObservation, SemanticAssessment, normalized_from_payload,
+    payload, validate_assessment_binding, validate_normalized_binding,
+)
 from .store import canonical, digest
 
 
@@ -83,13 +87,12 @@ class ObservationWorkspace:
         try:
             self._append_raw(raw)
             for result in normalized:
-                if not isinstance(result, NormalizedObservation) or result.raw_id != raw_id:
-                    raise ValueError("Normalization must reference the staged raw observation")
+                validate_normalized_binding(raw, result)
                 self._insert("observation_normalized_v1", {"raw_id": raw_id, "version": result.version}, result)
             for decision in assessments:
-                self._append_assessment(raw_id, decision)
+                self._append_assessment(raw, decision)
             for feature in features:
-                self._append_feature(raw_id, feature)
+                self._append_feature(raw, feature)
         except BaseException:
             self.db.execute("ROLLBACK TO stage_observation")
             raise
@@ -112,21 +115,32 @@ class ObservationWorkspace:
             "source_sha": source, "project_id": raw.project_id,
         })
 
-    def _append_assessment(self, raw_id, decision):
-        if not isinstance(decision, SemanticAssessment) or decision.raw_id != raw_id:
-            raise ValueError("Assessment must reference the staged raw observation")
+    def _append_assessment(self, raw, decision):
+        if not isinstance(decision, SemanticAssessment):
+            raise ValueError("A typed assessment is required")
+        result = None
+        if decision.normalized_version is not None:
+            row = self.db.execute(
+                "SELECT payload FROM temp.observation_normalized_v1 WHERE raw_id = ? AND version = ?",
+                (raw.raw_id, decision.normalized_version),
+            ).fetchone()
+            if row is not None:
+                result = normalized_from_payload(json.loads(row[0]), raw=raw)
+        validate_assessment_binding(raw, decision, result)
         self._insert("observation_assessment_v1", {
-            "raw_id": raw_id, "purpose": decision.purpose, "rule_version": decision.rule_version,
+            "raw_id": raw.raw_id, "purpose": decision.purpose, "rule_version": decision.rule_version,
             "ontology_version": decision.ontology_version, "normalized_version": decision.normalized_version,
         }, decision)
 
-    def _append_feature(self, raw_id, feature):
+    def _append_feature(self, raw, feature):
+        raw_id = raw.raw_id
         if not isinstance(feature, AnalysisFeature) or feature.observation.normalized.raw_id != raw_id:
             raise ValueError("Feature must reference the staged raw observation")
         normalized = feature.observation.normalized
         decision = feature.observation.assessment
+        validate_normalized_binding(raw, normalized)
         self._insert("observation_normalized_v1", {"raw_id": raw_id, "version": normalized.version}, normalized)
-        self._append_assessment(raw_id, decision)
+        self._append_assessment(raw, decision)
         feature_id = digest([raw_id, normalized.version, decision.purpose, decision.rule_version,
                              decision.ontology_version, feature.name, feature.definition_version])
         self._insert("observation_feature_v1", {"feature_id": feature_id}, feature, {"raw_id": raw_id})
