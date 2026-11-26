@@ -1,10 +1,16 @@
 {
   "commit": "d993ebd5bcbe8915e98d469ad91d6646f04ff3ab",
   "cutoff": "2026-11-13",
+  "earlier_followup_review_projects": [
+    "AU-216d0983f6892f9b58f9",
+    "AU-6d807eb7caec9db0f35e",
+    "AU-447261eed0e81eae88bf",
+    "AU-d9fb1b1e3e2ec9fa0851"
+  ],
   "groups": [
     {
       "group_id": "0af9cd54fc32340c544752e67d9cdefd94641f19625ecfc066e1c066c8a831c7",
-      "historical_review": false,
+      "historical_review": true,
       "linked_source_sha256": [
         "22016f67e614f73963e5a2252e0ec78184ed3906d668649e0dbdb17c365dba59"
       ],
@@ -27,7 +33,7 @@
     },
     {
       "group_id": "0c35238d9ac5f690c513608ed51ff54be63e377a4b25700acce8415b61ede37f",
-      "historical_review": false,
+      "historical_review": true,
       "linked_source_sha256": [
         "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
         "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e"
@@ -53,7 +59,7 @@
         "statement:barkly-resource-prospectus-20251201",
         "statement:barkly_global_mre202511"
       ],
-      "partition": "HELD_OUT",
+      "partition": "DEVELOPMENT",
       "projects": [
         "AU-ad64122c217f0dbfabc8"
       ],
@@ -150,7 +156,7 @@
         "source:af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
         "statement:r3-fingerboards_resource_202208"
       ],
-      "partition": "DEVELOPMENT",
+      "partition": "HELD_OUT",
       "projects": [
         "AU-7537d9555628040fab40"
       ],
@@ -163,7 +169,7 @@
     },
     {
       "group_id": "35bdf4681dbe45763280932be8126434f86b261043936e6a6f3ff85389a568d7",
-      "historical_review": false,
+      "historical_review": true,
       "linked_source_sha256": [
         "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732"
       ],
@@ -230,7 +236,7 @@
     },
     {
       "group_id": "427a2bfb63bd21d07c291a5cec47e44d5a64f457e435bc28c9293419798747e1",
-      "historical_review": false,
+      "historical_review": true,
       "linked_source_sha256": [
         "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad",
         "b65a525000fb8d74d87024056f7c001df5ee466eb4cf4a8ccf9d6fd5ae08ce19"
@@ -242,7 +248,7 @@
         "source:b65a525000fb8d74d87024056f7c001df5ee466eb4cf4a8ccf9d6fd5ae08ce19",
         "statement:circle_valley_global_202306"
       ],
-      "partition": "HELD_OUT",
+      "partition": "DEVELOPMENT",
       "projects": [
         "AU-785536db5ff12c25350d"
       ],
@@ -325,7 +331,7 @@
     },
     {
       "group_id": "4aff9623de80a94b07fe83920389c4eeea0a04104f19a0e919db5411ba85add4",
-      "historical_review": false,
+      "historical_review": true,
       "linked_source_sha256": [
         "1417f7495f8101992bd14719c42975d83eaba067b83dda56aa93187e030c9d43",
         "749bb4f962c58520f83a2f85a753e82e80b21bb13821c3605f79592882eba43f",
@@ -443,7 +449,7 @@
     },
     {
       "group_id": "5c441191c5a702c1de7446c8f9059062a630e98eadd39b52488c797196e5f24d",
-      "historical_review": false,
+      "historical_review": true,
       "linked_source_sha256": [
         "40b378004d36b7b852cb7990438a126a84b0827a0ec4042ad3f7524923622f70"
       ],
@@ -466,7 +472,7 @@
     },
     {
       "group_id": "5c5ced0344365acc6525b6926871bd317ba681a35d1e9a9955ca3d3f03a6404f",
-      "historical_review": false,
+      "historical_review": true,
       "linked_source_sha256": [
         "56b1bb55bef057af81a1d31faa701e69bef70c9eb95fc7d46ffd1174f5186ca9",
         "7e80a7f29787898f9c422bde35d14337651c5975c3e7e6cda06968721bff2a79"
@@ -540,7 +546,7 @@
     },
     {
       "group_id": "73c14edb0cb5c8e0b5756c5d57834058fb951ce801a0bc46b7caa0b2e5a9a386",
-      "historical_review": false,
+      "historical_review": true,
       "linked_source_sha256": [
         "7de6021ce23b5622e920f8a3169fe6252ea4ba24d7b616f19a1e90454ee4294c"
       ],
@@ -563,7 +569,7 @@
     },
     {
       "group_id": "7c4a27b7c358f62b40f92677828ab5ae55185d9c4d47d5e886fde4a12568de17",
-      "historical_review": false,
+      "historical_review": true,
       "linked_source_sha256": [
         "452dabd702e88c0841c2d029af2127e215e52c2ae9d1144ebe6731f880cde491",
         "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84",
@@ -677,7 +683,7 @@
         "source:56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
         "statement:r4_deep_leads_mre2024"
       ],
-      "partition": "DEVELOPMENT",
+      "partition": "HELD_OUT",
       "projects": [
         "AU-d1aeb21e18e60fe8e32e"
       ],
@@ -730,7 +736,7 @@
     },
     {
       "group_id": "d0e26bf3bdd333b1137e804bbce47fbcfcddc3c0c3cd2d9f934fed431e554117",
-      "historical_review": false,
+      "historical_review": true,
       "linked_source_sha256": [
         "245f282102453bf6dc97056eba1ac4b889f8d506d07b5515bc354caec94ab170",
         "eac3b88bddeeda7a38488b44300d70ad4ceaa9b86db3383d950556952bac77e0"
@@ -877,7 +883,7 @@
     },
     {
       "group_id": "dcf772ca6ed43fc574d83c597857720d4832ebd98376f7e2d85920eb8a8fc9d2",
-      "historical_review": false,
+      "historical_review": true,
       "linked_source_sha256": [
         "39699576fe9ebe47225c083dc285d7a561b732ab357a9050a67472e89a5512aa",
         "7019288dc068631c80101e6e89c15249f271fbfb5a946eb294bcfb94c7fe1513"
@@ -935,7 +941,7 @@
     },
     {
       "group_id": "f727f7f84f04a415b3e2faa7935eef2a7d43e31f1b20716b2c6786f01456c9b5",
-      "historical_review": false,
+      "historical_review": true,
       "linked_source_sha256": [
         "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
         "9259d4a149afef29e471c92e3cc11d512659a07bc4026780488e57ae69d36ef5"
@@ -948,7 +954,7 @@
         "statement:goschen-area1-20251015",
         "statement:goschen-area1-table8-20251015"
       ],
-      "partition": "HELD_OUT",
+      "partition": "DEVELOPMENT",
       "projects": [
         "AU-6d807eb7caec9db0f35e"
       ],
@@ -984,6 +990,43 @@
       ]
     }
   ],
+  "historical_review_exclusions": {
+    "normalization_input_sha256": "3973b3323ff92d37ff7eaf310a6378ae8c575bd9cc0667d475a0dd53b6a0b86b",
+    "normalization_source_sha256": [
+      "00e8236380f1bd9f5860ff803660e08d21450c09d798afbbe772313ee4341180",
+      "1be3b74ad9667ee7777572ca73318d962e28596a9b7a0dbfe7f6dda3dee1ca07",
+      "36348003c5a713e0735e5ca8e526f54e1e5e1a3440038086ef0627b09746d089",
+      "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+      "54ae6be3b275f744e627c0ae5dd542fe2fdaab7404649c809cdc48d97ff11732",
+      "5a783d0c7a9ed69fd62c532c77927af0f83e0813feeaab093ed617ae1556e0b3",
+      "716da939dba80b7c057a71e1190a3fa96f6d8b0342029910b3fce8b597925707",
+      "82a4a37bf3a073c799b49bf5ff67d55add185d88a26485e322d64d86f7374097",
+      "89467aedb62238c6a98902633fba1bcaf4ccd0f081beaa736facf71533ac3864",
+      "8a70d4ca8cdc287da19cd6a50060e0496f84c5f153c62b452870aed1ff92497c",
+      "a3cbfc5610b14dcef8838cbaa6f0bc11ffcfb69b50942e29988e7e0c970d9d1d",
+      "a861c5b1088895ecd45210d6d7d3e3a319deee81dd85853ebdc184fd4c1b8acb",
+      "ea8af91a78b952f02c8d4d0a313d93e200792183dd4b5cfeea6038b2ed1abf28",
+      "f1ce45037adea362e82497f6d1f8c73dbaa1dca6191873a92355b37ea28693a5",
+      "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503"
+    ],
+    "older_ontology_input_sha256": "57a9d1ac5c34bf0dc329cdbcc4105eb59db3e3c0afb4339966a87e0147a4e717",
+    "older_ontology_projects": [
+      "AU-12cc237ae66c7a6508ca",
+      "AU-176852ef1348ac10d154",
+      "AU-2262a37ca19531f08da3",
+      "AU-2fc429d0556dfa0b95c4",
+      "AU-3651cf8448b9227adcf5",
+      "AU-410159af7b79ea498ec2",
+      "AU-4ec1fb08563b42352d29",
+      "AU-785536db5ff12c25350d",
+      "AU-ad64122c217f0dbfabc8",
+      "AU-af44c2bd1173b453953f",
+      "AU-d0ce731e1d8198ffaf58",
+      "AU-dac3c8e40326b8244cdb",
+      "AU-ee5ca893d12883df35f1",
+      "AU-ff758cad5beb276d327d"
+    ]
+  },
   "independent_validation_pending": true,
   "input_sha256": {
     "REE project census.csv": "336a46c2f2fe8862042abe811275e8a8cb091b390eb795ad4a894a36f6e3cabb",
@@ -1001,67 +1044,26 @@
   "packet_sources": [
     {
       "available_date": "2026-11-18",
-      "group_id": "427a2bfb63bd21d07c291a5cec47e44d5a64f457e435bc28c9293419798747e1",
+      "group_id": "c4cdf5cdecc15d3b2e914963f214ec6671b54003da1b55524b3263b14b5d5687",
       "project_ids": [
-        "AU-785536db5ff12c25350d"
+        "AU-d1aeb21e18e60fe8e32e"
       ],
-      "publication_date": "2023-06-14",
-      "source_key": "asx_review_circle_valley_global_202306",
-      "source_sha256": "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad",
+      "publication_date": "2024-05-02",
+      "source_key": "r4_deep_leads_rubble_mound_wind_break",
+      "source_sha256": "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
       "strata": [
         "RESOURCE"
       ]
     },
     {
       "available_date": "2026-11-17",
-      "group_id": "f727f7f84f04a415b3e2faa7935eef2a7d43e31f1b20716b2c6786f01456c9b5",
+      "group_id": "34638d0bb4b7a6786ed3d94a651c0ab745a27f43d92811a7f7499a4b2213ca25",
       "project_ids": [
-        "AU-6d807eb7caec9db0f35e"
+        "AU-7537d9555628040fab40"
       ],
-      "publication_date": "2025-10-15",
-      "source_key": "goschen_mre2025",
-      "source_sha256": "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
-      "strata": [
-        "RESOURCE",
-        "TECHNICAL"
-      ]
-    },
-    {
-      "available_date": "2026-11-05",
-      "group_id": "0c35238d9ac5f690c513608ed51ff54be63e377a4b25700acce8415b61ede37f",
-      "project_ids": [
-        "AU-ad64122c217f0dbfabc8"
-      ],
-      "publication_date": "2026-01-30",
-      "source_key": "barkly_ipo20260130",
-      "source_sha256": "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
-      "strata": [
-        "RESOURCE",
-        "TECHNICAL"
-      ]
-    },
-    {
-      "available_date": "2026-11-03",
-      "group_id": "427a2bfb63bd21d07c291a5cec47e44d5a64f457e435bc28c9293419798747e1",
-      "project_ids": [
-        "AU-785536db5ff12c25350d"
-      ],
-      "publication_date": "2022-07-25",
-      "source_key": "circle_met2022",
-      "source_sha256": "b65a525000fb8d74d87024056f7c001df5ee466eb4cf4a8ccf9d6fd5ae08ce19",
-      "strata": [
-        "TECHNICAL"
-      ]
-    },
-    {
-      "available_date": "2026-11-18",
-      "group_id": "0c35238d9ac5f690c513608ed51ff54be63e377a4b25700acce8415b61ede37f",
-      "project_ids": [
-        "AU-ad64122c217f0dbfabc8"
-      ],
-      "publication_date": "2026-01-28",
-      "source_key": "asx_barkly_prospectus20260128",
-      "source_sha256": "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e",
+      "publication_date": "2026-03-01",
+      "source_key": "austrade_2026_prospectus_pdf",
+      "source_sha256": "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5",
       "strata": [
         "RESOURCE"
       ]
@@ -1069,20 +1071,15 @@
   ],
   "profile_slots": [
     "DIRECT_RESOURCE_UNIT_COMPARISON_V1",
-    "TECHNICAL_OBSERVATION_SHADOW"
+    "WITHIN_TABLE_ELEMENT_LEACH"
   ],
   "quarantine_projects": [
-    "AU-6d807eb7caec9db0f35e",
-    "AU-785536db5ff12c25350d",
-    "AU-ad64122c217f0dbfabc8"
+    "AU-7537d9555628040fab40",
+    "AU-d1aeb21e18e60fe8e32e"
   ],
   "quarantine_source_sha256": [
-    "259ebe012c6b6e2048ca2f50f5b47e4c91d9a56e520c97f6deee554d069a54ad",
-    "5f8f642b6c9b561ca0f397fee0990e52786d85af3e67d53756def87b5cde2cd0",
-    "7da4404af58caddba90ef7b83c2e26c3a121b2b44e33895a45d139d30183f6ca",
-    "9259d4a149afef29e471c92e3cc11d512659a07bc4026780488e57ae69d36ef5",
-    "b65a525000fb8d74d87024056f7c001df5ee466eb4cf4a8ccf9d6fd5ae08ce19",
-    "d77611858d4cc78ae86f757c789364934345f5dcf0d28a42ac7674fb75fc632e"
+    "56ccd7821131cdba6a520e55a91ae97894592ee3223b8170df0827e1fed3909b",
+    "af0a8ff9a1b194a45f16dc56dd3b71c04c5f426f15dd23d0511de087f9ec8ac5"
   ],
   "schema": "source-holdout-v1",
   "seed": "AU-REE-OBSERVATIONS-20261126-R1",
