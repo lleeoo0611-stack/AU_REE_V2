@@ -16,6 +16,7 @@ from .census_policy import (
     summary_region_text, summary_settings,
 )
 from .commodity import AGGREGATE, CANDIDATE_VERSION, ELEMENTS, REE, STATES, SYMBOLS, classify_ree
+from .normalization import MAGNET_ATOMIC_WEIGHTS, oxide_factor
 from .official import ingest_workbook
 from .selection_rules import choose, date_end
 from .store import canonical, digest, filehash
@@ -299,16 +300,13 @@ def summary_hm_percent(raw, target):
     conversion = raw.get('species_conversion')
     if not conversion:
         return value
-    Pr, Tb, O = map(Decimal, ('140.908', '158.925', '15.999'))
-    factors = {
-        ('Pr2O3', 'Pr6O11'): (6*Pr + 11*O) / (3*(2*Pr + 3*O)),
-        ('Tb2O3', 'Tb4O7'): (4*Tb + 7*O) / (2*(2*Tb + 3*O))
-    }
+    supported_pairs = {('Pr2O3', 'Pr6O11'): 'Pr', ('Tb2O3', 'Tb4O7'): 'Tb'}
     pair = (conversion.get('source_species'), conversion.get('target_species', target))
     if (conversion.get('method') != 'STOICHIOMETRIC_STANDARD_ATOMIC_WEIGHTS' or
-            pair not in factors or pair[1] != target):
+            pair not in supported_pairs or pair[1] != target):
         raise ValueError('HM_SPECIES_CONVERSION_UNSUPPORTED')
-    factor = factors[pair]
+    element = supported_pairs[pair]
+    factor = oxide_factor(element, *pair, MAGNET_ATOMIC_WEIGHTS[element])
     if abs(Decimal(str(conversion.get('factor', factor))) - factor) > factor * Decimal('1e-12'):
         raise ValueError('HM_SPECIES_FACTOR_MISMATCH')
     return value * factor

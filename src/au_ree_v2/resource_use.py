@@ -1,36 +1,30 @@
 """Source-bound resource admission for the existing declared comparison use."""
 
 import json
-import re
 from decimal import Decimal
 
+from .normalization import MASS_FRACTION, MASS_IN_TONNES, NUMBER, decimal_token, unit_factor
 from .selection_rules import date_end
 from .tabular import read_csv
 
 
 # Convert to the published column units. Material fractions are deliberately absent.
 FIELDS = {
-    "礦石蘊藏量_Mt": ("ore_mt", "Mt", {"t": "0.000001", "kt": "0.001", "Mt": "1"}),
-    "TREO品位_pct": ("grade", "%", {"ppm": "0.0001", "%": "1"}),
-    "總TREO蘊藏量_kt": (
-        "contained_treo_kt", "kt TREO",
-        {"kg": "0.000001", "t": "0.001", "t TREO": "0.001", "kt": "1", "kt TREO": "1"},
-    ),
+    "礦石蘊藏量_Mt": ("ore_mt", "Mt", {u: format(unit_factor(u, "Mt", MASS_IN_TONNES), "f")
+                                      for u in ("t", "kt", "Mt")}),
+    "TREO品位_pct": ("grade", "%", {u: format(unit_factor(u, "%", MASS_FRACTION), "f")
+                                   for u in ("ppm", "%")}),
+    "總TREO蘊藏量_kt": ("contained_treo_kt", "kt TREO", {
+        u: format(unit_factor(u, "kt TREO", MASS_IN_TONNES), "f") for u in ("kg", "t", "t TREO", "kt", "kt TREO")
+    }),
 }
 DIRECT_METHODS = {"ore_mt": "SAME_SOURCE_STATEMENT_SCOPE_DATE",
                   "grade": "SAME_SOURCE_STATEMENT_SCOPE_DATE", "contained_treo_kt": "REPORTED"}
 CATEGORIES = {"MEASURED", "INDICATED", "INFERRED", "MEASURED_INDICATED_TOTAL",
               "MEASURED_INFERRED_TOTAL", "INDICATED_INFERRED_TOTAL", "MEASURED_INDICATED_INFERRED_TOTAL"}
-NUMBER = re.compile(r"(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?")
-
-
 def _positive(token, unit):
-    if unit == "%" and token.endswith("%"):
-        token = token[:-1].strip()
-    if not NUMBER.fullmatch(token):
-        return None
-    number = Decimal(token.replace(",", ""))
-    return number if number > 0 else None
+    number = decimal_token(token, unit)
+    return number if number is not None and number > 0 else None
 
 
 def _equal(left, right):

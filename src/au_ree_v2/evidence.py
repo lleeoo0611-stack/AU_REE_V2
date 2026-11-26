@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 from .store import canonical, digest, entity, issue, filehash
 from .official import ingest_official_table, ingest_prospectus, ingest_workbook
+from .normalization import oxide_factor
 from .national import ingest_legacy_e1
 from .pdf_extract import html_text
 from .screen_index import ingest as ingest_screen_index
@@ -786,8 +787,7 @@ def transformation_issues(o, siblings, depth=0):
             assert o['reviewed_element_table_cell']['page'] in (88,89)
             reference=o['census_equivalent_resource_pdf']
             assert Decimal(t['source_ore_t'].replace(',','')).quantize(Decimal('1E3'))/1000000==Decimal(str(reference['ore_mt']))
-            atoms,oxygen=int(formula[1] or 1),int(formula[2])
-            factor=1+Decimal('15.999')*oxygen/(Decimal(t['standard_atomic_weight'])*atoms)
+            factor=oxide_factor(element,element,o['basis'],t['standard_atomic_weight'])
             ppm=Decimal(t['source_ppm'])*factor
             assert ppm>0 and math.isclose(o['value'],float(ppm),rel_tol=1e-12)
         elif t['rule']=='REVIEWED_IMAGE_ROW_OXIDE_PCT_TO_PPM':

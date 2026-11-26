@@ -8,18 +8,17 @@ from collections import defaultdict
 from datetime import date
 from decimal import Decimal
 from itertools import combinations
-from pathlib import Path
 import re
 import unicodedata
 
-from .pdf_extract import DOCUMENT_VERSION, NUMBER, _native_tables
-from .store import digest, filehash
+from .document_processing import DocumentUnavailable, PdfDocumentCache
+from .pdf_extract import NUMBER
+from .store import digest
 from .technical_tables import cells, number_token, path_above
 
 
 VERSION = "resource-source-observation-v1"
 PROFILE = "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
-SHA = re.compile(r"[0-9a-f]{64}")
 MARKER = re.compile(rf"(?:\btotal(?:\(\d+\))?\s+)?{NUMBER}(?:\s+{NUMBER})+\s*$", re.I)
 CAPTION = re.compile(r"^table\s+(\d+(?:[-.]\d+)?)\b[\s:.–-]*", re.I)
 MASS_HEADER = re.compile(r"(?:tonnes?|tonnage|resource(?: tonnage)?|dry tonnes?|material)\s*\(?\s*(Mt|kt|t)\s*\)?", re.I)
@@ -312,38 +311,40 @@ def _resolve(row, source):
     return dict(result, native=native, anchors=anchors, context=_context(row, anchors), status="EXTRACTED", reasons=[])
 
 
-def extract_resource_observations(candidate_rows, assets):
+def extract_resource_observations(candidate_rows, assets, *, documents=None):
     """Re-read verified static PDF pages for a frozen source-bound frame."""
-    import pymupdf
-
-    assets = Path(assets)
+    if documents is None:
+        with PdfDocumentCache(assets) as cache:
+            return extract_resource_observations(candidate_rows, assets, documents=cache)
     sources = defaultdict(list)
     for row in candidate_rows:
         sources[row["source_sha256"]].append(row)
     results = []
-    for sha, rows in sorted(sources.items()):
+    for sha, rows in sorted(sources.items(), key=lambda item: str(item[0])):
         pages = sorted({r["physical_page"] for r in rows
-                        if isinstance(r["physical_page"], int) and r["physical_page"] > 0 and not r.get("source_gates")})
-        cache = {}
-        if pages and SHA.fullmatch(sha):
-            path = assets / sha
-            if path.is_file() and filehash(path) == sha:
-                try:
-                    with pymupdf.open(path) as document:
-                        for page in pages:
-                            if page <= len(document):
-                                obj = document[page - 1]
-                                lines = [clean(s) for s in obj.get_text().splitlines() if clean(s)]
-                                blocks = [(list(block[:4]), clean(block[4])) for block in obj.get_text("blocks") if block[6] == 0]
-                                try:
-                                    tables = _native_tables(document, page, None, True, DOCUMENT_VERSION)
-                                except ValueError:
-                                    tables = []
-                                cache[page] = lines, blocks, tables
-                except pymupdf.FileDataError:
-                    cache = {}
+                        if type(r["physical_page"]) is int and r["physical_page"] > 0 and not r.get("source_gates")})
+        captures, errors = {}, {}
+        if pages:
+            try:
+                document = documents.open(sha)
+            except DocumentUnavailable:
+                document = None
+            if document is not None:
+                for page in pages:
+                    if page > len(document):
+                        continue
+                    lines = [clean(line) for line in document.text(page).splitlines() if clean(line)]
+                    blocks = [(list(block[:4]), clean(block[4])) for block in document.blocks(page) if block[6] == 0]
+                    tables, error = document.tables(page)
+                    captures[page] = lines, blocks, tables
+                    if error:
+                        errors[page] = error
         for row in rows:
-            results.append(_resolve(row, cache.get(row["physical_page"])))
+            page = row["physical_page"]
+            captured = _resolve(row, captures.get(page))
+            if page in errors:
+                captured["table_parser_error"] = errors[page]
+            results.append(captured)
     return sorted(results, key=lambda r: r["candidate_id"])
 
 
