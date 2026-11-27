@@ -255,7 +255,10 @@ class Phase7IntegrationTests(unittest.TestCase):
         folder=self.work/'tampered-policy';folder.mkdir(exist_ok=True)
         f=folder/'configuration.json';f.write_text(json.dumps({'research':config}))
         (folder/'summary.json').write_text(json.dumps({'output_hashes':{'configuration.json':filehash(f)}}))
-        self.assertEqual(config,research_configuration(ROOT,folder/'snapshot_lock.json'))
+        self.assertEqual(config,research_configuration(ROOT,folder/'snapshot_lock.json',c1_cohort_policy='historical'))
+        current=research_configuration(ROOT,folder/'snapshot_lock.json')
+        self.assertEqual(current.pop('c1_cohort_policy'),{'version':'c1-cohort-policy-v1','status':'DISABLED'})
+        self.assertEqual(config,current)
         f.write_text('{}')
         with self.assertRaisesRegex(ValueError,'configuration checksum'):
             research_configuration(ROOT,folder/'snapshot_lock.json')

@@ -28,6 +28,11 @@ MATRIX_FIELDS = ["project_id", "canonical_project_id", "project_name", "scope", 
 GATES = ("ID", "ROLE", "WINDOW", "JORC", "PANEL", "GIS_RELEASE")
 
 
+def cohort_policy_status(configuration):
+    """An unmarked sealed configuration uses the historical cohort contract."""
+    return configuration["research"].get("c1_cohort_policy", {}).get("status", "HISTORICAL")
+
+
 class _Excluded(ValueError):
     """A local evidence problem that must remain explicit in the panel ledger."""
 
@@ -208,12 +213,14 @@ def _panel_rows(db, evidence, inputs, config):
     ), "entity_id")
     composition = _indexed((r for r in inputs.csv("criteria_resolution.csv") if r["criterion"] == "S1"), "canonical_project_id")
     eligibility = _indexed(inputs.csv("eligibility_cohorts.csv"), "canonical_project_id")
+    c1_disabled = cohort_policy_status({"research": config}) == "DISABLED"
     gates = defaultdict(dict)
-    for row in inputs.csv("formal_gate_compatibility.csv"):
-        pid, gate = row["canonical_project_id"], row["gate"]
-        if gate in gates[pid]:
-            raise ValueError("DUPLICATE_FORMAL_GATE: " + pid + "/" + gate)
-        gates[pid][gate] = {"status": row["status"], "reason": row["reason"]}
+    if not c1_disabled:
+        for row in inputs.csv("formal_gate_compatibility.csv"):
+            pid, gate = row["canonical_project_id"], row["gate"]
+            if gate in gates[pid]:
+                raise ValueError("DUPLICATE_FORMAL_GATE: " + pid + "/" + gate)
+            gates[pid][gate] = {"status": row["status"], "reason": row["reason"]}
     excluded = _indexed(inputs.csv("cohort_exclusions.csv"), "entity_id")
     filtered = _indexed((r for r in inputs.optional_csv("mcda_census_gate.csv") if r["panel"] == PANEL), "project_id")
     scope_selection = _indexed(inputs.optional_csv("resource_scope_selection.csv"), "project_id")
@@ -235,9 +242,10 @@ def _panel_rows(db, evidence, inputs, config):
         record = {
             "canonical_project_id": project_id, "member_project_ids": entities, "purpose": PURPOSE,
             "cutoff": evidence.cutoff, "version": VERSION,
-            "formal_c1_status": eligibility.get(project_id, {}).get("formal_c1_status", "NO_FORMAL_C1_COHORT_ROW"),
+            "formal_c1_status": "DISABLED" if c1_disabled else eligibility.get(project_id, {}).get(
+                "formal_c1_status", "NO_FORMAL_C1_COHORT_ROW"),
             "c1_gates": {gate: gates.get(project_id, {}).get(gate, {"status": "NO_FORMAL_GATE_ROW", "reason": None})
-                         for gate in GATES},
+                         for gate in (() if c1_disabled else GATES)},
         }
         ledger.append(record)
         try:
@@ -411,7 +419,8 @@ def run(root, database, formal_run, output, *, rscript=None):
         raise ValueError("FORMAL_PANEL_COUNT_MISMATCH")
     eligibility = inputs.json("eligibility_audit.json")
     release_file = "project-summary/formal_c1_release.json"
-    if release_file in inputs.hashes:
+    c1_status = cohort_policy_status(configuration)
+    if c1_status != "DISABLED" and release_file in inputs.hashes:
         inputs.path(release_file)
     output.parent.mkdir(parents=True, exist_ok=True)
     with TemporaryDirectory(prefix=".formal-bridge-", dir=output.parent) as name:
@@ -460,6 +469,7 @@ def run(root, database, formal_run, output, *, rscript=None):
                 obs_id for feature in traces if feature["panel_admitted"] for obs_id in feature["obs_ids"]
             }),
             "formal_c1_admitted": eligibility["formal_c1_admitted"], "formal_c1_modified": False,
+            "formal_c1_policy_status": c1_status,
             "matrix_equal": not matrix_delta, "ranking_equal": not rank_delta,
             "matrix_bytes_equal": panel_digests["matrix.csv"] == inputs.hashes[f"{PANEL}/matrix.csv"],
             "ranking_bytes_equal": panel_digests.get("ranking.csv") == inputs.hashes[f"{PANEL}/ranking.csv"],

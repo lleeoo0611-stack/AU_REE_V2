@@ -15,6 +15,7 @@ import unittest
 import pymupdf
 
 from au_ree_v2.cli import research_configuration
+from au_ree_v2.eligibility import HISTORICAL_C1_CONFIG_FILES
 from au_ree_v2.store import canonical, digest, filehash
 from au_ree_v2.tabular import read_csv
 
@@ -25,7 +26,6 @@ CUTOFF = '2026-11-05'
 ASTER = 'Fictional Aster Project'
 BEACON = 'Fictional Beacon Project'
 FIXTURE_CLASS = 'SYNTHETIC_ENGINEERING_FIXTURE'
-GATES = {'ID', 'ROLE', 'WINDOW', 'JORC', 'PANEL', 'GIS_RELEASE'}
 MARKER = 'Definitive Feasibility Study completed.'
 SCIENTIFIC = (
     'resources.csv', 'criteria_resolution.csv', 'cohort_coverage.csv', 'eligibility_cohorts.csv',
@@ -106,8 +106,13 @@ def project(name, source):
 
 def fixture(root):
     root.mkdir()
-    for directory in ('config', 'docs', 'R', 'results', 'src'):
+    for directory in ('docs', 'R', 'results', 'src'):
         (root / directory).symlink_to(ROOT / directory, target_is_directory=True)
+    configuration_dir = root / 'config'
+    configuration_dir.mkdir()
+    for path in (ROOT / 'config').iterdir():
+        if path.name not in HISTORICAL_C1_CONFIG_FILES:
+            (configuration_dir / path.name).symlink_to(path, target_is_directory=path.is_dir())
     data = root / 'data'
     data.mkdir()
     for path in (ROOT / 'data').iterdir():
@@ -201,12 +206,14 @@ def assert_scientific_update(before, after, original_id, peer_id):
                     for method in ('saw', 'topsis', 'promethee')}
         assert all(value == expected for value in observed.values()), (scenario, observed)
         changed.append({'scenario': scenario, 'project_id': project_id_, 'ranks': observed})
-    expected_gates = {(pid, gate) for pid in (original_id, peer_id) for gate in GATES}
     for path in (before, after):
-        rows = read_csv(path / 'formal_gate_compatibility.csv')
-        assert {(r['canonical_project_id'], r['gate']) for r in rows} == expected_gates
+        assert not read_csv(path / 'formal_gate_compatibility.csv')
+        cohorts = read_csv(path / 'eligibility_cohorts.csv')
+        assert {r['canonical_project_id'] for r in cohorts} == {original_id, peer_id}
+        assert {r['formal_c1_status'] for r in cohorts} == {'DISABLED'}
         audit = json.loads((path / 'eligibility_audit.json').read_bytes())
-        assert audit['formal_c1_admitted'] == 0
+        assert audit['formal_c1_status'] == 'DISABLED' and 'objective_evidence' not in audit
+        assert not audit['formal_c1_admitted'] and not audit['formal_c1_evaluated']
     return changed
 
 
@@ -376,7 +383,7 @@ def exercise(output, rscript):
         assert differences['criterion_selection_counts']['updated'] == 1
         assert panel_change['matrix_primary_criterion_cells_changed'] == 1
         assert len(panel_change['ranking_differences']) == len(ranks)
-        assert differences['formal_c1']['updated']['formal_c1_admitted'] == 0
+        assert differences['formal_c1']['updated']['formal_c1_status'] == 'DISABLED'
         retrieval_work = output / 'retrieval-runs'
         fixed_label, full_label, warm_label = 'retrieval-fixed', 'retrieval-full-text', 'retrieval-full-text-warm'
         run_stage(fixed_label, 'retrieval', directory=retrieval_work, retrieval='fixed')
@@ -396,7 +403,9 @@ def exercise(output, rscript):
                 'disabled_cold_warm_science_identical': True,
                 'changed_frame_incremental_and_full_science_identical': True,
                 'repeat_same_canonical_observation_ids': True,
-                'research_panel_count': 2, 'formal_c1_admitted': 0,
+                'research_panel_count': 2, 'formal_c1_status': 'DISABLED',
+                'legacy_c1_policy_files_absent': all(not (root / 'config' / file).exists()
+                                                    for file in HISTORICAL_C1_CONFIG_FILES),
             },
             'new_canonical_observation_ids': added, 'new_canonical_values': new_values,
             'criterion_update': {'project_id': project_id(ASTER), 'criterion': 'R1', 'unit': 'kt TREO',

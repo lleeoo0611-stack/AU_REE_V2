@@ -1,6 +1,10 @@
 {
   "version": "research-v8-native-candidate-shared-draws",
   "frozen_before_scoring": true,
+  "c1_cohort_policy": {
+    "version": "c1-cohort-policy-v1",
+    "status": "DISABLED"
+  },
   "cohorts": {
     "full_census": "All available source entities; counts must be stratified by entity kind. Not a complete national project census.",
     "resource_defined": "PROJECT with one latest complete same-scope TREO Mineral Resource statement. No stage requirement.",

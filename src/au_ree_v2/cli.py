@@ -16,6 +16,7 @@ from .acquisition import select_snapshots
 from .analysis import MCDA_TRACE_PANEL, WEIGHT_CALCULATIONS, prepare, run_r
 from .tabular import write_csv
 from .evidence import ingest_sources, ingest_claims, resource_values, strict_claims
+from .eligibility import DISABLED_C1_COHORT, c1_cohort_disabled
 from .gis import run as run_gis, national_deposit_port_distances, deposit_type_port_summary
 from .official import official_inventory, exact_deposit_candidates, domain_evidence_coverage, national_prospectus_inventory
 from .national import national_candidate_rows, national_source_coverage, candidate_port_distances
@@ -30,9 +31,10 @@ def code_version(root):
     return {'package':__version__,'commit':commit,
             'content_sha256':digest({p.relative_to(root).as_posix():filehash(p) for p in files})}
 
-def research_configuration(root, snapshot_lock=None):
+def research_configuration(root, snapshot_lock=None, *, c1_cohort_policy=None):
     """Load current policy or the SHA-checked semantics accompanying a lock."""
     config=json.loads((root/'config/research.json').read_text(encoding='utf-8'))
+    disabled_policy = config.get('c1_cohort_policy', DISABLED_C1_COHORT)
     # A lock's adjacent configuration freezes research semantics as well as
     # source bytes. Old Phase5/6 locks retain their original selection policy.
     frozen_config=Path(snapshot_lock).parent/'configuration.json' if snapshot_lock else None
@@ -49,8 +51,18 @@ def research_configuration(root, snapshot_lock=None):
             policy=json.loads(policy_path.read_text(encoding='utf-8'))
             config={**config,'evidence_resolution':policy,'version':config['version']+'+'+policy['version'],
                     'panels':{**config['panels'],**policy['panels']}}
-    if not snapshot_lock and (root/'config/eligibility_compatibility.json').exists():
-        config['eligibility_evidence']=json.loads((root/'config/eligibility_compatibility.json').read_text())
+    if c1_cohort_policy == 'historical':
+        was_disabled = c1_cohort_disabled(config)
+        config.pop('c1_cohort_policy', None)
+        legacy_policy = root/'config/eligibility_compatibility.json'
+        if (not snapshot_lock or (frozen_config and frozen_config.is_file() and was_disabled)) and legacy_policy.exists():
+            config['eligibility_evidence'] = json.loads(legacy_policy.read_text(encoding='utf-8'))
+    elif c1_cohort_policy in (None, 'disabled'):
+        config['c1_cohort_policy'] = dict(config.get('c1_cohort_policy', disabled_policy))
+        c1_cohort_disabled(config)
+        config.pop('eligibility_evidence', None)
+    else:
+        raise ValueError('UNSUPPORTED_C1_COHORT_POLICY')
     if config.get('evidence_resolution',{}).get('technical_disclosure'):
         config['criteria']=[dict(c,variable='technical_disclosure_pct',
             interpretation='Technical Disclosure Transparency; not technical feasibility/performance',
@@ -266,7 +278,8 @@ def _execute(args):
         mode in ('offline','live') or (mode=='frozen' and getattr(args,'source_mode',None)=='frozen'))
     if args.module=='all' and mode=='frozen' and not integration and (getattr(args,'out',None) or census_filters):
         raise ValueError('Use --source-mode frozen to publish or filter Census from a frozen lock')
-    config=research_configuration(root,args.snapshot_lock)
+    config=research_configuration(root,args.snapshot_lock,c1_cohort_policy=getattr(args,'c1_cohort_policy',None))
+    disabled_c1 = c1_cohort_disabled(config)
     if trace_panel := getattr(args, 'mcda_trace_panel', None):
         config['mcda_trace_panel'] = trace_panel
     if weight_calculation := getattr(args, 'mcda_weight_calculation', None):
@@ -437,7 +450,8 @@ def _execute(args):
     if strict:configuration['verified_claim_ids']=sorted(active_claim_ids)
     for name in ('identity_links.json','study_cases.json'):
         if (root/'data'/name).exists():configuration[name+'_sha256']=filehash(root/'data'/name)
-    configuration['eligibility_policy_sha256']=filehash(root/'config/eligibility_compatibility.json')
+    if not disabled_c1:
+        configuration['eligibility_policy_sha256']=filehash(root/'config/eligibility_compatibility.json')
     db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?,?)',
         (run_id,datetime.now(timezone.utc).isoformat(),args.as_of,canonical(version),digest(configuration),
          digest(snapshots),'RUNNING',None))
@@ -802,11 +816,13 @@ def _execute(args):
         output_hashes={p.relative_to(out).as_posix():filehash(p) for p in sorted(out.rglob('*')) if p.is_file()}
         summary['output_hashes']=output_hashes
         summary['execution_artifacts']=[name for name in output_hashes if Path(name).name in ('R.log','r_cache.json','R_cohort.log','r_cohort_cache.json')]
-        report=['# AU_REE_V2 research run',f"Cutoff: {args.as_of}",f"Run: {run_id}",
+        cohort_report = ['C1 cohort policy is DISABLED. Configured research panels use their declared evidence criteria.'] if disabled_c1 else []
+        report=['# AU_REE_V2 research run',f"Cutoff: {args.as_of}",f"Run: {run_id}", *cohort_report,
                 '## Verified coverage',canonical(by_kind),f'Resource-defined sample: {len(resources)}',
                 f"Full-evidence sample: {summary['full_evidence_n']}",
                 f"WA government resource screen (exploratory): {summary['official_summary_screen_n']}",
-                'The WA government screen uses two related resource variables, not a six-domain C1 ranking.',
+                ('The WA government screen uses two related resource variables.' if disabled_c1 else
+                 'The WA government screen uses two related resource variables, not a six-domain C1 ranking.'),
                 '## Research interpretation',
                 summary['aim_a'],summary['aim_b'],summary['aim_c'],
                 'Weight scenarios are researcher assumptions. Rank frequencies are not development success probabilities.',
@@ -881,6 +897,8 @@ def main():
     parser.add_argument('--skip-r',action='store_true')
     parser.add_argument('--rscript')
     parser.add_argument('--snapshot-lock',help='Exact immutable snapshot_lock.json from a prior run')
+    parser.add_argument('--c1-cohort-policy', choices=('disabled', 'historical'),
+                        help='C1 cohort policy. Defaults to disabled. Select historical to replay the archived gate contract.')
     parser.add_argument('--source-replay',help='Replay a saved source_acquisition.json and its SHA-verified originals')
     parser.add_argument('--replay-assets',help='Local SHA-named asset directory for missing replay inputs')
     parser.add_argument('--static-pdfs',action='append',default=[],metavar='DIRECTORY',

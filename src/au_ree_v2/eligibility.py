@@ -4,8 +4,23 @@ from .tabular import read_csv, write_csv
 from .store import canonical, digest
 
 
+DISABLED_C1_COHORT = {'version': 'c1-cohort-policy-v1', 'status': 'DISABLED'}
+HISTORICAL_C1_CONFIG_FILES = frozenset({'eligibility_compatibility.json', 'formal_c1_review.json'})
+
+
+def c1_cohort_disabled(research):
+    """Current runs record the disabled policy. Unmarked receipts predate it."""
+    policy = research.get('c1_cohort_policy')
+    if policy is None:
+        return False
+    if policy != DISABLED_C1_COHORT:
+        raise ValueError('UNSUPPORTED_C1_COHORT_POLICY')
+    return True
+
+
 def audit(db,out,identity,technical,prepared,config,cutoff,snapshots,root=None,current=None,*,integrated_census=False):
     mapping=identity['mapping']; selected={s['sha256'] for s in snapshots}
+    disabled = c1_cohort_disabled(config)
     names={r['entity_id']:r['name'] for r in db.execute('SELECT * FROM records ORDER BY source_sha') if r['source_sha'] in selected}
     coverage={r['canonical_project_id']:r for r in prepared['coverage']}
     pairs=[]
@@ -21,15 +36,19 @@ def audit(db,out,identity,technical,prepared,config,cutoff,snapshots,root=None,c
         name=' | '.join(sorted({names.get(m,m) for m in members})); c=coverage.get(eid,{})
         if row['status']=='NO_CONTROLLED_PRIMARY_TECHNICAL_SCOPE_YET':
             gaps.append({**row,'project_names':name,'reason':'NO_SELECTED_PRIMARY_RESOURCE_OR_STUDY_SCOPE','needed_evidence':'DATED_PRIMARY_PDF_WITH_PROJECT_SCOPE_AND_PAGE','cutoff':cutoff})
-        for gate in ('ID','ROLE','WINDOW','JORC','PANEL','GIS_RELEASE'):
-            objective={'ID':{'registered_member_ids':members,'controlled_primary_status':row['status']},'JORC':{'validated_resource_scopes':json.loads(row['resource_scopes'])},'GIS_RELEASE':{'available_infrastructure_criteria':[k for k,v in c.items() if k.startswith('I') and v==1]},'WINDOW':{'dated_stage_criterion_available':bool(c.get('D1')),'current_activity':'UNKNOWN_NOT_INFERRED_FROM_STUDY_COMPLETION'},'ROLE':{'primary_study_cases':json.loads(row['study_case_ids']),'economic_product_role':'NOT_INFERRED_FROM_ASSAY'},'PANEL':{'fixed_formal_panel':'NOT_IMPORTED'}}[gate]
-            gates.append({'canonical_project_id':eid,'gate':gate,'status':'NOT_EVALUATED_NO_IMPORTED_GATE_EVIDENCE','cutoff':cutoff,'rule_version':'v2-compatibility-v1','reason':'COVERAGE_IS_NOT_A_FORMAL_GATE_SIGNOFF','objective_source_facts':canonical(objective)})
-        cohorts.append({'canonical_project_id':eid,'project_names':name,'registry_group':1,'resource_defined':c.get('resource_defined',0),'development':c.get('development',0),'full_evidence':c.get('full_evidence',0),'formal_c1_status':'NOT_EVALUATED','exploratory_available':int(bool(c)),'cutoff':cutoff,'rule_version':'v2-compatibility-v1'})
+        if not disabled:
+            for gate in ('ID','ROLE','WINDOW','JORC','PANEL','GIS_RELEASE'):
+                objective={'ID':{'registered_member_ids':members,'controlled_primary_status':row['status']},'JORC':{'validated_resource_scopes':json.loads(row['resource_scopes'])},'GIS_RELEASE':{'available_infrastructure_criteria':[k for k,v in c.items() if k.startswith('I') and v==1]},'WINDOW':{'dated_stage_criterion_available':bool(c.get('D1')),'current_activity':'UNKNOWN_NOT_INFERRED_FROM_STUDY_COMPLETION'},'ROLE':{'primary_study_cases':json.loads(row['study_case_ids']),'economic_product_role':'NOT_INFERRED_FROM_ASSAY'},'PANEL':{'fixed_formal_panel':'NOT_IMPORTED'}}[gate]
+                gates.append({'canonical_project_id':eid,'gate':gate,'status':'NOT_EVALUATED_NO_IMPORTED_GATE_EVIDENCE','cutoff':cutoff,'rule_version':'v2-compatibility-v1','reason':'COVERAGE_IS_NOT_A_FORMAL_GATE_SIGNOFF','objective_source_facts':canonical(objective)})
+        cohorts.append({'canonical_project_id':eid,'project_names':name,'registry_group':1,'resource_defined':c.get('resource_defined',0),'development':c.get('development',0),'full_evidence':c.get('full_evidence',0),'formal_c1_status':'DISABLED' if disabled else 'NOT_EVALUATED','exploratory_available':int(bool(c)),'cutoff':cutoff,'rule_version':'v2-compatibility-v1'})
     write_csv(out/'primary_scope_gaps.csv',gaps,['canonical_project_id','project_names','member_entity_ids','status','unverified_or_other_scope_claims','reason','needed_evidence','cutoff'])
     write_csv(out/'formal_gate_compatibility.csv',gates,['canonical_project_id','gate','status','objective_source_facts','reason','cutoff','rule_version'])
     write_csv(out/'eligibility_cohorts.csv',cohorts,['canonical_project_id','project_names','registry_group','resource_defined','development','full_evidence','formal_c1_status','exploratory_available','cutoff','rule_version'])
     stats={'unresolved_pairs':len(pairs),'primary_scope_gaps':len(gaps),'formal_c1_evaluated':0,'formal_c1_admitted':0,'formal_c1_reason':'UPSTREAM_GATE_LEDGER_AND_FIXED_PANEL_NOT_IMPORTED','registry_groups':len(cohorts),'source_snapshots':len(snapshots),'resource_defined':sum(c['resource_defined'] for c in cohorts),'development':sum(c['development'] for c in cohorts),'full_evidence':sum(c['full_evidence'] for c in cohorts)}
-    if integrated_census and root and (root/'config/formal_c1_review.json').is_file():
+    if disabled:
+        stats.update(formal_c1_status='DISABLED', formal_c1_policy_version=DISABLED_C1_COHORT['version'],
+                     formal_c1_reason='C1_COHORT_POLICY_DISABLED')
+    elif integrated_census and root and (root/'config/formal_c1_review.json').is_file():
         folder = out/'project-summary'
         release = json.loads((folder/'formal_c1_release.json').read_text(encoding='utf8'))
         verified = set(release['signed_eligible_projects'])

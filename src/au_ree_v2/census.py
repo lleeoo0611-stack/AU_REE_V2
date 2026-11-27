@@ -780,13 +780,9 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
                     configuration, snapshots, membership, acquisition_rows, audit, claim_declarations, replay_assets):
     from .tabular import write_csv
     from .evidence import load_claims,claim_evidence_ids
+    from .census_replay import export_contract_hashes, read_run_inputs
+    from .eligibility import c1_cohort_disabled
     rules,decisions=summary_settings(root)
-    hashes={name:filehash(root/'config'/name) for name in
-            ('summary_rules.json','researcher_rule_decisions.json','project_summary_columns.json')}
-    evidence_files = ('config/assay_evidence.json','config/candidate_milestones.json',
-                      'data/candidate_milestone_evidence.json','config/formal_c1_review.json',
-                      'config/eligibility_compatibility.json')
-    hashes.update({file:filehash(root/file) for file in evidence_files if (root/file).is_file()})
     columns=json.loads((root/'config/project_summary_columns.json').read_text(encoding='utf8'))
     if len(columns)!=51 or len(set(columns))!=51:raise ValueError('SUMMARY_51_COLUMN_CONTRACT_REQUIRED')
     db.row_factory=sqlite3.Row
@@ -796,13 +792,14 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
         raise ValueError('SUMMARY_REQUIRES_COMPLETED_RUN')
     cutoff=cutoff or run['cutoff']
     if standalone:
-        from .census_replay import read_run_inputs
-        saved = read_run_inputs(db,database,root,run,hashes,cutoff,replay_assets)
+        saved = read_run_inputs(db,database,root,run,cutoff,replay_assets)
         if saved is not None:
             configuration,snapshots,membership,acquisition_rows = saved
         elif configuration and configuration.get('source_mode'):
             raise ValueError('SUMMARY_RUN_METADATA_REQUIRED')
     configuration = configuration or {}
+    hashes = export_contract_hashes(root, configuration)
+    disabled_c1 = c1_cohort_disabled(configuration.get('research', {}))
     if audit is None:audit=standalone and bool(configuration.get('source_mode'))
     frozen=claim_declarations
     if frozen is None:frozen,_=load_claims(root,configuration.get('claims_sha256'))
@@ -990,7 +987,6 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
     coverage=summary_coverage(rows,columns,missing,rules)
     if audit:
         from .milestones import write_milestones
-        from .formal_cohort import write_formal_cohort
         from .assays import write_assay_evidence
         coverage.update(write_census_audit(db,out,rows,trace,diagnoses,observations,bundles,
                                            resource_columns=rules['resource_columns']))
@@ -999,11 +995,14 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
             coverage.update(write_gap_review(root,out,rows,trace,diagnoses,sources,associations,cutoff,
                                              configuration['census_gap_review_sha256']))
         coverage.update(write_milestones(root,out,rows,sources,observations,bundles,stage_audit,cutoff))
-        if (root/'config/formal_c1_review.json').is_file():
+        if not disabled_c1 and (root/'config/formal_c1_review.json').is_file():
+            from .formal_cohort import write_formal_cohort
             coverage.update(write_formal_cohort(root,out,rows,trace,sources,observations,cutoff))
         if (root/'config/assay_evidence.json').is_file():
             coverage.update(write_assay_evidence(root,out,rows,sources,db,cutoff,active))
     coverage.setdefault('formal_C1', False)
+    if disabled_c1:
+        coverage['formal_c1_status'] = 'DISABLED'
     coverage['export_contract_sha256']=hashes
     coverage.update(database_sha256=filehash(database) if standalone else None,cutoff=cutoff,source_scope='LATEST_CANONICAL_RUN_ONLY',
         rows=len(rows),column_count=len(columns),same_mre_aggregation='NO_RESOURCE_SUMS_EXPORTED;Yttria/Mt_Stirling_NON_ADDITIVE')

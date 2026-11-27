@@ -12,6 +12,7 @@ from time import perf_counter
 from uuid import uuid4
 from .derived_cache import exclusive_lock
 from .disclosure_analysis import prepare_disclosure_analysis
+from .eligibility import c1_cohort_disabled
 from .mcda import interval_mcda, score
 from .store import canonical, digest, filehash
 
@@ -730,11 +731,15 @@ def run_r(root, out, prepared, config, rscript=None, *, cache_mode="use", force_
     executable = _r_executable(rscript)
     forced = _validate_mcda_mode(prepared, cache_mode, force_panels)
     results = {}
+    disabled_c1 = c1_cohort_disabled(config)
     runtime = _r_runtime(executable) if config.get("mcda_cache") else None
     for panel,n in prepared['panels'].items():
         _rank_trace_profile(config, panel)
         if n<2:
-            results[panel]={'status':'INSUFFICIENT_SAMPLE','n':n};continue
+            results[panel]={'status':'INSUFFICIENT_SAMPLE','n':n}
+            if disabled_c1:
+                results[panel]['formal_c1_status'] = 'DISABLED'
+            continue
         folder=Path(out)/panel
         command=[str(executable),str(Path(root)/'R/run_mcda.R'),str(folder),
                  str(config['monte_carlo']['seed']),str(config['monte_carlo']['reps']),str(config['promethee_threshold']),
@@ -786,10 +791,14 @@ def run_r(root, out, prepared, config, rscript=None, *, cache_mode="use", force_
         if panel.startswith('technical_process_concentrate_'):
             results[panel]['evidence_status']='NAMED_DESIGN_FORECAST_COMPARISON_NOT_OPERATING_OR_NATIONAL_RANK'
         if config.get('evidence_resolution'):
-            results[panel]['formal_c1_eligibility']=False
             results[panel]['criteria_policy']=config['evidence_resolution']['version']
+            if not disabled_c1:
+                results[panel]['formal_c1_eligibility']=False
             if panel in config['evidence_resolution']['panels']:
-                results[panel]['evidence_status']='EXPLORATORY_CANDIDATE_CRITERIA_NOT_FORMAL_C1'
+                results[panel]['evidence_status'] = ('EXPLORATORY_CANDIDATE_CRITERIA' if disabled_c1
+                                                    else 'EXPLORATORY_CANDIDATE_CRITERIA_NOT_FORMAL_C1')
+        if disabled_c1:
+            results[panel]['formal_c1_status'] = 'DISABLED'
     if config.get('evidence_resolution',{}).get('technical_disclosure'):
         changes=[]
         for panel in ('resource_disclosure','resource_port_disclosure'):
