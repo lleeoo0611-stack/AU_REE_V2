@@ -460,7 +460,7 @@ def _markdown(report, audit):
             f"| {graph['cyclomatic_estimate']['max']} |"
             for label, graph in zip(("開發基準", "稽核時的工作樹"), modules, strict=True)
         ],
-        "", "匯入圖包含函式內相依。複雜度是 Python AST 的結構估計，計入短路判定。相同程式形狀的科學用途仍需人工核對。",
+        "", "匯入圖包含函式內相依。複雜度是 Python AST 的結構估計，計入短路判定。重複程式形狀用於定位候選，科學等價性由固定輸入重播驗證。",
         f"目前分支最多的函式為 {hotspot_labels}。",
         "", "Canonical SQLite 可由 v0 遷移至 v1，唯讀的 v0 仍可透過 TEMP View 查詢。觀測型別讀取檢查 v3，原始觀測 ID 仍由 v1 產生。",
         "", "既有盲審參照仍缺獨立已完成標註。來源綁定測試與資料重播維持各自的評估口徑。",

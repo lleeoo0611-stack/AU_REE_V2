@@ -1,6 +1,7 @@
 """Run/reproduce the Phase 10 audits without altering the formal database."""
 
 import argparse
+from datetime import datetime
 import json
 from pathlib import Path
 import subprocess
@@ -39,6 +40,23 @@ def _rate(metric):
     return f'{metric["numerator"]}／{metric["denominator"]}'
 
 
+def ci_performance(output, job_files):
+    path = output / 'ci-performance.json'
+    receipt = _read(path)
+    jobs = []
+    for source in job_files:
+        for row in _read(source).get('jobs', ()):
+            start, end = row['started_at'], row['completed_at']
+            elapsed = ((datetime.fromisoformat(end) - datetime.fromisoformat(start)).total_seconds()
+                       if start and end and row['conclusion'] != 'skipped' else None)
+            jobs.append({key: row[key] for key in ('name', 'run_id', 'head_sha', 'status', 'conclusion', 'html_url')}
+                        | {'job_id': row['id'], 'started_at': start, 'completed_at': end, 'elapsed_seconds': elapsed})
+    receipt['phase10'] = {'status': 'COMPLETE' if jobs and all(row['status'] == 'completed' for row in jobs)
+                          else 'PARTIAL_OBSERVATION', 'measure': 'GitHub job timestamps, excluding queue time',
+                          'jobs': sorted(jobs, key=lambda row: (row['run_id'], row['job_id']))}
+    atomic_json(path, receipt)
+
+
 def report(output):
     """Render a compact ledger while preserving every denominator in its own receipt."""
     output = Path(output)
@@ -56,6 +74,7 @@ def report(output):
     archive_performance = _read(output / 'reference-performance.json')
     subset = _read(output / 'verified-subset.json')
     repo = _read(output / 'repository_integration.json')
+    live_ci = _read(output / 'ci-performance.json').get('phase10', {})
     coverage = census.get('current_coverage')
     coverage_text = f'{coverage * 100:.2f}%' if isinstance(coverage, (int, float)) else '詳見逐格收據'
     fixed = census.get('historical_fixed_coverage')
@@ -112,6 +131,9 @@ def report(output):
     if archive_performance:
         rows.append(f'- 封存快取驗證為 `{archive_performance["reference_scientific_status"]}`，已比對 '
                     f'{archive_performance["reference_scientific_artifacts_checked"]} 項科學產物。 [封存效能](reference-performance.json)')
+    if live_ci.get('jobs'):
+        rows.append(f'- GitHub CI 已保存 {len(live_ci["jobs"])} 筆實際工作狀態，'
+                    f'量測狀態為 `{live_ci["status"]}`。 [CI 效能](ci-performance.json)')
     rows.extend(['',
         f'已盤點 {len(repo.get("remote_tips", []))} 個遠端分支。封存圖和新工具的相依、複雜度及重複群組另有收據。'
         'CI 依變更區分單元、PDF 至 R 整合與完整歷史重播，發布路徑保留公開來源驗證。'
@@ -142,6 +164,7 @@ def main():
     parser.add_argument('--previous-recovery', type=Path)
     parser.add_argument('--pulls', type=Path)
     parser.add_argument('--ci', type=Path, action='append', default=[])
+    parser.add_argument('--ci-jobs', type=Path, action='append', default=[], help='GitHub Actions job timing receipts')
     args = parser.parse_args()
     root, work = args.root.resolve(), args.work.resolve()
     output = (args.out or root / RESULTS).resolve()
@@ -149,6 +172,8 @@ def main():
     if output == root or any(output.is_relative_to(root / part) for part in ('data', 'config')):
         raise ValueError('Phase 10 outputs must use a separate report directory')
     output.mkdir(parents=True, exist_ok=True)
+    if args.ci_jobs:
+        ci_performance(output, args.ci_jobs)
     if args.mode == 'report':
         phase10_repository.record(root, output / 'repository_integration.json', pulls=args.pulls, ci=args.ci)
         report(output)
