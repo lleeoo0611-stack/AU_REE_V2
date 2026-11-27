@@ -24,7 +24,7 @@ class RankUncertaintyTests(unittest.TestCase):
         self.directory = Path(tmp.name)
 
     def _run(self, name, projects=('a', 'b'), *, reversed_ranks=False, traces=True, seed=32, no_bounds=False,
-             scope='shared scope', method_hash='a' * 64, bad_draw=False):
+             scope='shared scope', method_hash='a' * 64, bad_draw=False, weight_value=1):
         root = self.directory / name
         folder = root / PANEL
         folder.mkdir(parents=True)
@@ -38,7 +38,7 @@ class RankUncertaintyTests(unittest.TestCase):
         matrix = [{'project_id': pid, 'scope': scope, 'R1': 0.7 if i else 0.2}
                   for i, pid in enumerate(projects)]
         criteria = [{'code': 'R1', 'direction': 'MAX'}]
-        weights = [{'scenario': SCENARIO, 'criterion': 'R1', 'weight': 1}]
+        weights = [{'scenario': SCENARIO, 'criterion': 'R1', 'weight': weight_value}]
         csv_file('matrix.csv', matrix)
         csv_file('criteria.csv', criteria)
         csv_file('weights.csv', weights)
@@ -107,6 +107,19 @@ class RankUncertaintyTests(unittest.TestCase):
         self.assertEqual(a['rank_delta_counts'], [{'rank_delta': -1, 'draws': 1}, {'rank_delta': 1, 'draws': 2}])
         self.assertAlmostEqual(a['q05_rank_delta'], -0.8)
         self.assertEqual(a['median_rank_delta'], 1)
+
+    def test_pairing_withheld_when_the_actual_weight_vector_differs(self):
+        old = self._run('old')
+        for name, weight in (('one-ulp', 1.0000000000000002), ('different', 0.9)):
+            with self.subTest(name=name):
+                invalid = self._compare(old, self._run(name, weight_value=weight))
+                self.assertFalse(invalid['draw_contracts']['weight_rows_identical'])
+                self.assertEqual(invalid['draw_pairing'], {
+                    'status': 'RESEARCH_OR_DRAW_CONTRACT_UNVERIFIED_OR_CHANGED',
+                    'reason': 'ACTUAL_WEIGHT_ROWS_DIFFER',
+                })
+                levels = invalid['summaries']['weight_uncertainty.csv']['common_project_metrics']
+                self.assertNotIn('marginal_summary_delta', levels[0])
 
     def test_missing_detailed_ranks_uses_marginal_summaries_only(self):
         report = self._compare(self._run('old', traces=False), self._run('new', traces=False, reversed_ranks=True))

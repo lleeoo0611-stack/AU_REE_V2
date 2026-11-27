@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 
 from .derived_cache import atomic_json
-from .formal_resource_bridge import GATES, PANEL, _FormalInputs, _compare
+from .formal_resource_bridge import GATES, PANEL, _FormalInputs, _compare, equivalent_weight_rows
 from .selection_rules import is_automatic_resource_admission
 from .store import digest, filehash
 
@@ -254,7 +254,8 @@ def _panel(run, name):
 def _panel_delta(before, after, name, changed_inputs, include_uncertainty=False):
     old, old_ranks, old_criteria, old_weights, old_status = _panel(before, name)
     new, new_ranks, new_criteria, new_weights, new_status = _panel(after, name)
-    if old_criteria and new_criteria and (old_criteria != new_criteria or old_weights != new_weights):
+    if old_criteria and new_criteria and (old_criteria != new_criteria
+                                         or not equivalent_weight_rows(old_weights, new_weights)):
         raise ValueError('REFRESH_COMPARISON_CHANGED_CRITERIA_OR_WEIGHTS: ' + name)
     codes = {row['code'] for row in old_criteria + new_criteria}
     numeric = {code + suffix for code in codes for suffix in ('', '_alt', '_lower', '_upper')}
@@ -280,7 +281,7 @@ def _panel_delta(before, after, name, changed_inputs, include_uncertainty=False)
             return row['changed_fields'].keys()
         return {key for key, value in (row['before'] or row['after']).items() if value not in ('', None)}
 
-    result = {'criteria': sorted(codes),
+    result = {'criteria': sorted(codes), 'weight_rows_identical': old_weights == new_weights,
             'research_panel': True, 'formal_c1_admission': False,
             'baseline_projects': len(prior_ids), 'updated_projects': len(current_ids),
             'cohort_added': sorted(current_ids - prior_ids), 'cohort_removed': sorted(prior_ids - current_ids),

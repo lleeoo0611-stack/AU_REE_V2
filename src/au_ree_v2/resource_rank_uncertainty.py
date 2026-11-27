@@ -219,8 +219,9 @@ def compare_panel(before, after, panel, before_matrix, after_matrix, before_crit
     trace_key = f'{panel}/shared_draw_ranks.csv'
     old_runtime, runtime = _one(before, runtime_key), _one(after, runtime_key)
     old_contract, contract = _one(before, contract_key), _one(after, contract_key)
+    weights_identical = before_weights == after_weights
     settings_match = (bool(before_criteria and before_weights) and before_criteria == after_criteria
-                      and before_weights == after_weights and old_runtime == runtime
+                      and weights_identical and old_runtime == runtime
                       and _known_contract(old_contract, old_runtime, panel) and _known_contract(contract, runtime, panel)
                       and ({key: value for key, value in old_contract.items() if key != 'detail'}
                            == {key: value for key, value in contract.items() if key != 'detail'}))
@@ -240,6 +241,8 @@ def compare_panel(before, after, panel, before_matrix, after_matrix, before_crit
 
     if not settings_match:
         paired = {'status': 'RESEARCH_OR_DRAW_CONTRACT_UNVERIFIED_OR_CHANGED'}
+        if not weights_identical:
+            paired['reason'] = 'ACTUAL_WEIGHT_ROWS_DIFFER'
     elif not r_match:
         paired = {'status': 'R_PROGRAMS_RUNTIME_OR_INPUT_SEALS_UNVERIFIED_OR_CHANGED'}
     elif not cohort['same_semantic_cohort']:
@@ -263,6 +266,7 @@ def compare_panel(before, after, panel, before_matrix, after_matrix, before_crit
                                  else 'SEPARATE_ORIGINAL_COHORT_LEVELS_NO_ISOLATED_VALUE_EFFECT'),
             'draw_contracts': {'baseline': old_contract, 'updated': contract,
                                'matching_settings': bool(settings_match), 'matching_sealed_r_protocol': bool(r_match),
+                               'weight_rows_identical': weights_identical,
                                'baseline_contract_sha256': before.hashes.get(contract_key),
                                'updated_contract_sha256': after.hashes.get(contract_key),
                                'baseline_runtime_sha256': before.hashes.get(runtime_key),

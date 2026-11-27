@@ -204,10 +204,16 @@ jobs:
           au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase21-2026-11-05/snapshot_lock.json --work work/phase21-b
           python tools/check_replay.py results/phase21-2026-11-05 work/phase21-b/latest.json
       - name: Phase 22 current evidence and shared-method reconstruction
+        # Keep the historical weight summation order identical in the two
+        # processes whose actual R draw ranks are paired below.
+        env:
+          PYTHONHASHSEED: '0'
         run: |
           au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/phase22-a
           python tools/check_replay.py results/phase22-2026-11-06 work/phase22-a/latest.json
       - name: Verify reported TREO reaches existing MCDA from the locked PDF
+        env:
+          PYTHONHASHSEED: '0'
         run: |
           au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/resource-admission-replay --resource-admission config/ontology/resource_admission_frame_v1.json
           python - <<'PY'

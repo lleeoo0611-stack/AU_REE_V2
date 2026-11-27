@@ -236,7 +236,7 @@ class FormalRefreshReceiptTests(unittest.TestCase):
                    code=None, rules='rules', source_sha='test', path='archive/report.pdf',
                    frame_sha='frame', frame_pin=None, automatic_id='contained',
                    admission_version=RESOURCE_ADMISSION_VERSION, retained_observations=(),
-                   selected_ids=None, scope_decisions=()):
+                   selected_ids=None, scope_decisions=(), weight_rows=()):
         root = self.root / name
         root.mkdir()
         cutoff = '2026-11-05'
@@ -283,7 +283,7 @@ class FormalRefreshReceiptTests(unittest.TestCase):
             'eligibility_cohorts.csv': ([], ('canonical_project_id',)),
             f'{PANEL}/matrix.csv': (matrices, ('project_id', 'R1', 'S1')),
             f'{PANEL}/criteria.csv': ([{'code': 'R1'}, {'code': 'S1'}], ('code',)),
-            f'{PANEL}/weights.csv': ([], ('code', 'weight')),
+            f'{PANEL}/weights.csv': (weight_rows, ('scenario', 'criterion', 'weight')),
             f'{PANEL}/ranking.csv': (ranking, ('project_id', 'scenario', 'saw')),
         }
         if scope_decisions:
@@ -388,6 +388,24 @@ class FormalRefreshReceiptTests(unittest.TestCase):
         label = 'RESEARCH_OR_DRAW_CONTRACT_UNVERIFIED_OR_CHANGED'
         self.assertEqual(result['aim_b_rank_uncertainty']['draw_pairing_status_counts'], {label: 1})
         self.assertEqual(result['panels'][PANEL]['rank_uncertainty']['draw_pairing'], {'status': label})
+
+    def test_weight_roundoff_is_equivalent_but_actual_values_and_row_order_are_not(self):
+        rows = [{'scenario': 'x', 'criterion': 'R1', 'weight': 0.2},
+                {'scenario': 'x', 'criterion': 'S1', 'weight': 0.8}]
+        baseline = self.sealed_run('old', value=0.2, cohort=['p', 'q'], weight_rows=rows)
+        new = self.sealed_run('new', value=0.3, cohort=['p', 'q'], admitted=True,
+                              weight_rows=[{**rows[0], 'weight': 0.20000000000000004}, rows[1]])
+        result = compare(baseline, new, self.root / 'equivalent', mode='admission_effect')
+        self.assertFalse(result['panels'][PANEL]['weight_rows_identical'])
+        weight = f'{PANEL}/weights.csv'
+        self.assertNotEqual(result['input_artifact_sha256']['baseline'][weight],
+                            result['input_artifact_sha256']['updated'][weight])
+        for name, changed in (('values', [{**rows[0], 'weight': 0.3}, {**rows[1], 'weight': 0.7}]),
+                              ('order', rows[::-1])):
+            with self.subTest(name=name):
+                invalid = self.sealed_run(name, value=0.3, cohort=['p', 'q'], admitted=True, weight_rows=changed)
+                with self.assertRaisesRegex(ValueError, 'REFRESH_COMPARISON_CHANGED_CRITERIA_OR_WEIGHTS'):
+                    compare(baseline, invalid, self.root / ('invalid-' + name), mode='admission_effect')
 
     def test_selection_exit_keeps_conflict_audit_and_previously_selected_observations(self):
         old = self.sealed_run('old', value=0.2, cohort=['p', 'q'])

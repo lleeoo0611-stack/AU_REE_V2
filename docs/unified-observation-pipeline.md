@@ -310,4 +310,4 @@ python tests/test_resource_admission_integration.py --output work/resource-admis
 
 第四輪的重跑命令仍適用。把框架改為 `config/ontology/quality_frame_v1.json` 可執行固定框架的獨立正式重播。用 `formal_resource_refresh.compare()` 的 `mode="rule_effect"` 查核同源、同框架的程式修復。用 `mode="admission_effect"` 查核同版本啟用採納前後，或以 `mode="source_update"` 查核獨立來源更新。比較會驗證各項前提。 [差異契約](../src/au_ree_v2/formal_resource_refresh.py)
 
-`include_uncertainty=True` 從已封存的 R 產物比較排名中位數、分位數及 top-k 頻率。逐次差值要求存在完整排名記錄、相同母體與可核對的相同抽樣契約。母體有進出時，報告分列共同專案與各版完整母體。四捨五入區間代表報告精度，排名頻率限於指定模型與偏好設定。 [Aim B 比較](../src/au_ree_v2/resource_rank_uncertainty.py)
+`include_uncertainty=True` 從已封存的 R 產物比較排名中位數、分位數及 top-k 頻率。一般權重比較沿用相對或絕對 `1e-12` 的數值容差。逐次差值要求存在完整排名記錄、相同母體及相同抽樣契約，並精確核對實際權重。母體有進出時，報告分列共同專案與各版完整母體。四捨五入區間代表報告精度，排名頻率限於指定模型與偏好設定。 [Aim B 比較](../src/au_ree_v2/resource_rank_uncertainty.py)

@@ -342,6 +342,17 @@ def _compare(before, after, ids, numeric=()):
     return differences
 
 
+def equivalent_weight_rows(before, after):
+    """Compare sealed weight values without relaxing row identity, order or other fields."""
+    keys = ('scenario', 'criterion')
+    if len(before) != len(after):
+        return False
+    if any(old.keys() != new.keys() or any(old[key] != new[key] for key in keys)
+           for old, new in zip(before, after, strict=True)):
+        return False
+    return not _compare(before, after, keys, numeric=('weight',))
+
+
 def _publish(output, result, stage):
     # Only replace a directory identified by an existing bridge receipt.
     # The previous completed derivative survives a publication failure.
