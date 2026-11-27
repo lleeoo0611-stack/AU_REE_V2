@@ -1,0 +1,102 @@
+{
+  "schema": "phase10-ci-performance-v1",
+  "baseline": {
+    "commit": "dcda87e81e1250d443f73c1984faaa7beaa19930",
+    "measure": "First to last timestamp in GitHub Actions job log, excluding queue time",
+    "jobs": [
+      {
+        "run_id": 46044442614,
+        "job_id": 140660045426,
+        "name": "change_scope",
+        "conclusion": "success",
+        "first_log_utc": "2026-11-27T17:46:32.4929678Z",
+        "last_log_utc": "2026-11-27T17:46:52.6002997Z",
+        "elapsed_seconds": 20.108,
+        "cache_log_occurrences": null
+      },
+      {
+        "run_id": 46044442614,
+        "job_id": 140660217685,
+        "name": "research",
+        "conclusion": "success",
+        "first_log_utc": "2026-11-27T17:46:58.3477351Z",
+        "last_log_utc": "2026-11-27T18:27:59.2461383Z",
+        "elapsed_seconds": 2460.899,
+        "cache_log_occurrences": {
+          "REUSED_VERIFIED": 196,
+          "COMPUTED_AND_CACHED": 126,
+          "COMPUTED_WITHOUT_CACHE": 32,
+          "Cache restored": 0,
+          "Cache not found": 0
+        }
+      },
+      {
+        "run_id": 46044442609,
+        "job_id": 140660044133,
+        "name": "change_scope",
+        "conclusion": "success",
+        "first_log_utc": "2026-11-27T17:46:32.7012312Z",
+        "last_log_utc": "2026-11-27T17:46:57.1407090Z",
+        "elapsed_seconds": 24.439,
+        "cache_log_occurrences": null
+      },
+      {
+        "run_id": 46044442609,
+        "job_id": 140660248823,
+        "name": "automated-build",
+        "conclusion": "success",
+        "first_log_utc": "2026-11-27T17:47:02.7975544Z",
+        "last_log_utc": "2026-11-27T18:45:31.4894773Z",
+        "elapsed_seconds": 3508.692,
+        "cache_log_occurrences": {
+          "REUSED_VERIFIED": 0,
+          "COMPUTED_AND_CACHED": 0,
+          "COMPUTED_WITHOUT_CACHE": 0,
+          "Cache restored": 0,
+          "Cache not found": 0
+        }
+      },
+      {
+        "run_id": 46044442614,
+        "job_id": 140660048377,
+        "name": "Live census acquisition and ranking",
+        "conclusion": "skipped",
+        "elapsed_seconds": null
+      }
+    ],
+    "log_occurrence_counting": "Printed cache status tokens can repeat the same bundle. The research log occurrence denominator is not a cross-run hit-rate denominator.",
+    "duplicate_work": [
+      {
+        "operation": "Full Python unit discovery",
+        "jobs": [
+          140660217685,
+          140660248823
+        ]
+      },
+      {
+        "operation": "R analytical regression",
+        "jobs": [
+          140660217685,
+          140660248823
+        ]
+      },
+      {
+        "operation": "Pre-cutoff evidence validation",
+        "jobs": [
+          140660217685,
+          140660248823
+        ]
+      },
+      {
+        "operation": "Phase 22 historical snapshot rebuild A and B",
+        "jobs": [
+          140660217685
+        ],
+        "purpose": "Independent science reconstruction"
+      }
+    ]
+  },
+  "phase10": {
+    "status": "PENDING_MEASUREMENT_ON_REVIEW_HEAD"
+  }
+}

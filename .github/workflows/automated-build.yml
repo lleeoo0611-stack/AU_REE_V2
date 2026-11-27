@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       run_pipeline: ${{ steps.changed.outputs.run_pipeline }}
+      public: ${{ steps.tiers.outputs.public }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,9 +37,14 @@ jobs:
               f.write('run_pipeline='+str(not receipts_only).lower()+'\n')
           print({'verified_receipts_only':receipts_only,'run_full_pipeline':not receipts_only})
           PY
+      - name: Select public-registry validation scope
+        id: tiers
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python tools/phase10_ci.py route --base "$BASE_SHA"
   automated-build:
     needs: change_scope
-    if: needs.change_scope.outputs.run_pipeline == 'true'
+    if: needs.change_scope.outputs.run_pipeline == 'true' && needs.change_scope.outputs.public == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
@@ -69,9 +75,11 @@ jobs:
       - name: Build only from approved public registry
         env:
           TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
+          PYTHONUNBUFFERED: '1'
         run: |
+          set -o pipefail
           mkdir -p work
-          au-ree-v2 all --refresh --as-of 2026-11-13 --work work/clean > work/clean-build.log 2>&1
+          au-ree-v2 all --refresh --as-of 2026-11-13 --work work/clean 2>&1 | tee work/clean-build.log
       - name: Capture VIC response and annotate robots receipts
         if: always()
         run: |

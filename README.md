@@ -1,5 +1,16 @@
 # AU_REE_V2
 
+## Phase 10 自動資料品質與來源恢復
+
+自動稽核、留出與 Silver 參照、逐件來源恢復、缺值優先序和因素重播均有版本化收據。正式資料庫與歷史快照保留原樣。 [Phase 10 報告](results/phase10-2026-11-27/PHASE10_REPORT.md)
+
+```sh
+python -m tools.run_phase10 --online --work work/phase10 --out work/phase10/report
+python -m tools.run_phase10_factor_replays --work work/phase10-factors --out work/phase10/report
+```
+
+重跑可用 `--library` 加入現有 SHA 原件庫。線上恢復只依既有來源政策讀取公開來源。若需在空的工作目錄重新取得已凍結的留出原件，使用 `--fetch-holdout`。兩種入口都會保存缺件和阻礙，並繼續處理可查核的範圍。
+
 ## 來源綁定的完整觀測與影子評估
 
 既有 CLI 可針對固定的 Phase 22 資源與技術證據執行四組比較。各筆觀測保留原值、表格與頁面定位、用途中判定及關係來源。[執行方式與結果](results/observation-shadow-20261126/README.md)

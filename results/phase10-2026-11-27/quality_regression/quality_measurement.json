@@ -1,0 +1,390 @@
+{
+  "admission_scientific_sha256": "ae772dd551b74c2c825de0653f38362cdf43caa2bec8e999a039b5264e534808",
+  "classes": {
+    "CROSS_SOURCE_SUPPORTED": 0,
+    "DETERMINISTIC_VERIFIED": 22,
+    "PARSER_CONSENSUS": 193,
+    "SYNTHETIC_GROUND_TRUTH": 8,
+    "UNVERIFIED": 14
+  },
+  "cutoff": "2026-11-05",
+  "engineering_consistency": {
+    "admission_consistency": {
+      "denominator": 150,
+      "numerator": 150,
+      "status": "MEASURED",
+      "value": 1.0
+    },
+    "deserialization_failure_types": {},
+    "interpretation": "Stored bindings, Decimal unit arithmetic on version-bound scalars and admission receipt lineage. Engineering consistency, separately from external truth.",
+    "normalization_validity": {
+      "denominator": 271,
+      "numerator": 271,
+      "status": "MEASURED",
+      "value": 1.0
+    },
+    "semantic_binding_consistency": {
+      "denominator": 377,
+      "numerator": 377,
+      "status": "MEASURED",
+      "value": 1.0
+    },
+    "verified_records_with_normalized_scalar": {
+      "denominator": 377,
+      "numerator": 271,
+      "status": "MEASURED",
+      "value": 0.7188328912466844
+    }
+  },
+  "frame_counts": {
+    "distinct_predictions": 377,
+    "document_editions": 8,
+    "historical_reference_observations": 36,
+    "identity_matched_measurement_pairs": 2,
+    "sha_verified_editions": 8
+  },
+  "frame_sha256": "5d80d83def72dfefd554d64dc96683186d0306d376eae16593fc564c0fcc5995",
+  "independent_evidence_yield": {
+    "denominator": 0,
+    "numerator": 0,
+    "reason": "NO_PROVEN_DISTINCT_EVIDENCE_CHAINS",
+    "status": "UNMEASURED",
+    "value": null
+  },
+  "originals": {
+    "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91": {
+      "archive_snapshot_listed": true,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    },
+    "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4": {
+      "archive_snapshot_listed": true,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    },
+    "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691": {
+      "archive_snapshot_listed": true,
+      "pypdf_open_error": "DependencyError",
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "MUPDF_NATIVE_FALLBACK"
+    },
+    "c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f": {
+      "archive_snapshot_listed": true,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    },
+    "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84": {
+      "archive_snapshot_listed": true,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    },
+    "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5": {
+      "archive_snapshot_listed": true,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    },
+    "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c": {
+      "archive_snapshot_listed": true,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    },
+    "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503": {
+      "archive_snapshot_listed": true,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    }
+  },
+  "pdf_parser_versions": {
+    "pymupdf": "1.26.7",
+    "pypdf": "6.10.0"
+  },
+  "real_independent_accuracy": {
+    "f1": {
+      "denominator": 0,
+      "numerator": 0,
+      "reason": "NO_EXHAUSTIVE_INDEPENDENT_REAL_SOURCE_TRUTH",
+      "status": "UNMEASURED",
+      "value": null
+    },
+    "precision": {
+      "denominator": 0,
+      "numerator": 0,
+      "reason": "NO_EXHAUSTIVE_INDEPENDENT_REAL_SOURCE_TRUTH",
+      "status": "UNMEASURED",
+      "value": null
+    },
+    "recall": {
+      "denominator": 0,
+      "numerator": 0,
+      "reason": "NO_EXHAUSTIVE_INDEPENDENT_REAL_SOURCE_TRUTH",
+      "status": "UNMEASURED",
+      "value": null
+    }
+  },
+  "reference_input_sha256": {
+    "results/phase22-2026-11-06/resolved_evidence.csv": "f66bb33519686526d166f729055742ea7ac66766f86e1435f49ac687b6964bc8",
+    "results/phase22-2026-11-06/snapshot_lock.json": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d"
+  },
+  "reference_sha256": "e0916467b954927cc7851e9edcb80cdf5a15c5c7ed1b1bdec3decd5f015ded2c",
+  "retrieval": {
+    "cutoffs": {
+      "1": {
+        "silver_hit_at_k": {
+          "denominator": 7,
+          "numerator": 0,
+          "status": "MEASURED",
+          "value": 0.0
+        },
+        "silver_recall_at_k": {
+          "denominator": 8,
+          "numerator": 0,
+          "status": "MEASURED",
+          "value": 0.0
+        }
+      },
+      "10": {
+        "silver_hit_at_k": {
+          "denominator": 7,
+          "numerator": 7,
+          "status": "MEASURED",
+          "value": 1.0
+        },
+        "silver_recall_at_k": {
+          "denominator": 8,
+          "numerator": 7,
+          "status": "MEASURED",
+          "value": 0.875
+        }
+      },
+      "24": {
+        "silver_hit_at_k": {
+          "denominator": 7,
+          "numerator": 7,
+          "status": "MEASURED",
+          "value": 1.0
+        },
+        "silver_recall_at_k": {
+          "denominator": 8,
+          "numerator": 8,
+          "status": "MEASURED",
+          "value": 1.0
+        }
+      },
+      "5": {
+        "silver_hit_at_k": {
+          "denominator": 7,
+          "numerator": 6,
+          "status": "MEASURED",
+          "value": 0.8571428571428571
+        },
+        "silver_recall_at_k": {
+          "denominator": 8,
+          "numerator": 6,
+          "status": "MEASURED",
+          "value": 0.75
+        }
+      }
+    },
+    "interpretation": "Recall applies only to pre-existing source-page targets, not all relevant pages.",
+    "queries": [
+      {
+        "known_locator_pages": [
+          7
+        ],
+        "matches": {
+          "1": 0,
+          "10": 1,
+          "24": 1,
+          "5": 1
+        },
+        "ranking_available": true,
+        "source_sha": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91"
+      },
+      {
+        "known_locator_pages": [
+          1
+        ],
+        "matches": {
+          "1": 0,
+          "10": 1,
+          "24": 1,
+          "5": 1
+        },
+        "ranking_available": true,
+        "source_sha": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4"
+      },
+      {
+        "known_locator_pages": [
+          5,
+          6
+        ],
+        "matches": {
+          "1": 0,
+          "10": 1,
+          "24": 2,
+          "5": 1
+        },
+        "ranking_available": true,
+        "source_sha": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691"
+      },
+      {
+        "known_locator_pages": [
+          6
+        ],
+        "matches": {
+          "1": 0,
+          "10": 1,
+          "24": 1,
+          "5": 1
+        },
+        "ranking_available": true,
+        "source_sha": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84"
+      },
+      {
+        "known_locator_pages": [
+          1
+        ],
+        "matches": {
+          "1": 0,
+          "10": 1,
+          "24": 1,
+          "5": 0
+        },
+        "ranking_available": true,
+        "source_sha": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5"
+      },
+      {
+        "known_locator_pages": [
+          2
+        ],
+        "matches": {
+          "1": 0,
+          "10": 1,
+          "24": 1,
+          "5": 1
+        },
+        "ranking_available": true,
+        "source_sha": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c"
+      },
+      {
+        "known_locator_pages": [
+          2
+        ],
+        "matches": {
+          "1": 0,
+          "10": 1,
+          "24": 1,
+          "5": 1
+        },
+        "ranking_available": true,
+        "source_sha": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503"
+      }
+    ]
+  },
+  "same_file_parser_agreement": {
+    "denominator": 242,
+    "numerator": 193,
+    "status": "MEASURED",
+    "value": 0.7975206611570248
+  },
+  "schema": "phase10-silver-quality-v1",
+  "silver_f1": {
+    "denominator": 0,
+    "numerator": 0,
+    "reason": "SILVER_PRECISION_UNMEASURED",
+    "status": "UNMEASURED",
+    "value": null
+  },
+  "silver_numeric_extraction_agreement": {
+    "denominator": 2,
+    "numerator": 2,
+    "status": "MEASURED",
+    "value": 1.0
+  },
+  "silver_pair_audit": [
+    {
+      "identity": "CANONICAL_ID",
+      "numeric_match": true,
+      "raw_id": "95fb6e44ebd7977cfa0e125a460da5cebed05f0d44cfe7a4f35776bf8cfec762",
+      "reference_id": "5fcb5101518772322b0b2d370ffe5f489c4f1ecfae945a87efa0bdca3a8ef2e7",
+      "unit_match": true
+    },
+    {
+      "identity": "CANONICAL_ID",
+      "numeric_match": true,
+      "raw_id": "2a431e09bda94fc2a64c189a72bbafe346300ad905d216d58419801660abb2d4",
+      "reference_id": "aab0a8245235ccd42e8edf3b468e344917d6bc0571629fc38f87595306f6dd7d",
+      "unit_match": true
+    }
+  ],
+  "silver_precision": {
+    "denominator": 0,
+    "numerator": 0,
+    "reason": "NO_EXHAUSTIVE_POSITIVE_AND_NEGATIVE_SILVER_FRAME",
+    "status": "UNMEASURED",
+    "value": null
+  },
+  "silver_recall": {
+    "denominator": 0,
+    "numerator": 0,
+    "reason": "NO_EXHAUSTIVE_LOCALIZED_SILVER_NUMERIC_FRAME",
+    "status": "UNMEASURED",
+    "value": null
+  },
+  "silver_unit_extraction_agreement": {
+    "denominator": 2,
+    "numerator": 2,
+    "status": "MEASURED",
+    "value": 1.0
+  },
+  "synthetic_known_answer": {
+    "f1": {
+      "denominator": 8,
+      "numerator": 8,
+      "status": "MEASURED",
+      "value": 1.0
+    },
+    "false_negative": 0,
+    "false_positive": 0,
+    "normalization_expectation_agreement": {
+      "denominator": 8,
+      "numerator": 8,
+      "status": "MEASURED",
+      "value": 1.0
+    },
+    "precision": {
+      "denominator": 4,
+      "numerator": 4,
+      "status": "MEASURED",
+      "value": 1.0
+    },
+    "recall": {
+      "denominator": 4,
+      "numerator": 4,
+      "status": "MEASURED",
+      "value": 1.0
+    },
+    "true_positive": 4
+  },
+  "technical_diagnostics": {
+    "accuracy_status": "UNMEASURED",
+    "candidate_rows": 0,
+    "formal_observations_written": 0,
+    "numeric_issue_types": {}
+  }
+}
