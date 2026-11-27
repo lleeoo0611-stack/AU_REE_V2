@@ -3,12 +3,24 @@ import json
 from pathlib import PurePosixPath
 
 from .acquisition import checked_replay_path
+from .eligibility import HISTORICAL_C1_CONFIG_FILES, c1_cohort_disabled
 from .store import digest, filehash
 from .tabular import read_csv
 
 
 # Identifies integrated stores even if copied outside their original directory tree.
 INTEGRATED_APPLICATION_ID = int.from_bytes(b'AURE', 'big')
+
+
+def export_contract_hashes(root, configuration):
+    hashes = {name: filehash(root/'config'/name) for name in
+              ('summary_rules.json', 'researcher_rule_decisions.json', 'project_summary_columns.json')}
+    evidence_files = ['config/assay_evidence.json', 'config/candidate_milestones.json',
+                      'data/candidate_milestone_evidence.json']
+    if not c1_cohort_disabled(configuration.get('research', {})):
+        evidence_files.extend('config/'+name for name in sorted(HISTORICAL_C1_CONFIG_FILES))
+    hashes.update({file: filehash(root/file) for file in evidence_files if (root/file).is_file()})
+    return hashes
 
 
 def resolve_export_assets(root, snapshots, run_dir, replay_assets):
@@ -30,7 +42,7 @@ def resolve_export_assets(root, snapshots, run_dir, replay_assets):
             entry['path'] = resolved[cache_key]
 
 
-def read_run_inputs(db, database, root, run, hashes, cutoff, replay_assets):
+def read_run_inputs(db, database, root, run, cutoff, replay_assets):
     run_id = run['run_id']
     if not run_id or run_id in ('.', '..') or any(ch in run_id for ch in ('/', '\\', ':')):
         raise ValueError('SUMMARY_RUN_METADATA_REQUIRED: invalid run ID')
@@ -76,6 +88,7 @@ def read_run_inputs(db, database, root, run, hashes, cutoff, replay_assets):
             or summary.get('snapshot_sha256') != run['snapshot_sha']):
         raise ValueError('SUMMARY_RUN_METADATA_REQUIRED: run/configuration/snapshot mismatch')
     saved = summary.get('project_summary',{}).get('export_contract_sha256',{})
+    hashes = export_contract_hashes(root, config)
     base = {'summary_rules.json','researcher_rule_decisions.json','project_summary_columns.json'}
     if (not base.issubset(saved) or (tagged and set(saved) != set(hashes))
             or any(hashes.get(name) != sha for name,sha in saved.items())):

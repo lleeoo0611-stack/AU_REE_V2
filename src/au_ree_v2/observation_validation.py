@@ -190,6 +190,7 @@ def run(root, output, *, libraries=(), online=True, request_budget=80, cache_dir
             cutoff = json.loads((release / "census_release.json").read_bytes())["cutoff"]
             result = _run_formal(root, work, [
                 "all", "--source-mode", "offline", "--as-of", cutoff,
+                "--c1-cohort-policy", "historical",
                 "--source-replay", str(release / "source_acquisition.json"),
                 "--replay-assets", recovered["assets"], "--tessdata", str(tessdata),
             ], rscript)

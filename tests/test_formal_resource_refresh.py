@@ -344,6 +344,30 @@ class FormalRefreshReceiptTests(unittest.TestCase):
         evidence = result['selection_differences'][0]['evidence']['updated']['selected_observations'][-1]
         self.assertEqual((evidence['source_sha'], evidence['locator']), ('test', 'physical page 5; row 2'))
 
+    def test_c1_policy_effect_keeps_scientific_gains_separate(self):
+        disabled = {'c1_cohort_policy': {'version': 'c1-cohort-policy-v1', 'status': 'DISABLED'}}
+        before = self.sealed_run('legacy-policy', value=0.3, cohort=['p', 'q'])
+        after = self.sealed_run('disabled-policy', value=0.3, cohort=['p', 'q'], research_settings=disabled)
+        (after / 'formal_gate_compatibility.csv').unlink()
+        receipt = compare(before, after, self.root / 'effect', mode='policy_effect')
+        self.assertEqual(receipt['comparison']['changed_factors'], ['c1_cohort_policy'])
+        self.assertEqual(receipt['formal_c1']['policy_status'], {'baseline': 'HISTORICAL', 'updated': 'DISABLED'})
+        self.assertFalse(receipt['formal_c1']['required_gates'])
+        self.assertEqual(set(receipt['formal_c1']['retired_gate_requirements']),
+                         {'ID', 'ROLE', 'WINDOW', 'JORC', 'PANEL', 'GIS_RELEASE'})
+        self.assertEqual(receipt['new_canonical_observations'], 0)
+        self.assertEqual(receipt['numeric_candidate_changes']['counts'], {})
+        self.assertEqual(receipt['panels'][PANEL]['matrix_differences'], [])
+        self.assertEqual(receipt['panels'][PANEL]['ranking_differences'], [])
+
+    def test_c1_policy_effect_refuses_simultaneous_rule_changes(self):
+        disabled = {'c1_cohort_policy': {'version': 'c1-cohort-policy-v1', 'status': 'DISABLED'}}
+        before = self.sealed_run('legacy-policy', value=0.3, cohort=['p', 'q'], admitted=True, rules='old')
+        after = self.sealed_run('new-rules-and-policy', value=0.3, cohort=['p', 'q'], admitted=True, rules='new',
+                                research_settings=disabled)
+        with self.assertRaisesRegex(ValueError, 'observed=mixed_effects'):
+            compare(before, after, self.root / 'effect', mode='policy_effect')
+
     def test_rules_only_reports_retained_inactive_legacy_automatic_id(self):
         old_code = {'commit': 'old', 'content_sha256': 'old code'}
         new_code = {'commit': 'new', 'content_sha256': 'new code'}

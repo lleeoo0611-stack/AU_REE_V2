@@ -8,16 +8,18 @@ from pathlib import Path
 
 from .analysis import weight_calculation_version
 from .derived_cache import atomic_json
-from .formal_resource_bridge import GATES, PANEL, _FormalInputs, _compare, equivalent_weight_rows
+from .formal_resource_bridge import GATES, PANEL, _FormalInputs, _compare, cohort_policy_status, equivalent_weight_rows
 from .selection_rules import is_automatic_resource_admission
 from .store import digest, filehash
 
 
-VERSION = 'formal-resource-refresh-v5'
+VERSION = 'formal-resource-refresh-v6'
 RANK_NUMBERS = ('promethee', 'saw', 'topsis', 'promethee_rank', 'saw_rank', 'topsis_rank')
-COMPARISON_MODES = frozenset({'auto', 'rule_effect', 'admission_effect', 'retrieval_effect', 'source_update', 'replay'})
+COMPARISON_MODES = frozenset({'auto', 'policy_effect', 'rule_effect', 'admission_effect', 'retrieval_effect',
+                              'source_update', 'replay'})
 SOURCE_TRANSPORT_FIELDS = frozenset({'path', 'url', 'acquired_at'})
-MCDA_PROTOCOL_FIELDS = frozenset({'mcda_weight_calculation', 'mcda_trace_panel'})
+COMPARISON_RESEARCH_FIELDS = frozenset({'mcda_weight_calculation', 'mcda_trace_panel',
+                                        'c1_cohort_policy', 'eligibility_evidence'})
 
 
 def _mcda_protocol(config):
@@ -134,6 +136,7 @@ def _comparison_contract(before, after, old_cfg, cfg, old_lock, lock, old_admit,
                                 (old_shas.get(key), shas.get(key)) for key in old_pins)
 
     before_protocol, after_protocol = _mcda_protocol(old_cfg), _mcda_protocol(cfg)
+    before_c1, after_c1 = cohort_policy_status(old_cfg), cohort_policy_status(cfg)
     before_retrieval, after_retrieval = _retrieval_scope(old_admit, old_lock), _retrieval_scope(admit, lock)
     # Fixed-to-fixed changes are already attributed to configured pages and the
     # actual source edition. Search policy and its selected pages add a factor.
@@ -141,6 +144,7 @@ def _comparison_contract(before, after, old_cfg, cfg, old_lock, lock, old_admit,
                          any(item['policy']['mode'] != 'fixed' for item in (before_retrieval, after_retrieval)))
     factors = {'code_or_admission_rules': code_changed or rules_changed,
                'mcda_execution_protocol': before_protocol != after_protocol,
+               'c1_cohort_policy': before_c1 != after_c1,
                'admission_enabled': admission_changed, 'admission_frame': frame_changed,
                'admission_retrieval': retrieval_changed,
                'source_inputs': bool(binding_delta) or registry_changed,
@@ -149,6 +153,8 @@ def _comparison_contract(before, after, old_cfg, cfg, old_lock, lock, old_admit,
     active = [name for name, changed in factors.items() if changed]
     if not active:
         kind = 'replay'
+    elif active == ['c1_cohort_policy']:
+        kind = 'policy_effect'
     elif both_admit and set(active) <= {'code_or_admission_rules', 'mcda_execution_protocol'}:
         kind = 'rule_effect'
     elif active == ['admission_enabled']:
@@ -166,6 +172,7 @@ def _comparison_contract(before, after, old_cfg, cfg, old_lock, lock, old_admit,
     return {'kind': kind, 'requested_mode': mode, 'changed_factors': active,
             'code_content_changed': code_changed, 'code_commit_changed': old_code.get('commit') != code.get('commit'),
             'rules_changed': rules_changed, 'source_registry_changed': registry_changed,
+            'c1_cohort_policy': {'baseline': before_c1, 'updated': after_c1},
             'mcda_execution_protocol': {'baseline': before_protocol, 'updated': after_protocol},
             'retrieval_scope': {'baseline': before_retrieval, 'updated': after_retrieval},
             'source_editions_changed': edition_delta,
@@ -257,7 +264,8 @@ def _context_field_improvements(old, new):
 
 def _numeric_candidate_changes(old, new):
     """Compare verified physical cells independently of admission IDs and research values."""
-    conditions = ('category', 'estimate_period', 'cutoff_grade', 'product_role', 'particle_size_um', 'particle_size')
+    conditions = ('category', 'estimate_period', 'effective_date_role', 'cutoff_grade', 'scope_coverage',
+                  'product_role', 'particle_size_um', 'particle_size')
 
     def by_cell(receipt):
         result = {}
@@ -427,14 +435,19 @@ def compare(baseline_run, updated_run, output, *, mode='auto', include_uncertain
     before, after = _FormalInputs(baseline_run), _FormalInputs(updated_run)
     old_cfg, old_lock, old_admit = _checked_inputs(before)
     cfg, lock, admit = _checked_inputs(after)
-    if old_admit is None and admit is None:
+    old_c1, c1 = cohort_policy_status(old_cfg), cohort_policy_status(cfg)
+    if old_admit is None and admit is None and old_c1 == c1:
         raise ValueError('REFRESH_REQUIRES_ACTUAL_ADMISSION_RUN')
     fixed = ('claims_sha256', 'identity_links.json_sha256', 'study_cases.json_sha256',
-             'eligibility_policy_sha256', 'census_filter', 'source_mode')
-    old_research, research = ({key: value for key, value in item['research'].items() if key not in MCDA_PROTOCOL_FIELDS}
+             'census_filter', 'source_mode')
+    old_research, research = ({key: value for key, value in item['research'].items()
+                               if key not in COMPARISON_RESEARCH_FIELDS}
                               for item in (old_cfg, cfg))
+    legacy_policy_changed = (old_c1 == c1 == 'HISTORICAL' and
+                             (old_cfg.get('eligibility_policy_sha256') != cfg.get('eligibility_policy_sha256')
+                              or old_cfg['research'].get('eligibility_evidence') != cfg['research'].get('eligibility_evidence')))
     if (before.summary['cutoff'] != after.summary['cutoff'] or old_research != research
-            or any(old_cfg.get(k) != cfg.get(k) for k in fixed)):
+            or legacy_policy_changed or any(old_cfg.get(k) != cfg.get(k) for k in fixed)):
         raise ValueError('REFRESH_COMPARISON_REQUIRES_SAME_RESEARCH_CONTRACT')
     contract = _comparison_contract(before, after, old_cfg, cfg, old_lock, lock, old_admit, admit, mode)
     old_observations, observations = _observations(before), _observations(after)
@@ -454,17 +467,20 @@ def compare(baseline_run, updated_run, output, *, mode='auto', include_uncertain
     raw_changed = [r for r in traces if 'changed_fields' not in r or 'raw_value' in r['changed_fields']]
     scope_delta = {'before': old_scope, 'after': scope} if scope != old_scope else None
     direct_projects = {r['identity'][0] for r in raw_changed}
-    panels = {name for name, codes in cfg['research']['panels'].items() if {'R1', 'S1'} & set(codes)}
+    compare_all_panels = old_c1 != c1
+    panels = {name for name, codes in cfg['research']['panels'].items() if compare_all_panels or {'R1', 'S1'} & set(codes)}
     for name in before.summary.get('r_results', {}).keys() | after.summary.get('r_results', {}).keys():
         criteria = before.optional_csv(name + '/criteria.csv') + after.optional_csv(name + '/criteria.csv')
-        if any(r['code'] in ('R1', 'S1') for r in criteria):
+        if compare_all_panels or any(r['code'] in ('R1', 'S1') for r in criteria):
             panels.add(name)
     panel_diffs = {name: _panel_delta(before, after, name, direct_projects, include_uncertainty)
                    for name in sorted(panels)}
-    panel_diffs = {name: value for name, value in panel_diffs.items() if name == PANEL or 'R1' in value['criteria']
+    panel_diffs = {name: value for name, value in panel_diffs.items() if compare_all_panels or name == PANEL or 'R1' in value['criteria']
                    or 'S1' in value['criteria']}
-    gate_diffs = _compare(before.csv('formal_gate_compatibility.csv'), after.csv('formal_gate_compatibility.csv'),
-                         ('canonical_project_id', 'gate'))
+    old_gates, gates = (run.optional_csv('formal_gate_compatibility.csv') if status == 'HISTORICAL' else []
+                        for run, status in ((before, old_c1), (after, c1)))
+    gate_diffs = (_compare(old_gates, gates, ('canonical_project_id', 'gate'))
+                  if old_c1 == c1 == 'HISTORICAL' else [])
     old_cohorts, cohorts = (run.csv('eligibility_cohorts.csv') for run in (before, after))
     eligibility_diffs = _compare(old_cohorts, cohorts, ('canonical_project_id',))
     c1_status_counts = {side: dict(Counter(row.get('formal_c1_status', 'UNREPORTED') for row in rows))
@@ -573,7 +589,11 @@ def compare(baseline_run, updated_run, output, *, mode='auto', include_uncertain
                'selection_differences': selected_delta, 'criterion_selection_counts': selection_counters,
                'criterion_trace_differences': traces,
                'numeric_selection_projects': sorted(input_changes), 'changed_raw_input_projects': sorted(direct_projects),
-               'formal_c1': {'required_gates': GATES, 'baseline': old_eligibility, 'updated': eligibility,
+               'formal_c1': {'policy_status': contract['c1_cohort_policy'],
+                             'required_gates': GATES if c1 == 'HISTORICAL' else (),
+                             'retired_gate_requirements': GATES if old_c1 == 'HISTORICAL' and c1 == 'DISABLED' else (),
+                             'historical_gate_receipt_rows': {'baseline': len(old_gates), 'updated': len(gates)},
+                             'baseline': old_eligibility, 'updated': eligibility,
                              'project_status_counts': c1_status_counts,
                              'gate_differences': gate_diffs, 'project_eligibility_differences': eligibility_diffs},
                'panels': panel_diffs, 'aim_b_rank_uncertainty': aim_b,

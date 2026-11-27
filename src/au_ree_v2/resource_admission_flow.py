@@ -85,7 +85,7 @@ def run(db, root, snapshots, cutoff, frame, *, run_id, configuration, acquired_t
 
     root = Path(root)
     package = Path(__file__).parent
-    config_inputs = ("config/evidence_policy.json", "config/eligibility_compatibility.json",
+    config_inputs = ("config/evidence_policy.json",
                      "config/ontology/observation_v1.json", "config/ontology/comparability_v1.json")
     rules = {name: filehash(package / name) for name in _RULES}
     rules.update({name: filehash(root / name) for name in config_inputs if (root / name).is_file()})

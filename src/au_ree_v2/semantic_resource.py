@@ -12,7 +12,8 @@ import re
 import unicodedata
 
 from .document_processing import DocumentUnavailable, PdfDocumentCache
-from .numeric_evidence import numeric_token_spans
+from .normalization import MASS_FRACTION_UNIT_PATTERN, RESOURCE_CUTOFF_ANALYTE
+from .numeric_evidence import NATIVE_GEOMETRIC_UNIT_HEADER, header_within_value_column, numeric_token_spans
 from .pdf_extract import NUMBER
 from .store import digest
 from .technical_tables import cells, number_token, path_above
@@ -24,19 +25,21 @@ PROFILE = "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
 MARKER = re.compile(rf"(?:\btotal(?:\(\d+\))?\s+)?{NUMBER}(?:\s+{NUMBER})+\s*$", re.I)
 CAPTION = re.compile(r"^table\s+(\d+(?:[-.]\d+)?)\b[\s:.–-]*", re.I)
 MASS_HEADER = re.compile(r"(?:tonnes?|tonnage|resource(?: tonnage)?|dry tonnes?|material)\s*\(?\s*(Mt|kt|t)\s*\)?", re.I)
-GRADE_HEADER = re.compile(r"(?:TREO\s*\*?\s*\(?\s*(%|ppm)\s*\)?|(%|ppm)\s+TREO\s*\*?)", re.I)
+GRADE_HEADER = re.compile(rf"(?:TREO\s*\*?\s*\(?\s*({MASS_FRACTION_UNIT_PATTERN})\s*\)?|"
+                          rf"({MASS_FRACTION_UNIT_PATTERN})\s+TREO\s*\*?)", re.I)
 NATIVE_MASS_HEADER = re.compile(r"(?:dry\s+)?(?:bulk\s+)?ore\s+(?:tonnes?|tonnage)\s*\(?\s*(Mt|kt|t)\s*\)?", re.I)
-NATIVE_GRADE_HEADER = re.compile(r"(?:total rare earth oxides?\s*\(TREO\)|TREO)\s*\*?\s*(?:grade\s*)?\(?\s*(%|ppm)\s*\)?", re.I)
+NATIVE_GRADE_HEADER = re.compile(r"(?:total rare earth oxides?\s*\(TREO\)|TREO)\s*\*?\s*(?:grade\s*)?"
+                                 rf"\(?\s*({MASS_FRACTION_UNIT_PATTERN})\s*\)?", re.I)
 CONTAINED_HEADER = re.compile(r"(?:contained\s+)?TREO\s*\*?\s*\(?\s*(t|kt|[‘'’]?000 tonnes)\s*\)?", re.I)
 GRADE_PHRASE = re.compile(
     rf"(?<![\w.,+−–-])(?P<mass>{NUMBER})\s*(?P<mass_unit>million tonnes|Mt|kt|t)\s*"
-    rf"(?:at(?:\s+an\s+average\s+grade\s+of)?|@)\s*(?P<grade>{NUMBER})\s*(?P<grade_unit>ppm|%)\s*"
-    r"(?P<basis>total rare earth oxides?\s*\(TREO\)|TREO)(?![\s−-]*[+−-]\s*(?:Ce|Y))(?!\w)",
+    rf"(?:at(?:\s+an\s+average\s+grade\s+of)?|@)\s*(?P<grade>{NUMBER})\s*(?P<grade_unit>{MASS_FRACTION_UNIT_PATTERN})\s*"
+    r"(?P<basis>total rare earth oxides?\s*\(TREO\)|TREO)(?!\w|\s*[+−-]\s*(?:Ce|Y|Sc|[A-Z][a-z]?\d*O\d+)\b)",
     re.I,
 )
 TABLE_GRADE_PHRASE = re.compile(rf"(?P<mass>{NUMBER})\s*(?P<mass_unit>Bt|Mt)\s+at\s+(?P<grade>{NUMBER})\s*(?P<grade_unit>ppm|%)")
 CUTOFF = re.compile(
-    rf"(?P<x>{NUMBER})\s*(?P<u>ppm|%|g/t)\s*(?P<b>TREO(?:\s*[-−]\s*CeO2)?|Nb2O5|Ga2O3)\s+cut[- ]?off\b",
+    rf"(?P<x>{NUMBER})\s*(?P<u>{MASS_FRACTION_UNIT_PATTERN})\s*(?P<b>{RESOURCE_CUTOFF_ANALYTE})\s+cut[- ]?off\b",
     re.I,
 )
 ESTIMATE_DATE = re.compile(
@@ -210,12 +213,21 @@ def located_column_headers(cell, header_cells):
             and piece["bbox"][3] <= cell["bbox"][1] + .1]
 
 
-def column_header_anchors(row, table, pieces, unit):
-    """Record the printed unit and label coordinates instead of a joined quote."""
+def column_header_anchors(row, table, pieces, unit, *, value_cell=None, row_cells=()):
+    """Record native heading locations and independently prove any split-grid column."""
     unit_pattern = re.compile(r"(?<![\w])" + re.escape(unit) + r"(?![\w])")
-    return [_anchors("unit" if unit_pattern.search(clean(piece["text"])) else "header_definition", row,
-                     clean(piece["text"]), table_index=table["table_index"], row=piece["row"],
-                     column=piece["column"], bbox=piece["bbox"]) for piece in pieces]
+    result = []
+    for piece in pieces:
+        quote = clean(piece["text"])
+        role = "unit" if unit_pattern.search(quote) else "header_definition"
+        anchor = _anchors(role, row, quote, table_index=table["table_index"], row=piece["row"],
+                          column=piece["column"], bbox=piece["bbox"])
+        if role == "unit" and value_cell and value_cell["column"] != piece["column"]:
+            matching_values = [cell for cell in row_cells if header_within_value_column(piece["bbox"], cell["bbox"])]
+            if matching_values == [value_cell]:
+                anchor["locator"] = NATIVE_GEOMETRIC_UNIT_HEADER
+        result.append(anchor)
+    return result
 
 
 def _table_witnesses(row, tables, blocks, markers, raw_tokens, *, location=None, caption_witness=None):

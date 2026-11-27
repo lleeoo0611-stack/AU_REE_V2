@@ -348,3 +348,13 @@ au-ree-v2 rebuild --as-of 2026-11-05 \
 登錄的局部名稱可用於 Project 配對。若同一實體表另外有同名的總量區段和唯一的 Total 數值列，可據此驗證該表涵蓋已登錄的研究範圍。如 Wolverine 的開採分項仍各自保留，正式選值只採同名區段的唯一總量列。 [鎖定原件回歸](../tests/test_resource_table_layout.py)
 
 第八輪留出框架在新版擷取前固定了 North Stanmore、Lyons、Donald 與 Mangaroon 的原件、缺項、文件家族及搜尋範圍。以相同 Phase 22 來源鎖檔比較原補充框架和擴充框架。`compare(..., mode="auto")` 保存框架與實際檢索範圍的變動，規則和來源版本另有欄位。 [留出框架](../config/ontology/resource_admission_validation_frame_v1.json)
+
+## 第九輪 現行 C1 cohort 停用與資源觀測正規化
+
+現行 Census、選值、分析及發布預設使用 `c1-cohort-policy-v1` 的 `DISABLED` 狀態。研究設定宣告的面板依各自的準則、資料完整性與方法計算。歷史 cohort 的 ID、ROLE、WINDOW、JORC、PANEL、GIS_RELEASE 簽核與發布 QA 只供明確選擇的歷史重播。融資與商業準則 `C1` 沿用原定資料契約、權重及計算方式。 [現行設定](../config/research.json) · [歷史設定](../config/eligibility_compatibility.json)
+
+使用 `au-ree-v2 rebuild --c1-cohort-policy historical --snapshot-lock ...` 重播指定的歷史設定。當次 `configuration.json`、eligibility 和發布收據可查核政策。用相同程式、來源鎖、隨機設定及觀測架構重播現行和歷史政策時，`compare(..., mode="policy_effect")` 另記解除的 cohort 條件及面板變化。兩側的程式和來源範圍也有變動時，差異收據會標示混合效果。 [比較契約](../src/au_ree_v2/formal_resource_refresh.py)
+
+R1 的自動採納仍須核對可比的原礦材料、質量分母、資源範圍、截品基準、適用的 JORC 原文及同一估計的數值。估計日期保留原日期角色及精度，例如 `2025-08` 使用 `MONTH`，發布日另存。`g/t`、`mg/kg`、`ppm` 和 `%` 的質量分率換算以同物種及同材料分母為條件，保留原值、原單位和轉換紀錄。複合截品和各物種的品位各自保存。 [正規化](../src/au_ree_v2/normalization.py) · [資源用途判定](../src/au_ree_v2/formal_resource_admission.py)
+
+第九輪使用原有八份 SHA 鎖定 PDF，沿用每份 24 個數值頁與 32 個脈絡頁的檢索預算及上一輪實際選頁。North Stanmore 與 Mangaroon 是本輪開發回歸，其餘六份用於回歸。以 `rule_effect` 比較相同原件及頁面的修復效果，並分列新版觀測的重驗證、數值位置、正式採納和分析差異。 [框架與選頁](../config/ontology/resource_admission_round9_frame_v1.json)

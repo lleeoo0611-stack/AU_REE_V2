@@ -2,6 +2,7 @@
 
 from pathlib import Path
 
+from .eligibility import c1_cohort_disabled
 from .mcda import interval_mcda
 from .store import canonical
 from .tabular import write_csv
@@ -114,6 +115,7 @@ def prepare_disclosure_analysis(result, baseline, config, out):
         D_overlap_interpretation='DESCRIPTIVE_PAIRED_SCORES_ONLY_NOT_CAUSAL_OR_INDEPENDENCE_TEST',
         ranking_interpretation='COMPOSITE_INCLUDING_INFORMATION_TRANSPARENCY_NOT_TECHNICAL_CAPABILITY',
         interval_interpretation='CONSERVATIVE_OUTER_POSSIBILITY_BOUNDS_NOT_CONFIDENCE_OR_PROBABILITIES',
-        formal_C1='UNCHANGED_GATES_NOT_AUTO_ADMITTED',baseline_version=baseline['version'])
+        formal_C1='DISABLED' if c1_cohort_disabled(config) else 'UNCHANGED_GATES_NOT_AUTO_ADMITTED',
+        baseline_version=baseline['version'])
     (out/'disclosure_analysis.json').write_text(canonical(summary)+'\n',encoding='utf8')
     return prepared,summary

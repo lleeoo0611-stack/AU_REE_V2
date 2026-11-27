@@ -1,12 +1,13 @@
 """Versioned records crossing extraction, validation, storage and research boundaries."""
 
 from dataclasses import InitVar, dataclass, fields
-from datetime import date, datetime
+from datetime import datetime
 from decimal import Decimal, InvalidOperation
 from math import isfinite
 import re
 
-from .numeric_evidence import header_unit_issue, numeric_witness_issue
+from .normalization import date_precision
+from .numeric_evidence import header_unit_issue, numeric_witness_issue, unit_header_matches_value_column
 from .store import digest
 
 SCHEMA_VERSION = "observation-v3"
@@ -188,15 +189,21 @@ class RawObservation:
             value = getattr(self, name)
             if value is not None:
                 _require_text(value, name)
-                if len(value) in (4, 7):
-                    date.fromisoformat(value + ("-01-01" if len(value) == 4 else "-01"))
-                else:
+                if date_precision(value) is None:
                     datetime.fromisoformat(value)
         if not isinstance(self.evidence, EvidenceAnchor) or not isinstance(self.context, ObservationContext):
             raise ValueError("Typed evidence and observation context required")
         _tuple_of(self.related_observation_ids, str, "related_observation_ids")
         _tuple_of(self.manual_decisions, ManualDecision, "manual_decisions")
         _tuple_of(self.evidence_anchors, EvidenceAnchor, "evidence_anchors")
+
+    @property
+    def effective_date_precision(self):
+        return date_precision(self.effective_date)
+
+    @property
+    def effective_date_role(self):
+        return dict(self.context.conditions).get("effective_date_role") if self.effective_date is not None else None
 
     @property
     def raw_id(self):
@@ -251,7 +258,7 @@ def value_evidence_issue(raw, supporting_evidence):
     for header in (*raw.evidence_anchors, *supporting_evidence):
         if (header.role not in {"unit", "VALUE_UNIT_HEADER"} or header.sha256 != primary.sha256
                 or header.page != primary.page or header.table is None or header.column is None
-                or header.table != primary.table or header.column != primary.column):
+                or header.table != primary.table or not unit_header_matches_value_column(header, primary)):
             continue
         issue = header_unit_issue(header.quote, raw.original_unit)
         if issue == "NUMERIC_EVIDENCE_BINDING_MISMATCH":

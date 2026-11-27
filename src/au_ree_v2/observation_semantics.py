@@ -6,7 +6,7 @@ from pathlib import Path
 
 from . import resource_use
 from .normalization import (
-    MAGNET_ATOMIC_WEIGHTS, MAGNET_SPECIES, MASS_FRACTION, MASS_IN_TONNES, oxide_factor, unit_factor,
+    MAGNET_ATOMIC_WEIGHTS, MAGNET_SPECIES, MASS_FRACTION, MASS_IN_TONNES, oxide_factor, same_mass_material, unit_factor,
 )
 from .numeric_evidence import scalar_decimal
 from .observation_schema import (
@@ -18,7 +18,7 @@ from .tabular import read_csv
 
 
 RESOURCE_PROFILE = "DIRECT_RESOURCE_UNIT_COMPARISON_V1"
-NORMALIZATION_VERSION = "observation-normalization-v2"
+NORMALIZATION_VERSION = "observation-normalization-v3"
 ASSESSMENT_VERSION = "observation-assessment-v3"
 RESOURCE_UNITS = {variable: unit for variable, unit, _ in resource_use.FIELDS.values()}
 OBSERVATION_STATUS = {
@@ -94,7 +94,7 @@ class SemanticEngine:
                             and (raw.variable != "contained_treo_kt" or chemical == "TREO")):
                         factors.append(("metric mass", unit_factor(original_unit, target_unit, MASS_IN_TONNES)))
                     elif (original_unit in MASS_FRACTION and target_unit in MASS_FRACTION
-                          and chemical and material and denominator
+                          and chemical and same_mass_material(material, denominator)
                           and (raw.quantity_kind != "RESOURCE" or mapped["scope"])
                           and raw.quantity_kind in {"RESOURCE", "STRATEGIC_COMPOSITION"}):
                         factors.append(("same-denominator mass fraction", unit_factor(original_unit, target_unit, MASS_FRACTION)))
@@ -133,7 +133,7 @@ class SemanticEngine:
     def _value_in_domain(value, unit, variable):
         if unit == "%":
             return 0 <= value <= 100 and (variable != "grade" or value > 0)
-        if unit == "ppm":
+        if unit in MASS_FRACTION:
             return 0 <= value <= 1_000_000 and (variable != "grade" or value > 0)
         if unit in MASS_IN_TONNES:
             return value >= 0 and (variable not in {"ore_mt", "contained_treo_kt"} or value > 0)

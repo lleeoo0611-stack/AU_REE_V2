@@ -3,6 +3,7 @@
 from collections import defaultdict
 from datetime import date
 
+from .normalization import overlapping_month_and_day
 from .resource_estimate import (compare_resource_estimates, cutoff_signature, is_jorc_mineral_resource,
                                resource_estimate_context, resource_location_context)
 from .store import canonical, digest, filehash
@@ -10,7 +11,7 @@ from .store import canonical, digest, filehash
 
 RESOURCE_ADMISSION_VERSION_PREFIX = 'automatic-resource-admission-v'
 RESOURCE_ADMISSION_VERSION_GLOB = RESOURCE_ADMISSION_VERSION_PREFIX + '*'
-RESOURCE_ADMISSION_VERSION = RESOURCE_ADMISSION_VERSION_PREFIX + '5'
+RESOURCE_ADMISSION_VERSION = RESOURCE_ADMISSION_VERSION_PREFIX + '6'
 
 
 def is_automatic_resource_admission(observation):
@@ -128,7 +129,7 @@ def source_check(source, cutoff, root=None, acquired_through=None):
     return None
 
 
-def choose(options, dimensions=('scope', 'unit', 'basis', 'endpoint', 'scale', 'feed')):
+def choose(options, dimensions=('scope', 'unit', 'basis', 'endpoint', 'scale', 'feed'), *, require_date_order=False):
     """Latest *within* a semantic scope; cross-scope choice requires a rule.
 
     Identical same-date evidence is corroboration, never an insertion-order tie
@@ -144,6 +145,9 @@ def choose(options, dimensions=('scope', 'unit', 'basis', 'endpoint', 'scale', '
     for group in groups.values():
         latest = max(date_end(o['effective_date']) for o in group)
         current = [o for o in group if date_end(o['effective_date']) == latest]
+        if require_date_order and any(overlapping_month_and_day(item['effective_date'], peer['effective_date'])
+                                      for item in current for peer in group):
+            return None, 'RESOURCE_EFFECTIVE_DATE_PRECISION_INSUFFICIENT_FOR_ORDER'
         if len({canonical(o.get('value')) for o in current}) != 1:
             return None, 'CONCURRENT_SOURCE_CONFLICT'
         merged = dict(sorted(current, key=canonical)[0])

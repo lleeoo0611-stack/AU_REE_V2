@@ -302,6 +302,45 @@ class ResourceAdmissionReviewPdfTests(unittest.TestCase):
             self.assertEqual(len(entry['bbox']), 4)
         return witnesses
 
+    def test_source_bound_month_and_mass_fraction_reach_formal_selection(self):
+        page = resource_page(date="May 2025", cutoff="500 g/t", grade_unit="mg/kg")
+        source, receipt, _, selected, _, canonical = self.run_pdf(page)
+        total = total_disposition(receipt)
+        self.assertEqual(total['status'], 'SOURCE_BOUND_CANONICAL', total['reasons'])
+        grade = next(item for item in total['observations'] if item['raw']['variable'] == 'grade')
+        self.assertEqual(grade['raw']['original_unit'], 'mg/kg')
+        self.assertEqual(grade['evidence_status'], 'VERIFIED')
+        original, = [item for item in grade['raw']['evidence_anchors'] if item['role'] == 'reported_estimate_period']
+        self.assertEqual(original['sha256'], source['sha256'])
+        start, end = (original['text_span'][field] for field in ('start', 'end'))
+        self.assertEqual(original['quote'][start:end], 'May 2025')
+        self.assertEqual(len(canonical), 3)
+        for row in canonical:
+            record = json.loads(row['raw'])
+            self.assertEqual((row['effective_date'], record['effective_date_precision'], record['effective_date_role']),
+                             ('2025-05', 'MONTH', 'STATEMENT_EFFECTIVE_DATE'))
+            self.assertEqual(record['original_estimate_date'], 'May 2025')
+            self.assertEqual(record['publication_date'], '2025-06-01')
+        chosen = selected[PROJECT_ID]
+        self.assertEqual((chosen['date'], chosen['effective_date_precision'], chosen['contained_treo_kt']),
+                         ('2025-05', 'MONTH', 100))
+
+    def test_source_publication_is_separate_from_estimate_month_and_cutoff_precision(self):
+        for date, reason in (('June 2025', 'RESOURCE_EFFECTIVE_DATE_PRECISION_INSUFFICIENT_FOR_TIMING'),
+                             ('July 2025', 'RESOURCE_EFFECTIVE_DATE_AFTER_DISCLOSURE_OR_CUTOFF')):
+            with self.subTest(date=date):
+                _, receipt, _, selected, _, canonical = self.run_pdf(resource_page(date=date))
+                self.assertIn(reason, total_disposition(receipt)['reasons'])
+                self.assertEqual(canonical, [])
+                self.assertEqual(selected, {})
+        page = resource_page(date=None)
+        page['caption'] += ' (released in May 2025)'
+        _, receipt, _, _, _, canonical = self.run_pdf(page)
+        total = total_disposition(receipt)
+        self.assertIsNone(total['observations'][0]['raw']['effective_date'])
+        self.assertIn('RESOURCE_ESTIMATE_DATE_UNRESOLVED', total['reasons'])
+        self.assertEqual(canonical, [])
+
     def test_explicit_current_denials_do_not_create_jorc_observations(self):
         cases = (
             resource_page(qualifier='non-JORC'),

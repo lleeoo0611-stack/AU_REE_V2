@@ -7,6 +7,7 @@ from pathlib import Path
 from .tabular import read_csv as read_rows, write_csv
 from .census_policy import summary_settings
 from .census_audit import date_precision
+from .eligibility import DISABLED_C1_COHORT, HISTORICAL_C1_CONFIG_FILES, c1_cohort_disabled
 from .security import public_export
 from .store import canonical, digest, filehash
 
@@ -68,7 +69,7 @@ def candidate_trace_inputs(traced, pid, canonical_id, code, row):
                     else 'TRACE_NOT_LOCATED')
 
 
-def panel_artifacts(out, prepared, results, selected, identity):
+def panel_artifacts(out, prepared, results, selected, identity, *, disabled_c1=False):
     traced = defaultdict(list)
     for row in prepared['traces']:
         traced[row['entity_id'], row['criterion']].append(row)
@@ -99,17 +100,19 @@ def panel_artifacts(out, prepared, results, selected, identity):
             ranked_projects=len({r['project_id'] for r in ranked}), criteria=criteria,
             weight_scenarios=sorted({r['scenario'] for r in read_rows(folder/'weights.csv')}),
             digests=hashes, study_population='EXPLORATORY_PANEL', formal_c1=False)
+        if disabled_c1:
+            panels[panel]['formal_c1_status'] = 'DISABLED'
         seen = set()
         for row in gate[panel]:
             pid = row['canonical_project_id']
             seen.add(pid)
             decisions.append(dict(panel=panel, project_id=row['project_id'], canonical_project_id=pid,
                 status='IN_PANEL_MATRIX' if row['included']=='1' else 'EXCLUDED_BY_CENSUS_SELECTION',
-                formal_c1_status=cohort.get(pid, {}).get('formal_c1_status')))
+                formal_c1_status='DISABLED' if disabled_c1 else cohort.get(pid, {}).get('formal_c1_status')))
         for pid in sorted(selected-seen):
             decisions.append(dict(panel=panel, project_id=pid, canonical_project_id=pid,
                 status='NO_ELIGIBLE_INPUT_IN_PANEL_MATRIX',
-                formal_c1_status=cohort.get(pid, {}).get('formal_c1_status')))
+                formal_c1_status='DISABLED' if disabled_c1 else cohort.get(pid, {}).get('formal_c1_status')))
         for row in matrix:
             pid = row['project_id']
             canonical_id = row.get('canonical_project_id') or identity['mapping'].get(pid, pid)
@@ -199,29 +202,37 @@ def aim_c_profiles(out, census, trace, snapshots, statements, selection, matrix,
 
 def write_release_contract(root, out, run_id, mode, cutoff, version, configuration,
                            snapshots, receipt, prepared, results, selected, identity):
+    research = configuration['research']
+    disabled_c1 = c1_cohort_disabled(research)
     names = summary_settings(root)[0]['output_files']
     project_summary = out/'project-summary'
     trace = read_rows(project_summary/names['provenance'])
     identity_roles(out, trace, identity)
-    panels = panel_artifacts(out, prepared, results, selected, identity)
+    panels = panel_artifacts(out, prepared, results, selected, identity, disabled_c1=disabled_c1)
     panel_dir = out/'six_domain_disclosure'
     aim_c = aim_c_profiles(out, read_rows(project_summary/names['summary']), trace, snapshots,
             read_rows(project_summary/'resource_statement_observations.csv'), read_rows(out/'census_selection.csv'),
             read_rows(panel_dir/'matrix.csv'), read_rows(panel_dir/'ranking.csv'))
-    evidence_files = ('formal_c1_gates.csv', 'formal_c1_panel_comparison.csv','formal_c1_release.json',
-                      'milestone_events.csv','milestone_comparison.csv','assay_method_evidence.csv',
-                      'resource_statement_observations.csv','resource_statement_lineage.csv','gap_review.csv')
+    evidence_files = ['milestone_events.csv','milestone_comparison.csv','assay_method_evidence.csv',
+                      'resource_statement_observations.csv','resource_statement_lineage.csv','gap_review.csv']
+    if disabled_c1:
+        formal_cohort = {**DISABLED_C1_COHORT, 'release_status': 'DISABLED', 'census_cutoff': cutoff}
+    else:
+        evidence_files.extend(('formal_c1_gates.csv', 'formal_c1_panel_comparison.csv', 'formal_c1_release.json'))
+        formal_file = project_summary/'formal_c1_release.json'
+        formal = json.loads(formal_file.read_text(encoding='utf8')) if formal_file.is_file() else {}
+        formal_cohort = dict(policy_id=formal.get('policy_id'), source_asof=formal.get('source_asof'),
+            census_cutoff=cutoff, signed_eligible_projects=formal.get('signed_eligible_projects'),
+            release_status=formal.get('release_status'), publication_ids=formal.get('formally_releasable'))
     evidence_hashes = {name:filehash(project_summary/name) for name in evidence_files if (project_summary/name).is_file()}
-    formal_file = project_summary/'formal_c1_release.json'
-    formal = json.loads(formal_file.read_text(encoding='utf8')) if formal_file.is_file() else {}
     compared_points = [r for r in read_rows(out/'census_gis_sensitivity.csv') if r['status']=='COMPARED_ON_SAME_LAYER']
     sources = [dict(key=s['key'], sha256=s['sha256'], kind=s['kind'], **source_dates(s),
                     original_response_shas=sorted(a['sha256'] for a in s.get('original_responses', [])))
                for s in sorted(snapshots, key=lambda s: s['key'])]
-    research = configuration['research']
     source_selection = out/'source_selection.csv'
     identity_sha = configuration.get('identity_links.json_sha256')
-    hashes = {f.name: filehash(f) for f in (root/'config').glob('*.json')}
+    hashes = {f.name: filehash(f) for f in (root/'config').glob('*.json')
+              if not disabled_c1 or f.name not in HISTORICAL_C1_CONFIG_FILES}
     lock = root/'results/phase22-2026-11-06/snapshot_lock.json'
     eligibility = out/'eligibility_audit.json'
     release = dict(version='census-release-v2-integrated-evidence', run_id=run_id, mode=mode, cutoff=cutoff, code=version,
@@ -238,9 +249,7 @@ def write_release_contract(root, out, run_id, mode, cutoff, version, configurati
         scenarios=research['scenarios'], ranking_panels=panels,
         evidence_outputs=evidence_hashes, aim_c_availability=aim_c,
         aim_c_availability_sha256=filehash(out/'aim_c_availability.csv'),
-        formal_cohort=dict(policy_id=formal.get('policy_id'), source_asof=formal.get('source_asof'),
-            census_cutoff=cutoff, signed_eligible_projects=formal.get('signed_eligible_projects'),
-            release_status=formal.get('release_status'), publication_ids=formal.get('formally_releasable')),
+        formal_cohort=formal_cohort,
         sensitivity_scope=dict(comparable_spatial_alternative_observations=len(compared_points),
             projects_with_comparable_spatial_alternative=len({r['canonical_project_id'] for r in compared_points}),
             milestone_ranking='NO_ADOPTED_SCORE_MAPPING', assay_metadata_scored=False),
