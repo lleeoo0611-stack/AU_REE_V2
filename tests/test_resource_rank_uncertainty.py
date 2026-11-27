@@ -24,7 +24,7 @@ class RankUncertaintyTests(unittest.TestCase):
         self.directory = Path(tmp.name)
 
     def _run(self, name, projects=('a', 'b'), *, reversed_ranks=False, traces=True, seed=32, no_bounds=False,
-             scope='shared scope', method_hash='a' * 64, bad_draw=False, weight_value=1):
+             scope='shared scope', method_hash='a' * 64, bad_draw=None, weight_value=1, weight_calculation=None):
         root = self.directory / name
         folder = root / PANEL
         folder.mkdir(parents=True)
@@ -73,8 +73,10 @@ class RankUncertaintyTests(unittest.TestCase):
         csv_file('rounding_uncertainty.csv', rounding_only)
         if traces:
             # The persisted row order is immaterial to the draw identity.
-            if bad_draw:
+            if bad_draw == 'duplicate':
                 records[-1] = records[-2]
+            elif bad_draw == 'missing':
+                records.pop()
             csv_file('shared_draw_ranks.csv', records if not reversed_ranks else list(reversed(records)))
 
         def hashes():
@@ -88,6 +90,8 @@ class RankUncertaintyTests(unittest.TestCase):
                                if key.endswith(('matrix.csv', 'criteria.csv', 'weights.csv'))},
                     'threshold': 0.2, 'monte_carlo': {'dirichlet_concentration': 30.0, 'seed': seed,
                                                      'reps': 3, 'method_version': RNG_VERSION}}
+        if weight_calculation:
+            contract['weight_calculation'] = weight_calculation
         receipt = {'contract': contract, 'key': digest(contract), 'status': 'REUSED_VERIFIED'}
         (folder / 'r_cache.json').write_text(json.dumps(receipt), encoding='utf-8')
         (root / 'summary.json').write_text(json.dumps({'status': 'COMPLETED', 'output_hashes': hashes()}), encoding='utf-8')
@@ -129,6 +133,12 @@ class RankUncertaintyTests(unittest.TestCase):
         self.assertEqual(a['marginal_summary_delta']['median'], 1)
         self.assertNotIn('frequency_top3', a['marginal_summary_delta'])
 
+    def test_equal_weight_rows_do_not_bypass_calculation_version_check(self):
+        report = self._compare(self._run('legacy'), self._run('explicit', weight_calculation='ordered-domain-fsum-v2'))
+        self.assertTrue(report['draw_contracts']['weight_rows_identical'])
+        self.assertEqual(report['draw_pairing']['reason'], 'WEIGHT_CALCULATION_VERSION_DIFFERS')
+        self.assertNotIn('paired_rank_differences', report['draw_pairing'])
+
     def test_cohort_turnover_keeps_shared_levels_and_separate_entry_exit(self):
         report = self._compare(self._run('old'), self._run('new', projects=('a', 'c'), reversed_ranks=True))
         self.assertEqual(report['draw_pairing']['status'], 'WITHHELD_COHORT_OR_SCOPE_CHANGED')
@@ -159,6 +169,11 @@ class RankUncertaintyTests(unittest.TestCase):
         self.assertEqual(paired['paired_groups'], 6)
         self.assertTrue(all(row['uncertainty'] == WEIGHTS for row in paired['paired_rank_differences']))
 
-    def test_duplicate_saved_draw_is_rejected_even_if_its_file_is_sealed(self):
-        with self.assertRaisesRegex(ValueError, 'RANK_UNCERTAINTY_DUPLICATE_DRAW_KEY'):
-            self._compare(self._run('old'), self._run('new', bad_draw=True))
+    def test_invalid_saved_draw_grids_report_the_reason_even_if_the_file_is_sealed(self):
+        old = self._run('old')
+        for error, reason in (('duplicate', 'RANK_UNCERTAINTY_DUPLICATE_DRAW_KEY'),
+                              ('missing', 'RANK_UNCERTAINTY_INCOMPLETE_DRAW_GRID')):
+            with self.subTest(error=error):
+                result = self._compare(old, self._run(error, bad_draw=error))
+                self.assertEqual(result['draw_pairing'], {'status': 'ACTUAL_DRAW_RANKS_INVALID',
+                                                          'reason': reason, 'side': 'updated'})

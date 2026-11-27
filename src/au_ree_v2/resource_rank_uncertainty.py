@@ -5,10 +5,11 @@ from collections import Counter
 import csv
 import math
 
+from .analysis import MCDA_TRACE_OUTPUTS, MCDA_TRACE_PANEL, MCDA_TRACE_PROFILE
 from .store import digest
 
 
-VERSION = 'resource-rank-uncertainty-v1'
+VERSION = 'resource-rank-uncertainty-v2'
 SUMMARY_FILES = ('weight_uncertainty.csv', 'rounding_uncertainty.csv', 'uncertainty_by_method.csv')
 METRICS = ('median', 'q05', 'q95', 'frequency_first', 'frequency_joint_first', 'frequency_top3', 'frequency_top5')
 WEIGHTS = 'WEIGHTS_ONLY'
@@ -52,8 +53,11 @@ def _known_contract(row, runtime, panel):
     expected = {'contract': SAMPLING_VERSION, 'cohort': panel, 'input_contract': RNG_VERSION,
                 'methods': '|'.join(METHODS), 'draw_identity': DRAW_IDENTITY,
                 'unknown': 'NO_PROBABILITY_DISTRIBUTION_ASSIGNED'}
+    details = row.get('detail')
+    required_profile = MCDA_TRACE_PROFILE if panel == MCDA_TRACE_PANEL and details == 'ALL_DRAW_RANKS' else None
     return (all(row.get(key) == value for key, value in expected.items())
-            and row.get('detail') in {'ALL_DRAW_RANKS', 'RECONSTRUCT_FROM_KEYED_INPUTS'}
+            and details in {'ALL_DRAW_RANKS', 'RECONSTRUCT_FROM_KEYED_INPUTS'}
+            and row.get('trace_profile') == required_profile
             and row.get('seed') == runtime.get('seed') and row.get('reps') == runtime.get('reps')
             and (row.get('seed') or '').isdigit() and (row.get('reps') or '').isdigit()
             and 1 <= int(row['reps']) <= 100000
@@ -63,7 +67,7 @@ def _known_contract(row, runtime, panel):
             and runtime.get('threshold') and runtime.get('concentration'))
 
 
-def _verified_r_inputs(run, panel, runtime):
+def _verified_r_inputs(run, panel, runtime, draw_contract):
     key = f'{panel}/r_cache.json'
     if key not in run.hashes:
         return None
@@ -77,6 +81,12 @@ def _verified_r_inputs(run, panel, runtime):
             or not all(inputs.values()) or any(contract.get('inputs', {}).get(k) != v for k, v in inputs.items())
             or contract.get('sampling') != SAMPLING_VERSION or contract.get('vanilla') is not True):
         return None
+    if contract.get('rank_trace') != draw_contract.get('trace_profile'):
+        return None
+    if contract.get('rank_trace') == MCDA_TRACE_PROFILE:
+        sealed = {name: run.hashes.get(f'{panel}/{name}') for name in MCDA_TRACE_OUTPUTS}
+        if not all(sealed.values()) or receipt.get('rank_trace_outputs') != sealed:
+            return None
     programs = contract.get('programs', {})
     if set(programs) != {'run_mcda.R', 'methods.R'} or not all(programs.values()) or not contract.get('R'):
         return None
@@ -86,7 +96,8 @@ def _verified_r_inputs(run, panel, runtime):
             or _number(settings.get('dirichlet_concentration'), 'concentration') != _number(runtime.get('concentration'), 'concentration')
             or _number(contract.get('threshold'), 'threshold') != _number(runtime.get('threshold'), 'threshold')):
         return None
-    return {key: contract.get(key) for key in ('R', 'programs', 'monte_carlo', 'threshold', 'sampling', 'analysis', 'vanilla')}
+    return {key: contract.get(key) for key in ('R', 'programs', 'monte_carlo', 'threshold', 'sampling',
+                                               'analysis', 'vanilla', 'weight_calculation')}
 
 
 def _number(value, name):
@@ -153,24 +164,36 @@ def _summary_result(old, new, cohort, comparable):
     return result
 
 
+class _DrawTraceIssue(ValueError):
+    pass
+
+
 def _draw_ranks(run, key, panel, projects, scenarios, reps):
     expected = {(scenario, method, family, pid) for scenario in scenarios for method in METHODS
                 for family in (WEIGHTS, ROUNDING) for pid in projects}
     ranks = {}
+    required = {'cohort', 'scenario', 'method', 'uncertainty', 'project_id', 'draw_id', 'rank'}
     with run.path(key).open(encoding='utf-8-sig', newline='') as stream:
-        for row in csv.DictReader(stream):
+        reader = csv.DictReader(stream)
+        fields = reader.fieldnames or []
+        if not required <= set(fields) or len(fields) != len(set(fields)):
+            raise _DrawTraceIssue('RANK_UNCERTAINTY_INVALID_DRAW_COLUMNS')
+        for row in reader:
             identity = (row['scenario'], row['method'], row['uncertainty'], row['project_id'])
-            index, rank = int(row['draw_id']) - 1, _number(row['rank'], 'rank')
+            try:
+                index, rank = int(row['draw_id']) - 1, _number(row['rank'], 'rank')
+            except (TypeError, ValueError) as exc:
+                raise _DrawTraceIssue('RANK_UNCERTAINTY_INVALID_DRAW_VALUES') from exc
             if (row['cohort'] != panel or identity not in expected or not 0 <= index < reps
-                    or rank is None or not 1 <= rank <= len(projects)):
-                raise ValueError('RANK_UNCERTAINTY_DRAW_IDENTITY_MISMATCH: ' + key)
+                    or rank is None or not 1 <= rank <= len(projects) or (2 * rank) % 1):
+                raise _DrawTraceIssue('RANK_UNCERTAINTY_DRAW_IDENTITY_MISMATCH')
             if identity not in ranks:
                 ranks[identity] = array('d', [math.nan]) * reps
             if not math.isnan(ranks[identity][index]):
-                raise ValueError('RANK_UNCERTAINTY_DUPLICATE_DRAW_KEY: ' + key)
+                raise _DrawTraceIssue('RANK_UNCERTAINTY_DUPLICATE_DRAW_KEY')
             ranks[identity][index] = rank
     if ranks.keys() != expected or any(math.isnan(value) for values in ranks.values() for value in values):
-        raise ValueError('RANK_UNCERTAINTY_INCOMPLETE_DRAW_GRID: ' + key)
+        raise _DrawTraceIssue('RANK_UNCERTAINTY_INCOMPLETE_DRAW_GRID')
     return ranks
 
 
@@ -195,7 +218,7 @@ def _paired_differences(left, right, old_summaries, new_summaries):
         if any(not any((scenario, method, label, project) in summaries for label in (
                 (WEIGHTS, 'WITHIN_GROUP_WEIGHTS_FIXED_DOMAIN_TOTALS') if family == WEIGHTS else (ROUNDING,)))
                 for summaries in (old_summaries, new_summaries)):
-            raise ValueError('RANK_UNCERTAINTY_DRAW_WITHOUT_MATCHING_SUMMARY')
+            raise _DrawTraceIssue('RANK_UNCERTAINTY_DRAW_WITHOUT_MATCHING_SUMMARY')
         diffs = sorted(new - old for old, new in zip(left[identity], right[identity], strict=True))
         distribution = Counter(diffs)
         results.append({**_summary_identity(identity), 'draws': len(diffs),
@@ -220,13 +243,15 @@ def compare_panel(before, after, panel, before_matrix, after_matrix, before_crit
     old_runtime, runtime = _one(before, runtime_key), _one(after, runtime_key)
     old_contract, contract = _one(before, contract_key), _one(after, contract_key)
     weights_identical = before_weights == after_weights
+    trace_descriptors = {'detail', 'trace_profile'}
     settings_match = (bool(before_criteria and before_weights) and before_criteria == after_criteria
                       and weights_identical and old_runtime == runtime
                       and _known_contract(old_contract, old_runtime, panel) and _known_contract(contract, runtime, panel)
-                      and ({key: value for key, value in old_contract.items() if key != 'detail'}
-                           == {key: value for key, value in contract.items() if key != 'detail'}))
-    r_inputs = _verified_r_inputs(before, panel, old_runtime) if settings_match else None
-    r_match = r_inputs is not None and r_inputs == _verified_r_inputs(after, panel, runtime)
+                      and ({key: value for key, value in old_contract.items() if key not in trace_descriptors}
+                           == {key: value for key, value in contract.items() if key not in trace_descriptors}))
+    r_inputs = _verified_r_inputs(before, panel, old_runtime, old_contract) if settings_match else None
+    new_r_inputs = _verified_r_inputs(after, panel, runtime, contract) if settings_match else None
+    r_match = r_inputs is not None and r_inputs == new_r_inputs
     comparable = bool(settings_match and r_match and cohort['same_semantic_cohort'])
     summaries = {}
     old_method, new_method = None, None
@@ -245,6 +270,9 @@ def compare_panel(before, after, panel, before_matrix, after_matrix, before_crit
             paired['reason'] = 'ACTUAL_WEIGHT_ROWS_DIFFER'
     elif not r_match:
         paired = {'status': 'R_PROGRAMS_RUNTIME_OR_INPUT_SEALS_UNVERIFIED_OR_CHANGED'}
+        if r_inputs is not None and new_r_inputs is not None and (
+                r_inputs['weight_calculation'] != new_r_inputs['weight_calculation']):
+            paired['reason'] = 'WEIGHT_CALCULATION_VERSION_DIFFERS'
     elif not cohort['same_semantic_cohort']:
         paired = {'status': 'WITHHELD_COHORT_OR_SCOPE_CHANGED'}
     elif (old_contract['detail'] != 'ALL_DRAW_RANKS' or contract['detail'] != 'ALL_DRAW_RANKS'
@@ -254,12 +282,19 @@ def compare_panel(before, after, panel, before_matrix, after_matrix, before_crit
         paired = {'status': 'VERIFYING_SOURCE_BOUNDS_REQUIRES_METHOD_SUMMARIES'}
     else:
         reps = int(contract['reps'])
-        old_ranks = _draw_ranks(before, trace_key, panel, old_scope, old_scenarios, reps)
-        ranks = _draw_ranks(after, trace_key, panel, scope, scenarios, reps)
-        paired = _paired_differences(old_ranks, ranks, old_method, new_method)
-        paired.update(verified_r_program_sha256=r_inputs['programs'],
-                      verified_r_runtime_sha256=digest(r_inputs['R']),
-                      baseline_trace_sha256=before.hashes[trace_key], updated_trace_sha256=after.hashes[trace_key])
+        side = 'baseline'
+        try:
+            old_ranks = _draw_ranks(before, trace_key, panel, old_scope, old_scenarios, reps)
+            side = 'updated'
+            ranks = _draw_ranks(after, trace_key, panel, scope, scenarios, reps)
+            side = 'comparison'
+            paired = _paired_differences(old_ranks, ranks, old_method, new_method)
+        except _DrawTraceIssue as exc:
+            paired = {'status': 'ACTUAL_DRAW_RANKS_INVALID', 'reason': str(exc), 'side': side}
+        else:
+            paired.update(verified_r_program_sha256=r_inputs['programs'],
+                          verified_r_runtime_sha256=digest(r_inputs['R']),
+                          baseline_trace_sha256=before.hashes[trace_key], updated_trace_sha256=after.hashes[trace_key])
 
     return {'version': VERSION, 'cohorts': cohort,
             'comparison_basis': ('SAME_COHORT_MARGINAL_SUMMARY_DELTAS' if comparable
@@ -273,5 +308,6 @@ def compare_panel(before, after, panel, before_matrix, after_matrix, before_crit
                                'updated_runtime_sha256': after.hashes.get(runtime_key)},
             'summaries': summaries, 'draw_pairing': paired,
             'interpretation': {'source_rounding': 'REPORTING_PRECISION_ONLY',
+                               'geological_uncertainty': 'NOT_INFERRED_FROM_WEIGHT_OR_ROUNDING_DRAWS',
                                'rank_frequencies': 'PREFERENCE_AND_MODEL_FREQUENCIES_ONLY',
                                'common_project_levels': 'FROM_EACH_FULL_COHORT_WITHOUT_COMMON_COHORT_REFIT'}}

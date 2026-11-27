@@ -13,7 +13,7 @@ from .screen_index import rows as screen_index_rows
 from pathlib import Path
 from . import __version__
 from .acquisition import select_snapshots
-from .analysis import prepare, run_r
+from .analysis import MCDA_TRACE_PANEL, WEIGHT_CALCULATIONS, prepare, run_r
 from .tabular import write_csv
 from .evidence import ingest_sources, ingest_claims, resource_values, strict_claims
 from .gis import run as run_gis, national_deposit_port_distances, deposit_type_port_summary
@@ -123,6 +123,12 @@ def execute(args):
     resource_frame = getattr(args, 'resource_admission', None)
     if resource_frame and args.module not in ('observation-validate', 'all', 'rebuild'):
         raise ValueError('--resource-admission applies to observation-validate, all or rebuild')
+    trace_panel = getattr(args, 'mcda_trace_panel', None)
+    if trace_panel and (args.module not in ('all', 'analyze', 'rebuild', 'mcda-plan') or getattr(args, 'skip_r', False)):
+        raise ValueError('--mcda-trace-panel requires an R-enabled analysis, rebuild, all or mcda-plan')
+    if (getattr(args, 'mcda_weight_calculation', None) is not None
+            and args.module not in ('all', 'analyze', 'rebuild', 'disclosure')):
+        raise ValueError('--mcda-weight-calculation applies to all, analyze, rebuild or disclosure')
     if args.module == 'observation-validate':
         if not args.out:
             raise ValueError('Observation validation requires --out')
@@ -157,6 +163,8 @@ def execute(args):
         prior = Path(args.shadow_run).resolve()
         summary = json.loads((prior / 'summary.json').read_bytes())
         config = json.loads((prior / 'configuration.json').read_bytes())['research']
+        if trace_panel:
+            config['mcda_trace_panel'] = trace_panel
         prepared = {'panels': {panel: details['n'] for panel, details in summary['r_results'].items()}}
         if not prepared['panels']:
             raise ValueError('MCDA plan requires a run with prepared panel results')
@@ -255,6 +263,10 @@ def _execute(args):
     if args.module=='all' and mode=='frozen' and not integration and (getattr(args,'out',None) or census_filters):
         raise ValueError('Use --source-mode frozen to publish or filter Census from a frozen lock')
     config=research_configuration(root,args.snapshot_lock)
+    if trace_panel := getattr(args, 'mcda_trace_panel', None):
+        config['mcda_trace_panel'] = trace_panel
+    if weight_calculation := getattr(args, 'mcda_weight_calculation', None):
+        config['mcda_weight_calculation'] = weight_calculation
     if resource_frame:
         from .resource_admission_flow import load_frame
         if not config.get('evidence_resolution') or not any(c['code'] == 'R1' for c in config['criteria']):
@@ -848,7 +860,11 @@ def main():
     parser.add_argument('--force-stage', action='append', default=[], help='Recompute this shadow stage and its downstream')
     parser.add_argument('--shadow-reviews', help='Versioned shadow decision journal outside the disposable cache')
     parser.add_argument('--mcda-cache-mode', choices=('use', 'off', 'refresh'), default='use')
+    parser.add_argument('--mcda-weight-calculation', choices=WEIGHT_CALCULATIONS,
+                        help='Replay a specific weight calculation without changing the source lock')
     parser.add_argument('--mcda-force-panel', action='append', default=[])
+    parser.add_argument('--mcda-trace-panel', choices=(MCDA_TRACE_PANEL,),
+                        help='Save the full shared rank draw grid for the issuer resource composition panel')
     parser.add_argument('--shadow-development-only',action='store_true',help='Exclude preregistered review groups')
     parser.add_argument('--as-of',default=datetime.now(timezone.utc).date().isoformat())
     parser.add_argument('--project',help='Stable native project registry ID')

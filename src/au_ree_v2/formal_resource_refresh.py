@@ -6,16 +6,24 @@ from datetime import datetime
 import json
 from pathlib import Path
 
+from .analysis import weight_calculation_version
 from .derived_cache import atomic_json
 from .formal_resource_bridge import GATES, PANEL, _FormalInputs, _compare, equivalent_weight_rows
 from .selection_rules import is_automatic_resource_admission
 from .store import digest, filehash
 
 
-VERSION = 'formal-resource-refresh-v2'
+VERSION = 'formal-resource-refresh-v3'
 RANK_NUMBERS = ('promethee', 'saw', 'topsis', 'promethee_rank', 'saw_rank', 'topsis_rank')
 COMPARISON_MODES = frozenset({'auto', 'rule_effect', 'admission_effect', 'source_update', 'replay'})
 SOURCE_TRANSPORT_FIELDS = frozenset({'path', 'url', 'acquired_at'})
+MCDA_PROTOCOL_FIELDS = frozenset({'mcda_weight_calculation', 'mcda_trace_panel'})
+
+
+def _mcda_protocol(config):
+    research = config['research']
+    return {'weight_calculation': weight_calculation_version(research),
+            'additional_rank_trace_panel': research.get('mcda_trace_panel')}
 
 
 def _checked_inputs(run):
@@ -102,7 +110,9 @@ def _comparison_contract(before, after, old_cfg, cfg, old_lock, lock, old_admit,
             frame_changed = any(old_pins[key] != pins[key] and (old_pins[key], pins[key]) !=
                                 (old_shas.get(key), shas.get(key)) for key in old_pins)
 
+    before_protocol, after_protocol = _mcda_protocol(old_cfg), _mcda_protocol(cfg)
     factors = {'code_or_admission_rules': code_changed or rules_changed,
+               'mcda_execution_protocol': before_protocol != after_protocol,
                'admission_enabled': admission_changed, 'admission_frame': frame_changed,
                'source_inputs': bool(binding_delta) or registry_changed,
                'analytical_runtime': (old_cfg.get('analytical_runtime') != cfg.get('analytical_runtime')
@@ -110,7 +120,7 @@ def _comparison_contract(before, after, old_cfg, cfg, old_lock, lock, old_admit,
     active = [name for name, changed in factors.items() if changed]
     if not active:
         kind = 'replay'
-    elif active == ['code_or_admission_rules'] and both_admit:
+    elif both_admit and set(active) <= {'code_or_admission_rules', 'mcda_execution_protocol'}:
         kind = 'rule_effect'
     elif active == ['admission_enabled']:
         kind = 'admission_effect'
@@ -125,6 +135,7 @@ def _comparison_contract(before, after, old_cfg, cfg, old_lock, lock, old_admit,
     return {'kind': kind, 'requested_mode': mode, 'changed_factors': active,
             'code_content_changed': code_changed, 'code_commit_changed': old_code.get('commit') != code.get('commit'),
             'rules_changed': rules_changed, 'source_registry_changed': registry_changed,
+            'mcda_execution_protocol': {'baseline': before_protocol, 'updated': after_protocol},
             'source_editions_changed': edition_delta,
             'admission_enabled': {'baseline': old_admit is not None, 'updated': admit is not None},
             'frame_sha256': {'baseline': old_admit.get('frame_sha256') if old_admit else None,
@@ -306,7 +317,8 @@ def _panel_delta(before, after, name, changed_inputs, include_uncertainty=False)
 def _identity(run, cfg):
     return {key: run.summary[key] for key in
             ('run_id', 'cutoff', 'code', 'configuration_sha256', 'snapshot_sha256', 'logical_database_sha256')} | {
-        'research_config_sha256': digest(cfg['research']), 'monte_carlo': cfg['research']['monte_carlo']}
+        'research_config_sha256': digest(cfg['research']), 'monte_carlo': cfg['research']['monte_carlo'],
+        'mcda_execution_protocol': _mcda_protocol(cfg)}
 
 
 def compare(baseline_run, updated_run, output, *, mode='auto', include_uncertainty=False):
@@ -320,9 +332,12 @@ def compare(baseline_run, updated_run, output, *, mode='auto', include_uncertain
     cfg, lock, admit = _checked_inputs(after)
     if old_admit is None and admit is None:
         raise ValueError('REFRESH_REQUIRES_ACTUAL_ADMISSION_RUN')
-    fixed = ('research', 'claims_sha256', 'identity_links.json_sha256', 'study_cases.json_sha256',
+    fixed = ('claims_sha256', 'identity_links.json_sha256', 'study_cases.json_sha256',
              'eligibility_policy_sha256', 'census_filter', 'source_mode')
-    if (before.summary['cutoff'] != after.summary['cutoff'] or any(old_cfg.get(k) != cfg.get(k) for k in fixed)):
+    old_research, research = ({key: value for key, value in item['research'].items() if key not in MCDA_PROTOCOL_FIELDS}
+                              for item in (old_cfg, cfg))
+    if (before.summary['cutoff'] != after.summary['cutoff'] or old_research != research
+            or any(old_cfg.get(k) != cfg.get(k) for k in fixed)):
         raise ValueError('REFRESH_COMPARISON_REQUIRES_SAME_RESEARCH_CONTRACT')
     contract = _comparison_contract(before, after, old_cfg, cfg, old_lock, lock, old_admit, admit, mode)
     old_observations, observations = _observations(before), _observations(after)

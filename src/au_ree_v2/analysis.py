@@ -1,4 +1,5 @@
 """Frozen panels, anchored scoring, coverage and traceable R interchange."""
+from collections import Counter
 import csv
 import json
 import math
@@ -15,6 +16,19 @@ from .mcda import interval_mcda, score
 from .store import canonical, digest, filehash
 
 from .tabular import read_csv, write_csv
+
+
+LEGACY_WEIGHT_CALCULATION = 'unordered-domain-sum-v1'
+DETERMINISTIC_WEIGHT_CALCULATION = 'ordered-domain-fsum-v2'
+WEIGHT_CALCULATIONS = (LEGACY_WEIGHT_CALCULATION, DETERMINISTIC_WEIGHT_CALCULATION)
+
+
+def weight_calculation_version(config):
+    """Read the explicit policy or retain an older frozen run's calculation."""
+    version = config.get('mcda_weight_calculation', LEGACY_WEIGHT_CALCULATION)
+    if version not in WEIGHT_CALCULATIONS:
+        raise ValueError('UNKNOWN_MCDA_WEIGHT_CALCULATION: ' + str(version))
+    return version
 
 
 def current_disclosure_baseline(out, mapping, group_ids, prepared=None, include_bounds=False):
@@ -235,6 +249,7 @@ def _official_wa_resource_screen(db,cutoff,snapshots,config,criteria,out,project
 def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=None, canonical_ids=None, cases=None, selection=None):
     out = Path(out)
     criteria = {c['code']:c for c in config['criteria']}
+    weight_calculation = weight_calculation_version(config)
     selected_shas = {s['sha256'] for s in snapshots}
     coverage, traces, matrices = [], [], {}
     project_ids = list(resources)
@@ -336,14 +351,23 @@ def prepare(db, cutoff, snapshots, resources, gis_values, config, out, project=N
         write_csv(folder/'matrix.csv',rows,['project_id','canonical_project_id','project_name','scope','deposit_type',*[key for code in codes for key in (code,code+'_alt',code+'_lower',code+'_upper')]])
         write_csv(folder/'criteria.csv',[criteria[c] for c in codes],['code','domain','direction','low','high','function']+
                   (['definition_version'] if config.get('candidate_version') else []))
-        weights=[]
+        weights = []
+        domain_counts = Counter(criteria[code]['domain'] for code in codes)
+        # Scenario and criterion rows retain configured order. Only domains
+        # participating in the current panel contribute to its total weight.
+        if weight_calculation == DETERMINISTIC_WEIGHT_CALCULATION:
+            domains = sorted(domain_counts)
+            sum_weights = math.fsum
+        else:
+            # Keep the original calculation for historical frozen replay.
+            domains = {criteria[code]['domain'] for code in codes}
+            sum_weights = sum
         for scenario, domain_weights in config['scenarios'].items():
-            domains={criteria[c]['domain'] for c in codes}
-            total=sum(domain_weights[d] for d in domains)
+            total = sum_weights(domain_weights[domain] for domain in domains)
             for code in codes:
-                domain=criteria[code]['domain']
-                count=sum(criteria[c]['domain']==domain for c in codes)
-                weights.append({'scenario':scenario,'criterion':code,'weight':domain_weights[domain]/total/count})
+                domain = criteria[code]['domain']
+                weights.append({'scenario': scenario, 'criterion': code,
+                                'weight': domain_weights[domain] / total / domain_counts[domain]})
         write_csv(folder/'weights.csv',weights,['scenario','criterion','weight'])
     return {'coverage':coverage,'traces':traces,'matrices':matrices,'panels':{**{p:len(v) for p,v in matrices.items()},**case_panels},
             'trace_values':len(traces),'government_screen_n':len(screen_rows)}
@@ -362,6 +386,19 @@ _R_CONDITIONAL_OUTPUTS = frozenset({
 })
 _R_COHORT_OUTPUT = "evidence_cohort_sensitivity.csv"
 _R_CACHE_MODES = frozenset({"use", "off", "refresh"})
+MCDA_TRACE_PANEL = "issuer_resource_composition"
+MCDA_TRACE_PROFILE = "issuer-resource-composition-full-trace-v1"
+MCDA_TRACE_OUTPUTS = ("runtime.csv", "shared_draw_contract.csv", "shared_draw_ranks.csv", "uncertainty_by_method.csv")
+
+
+def _rank_trace_profile(config, panel, stage=None):
+    target = config.get("mcda_trace_panel")
+    if target is None:
+        return None
+    if (target != MCDA_TRACE_PANEL or not config.get("mcda_cache")
+            or config.get("shared_method_draws") != "shared-method-draws-v1"):
+        raise ValueError("Issuer rank traces require the sealed shared-method MCDA execution")
+    return MCDA_TRACE_PROFILE if panel == target and stage != "cohort" else None
 
 
 def mcda_cache_contract(root, out, panel, config, runtime, stage=None):
@@ -385,13 +422,17 @@ def mcda_cache_contract(root, out, panel, config, runtime, stage=None):
     monte_carlo = {"method_version": mc.get("method_version")}
     if stage != "cohort":
         monte_carlo.update({key: mc[key] for key in ("seed", "reps", "dirichlet_concentration")})
+    trace = _rank_trace_profile(config, panel, stage)
     return {
+        **({"rank_trace": trace} if trace else {}),
         "version": "mcda-input-cache-v2", "panel": panel, "inputs": inputs, "R": runtime,
         "vanilla": True, "programs": {name: filehash(Path(root) / "R" / name)
                                       for name in ("run_mcda.R", "methods.R")},
         "monte_carlo": monte_carlo,
         "threshold": config["promethee_threshold"], "analysis": config.get("research_analysis_version"),
         "sampling": config.get("shared_method_draws"), "stage": stage,
+        **({"weight_calculation": weight_calculation_version(config)}
+           if "mcda_weight_calculation" in config else {}),
     }
 
 
@@ -437,7 +478,7 @@ def _r_output_contract(contract):
         required.add("criterion_contributions.csv")
     if contract["sampling"]:
         required.update({"uncertainty_by_method.csv", "shared_draw_contract.csv"})
-        if contract["panel"] == "six_domain":
+        if contract["panel"] == "six_domain" or contract.get("rank_trace") == MCDA_TRACE_PROFILE:
             required.add("shared_draw_ranks.csv")
     if "commercial_project_coverage.csv" in contract["inputs"]:
         required.add("commercial_weight_sensitivity.csv")
@@ -584,6 +625,8 @@ def cached_r(root, folder, command, contract, *, mode="use"):
         _save_r_receipt(folder, status_file, status)
         raise
     status.update(output_sha256=metadata["output_sha256"], elapsed_seconds=perf_counter() - started)
+    if contract.get("rank_trace") == MCDA_TRACE_PROFILE:
+        status["rank_trace_outputs"] = {name: metadata["outputs"][name] for name in MCDA_TRACE_OUTPUTS}
     _save_r_receipt(folder, status_file, status)
     return status["status"]
 
@@ -689,6 +732,7 @@ def run_r(root, out, prepared, config, rscript=None, *, cache_mode="use", force_
     results = {}
     runtime = _r_runtime(executable) if config.get("mcda_cache") else None
     for panel,n in prepared['panels'].items():
+        _rank_trace_profile(config, panel)
         if n<2:
             results[panel]={'status':'INSUFFICIENT_SAMPLE','n':n};continue
         folder=Path(out)/panel
@@ -711,7 +755,11 @@ def run_r(root, out, prepared, config, rscript=None, *, cache_mode="use", force_
             command.insert(1,'--vanilla')
             stage = 'core' if split else None
             mode = _mcda_plan_mode(out, panel, stage, config, cache_mode, forced)
-            cache_status = cached_r(root, folder, command, mcda_cache_contract(root, out, panel, config, runtime, stage),
+            contract = mcda_cache_contract(root, out, panel, config, runtime, stage)
+            primary = command
+            if trace := contract.get('rank_trace'):
+                primary = [*command, trace] if split else [*command, 'all', trace]
+            cache_status = cached_r(root, folder, primary, contract,
                                     mode=mode)
         else:
             result=subprocess.run(command,capture_output=True,text=True,timeout=300)

@@ -8,8 +8,10 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
-from au_ree_v2.analysis import plan_mcda, run_r
+from au_ree_v2.analysis import MCDA_TRACE_PANEL, MCDA_TRACE_PROFILE, plan_mcda, run_r
 from au_ree_v2.cli import research_configuration
+from au_ree_v2.formal_resource_bridge import _FormalInputs
+from au_ree_v2.resource_rank_uncertainty import METHODS, compare_panel
 from au_ree_v2.store import digest, filehash
 from au_ree_v2.tabular import read_csv, write_csv
 
@@ -17,6 +19,7 @@ from au_ree_v2.tabular import read_csv, write_csv
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = ROOT / "results/phase21-2026-11-05/six_domain"
 INPUTS = {"matrix.csv", "weights.csv", "criteria.csv"}
+ISSUER_FIXTURE = ROOT / "results/phase22-2026-11-06" / MCDA_TRACE_PANEL
 
 
 class MCDACacheTests(unittest.TestCase):
@@ -55,6 +58,66 @@ class MCDACacheTests(unittest.TestCase):
 
     def scientific(self, path):
         return {p.relative_to(path): filehash(p) for p in path.glob("*/*.csv") if p.name not in INPUTS}
+
+    def test_composition_rank_draw_opt_in_is_sealed_cache_scoped_and_pairable(self):
+        target = MCDA_TRACE_PANEL
+        counts = {target: len(read_csv(ISSUER_FIXTURE / "matrix.csv")), "six_domain": 5, "peer": 5}
+
+        def inputs(name):
+            out = self.interchange(name, counts)
+            for leaf in INPUTS:
+                shutil.copyfile(ISSUER_FIXTURE / leaf, out / target / leaf)
+            return out
+
+        def seal(out):
+            hashes = {path.relative_to(out).as_posix(): filehash(path) for path in (out / target).iterdir()}
+            (out / "summary.json").write_text(json.dumps({"status": "COMPLETED", "output_hashes": hashes}),
+                                              encoding="utf-8")
+            return _FormalInputs(out)
+
+        def uncertainty(left, right):
+            runs = seal(left), seal(right)
+            rows = [run.csv(f"{target}/{name}.csv") for name in ("matrix", "criteria", "weights") for run in runs]
+            return compare_panel(*runs, target, *rows)
+
+        off, baseline = inputs("trace-off"), inputs("trace-on")
+        self.run_panels(off, counts)
+        self.assertFalse((off / target / "shared_draw_ranks.csv").exists())
+        self.assertTrue((off / "six_domain/shared_draw_ranks.csv").is_file())
+        self.config["mcda_trace_panel"] = target
+        plan = self.plan(baseline, counts)
+        self.assertEqual([f"{target}/core"], [name for name, item in plan.items() if item["action"] == "COMPUTE"])
+        self.assertEqual(MCDA_TRACE_PROFILE, plan[f"{target}/core"]["contract"]["rank_trace"])
+        self.run_panels(baseline, counts)
+        self.assertFalse((baseline / "peer/shared_draw_ranks.csv").exists())
+        self.assertEqual(filehash(off / target / "uncertainty_by_method.csv"),
+                         filehash(baseline / target / "uncertainty_by_method.csv"))
+        untraced = uncertainty(off, baseline)["draw_pairing"]
+        self.assertEqual("KEYED_CONTRACT_MATCHES_ACTUAL_DRAW_RANKS_NOT_AVAILABLE", untraced["status"])
+
+        treatment = inputs("trace-treatment")
+        matrix = treatment / target / "matrix.csv"
+        rows = read_csv(matrix)
+        rows[0]["R1"] = 0.999
+        write_csv(matrix, rows, list(rows[0]))
+        result = self.run_panels(treatment, counts)
+        self.assertEqual("COMPUTED_AND_CACHED", result[target]["cache_status"])
+        self.assertEqual("REUSED_VERIFIED", self.run_panels(treatment, counts)[target]["cache_status"])
+        report = uncertainty(baseline, treatment)
+        paired = report["draw_pairing"]
+        self.assertEqual("PAIRED_VERIFIED_DRAW_RANKS", paired["status"])
+        scenarios = {row['scenario'] for row in read_csv(treatment / target / "weights.csv")}
+        self.assertEqual(counts[target] * len(scenarios) * len(METHODS) * 2, paired["paired_groups"])
+        self.assertTrue(any(delta["rank_delta"] for row in paired["paired_rank_differences"]
+                            for delta in row["rank_delta_counts"]))
+        self.assertEqual(filehash(treatment / target / "shared_draw_ranks.csv"), paired["updated_trace_sha256"])
+
+        cache_receipt = treatment / target / "r_cache.json"
+        receipt = json.loads(cache_receipt.read_bytes())
+        receipt["rank_trace_outputs"]["shared_draw_ranks.csv"] = "f" * 64
+        cache_receipt.write_text(json.dumps(receipt), encoding="utf-8")
+        self.assertEqual("R_PROGRAMS_RUNTIME_OR_INPUT_SEALS_UNVERIFIED_OR_CHANGED",
+                         uncertainty(baseline, treatment)["draw_pairing"]["status"])
 
     def test_panel_core_and_cohort_invalidation_matches_full_rebuild(self):
         counts = {"six_domain": 5, "peer": 6}
