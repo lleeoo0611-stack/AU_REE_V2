@@ -1,3 +1,5 @@
+> **歷史結果封存（2026-11-28）**：v5、v6、ci_v4、ci_t0 共 113 檔，已從工作版移出，完整原件保留在 [固定封存分支](https://github.com/lleeoo0611-stack/AU_REE_V2/tree/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16)。現行 v8–v10 及正式重播輸入未變；[封存清冊](../../docs/archive/2026-11-28-claims-locators-manifest.json)。
+
 # 目前進度：第 9 版
 
 最新報告：[第9版CI驗收：609／609、877／877守住，SAME900（+23）；P2提案待核准](v9/README.md)。維持Draft、不merge，等待審查。
@@ -18,13 +20,13 @@
 
 # 目前進度：第 6 版
 
-最新報告：[全主機 robots、ACDC 可行性與 VIC 快照](v6/README.md)。第 5 版報告與更早結果保留於下。
+最新報告：[全主機 robots、ACDC 可行性與 VIC 快照](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/v6/README.md)。第 5 版報告與更早結果保留於下。
 
 ---
 
 # 目前進度：第 5 版
 
-最新報告：[GA、ACDC 與 VIC 診斷](v5/README.md)。第 4 版完整結果保留於下。
+最新報告：[GA、ACDC 與 VIC 診斷](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/v5/README.md)。第 4 版完整結果保留於下。
 
 ---
 
@@ -107,15 +109,15 @@ KNOWN_STRUCTURAL_DIFFERENCE、NUMERIC_TOLERANCE_SAME 各自列計，不計入 SA
 |新增官網同 SHA 替代網址|0|
 |其他／來源可取得性變化|0|
 
-這是單次 CI 與固定基準的逐格來源／專案分組，沒有另跑反事實建置；[逐格增量](ci_v4/same_increments.csv)與[每個核准專案恢復格數及仍失敗原因](ci_v4/marker_project_effects.csv)可核對。剩餘 DIFFERENT 的值、來源、定位及頁碼列於 [差異表](ci_v4/remaining_differences.csv)；沒有修改宣告值來湊 SAME。
+這是單次 CI 與固定基準的逐格來源／專案分組，沒有另跑反事實建置；[逐格增量](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/ci_v4/same_increments.csv)與[每個核准專案恢復格數及仍失敗原因](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/ci_v4/marker_project_effects.csv)可核對。剩餘 DIFFERENT 的值、來源、定位及頁碼列於 [差異表](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/ci_v4/remaining_differences.csv)；沒有修改宣告值來湊 SAME。
 
-22 個核准專案都有新增 SAME，各案增加 7–17 格。仍有 **37 筆 OCR_LOW_CONFIDENCE、3 筆 OCR_NO_TEXT_CONTENT** 階段紀錄，涉及 **34 個不同原件頁面**；另有 4 筆 SOURCE_NOT_ACQUIRED、1 筆 ARCHIVED_ORIGINAL_DATE_UNKNOWN。這些是階段紀錄，不能直接當作缺格數相加。[逐頁失敗表](ci_v4/marker_page_failures.csv)保留原件 SHA、實體頁碼、原因與可取得的平均信心分數；沒有降低 OCR 門檻。C 組 7 案未更動，現況見 [CI C 組狀態](ci_v4/group_C_status.csv)。
+22 個核准專案都有新增 SAME，各案增加 7–17 格。仍有 **37 筆 OCR_LOW_CONFIDENCE、3 筆 OCR_NO_TEXT_CONTENT** 階段紀錄，涉及 **34 個不同原件頁面**；另有 4 筆 SOURCE_NOT_ACQUIRED、1 筆 ARCHIVED_ORIGINAL_DATE_UNKNOWN。這些是階段紀錄，不能直接當作缺格數相加。[逐頁失敗表](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/ci_v4/marker_page_failures.csv)保留原件 SHA、實體頁碼、原因與可取得的平均信心分數；沒有降低 OCR 門檻。C 組 7 案未更動，現況見 [CI C 組狀態](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/ci_v4/group_C_status.csv)。
 
-官網提案 0、核准 0；本次 CI 實際 ALTERNATE_SAME_SHA **0** 筆，ALTERNATE_SHA_MISMATCH **0** 筆候選紀錄，與官網搜尋的 10 筆拒絕紀錄分開計算。既有正式 fallback 的記錄見 [fallback_report.csv](ci_v4/fallback_report.csv)。
+官網提案 0、核准 0；本次 CI 實際 ALTERNATE_SAME_SHA **0** 筆，ALTERNATE_SHA_MISMATCH **0** 筆候選紀錄，與官網搜尋的 10 筆拒絕紀錄分開計算。既有正式 fallback 的記錄見 [fallback_report.csv](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/ci_v4/fallback_report.csv)。
 
-VIC 本次取得狀態 **SOURCE_SHA_CHANGED**，內容雜湊是否吻合：**False**；原始 SHA `3cc5d11dd696ed625050e5d8f992a6501b3b0d8014c7643cd6f91ac822e13863`，內容 SHA `5daeadabe8517a775f14eef1df5ef45ba7ee172a6ac233b2f5491da6e172ce8b`。正式輸出 8 格中有值 **0** 格；[CI 八格結果](ci_v4/vic_coordinate_ci.csv)同列幾何診斷與正式閘門原因，不將兩者混算。[雙雜湊收據](ci_v4/vic_hash_receipt.json)。
+VIC 本次取得狀態 **SOURCE_SHA_CHANGED**，內容雜湊是否吻合：**False**；原始 SHA `3cc5d11dd696ed625050e5d8f992a6501b3b0d8014c7643cd6f91ac822e13863`，內容 SHA `5daeadabe8517a775f14eef1df5ef45ba7ee172a6ac233b2f5491da6e172ce8b`。正式輸出 8 格中有值 **0** 格；[CI 八格結果](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/ci_v4/vic_coordinate_ci.csv)同列幾何診斷與正式閘門原因，不將兩者混算。[雙雜湊收據](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/ci_v4/vic_hash_receipt.json)。
 
-宣告內容 SHA 仍為 `6547bf2c221ed8b58f37b40123bfa43465973f0478a1cca99b67e5ced6413885`。本機既有三份回應在刪除 timeStamp 後一致，**本次 CI 卻不同**，因此不能宣稱只刪時間戳後已穩定吻合。CI artifact 沒有原始回應位元組，僅憑收據無法指出是哪些 JSON 欄位或順序改變；未自行更換宣告 SHA、擴大刪鍵、再下載或重跑 CI。[不符審查紀錄](ci_v4/vic_content_mismatch.json)同列主要不符原因 SOURCE_SHA_CHANGED 與既有報告的泛用 stop_reason，避免把它誤讀為已找到同內容版本。
+宣告內容 SHA 仍為 `6547bf2c221ed8b58f37b40123bfa43465973f0478a1cca99b67e5ced6413885`。本機既有三份回應在刪除 timeStamp 後一致，**本次 CI 卻不同**，因此不能宣稱只刪時間戳後已穩定吻合。CI artifact 沒有原始回應位元組，僅憑收據無法指出是哪些 JSON 欄位或順序改變；未自行更換宣告 SHA、擴大刪鍵、再下載或重跑 CI。[不符審查紀錄](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/ci_v4/vic_content_mismatch.json)同列主要不符原因 SOURCE_SHA_CHANGED 與既有報告的泛用 stop_reason，避免把它誤讀為已找到同內容版本。
 
 剩餘 FORMAL_MISSING 原因（與前輪同樣逐格計數）：
 
@@ -127,7 +129,7 @@ VIC 本次取得狀態 **SOURCE_SHA_CHANGED**，內容雜湊是否吻合：**Fal
 |SOURCE_NOT_ACQUIRED|738|
 |SOURCE_SHA_CHANGED|4|
 
-另見 [原因統計 CSV](ci_v4/missing_reason_counts.csv)、[每格缺漏與詳情](ci_v4/missing_fields.csv)、[取得報告](ci_v4/acquisition_report.csv)與 [驗收 JSON](ci_v4/acceptance.json)中的主機取得狀態。參考格來源主機的統計不是唯一阻塞原因；專案身分未採用可能連帶阻擋其他來源的格子。
+另見 [原因統計 CSV](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/ci_v4/missing_reason_counts.csv)、[每格缺漏與詳情](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/ci_v4/missing_fields.csv)、[取得報告](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/ci_v4/acquisition_report.csv)與 [驗收 JSON](https://github.com/lleeoo0611-stack/AU_REE_V2/blob/archive-phase10-legacy-20261128/results/claims-locators-2026-11-16/ci_v4/acceptance.json)中的主機取得狀態。參考格來源主機的統計不是唯一阻塞原因；專案身分未採用可能連帶阻擋其他來源的格子。
 
 
 本機 **422 項 Python 測試通過**，較基準新增 **14 項**（幾何 3、內容雜湊 11）；R 測試通過。內容雜湊測試涵蓋時間戳穩定、內容變動、原始檔與雙雜湊收據、未宣告來源行為、無效 JSON、缺鍵、不得用 committed snapshot 或 alternate 繞過政策，以及座標保留原始 SHA 追溯。[範圍驗證](v4_validation.json)。
