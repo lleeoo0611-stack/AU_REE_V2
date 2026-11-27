@@ -1,0 +1,277 @@
+{
+  "admission_scientific_sha256": "a8fb185be6c056facd73122e089c86ab89584d152aac1e9525e16948feab0769",
+  "classes": {
+    "CROSS_SOURCE_SUPPORTED": 0,
+    "DETERMINISTIC_VERIFIED": 0,
+    "PARSER_CONSENSUS": 0,
+    "SYNTHETIC_GROUND_TRUTH": 8,
+    "UNVERIFIED": 0
+  },
+  "cutoff": "2026-11-13",
+  "engineering_consistency": {
+    "admission_consistency": {
+      "denominator": 3,
+      "numerator": 3,
+      "status": "MEASURED",
+      "value": 1.0
+    },
+    "deserialization_failure_types": {},
+    "interpretation": "Stored bindings, Decimal unit arithmetic on version-bound scalars and admission receipt lineage. Engineering consistency, separately from external truth.",
+    "normalization_validity": {
+      "denominator": 0,
+      "numerator": 0,
+      "status": "UNMEASURED",
+      "value": null
+    },
+    "semantic_binding_consistency": {
+      "denominator": 0,
+      "numerator": 0,
+      "status": "UNMEASURED",
+      "value": null
+    },
+    "verified_records_with_normalized_scalar": {
+      "denominator": 0,
+      "numerator": 0,
+      "status": "UNMEASURED",
+      "value": null
+    }
+  },
+  "frame_counts": {
+    "distinct_predictions": 0,
+    "document_editions": 7,
+    "historical_reference_observations": 0,
+    "identity_matched_measurement_pairs": 0,
+    "sha_verified_editions": 7
+  },
+  "frame_sha256": "581143d737a4daa18b356c5a5b92ed7c53a520339528ceccd58eaae3fa27e813",
+  "independent_evidence_yield": {
+    "denominator": 0,
+    "numerator": 0,
+    "reason": "NO_PROVEN_DISTINCT_EVIDENCE_CHAINS",
+    "status": "UNMEASURED",
+    "value": null
+  },
+  "originals": {
+    "1f5e83ea28b7b59ef46355ecb6d3f7d47d4eb88adcc7c0e4502f60362cab5b74": {
+      "archive_snapshot_listed": false,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    },
+    "21a922b1cc7d7bd14d71f4a09450fd3978bbb0c8b222cf349080bf418e019175": {
+      "archive_snapshot_listed": false,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    },
+    "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8": {
+      "archive_snapshot_listed": false,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    },
+    "4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc": {
+      "archive_snapshot_listed": false,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    },
+    "7f46c1631aa6a6b9eab24314635bbc589905dd202e04de2203135e79f93b330a": {
+      "archive_snapshot_listed": false,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    },
+    "9e3227e2cfbc2c75259b78b5c8096d7fe02cc18629cf47d9ef1f2af49e0843eb": {
+      "archive_snapshot_listed": false,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    },
+    "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb": {
+      "archive_snapshot_listed": false,
+      "pypdf_open_error": null,
+      "sha_verified": true,
+      "source_text_status": "SOURCE_OPENED",
+      "view": "PYPDF_NATIVE"
+    }
+  },
+  "pdf_parser_versions": {
+    "pymupdf": "1.26.7",
+    "pypdf": "6.10.0"
+  },
+  "real_independent_accuracy": {
+    "f1": {
+      "denominator": 0,
+      "numerator": 0,
+      "reason": "NO_EXHAUSTIVE_INDEPENDENT_REAL_SOURCE_TRUTH",
+      "status": "UNMEASURED",
+      "value": null
+    },
+    "precision": {
+      "denominator": 0,
+      "numerator": 0,
+      "reason": "NO_EXHAUSTIVE_INDEPENDENT_REAL_SOURCE_TRUTH",
+      "status": "UNMEASURED",
+      "value": null
+    },
+    "recall": {
+      "denominator": 0,
+      "numerator": 0,
+      "reason": "NO_EXHAUSTIVE_INDEPENDENT_REAL_SOURCE_TRUTH",
+      "status": "UNMEASURED",
+      "value": null
+    }
+  },
+  "reference_input_sha256": {
+    "results/phase22-2026-11-06/resolved_evidence.csv": "f66bb33519686526d166f729055742ea7ac66766f86e1435f49ac687b6964bc8",
+    "results/phase22-2026-11-06/snapshot_lock.json": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
+    "results/ree-project-census/coverage-locked-20261125/resource_statement_observations.csv": "067e6bf1d8ba46426fb5f16ec7ab404606aa58c181b6ec57445ea6321e97aeb2",
+    "results/ree-project-census/coverage-locked-20261125/source_selection.csv": "aa475199f5e13d1f14e3807e4ebfb70ec062e80d70cbc757a36e9452b1aafa75"
+  },
+  "reference_sha256": "1f6bbd370336517c3f760817551c6163fcea7b7dcc4fc2b16b0fa71ed0444721",
+  "retrieval": {
+    "cutoffs": {
+      "1": {
+        "silver_hit_at_k": {
+          "denominator": 0,
+          "numerator": 0,
+          "status": "UNMEASURED",
+          "value": null
+        },
+        "silver_recall_at_k": {
+          "denominator": 0,
+          "numerator": 0,
+          "status": "UNMEASURED",
+          "value": null
+        }
+      },
+      "10": {
+        "silver_hit_at_k": {
+          "denominator": 0,
+          "numerator": 0,
+          "status": "UNMEASURED",
+          "value": null
+        },
+        "silver_recall_at_k": {
+          "denominator": 0,
+          "numerator": 0,
+          "status": "UNMEASURED",
+          "value": null
+        }
+      },
+      "24": {
+        "silver_hit_at_k": {
+          "denominator": 0,
+          "numerator": 0,
+          "status": "UNMEASURED",
+          "value": null
+        },
+        "silver_recall_at_k": {
+          "denominator": 0,
+          "numerator": 0,
+          "status": "UNMEASURED",
+          "value": null
+        }
+      },
+      "5": {
+        "silver_hit_at_k": {
+          "denominator": 0,
+          "numerator": 0,
+          "status": "UNMEASURED",
+          "value": null
+        },
+        "silver_recall_at_k": {
+          "denominator": 0,
+          "numerator": 0,
+          "status": "UNMEASURED",
+          "value": null
+        }
+      }
+    },
+    "interpretation": "Recall applies only to pre-existing source-page targets, not all relevant pages.",
+    "queries": []
+  },
+  "same_file_parser_agreement": {
+    "denominator": 0,
+    "numerator": 0,
+    "status": "UNMEASURED",
+    "value": null
+  },
+  "schema": "phase10-silver-quality-v1",
+  "silver_f1": {
+    "denominator": 0,
+    "numerator": 0,
+    "reason": "SILVER_PRECISION_UNMEASURED",
+    "status": "UNMEASURED",
+    "value": null
+  },
+  "silver_numeric_extraction_agreement": {
+    "denominator": 0,
+    "numerator": 0,
+    "status": "UNMEASURED",
+    "value": null
+  },
+  "silver_pair_audit": [],
+  "silver_precision": {
+    "denominator": 0,
+    "numerator": 0,
+    "reason": "NO_EXHAUSTIVE_POSITIVE_AND_NEGATIVE_SILVER_FRAME",
+    "status": "UNMEASURED",
+    "value": null
+  },
+  "silver_recall": {
+    "denominator": 0,
+    "numerator": 0,
+    "reason": "NO_EXHAUSTIVE_LOCALIZED_SILVER_NUMERIC_FRAME",
+    "status": "UNMEASURED",
+    "value": null
+  },
+  "silver_unit_extraction_agreement": {
+    "denominator": 0,
+    "numerator": 0,
+    "status": "UNMEASURED",
+    "value": null
+  },
+  "synthetic_known_answer": {
+    "f1": {
+      "denominator": 8,
+      "numerator": 8,
+      "status": "MEASURED",
+      "value": 1.0
+    },
+    "false_negative": 0,
+    "false_positive": 0,
+    "normalization_expectation_agreement": {
+      "denominator": 8,
+      "numerator": 8,
+      "status": "MEASURED",
+      "value": 1.0
+    },
+    "precision": {
+      "denominator": 4,
+      "numerator": 4,
+      "status": "MEASURED",
+      "value": 1.0
+    },
+    "recall": {
+      "denominator": 4,
+      "numerator": 4,
+      "status": "MEASURED",
+      "value": 1.0
+    },
+    "true_positive": 4
+  },
+  "technical_diagnostics": {
+    "accuracy_status": "UNMEASURED",
+    "candidate_rows": 0,
+    "formal_observations_written": 0,
+    "numeric_issue_types": {}
+  }
+}
