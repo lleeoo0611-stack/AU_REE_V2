@@ -1,0 +1,594 @@
+{
+  "classification": "PUBLIC_REAL_SOURCE_REPLAY",
+  "design": "Pre-rule SHA-bound document families and physical pages selected from registered originals.",
+  "retrieval": {
+    "mode": "fixed"
+  },
+  "schema": "resource-admission-frame-v1",
+  "sources": [
+    {
+      "context_pages": [],
+      "pages": [
+        85
+      ],
+      "source_key": "auto_identity_coburn",
+      "source_sha256": "4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc",
+      "validation": {
+        "acquired_at": "2026-11-17T21:12:44.297665+00:00",
+        "also_in_phase22_lock": false,
+        "available_date": "2026-11-17",
+        "cutoff_date_basis": "DOCUMENT_PUBLICATION",
+        "deposit": "placer",
+        "document_family": "651c8586e2886d1325e7f5725ddf41e4291d73f4a62374673b8057ac1f537ffe",
+        "edition_bound_family_nodes": [
+          "AU-73549b8a9b1c6faf55eb",
+          "key:auto_identity_coburn",
+          "sha:4c72f11eee2d90b26be20bd831496235a47bd8d8f2a8ae65d2d0fbb116abaddc",
+          "url:https://announcements.asx.com.au/asxpdf/20230906/pdf/05tkl2byt4wfmn.pdf"
+        ],
+        "page_cues": {
+          "85": [
+            "ALTERNATE_SCOPE_CUE",
+            "JORC_CLASS_CUE",
+            "PAGE_MATERIAL_DENOMINATOR_CUE",
+            "PROJECT_TEXT",
+            "RESOURCE_QUANTITY_CUE",
+            "TABLE_CAPTION_CUE",
+            "UNIT:%"
+          ]
+        },
+        "physical_page_count": 92,
+        "project_id": "AU-73549b8a9b1c6faf55eb",
+        "project_name": "Coburn Mineral Sands Project",
+        "publication_date": "2023-09-06",
+        "role": "UNSEEN_REGISTERED_FAMILY",
+        "selection_cues": [
+          "ALTERNATE_SCOPE_CUE",
+          "JORC_CLASS_CUE",
+          "PAGE_MATERIAL_DENOMINATOR_CUE",
+          "RESOURCE_QUANTITY_CUE",
+          "TABLE_CAPTION_CUE",
+          "UNIT:%"
+        ],
+        "source_url": "https://announcements.asx.com.au/asxpdf/20230906/pdf/05tkl2byt4wfmn.pdf",
+        "stage": "D"
+      }
+    },
+    {
+      "context_pages": [
+        2,
+        11
+      ],
+      "pages": [
+        1,
+        10,
+        13
+      ],
+      "source_key": "od6_quarter20230427",
+      "source_sha256": "cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb",
+      "validation": {
+        "acquired_at": "2026-11-17T21:14:12.449094+00:00",
+        "also_in_phase22_lock": false,
+        "available_date": "2026-11-17",
+        "cutoff_date_basis": "DOCUMENT_PUBLICATION",
+        "deposit": "iac",
+        "document_family": "d0f948d85b0aeb889fd25f5274d634602492332ddc42941519e096ac70798964",
+        "edition_bound_family_nodes": [
+          "AU-1c907e00c797bf8b3ce1",
+          "key:od6_quarter20230427",
+          "sha:cc858a32432d4ba507b835fd56e7511af44ee098a25253a7de97e22df57ecfbb",
+          "url:https://announcements.asx.com.au/asxpdf/20230427/pdf/45p123qfz1mgyn.pdf"
+        ],
+        "page_cues": {
+          "1": [
+            "PROJECT_TEXT",
+            "REE_MENTION",
+            "TECHNICAL_CROSS_PROJECT_CONTEXT_CUE"
+          ],
+          "10": [
+            "PROJECT_TEXT",
+            "REE_MENTION",
+            "TECHNICAL_CROSS_PROJECT_CONTEXT_CUE"
+          ],
+          "11": [
+            "PROJECT_TEXT",
+            "UNIT:%"
+          ],
+          "13": [
+            "PROJECT_TEXT",
+            "REE_MENTION",
+            "TECHNICAL_CROSS_PROJECT_CONTEXT_CUE",
+            "UNIT:%"
+          ],
+          "2": [
+            "PROJECT_TEXT",
+            "REE_MENTION"
+          ]
+        },
+        "physical_page_count": 18,
+        "project_id": "AU-1c907e00c797bf8b3ce1",
+        "project_name": "Grass Patch REE Project — OD6 tenements",
+        "publication_date": "2023-04-27",
+        "role": "UNSEEN_REGISTERED_FAMILY",
+        "selection_cues": [
+          "REE_MENTION",
+          "TECHNICAL_CROSS_PROJECT_CONTEXT_CUE",
+          "UNIT:%"
+        ],
+        "source_url": "https://announcements.asx.com.au/asxpdf/20230427/pdf/45p123qfz1mgyn.pdf",
+        "stage": "A1"
+      }
+    },
+    {
+      "context_pages": [],
+      "pages": [
+        31,
+        32
+      ],
+      "source_key": "r6_identity_bencubbin",
+      "source_sha256": "439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8",
+      "validation": {
+        "acquired_at": "2026-11-17T21:12:38.132455+00:00",
+        "also_in_phase22_lock": false,
+        "available_date": "2026-11-17",
+        "cutoff_date_basis": "DOCUMENT_PUBLICATION",
+        "deposit": "iac",
+        "document_family": "f1ad74ec948515fe06ecf36532f5f6b82f8167d8252de9b4d1e5a7112ec1383d",
+        "edition_bound_family_nodes": [
+          "AU-630885ed0d74d8641d6c",
+          "key:r6_identity_bencubbin",
+          "sha:439a29594c54430d9fc7e91ef7217fed0cb12cc5526518b7f524a3e90414bef8",
+          "url:https://announcements.asx.com.au/asxpdf/20240328/pdf/061zwpgyygh38r.pdf"
+        ],
+        "page_cues": {
+          "31": [
+            "PROJECT_TEXT",
+            "REE_MENTION",
+            "UNIT:%"
+          ],
+          "32": [
+            "PROJECT_TEXT",
+            "REE_MENTION",
+            "UNIT:ppm"
+          ]
+        },
+        "physical_page_count": 135,
+        "project_id": "AU-630885ed0d74d8641d6c",
+        "project_name": "Bencubbin REE Project",
+        "publication_date": "2024-03-28",
+        "role": "UNSEEN_REGISTERED_FAMILY",
+        "selection_cues": [
+          "REE_MENTION",
+          "UNIT:%",
+          "UNIT:ppm"
+        ],
+        "source_url": "https://announcements.asx.com.au/asxpdf/20240328/pdf/061zwpgyygh38r.pdf",
+        "stage": "A1"
+      }
+    },
+    {
+      "context_pages": [
+        5,
+        31
+      ],
+      "pages": [
+        4,
+        32
+      ],
+      "source_key": "r6_identity_mukinbudin",
+      "source_sha256": "1f5e83ea28b7b59ef46355ecb6d3f7d47d4eb88adcc7c0e4502f60362cab5b74",
+      "validation": {
+        "acquired_at": "2026-11-17T21:12:02.545039+00:00",
+        "also_in_phase22_lock": false,
+        "available_date": "2026-11-17",
+        "cutoff_date_basis": "DOCUMENT_PUBLICATION",
+        "deposit": "hard",
+        "document_family": "b0a5333b62126642dc874436fc59a6a509016ad8211a9cfa4c464dc149d24cc9",
+        "edition_bound_family_nodes": [
+          "AU-3eaa906d8230334ef698",
+          "key:r6_identity_mukinbudin",
+          "sha:1f5e83ea28b7b59ef46355ecb6d3f7d47d4eb88adcc7c0e4502f60362cab5b74",
+          "url:https://announcements.asx.com.au/asxpdf/20240927/pdf/068fpszm6j002r.pdf"
+        ],
+        "page_cues": {
+          "31": [
+            "PROJECT_TEXT"
+          ],
+          "32": [
+            "PROJECT_TEXT",
+            "UNIT:%"
+          ],
+          "4": [
+            "PROJECT_TEXT",
+            "REE_MENTION",
+            "UNIT:%"
+          ],
+          "5": [
+            "PROJECT_TEXT",
+            "REE_MENTION"
+          ]
+        },
+        "physical_page_count": 51,
+        "project_id": "AU-3eaa906d8230334ef698",
+        "project_name": "Mukinbudin REE Project",
+        "publication_date": "2024-09-27",
+        "role": "UNSEEN_REGISTERED_FAMILY",
+        "selection_cues": [
+          "REE_MENTION",
+          "UNIT:%"
+        ],
+        "source_url": "https://announcements.asx.com.au/asxpdf/20240927/pdf/068fpszm6j002r.pdf",
+        "stage": "A1"
+      }
+    },
+    {
+      "context_pages": [],
+      "pages": [
+        14,
+        15
+      ],
+      "source_key": "r6_identity_peak_charles",
+      "source_sha256": "7f46c1631aa6a6b9eab24314635bbc589905dd202e04de2203135e79f93b330a",
+      "validation": {
+        "acquired_at": "2026-11-17T21:13:10.095689+00:00",
+        "also_in_phase22_lock": false,
+        "available_date": "2026-11-17",
+        "cutoff_date_basis": "DOCUMENT_PUBLICATION",
+        "deposit": "iac",
+        "document_family": "27a1508c571bc304a5484616dd1144b631de01219396ad02c2afe7bdcebc2453",
+        "edition_bound_family_nodes": [
+          "AU-b31d00e2272ffa6ccbd3",
+          "key:r6_identity_peak_charles",
+          "sha:7f46c1631aa6a6b9eab24314635bbc589905dd202e04de2203135e79f93b330a",
+          "url:https://announcements.asx.com.au/asxpdf/20230928/pdf/05vfsc0gqnp1zf.pdf"
+        ],
+        "page_cues": {
+          "14": [
+            "PROJECT_TEXT",
+            "REE_MENTION",
+            "UNIT:%"
+          ],
+          "15": [
+            "ALTERNATE_SCOPE_CUE",
+            "PROJECT_TEXT",
+            "REE_MENTION"
+          ]
+        },
+        "physical_page_count": 72,
+        "project_id": "AU-b31d00e2272ffa6ccbd3",
+        "project_name": "Peak Charles REE Project",
+        "publication_date": "2023-09-28",
+        "role": "UNSEEN_REGISTERED_FAMILY",
+        "selection_cues": [
+          "ALTERNATE_SCOPE_CUE",
+          "REE_MENTION",
+          "UNIT:%"
+        ],
+        "source_url": "https://announcements.asx.com.au/asxpdf/20230928/pdf/05vfsc0gqnp1zf.pdf",
+        "stage": "A1"
+      }
+    },
+    {
+      "context_pages": [
+        2,
+        6
+      ],
+      "pages": [
+        1,
+        7
+      ],
+      "source_key": "tmb_achilles_windidda_collar_20221128",
+      "source_sha256": "21a922b1cc7d7bd14d71f4a09450fd3978bbb0c8b222cf349080bf418e019175",
+      "validation": {
+        "acquired_at": "2026-11-21T18:06:24.133454+00:00",
+        "also_in_phase22_lock": false,
+        "available_date": "2026-11-21",
+        "cutoff_date_basis": "DOCUMENT_PUBLICATION",
+        "deposit": "iac",
+        "document_family": "a8bd107d5e55cf65e3a24032c603f45298ac5657976995319fac87da22a3007e",
+        "edition_bound_family_nodes": [
+          "AU-e50ba6a268ea89226495",
+          "key:tmb_achilles_windidda_collar_20221128",
+          "sha:21a922b1cc7d7bd14d71f4a09450fd3978bbb0c8b222cf349080bf418e019175",
+          "url:https://announcements.asx.com.au/asxpdf/20221128/pdf/45j3rshbcjxykf.pdf"
+        ],
+        "page_cues": {
+          "1": [
+            "PROJECT_TEXT",
+            "REE_MENTION",
+            "UNIT:ppm"
+          ],
+          "2": [
+            "PROJECT_TEXT",
+            "REE_MENTION"
+          ],
+          "6": [
+            "PROJECT_TEXT",
+            "REE_MENTION"
+          ],
+          "7": [
+            "PROJECT_TEXT",
+            "REE_MENTION"
+          ]
+        },
+        "physical_page_count": 13,
+        "project_id": "AU-e50ba6a268ea89226495",
+        "project_name": "Achilles REE Project — Tambourah",
+        "publication_date": "2022-11-28",
+        "role": "UNSEEN_REGISTERED_FAMILY",
+        "selection_cues": [
+          "REE_MENTION",
+          "UNIT:ppm"
+        ],
+        "source_url": "https://announcements.asx.com.au/asxpdf/20221128/pdf/45j3rshbcjxykf.pdf",
+        "stage": "A1"
+      }
+    },
+    {
+      "context_pages": [
+        9
+      ],
+      "pages": [
+        10
+      ],
+      "source_key": "zmi_cascade20230725",
+      "source_sha256": "9e3227e2cfbc2c75259b78b5c8096d7fe02cc18629cf47d9ef1f2af49e0843eb",
+      "validation": {
+        "acquired_at": "2026-11-17T21:13:39.048202+00:00",
+        "also_in_phase22_lock": false,
+        "available_date": "2026-11-17",
+        "cutoff_date_basis": "DOCUMENT_PUBLICATION",
+        "deposit": "iac",
+        "document_family": "60d52caab62e8964186abd80ea74347ed45b82ea95dd0b26b1e91898441bfa45",
+        "edition_bound_family_nodes": [
+          "AU-645024d708baf5b52bc2",
+          "key:zmi_cascade20230725",
+          "sha:9e3227e2cfbc2c75259b78b5c8096d7fe02cc18629cf47d9ef1f2af49e0843eb",
+          "url:https://company-announcements.afr.com/asx/zmi/afd79334-2ac1-11ee-9e97-fef68616d084.pdf"
+        ],
+        "page_cues": {
+          "10": [
+            "ALTERNATE_SCOPE_CUE",
+            "PROJECT_TEXT",
+            "TECHNICAL_CROSS_PROJECT_CONTEXT_CUE"
+          ],
+          "9": [
+            "PROJECT_TEXT",
+            "REE_MENTION",
+            "UNIT:%"
+          ]
+        },
+        "physical_page_count": 17,
+        "project_id": "AU-645024d708baf5b52bc2",
+        "project_name": "Cascade REE Project — Zinc of Ireland",
+        "publication_date": "2023-07-25",
+        "role": "UNSEEN_REGISTERED_FAMILY",
+        "selection_cues": [
+          "ALTERNATE_SCOPE_CUE",
+          "REE_MENTION",
+          "TECHNICAL_CROSS_PROJECT_CONTEXT_CUE",
+          "UNIT:%"
+        ],
+        "source_url": "https://company-announcements.afr.com/asx/zmi/afd79334-2ac1-11ee-9e97-fef68616d084.pdf",
+        "stage": "A1"
+      }
+    }
+  ],
+  "validation": {
+    "baseline_commit": "dcda87e81e1250d443f73c1984faaa7beaa19930",
+    "cutoff": "2026-11-13",
+    "frozen_before_phase10_rule_evaluation": true,
+    "generator_sha256": "56ca7786526a38325c7870198d165650c97bc8fd99ee2b489431b1df9f41dc7b",
+    "inputs_sha256": {
+      "76b429a8449acd3f34a952b6dce2fa95a8a2a937:data/validation/nlp_classification_adjudication_20261126.json": "792c7cd76e1a3d43da7be94d674f8a11aa678ee7a0a2904e1ff9891d172043ae",
+      "76b429a8449acd3f34a952b6dce2fa95a8a2a937:data/validation/nlp_classification_pages_20261126.json": "2c16c6d8917a045bb148ad4cb0a8b7f060bfd77d0439c9902db96d8596450658",
+      "76b429a8449acd3f34a952b6dce2fa95a8a2a937:data/validation/nlp_coordinate_adjudication_20261126.json": "8202301e67c0e8e2fe64e6695ada4f7268150bc6f07d46cc4d46cd7af51b9ccd",
+      "76b429a8449acd3f34a952b6dce2fa95a8a2a937:data/validation/nlp_coordinate_pages_20261126.json": "9316b317b6c51cf5e93fff5980fce5600909b6b039271653e0d6caca9b7b19b1",
+      "76b429a8449acd3f34a952b6dce2fa95a8a2a937:data/validation/ontology_reference_20261126.json": "57a9d1ac5c34bf0dc329cdbcc4105eb59db3e3c0afb4339966a87e0147a4e717",
+      "76b429a8449acd3f34a952b6dce2fa95a8a2a937:results/nlp-census-ab-20261126/predictions.json": "1e0b94deac721d2b89aa1ae36e9da85629fe7a72116acaa4416df311c9e89615",
+      "config/ontology/comparability_v1.json": "75f72c516cca580f35a091ee5838d916e95e48ac87c187cb25d199975e0f0f93",
+      "config/ontology/observation_v1.json": "58c95889f87819412ed8136b82e0dc0bfdbee188e5b5d2a2d03cb278c769aadc",
+      "config/ontology/portfolio_statement_evidence_v1.json": "01ee3fe99745e202f1f3527c30cf4b0c525c4e645028a679170a5038228bd892",
+      "config/ontology/quality_frame_v1.json": "68946d091d2e745da62cb958a8d6cadc801fd34b954e9fad2b008e5b75170126",
+      "config/ontology/resource_admission_frame_v1.json": "3e26a6f70403a26477efbc27b2baaaa06e19a0fe1987f7bfa7cff6a25278428a",
+      "config/ontology/resource_admission_round9_frame_v1.json": "1532157108d4023d9d799b5a47e559f15261c1647887325dfad7bb8d7235bab5",
+      "config/ontology/resource_admission_validation_frame_v1.json": "923762a44468761763ff847288bbbad24432da7e2285a1d2b9de582e41c21177",
+      "config/ontology/resource_gain_v1.json": "56bdac39564551d4b45b378e731e0df9e14b538b50c4295959367b84e2c74717",
+      "config/ontology/resource_portfolio_v1.json": "aaefe42320551fb32e63024c0f2a55e2ca0913998aaaf0f3178a3d4ea4286487",
+      "config/ontology/shadow_profiles_v1.json": "308b8a96634003cbe27c3b41fba9ef9e4e8af00f05b2832b0b81c8bb16d6d77f",
+      "config/sources.json": "e8a970571bfcb4515b704c4aae96cdef2a3f7d52be6990f3baec643a3af9ff9b",
+      "data/claims.json": "d1cca97e5a3314f3778f48c6ec2af317bf9551f07e1d8371fae2e4191392c44e",
+      "data/identity_links.json": "4719845c91bf2b999be0875e541202873eee6fe6826f8fafb63519535a8cb74b",
+      "data/manifest.json": "6adc8956eddf51b0280cf1af9b8e3091206aa3bdbf358c6d9d681aa8173f367b",
+      "data/phase16_remediation_held_labels.json": "c27b5b5b03aa0fc79aaee6fc71d0fab25cd821fc0b633f06536ad350401f0a89",
+      "data/technical_benchmark.json": "0ece174d563283001d648b4d2944323e79a6acc6f2d344b83dbd292ee34e5e3f",
+      "results/normalization-pilot-20261125/case_review.json": "3973b3323ff92d37ff7eaf310a6378ae8c575bd9cc0667d475a0dd53b6a0b86b",
+      "results/observation-shadow-20261126/decisions.jsonl": "b32a763cc7090449cc962b57527582ff51690991b2dc2d92dc42435bd2d5d35f",
+      "results/observation-shadow-20261126/review_split.json": "0826fd86db8aec6bbde975fd1e96e04b6c59b11632688442b60add6861fa0be6",
+      "results/ontology-gain-20261126/candidates.jsonl": "407bf4a05254c5347ad46a6a16fe374612f025acb77ea90ccc2b7684969aa566",
+      "results/phase22-2026-11-06/snapshot_lock.json": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
+      "results/ree-project-census/coverage-locked-20261125/REE project census.csv": "a643607a1fe104e3cd7c6590fc4752e37a09902087000882430931aa69b25308",
+      "results/ree-project-census/coverage-locked-20261125/resource_statement_observations.csv": "067e6bf1d8ba46426fb5f16ec7ab404606aa58c181b6ec57445ea6321e97aeb2",
+      "results/ree-project-census/coverage-locked-20261125/source_acquisition.json": "66556c196593a7ed84ef7642d9dcbf9d2852c75bfcce7cde62ea9617fecbddf6",
+      "results/ree-project-census/coverage-locked-20261125/source_selection.csv": "aa475199f5e13d1f14e3807e4ebfb70ec062e80d70cbc757a36e9452b1aafa75",
+      "tests/fixtures/experiment_synthetic.json": "74b6a38173212a34f807db1a36fbbea3933eee3735b60cfc9b6e542801aa5e19",
+      "tests/fixtures/ontology_review_cases.json": "cc601bb4c0b91d144d0877ef1054ba489f66a7c89fb178b59b2550ff6c570209",
+      "tests/test_aim_c_profiles.py": "d19df213b729b470b19905dba6b8bb544defd9624dd64b9084e42046c2e37948",
+      "tests/test_annual_nameplate_forecast.py": "cb998789b3681732c2d4c2ea492c429d641d72023e27b8e1225b8cc454a79d5d",
+      "tests/test_asic_register_acquisition.py": "a5e9205a3f9ec937b2accf4b250637cd6fe493da1c622a7be74311580d7316b8",
+      "tests/test_assay_cases.py": "511eb3534f1a9a95283e1be79e43189aae7dca8b818787dde218fc3c81cf1069",
+      "tests/test_assay_evidence.py": "f96fc629459b88c43cafa0e2d35160facb4f6f00acf3f6d7b1458f83df99e5a1",
+      "tests/test_automated_build_clean.py": "02b50a8929328a1fc081b731357e24ee9495e903fa618f36ffc7f4c0e3eaa0d4",
+      "tests/test_automated_build_registry.py": "e6730f100b6690be447caf9f0f9dc7c31d7e200eaa84d00f8eb2b70dee2bc365",
+      "tests/test_cached_locator_proposals.py": "2bdce15ea48e6b17c9046cd0f08de9379453f66d1860eb555d0276f3ed100cf0",
+      "tests/test_candidate_milestones.py": "dd8a9b6d44736d01d31734e921b55bc19f8171d454aed869e8b55621a0bb6247",
+      "tests/test_category_grades.py": "5c625079c780c4b741446b0a622e047c5591d906fac097bf35438a0fb63d9584",
+      "tests/test_census_deposit_host.py": "a756644532e631d244c00aad7d23e5f8585a879858f12543cbdc03725fe55799",
+      "tests/test_census_gap_review.py": "9c983773a7674542229aa3c08fc0c8ae6152858bca8af26f54fbab1302fcfb4d",
+      "tests/test_census_integration.py": "0bccc9c4ecf3551431928a109d54556f4c8b859a3ab23898ecf4d1f98a81078e",
+      "tests/test_census_listing_applicability.py": "99559b5b66f437b2922747b37e1b402cdedcb5fc5ce670fa54cd19106f3895f8",
+      "tests/test_census_publication_month.py": "0ae390e57897a5befaeb5c0e9cd16ccc697e58019081ff8411b1255b10af47db",
+      "tests/test_census_release.py": "387ea5e2bf402ae1e1ca09dca3a76a625d56f2e13380bf23f3e1c1c01cb87c0a",
+      "tests/test_census_release_comparison.py": "8b8539d70993fad08e44bea8955bb24f9f77d09ebcc1835a90fb9d89a16c7c3b",
+      "tests/test_centroid_geometry.py": "299b336a23d5970bc4a78e4c8ff77cb4f5720212397cd2040054301d5f63ed13",
+      "tests/test_company_marker_approvals.py": "8f000109713f2a62f2f79e8488fb80c6d28aa0ce65987258497c323061c17636",
+      "tests/test_comparison_policy.py": "10a805943dfd3464f87fa72c9d5740b714b7b58dd81fea49ec2f539a1d070fe1",
+      "tests/test_concentrate_forecast_share.py": "70568f4756d06c74c832f64ca93efdc87a44f25240ecc2f0531ac860b823d892",
+      "tests/test_core.py": "539d939981cc39e6b74bdb80b71b1f0d52fd8a83abe080033a472bdde80952f7",
+      "tests/test_derived_cache.py": "094fad8c7f79350f2069d5fa9cfd7c75c1675bbcba4ba0b3230fbc2d9efff40a",
+      "tests/test_disclosure.py": "8c3b8f3446df06463212c47a65429c47392e5c8301360ccf9d637f62f2d091f5",
+      "tests/test_discovery_eligibility.py": "2c0bb7f4845f475ed7e6a086c88012cab4c533c1d9dc66ec3d6eaace9186dfc6",
+      "tests/test_discovery_missing_source.py": "9ac4172594bed2f70c2a92a724a4c222a45f96b4f19823901a9171b962977364",
+      "tests/test_document_nlp.py": "2aa1691db62b7a27016f218f9a676e5e69ac73b896847326f551696b621b2fe5",
+      "tests/test_evidence_model.py": "62a162651ee2227e1562044e9d6b646c5fccf4dee89c05d122b51be3410c6797",
+      "tests/test_experiment_data.py": "cefd37e7e2748170e80c8d3e2faa9113f328f3f1a7a03be0e573ab601847af70",
+      "tests/test_experiment_models.py": "4e33132d5ab2bb00bc866781f9f4cd483a117f12018c4b946b19bed456d2bd92",
+      "tests/test_experiments.py": "1116ec37569f4515f4545833fcdefa32de9b967481b5f1d45963b87eaa53f22d",
+      "tests/test_formal_cohort.py": "0e644aa6f8e9b53029b503bbcd59e14b589eaf966d08c199103a119e02a2754d",
+      "tests/test_formal_resource_admission.py": "8d981484a712dd8f231ad1acb39c5186fa803017992dfc9892189660ca59db82",
+      "tests/test_formal_resource_bridge.py": "8ff262905f78c95924fa8948555ceb00da537b62a3168351fcc22777a9c640a7",
+      "tests/test_formal_resource_refresh.py": "1f46fbd59ccc89426cb99dc8a6d1a0b1e04909be8001e95a54fc6abcbad31e23",
+      "tests/test_hm_derivation.py": "0a5dad9c75e64eeb775ab7d7c6180412412095e6653a47cd1e1d782e13019c25",
+      "tests/test_integrated_network.py": "c1ff090d7269312392f33d3d4d41f2d6f3fb9442ba0b945a02a1de1554b8b574",
+      "tests/test_integrated_summary.py": "e19bf10624351b157b08cee615ec4f1f83ab82711ed6395eb14405f5e99cd409",
+      "tests/test_mcda_execution_cache.py": "574085c7b92285bb14c5dbc44599abf17d66285f1fa18f70e7000c77164f89c1",
+      "tests/test_mcda_weight_reproducibility.py": "779195ddf762d92477f2b14c0d1c5e503700a9c00351ff0e1c868d52ad22afe1",
+      "tests/test_module_dependencies.py": "a8d1515fa9400cda6b1e928976a4570c7df2723956691bd96c213cf5832a4e4a",
+      "tests/test_national.py": "c4b6902293414a66dffd33343977824854caa62fa7cbd63ebb6dab7a01508e7d",
+      "tests/test_normalization_cases.py": "fb756eebb8b083984fc0088bfea90de925f7b479f6d455e400dc1dee5a21f405",
+      "tests/test_normalization_comparison.py": "3db4e7a871263ad866791bff73b2f4da339528915b29e8e8848914f895ee8d31",
+      "tests/test_observation_ablation.py": "f156d07086bd0916997a1df28da01afdf22731b73d02c532ea6a8f800b1d32dd",
+      "tests/test_observation_incremental.py": "2e5f4f860ae59fce238e732bbe2363abd3b36b2e0a334e3bbe7b310177e216ec",
+      "tests/test_observation_quality.py": "cb63d2a5277247a89d0bc37fa9c02f8c5fa0e2a6e317ef7e76e3ce4fe7fac62d",
+      "tests/test_observation_schema.py": "65451c53a139ad131f2988b5eb23b2008adfef92f6b6ef4b10fb5b8a6a0700c4",
+      "tests/test_observation_semantics.py": "850064e63804df26230c86e9f4323d9bbc5a1b7ae5d838757f11efea3ade0dca",
+      "tests/test_observation_shadow.py": "91b88c51119838ff2b0d4109ede9675e7d382675e1faaef5ebff9adb0df45dfc",
+      "tests/test_observation_validation.py": "1c4758c7a87b1bf23e240a4534032c1f234ea30f5dcb42ed447ee90434f7a424",
+      "tests/test_official.py": "1cf3c2ff7e0db631b765368f91f2d6c4499dfe2aea42af5719ef3cb34d5ba310",
+      "tests/test_ontology.py": "f9d3c7fe9f440933676b08ee8cba76e8876fc934b81bc94c943b9e62ebdb16d1",
+      "tests/test_ontology_gain_compare.py": "c0a8e4ddd181c8f50d4bea55d623ad51de08a58f631bff520009cde902f8c064",
+      "tests/test_ontology_gain_inventory.py": "3afb51523ecfb26c0729e92007fe8a17a6a46884c1de3a0139396d22f1adf3b3",
+      "tests/test_ontology_gain_metrics.py": "38a0100ee9536deba5f4336b3b7e03606b862fbcbbd397194e9c888ced480501",
+      "tests/test_ontology_gain_review.py": "f262658e7a8a8dace9a88f3c96a41abd0e058b0677ab4396f0291b774870d3b0",
+      "tests/test_ontology_portfolio.py": "f691159653852e0716312977fc9a413f33fdd1102b82b95eb6c8d8337e331707",
+      "tests/test_ontology_portfolio_scope.py": "cbd62fea2d7c670a0b8976cc53549a4180d736ca81121d2c286ac7731f65b017",
+      "tests/test_phase10_technical.py": "4360f056b641c9d76e9515ae5e54631875437e436129c443472137f963833058",
+      "tests/test_phase11.py": "2b7b9edbdedff806fbecc2da912ca21c88e222ffe67b72334d1e1313425e0363",
+      "tests/test_phase12.py": "52ec37341d49253da161b6512c24581d2b4282e91363a46643d0589d996c514e",
+      "tests/test_phase12_benchmark.py": "b76edd0b7c8b49116a4278a5ea01973d7900065aefb01f01218e369fb24b7704",
+      "tests/test_phase13.py": "16df68014ae9bd60c630546cda79955fe517176d0e540033bced35c831c4a92e",
+      "tests/test_phase14.py": "62642fce1cb9fe971d9539aa41f86b6869c868fa0a5bfa7bdf98e9f17e68d2e9",
+      "tests/test_phase15.py": "651298d983a324ec5733d3e657b5c0aa0791ddcc68bdbe03d2206358188b72f2",
+      "tests/test_phase16.py": "8bb8d2c27e6b804cc119fc6eed553995bc7b1a5a11194d0910a2acb1eaef71f0",
+      "tests/test_phase16_remediation.py": "ab8c5c6714aad07a967cfdfe46282403a196fde3de9bbf4c288b930872fd3572",
+      "tests/test_phase20.py": "aed87147a0933cff4e12d3f9baf9f9f7090a4eef8fea60dc68618528a1bb43ad",
+      "tests/test_phase21.py": "3ee12d527277f6832ad68ef85f673ece17fd925efac18375b97019156c458e40",
+      "tests/test_phase22.py": "e82a79563c958d6f9205e93426698317a6b85530472e87bd83fcbd1d3209a856",
+      "tests/test_phase2_primary.py": "59bed06ca077c27b5b69c9dfa48f32bfb5d25e2cf54d458c94b04ad975981e4e",
+      "tests/test_phase5_evidence.py": "cbbee497da78da6e5b42260aa95ced092e3e275046d25b7494122cedb587455f",
+      "tests/test_phase6_national.py": "cfa8bc306b9c52889e9e9200076476383714d6afc4d8b8a1da571537c6e06ecb",
+      "tests/test_phase7_selection.py": "8a1aac911c919ba6e7abec77066e364a5f3c16c134024d0d2dbb2d0d902433c4",
+      "tests/test_phase8_coverage.py": "a41624a342db625f64c429c9a06ca792bd0d7cefddb66a25ef8b6293e4057cf6",
+      "tests/test_phase9_documents.py": "c1f51f5b8a938f28cc108df7eefe87d67db26e284c56b3c53a189ad2fbefceb2",
+      "tests/test_pre_cutoff_evidence.py": "ade58ab47cdab97a8a8ebecc5bf636250aeece5050ed599feaaee3ed3ea78100",
+      "tests/test_replay_portability.py": "bb79cd7f8a295ebeaeedb4b4f8d90fc9786c285f17da09bf28a1a17feecda396",
+      "tests/test_resolution_studies.py": "be2f4dcd64cde3c5a4dc6069267e1e6c9c9906960346d0c3d159c197fa444f2c",
+      "tests/test_resource_admission_flow.py": "996983df55083409bde86e0cce4610248561166d6a4e417c5772585a4e53f055",
+      "tests/test_resource_admission_integration.py": "a79f9131651910b393314cd634e4e3f7e208341cca122fcded463182097e6b86",
+      "tests/test_resource_admission_review_pdf.py": "1c5d602b230062580e546c3065fbb523ae5523ec4bd64704d0c4768423423823",
+      "tests/test_resource_rank_uncertainty.py": "754ffed43ec6c805790669f99ad618b82b1ec5d408fc1bf2fdfcc23c957c9353",
+      "tests/test_resource_retrieval.py": "ad1b7a3f9c83de25fd470e990ea0a0ae8a234b9f36a4c3e3a0e1507df734c9de",
+      "tests/test_resource_source.py": "a7660bacb733b11ba99881e239caf1304ce4ce71df50eef10748c7010431b71d",
+      "tests/test_resource_table_integrity.py": "f1448598dcd1179eb1a303ca9885ad71f1e0a4cc7f07361e515774662da30014",
+      "tests/test_resource_table_layout.py": "7d45c2be8d9d8cb4934646389ac4537b1780824596d84a17d87c2d37800886c8",
+      "tests/test_same_sha_fallback.py": "bb06f70c12d8335428ee5b0bc0cbf547a1910a101307672ee2409b3604e79fcd",
+      "tests/test_sarig_prospect_point.py": "505c3ed340cf51254d7bfa46de14e0d7de266e20cec09f6d19b1c6d7241f9969",
+      "tests/test_scoped_resource_report_layout.py": "13895d7d396f01b1859b10e3f235005820b4346aae47978f4b69f58039846172",
+      "tests/test_semantic_resource.py": "e06f52b664c31000c25414ddd13b61343988b3c181787746db3793f626c403ed",
+      "tests/test_semantic_review.py": "0f992766b9abd47960e504f0256a93fb1825ea65f71995a5b50fe95eccdfa242",
+      "tests/test_semantic_technical.py": "692c89dc03fdd42d30b06343a7acda433fa880580f9ac39b44e6d86efa11f271",
+      "tests/test_source_content_hash.py": "701dafad73277b1766605948aa02c45fdf4535e3b141bf0c0ccee479e524f265",
+      "tests/test_source_recovery.py": "11e20f37d4a11393df67e4f73bf31611eacdc59d15f11418f7c8d29aa3a430e6",
+      "tests/test_statutory_tenure.py": "8884086ac09f7ca012d5fa89ba3071d3dd2a45f1ec610a05f12d5e85131ae340",
+      "tests/test_strict_acquisition.py": "399455b08ba2a0d09343b35e51a42363bc06d56f6f4ec6121232e70009280f48",
+      "tests/test_strict_claims.py": "2a65c6a46b199948ca58ae80cc0f6b115b8363f27c04b64090d208ce4ad38598",
+      "tests/test_strict_hardening.py": "9130ce6ff8fa3ede99d84514a3c0a51bf820ad5bf51c55df837c1f80ccf06140",
+      "tests/test_technical_framework.py": "9f881314b9d748d0cf32901263ad84fe23b9eb26d54108d0fe361f27109ff39b",
+      "tests/test_v5_workflow_diagnostics.py": "e9bc2dd09949702814762b08846a4a54c499d569e0d5e0688aa82c00a3ec2f00",
+      "tests/test_wa_title_acquisition.py": "5c70c9031c99a1ff70026f8d0a97f6acee0d3e4472aa0c7b5b1c7289d7c0a10a",
+      "tests/test_whole_plan_annual.py": "8666923c8a5cf6cb09fd25da00fc65da8fb5f9d3232d2d0872bdeb8203ec63c0",
+      "tools/benchmark_pipeline.py": "044764931aa2ab0df075100a220815e91fe5f5a9d88dfe49b06289b633b04384",
+      "tools/bundle_census_replay.py": "f488cc6d7eef2a56c8afed6074c527ee24663e48361e6b7102c910636f31f4e2",
+      "tools/category_grades.py": "f422d545d1ee574dd0ea333700a78408bd6e50be004ba0c91f177a9f106e5b45",
+      "tools/check_company_markers_ci.py": "77bf907d1de37da1afe4576da4d04b8fa24b470c3df1a7362bba0ecc2aa38294",
+      "tools/check_phase11.py": "3f2c397fac9267443fc4cff7550425583a17addd6130c324fcbc3ca49ba7f837",
+      "tools/check_phase15.py": "8cc244b1d1f211a9092b7cb700d8520298bf67fbf8c47b1697481aa540a47e75",
+      "tools/check_phase16.py": "dd89dc48b7e9deb7f6176754465b452a78ea33cd5189b4607e7b71e73e9815fe",
+      "tools/check_phase16_remediation.py": "a9860ddd597316f7215eba4fc353aaeb2b200bee1c42762a3eebb9a83e452404",
+      "tools/check_publication.py": "13723c05a9a4684a9b42619b2ac99f888f2c0b6f418fdf413fd6a3b25d901bd1",
+      "tools/check_replay.py": "2fc3be5a097f2650cb3c69ee2d6250009ea32793a995ffc114abeec8aa0a97dc",
+      "tools/company_marker_approvals.py": "fddd024f825a1e84e3889946fa793d136ecd46df1a6f17280a7dfd2797b4062f",
+      "tools/compare_census_release.py": "0b12ba7bd750028cf0a9b477ff202ae493c674d958dd30772425116dd43da8f6",
+      "tools/compare_ci_cells.py": "30f3e944538e4e57a2b69bc4342245312ed23781f3265878efe23ef4d977333d",
+      "tools/evaluate_census.py": "4ef2b034b014a4addfc5b5d3dde523f0834df6e0c9f08462a2e193ad37a508e2",
+      "tools/evaluate_documents.py": "1739bf68d0232811fe5d7ec389ac9460b45b3426fb6f1e89a50bab1a8133101d",
+      "tools/evaluate_normalization.py": "d4867b3a2497777ea6aa7a071e95224ce5ad76bfff8f22b488f068405f0152b5",
+      "tools/evaluate_ontology.py": "6a2f288875109b582930efb4639fce0c29fae1d2b14d331d6200347a66995822",
+      "tools/evaluate_phase16.py": "f9819b46cf428c6c1abda697eff28d62ccb091220fd6c81140ab190500616305",
+      "tools/evaluate_phase16_remediation.py": "32d6cddbf6ddfc08dd517a2e8239e4d20f892189fb87813ac50c2721230d2350",
+      "tools/evaluate_phase20.py": "a353309ce2e8d5043a29b77c8b02cf3441f64020ee6985c20ddb109596aadaf3",
+      "tools/evaluate_phase21.py": "03a2f7504fbe2eb5713e57426595d2449600f35f850a49e9184de23cf20f1073",
+      "tools/evaluate_technical.py": "574c42a3a6de663aa8df6be0d631777f2dbdc70707de81ad91fb1eb58d0f96c9",
+      "tools/expand_phase20.py": "32a2c3319994c72fca188824a1b654ab07bd2551dc0397639347b087fa955c25",
+      "tools/expand_phase21.py": "864882beed77d3bf907f168ac4f76e29347ab21130cbd00ad9028c68ab5b921a",
+      "tools/locators_from_ci_cache.py": "3dae7bd6d86f9413dd3ed31639443d1c022b7b4383e3b09d1f2edbdb1f866f39",
+      "tools/normalization_comparison.py": "3894a370d66d3eced40cac35cfde90c2fb408113b646f758ac52a2feb3991917",
+      "tools/observations_from_recognition.py": "47b579af92d8ff96355c859f4886df7edc10b174e53d11263b43b3a379d5745c",
+      "tools/ontology_gain_compare.py": "608f97a7f8c987653d99dbb2e93004ade0addbe72fbf5252fdf6dfb58efd61e4",
+      "tools/ontology_gain_freeze.py": "8d7c41147a0e65d9a6e1fe9451c283347b74cdf0e595eb1fafa873c99ad02a5f",
+      "tools/ontology_gain_inventory.py": "642d12a6e7f361395a5e400184f88c068294cd4eae61fcc0e23d283b71c50ed9",
+      "tools/ontology_gain_metrics.py": "30b938fc3e521ad83620cd4786fbe9dd6269542cf3b2f0c7dc31f8e70e6a4bee",
+      "tools/ontology_outcome_readiness.py": "ed48161b666a655f560ec4573f250c847c825627bc30cab7232ba6b16174612a",
+      "tools/ontology_portfolio.py": "f9495cf710a8b757d8af6c5058871497f3714cf2dd9fe1b02e57b8f4f39c7371",
+      "tools/ontology_portfolio_scope.py": "36a5a7e5d54fcb444685e599466b2c30ec76181c935b3c4816b8d8ae763170ae",
+      "tools/recover_census_replay.py": "804b0b76cb52438e3e6d631f27df5f233bd4c4bf6260001dc28d8e7a927796f3",
+      "tools/replay_bm25.py": "f7519164b9dd48fe1fe4b943e758e0f1e01658317f1cc6e292ef63c44a2ad680",
+      "tools/semantic_review.py": "56d6698b8873b7d8f553c486363891522d18e980dc34ead56ed9123319d4423b",
+      "tools/verify_ontology_gain_release.py": "7e0eca9a21d476332cc2e8513954b776f8dc6aa1d172774b653b4a21d64c44f9",
+      "tools/verify_ontology_gain_review.py": "9ec3d45be62ff5361be960e26fbeae4826b6f435c99511260273760ea3d3b9b6",
+      "tools/verify_pre_cutoff_evidence.py": "43da2ebac6eaab3d89f466a7a5dc43d04d3c60211357fd432329a0c6c9e5ee9f",
+      "tools/weighting_counterexample.py": "427b99d4dfe954a71d1d4078571840cf1ba31935949acb2d4a2acca3e7d53eb3"
+    },
+    "known_limitations": [
+      "Unseen relative to the audited repository evidence, tests and reference artifacts.",
+      "Archived deposit and stage are sampling descriptors only; prior identity-registration use is eligible absent a prior scientific/verification case or linked estimate.",
+      "Text signals identify possible scope and context. JORC, contradiction, scientific completeness and independent accuracy remain unmeasured without an independent reference.",
+      "Originals required for rerun are byte-identical to the frozen receipt. Keep missing editions blocked."
+    ],
+    "pymupdf": "1.26.7",
+    "screened_census_projects_with_prior_use": 85,
+    "seed": "AU-REE-PHASE10-SOURCE-FAMILIES-20261127",
+    "selected_cue_counts": {
+      "ALTERNATE_SCOPE_CUE": 3,
+      "JORC_CLASS_CUE": 1,
+      "PAGE_MATERIAL_DENOMINATOR_CUE": 1,
+      "REE_MENTION": 6,
+      "RESOURCE_QUANTITY_CUE": 1,
+      "TABLE_CAPTION_CUE": 1,
+      "TECHNICAL_CROSS_PROJECT_CONTEXT_CUE": 2,
+      "UNIT:%": 6,
+      "UNIT:ppm": 2
+    },
+    "selection_counts": {
+      "AVAILABLE_ELIGIBLE_BEFORE_PROJECT_DEDUP": 9,
+      "NO_SOURCE_TOPIC_CUE": 2,
+      "OUTSIDE_VERIFIED_CUTOFF": 2,
+      "PRIOR_PROJECT_ESTIMATE_REPRINT_CUE": 1,
+      "PRIOR_USE_OR_LINKED_FAMILY": 183,
+      "PROJECT_BINDING_ABSENT_OR_AMBIGUOUS": 9,
+      "UNAVAILABLE_OR_UNREADABLE_ORIGINAL": 4
+    },
+    "selection_strategy": "Group pinned SHA, source key, report ID, URL, canonical Project and estimate identity. Exclude historical reference, fixture, benchmark, prior retrieval queues, recognition families, duplicate pages and prior estimate reprints. Rank same-block topic/unit cues, then seeded hash, without any extractor, validator or admission result.",
+    "source_receipt": "results/ree-project-census/coverage-locked-20261125/source_acquisition.json"
+  }
+}
