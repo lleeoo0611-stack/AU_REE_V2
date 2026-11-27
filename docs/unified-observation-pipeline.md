@@ -330,3 +330,11 @@ au-ree-v2 rebuild --as-of 2026-11-05 \
 ```
 
 在另一工作目錄以相同參數執行，省略 `--resource-admission` 可建立 `mode="admission_effect"` 的對照。收據記錄權重計算與排名記錄版本，兩項變動都會與來源版本更新分開標記。逐次排名的比較要求相同實際權重、計算版本、R 抽樣契約及語義母體。`issuer_resource_composition` 的逐次紀錄為選用項目，沿用 `six_domain` 的紀錄格式。 [差異契約](../src/au_ree_v2/formal_resource_refresh.py) · [配對檢查](../src/au_ree_v2/resource_rank_uncertainty.py)
+
+## 第七輪 全文檢索與跨頁證據
+
+`--resource-admission FRAME` 預設沿用固定頁面。加上 `--resource-retrieval full-text` 可對框架與來源鎖檔共同指定的同一 SHA 原件建立全文索引，再各自檢索數值與脈絡頁。框架可在 `retrieval` 設定 `value_page_budget` 與 `context_page_budget`。收據保存文件總頁數、索引涵蓋率、頁面候選及判定、實際解析頁和搜尋預算。 [檢索與入庫](../src/au_ree_v2/resource_admission_flow.py)
+
+候選排序用於選頁。跨頁補入欄位需要找到同一估算的關聯，保存原件 SHA、實體頁碼、原文與版面位置。JORC 命題通過中性句時可延續已解析的主體，遇到新的估算或有多個可能主體時重新綁定或暫緩。自動觀測使用 `automatic-resource-admission-v4`，歷史版本維持當次啟用檢查。 [原文解析](../src/au_ree_v2/resource_source.py) · [JORC 命題](../src/au_ree_v2/resource_jorc.py)
+
+在同版、同來源、同框架下，以 `formal_resource_refresh.compare(..., mode="retrieval_effect")` 比較固定頁與全文檢索。固定頁面的修改前後仍用 `rule_effect`。收據按估算分組呈現可定位的補證欄位，另計儲存、版本重驗證、正式選值、矩陣及排名變動。獨立證據增益與準確率缺乏參照時保留為未量測。 [差異收據](../src/au_ree_v2/formal_resource_refresh.py)

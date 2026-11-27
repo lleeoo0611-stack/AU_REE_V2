@@ -237,7 +237,7 @@ class FormalRefreshReceiptTests(unittest.TestCase):
                    frame_sha='frame', frame_pin=None, automatic_id='contained',
                    admission_version=RESOURCE_ADMISSION_VERSION, retained_observations=(),
                    selected_ids=None, scope_decisions=(), weight_rows=(), research_settings=None,
-                   inactive_admissions=None):
+                   inactive_admissions=None, retrieval_pages=None, mismatched_retrieval=False, dispositions=()):
         root = self.root / name
         root.mkdir()
         cutoff = '2026-11-05'
@@ -252,6 +252,11 @@ class FormalRefreshReceiptTests(unittest.TestCase):
             config['resource_admission'] = dict(frame_sha256=frame_sha, rules_sha256=rules,
                                                 canonical_observation_ids=sorted([automatic_id, 'ore', 'grade']),
                                                 active_admission_observation_ids=[automatic_id])
+            if retrieval_pages is not None:
+                effective = [dict(source_key='source', source_sha256=source_sha,
+                                  pages=retrieval_pages, context_pages=[9])]
+                config['resource_admission'].update(retrieval={'mode': 'full-text', 'value_page_budget': 4},
+                                                    effective_frame_sources_sha256=digest(effective))
             observations.append(dict(obs_id=automatic_id, entity_id='p', variable='contained_treo_kt',
                                      source_sha=source_sha, locator='physical page 5; row 2',
                                      raw=canonical({'admission_bundle_id': 'bundle', 'resource_identity_link': {
@@ -276,6 +281,9 @@ class FormalRefreshReceiptTests(unittest.TestCase):
             if frame_pin is not None:
                 json_files['resource_admission.json']['frame_sources'] = [
                     dict(source_key='source', source_sha256=frame_pin, pages=[5])]
+            if retrieval_pages is not None:
+                json_files['resource_admission.json']['effective_frame_sources'] = [] if mismatched_retrieval else effective
+            json_files['resource_admission.json']['dispositions'] = dispositions
         for rel, body in json_files.items():
             (root / rel).write_text(canonical(body) + '\n')
         csv_files = {
@@ -421,6 +429,41 @@ class FormalRefreshReceiptTests(unittest.TestCase):
                                   research_settings={**updated_settings, 'monte_carlo': {'seed': 342}})
         with self.assertRaisesRegex(ValueError, 'REFRESH_COMPARISON_REQUIRES_SAME_RESEARCH_CONTRACT'):
             compare(before, changed, self.root / 'different', mode='rule_effect')
+
+    def test_separates_retrieval_scope_from_rules_and_source_editions(self):
+        fixed = self.sealed_run('fixed', value=0.3, cohort=['p', 'q'], admitted=True, frame_pin='test')
+        full = self.sealed_run('full', value=0.3, cohort=['p', 'q'], admitted=True, frame_pin='test',
+                               retrieval_pages=[2, 5])
+        receipt = compare(fixed, full, self.root / 'delta', mode='retrieval_effect')['comparison']
+        self.assertEqual(receipt['changed_factors'], ['admission_retrieval'])
+        self.assertEqual(receipt['source_editions_changed'], [])
+        self.assertEqual(receipt['retrieval_scope']['baseline']['policy'], {'mode': 'fixed'})
+        selected = receipt['retrieval_scope']['updated']['effective_frame_sources'][0]
+        self.assertEqual((selected['pages'], selected['context_pages']), ([2, 5], [9]))
+        another = self.sealed_run('another', value=0.3, cohort=['p', 'q'], admitted=True, frame_pin='test',
+                                  retrieval_pages=[2, 5], rules='new')
+        with self.assertRaisesRegex(ValueError, 'expected=retrieval_effect, observed=mixed_effects'):
+            compare(fixed, another, self.root / 'mixed', mode='retrieval_effect')
+        invalid = self.sealed_run('invalid', value=0.3, cohort=['p', 'q'], admitted=True, frame_pin='test',
+                                  retrieval_pages=[2, 5], mismatched_retrieval=True)
+        with self.assertRaisesRegex(ValueError, 'REFRESH_RETRIEVAL_SCOPE_NOT_BOUND_TO_RUN'):
+            compare(fixed, invalid, self.root / 'invalid-delta')
+
+    def test_context_field_gains_are_grouped_by_estimate_separately_from_storage(self):
+        rows = [dict(source_key='source', source_sha256='test', physical_page=page, table=1, row=3,
+                     project_id='p', estimate_id='same-estimate', status='NOT_ADMITTED',
+                     context_field_gains={'effective_date': {'value': '2024-06-30', 'decision': 'BOUND_SAME_ESTIMATE',
+                                                             'evidence': [{'page': 14, 'quote': 'as at 30 June 2024'}]}})
+                for page in (2, 5)]
+        fixed = self.sealed_run('fixed', value=0.3, cohort=['p', 'q'], admitted=True, frame_pin='test')
+        full = self.sealed_run('full', value=0.3, cohort=['p', 'q'], admitted=True, frame_pin='test',
+                               retrieval_pages=[2, 5], dispositions=rows)
+        receipt = compare(fixed, full, self.root / 'delta', mode='retrieval_effect')
+        group, = receipt['context_field_improvements']
+        self.assertEqual((group['field'], group['value']), ('effective_date', '2024-06-30'))
+        self.assertEqual([r['physical_page'] for r in group['occurrences']], [2, 5])
+        self.assertEqual(receipt['new_canonical_observations'], 0)
+        self.assertIsNone(receipt['evidence_change_accounting']['independent_research_evidence_gain']['count'])
 
     def test_source_edition_change_requires_actual_editions_and_isolates_other_factors(self):
         code = {'commit': 'before', 'content_sha256': 'same code'}

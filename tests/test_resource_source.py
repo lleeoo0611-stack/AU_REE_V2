@@ -103,7 +103,7 @@ class ResourceSourceTests(unittest.TestCase):
         self.assertIn("TREO_EXCLUDED_OXIDE_BASIS", row["issues"])
         self.assertTrue(all(observation.chemical_basis is None for observation in row["observations"]))
 
-    def test_context_pages_require_the_same_numbered_report(self):
+    def test_context_pages_require_named_estimate_evidence_beyond_a_shared_footer(self):
         primary = [([5, 75, 545, 97], CAPTION.replace("JORC ", "")),
                    ([5, 650, 545, 670], "Alpha Mineral Resource estimate 2025 Page 1 of 3")]
         table = grid([["Classification", "Tonnage (Mt)", "Total Rare Earth Oxides (TREO) (%)"],
@@ -114,11 +114,19 @@ class ResourceSourceTests(unittest.TestCase):
         self.assertIn("RESOURCE_JORC_SCOPE_UNRESOLVED", found["issues"])
         supplied[2][1] = supplied[2][1][0], "Table 2 was reported in accordance with JORC. Tonnage was estimated on a dry basis."
         found, = candidates_on_page(SOURCE, REGISTRY, 1, primary, [table], supporting_pages=supplied)
+        self.assertIn("RESOURCE_JORC_SCOPE_UNRESOLVED", found["issues"])
+        self.assertIn("DRY_BULK_ORE_BASIS_UNRESOLVED", found["issues"])
+        box, _ = supplied[2][1]
+        supplied[2][1] = box, ("The Alpha Project Mineral Resource estimate in Table 2 effective 2025-05-01 was "
+                               "reported in accordance with JORC. Tonnage was estimated on a dry basis.")
+        found, = candidates_on_page(SOURCE, REGISTRY, 1, primary, [table], supporting_pages=supplied)
         self.assertEqual(found["issues"], ())
-        self.assertEqual({a.page for a in found["observations"][0].evidence_anchors if a.role == "estimate_reference"}, {2})
+        self.assertEqual({a.page for a in found["observations"][0].evidence_anchors if a.role == "estimate_material_basis"}, {2})
         self.assertTrue(all(admission_issue(item) is None for item in found["observations"]))
         box, title = supplied[2][0]
         supplied[2][0] = box, title.replace("2025", "2024")
+        box, note = supplied[2][1]
+        supplied[2][1] = box, note.replace("2025-05-01", "2024-05-01")
         found, = candidates_on_page(SOURCE, REGISTRY, 1, primary, [table], supporting_pages=supplied)
         self.assertIn("DRY_BULK_ORE_BASIS_UNRESOLVED", found["issues"])
         self.assertIn("RESOURCE_REPORTING_STANDARD_UNRESOLVED", found["issues"])

@@ -42,14 +42,27 @@ def project_id(name):
     return 'AU-' + digest(['project_registry_v1', name.split()[1].lower()])[:20]
 
 
-def report(root, name, key, effective, published, ore_mt, *, grade_header='Total Rare Earth Oxides (TREO) (ppm)'):
+def report(root, name, key, effective, published, ore_mt, *, grade_header='Total Rare Earth Oxides (TREO) (ppm)',
+           value_page=1, context_page=None):
     path = root / 'data' / f'{key}.pdf'
     with pymupdf.open() as document:
+        for number in range(1, value_page):
+            page = document.new_page(width=710, height=500)
+            if number == context_page:
+                text = (f'For the {name} Mineral Resource estimate in Table 1, {ore_mt:.1f} Mt at 1000 ppm TREO, '
+                        f'effective {effective}. Tonnages are reported on a dry basis. TREO means Total Rare Earth Oxides. '
+                        'The estimate uses a cut-off grade of 500 ppm TREO.')
+                page.insert_textbox((40, 95, 666, 335), text, fontsize=10)
+            elif number != 4:
+                page.insert_text((40, 68), f'Fictional infrastructure and transport memorandum {number}', fontsize=10)
         page = document.new_page(width=710, height=500)
         page.insert_text((40, 37), 'SYNTHETIC ENGINEERING TEST DOCUMENT', fontsize=12)
-        page.insert_text((40, 92), f'Table 1: {name} Total JORC Mineral Resource estimate '
-                         f'as at {effective} at 500 ppm TREO cut-off', fontsize=10)
-        header = ['Classification', 'Dry ore tonnage (Mt)', grade_header, 'Contained TREO (kt)']
+        caption = f'Table 1: {name} Total JORC Mineral Resource estimate'
+        if context_page is None:
+            caption += f' as at {effective} at 500 ppm TREO cut-off'
+        page.insert_text((40, 92), caption, fontsize=10)
+        header = ['Classification', 'Dry ore tonnage (Mt)' if context_page is None else 'Ore tonnage (Mt)',
+                  grade_header if context_page is None else 'TREO grade (ppm)', 'Contained TREO (kt)']
         grid = [header, ['Indicated', f'{ore_mt * 0.4:.1f}', '1000', f'{ore_mt * 0.4:.1f}'],
                 ['Inferred', f'{ore_mt * 0.6:.1f}', '1000', f'{ore_mt * 0.6:.1f}'],
                 ['Total', f'{ore_mt:.1f}', '1000', f'{ore_mt:.1f}']]
@@ -124,12 +137,15 @@ def rows_hashes(folder):
     return {name: filehash(folder / name) for name in SCIENTIFIC}
 
 
-def launch(output, root, label, lock, frame, working, rscript, *, cache='use', expect_failure=False):
+def launch(output, root, label, lock, frame, working, rscript, *, cache='use', expect_failure=False,
+           retrieval=None):
     command = [sys.executable, '-m', 'au_ree_v2', 'rebuild', '--root', str(root),
                '--snapshot-lock', str(lock), '--work', str(working), '--as-of', CUTOFF,
                '--resource-admission', str(frame), '--rscript', str(rscript),
                '--cache-dir', str(output / 'derived-cache'),
                '--cache-mode', cache, '--mcda-cache-mode', cache]
+    if retrieval:
+        command += ['--resource-retrieval', retrieval]
     env = {**os.environ, 'AU_REE_MCDA_CACHE': str(output / 'mcda-cache')}
     results = subprocess.run(command, capture_output=True, text=True, timeout=180, env=env)
     (output / f'{label}.log').write_text(results.stdout + results.stderr, encoding='utf-8')
@@ -189,16 +205,62 @@ def assert_scientific_update(before, after, original_id, peer_id):
     return changed
 
 
+def assert_retrieval_reaches_formal_outputs(output, stages, *, source, lock, fixed, searched, warm):
+    from au_ree_v2.formal_resource_refresh import compare
+
+    before, after, repeated = (stages[label] for label in (fixed, searched, warm))
+    assert before['summary']['snapshot_sha256'] == after['summary']['snapshot_sha256']
+    assert before['intake']['frame_sha256'] == after['intake']['frame_sha256']
+    assert after['intake']['retrieval']['mode'] == 'full-text'
+    sha = source['sha256']
+    retrieval = next(item for item in after['intake']['retrieval_sources'] if item['source_sha256'] == sha)
+    effective = next(item for item in after['intake']['effective_frame_sources'] if item['source_sha256'] == sha)
+    assert retrieval['document_total_pages'] == 7 and retrieval['indexed_page_count'] == 6
+    assert retrieval['unreadable_pages'] == [4] and not retrieval['index_failures']
+    assert 7 in retrieval['candidate_pages']['resource'] and 3 in retrieval['candidate_pages']['resource_context']
+    assert 7 in effective['pages'] and 3 in effective['context_pages'], retrieval
+    assert 7 in retrieval['parsed_pages'] and 3 in retrieval['parsed_context_pages'], retrieval
+    assert retrieval['value_search_outcome'] == 'VALUE_CANDIDATES_PARSED'
+    assert any(item['status'] == 'SOURCE_BLOCKED' and item['reason'] == 'PINNED_SOURCE_EDITION_NOT_SELECTED'
+               for item in after['intake']['retrieval_sources'])
+    admitted = [row for row in after['intake']['dispositions'] if row['source_sha256'] == sha
+                and row['status'] == 'SOURCE_BOUND_CANONICAL']
+    assert len(admitted) == 1 and admitted[0]['physical_page'] == 7 and admitted[0]['row'] == 3
+    assert not any(row['source_sha256'] == sha and row['status'] == 'SOURCE_BOUND_CANONICAL'
+                   for row in before['intake']['dispositions'])
+    assert len(admitted[0]['canonical_observation_ids']) == 3
+    assert after['hashes'] == repeated['hashes']
+    assert after['intake']['effective_frame_sources'] == repeated['intake']['effective_frame_sources']
+    assert set(after['intake']['canonical_observation_ids']) == set(repeated['intake']['canonical_observation_ids'])
+    assert repeated['intake']['counts']['canonical_added'] == 0
+    ranks = assert_scientific_update(before['path'], after['path'], project_id(ASTER), project_id(BEACON))
+    delta = compare(before['path'], after['path'], output / 'retrieval-differences', mode='retrieval_effect')
+    assert delta['comparison']['kind'] == 'retrieval_effect'
+    assert delta['comparison']['changed_factors'] == ['admission_retrieval']
+    assert not delta['comparison']['source_editions_changed']
+    assert delta['criterion_selection_counts']['updated'] == 1
+    assert delta['panels'][PANEL]['matrix_primary_criterion_cells_changed'] == 1
+    assert len(delta['panels'][PANEL]['ranking_differences']) == len(ranks)
+    return {'snapshot_lock_sha256': filehash(lock), 'new_source_sha256': sha, 'retrieval': retrieval,
+            'new_canonical_observation_ids': admitted[0]['canonical_observation_ids'],
+            'same_source_scope_comparison': delta, 'point_rank_changes': ranks,
+            'repeat_science_and_selected_pages_identical': True}
+
+
 def exercise(output, rscript):
     with TemporaryDirectory(prefix='au-ree-resource-originals-') as temporary:
         root = Path(temporary) / 'registry'
         _, established, update, decoy = fixture(root)
+        discovered_update = report(root, ASTER, 'aster-full-text-resource', '2026-05-01', '2026-06-01', 150,
+                                   value_page=7, context_page=3)
         missing = {'key': 'synthetic-unavailable', 'sha256': digest('synthetic original intentionally missing')}
         snapshots = [*established, update, decoy]
+        searchable_snapshots = [*established, discovered_update, decoy]
         locks = {
             'before': inputs(root, 'before', established, established),
             'after': inputs(root, 'after', snapshots, [*snapshots, missing]),
             'scope_change': inputs(root, 'scope-change', snapshots, established),
+            'retrieval': inputs(root, 'retrieval', searchable_snapshots, [*searchable_snapshots, missing]),
         }
         retained = output / 'inputs'
         (retained / 'data').mkdir(parents=True)
@@ -212,10 +274,10 @@ def exercise(output, rscript):
         database = work / 'canonical.sqlite'
         stages = {}
 
-        def run_stage(label, lock_key, *, directory=work, cache='use', expect_failure=False):
+        def run_stage(label, lock_key, *, directory=work, cache='use', expect_failure=False, retrieval=None):
             lock, frame = locks[lock_key]
             result, folder = launch(output, root, label, lock, frame, directory, rscript,
-                                    cache=cache, expect_failure=expect_failure)
+                                    cache=cache, expect_failure=expect_failure, retrieval=retrieval)
             if result is not None:
                 assert result['status'] == 'COMPLETED'
                 assert result['r_results'][PANEL]['status'] == 'COMPLETED'
@@ -298,6 +360,14 @@ def exercise(output, rscript):
         assert panel_change['matrix_primary_criterion_cells_changed'] == 1
         assert len(panel_change['ranking_differences']) == len(ranks)
         assert differences['formal_c1']['updated']['formal_c1_admitted'] == 0
+        retrieval_work = output / 'retrieval-runs'
+        fixed_label, full_label, warm_label = 'retrieval-fixed', 'retrieval-full-text', 'retrieval-full-text-warm'
+        run_stage(fixed_label, 'retrieval', directory=retrieval_work, retrieval='fixed')
+        run_stage(full_label, 'retrieval', directory=retrieval_work, retrieval='full-text')
+        run_stage(warm_label, 'retrieval', directory=retrieval_work, retrieval='full-text')
+        retrieval_proof = assert_retrieval_reaches_formal_outputs(output, stages, source=discovered_update,
+                                                               lock=locks['retrieval'][0], fixed=fixed_label,
+                                                               searched=full_label, warm=warm_label)
         receipt = {
             'schema': 'resource-admission-engineering-proof-v1', 'classification': FIXTURE_CLASS,
             'status': 'COMPLETE', 'cutoff': CUTOFF, 'source_sha256': {row['key']: row['sha256'] for row in snapshots},
@@ -315,6 +385,7 @@ def exercise(output, rscript):
             'criterion_update': {'project_id': project_id(ASTER), 'criterion': 'R1', 'unit': 'kt TREO',
                                  'before': 50, 'after': 150},
             'r_rank_changes': ranks, 'formal_differences': differences,
+            'full_text_retrieval': retrieval_proof,
             'runs': {label: {'run_id': stage['summary']['run_id'],
                              'path': stage['path'].relative_to(output).as_posix(),
                              'scientific_sha256': stage['hashes'], 'admission_cache': stage['intake']['cache']['counts'],
