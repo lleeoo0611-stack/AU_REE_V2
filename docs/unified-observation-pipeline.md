@@ -276,4 +276,28 @@ Phase 22 的 `issuer_resource_composition` 接線使用 47 筆 canonical 觀測�
 
 固定影子原件重讀的 732 筆候選保留既有 Project ID 與 canonical observation ID。其中 294 筆通過新數值綁定。資源的 19 個可用候選表示對應 15 個觀測組及 10 個 Project，技術的 269 個表格候選對應同一 Project 的觀測。這些用途資格保存在影子結果，正式面板仍從正式選值和 canonical evidence views 取值。[影子重播與分母](../src/au_ree_v2/observation_ablation.py)
 
-固定評估組涵蓋三份文件和十二個實體頁。兩份文件通過 SHA 驗證，八頁實際處理，其中五頁有候選、三頁無候選、四頁因一份缺件受阻。25 個候選表示全部保留。22 個數值候選中，6 個定位到數值，4 個同時定位到數值與單位，22 個可產生數值正規化試算。四個有來源驗證，正式新增採納為 0。兩種原生解析器的整頁正規化文字完全一致為 0／8，已定位引文一致為 4／6，固定 OCR 探針完成 2／3。整頁或引文一致性量測只用於診斷解析差異。[自動品質輸出契約與分母](../src/au_ree_v2/observation_quality.py)
+固定評估組涵蓋三份文件和十二個實體頁。兩份文件通過 SHA 驗證，八頁實際處理，其中五頁有候選、三頁無候選、四頁因一份缺件受阻。25 個候選表示全部保留。22 個數值候選中，6 個定位到數值，4 個同時定位到數值與單位，22 個可產生數值正規化試算。四個有來源驗證。該次品質診斷未執行正式採納。兩種原生解析器的整頁正規化文字完全一致為 0／8，已定位引文一致為 4／6，固定 OCR 探針完成 2／3。整頁或引文一致性量測只用於診斷解析差異。[自動品質輸出契約與分母](../src/au_ree_v2/observation_quality.py)
+
+## 第四輪自動入庫與正式重新選值
+
+`observation-validate --resource-admission FRAME` 使用同一份 Phase 22 鎖檔執行基準及更新後的兩份正式重建。`rebuild` 與 `all` 也接受同一選項，直接在既有正式選值前執行自動採納。每次重建有自己的執行目錄和收據。既有工作目錄的 canonical SQLite 會保留已寫入的歷史資料，每次正式選值只接收本次規則與頁面範圍重新核驗的觀測 ID。[正式入口](../src/au_ree_v2/cli.py) · [自動採納](../src/au_ree_v2/formal_resource_admission.py)
+
+```bash
+python -m au_ree_v2 observation-validate --out work/round4-resource \
+  --replay-assets "$LOCKED_ASSETS" --static-pdfs "$SHADOW_PDFS" --recovery-offline \
+  --resource-admission config/ontology/resource_admission_frame_v1.json
+```
+
+頁面框架釘住來源鍵、原件 SHA 和實體頁。`context_pages` 可保留同報告的 JORC 或乾重語境，其頁面不參與數值合併。實體身分、版本、發布及可用時間取自正式重建選出的來源資料。支持表頭保留原文、格位及座標。相符的現行 statement 若已保存同源礦量及品位，採納可重用原觀測 ID，另外保存同一報表首次定位的含量。其他衝突、缺件和不相容分母保留於機器收據，獨立來源繼續處理。[獨立的補充來源框架](../config/ontology/resource_admission_frame_v1.json) · [原件擷取](../src/au_ree_v2/resource_source.py)
+
+`formal-resource-admission/runs/<run_id>/resource_admission.json` 保存候選、定位、證據核驗、入庫、重用、來源與規則指紋。入庫與正式寫入沿用同一交易。`formal-resource-delta/resource_refresh.json` 根據兩個完成且通過指紋檢查的正式執行，比對選值、準則值、分數、樣本、矩陣及排名並輸出各 Gate 的變動。正式 C1 依原有六項 Gate 判定。`selection_snapshot.json` 保存新舊選值的來源及執行關聯。[差異驗證](../src/au_ree_v2/formal_resource_refresh.py)
+
+`config/ontology/quality_frame_v1.json` 也可作為採納頁面範圍。品質診斷的固定分母和補充真實來源的採納數量各自計算。固定框架依第三輪原件重播，仍有四頁因鎖定原件缺失受阻。開發組 17 筆資源表示中的物理表頭見證由 0 增至 13，評估組 4 筆中由 0 增至 2。整體數值及單位定位數相同。品質檢查本身的入庫狀態為 `NOT_EXECUTED`。[固定品質框架](../config/ontology/quality_frame_v1.json)
+
+補充框架以四份原件的五個數值頁重播。18 個候選列含 42 筆去重觀測，42 筆定位到數值與單位並通過證據核驗。17 個候選列未通過整體入庫條件。Wolverine 的同源同範圍資源表新入庫一筆報告含量 70,500 t TREO，重用 7.3 Mt 及 0.96% 品位的既有 ID。R1 由原計算 70.08 kt 改選 70.5 kt，落在報告精度所支持的 69.2375–70.9275 kt 區間。`issuer_resource_composition` 維持 15 案，更新一個主要準則矩陣格。共 11 個使用該 R1 值的面板各更新一個主要矩陣格，名次維持相同，正式 C1 入選為 0。使用本機來源套件核驗 668／715 份原件，2026-11-13 的完整 93 專案重建仍缺 47 份。[CI 真實來源重播](../.github/workflows/research.yml)
+
+合成工程案例使用明示資料及相同正式規則，從新 PDF 跑到 R MCDA。測試會輸出前後選值、矩陣、排名和失敗恢復收據。GitHub 研究工作流程執行同一入口。[整合測試](../tests/test_resource_admission_integration.py) · [CI 步驟](../.github/workflows/research.yml)
+
+```bash
+python tests/test_resource_admission_integration.py --output work/resource-admission-engineering
+```

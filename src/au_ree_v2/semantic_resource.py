@@ -25,6 +25,8 @@ MARKER = re.compile(rf"(?:\btotal(?:\(\d+\))?\s+)?{NUMBER}(?:\s+{NUMBER})+\s*$",
 CAPTION = re.compile(r"^table\s+(\d+(?:[-.]\d+)?)\b[\s:.–-]*", re.I)
 MASS_HEADER = re.compile(r"(?:tonnes?|tonnage|resource(?: tonnage)?|dry tonnes?|material)\s*\(?\s*(Mt|kt|t)\s*\)?", re.I)
 GRADE_HEADER = re.compile(r"(?:TREO\s*\*?\s*\(?\s*(%|ppm)\s*\)?|(%|ppm)\s+TREO\s*\*?)", re.I)
+NATIVE_MASS_HEADER = re.compile(r"(?:dry\s+)?(?:bulk\s+)?ore\s+(?:tonnes?|tonnage)\s*\(?\s*(Mt|kt|t)\s*\)?", re.I)
+NATIVE_GRADE_HEADER = re.compile(r"(?:total rare earth oxides?\s*\(TREO\)|TREO)\s*\*?\s*(?:grade\s*)?\(?\s*(%|ppm)\s*\)?", re.I)
 CONTAINED_HEADER = re.compile(r"(?:contained\s+)?TREO\s*\*?\s*\(?\s*(t|kt|[‘'’]?000 tonnes)\s*\)?", re.I)
 GRADE_PHRASE = re.compile(
     rf"(?<![\w.,+−–-])(?P<mass>{NUMBER})\s*(?P<mass_unit>million tonnes|Mt|kt|t)\s*"
@@ -72,16 +74,21 @@ def _span(view, start, end, *, scope="QUOTE", quote_start=0):
     return {"scope": scope, "view": view, "start": start, "end": end, "quote_start": quote_start}
 
 
-def _header_unit(header, quantity):
+def _header_unit(header, quantity, *, native=False):
     # Preserve source spelling, including case distinctions in SI prefixes.
     if quantity == "ore_mt":
         if header in {"M Tonnes", "Million Tonnes", "million tonnes"}:
             return header
         parse = MASS_HEADER.fullmatch(header)
+        if not parse and native:
+            parse = NATIVE_MASS_HEADER.fullmatch(header)
         return parse[1] if parse and parse[1] in {"Mt", "kt", "t"} else None
     if quantity == "grade":
         match = GRADE_HEADER.fullmatch(header)
-        return (match[1] or match[2]).lower() if match else None
+        if match:
+            return (match[1] or match[2]).lower()
+        native_grade = NATIVE_GRADE_HEADER.fullmatch(header) if native else None
+        return native_grade[1].lower() if native_grade else None
     parse = CONTAINED_HEADER.fullmatch(header)
     return parse[1] if parse else None
 
@@ -132,6 +139,30 @@ def _table_caption(tables, table, blocks):
     return None
 
 
+def page_table_caption(tables, table, blocks):
+    """Find an isolated, unambiguous caption above or below its native grid."""
+    def distance(box, grid):
+        left, top, right, bottom = grid["bbox"]
+        if not left <= (box[0] + box[2]) / 2 <= right:
+            return None
+        if 0 <= top - box[3] <= 45:
+            return top - box[3]
+        if 0 <= box[1] - bottom <= 65:
+            return box[1] - bottom
+        return None
+
+    matching = []
+    for box, text in blocks:
+        if not CAPTION.match(text) or len(text) > 260 or box[3] - box[1] > 44:
+            continue
+        owners = [(gap, other["table_index"]) for other in tables
+                  if (gap := distance(box, other)) is not None]
+        owners.sort()
+        if owners and owners[0][1] == table["table_index"] and (len(owners) == 1 or owners[1][0] - owners[0][0] > 2):
+            matching.append((box, text))
+    return matching[0] if len(matching) == 1 else None
+
+
 def _marker_binding(row_text, markers, raw_tokens):
     normalized = clean(row_text)
     if any(MARKER.fullmatch(m) and _matches_text(normalized, m) for m in markers):
@@ -171,14 +202,30 @@ def _header_cells(native, table, tables):
     return own
 
 
-def _table_witnesses(row, tables, blocks, markers, raw_tokens, *, location=None):
+def located_column_headers(cell, header_cells):
+    """Keep actual header cells touching one column, in native grid order."""
+    midpoint = (cell["bbox"][0] + cell["bbox"][2]) / 2
+    return [piece for piece in header_cells if piece["row"] < cell["row"]
+            and piece["bbox"][0] < midpoint < piece["bbox"][2]
+            and piece["bbox"][3] <= cell["bbox"][1] + .1]
+
+
+def column_header_anchors(row, table, pieces, unit):
+    """Record the printed unit and label coordinates instead of a joined quote."""
+    unit_pattern = re.compile(r"(?<![\w])" + re.escape(unit) + r"(?![\w])")
+    return [_anchors("unit" if unit_pattern.search(clean(piece["text"])) else "header_definition", row,
+                     clean(piece["text"]), table_index=table["table_index"], row=piece["row"],
+                     column=piece["column"], bbox=piece["bbox"]) for piece in pieces]
+
+
+def _table_witnesses(row, tables, blocks, markers, raw_tokens, *, location=None, caption_witness=None):
     witnesses = []
     quantity = row["target_variable"]
     for table in tables:
         if location is not None and table["table_index"] != location[0]:
             continue
         native = cells(table)
-        caption = _table_caption(tables, table, blocks)
+        caption = caption_witness[1] if caption_witness else _table_caption(tables, table, blocks)
         headers = _header_cells(native, table, tables)
         for ri, source_row in enumerate(table["cells"]):
             row_text = clean(" ".join(str(c or "") for c in source_row))
@@ -190,7 +237,7 @@ def _table_witnesses(row, tables, blocks, markers, raw_tokens, *, location=None)
                 if table.get("external_header") and c["column"] < len(table.get("header", [])):
                     header_path = [table["header"][c["column"]], *header_path]
                 header = clean(" ".join(dict.fromkeys(str(t or "") for t in header_path)))
-                unit = _header_unit(header, quantity)
+                unit = _header_unit(header, quantity, native=location is not None)
                 quote = token = clean(c["text"])
                 start, end = 0, len(token)
                 pos = dict(table_index=table["table_index"], row=ri, column=c["column"], bbox=c["bbox"])
@@ -215,10 +262,15 @@ def _table_witnesses(row, tables, blocks, markers, raw_tokens, *, location=None)
                     if not caption and not re.match(r"^(?:total|grand total)\b", row_text, re.I):
                         continue
                 span = _span("MUPDF_TABLE_CELL_NFKC_WHITESPACE_FOLDED", start, end)
-                anchors = [_anchors("token", row, quote, text_span=span, **pos), _anchors("row", row, row_text, **pos),
-                           _anchors("unit", row, header, table_index=table["table_index"], column=c["column"])]
+                anchors = [_anchors("token", row, quote, text_span=span, **pos), _anchors("row", row, row_text, **pos)]
+                unit_anchors = column_header_anchors(row, table, located_column_headers(c, [h for h in headers if h in native]), unit) if location is not None else []
+                if any(anchor["field"] == "unit" for anchor in unit_anchors):
+                    anchors.extend(unit_anchors)
+                else:
+                    anchors.append(_anchors("unit", row, header, table_index=table["table_index"], column=c["column"]))
                 if caption:
-                    anchors.append(_anchors("scope", row, caption, table_index=table["table_index"]))
+                    anchors.append(_anchors("scope", row, caption, table_index=table["table_index"],
+                                            **({"bbox": caption_witness[0]} if caption_witness else {})))
                 witnesses.append((_native(quantity, state, unit), anchors))
     return witnesses
 
@@ -388,7 +440,8 @@ def discover_resource_page(source_sha256, physical_page, blocks, tables):
     source = {"source_sha256": source_sha256, "physical_page": physical_page}
     captures = []
     for table in tables:
-        caption = _table_caption(tables, table, blocks)
+        caption_witness = page_table_caption(tables, table, blocks)
+        caption = caption_witness[1] if caption_witness else None
         category_header = bool(caption and re.search(r"mineral resources?|resource estimate|JORC", caption, re.I))
         # Require an independently read resource body or a source classification
         # heading. A generic grade/tonnage summary is an ambiguous document.
@@ -407,7 +460,7 @@ def discover_resource_page(source_sha256, physical_page, blocks, tables):
             for quantity in ("ore_mt", "grade", "contained_treo_kt"):
                 row_source["target_variable"] = quantity
                 witnesses = _table_witnesses(row_source, tables, blocks, (), (),
-                                             location=(table["table_index"], index))
+                                             location=(table["table_index"], index), caption_witness=caption_witness)
                 for native, anchors in witnesses:
                     captures.append({"native": native, "anchors": anchors, "context": _context(row_source, anchors)})
     for quantity in ("ore_mt", "grade"):

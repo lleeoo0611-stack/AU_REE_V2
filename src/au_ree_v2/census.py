@@ -18,7 +18,10 @@ from .census_policy import (
 from .commodity import AGGREGATE, CANDIDATE_VERSION, ELEMENTS, REE, STATES, SYMBOLS, classify_ree
 from .normalization import MAGNET_ATOMIC_WEIGHTS, oxide_factor
 from .official import ingest_workbook
-from .selection_rules import choose, date_end
+from .selection_rules import (
+    RESOURCE_ADMISSION_VERSION, automatic_resource_scope, choose, date_end,
+    resource_admission_link_matches, resource_admission_visible,
+)
 from .store import canonical, digest, filehash
 from .evidence_model import compatible_resource_context
 
@@ -34,9 +37,25 @@ def summary_resource_bundle(observations, partial_resource=None):
         if isinstance(raw,dict) and raw.get('partial_resource_projection'):
             return None,'PARTIAL_RESOURCE_OPT_IN_REQUIRED'
     grouped=defaultdict(list)
+    supplements=[]
     for o in observations:
         if o['status']=='AUTO_VALIDATED' and o['variable'] in ('ore_mt','grade','contained_treo_kt') and o['basis']=='TREO':
-            grouped[(o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])].append(o)
+            key=(o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])
+            if o.get('transform_version')==RESOURCE_ADMISSION_VERSION:
+                raw=json.loads(o['raw'])
+                if 'resource_identity_link' in raw:
+                    supplements.append((key,o,raw['resource_identity_link']))
+                    continue
+                bundle=raw.get('admission_bundle_id')
+                if not bundle:continue
+                key=(*key,bundle)
+            grouped[key].append(o)
+    for key,o,link in supplements:
+        rows=grouped.get(key,())
+        ore=[row for row in rows if row['variable']=='ore_mt']
+        grade=[row for row in rows if row['variable']=='grade']
+        if len(ore)==len(grade)==1 and resource_admission_link_matches(o,link,ore[0],grade[0]):
+            grouped[key].append(o)
     options=[]
     for key,rows in grouped.items():
         if not compatible_resource_context(rows):
@@ -45,7 +64,7 @@ def summary_resource_bundle(observations, partial_resource=None):
         for variable in ('ore_mt','grade','contained_treo_kt'):
             found=[r for r in rows if r['variable']==variable]
             distinct={(r['value'],r['unit'],r['basis']) for r in found}
-            if len(distinct)>1:invalid=True
+            if len(distinct)>1 or len(key)>4 and len(found)>1:invalid=True
             if found:values[variable]=found[0]
         if invalid or not {'ore_mt','grade'}<=values.keys():continue
         ore,grade=values['ore_mt'],values['grade']
@@ -65,9 +84,11 @@ def summary_resource_bundle(observations, partial_resource=None):
             rounding=dict(lower_kt=lo,upper_kt=hi)
             if not lo-1e-8<=reported['value']<=hi+1e-8:continue
         value=dict(ore_mt=ore['value'],grade_pct=pct,contained_treo_kt=reported['value'] if reported else calculated)
-        options.append(dict(evidence_id=digest(key),source_sha256=key[0],statement_id=key[1],scope=key[2],effective_date=key[3],
-            basis='TREO',value=value,observations=rows,contained_method='REPORTED' if reported else 'ORE_MT_X_GRADE_PERCENT_X_10',rounding=rounding))
-    selected,reason=choose(options,('scope','basis'))
+        option=dict(evidence_id=digest(key),source_sha256=key[0],statement_id=key[1],scope=key[2],effective_date=key[3],
+            basis='TREO',value=value,observations=rows,contained_method='REPORTED' if reported else 'ORE_MT_X_GRADE_PERCENT_X_10',rounding=rounding)
+        if (context:=automatic_resource_scope(ore)) is not None:option['automatic_scope']=context
+        options.append(option)
+    selected,reason=choose(options,('scope','basis','automatic_scope'))
     return selected,reason
 
 def summary_complete_sum(elements,required):
@@ -763,6 +784,8 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
     frozen=claim_declarations
     if frozen is None:frozen,_=load_claims(root,configuration.get('claims_sha256'))
     active=set(configuration.get('verified_claim_ids',claim_evidence_ids(frozen)))
+    admission=configuration.get('resource_admission',{})
+    admitted_resource_ids=set(admission.get('active_admission_observation_ids',()))
     live=frozen
     declarations={'AU-'+digest([p.get('entity_namespace','project_registry_v1'),str(p['id'])])[:20]:p for p in live['projects']}
     registry=configuration.get('sources') or json.loads((root/'config/sources.json').read_text(encoding='utf8'))
@@ -785,6 +808,7 @@ def _export_summary(root, database, out, db, cutoff, run_id, standalone,
     for r in db.execute('SELECT * FROM records'):
         if r['source_sha'] in sources:records[r['entity_id']].append(dict(r))
     for o in db.execute("SELECT * FROM observations WHERE status='AUTO_VALIDATED' AND effective_date<=?",(cutoff,)):
+        if not resource_admission_visible(o,admitted_resource_ids):continue
         if o['source_sha'] not in sources or o['transform_version']=='normalization-v1' and o['obs_id'] not in active:continue
         if o['variable']=='project_attribute':attributes[o['entity_id']].append(dict(json.loads(o['raw']),obs_id=o['obs_id']))
         else:observations[o['entity_id']].append(dict(o))

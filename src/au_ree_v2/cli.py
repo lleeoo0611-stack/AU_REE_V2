@@ -120,6 +120,9 @@ def _run_mcda(args, root, out, prepared, config):
 
 
 def execute(args):
+    resource_frame = getattr(args, 'resource_admission', None)
+    if resource_frame and args.module not in ('observation-validate', 'all', 'rebuild'):
+        raise ValueError('--resource-admission applies to observation-validate, all or rebuild')
     if args.module == 'observation-validate':
         if not args.out:
             raise ValueError('Observation validation requires --out')
@@ -131,7 +134,8 @@ def execute(args):
         libraries = [*args.static_pdfs, *([args.replay_assets] if args.replay_assets else [])]
         return run(args.root, args.out, libraries=libraries, online=not args.recovery_offline,
                    request_budget=args.recovery_budget, cache_dir=args.cache_dir, cache_mode=args.cache_mode,
-                   database=args.database, formal_run=args.shadow_run, rscript=args.rscript, tessdata=args.tessdata)
+                   database=args.database, formal_run=args.shadow_run, rscript=args.rscript, tessdata=args.tessdata,
+                   resource_admission=resource_frame)
     cache_plan = getattr(args, 'cache_plan', False)
     cache_controls = (getattr(args, 'cache_dir', None) or getattr(args, 'force_stage', ())
                       or getattr(args, 'shadow_reviews', None) or getattr(args, 'cache_mode', 'use') != 'use')
@@ -139,7 +143,8 @@ def execute(args):
     if cache_plan and args.module != 'semantic-ablation':
         raise ValueError('--cache-plan applies to semantic-ablation')
     if cache_controls and args.module != 'semantic-ablation' and not unified_shadow:
-        raise ValueError('Shadow cache options require semantic-ablation or --unified-observations')
+        if not resource_frame or getattr(args, 'force_stage', ()) or getattr(args, 'shadow_reviews', None):
+            raise ValueError('Cache options require semantic-ablation, --unified-observations or --resource-admission')
     if args.module == 'cache-status':
         if not args.shadow_output:
             raise ValueError('Cache status requires --shadow-output')
@@ -227,6 +232,7 @@ def _shadow_target(args, output):
 
 def _execute(args):
     root=Path(args.root).resolve()
+    resource_frame = getattr(args, 'resource_admission', None)
     if args.module=='experiment':
         from .experiments import run_experiment
         if not getattr(args,'experiment_config',None):
@@ -249,6 +255,11 @@ def _execute(args):
     if args.module=='all' and mode=='frozen' and not integration and (getattr(args,'out',None) or census_filters):
         raise ValueError('Use --source-mode frozen to publish or filter Census from a frozen lock')
     config=research_configuration(root,args.snapshot_lock)
+    if resource_frame:
+        from .resource_admission_flow import load_frame
+        if not config.get('evidence_resolution') or not any(c['code'] == 'R1' for c in config['criteria']):
+            raise ValueError('RESOURCE_ADMISSION_REQUIRES_FORMAL_R1_SELECTION')
+        resource_frame = load_frame(root / resource_frame)
     strict=integration and mode in ('offline','live')
     if not (strict or args.module=='acquire') and config.get('research_evidence_cutoff'):
         args.as_of=min(args.as_of,config['research_evidence_cutoff'])
@@ -331,6 +342,12 @@ def _execute(args):
     acquisition=[];acquisition_selection=[]
     work=Path(args.work).resolve() if args.work else root/'work'
     run_id=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'-'+uuid.uuid4().hex[:8]
+    if resource_frame:
+        resource_cache = Path(getattr(args, 'cache_dir', None) or work / 'resource-admission-cache').resolve()
+        protected = [root / name for name in ('config', 'data', 'results', 'docs', 'src', 'tests', 'R', '.git')]
+        protected.extend((work / 'canonical.sqlite', work / 'runs', work / 'databases'))
+        if any(resource_cache.is_relative_to(path) or path.is_relative_to(resource_cache) for path in protected):
+            raise ValueError('Keep the resource cache separate from source, run and database files')
     receipt=work/'acquisition'/run_id/'source_acquisition.json' if strict else None
     acquisition_work=receipt.parent if strict and mode=='offline' else work
     if args.module=='discover':
@@ -409,6 +426,8 @@ def _execute(args):
         (run_id,datetime.now(timezone.utc).isoformat(),args.as_of,canonical(version),digest(configuration),
          digest(snapshots),'RUNNING',None))
     db.commit()
+    admission_receipt = None
+    admitted_resources = {}
     try:
         ingest_sources(db,root,snapshots,config.get("commodity_version","minedex-resource-batch-v1"),config.get('candidate_version'))
         from .national import government_explicit_relations
@@ -440,6 +459,16 @@ def _execute(args):
             from .resolution import document_relations
             write_csv(out/'document_entity_relations.csv',document_relations(db,root,snapshots,args.as_of),
                       ['parent_id','child_id','relation','source_sha256','locator','rule','status'])
+        if resource_frame:
+            from .resource_admission_flow import run as admit_resources
+            contract, admission_receipt = admit_resources(
+                db, root, snapshots, args.as_of, resource_frame, run_id=run_id,
+                configuration=configuration, acquired_through=acquired_through, claims_data=claims_data,
+                cache_dir=resource_cache, cache_mode=getattr(args, 'cache_mode', 'use'))
+            configuration['resource_admission'] = contract
+            admitted_resources['admitted_resource_ids'] = frozenset(contract['active_admission_observation_ids'])
+            db.execute('UPDATE runs SET config_sha=? WHERE run_id=?', (digest(configuration), run_id))
+            (out/'resource_admission.json').write_text(canonical(admission_receipt)+'\n', encoding='utf-8')
         scope_audit=[]
         phase22_bindings=None
         if strict:
@@ -447,8 +476,8 @@ def _execute(args):
             phase22_bindings=phase22_resource_bindings(root)
         resources=resource_values(db,args.as_of,{s['sha256'] for s in snapshots},
             strict=bool(config.get('evidence_resolution')),active_claim_ids=active_claim_ids,
-            phase22_bindings=phase22_bindings,scope_audit=scope_audit)
-        if strict:
+            phase22_bindings=phase22_bindings,scope_audit=scope_audit,**admitted_resources)
+        if strict or resource_frame:
             write_csv(out/'resource_scope_selection.csv',scope_audit,
                       ['project_id','source_sha256','reason','scope','alternative_scopes'])
         from .national import resource_quality_checks
@@ -459,7 +488,7 @@ def _execute(args):
         current=None
         if config.get('current_view_version'):
             from .selection import current_evidence_view
-            current=current_evidence_view(db,snapshots,args.as_of,active_claim_ids,config.get('evidence_resolution',{}).get('document_pipeline',{}).get('validation_version'),config.get('candidate_version'),claims_data=claims_data)
+            current=current_evidence_view(db,snapshots,args.as_of,active_claim_ids,config.get('evidence_resolution',{}).get('document_pipeline',{}).get('validation_version'),config.get('candidate_version'),claims_data=claims_data,**admitted_resources)
         resource_qa=resource_quality_checks(db,{s['sha256'] for s in snapshots},current)
         write_csv(out/'resource_statement_quality.csv',resource_qa,
                   ['entity_id','statement_id','scope','effective_date','source_sha256','basis',
@@ -534,7 +563,7 @@ def _execute(args):
         if args.module in ('all','analyze','rebuild'):
             if config.get('evidence_resolution'):
                 from .selection import resolve as select_evidence,export as export_selection
-                selection=select_evidence(db,snapshots,args.as_of,resources,cases,identity['mapping'],config['evidence_resolution'],root,acquired_through,active_claim_ids=active_claim_ids)
+                selection=select_evidence(db,snapshots,args.as_of,resources,cases,identity['mapping'],config['evidence_resolution'],root,acquired_through,active_claim_ids=active_claim_ids,**admitted_resources)
                 export_selection(selection,out)
                 if config['evidence_resolution'].get('technical_profile'):
                     from .technical import unified_observations
@@ -783,6 +812,9 @@ def _execute(args):
         db.rollback()
         db.execute("UPDATE runs SET status='FAILED',error=? WHERE run_id=?",(str(exc),run_id))
         db.commit()
+        if admission_receipt is not None:
+            (out/'resource_admission.json').write_text(
+                canonical({**admission_receipt, 'status': 'ROLLED_BACK', 'reason': 'FORMAL_RUN_FAILED'})+'\n', encoding='utf-8')
         (out/'failure.json').write_text(json.dumps({'run_id':run_id,'error':str(exc)},indent=2),encoding='utf-8')
         raise
     finally:
@@ -806,6 +838,7 @@ def main():
     parser.add_argument('--shadow-output',help='Separate output directory for experimental results')
     parser.add_argument('--recovery-offline', action='store_true', help='Use only local sources for observation-validate')
     parser.add_argument('--recovery-budget', type=int, default=80, help='Maximum network requests for observation-validate')
+    parser.add_argument('--resource-admission', metavar='FRAME', help='Reassess SHA-pinned resource pages before formal selection')
     parser.add_argument('--cache-dir', help='Disposable cross-run cache for the unified shadow pipeline')
     parser.add_argument('--cache-mode', choices=('use', 'off', 'refresh'), default='use')
     parser.add_argument('--cache-plan', action='store_true', help='Read-only semantic-ablation dependency preview')
@@ -838,7 +871,7 @@ def main():
     parser.add_argument('--before');parser.add_argument('--after')
     args=parser.parse_args()
     try:
-        if args.module in ('semantic-ablation', 'observation-validate') or args.unified_observations:
+        if args.module in ('semantic-ablation', 'observation-validate') or args.unified_observations or args.resource_admission:
             import pymupdf
             pymupdf.set_messages(stream=sys.stderr)
         if args.module=='diff':
@@ -847,7 +880,7 @@ def main():
             before=json.loads(Path(args.before).read_text(encoding='utf-8'));after=json.loads(Path(args.after).read_text(encoding='utf-8'))
             result={table:{'added':[json.loads(v) for v in sorted({canonical(r) for r in after[table]}-{canonical(r) for r in before[table]})],
                            'removed':[json.loads(v) for v in sorted({canonical(r) for r in before[table]}-{canonical(r) for r in after[table]})]} for table in before}
-        elif args.module in ('semantic-ablation', 'observation-validate') or args.unified_observations:
+        elif args.module in ('semantic-ablation', 'observation-validate') or args.unified_observations or args.resource_admission:
             from contextlib import redirect_stdout
             with redirect_stdout(sys.stderr):
                 result = execute(args)

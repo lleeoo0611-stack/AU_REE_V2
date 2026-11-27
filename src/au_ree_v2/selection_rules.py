@@ -2,8 +2,39 @@
 
 from collections import defaultdict
 from datetime import date
+import json
 
 from .store import canonical, digest, filehash
+
+
+RESOURCE_ADMISSION_VERSION = 'automatic-resource-admission-v1'
+
+
+def resource_admission_visible(observation, admitted_resource_ids):
+    """A historical canonical row is current only when this run re-admits it."""
+    return (observation['transform_version'] != RESOURCE_ADMISSION_VERSION
+            or observation['obs_id'] in admitted_resource_ids)
+
+
+def resource_admission_link_matches(candidate, link, ore, grade):
+    """Verify an automatic contained-TREO supplement against its active pair."""
+    if not ore or not grade or not isinstance(link, dict):
+        return False
+    if (candidate['variable'] != 'contained_treo_kt' or link.get('rule') != 'EXACT_SAME_SOURCE_TABLE_AND_STATEMENT'
+            or link.get('canonical_observation_ids') != {'ore_mt': ore['obs_id'], 'grade': grade['obs_id']}):
+        return False
+    dimensions = ('entity_id', 'source_sha', 'statement_id', 'scope', 'effective_date', 'category', 'basis')
+    return all(row['transform_version'] != RESOURCE_ADMISSION_VERSION
+               and all(row[k] == candidate[k] for k in dimensions) for row in (ore, grade))
+
+
+def automatic_resource_scope(observation):
+    """An independently admitted scope is defined by more than its name."""
+    if observation.get('transform_version') != RESOURCE_ADMISSION_VERSION:
+        return None
+    raw = json.loads(observation['raw'])
+    return canonical([observation['category'], raw.get('deposit_id'), raw.get('scope_coverage'),
+                      raw.get('cutoff_grade'), raw.get('material_basis'), raw.get('composition_denominator_basis')])
 
 
 def observation_visible(raw, selected_shas, validation_version=None):

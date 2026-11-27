@@ -9,6 +9,10 @@ from .normalization import oxide_factor
 from .national import ingest_legacy_e1
 from .pdf_extract import html_text
 from .screen_index import ingest as ingest_screen_index
+from .selection_rules import (
+    RESOURCE_ADMISSION_VERSION, automatic_resource_scope, choose, resource_admission_link_matches,
+    resource_admission_visible,
+)
 
 # Individual oxides keep their own vocabulary; grouped totals are not aliases.
 REPORTED_OXIDE_VARIABLES = {
@@ -1011,29 +1015,82 @@ def resource_statement_metrics(ore, grade, reported=None):
 
 
 def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=None,
-                    phase22_bindings=None, scope_audit=None):
+                    phase22_bindings=None, scope_audit=None, *, admitted_resource_ids=()):
     """Pick latest complete statement per scope; competing scopes require review."""
+    strict = strict or bool(admitted_resource_ids)
     result = {}
     projects = [r[0] for r in db.execute("SELECT entity_id FROM entities WHERE kind='PROJECT'")]
     for eid in projects:
         rows = [dict(r) for r in db.execute('''SELECT * FROM observations
             WHERE entity_id=? AND effective_date<=? AND status='AUTO_VALIDATED'
             ORDER BY effective_date,obs_id''', (eid, cutoff)) if r['source_sha'] in snapshot_shas and
+                resource_admission_visible(r,admitted_resource_ids) and
                 (active_claim_ids is None or r['transform_version']!='normalization-v1' or r['obs_id'] in active_claim_ids)]
         statements = {}
+        rejected_groups = set()
+        automatic_groups = set()
+        supplements = []
+        retained_supplements = {}
         for r in rows:
             key=(r['statement_id'], r['scope'], r['effective_date'])
-            if strict:key=(*key,r['source_sha'])
-            statements.setdefault(key, {})[r['variable']] = r
+            automatic = r['transform_version'] == RESOURCE_ADMISSION_VERSION
+            if strict or automatic:key=(*key,r['source_sha'])
+            if automatic:
+                raw = json.loads(r['raw'])
+                if 'resource_identity_link' in raw:
+                    supplements.append((key, r, raw['resource_identity_link']))
+                    continue
+                bundle = raw.get('admission_bundle_id')
+                if not bundle:
+                    continue
+                key=(*key, bundle)
+                automatic_groups.add(key)
+            values = statements.setdefault(key, {})
+            if automatic and r['variable'] in values:
+                # A verified bundle owns one physical cell per quantity. In a
+                # damaged or obsolete grouping no observation ID breaks a tie.
+                rejected_groups.add(key)
+            values[r['variable']] = r
+        for key, supplement, link in supplements:
+            values = statements.get(key, {})
+            if resource_admission_link_matches(supplement, link, values.get('ore_mt'), values.get('grade')):
+                prior = values.get('contained_treo_kt')
+                if not prior:
+                    values['contained_treo_kt'] = supplement
+                    automatic_groups.add(key)
+                    continue
+                if all(prior[field] == supplement[field] for field in ('value', 'unit', 'basis')):
+                    disposition = 'CORROBORATES_REPORTED_CONTAINED'
+                    retained_supplements.setdefault(key, []).append(supplement['obs_id'])
+                else:
+                    rejected_groups.add(key)
+                    disposition = 'CONCURRENT_REPORTED_CONTAINED_CONFLICT'
+            else:
+                disposition = 'AUTOMATIC_RESOURCE_LINK_NOT_CURRENT'
+            if scope_audit is not None:
+                scope_audit.append(dict(project_id=eid,source_sha256=supplement['source_sha'],
+                    reason=disposition,scope=key[1],alternative_scopes=canonical([key[1]])))
         valid = []
+        automatic_hashes = set()
+        automatic_scopes = {}
         for key, values in statements.items():
             sid, scope, date=key[:3]
-            if not {'ore_mt', 'grade'} <= values.keys():
+            if key in rejected_groups or not {'ore_mt', 'grade'} <= values.keys():
                 continue
             ore, grade = values['ore_mt'], values['grade']
             if ore['unit'] != 'Mt' or ore['basis'] != grade['basis'] or ore['source_sha'] != grade['source_sha']:
                 continue
             reported = values.get('contained_treo_kt')
+            if key in automatic_groups:
+                from .evidence_model import compatible_resource_context
+                inputs = (ore, grade, reported) if reported else (ore, grade)
+                if (grade['unit'] not in ('%', 'ppm') or ore['basis'] != 'TREO'
+                        or any(not isinstance(v['value'], (int, float)) or not math.isfinite(v['value'])
+                               for v in inputs)
+                        or ore['value'] <= 0 or not 0 < grade['value'] <= (100 if grade['unit'] == '%' else 1_000_000)
+                        or reported and (reported['unit'] not in ('kt', 'kt TREO') or reported['basis'] != 'TREO')
+                        or not compatible_resource_context(inputs)):
+                    continue
             metrics = resource_statement_metrics(ore, grade, reported)
             bounds = metrics['rounding_bounds_kt']
             if reported and not bounds[0] <= reported['value'] <= bounds[1]:
@@ -1044,15 +1101,30 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
                           'obs_ids': [ore['obs_id'], grade['obs_id']] + ([reported['obs_id']] if reported else []),
                           'source_sha': ore['source_sha'], 'basis': 'TREO',
                           'interpretation': 'IN_SITU_RESOURCE_NOT_RECOVERABLE_PRODUCT'})
+            if key in retained_supplements:
+                valid[-1].update(corroborating_obs_ids=sorted(retained_supplements[key]),
+                                 corroborating_sources=[ore['source_sha']])
+            if key in automatic_groups:
+                complete_id = digest(valid[-1])
+                automatic_hashes.add(complete_id)
+                automatic_scopes[complete_id] = automatic_resource_scope(ore)
+        if scope_audit is not None:
+            for key in sorted(rejected_groups & {k for k in automatic_groups if len(k) > 4}):
+                scope_audit.append(dict(project_id=eid,source_sha256=key[3],
+                    reason='AUTOMATIC_RESOURCE_BUNDLE_HAS_DUPLICATE_QUANTITY',scope=key[1],
+                    alternative_scopes=canonical([key[1]])))
         if not valid:
             continue
         if strict:
-            from .selection_rules import choose
-            candidates=[dict(v,evidence_id=digest(v),source_sha256=v['source_sha'],effective_date=v['date'],
-                             value={k:v[k] for k in ('ore_mt','grade_pct','contained_treo_kt')}) for v in valid]
-            chosen,reason=choose(candidates,('scope','basis'))
+            candidates=[]
+            for value in valid:
+                evidence_id=digest(value)
+                candidates.append(dict(value,evidence_id=evidence_id,source_sha256=value['source_sha'],
+                    effective_date=value['date'],automatic_scope=automatic_scopes.get(evidence_id),
+                    value={k:value[k] for k in ('ore_mt','grade_pct','contained_treo_kt')}))
+            chosen,reason=choose(candidates,('scope','basis','automatic_scope'))
             if chosen is None:
-                retained=retain_phase22_resource(valid,(phase22_bindings or {}).get(eid))
+                retained=None if automatic_hashes else retain_phase22_resource(valid,(phase22_bindings or {}).get(eid))
                 if retained:
                     result[eid]=retained
                     if scope_audit is not None:
@@ -1061,8 +1133,29 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
                             alternative_scopes=canonical(sorted({row['scope'] for row in valid}))))
                     continue
                 issue(db,eid,None,'RESOURCE_SCOPE_AMBIGUITY',reason)
+                if automatic_hashes and scope_audit is not None:
+                    for option in candidates:
+                        if option['evidence_id'] in automatic_hashes:
+                            scope_audit.append(dict(project_id=eid,source_sha256=option['source_sha'],
+                                reason=reason,scope=option['scope'],
+                                alternative_scopes=canonical(sorted({r['scope'] for r in valid}))))
                 continue
             selected=next(v for v in valid if digest(v)==chosen['evidence_id'])
+            if automatic_hashes:
+                corroborations = {o['evidence_id']: o for o in candidates if o['evidence_id'] in chosen['evidence_ids']}
+                if len(corroborations) > 1:
+                    selected.update(corroborating_obs_ids=sorted({obs for option in corroborations.values()
+                        for obs in option['obs_ids'] + option.get('corroborating_obs_ids', [])} - set(selected['obs_ids'])),
+                        corroborating_sources=chosen['sources'])
+                if scope_audit is not None:
+                    for option in candidates:
+                        if option['evidence_id'] not in automatic_hashes:
+                            continue
+                        disposition = ('SELECTED' if option['evidence_id'] == chosen['evidence_id'] else
+                            'CORROBORATES_SELECTED' if option['evidence_id'] in corroborations else 'SUPERSEDED_IN_RESOURCE_SCOPE')
+                        scope_audit.append(dict(project_id=eid,source_sha256=option['source_sha'],
+                            reason=disposition,scope=option['scope'],
+                            alternative_scopes=canonical(sorted({r['scope'] for r in valid}))))
             result[eid]=selected
             continue
         latest = max(v['date'] for v in valid)
