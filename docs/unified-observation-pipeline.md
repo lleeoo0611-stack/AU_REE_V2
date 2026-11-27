@@ -345,4 +345,6 @@ au-ree-v2 rebuild --as-of 2026-11-05 \
 
 表格分類可由具版面關聯的表題、區段表頭、資料列或註解取得。擷取保存原始截品物種與單位、副產品角色、粒級及其材料分母。原礦與細粒的數值各有來源位置，獨立核驗。正式 R1 仍使用原定材料與可比性準則。差異收據分列已核驗的物理儲存格變動、可追溯補證欄位、版本重驗證與分析數值。獨立證據增益缺乏參照時保留為未量測。 [表格擷取](../src/au_ree_v2/resource_source.py) · [差異收據](../src/au_ree_v2/formal_resource_refresh.py)
 
+登錄的局部名稱可用於 Project 配對。若同一實體表另外有同名的總量區段和唯一的 Total 數值列，可據此驗證該表涵蓋已登錄的研究範圍。如 Wolverine 的開採分項仍各自保留，正式選值只採同名區段的唯一總量列。 [鎖定原件回歸](../tests/test_resource_table_layout.py)
+
 第八輪留出框架在新版擷取前固定了 North Stanmore、Lyons、Donald 與 Mangaroon 的原件、缺項、文件家族及搜尋範圍。以相同 Phase 22 來源鎖檔比較原補充框架和擴充框架。`compare(..., mode="auto")` 保存框架與實際檢索範圍的變動，規則和來源版本另有欄位。 [留出框架](../config/ontology/resource_admission_validation_frame_v1.json)

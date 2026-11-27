@@ -444,11 +444,12 @@ def _scope(caption, registry):
     label = (explicit[1] if explicit else title[:marker.start()] if marker else "").strip(" :-–—,;")
     hits = _matches(label, registry) if label else []
     if len(hits) != 1 or {p["entity_id"] for p in _matches(caption, registry)} != {hits[0]["entity_id"]}:
-        return None, label or None, False
+        return None, label or None, False, False
     plain = _SCOPE_SUFFIX.sub("", label).casefold()
     declared = {name.casefold() for name in (*hits[0]["aliases"], hits[0].get("name", ""))}
-    declared.difference_update(name.casefold() for name in hits[0].get("scope_only_aliases", ()))
-    return hits[0]["entity_id"], label, label.casefold() in declared or plain in declared
+    scope_only = {name.casefold() for name in hits[0].get("scope_only_aliases", ())}
+    names = {label.casefold(), plain}
+    return hits[0]["entity_id"], label, bool(names & (declared - scope_only)), bool(names & scope_only)
 
 
 def _report_title(page, page_blocks):
@@ -722,7 +723,7 @@ def _table_rows(source, registry, page, table, tables, blocks, supporting_pages,
     labels = [cell for cell in native if cell not in sections and cell["row"] in numeric_rows
               and (_CLASSIFIED_ROW.fullmatch(clean(cell["text"])) or _TOTAL.fullmatch(clean(cell["text"])))]
     indexed = {cell["row"] for cell in labels}
-    project, scope, extent_bound = _scope(caption, registry)
+    project, scope, extent_bound, annotated_scope = _scope(caption, registry)
     reported_table = CAPTION.match(caption)[1] if caption_entry else None
     context_blocks, notes = _supporting_blocks(caption, table, tables, blocks) if caption_entry else ([], [])
     notes = [(box, text, span) for box, text in notes
@@ -792,6 +793,11 @@ def _table_rows(source, registry, page, table, tables, blocks, supporting_pages,
                               or not labels and len(indexed) == 1 and declared_resource and contextual_classification
                               and section_ids <= {project})
                              and not re.search(r"\b(?:open pit|underground|stockpile|subset)\b", title, re.I))
+        # A registry alias can identify a scoped project without proving that the
+        # table covers that scope. Its sole Total must be in a named Total section.
+        scoped_total = (annotated_scope and complete and is_total and active_section
+                        and _RESOURCE.search(active_section["text"]) and _scope_is_named(scope, active_section["text"]))
+        local_extent = extent_bound or bool(scoped_total)
         if not complete:
             row_issues.append("RESOURCE_COMPONENT_OR_COMPETING_TOTALS")
             row_issues.append("RESOURCE_COMPETING_TOTALS_UNRESOLVED" if any(cell in totals for cell in row_labels)
@@ -842,7 +848,8 @@ def _table_rows(source, registry, page, table, tables, blocks, supporting_pages,
                                           bbox=bbox, locator="TABLE_NOTE_CLASSIFICATION",
                                           text_span=_quote_span(start, end)))
         if active_section:
-            witnesses.append(_cell_anchor("resource_section", row, table, active_section))
+            witnesses.append(_cell_anchor("resource_section", row, table, active_section,
+                                          **({"locator": "NAMED_SCOPE_TOTAL_SECTION"} if scoped_total else {})))
         for box, text, (start, end) in [*context_blocks, *notes]:
             witnesses.append(_anchors("estimate_reference", row, text, table_index=table["table_index"], bbox=box,
                                       locator="SCOPED_ADJACENT_ESTIMATE_NOTE", text_span=_quote_span(start, end)))
@@ -917,7 +924,7 @@ def _table_rows(source, registry, page, table, tables, blocks, supporting_pages,
             row_issues.append("TREO_EXCLUDED_OXIDE_BASIS")
         if not basis:
             row_issues.append("TREO_DEFINITION_UNRESOLVED")
-        scope_bound = extent_bound or (complete and "scope_coverage" in field_evidence)
+        scope_bound = local_extent or (complete and "scope_coverage" in field_evidence)
         if project and project in (source.get("summary_project_ids") or ()) and not scope_bound:
             row_issues.append("PROJECT_SCOPE_EXTENT_UNRESOLVED")
         prior_cutoffs = set(cutoffs)
@@ -979,7 +986,7 @@ def _table_rows(source, registry, page, table, tables, blocks, supporting_pages,
             ("material_basis", context["material_basis"] if not particle else None, local_bulk),
             ("denominator_basis", context["denominator_basis"] if not particle else None, local_bulk),
             ("chemical_basis", context["basis"], local_basis),
-            ("scope_coverage", context["scope_coverage"] if scope_coverage == "PROJECT_TOTAL" else None, extent_bound),
+            ("scope_coverage", context["scope_coverage"] if scope_coverage == "PROJECT_TOTAL" else None, local_extent),
         ) if value and not prior and field in field_evidence and complete}
         gains = {field: {"value": value, "decision": "BOUND_SAME_ESTIMATE", "evidence": field_evidence[field]}
                  for field, value in new_fields.items()}
