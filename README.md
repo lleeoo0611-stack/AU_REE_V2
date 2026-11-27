@@ -46,7 +46,7 @@ Census 使用 2026-11-13 的來源截日，技術揭露使用 2026-11-05 的編�
 
 ```sh
 python -m pip install -c requirements-constraints.txt .
-au-ree-v2 all --source-mode offline --as-of 2026-11-13 --source-replay KIT/source_acquisition.json --replay-assets KIT/assets --tessdata TESSDATA_DIR --work work/rebuild
+au-ree-v2 all --c1-cohort-policy historical --source-mode offline --as-of 2026-11-13 --source-replay KIT/source_acquisition.json --replay-assets KIT/assets --tessdata TESSDATA_DIR --work work/rebuild
 ```
 
 持有既有 SHA 原件庫時，可用下列命令建立並逐檔核對本版套件。Python、SQLite、R、Tesseract 版本、執行期套件及英文模型雜湊隨 `census_release.json` 保存。Linux CI 與 Windows 本機使用各自的 OCR 安裝，跨環境比較須同時核對模型雜湊。篩選後的三種 R 排名仍使用 Phase 22 的正式評分契約。
@@ -71,7 +71,7 @@ au-ree-v2 all --source-mode offline --static-pdfs PATH_TO_PDF_LIBRARY --as-of 20
 
 `--static-pdfs` 直接讀取本機原件，依登錄的 SHA 與出版日期選入資料，可重複指定資料夾。搭配 `--source-replay` 可保留既有封存來源並補入同 SHA 的 PDF。兩種離線選項共用後續的頁碼查核、SQLite、總表與排名。
 
-`--source-mode frozen --snapshot-lock PATH` 從指定凍結來源輸出 Census。既有 `rebuild --snapshot-lock PATH` 仍是驗證 Phase 22 科學成果的入口。`--out` 與 `--census-filter` 需要明確的 Census 來源模式，不會自行切換來源或截日。
+`--source-mode frozen --snapshot-lock PATH` 從指定凍結來源輸出 Census。使用 `rebuild --c1-cohort-policy historical --snapshot-lock PATH` 核對 Phase 22 封存成果及歷史 C1 收據。`--out` 與 `--census-filter` 需要明確的 Census 來源模式，不會自行切換來源或截日。
 
 完整離線重播可將已取得的原件存成 SHA 命名的本機套件。套件含原始來源與取件收據，放在本機工作目錄。發布的 `census_release.json` 提供來源 SHA、日期角色、設定雜湊、Census 母體與各排名面板的輸入輸出雜湊。
 
@@ -97,7 +97,7 @@ Latest: **Phase 22 — native-candidate acquisition, source-bound evidence and s
 
 Current evidence: **33 canonical registry groups, 22 resource cases, 20 complete transparency point scores and 6 complete six-domain cases**. Wolverine/Browns Range joins the previous five after original resource composition and Project financing-plan disclosure recovery. New national candidate Kennedy enters resource/composition ranking, with seven disclosure items Unknown; it is not a new complete six-domain case. Barkly's resource arithmetic conflict and unavailable detailed prospectus remain unresolved. Counts of source rows, native sites, resource scopes, groups and independent Projects remain distinct.
 
-Technical remains **[Technical Disclosure Transparency v1](docs/technical-disclosure.md)**: seven binary items, denominator7, unknowns retained; not technical capability, feasibility or JORC compliance. New scopes enter the same incremental review as Unknown until source-bound coding is complete. Frozen Phase19/20 reviews and results remain unchanged. Formal C1 gates and approval status remain separate from exploratory completeness.
+Technical remains **[Technical Disclosure Transparency v1](docs/technical-disclosure.md)**: seven binary items, denominator7, unknowns retained; not technical capability, feasibility or JORC compliance. New scopes enter the same incremental review as Unknown until source-bound coding is complete. Frozen Phase19/20 reviews and results remain unchanged. Current runs record the C1 cohort as `DISABLED` and publish panels according to the research settings and their data requirements. The historical cohort policy is available for explicit archive replays. [C1 policy and replay](docs/unified-observation-pipeline.md#第九輪-現行-c1-cohort-停用與資源觀測正規化)
 
 Unregistered native candidates now produce stable evidence-search tasks and can enter the same registry through source-bound `register-candidate` declarations. Dynamic WAMEX searches, cursor-aware acquisition and the versioned common classifier retain original IDs and unresolved crosswalks. Current evidence views exclude superseded coding without deleting history. R core-panel computation and peer comparisons have separate verified dependencies; shared draws feed SAW, PROMETHEE II and TOPSIS without changing historical PROMETHEE sequences. One formal SQLite store remains in use.
 
@@ -105,7 +105,7 @@ Reconstruction and tests:
 
 ```sh
 au-ree-v2 all --as-of 2026-11-05 --work work/phase5
-au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/phase22-replay
+au-ree-v2 rebuild --c1-cohort-policy historical --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/phase22-replay
 python tools/check_replay.py results/phase22-2026-11-06 work/phase22-replay/latest.json
 python -m unittest discover -s tests -v
 Rscript tests/test_methods.R

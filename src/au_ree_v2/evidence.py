@@ -5,13 +5,13 @@ import re
 from pathlib import Path
 from .store import canonical, digest, entity, issue, filehash
 from .official import ingest_official_table, ingest_prospectus, ingest_workbook
-from .normalization import oxide_factor
+from .normalization import date_precision, overlapping_month_and_day, oxide_factor
 from .national import ingest_legacy_e1
 from .pdf_extract import html_text
 from .screen_index import ingest as ingest_screen_index
 from .resource_estimate import compare_resource_estimates, is_jorc_mineral_resource, resource_evidence_locations
 from .selection_rules import (
-    automatic_resource_scope, automatic_resource_scope_assessment, choose, is_automatic_resource_admission,
+    automatic_resource_scope, automatic_resource_scope_assessment, choose, date_end, is_automatic_resource_admission,
     resource_admission_link_assessment,
     resource_admission_visible,
 )
@@ -1070,6 +1070,9 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
                 if not resource_admission_visible(r, admitted_resource_ids):
                     _resource_scope_decision(scope_audit, eid, key, 'AUTOMATIC_RESOURCE_NOT_ACTIVATED_FOR_RUN', [r])
                     continue
+                if date_precision(r['effective_date']) == 'MONTH' and date_end(r['effective_date']) > cutoff:
+                    _resource_scope_decision(scope_audit, eid, key, 'RESOURCE_EFFECTIVE_DATE_PRECISION_INSUFFICIENT_FOR_TIMING', [r])
+                    continue
                 raw = json.loads(r['raw'])
                 if 'resource_identity_link' in raw:
                     supplements.append((key, r, raw['resource_identity_link']))
@@ -1170,6 +1173,9 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
                           'obs_ids': [ore['obs_id'], grade['obs_id']] + ([reported['obs_id']] if reported else []),
                           'source_sha': ore['source_sha'], 'basis': 'TREO',
                           'interpretation': 'IN_SITU_RESOURCE_NOT_RECOVERABLE_PRODUCT'}
+            if auto_bundle and date_precision(date) == 'MONTH':
+                option['effective_date_precision'] = 'MONTH'
+                option['effective_date_role'] = json.loads(ore['raw']).get('effective_date_role')
             if key in retained_supplements:
                 option.update(corroborating_obs_ids=sorted(retained_supplements[key]), corroborating_sources=[ore['source_sha']])
             complete_id = digest(option)
@@ -1199,6 +1205,10 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
                 related = [*group_evidence[key], *(row for pair in scope_pairs for row in pair)]
                 _resource_scope_decision(scope_audit, eid, key, assessed['reason'], related, details=assessed)
                 continue
+            if scope_pairs and overlapping_month_and_day(option['date'], scope_pairs[0][0]['effective_date']):
+                _resource_scope_decision(scope_audit, eid, key, 'RESOURCE_EFFECTIVE_DATE_PRECISION_INSUFFICIENT_FOR_ORDER',
+                                         [*group_evidence[key], *scope_pairs[0]])
+                continue
             valid.append(option)
             automatic_hashes.add(complete_id)
             automatic_scopes[complete_id] = None if legacy_pairs else automatic_resource_scope(ore)
@@ -1206,7 +1216,7 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
             continue
         if strict:
             candidates = _resource_selection_candidates(valid, automatic_scopes)
-            chosen,reason=choose(candidates,('scope','basis','automatic_scope'))
+            chosen,reason=choose(candidates,('scope','basis','automatic_scope'),require_date_order=bool(automatic_hashes))
             if chosen is None:
                 retained=None if automatic_hashes else retain_phase22_resource(valid,(phase22_bindings or {}).get(eid))
                 if retained:

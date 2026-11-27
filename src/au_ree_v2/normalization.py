@@ -2,13 +2,26 @@
 
 import json
 import re
+from calendar import monthrange
+from datetime import date
 from decimal import Decimal, InvalidOperation
+from unicodedata import normalize
 
 
 NUMBER = re.compile(r"(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?")
 MASS_IN_TONNES = {"kg": "0.001", "t": "1", "kt": "1000", "Mt": "1000000", "Bt": "1000000000",
                  "t TREO": "1", "kt TREO": "1000"}
-MASS_FRACTION = {"ppm": "0.000001", "%": "0.01"}
+MASS_FRACTION = {"ppm": "0.000001", "%": "0.01", "g/t": "0.000001", "mg/kg": "0.000001"}
+MASS_FRACTION_UNIT_PATTERN = r"ppm|%|g/t|mg/kg"
+RESOURCE_CUTOFF_ANALYTE = r"(?:TREO(?:\s*[+]\s*Sc2O3|\s*[-−]\s*CeO2)?|Nb2O5|Ga2O3)(?!\w|\s*[+−-]\s*[A-Za-z])"
+_MASS_CONTEXTS = (
+    frozenset({"WHOLE_ORE", "BULK_ORE", "RESOURCE_ORE", "RESOURCE_ORE_GRADE", "RESOURCE_ORE_GRADE_OXIDE_PPM",
+               "RESOURCE_BULK_ORE", "BULK_ORE_MASS", "RESOURCE_BULK_ORE_MASS"}),
+    frozenset({"RESOURCE_PARTICLE_SIZE_FRACTION", "RESOURCE_PARTICLE_SIZE_FRACTION_MASS"}),
+    frozenset({"CONCENTRATE", "CONCENTRATE_MASS"}),
+    frozenset({"PRODUCT", "PRODUCT_MASS"}),
+    frozenset({"TREO", "TREO_MASS"}),
+)
 MAGNET_ATOMIC_WEIGHTS = {"Nd": "144.242", "Pr": "140.908", "Dy": "162.500", "Tb": "158.925"}
 MAGNET_SPECIES = {"Nd": {"Nd", "Nd2O3"}, "Pr": {"Pr", "Pr2O3", "Pr6O11"},
                   "Dy": {"Dy", "Dy2O3"}, "Tb": {"Tb", "Tb2O3", "Tb4O7"}}
@@ -27,6 +40,37 @@ def decimal_token(token, unit, *, signed=False):
 def unit_factor(original_unit, target_unit, factors):
     """Compute a factor within one explicitly selected dimension."""
     return Decimal(factors[original_unit]) / Decimal(factors[target_unit])
+
+
+def same_mass_material(material, denominator):
+    """Check that a concentration describes mass of the same declared material."""
+    return any(material in labels and denominator in labels for labels in _MASS_CONTEXTS)
+
+
+def date_precision(value):
+    """Qualify a reported calendar date without changing its literal precision."""
+    if not isinstance(value, str):
+        return None
+    try:
+        if re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}", value):
+            date.fromisoformat(value)
+            return "DAY"
+        if re.fullmatch(r"[0-9]{4}-[0-9]{2}", value):
+            year, month = map(int, value.split("-"))
+            if year:
+                monthrange(year, month)
+                return "MONTH"
+        if re.fullmatch(r"[0-9]{4}", value) and int(value):
+            return "YEAR"
+    except (ValueError, OverflowError):
+        return None
+    return None
+
+
+def overlapping_month_and_day(left, right):
+    """Whether one reported day and one reported month cannot be ordered."""
+    return ({date_precision(left), date_precision(right)} == {"MONTH", "DAY"}
+            and left[:7] == right[:7])
 
 
 def oxide_factor(element, original_species, target_species, atomic_weight):
@@ -53,17 +97,17 @@ def oxide_factor(element, original_species, target_species, atomic_weight):
 
 
 _CUTOFF_NUMBER = r"(?:[0-9]{1,3}(?:,[0-9]{3})+|[0-9]+)(?:\.[0-9]+)?|\.[0-9]+"
-_CUTOFF_BASIS = r"[A-Z][A-Z0-9_]*(?:[ -][A-Z0-9_]+)*?"
+_CUTOFF_BASIS = r"[A-Z][A-Z0-9_]*(?:[ -][A-Z0-9_]+|\s*\+\s*[A-Z][A-Z0-9_]*)*?"
 _CUTOFF_TEXT = re.compile(
     rf"(?:(?:cut[- ]?off(?:\s+grade)?)(?:\s*[:=]\s*|\s+))?"
     rf"(?P<op>>=|<=|[≥≤><=])?\s*(?P<value>{_CUTOFF_NUMBER})\s*"
-    rf"(?P<unit>ppm|%|percent|parts per million)\s+(?P<basis>{_CUTOFF_BASIS})"
+    rf"(?P<unit>{MASS_FRACTION_UNIT_PATTERN}|percent|parts per million)\s*(?P<basis>{_CUTOFF_BASIS})"
     rf"(?:\s+cut[- ]?off(?:\s+grade)?)?", re.I,
 )
 _CUTOFF_OPERATORS = {">=": ">=", "≥": ">=", "<=": "<=", "≤": "<=", ">": ">", "<": "<", "=": "=",
               "DECLARED_CUTOFF": "DECLARED_CUTOFF", "at least": ">=", "above": ">",
               "at most": "<=", "below": "<"}
-_CUTOFF_UNITS = {"ppm": "ppm", "parts per million": "ppm", "%": "%", "percent": "%"}
+_CUTOFF_UNITS = {**{label: label for label in MASS_FRACTION}, "parts per million": "ppm", "percent": "%"}
 
 
 def _cutoff_label(value):
@@ -71,7 +115,8 @@ def _cutoff_label(value):
 
 
 def _cutoff_tag(value):
-    return re.sub(r"[ -]+", "_", _cutoff_label(value)).upper() or None
+    literal = normalize("NFKC", _cutoff_label(value))
+    return re.sub(r"[ -]+", "_", re.sub(r"\s*\+\s*", "+", literal)).upper() or None
 
 
 def normalize_cutoff(value):
@@ -89,7 +134,7 @@ def normalize_cutoff(value):
             except ValueError:
                 return None
         else:
-            match = _CUTOFF_TEXT.fullmatch(value)
+            match = _CUTOFF_TEXT.fullmatch(normalize("NFKC", value))
             if not match:
                 return None
             value = {"value": match["value"], "unit": match["unit"], "basis": match["basis"],
@@ -119,8 +164,10 @@ def normalize_cutoff(value):
     ppm_text = format(ppm, "f")
     if "." in ppm_text:
         ppm_text = ppm_text.rstrip("0").rstrip(".")
+    conversion = {"%": "percent × 10000 = ppm", "ppm": "ppm unchanged",
+                  "g/t": "1 g/t = 1 ppm in a mass fraction", "mg/kg": "1 mg/kg = 1 ppm in a mass fraction"}
     return {"original": original, "value_ppm": ppm_text, "basis": basis, "operator": next(iter(operators)),
-            "conversion": "percent × 10000 = ppm" if unit == "%" else "ppm unchanged"}
+            "conversion": conversion[unit]}
 
 
 def cutoff_signature(cutoff):

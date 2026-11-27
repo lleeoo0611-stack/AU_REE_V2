@@ -10,6 +10,7 @@ from tempfile import TemporaryDirectory
 
 from .analysis import run_r
 from .derived_cache import atomic_json, exclusive_lock
+from .eligibility import c1_cohort_disabled
 from .evidence import claim_evidence_ids, load_claims, resource_statement_metrics
 from .evidence_model import compatible_resource_context, ensure_read_model
 from .mcda import score
@@ -30,7 +31,7 @@ GATES = ("ID", "ROLE", "WINDOW", "JORC", "PANEL", "GIS_RELEASE")
 
 def cohort_policy_status(configuration):
     """An unmarked sealed configuration uses the historical cohort contract."""
-    return configuration["research"].get("c1_cohort_policy", {}).get("status", "HISTORICAL")
+    return "DISABLED" if c1_cohort_disabled(configuration["research"]) else "HISTORICAL"
 
 
 class _Excluded(ValueError):
@@ -213,7 +214,7 @@ def _panel_rows(db, evidence, inputs, config):
     ), "entity_id")
     composition = _indexed((r for r in inputs.csv("criteria_resolution.csv") if r["criterion"] == "S1"), "canonical_project_id")
     eligibility = _indexed(inputs.csv("eligibility_cohorts.csv"), "canonical_project_id")
-    c1_disabled = cohort_policy_status({"research": config}) == "DISABLED"
+    c1_disabled = c1_cohort_disabled(config)
     gates = defaultdict(dict)
     if not c1_disabled:
         for row in inputs.csv("formal_gate_compatibility.csv"):

@@ -107,6 +107,27 @@ def quantity_literals(text):
     return (reading for reading in _readings(text) if reading.unit is not None)
 
 
+NATIVE_GEOMETRIC_UNIT_HEADER = "NATIVE_GEOMETRIC_UNIT_HEADER"
+
+
+def header_within_value_column(header_box, value_box):
+    """Prove a narrower native header belongs to one wider data-column span."""
+    if not (header_box and value_box):
+        return False
+    left, _, right, _ = header_box
+    value_left, _, value_right, _ = value_box
+    midpoint = (value_left + value_right) / 2
+    return (value_left - .01 <= left < midpoint < right <= value_right + .01
+            and (left > value_left + .01 or right < value_right - .01))
+
+
+def unit_header_matches_value_column(header, value):
+    """Match the native index, or recheck a located split-grid relationship."""
+    return type(header.column) is int and type(value.column) is int and (
+        header.column == value.column or header.locator == NATIVE_GEOMETRIC_UNIT_HEADER
+        and header_within_value_column(header.bbox, value.bbox))
+
+
 def header_unit_issue(text, unit):
     """Check a known header at the already bound column, keeping unclear labels unresolved."""
     if not text:

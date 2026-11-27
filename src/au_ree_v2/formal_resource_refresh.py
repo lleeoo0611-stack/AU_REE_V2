@@ -264,7 +264,8 @@ def _context_field_improvements(old, new):
 
 def _numeric_candidate_changes(old, new):
     """Compare verified physical cells independently of admission IDs and research values."""
-    conditions = ('category', 'estimate_period', 'cutoff_grade', 'product_role', 'particle_size_um', 'particle_size')
+    conditions = ('category', 'estimate_period', 'effective_date_role', 'cutoff_grade', 'scope_coverage',
+                  'product_role', 'particle_size_um', 'particle_size')
 
     def by_cell(receipt):
         result = {}

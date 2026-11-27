@@ -3,11 +3,11 @@
 import json
 import re
 
-from .normalization import cutoff_signature, normalize_cutoff
+from .normalization import cutoff_signature, date_precision, normalize_cutoff, overlapping_month_and_day
 from .store import digest
 
 
-VERSION = "resource-estimate-context-v2"
+VERSION = "resource-estimate-context-v3"
 _COMPLETABLE = frozenset({"cutoff_grade", "scope_coverage", "deposit_id", "material_basis", "denominator_basis",
                           "resource_type", "reporting_standard"})
 _CONTEXT_DIMENSIONS = (
@@ -118,9 +118,15 @@ def resource_estimate_context(observation, completion=None):
         denominator = "BULK_ORE_MASS"
     reported_bases = {_tag(basis) for basis in (row.get("basis"), raw.get("chemical_basis"), nested.get("chemical_basis")) if basis}
     chemical = next(iter(reported_bases)) if len(reported_bases) == 1 else None
+    date = row.get("effective_date")
+    precision = date_precision(date)
+    declared_precision = context(raw.get("effective_date_precision"), review.get("date_precision"))
+    date_role = context(raw.get("effective_date_role"), raw.get("date_role"), review.get("effective_date_role"))
     return {"project_id": row.get("entity_id"), "deposit": deposit, "scope": scope, "scope_coverage": scope_coverage,
             "resource_type": resource_type, "reporting_standard": reporting_standard,
-            "category": _tag(row.get("category")), "effective_date": row.get("effective_date"), "cutoff_grade": cutoff,
+            "category": _tag(row.get("category")), "effective_date": date, "cutoff_grade": cutoff,
+            "effective_date_precision": precision if not declared_precision or declared_precision == precision else None,
+            "effective_date_role": date_role,
             "chemical_basis": chemical, "material_basis": material, "denominator_basis": denominator}
 
 
@@ -140,6 +146,13 @@ def compare_resource_estimates(left_row, right_row, *, left_completion=None, rig
         a, b = left[dimension], right[dimension]
         if a is None or b is None or a == "" or b == "":
             reason = "ESTIMATE_CONTEXT_UNRESOLVED"
+        elif dimension == "effective_date" and (
+                left["effective_date_precision"] is None or right["effective_date_precision"] is None
+                or overlapping_month_and_day(a, b)):
+            reason = "ESTIMATE_EFFECTIVE_DATE_PRECISION_INSUFFICIENT_FOR_EQUIVALENCE"
+        elif dimension == "effective_date" and a == b and left["effective_date_precision"] == "MONTH" and (
+                not left["effective_date_role"] or left["effective_date_role"] != right["effective_date_role"]):
+            reason = "ESTIMATE_EFFECTIVE_DATE_ROLE_UNRESOLVED"
         elif (cutoff_signature(a) if dimension == "cutoff_grade" else a) != (
                 cutoff_signature(b) if dimension == "cutoff_grade" else b):
             reason = "DIFFERENT_ESTIMATE_CONTEXT"

@@ -32,6 +32,28 @@ class ObservationSemanticsTests(unittest.TestCase):
         self.assertIn("denominator_basis=WHOLE_ORE", percent.conditions)
         self.assertEqual(self.grade.original_value, "18,300")
 
+    def test_gallium_mass_fractions_round_trip_without_changing_source_context(self):
+        for unit in ("g/t", "mg/kg"):
+            with self.subTest(unit=unit):
+                anchor = replace(self.anchor, quote=f"70 {unit} Ga₂O₃")
+                raw = replace(self.grade, chemical_basis="Ga₂O₃", original_value="70", original_unit=unit,
+                              evidence=anchor)
+                ppm = self.engine.normalize(raw, target_unit="ppm")
+                self.assertEqual((ppm.value, ppm.unit, ppm.chemical_basis), (Decimal("70"), "ppm", "Ga2O3"))
+                self.assertEqual(ppm.raw_fingerprint, raw.normalization_fingerprint)
+                self.assertIn("same-denominator mass fraction", ppm.formula)
+                self.assertIn("material_basis=WHOLE_ORE", ppm.conditions)
+                self.assertEqual((raw.original_value, raw.original_unit, raw.evidence.quote),
+                                 ("70", unit, f"70 {unit} Ga₂O₃"))
+                inverse = self.engine.normalize(replace(raw, original_unit="ppm"), target_unit=unit)
+                self.assertEqual((inverse.value, inverse.unit, inverse.chemical_basis), (Decimal("70"), unit, "Ga2O3"))
+                for change in ({"original_unit": "mg/L"}, {"denominator_basis": "volume"},
+                               {"denominator_basis": "Concentrate"}, {"chemical_basis": "UNKNOWN"}):
+                    self.assertIsNone(self.engine.normalize(replace(raw, **change), target_unit="ppm"))
+                self.assertIsNone(self.engine.normalize(raw, target_unit="ppm", target_species="Ga"))
+        volumetric = replace(self.grade, denominator_basis="volume")
+        self.assertIsNone(self.engine.normalize(volumetric, target_unit="%"))
+
     def test_invalid_or_unbound_resource_tokens_stay_raw(self):
         for change in ({"scope_id": None}, {"chemical_basis": "NdPr"}, {"material_basis": None},
                        {"denominator_basis": None}, {"source_value_state": "CONFLICT"},

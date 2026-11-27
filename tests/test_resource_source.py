@@ -7,6 +7,7 @@ import unittest
 
 from au_ree_v2.observation_schema import value_evidence_issue
 from au_ree_v2.resource_estimate import normalize_cutoff
+from au_ree_v2.selection_rules import choose
 from au_ree_v2.resource_jorc import admission_issue
 from au_ree_v2.resource_source import _positioned_value_issues, candidates_on_page, discover
 
@@ -190,6 +191,26 @@ class ResourceSourceTests(unittest.TestCase):
                 self.assertEqual((normalized["basis"], normalized["value_ppm"], normalized["operator"]),
                                  ("TREO", "500", operator))
                 self.assertIn(words.removeprefix("at "), raw["text"])
+
+    def test_cutoff_units_preserve_precise_species_and_operator(self):
+        for literal in ("≥70 g/t Ga₂O₃", "≥70 mg/kg Ga₂O₃", ">=70 ppm Ga2O3", ">=0.007% Ga2O3"):
+            with self.subTest(literal=literal):
+                record = normalize_cutoff(literal)
+                self.assertEqual((record["basis"], record["value_ppm"], record["operator"], record["original"]),
+                                 ("GA2O3", "70", ">=", literal))
+        self.assertIsNone(normalize_cutoff("70 mg/L Ga2O3"))
+        combined = normalize_cutoff("≥330ppm TREO + Sc₂O₃")
+        self.assertEqual((combined["basis"], combined["value_ppm"], combined["operator"]),
+                         ("TREO+SC2O3", "330", ">="))
+
+    def test_an_estimate_month_cannot_supersede_a_day_in_that_month(self):
+        common = {"scope": "deposit", "source_sha256": SHA}
+        monthly = dict(common, effective_date="2025-08", evidence_id="month", value=100)
+        daily = dict(common, effective_date="2025-08-11", evidence_id="day", value=90)
+        self.assertEqual(choose([monthly, daily], ("scope",), require_date_order=True),
+                         (None, "RESOURCE_EFFECTIVE_DATE_PRECISION_INSUFFICIENT_FOR_ORDER"))
+        selected, reason = choose([dict(monthly, effective_date="2025-07"), daily], ("scope",), require_date_order=True)
+        self.assertEqual((selected["evidence_id"], reason), ("day", "SELECTED"))
 
     def test_blocked_source_produces_all_fixed_page_dispositions(self):
         with TemporaryDirectory() as directory:

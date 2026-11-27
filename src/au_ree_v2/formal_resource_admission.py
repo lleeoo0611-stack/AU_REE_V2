@@ -1,7 +1,7 @@
 """Admit source-bound bulk Mineral Resource facts to the existing evidence store."""
 
 from collections import Counter, defaultdict
-from datetime import date, datetime
+from datetime import datetime
 from decimal import Decimal, DecimalException
 import json
 import math
@@ -10,7 +10,8 @@ import re
 
 from .derived_cache import code_fingerprint
 from .evidence import claim_evidence_ids, ingest_sources, normalize, resource_statement_metrics
-from .numeric_evidence import header_unit_issue, numeric_witness_issue, scalar_decimal
+from .normalization import MASS_FRACTION, unit_factor
+from .numeric_evidence import header_unit_issue, numeric_witness_issue, scalar_decimal, unit_header_matches_value_column
 from .observation_schema import RawObservation, VALUE_EVIDENCE_ROLES, payload, value_evidence_issue
 from .observation_semantics import SemanticEngine
 from .pdf_extract import project_registry
@@ -18,8 +19,8 @@ from .resource_estimate import compare_resource_estimates, cutoff_signature, nor
 from .resource_estimate import reported_resource_table_label as _table_label
 from .resource_jorc import admission_issue as jorc_admission_issue
 from .resource_source import (
-    _CONTEXT_ROLES, _CUTOFF_CELL, _CUTOFF_COLUMN, _cutoff, _effective_dates, _estimate_dates_in_context,
-    discover, locally_bound_span, verified_context_anchors,
+    _CONTEXT_ROLES, _cutoff, _effective_dates, _estimate_dates_in_context, caption_estimate_periods,
+    cutoff_column_declaration, discover, locally_bound_span, resolved_estimate_date, verified_context_anchors,
 )
 from .selection_rules import RESOURCE_ADMISSION_VERSION, RESOURCE_ADMISSION_VERSION_GLOB, date_end, source_check
 from .store import canonical, digest, filehash
@@ -96,7 +97,7 @@ def _value_disposition(raw, source, selected_row):
         return "UNIT_HEADER_NOT_UNIQUELY_BOUND", True, False
     header = headers[0]
     if (header.source_id != source["key"] or _location(header)[:3] != _location(anchor)[:3]
-            or header.column != anchor.column or type(header.row) is not int or header.row >= anchor.row
+            or not unit_header_matches_value_column(header, anchor) or type(header.row) is not int or header.row >= anchor.row
             or not header.quote or not header.bbox or header.bbox[3] > anchor.bbox[1] + .01):
         return "UNIT_HEADER_SOURCE_OR_COLUMN_MISMATCH", True, False
     if issue := header_unit_issue(header.quote, raw.original_unit):
@@ -132,11 +133,8 @@ def _cutoff_issue(raw, anchors, row, contextual):
         columns = sorted((header for header in anchors if header.role == "cutoff_header"
                           and header.column == anchor.column and type(header.row) is int and header.row < row
                           and header.bbox[3] <= anchor.bbox[1] + .01), key=lambda header: header.row)
-        header = _CUTOFF_COLUMN.fullmatch(" ".join(column.quote for column in columns))
-        value = _CUTOFF_CELL.fullmatch(anchor.quote.strip())
-        if header and value and (normalized := normalize_cutoff({
-                "value": value["x"], "unit": header[1] or header[2], "basis": "TREO", "operator": value["operator"]})):
-            found.add(cutoff_signature(normalized))
+        if matched := cutoff_column_declaration(" ".join(column.quote for column in columns), anchor.quote):
+            found.add(matched[0])
     if expected is None or expected[1] != "TREO" or found != {expected}:
         return "RESOURCE_CUTOFF_EVIDENCE_MISMATCH"
     return None
@@ -156,7 +154,8 @@ def _group_context(observations, source, project_ids, cutoff, selected_row, *, r
     for item in observations:
         if issue := jorc_admission_issue(item):
             return issue
-    shared = ("category", "resource_type", "scope_coverage", "cutoff_grade", "cutoff", "reporting_standard")
+    shared = ("category", "resource_type", "scope_coverage", "cutoff_grade", "cutoff", "reporting_standard",
+              "effective_date_role", "effective_date_precision")
     if any(any(_scope_conditions(item).get(key) != context.get(key) for key in shared) for item in observations):
         return "RESOURCE_ROW_CONTEXT_CONFLICT"
     if (context.get("resource_type") != "MINERAL_RESOURCE" or context.get("reporting_standard") != "JORC"
@@ -171,12 +170,14 @@ def _group_context(observations, source, project_ids, cutoff, selected_row, *, r
             item.material_basis not in MATERIALS and not (item.variable == "contained_treo_kt"
             and item.material_basis == "RESOURCE_CONTAINED_OXIDE_MASS_KT") for item in observations):
         return "RESOURCE_MATERIAL_OR_DENOMINATOR_MISMATCH"
-    try:
-        day = date.fromisoformat(first.effective_date)
-        if str(day) != first.effective_date or first.effective_date > min(date_end(source["publication_date"]), cutoff):
-            return "RESOURCE_EFFECTIVE_DATE_AFTER_DISCLOSURE_OR_CUTOFF"
-    except ValueError:
+    if (first.effective_date_precision not in {"DAY", "MONTH"}
+            or context.get("effective_date_precision") not in {None, first.effective_date_precision}):
         return "RESOURCE_EFFECTIVE_DATE_UNRESOLVED"
+    limit = min(date_end(source["publication_date"]), cutoff)
+    if first.effective_date > limit:
+        return "RESOURCE_EFFECTIVE_DATE_AFTER_DISCLOSURE_OR_CUTOFF"
+    if date_end(first.effective_date) > limit:
+        return "RESOURCE_EFFECTIVE_DATE_PRECISION_INSUFFICIENT_FOR_TIMING"
     if any((item.publication_date and item.publication_date != source["publication_date"])
            or (item.acquisition_date and item.acquisition_date != source["acquired_at"]) for item in observations):
         return "RESOURCE_SOURCE_TIMING_MISMATCH"
@@ -199,13 +200,22 @@ def _group_context(observations, source, project_ids, cutoff, selected_row, *, r
             return "RESOURCE_SCOPE_OR_ROW_EVIDENCE_MISSING"
         if not any(anchor.role == "row" and anchor.row == selected_row[2] for anchor in anchors):
             return "RESOURCE_ROW_EVIDENCE_MISMATCH"
-        dates = _effective_dates(_attested_text(anchor) for anchor in anchors
-                                 if anchor.role in {"scope", "estimate_reference", "resource_section"})
+        explicit_dates = _effective_dates(_attested_text(anchor) for anchor in anchors
+                                          if anchor.role in {"scope", "estimate_reference", "resource_section"})
         for anchor in contextual:
             if anchor.role == "estimate_effective_date":
-                dates |= _estimate_dates_in_context(_attested_text(anchor), anchor.locator)
-        if dates != {item.effective_date}:
+                explicit_dates |= _estimate_dates_in_context(_attested_text(anchor), anchor.locator)
+        caption_periods = [(period, anchor.quote[start:end]) for anchor in anchors if anchor.role == "scope"
+                           for period, (start, end), _ in caption_estimate_periods(anchor.quote)]
+        dates = explicit_dates | {period for period, _ in caption_periods}
+        if resolved_estimate_date(dates) != item.effective_date:
             return "RESOURCE_EFFECTIVE_DATE_EVIDENCE_MISMATCH"
+        if item.effective_date_precision == "MONTH":
+            expected_role = "STATEMENT_EFFECTIVE_DATE" if item.effective_date in explicit_dates else "ESTIMATE_EDITION_DATE"
+            if (item.effective_date_role != expected_role
+                    or (context.get("original_estimate_date") and
+                        (item.effective_date, context["original_estimate_date"]) not in caption_periods)):
+                return "RESOURCE_EFFECTIVE_DATE_EVIDENCE_MISMATCH"
         if issue := _cutoff_issue(item, anchors, selected_row[2], contextual):
             return issue
     return None
@@ -314,8 +324,8 @@ def _evaluate(candidate, source, project_ids, cutoff, engine, *, registry=()):
 def _same_reported_quantity(legacy, fact):
     if legacy["basis"] != fact["basis"] or legacy["category"] != fact["category"]:
         return False
-    if fact["variable"] == "grade" and legacy["unit"] == "%":
-        value = Decimal(str(legacy["value"])) * 10000
+    if fact["variable"] == "grade" and legacy["unit"] in MASS_FRACTION:
+        value = Decimal(str(legacy["value"])) * unit_factor(legacy["unit"], fact["unit"], MASS_FRACTION)
     elif legacy["unit"] == fact["unit"] or fact["variable"] == "contained_treo_kt" and legacy["unit"] == "kt TREO":
         value = Decimal(str(legacy["value"]))
     else:
@@ -520,9 +530,12 @@ def _insert_bundle(db, root, source, facts, observations, active_claim_ids, *, s
                           pdf_page=raw.evidence.page, **_estimate_fields(raw), estimate_id=raw.estimate_id,
                           jorc_status=scope_context.get("jorc_status"),
                           jorc_rule_version=scope_context.get("jorc_rule_version"),
-                          effective_date_precision="DAY", effective_date_role="STATEMENT_EFFECTIVE_DATE",
+                          effective_date_precision=raw.effective_date_precision,
+                          effective_date_role=raw.effective_date_role or "STATEMENT_EFFECTIVE_DATE",
                           original_reported_unit=raw.original_unit, original_token=raw.original_value,
                           source_bound_observation=payload(raw))
+            if original_date := scope_context.get("original_estimate_date"):
+                record["original_estimate_date"] = original_date
             if historical and historical.get("conflict"):
                 record["historical_pair_conflict"] = historical["conflict"]
             elif historical:
