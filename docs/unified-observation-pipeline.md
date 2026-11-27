@@ -311,3 +311,20 @@ python tests/test_resource_admission_integration.py --output work/resource-admis
 第四輪的重跑命令仍適用。把框架改為 `config/ontology/quality_frame_v1.json` 可執行固定框架的獨立正式重播。用 `formal_resource_refresh.compare()` 的 `mode="rule_effect"` 查核同源、同框架的程式修復。用 `mode="admission_effect"` 查核同版本啟用採納前後，或以 `mode="source_update"` 查核獨立來源更新。比較會驗證各項前提。 [差異契約](../src/au_ree_v2/formal_resource_refresh.py)
 
 `include_uncertainty=True` 從已封存的 R 產物比較排名中位數、分位數及 top-k 頻率。一般權重比較沿用相對或絕對 `1e-12` 的數值容差。逐次差值要求存在完整排名記錄、相同母體及相同抽樣契約，並精確核對實際權重。母體有進出時，報告分列共同專案與各版完整母體。四捨五入區間代表報告精度，排名頻率限於指定模型與偏好設定。 [Aim B 比較](../src/au_ree_v2/resource_rank_uncertainty.py)
+
+## 第六輪 JORC 命題與可重建權重
+
+JORC 入庫判定保存估算、合規述語和否定或情態的原文位置。表題中的明確資源分類可支持適用估算，正文中出現資源名稱時則依相關述語判定。無法確定命題或指代時保留候選與機器可讀理由。當次自動入庫版本為 `automatic-resource-admission-v3`，歷史觀測仍保留原版本並依當次啟用表可見。 [JORC 判定](../src/au_ree_v2/resource_jorc.py)
+
+目前研究設定使用 `ordered-domain-fsum-v2`。加總前依構面排序，準則與情境欄位沿用鎖定設定中的順序。封存設定缺少計算版本時，保留原 `unordered-domain-sum-v1` 路徑。歷史逐位元查核需沿用原程序環境及輸入；已封存的輸出與指紋仍保存。要在同一鎖定來源測試新版計算，可用以下參數。 [權重計算](../src/au_ree_v2/analysis.py)
+
+```sh
+au-ree-v2 rebuild --as-of 2026-11-05 \
+  --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json \
+  --mcda-weight-calculation ordered-domain-fsum-v2 \
+  --mcda-trace-panel issuer_resource_composition \
+  --resource-admission config/ontology/resource_admission_frame_v1.json \
+  --work work/resource-admission-current
+```
+
+在另一工作目錄以相同參數執行，省略 `--resource-admission` 可建立 `mode="admission_effect"` 的對照。收據記錄權重計算與排名記錄版本，兩項變動都會與來源版本更新分開標記。逐次排名的比較要求相同實際權重、計算版本、R 抽樣契約及語義母體。`issuer_resource_composition` 的逐次紀錄為選用項目，沿用 `six_domain` 的紀錄格式。 [差異契約](../src/au_ree_v2/formal_resource_refresh.py) · [配對檢查](../src/au_ree_v2/resource_rank_uncertainty.py)

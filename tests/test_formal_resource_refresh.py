@@ -236,11 +236,12 @@ class FormalRefreshReceiptTests(unittest.TestCase):
                    code=None, rules='rules', source_sha='test', path='archive/report.pdf',
                    frame_sha='frame', frame_pin=None, automatic_id='contained',
                    admission_version=RESOURCE_ADMISSION_VERSION, retained_observations=(),
-                   selected_ids=None, scope_decisions=(), weight_rows=()):
+                   selected_ids=None, scope_decisions=(), weight_rows=(), research_settings=None):
         root = self.root / name
         root.mkdir()
         cutoff = '2026-11-05'
         research = {'panels': {PANEL: ['R1', 'S1']}, 'monte_carlo': {'seed': 4}}
+        research.update(research_settings or {})
         config = {'research': research}
         snapshots = [{'key': 'source', 'sha256': source_sha, 'path': path}]
         observations = [{'obs_id': 'ore', 'transform_version': 'legacy', 'variable': 'ore_mt'},
@@ -342,6 +343,28 @@ class FormalRefreshReceiptTests(unittest.TestCase):
         self.assertEqual(ledger['previously_enabled_not_current_ids'], ['v1'])
         self.assertEqual(ledger['previously_enabled_absent_from_updated_store_ids'], [])
         self.assertEqual(result['criterion_selection_counts']['provenance_or_disposition_only'], 1)
+
+    def test_records_execution_protocol_differences_separately_from_sources_and_admission(self):
+        updated_settings = {'mcda_weight_calculation': 'ordered-domain-fsum-v2',
+                            'mcda_trace_panel': 'issuer_resource_composition'}
+        before = self.sealed_run('before', value=0.3, cohort=['p', 'q'], admitted=True)
+        after = self.sealed_run('after', value=0.3, cohort=['p', 'q'], admitted=True,
+                                research_settings=updated_settings)
+        receipt = compare(before, after, self.root / 'diff', mode='rule_effect')['comparison']
+        self.assertEqual(receipt['changed_factors'], ['mcda_execution_protocol'])
+        self.assertEqual(receipt['source_editions_changed'], [])
+        self.assertEqual(receipt['mcda_execution_protocol'], {
+            'baseline': {'weight_calculation': 'unordered-domain-sum-v1', 'additional_rank_trace_panel': None},
+            'updated': {'weight_calculation': 'ordered-domain-fsum-v2',
+                        'additional_rank_trace_panel': 'issuer_resource_composition'},
+        })
+        off = self.sealed_run('off', value=0.3, cohort=['p', 'q'])
+        with self.assertRaisesRegex(ValueError, 'expected=admission_effect, observed=mixed_effects'):
+            compare(off, after, self.root / 'mixed', mode='admission_effect')
+        changed = self.sealed_run('different-seed', value=0.3, cohort=['p', 'q'], admitted=True,
+                                  research_settings={**updated_settings, 'monte_carlo': {'seed': 342}})
+        with self.assertRaisesRegex(ValueError, 'REFRESH_COMPARISON_REQUIRES_SAME_RESEARCH_CONTRACT'):
+            compare(before, changed, self.root / 'different', mode='rule_effect')
 
     def test_source_edition_change_requires_actual_editions_and_isolates_other_factors(self):
         code = {'commit': 'before', 'content_sha256': 'same code'}

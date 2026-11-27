@@ -1,5 +1,5 @@
 args<-commandArgs(trailingOnly=TRUE)
-if(!length(args) %in% c(5,6,7,8,9))stop('Require folder seed reps threshold concentration [method_version] [research_analysis_version]')
+if(!length(args) %in% 5:10)stop('Require folder seed reps threshold concentration [method_version] [research_analysis_version] [shared_method_draws] [stage] [rank_trace]')
 version<-if(length(args)>=6)args[6] else 'legacy-position-rng-v1'
 stopifnot(version %in% c('legacy-position-rng-v1','entity-keyed-rng-v2'))
 deterministic<-version=='entity-keyed-rng-v2'
@@ -11,6 +11,9 @@ stage<-if(length(args)>=9)args[9] else 'all'
 stopifnot(stage %in% c('all','core','cohort'))
 folder<-args[1];seed<-as.integer(args[2]);reps<-as.integer(args[3]);p<-as.numeric(args[4]);concentration<-as.numeric(args[5])
 stopifnot(reps>=1,reps<=100000,concentration>0,is.finite(concentration))
+trace_profile<-if(length(args)==10)args[10] else NULL
+if(!is.null(trace_profile))stopifnot(shared_methods,stage!='cohort',basename(folder)=='issuer_resource_composition',
+  trace_profile=='issuer-resource-composition-full-trace-v1')
 script<-sub('^--file=','',grep('^--file=',commandArgs(),value=TRUE)[1])
 source(file.path(dirname(script),'methods.R'))
 d<-read.csv(file.path(folder,'matrix.csv'),check.names=FALSE)
@@ -27,7 +30,7 @@ if('canonical_project_id' %in% names(d))stopifnot(!anyDuplicated(d$canonical_pro
 writeout<-function(rows,name)write.csv(rows,file.path(folder,paste0(name,'.csv')),row.names=FALSE,na='')
 all_ranks<-all_weight<-all_rounding<-all_leave<-all_methods<-all_functions<-all_cohorts<-all_ahp<-list()
 all_contributions<-list(); shared_summaries<-shared_draws<-list()
-trace_draws<-shared_methods && basename(folder)=='six_domain'
+trace_draws<-shared_methods && (basename(folder)=='six_domain' || !is.null(trace_profile))
 if(stage!='cohort') for(scenario in unique(weights$scenario)) {
   wd<-weights[weights$scenario==scenario,];stopifnot(!anyDuplicated(wd$criterion))
   w<-wd$weight[match(codes,wd$criterion)];validate(X,w)
@@ -186,11 +189,13 @@ if(research_analysis)writeout(bind(all_contributions,data.frame()),'criterion_co
 if(shared_methods) {
   writeout(do.call(rbind,shared_summaries),'uncertainty_by_method')
   if(trace_draws)writeout(do.call(rbind,shared_draws),'shared_draw_ranks')
-  writeout(data.frame(contract='shared-method-draws-v1',cohort=basename(folder),seed,reps,
+  draw_contract<-data.frame(contract='shared-method-draws-v1',cohort=basename(folder),seed,reps,
     input_contract=version,methods='SAW|PROMETHEE_II|TOPSIS',
     draw_identity='version|seed|scenario|family|project_id|criterion_id|draw_index',
     detail=if(trace_draws)'ALL_DRAW_RANKS' else 'RECONSTRUCT_FROM_KEYED_INPUTS',
-    unknown='NO_PROBABILITY_DISTRIBUTION_ASSIGNED'),'shared_draw_contract')
+    unknown='NO_PROBABILITY_DISTRIBUTION_ASSIGNED')
+  if(!is.null(trace_profile))draw_contract$trace_profile<-trace_profile
+  writeout(draw_contract,'shared_draw_contract')
 }
 }
 if(research_analysis && stage!='core') {

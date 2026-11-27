@@ -21,9 +21,12 @@ from .store import digest
 from .technical_tables import cells
 
 
-VERSION = "native-resource-row-v2"
+VERSION = "native-resource-row-v3"
 _VARIABLES = ("ore_mt", "grade", "contained_treo_kt")
 _RESOURCE = re.compile(r"\b(?:mineral resources?|resource estimate|MRE)\b", re.I)
+_TABLE_PROSE = re.compile(r"^table\s+\d+(?:[-.]\d+)*\s+(?:(?:above|below)\s+)?"
+                         r"(?:is|are|was|were|has|had|does|contains?|includes?|lists?|presents?|shows?|"
+                         r"summari[sz]es?|sets?\s+out|compares?|provides?|records?|gives?)\b", re.I)
 _TOTAL = re.compile(r"(?:(?:grand|global|project|combined)\s+)?total(?:\s*\(\d+\))?", re.I)
 _CATEGORY = re.compile(r"\b(measured|indicated|inferred)\b", re.I)
 _CLASSIFICATION = re.compile(r"(?:JORC\s+)?(?:category|classification|resource classification)", re.I)
@@ -105,7 +108,8 @@ def _supporting_blocks(caption, table, tables, blocks):
     reference = re.compile(r"\bTable\s+" + re.escape(table_number) + r"(?![\w.\-])", re.I)
     context, notes = [], []
     for box, text in blocks:
-        if not bounds[0] <= (box[0] + box[2]) / 2 <= bounds[2] or CAPTION.match(text):
+        if (not bounds[0] <= (box[0] + box[2]) / 2 <= bounds[2]
+                or CAPTION.match(text) and not _TABLE_PROSE.match(text)):
             continue
         if 0 <= bounds[1] - box[3] <= 42 and reference.search(text) and _RESOURCE.search(text) and not RISKY.search(text):
             context.append((box, text))
@@ -291,7 +295,9 @@ def _table_rows(source, registry, page, table, tables, blocks, supporting_pages,
     sections = [cell for cell in native if _RESOURCE.search(cell["text"])
                 and cell["bbox"][2] - cell["bbox"][0] >= .8 * table_width]
     headers = [cell for cell in native if cell["row"] < first_row and cell not in sections]
-    caption_entry = page_table_caption(tables, table, blocks)
+    # "Table 2 presents ..." is a reference in prose. It can bind a following
+    # proposition but must not compete with the table's structural title.
+    caption_entry = page_table_caption(tables, table, [(box, text) for box, text in blocks if not _TABLE_PROSE.match(text)])
     caption = caption_entry[1] if caption_entry else ""
     if not (_RESOURCE.search(caption) or any(_CLASSIFICATION.fullmatch(clean(cell["text"])) for cell in headers)
             and any(_header_unit(_column_parts(cell, headers)[0], "grade", native=True)

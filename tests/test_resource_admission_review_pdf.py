@@ -3,6 +3,7 @@
 from contextlib import closing
 import json
 from pathlib import Path
+import sys
 from tempfile import TemporaryDirectory
 import unittest
 
@@ -19,6 +20,41 @@ PROJECT_ID = 'AU-' + digest(['project_registry_v1', 'alpha'])[:20]
 FIXTURE_CLASS = 'SYNTHETIC_ENGINEERING_FIXTURE'
 EFFECTIVE_DATE = '2025-05-01'
 CUTOFF = '2026-11-05'
+
+JORC_PROPOSITIONS = (
+    ('negated_consideration', 'DENIED',
+     'The Mineral Resource estimate in Table 2 is not considered JORC compliant.'),
+    ('named_subject_with_negation', 'DENIED',
+     'The JORC Mineral Resource estimate in Table 2 is not compliant.'),
+    ('named_subject_no_longer', 'DENIED',
+     'The JORC Mineral Resource estimate in Table 2 is no longer compliant.'),
+    ('negated_modal_passive', 'DENIED',
+     'The Mineral Resource estimate in Table 2 cannot be considered JORC compliant.'),
+    ('negated_modal_contraction', 'DENIED',
+     "The Mineral Resource estimate in Table 2 can't be considered JORC compliant."),
+    ('affirmative_reporting_passive', 'AFFIRMED',
+     'The Mineral Resource estimate in Table 2 was reported in accordance with JORC.'),
+    ('denied_compliance_direct', 'DENIED',
+     'The Mineral Resource estimate in Table 2 is not compliant with JORC.'),
+    ('denied_reporting_passive', 'DENIED',
+     'The Mineral Resource estimate in Table 2 was not reported in accordance with JORC.'),
+    ('affirmative_consideration', 'AFFIRMED',
+     'The Mineral Resource estimate in Table 2 is considered JORC compliant.'),
+    ('negated_consideration_with_contraction_and_modifier', 'DENIED',
+     "The Mineral Resource estimate in Table 2 isn't considered fully JORC-compliant."),
+    ('affirmative_named_subject', 'AFFIRMED',
+     'The JORC Mineral Resource estimate in Table 2 is fully compliant.'),
+    ('name_mention_in_unrelated_proposition', 'WITHHOLD',
+     'The JORC Mineral Resource estimate in Table 2 has not been converted to an Ore Reserve.'),
+    ('modal_compliance', 'WITHHOLD',
+     'The Mineral Resource estimate in Table 2 may be considered JORC compliant.'),
+    ('conditional_compliance', 'WITHHOLD',
+     'The Mineral Resource estimate in Table 2 would be JORC compliant if the work were completed.'),
+    ('affirmative_cross_sentence_reference', 'AFFIRMED',
+     'The report presents the Mineral Resource estimate in Table 2. It was reported in accordance with JORC.'),
+    ('negated_cross_sentence_reference', 'DENIED',
+     'The report presents the Mineral Resource estimate in Table 2. It cannot be considered JORC compliant.'),
+)
 
 
 def resource_page(*, number=2, qualifier='JORC', date=EFFECTIVE_DATE, cutoff='500 ppm', notes=(),
@@ -115,6 +151,26 @@ def total_disposition(receipt, page=1):
     return rows[0]
 
 
+def proposition_replay():
+    """Run the same SHA-pinned fixtures with whichever package PYTHONPATH selects."""
+    cases = {}
+    for name, expected, note in JORC_PROPOSITIONS:
+        with TemporaryDirectory(prefix='au-ree-proposition-replay-') as temporary:
+            source, receipt, _, selected, audit, canonical = run_fixture(
+                Path(temporary), (resource_page(qualifier='', notes=(note,)),))
+        row = total_disposition(receipt)
+        cases[name] = {'text': note, 'expected': expected, 'source_sha256': source['sha256'],
+                       'source_check': receipt['source_dispositions'][0], 'admission_rules_sha256': receipt['rules_sha256'],
+                       'admission_status': row['status'], 'reasons': row['reasons'], 'jorc_assessment': row['jorc_assessment'],
+                       'new_canonical_observations': receipt['counts']['canonical_added'],
+                       'canonical_observations': [
+                           {**{key: value[key] for key in ('obs_id', 'value', 'unit', 'variable', 'locator', 'source_sha')},
+                            'reporting_standard': json.loads(value['raw']).get('reporting_standard')}
+                           for value in canonical],
+                       'selected_resource': selected.get(PROJECT_ID), 'selection_audit': audit}
+    return {'classification': FIXTURE_CLASS, 'cutoff': CUTOFF, 'project_id': PROJECT_ID, 'cases': cases}
+
+
 class ResourceAdmissionReviewPdfTests(unittest.TestCase):
     def run_pdf(self, *pages, **kwargs):
         with TemporaryDirectory(prefix='au-ree-review-pdf-') as temporary:
@@ -166,6 +222,57 @@ class ResourceAdmissionReviewPdfTests(unittest.TestCase):
                 self.assertEqual(canonical, [])
                 self.assertEqual(selected, {})
 
+    def test_jorc_propositions_use_predicates_instead_of_named_subjects(self):
+        for name, expected, note in JORC_PROPOSITIONS:
+            with self.subTest(name):
+                source, receipt, _, selected, _, canonical = self.run_pdf(resource_page(qualifier='', notes=(note,)))
+                row = total_disposition(receipt)
+                source_receipt = receipt['source_dispositions'][0]
+                self.assertEqual(source_receipt['status'], 'SOURCE_CHECKED')
+                self.assertTrue(source_receipt['sha_verified'])
+                self.assertEqual(len(row['observations']), 3)
+                self.assertTrue(all(item['numeric_and_unit_located'] for item in row['observations']))
+                if expected == 'WITHHOLD':
+                    self.assertIn(row['jorc_assessment']['status'], ('UNESTABLISHED', 'UNRESOLVED_SCOPE'))
+                else:
+                    witnesses = self.check_jorc(row, source, expected, required_polarities=(expected,))
+                    statement = next(item for item in witnesses if item['quote'] == note and item['polarity'] == expected)
+                    for role in ('subject', 'predicate', 'code'):
+                        left, right = (statement[f'{role}_{end}'] for end in ('start', 'end'))
+                        self.assertLess(left, right, statement)
+                        self.assertTrue(0 <= left < right <= len(note), statement)
+                    subject = note[statement['subject_start']:statement['subject_end']]
+                    code = note[statement['code_start']:statement['code_end']]
+                    self.assertIn('Mineral Resource estimate', subject)
+                    self.assertIn('JORC', code)
+                    if 'cross_sentence' in name:
+                        self.assertTrue(statement['anaphoric'])
+                        self.assertLess(statement['subject_end'], statement['predicate_start'])
+                if expected == 'AFFIRMED':
+                    self.assertEqual(row['status'], 'SOURCE_BOUND_CANONICAL')
+                    self.assertEqual(receipt['counts']['canonical_added'], 3)
+                    self.assertEqual({json.loads(item['raw'])['reporting_standard'] for item in canonical}, {'JORC'})
+                    self.assertEqual(selected[PROJECT_ID]['contained_treo_kt'], 100)
+                else:
+                    self.assertEqual(row['status'], 'NOT_ADMITTED')
+                    if expected == 'DENIED':
+                        self.assertIn('RESOURCE_JORC_NEGATED', row['reasons'])
+                    self.assertEqual(receipt['counts']['canonical_added'], 0)
+                    self.assertEqual(canonical, [])
+                    self.assertEqual(selected, {})
+
+    def test_current_proposition_does_not_borrow_earlier_cross_sentence_reference(self):
+        earlier = resource_page(number=1, qualifier='', date='2024-05-01', notes=(
+            'The report presents the earlier Mineral Resource estimate in Table 1. It was not considered JORC compliant.',))
+        current = resource_page(qualifier='', notes=(
+            'Table 2 presents the current Mineral Resource estimate. It was reported in accordance with JORC.',))
+        source, receipt, _, selected, _, canonical = self.run_pdf(earlier, current)
+        self.check_jorc(total_disposition(receipt, 1), source, 'DENIED', required_polarities=('DENIED',))
+        self.check_jorc(total_disposition(receipt, 2), source, 'AFFIRMED', required_polarities=('AFFIRMED',))
+        self.assertEqual(len(canonical), 3)
+        self.assertTrue(all(json.loads(item['raw'])['pdf_page'] == 2 for item in canonical))
+        self.assertEqual(selected[PROJECT_ID]['date'], EFFECTIVE_DATE)
+
     def test_independent_current_jorc_passes_in_report_with_old_non_jorc(self):
         earlier = resource_page(number=1, qualifier='non-JORC', date='2024-05-01')
         current = resource_page()
@@ -200,15 +307,17 @@ class ResourceAdmissionReviewPdfTests(unittest.TestCase):
         self.assertEqual(selected[PROJECT_ID]['date'], '2024-05-01')
 
     def test_conflicting_claims_retain_both_target_witnesses(self):
-        page = resource_page(notes=('The Mineral Resource estimate in Table 2 is not JORC-compliant.',))
-        source, receipt, _, selected, _, canonical = self.run_pdf(page)
-        row = total_disposition(receipt)
-        self.assertIn('RESOURCE_JORC_CONFLICT', row['reasons'])
-        witnesses = self.check_jorc(row, source, 'CONFLICT', required_polarities=('AFFIRMED', 'DENIED'))
-        self.assertEqual({item['physical_page'] for item in witnesses}, {1})
-        self.assertEqual(len({tuple(item['bbox']) for item in witnesses}), 2)
-        self.assertEqual(canonical, [])
-        self.assertEqual(selected, {})
+        for note in ('The Mineral Resource estimate in Table 2 is not JORC-compliant.',
+                     'The report presents the Mineral Resource estimate in Table 2. It cannot be considered JORC compliant.'):
+            with self.subTest(note=note):
+                source, receipt, _, selected, _, canonical = self.run_pdf(resource_page(notes=(note,)))
+                row = total_disposition(receipt)
+                self.assertIn('RESOURCE_JORC_CONFLICT', row['reasons'])
+                witnesses = self.check_jorc(row, source, 'CONFLICT', required_polarities=('AFFIRMED', 'DENIED'))
+                self.assertEqual({item['physical_page'] for item in witnesses}, {1})
+                self.assertEqual(len({tuple(item['bbox']) for item in witnesses}), 2)
+                self.assertEqual(canonical, [])
+                self.assertEqual(selected, {})
 
     def test_adjacent_denial_cannot_be_ignored_when_scope_is_ambiguous(self):
         for note in ('Not reported in accordance with the guidelines of JORC.',
@@ -311,4 +420,9 @@ class ResourceAdmissionReviewPdfTests(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    if len(sys.argv) == 3 and sys.argv[1] == '--proposition-receipt':
+        output = Path(sys.argv[2])
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(proposition_replay(), indent=2) + '\n', encoding='utf-8')
+    else:
+        unittest.main()
