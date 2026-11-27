@@ -31,7 +31,8 @@ _DRY_METHOD = re.compile(r"\btonnages?\s+(?:was|were|is|are)\s+(?:reported|asses
 _WET_METHOD = re.compile(r"\btonnages?\s+(?:was|were|is|are)\s+(?:reported|assessed|estimated|calculated)\s+on\s+a\s+wet\s+basis\b", re.I)
 _JORC_METHOD = re.compile(r"\b(?:reported|estimated|classified|prepared)\s+in\s+accordance\b.{0,150}\bJORC\b", re.I)
 _CHEMICAL = re.compile(r"\btotal rare earth oxides?(?:\s*\(TREO\))?\b|\bTREO\s*=\s*La2O3\s*\+\s*CeO2\s*\+", re.I)
-_EXCLUDED_OXIDE = re.compile(r"\b(?:TREO|total rare earth oxides?)\s*(?:\(TREO\)\s*)?(?:exclud\w+|minus|[-−])\s*[a-z]", re.I)
+_EXCLUDED_OXIDE = re.compile(r"\b(?:TREO|total rare earth oxides?)\s*(?:\(TREO\)\s*)?(?:exclud\w+|minus|[-−])\s*"
+                             r"(?:[a-z]{1,2}\d*(?:O\d*)?|cerium|yttrium|scandium)\b", re.I)
 _HOLD = re.compile(r"\b(?:scandium|gallium|wet tonnes?|concentrate|recoverable|exclud(?:es?|ing)|\bHM\b)\b", re.I)
 _CONTINUATION = re.compile(r"\b(?:continued|continuation|cont\.)\b", re.I)
 _CUTOFF_COLUMN = re.compile(r"cut[- ]?off\s*\(\s*(?:TREO\s+(ppm|%)|(ppm|%)\s+TREO)\s*\)", re.I)
@@ -85,7 +86,7 @@ def _supporting_blocks(caption, table, tables, blocks):
             context.append((box, text))
         if (0 <= box[1] - bounds[3] <= 28 and box[3] < next_table_top and len(text) <= 700
                 and box[3] - box[1] <= 58 and (_CHEMICAL.search(text) or _EXCLUDED_OXIDE.search(text)
-                                                or _BULK.search(text) or _WET_METHOD.search(text))):
+                                                or _BULK.search(text) or _DRY_METHOD.search(text) or _WET_METHOD.search(text))):
             notes.append((box, text))
     return context, notes
 

@@ -89,6 +89,15 @@ class ResourceSourceTests(unittest.TestCase):
         other = records(caption=CAPTION.replace("2025-05-01", "2025-04-01"))[-1]["observations"][0]
         self.assertNotEqual(first.statement_id, other.statement_id)
 
+    def test_different_composition_basis_in_bound_note_holds_the_entire_row(self):
+        value_table = grid([["Classification", "Dry ore tonnage (Mt)", "TREO (%)"],
+                            ["Inferred", "10", "7.5"]])
+        blocks = [([5, 75, 545, 97], CAPTION),
+                  ([5, 136, 545, 151], "TREO = Total Rare Earth Oxides excluding CeO2.")]
+        row, = candidates_on_page(SOURCE, REGISTRY, 1, blocks, [value_table])
+        self.assertIn("TREO_EXCLUDED_OXIDE_BASIS", row["issues"])
+        self.assertTrue(all(observation.chemical_basis is None for observation in row["observations"]))
+
     def test_context_pages_require_the_same_numbered_report(self):
         primary = [([5, 75, 545, 97], CAPTION.replace("JORC ", "")),
                    ([5, 650, 545, 670], "Alpha Mineral Resource estimate 2025 Page 1 of 3")]
