@@ -1,0 +1,151 @@
+{
+  "schema": "resource-admission-frame-v1",
+  "classification": "PUBLIC_REAL_SOURCE_REPLAY",
+  "design": "Retain the four existing supplementary regressions. Add one original edition from each of four distinct holdout report families for a same-program, same-Phase22-lock frame comparison.",
+  "retrieval": {
+    "mode": "full-text",
+    "value_page_budget": 24,
+    "context_page_budget": 32
+  },
+  "validation": {
+    "frozen_before_rule_evaluation": true,
+    "frozen_against_commit": "e75a822c54f86682a3175f1d27cf85912c7479d9",
+    "cutoff": "2026-11-05",
+    "original_frame_path": "config/ontology/resource_admission_frame_v1.json",
+    "original_frame_sha256": "3e26a6f70403a26477efbc27b2baaaa06e19a0fe1987f7bfa7cff6a25278428a",
+    "selection_input_sha256": {
+      "results/phase22-2026-11-06/snapshot_lock.json": "3d0848bd302294ff247bd931579e0c5fcec25f0908c83dd72a9fdfeada97981d",
+      "results/phase22-2026-11-06/criteria_resolution.csv": "ff33c323b3e187088c12dac6bb8b7e7b887a95f11bac559adfd26c290711401b",
+      "results/phase22-2026-11-06/cohort_coverage.csv": "01a5f7063abfd6f14488965ab951cd460c378e565f0f11678b51ab9ee865fa64",
+      "results/phase22-2026-11-06/resources.csv": "4e70f0d5c8731ab9ffa2e5abe19f325ed1ffc74b2349569d34c0bb4fb07f6a52"
+    },
+    "selection_method": "Use archived R1/S1 coverage gaps and visible table captions from locally available locked issuer PDFs. Keep a single PDF per family and exclude all families used for this round’s tuning or the fixed quality replay. Do not tune on holdout results.",
+    "recovery_request_budget": 0,
+    "recovery_reason": "All four additions had locally available PDF bytes matching the Phase22 source lock before retrieval.",
+    "accuracy_reference": "UNMEASURED"
+  },
+  "sources": [
+    {
+      "source_key": "browns_wolverine_mre20250116",
+      "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+      "pages": [
+        5
+      ],
+      "context_pages": [
+        1,
+        39
+      ]
+    },
+    {
+      "source_key": "mt_weld_2024",
+      "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+      "pages": [
+        2
+      ],
+      "context_pages": [
+        45
+      ]
+    },
+    {
+      "source_key": "mons_mre2025",
+      "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+      "pages": [
+        1,
+        7
+      ]
+    },
+    {
+      "source_key": "burracoppin_maiden2023",
+      "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+      "pages": [
+        2
+      ]
+    },
+    {
+      "source_key": "north_stanmore_mre2025",
+      "source_sha256": "c5561e8d0d8c06d2c2579c3c44ce5906bb62841f5cd3b9e142f13e8160531f84",
+      "pages": [
+        6,
+        7,
+        8
+      ],
+      "validation": {
+        "role": "HOLDOUT",
+        "document_family": "north-stanmore-august-2025-mre",
+        "project_id": "AU-216d0983f6892f9b58f9",
+        "publication_date": "2025-08-11",
+        "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+        "availability": "LOCAL_LOCKED_ORIGINAL_SHA256_VERIFIED",
+        "physical_page_count": 61,
+        "archived_missing_criteria": [
+          "R1",
+          "S1"
+        ],
+        "rationale": "The archived R1 resource input is absent and S1 is NO_COMPATIBLE_EVIDENCE. Tables 1–5 present classification plus separate HGMIN/MIN domains and TREO versus TREO+Sc₂O₃; they test explicit classification and chemical-cutoff inheritance."
+      }
+    },
+    {
+      "source_key": "lyons_mre2023",
+      "source_sha256": "3a57f527c4e21755eb10c2fa83499318a636f6917d8b8c85b55e70a83e3fb3b4",
+      "pages": [
+        1
+      ],
+      "validation": {
+        "role": "HOLDOUT",
+        "document_family": "lyons-october-2023-maiden-resource",
+        "project_id": "AU-7c198d219aa1db3e291f",
+        "publication_date": "2023-10-25",
+        "acquired_at": "2026-11-03T08:08:42.695035+00:00",
+        "availability": "LOCAL_LOCKED_ORIGINAL_SHA256_VERIFIED",
+        "physical_page_count": 22,
+        "archived_missing_criteria": [
+          "R1",
+          "S1"
+        ],
+        "rationale": "The archived R1 resource input is absent and S1 is NO_COMPATIBLE_EVIDENCE. Table 1 puts Inferred in its title and gives unnamed-classification area rows, so the project and area scopes need to stay distinct."
+      }
+    },
+    {
+      "source_key": "donald_bfs2026",
+      "source_sha256": "c3483090327862d652eb09c027f7daba5bb57cf4e5cd26af075dccc9cbd7087f",
+      "pages": [
+        35
+      ],
+      "validation": {
+        "role": "HOLDOUT",
+        "document_family": "donald-min5532-march-2026-bfs",
+        "project_id": "AU-2fc429d0556dfa0b95c4",
+        "publication_date": "2026-03-31",
+        "acquired_at": "2026-11-04T08:55:33.106004+00:00",
+        "availability": "LOCAL_LOCKED_ORIGINAL_SHA256_VERIFIED",
+        "physical_page_count": 75,
+        "archived_missing_criteria": [
+          "R1",
+          "S1"
+        ],
+        "rationale": "The archived R1 resource input is absent and S1 is NO_COMPATIBLE_EVIDENCE. Tables 8-2 and 8-3 present the MIN5532 resource and derived product quantities under a heavy-mineral cutoff with different denominators."
+      }
+    },
+    {
+      "source_key": "mangaroon_mre2023",
+      "source_sha256": "eb484b6f7118d7319173b4f3637b2b66e9058abdf69bf6d5cc1cf358306190e5",
+      "pages": [
+        1,
+        16
+      ],
+      "validation": {
+        "role": "HOLDOUT",
+        "document_family": "mangaroon-yin-november-2023-mre-and-gifford-estimates",
+        "project_id": "AU-8f3fe174a998d20ee4cf",
+        "publication_date": "2023-11-30",
+        "acquired_at": "2026-11-03T06:44:44.547162+00:00",
+        "availability": "LOCAL_LOCKED_ORIGINAL_SHA256_VERIFIED",
+        "physical_page_count": 51,
+        "archived_missing_criteria": [
+          "S1"
+        ],
+        "rationale": "The archived panel has R1 for Yin at its selected cutoff and S1 is NO_COMPATIBLE_EVIDENCE. Tables 1, 9 and 10 present alternate cutoffs and Yin and Gifford Creek resources. These are one report family for the trial."
+      }
+    }
+  ]
+}
