@@ -236,7 +236,8 @@ class FormalRefreshReceiptTests(unittest.TestCase):
                    code=None, rules='rules', source_sha='test', path='archive/report.pdf',
                    frame_sha='frame', frame_pin=None, automatic_id='contained',
                    admission_version=RESOURCE_ADMISSION_VERSION, retained_observations=(),
-                   selected_ids=None, scope_decisions=(), weight_rows=(), research_settings=None):
+                   selected_ids=None, scope_decisions=(), weight_rows=(), research_settings=None,
+                   inactive_admissions=None):
         root = self.root / name
         root.mkdir()
         cutoff = '2026-11-05'
@@ -270,6 +271,8 @@ class FormalRefreshReceiptTests(unittest.TestCase):
         if admitted:
             json_files['resource_admission.json'] = dict(config['resource_admission'], run_id=('wrong' if bad_receipt else name),
                                                         cutoff=cutoff, snapshot_sha256=digest(snapshots))
+            if inactive_admissions is not None:
+                json_files['resource_admission.json']['inactive_admissions'] = inactive_admissions
             if frame_pin is not None:
                 json_files['resource_admission.json']['frame_sources'] = [
                     dict(source_key='source', source_sha256=frame_pin, pages=[5])]
@@ -307,7 +310,19 @@ class FormalRefreshReceiptTests(unittest.TestCase):
         self.assertEqual(result['comparison']['kind'], 'admission_effect')
         self.assertEqual(result['aim_b_rank_uncertainty'], {'status': 'NOT_RUN'})
         self.assertEqual(result['new_canonical_observations'], 1)
+        self.assertEqual(result['projects_with_new_canonical_observations'], ['p'])
+        self.assertEqual(result['new_canonical_projects'], result['projects_with_new_canonical_observations'])
+        self.assertIn('does not count newly created Projects', result['new_canonical_projects_definition'])
+        accounting = result['evidence_change_accounting']
+        self.assertEqual(accounting['baseline_run_id'], 'old')
+        self.assertEqual(accounting['revalidation'],
+                         {'status': 'UNMEASURED', 'new_observation_count': None, 'pairs': []})
+        self.assertEqual(accounting['unclassified_new_observation_ids'], ['contained'])
+        self.assertEqual(accounting['independent_research_evidence_gain']['status'], 'UNMEASURED')
+        self.assertIsNone(accounting['independent_research_evidence_gain']['count'])
         self.assertEqual(result['criterion_selection_counts']['updated'], 1)
+        self.assertEqual(result['criterion_selection_counts']['provenance_or_disposition_only'], 0)
+        self.assertEqual(result['numeric_selection_projects'], ['p'])
         self.assertEqual(result['changed_raw_input_projects'], ['p'])
         panel = result['panels'][PANEL]
         self.assertEqual(panel['cohort_added'], ['r'])
@@ -329,7 +344,9 @@ class FormalRefreshReceiptTests(unittest.TestCase):
                               admission_version=prior['transform_version'], code=old_code)
         new = self.sealed_run('new', value=0.3, cohort=['p', 'q'], admitted=True, automatic_id='v2',
                               admission_version='automatic-resource-admission-v2',
-                              code=new_code, retained_observations=[prior], rules='new rules', path='after/only.pdf')
+                              code=new_code, retained_observations=[prior], rules='new rules', path='after/only.pdf',
+                              inactive_admissions=[dict(observation_id='v1', current_observation_id='v2',
+                                                        reason='REVALIDATED_AS_NEW_RULE_EDITION')])
         result = compare(old, new, self.root / 'diff', mode='rule_effect')
         self.assertEqual(result['sources_changed'], [])
         self.assertEqual(result['comparison']['source_editions_changed'], [])
@@ -343,6 +360,45 @@ class FormalRefreshReceiptTests(unittest.TestCase):
         self.assertEqual(ledger['previously_enabled_not_current_ids'], ['v1'])
         self.assertEqual(ledger['previously_enabled_absent_from_updated_store_ids'], [])
         self.assertEqual(result['criterion_selection_counts']['provenance_or_disposition_only'], 1)
+        self.assertEqual(result['criterion_selection_counts']['updated'], 0)
+        self.assertEqual(result['numeric_selection_projects'], [])
+        self.assertEqual(result['changed_raw_input_projects'], [])
+        accounting = result['evidence_change_accounting']
+        self.assertEqual(accounting['revalidation'], {
+            'status': 'RECEIPT_REPORTED', 'new_observation_count': 1,
+            'pairs': [{'baseline_observation_id': 'v1', 'updated_observation_id': 'v2'}]})
+        self.assertEqual(accounting['unclassified_new_observation_ids'], [])
+        self.assertEqual(accounting['independent_research_evidence_gain']['status'], 'UNMEASURED')
+        self.assertIsNone(accounting['independent_research_evidence_gain']['count'])
+
+    def test_revalidation_counts_only_new_ids_with_retained_baseline_predecessors(self):
+        prior = {'obs_id': 'v0', 'transform_version': 'automatic-resource-admission-v1'}
+        old_only = {'obs_id': 'old-only', 'transform_version': 'automatic-resource-admission-v1'}
+        old = self.sealed_run('old', value=0.3, cohort=['p'], admitted=True, automatic_id='v1',
+                              retained_observations=[prior, old_only])
+        retained = [row for row in json.loads((old / 'logical_database.json').read_text())['observations']
+                    if row['obs_id'] in ('v0', 'v1')]
+        retained.append({'obs_id': 'not-in-baseline', 'transform_version': 'automatic-resource-admission-v1'})
+        pairs = [('v0', 'v2'), ('v1', 'v2'), ('v1', 'v2'), ('not-in-baseline', 'v2'),
+                 ('missing', 'v2'), ('old-only', 'v2'), ('v1', 'not-current'), ('v1', 'v0'), ('ore', 'v2')]
+        reports = [dict(observation_id=prior_id, current_observation_id=current_id,
+                        reason='REVALIDATED_AS_NEW_RULE_EDITION') for prior_id, current_id in pairs]
+        new = self.sealed_run('new', value=0.3, cohort=['p'], admitted=True, automatic_id='v2',
+                              retained_observations=retained, inactive_admissions=reports)
+        accounting = compare(old, new, self.root / 'diff')['evidence_change_accounting']
+        self.assertEqual(accounting['revalidation'], {
+            'status': 'RECEIPT_REPORTED', 'new_observation_count': 1,
+            'pairs': [{'baseline_observation_id': 'v0', 'updated_observation_id': 'v2'},
+                      {'baseline_observation_id': 'v1', 'updated_observation_id': 'v2'}]})
+        self.assertEqual(accounting['unclassified_new_observation_ids'], [])
+        replay = self.sealed_run('replay', value=0.3, cohort=['p'], admitted=True, automatic_id='v2',
+                                 retained_observations=retained, inactive_admissions=reports)
+        result = compare(new, replay, self.root / 'replay-diff')
+        self.assertEqual(result['new_canonical_observations'], 0)
+        self.assertEqual(result['projects_with_new_canonical_observations'], [])
+        self.assertEqual(result['evidence_change_accounting']['revalidation'],
+                         {'status': 'RECEIPT_REPORTED', 'new_observation_count': 0, 'pairs': []})
+        self.assertIsNone(result['evidence_change_accounting']['independent_research_evidence_gain']['count'])
 
     def test_records_execution_protocol_differences_separately_from_sources_and_admission(self):
         updated_settings = {'mcda_weight_calculation': 'ordered-domain-fsum-v2',
@@ -379,6 +435,9 @@ class FormalRefreshReceiptTests(unittest.TestCase):
         self.assertEqual(result['comparison']['changed_factors'], ['source_inputs'])
         self.assertEqual(result['comparison']['source_editions_changed'][0]['changed_fields']['sha256'],
                          {'before': 'old edition', 'after': 'new edition'})
+        self.assertEqual(result['evidence_change_accounting']['independent_research_evidence_gain']['status'],
+                         'UNMEASURED')
+        self.assertIsNone(result['evidence_change_accounting']['independent_research_evidence_gain']['count'])
         mixed = self.sealed_run('mixed', value=0.3, cohort=['p', 'q'], admitted=True, source_sha='other edition',
                                 code={**code, 'content_sha256': 'other code'},
                                 frame_sha='other pin', frame_pin='other edition')

@@ -373,6 +373,30 @@ def compare(baseline_run, updated_run, output, *, mode='auto', include_uncertain
     old_eligibility, eligibility = before.json('eligibility_audit.json'), after.json('eligibility_audit.json')
     new_ids = active_rows.keys() - old_observations.keys()
     no_longer_active = old_active.keys() - active_rows.keys()
+    projects_with_new_observations = sorted({active_rows[obs]['entity_id'] for obs in new_ids})
+    # Report existing admission decisions only for IDs present in this comparison.
+    # A rule-edition replacement does not establish scientific independence.
+    revalidation_reported = admit is not None and 'inactive_admissions' in admit
+    revalidation_pairs = sorted({(row.get('observation_id'), row.get('current_observation_id'))
+                                for row in (admit or {}).get('inactive_admissions', ())
+                                if row.get('reason') == 'REVALIDATED_AS_NEW_RULE_EDITION'
+                                and row.get('observation_id') in old_observations
+                                and row.get('observation_id') in ledger['inactive_automatic_observation_ids']
+                                and row.get('current_observation_id') in new_ids})
+    revalidated_ids = {current for _, current in revalidation_pairs}
+    evidence_accounting = {
+        'baseline_run_id': before.summary['run_id'],
+        'new_canonical_observations_definition':
+            'Active automatic observation IDs absent from the baseline store; a storage count, not independent evidence.',
+        'revalidation': {
+            'status': 'RECEIPT_REPORTED' if revalidation_reported else 'UNMEASURED',
+            'new_observation_count': len(revalidated_ids) if revalidation_reported else None,
+            'pairs': [{'baseline_observation_id': prior, 'updated_observation_id': current}
+                      for prior, current in revalidation_pairs]},
+        'unclassified_new_observation_ids': sorted(new_ids - revalidated_ids),
+        'independent_research_evidence_gain': {
+            'status': 'UNMEASURED', 'count': None,
+            'reason': 'Observation IDs, source SHA changes and rule-edition pairs do not establish scientific independence.'}}
     ledger['previously_enabled_not_current_ids'] = sorted(no_longer_active)
     ledger['previously_enabled_absent_from_updated_store_ids'] = sorted(no_longer_active - observations.keys())
     selection_counters = {'added': 0, 'updated': 0, 'removed': 0, 'provenance_or_disposition_only': 0}
@@ -433,7 +457,11 @@ def compare(baseline_run, updated_run, output, *, mode='auto', include_uncertain
                'admitted_observation_ids': ledger['accepted_observation_ids'],
                'previous_admission_observation_ids': old_ledger['accepted_observation_ids'],
                'new_canonical_observation_ids': sorted(new_ids), 'new_canonical_observations': len(new_ids),
-               'new_canonical_projects': sorted({active_rows[obs]['entity_id'] for obs in new_ids}),
+               'projects_with_new_canonical_observations': projects_with_new_observations,
+               'new_canonical_projects': projects_with_new_observations,
+               'new_canonical_projects_definition':
+                   'Compatibility alias of projects_with_new_canonical_observations; does not count newly created Projects.',
+               'evidence_change_accounting': evidence_accounting,
                'automatic_observation_transitions': {
                    'newly_present': [_observation_trace(active_rows[obs]) for obs in sorted(new_ids)],
                    'no_longer_enabled': [_observation_trace(old_active[obs]) | {
