@@ -1,9 +1,12 @@
 """Classify located reporting-standard assertions about one resource estimate."""
 
+from dataclasses import dataclass
 import re
 
+from .resource_discourse import changes_estimate_subject, clause_spans, estimate_years, older_estimate, other_estimate, table_numbers
 
-VERSION = "resource-jorc-proposition-v3"
+
+VERSION = "resource-jorc-proposition-v4"
 _CODE = r"(?:JORC\b(?:\s+Code(?:\d+)?)?|Joint Ore Reserves Committee)"
 _CODE_EDITION = rf"{_CODE}(?:\s+20\d{{2}})?"
 _RESOURCE = r"(?:(?:global|total)\s+)?(?:mineral\s+)?resources?(?:\s+estimate)?"
@@ -55,28 +58,38 @@ _CODE_AFTER_PREDICATE = re.compile(
 )
 _BARE_COMPLIANCE = re.compile(rf"\b(?P<core>{_ADJECTIVE}|in\s+compliance|comply|complies|complied|"
                               rf"{_METHOD}\s+in\s+(?:full\s+)?accordance)\b", re.I)
-_CLAUSE_BREAK = re.compile(r"(?<=[.;!?])\s+|\s+(?:but|whereas|while|and)\s+(?=(?:the|this|that|it)\b)", re.I)
-_TABLE = re.compile(r"\bTable\s+(\d+(?:[-.]\d+)*)(?!\w|[.-]\d)", re.I)
-_OLD = re.compile(r"\b(?:earlier|historical|old|previous|prior|former)\s+(?:estimate|assessment|20\d{2}|MRE|resource)\b", re.I)
 _CURRENT = re.compile(r"\b(?:current|updated|latest|this)\s+(?:(?:mineral\s+)?resource\s+)?(?:estimate|MRE|resource)\b", re.I)
-_NEW_ESTIMATE = re.compile(rf"\b(?:another|different|separate|alternative|second|new|20\d{{2}})\s+"
-                           rf"(?:{_RESOURCE}|estimate|MRE)\b", re.I)
-_INDEFINITE_ESTIMATE = re.compile(rf"\ban?\s+(?:{_RESOURCE}|estimate|MRE)\b", re.I)
-_ESTIMATE_YEAR = re.compile(rf"\b(20\d{{2}})\s+(?:{_CODE}\s+)?(?:{_RESOURCE}|estimate|MRE)\b", re.I)
-_REPORTING_CODE_BEFORE_YEAR = re.compile(rf"\b{_CODE}\s*$", re.I)
-_LATEST_ESTIMATE = re.compile(rf"\b(?:current|updated|latest)\s+(?:{_RESOURCE}|estimate|MRE)\b", re.I)
-_PROJECT_TOPIC = re.compile(r"\b(?:(?i:another|different|separate|alternative|second|new|next|earlier|former|prior)"
-                            r"|(?!(?i:the|this|that|our|their|its|an?)\b)[A-Z][\w’'-]*)"
-                            r"\s+(?i:project|deposit)\b")
 _OTHER_REPORTING_CODE = re.compile(r"\b(?:NI\s*43[-–]101|SAMREC|PERC|S\s*-?\s*K\s*1300)\b", re.I)
 _SCOPE_END = re.compile(r"\s+(?:(?:rare earth )?deposit|project)\s*$", re.I)
 _SECTION = re.compile(r"^(20\d\d)\s+(.+?)\s+(?:Mineral\s+)?Resource Estimate$", re.I)
+_LAYOUT_HEADING = re.compile(r"^\s*(?:appendix|section|figure|table of contents)\b", re.I)
+_CONTINUATION = "ADJACENT_BLOCK_CONTINUATION"
+_DISCOURSE_ROLE = "jorc_discourse_context"
+_MAX_BLOCK_GAP = 18
+_MAX_BLOCK_LEFT_OFFSET = 16
+_MAX_DISCOURSE_BLOCKS = 4
 ROLE_TO_SCOPE = {
     "jorc_target": "TARGET",
     "jorc_other": "OTHER_ESTIMATE",
     "jorc_unscoped": "UNRESOLVED",
     "jorc_ambiguous_target": "TARGET_SCOPE_AMBIGUOUS",
 }
+
+
+@dataclass(frozen=True)
+class _LocatedSpan:
+    block: int | None
+    start: int
+    end: int
+    text: str
+
+
+@dataclass(frozen=True)
+class _Antecedent:
+    span: _LocatedSpan
+    unique: bool
+
+
 SCOPE_TO_ROLE = {scope: role for role, scope in ROLE_TO_SCOPE.items()}
 REASONS = {
     "AFFIRMED": None,
@@ -126,7 +139,11 @@ def _predicate(clause, start, end, *, code=None, argument_end=None, extra=(), ki
     return result
 
 
-def _compliance_propositions(clause, declaration, previous_code):
+def _implicit_subject(text):
+    return not text.strip(" •:-–—()")
+
+
+def _compliance_propositions(clause, declaration, previous_code, preserve_unresolved=False):
     names = list(_DECLARATION.finditer(clause))
     predicates = []
     # A code-qualified adjective in prose needs a predicate, not merely a
@@ -158,12 +175,15 @@ def _compliance_propositions(clause, declaration, previous_code):
         if (start == match.start() or any(item["predicate_start"] <= start < item["predicate_end"] for item in predicates)
                 or re.match(r"\s+(?:with|under|to)\b", clause[match.end():], re.I)):
             continue
-        if len(subject_names) == 1 or (not subject_names and previous_code
-                                       and (_OLD.search(clause[:start]) or _CURRENT.search(clause[:start])
-                                            or _ANAPHOR.match(clause[:start]))):
+        subject = clause[:start]
+        implicit = _implicit_subject(subject) or _ANAPHOR.match(subject)
+        continued = bool(previous_code and (older_estimate(subject) or _CURRENT.search(subject) or implicit))
+        if len(subject_names) == 1 or continued or (preserve_unresolved and implicit):
             code = subject_names[0].span("code") if subject_names else None
             negative = ((match.start(), match.start() + 3),) if match["core"].lower().startswith("non") else ()
-            predicates.append(_predicate(clause, start, match.end(), code=code, extra=negative))
+            proposition = _predicate(clause, start, match.end(), code=code, extra=negative)
+            if code is not None or continued or proposition["polarity"] == "DENIED":
+                predicates.append({**proposition, "reporting_code_unresolved": code is None and not continued})
     for match in _NEGATED_CLASSIFICATION.finditer(clause):
         reference = _RESOURCE_REFERENCE.match(clause, match.end() + len(clause[match.end():]) - len(clause[match.end():].lstrip()))
         if reference and _REVISION_NOUN.match(clause, reference.end()):
@@ -181,58 +201,66 @@ def _compliance_propositions(clause, declaration, previous_code):
     return sorted(predicates, key=lambda item: (item["predicate_start"], item["predicate_end"]))
 
 
-def claims(quote, *, declaration=False):
-    """Locate subjects and predicates within one physical block, including neutral gaps."""
-    start = 0
-    reference = None
-    explicit_code = None
-    for boundary in [*(_CLAUSE_BREAK.finditer(quote)), None]:
-        end = boundary.start() if boundary else len(quote)
+def _block_claims(quote, block, incoming, *, declaration=False, scoped_block=False, preserve_unresolved=False):
+    """Locate claims and return the continuing subject and reporting code."""
+    reference, explicit_code, other_code = incoming
+    assertions = []
+    for start, end in clause_spans(quote):
         clause = quote[start:end]
         tables = table_numbers(clause)
         # A new named table and estimate replace the antecedent. A subject
         # switch without a unique table remains visible as ambiguous instead
         # of borrowing the preceding estimate. A neutral clause leaves both
         # the subject and the reporting-standard reference available.
-        scope_change = bool(tables or _OLD.search(clause) or _NEW_ESTIMATE.search(clause)
-                            or _INDEFINITE_ESTIMATE.search(clause) or _PROJECT_TOPIC.search(clause)
-                            or (reference and _LATEST_ESTIMATE.search(clause)
-                                and _OLD.search(quote[reference[0]:reference[1]])))
+        scope_change = changes_estimate_subject(clause, previous_subject=reference.span.text if reference else None)
         if _OTHER_REPORTING_CODE.search(clause) and not re.search(_CODE, clause, re.I):
-            explicit_code = None
-        propositions = _compliance_propositions(clause, declaration, explicit_code is not None)
+            explicit_code, other_code = None, True
+        propositions = _compliance_propositions(clause, declaration, explicit_code is not None,
+                                                preserve_unresolved and not other_code)
         for assertion in propositions:
             subject = clause[:assertion["subject_end"]]
-            anaphor = _ANAPHOR.match(subject)
+            anaphor = _ANAPHOR.match(subject) or _implicit_subject(subject)
             bindings = {key: start + value if key.endswith(("_start", "_end")) else value
                         for key, value in assertion.items()}
             bindings["modifiers"] = [{"kind": item["kind"], "start": start + item["start"], "end": start + item["end"]}
                                      for item in assertion["modifiers"]]
             if "code_start" in bindings:
-                explicit_code = bindings["code_start"], bindings["code_end"]
+                left, right = bindings["code_start"], bindings["code_end"]
+                explicit_code, other_code = _LocatedSpan(block, left, right, quote[left:right]), False
             elif explicit_code is not None:
-                bindings["code_start"], bindings["code_end"] = explicit_code
+                if explicit_code.block == block:
+                    bindings["code_start"], bindings["code_end"] = explicit_code.start, explicit_code.end
+                else:
+                    bindings["reporting_reference"] = explicit_code
             resolved_reference = reference if anaphor and not scope_change and not _PLURAL_ANAPHOR.match(subject) else None
             if resolved_reference:
-                bindings["subject_start"], bindings["subject_end"] = resolved_reference[:2]
+                antecedent = resolved_reference.span
+                if antecedent.block == block:
+                    bindings["subject_start"], bindings["subject_end"] = antecedent.start, antecedent.end
+                else:
+                    bindings["antecedent"] = antecedent
             bindings["anaphoric"] = resolved_reference is not None
             bindings["subject_reference_unresolved"] = bool(_PLURAL_ANAPHOR.match(subject)
-                or (resolved_reference and not resolved_reference[2])
-                or (anaphor and subject.strip().casefold() in {"it", "this", "that"} and not resolved_reference
+                or (resolved_reference and not resolved_reference.unique)
+                or (anaphor and (_implicit_subject(subject) or subject.strip().casefold() in {"it", "this", "that"})
+                    and not resolved_reference
                     and not tables))
-            yield {"start": start, "end": end, **bindings}
+            assertions.append({"start": start, "end": end, **bindings})
         if scope_change:
-            reference = (start, end, len(tables) == 1 and bool(_RESOURCE_REFERENCE.search(clause)))
-        if boundary:
-            start = boundary.end()
+            reference = _Antecedent(_LocatedSpan(block, start, end, clause),
+                                    len(tables) == 1 and bool(_RESOURCE_REFERENCE.search(clause)))
+        elif not reference and scoped_block and propositions and _RESOURCE_REFERENCE.search(clause):
+            reference = _Antecedent(_LocatedSpan(block, start, end, clause), True)
+    return assertions, (reference, explicit_code, other_code)
+
+
+def claims(quote, *, declaration=False):
+    """Locate subjects and predicates within one physical block, including neutral gaps."""
+    yield from _block_claims(quote, None, (None, None, False), declaration=declaration)[0]
 
 
 def scope_stem(text):
     return _SCOPE_END.sub("", text or "").strip().casefold()
-
-
-def table_numbers(text):
-    return {match[1] for match in _TABLE.finditer(text)}
 
 
 def section_matches(text, scope, effective):
@@ -264,8 +292,77 @@ def _disposition(scoped):
     return status, reason
 
 
+def _block_order(witness):
+    box = witness["bbox"]
+    return witness["physical_page"], box[1], box[0], box[3], box[2]
+
+
+def _near_previous_block(left, right):
+    if (left["physical_page"] != right["physical_page"]
+            or left.get("source_sha256") != right.get("source_sha256")
+            or left.get("source_id") != right.get("source_id")):
+        return False
+    a, b = left["bbox"], right["bbox"]
+    return (0 <= b[1] - a[3] <= _MAX_BLOCK_GAP and abs(a[0] - b[0]) <= _MAX_BLOCK_LEFT_OFFSET
+            and min(a[2], b[2]) > max(a[0], b[0]))
+
+
+def _starts_section(witness):
+    text = witness["quote"]
+    return (witness["origin"] in {"SCOPE_CAPTION", "NATIVE_SECTION"} or estimate_heading(text)
+            or _LAYOUT_HEADING.search(text))
+
+
+def _span_record(span, witnesses):
+    witness = witnesses[span.block]
+    return {name: witness[name] for name in ("source_sha256", "source_id", "physical_page", "bbox", "quote", "origin")
+            if name in witness} | {"start": span.start, "end": span.end}
+
+
+def _located_claims(witnesses):
+    """Replay only immediate, unambiguous same-column neighbors on a physical page."""
+    witnesses = sorted(witnesses, key=_block_order)
+    states = {}
+    preceding = []
+    for index, witness in enumerate(witnesses):
+        path = ()
+        incoming = (None, None, False)
+        box = witness["bbox"]
+        preceding = [prior for prior in preceding if witnesses[prior]["physical_page"] == witness["physical_page"]
+                     and witnesses[prior]["bbox"][3] >= box[1] - _MAX_BLOCK_GAP]
+        if not _starts_section(witness):
+            neighbors = [prior for prior in preceding if _near_previous_block(witnesses[prior], witness)]
+            if neighbors:
+                nearest_y = max(witnesses[prior]["bbox"][3] for prior in neighbors)
+                nearest = [prior for prior in neighbors if nearest_y - witnesses[prior]["bbox"][3] <= 1]
+                if len(nearest) == 1:
+                    inherited, state = states[nearest[0]]
+                    if len(inherited) < _MAX_DISCOURSE_BLOCKS:
+                        path, incoming = inherited, state
+        origin = witness["origin"]
+        assertions, outgoing = _block_claims(witness["quote"], index, incoming,
+                                             declaration=origin in {"SCOPE_CAPTION", "NATIVE_SECTION"},
+                                             scoped_block=origin in {"MATCHED_ESTIMATE_SECTION", "BOUND_ESTIMATE_CONTEXT"},
+                                             preserve_unresolved=True)
+        reference, code, _ = outgoing
+        retained_from = min(index, reference.span.block if reference else index, code.block if code else index)
+        states[index] = (tuple(prior for prior in (*path, index) if prior >= retained_from), outgoing)
+        preceding.append(index)
+        for assertion in assertions:
+            for name in ("antecedent", "reporting_reference"):
+                if span := assertion.get(name):
+                    assertion[name] = _span_record(span, witnesses)
+            yield witness, assertion, [witnesses[prior] for prior in path]
+
+
+def _subject_text(quote, assertion):
+    if antecedent := assertion.get("antecedent"):
+        return antecedent["quote"][antecedent["start"]:antecedent["end"]]
+    return quote[assertion["subject_start"]:assertion["subject_end"]]
+
+
 def _proposition_tables(quote, assertion):
-    subject = quote[assertion["subject_start"]:assertion["subject_end"]]
+    subject = _subject_text(quote, assertion)
     clause = quote[assertion["start"]:assertion["end"]]
     return table_numbers(subject) or table_numbers(clause)
 
@@ -273,62 +370,105 @@ def _proposition_tables(quote, assertion):
 def evaluate(witnesses, subject, *, projects_in, dates_in):
     """Keep unrelated assertions as evidence without lending their standard to this row."""
     evidence = []
+    discourse_context = {}
     table = subject["reported_table_label"]
-    for witness in witnesses:
+    for witness, assertion, preceding in _located_claims(witnesses):
         quote = witness["quote"]
         origin = witness["origin"]
         declaration = origin in {"SCOPE_CAPTION", "NATIVE_SECTION"}
-        quote_names_target = table in table_numbers(quote)
-        for assertion in claims(quote, declaration=declaration):
-            clause = quote[assertion["start"]:assertion["end"]]
-            subject_side = quote[assertion["subject_start"]:assertion["subject_end"]]
-            named = _proposition_tables(quote, assertion)
-            old = _OLD.search(subject_side)
-            proof = None
-            projects, dates = projects_in(subject_side), dates_in(subject_side) | dates_in(clause)
-            estimate_years = {match[1] for match in _ESTIMATE_YEAR.finditer(subject_side)
-                              if not _REPORTING_CODE_BEFORE_YEAR.search(subject_side[:match.start()])}
-            effective_date = subject["effective_date"]
-            foreign = bool(projects - {subject["project_id"]} or dates - {effective_date}
-                           or (effective_date and estimate_years - {effective_date[:4]}))
-            gap = quote[assertion["subject_end"]:assertion["start"]] if assertion["anaphoric"] else ""
-            conflicting_gap = bool(gap and (projects_in(gap) - {subject["project_id"]}
-                                            or dates_in(gap) - {subject["effective_date"]}))
-            if named and named != {table}:
-                applicability = "TARGET_SCOPE_AMBIGUOUS" if table in named else "OTHER_ESTIMATE"
-            elif foreign:
-                applicability = "TARGET_SCOPE_AMBIGUOUS" if named == {table} else "OTHER_ESTIMATE"
-            elif assertion["subject_reference_unresolved"] or conflicting_gap:
-                applicability = ("TARGET_SCOPE_AMBIGUOUS" if named == {table} or quote_names_target or declaration
-                                 or origin in {"ADJACENT_ESTIMATE_NOTE", "MATCHED_ESTIMATE_SECTION",
-                                               "BOUND_ESTIMATE_CONTEXT"} else "UNRESOLVED")
-            elif old and not (declaration or named == {table} and witness["physical_page"] == subject["physical_page"]):
-                applicability = "TARGET_SCOPE_AMBIGUOUS" if named == {table} else "OTHER_ESTIMATE"
-            elif declaration:
-                applicability, proof = "TARGET", origin
-            elif origin == "BOUND_ESTIMATE_CONTEXT":
-                applicability, proof = "TARGET", origin
-            elif named == {table}:
-                if (witness["physical_page"] == subject["physical_page"]
-                        and subject.get("reported_table_unique_on_page", True)):
-                    applicability, proof = "TARGET", "TABLE_REFERENCE"
-                elif origin == "MATCHED_ESTIMATE_SECTION":
-                    applicability, proof = "TARGET", origin
-                else:
-                    applicability = ("TARGET_SCOPE_AMBIGUOUS" if witness["physical_page"] == subject["physical_page"]
-                                     else "UNRESOLVED")
-            elif origin == "ADJACENT_ESTIMATE_NOTE" and _CURRENT.search(subject_side) and assertion["polarity"] == "DENIED":
-                applicability, proof = "TARGET", origin
-            elif origin == "ADJACENT_ESTIMATE_NOTE" and not subject_side.strip(" •:-–—()") and assertion["polarity"] == "DENIED":
-                # A nearby subject-free denial could contradict this table, but supplies no definitive estimate identity.
-                applicability = "TARGET_SCOPE_AMBIGUOUS"
+        clause = quote[assertion["start"]:assertion["end"]]
+        subject_side = _subject_text(quote, assertion)
+        antecedent = assertion.get("antecedent")
+        named = _proposition_tables(quote, assertion)
+        old = older_estimate(subject_side)
+        proof = None
+        projects, dates = projects_in(subject_side), dates_in(subject_side) | dates_in(clause)
+        effective_date = subject["effective_date"]
+        years = estimate_years(subject_side)
+        earlier_dated_estimate = bool(old and effective_date and (
+            max(dates) < effective_date if dates else years and max(years) < effective_date[:4]))
+        other_named_project = bool(subject["project_id"] and len(projects) == 1 and subject["project_id"] not in projects)
+        separate = other_estimate(subject_side)
+        separate_date = bool(effective_date and (len(dates) == 1 and effective_date not in dates
+                             or not dates and len(years) == 1 and effective_date[:4] not in years))
+        foreign = bool(projects - {subject["project_id"]} or dates - {effective_date}
+                       or (effective_date and years - {effective_date[:4]}))
+        gap = quote[assertion["subject_end"]:assertion["start"]] if assertion["anaphoric"] and not antecedent else ""
+        if antecedent:
+            start = next((i for i, block in enumerate(preceding) if (block["bbox"], block["quote"]) ==
+                          (antecedent["bbox"], antecedent["quote"])), len(preceding))
+            gap = " ".join([antecedent["quote"][antecedent["end"]:],
+                            *(block["quote"] for block in preceding[start + 1:]), quote[:assertion["start"]]])
+        conflicting_gap = bool(gap and (projects_in(gap) - {subject["project_id"]} or dates_in(gap) - {effective_date}))
+        if named and named != {table}:
+            applicability = "TARGET_SCOPE_AMBIGUOUS" if table in named else "OTHER_ESTIMATE"
+        elif earlier_dated_estimate or other_named_project or separate and separate_date:
+            applicability = "OTHER_ESTIMATE"
+        elif separate:
+            applicability = "TARGET_SCOPE_AMBIGUOUS" if named == {table} else "UNRESOLVED"
+        elif foreign:
+            applicability = "TARGET_SCOPE_AMBIGUOUS" if named == {table} else "OTHER_ESTIMATE"
+        elif old and not named and not declaration:
+            applicability = "OTHER_ESTIMATE"
+        elif assertion["subject_reference_unresolved"] or assertion.get("reporting_code_unresolved") or conflicting_gap:
+            near_target = (named == {table} or table in table_numbers(quote) or declaration
+                           or origin in {"ADJACENT_ESTIMATE_NOTE", "MATCHED_ESTIMATE_SECTION", "BOUND_ESTIMATE_CONTEXT"})
+            applicability = "TARGET_SCOPE_AMBIGUOUS" if near_target else "UNRESOLVED"
+        elif old and not (declaration or named == {table} and witness["physical_page"] == subject["physical_page"]):
+            applicability = "TARGET_SCOPE_AMBIGUOUS" if named == {table} else "OTHER_ESTIMATE"
+        elif declaration:
+            applicability, proof = "TARGET", origin
+        elif origin == "BOUND_ESTIMATE_CONTEXT" and any(left <= assertion["start"] and assertion["end"] <= right
+                                                       for left, right in witness.get("bound_spans", ())):
+            applicability, proof = "TARGET", origin
+        elif named == {table}:
+            if (witness["physical_page"] == subject["physical_page"] and subject.get("reported_table_unique_on_page", True)):
+                applicability, proof = "TARGET", _CONTINUATION if antecedent else "TABLE_REFERENCE"
             elif origin == "MATCHED_ESTIMATE_SECTION":
                 applicability, proof = "TARGET", origin
             else:
-                applicability = "UNRESOLVED"
-            evidence.append({**witness, **assertion, "applicability": applicability, "binding": proof})
+                applicability = ("TARGET_SCOPE_AMBIGUOUS" if witness["physical_page"] == subject["physical_page"]
+                                 else "UNRESOLVED")
+        elif origin == "ADJACENT_ESTIMATE_NOTE" and _CURRENT.search(subject_side) and assertion["polarity"] == "DENIED":
+            applicability, proof = "TARGET", origin
+        elif origin == "ADJACENT_ESTIMATE_NOTE" and _implicit_subject(subject_side) and assertion["polarity"] == "DENIED":
+            # A nearby subject-free denial could contradict this table, but supplies no definitive estimate identity.
+            applicability = "TARGET_SCOPE_AMBIGUOUS"
+        elif origin == "MATCHED_ESTIMATE_SECTION":
+            applicability, proof = "TARGET", origin
+        else:
+            applicability = "UNRESOLVED"
+        if antecedent or assertion.get("reporting_reference"):
+            for block in [*preceding, witness]:
+                discourse_context[block["physical_page"], tuple(block["bbox"]), block["quote"]] = block
+        evidence.append({**witness, **assertion, "applicability": applicability, "binding": proof})
     status, reason = _disposition({(x["applicability"], x["polarity"]) for x in evidence})
-    return {"version": VERSION, "status": status, "reason": reason, "subject": subject, "evidence": evidence}
+    return {"version": VERSION, "status": status, "reason": reason, "subject": subject, "evidence": evidence,
+            "discourse_context": list(discourse_context.values())}
+
+
+def _anchor_key(anchor):
+    return anchor.page, anchor.bbox, anchor.quote
+
+
+def _replay_witnesses(anchors):
+    witnesses = {}
+    for anchor in anchors:
+        if anchor.role not in ROLE_TO_SCOPE and anchor.role != _DISCOURSE_ROLE:
+            continue
+        origin = anchor.locator if anchor.role == _DISCOURSE_ROLE else "SAME_PAGE"
+        if anchor.role != _DISCOURSE_ROLE:
+            if any(other.role in {"scope", "resource_section"} and _anchor_key(other) == _anchor_key(anchor)
+                   and other.table == anchor.table for other in anchors):
+                origin = "SCOPE_CAPTION" if anchor.row is None else "NATIVE_SECTION"
+            elif anchor.locator in {"MATCHED_ESTIMATE_SECTION", "BOUND_ESTIMATE_CONTEXT", "ADJACENT_ESTIMATE_NOTE"}:
+                origin = anchor.locator
+        key = _anchor_key(anchor)
+        if key not in witnesses or anchor.role == _DISCOURSE_ROLE:
+            witnesses[key] = {"physical_page": anchor.page, "bbox": anchor.bbox, "quote": anchor.quote,
+                              "source_sha256": anchor.sha256, "source_id": anchor.source_id, "origin": origin}
+    for witness, assertion, _ in _located_claims(witnesses.values()):
+        yield (witness["physical_page"], witness["bbox"], witness["quote"], assertion["start"], assertion["end"]), assertion
 
 
 def admission_issue(raw):
@@ -340,16 +480,15 @@ def admission_issue(raw):
     anchors = [anchor for anchor in raw.evidence_anchors
                if (anchor.sha256, anchor.source_id) == (raw.evidence.sha256, raw.evidence.source_id)
                and anchor.page is not None and anchor.bbox and anchor.quote]
+    parsed = {}
+    for key, proposition in _replay_witnesses(anchors):
+        parsed.setdefault(key, []).append(proposition)
     scoped = set()
     for anchor in anchors:
         applicability = ROLE_TO_SCOPE.get(anchor.role)
         if not applicability or not anchor.text_span:
             continue
-        declaration = anchor.locator in {"SCOPE_CAPTION", "NATIVE_SECTION"} or any(
-            other.role in {"scope", "resource_section"} and (other.page, other.table, other.quote, other.bbox) ==
-            (anchor.page, anchor.table, anchor.quote, anchor.bbox) for other in anchors)
-        propositions = [item for item in claims(anchor.quote, declaration=declaration)
-                        if (item["start"], item["end"]) == anchor.text_span.in_quote]
+        propositions = parsed.get((*_anchor_key(anchor), *anchor.text_span.in_quote), ())
         polarities = {item["polarity"] for item in propositions}
         if applicability == "TARGET":
             if anchor.locator in {"SCOPE_CAPTION", "NATIVE_SECTION"}:
@@ -357,15 +496,19 @@ def admission_issue(raw):
                 bound = (anchor.page, anchor.table) == (raw.evidence.page, raw.evidence.table) and any(
                     other.role == role and (other.page, other.table, other.quote, other.bbox) ==
                     (anchor.page, anchor.table, anchor.quote, anchor.bbox) for other in anchors)
-            elif anchor.locator == "TABLE_REFERENCE":
+            elif anchor.locator in {"TABLE_REFERENCE", _CONTINUATION}:
                 bound = bool(anchor.page == raw.evidence.page and table and propositions
                              and context.get("reported_table_unique_on_page") != "false"
                              and all(not item["subject_reference_unresolved"]
+                             and not item.get("reporting_code_unresolved")
+                             and bool(item.get("antecedent")) == (anchor.locator == _CONTINUATION)
                              and _proposition_tables(anchor.quote, item) == {table} for item in propositions))
             elif anchor.locator == "BOUND_ESTIMATE_CONTEXT":
                 bound = bool(propositions and all(not item["subject_reference_unresolved"] for item in propositions)
                              and any(other.role == "estimate_identity_reference"
                                      and (other.page, other.quote, other.bbox) == (anchor.page, anchor.quote, anchor.bbox)
+                                     and other.text_span and other.text_span.in_quote[0] <= anchor.text_span.in_quote[0]
+                                     and anchor.text_span.in_quote[1] <= other.text_span.in_quote[1]
                                      for other in anchors))
             elif anchor.locator == "MATCHED_ESTIMATE_SECTION":
                 bound = any(other.role == "jorc_section_scope" and other.page == anchor.page
@@ -379,7 +522,7 @@ def admission_issue(raw):
                          and _CURRENT.search(anchor.quote[start:end]))
             else:
                 bound = False
-            if not bound:
+            if not bound or any(other_estimate(_subject_text(anchor.quote, item)) for item in propositions):
                 applicability = "TARGET_SCOPE_AMBIGUOUS"
         scoped.update((applicability, polarity) for polarity in polarities)
     status, reason = _disposition(scoped)

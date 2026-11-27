@@ -56,8 +56,8 @@ jobs:
     needs: change_scope
     if: needs.change_scope.outputs.run_pipeline == 'true' && (github.event_name == 'pull_request' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.refresh))
     runs-on: ubuntu-latest
-    # Full archive reconstruction and artifact publication took 31 minutes in PR #19.
-    timeout-minutes: 45
+    # PR #25 took over 40 minutes before the added holdout rebuild.
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
         with:
@@ -214,6 +214,32 @@ jobs:
           mkdir -p work/resource-admission-delta
           PYTHONPATH="$baseline/src" python tests/test_resource_admission_review_pdf.py --proposition-receipt work/resource-admission-delta/jorc-before.json
           PYTHONPATH=src python tests/test_resource_admission_review_pdf.py --proposition-receipt work/resource-admission-delta/jorc-after.json
+      - name: Replay the same two estimate-scope PDF originals
+        run: |
+          baseline=$(mktemp -d)
+          git archive e75a822c54f86682a3175f1d27cf85912c7479d9 src | tar -x -C "$baseline"
+          outputs=work/resource-admission-delta
+          python tests/test_resource_admission_review_pdf.py --prepare-scope-replay "$outputs/scope-originals"
+          inputs="$outputs/scope-originals/scope-fixtures.json"
+          PYTHONPATH="$baseline/src" python tests/test_resource_admission_review_pdf.py --scope-replay "$inputs" "$outputs/scope-before.json"
+          PYTHONPATH=src python tests/test_resource_admission_review_pdf.py --scope-replay "$inputs" "$outputs/scope-after.json"
+          PYTHONPATH=src python tests/test_resource_admission_review_pdf.py --scope-replay "$inputs" "$outputs/scope-after-with-history.json" "$outputs/scope-before.json"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          base = Path('work/resource-admission-delta')
+          prior, fixed = (json.loads((base / f'scope-{tag}.json').read_text())['cases'] for tag in ('before', 'after'))
+          history = json.loads((base / 'scope-after-with-history.json').read_text())['cases']
+          assert len(prior) == 2 and prior.keys() == fixed.keys()
+          for name, expected in prior.items():
+              actual = fixed[name]
+              assert expected['source_sha256'] == actual['source_sha256'] and actual['source_check']['sha_verified']
+              assert expected['new_canonical_observations'] == 3 and expected['selected_resource']['contained_treo_kt'] == 100
+              assert actual['new_canonical_observations'] == 0 and actual['selected_resource'] is None
+              assert history[name]['canonical_observations'] == expected['canonical_observations']
+              assert not history[name]['active_admission_observation_ids']
+              assert history[name]['selected_resource'] is None and history[name]['new_canonical_observations'] == 0
+          PY
       - name: Verify reported TREO reaches existing MCDA from the locked PDF
         run: |
           common=(--as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json
@@ -264,6 +290,26 @@ jobs:
               assert scope['policy']['mode'] == 'full-text' and scope['effective_frame_sources']
               assert result['comparison']['changed_factors'] == ['admission_retrieval']
           PY
+      - name: Validate the frozen additional report families
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json \
+            --mcda-weight-calculation ordered-domain-fsum-v2 --mcda-trace-panel issuer_resource_composition \
+            --resource-retrieval full-text --resource-admission config/ontology/resource_admission_validation_frame_v1.json \
+            --work work/resource-admission-validation-frame
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from au_ree_v2.formal_resource_refresh import compare
+          def output(folder):
+              return json.loads((Path('work') / folder / 'latest.json').read_text())['output_dir']
+          delta = compare(output('resource-admission-fulltext'), output('resource-admission-validation-frame'),
+                          'work/resource-admission-delta/validation', mode='auto', include_uncertainty=True)
+          change = delta['comparison']
+          assert set(change['changed_factors']) == {'admission_frame', 'admission_retrieval'}
+          assert not change['source_editions_changed'] and not change['rules_changed']
+          holdout = delta['admission']['updated']['frame_validation']['sources']
+          assert sum(source['role'] == 'HOLDOUT' for source in holdout.values()) == 4
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -275,6 +321,8 @@ jobs:
             work/resource-admission-fixed-fulltext/runs/*/resource_admission.json
             work/resource-admission-replay/runs/*/resource_admission.json
             work/resource-admission-fulltext/runs/*/resource_admission.json
+            work/resource-admission-validation-frame/runs/*/resource_admission.json
+            work/resource-admission-delta/scope-originals/**/*.pdf
             work/resource-admission-delta/**/*.json
           if-no-files-found: warn
       - name: Phase 22 second clean reconstruction

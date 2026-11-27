@@ -13,7 +13,7 @@ from .selection_rules import is_automatic_resource_admission
 from .store import digest, filehash
 
 
-VERSION = 'formal-resource-refresh-v4'
+VERSION = 'formal-resource-refresh-v5'
 RANK_NUMBERS = ('promethee', 'saw', 'topsis', 'promethee_rank', 'saw_rank', 'topsis_rank')
 COMPARISON_MODES = frozenset({'auto', 'rule_effect', 'admission_effect', 'retrieval_effect', 'source_update', 'replay'})
 SOURCE_TRANSPORT_FIELDS = frozenset({'path', 'url', 'acquired_at'})
@@ -53,6 +53,8 @@ def _checked_inputs(run):
             expected['effective_frame_sources_sha256'] = contract['effective_frame_sources_sha256']
             if digest(receipt['effective_frame_sources']) != contract['effective_frame_sources_sha256']:
                 raise ValueError('REFRESH_RETRIEVAL_SCOPE_NOT_BOUND_TO_RUN')
+        if contract.get('frame_validation') != receipt.get('frame_validation'):
+            raise ValueError('REFRESH_FRAME_VALIDATION_NOT_BOUND_TO_RUN')
         expected.update(run_id=summary['run_id'], cutoff=summary['cutoff'], snapshot_sha256=summary['snapshot_sha256'])
         if any(receipt.get(key) != value for key, value in expected.items()):
             raise ValueError('REFRESH_ADMISSION_RECEIPT_NOT_BOUND_TO_RUN')
@@ -203,7 +205,7 @@ def _admission_ledger(run, receipt, rows):
     if receipt is not None:
         ledger['receipt_sha256'] = run.hashes['resource_admission.json']
         for key in ('counts', 'frame_counts', 'source_dispositions', 'excluded_sources', 'observation_actions',
-                    'source_counts', 'retrieval_sources'):
+                    'source_counts', 'retrieval_sources', 'frame_validation'):
             if key in receipt:
                 ledger[key] = receipt[key]
     return ledger, {identifier: automatic[identifier] for identifier in active}
@@ -251,6 +253,46 @@ def _context_field_improvements(old, new):
         group['occurrences'].append({'physical_page': locator[1], 'table': locator[2], 'row': locator[3],
                                      'admission_status': row['status'], 'evidence': binding['evidence']})
     return list(found.values())
+
+
+def _numeric_candidate_changes(old, new):
+    """Compare verified physical cells independently of admission IDs and research values."""
+    conditions = ('category', 'estimate_period', 'cutoff_grade', 'product_role', 'particle_size_um', 'particle_size')
+
+    def by_cell(receipt):
+        result = {}
+        for row in (receipt or {}).get('dispositions', ()):
+            for item in (*row.get('observations', ()), *row.get('material_observations', ())):
+                if not (item.get('numeric_and_unit_located') and item.get('evidence_status') == 'VERIFIED'):
+                    continue
+                raw = item['raw']
+                anchor = raw['evidence']
+                key = tuple(anchor[field] for field in ('sha256', 'page', 'table', 'row', 'column'))
+                if key[0] != row['source_sha256'] or any(type(index) is not int for index in key[1:]):
+                    continue
+                labels = dict(raw.get('context', {}).get('conditions', ()))
+                detail = {'variable': raw['variable'], 'value': raw['original_value'],
+                          'unit': raw['original_unit'], 'source_key': row['source_key'],
+                          'project_id': raw.get('project_id'), 'scope': raw.get('scope_id'),
+                          'effective_date': raw.get('effective_date'), 'material_basis': raw.get('material_basis'),
+                          'denominator_basis': raw.get('denominator_basis'), 'chemical_basis': raw.get('chemical_basis'),
+                          'reported_context': {field: labels[field] for field in conditions if field in labels},
+                          'original_quote': anchor['quote'], 'bbox': anchor['bbox']}
+                result.setdefault(key, {})[digest(detail)] = detail
+        return result
+
+    before, after = by_cell(old), by_cell(new)
+    changes = []
+    for cell in sorted(before.keys() | after.keys()):
+        previous, current = before.get(cell, {}), after.get(cell, {})
+        if previous != current:
+            kind = 'newly_verified_cell' if not previous else 'no_longer_verified_cell' if not current else 'changed_mapping'
+            changes.append({'kind': kind,
+                            **dict(zip(('source_sha256', 'physical_page', 'table', 'row', 'column'), cell, strict=True)),
+                            'baseline': [previous[key] for key in sorted(previous)],
+                            'updated': [current[key] for key in sorted(current)]})
+    return {'unit': 'PHYSICAL_PDF_CELL_NOT_AN_INDEPENDENT_RESEARCH_FACT',
+            'counts': dict(Counter(row['kind'] for row in changes)), 'differences': changes}
 
 
 def _selected_value_reason(before, after):
@@ -520,6 +562,7 @@ def compare(baseline_run, updated_run, output, *, mode='auto', include_uncertain
                    'Compatibility alias of projects_with_new_canonical_observations; does not count newly created Projects.',
                'evidence_change_accounting': evidence_accounting,
                'context_field_improvements': _context_field_improvements(old_admit, admit),
+               'numeric_candidate_changes': _numeric_candidate_changes(old_admit, admit),
                'automatic_observation_transitions': {
                    'newly_present': [_observation_trace(active_rows[obs]) for obs in sorted(new_ids)],
                    'no_longer_enabled': [_observation_trace(old_active[obs]) | {

@@ -338,3 +338,13 @@ au-ree-v2 rebuild --as-of 2026-11-05 \
 候選排序用於選頁。跨頁補入欄位需要找到同一估算的關聯，保存原件 SHA、實體頁碼、原文與版面位置。JORC 命題通過中性句時可延續已解析的主體，遇到新的估算或有多個可能主體時重新綁定或暫緩。自動觀測使用 `automatic-resource-admission-v4`，歷史版本維持當次啟用檢查。 [原文解析](../src/au_ree_v2/resource_source.py) · [JORC 命題](../src/au_ree_v2/resource_jorc.py)
 
 在同版、同來源、同框架下，以 `formal_resource_refresh.compare(..., mode="retrieval_effect")` 比較固定頁與全文檢索。固定頁面的修改前後仍用 `rule_effect`。收據按估算分組呈現可定位的補證欄位，另計儲存、版本重驗證、正式選值、矩陣及排名變動。獨立證據增益與準確率缺乏參照時保留為未量測。 [差異收據](../src/au_ree_v2/formal_resource_refresh.py)
+
+## 第八輪 估計範圍、表格分類與粒級
+
+補證欄位綁定自己的命題與估計。來源收據保存身分命題和各欄位在原區塊中的位置。估計、專案或材料改變時，重新建立證據關聯。JORC 判定可在具有連續位置與可解析主體的區塊間延續引用。相互矛盾或歸屬不明的命題保留原位置和未採納原因。自動觀測使用 `automatic-resource-admission-v5`，仍按當次驗證的觀測 ID 啟用。 [入庫與重驗證](../src/au_ree_v2/formal_resource_admission.py)
+
+表格分類可由具版面關聯的表題、區段表頭、資料列或註解取得。擷取保存原始截品物種與單位、副產品角色、粒級及其材料分母。原礦與細粒的數值各有來源位置，獨立核驗。正式 R1 仍使用原定材料與可比性準則。差異收據分列已核驗的物理儲存格變動、可追溯補證欄位、版本重驗證與分析數值。獨立證據增益缺乏參照時保留為未量測。 [表格擷取](../src/au_ree_v2/resource_source.py) · [差異收據](../src/au_ree_v2/formal_resource_refresh.py)
+
+登錄的局部名稱可用於 Project 配對。若同一實體表另外有同名的總量區段和唯一的 Total 數值列，可據此驗證該表涵蓋已登錄的研究範圍。如 Wolverine 的開採分項仍各自保留，正式選值只採同名區段的唯一總量列。 [鎖定原件回歸](../tests/test_resource_table_layout.py)
+
+第八輪留出框架在新版擷取前固定了 North Stanmore、Lyons、Donald 與 Mangaroon 的原件、缺項、文件家族及搜尋範圍。以相同 Phase 22 來源鎖檔比較原補充框架和擴充框架。`compare(..., mode="auto")` 保存框架與實際檢索範圍的變動，規則和來源版本另有欄位。 [留出框架](../config/ontology/resource_admission_validation_frame_v1.json)

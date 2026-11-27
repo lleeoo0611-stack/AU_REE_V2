@@ -19,7 +19,7 @@ from .resource_estimate import reported_resource_table_label as _table_label
 from .resource_jorc import admission_issue as jorc_admission_issue
 from .resource_source import (
     _CONTEXT_ROLES, _CUTOFF_CELL, _CUTOFF_COLUMN, _cutoff, _effective_dates, _estimate_dates_in_context,
-    discover, verified_context_anchors,
+    discover, locally_bound_span, verified_context_anchors,
 )
 from .selection_rules import RESOURCE_ADMISSION_VERSION, RESOURCE_ADMISSION_VERSION_GLOB, date_end, source_check
 from .store import canonical, digest, filehash
@@ -106,11 +106,26 @@ def _value_disposition(raw, source, selected_row):
     return None, True, True
 
 
+def _value_evidence_detail(raw, source, selected_row):
+    issue, numeric, unit = _value_disposition(raw, source, selected_row)
+    return dict(raw_observation_id=raw.observation_id, raw_id=raw.raw_id,
+                numeric_located=numeric, numeric_and_unit_located=unit,
+                evidence_status="VERIFIED" if not issue else "UNVERIFIED", evidence_issue=issue,
+                raw=payload(raw))
+
+
+def _attested_text(anchor):
+    if anchor.text_span is None:
+        return anchor.quote
+    start, end = anchor.text_span.in_quote
+    return anchor.quote[start:end]
+
+
 def _cutoff_issue(raw, anchors, row, contextual):
     context = _scope_conditions(raw)
     expected = cutoff_signature(normalize_cutoff(context.get("cutoff_grade") or context.get("cutoff")))
     found = set(_cutoff([*(anchor.quote for anchor in anchors if anchor.role == "scope"),
-                         *(anchor.quote for anchor in contextual if anchor.role == "estimate_cutoff")]))
+                         *(_attested_text(anchor) for anchor in contextual if anchor.role == "estimate_cutoff")]))
     for anchor in anchors:
         if anchor.role != "cutoff_value" or anchor.row != row or type(anchor.column) is not int:
             continue
@@ -127,7 +142,7 @@ def _cutoff_issue(raw, anchors, row, contextual):
     return None
 
 
-def _group_context(observations, source, project_ids, cutoff, selected_row):
+def _group_context(observations, source, project_ids, cutoff, selected_row, *, registry=()):
     first = observations[0]
     if first.project_id not in project_ids:
         return "PROJECT_SOURCE_BINDING_NOT_ESTABLISHED"
@@ -150,6 +165,8 @@ def _group_context(observations, source, project_ids, cutoff, selected_row):
         return "RESOURCE_CLASSIFICATION_SCOPE_OR_CUTOFF_UNRESOLVED"
     if any(item.quantity_kind != "RESOURCE" or item.chemical_basis != "TREO" for item in observations):
         return "RESOURCE_QUANTITY_OR_CHEMICAL_BASIS_MISMATCH"
+    if any(_scope_conditions(item).get("particle_size_um") is not None for item in observations):
+        return "RESOURCE_PARTICLE_SIZE_FRACTION_NOT_COMPARABLE"
     if first.denominator_basis not in DENOMINATORS or any(
             item.material_basis not in MATERIALS and not (item.variable == "contained_treo_kt"
             and item.material_basis == "RESOURCE_CONTAINED_OXIDE_MASS_KT") for item in observations):
@@ -163,11 +180,17 @@ def _group_context(observations, source, project_ids, cutoff, selected_row):
     if any((item.publication_date and item.publication_date != source["publication_date"])
            or (item.acquisition_date and item.acquisition_date != source["acquired_at"]) for item in observations):
         return "RESOURCE_SOURCE_TIMING_MISMATCH"
-    contextual = set(verified_context_anchors(observations))
+    contextual = set(verified_context_anchors(observations, registry))
     if any(anchor.role in _CONTEXT_ROLES.values() and anchor not in contextual
            for item in observations for anchor in item.evidence_anchors):
         return "RESOURCE_CONTEXT_EVIDENCE_BINDING_MISMATCH"
     for item in observations:
+        for anchor in item.evidence_anchors:
+            if anchor.role == "estimate_reference" and anchor.locator in {
+                    "SCOPED_ADJACENT_ESTIMATE_NOTE", "SAME_NAMED_REPORT_AND_MATCHED_ESTIMATE_SECTION"} and (
+                    not anchor.quote or not anchor.text_span or anchor.text_span.in_quote != locally_bound_span(
+                        anchor.quote, context.get("reported_table_label"), first.project_id, registry)):
+                return "RESOURCE_CONTEXT_EVIDENCE_BINDING_MISMATCH"
         anchors = [anchor for anchor in item.evidence_anchors
                    if anchor.source_id == source["key"] and _location(anchor)[:3] == (source["sha256"], *selected_row[:2])
                    and anchor.quote and anchor.bbox]
@@ -176,11 +199,11 @@ def _group_context(observations, source, project_ids, cutoff, selected_row):
             return "RESOURCE_SCOPE_OR_ROW_EVIDENCE_MISSING"
         if not any(anchor.role == "row" and anchor.row == selected_row[2] for anchor in anchors):
             return "RESOURCE_ROW_EVIDENCE_MISMATCH"
-        dates = _effective_dates(anchor.quote for anchor in anchors
+        dates = _effective_dates(_attested_text(anchor) for anchor in anchors
                                  if anchor.role in {"scope", "estimate_reference", "resource_section"})
         for anchor in contextual:
             if anchor.role == "estimate_effective_date":
-                dates |= _estimate_dates_in_context(anchor.quote, anchor.locator)
+                dates |= _estimate_dates_in_context(_attested_text(anchor), anchor.locator)
         if dates != {item.effective_date}:
             return "RESOURCE_EFFECTIVE_DATE_EVIDENCE_MISMATCH"
         if issue := _cutoff_issue(item, anchors, selected_row[2], contextual):
@@ -230,10 +253,11 @@ def _project_values(engine, observations):
     return facts, None
 
 
-def _evaluate(candidate, source, project_ids, cutoff, engine):
+def _evaluate(candidate, source, project_ids, cutoff, engine, *, registry=()):
     selected_row = candidate["physical_page"], candidate["table"], candidate["row"]
     observations = tuple(candidate["observations"])
-    if not all(isinstance(raw, RawObservation) for raw in observations):
+    material_observations = tuple(candidate.get("material_observations", ()))
+    if not all(isinstance(raw, RawObservation) for raw in (*observations, *material_observations)):
         raise TypeError("Resource extraction must return typed raw observations")
     issues = list(candidate.get("issues", ()))
     variables = [raw.variable for raw in observations]
@@ -242,24 +266,33 @@ def _evaluate(candidate, source, project_ids, cutoff, engine):
     columns = [raw.evidence.column for raw in observations]
     if len(set(columns)) != len(columns):
         issues.append("RESOURCE_VALUE_COLUMNS_OVERLAP")
-    details = []
-    for raw in observations:
-        issue, numeric, unit = _value_disposition(raw, source, selected_row)
-        details.append(dict(raw_observation_id=raw.observation_id, raw_id=raw.raw_id,
-                            numeric_located=numeric, numeric_and_unit_located=unit,
-                            evidence_status="VERIFIED" if not issue else "UNVERIFIED", evidence_issue=issue,
-                            raw=payload(raw)))
-        if issue:
-            issues.append(issue)
-    bound = {(anchor.role, anchor.page, anchor.bbox, anchor.quote, anchor.locator)
-             for anchor in verified_context_anchors(observations)} if observations else set()
+    details = [_value_evidence_detail(raw, source, selected_row) for raw in observations]
+    material_details = [_value_evidence_detail(raw, source, selected_row) for raw in material_observations]
+    issues.extend(item["evidence_issue"] for item in details if item["evidence_issue"])
+    bound = {(anchor.role, anchor.sha256, anchor.page, anchor.bbox, anchor.quote, anchor.locator, anchor.text_span.in_quote)
+             for anchor in verified_context_anchors(observations, registry)} if observations else set()
+    first = observations[0] if observations else None
+    claimed = ({**_scope_conditions(first), 'effective_date': first.effective_date,
+                'chemical_basis': first.chemical_basis, 'material_basis': first.material_basis,
+                'denominator_basis': first.denominator_basis} if first else {})
     gains = {}
     for field, result in candidate.get("context_field_gains", {}).items():
-        verified = [anchor for anchor in result["evidence"]
-                    if (anchor["field"], anchor["page"], tuple(anchor["bbox"]), anchor["quote"], anchor["locator"]) in bound]
+        value = result["value"]
+        if (canonical(value) if isinstance(value, dict) else value) != claimed.get(field):
+            continue
+        verified = []
+        for anchor in result["evidence"]:
+            if not (span := anchor.get("text_span")):
+                continue
+            quote_start = span.get("quote_start", 0)
+            key = (anchor["field"], anchor.get("source_sha256"), anchor["page"], tuple(anchor["bbox"]),
+                   anchor["quote"], anchor["locator"],
+                   (span["start"] - quote_start, span["end"] - quote_start))
+            if key in bound:
+                verified.append(anchor)
         if verified:
             gains[field] = {**result, "evidence": verified}
-    if observations and (issue := _group_context(observations, source, project_ids, cutoff, selected_row)):
+    if observations and (issue := _group_context(observations, source, project_ids, cutoff, selected_row, registry=registry)):
         issues.append(issue)
     facts = None
     if not issues:
@@ -274,7 +307,8 @@ def _evaluate(candidate, source, project_ids, cutoff, engine):
                 statement_id=observations[0].statement_id if observations else None,
                 estimate_id=observations[0].estimate_id if observations else None,
                 status="CANONICAL_ELIGIBLE" if facts else "NOT_ADMITTED", reasons=sorted(set(issues)),
-                observations=details, canonical_observation_ids=[]), facts, observations
+                observations=details, material_observations=material_details,
+                canonical_observation_ids=[]), facts, observations
 
 
 def _same_reported_quantity(legacy, fact):
@@ -623,7 +657,7 @@ def admit(db, root, snapshots, cutoff, page_requests, *, acquired_through=None, 
                                    context_pages=sorted(set(context_pages)),
                                    context_page_dispositions=discovery.get("context_page_dispositions", [])))
         for candidate in discovery["candidates"]:
-            summary, facts, raws = _evaluate(candidate, source, allowed[sha], cutoff, engine)
+            summary, facts, raws = _evaluate(candidate, source, allowed[sha], cutoff, engine, registry=registry)
             dispositions.append(summary)
             if facts:
                 grouped[_scientific_group(raws[0], facts)].append((summary, source, facts, raws))
@@ -670,11 +704,14 @@ def admit(db, root, snapshots, cutoff, page_requests, *, acquired_through=None, 
                 detail["canonical_observation_id"] = by_quantity[raw.variable]
     raw_candidates = [item for disposition in dispositions for item in disposition["observations"]]
     unique = {item["raw_id"]: item for item in raw_candidates}
+    materials = {item["raw_id"]: item for row in dispositions for item in row["material_observations"]}
     inactive = _inactive_admissions(db, active_automatic, page_requests)
     counts.update(candidate_rows=len(dispositions), candidate_observations=len(raw_candidates),
                   deduplicated_observations=len(unique), numeric_located=sum(x["numeric_located"] for x in unique.values()),
                   numeric_and_unit_located=sum(x["numeric_and_unit_located"] for x in unique.values()),
                   evidence_verified=sum(x["evidence_status"] == "VERIFIED" for x in unique.values()),
+                  material_candidate_observations=len(materials),
+                  material_numeric_and_unit_located=sum(x["numeric_and_unit_located"] for x in materials.values()),
                   canonical_added=sum(accepted.values()), canonical_reused=sum(not x for x in accepted.values()),
                   canonical_stored=len(accepted), accepted_statements=sum(x["status"] == "SOURCE_BOUND_CANONICAL" for x in dispositions),
                   canonical_inactive=len(inactive),
@@ -686,6 +723,8 @@ def admit(db, root, snapshots, cutoff, page_requests, *, acquired_through=None, 
                   sources_sha_verified=sum(x["sha_verified"] is True for x in source_reasons))
     rules = code_fingerprint(discover, SemanticEngine, value_evidence_issue, source_check, resource_statement_metrics,
                              files=[Path(__file__), Path(__file__).with_name("resource_jorc.py"),
+                                    Path(__file__).with_name("resource_discourse.py"),
+                                    Path(__file__).with_name("resource_table_layout.py"),
                                     Path(__file__).with_name("resource_estimate.py"),
                                     Path(__file__).with_name("resource_source.py"),
                                     root / "config/ontology/observation_v1.json",
