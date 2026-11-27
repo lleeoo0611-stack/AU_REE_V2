@@ -478,8 +478,10 @@ def _execute(args):
             strict=bool(config.get('evidence_resolution')),active_claim_ids=active_claim_ids,
             phase22_bindings=phase22_bindings,scope_audit=scope_audit,**admitted_resources)
         if strict or resource_frame:
-            write_csv(out/'resource_scope_selection.csv',scope_audit,
-                      ['project_id','source_sha256','reason','scope','alternative_scopes'])
+            columns = ['project_id','source_sha256','reason','scope','alternative_scopes']
+            if resource_frame:
+                columns.extend(('observation_ids', 'evidence_locations', 'details'))
+            write_csv(out/'resource_scope_selection.csv',scope_audit,columns)
         from .national import resource_quality_checks
         cases=ingest_cases(db,root,snapshots,args.as_of) if args.module!='bootstrap' else []
         if config.get('evidence_resolution') and args.module!='bootstrap':

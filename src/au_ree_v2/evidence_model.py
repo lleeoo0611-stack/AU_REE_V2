@@ -5,6 +5,8 @@ they do not perform Census selection, assign ownership or add quantities across 
 """
 import json
 
+from .normalization import cutoff_signature, normalize_cutoff
+
 SCHEMA_VERSION = 1
 RESOURCE_CLASSES = {'MEASURED','INDICATED','INFERRED','MEASURED_INDICATED',
                     'INDICATED_INFERRED','MEASURED_INDICATED_INFERRED'}
@@ -36,7 +38,8 @@ def compatible_resource_context(rows):
         if cutoff is None:
             cutoff = (raw.get('review_contract') or {}).get('cutoff')
         if cutoff is not None and cutoff != '':
-            cutoffs.add(json.dumps(cutoff, sort_keys=True, ensure_ascii=False))
+            normalized = normalize_cutoff(cutoff)
+            cutoffs.add(cutoff_signature(normalized) if normalized else json.dumps(cutoff, sort_keys=True, ensure_ascii=False))
         category = row.get('category')
         if category and (category.removesuffix('_TOTAL') in RESOURCE_CLASSES or
                          row['variable'] in ('ore_mt','grade','contained_treo_kt') and category != 'NOT_APPLICABLE'):

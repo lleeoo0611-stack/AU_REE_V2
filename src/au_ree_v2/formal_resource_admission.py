@@ -14,12 +14,15 @@ from .numeric_evidence import header_unit_issue, numeric_witness_issue, scalar_d
 from .observation_schema import RawObservation, VALUE_EVIDENCE_ROLES, payload, value_evidence_issue
 from .observation_semantics import SemanticEngine
 from .pdf_extract import project_registry
-from .resource_source import _effective_dates, discover
-from .selection_rules import RESOURCE_ADMISSION_VERSION, date_end, source_check
-from .store import canonical, digest
+from .resource_estimate import compare_resource_estimates, cutoff_signature, normalize_cutoff
+from .resource_estimate import reported_resource_table_label as _table_label
+from .resource_jorc import admission_issue as jorc_admission_issue
+from .resource_source import _CUTOFF_CELL, _CUTOFF_COLUMN, _cutoff, _effective_dates, discover
+from .selection_rules import RESOURCE_ADMISSION_VERSION, RESOURCE_ADMISSION_VERSION_GLOB, date_end, source_check
+from .store import canonical, digest, filehash
 
 
-SCHEMA = "formal-resource-admission-receipt-v1"
+SCHEMA = "formal-resource-admission-receipt-v2"
 ADMISSION_VERSION = RESOURCE_ADMISSION_VERSION
 REQUIRED_QUANTITIES = frozenset({"ore_mt", "grade"})
 RESOURCE_QUANTITIES = REQUIRED_QUANTITIES | {"contained_treo_kt"}
@@ -100,6 +103,26 @@ def _value_disposition(raw, source, selected_row):
     return None, True, True
 
 
+def _cutoff_issue(raw, anchors, row):
+    context = _scope_conditions(raw)
+    expected = cutoff_signature(normalize_cutoff(context.get("cutoff_grade") or context.get("cutoff")))
+    found = set(_cutoff(anchor.quote for anchor in anchors if anchor.role == "scope"))
+    for anchor in anchors:
+        if anchor.role != "cutoff_value" or anchor.row != row or type(anchor.column) is not int:
+            continue
+        columns = sorted((header for header in anchors if header.role == "cutoff_header"
+                          and header.column == anchor.column and type(header.row) is int and header.row < row
+                          and header.bbox[3] <= anchor.bbox[1] + .01), key=lambda header: header.row)
+        header = _CUTOFF_COLUMN.fullmatch(" ".join(column.quote for column in columns))
+        value = _CUTOFF_CELL.fullmatch(anchor.quote.strip())
+        if header and value and (normalized := normalize_cutoff({
+                "value": value["x"], "unit": header[1] or header[2], "basis": "TREO", "operator": value["operator"]})):
+            found.add(cutoff_signature(normalized))
+    if expected is None or expected[1] != "TREO" or found != {expected}:
+        return "RESOURCE_CUTOFF_EVIDENCE_MISMATCH"
+    return None
+
+
 def _group_context(observations, source, project_ids, cutoff, selected_row):
     first = observations[0]
     if first.project_id not in project_ids:
@@ -111,6 +134,9 @@ def _group_context(observations, source, project_ids, cutoff, selected_row):
     if not all(getattr(first, key) for key in ("scope_id", "statement_id", "estimate_id", "effective_date")):
         return "RESOURCE_STATEMENT_SCOPE_OR_DATE_UNRESOLVED"
     context = _scope_conditions(first)
+    for item in observations:
+        if issue := jorc_admission_issue(item):
+            return issue
     shared = ("category", "resource_type", "scope_coverage", "cutoff_grade", "cutoff", "reporting_standard")
     if any(any(_scope_conditions(item).get(key) != context.get(key) for key in shared) for item in observations):
         return "RESOURCE_ROW_CONTEXT_CONFLICT"
@@ -146,6 +172,8 @@ def _group_context(observations, source, project_ids, cutoff, selected_row):
                                  if anchor.role in {"scope", "estimate_reference", "resource_section"})
         if dates != {item.effective_date}:
             return "RESOURCE_EFFECTIVE_DATE_EVIDENCE_MISMATCH"
+        if issue := _cutoff_issue(item, anchors, selected_row[2]):
+            return issue
     return None
 
 
@@ -222,14 +250,11 @@ def _evaluate(candidate, source, project_ids, cutoff, engine):
     return dict(source_sha256=source["sha256"], source_key=source["key"],
                 physical_page=selected_row[0], table=selected_row[1], row=selected_row[2],
                 project_id=observations[0].project_id if observations else None,
+                candidate_id=candidate.get("candidate_id"), jorc_assessment=candidate.get("jorc_assessment"),
+                statement_id=observations[0].statement_id if observations else None,
+                estimate_id=observations[0].estimate_id if observations else None,
                 status="CANONICAL_ELIGIBLE" if facts else "NOT_ADMITTED", reasons=sorted(set(issues)),
                 observations=details, canonical_observation_ids=[]), facts, observations
-
-
-def _table_label(text):
-    """Report-local printed table numbers retain their exact subtable suffix."""
-    labels = {match.casefold() for match in re.findall(r"\btable\s*(\d+(?:\.\d+)*[a-z]?)\b", text or "", re.I)}
-    return next(iter(labels)) if len(labels) == 1 else None
 
 
 def _same_reported_quantity(legacy, fact):
@@ -244,8 +269,110 @@ def _same_reported_quantity(legacy, fact):
     return value == Decimal(str(fact["value"]))
 
 
-def _historical_statement(db, source, observations, facts, active_claim_ids):
-    """Reuse an exact selected source table and statement, never infer scope equivalence."""
+class _HistoricalEstimateHold(ValueError):
+    def __init__(self, reason, related, *, equivalence=()):
+        super().__init__(reason)
+        self.audit = {"reason": reason, "historical_observations": [_legacy_location(row) for row in related],
+                      "equivalence": list(equivalence)}
+
+
+def _legacy_location(row):
+    document = json.loads(row["raw"])
+    return {"observation_id": row["obs_id"], "source_sha256": row["source_sha"], "locator": row["locator"],
+            "physical_page": document.get("pdf_page"), "statement_id": row["statement_id"],
+            "scope": row["scope"], "value": row["value"], "unit": row["unit"],
+            "page_extraction_sha256": document.get("page_extraction_sha256")}
+
+
+def _named_scope_matches(extracted, historical):
+    def named(text):
+        return " ".join(re.sub(r"\bdeposit\s*$", "", text, flags=re.I).casefold().split())
+
+    if named(extracted) == named(historical):
+        return True
+    # Older locators can describe a single named deposit with explicit
+    # exclusions of other deposits and pilot stockpiles. Preserve other qualifiers.
+    match = re.fullmatch(r"(.+?)\s+only;\s*excludes\s+(?:pilot(?: plant)? stockpiles and other deposits|"
+                         r"other deposits and pilot(?: plant)? stockpiles)", historical.strip(), re.I)
+    return bool(match and named(extracted) == named(match[1]))
+
+
+def _artifact_text(root, legacy, snapshot_index, row, source, label):
+    artifact = snapshot_index.get((legacy.get("page_extraction_key"), legacy.get("page_extraction_sha256")))
+    if (not artifact or artifact["kind"] != "pdf_page_extraction"
+            or artifact.get("source_sha256") != source["sha256"] or artifact.get("physical_page") != row.page):
+        return None
+    path = root / artifact["path"]
+    try:
+        if filehash(path) != artifact["sha256"]:
+            return None
+        parsed = json.loads(path.read_bytes())
+    except (OSError, ValueError):
+        return None
+    if parsed.get("source_sha256") != source["sha256"] or parsed.get("physical_page") != row.page:
+        return None
+    content = parsed.get("positioned_text") or parsed.get("text") or ""
+    tables = list(re.finditer(r"^\s*Table\s+(\d+(?:\.\d+)*[a-z]?)\s*:", content, re.M | re.I))
+    indices = [i for i, match in enumerate(tables) if match[1].casefold() == label]
+    if len(indices) != 1:
+        return None
+    index = indices[0]
+    region = content[tables[index].start():tables[index + 1].start() if index + 1 < len(tables) else None]
+    return region, artifact["sha256"]
+
+
+def _legacy_completions(root, source, observations, reused, snapshot_index, label):
+    """Recover omissions only from a pinned, uniquely identified legacy table row."""
+    first = observations[0]
+    context = _scope_conditions(first)
+    captions = {anchor.quote for anchor in first.evidence_anchors if anchor.role == "scope" and anchor.bbox}
+    values = {raw.variable: raw for raw in observations if raw.variable in reused}
+    if len(captions) != 1 or not REQUIRED_QUANTITIES <= values.keys():
+        return {}
+    caption = next(iter(captions))
+    clean = lambda value: " ".join(value.casefold().split())
+    tokens = [values[variable].original_value for variable in sorted(REQUIRED_QUANTITIES)]
+    columns = [r"(?<![\w.,])" + re.escape(token) + r"(?![\w.,])" for token in tokens]
+    completed = {}
+    for row in reused.values():
+        declared = json.loads(row["raw"])
+        recovered = _artifact_text(root, declared, snapshot_index, first.evidence, source, label)
+        markers = declared.get("page_markers", [])
+        if (not recovered or not isinstance(markers, list) or not all(isinstance(m, str) for m in markers)
+                or not any(_table_label(marker) == label for marker in markers)
+                or any(not any(re.fullmatch(pattern, m.strip()) for m in markers) for pattern in columns)):
+            continue
+        region, artifact_sha = recovered
+        if clean(region).count(clean(caption)) != 1 or any(clean(m) not in clean(region) for m in markers):
+            continue
+        occurrences = [line.strip() for line in region.splitlines() if re.match(r"\s*Total\b", line, re.I)
+                       and all(re.search(pattern, line) for pattern in columns)]
+        if len(occurrences) != 1:
+            continue
+        completed[row["obs_id"]] = {
+            "rule": "PINNED_NATIVE_RESOURCE_ROW", "legacy_observation_id": row["obs_id"],
+            "legacy_raw_sha256": digest(declared), "source_sha256": source["sha256"],
+            "physical_page": first.evidence.page,
+            "fields": {"deposit_id": first.deposit_id, "scope_coverage": context.get("scope_coverage"),
+                       "material_basis": first.material_basis, "denominator_basis": first.denominator_basis,
+                       "cutoff_grade": context.get("cutoff_grade"), "resource_type": context.get("resource_type"),
+                       "reporting_standard": context.get("reporting_standard")},
+            "evidence": {"legacy_page_artifact_sha256": artifact_sha, "printed_table": label,
+                         "pinned_row_quote": occurrences[0], "native_scope": first.scope_id,
+                         "native_anchors": [payload(anchor) for anchor in first.evidence_anchors]}}
+    return completed
+
+
+def _estimate_fields(raw):
+    context = _scope_conditions(raw)
+    return {"deposit_id": raw.deposit_id, "scope_coverage": context.get("scope_coverage"),
+            "material_basis": raw.material_basis, "composition_denominator_basis": raw.denominator_basis,
+            "cutoff_grade": context.get("cutoff_grade") or context.get("cutoff"),
+            "resource_type": context.get("resource_type"), "reporting_standard": context.get("reporting_standard")}
+
+
+def _historical_statement(db, root, source, observations, facts, active_claim_ids, snapshot_index):
+    """Link selected historical observations only after scientific context equivalence."""
     raw = observations[0]
     labels = {_table_label(anchor.quote) for anchor in raw.evidence_anchors if anchor.role == "scope"}
     if len(labels) != 1 or None in labels:
@@ -259,35 +386,60 @@ def _historical_statement(db, source, observations, facts, active_claim_ids):
             (raw.project_id, source["sha256"], raw.effective_date)):
         if legacy["obs_id"] not in active_claim_ids or legacy["variable"] not in facts_by_variable:
             continue
+        legacy = dict(legacy)
         reported = json.loads(legacy["raw"])
         if (reported.get("pdf_page") != raw.evidence.page
                 or reported.get("source_key") != source["key"]
-                or _table_label(legacy["locator"]) != label
-                or legacy["category"] != facts_by_variable[legacy["variable"]]["category"]
-                or legacy["basis"] != "TREO"):
+                or _table_label(legacy["locator"]) != label):
             continue
         groups[legacy["scope"], legacy["statement_id"]][legacy["variable"]].append(legacy)
     paired = [(key, variables) for key, variables in groups.items() if REQUIRED_QUANTITIES <= variables.keys()]
     if not paired:
         return None
+    related = [row for _, variables in paired for rows in variables.values() for row in rows]
     if len(paired) != 1:
-        raise ValueError("HISTORICAL_SOURCE_TABLE_STATEMENT_AMBIGUOUS")
+        raise _HistoricalEstimateHold("HISTORICAL_SOURCE_TABLE_STATEMENT_AMBIGUOUS", related)
     (scope, statement_id), variables = paired[0]
     if any(len(options) != 1 for options in variables.values()):
-        raise ValueError("HISTORICAL_SOURCE_TABLE_STATEMENT_AMBIGUOUS")
+        raise _HistoricalEstimateHold("HISTORICAL_SOURCE_TABLE_STATEMENT_AMBIGUOUS", related)
     reused = {variable: options[0] for variable, options in variables.items()}
-    if not all(_same_reported_quantity(row, facts_by_variable[variable]) for variable, row in reused.items()):
-        raise ValueError("HISTORICAL_SOURCE_TABLE_READING_CONFLICT")
-    return dict(scope=scope, statement_id=statement_id, reported_table_label=label, reused=reused)
+    if not _named_scope_matches(raw.scope_id, scope):
+        raise _HistoricalEstimateHold("HISTORICAL_ESTIMATE_SCOPE_UNRESOLVED", related)
+    matching_pair = all(_same_reported_quantity(reused[key], facts_by_variable[key]) for key in REQUIRED_QUANTITIES)
+    completions = _legacy_completions(root, source, observations, reused, snapshot_index, label) if matching_pair else {}
+    by_variable = {item.variable: item for item in observations}
+    comparisons = []
+    for variable, row in reused.items():
+        fact = {**facts_by_variable[variable], "entity_id": raw.project_id, "scope": scope, "statement_id": statement_id,
+                "raw": canonical(_estimate_fields(by_variable[variable]))}
+        checked = compare_resource_estimates(row, fact, left_completion=completions.get(row["obs_id"]))
+        comparisons.append({"observation_id": row["obs_id"], "variable": variable, **checked})
+    issues = {check["status"] for check in comparisons} - {"EQUIVALENT"}
+    if issues:
+        reason = "HISTORICAL_ESTIMATE_CONTEXT_MISMATCH" if "INCOMPATIBLE" in issues else "HISTORICAL_ESTIMATE_CONTEXT_UNRESOLVED"
+        raise _HistoricalEstimateHold(reason, related, equivalence=comparisons)
+    if not matching_pair:
+        return dict(scope=scope, statement_id=statement_id, reported_table_label=label, reused={},
+                    equivalence=comparisons, legacy_completion={},
+                    conflict={"reason": "CONCURRENT_SAME_ESTIMATE_VALUES",
+                              "historical_observations": [_legacy_location(row) for row in related]})
+    # A second reported contained value for the same proven estimate remains
+    # a competing fact. The selector records both original witnesses.
+    kept = {name: row for name, row in reused.items() if _same_reported_quantity(row, facts_by_variable[name])}
+    return dict(scope=scope, statement_id=statement_id, reported_table_label=label, reused=kept,
+                equivalence=comparisons, legacy_completion=completions)
 
 
-def _insert_bundle(db, root, source, facts, observations, active_claim_ids):
+def _insert_bundle(db, root, source, facts, observations, active_claim_ids, *, snapshot_index=None):
     first = observations[0]
     scope_context = _scope_conditions(first)
-    historical = _historical_statement(db, source, observations, facts, active_claim_ids)
+    for raw in observations:
+        if issue := jorc_admission_issue(raw):
+            raise ValueError(issue)
+    historical = _historical_statement(db, Path(root), source, observations, facts, active_claim_ids, snapshot_index or {})
     scope, statement = (historical["scope"], historical["statement_id"]) if historical else (first.scope_id, first.statement_id)
     reuse = historical["reused"] if historical else {}
-    bundle = digest(["source-bound-resource-statement-v1", first.project_id, source["sha256"],
+    bundle = digest(["source-bound-resource-statement-v2", first.project_id, source["sha256"],
                      scope, statement, first.effective_date,
                      first.evidence.page, first.evidence.table, first.evidence.row])
     db.execute("SAVEPOINT automatic_resource_bundle")
@@ -301,7 +453,7 @@ def _insert_bundle(db, root, source, facts, observations, active_claim_ids):
             if fact["variable"] in reuse:
                 results.append((reuse[fact["variable"]]["obs_id"], False))
                 continue
-            identity = digest(["automatic-resource-fact-v1", bundle, fact["variable"], raw.evidence.column,
+            identity = digest([ADMISSION_VERSION, bundle, raw.raw_id, fact["variable"], raw.evidence.column,
                                raw.original_value, raw.original_unit, fact["value"], fact["unit"], fact["basis"],
                                fact["category"], raw.deposit_id, raw.material_basis, raw.denominator_basis,
                                scope_context.get("cutoff_grade") or scope_context.get("cutoff")])
@@ -311,20 +463,22 @@ def _insert_bundle(db, root, source, facts, observations, active_claim_ids):
                           publication_date=source["publication_date"], available_date=source["available_date"],
                           source_acquisition_date=source["acquired_at"],
                           source_document_version=source.get("source_document_version") or source["sha256"],
-                          pdf_page=raw.evidence.page, material_basis=raw.material_basis,
-                          composition_denominator_basis=raw.denominator_basis, deposit_id=raw.deposit_id,
-                          estimate_id=raw.estimate_id, resource_type="MINERAL_RESOURCE",
-                          reporting_standard="JORC", scope_coverage=scope_context["scope_coverage"],
-                          cutoff_grade=scope_context.get("cutoff_grade") or scope_context.get("cutoff"),
+                          pdf_page=raw.evidence.page, **_estimate_fields(raw), estimate_id=raw.estimate_id,
+                          jorc_status=scope_context.get("jorc_status"),
+                          jorc_rule_version=scope_context.get("jorc_rule_version"),
                           effective_date_precision="DAY", effective_date_role="STATEMENT_EFFECTIVE_DATE",
                           original_reported_unit=raw.original_unit, original_token=raw.original_value,
                           source_bound_observation=payload(raw))
-            if historical:
+            if historical and historical.get("conflict"):
+                record["historical_pair_conflict"] = historical["conflict"]
+            elif historical:
                 record["resource_identity_link"] = {
                     "rule": "EXACT_SAME_SOURCE_TABLE_AND_STATEMENT",
                     "reported_table_label": historical["reported_table_label"],
                     "canonical_observation_ids": {variable: row["obs_id"] for variable, row in reuse.items()
                                                   if variable in REQUIRED_QUANTITIES},
+                    "legacy_completion": historical["legacy_completion"],
+                    "estimate_equivalence": historical["equivalence"],
                 }
             values = (identity, raw.project_id, fact["variable"], fact["value"], fact["unit"], fact["basis"],
                       scope, statement, fact["category"], fact["effective_date"], source["sha256"],
@@ -350,6 +504,33 @@ def _scientific_group(first, facts):
                    first.effective_date, first.deposit_id, context.get("category"),
                    context.get("cutoff_grade") or context.get("cutoff"), first.denominator_basis,
                    sorted((f["variable"], f["value"], f["unit"], f["rounding_half_width"]) for f in facts)])
+
+
+def _coordinate_key(row):
+    raw = json.loads(row["raw"])
+    original = raw.get("source_bound_observation") or {}
+    anchor = original.get("evidence") or {}
+    coordinates = tuple(anchor.get(field) for field in ("page", "table", "row", "column"))
+    if any(value is None for value in coordinates):
+        return None
+    return (row["entity_id"], row["source_sha"], row["variable"], row["statement_id"], row["effective_date"],
+            row["scope"], row["category"], row["value"], row["unit"], row["basis"], *coordinates)
+
+
+def _inactive_admissions(db, active, requested_shas):
+    records = [dict(row) for row in db.execute("SELECT * FROM observations WHERE transform_version GLOB ? ORDER BY obs_id",
+                                               (RESOURCE_ADMISSION_VERSION_GLOB,))]
+    current = {key: row["obs_id"] for row in records if row["obs_id"] in active and (key := _coordinate_key(row))}
+    result = []
+    for row in records:
+        if row["obs_id"] in active:
+            continue
+        replacement = current.get(_coordinate_key(row))
+        status = ("REVALIDATED_AS_NEW_RULE_EDITION" if replacement else "SOURCE_NOT_REQUESTED_IN_THIS_RUN"
+                  if row["source_sha"] not in requested_shas else "NOT_REVALIDATED_IN_THIS_RUN")
+        result.append({**_legacy_location(row), "transform_version": row["transform_version"], "reason": status,
+                       "current_observation_id": replacement})
+    return result
 
 
 def admit(db, root, snapshots, cutoff, page_requests, *, acquired_through=None, claims_data=None,
@@ -378,6 +559,7 @@ def admit(db, root, snapshots, cutoff, page_requests, *, acquired_through=None, 
             ambiguous.add(sha)
         sources[sha] = source
     allowed = _authorized_projects(claims, registry, sources)
+    snapshot_index = {(row["key"], row["sha256"]): row for row in snapshots}
     source_reasons, dispositions, accepted, active_automatic = [], [], {}, set()
     grouped = defaultdict(list)
     counts = Counter(source_requests=len(page_requests))
@@ -392,8 +574,13 @@ def admit(db, root, snapshots, cutoff, page_requests, *, acquired_through=None, 
                   _source_metadata_issue(source, cutoff, root, acquired_through))
         if not reason and source.get("case_classification", "PUBLIC_REAL_SOURCE_REPLAY") != classification:
             reason = "SOURCE_CLASSIFICATION_MISMATCH"
+        available = (root / source["path"]).is_file() if source and source.get("path") else False
+        sha_verified = (True if reason in {None, "SOURCE_TIMING_UNESTABLISHED", "SOURCE_CLASSIFICATION_MISMATCH"}
+                        else False if reason == "SOURCE_HASH_MISMATCH" else None)
         if reason:
-            source_reasons.append(dict(source_sha256=sha, status="SOURCE_BLOCKED", reason=reason, pages=sorted(set(pages))))
+            source_reasons.append(dict(source_sha256=sha, source_key=source["key"] if source else None,
+                                       status="SOURCE_BLOCKED", reason=reason, pages=sorted(set(pages)),
+                                       asset_available=available, sha_verified=sha_verified))
             continue
         context_options = {"context_pages": tuple(sorted(set(context_pages)))} if context_pages else {}
         discovery = discover(root, dict(source, summary_project_ids=allowed[sha]), registry,
@@ -403,6 +590,7 @@ def admit(db, root, snapshots, cutoff, page_requests, *, acquired_through=None, 
         source_status = ("SOURCE_BLOCKED" if page_statuses == {"SOURCE_BLOCKED"} else
                          "SOURCE_CHECKED_WITH_GAPS" if gaps else "SOURCE_CHECKED")
         source_reasons.append(dict(source_sha256=sha, source_key=source["key"], status=source_status,
+                                   asset_available=available, sha_verified=sha_verified,
                                    source_timing={k: source[k] for k in ("publication_date", "available_date", "acquired_at")},
                                    authorized_projects=allowed[sha], pages=discovery["pages"],
                                    context_pages=sorted(set(context_pages))))
@@ -419,41 +607,60 @@ def admit(db, root, snapshots, cutoff, page_requests, *, acquired_through=None, 
         entries = sorted(grouped[key], key=lambda entry: tuple(entry[0][field] for field in ("physical_page", "table", "row")))
         summary, source, facts, raws = entries[0]
         try:
-            rows, historical = _insert_bundle(db, root, source, facts, raws, active_claim_ids)
+            rows, historical = _insert_bundle(db, root, source, facts, raws, active_claim_ids,
+                                               snapshot_index=snapshot_index)
         except ValueError as exc:
             for disposition, *_ in entries:
                 disposition.update(status="NOT_ADMITTED", reasons=[str(exc)])
+                if isinstance(exc, _HistoricalEstimateHold):
+                    disposition["historical_match_rejected"] = exc.audit
             continue
         identifiers = [identity for identity, _ in rows]
         legacy_ids = {row["obs_id"] for row in historical["reused"].values()} if historical else set()
-        active_automatic.update(set(identifiers) - legacy_ids)
+        new_edition_ids = sorted(set(identifiers) - legacy_ids)
+        active_automatic.update(new_edition_ids)
+        bundle_id = None
+        if new_edition_ids:
+            stored = db.execute("SELECT raw FROM observations WHERE obs_id=?", (new_edition_ids[0],)).fetchone()
+            bundle_id = json.loads(stored["raw"])["admission_bundle_id"]
         for identity, created in rows:
             accepted[identity] = accepted.get(identity, False) or created
         for index, (disposition, _, _, observations) in enumerate(entries):
             disposition.update(status="SOURCE_BOUND_CANONICAL" if index == 0 else "CORROBORATING_PRESENTATION",
-                               canonical_observation_ids=identifiers,
+                               canonical_observation_ids=identifiers, admission_bundle_id=bundle_id,
                                reasons=["MATCHING_ESTIMATE_PRESENTATION"] if index else ["COMPLETE_SAME_ROW_RESOURCE_STATEMENT"])
             if historical:
-                disposition["historical_link"] = {"scope": historical["scope"], "statement_id": historical["statement_id"],
-                                                  "reported_table_label": historical["reported_table_label"],
-                                                  "reused_observation_ids": sorted(row["obs_id"] for row in historical["reused"].values())}
+                relation = {"scope": historical["scope"], "statement_id": historical["statement_id"],
+                            "reported_table_label": historical["reported_table_label"],
+                            "estimate_equivalence": historical["equivalence"]}
+                if conflict := historical.get("conflict"):
+                    disposition["historical_conflict"] = {**relation, **conflict}
+                else:
+                    disposition["historical_link"] = {**relation, "reused_observation_ids": sorted(legacy_ids)}
             by_quantity = {fact["variable"]: identity for fact, identity in zip(facts, identifiers, strict=True)}
             for raw, detail in zip(observations, disposition["observations"], strict=True):
                 detail["canonical_observation_id"] = by_quantity[raw.variable]
     raw_candidates = [item for disposition in dispositions for item in disposition["observations"]]
     unique = {item["raw_id"]: item for item in raw_candidates}
+    inactive = _inactive_admissions(db, active_automatic, page_requests)
     counts.update(candidate_rows=len(dispositions), candidate_observations=len(raw_candidates),
                   deduplicated_observations=len(unique), numeric_located=sum(x["numeric_located"] for x in unique.values()),
                   numeric_and_unit_located=sum(x["numeric_and_unit_located"] for x in unique.values()),
                   evidence_verified=sum(x["evidence_status"] == "VERIFIED" for x in unique.values()),
                   canonical_added=sum(accepted.values()), canonical_reused=sum(not x for x in accepted.values()),
                   canonical_stored=len(accepted), accepted_statements=sum(x["status"] == "SOURCE_BOUND_CANONICAL" for x in dispositions),
+                  canonical_inactive=len(inactive),
                   rejected_statements=sum(x["status"] == "NOT_ADMITTED" for x in dispositions),
                   accepted_projects=len({x["project_id"] for x in dispositions if x["canonical_observation_ids"]}),
                   source_blocked=sum(x["status"] == "SOURCE_BLOCKED" for x in source_reasons),
-                  sources_with_incomplete_pages=sum(x["status"] == "SOURCE_CHECKED_WITH_GAPS" for x in source_reasons))
+                  sources_with_incomplete_pages=sum(x["status"] == "SOURCE_CHECKED_WITH_GAPS" for x in source_reasons),
+                  sources_available=sum(x["asset_available"] for x in source_reasons),
+                  sources_sha_verified=sum(x["sha_verified"] is True for x in source_reasons))
     rules = code_fingerprint(discover, SemanticEngine, value_evidence_issue, source_check, resource_statement_metrics,
-                             files=[Path(__file__), root / "config/ontology/observation_v1.json",
+                             files=[Path(__file__), Path(__file__).with_name("resource_jorc.py"),
+                                    Path(__file__).with_name("resource_estimate.py"),
+                                    Path(__file__).with_name("resource_source.py"),
+                                    root / "config/ontology/observation_v1.json",
                                     root / "config/ontology/comparability_v1.json"])
     inputs = digest([cutoff, acquired_through, page_requests, context_pages_by_sha, preferred_source_keys,
                      allowed, classification, sorted(active_claim_ids),
@@ -463,5 +670,7 @@ def admit(db, root, snapshots, cutoff, page_requests, *, acquired_through=None, 
                 status="COMPLETE_WITH_GAPS" if counts["source_blocked"] or counts["sources_with_incomplete_pages"] else "COMPLETE",
                 counts=dict(counts),
                 canonical_observation_ids=sorted(accepted), active_admission_observation_ids=sorted(active_automatic),
+                inactive_admission_observation_ids=[row["observation_id"] for row in inactive],
+                inactive_admissions=inactive,
                 source_dispositions=source_reasons, dispositions=dispositions,
                 scientific_sha256=digest([inputs, rules, source_reasons, dispositions, sorted(accepted)]))

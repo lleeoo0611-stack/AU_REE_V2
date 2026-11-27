@@ -10,10 +10,11 @@ from .store import digest, filehash
 
 
 FRAME_VERSION = "resource-admission-frame-v1"
-ADMISSION_VERSION = "formal-resource-admission-run-v1"
+ADMISSION_VERSION = "formal-resource-admission-run-v2"
 _SHA = re.compile(r"[a-f0-9]{64}")
 _RULES = (
-    "resource_admission_flow.py", "formal_resource_admission.py", "resource_source.py",
+    "resource_admission_flow.py", "formal_resource_admission.py", "resource_source.py", "resource_estimate.py",
+    "resource_jorc.py",
     "numeric_evidence.py", "observation_schema.py", "observation_pipeline.py", "observation_semantics.py",
     "normalization.py", "ontology.py", "resource_use.py", "semantic_resource.py", "technical_tables.py",
     "pdf_extract.py", "document_processing.py", "nlp.py", "store.py", "evidence.py", "evidence_model.py",
@@ -101,6 +102,7 @@ def run(db, root, snapshots, cutoff, frame, *, run_id, configuration, acquired_t
                 "canonical_observation_ids": ids, "active_admission_observation_ids": active_ids,
                 "classification": frame["classification"]}
     frame_counts = {"sources_planned": len(frame["sources"]), "sources_selected": len(requests),
+                    "sources_not_selected": len(excluded),
                     "pages_planned": sum(len(row["pages"]) for row in frame["sources"]),
                     "pages_source_not_selected": sum(len(row["pages"]) for row in excluded)}
     receipt = {**result, **contract, "run_id": run_id, "rules": rules, "frame_sources": frame["sources"],

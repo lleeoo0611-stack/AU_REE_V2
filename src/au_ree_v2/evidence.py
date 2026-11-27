@@ -9,8 +9,10 @@ from .normalization import oxide_factor
 from .national import ingest_legacy_e1
 from .pdf_extract import html_text
 from .screen_index import ingest as ingest_screen_index
+from .resource_estimate import compare_resource_estimates, is_jorc_mineral_resource, resource_evidence_locations
 from .selection_rules import (
-    RESOURCE_ADMISSION_VERSION, automatic_resource_scope, choose, resource_admission_link_matches,
+    automatic_resource_scope, automatic_resource_scope_assessment, choose, is_automatic_resource_admission,
+    resource_admission_link_assessment,
     resource_admission_visible,
 )
 
@@ -1014,6 +1016,34 @@ def resource_statement_metrics(ore, grade, reported=None):
     }
 
 
+def _automatic_resource_quantities_valid(ore, grade, reported):
+    inputs = (ore, grade, reported) if reported else (ore, grade)
+    return (ore['unit'] == 'Mt' and grade['unit'] in ('%', 'ppm') and ore['basis'] == grade['basis'] == 'TREO'
+            and all(isinstance(row['value'], (int, float)) and math.isfinite(row['value']) for row in inputs)
+            and ore['value'] > 0 and 0 < grade['value'] <= (100 if grade['unit'] == '%' else 1_000_000)
+            and (not reported or reported['unit'] in ('kt', 'kt TREO') and reported['basis'] == 'TREO' and reported['value'] > 0))
+
+
+def _resource_scope_decision(audit, project, group, reason, rows, *, alternatives=(), details=None):
+    if audit is None:
+        return
+    places = resource_evidence_locations(rows)
+    audit.append(dict(project_id=project, source_sha256=group[3] if len(group) > 3 else '', reason=reason,
+        scope=group[1], alternative_scopes=canonical(sorted(set(alternatives) | {group[1]})),
+        observation_ids=canonical(sorted({place['observation_id'] for place in places})),
+        evidence_locations=canonical(places), details=canonical(details or {})))
+
+
+def _resource_selection_candidates(options, scopes):
+    candidates = []
+    for row in options:
+        evidence_id = digest(row)
+        candidates.append(dict(row, evidence_id=evidence_id, source_sha256=row['source_sha'], effective_date=row['date'],
+            automatic_scope=scopes.get(evidence_id),
+            value={key: row[key] for key in ('ore_mt', 'grade_pct', 'contained_treo_kt')}))
+    return candidates
+
+
 def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=None,
                     phase22_bindings=None, scope_audit=None, *, admitted_resource_ids=()):
     """Pick latest complete statement per scope; competing scopes require review."""
@@ -1024,27 +1054,33 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
         rows = [dict(r) for r in db.execute('''SELECT * FROM observations
             WHERE entity_id=? AND effective_date<=? AND status='AUTO_VALIDATED'
             ORDER BY effective_date,obs_id''', (eid, cutoff)) if r['source_sha'] in snapshot_shas and
-                resource_admission_visible(r,admitted_resource_ids) and
                 (active_claim_ids is None or r['transform_version']!='normalization-v1' or r['obs_id'] in active_claim_ids)]
         statements = {}
+        group_evidence = {}
         rejected_groups = set()
         automatic_groups = set()
         supplements = []
         retained_supplements = {}
+        related_supplements = {}
         for r in rows:
             key=(r['statement_id'], r['scope'], r['effective_date'])
-            automatic = r['transform_version'] == RESOURCE_ADMISSION_VERSION
+            automatic = is_automatic_resource_admission(r)
             if strict or automatic:key=(*key,r['source_sha'])
             if automatic:
+                if not resource_admission_visible(r, admitted_resource_ids):
+                    _resource_scope_decision(scope_audit, eid, key, 'AUTOMATIC_RESOURCE_NOT_ACTIVATED_FOR_RUN', [r])
+                    continue
                 raw = json.loads(r['raw'])
                 if 'resource_identity_link' in raw:
                     supplements.append((key, r, raw['resource_identity_link']))
                     continue
                 bundle = raw.get('admission_bundle_id')
                 if not bundle:
+                    _resource_scope_decision(scope_audit, eid, key, 'AUTOMATIC_RESOURCE_BUNDLE_ID_MISSING', [r])
                     continue
                 key=(*key, bundle)
                 automatic_groups.add(key)
+            group_evidence.setdefault(key, []).append(r)
             values = statements.setdefault(key, {})
             if automatic and r['variable'] in values:
                 # A verified bundle owns one physical cell per quantity. In a
@@ -1053,75 +1089,123 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
             values[r['variable']] = r
         for key, supplement, link in supplements:
             values = statements.get(key, {})
-            if resource_admission_link_matches(supplement, link, values.get('ore_mt'), values.get('grade')):
-                prior = values.get('contained_treo_kt')
-                if not prior:
+            ore, grade = values.get('ore_mt'), values.get('grade')
+            prior = values.get('contained_treo_kt')
+            assessment = resource_admission_link_assessment(supplement, link, ore, grade, prior)
+            disposition = assessment['reason']
+            if disposition is None and not _automatic_resource_quantities_valid(ore, grade, supplement):
+                disposition = 'AUTOMATIC_RESOURCE_SUPPLEMENT_INVALID_QUANTITIES'
+            if disposition is not None:
+                _resource_scope_decision(scope_audit, eid, key, disposition, [supplement, *values.values()], details=assessment)
+                continue
+
+            related_supplements.setdefault(key, []).append(supplement)
+            if prior and not (prior['value'] == supplement['value'] and prior['basis'] == supplement['basis']
+                              and prior['unit'] in ('kt', 'kt TREO')):
+                rejected_groups.add(key)
+                assessment['contained_treo_kt'] = {'existing': prior['value'], 'new': supplement['value']}
+                disposition = 'CONCURRENT_REPORTED_CONTAINED_CONFLICT'
+            elif prior:
+                disposition = 'CORROBORATES_REPORTED_CONTAINED'
+                retained_supplements.setdefault(key, []).append(supplement['obs_id'])
+            else:
+                bounds = resource_statement_metrics(ore, grade, supplement)['rounding_bounds_kt']
+                if not bounds[0] <= supplement['value'] <= bounds[1]:
+                    rejected_groups.add(key)
+                    assessment['rounding_conflict'] = {'report': supplement['value'], 'bounds': bounds}
+                    disposition = 'REPORTED_CONTAINED_CONFLICT'
+                else:
                     values['contained_treo_kt'] = supplement
                     automatic_groups.add(key)
                     continue
-                if all(prior[field] == supplement[field] for field in ('value', 'unit', 'basis')):
-                    disposition = 'CORROBORATES_REPORTED_CONTAINED'
-                    retained_supplements.setdefault(key, []).append(supplement['obs_id'])
-                else:
-                    rejected_groups.add(key)
-                    disposition = 'CONCURRENT_REPORTED_CONTAINED_CONFLICT'
-            else:
-                disposition = 'AUTOMATIC_RESOURCE_LINK_NOT_CURRENT'
-            if scope_audit is not None:
-                scope_audit.append(dict(project_id=eid,source_sha256=supplement['source_sha'],
-                    reason=disposition,scope=key[1],alternative_scopes=canonical([key[1]])))
+            affected = [*values.values(), supplement]
+            _resource_scope_decision(scope_audit, eid, key, disposition, affected, details=assessment)
+            if key in rejected_groups:
+                issue(db, eid, supplement['source_sha'], disposition,
+                      canonical({'evidence_locations': resource_evidence_locations(affected), **assessment}))
         valid = []
         automatic_hashes = set()
         automatic_scopes = {}
+        decision_groups = {}
+        independent = []
+        legacy_pairs = {}
         for key, values in statements.items():
             sid, scope, date=key[:3]
-            if key in rejected_groups or not {'ore_mt', 'grade'} <= values.keys():
+            auto_bundle = len(key) > 4
+            if key in rejected_groups:
+                if auto_bundle:
+                    _resource_scope_decision(scope_audit, eid, key, 'AUTOMATIC_RESOURCE_BUNDLE_HAS_DUPLICATE_QUANTITY',
+                                             group_evidence[key])
+                continue
+            if not {'ore_mt', 'grade'} <= values.keys():
+                if auto_bundle:
+                    _resource_scope_decision(scope_audit, eid, key, 'AUTOMATIC_RESOURCE_BUNDLE_INCOMPLETE', group_evidence[key])
                 continue
             ore, grade = values['ore_mt'], values['grade']
+            reported = values.get('contained_treo_kt')
+            if auto_bundle:
+                if not is_jorc_mineral_resource(ore):
+                    _resource_scope_decision(scope_audit, eid, key, 'AUTOMATIC_RESOURCE_NOT_JORC_MINERAL_RESOURCE', values.values())
+                    continue
+                comparisons = [compare_resource_estimates(ore, row) for row in (grade, reported) if row]
+                if any(row['status'] != 'EQUIVALENT' for row in comparisons):
+                    _resource_scope_decision(scope_audit, eid, key, 'AUTOMATIC_RESOURCE_BUNDLE_CONTEXT_REJECTED', values.values(),
+                                             details={'comparisons': comparisons})
+                    continue
+                if not _automatic_resource_quantities_valid(ore, grade, reported):
+                    _resource_scope_decision(scope_audit, eid, key, 'AUTOMATIC_RESOURCE_BUNDLE_INVALID_QUANTITIES', values.values())
+                    continue
             if ore['unit'] != 'Mt' or ore['basis'] != grade['basis'] or ore['source_sha'] != grade['source_sha']:
                 continue
-            reported = values.get('contained_treo_kt')
-            if key in automatic_groups:
-                from .evidence_model import compatible_resource_context
-                inputs = (ore, grade, reported) if reported else (ore, grade)
-                if (grade['unit'] not in ('%', 'ppm') or ore['basis'] != 'TREO'
-                        or any(not isinstance(v['value'], (int, float)) or not math.isfinite(v['value'])
-                               for v in inputs)
-                        or ore['value'] <= 0 or not 0 < grade['value'] <= (100 if grade['unit'] == '%' else 1_000_000)
-                        or reported and (reported['unit'] not in ('kt', 'kt TREO') or reported['basis'] != 'TREO')
-                        or not compatible_resource_context(inputs)):
-                    continue
             metrics = resource_statement_metrics(ore, grade, reported)
             bounds = metrics['rounding_bounds_kt']
             if reported and not bounds[0] <= reported['value'] <= bounds[1]:
                 issue(db,eid,reported['source_sha'],'REPORTED_CONTAINED_CONFLICT',canonical([reported['value'],bounds]))
+                if auto_bundle:
+                    _resource_scope_decision(scope_audit, eid, key, 'REPORTED_CONTAINED_CONFLICT', values.values(),
+                                             details={'report': reported['value'], 'bounds': bounds})
                 continue
-            valid.append({'entity_id': eid, 'statement_id': sid, 'scope': scope, 'date': date,
+            option = {'entity_id': eid, 'statement_id': sid, 'scope': scope, 'date': date,
                           **metrics,
                           'obs_ids': [ore['obs_id'], grade['obs_id']] + ([reported['obs_id']] if reported else []),
                           'source_sha': ore['source_sha'], 'basis': 'TREO',
-                          'interpretation': 'IN_SITU_RESOURCE_NOT_RECOVERABLE_PRODUCT'})
+                          'interpretation': 'IN_SITU_RESOURCE_NOT_RECOVERABLE_PRODUCT'}
             if key in retained_supplements:
-                valid[-1].update(corroborating_obs_ids=sorted(retained_supplements[key]),
-                                 corroborating_sources=[ore['source_sha']])
+                option.update(corroborating_obs_ids=sorted(retained_supplements[key]), corroborating_sources=[ore['source_sha']])
+            complete_id = digest(option)
+            decision_groups[complete_id] = key
+            if auto_bundle:
+                independent.append((complete_id, option, key, ore))
+                continue
+            valid.append(option)
+            legacy_pairs[complete_id] = (ore, grade)
             if key in automatic_groups:
-                complete_id = digest(valid[-1])
                 automatic_hashes.add(complete_id)
-                automatic_scopes[complete_id] = automatic_resource_scope(ore)
-        if scope_audit is not None:
-            for key in sorted(rejected_groups & {k for k in automatic_groups if len(k) > 4}):
-                scope_audit.append(dict(project_id=eid,source_sha256=key[3],
-                    reason='AUTOMATIC_RESOURCE_BUNDLE_HAS_DUPLICATE_QUANTITY',scope=key[1],
-                    alternative_scopes=canonical([key[1]])))
+        incumbent = None
+        if independent and legacy_pairs:
+            incumbent, _ = choose(_resource_selection_candidates(valid, {}), ('scope','basis'))
+            if incumbent is None and not automatic_hashes:
+                retained = retain_phase22_resource(valid, (phase22_bindings or {}).get(eid))
+                if retained:
+                    incumbent = {'evidence_id': digest(retained)}
+        for complete_id, option, key, ore in independent:
+            if incumbent is None and legacy_pairs:
+                evidence = [*group_evidence[key], *(row for pair in legacy_pairs.values() for row in pair)]
+                _resource_scope_decision(scope_audit, eid, key, 'AUTOMATIC_RESOURCE_LEGACY_SELECTION_UNRESOLVED', evidence)
+                continue
+            scope_pairs = [legacy_pairs[incumbent['evidence_id']]] if incumbent else []
+            assessed = automatic_resource_scope_assessment(ore, scope_pairs)
+            if assessed['reason']:
+                related = [*group_evidence[key], *(row for pair in scope_pairs for row in pair)]
+                _resource_scope_decision(scope_audit, eid, key, assessed['reason'], related, details=assessed)
+                continue
+            valid.append(option)
+            automatic_hashes.add(complete_id)
+            automatic_scopes[complete_id] = None if legacy_pairs else automatic_resource_scope(ore)
         if not valid:
             continue
         if strict:
-            candidates=[]
-            for value in valid:
-                evidence_id=digest(value)
-                candidates.append(dict(value,evidence_id=evidence_id,source_sha256=value['source_sha'],
-                    effective_date=value['date'],automatic_scope=automatic_scopes.get(evidence_id),
-                    value={k:value[k] for k in ('ore_mt','grade_pct','contained_treo_kt')}))
+            candidates = _resource_selection_candidates(valid, automatic_scopes)
             chosen,reason=choose(candidates,('scope','basis','automatic_scope'))
             if chosen is None:
                 retained=None if automatic_hashes else retain_phase22_resource(valid,(phase22_bindings or {}).get(eid))
@@ -1134,11 +1218,12 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
                     continue
                 issue(db,eid,None,'RESOURCE_SCOPE_AMBIGUITY',reason)
                 if automatic_hashes and scope_audit is not None:
+                    alternatives = [row['scope'] for row in valid]
+                    evidence_rows = [row for item in candidates for key in (decision_groups[item['evidence_id']],)
+                                     for row in [*group_evidence[key], *related_supplements.get(key, ())]]
                     for option in candidates:
-                        if option['evidence_id'] in automatic_hashes:
-                            scope_audit.append(dict(project_id=eid,source_sha256=option['source_sha'],
-                                reason=reason,scope=option['scope'],
-                                alternative_scopes=canonical(sorted({r['scope'] for r in valid}))))
+                        key = decision_groups[option['evidence_id']]
+                        _resource_scope_decision(scope_audit, eid, key, reason, evidence_rows, alternatives=alternatives)
                 continue
             selected=next(v for v in valid if digest(v)==chosen['evidence_id'])
             if automatic_hashes:
@@ -1153,9 +1238,13 @@ def resource_values(db, cutoff, snapshot_shas, strict=False, active_claim_ids=No
                             continue
                         disposition = ('SELECTED' if option['evidence_id'] == chosen['evidence_id'] else
                             'CORROBORATES_SELECTED' if option['evidence_id'] in corroborations else 'SUPERSEDED_IN_RESOURCE_SCOPE')
-                        scope_audit.append(dict(project_id=eid,source_sha256=option['source_sha'],
-                            reason=disposition,scope=option['scope'],
-                            alternative_scopes=canonical(sorted({r['scope'] for r in valid}))))
+                        key = decision_groups[option['evidence_id']]
+                        incumbent = decision_groups[chosen['evidence_id']]
+                        supporting = [*group_evidence[key], *related_supplements.get(key, ())]
+                        if incumbent != key:
+                            supporting.extend([*group_evidence[incumbent], *related_supplements.get(incumbent, ())])
+                        _resource_scope_decision(scope_audit, eid, key, disposition, supporting,
+                                                 alternatives=(r['scope'] for r in valid))
             result[eid]=selected
             continue
         latest = max(v['date'] for v in valid)

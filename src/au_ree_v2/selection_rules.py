@@ -2,39 +2,86 @@
 
 from collections import defaultdict
 from datetime import date
-import json
 
+from .resource_estimate import (compare_resource_estimates, cutoff_signature, is_jorc_mineral_resource,
+                               resource_estimate_context, resource_location_context)
 from .store import canonical, digest, filehash
 
 
-RESOURCE_ADMISSION_VERSION = 'automatic-resource-admission-v1'
+RESOURCE_ADMISSION_VERSION_PREFIX = 'automatic-resource-admission-v'
+RESOURCE_ADMISSION_VERSION_GLOB = RESOURCE_ADMISSION_VERSION_PREFIX + '*'
+RESOURCE_ADMISSION_VERSION = RESOURCE_ADMISSION_VERSION_PREFIX + '2'
+
+
+def is_automatic_resource_admission(observation):
+    """All generations of automatic resource observations need run activation."""
+    try:
+        version = observation['transform_version']
+    except (IndexError, KeyError):
+        return False
+    return isinstance(version, str) and version.startswith(RESOURCE_ADMISSION_VERSION_PREFIX)
 
 
 def resource_admission_visible(observation, admitted_resource_ids):
     """A historical canonical row is current only when this run re-admits it."""
-    return (observation['transform_version'] != RESOURCE_ADMISSION_VERSION
-            or observation['obs_id'] in admitted_resource_ids)
+    return not is_automatic_resource_admission(observation) or observation['obs_id'] in admitted_resource_ids
 
 
-def resource_admission_link_matches(candidate, link, ore, grade):
+def resource_admission_link_assessment(candidate, link, ore, grade, reported=None):
     """Verify an automatic contained-TREO supplement against its active pair."""
-    if not ore or not grade or not isinstance(link, dict):
-        return False
-    if (candidate['variable'] != 'contained_treo_kt' or link.get('rule') != 'EXACT_SAME_SOURCE_TABLE_AND_STATEMENT'
+    if (not ore or not grade or not isinstance(link, dict)
+            or candidate['variable'] != 'contained_treo_kt' or link.get('rule') != 'EXACT_SAME_SOURCE_TABLE_AND_STATEMENT'
             or link.get('canonical_observation_ids') != {'ore_mt': ore['obs_id'], 'grade': grade['obs_id']}):
-        return False
+        return {'reason': 'AUTOMATIC_RESOURCE_LINK_NOT_CURRENT', 'comparisons': []}
     dimensions = ('entity_id', 'source_sha', 'statement_id', 'scope', 'effective_date', 'category', 'basis')
-    return all(row['transform_version'] != RESOURCE_ADMISSION_VERSION
-               and all(row[k] == candidate[k] for k in dimensions) for row in (ore, grade))
+    if any(is_automatic_resource_admission(row) or any(row[k] != candidate[k] for k in dimensions)
+           for row in (ore, grade)):
+        return {'reason': 'AUTOMATIC_RESOURCE_LINK_NOT_CURRENT', 'comparisons': []}
+    if not is_jorc_mineral_resource(candidate):
+        return {'reason': 'AUTOMATIC_RESOURCE_NOT_JORC_MINERAL_RESOURCE', 'comparisons': []}
+    location = resource_location_context(candidate)
+    original = [resource_location_context(row) for row in (ore, grade)]
+    if (type(location['physical_page']) is not int or location['physical_page'] < 1
+            or str(link.get('reported_table_label', '')).casefold() != location['printed_table']
+            or any(item != location for item in original)):
+        return {'reason': 'AUTOMATIC_RESOURCE_LINK_LOCATION_NOT_CURRENT', 'comparisons': [],
+                'candidate_location': location, 'legacy_locations': original}
+    completion = link.get('legacy_completion')
+    if completion is not None and not isinstance(completion, dict):
+        return {'reason': 'AUTOMATIC_RESOURCE_LINK_CONTEXT_UNRESOLVED', 'comparisons': []}
+    prior_rows = (ore, grade, reported) if reported else (ore, grade)
+    comparisons = [{'observation_id': row['obs_id'], **compare_resource_estimates(
+        candidate, row, right_completion=(completion or {}).get(row['obs_id']))} for row in prior_rows]
+    reason = ('AUTOMATIC_RESOURCE_LINK_CONTEXT_MISMATCH' if any(item['status'] == 'INCOMPATIBLE' for item in comparisons)
+              else 'AUTOMATIC_RESOURCE_LINK_CONTEXT_UNRESOLVED' if any(item['status'] == 'UNRESOLVED' for item in comparisons)
+              else None)
+    return {'reason': reason, 'comparisons': comparisons}
+
+
+def resource_admission_link_matches(candidate, link, ore, grade, reported=None):
+    return resource_admission_link_assessment(candidate, link, ore, grade, reported)['reason'] is None
 
 
 def automatic_resource_scope(observation):
     """An independently admitted scope is defined by more than its name."""
-    if observation.get('transform_version') != RESOURCE_ADMISSION_VERSION:
+    if not is_automatic_resource_admission(observation):
         return None
-    raw = json.loads(observation['raw'])
-    return canonical([observation['category'], raw.get('deposit_id'), raw.get('scope_coverage'),
-                      raw.get('cutoff_grade'), raw.get('material_basis'), raw.get('composition_denominator_basis')])
+    context = resource_estimate_context(observation)
+    return canonical([context['category'], context['deposit'], context['scope_coverage'],
+                      context['resource_type'], context['reporting_standard'],
+                      cutoff_signature(context['cutoff_grade']), context['material_basis'], context['denominator_basis']])
+
+
+def automatic_resource_scope_assessment(observation, legacy_pairs):
+    """Check an independent automatic estimate against existing scientific scopes."""
+    pairs = [[{'observation_id': prior['obs_id'], **compare_resource_estimates(
+        observation, prior, compare_date=False)} for prior in pair] for pair in legacy_pairs]
+    comparisons = [item for pair in pairs for item in pair]
+    if not comparisons or any(all(item['status'] == 'EQUIVALENT' for item in pair) for pair in pairs):
+        return {'reason': None, 'comparisons': comparisons}
+    reason = ('AUTOMATIC_RESOURCE_SCOPE_MISMATCH' if all(item['status'] == 'INCOMPATIBLE' for item in comparisons)
+              else 'AUTOMATIC_RESOURCE_SCOPE_UNRESOLVED')
+    return {'reason': reason, 'comparisons': comparisons}
 
 
 def observation_visible(raw, selected_shas, validation_version=None):

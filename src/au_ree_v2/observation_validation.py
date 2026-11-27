@@ -228,7 +228,8 @@ def run(root, output, *, libraries=(), online=True, request_budget=80, cache_dir
             from .formal_resource_refresh import compare
 
             attempt("formal_resource_delta", lambda: compare(
-                formal_run, Path(refreshed["run"]), output / "formal-resource-delta"))
+                formal_run, Path(refreshed["run"]), output / "formal-resource-delta",
+                mode="admission_effect", include_uncertainty=True))
         else:
             record("formal_resource_delta", {"status": "BLOCKED", "reason": "REFRESHED_RUN_UNAVAILABLE"})
     elif resource_admission is not None:

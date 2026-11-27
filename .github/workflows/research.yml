@@ -204,10 +204,16 @@ jobs:
           au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase21-2026-11-05/snapshot_lock.json --work work/phase21-b
           python tools/check_replay.py results/phase21-2026-11-05 work/phase21-b/latest.json
       - name: Phase 22 current evidence and shared-method reconstruction
+        # Keep the historical weight summation order identical in the two
+        # processes whose actual R draw ranks are paired below.
+        env:
+          PYTHONHASHSEED: '0'
         run: |
           au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/phase22-a
           python tools/check_replay.py results/phase22-2026-11-06 work/phase22-a/latest.json
       - name: Verify reported TREO reaches existing MCDA from the locked PDF
+        env:
+          PYTHONHASHSEED: '0'
         run: |
           au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/resource-admission-replay --resource-admission config/ontology/resource_admission_frame_v1.json
           python - <<'PY'
@@ -216,11 +222,22 @@ jobs:
           from au_ree_v2.formal_resource_refresh import compare
           def run(folder):
               return json.loads((Path(folder) / 'latest.json').read_bytes())['output_dir']
-          delta = compare(run('work/phase22-a'), run('work/resource-admission-replay'), 'work/resource-admission-delta')
+          delta = compare(run('work/phase22-a'), run('work/resource-admission-replay'), 'work/resource-admission-delta',
+                          mode='admission_effect', include_uncertainty=True)
           assert delta['active_admission_ids_in_selected_inputs']
           assert delta['panels']['issuer_resource_composition']['matrix_primary_criterion_cells_changed']
           assert delta['panels']['issuer_resource_composition']['updated_r_status'] == 'COMPLETED'
           PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: resource-admission-review-${{ github.run_id }}
+          path: |
+            work/resource-admission-engineering/engineering_proof.json
+            work/resource-admission-replay/runs/*/resource_admission.json
+            work/resource-admission-delta/resource_refresh.json
+            work/resource-admission-delta/selection_snapshot.json
+          if-no-files-found: warn
       - name: Phase 22 second clean reconstruction
         if: steps.scope.outputs.archive == 'true'
         run: |
