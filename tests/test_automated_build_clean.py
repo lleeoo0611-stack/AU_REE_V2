@@ -1,14 +1,11 @@
 """Clean-checkout contracts; live network is exercised separately by CI."""
 import json
-import os
 from pathlib import Path
 import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
-import textwrap
-from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 FORBIDDEN = ('980bedb', 'asx-current', 'work/asx-', 'results/round', 'results/asx-',
@@ -16,26 +13,13 @@ FORBIDDEN = ('980bedb', 'asx-current', 'work/asx-', 'results/round', 'results/as
 
 
 class AutomatedBuildCleanTests(unittest.TestCase):
-    def test_receipt_gate_runs_for_code_or_unknown_changes_and_handles_unicode_paths(self):
+    def test_workflow_routing_uses_complete_pr_base_for_every_update(self):
         for workflow in ('automated-build.yml','research.yml'):
             content=(ROOT/'.github/workflows'/workflow).read_text(encoding='utf8')
-            if workflow=='research.yml':
-                scope=content.split('      - name: Determine validation scope\n',1)[1].split('      - name: ',1)[0]
-                script=textwrap.dedent(scope.split('        run: |\n',1)[1]).strip().splitlines()
-                self.assertEqual(script[0],"python - <<'PY'")
-                self.assertEqual(script[-1],'PY')
-                compile('\n'.join(script[1:-1]),'research scope heredoc','exec')
-            code=textwrap.dedent(content.split("python - <<'PY'\n",1)[1].split('\n          PY',1)[0])
-            cases=[('synchronize','a'*40,['results/integrated-rebuild-2026-11-15/專案總表.csv'],False),
-                   ('synchronize','a'*40,['results/integrated-rebuild-2026-11-15/README.md','src/au_ree_v2/census.py'],True),
-                   ('synchronize','a'*40,[],True),('synchronize','unknown',[],True),('opened','a'*40,[],True)]
-            for action,before,paths,required in cases:
-                with self.subTest(workflow=workflow,action=action,paths=paths),tempfile.TemporaryDirectory() as temp:
-                    output=Path(temp)/'outputs'
-                    env=dict(PREVIOUS_HEAD=before,EVENT_KIND='pull_request',EVENT_ACTION=action,GITHUB_OUTPUT=str(output))
-                    raw=('\0'.join(paths)+'\0').encode('utf8')
-                    with patch.dict(os.environ,env),patch('subprocess.check_output',return_value=raw):exec(compile(code,workflow,'exec'),{})
-                    self.assertEqual(output.read_text().strip(),'run_pipeline='+str(required).lower())
+            with self.subTest(workflow=workflow):
+                self.assertIn('github.event.pull_request.base.sha', content)
+                self.assertIn('phase10_ci.py route --base "$BASE_SHA" --event "$EVENT_KIND"', content)
+                self.assertNotIn('PREVIOUS_HEAD', content)
 
     def test_runtime_and_registry_have_no_experiment_dependency(self):
         paths = sorted((ROOT / 'src').rglob('*.py')) + [ROOT / 'config/sources.json']

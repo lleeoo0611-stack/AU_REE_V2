@@ -4,47 +4,29 @@ on:
   workflow_dispatch:
   workflow_call:
 permissions:
+  actions: read
   contents: read
+concurrency:
+  group: public-build-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   change_scope:
     runs-on: ubuntu-latest
     outputs:
-      run_pipeline: ${{ steps.changed.outputs.run_pipeline }}
       public: ${{ steps.tiers.outputs.public }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Verify the update contains only publication receipts
-        id: changed
-        env:
-          PREVIOUS_HEAD: ${{ github.event.before }}
-          EVENT_KIND: ${{ github.event_name }}
-          EVENT_ACTION: ${{ github.event.action }}
-        run: |
-          python - <<'PY'
-          import os, re, subprocess
-          before=os.environ.get('PREVIOUS_HEAD','')
-          receipts_only=False
-          if os.environ['EVENT_KIND']=='pull_request' and os.environ['EVENT_ACTION']=='synchronize' and re.fullmatch(r'[0-9a-fA-F]{40}',before):
-              try:
-                  raw=subprocess.check_output(['git','diff','--name-only','-z',before,'HEAD'])
-                  changed=[p for p in raw.decode('utf8').split('\0') if p]
-                  receipts_only=bool(changed) and all(p.startswith(('results/integrated-rebuild-2026-11-15/','results/same-sha-fallback-2026-11-16/')) for p in changed)
-              except subprocess.CalledProcessError:
-                  pass
-          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
-              f.write('run_pipeline='+str(not receipts_only).lower()+'\n')
-          print({'verified_receipts_only':receipts_only,'run_full_pipeline':not receipts_only})
-          PY
       - name: Select public-registry validation scope
         id: tiers
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
-        run: python tools/phase10_ci.py route --base "$BASE_SHA"
+          EVENT_KIND: ${{ github.event_name }}
+        run: python tools/phase10_ci.py route --base "$BASE_SHA" --event "$EVENT_KIND"
   automated-build:
     needs: change_scope
-    if: needs.change_scope.outputs.run_pipeline == 'true' && needs.change_scope.outputs.public == 'true'
+    if: needs.change_scope.outputs.public == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
@@ -213,9 +195,49 @@ jobs:
               assert sorted(matrix_ids)==sorted(r['project_id'] for r in gate if r['panel']==matrix.parent.name)
           assert json.loads(Path('work/clean/network_status.json').read_text())['valid_for_delivery']
           PY
+      - name: Locate Python regressions from the same pull request and head
+        id: shared_python
+        if: always() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -o pipefail
+          candidate=$(gh api -X GET "repos/$GITHUB_REPOSITORY/actions/workflows/research.yml/runs" \
+            -f event=pull_request -f head_sha="$PR_HEAD" -F per_page=20 |
+            jq -r --arg head "$PR_HEAD" --argjson number "$PR_NUMBER" '
+              [.workflow_runs[] | select(.head_sha == $head and
+                any(.pull_requests[]?; .number == $number) and
+                (.status == "in_progress" or .conclusion == "success"))] |
+              first // empty | [.id, .run_attempt] | @tsv')
+          if [ -n "$candidate" ]; then
+            read -r run_id attempt <<< "$candidate"
+            printf 'run_id=%s\nattempt=%s\n' "$run_id" "$attempt" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/download-artifact@v4
+        id: download_python
+        if: always() && steps.shared_python.outputs.run_id != ''
+        continue-on-error: true
+        with:
+          name: ci-python-${{ github.sha }}-${{ steps.shared_python.outputs.attempt }}
+          run-id: ${{ steps.shared_python.outputs.run_id }}
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/ci-shared-python
       - name: Unit regressions with XML
         if: always()
-        run: python -m xmlrunner discover -s tests -o work/test-xml
+        env:
+          REPORT_DOWNLOAD: ${{ steps.download_python.outcome }}
+        run: |
+          if [ "$REPORT_DOWNLOAD" = success ] &&
+            python tools/phase10_ci.py verify-python --bundle "$RUNNER_TEMP/ci-shared-python"; then
+            mkdir -p work/test-xml
+            cp "$RUNNER_TEMP"/ci-shared-python/test-xml/*.xml work/test-xml/
+            cp "$RUNNER_TEMP/ci-shared-python/receipt.json" work/python-regression-reuse.json
+          else
+            python -m xmlrunner discover -s tests -o work/test-xml
+          fi
       - name: Supplement unapproved locators from verified CI cache
         # No HTTP requests or edits to claims; all new proposals stay unapproved.
         env:
@@ -253,6 +275,7 @@ jobs:
           name: automated-build-${{ github.run_id }}
           path: |
             work/test-xml/
+            work/python-regression-reuse.json
             work/pre_cutoff_evidence_verified.json
             work/pre_cutoff_evidence_events.json
             work/clean/p2_marker_proposals.csv
