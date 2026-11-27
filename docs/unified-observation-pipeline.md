@@ -292,6 +292,8 @@ python -m au_ree_v2 observation-validate --out work/round4-resource \
 
 `formal-resource-admission/runs/<run_id>/resource_admission.json` 保存候選、定位、證據核驗、入庫、重用、來源與規則指紋。入庫與正式寫入沿用同一交易。`formal-resource-delta/resource_refresh.json` 根據兩個完成且通過指紋檢查的正式執行，比對選值、準則值、分數、樣本、矩陣及排名並輸出各 Gate 的變動。正式 C1 依原有六項 Gate 判定。`selection_snapshot.json` 保存新舊選值的來源及執行關聯。[差異驗證](../src/au_ree_v2/formal_resource_refresh.py)
 
+同一收據的 `new_canonical_observations` 僅計算當次啟用、且指定 baseline 資料庫原先沒有的自動觀測 ID。`projects_with_new_canonical_observations` 列出這些觀測所屬的 Project；`new_canonical_projects` 保留為相容別名，不能解讀為新增 Project。`evidence_change_accounting` 引用本次採納收據已有的規則版本重驗證配對，只計入 baseline 確實存在、更新資料庫仍保留為 inactive 且對應本次新啟用 ID 的紀錄，同一新 ID 有多個舊版配對時只計一次。缺少配對欄位的舊收據將重驗證數標為 `UNMEASURED`／`null`；其餘新 ID 保留為未分類。獨立研究證據增益維持 `UNMEASURED`／`null`，不能由新 ID、來源 SHA 改變或規則重驗證推定。實際選值效果沿用 `criterion_selection_counts`、`numeric_selection_projects` 與 `changed_raw_input_projects` 區分數值變化和來源紀錄變化；不同開發輪各自與關閉採納的對照所計得的新增數量不可直接累加。
+
 `config/ontology/quality_frame_v1.json` 也可作為採納頁面範圍。品質診斷的固定分母和補充真實來源的採納數量各自計算。固定框架依第三輪原件重播，仍有四頁因鎖定原件缺失受阻。開發組 17 筆資源表示中的物理表頭見證由 0 增至 13，評估組 4 筆中由 0 增至 2。整體數值及單位定位數相同。品質檢查本身的入庫狀態為 `NOT_EXECUTED`。[固定品質框架](../config/ontology/quality_frame_v1.json)
 
 補充框架以四份原件的五個數值頁重播。18 個候選列含 42 筆去重觀測，42 筆定位到數值與單位並通過證據核驗。17 個候選列未通過整體入庫條件。Wolverine 的同源同範圍資源表新入庫一筆報告含量 70,500 t TREO，重用 7.3 Mt 及 0.96% 品位的既有 ID。R1 由原計算 70.08 kt 改選 70.5 kt，落在報告精度所支持的 69.2375–70.9275 kt 區間。`issuer_resource_composition` 維持 15 案，更新一個主要準則矩陣格。共 11 個使用該 R1 值的面板各更新一個主要矩陣格，名次維持相同，正式 C1 入選為 0。使用本機來源套件核驗 668／715 份原件，2026-11-13 的完整 93 專案重建仍缺 47 份。[CI 真實來源重播](../.github/workflows/research.yml)
@@ -308,7 +310,7 @@ python tests/test_resource_admission_integration.py --output work/resource-admis
 
 歷史連結與下游選值共用估算等價檢查。截止品位會保存原始數值、單位、化學基準及門檻條件。明示的 `>`、`≥` 或沒有明示運算子的截止品位各有獨立判定。缺欄時要從已鎖定的同源表列補足證據。拒收及衝突的 audit 保存關聯 observation ID 與證據位置。新採納使用 `automatic-resource-admission-v2`；舊版本的自動觀測保留於 canonical，當次選值須明確啟用。 [估算契約](../src/au_ree_v2/resource_estimate.py) · [正式採納](../src/au_ree_v2/formal_resource_admission.py)
 
-第四輪的重跑命令仍適用。把框架改為 `config/ontology/quality_frame_v1.json` 可執行固定框架的獨立正式重播。用 `formal_resource_refresh.compare()` 的 `mode="rule_effect"` 查核同源、同框架的程式修復。用 `mode="admission_effect"` 查核同版本啟用採納前後，或以 `mode="source_update"` 查核獨立來源更新。比較會驗證各項前提。 [差異契約](../src/au_ree_v2/formal_resource_refresh.py)
+第四輪的重跑命令仍適用。把框架改為 `config/ontology/quality_frame_v1.json` 可執行固定框架的獨立正式重播。用 `formal_resource_refresh.compare()` 的 `mode="rule_effect"` 查核同源、同框架的程式修復。用 `mode="admission_effect"` 查核同版本啟用採納前後，或以 `mode="source_update"` 查核來源版本更新。比較會驗證各項前提。 [差異契約](../src/au_ree_v2/formal_resource_refresh.py)
 
 `include_uncertainty=True` 從已封存的 R 產物比較排名中位數、分位數及 top-k 頻率。一般權重比較沿用相對或絕對 `1e-12` 的數值容差。逐次差值要求存在完整排名記錄、相同母體及相同抽樣契約，並精確核對實際權重。母體有進出時，報告分列共同專案與各版完整母體。四捨五入區間代表報告精度，排名頻率限於指定模型與偏好設定。 [Aim B 比較](../src/au_ree_v2/resource_rank_uncertainty.py)
 
