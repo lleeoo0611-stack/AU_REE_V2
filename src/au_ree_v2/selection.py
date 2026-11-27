@@ -10,7 +10,7 @@ from collections import defaultdict
 from .store import canonical, digest
 from .commodity import classify_ree
 from .selection_rules import (
-    RESOURCE_ADMISSION_VERSION, choose, date_end, evidence_domain, observation_visible,
+    RESOURCE_ADMISSION_VERSION_GLOB, choose, date_end, evidence_domain, observation_visible,
     resource_admission_visible, source_check,
 )
 from .technical import technical_record, technical_compare, technical_comparability
@@ -132,10 +132,10 @@ def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None,
     projects = {mapping.get(r[0], r[0]) for r in db.execute('''SELECT DISTINCT e.entity_id FROM entities e JOIN (
         SELECT entity_id,source_sha FROM records
         UNION ALL SELECT entity_id,source_sha FROM observations WHERE effective_date<=?
-          AND (transform_version<>? OR obs_id IN (SELECT value FROM json_each(?)))
+          AND (transform_version NOT GLOB ? OR obs_id IN (SELECT value FROM json_each(?)))
         UNION ALL SELECT project_id,source_sha FROM study_cases WHERE effective_date<=?
         ) proof USING(entity_id) WHERE e.kind='PROJECT' AND proof.source_sha IN (SELECT value FROM json_each(?))''',
-        (cutoff,RESOURCE_ADMISSION_VERSION,canonical(sorted(admitted_resource_ids)),cutoff,*source_parameter))}
+        (cutoff,RESOURCE_ADMISSION_VERSION_GLOB,canonical(sorted(admitted_resource_ids)),cutoff,*source_parameter))}
     for row in db.execute('SELECT * FROM observations WHERE source_sha IN (SELECT value FROM json_each(?)) ORDER BY obs_id',source_parameter):
         if row['source_sha'] not in sources:
             continue

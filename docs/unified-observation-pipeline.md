@@ -301,3 +301,13 @@ python -m au_ree_v2 observation-validate --out work/round4-resource \
 ```bash
 python tests/test_resource_admission_integration.py --output work/resource-admission-engineering
 ```
+
+## 第五輪 JORC 適用範圍與估算等價
+
+自動入庫保存每項 JORC 聲明的原文、原件 SHA、頁碼、位置、肯否極性及適用估算。正式寫入會核對目標估算的聲明，遇到否定、未解衝突或適用範圍不足便保留原候選及判定理由。Wolverine 使用同一鎖定 PDF 第 3 頁的 2025 估算聲明，由第 4 頁的相符估算敘述連回第 5 頁表 2。原先公告首頁的適用範圍未明註腳仍留在收據。 [聲明核驗](../src/au_ree_v2/resource_jorc.py)
+
+歷史連結與下游選值共用估算等價檢查。截止品位會保存原始數值、單位、化學基準及門檻條件。明示的 `>`、`≥` 或沒有明示運算子的截止品位各有獨立判定。缺欄時要從已鎖定的同源表列補足證據。拒收及衝突的 audit 保存關聯 observation ID 與證據位置。新採納使用 `automatic-resource-admission-v2`；舊版本的自動觀測保留於 canonical，當次選值須明確啟用。 [估算契約](../src/au_ree_v2/resource_estimate.py) · [正式採納](../src/au_ree_v2/formal_resource_admission.py)
+
+第四輪的重跑命令仍適用。把框架改為 `config/ontology/quality_frame_v1.json` 可執行固定框架的獨立正式重播。用 `formal_resource_refresh.compare()` 的 `mode="rule_effect"` 查核同源、同框架的程式修復。用 `mode="admission_effect"` 查核同版本啟用採納前後，或以 `mode="source_update"` 查核獨立來源更新。比較會驗證各項前提。 [差異契約](../src/au_ree_v2/formal_resource_refresh.py)
+
+`include_uncertainty=True` 從已封存的 R 產物比較排名中位數、分位數及 top-k 頻率。逐次差值要求存在完整排名記錄、相同母體與可核對的相同抽樣契約。母體有進出時，報告分列共同專案與各版完整母體。四捨五入區間代表報告精度，排名頻率限於指定模型與偏好設定。 [Aim B 比較](../src/au_ree_v2/resource_rank_uncertainty.py)

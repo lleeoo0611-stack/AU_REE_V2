@@ -9,37 +9,51 @@ from .numeric_evidence import numeric_token_spans, scalar_decimal
 from .observation_pipeline import raw_from_candidate
 from .observation_schema import value_evidence_issue
 from .pdf_extract import _matches
+from .resource_estimate import cutoff_signature, normalize_cutoff
+from .resource_jorc import (
+    VERSION as JORC_VERSION, SCOPE_TO_ROLE, estimate_heading, evaluate as assess_jorc, scope_stem, section_matches,
+)
 from .semantic_resource import (
-    CAPTION, CUTOFF, ESTIMATE_DATE, MONTHS, RISKY, _CLASSIFIED_ROW, _anchors, _header_unit,
+    CAPTION, CUTOFF, ESTIMATE_DATE, GRADE_PHRASE, MONTHS, RISKY, _CLASSIFIED_ROW, _anchors, _header_unit,
     clean, column_header_anchors, located_column_headers, page_table_caption,
 )
 from .store import digest
 from .technical_tables import cells
 
 
-VERSION = "native-resource-row-v1"
+VERSION = "native-resource-row-v2"
 _VARIABLES = ("ore_mt", "grade", "contained_treo_kt")
 _RESOURCE = re.compile(r"\b(?:mineral resources?|resource estimate|MRE)\b", re.I)
-_JORC = re.compile(r"\bJORC\b", re.I)
 _TOTAL = re.compile(r"(?:(?:grand|global|project|combined)\s+)?total(?:\s*\(\d+\))?", re.I)
 _CATEGORY = re.compile(r"\b(measured|indicated|inferred)\b", re.I)
 _CLASSIFICATION = re.compile(r"(?:JORC\s+)?(?:category|classification|resource classification)", re.I)
-_SCOPE_END = re.compile(r"\b(?:total|JORC|measured|indicated|inferred|estimate of)\b|" + _RESOURCE.pattern, re.I)
+_SCOPE_END = re.compile(r"\b(?:(?:non[-\s‐‑–—]+|not\s+(?:an?\s+)?)?JORC|total|measured|indicated|inferred|estimate of)\b|"
+                        + _RESOURCE.pattern, re.I)
 _SCOPE_AFTER = re.compile(r"(?:mineral resources?(?: estimate)?|resource estimate)\s+for\s+(?:the\s+)?(.+?)\s+(?:as at|effective|reported above)\b", re.I)
 _BULK = re.compile(r"\b(?:(?:dry|bulk|whole)[ -]+ore|dry\s+(?:material|tonnes?|tonnage))\b", re.I)
 _DRY_METHOD = re.compile(r"\btonnages?\s+(?:was|were|is|are)\s+(?:reported|assessed|estimated|calculated)\s+on\s+a\s+dry\s+basis\b", re.I)
 _WET_METHOD = re.compile(r"\btonnages?\s+(?:was|were|is|are)\s+(?:reported|assessed|estimated|calculated)\s+on\s+a\s+wet\s+basis\b", re.I)
-_JORC_METHOD = re.compile(r"\b(?:reported|estimated|classified|prepared)\s+in\s+accordance\b.{0,150}\bJORC\b", re.I)
 _CHEMICAL = re.compile(r"\btotal rare earth oxides?(?:\s*\(TREO\))?\b|\bTREO\s*=\s*La2O3\s*\+\s*CeO2\s*\+", re.I)
 _EXCLUDED_OXIDE = re.compile(r"\b(?:TREO|total rare earth oxides?)\s*(?:\(TREO\)\s*)?(?:exclud\w+|minus|[-−])\s*"
                              r"(?:[a-z]{1,2}\d*(?:O\d*)?|cerium|yttrium|scandium)\b", re.I)
 _HOLD = re.compile(r"\b(?:scandium|gallium|wet tonnes?|concentrate|recoverable|exclud(?:es?|ing)|\bHM\b)\b", re.I)
 _CONTINUATION = re.compile(r"\b(?:continued|continuation|cont\.)\b", re.I)
 _CUTOFF_COLUMN = re.compile(r"cut[- ]?off\s*\(\s*(?:TREO\s+(ppm|%)|(ppm|%)\s+TREO)\s*\)", re.I)
+_CUTOFF_COMPARISON = re.compile(r"(?P<operator>>=|<=|[≥≤><=]|\bat least|\bat most|\babove|\bbelow|\bgreater than|\bless than)"
+                                r"(?:\s+(?:an?|the))?\s*$", re.I)
+_CUTOFF_MARKER = re.compile(r"\bcut[- ]?off(?:\s+grade)?\s+(?:of\s+)?(?:[:=]\s*)?"
+                            r"(?P<operator>>=|<=|[≥≤><=])?\s*(?P<x>[0-9][0-9,.]*)\s*"
+                            r"(?P<u>ppm|%|g/t)\s*(?P<b>TREO(?:\s*[-−]\s*CeO2)?|Nb2O5|Ga2O3)\b", re.I)
+_CUTOFF_CELL = re.compile(r"(?P<operator>>=|<=|[≥≤><=])?\s*(?P<x>[0-9][0-9,.]*)\Z")
+_COMPARISONS = {"greater than": ">", "less than": "<"}
+_NO_RESERVE_CONVERSION = re.compile(r"\b(?:(?:not|never)\s+(?:yet\s+)?(?:been\s+)?|yet\s+to\s+be\s+)"
+                                    r"converted\s+(?:to|into)\s+"
+                                    r"(?:an?\s+)?Ore Reserves?\b", re.I)
 _REPORT_FOOTER = re.compile(r"(?P<title>.+?)\s+Page\s+(?P<page>\d+)\s+of\s+(?P<count>\d+)\s*$", re.I)
 _SCOPE_ALIAS = re.compile(r"\s[—–]\s+([^—–;]+?)\s+scope\s*$", re.I)
 _SCOPE_SUFFIX = re.compile(r"\s+(?:(?:rare earth )?deposit|project)\s*$", re.I)
 _CONTAINED_CLAIM = re.compile(r"\b(?:contained\s+TREO|TREO\s+conten(?:t|ts)|TREO\s+tonnes?)\b", re.I)
+_NARRATIVE_CONTAINED = re.compile(r"\b(?:comprising|containing)\s+([0-9][0-9,.]*)\s*(kt|t|Mt)\s+TREO\b", re.I)
 _MISSING = {"", "-", "–", "—", "N/A", "NA", "NR"}
 
 
@@ -63,12 +77,23 @@ def _effective_dates(texts):
 
 
 def _cutoff(texts):
-    declarations = set()
+    declarations = {}
     for text in texts:
-        for m in CUTOFF.finditer(text):
-            value = scalar_decimal(m["x"], m["u"])
-            if value is not None and value >= 0:
-                declarations.add((str(value.normalize()), m["u"].lower(), m["b"].upper().replace(" ", "")))
+        for m in [*CUTOFF.finditer(text), *_CUTOFF_MARKER.finditer(text)]:
+            if m.re is CUTOFF:
+                leading = _CUTOFF_COMPARISON.search(text[:m.start()])
+                operator = leading["operator"].casefold() if leading else None
+                original = text[leading.start():m.end()] if leading else m[0]
+            else:
+                operator = m["operator"]
+                leading = _CUTOFF_COMPARISON.search(text[:m.start()])
+                if leading and not operator:
+                    operator = leading["operator"].casefold()
+                original = text[leading.start():m.end()] if leading else m[0]
+            declared = {"value": m["x"], "unit": m["u"].lower(), "basis": m["b"].upper(),
+                        "operator": _COMPARISONS.get(operator, operator), "text": original}
+            if normalized := normalize_cutoff(declared):
+                declarations.setdefault(cutoff_signature(normalized), declared)
     return declarations
 
 
@@ -116,13 +141,104 @@ def _report_title(page, page_blocks):
     return next(iter(matches)) if len(matches) == 1 else None
 
 
-def _report_context(page, blocks, supporting_pages, registry, project):
+def _related_report_pages(page, blocks, supporting_pages, registry, project):
     title = _report_title(page, blocks)
     if not title or {row["entity_id"] for row in _matches(title, registry)} != {project}:
-        return []
-    return [(number, box, text) for number, other_blocks in sorted(supporting_pages.items()) if number != page
-            and _report_title(number, other_blocks) == title for box, text in other_blocks
-            if _DRY_METHOD.search(text) or _WET_METHOD.search(text) or _JORC_METHOD.search(text)]
+        return {}
+    return {number: other_blocks for number, other_blocks in sorted(supporting_pages.items())
+            if number != page and _report_title(number, other_blocks) == title}
+
+
+def _narrative_values(text, scope, located, cutoff):
+    """Link a current estimate paragraph to the complete physical table row."""
+    if not scope or not cutoff or not re.match(r"(?:the\s+)?" + re.escape(scope_stem(scope)) +
+            r"\s+(?:mineral\s+)?resources?(?:\s+estimate)?\s+(?:is|are)\s+(?:now|currently)\s+"
+            r"(?:estimated|reported)\s+at\b", text, re.I):
+        return False
+    factors = {"ppm": 1, "%": 10000, "t": 1, "kt": 1000, "mt": 10**6, "million tonnes": 10**6,
+               "m tonnes": 10**6}
+
+    def value(token, unit):
+        unit = unit.casefold()
+        number = scalar_decimal(token, unit)
+        return number * factors[unit] if number is not None and unit in factors else None
+
+    # The next sentence may introduce a project-wide or different estimate.
+    statement = text.split(". ", 1)[0]
+    declared = _cutoff([statement])
+    cutoff_key = cutoff_signature(normalize_cutoff(cutoff))
+    ore_grade, contained = GRADE_PHRASE.search(statement), _NARRATIVE_CONTAINED.search(statement)
+    if (not ore_grade or not contained or not cutoff_key or not declared
+            or any(key not in {cutoff_key, (*cutoff_key[:2], "DECLARED_CUTOFF")} for key in declared)):
+        return False
+    quantities = (value(ore_grade["mass"], ore_grade["mass_unit"]), value(ore_grade["grade"], ore_grade["grade_unit"]),
+                  value(*contained.groups()))
+    if None in quantities or any(len(located[variable]) != 1 for variable in _VARIABLES):
+        return False
+    return quantities == tuple(value(matches[0][0]["text"], matches[0][1]) for matches in located.values())
+
+
+def _jorc_section_proofs(page, report_pages, scope, effective, located, cutoff):
+    """Find one named dated section linked by a current-estimate value witness."""
+    candidates = [(number, box, text) for number, blocks in report_pages.items() if page - 2 <= number < page
+                  for box, text in blocks]
+    sections = [entry for entry in candidates if section_matches(entry[2], scope, effective)]
+    if len(sections) != 1:
+        return None, None, None
+    section = sections[0]
+    start = (section[0], section[1][3])
+    end = min(((number, box[1]) for number, box, text in candidates if estimate_heading(text)
+               and (number, box[1]) >= start), default=(page, 0))
+    links = [(number, box, text) for number, box, text in candidates if start <= (number, box[1]) < end
+             and _narrative_values(text, scope, located, cutoff)]
+    return (section, links[0], end) if len(links) == 1 else (None, None, None)
+
+
+def _adjacent_estimate_note(box, table, tables):
+    midpoint = (box[0] + box[2]) / 2
+    neighbors = [item for item in tables if item["bbox"][0] <= midpoint <= item["bbox"][2]
+                 and (0 <= item["bbox"][1] - box[3] <= 42 or 0 <= box[1] - item["bbox"][3] <= 42)]
+    return len(neighbors) == 1 and neighbors[0] is table
+
+
+def _jorc_evidence(source, registry, page, table, tables, row, subject, caption_entry, active_section, blocks, report_pages,
+                   located, cutoff):
+    witnesses = []
+    section_proof, estimate_proof, next_section = _jorc_section_proofs(page, report_pages, subject["scope_id"],
+                                                                      subject["effective_date"], located, cutoff)
+
+    def collect(number, box, quote, origin, **location):
+        witnesses.append({"source_sha256": source["sha256"], "source_id": source["key"],
+                          "physical_page": number, "bbox": box, "quote": quote, "origin": origin, **location})
+
+    if caption_entry:
+        collect(page, *caption_entry, "SCOPE_CAPTION", table=table["table_index"])
+    if active_section:
+        collect(page, active_section["bbox"], active_section["text"], "NATIVE_SECTION", table=table["table_index"],
+                row=active_section["row"], column=active_section["column"])
+    for box, quote in blocks:
+        if ((box, quote) != caption_entry and
+                (not active_section or (box, quote) != (active_section["bbox"], active_section["text"]))):
+            origin = "ADJACENT_ESTIMATE_NOTE" if _adjacent_estimate_note(box, table, tables) else "SAME_PAGE"
+            collect(page, box, quote, origin)
+    for number, page_blocks in report_pages.items():
+        for box, quote in page_blocks:
+            origin = ("MATCHED_ESTIMATE_SECTION" if section_proof and number == section_proof[0]
+                      and section_proof[1][3] <= box[1] and (number, box[1]) < next_section
+                      and not _REPORT_FOOTER.fullmatch(quote) else "REPORT_CONTEXT")
+            collect(number, box, quote, origin)
+
+    assessment = assess_jorc(witnesses, subject, projects_in=lambda text: {p["entity_id"] for p in _matches(text, registry)},
+                             dates_in=lambda text: _effective_dates([text]))
+    anchors = [_anchors(SCOPE_TO_ROLE[item["applicability"]], {**row, "physical_page": item["physical_page"]}, item["quote"],
+                        bbox=item["bbox"], table_index=item.get("table"), row=item.get("row"), column=item.get("column"),
+                        locator=item["binding"], text_span={"view": "MUPDF_NORMALIZED_SOURCE_QUOTE", "scope": "QUOTE",
+                       "start": item["start"], "end": item["end"], "quote_start": 0}) for item in assessment["evidence"]]
+    if section_proof:
+        for binding, (number, box, quote) in (("jorc_section_scope", section_proof), ("jorc_estimate_scope", estimate_proof)):
+            anchors.append(_anchors(binding, {**row, "physical_page": number}, quote, bbox=box))
+        assessment["scope_proof"] = [{"role": anchor["field"], **anchor} for anchor in anchors[-2:]]
+    return assessment, anchors
 
 
 def _column_parts(cell, headers):
@@ -164,7 +280,7 @@ def _typed(source, row, table, cell, quantity, unit, pieces, context, witnesses)
     return observation, issue
 
 
-def _table_rows(source, registry, page, table, tables, blocks, supporting_pages):
+def _table_rows(source, registry, page, table, tables, blocks, supporting_pages, method_pages):
     native = cells(table)
     labels = [cell for cell in native if _CLASSIFIED_ROW.fullmatch(clean(cell["text"])) or _TOTAL.fullmatch(clean(cell["text"]))]
     if not labels:
@@ -184,12 +300,15 @@ def _table_rows(source, registry, page, table, tables, blocks, supporting_pages)
     context_blocks, notes = _supporting_blocks(caption, table, tables, blocks) if caption_entry else ([], [])
     texts = [caption, *(text for _, text in context_blocks)]
     project, scope, extent_bound = _scope(caption, registry)
-    external = _report_context(page, blocks, supporting_pages, registry, project) if project else []
+    report_pages = _related_report_pages(page, blocks, supporting_pages, registry, project) if project else {}
+    external = [(number, box, text) for number, related in report_pages.items() for box, text in related
+                if number in method_pages and (_DRY_METHOD.search(text) or _WET_METHOD.search(text))]
     declared_dates = _effective_dates((caption,))
     declared_cutoffs = _cutoff((caption,))
     table_issues = []
     declared_resource = bool(caption_entry and _RESOURCE.search(caption))
-    incompatible = bool(RISKY.search(caption) or _HOLD.search(caption))
+    material_caption = _NO_RESERVE_CONVERSION.sub("", caption)
+    incompatible = bool(RISKY.search(material_caption) or _HOLD.search(material_caption))
     if not declared_resource:
         table_issues.append("RESOURCE_TABLE_CAPTION_UNRESOLVED")
     if incompatible:
@@ -202,10 +321,6 @@ def _table_rows(source, registry, page, table, tables, blocks, supporting_pages)
         table_issues.append("SOURCE_PROJECT_NOT_REGISTERED_FOR_ADMISSION")
     elif not extent_bound:
         table_issues.append("PROJECT_SCOPE_EXTENT_UNRESOLVED")
-    jorc = bool(any(_JORC.search(text) for text in texts + [cell["text"] for cell in headers])
-                or any(_JORC_METHOD.search(text) for _, _, text in external))
-    if not jorc:
-        table_issues.append("RESOURCE_REPORTING_STANDARD_UNRESOLVED")
     if len(declared_dates) != 1:
         table_issues.append("RESOURCE_ESTIMATE_DATE_UNRESOLVED" if not declared_dates else "RESOURCE_ESTIMATE_DATE_CONFLICT")
     effective = next(iter(declared_dates)) if len(declared_dates) == 1 else None
@@ -249,7 +364,7 @@ def _table_rows(source, registry, page, table, tables, blocks, supporting_pages)
         elif is_total:
             category += "_TOTAL"
         located = {quantity: [] for quantity in _VARIABLES}
-        cutoffs = set(declared_cutoffs)
+        cutoffs = dict(declared_cutoffs)
         witnesses = [_cell_anchor("row", row, table, cell) for cell in row_labels]
         if is_total:
             witnesses.extend(_cell_anchor("classification", row, table, cell) for cell in category_cells)
@@ -270,28 +385,41 @@ def _table_rows(source, registry, page, table, tables, blocks, supporting_pages)
             if _CONTAINED_CLAIM.search(header) and not _header_unit(header, "contained_treo_kt"):
                 row_issues.append("RESOURCE_CONTAINED_UNIT_OR_BASIS_UNRESOLVED")
             cutoff_column = _CUTOFF_COLUMN.fullmatch(header)
-            if cutoff_column and (number := scalar_decimal(cell["text"], cutoff_column[1] or cutoff_column[2])) is not None:
+            if cutoff_column and (number := _CUTOFF_CELL.fullmatch(cell["text"].strip())):
                 cutoff_unit = cutoff_column[1] or cutoff_column[2]
-                cutoffs.add((str(number.normalize()), cutoff_unit.lower(), "TREO"))
+                declaration = {"value": number["x"], "unit": cutoff_unit.lower(), "basis": "TREO",
+                               "operator": number["operator"], "text": cell["text"]}
+                if normalized_cutoff := normalize_cutoff(declaration):
+                    cutoffs.setdefault(cutoff_signature(normalized_cutoff), declaration)
                 witnesses.append(_cell_anchor("cutoff_value", row, table, cell))
                 witnesses.extend({**anchor, "field": "cutoff_header"} for anchor in
                                  column_header_anchors(row, table, pieces, cutoff_unit))
-        cutoff = next(iter(cutoffs)) if len(cutoffs) == 1 else None
-        if cutoff and cutoff[2] != "TREO":
+        cutoff = next(iter(cutoffs.values())) if len(cutoffs) == 1 else None
+        if cutoff and cutoff["basis"] != "TREO":
             cutoff = None
         if cutoff is None:
             row_issues.append("RESOURCE_CUTOFF_UNRESOLVED" if not cutoffs else "RESOURCE_CUTOFF_BASIS_OR_VALUE_CONFLICT")
         estimate = digest(["source-estimate-v1", source["sha256"], page, table["table_index"], project, scope, effective])
         statement = digest(["source-statement-v1", estimate, index])
+        reported_table = CAPTION.match(caption)[1] if caption_entry else None
+        subject = {"project_id": project, "scope_id": scope, "estimate_id": estimate, "statement_id": statement,
+                   "effective_date": effective, "physical_page": page, "table": table["table_index"], "row": index,
+                   "reported_table_label": reported_table}
+        jorc, jorc_anchors = _jorc_evidence(source, registry, page, table, tables, row, subject, caption_entry, active_section, blocks,
+                                           report_pages, located, cutoff)
+        if jorc["reason"]:
+            row_issues.append(jorc["reason"])
+        witnesses.extend(jorc_anchors)
         context = {"scope": scope, "statement_id": statement, "estimate_id": estimate, "effective_date": effective,
                    "category": category or None, "resource_type": "MINERAL_RESOURCE" if declared_resource and not incompatible else None,
-                   "reporting_standard": "JORC" if jorc else None,
+                   "reporting_standard": "JORC" if jorc["status"] == "AFFIRMED" else None,
+                   "jorc_status": jorc["status"], "jorc_rule_version": JORC_VERSION,
                    "scope_coverage": "PROJECT_TOTAL" if complete and extent_bound else "RESOURCE_COMPONENT" if not complete else None,
-                   "cutoff_grade": dict(zip(("value", "unit", "basis"), cutoff)) if cutoff else None,
+                   "cutoff_grade": cutoff,
                    "basis": "TREO" if basis else None, "material_basis": "RESOURCE_BULK_ORE" if bulk else None,
                    "denominator_basis": "RESOURCE_BULK_ORE_MASS" if bulk else None,
                    "available_date": source.get("available_date"), "definition_witness": VERSION,
-                   "reported_table_label": CAPTION.match(caption)[1] if caption_entry else None}
+                   "reported_table_label": reported_table}
         observations = []
         for quantity in _VARIABLES:
             matches = [entry for entry in located[quantity] if entry[0]["text"].strip() not in _MISSING]
@@ -306,14 +434,18 @@ def _table_rows(source, registry, page, table, tables, blocks, supporting_pages)
             if observation is not None:
                 observations.append(observation)
         yield {"candidate_id": statement, "physical_page": page, "table": table["table_index"], "row": index,
-               "project_id": project, "observations": tuple(observations), "issues": tuple(sorted(set(row_issues)))}
+               "project_id": project, "observations": tuple(observations), "issues": tuple(sorted(set(row_issues))),
+               "jorc_assessment": jorc}
 
 
-def candidates_on_page(source, registry, physical_page, blocks, tables, *, supporting_pages=None):
+def candidates_on_page(source, registry, physical_page, blocks, tables, *, supporting_pages=None, method_pages=None):
     """Visit native rows and keep every disposition, including unusable components."""
     registry = _registered_scope_aliases(registry)
+    supporting_pages = supporting_pages or {}
+    if method_pages is None:
+        method_pages = supporting_pages.keys()
     return tuple(candidate for table in tables
-                 for candidate in _table_rows(source, registry, physical_page, table, tables, blocks, supporting_pages or {}))
+                 for candidate in _table_rows(source, registry, physical_page, table, tables, blocks, supporting_pages, method_pages))
 
 
 def _positioned_value_issues(candidate, words):
@@ -351,7 +483,8 @@ def discover(root, source, registry, *, page_numbers, context_pages=(), cache=No
             return {"pages": [{"physical_page": page, "status": "SOURCE_BLOCKED", "reason": str(exc)}
                               for page in pages], "candidates": ()}
         supporting = {}
-        for page in sorted(set(context_pages)):
+        nearby = {number for page in pages for number in range(max(1, page - 2), page)}
+        for page in sorted(set(context_pages) | nearby):
             if page > page_count:
                 continue
             try:
@@ -365,7 +498,8 @@ def discover(root, source, registry, *, page_numbers, context_pages=(), cache=No
             try:
                 blocks = [(list(block[:4]), clean(block[4])) for block in document.blocks(page) if block[6] == 0]
                 tables, error = document.tables(page)
-                discovered = candidates_on_page(source, registry, page, blocks, tables, supporting_pages=supporting) if not error else ()
+                discovered = candidates_on_page(source, registry, page, blocks, tables, supporting_pages=supporting,
+                                                method_pages=context_pages) if not error else ()
                 if discovered:
                     words = document.words(page)
                     discovered = tuple({**candidate, "issues": tuple(sorted(set(candidate["issues"]) |

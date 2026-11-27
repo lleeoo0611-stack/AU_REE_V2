@@ -1,10 +1,13 @@
 """Engineering fixtures for native resource-row context and exact cell binding."""
 
+import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
 from au_ree_v2.observation_schema import value_evidence_issue
+from au_ree_v2.resource_estimate import normalize_cutoff
+from au_ree_v2.resource_jorc import admission_issue
 from au_ree_v2.resource_source import _positioned_value_issues, candidates_on_page, discover
 
 
@@ -25,11 +28,13 @@ def grid(data, *, index=0, top=100):
                                     for row, cells in enumerate(data)]}
 
 
-def records(*, caption=CAPTION, values=("50", "2,000", "100,000"), headers=None):
+def records(*, caption=CAPTION, values=("50", "2,000", "100,000"), headers=None, notes=()):
     data = [headers or ["Classification", "Dry ore tonnage (Mt)", "Total Rare Earth Oxides (TREO)", "TREO"],
             [None, None, "(ppm)", "(t)"], ["Indicated", "30", "2,000", "60,000"],
             ["Inferred", "20", "2,000", "40,000"], ["Total", *values]]
-    return candidates_on_page(SOURCE, REGISTRY, 1, [([5, 75, 545, 97], caption)], [grid(data)])
+    return candidates_on_page(SOURCE, REGISTRY, 1,
+                              [([5, 75, 545, 97], caption), *[([5, 182 + n * 15, 545, 195 + n * 15], note)
+                                                           for n, note in enumerate(notes)]], [grid(data)])
 
 
 class ResourceSourceTests(unittest.TestCase):
@@ -106,13 +111,77 @@ class ResourceSourceTests(unittest.TestCase):
         supplied = {2: [([5, 650, 545, 670], "Alpha Mineral Resource estimate 2025 Page 2 of 3"),
                         ([5, 150, 545, 170], "Reported in accordance with the guidelines of JORC. Tonnage was estimated on a dry basis.")]}
         found, = candidates_on_page(SOURCE, REGISTRY, 1, primary, [table], supporting_pages=supplied)
+        self.assertIn("RESOURCE_JORC_SCOPE_UNRESOLVED", found["issues"])
+        supplied[2][1] = supplied[2][1][0], "Table 2 was reported in accordance with JORC. Tonnage was estimated on a dry basis."
+        found, = candidates_on_page(SOURCE, REGISTRY, 1, primary, [table], supporting_pages=supplied)
         self.assertEqual(found["issues"], ())
         self.assertEqual({a.page for a in found["observations"][0].evidence_anchors if a.role == "estimate_reference"}, {2})
+        self.assertTrue(all(admission_issue(item) is None for item in found["observations"]))
         box, title = supplied[2][0]
         supplied[2][0] = box, title.replace("2025", "2024")
         found, = candidates_on_page(SOURCE, REGISTRY, 1, primary, [table], supporting_pages=supplied)
         self.assertIn("DRY_BULK_ORE_BASIS_UNRESOLVED", found["issues"])
         self.assertIn("RESOURCE_REPORTING_STANDARD_UNRESOLVED", found["issues"])
+
+    def test_target_jorc_negation_keeps_the_original_located_evidence(self):
+        for wording in ("non-JORC", "not JORC-compliant", "JORC (not compliant)",
+                        "Not reported in accordance with the guidelines of JORC."):
+            with self.subTest(wording=wording):
+                total = records(caption=CAPTION.replace("JORC", wording))[-1]
+                assessment = total["jorc_assessment"]
+                self.assertEqual(assessment["status"], "DENIED")
+                denial, = assessment["evidence"]
+                self.assertIn(wording, denial["quote"])
+                self.assertEqual((denial["applicability"], denial["source_sha256"], denial["physical_page"]),
+                                 ("TARGET", SHA, 1))
+                self.assertEqual(denial["bbox"], [5, 75, 545, 97])
+                self.assertEqual(assessment["subject"]["estimate_id"], total["observations"][0].estimate_id)
+                self.assertTrue(all(admission_issue(item) == "RESOURCE_JORC_NEGATED" for item in total["observations"]))
+                self.assertNotIn("reporting_standard", dict(total["observations"][0].context.conditions))
+
+    def test_other_estimate_standards_and_unrelated_negative_predicates_are_disjoint(self):
+        notes = ("The old estimate in Table 1 was not JORC-compliant.",
+                 "The JORC resource in Table 2 has not materially changed.",
+                 "No JORC Mineral Resource changes have been identified in Table 2.",
+                 "The JORC resource in Table 2 has not been converted to an Ore Reserve.")
+        affirmative = records(notes=notes)[-1]
+        self.assertEqual(affirmative["issues"], ())
+        self.assertTrue(all(admission_issue(item) is None for item in affirmative["observations"]))
+        self.assertIn(("OTHER_ESTIMATE", "DENIED"), {(e["applicability"], e["polarity"])
+                                                     for e in affirmative["jorc_assessment"]["evidence"]})
+        just_other = records(caption=CAPTION.replace("JORC ", ""),
+                             notes=("The old estimate in Table 1 was reported in accordance with JORC.",))[-1]
+        self.assertIn("RESOURCE_JORC_SCOPE_UNRESOLVED", just_other["issues"])
+        contradictory = records(notes=("The old estimate in Table 1 was reported in accordance with JORC; "
+                                       "the current estimate in Table 2 is not compliant.",))[-1]
+        self.assertEqual(contradictory["jorc_assessment"]["status"], "CONFLICT")
+        self.assertEqual({e["polarity"] for e in contradictory["jorc_assessment"]["evidence"]
+                          if e["applicability"] == "TARGET"}, {"AFFIRMED", "DENIED"})
+        no_table_ref = "The old estimate was reported in accordance with JORC; the current estimate is not compliant."
+        contradictory = records(notes=(no_table_ref,))[-1]
+        self.assertEqual(contradictory["jorc_assessment"]["status"], "CONFLICT")
+        self.assertTrue(all(admission_issue(item) == "RESOURCE_JORC_CONFLICT"
+                            for item in contradictory["observations"]))
+        denied = records(caption=CAPTION.replace("JORC ", ""), notes=(no_table_ref,))[-1]
+        self.assertEqual(denied["jorc_assessment"]["status"], "DENIED")
+        no_resource = records(caption=CAPTION.replace("JORC ", ""),
+                              notes=("There are no JORC Mineral Resources in Table 2.",))[-1]
+        self.assertEqual(no_resource["jorc_assessment"]["status"], "DENIED")
+        unspecified = records(notes=("Not reported in accordance with the guidelines of JORC.",))[-1]
+        self.assertEqual(unspecified["jorc_assessment"]["status"], "UNRESOLVED_SCOPE")
+        contradiction = records(notes=("This Mineral Resource estimate does not comply with JORC.",))[-1]
+        self.assertEqual(contradiction["jorc_assessment"]["status"], "CONFLICT")
+
+    def test_cutoff_keeps_operator_original_phrase_and_normalized_basis(self):
+        for words, operator in (("above 500 ppm", ">"), ("at least 500 ppm", ">="), ("≤ 0.05 %", "<="),
+                                ("< 500 ppm", "<"), ("at 500 ppm", "DECLARED_CUTOFF")):
+            with self.subTest(words=words):
+                total = records(caption=CAPTION.replace("at 500 ppm", words))[-1]
+                raw = json.loads(dict(total["observations"][0].context.conditions)["cutoff_grade"])
+                normalized = normalize_cutoff(raw)
+                self.assertEqual((normalized["basis"], normalized["value_ppm"], normalized["operator"]),
+                                 ("TREO", "500", operator))
+                self.assertIn(words.removeprefix("at "), raw["text"])
 
     def test_blocked_source_produces_all_fixed_page_dispositions(self):
         with TemporaryDirectory() as directory:

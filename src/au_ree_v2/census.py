@@ -18,15 +18,16 @@ from .census_policy import (
 from .commodity import AGGREGATE, CANDIDATE_VERSION, ELEMENTS, REE, STATES, SYMBOLS, classify_ree
 from .normalization import MAGNET_ATOMIC_WEIGHTS, oxide_factor
 from .official import ingest_workbook
+from .resource_estimate import compare_resource_estimates, is_jorc_mineral_resource
 from .selection_rules import (
-    RESOURCE_ADMISSION_VERSION, automatic_resource_scope, choose, date_end,
+    automatic_resource_scope, automatic_resource_scope_assessment, choose, date_end, is_automatic_resource_admission,
     resource_admission_link_matches, resource_admission_visible,
 )
 from .store import canonical, digest, filehash
 from .evidence_model import compatible_resource_context
 
 
-def summary_resource_bundle(observations, partial_resource=None):
+def summary_resource_bundle(observations, partial_resource=None, *, canonical_observations=None):
     """Require paired ore/TREO by default; partial projection needs explicit proof."""
     if partial_resource is not None:
         partial_resource_bundle=summary_partial_bundle
@@ -41,7 +42,7 @@ def summary_resource_bundle(observations, partial_resource=None):
     for o in observations:
         if o['status']=='AUTO_VALIDATED' and o['variable'] in ('ore_mt','grade','contained_treo_kt') and o['basis']=='TREO':
             key=(o['source_sha'],o['statement_id'],o['scope'],o['effective_date'])
-            if o.get('transform_version')==RESOURCE_ADMISSION_VERSION:
+            if is_automatic_resource_admission(o):
                 raw=json.loads(o['raw'])
                 if 'resource_identity_link' in raw:
                     supplements.append((key,o,raw['resource_identity_link']))
@@ -54,20 +55,32 @@ def summary_resource_bundle(observations, partial_resource=None):
         rows=grouped.get(key,())
         ore=[row for row in rows if row['variable']=='ore_mt']
         grade=[row for row in rows if row['variable']=='grade']
-        if len(ore)==len(grade)==1 and resource_admission_link_matches(o,link,ore[0],grade[0]):
-            grouped[key].append(o)
+        reported=next((row for row in rows if row['variable']=='contained_treo_kt'),None)
+        original = canonical_observations or {}
+        if len(ore)==len(grade)==1 and resource_admission_link_matches(
+                original.get(o['obs_id'],o),link,original.get(ore[0]['obs_id'],ore[0]),original.get(grade[0]['obs_id'],grade[0]),
+                original.get(reported['obs_id'],reported) if reported else None):
+            if (o['unit'] in ('kt','kt TREO') and isinstance(o['value'],(int,float))
+                    and math.isfinite(o['value']) and o['value'] > 0):
+                grouped[key].append(dict(o,unit='kt'))
     options=[]
+    independent=[]
+    legacy_pairs={}
     for key,rows in grouped.items():
         if not compatible_resource_context(rows):
             continue
         values={};invalid=False
         for variable in ('ore_mt','grade','contained_treo_kt'):
             found=[r for r in rows if r['variable']==variable]
-            distinct={(r['value'],r['unit'],r['basis']) for r in found}
+            distinct={(r['value'],'kt' if variable=='contained_treo_kt' and r['unit']=='kt TREO' else r['unit'],r['basis'])
+                      for r in found}
             if len(distinct)>1 or len(key)>4 and len(found)>1:invalid=True
             if found:values[variable]=found[0]
         if invalid or not {'ore_mt','grade'}<=values.keys():continue
         ore,grade=values['ore_mt'],values['grade']
+        if len(key)>4 and (not is_jorc_mineral_resource(ore) or any(
+                compare_resource_estimates(ore,candidate)['status']!='EQUIVALENT'
+                for variable,candidate in values.items() if variable!='ore_mt')):continue
         if ore['unit']!='Mt' or grade['unit'] not in ('ppm','%'):continue
         if not all(isinstance(r['value'],(int,float)) and math.isfinite(r['value']) for r in values.values()):continue
         pct=grade['value']/10000 if grade['unit']=='ppm' else grade['value']
@@ -86,8 +99,18 @@ def summary_resource_bundle(observations, partial_resource=None):
         value=dict(ore_mt=ore['value'],grade_pct=pct,contained_treo_kt=reported['value'] if reported else calculated)
         option=dict(evidence_id=digest(key),source_sha256=key[0],statement_id=key[1],scope=key[2],effective_date=key[3],
             basis='TREO',value=value,observations=rows,contained_method='REPORTED' if reported else 'ORE_MT_X_GRADE_PERCENT_X_10',rounding=rounding)
-        if (context:=automatic_resource_scope(ore)) is not None:option['automatic_scope']=context
-        options.append(option)
+        if len(key)>4:
+            independent.append((option,ore))
+        else:
+            options.append(option)
+            legacy_pairs[option['evidence_id']]=(ore,grade)
+    incumbent,_=choose(options,('scope','basis')) if independent and options else (None,None)
+    for option,ore in independent:
+        if incumbent is None and legacy_pairs:break
+        scope_pairs = [legacy_pairs[incumbent['evidence_id']]] if incumbent else []
+        if automatic_resource_scope_assessment(ore,scope_pairs)['reason'] is None:
+            if not legacy_pairs:option['automatic_scope']=automatic_resource_scope(ore)
+            options.append(option)
     selected,reason=choose(options,('scope','basis','automatic_scope'))
     return selected,reason
 
@@ -463,7 +486,7 @@ def summary_resource_fields(row, observations, sources, rules, decisions, put, p
         first=next((o for o in primary if json.loads(o['raw']).get('review_contract',{}).get('partial_resource_projection')),None)
         if first:partial=summary_partial_contract(primary,sources[first['source_sha']])
     except (KeyError,ValueError,IndexError,InvalidOperation):return None,{},'PARTIAL_RESOURCE_PROOF_INVALID'
-    bundle,reason=summary_resource_bundle(primary,partial)
+    bundle,reason=summary_resource_bundle(primary,partial,canonical_observations={o['obs_id']:o for o in observations})
     if not bundle:return None,{},reason if primary else 'NO_VALIDATED_RESOURCE_OBSERVATIONS'
     sha=bundle['source_sha256'];scope=bundle['scope'];ids=[o['obs_id'] for o in bundle['observations']]
     locator='; '.join(sorted({o['locator'] for o in bundle['observations']}))

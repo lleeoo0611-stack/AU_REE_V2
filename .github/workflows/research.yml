@@ -216,11 +216,22 @@ jobs:
           from au_ree_v2.formal_resource_refresh import compare
           def run(folder):
               return json.loads((Path(folder) / 'latest.json').read_bytes())['output_dir']
-          delta = compare(run('work/phase22-a'), run('work/resource-admission-replay'), 'work/resource-admission-delta')
+          delta = compare(run('work/phase22-a'), run('work/resource-admission-replay'), 'work/resource-admission-delta',
+                          mode='admission_effect', include_uncertainty=True)
           assert delta['active_admission_ids_in_selected_inputs']
           assert delta['panels']['issuer_resource_composition']['matrix_primary_criterion_cells_changed']
           assert delta['panels']['issuer_resource_composition']['updated_r_status'] == 'COMPLETED'
           PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: resource-admission-review-${{ github.run_id }}
+          path: |
+            work/resource-admission-engineering/engineering_proof.json
+            work/resource-admission-replay/runs/*/resource_admission.json
+            work/resource-admission-delta/resource_refresh.json
+            work/resource-admission-delta/selection_snapshot.json
+          if-no-files-found: warn
       - name: Phase 22 second clean reconstruction
         if: steps.scope.outputs.archive == 'true'
         run: |
