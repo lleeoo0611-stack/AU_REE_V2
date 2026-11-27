@@ -186,7 +186,7 @@ def _row_values_match(quote, located):
 
 
 def _table_context_references(page, reported_table, scope, declared_dates, caption, blocks, supporting_pages, located,
-                              table_label_pages):
+                              table_label_pages, *, project, registry):
     """Require a located connection to the estimate. Retrieval rank cannot establish identity."""
     if not reported_table or not scope:
         return
@@ -208,11 +208,16 @@ def _table_context_references(page, reported_table, scope, declared_dates, capti
             same_quantities = _row_values_match(quote, located)
             if (_scope_is_named(scope, quote) and _RESOURCE.search(quote) and names == {reported_table}
                     and not duplicate_label and (same_date or same_quantities)):
-                yield number, box, quote, _MATCHED_TABLE
+                # A block can contain independent prose sentences. A named
+                # table next to another project's numeric statement does not
+                # give the target table that project's date or basis.
+                if len(dates) <= 1 and all(item['entity_id'] == project for item in _matches(quote, registry)):
+                    yield number, box, quote, _MATCHED_TABLE
             elif (number != page and not names and not duplicate_label and named_reporting_period and len(period_matches) == 1
                   and _RESOURCE.search(quote) and not RISKY.search(quote) and same_quantities):
                 dates = _estimate_dates_in_context(quote, _MATCHED_PERIOD)
-                if len(dates) == 1 and any((d.year, d.month) in period_matches for d in map(date.fromisoformat, dates)):
+                if (len(dates) == 1 and any((d.year, d.month) in period_matches for d in map(date.fromisoformat, dates))
+                        and all(item['entity_id'] == project for item in _matches(quote, registry))):
                     yield number, box, quote, _MATCHED_PERIOD
 
 
@@ -611,7 +616,8 @@ def _table_rows(source, registry, page, table, tables, blocks, supporting_pages,
         bound_context = [*marked_treo]
         if unique_on_page and complete:
             bound_context.extend(_table_context_references(page, reported_table, scope, declared_dates, caption,
-                                                           blocks, supporting_pages, located, table_label_pages))
+                                                           blocks, supporting_pages, located, table_label_pages,
+                                                           project=project, registry=registry))
         identities, field_evidence, bound_dates, bound_cutoffs, bound_wet, bound_exclusion = _bound_field_witnesses(row, scope, bound_context)
         witnesses.extend(identities)
         for number in sorted({number for number, _, _, relation in bound_context if relation == _MATCHED_PERIOD}):

@@ -151,12 +151,15 @@ def legacy_pair(source, cutoff, *, basis='TREO'):
 
 
 def run_fixture(root, pages, *, legacy_cutoff=None, legacy_cutoff_basis='TREO', tamper=False,
-                previously_active_pages=(), value_pages=None, context_pages=None):
+                previously_active_pages=(), value_pages=None, context_pages=None, other_project=None):
     (root / 'config').symlink_to(ROOT / 'config', target_is_directory=True)
     source = original(root, *pages)
     historical = legacy_pair(source, legacy_cutoff, basis=legacy_cutoff_basis) if legacy_cutoff is not None else []
     claims = {'projects': [{'id': 'alpha', 'name': PROJECT, 'aliases': [PROJECT], 'state': 'WA',
                             'identity_source': source['key'], 'observations': historical}]}
+    if other_project:
+        claims['projects'].append({'id': 'beta', 'name': other_project, 'aliases': [other_project], 'state': 'WA',
+                                   'identity_source': source['key'], 'observations': []})
     selected_shas = {source['sha256']}
     with closing(connect(':memory:')) as db:
         ingest_sources(db, root, [source])
@@ -404,6 +407,23 @@ class ResourceAdmissionReviewPdfTests(unittest.TestCase):
         row = total_disposition(receipt)
         self.assertEqual(row['status'], 'NOT_ADMITTED')
         self.assertIn('DRY_BULK_ORE_BASIS_UNRESOLVED', row['reasons'])
+        self.assertEqual(canonical, [])
+        self.assertEqual(selected, {})
+
+    def test_other_project_quantity_cannot_bind_in_same_physical_block(self):
+        other = 'Synthetic Beta Project'
+        note = narrative_page(f'Table 2 presents the {PROJECT} Mineral Resource estimate. '
+                              f'The {other} Mineral Resource estimate is 50 Mt at 2,000 ppm TREO '
+                              f'effective {EFFECTIVE_DATE}. Tonnages are reported on a dry basis. '
+                              'TREO means Total Rare Earth Oxides. The estimate uses 500 ppm TREO cut-off.')
+        target = resource_page(date=None, cutoff=None, material_header='Ore tonnage (Mt)',
+                               chemical_header='TREO grade (ppm)')
+        _, receipt, _, selected, _, canonical = self.run_pdf(
+            target, narrative_page(), narrative_page(), narrative_page(), note,
+            value_pages=(1,), context_pages=(5,), other_project=other)
+        row = total_disposition(receipt)
+        self.assertEqual(row['status'], 'NOT_ADMITTED')
+        self.assertEqual(row['context_field_gains'], {})
         self.assertEqual(canonical, [])
         self.assertEqual(selected, {})
 
