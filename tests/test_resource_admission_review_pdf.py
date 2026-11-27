@@ -1,6 +1,7 @@
 """Review regressions that use immutable PDFs and the live canonical selector."""
 
 from contextlib import closing
+from dataclasses import replace
 import json
 from pathlib import Path
 import sys
@@ -10,7 +11,8 @@ import unittest
 import pymupdf
 
 from au_ree_v2.evidence import claim_evidence_ids, ingest_claims, ingest_sources, resource_values
-from au_ree_v2.formal_resource_admission import admit
+from au_ree_v2.formal_resource_admission import _group_context, admit
+from au_ree_v2.observation_schema import raw_from_payload
 from au_ree_v2.store import connect, digest, filehash
 
 
@@ -20,6 +22,11 @@ PROJECT_ID = 'AU-' + digest(['project_registry_v1', 'alpha'])[:20]
 FIXTURE_CLASS = 'SYNTHETIC_ENGINEERING_FIXTURE'
 EFFECTIVE_DATE = '2025-05-01'
 CUTOFF = '2026-11-05'
+SCOPE_OPENING = (f'For the {PROJECT} Mineral Resource estimate in Table 2, '
+                 f'50 Mt at 2,000 ppm TREO, effective {EFFECTIVE_DATE}.')
+EARLIER_DRY_STATEMENT = 'For the earlier estimate, tonnages are reported on a dry basis.'
+JORC_OPENING = 'The Mineral Resource estimate in Table 2 is JORC compliant. No change.'
+JORC_DENIAL = 'It is not compliant.'
 
 JORC_PROPOSITIONS = (
     ('negated_consideration', 'DENIED',
@@ -108,29 +115,38 @@ def original(root, *pages):
             # bag of keywords. All glyphs occupy physical coordinates outside the grid.
             for number, note in enumerate(entry['notes']):
                 page.insert_text((42, 121 + 14 * number), note, fontsize=9)
-            mass, grade, contained = entry['total']
-            ore = float(mass.replace(',', ''))
-            tonnes = float(contained.replace(',', ''))
-            grid = (
-                ('Classification', entry['material_header'], entry['chemical_header'], 'Contained TREO (t)'),
-                ('Indicated', f'{0.4 * ore:.2f}', grade, f'{0.4 * tonnes:,.0f}'),
-                ('Inferred', f'{0.6 * ore:.2f}', grade, f'{0.6 * tonnes:,.0f}'),
-                ('Total', *entry['total']),
-            )
-            if entry['competing_total']:
-                grid += (('Total', *entry['competing_total']),)
+            grid = entry.get('native_grid')
+            if grid is None:
+                mass, grade, contained = entry['total']
+                ore = float(mass.replace(',', ''))
+                tonnes = float(contained.replace(',', ''))
+                grid = (
+                    ('Classification', entry['material_header'], entry['chemical_header'], 'Contained TREO (t)'),
+                    ('Indicated', f'{0.4 * ore:.2f}', grade, f'{0.4 * tonnes:,.0f}'),
+                    ('Inferred', f'{0.6 * ore:.2f}', grade, f'{0.6 * tonnes:,.0f}'),
+                    ('Total', *entry['total']),
+                )
+                if entry['competing_total']:
+                    grid += (('Total', *entry['competing_total']),)
             columns = [40, 175, 335, 590, 775]
             rows = [142 + 25 * number for number in range(len(grid) + 1)]
-            for x in columns:
-                page.draw_line((x, rows[0]), (x, rows[-1]))
+            for column, x in enumerate(columns):
+                top = rows[1] if entry.get('merged_first_row') and 0 < column < len(columns) - 1 else rows[0]
+                page.draw_line((x, top), (x, rows[-1]))
             for y in rows:
                 page.draw_line((columns[0], y), (columns[-1], y))
             for y, row in zip(rows, grid):
                 for x, cell in zip(columns, row):
                     page.insert_text((x + 5, y + 16), cell, fontsize=10)
+            for number, note in enumerate(entry.get('notes_below_table', ())):
+                page.insert_text((43, rows[-1] + 17 + 14 * number), note, fontsize=9)
             page.insert_text((42, 480), page_footer, fontsize=9)
         document.save(path, no_new_id=True)
-    return {'path': path.name, 'sha256': filehash(path), 'key': 'synthetic-resource-review', 'kind': 'pdf',
+    return fixture_source(path.name, filehash(path))
+
+
+def fixture_source(path, sha256):
+    return {'path': str(path), 'sha256': sha256, 'key': 'synthetic-resource-review', 'kind': 'pdf',
             'url': 'https://example.invalid/synthetic-resource-review.pdf', 'summary_project_ids': [PROJECT_ID],
             'publication_date': '2025-06-01', 'available_date': '2025-06-01',
             'acquired_at': '2025-06-01T00:00:00+00:00', 'case_classification': FIXTURE_CLASS}
@@ -151,9 +167,10 @@ def legacy_pair(source, cutoff, *, basis='TREO'):
 
 
 def run_fixture(root, pages, *, legacy_cutoff=None, legacy_cutoff_basis='TREO', tamper=False,
-                previously_active_pages=(), value_pages=None, context_pages=None, other_project=None):
+                previously_active_pages=(), value_pages=None, context_pages=None, other_project=None,
+                pinned_source=None, historical_automatic=()):
     (root / 'config').symlink_to(ROOT / 'config', target_is_directory=True)
-    source = original(root, *pages)
+    source = pinned_source if pinned_source is not None else original(root, *pages)
     historical = legacy_pair(source, legacy_cutoff, basis=legacy_cutoff_basis) if legacy_cutoff is not None else []
     claims = {'projects': [{'id': 'alpha', 'name': PROJECT, 'aliases': [PROJECT], 'state': 'WA',
                             'identity_source': source['key'], 'observations': historical}]}
@@ -164,6 +181,16 @@ def run_fixture(root, pages, *, legacy_cutoff=None, legacy_cutoff_basis='TREO', 
     with closing(connect(':memory:')) as db:
         ingest_sources(db, root, [source])
         ingest_claims(db, root, [source], CUTOFF, conflict_selection=True, claims_data=claims)
+        if historical_automatic:
+            if any(row['source_sha'] != source['sha256'] or row['entity_id'] != PROJECT_ID
+                   or not row['transform_version'].startswith('automatic-resource-admission-v')
+                   for row in historical_automatic):
+                raise ValueError('Historical observations do not belong to the pinned fixture')
+            db.executemany('''INSERT INTO observations (obs_id, entity_id, variable, value, unit, basis,
+                              scope, statement_id, category, effective_date, source_sha, locator, status, issues,
+                              raw, transform_version) VALUES (:obs_id, :entity_id, :variable, :value, :unit, :basis,
+                              :scope, :statement_id, :category, :effective_date, :source_sha, :locator, :status,
+                              :issues, :raw, :transform_version)''', historical_automatic)
         active_claims = claim_evidence_ids(claims)
         prior = admit(db, root, [source], CUTOFF, {source['sha256']: previously_active_pages}, claims_data=claims,
                       classification=FIXTURE_CLASS) if previously_active_pages else {}
@@ -206,6 +233,50 @@ def proposition_replay():
                            {**{key: value[key] for key in ('obs_id', 'value', 'unit', 'variable', 'locator', 'source_sha')},
                             'reporting_standard': json.loads(value['raw']).get('reporting_standard')}
                            for value in canonical],
+                       'selected_resource': selected.get(PROJECT_ID), 'selection_audit': audit}
+    return {'classification': FIXTURE_CLASS, 'cutoff': CUTOFF, 'project_id': PROJECT_ID, 'cases': cases}
+
+
+def prep_scope_replay(directory):
+    """Generate each original once. Both code revisions replay this manifest."""
+    directory.mkdir(parents=True)
+    fixtures = {
+        'earlier_estimate_dry_basis': (resource_page(material_header='Ore tonnage (Mt)'),
+                                      narrative_page(), narrative_page(), narrative_page(),
+                                      narrative_page(f'{SCOPE_OPENING} {EARLIER_DRY_STATEMENT}')),
+        'jorc_denial_in_next_block': (resource_page(qualifier='', notes=(JORC_OPENING, JORC_DENIAL)),),
+    }
+    cases = {}
+    for name, pages in fixtures.items():
+        folder = directory / name
+        folder.mkdir()
+        source = original(folder, *pages)
+        cases[name] = {'path': f'{name}/{source["path"]}', 'sha256': source['sha256'],
+                       'value_pages': [1], 'context_pages': [5] if len(pages) > 1 else []}
+    manifest = directory / 'scope-fixtures.json'
+    manifest.write_text(json.dumps(cases, indent=2) + '\n', encoding='utf-8')
+
+
+def scope_replay(manifest, prior_receipt=None):
+    """Run the actual canonical/selection workflow against a saved original."""
+    prior = json.loads(prior_receipt.read_text(encoding='utf-8'))['cases'] if prior_receipt else {}
+    cases = {}
+    for name, case in json.loads(manifest.read_text(encoding='utf-8')).items():
+        pinned = fixture_source((manifest.parent / case['path']).resolve(), case['sha256'])
+        history = prior[name]['canonical_observations'] if prior else []
+        with TemporaryDirectory(prefix='au-ree-scope-replay-') as temporary:
+            source, receipt, _, selected, audit, canonical = run_fixture(
+                Path(temporary), (), pinned_source=pinned, value_pages=case['value_pages'],
+                context_pages=case['context_pages'], historical_automatic=history)
+        row = total_disposition(receipt)
+        stored = {value['obs_id']: value for value in canonical}
+        cases[name] = {'source_sha256': source['sha256'], 'source_check': receipt['source_dispositions'][0],
+                       'admission_rules_sha256': receipt['rules_sha256'], 'disposition': row,
+                       'new_canonical_observations': receipt['counts']['canonical_added'],
+                       'canonical_observation_ids': sorted(stored), 'canonical_observations': canonical,
+                       'historical_observations_retained': [value['obs_id'] for value in history
+                                                            if stored.get(value['obs_id']) == value],
+                       'active_admission_observation_ids': receipt['active_admission_observation_ids'],
                        'selected_resource': selected.get(PROJECT_ID), 'selection_audit': audit}
     return {'classification': FIXTURE_CLASS, 'cutoff': CUTOFF, 'project_id': PROJECT_ID, 'cases': cases}
 
@@ -410,6 +481,83 @@ class ResourceAdmissionReviewPdfTests(unittest.TestCase):
         self.assertEqual(canonical, [])
         self.assertEqual(selected, {})
 
+    def test_earlier_estimate_dry_statement_cannot_bind_within_target_block(self):
+        note = narrative_page(f'{SCOPE_OPENING} {EARLIER_DRY_STATEMENT}')
+        _, receipt, _, selected, _, canonical = self.run_pdf(
+            resource_page(material_header='Ore tonnage (Mt)'), narrative_page(), narrative_page(),
+            narrative_page(), note, value_pages=(1,), context_pages=(5,))
+        row = total_disposition(receipt)
+        self.assertEqual(row['status'], 'NOT_ADMITTED', row['reasons'])
+        self.assertIn('DRY_BULK_ORE_BASIS_UNRESOLVED', row['reasons'])
+        self.assertFalse({'material_basis', 'denominator_basis'} & set(row['context_field_gains']))
+        self.assertEqual(canonical, [])
+        self.assertEqual(selected, {})
+
+    def test_physical_table_note_cannot_override_an_explicit_estimate_switch(self):
+        cases = (
+            ('another estimate', False),
+            ('a different Mineral Resource estimate in Table 2', False),
+            ('the current Mineral Resource estimate', True),
+        )
+        for subject, expected in cases:
+            with self.subTest(subject=subject):
+                page = resource_page(material_header='Ore tonnage (Mt)')
+                page['notes_below_table'] = (f'For {subject}, tonnages are reported on a dry basis.',)
+                _, receipt, _, selected, _, canonical = self.run_pdf(page)
+                row = total_disposition(receipt)
+                self.assertEqual(len(canonical), 3 if expected else 0, row['reasons'])
+                if expected:
+                    self.assertEqual(selected[PROJECT_ID]['contained_treo_kt'], 100)
+                else:
+                    self.assertIn('DRY_BULK_ORE_BASIS_UNRESOLVED', row['reasons'])
+                    self.assertEqual(selected, {})
+
+    def test_current_dry_witness_survives_explicit_switch_to_earlier_estimate(self):
+        current = 'Tonnages are reported on a dry basis.'
+        earlier = ('For the earlier estimate, tonnages are reported on a wet basis. '
+                   'The estimate uses a cut-off grade of 1,000 ppm TREO. TREO excludes CeO2.')
+        note = narrative_page(f'{SCOPE_OPENING} {current} {earlier}')
+        source, receipt, _, selected, _, canonical = self.run_pdf(
+            resource_page(material_header='Ore tonnage (Mt)'), narrative_page(), narrative_page(),
+            narrative_page(), note, value_pages=(1,), context_pages=(5,))
+        row = total_disposition(receipt)
+        self.assertEqual(row['status'], 'SOURCE_BOUND_CANONICAL', row['reasons'])
+        self.assertEqual(len(canonical), 3)
+        self.assertEqual(selected[PROJECT_ID]['contained_treo_kt'], 100)
+        for field in ('material_basis', 'denominator_basis'):
+            anchor, = row['context_field_gains'][field]['evidence']
+            self.assertEqual(anchor['source_sha256'], source['sha256'])
+            self.assertEqual(anchor['page'], 5)
+            self.assertTrue(anchor['bbox'])
+            span = anchor['text_span']
+            self.assertIn('dry basis', anchor['quote'][span['start']:span['end']])
+
+    def test_admission_revalidates_the_field_span_after_earlier_estimate_switch(self):
+        note = narrative_page(f'{SCOPE_OPENING} Tonnages are reported on a dry basis. {EARLIER_DRY_STATEMENT}')
+        source, receipt, _, _, _, _ = self.run_pdf(
+            resource_page(material_header='Ore tonnage (Mt)'), narrative_page(), narrative_page(),
+            narrative_page(), note, value_pages=(1,), context_pages=(5,))
+        row = total_disposition(receipt)
+        self.assertEqual(row['status'], 'SOURCE_BOUND_CANONICAL', row['reasons'])
+        observations = [raw_from_payload(item['raw']) for item in row['observations']]
+        position = (row['physical_page'], row['table'], row['row'])
+        self.assertIsNone(_group_context(observations, source, [PROJECT_ID], CUTOFF, position))
+
+        def move_span(anchor):
+            if anchor.role not in {'estimate_material_basis', 'estimate_denominator_basis'}:
+                return anchor
+            span = anchor.text_span
+            start, end = span.in_quote
+            earlier_start = anchor.quote.casefold().rindex(anchor.quote[start:end].casefold())
+            self.assertGreater(earlier_start, start)
+            offset = earlier_start - start
+            return replace(anchor, text_span=replace(span, start=span.start + offset, end=span.end + offset))
+
+        moved = [replace(item, evidence_anchors=tuple(map(move_span, item.evidence_anchors)))
+                 for item in observations]
+        self.assertEqual(_group_context(moved, source, [PROJECT_ID], CUTOFF, position),
+                         'RESOURCE_CONTEXT_EVIDENCE_BINDING_MISMATCH')
+
     def test_other_project_quantity_cannot_bind_in_same_physical_block(self):
         other = 'Synthetic Beta Project'
         note = narrative_page(f'Table 2 presents the {PROJECT} Mineral Resource estimate. '
@@ -493,6 +641,93 @@ class ResourceAdmissionReviewPdfTests(unittest.TestCase):
         self.assertEqual(canonical, [])
         self.assertEqual(selected, {})
 
+    def test_caption_classification_is_used_for_a_single_unlabelled_row(self):
+        page = resource_page(qualifier='Inferred JORC')
+        page['native_grid'] = (
+            ('Estimate', page['material_header'], page['chemical_header'], 'Contained TREO (t)'),
+            ('', '50', '2,000', '100,000'),
+        )
+        source, receipt, _, selected, _, canonical = self.run_pdf(page)
+        candidate, = receipt['dispositions']
+        self.assertEqual(candidate['row'], 1)
+        self.assertEqual(candidate['row_role'], 'SOLE_CLASSIFIED_ESTIMATE')
+        self.assertEqual(candidate['status'], 'SOURCE_BOUND_CANONICAL', candidate['reasons'])
+        self.assertEqual(len(canonical), 3)
+        self.assertEqual(selected[PROJECT_ID]['contained_treo_kt'], 100)
+        self.assertEqual(len(candidate['observations']), 3)
+        for item in candidate['observations']:
+            self.assertTrue(item['numeric_and_unit_located'])
+            raw = item['raw']
+            self.assertEqual(dict(raw['context']['conditions'])['category'], 'INFERRED')
+            self.assertTrue(any(anchor['role'] == 'classification' and anchor['page'] == 1
+                                and anchor['sha256'] == source['sha256']
+                                and 'Inferred JORC Mineral Resource estimate' in (anchor['quote'] or '')
+                                for anchor in raw['evidence_anchors']))
+
+    def test_conflicting_caption_and_row_classification_cannot_be_selected(self):
+        page = resource_page(qualifier='Inferred JORC')
+        page['native_grid'] = (
+            ('Classification', page['material_header'], page['chemical_header'], 'Contained TREO (t)'),
+            ('Indicated', '50', '2,000', '100,000'),
+        )
+        _, receipt, _, selected, _, canonical = self.run_pdf(page)
+        candidate, = receipt['dispositions']
+        self.assertEqual(candidate['status'], 'NOT_ADMITTED')
+        self.assertIn('RESOURCE_CLASSIFICATION_EVIDENCE_CONFLICT', candidate['reasons'])
+        self.assertEqual(canonical, [])
+        self.assertEqual(selected, {})
+
+    def test_single_row_can_inherit_classification_from_section_or_linked_note(self):
+        note = 'The Mineral Resource estimate in Table 2 is classified as Inferred.'
+        section_title = f'{PROJECT} Total Inferred Mineral Resource estimate'
+        for heading in (None, section_title):
+            with self.subTest(heading=heading):
+                page = resource_page(notes=() if heading else (note,))
+                grid = (('Estimate', page['material_header'], page['chemical_header'], 'Contained TREO (t)'),
+                        ('', '50', '2,000', '100,000'))
+                page['native_grid'] = ((heading, '', '', ''), *grid) if heading else grid
+                page['merged_first_row'] = bool(heading)
+                source, receipt, _, selected, _, canonical = self.run_pdf(page)
+                candidate, = receipt['dispositions']
+                self.assertEqual(candidate['status'], 'SOURCE_BOUND_CANONICAL', candidate['reasons'])
+                self.assertEqual(len(canonical), 3)
+                self.assertEqual(selected[PROJECT_ID]['contained_treo_kt'], 100)
+                raw = candidate['observations'][0]['raw']
+                self.assertEqual(dict(raw['context']['conditions'])['category'], 'INFERRED')
+                self.assertTrue(any(anchor['role'] == ('resource_section' if heading else 'classification')
+                                    and anchor['quote'] == (heading or note) and anchor['page'] == 1
+                                    and anchor['sha256'] == source['sha256'] and anchor['bbox']
+                                    for anchor in raw['evidence_anchors']))
+
+    def test_note_classification_stays_with_its_own_project_and_estimate(self):
+        other = 'Synthetic Beta Project'
+        cases = (
+            (f'For the {other}, the Mineral Resource estimate is classified as Inferred.', False),
+            ('The Mineral Resource estimate in Table 2 is classified as Inferred. '
+             'An earlier estimate was classified as Indicated.', True),
+        )
+        for note, expected in cases:
+            with self.subTest(note=note):
+                page = resource_page()
+                page['notes_below_table'] = (note,)
+                page['native_grid'] = (
+                    ('Estimate', page['material_header'], page['chemical_header'], 'Contained TREO (t)'),
+                    ('', '50', '2,000', '100,000'),
+                )
+                _, receipt, _, selected, _, canonical = self.run_pdf(page, other_project=other)
+                self.assertEqual(len(canonical), 3 if expected else 0, receipt['dispositions'])
+                if not expected:
+                    self.assertEqual(selected, {})
+                    continue
+                self.assertEqual(selected[PROJECT_ID]['contained_treo_kt'], 100)
+                item = receipt['dispositions'][0]['observations'][0]['raw']
+                self.assertEqual(dict(item['context']['conditions'])['category'], 'INFERRED')
+                witness, = [anchor for anchor in item['evidence_anchors']
+                            if anchor['locator'] == 'TABLE_NOTE_CLASSIFICATION']
+                span = witness['text_span']
+                self.assertIn('earlier estimate', witness['quote'])
+                self.assertNotIn('earlier estimate', witness['quote'][span['start']:span['end']])
+
     def test_independent_current_jorc_passes_in_report_with_old_non_jorc(self):
         earlier = resource_page(number=1, qualifier='non-JORC', date='2024-05-01')
         current = resource_page()
@@ -538,6 +773,84 @@ class ResourceAdmissionReviewPdfTests(unittest.TestCase):
                 self.assertEqual(len({tuple(item['bbox']) for item in witnesses}), 2)
                 self.assertEqual(canonical, [])
                 self.assertEqual(selected, {})
+
+    def test_jorc_denial_in_next_physical_block_retains_both_locations(self):
+        source, receipt, _, selected, _, canonical = self.run_pdf(
+            resource_page(qualifier='', notes=(JORC_OPENING, JORC_DENIAL)))
+        row = total_disposition(receipt)
+        witnesses = self.check_jorc(row, source, 'CONFLICT', required_polarities=('AFFIRMED', 'DENIED'))
+        positive, = [item for item in witnesses if item['quote'] == JORC_OPENING]
+        negative, = [item for item in witnesses if item['quote'] == JORC_DENIAL]
+        self.assertEqual(negative['physical_page'], positive['physical_page'])
+        self.assertNotEqual(negative['bbox'], positive['bbox'])
+        for reference in ('antecedent', 'reporting_reference'):
+            self.assertEqual(negative[reference]['quote'], positive['quote'])
+            self.assertEqual(negative[reference]['bbox'], positive['bbox'])
+            self.assertEqual(negative[reference]['source_sha256'], source['sha256'])
+        self.assertIn('RESOURCE_JORC_CONFLICT', row['reasons'])
+        self.assertEqual(canonical, [])
+        self.assertEqual(selected, {})
+
+    def test_admission_revalidates_an_affirmation_in_the_next_physical_block(self):
+        subject = 'The report presents the Mineral Resource estimate in Table 2.'
+        statement = resource_page(qualifier='', notes=(subject, 'It is JORC compliant.'))
+        source, receipt, _, selected, _, canonical = self.run_pdf(statement)
+        row = total_disposition(receipt)
+        self.assertEqual(len(canonical), 3)
+        self.assertEqual(selected[PROJECT_ID]['contained_treo_kt'], 100)
+        observations = [raw_from_payload(item['raw']) for item in row['observations']]
+        position = (row['physical_page'], row['table'], row['row'])
+        self.assertIsNone(_group_context(observations, source, [PROJECT_ID], CUTOFF, position))
+        self.assertTrue(all(any(anchor.role == 'jorc_discourse_context' and anchor.quote == subject
+                                for anchor in item.evidence_anchors) for item in observations))
+        no_antecedent = [replace(item, evidence_anchors=tuple(anchor for anchor in item.evidence_anchors
+                                                             if anchor.role != 'jorc_discourse_context'))
+                         for item in observations]
+        self.assertEqual(_group_context(no_antecedent, source, [PROJECT_ID], CUTOFF, position),
+                         'RESOURCE_JORC_SCOPE_UNRESOLVED')
+
+    def test_other_estimate_denial_in_next_physical_block_keeps_target_eligible(self):
+        other = 'The earlier Mineral Resource estimate in Table 1 is not compliant with JORC.'
+        source, receipt, _, selected, _, canonical = self.run_pdf(
+            resource_page(qualifier='', notes=(JORC_OPENING, other)))
+        row = total_disposition(receipt)
+        self.check_jorc(row, source, 'AFFIRMED', required_polarities=('AFFIRMED',))
+        evidence, = [item for item in row['jorc_assessment']['evidence'] if item['quote'] == other]
+        self.assertEqual(evidence['applicability'], 'OTHER_ESTIMATE')
+        self.assertEqual(evidence['polarity'], 'DENIED')
+        self.assertEqual(len(canonical), 3)
+        self.assertEqual(selected[PROJECT_ID]['contained_treo_kt'], 100)
+
+    def test_other_estimate_cannot_lend_its_jorc_statement_through_repeated_table_label(self):
+        for effective, applicability in (('', 'TARGET_SCOPE_AMBIGUOUS'),
+                                         (' effective 2024-05-01', 'OTHER_ESTIMATE')):
+            with self.subTest(effective=effective):
+                other = f'Another Mineral Resource estimate in Table 2{effective} is JORC compliant.'
+                source, receipt, _, selected, _, canonical = self.run_pdf(resource_page(qualifier='', notes=(other,)))
+                row = total_disposition(receipt)
+                evidence, = [item for item in row['jorc_assessment']['evidence'] if item['quote'] == other]
+                self.assertEqual(evidence['source_sha256'], source['sha256'])
+                self.assertEqual(evidence['applicability'], applicability)
+                self.assertEqual(evidence['polarity'], 'AFFIRMED')
+                self.assertEqual(row['status'], 'NOT_ADMITTED')
+                self.assertEqual(canonical, [])
+                self.assertEqual(selected, {})
+
+    def test_ambiguous_block_reference_retains_unresolved_denial(self):
+        ambiguous = ('The discussion mentions Table 1 and Table 2 as distinct Mineral Resource estimates. '
+                     'It is not compliant.')
+        source, receipt, _, selected, _, canonical = self.run_pdf(
+            resource_page(qualifier='', notes=(JORC_OPENING, ambiguous)))
+        row = total_disposition(receipt)
+        self.assertEqual(row['jorc_assessment']['subject']['reported_table_label'], '2')
+        self.assertEqual(row['jorc_assessment']['status'], 'UNRESOLVED_SCOPE')
+        evidence, = [item for item in row['jorc_assessment']['evidence']
+                     if item['quote'] == ambiguous and item['polarity'] == 'DENIED']
+        self.assertIn(evidence['applicability'], ('UNRESOLVED_SCOPE', 'TARGET_SCOPE_AMBIGUOUS', 'UNRESOLVED'))
+        self.assertEqual(evidence['source_sha256'], source['sha256'])
+        self.assertEqual(row['status'], 'NOT_ADMITTED')
+        self.assertEqual(canonical, [])
+        self.assertEqual(selected, {})
 
     def test_adjacent_denial_cannot_be_ignored_when_scope_is_ambiguous(self):
         for note in ('Not reported in accordance with the guidelines of JORC.',
@@ -644,5 +957,12 @@ if __name__ == '__main__':
         output = Path(sys.argv[2])
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(json.dumps(proposition_replay(), indent=2) + '\n', encoding='utf-8')
+    elif len(sys.argv) == 3 and sys.argv[1] == '--prepare-scope-replay':
+        prep_scope_replay(Path(sys.argv[2]))
+    elif len(sys.argv) in (4, 5) and sys.argv[1] == '--scope-replay':
+        output = Path(sys.argv[3])
+        output.parent.mkdir(parents=True, exist_ok=True)
+        baseline = Path(sys.argv[4]) if len(sys.argv) == 5 else None
+        output.write_text(json.dumps(scope_replay(Path(sys.argv[2]), baseline), indent=2) + '\n', encoding='utf-8')
     else:
         unittest.main()

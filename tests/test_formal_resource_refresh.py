@@ -465,6 +465,29 @@ class FormalRefreshReceiptTests(unittest.TestCase):
         self.assertEqual(receipt['new_canonical_observations'], 0)
         self.assertIsNone(receipt['evidence_change_accounting']['independent_research_evidence_gain']['count'])
 
+    def test_physical_cells_distinguish_role_changes_from_new_extraction(self):
+        def cell(column, variable, basis, revision):
+            return {'numeric_and_unit_located': True, 'evidence_status': 'VERIFIED',
+                    'raw': {'observation_id': revision, 'variable': variable, 'original_value': '5',
+                            'original_unit': 'Mt', 'scope_id': 'deposit', 'denominator_basis': basis,
+                            'evidence': {'sha256': 'test', 'page': 5, 'table': 0, 'row': 3,
+                                         'column': column, 'quote': '5', 'bbox': [0, 0, 1, 1]}}}
+
+        base_row = {'source_sha256': 'test', 'source_key': 'source',
+                    'observations': [cell(1, 'ore_mt', 'BULK_ORE', 'old'),
+                                     cell(3, 'ore_mt', 'BULK_ORE', 'old-id')]}
+        after_row = {**base_row, 'observations': [cell(2, 'ore_mt', 'FINE_FRACTION', 'new'),
+                                                 cell(3, 'ore_mt', 'BULK_ORE', 'new-id')],
+                     'material_observations': [cell(1, 'bulk_ore_mt', 'BULK_ORE', 'new')]}
+        before = self.sealed_run('before', value=0.3, cohort=['p'], admitted=True, dispositions=[base_row])
+        after = self.sealed_run('after', value=0.3, cohort=['p'], admitted=True, dispositions=[after_row], rules='new')
+        receipt = compare(before, after, self.root / 'diff', mode='rule_effect')
+        delta = receipt['numeric_candidate_changes']
+        self.assertEqual(delta['counts'], {'newly_verified_cell': 1, 'changed_mapping': 1})
+        self.assertEqual([(x['column'], x['kind']) for x in delta['differences']],
+                         [(1, 'changed_mapping'), (2, 'newly_verified_cell')])
+        self.assertEqual(receipt['new_canonical_observations'], 0)
+
     def test_source_edition_change_requires_actual_editions_and_isolates_other_factors(self):
         code = {'commit': 'before', 'content_sha256': 'same code'}
         old = self.sealed_run('old', value=0.2, cohort=['p', 'q'], admitted=True,

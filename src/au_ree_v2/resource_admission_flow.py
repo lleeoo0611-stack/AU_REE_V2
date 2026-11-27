@@ -17,7 +17,7 @@ ADMISSION_VERSION = "formal-resource-admission-run-v2"
 _SHA = re.compile(r"[a-f0-9]{64}")
 _RULES = (
     "resource_admission_flow.py", "resource_retrieval.py", "formal_resource_admission.py", "resource_source.py", "resource_estimate.py",
-    "resource_jorc.py",
+    "resource_jorc.py", "resource_discourse.py", "resource_table_layout.py",
     "numeric_evidence.py", "observation_schema.py", "observation_pipeline.py", "observation_semantics.py",
     "normalization.py", "ontology.py", "resource_use.py", "semantic_resource.py", "technical_tables.py",
     "pdf_extract.py", "document_processing.py", "nlp.py", "store.py", "evidence.py", "evidence_model.py",
@@ -63,6 +63,12 @@ def load_frame(path, *, retrieval_mode=None):
     retrieval = policy(frame.get("retrieval"), override_mode=retrieval_mode)
     result = {"schema": version, "sha256": sha256(data).hexdigest(), "classification": classification,
               "sources": sorted(pinned.values(), key=lambda row: (row["source_key"], row["source_sha256"]))}
+    if "validation" in frame:
+        declared = frame["validation"]
+        source_validation = {row["source_key"]: row["validation"] for row in rows if "validation" in row}
+        if not isinstance(declared, dict) or any(not isinstance(item, dict) for item in source_validation.values()):
+            raise ValueError("INVALID_RESOURCE_FRAME_VALIDATION_METADATA")
+        result["frame_validation"] = {"protocol": declared, "sources": source_validation}
     if retrieval["mode"] == "full-text":
         if any(len(row["pages"]) > retrieval["value_page_budget"]
                or len(row.get("context_pages", [])) > retrieval["context_page_budget"] for row in result["sources"]):
@@ -150,6 +156,8 @@ def run(db, root, snapshots, cutoff, frame, *, run_id, configuration, acquired_t
                 "monte_carlo": configuration["research"].get("monte_carlo"),
                 "canonical_observation_ids": ids, "active_admission_observation_ids": active_ids,
                 "classification": frame["classification"]}
+    if "frame_validation" in frame:
+        contract["frame_validation"] = frame["frame_validation"]
     frame_counts = {"sources_planned": len(frame["sources"]), "sources_selected": len(requests),
                     "sources_not_selected": len(excluded),
                     "pages_planned": sum(len(row["pages"]) for row in frame["sources"]),

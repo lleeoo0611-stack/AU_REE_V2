@@ -43,7 +43,7 @@ def project_id(name):
 
 
 def report(root, name, key, effective, published, ore_mt, *, grade_header='Total Rare Earth Oxides (TREO) (ppm)',
-           value_page=1, context_page=None):
+           value_page=1, context_page=None, caption_classification=None, row_classification=None):
     path = root / 'data' / f'{key}.pdf'
     with pymupdf.open() as document:
         for number in range(1, value_page):
@@ -57,17 +57,22 @@ def report(root, name, key, effective, published, ore_mt, *, grade_header='Total
                 page.insert_text((40, 68), f'Fictional infrastructure and transport memorandum {number}', fontsize=10)
         page = document.new_page(width=710, height=500)
         page.insert_text((40, 37), 'SYNTHETIC ENGINEERING TEST DOCUMENT', fontsize=12)
-        caption = f'Table 1: {name} Total JORC Mineral Resource estimate'
+        classification = f'{caption_classification} ' if caption_classification else ''
+        caption = f'Table 1: {name} Total {classification}JORC Mineral Resource estimate'
         if context_page is None:
             caption += f' as at {effective} at 500 ppm TREO cut-off'
         page.insert_text((40, 92), caption, fontsize=10)
-        header = ['Classification', 'Dry ore tonnage (Mt)' if context_page is None else 'Ore tonnage (Mt)',
+        header = ['Estimate' if caption_classification else 'Classification',
+                  'Dry ore tonnage (Mt)' if context_page is None else 'Ore tonnage (Mt)',
                   grade_header if context_page is None else 'TREO grade (ppm)', 'Contained TREO (kt)']
-        grid = [header, ['Indicated', f'{ore_mt * 0.4:.1f}', '1000', f'{ore_mt * 0.4:.1f}'],
-                ['Inferred', f'{ore_mt * 0.6:.1f}', '1000', f'{ore_mt * 0.6:.1f}'],
-                ['Total', f'{ore_mt:.1f}', '1000', f'{ore_mt:.1f}']]
+        if caption_classification or row_classification:
+            grid = [header, [row_classification or '', f'{ore_mt:.1f}', '1000', f'{ore_mt:.1f}']]
+        else:
+            grid = [header, ['Indicated', f'{ore_mt * 0.4:.1f}', '1000', f'{ore_mt * 0.4:.1f}'],
+                    ['Inferred', f'{ore_mt * 0.6:.1f}', '1000', f'{ore_mt * 0.6:.1f}'],
+                    ['Total', f'{ore_mt:.1f}', '1000', f'{ore_mt:.1f}']]
         columns = [40, 159, 285, 533, 666]
-        rows = [110, 135, 160, 185, 210]
+        rows = [110 + row * 25 for row in range(len(grid) + 1)]
         for x in columns:
             page.draw_line((x, rows[0]), (x, rows[-1]))
         for y in rows:
@@ -225,7 +230,14 @@ def assert_retrieval_reaches_formal_outputs(output, stages, *, source, lock, fix
                for item in after['intake']['retrieval_sources'])
     admitted = [row for row in after['intake']['dispositions'] if row['source_sha256'] == sha
                 and row['status'] == 'SOURCE_BOUND_CANONICAL']
-    assert len(admitted) == 1 and admitted[0]['physical_page'] == 7 and admitted[0]['row'] == 3
+    assert len(admitted) == 1 and admitted[0]['physical_page'] == 7 and admitted[0]['row'] == 1
+    assert admitted[0]['row_role'] == 'SOLE_CLASSIFIED_ESTIMATE'
+    for item in admitted[0]['observations']:
+        raw = item['raw']
+        assert item['numeric_and_unit_located'] and dict(raw['context']['conditions'])['category'] == 'INFERRED'
+        assert any(anchor['role'] == 'classification' and anchor['page'] == 7 and anchor['sha256'] == sha
+                   and 'Inferred JORC Mineral Resource estimate' in (anchor['quote'] or '')
+                   for anchor in raw['evidence_anchors'])
     assert not any(row['source_sha256'] == sha and row['status'] == 'SOURCE_BOUND_CANONICAL'
                    for row in before['intake']['dispositions'])
     assert len(admitted[0]['canonical_observation_ids']) == 3
@@ -242,6 +254,7 @@ def assert_retrieval_reaches_formal_outputs(output, stages, *, source, lock, fix
     assert delta['panels'][PANEL]['matrix_primary_criterion_cells_changed'] == 1
     assert len(delta['panels'][PANEL]['ranking_differences']) == len(ranks)
     return {'snapshot_lock_sha256': filehash(lock), 'new_source_sha256': sha, 'retrieval': retrieval,
+            'classification': {'placement': 'CAPTION', 'category': 'INFERRED', 'physical_page': 7, 'row': 1},
             'new_canonical_observation_ids': admitted[0]['canonical_observation_ids'],
             'same_source_scope_comparison': delta, 'point_rank_changes': ranks,
             'repeat_science_and_selected_pages_identical': True}
@@ -251,16 +264,20 @@ def exercise(output, rscript):
     with TemporaryDirectory(prefix='au-ree-resource-originals-') as temporary:
         root = Path(temporary) / 'registry'
         _, established, update, decoy = fixture(root)
+        comparable_prior = report(root, ASTER, 'aster-row-classified-resource', '2025-05-01', '2025-06-01', 50,
+                                  row_classification='Inferred')
         discovered_update = report(root, ASTER, 'aster-full-text-resource', '2026-05-01', '2026-06-01', 150,
-                                   value_page=7, context_page=3)
+                                   value_page=7, context_page=3, caption_classification='Inferred')
         missing = {'key': 'synthetic-unavailable', 'sha256': digest('synthetic original intentionally missing')}
         snapshots = [*established, update, decoy]
-        searchable_snapshots = [*established, discovered_update, decoy]
+        # Keep the original issuer source in the lock for D1. Use a correctly
+        # scoped INFERRED incumbent for R1, matching the newly found estimate.
+        searchable_sources = [established[1], comparable_prior, discovered_update, decoy]
         locks = {
             'before': inputs(root, 'before', established, established),
             'after': inputs(root, 'after', snapshots, [*snapshots, missing]),
             'scope_change': inputs(root, 'scope-change', snapshots, established),
-            'retrieval': inputs(root, 'retrieval', searchable_snapshots, [*searchable_snapshots, missing]),
+            'retrieval': inputs(root, 'retrieval', [established[0], *searchable_sources], [*searchable_sources, missing]),
         }
         retained = output / 'inputs'
         (retained / 'data').mkdir(parents=True)
