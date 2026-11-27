@@ -114,7 +114,7 @@ def _compare_census(release, replay, published):
 
 
 def run(root, output, *, libraries=(), online=True, request_budget=80, cache_dir=None, cache_mode="use",
-        database=None, formal_run=None, rscript=None, tessdata=None):
+        database=None, formal_run=None, rscript=None, tessdata=None, resource_admission=None):
     """Continue independent validation when originals or specific stages are unavailable."""
     from .formal_resource_bridge import run as bridge
     from .observation_ablation import replay
@@ -127,11 +127,20 @@ def run(root, output, *, libraries=(), online=True, request_budget=80, cache_dir
     protected = [root / name for name in ("data", "config", "results", "src", "docs", "R", "tests", ".git")]
     protected.extend(libraries)
     protected.extend(Path(path).resolve() for path in (database, formal_run) if path is not None)
+    if resource_admission is not None:
+        from .resource_admission_flow import load_frame
+
+        if database is not None or formal_run is not None:
+            raise ValueError("Resource admission compares two new rebuilds of the fixed Phase 22 reference")
+        resource_admission = (root / resource_admission).resolve()
+        load_frame(resource_admission)
+        protected.append(resource_admission)
     if not _disjoint(output, protected):
         raise ValueError("Keep validation output separate from originals, source files and prior formal runs")
     cache_path = Path(cache_dir).resolve() if cache_dir is not None else output / "derived-cache"
     if not _disjoint(cache_path, [*protected, *(output / name for name in (
         "source-recovery", "originals", "quality", "shadow", "formal-93", "formal-phase22", "resource-panel",
+        "formal-resource-admission", "formal-resource-delta",
     ))]):
         raise ValueError("Keep disposable cache separate from validation inputs and stage reports")
     if (database is None) != (formal_run is None):
@@ -194,11 +203,10 @@ def run(root, output, *, libraries=(), online=True, request_budget=80, cache_dir
                              "expected": recovered.get("expected"), "verified": recovered.get("verified"),
                              "missing": recovered.get("missing"), "impact": recovered.get("impact_path")})
 
+    phase22_arguments = ["rebuild", "--as-of", "2026-11-05", "--snapshot-lock", str(root / PHASE22_LOCK)]
     if database is None:
         work = output / "formal-phase22"
-        phase22 = attempt("formal_phase22", lambda: _run_formal(root, work, [
-            "rebuild", "--as-of", "2026-11-05", "--snapshot-lock", str(root / PHASE22_LOCK),
-        ], rscript))
+        phase22 = attempt("formal_phase22", lambda: _run_formal(root, work, phase22_arguments, rscript))
         if phase22["status"] == "COMPLETE":
             database, formal_run = work / "canonical.sqlite", Path(phase22["run"])
     else:
@@ -209,6 +217,23 @@ def run(root, output, *, libraries=(), online=True, request_budget=80, cache_dir
         attempt("formal_resource_panel", lambda: bridge(root, database, formal_run, panel_output, rscript=rscript))
     else:
         record("formal_resource_panel", {"status": "BLOCKED", "reason": "FORMAL_REFERENCE_UNAVAILABLE"})
+
+    if resource_admission is not None and formal_run is not None:
+        work = output / "formal-resource-admission"
+        refreshed = attempt("formal_resource_admission", lambda: _run_formal(root, work, [
+            *phase22_arguments, "--resource-admission", str(resource_admission),
+            "--cache-dir", str(cache_path), "--cache-mode", cache_mode, "--mcda-cache-mode", cache_mode,
+        ], rscript))
+        if refreshed["status"] == "COMPLETE":
+            from .formal_resource_refresh import compare
+
+            attempt("formal_resource_delta", lambda: compare(
+                formal_run, Path(refreshed["run"]), output / "formal-resource-delta"))
+        else:
+            record("formal_resource_delta", {"status": "BLOCKED", "reason": "REFRESHED_RUN_UNAVAILABLE"})
+    elif resource_admission is not None:
+        for name in ("formal_resource_admission", "formal_resource_delta"):
+            record(name, {"status": "BLOCKED", "reason": "FORMAL_REFERENCE_UNAVAILABLE"})
 
     failures = [name for name, result in stages.items()
                 if result["status"] == "FAILED" or result["status"].endswith("DIFFERENCES")]

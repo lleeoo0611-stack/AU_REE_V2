@@ -1,13 +1,17 @@
 """Synthetic quality controls complement the fixed real-PDF evaluation frame."""
 
 from copy import deepcopy
+from dataclasses import replace
+from hashlib import sha256
 import json
 from pathlib import Path
+from shutil import copytree
 from tempfile import TemporaryDirectory
 import unittest
 
 from au_ree_v2.observation_quality import (
-    FRAME, _arithmetic, _event_stance, _numeric_location, _quantity_literal_gaps, _validate_frame, run,
+    FRAME, _arithmetic, _event_stance, _numeric_location, _quantity_literal_gaps, _validate_frame,
+    compare_fixed, run,
 )
 from au_ree_v2.observation_schema import EvidenceAnchor, ObservationContext, RawObservation, TextSpan
 
@@ -46,8 +50,47 @@ class ObservationQualityTests(unittest.TestCase):
             self.assertEqual(evaluation["source_asset_available"]["denominator"], 3)
             self.assertEqual(evaluation["page_status"], {"SOURCE_BLOCKED": 12})
             self.assertEqual(evaluation["numeric_token_located"]["denominator"], 0)
+            self.assertEqual(report["formal_admission"], "NOT_EXECUTED")
+            self.assertEqual(evaluation["formal_admission"], "NOT_EXECUTED")
+            self.assertIsNone(evaluation["new_official_admissions"])
             self.assertIsNone(report["independent_accuracy"]["precision"])
             self.assertEqual(len((outcome / "pages.jsonl").read_text().splitlines()), 19)
+
+    def test_frozen_comparison_does_not_confuse_source_coverage_with_extraction(self):
+        with TemporaryDirectory() as directory:
+            temporary = Path(directory)
+            originals, before, after = (temporary / name for name in ("assets", "before", "after"))
+            originals.mkdir()
+            run(ROOT, originals, before)
+            copytree(before, after)
+            both = compare_fixed(before, after)
+            self.assertEqual(both["status"], "SAME_SOURCE_COVERAGE")
+            self.assertEqual(both["full_frame"]["baseline"], both["full_frame"]["updated"])
+            self.assertEqual(both["formal_admission"], "NOT_EXECUTED")
+
+            asset_file = after / "sources.jsonl"
+            assets = [json.loads(line) for line in asset_file.read_bytes().splitlines()]
+            assets[0].update(status="SOURCE_VERIFIED", asset_path_present=True)
+            replacement = "".join(json.dumps(row) + "\n" for row in assets).encode()
+            asset_file.write_bytes(replacement)
+            with self.assertRaisesRegex(ValueError, "Unverified fixed quality output"):
+                compare_fixed(before, after)
+
+            manifest = after / "quality.json"
+            report = json.loads(manifest.read_bytes())
+            report["scientific_outputs_sha256"][asset_file.name] = sha256(replacement).hexdigest()
+            manifest.write_text(json.dumps(report))
+            target = temporary / "difference.json"
+            result = compare_fixed(before, after, target)
+            self.assertEqual(result["status"], "COVERAGE_CHANGED")
+            self.assertEqual(len(result["verified_source_coverage_changes"]), 1)
+            self.assertEqual(result["matched_verified_sources"]["updated"]["DEVELOPMENT"]["expected_pages"], 0)
+            self.assertEqual(json.loads(target.read_bytes()), result)
+
+            report["frame_sha256"] = "different"
+            manifest.write_text(json.dumps(report))
+            with self.assertRaisesRegex(ValueError, "changed partitions separately"):
+                compare_fixed(before, after)
 
     def test_explicit_source_location_and_parser_conflict(self):
         source = "Header\nRecovery achieved was 70% after treatment."
@@ -79,6 +122,17 @@ class ObservationQualityTests(unittest.TestCase):
         wrong_unit = _numeric_location(_raw(anchor, unit="ppm"), page, views)
         self.assertTrue(wrong_unit["numeric_bound"])
         self.assertFalse(wrong_unit["unit_bound"])
+        unit = EvidenceAnchor("test", SHA, page=1, table=0, row=0, column=1,
+                              quote="Recovery %", bbox=(10, 0, 20, 10), role="unit")
+        with_unit = replace(_raw(anchor), evidence_anchors=(anchor, unit))
+        self.assertEqual(_numeric_location(with_unit, page, views)["status"], "TABLE_CELL_AND_EXPLICIT_HEADER_BOUND")
+        for wrong in (replace(unit, sha256="8" * 64), replace(unit, column=2), replace(unit, row=1),
+                      replace(unit, bbox=(20, 0, 30, 10))):
+            misplaced = replace(with_unit, evidence_anchors=(anchor, wrong))
+            location = _numeric_location(misplaced, page, views)
+            self.assertEqual(location["status"], "TABLE_UNIT_WITNESS_MISMATCH")
+            self.assertTrue(location["numeric_bound"])
+            self.assertFalse(location["unit_bound"])
         table["continuation_candidate"] = {"physical_page": 0, "table_index": 0}
         self.assertEqual(_numeric_location(_raw(anchor), page, views)["status"],
                          "CONTINUATION_HEADER_REPEATED_SCOPE_UNCONFIRMED")

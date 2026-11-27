@@ -3,10 +3,12 @@
 from collections import Counter, defaultdict
 from datetime import date
 from decimal import Decimal
+from hashlib import sha256
 import json
 from pathlib import Path
 import re
 
+from .derived_cache import atomic_json
 from .document_processing import DocumentUnavailable, PdfDocumentCache
 from .numeric_evidence import numeric_token_spans, quantity_literals, scalar_decimal
 from .observation_schema import payload, value_evidence_issue
@@ -14,6 +16,7 @@ from .observation_semantics import RESOURCE_PROFILE, SemanticEngine
 from .observation_shadow import jsonl, write
 from .pdf_extract import candidate_value_issues, project_registry
 from .selection_rules import date_end
+from .semantic_resource import located_column_headers
 from .semantic_technical import CLAIM_CUES, PROFILE as TECHNICAL_PROFILE
 from .store import digest, filehash
 from .tabular import read_csv
@@ -22,9 +25,11 @@ from .technical_tables import cells, path_above
 
 
 FRAME = "config/ontology/quality_frame_v1.json"
-RULE_VERSION = "observation-automated-quality-v1"
+RULE_VERSION = "observation-automated-quality-v2"
 RELEASE = "results/ree-project-census/coverage-locked-20261125"
 PARTITIONS = ("DEVELOPMENT", "EVALUATION")
+QUALITY_ARTIFACTS = ("sources.jsonl", "pages.jsonl", "observations.jsonl",
+                     "unbound_lexemes.jsonl", "resource_duplicates.jsonl")
 
 
 def _validate_frame(frame):
@@ -130,9 +135,20 @@ def _table_location(raw, page):
         return None, "TABLE_ROW_LABEL_UNBOUND"
     if not (_unit_in(anchor.quote, raw.original_unit) or _unit_in(" ".join(_flat(header) for header in headers), raw.original_unit)):
         return False, "TABLE_COLUMN_UNIT_UNBOUND"
+    explicit = [witness for witness in raw.evidence_anchors if witness.role == "unit"
+                and (witness.row is not None or witness.bbox is not None)]
+    if explicit:
+        header_cells = located_column_headers(target, grid) if target else []
+        actual_headers = {(cell["row"], cell["column"]): cell for cell in header_cells}
+        for witness in explicit:
+            cell = actual_headers.get((witness.row, witness.column))
+            if (not cell or (witness.sha256, witness.page, witness.table) != (anchor.sha256, anchor.page, anchor.table)
+                    or witness.bbox is None or any(abs(p - q) >= .01 for p, q in zip(witness.bbox, cell["bbox"]))
+                    or _flat(witness.quote) != _flat(cell["text"]) or not _unit_in(witness.quote, raw.original_unit)):
+                return False, "TABLE_UNIT_WITNESS_MISMATCH"
     if table.get("continuation_candidate"):
         return True, "CONTINUATION_HEADER_REPEATED_SCOPE_UNCONFIRMED"
-    return True, "TABLE_CELL_AND_HEADER_BOUND"
+    return True, "TABLE_CELL_AND_EXPLICIT_HEADER_BOUND" if explicit else "TABLE_CELL_AND_HEADER_BOUND"
 
 
 def _numeric_location(raw, page, views):
@@ -317,7 +333,7 @@ def _audit_observation(raw, page, views, entry, cutoff, engine, policy, official
     issues.extend(timing_failures)
     status = "UNVERIFIED"
     if location["status"] in {"PARSER_NUMERIC_CONFLICT", "TABLE_CELL_TEXT_MISMATCH", "TABLE_ROW_COLUMN_MISMATCH",
-                              "TABLE_CELL_GEOMETRY_MISMATCH", "TEXT_SPAN_SOURCE_MISMATCH",
+                              "TABLE_CELL_GEOMETRY_MISMATCH", "TABLE_UNIT_WITNESS_MISMATCH", "TEXT_SPAN_SOURCE_MISMATCH",
                               "NUMERIC_EVIDENCE_BINDING_MISMATCH"} or arithmetic == "REPORTED_CONTAINED_CONFLICT":
         status = "CONFLICT"
         if comparable != "NOT_APPLICABLE":
@@ -343,8 +359,7 @@ def _audit_observation(raw, page, views, entry, cutoff, engine, policy, official
             "rule_violations_or_limits": sorted(set(issues)), "numeric_location": location, "report_timing": temporal,
             "resource_arithmetic": arithmetic, "claim_stance": stance, "identity_scope": identity,
             "reported_value_state": reported_state,
-            "matches_existing_census_selected_observation_id": canonical_match,
-            "formal_admission": "EXISTING_CENSUS_SELECTION_MATCH" if canonical_match else "NOT_FORMALLY_SELECTED"}
+            "matches_existing_census_selected_observation_id": canonical_match}
 
 
 def _measurement_key(row):
@@ -399,6 +414,7 @@ def _section(sources, pages, rows, duplicates):
     multiple_views = [r for r in numeric if len(r["numeric_location"]["parser_support"]) >= 2]
     ocr_requested = [page for page in pages if page["ocr_comparison_requested"]]
     ocr_observed = [page for page in ocr_requested if page["parser"]["ocr_model_sha256"]]
+    resource = [row for row in numeric if row["quantity_kind"] == "RESOURCE"]
     return {
         "expected_sources": len(sources), "source_fingerprint_match": _rate(len(source_eligible), len(sources)),
         "source_asset_available": _rate(present, len(sources)),
@@ -432,8 +448,22 @@ def _section(sources, pages, rows, duplicates):
         "usable_analysis_fields": len({(r["project_id"], r["assessment"]["purpose"], r["variable"]) for r in comparable}),
         "matches_existing_census_selected_observation_id": sum(r["matches_existing_census_selected_observation_id"]
                                                                for r in rows),
-        "formal_admission": dict(Counter(r["formal_admission"] for r in rows)),
-        "new_official_admissions": 0,
+        "formal_admission": "NOT_EXECUTED",
+        "new_official_admissions": None,
+        "resource_evidence": {
+            "discovered_observation_representations": len(resource),
+            "deduplicated_source_observations": len({_measurement_key(r) for r in resource}),
+            "numeric_token_located": _rate(sum(r["numeric_location"]["numeric_bound"] for r in resource), len(resource)),
+            "numeric_token_and_unit_located": _rate(sum(r["numeric_location"]["numeric_bound"] and
+                                                       r["numeric_location"]["unit_bound"] for r in resource), len(resource)),
+            "verified_observation_representations": sum(r["assessment"]["evidence_status"] == "VERIFIED"
+                                                        for r in resource),
+            "explicit_table_unit_header_representations": sum(
+                r["numeric_location"]["status"] == "TABLE_CELL_AND_EXPLICIT_HEADER_BOUND" for r in resource
+            ),
+            "numeric_dispositions": dict(Counter(r["numeric_location"]["status"] for r in resource)),
+            "verification_dispositions": dict(Counter(r["assessment"]["evidence_status"] for r in resource)),
+        },
         "resource_duplicate_diagnostics": dict(Counter(r["status"] for r in duplicates)),
         "reported_value_state": dict(Counter(r["reported_value_state"] for r in rows)),
         "resource_arithmetic": dict(Counter(r["resource_arithmetic"] for r in rows)),
@@ -508,7 +538,8 @@ def run(root, originals, output, *, tessdata=None, cache=None):
                   for item in _resource_duplicates([row for row in rows if row["partition"] == partition])]
     report = {"status": "QUALITY_COMPLETE", "schema": RULE_VERSION, "frame_sha256": filehash(root / FRAME),
               "cutoff": cutoff, "classification": frame["classification"], "design": frame["design"],
-              "formal_effect": "SIDE_OUTPUT_ONLY", "existing_selection_input_sha256": filehash(formal_path),
+              "formal_effect": "SIDE_OUTPUT_ONLY", "formal_admission": "NOT_EXECUTED",
+              "existing_selection_input_sha256": filehash(formal_path), "identity_registry_sha256": digest(registry),
               "rule_inputs_sha256": {name: filehash(root / name) for name in (
                   "config/evidence_policy.json", "config/ontology/observation_v1.json",
                   "config/ontology/comparability_v1.json", "config/ontology/shadow_profiles_v1.json",
@@ -516,6 +547,7 @@ def run(root, originals, output, *, tessdata=None, cache=None):
               "rule_code_sha256": {name: filehash(Path(__file__).with_name(name)) for name in (
                   "observation_quality.py", "nlp.py", "observation_schema.py", "observation_semantics.py",
                   "numeric_evidence.py", "document_processing.py", "pdf_extract.py", "technical_tables.py",
+                  "semantic_resource.py", "semantic_technical.py", "normalization.py", "ontology.py",
               )},
               "independent_accuracy": {"status": "UNMEASURED_NO_INDEPENDENT_REFERENCE", "precision": None,
                                        "recall": None, "f1": None, "false_admissions": None,
@@ -533,8 +565,94 @@ def run(root, originals, output, *, tessdata=None, cache=None):
     jsonl(output / "observations.jsonl", rows)
     jsonl(output / "unbound_lexemes.jsonl", unbound)
     jsonl(output / "resource_duplicates.jsonl", duplicates)
-    report["scientific_outputs_sha256"] = {name: filehash(output / name) for name in
-                                            ("sources.jsonl", "pages.jsonl", "observations.jsonl",
-                                             "unbound_lexemes.jsonl", "resource_duplicates.jsonl")}
+    report["scientific_outputs_sha256"] = {name: filehash(output / name) for name in QUALITY_ARTIFACTS}
     write(output / "quality.json", json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
     return report
+
+
+def _source_identity(row):
+    return (row["partition"], row["source_key"], row["source_sha256"], row["group_id"], row["stratum"])
+
+
+def _fixed_artifacts(folder):
+    folder = Path(folder)
+    manifest = (folder / "quality.json").read_bytes()
+    report = json.loads(manifest)
+    if (report["schema"] not in {"observation-automated-quality-v1", RULE_VERSION}
+            or report["status"] != "QUALITY_COMPLETE"):
+        raise ValueError("A completed fixed quality report is required")
+    rows = {}
+    for name in QUALITY_ARTIFACTS:
+        original = (folder / name).read_bytes()
+        if sha256(original).hexdigest() != report["scientific_outputs_sha256"].get(name):
+            raise ValueError(f"Unverified fixed quality output: {name}")
+        if name in {"sources.jsonl", "pages.jsonl", "observations.jsonl"}:
+            rows[name] = [json.loads(line) for line in original.splitlines()]
+    sources = {_source_identity(r): r for r in rows["sources.jsonl"]}
+    expected = {(identity, page) for identity, source in sources.items() for page in source["expected_pages"]}
+    pages = {(_source_identity(r), r["physical_page"]) for r in rows["pages.jsonl"]}
+    observations = {(_source_identity(r), r["physical_page"]) for r in rows["observations.jsonl"]}
+    if (len(sources) != len(rows["sources.jsonl"]) or len(pages) != len(rows["pages.jsonl"])
+            or pages != expected or not observations <= pages):
+        raise ValueError("Fixed quality observations do not match the source and page inventory")
+    return report, sha256(manifest).hexdigest(), rows
+
+
+def _comparison_metrics(rows, selected):
+    result = {}
+    for partition in PARTITIONS:
+        sources, pages, observations = [
+            [row for row in rows[name] if row["partition"] == partition and _source_identity(row) in selected]
+            for name in QUALITY_ARTIFACTS[:3]
+        ]
+        metrics = _section(sources, pages, observations, _resource_duplicates(observations))
+        result[partition] = {key: metrics[key] for key in (
+            "expected_sources", "source_asset_available", "source_fingerprint_match", "expected_pages", "page_status",
+            "discovered_observation_representations", "deduplicated_source_observations", "numeric_token_located",
+            "numeric_token_and_unit_located", "numeric_normalizable", "automated_evidence_status",
+            "verified_comparable_observations", "verified_comparable_projects", "resource_evidence",
+        )}
+    return result
+
+
+def compare_fixed(baseline, updated, output=None):
+    """Compare archived quality receipts without blending acquisition and extraction effects."""
+    before, before_sha, before_rows = _fixed_artifacts(baseline)
+    after, after_sha, after_rows = _fixed_artifacts(updated)
+    before_sources, after_sources = (
+        {_source_identity(row): (row["expected_pages"], row["edition_sha256"], row["project_ids"])
+         for row in rows["sources.jsonl"]} for rows in (before_rows, after_rows)
+    )
+    frame_keys = ("frame_sha256", "cutoff", "classification")
+    if any(before[key] != after[key] for key in frame_keys) or before_sources != after_sources:
+        raise ValueError("Compare additions or changed partitions separately from the fixed frame")
+    availability = [
+        {_source_identity(row): {"status": row["status"], "asset_path_present": row["asset_path_present"]}
+         for row in records["sources.jsonl"]} for records in (before_rows, after_rows)
+    ]
+    changes = [{"partition": source[0], "source_key": source[1], "source_sha256": source[2],
+                "before": availability[0][source], "after": availability[1][source]}
+               for source in sorted(before_sources) if availability[0][source] != availability[1][source]]
+    comparison = {
+        "schema": "fixed-observation-quality-comparison-v1",
+        "status": "COVERAGE_CHANGED" if changes else "SAME_SOURCE_COVERAGE",
+        "interpretation": "FIXED_FRAME_ENGINEERING_REGRESSION",
+        **{key: before[key] for key in frame_keys},
+        "report_sha256": {"baseline": before_sha, "updated": after_sha},
+        "rule_code_sha256": {"baseline": before["rule_code_sha256"], "updated": after["rule_code_sha256"]},
+        "rule_inputs_sha256": {"baseline": before["rule_inputs_sha256"], "updated": after["rule_inputs_sha256"]},
+        "verified_source_coverage_changes": changes,
+        "full_frame": {"baseline": _comparison_metrics(before_rows, before_sources),
+                       "updated": _comparison_metrics(after_rows, after_sources)},
+        "formal_admission": "NOT_EXECUTED",
+    }
+    if changes:
+        matched = {key for key in before_sources if all(scope[key]["status"] == "SOURCE_VERIFIED"
+                                                       for scope in availability)}
+        comparison["matched_verified_sources"] = {
+            "baseline": _comparison_metrics(before_rows, matched),
+            "updated": _comparison_metrics(after_rows, matched),
+        }
+    if output is not None:
+        atomic_json(output, comparison)
+    return comparison

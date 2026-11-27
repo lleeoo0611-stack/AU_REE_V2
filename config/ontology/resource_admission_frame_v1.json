@@ -1,0 +1,29 @@
+{
+  "schema": "resource-admission-frame-v1",
+  "classification": "PUBLIC_REAL_SOURCE_REPLAY",
+  "design": "Phase 22 resource-table development and regression pages. Existing statement corroboration, a same-source contained TREO report, and contrasting resource scopes. Keep separate from the fixed observation-quality frame.",
+  "sources": [
+    {
+      "source_key": "browns_wolverine_mre20250116",
+      "source_sha256": "9963e9f67ac89e7dc2bf2d32a29284fe21c50240284e161a8301f5908b8c5691",
+      "pages": [5],
+      "context_pages": [1, 39]
+    },
+    {
+      "source_key": "mt_weld_2024",
+      "source_sha256": "fe26ac29c4773a5af95e909a1cd95ca1e9ad37c34560dfa72c1e9674e4c8a503",
+      "pages": [2],
+      "context_pages": [45]
+    },
+    {
+      "source_key": "mons_mre2025",
+      "source_sha256": "395b2db17e463b2dae5761c3ea598c149177fbacb9b805b638ed236402bc7b91",
+      "pages": [1, 7]
+    },
+    {
+      "source_key": "burracoppin_maiden2023",
+      "source_sha256": "fa734539ef761f002e7d8ab700c2efcfdb2fd2d8c7be2680e4dea481f19d927c",
+      "pages": [2]
+    }
+  ]
+}

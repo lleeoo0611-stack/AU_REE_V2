@@ -9,11 +9,15 @@ import math
 from collections import defaultdict
 from .store import canonical, digest
 from .commodity import classify_ree
-from .selection_rules import choose, date_end, evidence_domain, observation_visible, source_check
+from .selection_rules import (
+    RESOURCE_ADMISSION_VERSION, choose, date_end, evidence_domain, observation_visible,
+    resource_admission_visible, source_check,
+)
 from .technical import technical_record, technical_compare, technical_comparability
 
 
-def current_evidence_view(db,snapshots,cutoff,active_claim_ids,validation_version=None,candidate_version=None,claims_data=None):
+def current_evidence_view(db,snapshots,cutoff,active_claim_ids,validation_version=None,candidate_version=None,claims_data=None,
+                          *,admitted_resource_ids=()):
     """One selected source AND coding contract; history remains in SQLite.
 
     The returned ID sets are in-memory selection boundaries, not a parallel
@@ -50,6 +54,7 @@ def current_evidence_view(db,snapshots,cutoff,active_claim_ids,validation_versio
         children=db.execute('SELECT child_id FROM relations WHERE parent_id=? AND source_sha=?',(r['entity_id'],r['source_sha']))
         if any((child[0],r['source_sha']) in records for child in children):records.add((r['entity_id'],r['source_sha']))
     for row in db.execute('SELECT * FROM observations WHERE source_sha IN (SELECT value FROM json_each(?))',(canonical(sorted(shas)),)):
+        if not resource_admission_visible(row,admitted_resource_ids):continue
         if row['effective_date']>cutoff:continue
         if row['source_sha'] in government and (row['entity_id'],row['source_sha']) not in records:continue
         if row['transform_version'] in ('normalization-v1','commercial-event-v1') and row['obs_id'] not in active_claim_ids:continue
@@ -112,7 +117,8 @@ def _valid_candidate(c, sources, cutoff, root, acquired_through=None):
     return None
 
 
-def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None, acquired_through=None, active_claim_ids=None):
+def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None, acquired_through=None, active_claim_ids=None,
+            *, admitted_resource_ids=()):
     """One immutable input contract, one selection result for all consumers."""
     sources = {s['sha256']: s for s in snapshots}
     source_errors = {sha: source_check(s, cutoff, root, acquired_through) for sha, s in sources.items()}
@@ -126,11 +132,14 @@ def resolve(db, snapshots, cutoff, resources, cases, mapping, policy, root=None,
     projects = {mapping.get(r[0], r[0]) for r in db.execute('''SELECT DISTINCT e.entity_id FROM entities e JOIN (
         SELECT entity_id,source_sha FROM records
         UNION ALL SELECT entity_id,source_sha FROM observations WHERE effective_date<=?
+          AND (transform_version<>? OR obs_id IN (SELECT value FROM json_each(?)))
         UNION ALL SELECT project_id,source_sha FROM study_cases WHERE effective_date<=?
         ) proof USING(entity_id) WHERE e.kind='PROJECT' AND proof.source_sha IN (SELECT value FROM json_each(?))''',
-        (cutoff,cutoff,*source_parameter))}
+        (cutoff,RESOURCE_ADMISSION_VERSION,canonical(sorted(admitted_resource_ids)),cutoff,*source_parameter))}
     for row in db.execute('SELECT * FROM observations WHERE source_sha IN (SELECT value FROM json_each(?)) ORDER BY obs_id',source_parameter):
         if row['source_sha'] not in sources:
+            continue
+        if not resource_admission_visible(row,admitted_resource_ids):
             continue
         if active_claim_ids is not None and row['transform_version'] in ('normalization-v1','commercial-event-v1') and row['obs_id'] not in active_claim_ids:
             continue

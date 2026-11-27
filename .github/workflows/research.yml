@@ -99,6 +99,8 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: R analytical regression tests
         run: Rscript tests/test_methods.R
+      - name: Source to canonical resource selection and MCDA
+        run: python tests/test_resource_admission_integration.py --output work/resource-admission-engineering
       - name: Frozen research reconstruction
         run: au-ree-v2 all --as-of 2026-11-02 --work work/frozen
       - name: Frozen Phase 5 evidence reconstruction
@@ -205,6 +207,20 @@ jobs:
         run: |
           au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/phase22-a
           python tools/check_replay.py results/phase22-2026-11-06 work/phase22-a/latest.json
+      - name: Verify reported TREO reaches existing MCDA from the locked PDF
+        run: |
+          au-ree-v2 rebuild --as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json --work work/resource-admission-replay --resource-admission config/ontology/resource_admission_frame_v1.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from au_ree_v2.formal_resource_refresh import compare
+          def run(folder):
+              return json.loads((Path(folder) / 'latest.json').read_bytes())['output_dir']
+          delta = compare(run('work/phase22-a'), run('work/resource-admission-replay'), 'work/resource-admission-delta')
+          assert delta['active_admission_ids_in_selected_inputs']
+          assert delta['panels']['issuer_resource_composition']['matrix_primary_criterion_cells_changed']
+          assert delta['panels']['issuer_resource_composition']['updated_r_status'] == 'COMPLETED'
+          PY
       - name: Phase 22 second clean reconstruction
         if: steps.scope.outputs.archive == 'true'
         run: |
@@ -219,6 +235,9 @@ jobs:
           path: |
             work/pre_cutoff_evidence_verified.json
             work/pre_cutoff_evidence_events.json
+            work/resource-admission-engineering/
+            work/resource-admission-replay/runs/*/resource_admission.json
+            work/resource-admission-delta/
             work/phase22-a/runs/
             work/phase22-b/runs/
             work/phase21-a/runs/
