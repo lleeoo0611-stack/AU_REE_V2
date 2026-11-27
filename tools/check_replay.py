@@ -56,7 +56,8 @@ def verify_hash_seed_replay(baseline_latest, updated_latest, baseline_seed, upda
                                    for run in summaries)
     if panels_before != panels_after or not panels_before:
         raise ValueError('Hash-seed replay changed panel membership or execution status')
-    scientific_files = {'configuration.json', 'canonical_membership.csv', 'resources.csv', 'value_trace.csv',
+    scientific_files = {'configuration.json', 'logical_database.json', 'canonical_membership.csv', 'resources.csv',
+                        'criteria_resolution.csv', 'cohort_coverage.csv', 'value_trace.csv',
                         'formal_gate_compatibility.csv', 'eligibility_cohorts.csv'}
     required_panel_files = {'criteria.csv', 'matrix.csv', 'weights.csv'}
     r_files = {'ranking.csv', 'weight_uncertainty.csv', 'rounding_uncertainty.csv', 'uncertainty_by_method.csv',

@@ -12,17 +12,22 @@ _ADJECTIVE = r"(?:non[-‐‑–—]?)?compliant"
 _RELATION = (r"(?:the\s+)?(?:(?:relevant|applicable|reporting|current|minimum)\s+)*"
              r"(?:(?:guidelines|requirements|provisions|standards|principles)\s+"
              r"(?:of|under|in|set\s+out\s+in)\s+(?:the\s+)?)?")
-_NEGATION = (r"(?:not|never|no\s+longer|cannot|can['’]t|"
+_NEGATION = (r"(?:not(?!\s+only\b)|never|no\s+longer|cannot|can['’]t|"
              r"(?:doesn|didn|don|isn|wasn|aren|weren|hasn|haven|hadn|won|wouldn|couldn|shouldn|mustn)['’]t)")
 _PROSPECTIVE = r"(?:will|(?:expected|intended|planned|anticipated)\s+to)"
-_MODAL = r"(?:can(?!['’]t\b)|may|might|could|would|should|possibly|probably|potentially|necessarily|(?:appears|seems)\s+to)"
+_MODAL = (r"(?:can(?!['’]t\b)|may|might|could|would|should|possibly|probably|potentially|necessarily|"
+          r"allegedly|purportedly|apparently|(?:appears|seems)\s+to)")
 _AUX = r"(?:am|is|are|was|were|be|been|being|has|have|had|do|does|did)"
 _EVALUATION = (r"(?:considered|deemed|judged|demonstrated|confirmed|shown|established|certified|"
                r"recognized|recognised|regarded|classified|described|reported|accepted|assessed|found)"
                r"(?:\s+(?:as|to\s+be))?")
-_ADVERB = r"(?:yet|fully|strictly|entirely|technically|currently|previously|still|now|actually|formally|explicitly)"
+_ADVERB = r"(?:not\s+only|yet|still|now|[a-z]+ly)"
 _LINK_WORD = rf"(?:{_NEGATION}|{_PROSPECTIVE}|{_MODAL}|{_AUX}|{_EVALUATION}|{_ADVERB}|to)"
 _PREFIX = re.compile(rf"\b(?:{_LINK_WORD}\b\s*[,()]*\s*)+$", re.I)
+_LINKS_ONLY = re.compile(rf"(?:{_LINK_WORD}\b\s*)+", re.I)
+_ASSERTIVE_LINK = re.compile(rf"\b(?:{_AUX}|{_EVALUATION}|{_NEGATION}|{_PROSPECTIVE}|{_MODAL})\b", re.I)
+_PARENTHETICAL = re.compile(r"\([^()]{1,80}\)|,[^,()]{1,80},")
+_ARTICLE = re.compile(r"\ban?\s*$", re.I)
 _MODIFIERS = tuple((kind, re.compile(rf"\b{pattern}\b", re.I)) for kind, pattern in (
     ("NEGATION", _NEGATION), ("PROSPECTIVE", _PROSPECTIVE), ("MODAL", _MODAL),
     ("EVALUATION", _EVALUATION), ("QUALIFIER", _ADVERB),
@@ -75,13 +80,24 @@ REASONS = {
 def _prefix(clause, position):
     # Only the local auxiliary/evaluation chain can modify this predicate.
     floor = max(0, position - 160)
-    match = _PREFIX.search(clause[floor:position])
+    match = _PREFIX.search(_link_text(clause[floor:position]))
     return floor + match.start() if match else position
 
 
+def _link_text(text):
+    # Keep positional alignment while ignoring an interrupted adjunct such as
+    # "is, despite not being audited, considered JORC compliant".
+    def mask(match):
+        inner = match[0][1:-1]
+        return f" {inner} " if _LINKS_ONLY.fullmatch(inner.strip()) else " " * len(match[0])
+
+    return _PARENTHETICAL.sub(mask, text)
+
+
 def _predicate(clause, start, end, *, code=None, argument_end=None, extra=(), kind="COMPLIANCE"):
+    predicate_text = _link_text(clause[start:end])
     modifiers = [{"kind": label, "start": start + match.start(), "end": start + match.end()}
-                 for label, pattern in _MODIFIERS for match in pattern.finditer(clause[start:end])]
+                 for label, pattern in _MODIFIERS for match in pattern.finditer(predicate_text)]
     modifiers.extend({"kind": "NEGATION", "start": left, "end": right} for left, right in extra)
     condition = _CONDITION.search(clause)
     if condition:
@@ -106,8 +122,10 @@ def _compliance_propositions(clause, declaration, previous_code):
     # A code-qualified adjective in prose needs a predicate, not merely a
     # noun modifier such as "a discussion of JORC-compliant resources".
     for match in _CODE_ADJECTIVE.finditer(clause):
-        start = _prefix(clause, match.start())
-        if start < match.start() or declaration:
+        article = _ARTICLE.search(clause[:match.start()])
+        link_start = article.start() if article else match.start()
+        start = _prefix(clause, link_start)
+        if _ASSERTIVE_LINK.search(_link_text(clause[start:link_start])) or declaration:
             negative = ((match.start("core"), match.start("core") + 3),) if match["core"].lower().startswith("non") else ()
             predicates.append(_predicate(clause, start, match.end(), code=match.span("code"), extra=negative))
     for match in _CODE_AFTER_PREDICATE.finditer(clause):

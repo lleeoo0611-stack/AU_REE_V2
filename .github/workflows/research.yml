@@ -220,6 +220,7 @@ jobs:
                   --mcda-weight-calculation ordered-domain-fsum-v2 --mcda-trace-panel issuer_resource_composition)
           frame=config/ontology/resource_admission_frame_v1.json
           PYTHONHASHSEED=17 au-ree-v2 rebuild "${common[@]}" --work work/resource-admission-current-baseline
+          au-ree-v2 rebuild "${common[@]}" --work work/resource-admission-fixed --resource-admission config/ontology/quality_frame_v1.json
           PYTHONHASHSEED=29 au-ree-v2 rebuild "${common[@]}" --work work/resource-admission-replay --resource-admission "$frame"
           PYTHONHASHSEED=83 au-ree-v2 rebuild "${common[@]}" --work work/resource-admission-repeat --resource-admission "$frame" --mcda-cache-mode off
           python tools/check_replay.py --hash-seed-replay work/resource-admission-replay/latest.json work/resource-admission-repeat/latest.json 29 83 work/resource-admission-delta/hash-seed-replay.json
@@ -229,7 +230,11 @@ jobs:
           from au_ree_v2.formal_resource_refresh import compare
           def run(folder):
               return json.loads((Path(folder) / 'latest.json').read_bytes())['output_dir']
-          delta = compare(run('work/resource-admission-current-baseline'), run('work/resource-admission-replay'), 'work/resource-admission-delta',
+          baseline = run('work/resource-admission-current-baseline')
+          fixed = compare(baseline, run('work/resource-admission-fixed'), 'work/resource-admission-delta/fixed',
+                          mode='admission_effect')
+          assert not fixed['comparison']['source_editions_changed']
+          delta = compare(baseline, run('work/resource-admission-replay'), 'work/resource-admission-delta',
                           mode='admission_effect', include_uncertainty=True)
           assert delta['active_admission_ids_in_selected_inputs']
           panel = delta['panels']['issuer_resource_composition']
@@ -242,8 +247,9 @@ jobs:
           name: resource-admission-review-${{ github.run_id }}
           path: |
             work/resource-admission-engineering/engineering_proof.json
+            work/resource-admission-fixed/runs/*/resource_admission.json
             work/resource-admission-replay/runs/*/resource_admission.json
-            work/resource-admission-delta/*.json
+            work/resource-admission-delta/**/*.json
           if-no-files-found: warn
       - name: Phase 22 second clean reconstruction
         if: steps.scope.outputs.archive == 'true'
