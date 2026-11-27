@@ -5,26 +5,31 @@ import re
 
 VERSION = "resource-jorc-estimate-scope-v1"
 _CODE = r"(?:JORC\b(?:\s+Code(?:\d+)?)?|Joint Ore Reserves Committee)"
-_COMPLIANCE = r"(?:compliant|compliance|comply|complies|in\s+accordance|conforms?\s+to)"
+_COMPLIANCE = r"(?:compliant|compliance|comply|complies|in\s+(?:full\s+)?accordance|conforms?\s+to)"
 _METHOD = r"(?:reported|estimated|classified|prepared|compiled)"
-_NEGATION = r"(?:not\s+|never\s+|no\s+|non[-\s‐‑–—]+|without\s+)"
+_NEGATING_CONTRACTION = r"(?:doesn|didn|isn|wasn|aren|weren|hasn|haven|hadn)['’]t"
+_NEGATION = (rf"(?:(?:not|never)\s+(?:(?:yet|fully|strictly|currently)\s+)?"
+             rf"|no\s+(?:longer\s+)?|non[-\s‐‑–—]+|without\s+|{_NEGATING_CONTRACTION}\s+)")
 _NEGATIVE = re.compile(
     rf"\b(?:{_NEGATION}(?:an?\s+)?{_CODE}"
     rf"|{_CODE}\s*(?:[-‐‑–—(]\s*)?{_NEGATION}{_COMPLIANCE}"
-    rf"|{_NEGATION}(?:(?:been\s+)?{_METHOD}\s+)?{_COMPLIANCE}[^.;!?]{{0,120}}?{_CODE})",
+    rf"|{_NEGATION}(?:(?:been\s+)?{_METHOD}\s+)?(?:{_COMPLIANCE}|meet\b|satisfy\b|adhere\s+to\b)"
+    rf"[^.;!?]{{0,120}}?{_CODE}"
+    rf"|noncompliant\s+(?:with|under)\s+{_CODE})",
     re.I,
 )
 _POSITIVE = re.compile(
     rf"\b(?:{_CODE}(?:\s+20\d\d)?\s*(?:[-‐‑–—]\s*)?"
     r"(?:compliant|(?:(?:global|total)\s+)?(?:mineral\s+)?resources?(?:\s+estimate)?)\b"
-    rf"|{_METHOD}\s+in\s+accordance\s+[^.;!?]{{0,120}}?{_CODE}"
-    rf"|(?:comply|complies|conforms?)\s+(?:with|to)\s+[^.;!?]{{0,100}}?{_CODE})",
+    rf"|{_METHOD}\s+in\s+(?:full\s+)?accordance\s+[^.;!?]{{0,120}}?{_CODE}"
+    rf"|(?:does\s+comply|complies|conforms)\s+(?:with|to)\s+[^.;!?]{{0,100}}?{_CODE})",
     re.I,
 )
 _ANAPHORIC_NEGATIVE = re.compile(
     rf"\b{_NEGATION}(?:(?:been\s+)?{_METHOD}\s+)?{_COMPLIANCE}\b", re.I,
 )
 _NEGATABLE = re.compile(r"\b(?:not|never)\s+(?:(?:yet|been|actually|currently)\s+){0,3}$", re.I)
+_PROSPECTIVE = re.compile(r"\b(?:will|would|should|could|may|might|expected\s+to|intended\s+to)\s+(?:be\s+)?$", re.I)
 _NO_CHANGE = re.compile(rf"no\s+{_CODE}(?:\s+20\d\d)?\s+(?:mineral\s+)?resources?(?:\s+estimate)?\s+"
                         r"(?:changes?|revisions?)\b", re.I)
 _CLAUSE_BREAK = re.compile(r"(?<=[.;!?])\s+|\s+(?=(?:but|whereas)\s+(?:the|this|that)\s+)", re.I)
@@ -59,9 +64,11 @@ def claims(quote):
         negatives = [m.span() for m in _NEGATIVE.finditer(clause) if not _NO_CHANGE.match(clause, m.start())]
         positives = []
         for match in _POSITIVE.finditer(clause):
-            if _NEGATABLE.search(clause[:match.start()]):
+            prefix = clause[:match.start()]
+            if _NEGATABLE.search(prefix):
                 negatives.append((match.start(), match.end()))
-            elif not any(left < match.end() and match.start() < right for left, right in negatives):
+            elif (not re.match(r"\s*if\b", clause, re.I) and not _PROSPECTIVE.search(prefix)
+                  and not any(left < match.end() and match.start() < right for left, right in negatives)):
                 positives.append((match.start(), match.end()))
         if previous_code and not negatives and not positives and (_OLD.search(clause) or _CURRENT.search(clause)):
             negatives.extend(m.span() for m in _ANAPHORIC_NEGATIVE.finditer(clause))

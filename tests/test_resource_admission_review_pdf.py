@@ -141,8 +141,14 @@ class ResourceAdmissionReviewPdfTests(unittest.TestCase):
             resource_page(qualifier='non-JORC'),
             resource_page(qualifier='not JORC-compliant'),
             resource_page(qualifier='JORC (not compliant)'),
+            resource_page(qualifier='no longer JORC-compliant'),
+            resource_page(qualifier='not fully JORC-compliant'),
             resource_page(qualifier='', notes=(
                 'The Mineral Resource estimate in Table 2 was not reported in accordance with the guidelines of JORC.',)),
+            resource_page(qualifier='', notes=(
+                'The Mineral Resource estimate in Table 2 does not meet the requirements of JORC.',)),
+            resource_page(qualifier='', notes=(
+                "The current Mineral Resource estimate in Table 2 doesn't comply with JORC.",)),
             resource_page(qualifier='', notes=(
                 'The earlier Mineral Resource estimate in Table 1 was reported in accordance with JORC; '
                 'the current estimate in Table 2 is not compliant.',)),
@@ -170,6 +176,15 @@ class ResourceAdmissionReviewPdfTests(unittest.TestCase):
         self.assertTrue(all(json.loads(row['raw'])['pdf_page'] == 2 for row in canonical))
         self.assertEqual(selected[PROJECT_ID]['date'], EFFECTIVE_DATE)
         self.assertEqual(selected[PROJECT_ID]['contained_treo_kt'], 100)
+
+    def test_future_reporting_statement_does_not_supply_current_jorc(self):
+        page = resource_page(qualifier='', notes=(
+            'The Mineral Resource estimate in Table 2 will be reported in accordance with the guidelines of JORC.',))
+        _, receipt, _, selected, _, canonical = self.run_pdf(page)
+        row = total_disposition(receipt)
+        self.assertIn(row['jorc_assessment']['status'], ('UNESTABLISHED', 'UNRESOLVED_SCOPE'))
+        self.assertEqual(canonical, [])
+        self.assertEqual(selected, {})
 
     def test_current_estimate_does_not_borrow_earlier_declaration(self):
         earlier = resource_page(number=1, date='2024-05-01', notes=(
