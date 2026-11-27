@@ -210,7 +210,7 @@ jobs:
       - name: Reproduce and repair JORC PDF proposition cases
         run: |
           baseline=$(mktemp -d)
-          git archive e695b578275e1cba918b7b3c62f3b5d8abefe98d src | tar -x -C "$baseline"
+          git archive 1c0a3a2b586333d82417924c884d59d6ef022c61 src | tar -x -C "$baseline"
           mkdir -p work/resource-admission-delta
           PYTHONPATH="$baseline/src" python tests/test_resource_admission_review_pdf.py --proposition-receipt work/resource-admission-delta/jorc-before.json
           PYTHONPATH=src python tests/test_resource_admission_review_pdf.py --proposition-receipt work/resource-admission-delta/jorc-after.json
@@ -241,14 +241,40 @@ jobs:
           assert panel['matrix_primary_criterion_cells_changed'] and panel['updated_r_status'] == 'COMPLETED'
           assert panel['rank_uncertainty']['draw_pairing']['status'] == 'PAIRED_VERIFIED_DRAW_RANKS'
           PY
+      - name: Compare locked fixed and full-text resource retrieval
+        run: |
+          common=(--as-of 2026-11-05 --snapshot-lock results/phase22-2026-11-06/snapshot_lock.json
+                  --mcda-weight-calculation ordered-domain-fsum-v2 --mcda-trace-panel issuer_resource_composition
+                  --resource-retrieval full-text)
+          au-ree-v2 rebuild "${common[@]}" --work work/resource-admission-fixed-fulltext --resource-admission config/ontology/quality_frame_v1.json
+          au-ree-v2 rebuild "${common[@]}" --work work/resource-admission-fulltext --resource-admission config/ontology/resource_admission_frame_v1.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from au_ree_v2.formal_resource_refresh import compare
+          def run(folder):
+              return json.loads((Path(folder) / 'latest.json').read_bytes())['output_dir']
+          pairs = [('fixed', 'resource-admission-fixed', 'resource-admission-fixed-fulltext'),
+                   ('supplement', 'resource-admission-replay', 'resource-admission-fulltext')]
+          for name, fixed, retrieved in pairs:
+              result = compare(run('work/' + fixed), run('work/' + retrieved),
+                               'work/resource-admission-delta/retrieval/' + name, mode='retrieval_effect',
+                               include_uncertainty=True)
+              scope = result['comparison']['retrieval_scope']['updated']
+              assert scope['policy']['mode'] == 'full-text' and scope['effective_frame_sources']
+              assert result['comparison']['changed_factors'] == ['admission_retrieval']
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: resource-admission-review-${{ github.run_id }}
           path: |
             work/resource-admission-engineering/engineering_proof.json
+            work/resource-admission-engineering/retrieval-differences/*.json
             work/resource-admission-fixed/runs/*/resource_admission.json
+            work/resource-admission-fixed-fulltext/runs/*/resource_admission.json
             work/resource-admission-replay/runs/*/resource_admission.json
+            work/resource-admission-fulltext/runs/*/resource_admission.json
             work/resource-admission-delta/**/*.json
           if-no-files-found: warn
       - name: Phase 22 second clean reconstruction

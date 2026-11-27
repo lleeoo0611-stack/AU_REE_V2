@@ -121,6 +121,9 @@ def _run_mcda(args, root, out, prepared, config):
 
 def execute(args):
     resource_frame = getattr(args, 'resource_admission', None)
+    resource_retrieval = getattr(args, 'resource_retrieval', None)
+    if resource_retrieval and not resource_frame:
+        raise ValueError('--resource-retrieval requires --resource-admission')
     if resource_frame and args.module not in ('observation-validate', 'all', 'rebuild'):
         raise ValueError('--resource-admission applies to observation-validate, all or rebuild')
     trace_panel = getattr(args, 'mcda_trace_panel', None)
@@ -138,10 +141,11 @@ def execute(args):
             return {'status': 'DRY_RUN', 'module': args.module, 'writes': False}
         from .observation_validation import run
         libraries = [*args.static_pdfs, *([args.replay_assets] if args.replay_assets else [])]
+        retrieval_options = {'resource_retrieval': resource_retrieval} if resource_retrieval else {}
         return run(args.root, args.out, libraries=libraries, online=not args.recovery_offline,
                    request_budget=args.recovery_budget, cache_dir=args.cache_dir, cache_mode=args.cache_mode,
                    database=args.database, formal_run=args.shadow_run, rscript=args.rscript, tessdata=args.tessdata,
-                   resource_admission=resource_frame)
+                   resource_admission=resource_frame, **retrieval_options)
     cache_plan = getattr(args, 'cache_plan', False)
     cache_controls = (getattr(args, 'cache_dir', None) or getattr(args, 'force_stage', ())
                       or getattr(args, 'shadow_reviews', None) or getattr(args, 'cache_mode', 'use') != 'use')
@@ -271,7 +275,7 @@ def _execute(args):
         from .resource_admission_flow import load_frame
         if not config.get('evidence_resolution') or not any(c['code'] == 'R1' for c in config['criteria']):
             raise ValueError('RESOURCE_ADMISSION_REQUIRES_FORMAL_R1_SELECTION')
-        resource_frame = load_frame(root / resource_frame)
+        resource_frame = load_frame(root / resource_frame, retrieval_mode=getattr(args, 'resource_retrieval', None))
     strict=integration and mode in ('offline','live')
     if not (strict or args.module=='acquire') and config.get('research_evidence_cutoff'):
         args.as_of=min(args.as_of,config['research_evidence_cutoff'])
@@ -853,6 +857,8 @@ def main():
     parser.add_argument('--recovery-offline', action='store_true', help='Use only local sources for observation-validate')
     parser.add_argument('--recovery-budget', type=int, default=80, help='Maximum network requests for observation-validate')
     parser.add_argument('--resource-admission', metavar='FRAME', help='Reassess SHA-pinned resource pages before formal selection')
+    parser.add_argument('--resource-retrieval', choices=('fixed', 'full-text'),
+                        help='Override the resource frame page retrieval policy for its pinned PDF editions')
     parser.add_argument('--cache-dir', help='Disposable cross-run cache for the unified shadow pipeline')
     parser.add_argument('--cache-mode', choices=('use', 'off', 'refresh'), default='use')
     parser.add_argument('--cache-plan', action='store_true', help='Read-only semantic-ablation dependency preview')

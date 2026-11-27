@@ -114,7 +114,8 @@ def _compare_census(release, replay, published):
 
 
 def run(root, output, *, libraries=(), online=True, request_budget=80, cache_dir=None, cache_mode="use",
-        database=None, formal_run=None, rscript=None, tessdata=None, resource_admission=None):
+        database=None, formal_run=None, rscript=None, tessdata=None, resource_admission=None,
+        resource_retrieval=None):
     """Continue independent validation when originals or specific stages are unavailable."""
     from .formal_resource_bridge import run as bridge
     from .observation_ablation import replay
@@ -133,7 +134,7 @@ def run(root, output, *, libraries=(), online=True, request_budget=80, cache_dir
         if database is not None or formal_run is not None:
             raise ValueError("Resource admission compares two new rebuilds of the fixed Phase 22 reference")
         resource_admission = (root / resource_admission).resolve()
-        load_frame(resource_admission)
+        load_frame(resource_admission, retrieval_mode=resource_retrieval)
         protected.append(resource_admission)
     if not _disjoint(output, protected):
         raise ValueError("Keep validation output separate from originals, source files and prior formal runs")
@@ -220,8 +221,9 @@ def run(root, output, *, libraries=(), online=True, request_budget=80, cache_dir
 
     if resource_admission is not None and formal_run is not None:
         work = output / "formal-resource-admission"
+        retrieval_arguments = ["--resource-retrieval", resource_retrieval] if resource_retrieval else []
         refreshed = attempt("formal_resource_admission", lambda: _run_formal(root, work, [
-            *phase22_arguments, "--resource-admission", str(resource_admission),
+            *phase22_arguments, "--resource-admission", str(resource_admission), *retrieval_arguments,
             "--cache-dir", str(cache_path), "--cache-mode", cache_mode, "--mcda-cache-mode", cache_mode,
         ], rscript))
         if refreshed["status"] == "COMPLETE":

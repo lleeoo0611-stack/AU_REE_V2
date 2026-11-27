@@ -13,7 +13,7 @@ from .document_processing import (
     DocumentUnavailable, PdfDocumentCache, SHA256, _file_sha, ocr_model_sha, pdf_view_spec,
 )
 from .numeric_evidence import numeric_token_spans
-from .pdf_extract import DOCUMENT_VERSION, NUMBER, extraction_dependencies, recognize_document
+from .pdf_extract import DOCUMENT_VERSION, NUMBER, extraction_dependencies, readable, recognize_document
 from .store import digest
 from .semantic_resource import extract_resource_observations
 from .semantic_technical import reextract_technical
@@ -30,6 +30,9 @@ FIELD_TERMS = {
                "alkaline alluvial placer heavy mineral sands",
     "resource": "mineral resource estimate JORC measured indicated inferred tonnes tonnage grade "
                 "cutoff reserve exploration target TREO ppm contained",
+    "resource_context": "estimate estimation effective dated reporting standard JORC classification scope "
+                        "dry wet moisture basis density denominator definition defined comprises "
+                        "calculated oxide oxides TREO cutoff cut-off threshold table footnote tonnage",
     "strategic_composition": "REE REO TREO assemblage composition neodymium praseodymium dysprosium terbium "
                              "Nd Nd2O3 Pr Pr6O11 Dy Dy2O3 Tb Tb4O7 feed concentrate product",
     "technical": "mineralogy feed composite sample beneficiation flotation leach separation extraction "
@@ -119,10 +122,10 @@ class PageIndex:
 
     @classmethod
     def from_documents(cls, documents: PdfDocumentCache, source_hashes, *,
-                       expected_pages=None, missing=None):
+                       expected_pages=None, missing=None, page_diagnostics=None):
         """Validate original editions and use the positioned text view for BM25."""
         cache = documents.cache
-        if cache is None and expected_pages is None and missing is None:
+        if cache is None and expected_pages is None and missing is None and page_diagnostics is None:
             return cls((sha, page, document.text(page, positioned=True))
                        for sha in dict.fromkeys(source_hashes)
                        for document in (documents.open(sha),)
@@ -137,22 +140,44 @@ class PageIndex:
                 missing[sha] = str(exc)
                 continue
             corpus.append(sha)
-        settings = {"format": "bm25-term-counts-v1", "tokenizer": _tokenizer_signature(),
+        settings = {"format": "bm25-term-counts-v2", "tokenizer": _tokenizer_signature(),
                     "text_parser": pdf_view_spec("positioned_text"), "page_count": pdf_view_spec("page_count"),
                     "code": _index_signature()}
+        if page_diagnostics is not None:
+            settings["page_diagnostics"] = "positioned-readability-v1"
 
         def terms(sha):
             document = documents.open(sha)
-            return [[sha, page, _term_counts(document.text(page, positioned=True))]
-                    for page in range(1, len(document) + 1)]
+            rows, issues = [], []
+            for page in range(1, len(document) + 1):
+                try:
+                    text = document.text(page, positioned=True)
+                except (OSError, RuntimeError, ValueError) as exc:
+                    if page_diagnostics is None:
+                        raise
+                    text = ""
+                    issues.append([page, "INDEX_PARSE_FAILED", type(exc).__name__])
+                else:
+                    if page_diagnostics is not None and not readable(text):
+                        text = ""
+                        issues.append([page, "PAGE_TEXT_UNREADABLE", "NO_READABLE_POSITIONED_TEXT"])
+                rows.append([sha, page, _term_counts(text)])
+            return {"terms": rows, "page_issues": issues}
 
-        def validate_document(rows, sha):
+        def validate_document(product, sha):
+            rows = product["terms"]
             _term_rows(rows)
             if [tuple(row[:2]) for row in rows] != [(sha, n) for n in range(1, len(rows) + 1)]:
                 raise ValueError("BM25 document term counts disagree with their source edition")
+            issues = product["page_issues"]
+            if (not isinstance(issues, list) or any(not isinstance(row, list) or len(row) != 3
+                    or type(row[0]) is not int or not 1 <= row[0] <= len(rows) or rows[row[0] - 1][2]
+                    or row[1] not in {"INDEX_PARSE_FAILED", "PAGE_TEXT_UNREADABLE"} or not isinstance(row[2], str)
+                    for row in issues) or len({row[0] for row in issues}) != len(issues)):
+                raise ValueError("Invalid BM25 page diagnostics")
 
         def build_index():
-            rows, errors = [], {}
+            rows, errors, issues = [], {}, {}
             for sha in corpus:
                 try:
                     if cache is None:
@@ -164,15 +189,18 @@ class PageIndex:
                             lambda: terms(sha), upstream={"source_snapshot": sha},
                             validate=lambda rows: validate_document(rows, sha),
                         )
-                    rows.extend(document_terms)
+                    rows.extend(document_terms["terms"])
+                    if document_terms["page_issues"]:
+                        issues[sha] = document_terms["page_issues"]
                 except DocumentUnavailable as exc:
                     if missing is None:
                         raise
                     errors[sha] = str(exc)
-            return {"terms": rows, "errors": errors}
+            return {"terms": rows, "errors": errors, "page_issues": issues}
 
         def validate_index(value):
             if (not isinstance(value, dict) or not isinstance(value.get("errors"), dict)
+                    or not isinstance(value.get("page_issues"), dict)
                     or any(sha not in corpus or not isinstance(reason, str)
                            for sha, reason in value["errors"].items())):
                 raise ValueError("Invalid BM25 corpus artifact")
@@ -180,11 +208,12 @@ class PageIndex:
             documents_by_sha = defaultdict(list)
             for row in value["terms"]:
                 documents_by_sha[row[0]].append(row)
-            if not documents_by_sha.keys() <= set(corpus) - value["errors"].keys():
+            if not (documents_by_sha.keys() | value["page_issues"].keys()) <= set(corpus) - value["errors"].keys():
                 raise ValueError("BM25 index differs from its verified corpus manifest")
             for sha in corpus:
                 if sha not in value["errors"]:
-                    validate_document(documents_by_sha[sha], sha)
+                    validate_document({"terms": documents_by_sha[sha],
+                                       "page_issues": value["page_issues"].get(sha, [])}, sha)
 
         value = build_index() if cache is None else cache.compute(
             "bm25-index", "verified-corpus", {**settings, "corpus": corpus}, build_index,
@@ -194,6 +223,8 @@ class PageIndex:
             if missing is None:
                 raise DocumentUnavailable(next(iter(value["errors"].values())))
             missing.update(value["errors"])
+        if page_diagnostics is not None:
+            page_diagnostics.update(value["page_issues"])
         if expected_pages is not None:
             actual_pages = Counter(row[0] for row in value["terms"])
             for sha in corpus:
@@ -266,7 +297,7 @@ class PageIndex:
 
 @lru_cache
 def _index_signature():
-    return code_fingerprint(PageIndex.from_documents, _page_key, PageIndex._load_terms)
+    return code_fingerprint(PageIndex.from_documents, _page_key, PageIndex._load_terms, readable)
 
 
 @lru_cache

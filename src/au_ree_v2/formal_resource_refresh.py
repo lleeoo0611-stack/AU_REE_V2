@@ -13,9 +13,9 @@ from .selection_rules import is_automatic_resource_admission
 from .store import digest, filehash
 
 
-VERSION = 'formal-resource-refresh-v3'
+VERSION = 'formal-resource-refresh-v4'
 RANK_NUMBERS = ('promethee', 'saw', 'topsis', 'promethee_rank', 'saw_rank', 'topsis_rank')
-COMPARISON_MODES = frozenset({'auto', 'rule_effect', 'admission_effect', 'source_update', 'replay'})
+COMPARISON_MODES = frozenset({'auto', 'rule_effect', 'admission_effect', 'retrieval_effect', 'source_update', 'replay'})
 SOURCE_TRANSPORT_FIELDS = frozenset({'path', 'url', 'acquired_at'})
 MCDA_PROTOCOL_FIELDS = frozenset({'mcda_weight_calculation', 'mcda_trace_panel'})
 
@@ -43,6 +43,16 @@ def _checked_inputs(run):
             raise ValueError('REFRESH_ACTIVE_ADMISSION_IDS_NOT_BOUND_TO_RUN')
         if 'active_admission_observation_ids' in contract:
             expected['active_admission_observation_ids'] = contract['active_admission_observation_ids']
+        has_retrieval = 'retrieval' in contract
+        if (has_retrieval != ('retrieval' in receipt) or
+                has_retrieval != ('effective_frame_sources_sha256' in contract) or
+                has_retrieval != ('effective_frame_sources' in receipt)):
+            raise ValueError('REFRESH_RETRIEVAL_SCOPE_NOT_BOUND_TO_RUN')
+        if has_retrieval:
+            expected['retrieval'] = contract['retrieval']
+            expected['effective_frame_sources_sha256'] = contract['effective_frame_sources_sha256']
+            if digest(receipt['effective_frame_sources']) != contract['effective_frame_sources_sha256']:
+                raise ValueError('REFRESH_RETRIEVAL_SCOPE_NOT_BOUND_TO_RUN')
         expected.update(run_id=summary['run_id'], cutoff=summary['cutoff'], snapshot_sha256=summary['snapshot_sha256'])
         if any(receipt.get(key) != value for key, value in expected.items()):
             raise ValueError('REFRESH_ADMISSION_RECEIPT_NOT_BOUND_TO_RUN')
@@ -73,6 +83,17 @@ def _frame_scope(receipt):
         return receipt['frame_sha256']
     return sorted((source['source_key'], tuple(sorted(source['pages'])), tuple(sorted(source.get('context_pages', ()))))
                   for source in receipt['frame_sources'])
+
+
+def _retrieval_scope(receipt, lock):
+    if receipt is None:
+        return None
+    policy = receipt.get('retrieval', {'mode': 'fixed'})
+    rows = receipt.get('effective_frame_sources')
+    if rows is None and 'frame_sources' in receipt:
+        selected = {(item['key'], item['sha256']) for item in lock}
+        rows = [item for item in receipt['frame_sources'] if (item['source_key'], item['source_sha256']) in selected]
+    return {'policy': policy, 'effective_frame_sources': rows}
 
 
 def _comparison_contract(before, after, old_cfg, cfg, old_lock, lock, old_admit, admit, mode):
@@ -111,9 +132,15 @@ def _comparison_contract(before, after, old_cfg, cfg, old_lock, lock, old_admit,
                                 (old_shas.get(key), shas.get(key)) for key in old_pins)
 
     before_protocol, after_protocol = _mcda_protocol(old_cfg), _mcda_protocol(cfg)
+    before_retrieval, after_retrieval = _retrieval_scope(old_admit, old_lock), _retrieval_scope(admit, lock)
+    # Fixed-to-fixed changes are already attributed to configured pages and the
+    # actual source edition. Search policy and its selected pages add a factor.
+    retrieval_changed = (both_admit and before_retrieval != after_retrieval and
+                         any(item['policy']['mode'] != 'fixed' for item in (before_retrieval, after_retrieval)))
     factors = {'code_or_admission_rules': code_changed or rules_changed,
                'mcda_execution_protocol': before_protocol != after_protocol,
                'admission_enabled': admission_changed, 'admission_frame': frame_changed,
+               'admission_retrieval': retrieval_changed,
                'source_inputs': bool(binding_delta) or registry_changed,
                'analytical_runtime': (old_cfg.get('analytical_runtime') != cfg.get('analytical_runtime')
                                       or before.summary.get('environment') != after.summary.get('environment'))}
@@ -124,6 +151,8 @@ def _comparison_contract(before, after, old_cfg, cfg, old_lock, lock, old_admit,
         kind = 'rule_effect'
     elif active == ['admission_enabled']:
         kind = 'admission_effect'
+    elif active == ['admission_retrieval']:
+        kind = 'retrieval_effect'
     elif active == ['source_inputs']:
         kind = 'source_update' if edition_delta else 'source_binding_change'
     elif active == ['admission_frame']:
@@ -136,6 +165,7 @@ def _comparison_contract(before, after, old_cfg, cfg, old_lock, lock, old_admit,
             'code_content_changed': code_changed, 'code_commit_changed': old_code.get('commit') != code.get('commit'),
             'rules_changed': rules_changed, 'source_registry_changed': registry_changed,
             'mcda_execution_protocol': {'baseline': before_protocol, 'updated': after_protocol},
+            'retrieval_scope': {'baseline': before_retrieval, 'updated': after_retrieval},
             'source_editions_changed': edition_delta,
             'admission_enabled': {'baseline': old_admit is not None, 'updated': admit is not None},
             'frame_sha256': {'baseline': old_admit.get('frame_sha256') if old_admit else None,
@@ -172,7 +202,8 @@ def _admission_ledger(run, receipt, rows):
               'reused_legacy_observation_ids': sorted(accepted - active)}
     if receipt is not None:
         ledger['receipt_sha256'] = run.hashes['resource_admission.json']
-        for key in ('counts', 'frame_counts', 'source_dispositions', 'excluded_sources', 'observation_actions', 'source_counts'):
+        for key in ('counts', 'frame_counts', 'source_dispositions', 'excluded_sources', 'observation_actions',
+                    'source_counts', 'retrieval_sources'):
             if key in receipt:
                 ledger[key] = receipt[key]
     return ledger, {identifier: automatic[identifier] for identifier in active}
@@ -190,12 +221,36 @@ def _selection_evidence(project, selected, scope, observations, receipt):
     identifiers = (selected or {}).get('observation_ids', ())
     candidate_keys = ('source_key', 'source_sha256', 'physical_page', 'table', 'row', 'status', 'reasons',
                       'canonical_observation_ids', 'historical_link', 'historical_conflict',
-                      'estimate_id', 'statement_id', 'admission_bundle_id')
+                      'estimate_id', 'statement_id', 'admission_bundle_id', 'context_field_gains')
     return {'selected_observations': [_observation_trace(observations[i]) for i in identifiers if i in observations],
             'scope_decisions': [row for row in scope if row['project_id'] == project],
             'admission_dispositions': [{key: row[key] for key in candidate_keys if key in row}
                                        for row in (receipt or {}).get('dispositions', ())
                                        if row.get('project_id') == project]}
+
+
+def _context_field_improvements(old, new):
+    """Track located context fields separately from observations and research gains."""
+    def located_fields(receipt):
+        for row in (receipt or {}).get('dispositions', ()):
+            for field, binding in row.get('context_field_gains', {}).items():
+                if binding.get('decision') == 'BOUND_SAME_ESTIMATE' and binding.get('evidence'):
+                    locator = tuple(row[key] for key in ('source_sha256', 'physical_page', 'table', 'row'))
+                    yield (locator, field), row, binding
+
+    prior = {key: binding['value'] for key, _, binding in located_fields(old)}
+    found = {}
+    for (locator, field), row, binding in located_fields(new):
+        if (locator, field) in prior and prior[locator, field] == binding['value']:
+            continue
+        estimate = row.get('estimate_id') or locator
+        identity = locator[0], row.get('project_id'), estimate, field, digest(binding['value'])
+        group = found.setdefault(identity, {'source_key': row['source_key'], 'source_sha256': locator[0],
+                                           'project_id': row.get('project_id'), 'estimate_id': row.get('estimate_id'),
+                                           'field': field, 'value': binding['value'], 'occurrences': []})
+        group['occurrences'].append({'physical_page': locator[1], 'table': locator[2], 'row': locator[3],
+                                     'admission_status': row['status'], 'evidence': binding['evidence']})
+    return list(found.values())
 
 
 def _selected_value_reason(before, after):
@@ -368,8 +423,10 @@ def compare(baseline_run, updated_run, output, *, mode='auto', include_uncertain
                    or 'S1' in value['criteria']}
     gate_diffs = _compare(before.csv('formal_gate_compatibility.csv'), after.csv('formal_gate_compatibility.csv'),
                          ('canonical_project_id', 'gate'))
-    eligibility_diffs = _compare(before.csv('eligibility_cohorts.csv'), after.csv('eligibility_cohorts.csv'),
-                                ('canonical_project_id',))
+    old_cohorts, cohorts = (run.csv('eligibility_cohorts.csv') for run in (before, after))
+    eligibility_diffs = _compare(old_cohorts, cohorts, ('canonical_project_id',))
+    c1_status_counts = {side: dict(Counter(row.get('formal_c1_status', 'UNREPORTED') for row in rows))
+                        for side, rows in (('baseline', old_cohorts), ('updated', cohorts))}
     old_eligibility, eligibility = before.json('eligibility_audit.json'), after.json('eligibility_audit.json')
     new_ids = active_rows.keys() - old_observations.keys()
     no_longer_active = old_active.keys() - active_rows.keys()
@@ -462,6 +519,7 @@ def compare(baseline_run, updated_run, output, *, mode='auto', include_uncertain
                'new_canonical_projects_definition':
                    'Compatibility alias of projects_with_new_canonical_observations; does not count newly created Projects.',
                'evidence_change_accounting': evidence_accounting,
+               'context_field_improvements': _context_field_improvements(old_admit, admit),
                'automatic_observation_transitions': {
                    'newly_present': [_observation_trace(active_rows[obs]) for obs in sorted(new_ids)],
                    'no_longer_enabled': [_observation_trace(old_active[obs]) | {
@@ -473,6 +531,7 @@ def compare(baseline_run, updated_run, output, *, mode='auto', include_uncertain
                'criterion_trace_differences': traces,
                'numeric_selection_projects': sorted(input_changes), 'changed_raw_input_projects': sorted(direct_projects),
                'formal_c1': {'required_gates': GATES, 'baseline': old_eligibility, 'updated': eligibility,
+                             'project_status_counts': c1_status_counts,
                              'gate_differences': gate_diffs, 'project_eligibility_differences': eligibility_diffs},
                'panels': panel_diffs, 'aim_b_rank_uncertainty': aim_b,
                'input_artifact_sha256': {'baseline': before.read_hashes, 'updated': after.read_hashes}}

@@ -62,13 +62,34 @@ JORC_PROPOSITIONS = (
      'The report presents the Mineral Resource estimate in Table 2. It was reported in accordance with JORC.'),
     ('negated_cross_sentence_reference', 'DENIED',
      'The report presents the Mineral Resource estimate in Table 2. It cannot be considered JORC compliant.'),
+    ('conflicting_after_neutral_sentence', 'CONFLICT',
+     'The Mineral Resource estimate in Table 2 is JORC compliant. No change. It is not compliant.'),
+    ('affirmative_after_neutral_sentence', 'AFFIRMED',
+     'The report presents the Mineral Resource estimate in Table 2. Details remain unchanged. It is JORC compliant.'),
 )
 
 
 def resource_page(*, number=2, qualifier='JORC', date=EFFECTIVE_DATE, cutoff='500 ppm', notes=(),
-                  total=('50', '2,000', '100,000'), grade_unit='ppm'):
-    caption = f'Table {number}: {PROJECT} Total {qualifier} Mineral Resource estimate effective {date} at {cutoff} TREO cut-off'
-    return {'caption': ' '.join(caption.split()), 'notes': notes, 'total': total, 'grade_unit': grade_unit}
+                  total=('50', '2,000', '100,000'), grade_unit='ppm', material_header='Dry ore tonnage (Mt)',
+                  chemical_header=None, competing_total=None):
+    caption = f'Table {number}: {PROJECT} Total {qualifier} Mineral Resource estimate'
+    if date:
+        caption += f' effective {date}'
+    if cutoff:
+        caption += f' at {cutoff} TREO cut-off'
+    chemical_header = chemical_header or f'Total Rare Earth Oxides (TREO) ({grade_unit})'
+    return {'caption': ' '.join(caption.split()), 'notes': notes, 'total': total,
+            'material_header': material_header, 'chemical_header': chemical_header, 'competing_total': competing_total}
+
+
+def narrative_page(quote='Project infrastructure and site logistics update.'):
+    return {'narrative': quote}
+
+
+def external_estimate_context(*, date=EFFECTIVE_DATE, mass='50', grade='2,000'):
+    return narrative_page(f'For the {PROJECT} Mineral Resource estimate in Table 2, {mass} Mt at {grade} ppm TREO, '
+                          f'effective {date}. Tonnages are reported on a dry basis. TREO means Total Rare Earth Oxides. '
+                          'The estimate uses a cut-off grade of 500 ppm TREO.')
 
 
 def original(root, *pages):
@@ -77,6 +98,11 @@ def original(root, *pages):
         for index, entry in enumerate(pages, 1):
             page = document.new_page(width=840, height=520)
             page.insert_text((42, 30), 'SYNTHETIC ENGINEERING REVIEW DOCUMENT', fontsize=11)
+            page_footer = f'{PROJECT} Mineral Resource Report Page {index} of {len(pages)}'
+            if 'narrative' in entry:
+                page.insert_textbox((42, 102, 790, 400), entry['narrative'], fontsize=9)
+                page.insert_text((42, 480), page_footer, fontsize=9)
+                continue
             page.insert_text((42, 102), entry['caption'], fontsize=9)
             # Single blocks model notes tied to a named table, rather than a PDF-wide
             # bag of keywords. All glyphs occupy physical coordinates outside the grid.
@@ -86,14 +112,15 @@ def original(root, *pages):
             ore = float(mass.replace(',', ''))
             tonnes = float(contained.replace(',', ''))
             grid = (
-                ('Classification', 'Dry ore tonnage (Mt)',
-                 f'Total Rare Earth Oxides (TREO) ({entry["grade_unit"]})', 'Contained TREO (t)'),
+                ('Classification', entry['material_header'], entry['chemical_header'], 'Contained TREO (t)'),
                 ('Indicated', f'{0.4 * ore:.2f}', grade, f'{0.4 * tonnes:,.0f}'),
                 ('Inferred', f'{0.6 * ore:.2f}', grade, f'{0.6 * tonnes:,.0f}'),
                 ('Total', *entry['total']),
             )
+            if entry['competing_total']:
+                grid += (('Total', *entry['competing_total']),)
             columns = [40, 175, 335, 590, 775]
-            rows = [142, 167, 192, 217, 242]
+            rows = [142 + 25 * number for number in range(len(grid) + 1)]
             for x in columns:
                 page.draw_line((x, rows[0]), (x, rows[-1]))
             for y in rows:
@@ -101,7 +128,7 @@ def original(root, *pages):
             for y, row in zip(rows, grid):
                 for x, cell in zip(columns, row):
                     page.insert_text((x + 5, y + 16), cell, fontsize=10)
-            page.insert_text((42, 480), f'{PROJECT} Mineral Resource Report Page {index} of {len(pages)}', fontsize=9)
+            page.insert_text((42, 480), page_footer, fontsize=9)
         document.save(path, no_new_id=True)
     return {'path': path.name, 'sha256': filehash(path), 'key': 'synthetic-resource-review', 'kind': 'pdf',
             'url': 'https://example.invalid/synthetic-resource-review.pdf', 'summary_project_ids': [PROJECT_ID],
@@ -124,12 +151,15 @@ def legacy_pair(source, cutoff, *, basis='TREO'):
 
 
 def run_fixture(root, pages, *, legacy_cutoff=None, legacy_cutoff_basis='TREO', tamper=False,
-                previously_active_pages=()):
+                previously_active_pages=(), value_pages=None, context_pages=None, other_project=None):
     (root / 'config').symlink_to(ROOT / 'config', target_is_directory=True)
     source = original(root, *pages)
     historical = legacy_pair(source, legacy_cutoff, basis=legacy_cutoff_basis) if legacy_cutoff is not None else []
     claims = {'projects': [{'id': 'alpha', 'name': PROJECT, 'aliases': [PROJECT], 'state': 'WA',
                             'identity_source': source['key'], 'observations': historical}]}
+    if other_project:
+        claims['projects'].append({'id': 'beta', 'name': other_project, 'aliases': [other_project], 'state': 'WA',
+                                   'identity_source': source['key'], 'observations': []})
     selected_shas = {source['sha256']}
     with closing(connect(':memory:')) as db:
         ingest_sources(db, root, [source])
@@ -142,9 +172,10 @@ def run_fixture(root, pages, *, legacy_cutoff=None, legacy_cutoff_basis='TREO', 
         if tamper:
             with (root / source['path']).open('ab') as stream:
                 stream.write(b'\n% changed source edition\n')
-        physical_pages = list(range(1, len(pages) + 1))
+        physical_pages = value_pages if value_pages is not None else list(range(1, len(pages) + 1))
+        supporting_pages = context_pages if context_pages is not None else physical_pages
         receipt = admit(db, root, [source], CUTOFF, {source['sha256']: physical_pages}, claims_data=claims,
-                        classification=FIXTURE_CLASS, context_pages_by_sha={source['sha256']: physical_pages})
+                        classification=FIXTURE_CLASS, context_pages_by_sha={source['sha256']: supporting_pages})
         audit = []
         after = resource_values(db, CUTOFF, selected_shas, strict=True, active_claim_ids=active_claims,
                                 scope_audit=audit, admitted_resource_ids=receipt['active_admission_observation_ids'])
@@ -242,6 +273,12 @@ class ResourceAdmissionReviewPdfTests(unittest.TestCase):
                 self.assertTrue(all(item['numeric_and_unit_located'] for item in row['observations']))
                 if expected == 'WITHHOLD':
                     self.assertIn(row['jorc_assessment']['status'], ('UNESTABLISHED', 'UNRESOLVED_SCOPE'))
+                elif expected == 'CONFLICT':
+                    witnesses = self.check_jorc(row, source, expected, required_polarities=('AFFIRMED', 'DENIED'))
+                    denial = next(item for item in witnesses if item['polarity'] == 'DENIED')
+                    self.assertTrue(denial['anaphoric'])
+                    self.assertIn('Table 2', note[denial['subject_start']:denial['subject_end']])
+                    self.assertEqual(note[denial['predicate_start']:denial['predicate_end']], 'is not compliant')
                 else:
                     witnesses = self.check_jorc(row, source, expected, required_polarities=(expected,))
                     statement = next(item for item in witnesses if item['quote'] == note and item['polarity'] == expected)
@@ -253,7 +290,7 @@ class ResourceAdmissionReviewPdfTests(unittest.TestCase):
                     code = note[statement['code_start']:statement['code_end']]
                     self.assertIn('Mineral Resource estimate', subject)
                     self.assertIn('JORC', code)
-                    if 'cross_sentence' in name:
+                    if 'cross_sentence' in name or 'after_neutral_sentence' in name:
                         self.assertTrue(statement['anaphoric'])
                         self.assertLess(statement['subject_end'], statement['predicate_start'])
                 if expected == 'AFFIRMED':
@@ -280,6 +317,181 @@ class ResourceAdmissionReviewPdfTests(unittest.TestCase):
         self.assertEqual(len(canonical), 3)
         self.assertTrue(all(json.loads(item['raw'])['pdf_page'] == 2 for item in canonical))
         self.assertEqual(selected[PROJECT_ID]['date'], EFFECTIVE_DATE)
+
+    def test_jorc_subject_switch_after_neutral_prose_keeps_other_table_denial_separate(self):
+        note = ('The Mineral Resource estimate in Table 2 is JORC compliant. The prior estimate is in Table 1. '
+                'Details remain unchanged. It is not compliant with JORC.')
+        source, receipt, _, selected, _, canonical = self.run_pdf(resource_page(qualifier='', notes=(note,)))
+        row = total_disposition(receipt)
+        self.check_jorc(row, source, 'AFFIRMED', required_polarities=('AFFIRMED',))
+        denial = next(evidence for evidence in row['jorc_assessment']['evidence'] if evidence['polarity'] == 'DENIED')
+        self.assertEqual(denial['applicability'], 'OTHER_ESTIMATE')
+        self.assertIn('Table 1', note[denial['subject_start']:denial['subject_end']])
+        self.assertTrue(denial['anaphoric'])
+        self.assertEqual(len(canonical), 3)
+        self.assertEqual(selected[PROJECT_ID]['contained_treo_kt'], 100)
+
+    def test_ambiguous_antecedent_is_not_used_as_definitive_support_or_denial(self):
+        note = ('Table 1 and Table 2 describe different Mineral Resource estimates. '
+                'It is not compliant with JORC.')
+        _, receipt, _, selected, _, canonical = self.run_pdf(resource_page(notes=(note,)))
+        row = total_disposition(receipt)
+        self.assertEqual(row['jorc_assessment']['status'], 'UNRESOLVED_SCOPE')
+        self.assertTrue(any(item['polarity'] == 'DENIED' and item['quote'] == note
+                            for item in row['jorc_assessment']['evidence']))
+        self.assertEqual(row['status'], 'NOT_ADMITTED')
+        self.assertEqual(canonical, [])
+        self.assertEqual(selected, {})
+
+    def test_nonadjacent_context_completes_only_a_located_same_estimate(self):
+        resource = resource_page(date=None, cutoff=None, material_header='Ore tonnage (Mt)',
+                                 chemical_header='TREO grade (ppm)')
+        pages = (resource, narrative_page(), narrative_page(), narrative_page(), external_estimate_context())
+        original_source, without_context, _, missing, _, _ = self.run_pdf(*pages, value_pages=(1,), context_pages=())
+        self.assertEqual(missing, {})
+        self.assertIn('RESOURCE_ESTIMATE_DATE_UNRESOLVED', total_disposition(without_context)['reasons'])
+
+        source, receipt, _, selected, _, canonical = self.run_pdf(*pages, value_pages=(1,), context_pages=(5,))
+        self.assertEqual(source['sha256'], original_source['sha256'])
+        row = total_disposition(receipt)
+        self.assertEqual(row['status'], 'SOURCE_BOUND_CANONICAL', row['reasons'])
+        gains = set(row['context_field_gains'])
+        self.assertTrue({'effective_date', 'material_basis', 'denominator_basis', 'chemical_basis', 'cutoff_grade'}
+                        <= gains, gains)
+        self.assertEqual(selected[PROJECT_ID]['contained_treo_kt'], 100)
+        self.assertEqual(selected[PROJECT_ID]['date'], EFFECTIVE_DATE)
+        self.assertEqual(len(canonical), 3)
+        for observation in canonical:
+            raw = json.loads(observation['raw'])
+            self.assertEqual(raw['material_basis'], 'RESOURCE_BULK_ORE')
+            self.assertEqual(observation['basis'], 'TREO')
+            typed = raw['source_bound_observation']
+            self.assertEqual(typed['evidence']['page'], 1)
+            remote = [anchor for anchor in typed['evidence_anchors'] if anchor['page'] == 5]
+            self.assertTrue(remote)
+            roles = {anchor['role'] for anchor in remote}
+            self.assertTrue({'estimate_identity_reference', 'estimate_effective_date', 'estimate_material_basis',
+                             'estimate_denominator_basis', 'estimate_chemical_basis', 'estimate_cutoff'}
+                            <= roles, roles)
+            self.assertTrue(all(anchor['sha256'] == source['sha256'] and anchor['quote'] and anchor['bbox']
+                                and anchor['locator'] and anchor['text_span'] for anchor in remote))
+            context = ' '.join(anchor['quote'] for anchor in remote)
+            for marker in ('Table 2', EFFECTIVE_DATE, 'dry basis', 'Total Rare Earth Oxides', '500 ppm TREO'):
+                self.assertIn(marker, context)
+
+    def test_repeated_table_label_and_other_year_do_not_supply_context(self):
+        incomplete = resource_page(date=None, cutoff=None, material_header='Ore tonnage (Mt)',
+                                   chemical_header='TREO grade (ppm)')
+        # Both tables intentionally use the same printed quantity pair. An
+        # older dated quotation cannot supply an undated estimate's date.
+        other = resource_page(date='2024-05-01')
+        source, receipt, _, selected, _, canonical = self.run_pdf(
+            incomplete, other, narrative_page(), narrative_page(),
+            external_estimate_context(date='2024-05-01'),
+            value_pages=(1, 2), context_pages=(5,))
+        row = total_disposition(receipt)
+        self.assertEqual(row['status'], 'NOT_ADMITTED')
+        self.assertIn('RESOURCE_ESTIMATE_DATE_UNRESOLVED', row['reasons'])
+        self.assertEqual(total_disposition(receipt, 2)['status'], 'SOURCE_BOUND_CANONICAL')
+        self.assertEqual(len(canonical), 3)
+        self.assertTrue(all(observation['source_sha'] == source['sha256'] and
+                            json.loads(observation['raw'])['pdf_page'] == 2 for observation in canonical))
+        self.assertEqual(selected[PROJECT_ID]['date'], '2024-05-01')
+
+    def test_other_estimates_dry_basis_does_not_bind_by_report_footer(self):
+        note = narrative_page(f'For the earlier {PROJECT} Mineral Resource estimate in Table 1, '
+                              'effective 2024-05-01, tonnages are reported on a dry basis.')
+        _, receipt, _, selected, _, canonical = self.run_pdf(
+            resource_page(material_header='Ore tonnage (Mt)'), narrative_page(), narrative_page(),
+            narrative_page(), note, value_pages=(1,), context_pages=(5,))
+        row = total_disposition(receipt)
+        self.assertEqual(row['status'], 'NOT_ADMITTED')
+        self.assertIn('DRY_BULK_ORE_BASIS_UNRESOLVED', row['reasons'])
+        self.assertEqual(canonical, [])
+        self.assertEqual(selected, {})
+
+    def test_other_project_quantity_cannot_bind_in_same_physical_block(self):
+        other = 'Synthetic Beta Project'
+        note = narrative_page(f'Table 2 presents the {PROJECT} Mineral Resource estimate. '
+                              f'The {other} Mineral Resource estimate is 50 Mt at 2,000 ppm TREO '
+                              f'effective {EFFECTIVE_DATE}. Tonnages are reported on a dry basis. '
+                              'TREO means Total Rare Earth Oxides. The estimate uses 500 ppm TREO cut-off.')
+        target = resource_page(date=None, cutoff=None, material_header='Ore tonnage (Mt)',
+                               chemical_header='TREO grade (ppm)')
+        _, receipt, _, selected, _, canonical = self.run_pdf(
+            target, narrative_page(), narrative_page(), narrative_page(), note,
+            value_pages=(1,), context_pages=(5,), other_project=other)
+        row = total_disposition(receipt)
+        self.assertEqual(row['status'], 'NOT_ADMITTED')
+        self.assertEqual(row['context_field_gains'], {})
+        self.assertEqual(canonical, [])
+        self.assertEqual(selected, {})
+
+    def test_bound_context_conflicts_keep_incompatible_estimate_out_of_selection(self):
+        template = external_estimate_context()['narrative']
+        for original, replacement, reason in (
+            ('dry basis', 'wet basis', 'DRY_BULK_ORE_BASIS_UNRESOLVED'),
+            ('500 ppm', '1,000 ppm', 'RESOURCE_CUTOFF_BASIS_OR_VALUE_CONFLICT'),
+            ('TREO means Total Rare Earth Oxides', 'TREO excludes CeO2', 'TREO_EXCLUDED_OXIDE_BASIS'),
+        ):
+            with self.subTest(reason=reason):
+                note = narrative_page(template.replace(original, replacement))
+                _, receipt, _, selected, _, canonical = self.run_pdf(
+                    resource_page(), narrative_page(), narrative_page(), narrative_page(), note,
+                    value_pages=(1,), context_pages=(5,))
+                row = total_disposition(receipt)
+                self.assertEqual(row['status'], 'NOT_ADMITTED', row['reasons'])
+                self.assertIn(reason, row['reasons'])
+                self.assertEqual(canonical, [])
+                self.assertEqual(selected, {})
+
+    def test_cross_page_denial_needs_a_located_subject_relation(self):
+        denial = 'It is not compliant with JORC.'
+        unbound = narrative_page(denial)
+        bound = external_estimate_context()
+        bound['narrative'] += f' Details remain unchanged. {denial}'
+        cases = ((unbound, 'AFFIRMED'), (bound, 'CONFLICT'))
+        for note, expected in cases:
+            with self.subTest(expected=expected):
+                source, receipt, _, selected, _, canonical = self.run_pdf(
+                    resource_page(), narrative_page(), narrative_page(), narrative_page(), note,
+                    value_pages=(1,), context_pages=(5,))
+                row = total_disposition(receipt)
+                witnesses = self.check_jorc(row, source, expected, required_polarities=('AFFIRMED',))
+                negative = next(item for item in row['jorc_assessment']['evidence'] if item['polarity'] == 'DENIED')
+                self.assertEqual(negative['physical_page'], 5)
+                self.assertEqual(negative['source_sha256'], source['sha256'])
+                if expected == 'CONFLICT':
+                    self.assertIn(negative, witnesses)
+                    self.assertTrue(negative['anaphoric'])
+                    self.assertIn('Table 2', negative['quote'][negative['subject_start']:negative['subject_end']])
+                    self.assertEqual(row['status'], 'NOT_ADMITTED')
+                    self.assertEqual(selected, {})
+                    self.assertEqual(canonical, [])
+                else:
+                    self.assertNotIn(negative, witnesses)
+                    self.assertEqual(row['status'], 'SOURCE_BOUND_CANONICAL', row['reasons'])
+                    self.assertEqual(selected[PROJECT_ID]['contained_treo_kt'], 100)
+                    self.assertEqual(len(canonical), 3)
+
+    def test_component_exclusions_are_distinct_from_unresolved_competing_totals(self):
+        _, receipt, _, selected, _, canonical = self.run_pdf(resource_page())
+        components = [row for row in receipt['dispositions'] if row['row'] in (1, 2)]
+        self.assertEqual(len(components), 2)
+        self.assertTrue(all(row['row_role'] == 'COMPONENT' and 'RESOURCE_COMPONENT_EXCLUDED' in row['reasons']
+                            for row in components))
+        self.assertEqual(total_disposition(receipt)['status'], 'SOURCE_BOUND_CANONICAL')
+        self.assertEqual(len(canonical), 3)
+        self.assertEqual(selected[PROJECT_ID]['contained_treo_kt'], 100)
+
+        _, receipt, _, selected, _, canonical = self.run_pdf(resource_page(competing_total=('60', '2,000', '120,000')))
+        totals = [row for row in receipt['dispositions'] if row['row'] in (3, 4)]
+        self.assertEqual(len(totals), 2)
+        self.assertEqual({row['status'] for row in totals}, {'NOT_ADMITTED'})
+        self.assertTrue(all(row['row_role'] == 'COMPETING_TOTAL' and
+                            'RESOURCE_COMPETING_TOTALS_UNRESOLVED' in row['reasons'] for row in totals))
+        self.assertEqual(canonical, [])
+        self.assertEqual(selected, {})
 
     def test_independent_current_jorc_passes_in_report_with_old_non_jorc(self):
         earlier = resource_page(number=1, qualifier='non-JORC', date='2024-05-01')

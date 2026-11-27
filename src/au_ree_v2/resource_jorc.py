@@ -3,7 +3,7 @@
 import re
 
 
-VERSION = "resource-jorc-proposition-v2"
+VERSION = "resource-jorc-proposition-v3"
 _CODE = r"(?:JORC\b(?:\s+Code(?:\d+)?)?|Joint Ore Reserves Committee)"
 _CODE_EDITION = rf"{_CODE}(?:\s+20\d{{2}})?"
 _RESOURCE = r"(?:(?:global|total)\s+)?(?:mineral\s+)?resources?(?:\s+estimate)?"
@@ -59,6 +59,16 @@ _CLAUSE_BREAK = re.compile(r"(?<=[.;!?])\s+|\s+(?:but|whereas|while|and)\s+(?=(?
 _TABLE = re.compile(r"\bTable\s+(\d+(?:[-.]\d+)*)(?!\w|[.-]\d)", re.I)
 _OLD = re.compile(r"\b(?:earlier|historical|old|previous|prior|former)\s+(?:estimate|assessment|20\d{2}|MRE|resource)\b", re.I)
 _CURRENT = re.compile(r"\b(?:current|updated|latest|this)\s+(?:(?:mineral\s+)?resource\s+)?(?:estimate|MRE|resource)\b", re.I)
+_NEW_ESTIMATE = re.compile(rf"\b(?:another|different|separate|alternative|second|new|20\d{{2}})\s+"
+                           rf"(?:{_RESOURCE}|estimate|MRE)\b", re.I)
+_INDEFINITE_ESTIMATE = re.compile(rf"\ban?\s+(?:{_RESOURCE}|estimate|MRE)\b", re.I)
+_ESTIMATE_YEAR = re.compile(rf"\b(20\d{{2}})\s+(?:{_CODE}\s+)?(?:{_RESOURCE}|estimate|MRE)\b", re.I)
+_REPORTING_CODE_BEFORE_YEAR = re.compile(rf"\b{_CODE}\s*$", re.I)
+_LATEST_ESTIMATE = re.compile(rf"\b(?:current|updated|latest)\s+(?:{_RESOURCE}|estimate|MRE)\b", re.I)
+_PROJECT_TOPIC = re.compile(r"\b(?:(?i:another|different|separate|alternative|second|new|next|earlier|former|prior)"
+                            r"|(?!(?i:the|this|that|our|their|its|an?)\b)[A-Z][\w’'-]*)"
+                            r"\s+(?i:project|deposit)\b")
+_OTHER_REPORTING_CODE = re.compile(r"\b(?:NI\s*43[-–]101|SAMREC|PERC|S\s*-?\s*K\s*1300)\b", re.I)
 _SCOPE_END = re.compile(r"\s+(?:(?:rare earth )?deposit|project)\s*$", re.I)
 _SECTION = re.compile(r"^(20\d\d)\s+(.+?)\s+(?:Mineral\s+)?Resource Estimate$", re.I)
 ROLE_TO_SCOPE = {
@@ -172,15 +182,25 @@ def _compliance_propositions(clause, declaration, previous_code):
 
 
 def claims(quote, *, declaration=False):
-    """Locate subjects, predicates and their modifiers in one physical source quote."""
+    """Locate subjects and predicates within one physical block, including neutral gaps."""
     start = 0
-    previous_reference = None
-    previous_code = False
+    reference = None
+    explicit_code = None
     for boundary in [*(_CLAUSE_BREAK.finditer(quote)), None]:
         end = boundary.start() if boundary else len(quote)
         clause = quote[start:end]
-        propositions = _compliance_propositions(clause, declaration, previous_code)
-        resolved_reference = None
+        tables = table_numbers(clause)
+        # A new named table and estimate replace the antecedent. A subject
+        # switch without a unique table remains visible as ambiguous instead
+        # of borrowing the preceding estimate. A neutral clause leaves both
+        # the subject and the reporting-standard reference available.
+        scope_change = bool(tables or _OLD.search(clause) or _NEW_ESTIMATE.search(clause)
+                            or _INDEFINITE_ESTIMATE.search(clause) or _PROJECT_TOPIC.search(clause)
+                            or (reference and _LATEST_ESTIMATE.search(clause)
+                                and _OLD.search(quote[reference[0]:reference[1]])))
+        if _OTHER_REPORTING_CODE.search(clause) and not re.search(_CODE, clause, re.I):
+            explicit_code = None
+        propositions = _compliance_propositions(clause, declaration, explicit_code is not None)
         for assertion in propositions:
             subject = clause[:assertion["subject_end"]]
             anaphor = _ANAPHOR.match(subject)
@@ -188,17 +208,21 @@ def claims(quote, *, declaration=False):
                         for key, value in assertion.items()}
             bindings["modifiers"] = [{"kind": item["kind"], "start": start + item["start"], "end": start + item["end"]}
                                      for item in assertion["modifiers"]]
-            if anaphor and not table_numbers(clause) and previous_reference and not _PLURAL_ANAPHOR.match(subject):
-                resolved_reference = previous_reference
-                bindings["subject_start"], bindings["subject_end"] = resolved_reference
+            if "code_start" in bindings:
+                explicit_code = bindings["code_start"], bindings["code_end"]
+            elif explicit_code is not None:
+                bindings["code_start"], bindings["code_end"] = explicit_code
+            resolved_reference = reference if anaphor and not scope_change and not _PLURAL_ANAPHOR.match(subject) else None
+            if resolved_reference:
+                bindings["subject_start"], bindings["subject_end"] = resolved_reference[:2]
             bindings["anaphoric"] = resolved_reference is not None
             bindings["subject_reference_unresolved"] = bool(_PLURAL_ANAPHOR.match(subject)
+                or (resolved_reference and not resolved_reference[2])
                 or (anaphor and subject.strip().casefold() in {"it", "this", "that"} and not resolved_reference
-                    and not table_numbers(clause)))
+                    and not tables))
             yield {"start": start, "end": end, **bindings}
-        previous_reference = ((start, end) if table_numbers(clause) and _RESOURCE_REFERENCE.search(clause)
-                              else resolved_reference)
-        previous_code = any("code_start" in item for item in propositions)
+        if scope_change:
+            reference = (start, end, len(tables) == 1 and bool(_RESOURCE_REFERENCE.search(clause)))
         if boundary:
             start = boundary.end()
 
@@ -254,6 +278,7 @@ def evaluate(witnesses, subject, *, projects_in, dates_in):
         quote = witness["quote"]
         origin = witness["origin"]
         declaration = origin in {"SCOPE_CAPTION", "NATIVE_SECTION"}
+        quote_names_target = table in table_numbers(quote)
         for assertion in claims(quote, declaration=declaration):
             clause = quote[assertion["start"]:assertion["end"]]
             subject_side = quote[assertion["subject_start"]:assertion["subject_end"]]
@@ -261,20 +286,37 @@ def evaluate(witnesses, subject, *, projects_in, dates_in):
             old = _OLD.search(subject_side)
             proof = None
             projects, dates = projects_in(subject_side), dates_in(subject_side) | dates_in(clause)
-            foreign = bool(projects - {subject["project_id"]} or dates - {subject["effective_date"]})
+            estimate_years = {match[1] for match in _ESTIMATE_YEAR.finditer(subject_side)
+                              if not _REPORTING_CODE_BEFORE_YEAR.search(subject_side[:match.start()])}
+            effective_date = subject["effective_date"]
+            foreign = bool(projects - {subject["project_id"]} or dates - {effective_date}
+                           or (effective_date and estimate_years - {effective_date[:4]}))
+            gap = quote[assertion["subject_end"]:assertion["start"]] if assertion["anaphoric"] else ""
+            conflicting_gap = bool(gap and (projects_in(gap) - {subject["project_id"]}
+                                            or dates_in(gap) - {subject["effective_date"]}))
             if named and named != {table}:
                 applicability = "TARGET_SCOPE_AMBIGUOUS" if table in named else "OTHER_ESTIMATE"
             elif foreign:
                 applicability = "TARGET_SCOPE_AMBIGUOUS" if named == {table} else "OTHER_ESTIMATE"
-            elif assertion["subject_reference_unresolved"]:
-                applicability = ("TARGET_SCOPE_AMBIGUOUS" if named == {table} or declaration
-                                 or origin in {"ADJACENT_ESTIMATE_NOTE", "MATCHED_ESTIMATE_SECTION"} else "UNRESOLVED")
+            elif assertion["subject_reference_unresolved"] or conflicting_gap:
+                applicability = ("TARGET_SCOPE_AMBIGUOUS" if named == {table} or quote_names_target or declaration
+                                 or origin in {"ADJACENT_ESTIMATE_NOTE", "MATCHED_ESTIMATE_SECTION",
+                                               "BOUND_ESTIMATE_CONTEXT"} else "UNRESOLVED")
             elif old and not (declaration or named == {table} and witness["physical_page"] == subject["physical_page"]):
                 applicability = "TARGET_SCOPE_AMBIGUOUS" if named == {table} else "OTHER_ESTIMATE"
             elif declaration:
                 applicability, proof = "TARGET", origin
+            elif origin == "BOUND_ESTIMATE_CONTEXT":
+                applicability, proof = "TARGET", origin
             elif named == {table}:
-                applicability, proof = "TARGET", "TABLE_REFERENCE"
+                if (witness["physical_page"] == subject["physical_page"]
+                        and subject.get("reported_table_unique_on_page", True)):
+                    applicability, proof = "TARGET", "TABLE_REFERENCE"
+                elif origin == "MATCHED_ESTIMATE_SECTION":
+                    applicability, proof = "TARGET", origin
+                else:
+                    applicability = ("TARGET_SCOPE_AMBIGUOUS" if witness["physical_page"] == subject["physical_page"]
+                                     else "UNRESOLVED")
             elif origin == "ADJACENT_ESTIMATE_NOTE" and _CURRENT.search(subject_side) and assertion["polarity"] == "DENIED":
                 applicability, proof = "TARGET", origin
             elif origin == "ADJACENT_ESTIMATE_NOTE" and not subject_side.strip(" •:-–—()") and assertion["polarity"] == "DENIED":
@@ -316,8 +358,15 @@ def admission_issue(raw):
                     other.role == role and (other.page, other.table, other.quote, other.bbox) ==
                     (anchor.page, anchor.table, anchor.quote, anchor.bbox) for other in anchors)
             elif anchor.locator == "TABLE_REFERENCE":
-                bound = bool(table and propositions and all(not item["subject_reference_unresolved"]
+                bound = bool(anchor.page == raw.evidence.page and table and propositions
+                             and context.get("reported_table_unique_on_page") != "false"
+                             and all(not item["subject_reference_unresolved"]
                              and _proposition_tables(anchor.quote, item) == {table} for item in propositions))
+            elif anchor.locator == "BOUND_ESTIMATE_CONTEXT":
+                bound = bool(propositions and all(not item["subject_reference_unresolved"] for item in propositions)
+                             and any(other.role == "estimate_identity_reference"
+                                     and (other.page, other.quote, other.bbox) == (anchor.page, anchor.quote, anchor.bbox)
+                                     for other in anchors))
             elif anchor.locator == "MATCHED_ESTIMATE_SECTION":
                 bound = any(other.role == "jorc_section_scope" and other.page == anchor.page
                             and other.bbox[3] <= anchor.bbox[1] and

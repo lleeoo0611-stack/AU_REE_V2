@@ -17,7 +17,10 @@ from .pdf_extract import project_registry
 from .resource_estimate import compare_resource_estimates, cutoff_signature, normalize_cutoff
 from .resource_estimate import reported_resource_table_label as _table_label
 from .resource_jorc import admission_issue as jorc_admission_issue
-from .resource_source import _CUTOFF_CELL, _CUTOFF_COLUMN, _cutoff, _effective_dates, discover
+from .resource_source import (
+    _CONTEXT_ROLES, _CUTOFF_CELL, _CUTOFF_COLUMN, _cutoff, _effective_dates, _estimate_dates_in_context,
+    discover, verified_context_anchors,
+)
 from .selection_rules import RESOURCE_ADMISSION_VERSION, RESOURCE_ADMISSION_VERSION_GLOB, date_end, source_check
 from .store import canonical, digest, filehash
 
@@ -103,10 +106,11 @@ def _value_disposition(raw, source, selected_row):
     return None, True, True
 
 
-def _cutoff_issue(raw, anchors, row):
+def _cutoff_issue(raw, anchors, row, contextual):
     context = _scope_conditions(raw)
     expected = cutoff_signature(normalize_cutoff(context.get("cutoff_grade") or context.get("cutoff")))
-    found = set(_cutoff(anchor.quote for anchor in anchors if anchor.role == "scope"))
+    found = set(_cutoff([*(anchor.quote for anchor in anchors if anchor.role == "scope"),
+                         *(anchor.quote for anchor in contextual if anchor.role == "estimate_cutoff")]))
     for anchor in anchors:
         if anchor.role != "cutoff_value" or anchor.row != row or type(anchor.column) is not int:
             continue
@@ -159,6 +163,10 @@ def _group_context(observations, source, project_ids, cutoff, selected_row):
     if any((item.publication_date and item.publication_date != source["publication_date"])
            or (item.acquisition_date and item.acquisition_date != source["acquired_at"]) for item in observations):
         return "RESOURCE_SOURCE_TIMING_MISMATCH"
+    contextual = set(verified_context_anchors(observations))
+    if any(anchor.role in _CONTEXT_ROLES.values() and anchor not in contextual
+           for item in observations for anchor in item.evidence_anchors):
+        return "RESOURCE_CONTEXT_EVIDENCE_BINDING_MISMATCH"
     for item in observations:
         anchors = [anchor for anchor in item.evidence_anchors
                    if anchor.source_id == source["key"] and _location(anchor)[:3] == (source["sha256"], *selected_row[:2])
@@ -170,9 +178,12 @@ def _group_context(observations, source, project_ids, cutoff, selected_row):
             return "RESOURCE_ROW_EVIDENCE_MISMATCH"
         dates = _effective_dates(anchor.quote for anchor in anchors
                                  if anchor.role in {"scope", "estimate_reference", "resource_section"})
+        for anchor in contextual:
+            if anchor.role == "estimate_effective_date":
+                dates |= _estimate_dates_in_context(anchor.quote, anchor.locator)
         if dates != {item.effective_date}:
             return "RESOURCE_EFFECTIVE_DATE_EVIDENCE_MISMATCH"
-        if issue := _cutoff_issue(item, anchors, selected_row[2]):
+        if issue := _cutoff_issue(item, anchors, selected_row[2], contextual):
             return issue
     return None
 
@@ -240,6 +251,14 @@ def _evaluate(candidate, source, project_ids, cutoff, engine):
                             raw=payload(raw)))
         if issue:
             issues.append(issue)
+    bound = {(anchor.role, anchor.page, anchor.bbox, anchor.quote, anchor.locator)
+             for anchor in verified_context_anchors(observations)} if observations else set()
+    gains = {}
+    for field, result in candidate.get("context_field_gains", {}).items():
+        verified = [anchor for anchor in result["evidence"]
+                    if (anchor["field"], anchor["page"], tuple(anchor["bbox"]), anchor["quote"], anchor["locator"]) in bound]
+        if verified:
+            gains[field] = {**result, "evidence": verified}
     if observations and (issue := _group_context(observations, source, project_ids, cutoff, selected_row)):
         issues.append(issue)
     facts = None
@@ -251,6 +270,7 @@ def _evaluate(candidate, source, project_ids, cutoff, engine):
                 physical_page=selected_row[0], table=selected_row[1], row=selected_row[2],
                 project_id=observations[0].project_id if observations else None,
                 candidate_id=candidate.get("candidate_id"), jorc_assessment=candidate.get("jorc_assessment"),
+                row_role=candidate.get("row_role"), context_field_gains=gains,
                 statement_id=observations[0].statement_id if observations else None,
                 estimate_id=observations[0].estimate_id if observations else None,
                 status="CANONICAL_ELIGIBLE" if facts else "NOT_ADMITTED", reasons=sorted(set(issues)),
@@ -535,7 +555,7 @@ def _inactive_admissions(db, active, requested_shas):
 
 def admit(db, root, snapshots, cutoff, page_requests, *, acquired_through=None, claims_data=None,
           cache=None, classification="PUBLIC_REAL_SOURCE_REPLAY", context_pages_by_sha=None,
-          preferred_source_keys=None):
+          preferred_source_keys=None, document_cache=None):
     """Re-extract selected immutable PDF editions and save complete same-row witnesses.
 
     The caller owns the database transaction and current-run visibility. Historical
@@ -565,7 +585,7 @@ def admit(db, root, snapshots, cutoff, page_requests, *, acquired_through=None, 
     counts = Counter(source_requests=len(page_requests))
     for sha, pages in sorted(page_requests.items()):
         context_pages = context_pages_by_sha.get(sha, ())
-        if (not re.fullmatch(r"[a-f0-9]{64}", sha) or not pages
+        if (not re.fullmatch(r"[a-f0-9]{64}", sha) or not pages and document_cache is None
                 or any(type(page) is not int or page < 1 for page in (*pages, *context_pages))):
             raise ValueError("Admission requests require a pinned SHA and positive physical pages")
         source = sources.get(sha)
@@ -582,7 +602,14 @@ def admit(db, root, snapshots, cutoff, page_requests, *, acquired_through=None, 
                                        status="SOURCE_BLOCKED", reason=reason, pages=sorted(set(pages)),
                                        asset_available=available, sha_verified=sha_verified))
             continue
+        if not pages:
+            source_reasons.append(dict(source_sha256=sha, source_key=source["key"], status="SOURCE_CHECKED",
+                                       reason="NO_VALUE_PAGES_SELECTED", pages=[], context_pages=sorted(set(context_pages)),
+                                       context_page_dispositions=[], asset_available=available, sha_verified=sha_verified))
+            continue
         context_options = {"context_pages": tuple(sorted(set(context_pages)))} if context_pages else {}
+        if document_cache is not None:
+            context_options["document_cache"] = document_cache
         discovery = discover(root, dict(source, summary_project_ids=allowed[sha]), registry,
                              page_numbers=sorted(set(pages)), cache=cache, **context_options)
         page_statuses = {row["status"] for row in discovery["pages"]}
@@ -593,7 +620,8 @@ def admit(db, root, snapshots, cutoff, page_requests, *, acquired_through=None, 
                                    asset_available=available, sha_verified=sha_verified,
                                    source_timing={k: source[k] for k in ("publication_date", "available_date", "acquired_at")},
                                    authorized_projects=allowed[sha], pages=discovery["pages"],
-                                   context_pages=sorted(set(context_pages))))
+                                   context_pages=sorted(set(context_pages)),
+                                   context_page_dispositions=discovery.get("context_page_dispositions", [])))
         for candidate in discovery["candidates"]:
             summary, facts, raws = _evaluate(candidate, source, allowed[sha], cutoff, engine)
             dispositions.append(summary)
